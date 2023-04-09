@@ -4,7 +4,6 @@
 skinparam RoundCorner 0
 
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
 hide <<hidden>> stereotype
@@ -19,7 +18,7 @@ hide <<hidden>> stereotype
     }
 </style>
 
-package Logic LOGIC_COLOR_T1 {
+package Logic {
 
     Class CommandMessage
     Class "{abstract}\nCommand" as Command
@@ -31,10 +30,12 @@ package Logic LOGIC_COLOR_T1 {
 
 }
 
-package Model MODEL_COLOR_T1 {
+package Model {
+    Class Hidden1 <<hidden>>
 }
 
-package Storage STORAGE_COLOR_T1 {
+package Storage {
+    Class Hidden2 <<hidden>>
 }
 
 Class HiddenOut <<hidden>>

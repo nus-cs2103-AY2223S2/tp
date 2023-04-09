@@ -739,15 +739,17 @@ Vaccinations are uniquely identified by their names. The following is a list of 
   * Default value = `empty list`.
   * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
 
-<div markdown="block" class="alert alert-info" id="vaccination-case-sensitive-name-info">
-:information_source: **Case sensitivity of names in vaccinations**
+<div markdown="block" class="alert alert-success" id="vaccination-case-sensitive-name-info">
+:bulb: **Vaccination related name are case sensitive**
 
-Vaccination **name** and the names of their **ingredients** are <u>case sensitive</u> to differentiate between simple chemical formulas, company names containing the same characters but in different case or certain serial numbers that are case sensitive.
+Vaccination related names (**name**, **groups** and **allergies**) are case sensitive. This allows you to differentiate case sensitive things within these names like simple chemical formulas.
 
-Therefore these vaccination names are different:
+Here is an example of how you can use this to differentiate vaccination names:
 
 * `VAX ABC (No CO)` - "CO" for carbon monoxide.
 * `VAX ABC (No Co)` - "Co" for cobalt.
+
+Similar things can be done for the other components.
 
 </div>
 
@@ -793,7 +795,7 @@ The flags `--lal` and `--ual` for minimum and maximum age stand for **<u>L</u>ow
 </div>
 
 <div markdown="block" class="alert alert-success" id="vaccination-add-command-tip">
-:bulb: **Breaking up vaccination `add` syntax**
+:bulb: **Breaking up vaccination creation**
 
 Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination) command.
 
@@ -811,13 +813,7 @@ For example, to add the same vaccination as in the <a href="#vaccination-add-exa
 4. `vaccination edit ABC VAX --i ALC-0315, ALC-0159`
 5. `vaccination edit ABC VAX --h NONE::ABC`
 
-<span id="vax-filter-no-reset-usage">**Using `find` to improve efficiency**</span><br>
-If the name of the vaccination is long, one can use the vaccination's [`find`](#find---locate-vaccinations) to filter down to that vaccination and then use indexing to refer to that vaccination while editing. This step can be done before adding or editing the vaccination. So to perform the same action as before one can execute the following sequence of commands:
-
-1. `vaccination find ABC VAX`
-2. `vaccination add ABC VAX`
-3. `vaccination edit 1 --g ABC, VACCINATION`
-4. The remaining follow a similar pattern by replacing `ABC VAX` with `1`.
+Efficiency can be further improved by using vaccination [`find`](#find---locate-vaccinations) command. You can learn more <a href="#vax-filter-no-reset-usage">here</a>.
 
 </div>
 
@@ -901,12 +897,29 @@ However, the following will not:
 * `1 Dose Dose` - Wrong order.
 * `Dose dose` - Missing `1`.
 
-<div markdown="block" class="alert alert-info">
-:information_source: **Filter does not reset on `add` or `edit`**
+<div markdown="block" class="alert alert-success" id="vax-filter-no-reset-usage">
+:bulb: **`find` to improve efficiency**
 
-The filters applied by the last `find` command will not be resetting by vaccination's `add` or `edit` commands. Vaccinations added or edited by might not show up on the vaccination list panel. This is intended to allow for a more efficient `edit`. See <a href="#vax-filter-no-reset-usage">here</a> on how one can utilize this feature.
+Filters applied by the last `find` command are designed to only be reset after a vaccination [`list`](#list---list-all-vaccination) command. This is so that you can refer to a vaccination by using the same vaccination. Below are some ways you may utilize this feature.
 
-To reset the filters applied, use the vaccination's [`list`](#list---list-all-vaccination) command.
+**Breaking up vaccination addition**<br>
+Adding on to <a href="#vaccination-add-command-tip">breaking up vaccination tip</a>, `find` can be used to filter down to the name of the vaccination that is being created. Then, instead of referring to the vaccination by its name, you can refer to it by its index while using the `edit` command. This can be done before adding or editing the vaccination. So to perform the same action as in the <a href="#vaccination-add-command-tip">tip</a> one can execute the following sequence of commands:
+
+1. `vaccination find ABC VAX`
+2. `vaccination add ABC VAX`
+3. `vaccination edit 1 --g ABC, VACCINATION`
+4. The remaining follow a similar pattern by replacing `ABC VAX` with `1`.
+
+**Adding appointments**<br>
+A similar pattern can be followed for appointments as well when scheduling appointments for multiple patient for the the same vaccination. Here is an example of how you can schedule an appointment for the created vaccination "ABC VAX" to the first 3 patients on start up:
+
+1. `vaccination find ABC VAX`
+2. `appointment add --p 1 --v 1 --s 2024-3-5 1655 --e 2024-3-5 1700`
+3. `appointment add --p 2 --v 1 --s 2024-3-5 1655 --e 2024-3-5 1700`
+4. `appointment add --p 3 --v 1 --s 2024-3-5 1655 --e 2024-3-5 1700`
+
+For more details on appointment `add` you may read up more [here](#add---add-an-appointment).
+
 </div>
 
 ##### Syntax
@@ -1156,8 +1169,30 @@ appointment find --p 1
 ```
 
 ```text
+appointment find --v Dose 1
+```
+
+##### Find by keyword
+
+This feature searches for appointments where either
+the appointment's starting time or the type of vaccine used
+matches with the <var>`KEYWORDS`</var> provided.
+
+Priority: Appointment's starting time > Type of vaccine used
+
+##### Example
+
+Finds all appointments that uses "Dose 1" vaccines
+
+```text
 appointment find Dose 1
 ```
+
+##### Remarks
+
+This feature prioritises the provided flags over the keywords.
+If a flag is provided, then the returned list of appointments will use the provided flags
+and ignore the keyword even if it were provided.
 
 #### `edit` - Edit an appointment
 
