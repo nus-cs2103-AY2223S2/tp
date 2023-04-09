@@ -713,8 +713,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
-    * 2a1. MODTrek shows a message indicating that there are no modules found in the module list.
+* 1a. The module list is empty.
+    * 1a1. MODTrek shows a message indicating that there are no modules found in the module list.
 
       Use case ends.
 
@@ -731,8 +731,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
-    * 2a1. MODTrek shows an empty degree progression data.
+* 1a. The module list is empty.
+    * 1a1. MODTrek shows an empty degree progression data.
 
       Use case ends.
 
@@ -777,8 +777,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User requests for help on a particular command available on MODTrek.
-    * 1a1. MODTrek shows the use case of each command and its syntax.
+* 2a. User requests for help on a particular command available on MODTrek.
+    * 2a1. MODTrek shows the use case of each command and its syntax.
 
       Use case ends.
 
