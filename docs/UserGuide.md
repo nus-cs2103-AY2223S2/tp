@@ -156,6 +156,8 @@ look through all the doctors and patients in Docedex, please use the
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+---
+
 ## **Notes about the command format**
 
 | Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
@@ -168,6 +170,8 @@ look through all the doctors and patients in Docedex, please use the
 | Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+---
 
 ## **Command Summary**
 
