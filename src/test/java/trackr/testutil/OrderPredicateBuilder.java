@@ -87,12 +87,23 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+
     /**
-     * Sets the {@code orderStatus} of the {@code orderContainsKeywordsPredicate} that we are building.
+     * Sets the {@code OrderNameKeywords} of the {@code OrderContainsKeywordsPredicate} that we are building.
      */
-    public OrderPredicateBuilder withCustomerName(String customerName) {
-        if (customerName != null) {
-            orderPredicate.setCustomerName(new PersonName(customerName));
+    public OrderPredicateBuilder withCustomerNameKeywords(List<String> customerNameKeywords) {
+        if (customerNameKeywords != null) {
+            orderPredicate.setCustomerNameKeywords(customerNameKeywords);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code OrderNameKeywords} of the {@code OrderContainsKeywordsPredicate} that we are building.
+     */
+    public OrderPredicateBuilder withCustomerNameKeywords(String customerNameKeywords) {
+        if (customerNameKeywords != null) {
+            orderPredicate.setCustomerNameKeywords(Arrays.asList(customerNameKeywords.trim().split("\\s+")));
         }
         return this;
     }

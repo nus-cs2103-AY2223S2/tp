@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="329px" preserveAspectRatio="none" style="width:745px;height:329px;background:#FFFFFF;" version="1.1" viewBox="0 0 745 329" width="745px" zoomAndPan="magnify"><defs/><g><!--MD5=[44a1b4afaef76c16e6c9ec4990ad0c8d]
+class Item--><g id="elem_Item"><rect codeLine="9" fill="#9D0012" height="42.1973" id="Item" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="355" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="358" y="25.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="28" x="374.5" y="41.2305">Item</text></g><!--MD5=[007886e900a243ece686dc981ec5213f]
+class Deadline--><g id="elem_Deadline"><rect codeLine="10" fill="#9D0012" height="42.1973" id="Deadline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="655" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="658" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="56" x="660.5" y="315.2305">Deadline</text></g><!--MD5=[e3d83ec5fd90ea9f3f2bfe265cb53458]
+class Status--><g id="elem_Status"><rect codeLine="11" fill="#9D0012" height="42.1973" id="Status" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="529" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="532" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="40" x="542.5" y="315.2305">Status</text></g><!--MD5=[0413c2967cbcbb9b55cfe9d1f30bae3b]
+class UniqueItemList--><g id="elem_UniqueItemList"><rect codeLine="12" fill="#9D0012" height="26.0986" id="UniqueItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="130" x="189.5" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="120" x="192.5" y="33.1318">UniqueItemList&lt;T&gt;</text></g><!--MD5=[a7724e71618d3dacaca1ec2d24889dc2]
+class ItemList--><g id="elem_ItemList"><rect codeLine="24" fill="#9D0012" height="26.0986" id="ItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="147" x="7" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="50" x="10" y="33.1318">ItemList</text><rect fill="#FFFFFF" height="16.1328" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" width="89" x="68" y="12"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="87" x="69" y="24.6016">T extends Item</text></g><!--MD5=[38cbc5fc88b06498bbb77355b03ca902]
+class LocalDateTime--><g id="elem_LocalDateTime"><rect codeLine="15" fill="#9D0012" height="26.0986" id="LocalDateTime" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="102" x="44.5" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="96" x="47.5" y="213.1318">LocalDateTime</text></g><!--MD5=[cf4d6237fcae255cd2e1656cf84a30e2]
+class Order--><g id="elem_Order"><rect codeLine="16" fill="#9D0012" height="26.0986" id="Order" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="50" x="353.5" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="37" x="360" y="127.1318">Order</text></g><!--MD5=[27eb0c30e65d8b262e52e99e862b6c6e]
+class MenuItem--><g id="elem_MenuItem"><rect codeLine="17" fill="#9D0012" height="26.0986" id="MenuItem" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="70" x="181.5" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="64" x="184.5" y="213.1318">MenuItem</text></g><!--MD5=[2ce0c9fb7f55b1e256ab28a8ea6b25ec]
+class Customer--><g id="elem_Customer"><rect codeLine="18" fill="#9D0012" height="26.0986" id="Customer" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="68" x="286.5" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="289.5" y="213.1318">Customer</text></g><!--MD5=[cbfb40637125696e858675d2b522b90f]
+class OrderQuantity--><g id="elem_OrderQuantity"><rect codeLine="19" fill="#9D0012" height="26.0986" id="OrderQuantity" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="96" x="389.5" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="90" x="392.5" y="213.1318">OrderQuantity</text></g><!--MD5=[de626c0cb0f072ae90ffb25031374c19]
+class OrderStatus--><g id="elem_OrderStatus"><rect codeLine="20" fill="#9D0012" height="26.0986" id="OrderStatus" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="83" x="521" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="77" x="524" y="213.1318">OrderStatus</text></g><!--MD5=[d27b1d35a6111a034c522a62556c48ac]
+class OrderDeadline--><g id="elem_OrderDeadline"><rect codeLine="21" fill="#9D0012" height="26.0986" id="OrderDeadline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="99" x="639" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="642" y="213.1318">OrderDeadline</text></g><!--MD5=[641de0088b7653c4b5bc197ac36ace7f]
+class OrderList--><g id="elem_OrderList"><rect codeLine="22" fill="#9D0012" height="26.0986" id="OrderList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="65" x="74" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="59" x="77" y="127.1318">OrderList</text></g><!--MD5=[a5127b499828c09889c8715fca3202ad]
+class UniqueOrderList--><g id="elem_UniqueOrderList"><rect codeLine="23" fill="#9D0012" height="26.0986" id="UniqueOrderList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="110" x="199.5" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="104" x="202.5" y="127.1318">UniqueOrderList</text></g><!--MD5=[946853a062e13709c59583e6dd79092e]
+reverse link ItemList to OrderList--><g id="link_ItemList_OrderList"><path d="M89.79,61.89 C94.4,78.18 99.68,96.86 103.05,108.79 " fill="none" id="ItemList-backto-OrderList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="83.12,64.01,84.42,42.86,96.59,60.21,83.12,64.01" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[5841f03205553e74240bed55d1e4d784]
+reverse link UniqueItemList to UniqueOrderList--><g id="link_UniqueItemList_UniqueOrderList"><path d="M254.5,62.73 C254.5,78.82 254.5,97.07 254.5,108.79 " fill="none" id="UniqueItemList-backto-UniqueOrderList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="247.5,62.92,254.5,42.92,261.5,62.92,247.5,62.92" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[4e7777d310d747d2c1947315482d4a2c]
+link ItemList to UniqueItemList--><g id="link_ItemList_UniqueItemList"><path codeLine="27" d="M167.76,28 C167.76,28 172.72,28 174.74,28 " fill="none" id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="187.59,28,178.59,24,182.59,28,178.59,32,187.59,28" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="182.59" x2="174.59" y1="28" y2="28"/><polygon fill="#9D0012" points="155.76,28,161.76,32,167.76,28,161.76,24,155.76,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="173.5094" y="24.7596">1</text></g><!--MD5=[be517f24292d6b5fd6945ff9c04a4f08]
+link UniqueItemList to Item--><g id="link_UniqueItemList_Item"><path codeLine="28" d="M319.93,28 C329.45,28 338.97,28 348.49,28 " fill="none" id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="353.24,28,344.24,24,348.24,28,344.24,32,353.24,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="341.1703" y="24.0332">*</text></g><!--MD5=[1c0b72a97af6de6a22b0f5a92f97809e]
+link OrderList to UniqueOrderList--><g id="link_OrderList_UniqueOrderList"><path codeLine="30" d="M152.97,122 C152.97,122 174.45,122 184.72,122 " fill="none" id="OrderList-UniqueOrderList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="197.71,122,188.71,118,192.71,122,188.71,126,197.71,122" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="192.71" x2="184.71" y1="122" y2="122"/><polygon fill="#9D0012" points="140.97,122,146.97,126,152.97,122,146.97,118,140.97,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="179.3685" y="118.621">1</text></g><!--MD5=[07a9a40e155cf7ba8fa563215030c51a]
+link UniqueOrderList to Order--><g id="link_UniqueOrderList_Order"><path codeLine="31" d="M309.72,122 C322.07,122 334.43,122 346.78,122 " fill="none" id="UniqueOrderList-to-Order" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="351.73,122,342.73,118,346.73,122,342.73,126,351.73,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="339.6451" y="117.5812">*</text></g><!--MD5=[abfcf310237b8a1e0f90f16bd70b775b]
+link Order to MenuItem--><g id="link_Order_MenuItem"><path codeLine="32" d="M342.5999,141.6196 C342.5999,141.6196 279.54,174.31 253.05,188.05 " fill="none" id="Order-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="241.85,193.86,251.681,193.2678,246.2887,191.5583,247.9982,186.1659,241.85,193.86" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="246.2887" x2="253.385" y1="191.5583" y2="187.87"/><polygon fill="#9D0012" points="353.25,136.09,346.0818,135.3048,342.5999,141.6196,349.7682,142.4048,353.25,136.09" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="240.125" y="184.1716">1</text></g><!--MD5=[a66735e8c8f59b32294c5870e4d78d4b]
+link Order to OrderDeadline--><g id="link_Order_OrderDeadline"><path codeLine="33" d="M416.912,133.4095 C416.912,133.4095 566.33,173.9 628.55,190.76 " fill="none" id="Order-OrderDeadline" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="640.99,194.13,633.35,187.9147,636.1642,192.8219,631.257,195.636,640.99,194.13" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="636.1642" x2="628.44" y1="192.8219" y2="190.73"/><polygon fill="#9D0012" points="405.33,130.27,410.0745,135.7004,416.912,133.4095,412.1675,127.9791,405.33,130.27" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="622.8759" y="187.2612">1</text></g><!--MD5=[d7a12ed011a57068e70e07d9626e1fb6]
+link Order to OrderStatus--><g id="link_Order_OrderStatus"><path codeLine="34" d="M415.9963,140.1135 C415.9963,140.1135 490.82,174.28 522.16,188.58 " fill="none" id="Order-OrderStatus" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="533.84,193.91,527.3173,186.5306,529.2925,191.8315,523.9917,193.8066,533.84,193.91" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="529.2925" x2="522.01" y1="191.8315" y2="188.515"/><polygon fill="#9D0012" points="405.08,135.13,408.877,141.2605,415.9963,140.1135,412.1993,133.983,405.08,135.13" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="510.5182" y="184.1578">1</text></g><!--MD5=[65622aaf8fcfd7b10df86db327daabc8]
+link Order to Customer--><g id="link_Order_Customer"><path codeLine="35" d="M362.2632,146.5158 C362.2632,146.5158 345,171.51 337.31,182.65 " fill="none" id="Order-Customer" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="329.95,193.31,338.3577,188.1807,332.7929,189.1969,331.7767,183.632,329.95,193.31" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="332.7929" x2="337.34" y1="189.1969" y2="182.615"/><polygon fill="#9D0012" points="369.08,136.64,362.3797,139.3056,362.2632,146.5158,368.9635,143.8502,369.08,136.64" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="318.0774" y="184.1716">1</text></g><!--MD5=[084fbf35e1d9f284234245795785f071]
+link Order to OrderQuantity--><g id="link_Order_OrderQuantity"><path codeLine="36" d="M394.9748,146.4515 C394.9748,146.4515 412.78,171.8 420.65,183.01 " fill="none" id="Order-OrderQuantity" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="427.89,193.32,425.9927,183.6556,425.0172,189.2277,419.4451,188.2522,427.89,193.32" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="425.0172" x2="420.415" y1="189.2277" y2="182.675"/><polygon fill="#9D0012" points="388.08,136.63,388.2536,143.839,394.9748,146.4515,394.8012,139.2425,388.08,136.63" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="411.1404" y="184.1716">1</text></g><!--MD5=[36ece76e2faf3301edebac8d2462a6cc]
+link Order to LocalDateTime--><g id="link_Order_LocalDateTime"><path codeLine="37" d="M340.4256,134.3031 C340.4256,134.3031 207.01,173.9 151.4,190.41 " fill="none" id="Order-LocalDateTime" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="139.01,194.08,148.776,195.355,143.8035,192.6579,146.5006,187.6854,139.01,194.08" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="143.8035" x2="151.475" y1="192.6579" y2="190.385"/><polygon fill="#9D0012" points="351.93,130.89,345.0401,128.7618,340.4256,134.3031,347.3155,136.4313,351.93,130.89" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="58.3196" y="184.3774">timeAdded 1</text></g><!--MD5=[4b7862dcaf576e5c0b7cfedfde91f52b]
+reverse link Item to Order--><g id="link_Item_Order"><path codeLine="38" d="M383.98,70.59 C382.48,84.38 380.92,98.71 379.85,108.55 " fill="none" id="Item-backto-Order" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="377,70.05,386.12,50.92,390.91,71.56,377,70.05" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[0a6e52d95c2fa1e03219cbfd7d4aada4]
+link OrderDeadline to Deadline--><g id="link_OrderDeadline_Deadline"><path codeLine="40" d="M688.5,221.41 C688.5,231.21 688.5,245.48 688.5,259.24 " fill="none" id="OrderDeadline-to-Deadline" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="695.5,259.2,688.5,279.2,681.5,259.2,695.5,259.2" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[1b6f69cf80af49263a9c150b9e050f8c]
+link OrderStatus to Status--><g id="link_OrderStatus_Status"><path codeLine="41" d="M562.5,221.41 C562.5,231.21 562.5,245.48 562.5,259.24 " fill="none" id="OrderStatus-to-Status" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="569.5,259.2,562.5,279.2,555.5,259.2,569.5,259.2" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[fd5e00847c2bbdb1a07423a5f7bfcb6d]
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nDeadline" as Deadline
+Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+Class LocalDateTime
+Class Order
+Class MenuItem
+Class Customer
+Class OrderQuantity
+Class OrderStatus
+Class OrderDeadline
+Class OrderList extends ItemList
+Class UniqueOrderList extends UniqueItemList
+Class ItemList<T extends Item>
+
+
+ItemList *- -r> "1" UniqueItemList
+UniqueItemList -r>"*" Item
+
+OrderList *- -r> "1 " UniqueOrderList
+UniqueOrderList ->"*" Order
+Order *- -> "1" MenuItem
+Order *- -> "1" OrderDeadline
+Order *- -> "1 " OrderStatus
+Order *- -> "1 " Customer
+Order *- -> "1 " OrderQuantity
+Order *- -> "timeAdded 1" LocalDateTime
+Order -u|> Item
+
+OrderDeadline - -|> Deadline
+OrderStatus - -|> Status
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 0
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #9D0012
+skinparam classBackgroundColor #9D0012
+skinparam groupInheritance 1
+
+top to bottom direction
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nDeadline" as Deadline
+Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
+
+Class LocalDateTime
+Class Order
+Class MenuItem
+Class Customer
+Class OrderQuantity
+Class OrderStatus
+Class OrderDeadline
+Class OrderList extends ItemList
+Class UniqueOrderList extends UniqueItemList
+Class ItemList<T extends Item>
+
+
+ItemList *- -r> "1" UniqueItemList
+UniqueItemList -r>"*" Item
+
+OrderList *- -r> "1 " UniqueOrderList
+UniqueOrderList ->"*" Order
+Order *- -> "1" MenuItem
+Order *- -> "1" OrderDeadline
+Order *- -> "1 " OrderStatus
+Order *- -> "1 " Customer
+Order *- -> "1 " OrderQuantity
+Order *- -> "timeAdded 1" LocalDateTime
+Order -u|> Item
+
+OrderDeadline - -|> Deadline
+OrderStatus - -|> Status
+
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

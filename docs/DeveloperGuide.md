@@ -644,8 +644,6 @@ Our application:
 
 (Similar to UC03)
 
-*
-
 **Use case: UC43 - Edit a menu item**
 
 (Similar to UC03)
@@ -654,7 +652,7 @@ Our application:
 
 **MSS**
 
-1. Actor requests to find a supplier.
+1. Actor enter the command to find a supplier.
 2. Actor enters the command with the desired search criteria.
 3. Trackr searches for suppliers that match the given criteria.
 4. Trackr displays a list of suppliers that match the criteria.
@@ -693,7 +691,7 @@ Our application:
 
 **MSS**
 
-1. Actor requests to switch to another tab.
+1. Actor enters the command to switch to another tab.
 2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 

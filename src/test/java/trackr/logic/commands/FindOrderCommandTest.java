@@ -41,7 +41,7 @@ public class FindOrderCommandTest {
                 .withOrderDeadline("01/01/2023")
                 .withOrderStatus("D")
                 .withOrderQuantity("1")
-                .withCustomerName("Nigel")
+                .withCustomerNameKeywords("Nigel")
                 .withCustomerPhone("93847483")
                 .withCustomerAddress("13 Countrywalk Road")
                 .build();
@@ -51,7 +51,7 @@ public class FindOrderCommandTest {
                 .withOrderDeadline("11/11/2023")
                 .withOrderStatus("N")
                 .withOrderQuantity("1")
-                .withCustomerName("Amy")
+                .withCustomerNameKeywords("Amy")
                 .withCustomerPhone("93842283")
                 .withCustomerAddress("12 Fifty Road")
                 .build();

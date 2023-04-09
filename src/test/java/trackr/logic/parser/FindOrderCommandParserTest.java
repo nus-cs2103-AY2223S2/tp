@@ -108,7 +108,7 @@ public class FindOrderCommandParserTest {
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
                 .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_TWO)
-                .withCustomerName(VALID_CUSTOMER_NAME)
+                .withCustomerNameKeywords(VALID_CUSTOMER_NAME)
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
         FindOrderCommand expectedCommand = new FindOrderCommand(predicate);
@@ -177,7 +177,7 @@ public class FindOrderCommandParserTest {
 
         // customer name
         userInput = CUSTOMER_NAME_DESC_NIGEL;
-        predicate = new OrderPredicateBuilder().withCustomerName(VALID_CUSTOMER_NAME).build();
+        predicate = new OrderPredicateBuilder().withCustomerNameKeywords(VALID_CUSTOMER_NAME).build();
         expectedCommand = new FindOrderCommand(predicate);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -208,7 +208,7 @@ public class FindOrderCommandParserTest {
                         .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
                         .withOrderStatus(VALID_ORDER_STATUS_DONE)
                         .withOrderQuantity(VALID_ORDER_QUANTITY_TWO)
-                        .withCustomerName(VALID_CUSTOMER_NAME)
+                        .withCustomerNameKeywords(VALID_CUSTOMER_NAME)
                         .withCustomerPhone(VALID_CUSTOMER_PHONE)
                         .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
 
@@ -276,7 +276,7 @@ public class FindOrderCommandParserTest {
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
                 .withOrderNameKeywords(VALID_ORDER_NAME_CUPCAKES)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
-                .withCustomerName(VALID_CUSTOMER_NAME)
+                .withCustomerNameKeywords(VALID_CUSTOMER_NAME)
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
         FindOrderCommand expectedCommand = new FindOrderCommand(predicate);
