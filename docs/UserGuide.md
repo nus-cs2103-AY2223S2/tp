@@ -111,6 +111,9 @@ Deletes the specified person from MediConnect.
 Format: `delete ic/NRIC`
 
 * Deletes the person with the specified `NRIC`
+* Note that this also deletes all the appointment data associated with that patient/doctor
+  * When a patient is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the doctor's appointment list
+  * When a doctor is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the patient's appointment list
 
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
@@ -137,14 +140,17 @@ Displays personal particulars, appointments and prescription for patients.
 
 Format: `display ic/NRIC`
 
-* Displays personal particulars, appointments and prescription for the patient with the specified `NRIC`.
+* For patients:
+  * Displays personal particulars, appointments and prescription for the patient with the specified `NRIC`.
+* For doctors:
+  * Displays personal particulars, and appointments for the doctor with the specified `NRIC`.
 
 Restrictions:
 * `ic/NRIC`
-    * The patient specified by `ic/NRIC` should exist in MediConnect
+    * The patient/doctor specified by `ic/NRIC` should exist in MediConnect
 
 Examples:
-* `display ic/S1234567A` displays the information for the patient with NRIC number S1234567A.
+* `display ic/S1234567A` displays the information for the patient with NRIC number `S1234567A`.
 
 ![Display](images/Display.png)
 
@@ -183,7 +189,7 @@ Restrictions:
   * Accepts a past, current or future date
 
 Examples:
-* `appointment ic/S7654321X d/01-04-2023 10:00 dric/S7654321R` schedules an appointment for the patient with the NRIC number `S7654321X` and the doctor with the NRIC number `S7654321R` on `01-04-2023 10:00`.
+* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S7654321Z` on `01-04-2023 10:00`.
 
 ![Appointment](images/Appointment.png)
 
@@ -205,7 +211,7 @@ Restrictions:
   * The index must be a positive integer (eg. 1, 2, 3, …​)
 
 Examples:
-* `deleteAppointment 1 ic/S1234567X` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567X`."
+* `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`."
 
 ### Prescribing patient’s medication : `prescribe`
 
@@ -266,6 +272,7 @@ Deletes all patients' and doctors' data from the system.
 Format: `clear`
 
 * Data cannot be retrieved after `clear` is performed.
+* Note that this also deletes all the appointment data that has been previously stored in `MediConnect`
 
 Example:
 * `clear` permanently deletes all data stored in the system.
