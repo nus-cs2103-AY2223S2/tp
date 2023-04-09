@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccessDiffModel;
+import static seedu.address.logic.commands.DeleteStudentFromEventCommand.CONSULTATION_STRING;
+import static seedu.address.logic.commands.DeleteStudentFromEventCommand.LAB_STRING;
 import static seedu.address.logic.commands.DeleteStudentFromEventCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.DeleteStudentFromEventCommand.TUTORIAL_STRING;
-import static seedu.address.logic.commands.DeleteStudentFromEventCommand.LAB_STRING;
-import static seedu.address.logic.commands.DeleteStudentFromEventCommand.CONSULTATION_STRING;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_CONSULTATION;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_LAB;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_TUTORIAL;
@@ -66,13 +66,14 @@ class DeleteStudentFromEventCommandTest {
     @Test
     void execute_consultation_success() throws CommandException {
         modifiedModel.addStudentToConsultation(first, first);
-        assertCommandSuccessDiffModel(new DeleteStudentFromEventCommand(first, first, CONSULTATION_STRING), modifiedModel,
+        assertCommandSuccessDiffModel(
+                new DeleteStudentFromEventCommand(first, first, CONSULTATION_STRING), modifiedModel,
                 new CommandResult(MESSAGE_SUCCESS), model);
         assert(modifiedModel.getFilteredConsultationList().get(ZEROTH_INDEX).countStudents() == ZEROTH_INDEX);
     }
 
     @Test
-    void execute_studentIndexTooBig_throwsCommandException() throws CommandException{
+    void execute_studentIndexTooBig_throwsCommandException() throws CommandException {
         modifiedModel.addStudentToTutorial(first, first);
         modifiedModel.addStudentToLab(first, first);
         modifiedModel.addStudentToConsultation(first, first);
@@ -88,7 +89,7 @@ class DeleteStudentFromEventCommandTest {
     }
 
     @Test
-    void execute_eventIndexTooBig_throwsCommandException() throws CommandException{
+    void execute_eventIndexTooBig_throwsCommandException() throws CommandException {
         modifiedModel.addStudentToTutorial(first, first);
         modifiedModel.addStudentToLab(first, first);
         modifiedModel.addStudentToConsultation(first, first);
@@ -104,14 +105,10 @@ class DeleteStudentFromEventCommandTest {
     }
 
     @Test
-    void execute_wrongEventType_throwsCommandException() throws CommandException{
+    void execute_wrongEventType_throwsCommandException() throws CommandException {
         modifiedModel.addStudentToLab(first, first);
         assertThrows(CommandException.class, () ->
                 new DeleteStudentFromEventCommand(first, Index.fromOneBased(ARBITRARILY_LARGE_INTEGER),
                         WRONG_TYPE).execute(modifiedModel));
-    }
-
-    @Test
-    void execute() {
     }
 }
