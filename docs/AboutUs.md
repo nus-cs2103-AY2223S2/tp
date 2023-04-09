@@ -31,13 +31,13 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 
 ### James Liu Zixin
 
-<img src="images/jamesliuzx.png" width="200px">
+<img src="images/jamesliuzx.jpg" width="200px">
 
 [[github](http://github.com/jamesliuzx)]
 [[portfolio](team/jamesliuzx.md)]
 
-- Role: Team Lead
-- Responsibilities: Overall project coordination
+- Role: Team Lead, UI Head
+- Responsibilities: UI, Code Quality 
 
 ### Ong Seeu Sim
 
