@@ -5,9 +5,9 @@ title: DevOps guide
 
 ## Table of Contents
 * **[Build automation](#build-automation)**
-* **[Continuous integration (CI)](#continuous-integration-(ci))**
+* **[Continuous integration (CI)](#continuous-integration-ci)**
 * **[Code coverage](#code-coverage)**
-* **[Repository-wide checks)](#repository--wide-checks)**
+* **[Repository-wide checks](#repository-wide-checks)**
 * **[Making a release)](#making-a-release)**
 
 --------------------------------------------------------------------------------------------------------------------
