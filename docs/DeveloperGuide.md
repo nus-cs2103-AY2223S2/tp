@@ -179,17 +179,38 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Add Command**
 
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)  
+Activity Diagram for a typical `add` command
+
 ### **Recur Command**
+
+![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
+Activity Diagram for a typical `recur` command
 
 ### **Edit Command**
 
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)  
+Activity Diagram for a typical `edit` command
+
 ### **Delete Command**
+
+![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
+Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
+![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
+Activity Diagram for a typical `find` command
+
 ### **Next Command**
 
+![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
+Activity Diagram for a typical `next` command
+
 ### **Undo Command**
+
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
+Activity Diagram for a typical `undo` command
 
 ### **List Command**
 
