@@ -28,7 +28,7 @@ public class SuggestionCard extends UiPart<Region> {
     public SuggestionCard(Category category) {
         super(FXML);
         this.category = category;
-        categoryName.setText(UserInterfaceUtil.capitalizeFirstLetter(category.getCategoryName()));
+        categoryName.setText(category.getCategoryName());
     }
 
     @Override

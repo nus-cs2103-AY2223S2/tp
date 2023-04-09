@@ -27,7 +27,7 @@
                      <Insets right="8.0" />
                   </HBox.margin>
            </Label>
-           <Label fx:id="expenseName" minWidth="-Infinity" prefWidth="120.0" styleClass="cell_label" text="\$expenseName" />
+           <Label fx:id="expenseName" minWidth="-Infinity" prefWidth="200.0" styleClass="cell_label" text="\$expenseName" />
          </HBox>
          <Label fx:id="price" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="80.0" styleClass="cell_label" text="\$price" />
          <Label fx:id="category" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="110.0" styleClass="category_tag" text="\$category" />
