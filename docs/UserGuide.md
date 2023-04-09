@@ -311,8 +311,6 @@ QuickContacts, you will **never** have to copy and paste commands ever again.
 All you have to do is to hit the `UP` and `DOWN` arrow keys on your keyboard to go to the previous and next command
 respectively. It is as simple as that!
 
-![toggle theme](images/toggleTheme.png)
-
 ## Person-Related Commands
 
 In this subsection, you may find all the commands that are related to contacts.
