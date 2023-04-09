@@ -65,9 +65,9 @@ After initializing the vaccination data of your clinic, you are ready to go! All
 
 1. Wait for a patient to call in to book an appointment for a vaccination.
 2. If they do not exist in the system yet, add them into the system using patient's [`add`](#add---add-a-patient) command.
-3. Schedule an appointment for them by running appointment's ['add'](#add---add-an-appointment) command.
+3. Schedule an appointment for them by running appointment's [`add`](#add---add-an-appointment) command.
 4. If the patient is eligible to take the vaccination that they want, the appointment will be added into VMS. Otherwise, an error message will show and you can inform them about their ineligibility to take the vaccination.
-5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---view-details-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
+5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's [`detail`](#detail---view-details-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
 
 ##### Example scenario
 
@@ -1413,7 +1413,7 @@ Keyword data are stored in `[JAR file location]/data/keyword.json`.
 
 ###### Restrictions
 
-On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword 
+On top of the type restrictions of the parameters, if these restrictions are violated, it will render the keyword
 invalid. In all cases, VMS will ignore the entire keyword data file if an invalid keyword is present.
 * <code><var>keyword</var></code> must not contain any newline characters, e.g. `\n`.
 
