@@ -1,10 +1,8 @@
 ---
-layout: page 
-title: User Guide
+layout: page title: User Guide
 ---
 
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 
 ## **Introduction**
 
@@ -438,8 +436,8 @@ Adds an assignment with a specified name and total marks.
 
 If the total marks for the assignment is unspecified, a default value of 100 will be given.
 
-Student submissions for that assignment will be immediately created for all existing students. All student submissions
-for that assignment will initially be ungraded.
+Submission records for that assignment will be immediately created for all existing students. All these submissions will
+be initially ungraded.
 
 Format: `add_asgn n/ASSIGNMENT_NAME [m/TOTAL_MARKS]`<br>
 Example:
@@ -489,17 +487,19 @@ Example:
 * `ungrade n/Lab 1 i/2`
 
 #### List all assignments: `list_asgn`
+
 Lists all assignments, submissions and their respective information.
 
 Format: `list_asgn`
 
 Example Output:
+
 * `Assignment Lab 1:` <br>
-`  [X] Alice: 50/100 marks.` <br>
-`  [ ] Bob: 0/100 marks.` <br>
-*  `Assignment Lab 2:` <br>
-`  [ ] Alice: 0/100 marks.` <br>
-`  [X] Bob: 77/100 marks. (*Late Submission*)` <br>
+  `  [X] Alice: 50/100 marks.` <br>
+  `  [ ] Bob: 0/100 marks.` <br>
+* `Assignment Lab 2:` <br>
+  `  [ ] Alice: 0/100 marks.` <br>
+  `  [X] Bob: 77/100 marks. (*Late Submission*)` <br>
 
 The example output above shows that there are 2 assignments: Lab 1 & Lab 2.
 
@@ -716,7 +716,7 @@ Our CSV files follow the following format:
 2. Optional fields still requires a colon to be represented in the CSV file
    because ["if a column is defined as optional, it means that the column is required to exist, but the value can be blank."](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv)
 
-Acceptable CSV format example: (suppose )
+Acceptable CSV format example: (suppose assignment x, y, and z is already added to the assignment list)
 
 ```
 Technoblade,1;0;0;1;1;1;0;1;0;0;0;0,-1;0;-1;2;-1;-1;-1;-1;200;-1;-1;-1,"x,0,0,1;y,0,0,2;z,0,0,3;",Tut1;Tut2;
