@@ -1044,7 +1044,7 @@ Using the `save` command in EduMate, you can easily save your data into a file w
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
+* `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`. Note that the file name must be a non-empty, alphanumeric string.
 
 </div>
 
@@ -1063,7 +1063,7 @@ Using the `load` command in EduMate, you can easily load a previously saved data
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
+* `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`. Note that the file name must be a non-empty, alphanumeric string.
 
 </div>
 

@@ -13,10 +13,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class LoadCommandParser implements Parser<LoadCommand> {
     /*
-     * The first character of the station must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Must be a non-empty alphanumeric string.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}]+";
 
     @Override
     public LoadCommand parse(String args) throws ParseException {
