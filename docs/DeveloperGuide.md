@@ -27,6 +27,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -41,6 +43,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -69,11 +73,15 @@ Each of the four main components (also shown in the diagram above),
 * defines its _API_ in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -107,12 +115,16 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is executed by the `LogicManager`.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletePerson 1")` API call.
 
 ![Interactions Inside the Logic Component for the `deletePerson 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -122,6 +134,8 @@ How the parsing works:
 
 * When called upon to parse a user command, the `ExpressLibraryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `ExpressLibraryParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -136,6 +150,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExpressLibrary`, which `Person` references. This allows `ExpressLibrary` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -143,6 +159,8 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -225,6 +243,8 @@ The following sequence diagram shows how the `findBook` operation works:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -240,6 +260,8 @@ The following sequence diagram shows how the `findBook` operation works:
 
 **Value proposition**: Manage users and books faster, quickly find users or books faster than a typical mouse/GUI driven app.
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -254,6 +276,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | librarian           | add the book to the contact details of the person who borrowed them | rent the book out while keeping track of the book and the due date |
 | `* *`    | librarian           | remove a book from a patron if the patron has returned the book | allow the book to be borrowed by other patrons                    |
 | `*`      | advanced librarian  | edit the data file                                | adjust the data to suit my needs                                   |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -288,10 +312,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
   * 3a1. ExpressLibrary shows an error message.
 
       Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -306,6 +331,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **ISBN**: International Standard Book Number which is a commercial book identifier that is intended to be unique. Consists of 10 to 13 digits.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -377,6 +404,8 @@ testers are expected to do more _exploratory_ testing.
     1. Other incorrect delete commands to try: `editBook`, `editBook 3`, `...`<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown.
@@ -391,6 +420,8 @@ testers are expected to do more _exploratory_ testing.
 
    1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x`, `...` (where `x` is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
@@ -415,6 +446,8 @@ testers are expected to do more _exploratory_ testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Planned Enhancements**
 
 Given below are some of the planned enhancements to ExpressLibrary current features.
@@ -426,3 +459,5 @@ Given below are some of the planned enhancements to ExpressLibrary current featu
 3. Currently, ExpressLibrary assumes that there is only one copy of each book in the library which is obviously quite unrealistic. We plan to solve this by creating a BookInstance class in the future to account for different copies of the same book in the library.
 
 4. Email addresses are only validated based on regex (specifically RFC5322 standard) and not whether it is actually a valid email. We plan to use internationlised domain names in a future update in order to truly validate an email address.
+
+--------------------------------------------------------------------------------------------------------------------
