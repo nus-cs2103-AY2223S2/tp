@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.entity.Character.CharacterBuilder;
+import static seedu.address.model.entity.Mob.MobBuilder;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,10 +12,12 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Legend;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Progression;
@@ -114,13 +117,20 @@ public class EditValueCommand extends Command {
 
         Name updatedName = editMobDescriptor.getName().orElse(mobToEdit.getName());
         Stats updatedStats = editMobDescriptor.getStats().orElse(mobToEdit.getStats());
-        Float updatedChallengeRating = editMobDescriptor.getChallengeRating().orElse(mobToEdit.getChallengeRating());
-        Boolean updatedIsLegendary = editMobDescriptor.getWeight().orElse(mobToEdit.getLegendaryStatus());
+        ChallengeRating updatedChallengeRating = editMobDescriptor.getChallengeRating()
+                .orElse(mobToEdit.getChallengeRating());
+        Legend updatedLegend = editMobDescriptor.getLegend().orElse(mobToEdit.getLegend());
         Set<Tag> updatedTags = editMobDescriptor.getTags().orElse(mobToEdit.getTags());
         Inventory updatedInventory = editMobDescriptor.getInventory().orElse(mobToEdit.getInventory());
 
-        return new Mob(updatedName, updatedStats, updatedChallengeRating, updatedIsLegendary,
-                                                                    updatedInventory, updatedTags);
+        MobBuilder builder = new MobBuilder(updatedName)
+                .setStats(updatedStats)
+                .setChallengeRating(updatedChallengeRating)
+                .setLegend(updatedLegend)
+                .setInventory(updatedInventory)
+                .setTags(updatedTags);
+
+        return builder.build();
     }
 
     /**
@@ -308,8 +318,8 @@ public class EditValueCommand extends Command {
     public static class EditMobDescriptor extends EditEntityDescriptor {
 
         private Stats stats;
-        private Float challengeRating;
-        private Boolean isLegendary;
+        private ChallengeRating challengeRating;
+        private Legend legend;
         private Inventory inventory;
 
         /**
@@ -325,7 +335,7 @@ public class EditValueCommand extends Command {
             super(toCopy);
             setStats(toCopy.stats);
             setChallengeRating(toCopy.challengeRating);
-            setIsLegendary(toCopy.isLegendary);
+            setLegend(toCopy.legend);
             setInventory(toCopy.inventory);
         }
 
@@ -337,20 +347,20 @@ public class EditValueCommand extends Command {
             return Optional.ofNullable(stats);
         }
 
-        public void setChallengeRating(float challengeRating) {
+        public void setChallengeRating(ChallengeRating challengeRating) {
             this.challengeRating = challengeRating;
         }
 
-        public Optional<Float> getChallengeRating() {
-            return Optional.ofNullable(challengeRating);
+        public Optional<ChallengeRating> getChallengeRating() {
+            return Optional.ofNullable(this.challengeRating);
         }
 
-        public void setIsLegendary(boolean isLegendary) {
-            this.isLegendary = isLegendary;
+        public void setLegend(Legend legend) {
+            this.legend = legend;
         }
 
-        public Optional<Boolean> getWeight() {
-            return Optional.ofNullable(isLegendary);
+        public Optional<Legend> getLegend() {
+            return Optional.ofNullable(this.legend);
         }
 
         public void setInventory(Inventory inventory) {
@@ -375,7 +385,7 @@ public class EditValueCommand extends Command {
             EditMobDescriptor e = (EditMobDescriptor) other;
 
             return getChallengeRating().equals(e.challengeRating)
-                    && getWeight().equals(e.getWeight());
+                    && getLegend().equals(e.getLegend());
         }
 
     }

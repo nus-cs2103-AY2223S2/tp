@@ -2,16 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.model.entity.Character.CharacterBuilder;
+import static seedu.address.model.entity.Mob.MobBuilder;
 
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.MakeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 
 /**
@@ -42,11 +42,11 @@ public class MakeCommandParser implements Parser<MakeCommand> {
 
         Entity newEntity = null;
         if (classification.isCharacter()) {
-            newEntity = new Character.CharacterBuilder(name).build();
+            newEntity = new CharacterBuilder(name).build();
         } else if (classification.isItem()) {
             newEntity = new Item(name);
         } else if (classification.isMob()) {
-            newEntity = new Mob(name);
+            newEntity = new MobBuilder(name).build();
         }
         requireNonNull(newEntity);
         return new MakeCommand(newEntity);

@@ -22,10 +22,12 @@ import seedu.address.logic.commands.EditValueCommand.EditMobDescriptor;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Legend;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Progression;
@@ -171,12 +173,12 @@ public class EditModeParser {
             break;
         case "challengerating":
         case "cr":
-            outData.setChallengeRating(Float.valueOf(value));
+            outData.setChallengeRating(new ChallengeRating(Double.parseDouble(value)));
             break;
         case "islegendary":
         case "legend":
         case "l":
-            outData.setIsLegendary(Boolean.valueOf(value));
+            outData.setLegend(new Legend(Boolean.parseBoolean(value)));
             break;
         case "inventory":
             // Check if add or delete
