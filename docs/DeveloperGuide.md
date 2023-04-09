@@ -278,9 +278,9 @@ The following activity diagram shows what happens when a user executes an `add` 
 
 #### About this feature
 
-The find module feature serves as a filtering tool that allows users to find a specific modules based on its code or according to a code prefix, credits, year-semester, grade, or tags.
+The find module feature serves as a filtering tool that allows users to find a specific modules based on its code or according to code prefix(es), credit(s), year-semester(s), grade(s), or tag(s).
 
-The command format is either `find (<moduleCode>)` or `find (/m <codePrefix>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tags>...)`
+The command format is either `find (<moduleCode>)` or `find (/m <codePrefix>...) (/c <credits>...) (/y <year-semester>...) (/g <grade>... (/t <tags>...)`
 
 #### How it is implemented
 The `find` command is facilitated by the `FindCommand` and the `FindCommandParser` classes.
@@ -288,10 +288,10 @@ The `find` command is facilitated by the `FindCommand` and the `FindCommandParse
 
 #### Parsing user input
 1. The user inputs the `find` command with the relevant arguments. At least one argument needs to be provided.
-2. The `LogicManager` takes the input and passes it to the `ModTrekParser` which processes the input, recognises it as a find command and makes a new `AddCommandParser` object.
+2. The `LogicManager` takes the input and passes it to the `ModTrekParser` which processes the input, recognises it as a find command and makes a new `FindCommandParser` object.
 3. The `FindCommandParser` then calls `ArgumentTokenizer::tokenize` to extract out the relevant inputs of each field. If no arguments are provided, or if prefixes are provided without the relevant details, a `ParseException` will be thrown.
-4. The `ParserUtil` will then check the validity of the input for `CodePrefix`, `Credit`, `SemYear`, `Grade` and `Set<Tag>`. If any of the inputs are invalid, a `ParseException` will be thrown as well.
-5. If the input is valid, `ModuleCodePredicate` object will be created, taking in the arguments `CodePrefix`, `Credit`, `SemYear`, `Grade` and `Set<Tag>`. Following which, a `FindCommand` object will be created.
+4. The `ParserUtil` will then check the validity of the input(s) for `Code` or `CodePrefix`, `Credit`, `SemYear`, `Grade` and `Tag`. If any of the inputs are invalid, a `ParseException` will be thrown as well.
+5. If the input is valid, `ModuleCodePredicate` object will be created, taking in the arguments `isCode`, `moduleCode`, `codePrefixes`, `credits`, `semYears`, `grades` and `tags`. Following which, a `FindCommand` object will be created.
 
 #### Command execution
 1. The `LogicManager` executes the `FindCommand`.
@@ -310,10 +310,10 @@ User may choose between the two formats for the FindCommand which function diffe
     * Example: `find CS1101S`
     * Reason for implementation: User may want to conveniently access a specific module which they have taken to check its details.
 
-* **Format 2:** Finds a set of modules by filters (single or multiple).
-    * Format notation: `find /m <codePrefix> /c <credits> /y <year-semester> /g <grade> /t <tags>...`
-    * Example: `find /m CS`
-    * Reason for implementation: User may want to filter modules by a certain category to review the modules which fulfill a condition.
+* **Format 2:** Finds a set of modules by filters (single or multiple). Multiple filters of the same field may be applied.
+    * Format notation: `find (/m <codePrefix>...) (/c <credits>...) (/y <year-semester>...) (/g <grade>...) (/t <tag>...)`
+    * Example: `find /m CS`, `find /m CS /m MA /g A`
+    * Reason for implementation: User may want to filter modules by a few categories to review the modules which fulfil a condition.
 
 The following sequence diagram shows how the `find` command works:
 
