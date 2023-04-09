@@ -1,7 +1,7 @@
 ---
 span
 ---
-## Welcome to PetPal!
+## **Welcome to PetPal**!
 
 ![Logo](images/UI/AlternateLogo.png)
 
@@ -15,7 +15,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 ## Table of Contents
 
-* Table of Contents
+* **Table of Contents**
   {:toc}
 
 ---
@@ -41,7 +41,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 ---
 
-## Getting Familiar With Your User Interface
+## **Getting Familiar With Your User Interface**
 
 ![Ui Breakdown](images/UI/UiHighlighted.png)
 
@@ -54,9 +54,9 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 ---
 
-## How to use the User Guide
+## **How to use the User Guide**
 
-### General formatting conventions
+### **General formatting conventions**
 
 * Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
 * Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
@@ -92,7 +92,7 @@ Information that you need to know
 
 </div>
 
-### Command formatting conventions:
+### **Command formatting conventions:**
 
 * Words in `UPPER_CASE` are the information supplied by you.<br>
   e.g. `OWNER_NAME` is a parameter in `add o/OWNER_NAME`, where you can input `add o/John Doe`.
@@ -111,13 +111,13 @@ Information that you need to know
 
 ---
 
-## Features
+## **Features**
 
-### General
+### **General**
 
-#### Viewing help : `help`
+#### **Viewing help :** `help`
 
-Shows a message explaining how you can access our user guide.
+Helpful feature when you forget the commands!.
 
 Format: `help`, `h` or Press `F1`
 
@@ -125,13 +125,13 @@ Format: `help`, `h` or Press `F1`
 
 #### Listing your pets : `list`
 
-Shows a list of all pets stored in your PetPal.
+Will help you get back to the original list of pets stored in PetPal after find and remind functions.
 
 Format: `list` or `l`
 
 ![list](images/UG/list_new.png)
 
-### Adding
+### **Adding**
 
 #### Adding a pet's information : `add`
 
@@ -244,7 +244,7 @@ Format: `f n/PET_NAME`
 
 </div>
 
-### Updating
+### **Updating**
 
 #### Updating your pet information : `edit`
 
@@ -287,7 +287,7 @@ Other examples:
 * `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag,
   the edit will override the existing tag
 
-#### Amount indication
+#### **Amount indication**
 
 Pet Card information indicates the amount of money owed to you for taking good care of their pets!
 
@@ -295,7 +295,7 @@ Cost is calculated based on initial timestamp input by user. The cost is updated
 
 ![](images/UG/amount_new.png)
 
-#### Changing the cost : `changecost`
+#### **Changing the cost :** `changecost`
 
 Do some pets cost more to board in your daycare than others? You can use the `changecost` command to
 change the parameters for cost calculation for each pet.
@@ -329,9 +329,9 @@ Additional example:
 
 * `cc 2 1.0 1.5`
 
-### Marking a deadline as done : `mark`
+### **Marking a deadline as done :** `mark`
 
-The 'mark' function is designed to help pet owners keep track of their pet's deadlines by marking them as done.
+Are you done with a pet's deadline? You can use the `mark` command to mark the deadline as done.
 
 Pets that are already marked will not be highlighted.
 
@@ -349,9 +349,9 @@ Pet deadline status will be automatically saved in the form of `status` field in
 
 </div>
 
-### Deletion
+### **Deletion**
 
-#### Deleting a pet : `delete`
+#### **Deleting a pet :** `delete`
 
 Deletes the specified pet from your PetPal.
 
@@ -373,7 +373,7 @@ Example:
 
 * `delete 2` deletes the second pet in the currently displayed pet list in the PetPal.
 
-#### Archiving a pet: `archive`
+#### **Archiving a pet:** `archive`
 
 Sometimes a client may become inactive or stop using your services. To keep a record of the pet whilst not cluttering
 your active PetPal list, you can use the `archive` command to move these records to another save file.
@@ -394,7 +394,7 @@ Example:
 
 * `archive 2` archives the second pet in the currently displayed list in PetPal
 
-#### Clearing PetPal list: `clear`
+#### **Clearing PetPal list:** `clear`
 
 Clears all entries from `PetPal.json`.
 
@@ -409,7 +409,7 @@ If you run this command by accident, you can [undo](#undoing-a-previous-command-
 
 </div>
 
-### Undo
+### **Undo**
 
 #### Undoing a previous command : `undo`
 
@@ -426,18 +426,18 @@ Format: `undo`
 
 ![undo](images/UG/undo_new.png)
 
-### Exiting the program : `exit`
+### **Exiting the program** : `exit`
 
 Exits the program. Data is [automatically saved](#saving-the-data).
 
 Format: `exit` or `e`
 
-### Saving the data
+### **Saving the data**
 
 Your PetPal and archive data are both automatically saved after executing any command that changes the data.
 This means hassle-free saving.
 
-### Editing the data file
+### **Editing the data file**
 
 PetPal data are saved as a JSON file `[JAR file location]/data/PetPal.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`.
@@ -454,7 +454,7 @@ which is **IRREVERSIBLE**.
 
 ---
 
-## FAQ
+## String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE)
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Follow these steps to transfer your data to another computer:
