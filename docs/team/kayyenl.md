@@ -40,6 +40,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Contributed to Help Section, and Quickstart Section in the Implementations of DG.
     * Included Activity Diagrams and Use Cases for Quickstart, Help, Ui sections to better illustrate points being made in DG.
+    * Maintained **Proposed Enhancements** and **Appendix: Effort** sections, actively writing content to the section.
     * Reformatted critical UML diagrams originally in AB3 which were too cluttered, to facilitate reader's ease of understanding.
   * Others:
     * Contributed to group's collaborative docs, where reflections and discussion notes were written down (Google Docs).
