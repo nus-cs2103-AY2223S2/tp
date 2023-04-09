@@ -30,7 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String COMMANDS_MESSAGE = "Here are the list of commands available: "
             + "\n1. add n/{name} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
-            + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
+            + "w/{WEBSITE} $/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
             + "\n2. edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
             + "[t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]"
             + "\n3. delete {index}"
@@ -43,7 +43,8 @@ public class MainWindow extends UiPart<Stage> {
             + "\n10. list"
             + "\n11. clear"
             + "\n12. help"
-            + "\n13. exit";
+            + "\n13. exit"
+            + "\n**Fields in [field] are optional (Edit command required at least one field)";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
