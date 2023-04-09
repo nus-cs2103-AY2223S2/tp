@@ -287,7 +287,8 @@ Format: `import [combine|reset]`
 
 **Note: Your CSV file must have the following headers in this order: `Name, Phone, Email, Address, Income, Tags`**
 
-![CSV headers example](images/csvHeadersExample.png)
+![CSV headers example](https://user-images.githubusercontent.com/55232476/230785869-dd530813-1753-4d59-b7bf-18fa12a20894.png)
+
 
 ### Export data to CSV : `export`
 
