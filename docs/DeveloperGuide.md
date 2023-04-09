@@ -966,7 +966,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
       Use case resumes at step 1.
 
-#### UC-APT-002 - View appointments
+#### UC-APT-002 - List appointments
 
 ##### MSS
 
@@ -979,45 +979,131 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### MSS
 
-1. User requests to list appointments.
-2. VMS shows a list of appointments.
-3. User requests to edit a specific appointment in the list using the ID with the args.
-4. VMS edit the appointment.
+1. User enters command to edit an appointment.
+2. VMS edits the appointment.
 
-    Use case ends.
+   Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
 
-  Use case ends.
+      Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to edit an appointment that does not exist.
+    * 1a1. VMS shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 #### UC-APT-004 - Delete appointment
 
 ##### MSS
 
-1. User requests to list appointments.
-2. VMS shows a list of appointments.
-3. User requests to delete a specific appointment in the list.
-4. VMS deletes the appointment.
+1. User enters command to delete an appointment.
+2. VMS deletes the appointment.
 
-    Use case ends.
+   Use case ends.
 
 ##### Extensions
 
-* 2a. The list is empty.
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
 
-  Use case ends.
+      Use case resumes from step 1.
 
-* 3a. The given ID is invalid.
-  * 3a1. VMS shows an error message.
+* 1b. User requested to delete an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+#### UC-APT-005 - Find appointments
+
+##### MSS
+
+1. User requests to find appointments.
+2. VMS shows a list of appointments that matches search criteria.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. The list is empty.
+    * 1a1. VMS returns an empty list.
 
       Use case resumes at step 1.
+
+* 1b. Some appointments match the search criteria.
+    * 1b1. VMS returns the list of appointment that matches.
+
+      Use case resumes at step 1.
+
+* 1c. No appointment match the search criteria.
+    * 1c1. VMS returns an empty list.
+
+      Use case resumes at step 1.
+
+#### UC-APT-006 - Mark appointments
+
+##### MSS
+
+1. User requests to mark a specified appointment.
+2. VMS marks the appointment.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to mark an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1b. User requested to mark an appointment that is already marked.
+    * 1a1. If assertion is enabled
+        * 1a11. VMS shows an error message.
+
+          Use case ends.
+
+    * 1b1. If assertion is disabled
+
+    Use case resumes from step 1.
+
+#### UC-APT-007 - Unmark appointments
+
+##### MSS
+
+1. User requests to unmark a specified appointment.
+2. VMS changes the status of the appointment to not completed.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to unmark an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1b. User requested to unmark an appointment that is already unmarked.
+    * 1a1. If assertion is enabled
+        * 1a11. VMS shows an error message.
+
+          Use case ends.
+
+    * 1b1. If assertion is disabled
+
+      Use case resumes from step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
