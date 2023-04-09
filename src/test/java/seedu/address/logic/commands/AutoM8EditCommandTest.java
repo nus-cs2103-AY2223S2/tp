@@ -406,7 +406,7 @@ public class AutoM8EditCommandTest {
         assertFalse(appointment.getCustomerId() == 2);
         assertFalse(appointment.getTimeDate().equals(sampleLocalDateTime));
 
-        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.of(2),Optional.of(sampleLocalDateTime)),
+        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.of(2), Optional.of(sampleLocalDateTime)),
                 model, new CommandResult(String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                         appointmentIdA), Tab.APPOINTMENTS).getFeedbackToUser());
 
@@ -418,7 +418,7 @@ public class AutoM8EditCommandTest {
 
         LocalDateTime futureTime = LocalDateTime.now();
 
-        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.empty(),Optional.of(futureTime)),
+        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.empty(), Optional.of(futureTime)),
                 model, new CommandResult(String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                         appointmentIdA), Tab.APPOINTMENTS).getFeedbackToUser());
 
@@ -428,7 +428,7 @@ public class AutoM8EditCommandTest {
 
         futureTime = LocalDateTime.now();
         futureTime = futureTime.plusDays(7);
-        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.empty(),Optional.of(futureTime)),
+        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.empty(), Optional.of(futureTime)),
                 model, new CommandResult(String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                         appointmentIdA), Tab.APPOINTMENTS).getFeedbackToUser());
 
