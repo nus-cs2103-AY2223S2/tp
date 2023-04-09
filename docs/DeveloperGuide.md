@@ -269,8 +269,6 @@ The `Model` component,
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -439,10 +437,13 @@ Refer to [Glossary](#glossary) for more information on Command format.
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
+<div style="page-break-after: always;"></div>
 
 Here is the activity diagram showing the process of the `find` command:
 
 ![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram for `find n/John` in HMHero is as such:
 
@@ -481,6 +482,8 @@ The `edit` feature edits the attached attributes of a specified `Person`,which i
 `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEWDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here is the activity diagram showing the process of the `edit` command:
 
@@ -528,6 +531,8 @@ The statistics of the number of applicants in each stage of the application cycl
 and they are a good starting point for users to help track the number of applicants. 
 For example, the user can obtain the total number of applicants, 
 and also provide the total numbers of applicants for each status.
+
+<div style="page-break-after: always;"></div>
 
 #### Showing all shortlisted applicants
 
@@ -588,6 +593,7 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 * Users can quickly search applicants with particular skill-sets.
 * Users can obtain insights on their hiring practices to look for areas for improvement.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -617,6 +623,8 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 | `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for           | I can easily see the keywords that I am looking for.                                  |
 | `* `     | Careless Hiring Manager               | Undo recent actions or commands                                    | I can reverse commands that I have mistakenly carried out.                            |
 | `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                  | I can keep track of skill-sets needed for each job to match applicants.               |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -954,6 +962,8 @@ Precondition: There are shortlisted applicants in HMHero.
 > #### Command Line
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
 
+<div style="page-break-after: always;"></div>
+
 ### E
 > #### EMAIL Placeholder
 > The EMAIL is a text representing the email address of the applicants.
@@ -967,6 +977,8 @@ Precondition: There are shortlisted applicants in HMHero.
 ### G
 > #### Graphical User Interface
 > A Graphical User Interface is a graphics-based interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. In HMHero, this presents as the window that appears when launching it.
+
+<div style="page-break-after: always;"></div>
 
 ### H
 > #### Help Window
@@ -985,6 +997,8 @@ Precondition: There are shortlisted applicants in HMHero.
 ### K
 > #### KEYWORD Placeholder
 > The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
+
+<div style="page-break-after: always;"></div>
 
 ### M
 > #### Mainstream OS
@@ -1005,6 +1019,8 @@ Precondition: There are shortlisted applicants in HMHero.
 ### O
 > #### Output
 > The result after calling a Command. Results are displayed in the GUI.
+
+<div style="page-break-after: always;"></div>
 
 ### P
 > #### Parameter
