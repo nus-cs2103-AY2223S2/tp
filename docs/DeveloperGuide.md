@@ -177,7 +177,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the <u>architecture</u>**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/connectus/MainApp.java). It is responsible for:
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -306,7 +306,7 @@ The `Model` component,
 
 An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `ConnectUS`, which `Person` references. This allows `ConnectUS` to only require either one `Module` object, `CCA` object, `Major` object, or `Remark` object per unique tag, instead of each `Person` needing their own tag type objects. It also ensures that no duplicate tags are created.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="500" />
 
 </div>
 
@@ -351,6 +351,16 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 # 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+- [4.1 Add Command](#41-add-command)
+- [4.2 Edit Command](#42-edit-command)
+- [4.3 Help Command](#43-help-command)
+- [4.4 Adding Addtional Tags Command](#44-adding-additional-tags-command)
+- [4.5 Deleting Individual Tags Command](#45-deleting-individual-tags-command)
+- [4.6 Search Command](#46-search-command)
+- [4.7 Upcoming Birthdays Command](#47-upcoming-birthdays-command)
+
+<div style="page-break-after: always"></div>
 
 ## 4.1 Add Command
 
