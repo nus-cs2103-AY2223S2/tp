@@ -139,6 +139,7 @@ public class TaskCard extends UiPart<Region> {
     }
 
     public void setTaskStatus(Task task) {
+        status.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         try {
             if (task.isDone()) {
                 status.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
