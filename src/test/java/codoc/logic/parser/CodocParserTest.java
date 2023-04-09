@@ -64,21 +64,6 @@ public class CodocParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    //    @Test // Yet to fix
-    //    public void parseCommand_find() throws Exception {
-    //        Person person = new PersonBuilder().build();
-    //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-    //        FindCommand command = (FindCommand) parser.parseCommand(
-    //                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")), person);
-    //        Predicate<Person> namePredicate = new NameContainsKeywordsPredicate(keywords);
-    //        Predicate<Person> yearPredicate = p -> false;
-    //        Predicate<Person> coursePredicate = p -> false;
-    //        Predicate<Person> combinedPredicate = namePredicate.or(yearPredicate).or(coursePredicate);
-    //        FindCommand expectedCommand = new FindCommand(combinedPredicate);
-    //        System.out.println(combinedPredicate);
-    //        assertEquals(expectedCommand, command);
-    //    }
-
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
