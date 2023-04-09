@@ -970,12 +970,10 @@ By simply typing `sort` followed by the relevant criteria, you can sort your con
 
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Accepted versions for `sort` order**: <br>
-In short, in the command formats `z/a` and `z/d`, we only care about the **first letter** immediately after the slash. It can be either in upper case or lower case and can have anything behind it. For example, `z/ascending` and `z/Disco` would both work. <br><br>
-
-However, if the first letter is not either `a`, `d`, `D` or `A`, then we use the **default ordering**.
+In short, in the command formats `z/a` and `z/d`, we only care about the **first letter** immediately after the slash. It can be either in upper case or lower case and can have anything behind it. For example, `z/ascending` and `z/Disco` would both work. However, if the first letter is not either `a`, `d`, `D` or `A`, then we use the **default ordering**.
 
 </div>
 <br>
