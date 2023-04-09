@@ -395,9 +395,10 @@ Examples:
 
 ### Delete note from event: `deleteNote`
 
-:exclamation: You will not be able to undo the deletion.
-
 Delete notes for events, or for students in the classes this TA is in charge of.
+
+{% include important.html content="
+You will not be able to undo the deletion." %}
 
 Format: `deleteNote type/EVENT_TYPE name/EVENT_NAME index/NOTE_INDEX`
 
@@ -793,7 +794,3 @@ Examples:
       </td>
    </tr>
 </table>
-
------------------------------------------------------------------
-End of User Guide
------------------------------------------------------------------
