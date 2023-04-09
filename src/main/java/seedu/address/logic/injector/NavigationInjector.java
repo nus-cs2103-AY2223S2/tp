@@ -33,6 +33,7 @@ public class NavigationInjector extends Injector {
 
         final String arguments = matcher.group("arguments");
 
+        commandText = removeRootPrefix(commandText);
         return injectMissingArgs(commandText, arguments, model).trim();
     }
 
@@ -42,7 +43,7 @@ public class NavigationInjector extends Injector {
         }
 
         final String commandWord = matcher.group("commandWord");
-        if (isCommandWhitelisted(commandWord)) {
+        if (isCommandWhitelisted(commandWord) || !isValidCommandWord(commandWord)) {
             return true;
         }
 
@@ -58,8 +59,6 @@ public class NavigationInjector extends Injector {
         boolean hasRootPrefix = argMultimap.getValue(PREFIX_ROOT).isPresent();
         boolean hasLecturePrefix = argMultimap.getValue(PREFIX_LECTURE).isPresent();
         boolean hasModulePrefix = argMultimap.getValue(PREFIX_MODULE).isPresent();
-
-        commandText = removeRootPrefix(commandText);
 
         // Don't inject context prefixes if only root prefix present.
         if (hasRootPrefix && !hasLecturePrefix) {
@@ -87,6 +86,10 @@ public class NavigationInjector extends Injector {
 
     private String injectLecturePrefixArg(String commandText, NavigationContext navContext) {
         return commandText + " " + navContext.getLecturePrefixArg();
+    }
+
+    private boolean isValidCommandWord(String commandWord) {
+        return !commandWord.matches(PREFIX_ROOT.toString());
     }
 
     private boolean isCommandWhitelisted(String commandWord) {
