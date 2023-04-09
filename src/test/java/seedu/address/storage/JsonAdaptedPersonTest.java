@@ -21,7 +21,6 @@ import seedu.address.model.person.Platoon;
 import seedu.address.model.person.Rank;
 import seedu.address.model.person.Unit;
 
-
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
@@ -31,7 +30,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_UNIT = "%!@#";
     private static final String INVALID_COMPANY = "%!@#";
     private static final String INVALID_PLATOON = "%!@#";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG_NAME = "#friend";
+    private static final String INVALID_TAG_LENGTH = "thisIsAnInvalidTagBecauseItIsVeryLongWithALengthMoreThanSixty";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -170,9 +170,19 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
+    public void toModelType_invalidTagName_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG_NAME));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_RANK, VALID_NAME, VALID_UNIT, VALID_COMPANY, VALID_PLATOON,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, false);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTagLength_throwsIllegalValueException() {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG_LENGTH));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_RANK, VALID_NAME, VALID_UNIT, VALID_COMPANY, VALID_PLATOON,
                         VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags, false);
