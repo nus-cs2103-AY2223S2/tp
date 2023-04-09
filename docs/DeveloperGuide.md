@@ -1028,6 +1028,8 @@ Similar to **UC03 Delete a contact**, except,
 * a list of projects is shown instead of contacts.
 * a project is deleted instead of a contact.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC24 Edit a project**
 
 Similar to **UC02 Edit a contact**, except, 
@@ -1428,6 +1430,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Projects are sorted by the given category in alphanumerical order. Projects without the given category are at the back.
    6. Test case: 'sortpj invalid' <br>
       Expected: Projects are not sorted. An error message is shown as an invalid category was given. An error is logged in the console.
+
+<div style="page-break-after: always;"></div>
 
 ### Assigning a contact to a project
 
