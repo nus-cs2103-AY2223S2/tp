@@ -1,0 +1,27 @@
+{
+  "events" : [ {
+    "name" : "",
+    "start" : "1/1/2023 2300",
+    "end" : "1/1/2023 2300",
+    "description" : "",
+    "internship" : {
+      "positionName" : "Machine Learning",
+      "companyName" : "Tiktok",
+      "statusId" : "0",
+      "messageDescription" : "This is a dummy internship",
+      "tagged" : [ "IMPORTANT" ]
+    }
+  }, {
+    "name" : "Resume",
+    "start" : "1/1/2023 2300",
+    "end" : "1/1/2023 2300",
+    "description" : "On Zoom",
+    "internship" : {
+      "positionName" : "Software Testing",
+      "companyName" : "GovTech",
+      "statusId" : "1",
+      "messageDescription" : "This is a dummy internship",
+      "tagged" : [ ]
+    }
+  } ]
+}

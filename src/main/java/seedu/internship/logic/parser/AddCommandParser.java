@@ -34,9 +34,14 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_DESCRIPTION,
                         PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            // no description given, put empty string
+            argMultimap.put(PREFIX_DESCRIPTION, "");
         }
 
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());

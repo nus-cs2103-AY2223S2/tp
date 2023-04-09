@@ -12,8 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
-
-    //Event prefixes , can be changed later on
     public static final Prefix PREFIX_EVENT_NAME = new Prefix("na/");
     public static final Prefix PREFIX_EVENT_START = new Prefix("st/");
     public static final Prefix PREFIX_EVENT_END = new Prefix("en/");

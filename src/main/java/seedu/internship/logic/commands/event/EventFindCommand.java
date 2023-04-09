@@ -1,22 +1,27 @@
 package seedu.internship.logic.commands.event;
 
-import seedu.internship.commons.util.CollectionUtil;
-import seedu.internship.logic.commands.CommandResult;
-import seedu.internship.logic.commands.FindCommand;
-import seedu.internship.logic.commands.ResultType;
-import seedu.internship.logic.commands.exceptions.CommandException;
-import seedu.internship.model.Model;
-import seedu.internship.model.ModelManager;
-import seedu.internship.model.event.*;
-import seedu.internship.model.internship.Internship;
-import seedu.internship.model.ModelManager.*;
+import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_END;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.internship.logic.parser.CliSyntax.*;
+import seedu.internship.commons.util.CollectionUtil;
+import seedu.internship.logic.commands.CommandResult;
+import seedu.internship.logic.commands.ResultType;
+import seedu.internship.logic.commands.exceptions.CommandException;
+import seedu.internship.model.Model;
+import seedu.internship.model.event.End;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.Name;
+import seedu.internship.model.event.Start;
 
+/**
+ * Finds an Event from TinS.
+ */
 public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + COMMAND_WORD
@@ -24,15 +29,18 @@ public class EventFindCommand extends EventCommand {
             + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
             + "[" + PREFIX_EVENT_START + "START] "
             + "[" + PREFIX_EVENT_END + "END] "
-            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500" ;
+            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500";
 
     public static final String MESSAGE_SUCCESS = "Found events : %1$s";
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
-
     private final FilterEventDescriptor filterEventDescriptor;
 
+    /**
+     * Creates an Event Find Command.
+     * @param filterEventDescriptor Filter created using descriptors provided.
+     */
     public EventFindCommand(FilterEventDescriptor filterEventDescriptor) {
         requireNonNull(filterEventDescriptor);
         this.filterEventDescriptor = filterEventDescriptor;
@@ -40,6 +48,9 @@ public class EventFindCommand extends EventCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!filterEventDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventFindCommand.MESSAGE_USAGE));
+        }
         requireNonNull(model);
         Predicate<Event> filterName = unused -> true;
         Predicate<Event> filterStart = unused -> true;
@@ -59,7 +70,7 @@ public class EventFindCommand extends EventCommand {
         Predicate<Event> finalFilterEnd = filterEnd;
         Predicate<Event> filter = x -> finalFilterName.test(x) && finalFilterStart.test(x) && finalFilterEnd.test(x);
         model.updateFilteredEventList(filter);
-
+        model.updateSelectedInternship(null);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredEventList().size()),
                 ResultType.FIND_EVENT, model.getFilteredEventList());
     }
@@ -72,7 +83,7 @@ public class EventFindCommand extends EventCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof EventFindCommand)) {
             return false;
         }
 
@@ -81,7 +92,9 @@ public class EventFindCommand extends EventCommand {
         return filterEventDescriptor.equals(f.filterEventDescriptor);
     }
 
-
+    /**
+     * Creates a Filter based on inputs for Event Catalogue.
+     */
     public static class FilterEventDescriptor {
         private Name name;
         private Start start;
@@ -129,12 +142,12 @@ public class EventFindCommand extends EventCommand {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof FindCommand.FilterInternshipDescriptor)) {
+            if (!(other instanceof EventFindCommand.FilterEventDescriptor)) {
                 return false;
             }
 
             // state check
-            FilterEventDescriptor f = (FilterEventDescriptor) other;
+            FilterEventDescriptor f = (EventFindCommand.FilterEventDescriptor) other;
 
             return getName().equals(f.getName())
                     && getStart().equals(f.getStart())

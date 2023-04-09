@@ -2,14 +2,18 @@ package seedu.internship.logic.commands;
 
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.internship.model.Model;
 import seedu.internship.model.ModelManager;
 import seedu.internship.model.UserPrefs;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.testutil.InternshipBuilder;
 
@@ -22,7 +26,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInternshipCatalogue(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), getTypicalEventCatalogue(), new UserPrefs());
     }
 
     @Test
@@ -30,11 +34,16 @@ public class AddCommandIntegrationTest {
 
         Internship validInternship = new InternshipBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(),
+                new UserPrefs());
         expectedModel.addInternship(validInternship);
+        expectedModel.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
+
+        ObservableList<Event> events = model.getFilteredEventList();
 
         assertCommandSuccess(new AddCommand(validInternship), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validInternship), expectedModel);
+                new CommandResult(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), ResultType.SHOW_INFO,
+                        validInternship, events), expectedModel);
     }
 
     @Test

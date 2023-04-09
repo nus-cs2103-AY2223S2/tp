@@ -1,7 +1,5 @@
 package seedu.internship.model.event;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
@@ -10,8 +8,8 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
  */
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
-            "Name should not be blank";
-
+            "Name of event should not be blank";
+    public static final String VALIDATION_REGEX = "\\S.+";
     public final String name;
 
     /**
@@ -30,11 +28,7 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         // Anything can be a valid Name, so return True
-        if (test.equals("")) {
-            // An Empty String Cannot Be Valid
-            return false;
-        }
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

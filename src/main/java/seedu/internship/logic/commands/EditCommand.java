@@ -51,6 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_INTERNSHIP_UNCHANGED = "Internship is unchanged";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists "
             + "in the internship catalogue.";
 
@@ -58,6 +59,8 @@ public class EditCommand extends Command {
     private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
+     * Creates Edit Command.
+     *
      * @param index of the person in the filtered person list to edit
      * @param editInternshipDescriptor details to edit the person with
      */
@@ -81,8 +84,14 @@ public class EditCommand extends Command {
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
+        // if another internship other than internshipToEdit has same Position and Company as editedInternship
         if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+        }
+
+        // if internshipToEdit is not changed.
+        if (internshipToEdit.equals(editedInternship)) {
+            throw new CommandException(MESSAGE_INTERNSHIP_UNCHANGED);
         }
 
         model.setInternship(internshipToEdit, editedInternship);
@@ -91,7 +100,8 @@ public class EditCommand extends Command {
 
         model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
         ObservableList<Event> events = model.getFilteredEventList();
-        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship), ResultType.SHOW_INFO, editedInternship, events);
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
+                ResultType.SHOW_INFO, editedInternship, events);
     }
 
     /**
@@ -132,7 +142,7 @@ public class EditCommand extends Command {
 
     /**
      * Stores the details to edit the internship with. Each non-empty field value will replace the
-     * corresponding field value of the intenrship.
+     * corresponding field value of the internship.
      */
     public static class EditInternshipDescriptor {
         private Position position;

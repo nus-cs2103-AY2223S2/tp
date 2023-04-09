@@ -35,13 +35,17 @@ public class EventAddCommandParser implements Parser<EventAddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME, PREFIX_EVENT_START, PREFIX_EVENT_END,
                         PREFIX_EVENT_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_END, PREFIX_EVENT_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_END)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventAddCommand.MESSAGE_USAGE));
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_START)) {
-            // If Start is not Present , then start == end
+            // If Start is not present , then start == end
             argMultimap.put(PREFIX_EVENT_START, argMultimap.getValue(PREFIX_EVENT_END).get());
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_DESCRIPTION)) {
+            // If Description not present, then empty description
+            argMultimap.put(PREFIX_EVENT_DESCRIPTION, "");
         }
 
         Name name = EventParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get());

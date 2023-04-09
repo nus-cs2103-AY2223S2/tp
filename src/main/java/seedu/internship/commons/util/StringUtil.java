@@ -49,6 +49,24 @@ public class StringUtil {
     }
 
     /**
+     * Checks if String input is an Integer
+     *
+     * @param s Input String.
+     * @return True if input String can be parsed to an Integer.
+     */
+    public static boolean isInteger(String s) {
+        requireNonNull(s);
+
+        try {
+            int value = Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+
+    /**
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input

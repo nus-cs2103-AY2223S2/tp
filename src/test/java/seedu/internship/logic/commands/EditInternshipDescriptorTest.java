@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.internship.testutil.EditInternshipDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditInternshipDescriptorTest {
 
     @Test
     public void equals() {

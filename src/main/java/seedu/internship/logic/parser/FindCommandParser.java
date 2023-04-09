@@ -1,25 +1,33 @@
 package seedu.internship.logic.parser;
 
-import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.AddCommand;
-import seedu.internship.logic.commands.DeleteCommand;
-import seedu.internship.logic.commands.FindCommand.FilterInternshipDescriptor;
-import seedu.internship.logic.commands.FindCommand;
-import seedu.internship.logic.parser.exceptions.ParseException;
-import seedu.internship.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.logic.parser.CliSyntax.*;
+import seedu.internship.logic.commands.FindCommand;
+import seedu.internship.logic.commands.FindCommand.FilterInternshipDescriptor;
+import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new FindCommand object
+ */
 public class FindCommandParser implements Parser<FindCommand> {
 
-
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns an FindCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
@@ -28,13 +36,18 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         FilterInternshipDescriptor filterInternshipDescriptor = new FilterInternshipDescriptor();
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
-            filterInternshipDescriptor.setPosition(ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get()));
+            filterInternshipDescriptor.setPosition(
+                    ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get()));
         }
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             filterInternshipDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             filterInternshipDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            filterInternshipDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(filterInternshipDescriptor::setTags);
         if (!filterInternshipDescriptor.isAnyFieldEdited()) {

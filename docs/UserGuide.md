@@ -18,9 +18,9 @@ title: User Guide
 
 ## Introduction
 Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
-managing your internship applications fuss-free. Despite being optimised for use via the keyboard using 
+managing your internship applications fuss-free. Despite being optimised for use via the keyboard using
 a Command Line Interface (CLI), you will still be able to enjoy the benefits of having a visual display
-through our Graphical User Interface (GUI). 
+through our Graphical User Interface (GUI).
 
 With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
 all in one place.
@@ -29,16 +29,16 @@ all in one place.
   * Finding a particular internship application in TinS using keywords: `find`
   * Calendar View: `calendar`
   * Finding all clashing events: `clash`
-  
-  
+
+
 <div style="page-break-after: always;"></div>
 
 ## About the User Guide
 
 ### Objective of User Guide
 The Objective of this User Guide is to provide you with useful instructions on how to navigate the TinS application.
-To ensure a smooth on-boarding process for you to the TinS application, this User Guide will include detailed
-step-by-step instructions on how to install the TinS application into your device, as well as how to use the various 
+To ensure a smooth on-boarding process to The Intern's Ship, this User Guide will include detailed
+step-by-step instructions on how to install the TinS application into your device, as well as how to use the various
 features of TinS. If you are a frequent user of TinS, this User Guide will also include useful tips on how you can use
 TinS in a more efficient way.
 
@@ -72,8 +72,8 @@ Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
 
 ### How to use the User Guide
 * If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the
-  process of installing TinS and provide you with a brief introduction to TinS. 
-* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what 
+  process of installing TinS and provide you with a brief introduction to TinS.
+* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what
   features TinS has to offer. Embedded in this section is also tips on how you can maximize your efficiency while using
   TinS.
 
@@ -87,16 +87,16 @@ Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TinS.
 
-4. Double-click on the file `tins.jar` to launch TinS. 
+4. Double-click on the file `tins.jar` to launch TinS.
    A TinS Application Interface similar to the one below should appear in a few seconds.
    ![Ui](images/ug/home_page.png)
 
    <div markdown="span" class="alert alert-primary">
-    
-        :information source: **Info:** The default TinS application contains some sample data. These sample data can
-        come in handy for you to try out the various commands of TinS. To remove all sample data, use the 
-        <code>deleteall</code> feature.
-    </div>
+
+   :information source: **Info:** The default TinS application contains some sample data. These sample data can
+   come in handy for you to try out the various commands of TinS. To remove all sample data, use the
+   <code>deleteall</code> feature.
+   </div>
 
 5. Type your command into the Command Box, then press <button>Enter</button> to instruct TinS to execute your command.
    Here are some basic commands you can try:
@@ -144,7 +144,7 @@ following fields:
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Each Internship is **uniquely identifiable** by a **combination of its `POSITION` and
-`COMPANY`**. `POSITION` and `COMPANY` fields are **case-insensitive**. 
+`COMPANY`**. `POSITION` and `COMPANY` fields are **case-insensitive**.
 
 Example: The following internships will be identified as same internship in TinS.
 
@@ -174,7 +174,7 @@ Example: The following internships will be identified as same internship in TinS
     giving a warning, the addition of these fields could affect the visual display (i.e. truncated fields).
 </div>
 
-An Internship can also store zero or more than one **Event**. 
+An Internship can also store zero or more than one **Event**.
 
 **Events**
 
@@ -283,7 +283,7 @@ their associated prefixes.
   `add p/Software Engineer c/Grab s/0 d/` and `add p/Software Engineer c/Grab s/0 d/ t/IMPORTANT t/PRIORITY` is
   valid.
 
-* Items without `...` after them should only be used **once**. 
+* Items without `...` after them should only be used **once**.
 
   <div markdown="span" class="alert alert-primary">
 
@@ -297,7 +297,7 @@ their associated prefixes.
 
 * Fields can be in any order.
 
-  E.g. `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` is the same as 
+  E.g. `add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...` is the same as
   `add c/COMPANY s/STATUS d/DESCRIPTION p/POSITION [t/TAG]...`
 
 * If the command does not require you to input a field, any extra field/values enter after the identified
@@ -305,17 +305,17 @@ their associated prefixes.
 
   The commands in TinS that do not require additional input of fields from user are `list`, `clash`, `home`, `calendar`,
   `stats`, `help` and `exit`.
-  E.g. If `clash help` is entered, TinS will identify your command as a `clash` command, ignoring all the extra 
-  fields/values found after `clash`, and execute the command `clash`. 
-  
-  
+  E.g. If `clash help` is entered, TinS will identify your command as a `clash` command, ignoring all the extra
+  fields/values found after `clash`, and execute the command `clash`.
+
+
 <div style="page-break-after: always;"></div>
 
 ## Features
 
 ### Opens the Home Page : `home`
 
-Opens the Home Page in the Display Panel. 
+Opens the Home Page in the Display Panel.
 
 <div markdown="span" class="alert alert-success">
 
@@ -364,7 +364,7 @@ Displays a calendar view of all your events in the Display Panel.
 <div markdown="span" class="alert alert-success">
 
     :bulb: **Tip:**  If there are too many events on one day, you can use the `event find` function to find events by
-    their starting and ending timings.
+    their start and end timings.
 </div>
 
 Example: `calendar`
@@ -413,7 +413,7 @@ List all the internships in List panel.
 * After keying in the `list` command, TinS displays **all** the Internships stored in TinS in the List panel.
 * Only the `POSITION`, `COMPANY_NAME`, `APPLICATION_STATUS` and `TAG` are display in the List Panel for each Internship.
 
-Example: `list` 
+Example: `list`
 
 ![internship_list_panel](images/ug/ug-list.png)
 
@@ -425,7 +425,7 @@ Finds an Internships by their fields (`POSITION`, `COMPANY`, `STATUS`, `TAG`).
 
 Format: `find [p/POSITION] [c/COMPANY] [s/STATUS] [t/TAG]...`
 
-* Choose the fields you would like to filter the Internship Catalogue by. One or more fields can be used to find an 
+* Choose the fields you would like to filter the Internship Catalogue by. One or more fields can be used to find an
   internship.
 * For each chosen field, enter a keyword you would like to find corresponding Internship Applications for.
 * An internship is will be included in the filtered list if the internship's field contains the keyword you indicated.
@@ -467,10 +467,10 @@ Format: `edit ID [p/POSITION] [c/COMPANY] [s/STATUS] [d/DESCRIPTION] [t/TAG] ...
 * After keying in the `edit` command, along with the selected fields the user wishes to edit, TinS will update the
   corresponding fields of the internship application accordingly.
 
-Example: 
+Example:
 
-After keying in the `edit` command followed by an existing `ID` and the fields `STATUS` and `DESCRIPTION`, 
-TinS will update the `STATUS` and `DESCRIPTION` fields of the internship application with the specified 
+After keying in the `edit` command followed by an existing `ID` and the fields `STATUS` and `DESCRIPTION`,
+TinS will update the `STATUS` and `DESCRIPTION` fields of the internship application with the specified
 `ID`, then display the newly updated internship application. This command `edit 1 s/1 d/Learn C++` will return the
 following results.
 
@@ -547,7 +547,7 @@ Finds events based on certain filters.
 Format: `event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]`
 
 * Choose the fields you would like to find an event by. One or more fields can be used to find an event.
-* For `EVENT_NAME` field, TinS will find events with `EVENT_NAME` containing the keyword provided by you. This is 
+* For `EVENT_NAME` field, TinS will find events with `EVENT_NAME` containing the keyword provided by you. This is
   case-insensitive.
 * For `START_DATETIME` and `END_DATETIME`, enter a `DATETIME` in the format DD/MM/YYYY HHMM. TinS will find events with
   the corresponding `START_DATETIME` or `END_DATETIME`.
@@ -563,7 +563,7 @@ Interview and starting time 20 March 2023, 2pm.
 Displays all events with clashing timings in the Display Panel.
 
 * Clashing Events are arranged by date.
-* Clicking on any date, you will be able to see all events with clashing timing on that particular day. 
+* Clicking on any date, you will be able to see all events with clashing timing on that particular day.
 
 Format: `clash`
 
@@ -729,12 +729,12 @@ E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
 
 </table>
 
-##Acknowledgements
+## Acknowledgements
 * The Intern's Ship is written in Java 11.
 * The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
-  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5)
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5), [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX)
 * The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
-* The Intern's Ship - User Guide references the following projects: 
+* The Intern's Ship - User Guide references the following projects:
   [addressbook-level4](https://github.com/se-edu/addressbook-level4),
   [InternBuddy](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/docs/UserGuide.md) (for Markdown Formatting
   and Information, Tip and Warning Box)

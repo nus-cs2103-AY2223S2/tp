@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.internship.model.internship.Internship;
-import seedu.internship.model.internship.Statistics;
 import seedu.internship.model.internship.UniqueInternshipList;
 
 /**

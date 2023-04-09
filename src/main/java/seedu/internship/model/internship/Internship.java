@@ -66,7 +66,7 @@ public class Internship {
     }
 
     /**
-     * Returns true if both internships have the same position and company name.
+     * Returns true if both internships have the same position and company name regardless of case - Non-Case Sensitive.
      * This defines a weaker notion of equality between two internships.
      */
     public boolean isSameInternship(Internship otherInternship) {
@@ -75,8 +75,8 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getPosition().equals(getPosition())
-                && otherInternship.getCompany().equals(getCompany());
+                && otherInternship.getPosition().isSamePosition(getPosition())
+                && otherInternship.getCompany().isSameCompany(getCompany());
     }
 
     /**

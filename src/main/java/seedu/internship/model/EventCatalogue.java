@@ -105,7 +105,6 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
     @Override
     public String toString() {
         return events.asUnmodifiableObservableList().size() + " events";
-        // TODO: refine later
     }
 
     @Override

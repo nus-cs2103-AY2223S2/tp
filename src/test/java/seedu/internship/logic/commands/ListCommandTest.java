@@ -2,6 +2,7 @@ package seedu.internship.logic.commands;
 
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.internship.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.internship.testutil.TypicalEvents.getTypicalEventCatalogue;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInternshipCatalogue(), new UserPrefs());
-        expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipCatalogue(), getTypicalEventCatalogue(), new UserPrefs());
+        expectedModel = new ModelManager(model.getInternshipCatalogue(), model.getEventCatalogue(), new UserPrefs());
     }
 
     @Test

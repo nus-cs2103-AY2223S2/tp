@@ -10,10 +10,20 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
-import seedu.internship.logic.commands.*;
+import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.CalendarCommand;
+import seedu.internship.logic.commands.ClashCommand;
+import seedu.internship.logic.commands.DeleteAllCommand;
+import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.EditCommand;
+import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.FindCommand;
+import seedu.internship.logic.commands.HelpCommand;
+import seedu.internship.logic.commands.HomeCommand;
+import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.SelectCommand;
+import seedu.internship.logic.commands.StatsCommand;
 import seedu.internship.model.event.Event;
-
-
 
 /**
  * The Home page of TinS.
@@ -23,8 +33,6 @@ public class HomePage extends Page {
     private static final String FXML = "HomePage.fxml";
     private static final String PAGE_TITLE = "Home";
     private static final String MESSAGE_WELCOME = "Welcome onboard.";
-    
-    private final Logger logger = LogsCenter.getLogger(HomePage.class);
 
     private static final String COMMAND_HELP = AddCommand.MESSAGE_USAGE + "\n\n"
             + CalendarCommand.MESSAGE_USAGE + "\n\n"
@@ -39,6 +47,8 @@ public class HomePage extends Page {
             + ListCommand.MESSAGE_USAGE + "\n\n"
             + SelectCommand.MESSAGE_USAGE + "\n\n"
             + StatsCommand.MESSAGE_USAGE + "\n\n";
+
+    private final Logger logger = LogsCenter.getLogger(HomePage.class);
 
     private ObservableList<Event> reminderEvents;
 
@@ -90,8 +100,11 @@ public class HomePage extends Page {
         if (!reminderEvents.isEmpty()) {
             noReminderText.setManaged(false);
             reminderBox.getChildren().addAll(reminderEvents.stream()
-                    .map(event -> EventCard.of(event, false)
-                            .getRoot())
+                    .map(event -> {
+                        EventCard eventCard = EventCard.of(event, false);
+                        eventCard.setEventCardContent();
+                        return eventCard.getRoot();
+                    })
                     .collect(Collectors.toList()));
         } else {
             noReminderText.setManaged(true);

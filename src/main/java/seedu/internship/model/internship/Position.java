@@ -13,7 +13,7 @@ public class Position {
             "Names of position should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of Position must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -44,11 +44,19 @@ public class Position {
         return positionName;
     }
 
+    /**
+     * Returns true if both positions have the same name, regardless of casing - Non-Case Sensitive.
+     * This defines a weaker notion of equality between two positions.
+     */
+    public boolean isSamePosition(Position otherPosition) {
+        return positionName.equalsIgnoreCase(otherPosition.positionName);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && positionName.equalsIgnoreCase(((Position) other).positionName)); // state check
+                && positionName.equals(((Position) other).positionName)); // state check
     }
 
     @Override

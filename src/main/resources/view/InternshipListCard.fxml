@@ -6,18 +6,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:id="cardPane" maxWidth="270.0" spacing="3.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="cardPane" spacing="3.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox>
          <children>
                 <Label fx:id="id" minWidth="-Infinity" styleClass="cell_big_label" text="\$id" />
-                <Label fx:id="company" style="-fx-font-weight:bold" styleClass="cell_big_label" text="\$company" wrapText="true">
+                <Label fx:id="company" minWidth="-Infinity" style="-fx-font-weight:bold" styleClass="cell_big_label" text="\$company" wrapText="true">
                <padding>
                   <Insets left="5.0" right="2.0" />
                </padding>
             </Label>
-                <Label fx:id="position" styleClass="cell_big_label" text="\$position" wrapText="true">
+                <Label fx:id="position" minWidth="-Infinity" styleClass="cell_big_label" text="\$position" wrapText="true">
                <padding>
                   <Insets right="5.0" />
                </padding>

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
 import static seedu.internship.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -18,11 +19,14 @@ import seedu.internship.commons.core.GuiSettings;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.testutil.InternshipBuilder;
 import seedu.internship.testutil.TypicalInternships;
+
 
 public class AddCommandTest {
 
@@ -150,6 +154,75 @@ public class AddCommandTest {
         public void updateFilteredInternshipList(Predicate<Internship> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public Path getEventCatalogueFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventCatalogueFilePath(Path eventCatalogueFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventCatalogue(ReadOnlyEventCatalogue newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEventCatalogue getEventCatalogue() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedInternship(Internship intern) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearSelectedInternship() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSelectedInternship() {
+            return false;
+        }
+
+        @Override
+        public Internship getSelectedInternship() {
+            return null;
+        }
     }
 
     /**
@@ -180,6 +253,20 @@ public class AddCommandTest {
         public boolean hasInternship(Internship internship) {
             requireNonNull(internship);
             return internshipsAdded.stream().anyMatch(internship::isSameInternship);
+        }
+
+        @Override
+        public void updateSelectedInternship(Internship intern){
+            // Don't Do Anything
+        }
+        @Override
+        public void updateFilteredEventList(Predicate<Event> ev) {
+            // Don't Do Anything
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            return EMPTY_UNIQUE_EVENTS_LIST;
         }
 
         @Override
