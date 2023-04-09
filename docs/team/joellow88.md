@@ -46,9 +46,12 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________
 * **Documentation**:
     * User Guide:
-        * To be added soon
+        * Added descriptions of `undo`, `redo` and `load` to the user guide.
     * Developer Guide:
-        * To be added soon
+        * Updated implementation of `undo` and `redo` found in the original AB3 developer guide.
+        * Added implementation details of `load` to the developer guide.
+        * Added sequence and activity diagrams generated using PlantUML.
+        * Contributed to non-functional requirements, glossary, and use cases.
 
 * **Contribution to team tasks**:
     * Set up zoom sessions for team meetings 
