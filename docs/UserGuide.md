@@ -94,6 +94,8 @@ Otherwise, refer to the following steps to get started.
 
 * Refer to the [Prefix Masterlist](#prefix masterlist) for the list of prefixes used for the commands below.
 
+</div>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
