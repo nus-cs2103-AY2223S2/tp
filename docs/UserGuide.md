@@ -155,7 +155,7 @@ The Clients tab lists all the clients you have created. Each client block contai
 The Statistics panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
 
 The top portion is composed of two tabs. One lists the projects that are due within this week or the next (Week starts from Sunday).
-For example, if the current date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will appear on the **Due soon project list**.
+For example, if the current date is 11/04/2023 (a Tuesday), all projects with deadlines from 09/04/2023 to 22/04/2023 inclusive will appear on the **Due soon project list**.
 
 The other tab lists projects that are overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
 will not appear in **Overdue project list**, but projects with deadlines on 10/04/2023 will appear in the **Overdue
