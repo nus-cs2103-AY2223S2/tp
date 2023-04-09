@@ -57,27 +57,26 @@ Artistic Addressbook (ArB) is a **desktop app for artists, meant to help with ef
 
 ## **Command format**
 
-* All command formats given in this user guide come in the form of `command-word additional-details`. Example:
-
+* All command formats given in this user guide come in the form of `command-word additional-details`.
+<br>Example:<br>
 ![CommandWordAdditionalDetails](images/CommandWordAdditionalDetails.png)
 
-* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided. Example:
-
+* Additional details come in the form of `prefix/detail`, where detail is in UPPER_CASE and is to be supplied by the user, and [prefix](#command-summary) indicates what detail is being provided.
+<br>Example:<br>
 ![PrefixDetails](images/PrefixDetails.png)
 
-* Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user. Example:
-
+* Additional details in square brackets are optional. Additional details in angle brackets are required and must be supplied by the user.
+<br>Example:<br>
 ![RequireOptional](images/RequireOptional.png)
 
-* Additional details with * after them can be used multiple times, including zero times. Example:
-
+* Additional details with * after them can be used multiple times, including zero times.
+<br>Example:<br>
 ![moreThanOneTag](images/moreThanOneTag.png)
 
-In the example above, `[tag/TAG]*`  can be used as `  `(i.e. 0 times), `tag/friend`, `tag/friend`, `tag/family` etc.`
+In the example above, `[tag/TAG]*` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
-* Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, … Example:
-
-![DeleteClientIndex](images/DeleteClientIndex.png)
+* Some command formats require an index to be provided. This is the index of the object of interest in the currently displayed list. The index must be a positive integer 1, 2, 3, …
+<br>Example:<br>![DeleteClientIndex](images/DeleteClientIndex.png)
 
 * All command-words are case-insensitive.
 
