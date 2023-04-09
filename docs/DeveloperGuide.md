@@ -33,11 +33,20 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
+[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
+[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
+[UiClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java
+[MainWindowClass]:https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/MainWindow.java
+[MainWindowView]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/resources/view/MainWindow.fxml
+[LogicClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java
+[ModelClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/Model.java
+[StorageClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/storage/Storage.java
+
 ### **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -47,9 +56,6 @@ Given below is a quick overview of main components and how they interact with ea
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
-[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -62,14 +68,14 @@ The rest of the App consists of four components.
 
 ### **How the Architecture Components Interact With Each**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues 
 the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its _API_ in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding 
   API `interface` mentioned in the previous point).
 
@@ -82,8 +88,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 ### **UI Component**
 
-The **API** of this component is specified in 
-[`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
+**API** : [`Ui.java`][UiClass]
 
 <img src="images/UiClassDiagram.png" width="1000"/>
 
@@ -93,8 +98,7 @@ the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. 
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/MainWindow.java) 
-is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+For example, the layout of the [`MainWindow`][MainWindowClass] is specified in [`MainWindow.fxml`][MainWindowView].
 
 The `UI` component,
 
@@ -105,7 +109,7 @@ The `UI` component,
 
 ### **Logic Component**
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java)
+**API** : [`Logic.java`][LogicClass]
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -121,7 +125,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -134,7 +141,7 @@ How the parsing works:
 
 ### **Model Component**
 
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`][ModelClass]
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -151,7 +158,7 @@ The `Model` component,
 
 ### **Storage Component**
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`][StorageClass]
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -190,6 +197,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Exit Command**
 
+
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -201,7 +209,7 @@ This section describes some noteworthy details on how certain features are imple
 
 
 ## **Glossary**
-
+--------------------------------------------------------------------------------------------------------------------
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A task with a starting time and an ending time
 * **Ongoing Event**: An event that has started, but not ended
