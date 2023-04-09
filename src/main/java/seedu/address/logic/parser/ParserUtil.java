@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.INVALID_TIMESTAMP_FORMAT;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Address;
 import seedu.address.model.pet.Deadline;
@@ -139,8 +141,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code timestamp} is invalid.
      */
-    public static LocalDateTime parseTimeStamp(String timestamp) {
+    public static LocalDateTime parseTimeStamp(String timestamp) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        if (!Deadline.isValidDeadline(LocalDateTime.parse(timestamp, formatter))) {
+            throw new ParseException(String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
         return LocalDateTime.parse(timestamp, formatter);
     }
 
@@ -153,13 +158,13 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         String[] split = deadline.split("-", 2);
         String description = split[0].trim();
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
-            return new Deadline(description, time);
-        } catch (DateTimeParseException e) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
+        if (!Deadline.isValidDeadline(time)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
+        return new Deadline(description, time);
     }
 
     /**
