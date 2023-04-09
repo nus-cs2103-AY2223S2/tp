@@ -3,19 +3,23 @@ layout: page
 title: User Guide
 ---
 
-## Table of Contents
+<img src="./images/Banner.png">
 
-* Table of Contents
-{:toc}
+FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs. 
+With FriendlyLink, administrators such as yourself can easily manage your data and pair volunteers with the elderly 
+as you wish, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management 
+simple, efficient, and effective, so that you can focus on making a difference in your communities.
+
+With our easy-to-use **text-based interface** and contact management features, say goodbye to manual record-keeping and 
+hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details!
 
 ----------------------------------------------------
 
-## Introduction
-FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs. With FriendlyLink, administrators such as yourself can easily manage your database and pair volunteers with the elderly as you wish, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple, efficient, and effective, so that you can focus on making a difference in your communities.
+## Table of Contents
+{:.no_toc}
 
-With its easy-to-use **text-based interface** and contact management features, say goodbye to manual record-keeping and hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
-
-With FriendlyLink, you can record elderly and volunteer information and pair them up automatically. You can also update and delete records easily, and see a summary of all records in FriendlyLink!
+* Table of Contents
+{:toc}
 
 ----------------------------------------------------
 
@@ -502,7 +506,8 @@ Examples:
 ### Command Recommendation
 
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
-This feature helps to facilitate user input, therefore achieve better efficiency and input accuracy.
+Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting
+with our application. 
 
 <img src="images/CommandRecommendations.png" alt="Command Recommendation Example" width="1000">
 

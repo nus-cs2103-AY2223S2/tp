@@ -196,50 +196,40 @@ and removes it from the database.
 If the deleted Elderly or Volunteer has existing pairing, the associated
 pairs will be automatically removed as well.
 
-### Command Recommendation and Autocompletion
+### Command Recommendation and Autocompletion of Field's Prefixes
 
-Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting 
-with our application. By predicting the set of words that the user intends to type based on a preset of words such as 
-in-built commands and field prefixes, the `CommandRecommendationEngine` helps to save user's time and effort while 
-ensuring accuracy.
+Both autocompletion and recommendation is facilitated by `CommandRecommendationEngine.java`. The Logic component registers 
+individual command parsers, which implement the Parser interface, to enable recommendations of command inputs. Each parser,
+such as `{XYZ}CommandParser`, specifies how recommendation should differ for a specific command by overriding the 
+`Parser#getCommandInfo` method. When the user types a valid command, the `CommandBox` UI component detects the keystroke 
+through its `KeyPressedHandler` and triggers the `CommandRecommendationEngine#generateCommandRecommendations` method. 
+This method then returns the relevant recommendations. When a `KeyEvent.TAB` event is triggered, autocompletion builds 
+on the method and replaces the user input with the recommended values. 
 
-#### Implementation
+Using the longest prefix match algorithm, the engine first **identifies** the related command and then **verifies** the 
+fields associated with it. If there are ambiguities in the recommendations, the recommendation will rank the commands 
+using lexicographical ordering. 
 
-To provide autocompletion, the `CommandRecommendationEngine` uses an event listener attached to the `commandTextField` 
-When the `TAB` key is triggered, it autocompletes the user's input by replacing the input with the recommended values.
-
-Similarly, to provide recommendations, an event handler, which parses the user input and returns the recommendation, is triggered
-on each key pressed. Using the longest prefix match algorithm, the engine first **identifies** the related command
-and then **verifies** the fields associated with it. If there are ambiguities in the recommendations, the recommendation
-will rank the commands using lexicographical ordering. 
-
-To facilitate the implementation, `CommandRecommendationEngine` uses the concept of **Full Attribute** commands and 
-**Complete** commands. A _Full Attribute_ command means that all fields of the command, optional and compulsory, 
-have been specified. On the other hand, a _Complete_ command indicates that a command has been fully typed, but the arguments 
-may or may not have been entered. This distinction helps the engine to provide more accurate recommendations based on the user's input.
+In order to simplify implementation, we differentiate between two types of commands: "Full Attribute" commands and "Complete" commands. 
+A "Full Attribute" command is one in which all the fields, both optional and required, have been specified. 
+A "Complete" command, on the other hand, means that the command has been fully typed, but the fields may or may not
+have been entered. This distinction assists the engine in giving more precise suggestions based on the user's input.
 
 The following activity diagram describes the activity flow:
 
 <img src="images/developerGuide/CommandRecommendationActivityDiagram.png"/>
 
-Adding on, the same event handler can be used to provide immediate input validation. Developers can choose to customize the 
-behaviour of the validation for each command. This feedback mechanism helps to minimize errors and ensure that users 
-input the correct command attributes.
-
-Finally, the `CommandRecommendationEngine` provides a `registerCommandInfo` method that allows developers to register new commands
-and turn on command recommendation for them. This flexibility ensures that the engine can adapt to changes in the application 
-and provide accurate recommendations even as the application evolves.
-
 #### Design considerations
 
 Aspect: How recommendation executes:
 
-- Alternative 1 (current choice): Using a `LinkedHashMap` for word search
-  - Pros: Quick and Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-- Alternative 2: Using a `Trie` for word search
-  - Pros: Will use less memory (Only required to store unique prefixes).
-  - Cons: Relatively harder to implement, and might introduce bugs.
+**Alternative 1 (current choice)**: Custom recommendations for each command 
+  - Requires each `{XYZ}CommandParser` to override the `Parser#getCommandInfo` method, specifying the exact behaviour on how recommendations should behave.
+  - Recommendations will be more relevant to the current command, and user input can be validated against the set of possible prefixes specified in the overridden method.
+
+**Alternative 2**: Store all possible prefixes and recommends based on user input 
+  - Cannot enforce that user only inputs relevant prefixes as there is no reference as to what the "correct" prefixes are.
+  - Likewise, such design is unable to recommend all relevant attributes, which can greatly reduce the user experience. 
 
 ### Edit by index & NRIC
 
