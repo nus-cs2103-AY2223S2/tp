@@ -572,7 +572,7 @@ These commands should be tested on the Course Page.
 
     1. Test case: `select 1`<br>
        Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the 
-       selected group page.
+       corresponding group page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
        Expected: No course is selected. Error details shown in the log box.
@@ -657,7 +657,7 @@ These commands should be tested on the Group Page.
 
     1. Test case: `select 1`<br>
        Expected: First group is selected. Details of the selected group shown in the log box. Page redirected to the
-       selected students page.
+       corresponding students page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
        Expected: No group is selected. Error details shown in the log box.
@@ -668,7 +668,7 @@ These commands should be tested on the Group Page.
 
     1. Test case: `session 1`<br>
        Expected: First group is selected to view its sessions. Details of the selected group to view its
-       sessions shown in the log box. Page redirected to the session page for the selected group.
+       sessions shown in the log box. Page redirected to the corresponding session page for the selected group.
 
     1. Test case: `session x` (where x is larger than the list size)<br>
        Expected: No group is selected to view its sessions. Error details shown in the log box.
@@ -679,14 +679,14 @@ These commands should be tested on the Group Page.
 
     1. Test case: `task 1`<br>
        Expected: First group is selected to view its tasks. Details of the selected group to view its
-       tasks shown in the log box. Page redirected to the task page for the selected group.
+       tasks shown in the log box. Page redirected to the corresponding task page for the selected group.
 
     1. Test case: `task x` (where x is larger than the list size)<br>
        Expected: No group is selected to view its tasks. Error details shown in the log box.
 
 #### Finding a group
 
-1. Finding a group while on the group page, with the following groups - `T01`, `T02`, `L01`. in the list.
+1. Finding a group while on the group page, with the following groups - `T01`, `T02`, `L01` in the list.
 
     1. Test case: `find group T`<br>
        Expected: `T01` and `T02` is displayed. Details of the found groups shown in the log box.
@@ -735,11 +735,87 @@ These commands should be tested on the Attendance Page.
 ### Task Page Commands
 These commands should be tested on the Task Page.
 
+#### Adding a task
 
+1. Adding a task while the task list is empty, or the task does not exist in the task list.
+
+    1. Test case: `add task PE1`<br>
+       Expected: New task is added into the list. Details of the added task shown in the log box.
+
+    1. Other incorrect `add task` commands to try: `add`, `add task` (where the task name is empty)<br>
+       Expected: No task is added. Error details shown in the log box.
+
+1. Adding a task into the list containing the following tasks - `CA1`, `CA2`, `Critical Reflection 1`.
+
+    1. Test case: `add task CA3`<br>
+       Expected: New task is added. Details of the added task shown in the log box.
+
+    1. Test case: `add task CA1`<br>
+       Expected: No task is added. Error details shown in the log box.
+
+#### Deleting a task
+
+1. Deleting a task while all tasks are being shown from the task page. At least 1 task exists in the list.
+
+    1. Test case: `delete task 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the log box.
+
+    1. Test case: `delete task 0`<br>
+       Expected: No task is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete task` commands to try: `delete`, `delete task x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1(ii) under `Deleting a task`.
+
+1. Deleting a task while the task list is empty in the task page.
+
+    1. Incorrect `delete task` commands to try: `delete`, `delete task x` (where x is any number)<br>
+       Expected: No task is deleted. Error details shown in the log box.
+
+#### Editing a task
+
+1. Editing a task which exists in the task list.
+
+    1. Test case: `edit task 1 CA4`<br>
+       Expected: First task is edited to the new task name. Details of the edited task shown in the log box.
+
+    1. Test case: `edit task 0 CA4`<br>
+       Expected: No task is edited. Error details shown in the log box.
+
+    1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4` 
+       (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1(ii) under `Editing a task`.
+
+1. Editing a task while the task list is empty in the task page.
+
+    1. Refer to step 1(iii) above under `Editing a task`.
 
 #### Selecting a task
 
+1. Selecting a task while on the task page.
+
+    1. Test case: `select 1`<br>
+       Expected: First task is selected. Details of the selected task shown in the log box. Page redirected to the
+       corresponding grades page.
+
+    1. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No task is selected. Error details shown in the log box.
+
 #### Finding a task
+
+1. Finding a task while on the task page, with the following tasks - `CA1`, `CA2`, `Critical Reflection 1` in the list.
+
+    1. Test case: `find task 1`<br>
+       Expected: `CA1` and `Critical Reflection 1` is displayed. Details of the found tasks shown in the log box.
+
+    1. Test case: `find task CA`<br>
+       Expected: `CA1` and `CA2` is displayed. Details of the found tasks shown in the log box.
+
+    1. Test case: `find task CA3` (this task does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found task(s) shown in the log box.
+
+    1. Other incorrect `find task` commands to try: `find`, `find task`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
+
 
 ---
 
