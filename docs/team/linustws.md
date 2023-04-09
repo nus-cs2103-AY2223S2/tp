@@ -21,7 +21,7 @@ CoDoc is a desktop contact management application. The user interacts with it us
   * What it does: Allows users to click on the PersonCard in the PersonListPanel to view the details on the right info panel and allows users to change tabs by clicking.
   * Justification: Adds convenience for users on top of the `view` command.
   * Highlights:
-    * Made it such that clicking is the same as calling the `view` command, updates `ResultDisplay` accordingly.
+    * Made it such that clicking updates `ResultDisplay` accordingly.
     * Had trouble implementing things like FireEvent/CatchEvent/EventDispatcherChain to handle events, but managed to work around it, though not the best solution.
     * Was later improved with [Harin](https://ay2223s2-cs2103t-f12-2.github.io/tp/team/harin0826.html)'s fix. [#129](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/129)
 * **New Feature**: Added default profile pictures. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
