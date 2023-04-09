@@ -1,0 +1,17 @@
+@startuml AddKeywordParseActivityDiagram
+start
+:Check if prefixes are present;
+if () then ([prefixes present])
+  :Parse main keyword;
+  :Parse keyword;
+  if () then ([all prefixes valid])
+    :Create Keyword object;
+    :Return AddCommand object with Keyword;
+  else ([else])
+    :Throw ParseException;
+  endif
+else ([else])
+  :Throw ParseException;
+endif
+stop
+@enduml

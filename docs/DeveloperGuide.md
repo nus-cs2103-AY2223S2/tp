@@ -634,30 +634,65 @@ The activity diagram below summarises the action when the patient `ClearCommand`
 
 #### Adding a Keyword
 
+The **Keyword Adding** mechanism is facilitated by `VMS`. The Keyword created is stored inside `KeywordManager` object.
+
 ##### Execution Sequence
 
-<!-- TODO
+Given below is an example usage scenario when a user enters `keyword add --k patient --n p` as a command.
+
+1. The user enters the command in the `UI Component`.
+2. It will be passed to the `Logic component`.
+3. When `AddCommandParser` receives the information from `KeywordParser`, it will invoke the following methods for parsing.
+   1. `ParserUtil#parseMainKeyword` will be called to create a String object using `patient`.
+   2. `ParserUtil#parseKeyword` will be called to create a String object using `p`.
+4. After successfully parsing the args, `AddCommandParser` will create a Keyword using the new `patient` and `p`
+strings created.
+5. When `AddCommand#execute` is called, `model#addKeyword` will be called to add the new Keyword into the model.
+`AddCommand` will then return `CommandMessage` to indicate it's success.
+
+Note that `MainKeyword` and `Keyword` are required args, hence the user must include `--k` and `--n` in the command.
+
+The activity diagram below summarises the action when the keyword `AddCommand` is executed.
+
 <img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
--->
 
-#### Listing a Keyword
+Given below is a sequence diagram that illustrates the **Keyword Adding** parsing mechanism at every step.
+
+<img src="images/keyword/AddKeywordSequenceDiagram.png" />
+
+*Keyword parsing detail here:*
+
+<img src="images/keyword/AddKeywordParseActivityDiagram.png" />
+
+#### Deleting a Keyword
+
+The **Keyword Delete** mechanism is facilitated by `VMS`. It will delete specific Keyword objects from `KeywordManager`
+inside `VMS` object using the string provided.
+
 
 ##### Execution Sequence
 
+Given below is an example usage scenario when a user enters `keyword delete p` as a command.
+
+1. The user enters the command in the `UI Component`.
+2. It will be passed to the `Logic component`.
+3. When `DeleteCommandParser` receives the information from `KeywordParser`, it will invoke the 
+`ParserUtil#parseDeleteKeyword` to parse the string `p` provided. It will throw a `ParseException` if there are no
+args present.
+4. After successfully parsing the arg, `DeleteCommandParser` will create a `DeleteCommand` with the parsed `p` string.
+5. When `DeleteCommand#execute` is called, `model#deleteKeyword` will be called to delete the specified Keyword from
+the model. `DeleteCommand` will then return `CommandMessage` to indicate it's success.
+
+The activity diagram below summarises the action when the keyword `DeleteCommand` is executed.
+
+<img src="images/keyword/DeleteKeywordActivityDiagram.png" width="550" />
+
+
+Given below is a sequence diagram that illustrates the **Keyword Delete** parsing mechanism at every step.
 <!-- TODO
-<img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
+<img src="images/keyword/DeleteKeywordSequenceDiagram.png" width="550" />
 -->
 
-#### Finding a Keyword
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
--->
 
 <!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
 <!-- ### \[Proposed\] Undo/redo feature
