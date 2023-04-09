@@ -10,10 +10,8 @@ title: Hingen's Project Portfolio Page
 
 #### Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Code and Features](#code-and-features)
-- [User Guide](#user-guide)
-- [Developer Guide](#developer-guide)
+- [User and Developer Guide](#user-and-developer-guide)
 - [Team-Based Tasks](#team-based-tasks)
 - [Review/Mentoring](#reviewmentoring)
 - [Misc](#misc)
