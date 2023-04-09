@@ -1,4 +1,4 @@
-package trackr.logic.commands;
+package trackr.logic.commands.menu;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
@@ -8,23 +8,22 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
-public class ClearSupplierCommandTest {
+public class ClearMenuItemCommandTest {
 
     @Test
     public void execute_emptySupplierList_success() throws ParseException {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearSupplierCommand(),
+        assertCommandSuccess(new ClearMenuItemCommand(),
                 model,
-                String.format(ClearSupplierCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER),
+                String.format(ClearMenuItemCommand.MESSAGE_SUCCESS, ModelEnum.MENUITEM),
                 expectedModel);
     }
 
@@ -34,11 +33,11 @@ public class ClearSupplierCommandTest {
                 getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
-        expectedModel.setItemList(ModelEnum.SUPPLIER);
+        expectedModel.setItemList(ModelEnum.MENUITEM);
 
-        assertCommandSuccess(new ClearSupplierCommand(),
+        assertCommandSuccess(new ClearMenuItemCommand(),
                 model,
-                String.format(ClearSupplierCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER),
+                String.format(ClearMenuItemCommand.MESSAGE_SUCCESS, ModelEnum.MENUITEM),
                 expectedModel);
     }
 

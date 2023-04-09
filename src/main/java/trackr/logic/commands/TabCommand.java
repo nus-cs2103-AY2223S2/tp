@@ -32,7 +32,7 @@ public class TabCommand extends Command {
 
     @Override
     public CommandResult execute(Model unused) throws CommandException {
-        ObservableTabIndex.updateToTab(targetTab);
+        ObservableTabIndex.updateToTab(targetTab.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

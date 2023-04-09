@@ -7,7 +7,7 @@ import trackr.model.menu.MenuItem;
 import trackr.model.menu.MenuItemDescriptor;
 
 /**
- * A utility class to help with building EditSupplierDescriptor objects.
+ * A utility class to help with building EditMenuItemDescriptor objects.
  */
 public class MenuItemDescriptorBuilder {
 
@@ -22,7 +22,7 @@ public class MenuItemDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditSupplierDescriptor} with fields containing {@code supplier}'s details
+     * Returns an {@code EditMenuItemDescriptor} with fields containing {@code MenuItem}'s details
      */
     public MenuItemDescriptorBuilder(MenuItem menuItem) {
         descriptor = new MenuItemDescriptor();
@@ -32,26 +32,26 @@ public class MenuItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditMenuItemDescriptor} that we are building.
      */
-    public MenuItemDescriptorBuilder withItemName(String name) {
+    public MenuItemDescriptorBuilder withName(String name) {
         descriptor.setItemName(new ItemName(name));
         return this;
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
+     * Sets the {@code Price} of the {@code EditMenuItemDescriptor} that we are building.
      */
-    public MenuItemDescriptorBuilder withItemSellingPrice(String sellingPrice) {
-        descriptor.setItemPrice(new ItemSellingPrice(sellingPrice));
+    public MenuItemDescriptorBuilder withPrice(String price) {
+        descriptor.setItemPrice(new ItemSellingPrice(price));
         return this;
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
+     * Sets the {@code Cost} of the {@code EditMenuItemDescriptor} that we are building.
      */
-    public MenuItemDescriptorBuilder withItemCostPrice(String costPrice) {
-        descriptor.setItemCost(new ItemCost(costPrice));
+    public MenuItemDescriptorBuilder withCost(String cost) {
+        descriptor.setItemCost(new ItemCost(cost));
         return this;
     }
 
