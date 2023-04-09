@@ -34,8 +34,8 @@ Order *--> "1" MenuItem
 Order *--> "1" OrderDeadline
 Order *--> "1 " OrderStatus
 Order *--> "1 " Customer
-Order *--> "1 " Quantity
-Order *--> "timeAdded 1" LocalDateTime
+Order *--> "1  " Quantity
+Order *--> "1" LocalDateTime
 Order -u|> Item
 
 OrderDeadline --|> Deadline

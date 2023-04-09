@@ -10,26 +10,39 @@ You can click on the respective links below to read up on the relevant sections.
 ## **Table of Contents**
 
 <!-- TOC -->
-  * [**Introduction**](#introduction)
-  * [**Setting up, getting started**](#setting-up-getting-started)
-  * [**Design**](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
+  * [**Table of Contents**](#table-of-contents)
+* [1 Introduction](#1-introduction)
+  * [1.1 Project Overview](#11-project-overview)
+  * [1.2 Intended Audience](#12-intended-audience)
+  * [1.3 Setting up, getting started](#13-setting-up-getting-started)
+  * [1.3 About Us](#13-about-us)
+  * [1.4 Acknowledgements](#14-acknowledgements)
+* [2 Design](#2-design)
+  * [2.1 Architecture](#21-architecture)
+    * [2.1.1 Main components of the architecture](#211-main-components-of-the-architecture)
+    * [2.1.2 How the architecture components interact with each other](#212-how-the-architecture-components-interact-with-each-other)
+  * [2.2 UI component](#22-ui-component)
+  * [2.3 Logic component](#23-logic-component)
+  * [2.4 Model component](#24-model-component)
+    * [2.4.1 Item](#241-item)
+    * [2.4.2 Supplier & Customer](#242-supplier--customer)
+    * [2.4.3 Task](#243-task)
+    * [2.4.4 Menu](#244-menu)
+    * [2.4.5 Order](#245-order)
+  * [2.5 Storage component](#25-storage-component)
+  * [2.6 Common classes](#26-common-classes)
   * [**Implementation**](#implementation)
     * [AddXYZCommand](#addxyzcommand)
+      * [Why is it implemented this way](#why-is-it-implemented-this-way)
     * [DeleteXYZCommand](#deletexyzcommand)
-    * [EditXYZCommand](#edit-command)
+      * [Why is it implemented this way](#why-is-it-implemented-this-way-1)
+    * [EditXYZCommand](#editxyzcommand)
+      * [Why is it implemented this way](#why-is-it-implemented-this-way-2)
     * [FindXYZCommand](#findxyzcommand)
+      * [Why is it implemented this way](#why-is-it-implemented-this-way-3)
     * [ListXYZCommand](#listxyzcommand)
     * [SortXYZCommand](#sortxyzcommand)
-    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
-      * [Proposed Implementation](#proposed-implementation)
-      * [Design considerations:](#design-considerations)
-    * [\[Proposed\] Data archiving](#proposed-data-archiving)
+      * [Why is it implemented this way](#why-is-it-implemented-this-way-4)
   * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
   * [**Appendix: Requirements**](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -41,38 +54,60 @@ You can click on the respective links below to read up on the relevant sections.
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
-<!-- TOC --><br>
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction**
+# 1 Introduction
+
+## 1.1 Project Overview
 
 Trackr is a desktop application catered towards home businesses to track their _suppliers_, _customers_, _orders_, _menu items_ and _tasks_. It is designed for users who are quick typers to accomplish their tasks through the _Command Line Interface (CLI)_ while reaping the benefits of a _Graphical User Interface (GUI)_.
 
-:bulb: **Tip:** Texts that are in _italics_ are further explained in the [Glossary section](#glossary).
+<div markdown="block" class="alert alert-tip">
 
-**Acknowledgements**
+:bulb: **Tip:**
+
+Texts that are in _italics_ are further explained in the [Glossary section](#glossary).
+
+</div>
+
+## 1.2 Intended Audience
+
+This guide is intended for developers who want to work on **Trackr** project, where the code base is available [here](https://github.com/AY2223S2-CS2103T-W15-2/tp).
+
+It explains the different components within the project and how they interact with each other.
+
+## 1.3 Setting up, getting started
+
+Refer to the guide [here](SettingUp.md) on how to set up your own version of our project.
+
+## 1.3 About Us
+
+For more information about our team, you can refer to this webpage [here](AboutUs.md).
+
+## 1.4 Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * If you would like to contribute code to the parent project (AddressBook-Level3), see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# 2 Design
 
-Refer to the guide [Setting up and getting started](SettingUp.md).<br><br>
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Design**
+This section will show our design methodology on the different components and how they interact with each other.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:**
+
+The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder.
+
+Refer to the [PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-### Architecture
+## 2.1 Architecture
 
 <p align="center">
   <img src="images/ArchitectureDiagram.svg" width="280" />
@@ -83,7 +118,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-<br>**Main components of the architecture**
+### 2.1.1 Main components of the architecture
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
@@ -99,7 +134,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-<br>**How the architecture components interact with each other**
+### 2.1.2 How the architecture components interact with each other
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
@@ -122,7 +157,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.<br><br>
 
-### UI component
+## 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
@@ -142,9 +177,9 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.<br><br>
 
-### Logic component
+## 2.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -155,19 +190,24 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackrParser` class to parse the user command.
-1. This results in a `Command` object, which is actually an object of one of its subclasses' (e.g. `AddItemCommand`'s) subclasses (e.g. `AddOrderCommand`). This specific command will then be executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add an order).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned by `Logic`.
+2. This results in a `Command` object, which is actually an object of one of its subclasses' (e.g. `AddItemCommand`'s) subclasses (e.g. `AddOrderCommand`). This specific command will then be executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an order).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned by `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_order 1")` API call.
 
 <p align="center">
-  <img src="images/DeleteSequenceDiagram.svg" width="600"/>
+  <img src="images/DeleteSequenceDiagram.svg" />
   <br>Figure 6: Delete Sequence Diagram (Deleting Order)
 </p>
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:**
+
+The lifeline for `DeleteOrderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -182,7 +222,7 @@ How the parsing works:
 * When called upon to parse a user command, the `TrackrParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackrParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.<br><br>
 
-### Model component
+## 2.4 Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
@@ -194,13 +234,12 @@ How the parsing works:
 The `Model` component,
 
 * `XYZ` is a placeholder for the specific object (e.g., `Supplier`, `Task`), which are all `Item` objects.
-* stores trackr data i.e., all `XYZ` objects (contained in respective `UniqueXYZList` object).
+* stores trackr data (all `XYZ` objects which are contained in their respective `UniqueXYZList` object).
 * stores currently 'selected' `XYZ` objects (e.g., results of search query) as a **separate filtered list** which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI is bound to this list so that the UI automatically updates when the data in the list changes).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-
-<br>**Item**
+### 2.4.1 Item
 
 Here is the `Item` class that is what all model objects depend on.
 
@@ -209,10 +248,9 @@ Here is the `Item` class that is what all model objects depend on.
   <br>Figure 9: Item Class Diagram
 </p>
 
-Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
+Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definition (e.g., `Supplier` or `Task` from `ModelEnum`).
 
-
-<br>**Supplier & Customer**
+### 2.4.2 Supplier & Customer
 
 This is the class representation for the `Supplier` and `Customer` class.
 
@@ -227,7 +265,7 @@ Here is how `Supplier` and `Customer` works:
 * Each `Person` contains their name, phone number, deadline, email and _tags_. (e.g., `PersonAddress` represents the address)
 * The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
 
-<br>**Task**
+### 2.4.3 Task
 
 This is the class representation for the `Task` class.
 
@@ -238,29 +276,27 @@ This is the class representation for the `Task` class.
 
 Here is how `Task` works:
 
-* Each `Task` contains their description, deadline, _status_ and time added (e.g., `TaskName` for task name).
+* Each `Task` contains their name, deadline, _status_ and time added (e.g., `TaskName` for task name).
 * Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
 * The LocalDateTime object represents the time the task was added to the list (which is used when sorting tasks).
 
-
-<br>**Menu**
+### 2.4.4 Menu
 
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-  <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
+  <img src="images/MenuClassDiagram.svg" width="550" />
   <br>Figure 12: Menu Class Diagram
 </p>
 
 Here is how `Menu` works:
 
-* Each `Menu` contains non-negative and non-zero number of `MenuItem`.
-* Each `MenuItem` contains their description, price, cost and profit (e.g., `ItemName` for menu's item name).
+* Each `MenuItem` contains their name, selling price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
 * The`ItemProfit` is obtained using `ItemPrice` and `ItemCost`, meaning that `ItemProfit` depends on `ItemPrice` and `ItemCost`.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
-* The `MenuItem` is an attribute of `Order`
+* The `MenuItem` is an attribute of `Order`.
 
 **Aspect: Choice to provide a menu package:**
 
@@ -273,7 +309,7 @@ Here is how `Menu` works:
     * Advantage: Convenient to implement.
     * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
 
-<br>**Order**
+### 2.4.5 Order
 
 This is the class representation for the `Order` class.
 
@@ -284,14 +320,13 @@ This is the class representation for the `Order` class.
 
 Here is how `Order` works:
 
-* Each `OrderList` contains non-negative and non-zero number of `Order`.
 * Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status, deadline and time added (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
 * The `Order`'s `OrderDeadline` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
-* The LocalDateTime object represents the time the order was added to the list (which is used when sorting orders).<br><br>
+* The LocalDateTime object represents the time the order was added to the list (which is used when sorting orders).
 
-### Storage component
+## 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/storage/Storage.java)
 
@@ -304,11 +339,11 @@ The `Storage` component,
 
 * can save both Trackr data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)<br><br>
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+## 2.6 Common classes
 
-Classes used by multiple components are in the `trackr.commons` package.<br><br>
+Classes used by multiple components are in the `trackr.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
