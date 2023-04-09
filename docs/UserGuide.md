@@ -410,17 +410,16 @@ Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS [d/DESCRIPTION] [t/T
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: **Info:** In TinS, each internship stored must be unique (no duplicates). Since an internships
-is uniquely identified by the combination of `POSITION` and `COMPANY` fields, you would not be able to `add` an
-internship application to TinS, if there is a pre-existing internship in TinS with the same `POSITION` and `COMPANY`
-(comparison is case-insensitive).
-
-Example: If TinS contains an Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`, the commands
-below will not be allowed. <br>
-
-  * `add p/Software Engineer c/Grab s/0 d/`
-  * `add p/SOFTWARE engineer c/Grab s/3 d/`
-
+    :information_source: **Info:** In TinS, each internship stored must be unique (no duplicates). Since an internships
+    is uniquely identified by the combination of `POSITION` and `COMPANY` fields, you would not be able to `add` an
+    internship application to TinS, if there is a pre-existing internship in TinS with the same `POSITION` and `COMPANY`
+    (comparison is case-insensitive). 
+ 
+    Example: If TinS contains an Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`, the commands
+    below will not be allowed. 
+    
+      * `add p/Software Engineer c/Grab s/0 d/`
+      * `add p/SOFTWARE engineer c/Grab s/3 d/`
 </div>
 
 <div markdown="span" class="alert alert-primary">
