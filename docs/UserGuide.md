@@ -482,7 +482,7 @@ OfficeConnect data are saved in the hard disk automatically after any command th
 
 #### 3.6.3 Editing the data file
 
-Data for OfficeConnect is stored in JSON format within the `[JAR file location]/data/ directory`. Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
+Data for OfficeConnect is stored in JSON format within the `[JAR file location]/data/` directory. Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
