@@ -32,7 +32,7 @@ public class CategoryListPanel extends UiPart<Region> {
         categoryListView.setCellFactory(listView -> new CategoryListViewCell());
     }
 
-    private int getAssociatedExpenseCount(Category category) {
+    public int getAssociatedExpenseCount(Category category) {
         return (int) expenseObservableList.stream()
                 .filter(e -> e.getCategory().equals(category))
                 .count();

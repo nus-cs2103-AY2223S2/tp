@@ -111,7 +111,7 @@ public class ParserUtil {
     public static UserDefinedCategory parseCategory(String category, String summary) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim();
-        if (!Category.isValidCategoryName(category)) {
+        if (!Category.isValidCategoryName(trimmedCategory)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         return new UserDefinedCategory(trimmedCategory, summary);
