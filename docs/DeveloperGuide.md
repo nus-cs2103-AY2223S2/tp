@@ -32,6 +32,10 @@ Third-party software used in this project:
 * [JUnit](https://junit.org/)
 * [PlantUML](https://plantuml.com/)
 
+Images used:
+* Application icon from [PNGEgg](https://www.pngegg.com/en/png-ewtjs)
+* Contact icon for `view` command from [icons8](https://icons8.com/icon/104074/contact-us)
+* Details icon for `view` command from [icons8](https://icons8.com/icon/set/details/color)
 
 --------------------------------------------------------------------------------------------------------------------
 
