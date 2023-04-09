@@ -30,4 +30,4 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added implementation details of the `selct` and `stats` feature.
         * Added use cases for Edit and Clash [\#50](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/50)
-        
+
