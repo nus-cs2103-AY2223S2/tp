@@ -347,8 +347,7 @@ Whether a new `Person` object should be created when editing a student entry.
 #### Implementation Details
 The implementation of `find` involves searching for entries that matches all the fields specified.
 
-Our implementation extends from the `find` implementation in AB3 by enhancing the current `find` feature to support matching of a partial keyword,
-as well as specifying which field to match the keyword in using [prefixes](#add-feature).
+The `find` feature supports matching of partial keywords, as well as specifying which field to match the keyword in using [prefixes](#add-feature).
 
 
 The `find` feature uses `FullMatchKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
@@ -391,7 +390,7 @@ We felt that the default `find` feature was too restrictive.
 
 Our implementation has some additions such as:
 
-1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
+1. Allow matching by partial keyword so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
 2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
 
 **Aspect: Command format:**
@@ -421,6 +420,9 @@ Our implementation has some additions such as:
 
 The `filter` command involves searching and listing all entries which has a match in at least one field specified. 
 
+Similar to [`find`](#find-feature), `filter` uses `ContainsKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
+The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
+
 Filter was implemented on top of find to allow users to find students with fewer restrictions, as `find` only returns the students that satisfy all the specified criteria.
 This was done to take improve the flexibility of filtering the student list, allowing the categorisation of students to be easier.
 
@@ -440,7 +442,10 @@ This will return all entries that match at least one keyword in any fields speci
 
 
 #### General Design Considerations
-
+Although the function of `filter` is rather similar to that of `find`, there might be cases say the target user saved the tutorial timeslot of 
+each student in the `tag` field, and wants to view all students who are either in the 9am class or 1pm class.
+We felt that this is a common scenario that our target user might encounter and in this case, `find` is unable to give the desired outcome.
+Therefore, a `filter` feature is implemented on top of `find` to give users more flexibility in these scenarios.
 
 [↑ Back to top](#table-of-contents)
 
