@@ -1052,19 +1052,37 @@ class to render the message on startup.
 
 ## **Effort**
 
-### Morphing of AB3 to TechTrack
+### Refactoring
 
-Ideas:
+* Having to understand the large codebase of AB3.
 
-1. what attributes we added, why we need them
-2. what new functions we added
-3. refactoring we did
+* Revamping the `Person` model into the `Role` model to better suit the business logic of TechTrack, 
+while adding various fields like:
+  * `company` (refactored from `address`)
+  * `contact` (refactored from `phone`)
+  * `website`
+  * `deadline`
+  * `job description`
+  * `salary`
+  * `experience`
+
+### Implementation
+We added various new commands like:
+* Sorting:
+  * `salary`
+  * `deadline`
+* Filtering/finding/searching:
+  * `name` (refactored from `find`)
+  * `company`
+  * `tag`
 
 ### Revamping of UI
 
-1. aesthetic and arrangement of UI
-2. New UI functionalities
-3. Help window
+| Old UI                                                                       | New UI                                                          |  
+|------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| <img src="https://nus-cs2103-ay2223s2.github.io/tp/images/Ui.png" width=800> | <img src="./images/UICommandImages/ViewCommand0.png" width=800> |
+
+* Edited `HelpWindow` to include a list of all commands, and updated links to point to this user guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
