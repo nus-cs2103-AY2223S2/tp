@@ -75,7 +75,6 @@ public class SampleDataUtil {
         for (Tag sampleTag : getSampleTags()) {
             sampleTags.addTag(sampleTag);
         }
-        System.out.println(sampleTags);
         return sampleTags;
     }
 
