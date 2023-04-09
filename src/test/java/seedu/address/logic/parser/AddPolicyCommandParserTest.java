@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalPolicies.AMY_POLICY;
 
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddPolicyCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
@@ -43,6 +45,22 @@ class AddPolicyCommandParserTest {
         assertParseFailure(parser, AddPolicyCommand.COMMAND_WORD + " " + policyStub, expectedMessage);
         // no parameters
         assertParseFailure(parser, AddPolicyCommand.COMMAND_WORD, expectedMessage);
+
+        // missing policy name
+        assertThrows(ParseException.class, () -> parser.parse("1 pd/01.01.2023 pp/1000 pf/yearly"));
+
+        // missing policy date
+        assertThrows(ParseException.class,
+                () -> parser.parse("1 pn/Health Insurance pp/1000 pf/yearly"));
+
+        // missing policy premium
+        assertThrows(ParseException.class,
+                () -> parser.parse("1 pn/Health Insurance pd/01.01.2023 pf/yearly"));
+
+
+        // missing policy frequency
+        assertThrows(ParseException.class,
+                () -> parser.parse("1 pn/Health Insurance pd/01.01.2023 pp/1000"));
     }
     @Test
     public void parse_invalidValue_failure() {

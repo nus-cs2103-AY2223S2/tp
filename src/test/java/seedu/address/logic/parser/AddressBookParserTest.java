@@ -8,8 +8,14 @@ import static seedu.address.logic.commands.CommandTestUtil.POLICY_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.POLICY_FREQUENCY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.POLICY_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.POLICY_PREMIUM_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_PREMIUM;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.COFFEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POLICY;
 import static seedu.address.testutil.TypicalPolicies.AMY_POLICY;
 
 import java.util.Arrays;
@@ -18,11 +24,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeletePolicyCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditPolicyCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -36,6 +46,7 @@ import seedu.address.logic.commands.sortcommand.SortByClientPhoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.client.policy.Premium;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientUtil;
 import seedu.address.testutil.EditClientDescriptorBuilder;
@@ -58,6 +69,38 @@ public class AddressBookParserTest {
         assertEquals(new AddPolicyCommand(INDEX_FIRST_CLIENT, AMY_POLICY), command);
     }
 
+    @Test
+    public void parseCommand_deletePolicy() throws Exception {
+        DeletePolicyCommand command = (DeletePolicyCommand) parser.parseCommand(
+                DeletePolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " "
+                + PREFIX_POLICY_INDEX + "1");
+        assertEquals(new DeletePolicyCommand(INDEX_FIRST_CLIENT, INDEX_FIRST_POLICY), command);
+    }
+
+    @Test
+    public void parseCommand_editPolicy() throws Exception {
+        EditPolicyCommand command = (EditPolicyCommand) parser.parseCommand(
+                EditPolicyCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " "
+                + PREFIX_POLICY_INDEX + "1" + " " + PREFIX_POLICY_PREMIUM + "5000");
+        EditPolicyCommand.EditPolicyDescriptor editedPolicy = new EditPolicyCommand.EditPolicyDescriptor();
+        editedPolicy.setPremium(new Premium("5000"));
+        assertEquals(new EditPolicyCommand(INDEX_FIRST_CLIENT, INDEX_FIRST_POLICY, editedPolicy), command);
+    }
+
+    @Test
+    public void parseCommand_addAppointment() throws Exception {
+        AddAppointmentCommand command = (AddAppointmentCommand)  parser.parseCommand(
+                AddAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " "
+                + PREFIX_APPOINTMENT_NAME + "Coffee chat" + " " + PREFIX_APPOINTMENT_DATE + "01.01.2024");
+        assertEquals(new AddAppointmentCommand(INDEX_FIRST_CLIENT, COFFEE), command);
+    }
+
+    @Test
+    public void parseCommand_deleteAppointment() throws Exception {
+        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
+                DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_CLIENT), command);
+    }
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
@@ -112,6 +155,7 @@ public class AddressBookParserTest {
                 SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
         assertEquals(new SelectCommand(INDEX_FIRST_CLIENT), command);
     }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
