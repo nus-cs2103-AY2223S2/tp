@@ -727,6 +727,18 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Effort**
 
 <!-- Explain the difficulty level, challenges faced, effort required, and achievements of the project. -->
+The project aims to build a useful tool for salespersons to keep track of their leads, this includes basic features such
+as adding, deleting, updating, and sorting leads. The leads have attributes associated to them such as gender, company,
+industry, occupation, and status to capture the nature of the contacts. While they may be simple to implement, it was
+tedious to ensure the correctness of these features as they are the building blocks for upcoming add-on enhancements.
+Unit testing was crucial in this part to make sure that they were correctly implemented and worked as expected.
+<br/>
+<br/>
+Additionally, advanced features were added to further cater to the needs of a salesperson. Transaction and task
+recording features complement the contact list by extending the lead's details to include dealings and reminders. These
+features were implemented with a certain level of difficulty as they each require a level of complexity akin to the 
+original contact list which requires a list to capture the sequence of data for each lead together with complementary 
+features to add and delete.
 
 ### Challenges Faced
 
