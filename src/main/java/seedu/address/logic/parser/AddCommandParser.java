@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
@@ -25,6 +27,8 @@ import seedu.address.model.client.policy.UniquePolicyList;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -46,6 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.info("Missing parameters: " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -58,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Appointment appointment = new Appointment(new AppointmentName(), new MeetupDate());
 
         Client client = new Client(name, phone, email, address, policyList, appointment);
-
+        logger.info("Parsed: " + args);
         return new AddCommand(client);
     }
 

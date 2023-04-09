@@ -39,7 +39,7 @@ class EditPolicyCommandTest {
 
         Client targetClient = model.getFilteredClientList().get(0);
         Policy targetedPolicy = targetClient.getFilteredPolicyList().get(0);
-        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from: "
+        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from Client: "
                 + targetClient.getName().toString();
         CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedPolicy));
 
@@ -62,7 +62,7 @@ class EditPolicyCommandTest {
         EditPolicyCommand.EditPolicyDescriptor descriptor = new EditPolicyDescriptorBuilder(editedPolicy).build();
         EditPolicyCommand editPolicyCommand = new EditPolicyCommand(INDEX_FIRST_CLIENT, indexLastPolicy, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from: "
+        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from Client: "
                 + firstClient.getName().toString();
         CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedPolicy));
 
@@ -82,7 +82,7 @@ class EditPolicyCommandTest {
         EditPolicyCommand editPolicyCommand = new EditPolicyCommand(INDEX_FIRST_CLIENT, INDEX_FIRST_POLICY,
                 new EditPolicyCommand.EditPolicyDescriptor());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, firstPolicy.toString()) + " from: "
+        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, firstPolicy.toString()) + " from Client: "
                 + firstClient.getName().toString();
         CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, firstPolicy));
 
@@ -107,7 +107,7 @@ class EditPolicyCommandTest {
         showClientAtIndex(expectedModel, INDEX_FIRST_CLIENT);
         editedPolicy = new PolicyBuilder(editedPolicy).build();
 
-        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from: "
+        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from Client: "
                 + clientInFilteredList.getName().toString();
         CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedPolicy));
         //Client editedClient = expectedModel.getFilteredClientList().get(0);

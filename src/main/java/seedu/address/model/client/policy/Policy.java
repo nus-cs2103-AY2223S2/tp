@@ -85,15 +85,6 @@ public class Policy {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getPolicyName())
-                .append("; Start Date: ")
-                .append(getStartDate())
-                .append("; Premium: ")
-                .append(getPremium())
-                .append("; Frequency: ")
-                .append(getFrequency())
-                .append("; ");
-        return builder.toString();
+        return this.getPolicyName().toString();
     }
 }

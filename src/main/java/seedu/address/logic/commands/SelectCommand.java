@@ -39,9 +39,9 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
+        Client clientToSelect = lastShownList.get(targetIndex.getZeroBased());
         model.setSelectedClientIndex(targetIndex);
-        Client selectedClient = model.getSelectedClient();
-        return new CommandResult(String.format(MESSAGE_SELECT_CLIENT_SUCCESS, selectedClient));
+        return new CommandResult(String.format(MESSAGE_SELECT_CLIENT_SUCCESS, clientToSelect));
     }
 
     @Override

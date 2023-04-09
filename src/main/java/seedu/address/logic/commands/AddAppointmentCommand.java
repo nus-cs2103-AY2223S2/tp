@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_NAME;
 
 import java.util.List;
 
@@ -19,15 +21,16 @@ public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addApt";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing appointment will be overwritten by the input.\n"
+            + ": Adds an appointment to the client identified "
+            + "by the index number used in the displayed client list. "
+            + "Existing appointment will be overwritten.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "APPOINTMENT (must be a valid appointment)\n"
+            + PREFIX_APPOINTMENT_NAME + "APPOINTMENT_NAME "
+            + PREFIX_APPOINTMENT_DATE + "MEETUP_DATE " + "\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + "an/Travel insurance discussion "
-            + "ad/01.01.2021 ";
+            + PREFIX_APPOINTMENT_NAME + "Travel insurance discussion "
+            + PREFIX_APPOINTMENT_DATE + "01.01.2026 ";
 
     private final Index index;
     private final Appointment appointment;
@@ -62,7 +65,7 @@ public class AddAppointmentCommand extends Command {
         model.setClient(clientToAddAppointment, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage());
+        return new CommandResult(generateSuccessMessage(editedClient));
     }
 
     /**
@@ -70,8 +73,9 @@ public class AddAppointmentCommand extends Command {
      *
      * @return success message
      */
-    private String generateSuccessMessage() {
-        return String.format("Added Appointment: %1$s to client: %2$s", appointment, index.getOneBased());
+    private String generateSuccessMessage(Client client) {
+        return String.format("Added Appointment: %1$s to Client: %2$s", appointment.getAppointmentName(),
+                client);
     }
 
     @Override

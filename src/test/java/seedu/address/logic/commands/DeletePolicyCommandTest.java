@@ -37,7 +37,7 @@ class DeletePolicyCommandTest {
 
         String expectedMessage = String.format(
                 DeletePolicyCommand.MESSAGE_DELETE_POLICY_SUCCESS, policyToDelete.toString()
-        ) + " from: " + client.getName().toString();
+        ) + " from Client: " + client.getName().toString();
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -77,7 +77,7 @@ class DeletePolicyCommandTest {
 
         String expectedMessage = String.format(
                 DeletePolicyCommand.MESSAGE_DELETE_POLICY_SUCCESS, policyToDelete.toString()
-        ) + " from: " + client.getName().toString();
+        ) + " from Client: " + client.getName().toString();
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredClientList(p -> p.equals(client));

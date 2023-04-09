@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_FREQUENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_PREMIUM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_START_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.List;
@@ -19,20 +23,22 @@ import seedu.address.model.client.policy.Policy;
  */
 public class AddPolicyCommand extends Command {
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Policy: %2$s";
-
     public static final String COMMAND_WORD = "addPolicy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to a client in the program. " + "\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the client identified by "
+            + "the index number used in the displayed client list." + "\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "POLICY (must be a valid policy)\n"
+            + PREFIX_POLICY_NAME + "POLICY_NAME "
+            + PREFIX_POLICY_START_DATE + "POLICY_DATE "
+            + PREFIX_POLICY_PREMIUM + "PREMIUM "
+            + PREFIX_POLICY_FREQUENCY + "FREQUENCY " + "\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + "pn/Fire Insurance "
-            + "pd/01.01.2021 "
-            + "pp/1000 "
-            + "pf/yearly";
+            + PREFIX_POLICY_NAME + "Fire Insurance "
+            + PREFIX_POLICY_START_DATE + "01.01.2021 "
+            + PREFIX_POLICY_PREMIUM + "1000 "
+            + PREFIX_POLICY_FREQUENCY + "yearly ";
 
     public final Index index;
     public final Policy policy;
@@ -68,7 +74,7 @@ public class AddPolicyCommand extends Command {
         model.setClient(clientToAddPolicy, addedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage());
+        return new CommandResult(generateSuccessMessage(addedPolicyClient));
     }
 
 
@@ -77,8 +83,8 @@ public class AddPolicyCommand extends Command {
      *
      * @return success message
      */
-    private String generateSuccessMessage() {
-        return String.format("Added policy: %1$s to client: %2$s", policy, index.getOneBased());
+    private String generateSuccessMessage(Client client) {
+        return String.format("Added policy: %1$s to client: %2$s", policy, client);
     }
 
     @Override
