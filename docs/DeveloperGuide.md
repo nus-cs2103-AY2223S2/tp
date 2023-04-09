@@ -251,8 +251,6 @@ Below is an example usage scenario of the reminder feature:
 **Step 3:** The user can now close the alert and continue using the application.
 
 
-
-
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -268,12 +266,17 @@ Below is an example usage scenario of the reminder feature:
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Planned Enhancements
+## \[Proposed\] Planned Enhancements
 
-1. Reminder function.
-2. More checks to teacher, remarks and one more i forgot.
+### Reminder command.
+We propose extending the reminder feature to allow users to call it at any time, instead of only at the application's launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
+
+To implement this, we plan to add a new command, similar to the existing commands, by creating a **ReminderCommand** class and a **ReminderCommandParser** class, analogous to the **FindCommand** and **FindCommandParser**.
+
+These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an improved user experience.
 
 
+* More checks to teacher, remarks and one more i forgot.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
