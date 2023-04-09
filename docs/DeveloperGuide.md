@@ -608,12 +608,13 @@ The following is a description of the code execution flow
    Note: ModuleCode, LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
 
 3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
-  - `DeleteModuleCommand`: single module to be deleted
-  - `DeleteMultipleModulesCommand`: more than one module to be deleted
-  - `DeleteLectureCommand`: single lecture to be deleted
-  - `DeleteMultipleLecturesCommand`: more than one lecture to be deleted
-  - `DeleteVideoCommand`: single video to be deleted
-  - `DeleteMultipleVideosCommand`: more than one video to be deleted
+
+- `DeleteModuleCommand`: single module to be deleted
+- `DeleteMultipleModulesCommand`: more than one module to be deleted
+- `DeleteLectureCommand`: single lecture to be deleted
+- `DeleteMultipleLecturesCommand`: more than one lecture to be deleted
+- `DeleteVideoCommand`: single video to be deleted
+- `DeleteMultipleVideosCommand`: more than one video to be deleted
 
 4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
 Possible exceptions that could be thrown are:
@@ -697,7 +698,6 @@ The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCo
 As a comparison to the diagram above, the following diagram shows the Sequence Diagram of executing a `MarkMultipleAsUnwatchedCommand`:
 
 ![MarkAsUnwatched](images/mark/MarkAsMultipleAsUnwatchedExecutionSequenceDiagram.png)
-
 
 The following is a description of the code execution flow:
 
@@ -2537,6 +2537,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO` | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** None                                                             |
 
 Some incorrect commands to try from root context:
+
 - `edit /mod CS2040S` (incorrect format)
 - `edit Week 1 /mod CS2040S /name Week 2` (duplicate lecture)
 - `edit Week! /mod CS2040S` (invalid lecture name)
@@ -2554,6 +2555,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit Vid 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO` | **Message:**<br/>`Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** Entry for "Vid 1" updated to "Vid 01", with timestamp "01:04:20", tags "Analysis" and "BigO", and video marked as "not watched". |
 
 Some incorrect commands to try from root context:
+
 - `edit /mod CS2040S /lec Week 1` (incorrect format)
 - `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 2` (duplicate video)
 - `edit V!d 1 /mod CS2040S /lec Week 1` (invalid video name)
@@ -2731,6 +2733,7 @@ Here are some examples of poorly formatted messages that the team has identified
 1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
 Output:
+
 ```
 New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]
 ```
@@ -2738,6 +2741,7 @@ New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]
 2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
 Output:
+
 ```
 New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]
 ```
@@ -2745,6 +2749,7 @@ New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]
 3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
 Output:
+
 ```
 `New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
 ```
@@ -2752,6 +2757,7 @@ Output:
 4. The following is a sample command for editing a module and it's output message upon success:\
 Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
 Output:
+
 ```
 Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
 ```
@@ -2759,6 +2765,7 @@ Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; T
 5. The following is a sample command for editing a lecture and it's output message upon success:\
 Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
 Output:
+
 ```
 Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
 ```
@@ -2766,6 +2773,7 @@ Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watche
 6. The following is a sample command for editing a video and it's output message upon success:\
 Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
 Output:
+
 ```
 Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
 ```
@@ -2779,6 +2787,7 @@ Given the above 6 examples, their respective redesigned output will be as such:
 1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
 Output:
+
 ```
 New module added
 Code: CS2103T
@@ -2789,6 +2798,7 @@ Tags: [4MCs] [Coding]
 2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
 Output:
+
 ```
 New lecture added to module "CS2040S"
 Name: Week 7
@@ -2798,6 +2808,7 @@ Tags: [Census] [AVLTree]
 3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
 Output:
+
 ```
 New video added to lecture "Week 1" of module "CS2040S"
 Name: Vid 3
@@ -2809,6 +2820,7 @@ Tags: [BigO] [Analysis]
 4. The following is a sample command for editing a module and it's output message upon success:\
 Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
 Output:
+
 ```
 Edited module "CS2040S":
 Updated Code: CS2040
@@ -2819,6 +2831,7 @@ Updated Tags: [4MCs] [Analytical]
 5. The following is a sample command for editing a lecture and it's output message upon success:\
 Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
 Output:
+
 ```
 Edited lecture "Week 1" of module "CS2040S":
 Updated Name: W1
@@ -2828,6 +2841,7 @@ Updated Tags: [BigO] [Intro]
 6. The following is a sample command for editing a video and it's output message upon success:\
 Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
 Output:
+
 ```
 Edited video "Vid 1" of lecture "Week 1" of module "CS2040S":
 Updated Name: Vid 01
@@ -2837,6 +2851,7 @@ Updated Tags: [BigO] [Analysis]
 ```
 
 ### Feature flaw #2: No length limit for module code, module name, lecture name, video name, and tag
+
 **Description**
 
 There is currently **no limit** on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated. This may also potentially slow down the application, and increase the size of the data file.
@@ -2850,8 +2865,36 @@ The following is an example of a lecture with a very long name, causing the name
 For the commands that allow a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30 characters).
 
 The checking and limiting of length can be done while parsing the arguments and should produce an error message if the maximum length is exceeded:
-```
+
+```text
 The following {field} should not exceed the length limit of 30 characters: {value}
 ```
 
-### Feature flaw #3:
+### Feature flaw #3
+
+### Feature flaw #4: Limited Find function capability
+
+**Description**
+
+When user finds a module, there is only matches for module code/name that **starts with** the keyword specified by user.
+This reduces the flexibility of the find function as they might be users who do not remember what a module starts with, which may create an unpleasant experience for them.
+
+<img src="images/FindNoResult.png" width="350"/>
+
+**Proposed Solution**
+
+Instead of matching contents that **starts with** a keyword, relax it to **contain** the keyword.
+E.g. `find 2040` will match `CS2040` because `CS2040` contains `2040`.
+
+### Feature flaw #5: Over buffering command history
+
+**Description**
+
+Commands executed by users are saved in a stack. However, no limit is set to the number of past commands that a user can see.
+This can lead to having too much memory being allocated for it and having no boundary.
+
+**Proposed Solution**
+
+Set a limit to the number of commands viewable in command history.
+Perhaps allowing user to see the last 5 or 10 or 15 commands only, the oldest command will be deleted forever if the limit
+is exceeded.
