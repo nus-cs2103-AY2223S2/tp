@@ -169,15 +169,23 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
+<!--- insert main class diagram here --->
 
 The `Model` component,
-
-* stores the task book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* * stores the generated plan, i.e. all `DailyPlan` objects (which are contained within a `MonthlyPlan` object)
+* stores `TaskBook`, `Planner` and `UserPref` object.
+* `TaskBook` stores the data of all `Task` objects.
+* `Planner` stores the data of all generated `DailyPlan` objects.
+* `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects. 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<!--- insert TaskBook class diagram here --->
+The `TaskBook` component,
+* stores `Task` are contained in a `UniqueTaskList` object.
+* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+<!--- insert Planner class diagram here --->
+The `Planner` component,
+* stores the generated plan, i.e. all `DailyPlan` objects
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Task` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
 
@@ -913,14 +921,37 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. 
+   2. Test case: `delete 1`<br>
+      Expected: First task is deleted from the list. Details of the deleted task shown in the result display. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. Command box remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+2. Deleting multiple tasks while all tasks are being shown
+
+   1. Prerequisites: Add 2 tasks into Clock-Work. List all tasks using the `list` command. Multiple tasks in the list.
+
+   2. Test case: `delete 2 1`<br>
+      Expected: No task is deleted. Error details shown in the status message. Command box remains the same.
+
+   3. Test case: `delete 1 2`<br>
+      Expected: First 2 tasks are deleted from the list. Details of the deleted task is shown in the result display.
+
+### Displaying statistics
+1. Displaying statistics with all shown data
+
+   1. Prerequisites: Add 3 tasks with multiple tags. Some tags added should have the same name.
+   2. Test case: `stats`<br>
+      Expected: A list of tags will be displayed in descending order, along with the number of tasks with the specified tag.
+
+2. Displaying statistics when there are no shown data
+   1. Prerequisites: Enter `clear` so that there are no shown data.
+   2. Test case: `stats`<br>
+      Expected: No tag is displayed.
+
 
 ### Sorting a task
 
@@ -958,6 +989,25 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `alert 48`. <br>
    Expected: The task should already appear in the alert window.
+
+
+### Generating and Displaying a schedule
+1. Generate a new schedule and display tasks assigned
+
+  1. Prerequisites:
+     1. Clear all tasks from Clock-Work with `clear`.
+     2. Add a `Deadline` task which is due 1 day from today. For example, if today is 18 July 2023, add a `Deadline` using the command `add n/deadline D/2023-07-19`.
+     3. Add an `Event` task that starts today and ends tomorrow. For example, if today is 18 July 2023, add an `Event` using `add n/event F/2023-07-18 1000 T/2023-07-19 1300`
+     4. Add a `SimpleTask` task with effort level 6. This can be done by running the command `add n/simpletask E/6`
+
+  2. Test case: `schedule D/2023-07-18 E/30`<br>
+     Expected: `Deadline` task and `Event` task is displayed.
+  3. Test case: `schedule D/2023-07-19`<br>
+     Expected: `Event` task and `SimpleTask` task is displayed.
+  4. Test case: `schedule D/2023-07-20`<br>
+     Expected: No tasks are displayed.
+  5. Test case: `schedule D/2023-07-17`<br>
+     Expected: Task list panel remains the same. Error details shown in the result display. Command box remains the same.
 
 ### Saving data
 
