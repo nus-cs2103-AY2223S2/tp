@@ -836,35 +836,142 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. You are recommended to start with an empty FriendlyLink and follow the instructions sequentially
+in order for the example commands provided to be relevant.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch
 
 1. Initial launch
    * Download the jar file and copy it into an empty folder. 
-   * Double-click the jar file 
+   * Double-click the jar file.
    * Expected: The program runs and shows the GUI. Note that the window size may not be optimum.
 
-1. Saving window preferences
-   * Resize the window to an optimum size, preferably full screen. Close the window. 
-   * Re-launch the app by double-clicking the jar file.
-   * Expected: The most recent window size and location is retained.
-   * Note: The window looks best under 1920x1200, 125% scale.
+### Viewing help
 
-1. Saving data
-   * Launch the app by double-clicking the jar file.
-   * Execute an add command to add an `elderly` or `volunteer` in the database.
-   * Close the app. 
-   * Expected: A `data` folder is created under the current repository where the jar file is located.
+1. Opening the help window
+    * Type the following help command into the text field.<br>
+      `help`
+    * Press enter.
+    * Expected: The GUI shows a popup with a message and a link to the user guide.
+
+### Adding records
+
+1. Adding an elderly
+   * Type the following add elderly command into the text field.<br>
+     `add_elderly n/John Doe ic/S5583628H bd/1955-11-24 re/NORTH r/LOW p/93456688 e/Jdoe@gmail.com a/Coral street t/single dr/2023-06-03, dr/1933-06-25`
+   * Press enter.
+   * Expected: The GUI shows the added elderly in the elderly list.
+
+1. Adding a volunteer
+    * Type the following add volunteer command into the text field.<br>
+      `add_elderly n/Jane Doe ic/T0058345F bd/2000-05-14 re/EAST p/91157884 e/Jane45@gmail.com a/Kings street t/strong mt/cpr BASIC dr/2023-05-03, dr/1933-09-25`
+    * Press enter.
+    * Expected: The GUI shows the added volunteer in the volunteer list.
+
+1. Pairing a volunteer to an elderly
+    * Type the following pair command into the text field.<br>
+      `pair eic/S5583628H vic/T0058345F`
+    * Press enter.
+    * Expected: The GUI shows the pairing in the pair list.
+
+### Editing records
+
+1. Editing an elderly by index
+    * Type the following edit elderly command into the text field.<br>
+      `edit_elderly 1 p/98337512 r/HIGH`
+    * Press enter.
+    * Expected: The GUI shows the new fields for the elderly at the specified index. (pair list is updated if applicable)
+
+1. Editing a volunteer by index
+    * Type the following edit volunteer command into the text field.<br>
+      `edit_volunteer 1 a/Max street`
+    * Press enter.
+    * Expected: The GUI shows the new fields for the volunteer at the specified index. (pair list is updated if applicable)
+
+1. Editing a person by NRIC
+    * Type the following edit command into the text field.<br>
+      `edit T0058345F e/guest@gmail.com`
+    * Press enter.
+    * Expected: The GUI shows the new fields for the person with the specified NRIC. (pair list is updated if applicable)
+
+### Finding records
+
+1. Finding people and their related pairs
+    * Type the following find command into the text field.<br>
+      `find n/John`
+    * Press enter.
+    * Expected: The elderly, volunteer and pair list are filtered based on the find command.
+
+1. Listing people who are paired
+    * Type the following list command into the text field.<br>
+      `list paired`
+    * Press enter.
+    * Expected: The GUI shows elderly and volunteers who have a pairing in their respective lists. (all pairs are shown)
+
+1. Listing people who are not paired
+    * Type the following list command into the text field.<br>
+      `list unpaired`
+    * Press enter.
+    * Expected: The GUI shows elderly and volunteers who do not have a pairing in their respective lists. (all pairs are shown)
+
+1. Listing everyone
+    * Type the following list command into the text field.<br>
+      `list`
+    * Press enter.
+    * Expected: The GUI shows all elderly, volunteers and pairs that are in FriendlyLink.
+
+### Show summary statistics
+
+1. View the statistics of of the displayed elderly, volunteers and pairs
+    * Type the following stats command into the text field.<br>
+      `stats`
+    * Press enter.
+    * Expected: Statistics are shown in the command result box in the GUI.
+
+### Deleting records
+
+1. Unpair volunteer and elderly
+    * Type the following unpair command into the text field.<br>
+      `unpair eic/S5583628H vic/T0058345F`
+    * Press enter.
+    * Expected: The pairing of the elderly and volunteer with the specified NRICs is removed from the pair list in the GUI.
+
+1. Deleting an elderly
+    * Type the following delete elderly command into the text field.<br>
+      `delete_elderly S5583628H`
+    * Press enter.
+    * Expected: The elderly with the specified NRICs is removed from the elderly list in the GUI.
+
+1. Deleting a volunteer
+    * Type the following delete volunteer command into the text field.<br>
+      `delete_volunteer T0058345F`
+    * Press enter.
+    * Expected: The volunteer with the specified NRICs is removed from the volunteer list in the GUI.
+
+### Exit
 
 1. Exiting the app
-   * Use the `exit` command or click the 'X' button in the top right corner.<br>
-   * Expected: The app closes.
+    * Use the `exit` command or click the 'X' button in the top right corner.<br>
+    * Expected: The app closes.
+
+### Saving
+
+1. Saving window preferences
+    * Resize the window to an optimum size, preferably full screen. Close the window.
+    * Re-launch the app by double-clicking the jar file.
+    * Expected: The most recent window size and location is retained.
+    * Note: The window looks best under 1920x1200 resolution, 125% scale.
+
+1. Saving data
+    * Launch the app by double-clicking the jar file.
+    * Execute an add command to add an `elderly` or `volunteer` in the database.
+    * Close the app.
+    * Expected: A `data` folder is created under the current repository where the jar file is located.
 
 ------------------------------------------------------------
 
