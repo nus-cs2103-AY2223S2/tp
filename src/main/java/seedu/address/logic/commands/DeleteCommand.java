@@ -10,6 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+import static seedu.address.model.TaskBookModel.PREDICATE_SHOW_ALL_TASKS;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -35,14 +37,41 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model, TaskBookModel taskBookModel) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Task> lastShownTaskList = taskBookModel.getFilteredTaskList();
 
         if (personIndex.getZeroBased() >= lastShownPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDelete = lastShownPersonList.get(personIndex.getZeroBased());
+        taskBookModel.deletePersonFromTask(personIndex);
         model.deletePerson(personToDelete);
+
+        for (Task task : lastShownTaskList) {
+            Task updatedTask = createUpdatedTask(task);
+            taskBookModel.setTask(task, updatedTask);
+        }
+
+        taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Task createUpdatedTask(Task task) throws CommandException {
+        assert task != null;
+        
+        Task updatedTask = new Task(task.getDescription(), task.getDate(), task.getTaskType());
+        updatedTask.assignPerson(task.getPersonAssignedIndex(), task.getPersonAssignedName(), task.getPersonAssignedRole());
+        updatedTask.setScore(task.getScore());
+        updatedTask.setTaskComment(task.getTaskComment());
+        updatedTask.setStatus(task.isDone());
+
+        return updatedTask;
     }
 
     @Override

@@ -22,7 +22,6 @@ public class Task {
     private Score score;
     private String date;
     private String taskType;
-
     private Boolean isOverdue;
 
     /**
@@ -238,6 +237,24 @@ public class Task {
         this.isDone = false;
         this.score = null;
         return "This task has been marked as uncompleted:\n" + this + "\n";
+    }
+
+    public void deletePersonFromTask(int personIndex) {
+        if (this.personAssignedIndex == null) {
+            return;
+        }
+
+        if (this.personAssignedIndex.getZeroBased() == personIndex) {
+            this.personAssignedIndex = null;
+            this.personAssignedName = null;
+            this.personAssignedRole = null;
+            return;
+        }
+
+        if (this.personAssignedIndex.getZeroBased() > personIndex) {
+            this.personAssignedIndex = Index.fromZeroBased(this.personAssignedIndex.getZeroBased() - 1);
+        }
+
     }
 
     /**
