@@ -12,6 +12,7 @@ Apart from being your all-encompassing address book, NeoBook also has a Events f
 {:toc}
 
 <hr style="border:2px solid gray">
+
 # Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -44,13 +45,13 @@ Apart from being your all-encompassing address book, NeoBook also has a Events f
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
---------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
 ### UI Breakdown For `Tabs`
 Use these tabs to toggle between the NeoBook, Events and your own information!
 
 ![uitabs](images/userguide/uitabs.png)
+
 ____________________________________________________________________________________________________________________
 
 ### UI Breakdown For `NeoBook`
@@ -70,6 +71,7 @@ ________________________________________________________________________________
 4. Command Line:
    * Type command and press enter to execute it
    * Refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
+
 ____________________________________________________________________________________________________________________
 
 ### UI Breakdown For `Events`
@@ -82,6 +84,7 @@ ________________________________________________________________________________
 3. Command Line
    * Type a command and press enter to execute it
    * Refer to the [Events Features](#events-features) below for possible commands to execute
+
 ____________________________________________________________________________________________________________________
 
 ### UI Breakdown For `Me`
@@ -120,6 +123,8 @@ ________________________________________________________________________________
 
 
 </div>
+
+
 ____________________________________________________________________________________________________________________
 
 
@@ -143,6 +148,7 @@ Use this command when you need help!
 2. A list of all commands and their example usages.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -192,6 +198,7 @@ to prevent any messiness and also allows for future syncing with NUSMods.
 * If said contact identifies himself as a gender that is two words or is hyphenated like "non-binary", you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -235,6 +242,7 @@ Here's how NeoBook would look like after you favourite a contact!
 2. A :star: will appear next to the index in the detail panel.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -256,6 +264,7 @@ Use this command to unfavourite it!
 `INDEX` must be a **positive integer** and (must be greater than 0).
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -391,6 +400,7 @@ in the corresponding field, the person will be returned.
 
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -416,6 +426,7 @@ Use this command to expand and view more information about the selected contact.
 * `select 4` expands the details of the fourth contact in your list.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -442,6 +453,7 @@ Use this command to delete the specified contact from your NeoBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -456,6 +468,7 @@ Simply use this command to clear all contacts from your NeoBook.
 `clear`
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -470,6 +483,7 @@ Use this command to exit the application!
 `exit`
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -495,6 +509,7 @@ ________________________________________________________________________________
 
 
 ## Events Features
+
 ____________________________________________________________________________________________________________________
 
 <div markdown="block" class="alert alert-info">
@@ -574,6 +589,7 @@ Accepted Intervals:
 
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -597,6 +613,7 @@ Use this command to delete the specified event from your NeoBook.
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -638,6 +655,7 @@ Use this command to edit the specified event in your NeoBook.
 *  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 
 
@@ -732,13 +750,14 @@ Examples:
 <hr style="border:2px solid gray">
 
 ## User Features
+
 ____________________________________________________________________________________________________________________
 
 ### Introduction
 
 The user features are reflected under the 'Me' tab (tab 3).
 
-Here, you can edit personal information about yourself, the user, which can be used in future features such streamlined contact exchanging.
+Here, you can edit personal information about yourself, the user, which can be used in future features to streamline contact exchanging.
 
 ____________________________________________________________________________________________________________________
 
@@ -805,6 +824,7 @@ ________________________________________________________________________________
 
 
 ## UI Features
+
 ____________________________________________________________________________________________________________________
 
 
@@ -897,6 +917,7 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
 **A**: If everything is working fine (i.e. no crashes are happening and the app starts up properly), then a likely cause is that you were using a second screen. NeoBook automatically saves its last position in your screen and starts up in that same position. If you were using NeoBook on a second screen and aren't using a second screen now, the problem is likely due to you closing NeoBook at a position on the second screen. This will lead to NeoBook opening at the same position as before, but off your screen where you can't interact with it. To remedy this, go to the `preferences.json` file in NeoBook and change `windowCoordinates` to something that is within your first screen. (Typically `x:50` and `y:50` works fine).
 
 [Back To Contents](#table-of-contents)
+
 <hr style="border:2px solid gray">
 
 
@@ -923,3 +944,5 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
    1. User cannot see the indices of contacts further down the list, and needs to scroll.
    2. The `select` command can integrate `find` functionality.
 8. Splitting the description field of events into title and description fields, so as not to clutter the UI with long descriptions.
+
+[Back To Contents](#table-of-contents)
