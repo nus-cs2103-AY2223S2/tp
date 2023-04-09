@@ -1,19 +1,13 @@
 ---
 layout: page
-title: User Guide
+title: ***RIZZ***ipe User Guide
 toc: true
 ---
 Are you an _avid chef_ with too many delicious recipes to handle? Or ever just have
 the desire to **store**, **access** and **share** your recipes easily? 
 
-***RIZZ***ipe is a **command-based recipe database** that is designed just for chefs _LIKE YOU_ to manage recipes at the touch of a finger!
-
-***RIZZ***ipe comes equipped with multiple features but stars **3** main ones:
-1. Versatile **tagging** and powerful **searching** function
-2. Recipe **sharing**
-3. Search function for **ingredient substitutions**
-
-Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
+We understand that for brilliant and creative individuals like yourself, it is essential to properly manage your recipes,
+which is why [***RIZZ***ipe](#What-is-***RIZZ***ipe?) is designed and built just for chefs like ***YOU*** to organize your recipes at the touch of a finger!
 
 ## Using this Guide
 * If you want to run ***RIZZ***ipe for the first time, check out our handy [Quick Start guide](#quick-start).
@@ -52,7 +46,45 @@ the [Features](#features) Section, or take a look at the [Keyboard Shortcuts sum
 
 <div style="page-break-after: always;"></div>
 ---
-## Recipe Format
+## Overview
+The following subsections detail the functionality of ***RIZZ***ipe and explain the various terminology and colour coding we will be using in this guide.
+
+### What is ***RIZZ***ipe?
+
+***RIZZ***ipe is a **command-based recipe database** that works mostly by commands and behaves like a Command Line Interface (CLI).
+
+***RIZZ***ipe comes equipped with multiple features, but we love these **3** the most:
+1. Versatile **tagging** and powerful **searching** function
+2. Recipe **sharing**
+3. Search function for **ingredient substitutions**
+
+Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
+
+### Common colour codes in this guide
+
+<div markdown="block" class="alert alert-info">
+This is used to display **tips** that you may find useful!
+</div>
+
+<div markdown="span" class="alert alert-warning">
+This is used to display **keyboard shortcuts** that can help make your journey using ***RIZZ***ipe more smooth sailing!
+</div>
+
+<div markdown="span" class="alert alert-danger">
+This is used to display **warnings** for you to heed in order for ***RIZZ***ipe to work as intended!
+</div>
+
+### Glossary
+* **Command terminal**: A terminal is a text input and output environment. It is a program that acts as a wrapper and allows us to enter commands that the computer processes. Open your terminal by:
+    * Searching and opening `Command Prompt` on Windows
+    * Searching and opening `Terminal` on Mac
+* `cd`: Command to change directory
+* **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **JSON**: JSON is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects
+
+<div style="page-break-after: always;"></div>
+--- 
+## What is a recipe?
 
 Recipes are the building blocks of RIZZipe! Each recipe comprises multiple fields, which are listed in the table below:
 
@@ -65,7 +97,7 @@ Recipes are the building blocks of RIZZipe! Each recipe comprises multiple field
 | **Steps**       | `s/`   | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space`                 | No          | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
 | **Tags**        | `t/`   | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space`                                                                                 | No          | `Italian`, <br>`Comfort Food`, <br>`Gluten Free`                                                                                        |
 
-## Ingredient Format
+## What is an ingredient?
 
 Ingredients are at the heart of recipes, and also comprise multiple fields. The specification for recipe ingredients are listed in the table below:
 
@@ -78,9 +110,6 @@ Ingredients are at the heart of recipes, and also comprise multiple fields. The 
 | **Remarks**          | `-r`   | **`REMARK`** <br> `REMARK` can contain these characters: `A-Z a-z and space`                                                                                 | No          | `Optional`, <br> `Diced`, <br> `thinly sliced`                                  |
 | **Substitutions**    | `-s`   | **`SUBSTITUTION`** <br> `SUBSTITUTION` can contain these characters: `A-Z a-z - and space`                                                                   | No          | `Seaweed Flakes`, <br> `Capsicum`                                               |
 
-
-<div style="page-break-after: always;"></div>
---- 
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -405,14 +434,6 @@ JSON file to be exported and select the desired location for it to be saved!
 ![ExportDataWindow](images/ExportWindow.jpg)
 
 ---
-## Glossary 
-* Command terminal: A terminal is a text input and output environment. It is a program that acts as a wrapper and allows us to enter commands that the computer processes. Open your terminal by:
-  * Searching and opening `Command Prompt` on Windows
-  * Searching and opening `Terminal` on Mac
-* `cd`: Command to change directory
-* Command Line Interface (CLI): A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
-* JSON: JSON is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
