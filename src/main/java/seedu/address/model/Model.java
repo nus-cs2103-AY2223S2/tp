@@ -115,16 +115,39 @@ public interface Model {
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 
+    /**
+     * Returns whether the {@code model} has an available redo state.
+     *
+     * @return true if the model can redo, else false
+     */
     boolean canRedo();
 
-    //todo
+    /**
+     * Commits the changes to the cached state.
+     */
     void commit();
 
+    /**
+     * Returns whether the {@code model} has an available undo state.
+     *
+     * @return true if the model can undo, else false
+     */
     boolean canUndo();
 
+    /**
+     * Changes the {@code model} to the next saved state.
+     */
     void redo();
 
+    /**
+     * Changes the {@code model} to the previous saved state.
+     */
     void undo();
 
+    /**
+     * Sorts the {@code sortList}.
+     *
+     * @param sortList
+     */
     void sort(List<Client> sortList);
 }
