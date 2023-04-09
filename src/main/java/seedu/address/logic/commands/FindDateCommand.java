@@ -32,4 +32,11 @@ public class FindDateCommand extends FindCommand {
                 String.format(Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW,
                         model.getSortedFilteredInternshipList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindDateCommand // instanceof handles nulls
+                && predicate.equals(((FindDateCommand) other).predicate)); // state check
+    }
 }
