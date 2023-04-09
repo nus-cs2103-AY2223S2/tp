@@ -28,7 +28,7 @@ public class TaskCommandTest {
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
-        this.model.getCurrentSelection().setCurrentPage(PageType.SESSION_STUDENT_PAGE);
+        this.model.getCurrentSelection().setCurrentPage(PageType.TASK_STUDENT_PAGE);
         selectedGroup = model.getCurrentSelection().getSelectedGroup();
 
         actualSelection = this.model.getCurrentSelection();
