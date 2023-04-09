@@ -586,6 +586,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 4.
 
 
+**Use case: UC04 - Book patient's appointment**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User chooses to book patient’s information..
+2. MC requests for details of the information..
+3. User enters the requested details..
+4. MC displays the appointment information for the patient and the doctor..
+   Use case ends.
+
+**Extensions**
+* 3a. MC detects that the patient already has an appointment scheduled for that appointment slot.
+  * 3a1. MC informs the user that the appointment has been booked
+  * 3a2. User enters another appointment slot.
+  Steps 3a1-3a2 are repeated until the data entered are correct.
+  Use case resumes from step 4.
+* 3b. MC detects that the doctor has already scheduled an appointment with another patient at this particular time slot.
+  * 3b1. MC informs the user that the appointment has been booked
+  * 3b2. User enters another appointment slot.
+      Steps 3b1-3b2 are repeated until the data entered are correct.
+      Use case resumes from step 4.
+* 3c. MC detects that the patient's nric does not exist.
+  * 3c1. MC informs the user that the patient's nric is invalid
+  * 3c2. User enters another patient nric
+    Steps 3c1-3c2 are repeated until the data entered are correct.
+    Use case resumes from step 4.
+* 3d. MC detects that the doctor's nric does not exist.
+    * 3d1. MC informs the user that the doctor's nric is invalid
+    * 3d2. User enters another doctor nric
+      Steps 3d1-3d2 are repeated until the data entered are correct.
+      Use case resumes from step 4.
+
+**Use case: UC05 - Cancel patient's appointment**
+
+**Actor: Doctor**
+
+**MSS**
+
+1. User chooses to retrieve patient’s information..
+2. MC retrieves the patient’s information
+3. MC displays the patient information that was retrieved..
+   Use case ends.
+
+**Extensions**
+
 *{More to be added}*
 
 ### Non-Functional Requirements
