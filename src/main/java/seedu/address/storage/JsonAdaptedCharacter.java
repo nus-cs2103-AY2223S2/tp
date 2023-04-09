@@ -22,8 +22,6 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedCharacter {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Character's %s field is missing!";
-    public static final String INVALID_LEVEL = "Level cannot be negative!";
-    public static final String INVALID_XP = "XP cannot be negative!";
 
     private final String name;
     private final JsonAdaptedStats stats;
@@ -82,14 +80,6 @@ public class JsonAdaptedCharacter {
         }
 
         final Name modelName = new Name(name);
-
-        if (level < 0) {
-            throw new IllegalValueException(INVALID_LEVEL);
-        }
-
-        if (xp < 0) {
-            throw new IllegalValueException(INVALID_XP);
-        }
 
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {

@@ -16,14 +16,14 @@ public class MakeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entity to the management system. ";
 
     public static final String MESSAGE_SUCCESS = "New entity added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in Reroll";
 
 
     private final Entity toAdd;
 
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Entity}
      */
     public MakeCommand(Entity entity) {
         requireNonNull(entity);

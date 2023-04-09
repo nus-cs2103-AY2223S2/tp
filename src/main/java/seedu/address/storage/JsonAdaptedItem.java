@@ -20,8 +20,6 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
-    public static final String INVALID_COST = "Cost cannot be negative!";
-    public static final String INVALID_WEIGHT = "Weight cannot be negative!";
 
     private final String name;
     private final int cost;
@@ -71,14 +69,6 @@ public class JsonAdaptedItem {
         }
 
         final Name modelName = new Name(name);
-
-        if (cost < 0) {
-            throw new IllegalValueException(INVALID_COST);
-        }
-
-        if (weight < 0) {
-            throw new IllegalValueException(INVALID_WEIGHT);
-        }
 
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {

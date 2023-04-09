@@ -22,7 +22,6 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedMob {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Character's %s field is missing!";
-    public static final String INVALID_CHALLENGE_RATING = "Challenge rating cannot be negative!";
 
     private final String name;
     private final JsonAdaptedStats stats;
@@ -83,10 +82,6 @@ public class JsonAdaptedMob {
         Stats stat = stats.toModalType();
 
         Inventory inventory = this.inventory.toModelType();
-
-        if (challengeRating < 0) {
-            throw new IllegalValueException(INVALID_CHALLENGE_RATING);
-        }
 
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {

@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -23,20 +21,13 @@
                   <Font size="34.0" />
                </font>
             </Label>
-            <Label fx:id="entityDetailsLabel" maxHeight="1.7976931348623157E308" minHeight="-Infinity" text="Details" VBox.vgrow="ALWAYS">
+            <Label fx:id="entityDetailsLabel" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" text="Details" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <VBox>
                <children>
-                  <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="inventoryLabel" text="Inventory" HBox.hgrow="NEVER" />
-                        <Pane maxHeight="0.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="inventoryValueLabel" text="Total Value:" textAlignment="RIGHT" HBox.hgrow="NEVER" />
-                     </children>
-                  </HBox>
                   <StackPane fx:id="inventoryPlaceholder" />
                </children>
             </VBox>

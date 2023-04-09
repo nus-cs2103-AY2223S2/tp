@@ -34,9 +34,6 @@ public class EntityDetailsPanel extends UiPart<Region> {
     private Label entityClassificationLabel;
 
     @javafx.fxml.FXML
-    private Label inventoryValueLabel;
-
-    @javafx.fxml.FXML
     private StackPane inventoryPlaceholder;
 
     /**
@@ -64,8 +61,6 @@ public class EntityDetailsPanel extends UiPart<Region> {
             ObservableList<Item> inventoryItems = FXCollections.observableList((
                     (Character) entity).getInventory().getItems());
             itemListPanel.updateItems(inventoryItems);
-            inventoryValueLabel.setText("Total Value: "
-                    + itemListPanel.calculateInventoryValue(inventoryItems) + "g");
             if (inventoryPlaceholder.getChildren().size() == 0) {
                 inventoryPlaceholder.getChildren().add(itemListPanel.getRoot());
             }
@@ -73,8 +68,6 @@ public class EntityDetailsPanel extends UiPart<Region> {
             ObservableList<Item> inventoryItems = FXCollections.observableList((
                     (Mob) entity).getInventory().getItems());
             itemListPanel.updateItems(inventoryItems);
-            inventoryValueLabel.setText("Total Value: "
-                    + itemListPanel.calculateInventoryValue(inventoryItems) + "g");
             if (inventoryPlaceholder.getChildren().size() == 0) {
                 inventoryPlaceholder.getChildren().add(itemListPanel.getRoot());
             }
