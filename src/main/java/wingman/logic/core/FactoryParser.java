@@ -41,7 +41,7 @@ public abstract class FactoryParser {
             if (commandWord.equals(factory.getCommandWord())) {
                 tokens.pop();
                 final CommandParam param =
-                    CommandParam.from(tokens, factory.getPrefixes());
+                        CommandParam.from(tokens, factory.getPrefixes());
                 return Optional.of(factory.createCommand(param));
             }
         }
