@@ -245,7 +245,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Set add internship popup
      */
-     public void setPopupAddInternship(PopupAddInternship popupAddInternship) {
+    public void setPopupAddInternship(PopupAddInternship popupAddInternship) {
         this.popupAddInternship = popupAddInternship;
      }
 
