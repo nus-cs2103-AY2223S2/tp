@@ -9,6 +9,8 @@ MyLib is a desktop bookmarking application used for keeping track of books a use
 
 Given below are my contributions to the project.
 
+* **Code Contributed**: [RepoSense hyperlink](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zenithyap&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
 * **New Feature**: Added extra tags functionality. This includes, adding a tag to the tag list, deleting a tag from the tag list and listing all tags from the tag list.
   * What it does: Provides the user with a personalized tag list.
   * Justification: This provides a more consistent of the usage of tagging, to reduce errors such as typo errors.
