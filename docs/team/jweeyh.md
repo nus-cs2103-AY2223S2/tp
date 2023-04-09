@@ -37,5 +37,9 @@ Given below are my contributions to the project.
           [[#PR284]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/284)
         * Added Ui screenshots for multiple commands, layout.
           [[#PR#291]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/291)
+          
+    * Developer Guide:
+        * Modified UiClassDiagram.puml [[#PR304]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/304)
+        * Updated descriptions or Ui component 
 
 
