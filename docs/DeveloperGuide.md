@@ -214,7 +214,7 @@ Classes used by multiple components are in the `seedu.PetPal.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Remind Feature
+### **Remind Feature**
 
 #### Current Implementation
 
@@ -258,7 +258,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 
-### Calculator Feature
+### **Calculator Feature**
 
 #### Current Implementation
 The calculator mechanism is facilitated by the `AddCommand` class.
@@ -283,7 +283,7 @@ The calculator feature is not an additional command, and does not have an activi
 
 
 
-### Archive Feature
+### **Archive Feature**
 
 #### Current Implementation
 The archive mechanism is facilitated by the `ArchiveCommand` class.
@@ -302,8 +302,18 @@ Step 2a. The PetPal list does not have any pets, the pet at list position 1 does
      3a. The PetPal returns an error message: `The provided index is out of bounds`
 ```
 
+The following **sequence diagram** shows how the archive operation works:
 
-### Highlight Feature
+![Archive Sequence Diagram](images/diagrams/ArchiveSequenceDiagram.png)
+
+<br>
+The following **activity diagram** summarizes what happens when a user executes a new archive command:
+
+![Archive Activity Diagram](images/diagrams/ArchiveActivityDiagram.png)
+
+
+
+### **Highlight Feature**
 
 #### Current Implementation
 The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
@@ -343,7 +353,8 @@ The following activity diagram summarizes what happens during the process:
 * Cons:
     * User might forget to refresh to the updated state and shows the outdated instead.
 
-### Undo Feature
+### **Undo Feature**
+
 #### Current Implementation
 The undo mechanism is facilitated by the `ModelManager`, `UndoCommand`,  classes.
 The `ModelManager` class is implemented by PetPal and has a `petPalCache` field which is of type`PetPal`.
@@ -591,6 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
