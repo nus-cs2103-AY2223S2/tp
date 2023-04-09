@@ -1,12 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
@@ -24,6 +20,7 @@ import seedu.address.logic.commands.parent.ParentAddCommand;
 import seedu.address.logic.commands.parent.ParentCommand;
 import seedu.address.logic.commands.parent.ParentDeleteCommand;
 import seedu.address.logic.commands.parent.ParentEditCommand;
+import seedu.address.logic.commands.parent.ParentFindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
@@ -40,7 +37,7 @@ import seedu.address.model.tag.Tag;
 public class ParentCommandParser {
     public static final String HELP_MESSAGE = "Parent command has to include an action.\n"
             + ParentCommand.MESSAGE_USAGE;
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parse the parent commands into their respective prefixes
@@ -53,31 +50,19 @@ public class ParentCommandParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
+        final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        ArgumentMultimap argMultimapFind =
-                ArgumentTokenizer.tokenize(args, PREFIX_FIND);
-        ArgumentMultimap argMultimapAdd =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_ADDRESS,
-                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
-                        PREFIX_EMAIL);
 
-        ArgumentMultimap argMultimapDelete =
-                ArgumentTokenizer.tokenize(args, PREFIX_DELETE, PREFIX_NAME, PREFIX_PHONEPARENT);
-
-        ArgumentMultimap argMultimapEdit =
-                ArgumentTokenizer.tokenize(args, PREFIX_EDIT, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_PARENTAGE,
-                        PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT, PREFIX_EMAIL, PREFIX_NEWNAME, PREFIX_NEWPHONEPARENT);
-
-        if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
-            return addCommand(argMultimapAdd);
-        } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
-            return deleteCommand(argMultimapDelete);
-        } else if (argMultimapEdit.getValue(PREFIX_EDIT).isPresent()) {
-            return editCommand(argMultimapEdit);
-        } else if (argMultimapFind.getValue(PREFIX_FIND).isPresent()) {
+        switch (commandWord) {
+        case ParentAddCommand.COMMAND_WORD:
+            return parseParentAddCommand(arguments);
+        case ParentEditCommand.COMMAND_WORD:
+            return parseParentEditCommand(arguments);
+        case ParentDeleteCommand.COMMAND_WORD:
+            return parseParentDeleteCommand(arguments);
+        case ParentFindCommand.COMMAND_WORD:
             return new ParentFindCommandParser().parse(arguments);
-        } else {
-            //Rest of logic (Need to edit)
+        default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
     }
@@ -86,11 +71,16 @@ public class ParentCommandParser {
      * Retrieve the relevant information to create a new Parent object from user input and parse it to create a new
      * Parent object and returns ParentAddCommand with the new Parent object.
      *
-     * @param argMultimap An ArgumentMultimap object that is derived from tokenizing the user input with Prefixes.
+     * @param arguments the command input by user
      * @return ParentAddCommand to add the new Parent into PowerConnect.
      * @throws ParseException when there's an unexpected error in parsing the user input.
      */
-    private ParentAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException {
+    private ParentAddCommand parseParentAddCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_ADDRESS,
+                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
+                        PREFIX_EMAIL);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONEPARENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentAddCommand.MESSAGE_USAGE));
@@ -110,9 +100,13 @@ public class ParentCommandParser {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     * @param arguments the command input by user
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public ParentDeleteCommand deleteCommand(ArgumentMultimap argMultimap) throws ParseException {
+    public ParentDeleteCommand parseParentDeleteCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONEPARENT);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONEPARENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -127,11 +121,15 @@ public class ParentCommandParser {
      * Retrieve the relevant information to edit an existing Parent object from user input and
      * returns ParentEditCommand with the edited Parent object.
      *
-     * @param argMultimap An ArgumentMultimap object that is derived from tokenizing the user input with Prefixes.
+     * @param arguments the command input by user
      * @return ParentEditCommand to edit a Parent in PowerConnect.
      * @throws ParseException when there's an unexpected error in parsing the user input.
      */
-    public ParentEditCommand editCommand(ArgumentMultimap argMultimap) throws ParseException {
+    public ParentEditCommand parseParentEditCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_PARENTAGE,
+                        PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT, PREFIX_EMAIL, PREFIX_NEWNAME, PREFIX_NEWPHONEPARENT);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONEPARENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(

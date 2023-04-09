@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
@@ -47,7 +48,7 @@ import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in PowerConnect.
  */
 public class StudentEditCommand extends StudentCommand {
 
@@ -114,14 +115,13 @@ public class StudentEditCommand extends StudentCommand {
     private Name newParentName;
 
     /**
-         * Creates a StudentEditCommand to edit the specified {@code Student}
+     * Creates a StudentEditCommand to edit the specified {@code Student}
      */
     public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
                               Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca,
                               Comment newComment, Phone newStudentPhoneNumber, Email newEmail, Address newAddress) {
-        requireNonNull(indexNumber);
-        requireNonNull(studentClass);
+        requireAllNonNull(indexNumber, studentClass);
 
         this.newName = newName;
         this.newRelationship = newRelationship;
@@ -192,9 +192,6 @@ public class StudentEditCommand extends StudentCommand {
         }
         if (Comment.isDefaultComment(newComment.value)) {
             this.newComment = student.getComment();
-        }
-        if (Image.isDefaultImage(newImage.value)) {
-            this.newImage = student.getImage();
         }
         if (Email.isDefaultEmail(newEmail.value)) {
             this.newEmail = student.getEmail();
@@ -328,7 +325,8 @@ public class StudentEditCommand extends StudentCommand {
      *
      * @param parent    Original Parent object that is to be edited.
      * @param newParent Edited Parent object.
-     * @return Edited Parent object with list of students in original Parent object and updates all the students.
+     * @param model     {@code Model} which the command should operate on.
+     * @return Edited Parent object with the list of students in original Parent object.
      */
     private Parent editParent(Parent parent, Parent newParent, Model model) {
         List<Student> students = null;
