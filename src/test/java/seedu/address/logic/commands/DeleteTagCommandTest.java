@@ -15,7 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteTagCommand}.

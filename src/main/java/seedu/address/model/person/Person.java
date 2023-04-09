@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.DeepCopyable;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the E-Lister.

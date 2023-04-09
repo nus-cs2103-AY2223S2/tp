@@ -14,11 +14,34 @@ public class ShortcutCommandTest {
 
     private Model model = new ModelManager(getTypicalElister(), new UserPrefs());
 
+    private void purgeAlias(String alias) {
+        AddCommand.commandWords.remove(alias);
+        ClearCommand.commandWords.remove(alias);
+        DeleteCommand.commandWords.remove(alias);
+        DeleteTagCommand.commandWords.remove(alias);
+        EditCommand.commandWords.remove(alias);
+        ExitCommand.commandWords.remove(alias);
+        ExportCommand.commandWords.remove(alias);
+        FilterCommand.commandWords.remove(alias);
+        FreezeCommand.commandWords.remove(alias);
+        FindCommand.commandWords.remove(alias);
+        HelpCommand.commandWords.remove(alias);
+        ImportCommand.commandWords.remove(alias);
+        ListCommand.commandWords.remove(alias);
+        MassOpCommand.commandWords.remove(alias);
+        RedoCommand.commandWords.remove(alias);
+        ShortcutCommand.commandWords.remove(alias);
+        TagCommand.commandWords.remove(alias);
+        UndoCommand.commandWords.remove(alias);
+        UnfreezeCommand.commandWords.remove(alias);
+    }
+
     @Test
     public void execute_correctExecution_add() {
         String shortForm = "ad";
         CommandType add = CommandType.ADD;
         Command command = new ShortcutCommand(add, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, add, shortForm),
                         true, true), model);
@@ -29,6 +52,7 @@ public class ShortcutCommandTest {
         String shortForm = "cr";
         CommandType clear = CommandType.CLEAR;
         Command command = new ShortcutCommand(clear, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, clear, shortForm),
                         true, true), model);
@@ -39,6 +63,7 @@ public class ShortcutCommandTest {
         String shortForm = "del";
         CommandType delete = CommandType.DELETE;
         Command command = new ShortcutCommand(delete, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, delete, shortForm),
                         true, true), model);
@@ -48,6 +73,7 @@ public class ShortcutCommandTest {
         String shortForm = "dtag";
         CommandType deleteTag = CommandType.DELETE_TAG;
         Command command = new ShortcutCommand(deleteTag, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, deleteTag, shortForm),
                         true, true), model);
@@ -57,6 +83,7 @@ public class ShortcutCommandTest {
         String shortForm = "et";
         CommandType edit = CommandType.EDIT;
         Command command = new ShortcutCommand(edit, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, edit, shortForm),
                         true, true), model);
@@ -66,6 +93,7 @@ public class ShortcutCommandTest {
         String shortForm = "expo";
         CommandType export = CommandType.EXPORT;
         Command command = new ShortcutCommand(export, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, export, shortForm),
                         true, true), model);
@@ -76,6 +104,7 @@ public class ShortcutCommandTest {
         String shortForm = "fer";
         CommandType filter = CommandType.FILTER;
         Command command = new ShortcutCommand(filter, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, filter, shortForm),
                         true, true), model);
@@ -85,6 +114,7 @@ public class ShortcutCommandTest {
         String shortForm = "fd";
         CommandType find = CommandType.FIND;
         Command command = new ShortcutCommand(find, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, find, shortForm),
                         true, true), model);
@@ -94,6 +124,7 @@ public class ShortcutCommandTest {
         String shortForm = "hp";
         CommandType help = CommandType.HELP;
         Command command = new ShortcutCommand(help, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, help, shortForm),
                         true, true), model);
@@ -103,6 +134,7 @@ public class ShortcutCommandTest {
         String shortForm = "it";
         CommandType importType = CommandType.IMPORT;
         Command command = new ShortcutCommand(importType, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, importType, shortForm),
                         true, true), model);
@@ -112,6 +144,7 @@ public class ShortcutCommandTest {
         String shortForm = "lst";
         CommandType list = CommandType.LIST;
         Command command = new ShortcutCommand(list, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, list, shortForm),
                         true, true), model);
@@ -121,6 +154,7 @@ public class ShortcutCommandTest {
         String shortForm = "mop";
         CommandType massOp = CommandType.MASS_OP;
         Command command = new ShortcutCommand(massOp, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, massOp, shortForm),
                         true, true), model);
@@ -130,6 +164,7 @@ public class ShortcutCommandTest {
         String shortForm = "rd";
         CommandType redo = CommandType.REDO;
         Command command = new ShortcutCommand(redo, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, redo, shortForm),
                         true, true), model);
@@ -139,6 +174,7 @@ public class ShortcutCommandTest {
         String shortForm = "st";
         CommandType shortcut = CommandType.SHORTCUT;
         Command command = new ShortcutCommand(shortcut, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, shortcut, shortForm),
                         true, true), model);
@@ -148,6 +184,7 @@ public class ShortcutCommandTest {
         String shortForm = "tg";
         CommandType tag = CommandType.TAG;
         Command command = new ShortcutCommand(tag, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, tag, shortForm),
                         true, true), model);
@@ -157,6 +194,7 @@ public class ShortcutCommandTest {
         String shortForm = "ud";
         CommandType undo = CommandType.UNDO;
         Command command = new ShortcutCommand(undo, shortForm);
+        purgeAlias(shortForm);
         assertCommandSuccess(command, model,
                 new CommandResult(String.format(ShortcutCommand.MESSAGE_SUCCESS, undo, shortForm),
                         true, true), model);
