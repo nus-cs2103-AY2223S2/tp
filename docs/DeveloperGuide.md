@@ -78,7 +78,6 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-<div style="page-break-after: always;"></div>
 
 ## **About HMHero**
 
@@ -206,6 +205,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### UI component
@@ -234,6 +235,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -277,6 +280,8 @@ How the parsing works:
 * When called upon to parse a user command, the `HMHero` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HMHeroParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Model component
@@ -301,6 +306,8 @@ The `Model` component,
 
 </div>
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -318,6 +325,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -367,6 +376,8 @@ When implementing this feature, we restricted users to only add applicants into 
 we wanted HMHero to adhere to the flow of the hiring process. Allowing users to add applicants into specific statuses
 could introduce confusion to how `add` command is used.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 #### Advancing an Applicant
@@ -404,6 +415,8 @@ correctly via an error message.
 When implementing this feature, we realised that we could model HMHero to track hiring process in the real world 
 more effectively by enforcing the rule that the user can only advance applicants one stage at a time. 
 We thus decided to provide a default behaviour when advancing an applicant's status.
+
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -443,6 +456,8 @@ Additionally, we realised that it is common for hiring managers to reject applic
 `reject` command does not perform the same functionality as the `delete` command.
 We also allowed the rejecting of applicants with the `ACCEPTED` status for the rare case where users might want to
 reject an accepted applicant due to an unforeseen circumstance.
+
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -498,6 +513,8 @@ the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI
 
 Applicant fields are required as an input as it is helpful to reduce user confusion and facilitate finding applicants based on multiple fields.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 #### Editing an Applicant
@@ -539,6 +556,8 @@ phone number `91823452`.
 When providing multiple arguments with the same delimiter,
 the last instance of the repeat delimiter is taken during the `parse` command.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 #### Displaying the list
@@ -562,6 +581,8 @@ and they are a good starting point for users to help track the number of applica
 For example, the user can obtain the total number of applicants, 
 and also provide the total numbers of applicants for each status.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 #### Showing all shortlisted applicants
@@ -575,6 +596,7 @@ The `interview` command displays the list of all shortlisted applicants, sorted 
 3. The resulting filtered applicant list is sorted by interview date, from earliest to latest.
 4. HMHero displays the resulting `SortedList` to the user.
 
+[Back to Table of Contents](#table-of-contents)
 
 #### Filter applicants based on notes
 
@@ -591,6 +613,8 @@ The `skill` command displays the list of applicants that matches the keyword pro
 We limited the length of the keyword to a maximum of 45 characters because the longest word in the English dictionary
 has a length of 45 characters so there is no reason for the keyword to have a length longer than that.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -602,6 +626,8 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -653,6 +679,8 @@ has a length of 45 characters so there is no reason for the keyword to have a le
 | `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for           | I can easily see the keywords that I am looking for.                                  |
 | `* `     | Careless Hiring Manager               | Undo recent actions or commands                                    | I can reverse commands that I have mistakenly carried out.                            |
 | `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                  | I can keep track of skill-sets needed for each job to match applicants.               |
+
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -922,6 +950,7 @@ Precondition: There are shortlisted applicants in HMHero.
 
       Use case resumes at step 1.
 
+[Back to Table of Contents](#table-of-contents)
 
 ### Non-Functional Requirements
 
@@ -935,13 +964,15 @@ Precondition: There are shortlisted applicants in HMHero.
 8.  No database management system should be used.
 9.  The product is not required to handle the screening of resumes for each applicant.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Glossary
 #### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
 - [Address](#address)
 - [Applicant](#applicant)
 - [Application Cycle](#application-cycle)
-- [COMMAND_WORD (Placeholder)](#commandword-placeholder)
+- [COMMAND_WORD (Placeholder)](#command_word-placeholder)
 - [Command](#command)
 - [Command Line (CLI)](#command-line)
 - [Placeholder](#email-placeholder)
@@ -951,7 +982,7 @@ Precondition: There are shortlisted applicants in HMHero.
 - [Help Window](#help-window)
 - [Hiring Manager](#hiring-manager)
 - [Input](#input)
-- [INTERVIEW_DATE (Placeholder)](#interviewdate-placeholder)
+- [INTERVIEW_DATE (Placeholder)](#interview_date-placeholder)
 - [Interview Date](#interview-date)
 - [KEYWORD (Placeholder)](#keyword-placeholder)
 - [Main Operating System](#mainstream-os)
@@ -962,7 +993,7 @@ Precondition: There are shortlisted applicants in HMHero.
 - [Notes](#notes)
 - [Output](#output)
 - [Parameter](#parameter)
-- [PHONE_NUMBER (Placeholder)](#phonenumber-placeholder)
+- [PHONE_NUMBER (Placeholder)](#phone_number-placeholder)
 - [Phone Number](#phone-number)
 - [Placeholder](#placeholder)
 - [STATUS (Placeholder)](#status-placeholder)
@@ -971,6 +1002,8 @@ Precondition: There are shortlisted applicants in HMHero.
 - [URL](#url)
 - [Use Case](#use-case)
 - [User Story](#user-story)
+
+[Back to Table of Contents](#table-of-contents)
 
 
 ### A
@@ -1087,6 +1120,8 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Info:** 
 These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Launch
 
@@ -1264,6 +1299,8 @@ This makes it easier for the user to track the status of their applicants as the
 
 In terms of colour scheme, we thought that the dark theme of AB3 was uninspiring and made use of own blue and light colored theme to give this app a nice, warm and welcoming feel. 
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Extensive Testing
@@ -1294,5 +1331,5 @@ manually into HMHero at the start.
 7. Enhancing the `summary` command to produce useful charts and graphs for Hiring Managers to have a better visualisation of the hiring process.
 8. Enhancing the checking of emails to have a valid domain name such as `@gmail.com` or `@nus.edu.sg` instead of just checking for the presence of `@` in the email.
 
-
+[Back to Table of Contents](#table-of-contents)
 
