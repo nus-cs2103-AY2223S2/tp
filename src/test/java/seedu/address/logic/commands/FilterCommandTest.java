@@ -98,5 +98,26 @@ public class FilterCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, DANIEL, GEORGE), model.getFilteredEmployeeList());
     }
-
+    @Test
+    public void execute_leaveCountEqualTo_multipleEmployeesFound() {
+        String expectedMessage = String.format(MESSAGE_EMPLOYEES_LISTED_OVERVIEW, 2);
+        boolean[] possibleOperators = {false, false, true};
+        int comparisonAmount = 17;
+        FilterByLeaveCountPredicate predicate = new FilterByLeaveCountPredicate(comparisonAmount, possibleOperators);
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEmployeeList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, FIONA), model.getFilteredEmployeeList());
+    }
+    @Test
+    public void execute_leaveCountGreaterThan_multipleEmployeesFound() {
+        String expectedMessage = String.format(MESSAGE_NO_EMPLOYEES_FILTERED);
+        boolean[] possibleOperators = {false, true, false};
+        int comparisonAmount = 0;
+        FilterByPayrollPredicate predicate = new FilterByPayrollPredicate(comparisonAmount, possibleOperators);
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEmployeeList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredEmployeeList());
+    }
 }
