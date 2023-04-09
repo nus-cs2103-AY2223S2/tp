@@ -776,25 +776,25 @@ The color of this tag is then decided by looking up the result in an array of co
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                  | So that I can…​                                 |
-|----------|-----------------|-----------------------------------------------|-------------------------------------------------|
-| `* * *`  | user            | add a task                                    |                                                 |
-| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added          |
-| `* * *`  | user            | find a task                                   | perform queries more efficiently                |
-| `* * *`  | user            | view my tasks                                 | plan my time more efficiently                   |
-| `* *`    | user            | sort my tasks by deadline                     | So that I can see which tasks are due sooner    |
-| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task        |
-| `* *`    | user            | have a project folder                         | look at only my projects at a glance            |
-| `* *`    | organized user  | add tags to tasks                             | organize them better                            |
-| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it  |
-| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                       |
-| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                            |
-| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                            |
-| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                     |
-| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries              |
-| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration     |
-| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance            |
-| `*`      | forgetful user  | view my previously generated schedule         | continue working on what i was doing previously |
+| Priority | As a …​         | I want to …​                                  | So that I can…​                                  |
+|----------|-----------------|-----------------------------------------------|--------------------------------------------------|
+| `* * *`  | user            | add a task                                    | keep track of the outstanding tasks I have       |
+| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added           |
+| `* * *`  | user            | find a task                                   | see a task that I need more quickly              |
+| `* * *`  | user            | view all my tasks                             | get an overview to plan my time more efficiently |
+| `* *`    | user            | sort my tasks                                 | organize my tasks easily                         |
+| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task         |
+| `* *`    | user            | have a project folder                         | look at only my projects at a glance             |
+| `* *`    | organized user  | add tags to tasks                             | manage my tasks based on logical groupings       |
+| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it   |
+| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                        |
+| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                             |
+| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                             |
+| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                      |
+| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries               |
+| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration      |
+| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance             |
+| `*`      | forgetful user  | view my previously generated schedule         | continue working on what i was doing previously  |
 
 
 *{More to be added}*

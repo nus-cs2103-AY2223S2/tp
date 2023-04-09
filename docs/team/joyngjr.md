@@ -28,7 +28,8 @@ Given below are my contributions to the project.
     * Created `Plan` command and linked it to automatically run with `Schedule` as needed.
     * Created new Json files and storage classes `JsonPlannerStorage`, `JsonSerializablePlanner`, etc. to store generated plans so users can reload them.
     * Add relevant unit testing for newly created classes and integration testing for newly created storage.
-<br>
+<div style="page-break-after: always;"></div>
+
 * **New Feature** Added `Stats` feature [#63](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/63)
   * What it does: `Stats` displays the number of tasks for tag has in descending order, up to a maximum of 10.
   * Highlights:
