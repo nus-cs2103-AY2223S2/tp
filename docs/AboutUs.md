@@ -33,7 +33,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/cshuwen.png" width="200px">
 
-[[github](https://github.com/CShuwen)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/CShuwen)] 
+[[portfolio](team/cshuwen.md)]
 
 * Role: Developer
 * Responsibilities: Working on Patient Subsystem
