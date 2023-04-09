@@ -60,6 +60,23 @@ public class ClassStatisticsCommandTest {
 
         Model originalModel = new ModelManager(testModel.getTaaData(), testModel.getUserPrefs());
         CommandTestUtil.assertCommandSuccess(displayGradesChartCommand, testModel, expectedMessage, originalModel);
+
+        // cleanup -- delete assignment
+        try {
+            testModel.deleteAssignment("test1");
+        } catch (Exception e) {
+            Assertions.fail("ModelManager::deleteAssignment failed: " + e.getMessage());
+        }
+
+        //cleanup -- delete submissions
+        Student student1 = testModel.getFilteredStudentList().get(0);
+        Student student3 = testModel.getFilteredStudentList().get(2);
+        Student student5 = testModel.getFilteredStudentList().get(4);
+        Student student7 = testModel.getFilteredStudentList().get(6);
+        student1.deleteSubmission(student1.getLatestSubmission());
+        student3.deleteSubmission(student3.getLatestSubmission());
+        student5.deleteSubmission(student5.getLatestSubmission());
+        student7.deleteSubmission(student7.getLatestSubmission());
     }
 
     @Test
@@ -72,6 +89,30 @@ public class ClassStatisticsCommandTest {
     @Test
     public void execute_emptyClassList_displayGradesChart_failure() {
         ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
+
+        CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+    }
+
+    @Test
+    public void execute_nonEmptyClassList_noGradeVariance_displayGradesChart_failure() {
+        ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
+
+        Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
+
+        try {
+            testModel.addAssignment("test1", 100);
+        } catch (Exception e) {
+            Assertions.fail("ModelManager::addAssignment failed: " + e.getMessage());
+        }
+
+        try {
+            testModel.grade("test1", 1, 50, false);
+            testModel.grade("test1", 3, 50, true);
+            testModel.grade("test1", 5, 50, false);
+            testModel.grade("test1", 7, 50, true);
+        } catch (Exception e) {
+            Assertions.fail("ModelManager::grade failed: " + e.getMessage());
+        }
 
         CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
