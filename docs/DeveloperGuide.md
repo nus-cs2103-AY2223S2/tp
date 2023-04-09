@@ -243,7 +243,7 @@ The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand`
 
 **Target user profile**:
 
-- has a need to manage a significant number of persons and events
+- has a need to manage a significant number of contacts and events
 - prefers desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
@@ -512,7 +512,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Double-click the jar file.
 
-      1. Expected: Shows the GUI with a set of sample persons and events. The window size may not be optimum.
+      1. Expected: Shows the GUI with a set of sample contacts and events. The window size may not be optimum.
 
 2. Shutting down
 
@@ -624,7 +624,7 @@ testers are expected to do more *exploratory* testing.
 
 Currently, the name of a Person is not case-sensitive.
 Anyone with the same name but in different casing are considered different Persons.
-For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Persons:
+For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Contacts:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
