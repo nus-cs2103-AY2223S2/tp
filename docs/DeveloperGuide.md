@@ -12,7 +12,10 @@
     2. [Deleting XYZ](#2-deleting-xyz)
     3. [Linking XYZ to a flight](#3-linking-xyz-to-a-flight)
     4. [Unlinking XYZ from a flight](#4-unlinking-xyz-from-a-flight)
-    5. [Displaying flights across all modes](#5-displaying-flights-across-all-modes)
+    5. [Displaying flights across all modes](#5-displaying-item-list-of-all-modes)
+- **[Additional Information](#additional-information)**
+    - **[Service Locator](#service-locator)**
+    - **[Functional Programming](#functional-programming)**
 - **[Appendix: Requirements](#appendix--requirements)**
 
 <div style="page-break-after: always;"></div>
@@ -663,6 +666,44 @@ we can keep the information displayed organised and clear to the user.
       switching between windows
 
 <div style="page-break-after: always;"></div>
+
+## Additional Information
+
+### Service Locator
+
+Service locator is like a globel variable that can be accessed from anywhere in
+the code. This reduces the hassle of passing the code from one place to
+another, i.e. reducing the number of parameters in a method. However, it
+also has its disadvantages. For example: it increases the coupling between
+classes, and makes the code harder to test.
+
+In this part, we will briefly introduce how we implemented the service
+locator in the project. Further, we will discuss how we planned to conquer
+the disadvantages of using a service locator.
+
+#### Details
+
+The service locator is implemented in the
+[`GetUtil`](../src/main/java/wingman/commons/util/GetUtil.java) class.
+
+It contains a `HashMap` that maps a `Class` object to a `Lazy` object
+containing the corresponding instance of the class. Therefore, when the user
+queries for an instance of a class, the service locator will return the
+corresponding instance.
+
+When the user puts an instance into the service locator, the service locator
+will wrap the instance into a `Lazy` object and put it into the `HashMap`.
+Alternatively, the user can put a `Supplier` object into the service locator.
+The service locator will wrap the `Supplier` object into a `Lazy` object and
+put it into the `HashMap`. The `Lazy` object will only be evaluated when the
+user queries for the instance.
+
+### Functional Programming
+
+The `Lazy` object mentioned above utilizes functional programming. The goal
+is to make illegal states unrepresentable.
+
+![Functional Programming](images/FunctionalProgrammingClassDiagram.png)
 
 ## Appendix: Requirements
 

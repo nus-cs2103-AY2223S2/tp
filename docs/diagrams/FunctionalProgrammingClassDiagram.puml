@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class "Lazy<T>" as lt {
+    + {static} Lazy<T> of(Supplier<T> supplier)
+    + {static} Lazy<T> of(T value)
+    + T get()
+    + <R> Lazy<R> map(Function<? super T, ? extends R> func)
+}
+
+abstract class "Either<L, R>" as either {
+    + {static} <L, R> Either<L, R> left(L value)
+    + {static} <L, R> Either<L, R> right(R value)
+    + {abstract} L getLeft()
+    + {abstract} R getRight()
+    + {abstract} boolean isLeft()
+    + {abstract} boolean isRight()
+    + {abstract} <T> Either<T, R> mapLeft(Function<? super L, ? extends T> func)
+    + {abstract} <T> Either<L, T> mapRight(Function<? super R, ? extends T> func)
+}
+
+class "Either.Left<L, R>" as left {
+    - L value
+    + L getLeft()
+    + R getRight()
+    + boolean isLeft()
+    + boolean isRight()
+    + <T> Either<T, R> mapLeft(Function<? super L, ? extends T> func)
+    + <T> Either<L, T> mapRight(Function<? super R, ? extends T> func)
+}
+
+class "Either.Right<L, R>" as right {
+    - R value
+    + L getLeft()
+    + R getRight()
+    + boolean isLeft()
+    + boolean isRight()
+    + <T> Either<T, R> mapLeft(Function<? super L, ? extends T> func)
+    + <T> Either<L, T> mapRight(Function<? super R, ? extends T> func)
+}
+
+lt *-- either
+either <|-- left
+either <|-- right
+
+@enduml
