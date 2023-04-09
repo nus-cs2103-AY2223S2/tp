@@ -21,7 +21,7 @@ public class ClassStatisticsCommandTest {
     private final Model emptyClassListModel = new ModelManager(new TaaData(new ClassList()), new UserPrefs());
 
     @Test
-    public void execute_nonEmptyClassList_displayAttendanceChart() {
+    public void execute_nonEmptyClassList_displayAttendanceChart_success() {
         ClassStatisticsCommand displayAttendanceChartCommand = new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE);
 
         String expectedMessage = String.format(ClassStatisticsCommand.MESSAGE_SUCCESS, "attendance", "")
@@ -31,5 +31,12 @@ public class ClassStatisticsCommandTest {
         Model testModel = new ModelManager(new TaaData(TypicalPersons.getTypicalTaaData()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(displayAttendanceChartCommand, testModel, expectedMessage, model);
+    }
+
+    @Test
+    public void execute_emptyClassList_displayAttendanceChart_failure() {
+        ClassStatisticsCommand displayAttendanceChartCommand = new ClassStatisticsCommand(ChartType.CLASS_ATTENDANCE);
+
+        CommandTestUtil.assertCommandFailure(displayAttendanceChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
 }
