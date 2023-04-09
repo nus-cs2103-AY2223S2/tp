@@ -14,9 +14,10 @@ Class Skill
 Class Module
 Class Course
 Class Year
+Class ProfilePicture
 }
 
-
+Person *--> "1" ProfilePicture
 Person *--> "1" Name
 Person *--> "1" Course
 Person *--> "1" Year
@@ -26,6 +27,7 @@ Person *--> "0...1" Linkedin
 Person *--> "*" Skill
 Person *--> "*" Module
 
+ProfilePicture -[hidden]right-> Name
 Name -[hidden]right-> Email
 Email -[hidden]right-> Course
 Course -[hidden]right-> Year

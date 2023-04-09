@@ -17,7 +17,7 @@ public class FindCommandParserTest {
                 FindCommand.MESSAGE_USAGE));
     }
 
-    //    @Test // Broken
+    //    @Test // Yet to fix
     //    public void parse_validArgs_returnsFindCommand() {
     //        // no leading and trailing whitespaces
     //        Predicate<Person> combinedPredicate = person -> true;

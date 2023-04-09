@@ -35,6 +35,7 @@ title: Developer Guide
   - [Undo and Redo Feature](#proposed-undo-and-redo-feature)
   - [Data Archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-)
   - [User Stories](#user-stories-)
@@ -718,7 +719,7 @@ We also chose to make our find command case-insensitive to increase the speed of
   - Pros: User can find people that have multiple attributes (includes attributes within a single prefix), i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T.
   - Cons: More restrictive on the filtered people, people must have **all** the attributes specified by the user to be in the `FilteredList`.
 - Alternative 2: `find` by logical OR
-  - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both.
+  - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/com` finds people that are either year 2, taking courses that contains 'com', or both.
   - Cons:
     User cannot find people that have multiple attributes.
 - Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so with Alternative 1, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites use find by logical AND such as GitHub, YouTube and Shopee.
@@ -726,13 +727,24 @@ We also chose to make our find command case-insensitive to increase the speed of
 **Aspect 2: `find` by contains vs containsWord:**
 
 - Alternative 1 (current choice): `find` by contains
-  - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
+  - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/com` finds people that enrolled in courses containing 'com', `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
   - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam.
 - Alternative 2: `find` by containsWord (not a built-in method but can be created)
   - Pros: Resolves the cons in Alternative 1.
   - Cons:
-    Harder for people to show up in the `FilteredList`, might lead to the user missing out on information that might be useful, i.e. find m/cs1101 will only find people that are taking/have taken CS1101 but it will not show people taking/have taken other variants of CS1101 such as CS1101S and CS1101R. In such cases, the user might want to find these people but are unaware that these variants even exist, and even if he/she know, he/she would have to query multiple commands like `find m/CS1101S` and `find m/CS1101SR`, which makes it more time-consuming.
+    Harder for people to show up in the `FilteredList`, might lead to the user missing out on information that might be useful, i.e. find m/cs1101 will only find people that are taking/have taken CS1101 but it will not show people taking/have taken other variants of CS1101 such as CS1101S and CS1101R. In such cases, the user might want to find these people but are unaware that these variants even exist, and even if he/she know, he/she would have to query multiple commands like `find m/CS1101S` and `find m/CS1101R`, which makes it more time-consuming.
 - Decision: We chose Alternative 1 as it is more conventional; our normal Ctrl-F or Cmd-F searches by contains instead of containsWord. This option enables the user to search faster, have more search results and can inform users about information that could be useful to them.
+
+**Aspect 3: single use vs consecutive uses of `find`:**
+
+- Alternative 1 (current choice): `find` can be used consecutively with `list` to clear filters
+  - Pros: User can narrow down their search results by calling the `find` command consecutively, i.e. `find y/1` followed by `find s/python` finds people that are both year 1 and have python skills. This is useful especially if the user wants to apply additional filters to the search results. 
+  - Cons: Harder for user to execute separate `find` commands, i.e. if a user wants to find people that are y/1 or have python skills he/she would have to call `find y/1` followed by `list`, and then `find s/python`, needing to call `list` every time to clear applied filters. User might forget to do so, leading to search results being smaller than expected. 
+- Alternative 2: `find` can only be used maximum once effectively
+  - Pros: Clears applied filters automatically before finding every time `find` is called. No need for user to call `list` between each `find` command.
+  - Cons:
+    User must retype `find` command with the applied filters if he/she wants to find by an additional filter, i.e. if user entered `find y/1` and realised that he/she wants to find people that are year 1 and have python skills, he/she would have to call `find y/1 s/python` instead of just `find s/python` as proposed in Alternative 1. The more the applied filters, the more time-consuming it is for the user to retype them when adding a filter.
+- Decision: We chose Alternative 1 as it is commonly used. Websites like Shopee and GitHub remember existing filters and allow users to add more filters if they want to. They also have a reset/clear filters feature/button to clear filters. To inform users of what filters they have applied, we display them in the `ResultDisplay` UI, with the latest filter at the top denoted after `>`. 
 
 [Scroll back to top](#table-of-contents)
 
@@ -760,6 +772,9 @@ For duplicate persons, instead of checking whether they had the same `Name`, we 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** CoDoc is design in such a way where no two person can have the same email.
 </div>
+
+##### Profile Picture Attribute
+`ProfilePicture` of a `Person` is randomly picked from a pool of 50 avatar icons whenever the `Person` is added. Not only does this improve the aesthetics of CoDoc, but it can also help users identify contacts by their `ProfilePicture`. Allowing users to add their own preferred profile picture has been considered but as of right now, this just serves as a default placeholder picture for each `Person`. `ProfilePicture` is part of the `Person` model and is saved like the other attributes.
 
 ##### Skills Attribute
 We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
@@ -955,6 +970,16 @@ _{Explain here how the data archiving feature will be implemented}_
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+1. CoDoc does not check for duplicate `GitHub` usernames or `LinkedIn` profile URLs, so the user can add 2 or more contacts with the same `GitHub` usernames and/or `LinkedIn` profile URLs. We plan to make it such that CoDoc checks for this, on top of email, so each person can be uniquely identified by their `GitHub` username and `LinkedIn` profile URL as well. 
+2. CoDoc's usage messages might display attributes in orders that are not consistent, e.g. `add` command uses "...n/NAME e/EMAIL c/COURSE y/YEAR [g/GITHUB] [l/LINKEDIN] [s/SKILL] [m/MOD]..." but `edit` command uses "...[n/NAME] [g/GITHUB] [e/EMAIL] [c/COURSE] [y/YEAR] [l/LINKEDIN]
+   [s+/SKILL] [s-/SKILL] [m+/MOD] [m-/MOD]...". We plan to standardize these inconsistencies by making all usage messages to follow this order: _Name_, _Email_, _Year_, _Course_, _GitHub_, _LinkedIn_, _Modules_, _Skills_. This should ensure consistency between commands and with the User Guide.
+3. There can be cases where a person's name contains a `.` or a `/`, especially some Western or Malay names. However, as these are extreme features, we left them out as they do not hinder the original usage of the function. Hence, it is a nice-to-have feature that we will fix in the future by altering the regex for `Name`. Users can, in the meantime, work around this by entering an alternative name instead.
+4. When using the copy buttons to copy `GitHub` username or `LinkedIn` profile URL, it would be good to implement a message that appears in the result display, informing the user that an empty `String` was copied or that nothing was copied. This will be added in the future as it is not a bug and does not affect usage of the copy button.
+5. `find c/-1` will generate an empty list with no contacts. However, it will good to include a validity check as `-1` is an invalid input for `course` and should be showing an error message instead. We will implement this validity check in the future as it does not return a wrong list of filtered people.
+
+[Scroll back to top](#table-of-contents)
 
 ## **Appendix: Requirements**
 
@@ -962,7 +987,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile** 🧑:
 
-There is no platform for students of Computing to easily identify people of similar interest and skills to aid them in
+There is no platform for students of NUS to easily identify people of similar interest and skills to aid them in
 their study and career. The product aims to help students organize and easily identify potential study/project/career
 partners that they have encountered over the course of their study and provide necessary contact information for
 networking opportunities.
@@ -972,7 +997,7 @@ Following are characteristics of people who can benefit from our product:
 * has difficulties tracking peers met over the course of study
 * has a need to manage a significant number of contacts
 * wants to find project partners of similar background
-* prefers a full desktop application over other data management
+* prefers a full desktop application over other data management tools
 * able to type fast
 * comfortable with CLI (command-line interface)
 
