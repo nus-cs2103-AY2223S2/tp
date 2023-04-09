@@ -47,6 +47,20 @@ public class ClientLabel extends UiPart<Region> {
         email.setText(client.getEmail().value);
     }
 
+    /**
+     * Creates an empty ClientLabel
+     */
+    public ClientLabel() {
+        super(FXML);
+        this.client = null;
+        id.setText("");
+        name.setText("Add a Client");
+        phone.setText("");
+        address.setText("");
+        address.setText("");
+        email.setText("");
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -62,6 +76,6 @@ public class ClientLabel extends UiPart<Region> {
         // state check
         ClientLabel card = (ClientLabel) other;
         return id.getText().equals(card.id.getText())
-                && client.equals(card.client);
+            && client.equals(card.client);
     }
 }

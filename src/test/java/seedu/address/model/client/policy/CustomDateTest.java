@@ -19,13 +19,22 @@ class CustomDateTest {
         assertThrows(IllegalArgumentException.class, () -> new CustomDate(invalidDate));
     }
 
+    @Test
+    public void isValidDate_invalidDateFormat_returnsFalse() {
+        assertFalse(CustomDate.isValidDate("01/01/2022"));
+    }
 
     @Test
-    void isValidDate() {
-        String date1 = "01.01.2023";
-        String date2 = "01/01/2023";
+    public void isValidDate_notLeapYear_returnsFalse() {
+        assertFalse(CustomDate.isValidDate("29.02.2021"));
+        assertFalse(CustomDate.isValidDate("30.02.2021"));
+        assertFalse(CustomDate.isValidDate("31.02.2021"));
+    }
 
-        assertTrue(CustomDate.isValidDate(date1));
-        assertFalse(CustomDate.isValidDate(date2));
+    @Test
+    public void isValidDate_validInput_returnsTrue() {
+        assertTrue(CustomDate.isValidDate("01.01.2022"));
+        assertTrue(CustomDate.isValidDate("31.12.2022"));
+        assertTrue(CustomDate.isValidDate("29.02.2024"));
     }
 }
