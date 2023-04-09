@@ -1113,14 +1113,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 ### Editing the data file
 
-All data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about file name:**<br>
-
-* If you are confused why the file name is addressbook.json, this is because LoyaltyLift was built on top of an existing application called addressbook.
-</div>
+All data are saved as a JSON file `[JAR file location]/data/loyaltylift.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LoyaltyLift will discard all data and start with an empty data file at the next run.
