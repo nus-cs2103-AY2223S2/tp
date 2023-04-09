@@ -47,6 +47,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Code reviewer
 - Responsibilities: Review Code
+- In-charge of: Leave features
 
 
 ### Johnathan Wee
