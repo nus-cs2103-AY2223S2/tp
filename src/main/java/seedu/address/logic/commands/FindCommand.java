@@ -31,8 +31,8 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [KEYWORD]\n"
             + "Example: " + COMMAND_WORD + " John Cena";
 
-    public static final String MESSAGE_PERSON_FOUND = "%1$s person found.";
-    public static final String MESSAGE_NO_PERSON_FOUND = "No such person found.";
+    public static final String MESSAGE_PERSON_FOUND = "%1$s person found";
+    public static final String MESSAGE_NO_PERSON_FOUND = "No such person found";
     private static final Logger logger = LogsCenter.getLogger(FindCommand.class);
     private final NameContainsInOrderKeywordsPredicate predicate;
 

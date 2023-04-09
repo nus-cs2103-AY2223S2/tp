@@ -1135,7 +1135,6 @@ testers are expected to do more *exploratory* testing.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and sample tasks. The window size may not be
       optimum.
 
-
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
@@ -1156,7 +1155,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 7.3 Assigning a Task to a Person
+### 7.3 Assigning a task to a person
 
 1. Assigning a task to a person while all tasks and persons are being shown
 
@@ -1355,6 +1354,58 @@ testers are expected to do more *exploratory* testing.
         Expected: No task details are displayed. "Task index is invalid" shown in status message.
      3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
         Expected: No person details are displayed. "Person index is invalid" shown in status message.
+
+### 7.12 Edit task 
+
+  1. Task to be edited is available in OfficeConnect
+     1. Prerequisites: The specified task index is invalid
+     2. Test case: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` (replace with valid index and inputs) <br>
+     3. Expected: Task details are displayed. "Task edited: [TITLE]; Status: [STATUS]; Content: [CONTENT]" shown in status message.
+
+  2. Task to be edited is not available in OfficeConnect
+     1. Prerequisites: The specified task index is invalid
+     2. Test case: `editt 0`
+     3. Expected: "The task index provided is invalid" shown in status message.
+
+### 7.13 Find persons by name
+
+  1. There are persons in OfficeConnect with the specified name.
+     1. Prerequisites: Only one person can be specified.
+     2. Test case: `findp NAME` <br>
+        Expected: All persons whose name contains given input are displayed. "[number] person found" shown in status message.
+     3. Test case: `findp` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4. Other incorrect find persons commands to try: `findp !@#`)<br>
+        Expected: No changes in GUI. "No such person found" shown in status message.
+  
+  2. There are no persons in OfficeConnect with the specified name.
+     1. Prerequisites: Only one person can be specified.
+     2. Test case: `findp NAME` <br>
+        Expected: No persons are displayed. "No such person found" shown in status message.
+     3. Test case: `findp` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4. Other incorrect find persons commands to try: `findp !@#`)<br>
+        Expected: No persons are displayed. "No such person found" shown in status message.
+
+### 7.14 Find tasks by title
+
+  1. There are tasks in OfficeConnect with the specified title.
+     1. Prerequisites: Only one title can be specified.
+     2. Test case: `findt TITLE` <br>
+        Expected: All tasks in which title contains given input are displayed. "[number] task/s found" shown in status message.
+     3. Test case: `findt` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4. Other incorrect find tasks commands to try: `findt !@#`)<br>
+        Expected: No changes in GUI. "No such task found" shown in status message.
+  
+  2. There are no tasks in OfficeConnect with the specified title.
+     1. Prerequisites: Only one title can be specified.
+     2. Test case: `findt TITLE` <br>
+        Expected: No tasks are displayed. "No such task found" shown in status message.
+     3. Test case: `findt` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4.  Other incorrect find tasks commands to try: `findt !@#`)<br>
+         Expected: No tasks are displayed. "No such task found" shown in status message.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 8. Appendix: Effort
