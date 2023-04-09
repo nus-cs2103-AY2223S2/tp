@@ -1066,12 +1066,42 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
     * 1a1. If assertion is enabled
         * 1a11. VMS shows an error message.
 
-        Use case ends.
+          Use case ends.
 
     * 1b1. If assertion is disabled
-        * 1b11. VMS .
 
-        Use case resumes from step 1.
+    Use case resumes from step 1.
+
+#### UC-APT-007 - Unmark appointments
+
+##### MSS
+
+1. User requests to unmark a specified appointment.
+2. VMS changes the status of the appointment to not completed.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
+
+      Use case resumes from step 1.
+
+* 1b. User requested to unmark an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+* 1b. User requested to unmark an appointment that is already unmarked.
+    * 1a1. If assertion is enabled
+        * 1a11. VMS shows an error message.
+
+          Use case ends.
+
+    * 1b1. If assertion is disabled
+
+      Use case resumes from step 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
