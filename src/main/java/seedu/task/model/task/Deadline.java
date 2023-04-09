@@ -54,7 +54,7 @@ public class Deadline extends Task {
      * Finds the number of days between deadline and entered date.
      */
     public long getDaysBetween(LocalDate date) {
-        return DAYS.between(this.deadline.getDate(), date);
+        return DAYS.between(date, this.deadline.getDate());
     }
 
     @Override

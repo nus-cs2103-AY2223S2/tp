@@ -662,7 +662,9 @@ _Details coming soon ..._
 </table>
 
 ## 8. Glossary
-1. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
-2. Long date: Date in the format YYYY-MM-DD HHMM.
-3. Short date: Date in the format YYYY-MM-DD.
-4. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
+1. Command line Interface (CLI): A program that accepts text inputs to execute.
+2. Free day: Allocating a task to this day will not result in total allocated effort exceeding preferred effort level.
+3. Graphical User Interface (GUI): A system of interactive visual components for computer software.
+4. Long date: Date in the format YYYY-MM-DD HHMM.
+5. Short date: Date in the format YYYY-MM-DD.
+6. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.

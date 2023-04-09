@@ -5,13 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-end box
-
-box Commons COMMONS_COLOR_T1
-participant "i:IndexList" as IndexList COMMONS_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -35,21 +31,8 @@ deactivate DeleteCommandParser
 TaskBookParser -> DeleteCommandParser : parse("1 2")
 activate DeleteCommandParser
 
-DeleteCommandParser -> ParserUtil : parseIndexList("1 2")
-activate ParserUtil
-
-create IndexList
-ParserUtil -> IndexList : IndexList()
-activate IndexList
-
-IndexList --> ParserUtil : i
-deactivate IndexList
-
-ParserUtil --> DeleteCommandParser : i
-deactivate ParserUtil
-
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand : DeleteCommand(i)
+DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
@@ -69,11 +52,7 @@ LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
 loop all indices in IndexList
-DeleteCommand -> IndexList : get(index)
-activate IndexList
 
-IndexList --> DeleteCommand : taskToDelete
-deactivate IndexList
 
 DeleteCommand -> Model : deleteTask(taskToDelete)
 activate Model

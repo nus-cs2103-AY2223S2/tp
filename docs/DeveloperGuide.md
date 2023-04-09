@@ -169,15 +169,23 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
+<!--- insert main class diagram here --->
 
 The `Model` component,
-
-* stores the task book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* * stores the generated plan, i.e. all `DailyPlan` objects (which are contained within a `MonthlyPlan` object)
+* stores `TaskBook`, `Planner` and `UserPref` object.
+* `TaskBook` stores the data of all `Task` objects.
+* `Planner` stores the data of all generated `DailyPlan` objects.
+* `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects. 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<!--- insert TaskBook class diagram here --->
+The `TaskBook` component,
+* stores `Task` are contained in a `UniqueTaskList` object.
+* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+<!--- insert Planner class diagram here --->
+The `Planner` component,
+* stores the generated plan, i.e. all `DailyPlan` objects
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Task` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
 
@@ -588,68 +596,82 @@ However, if the need arises (as specified below), the algorithm allows the effor
 The algorithm allocates tasks as such:
 
 Step 1: Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
+<br>
 <details>
-
 <summary>More about scheduling for Events</summary>
-
-After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
-
+After getting a list of Events from all tasks within TaskBook, a scheduling algorithm for events is run. The following diagram shows its behaviour.
+<br>
 <img src="images/EventAllocation.png">
-
+<br>
 <b>Some Rules</b>
-* Events are allocated to the date they are scheduled to happen, regardless of time.
-* Effort for event is added every day the event is scheduled to happen
+<ul>
+  <li>Events are allocated to the date they are scheduled to happen, regardless of time.</li>
+  <li>Effort for event is added every day the event is scheduled.</li>
+</ul>
 <br>
 <b>Allocation Example</b>
-* Event A is allocated every day from 5 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.
-* Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).
-* Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).
-* No event is scheduled to occur on 3 Jun 2023. It is left empty
+<ul>
+  <li>Event A is allocated every day from 30 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.</li>
+  <li>Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).</li>
+  <li>Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).</li>
+  <li>No event is scheduled to occur on 3 Jun 2023. It is left empty.</li>
+</ul>
+<br>
 </details>
 <br>
 
 Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 <details>
-
+<br>
 <summary>More about scheduling for Deadlines</summary>
-
-After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
-
+<br>
+After getting a list of Deadlines from all tasks within Task Book, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
+<br>
 <img src="images/DeadlineAllocation.png">
-
+<br>
 <b>Some Rules</b>
-* Overdue deadlines still in the TaskBook is not considered in the algorithm
-* Deadlines are allocated to one of the days before the deadline
-* If there are multiple free days, Deadline will be added to the earliest free day
-* If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort)
-
+<ul>
+  <li>Overdue deadlines still in the TaskBook is not considered in the algorithm.</li>
+  <li>Deadlines are allocated to one of the days before the deadline.</li>
+  <li>If there are multiple free days, Deadline will be added to the earliest free day.</li>
+  <li>If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort).</li>
+</ul>
+<br>
 <b>Allocation Example</b>
-* Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023. Thus, it is allocated to 30 May 2023 even though this means that the workload for 30 May is greater than the desired workload.
-* Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.
-* Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
+<ul>
+  <li>Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023.</li>
+  <li>Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.</li>
+  <li>Deadline F is allocated to 30 May 2023 as adding task to any date before the deadline will result in exceeding the desired workload, and 30 May has the lowest workload among all possible dates (before allocation, 20 effort on 30 May vs 25 effort on 31 May).</li>
+</ul>
+<br>
 </details>
 <br>
 
 Step 3: Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 
 <details>
-
+<br>
 <summary>More about scheduling for Simple Tasks</summary>
-
-After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
-
+<br>
+After getting a list of Simple Tasks from all tasks within TaskBook, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
+<br>
 <img src="images/SimpleTaskAllocation.png">
-
+<br>
 <b>Some Rules</b>
-* SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
-* If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.
-* SimpleTasks are allocated in descending order of effort.
-* SimpleTasks are assumed to be non-time-sensitive
-
+<ul>
+  <li>SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.</li>
+  <li>If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.</li>
+  <li>SimpleTasks are allocated in descending order of effort.</li>
+  <li>SimpleTasks are assumed to be non-time-sensitive</li>
+</ul>
+<br>
 <b>Allocation Example</b>
-* Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.
-* Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
-* Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
+<ul>
+  <li>Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.</li>
+  <li>Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.</li>
+  <li>Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.</li>
+</ul>
+<br>
 </details>
 <br>
 
@@ -664,6 +686,8 @@ Step 2. The user executes `schedule D/TODAY'S DATE` command to sort the list.
 Step 3. The sequence diagram below shows how the sort operation works:
 
 ![ScheduleCommandNoPlanSequenceDiagram](images/ScheduleCommandNoPlanSequenceDiagram.png)
+
+<br>
 
 Given below is an example usage scenario for generating and viewing a plan and how the schedule command behaves at each step:
 
@@ -681,7 +705,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![ScheduleCommandActivityDiagram](images/ScheduleCommandActivityDiagram.png)
 
-#### 3.11.3 Design Consideration
+<br>
+
+#### 3.11.3 Storing a Plan
+
+#### 3.11.4 Design Consideration
 
 #### Option 1: Combine Schedule and Plan into a Single Command
 Allow users to generate a new plan by adding a parameter to the schedule command.
@@ -893,14 +921,37 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message. 
+   2. Test case: `delete 1`<br>
+      Expected: First task is deleted from the list. Details of the deleted task shown in the result display. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. Command box remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+2. Deleting multiple tasks while all tasks are being shown
+
+   1. Prerequisites: Add 2 tasks into Clock-Work. List all tasks using the `list` command. Multiple tasks in the list.
+
+   2. Test case: `delete 2 1`<br>
+      Expected: No task is deleted. Error details shown in the status message. Command box remains the same.
+
+   3. Test case: `delete 1 2`<br>
+      Expected: First 2 tasks are deleted from the list. Details of the deleted task is shown in the result display.
+
+### Displaying statistics
+1. Displaying statistics with all shown data
+
+   1. Prerequisites: Add 3 tasks with multiple tags. Some tags added should have the same name.
+   2. Test case: `stats`<br>
+      Expected: A list of tags will be displayed in descending order, along with the number of tasks with the specified tag.
+
+2. Displaying statistics when there are no shown data
+   1. Prerequisites: Enter `clear` so that there are no shown data.
+   2. Test case: `stats`<br>
+      Expected: No tag is displayed.
+
 
 ### Sorting a task
 
@@ -939,6 +990,25 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `alert 48`. <br>
    Expected: The task should already appear in the alert window.
 
+
+### Generating and Displaying a schedule
+1. Generate a new schedule and display tasks assigned
+
+  1. Prerequisites:
+     1. Clear all tasks from Clock-Work with `clear`.
+     2. Add a `Deadline` task which is due 1 day from today. For example, if today is 18 July 2023, add a `Deadline` using the command `add n/deadline D/2023-07-19`.
+     3. Add an `Event` task that starts today and ends tomorrow. For example, if today is 18 July 2023, add an `Event` using `add n/event F/2023-07-18 1000 T/2023-07-19 1300`
+     4. Add a `SimpleTask` task with effort level 6. This can be done by running the command `add n/simpletask E/6`
+
+  2. Test case: `schedule D/2023-07-18 E/30`<br>
+     Expected: `Deadline` task and `Event` task is displayed.
+  3. Test case: `schedule D/2023-07-19`<br>
+     Expected: `Event` task and `SimpleTask` task is displayed.
+  4. Test case: `schedule D/2023-07-20`<br>
+     Expected: No tasks are displayed.
+  5. Test case: `schedule D/2023-07-17`<br>
+     Expected: Task list panel remains the same. Error details shown in the result display. Command box remains the same.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -960,6 +1030,7 @@ testers are expected to do more *exploratory* testing.
 
 - As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168), 
 long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` causes the user to not be able to see the parameter.
+
 #### Possible Solution
 - One **possible** fix would be for us to limit the length of parameters to a reasonable length (we considered 50 chars)
 - However, this does not fully solve the issue as tags numerous.
@@ -1076,18 +1147,31 @@ of the selected parent task sorted. The sorting will sort subsections in the ord
 
 ### 7.6 Better error messages
 
-- Currently, there are still some error messages that are not specific enough. For example, for the edit command, if the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:
+- Currently, there are still some error messages that are not specific enough. For some commands, generic message about command usage is shown, instead of specific reason about why the command is rejected. For example, for the edit command, when the user enters an index that is out of bounds, i.e. the index is negative or the index is larger than the maximum index currently displayed in the list, the error message will be:<br>
   ![text-wrap0](images/index-error.png)
-However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
-- Moreover, there is another minor bug about index inputs when the user enters the index `0` in all sorts of commands, such as `delete`, `edit`, `subsection`, and `remove-subsection`. The error message will show each command's expected usage, such as the one shown in the example above. However, a more
-specific usage will still be `The index provided is invalid`, which will be the standard behaviour for index errors in the future.
-- Perhaps we can add an `IndexOutOfBoundsException` for all the above errors, such that when the catcher catches the exception, error message will always be `The index provided is invalid`.
+<br>
+  However, a more specific error would be `The index provided is invalid`. In the future, the error message will be changed to `The index provided is invalid` for index errors.
+<br>
+- More bugs arising from the same issue of weak parameter handling are as follows:
 
+  1. Invalid index inputs from user, such as `0`, in commands such as `delete`, `edit`, `subsection`, and `remove-subsection`. 
+  Observed behavior: The error message shows each command's expected usage, such as the one shown in the example above. 
+  Preferred behavior: Explain cause of command rejection, such as with an error message `The index provided is invalid`.
+  Proposed modification: Create an `IndexOutOfBoundsException` to handle invalid indexes.
 
+  2. Invalid date inputs from user for `schedule` command.
+  Observed behavior: The same error message (below) is displayed for all invalid dates entered (date entered is outside of planner range - could be before or after).
+  Preferred behavior: Inform the user about why the date entered is invalid. 
+     1. For dates which are invalid because the previous plan was generated too long ago but would be valid if a new plan is generated, a message like `Please regenerate your plans to view your schedule.` could be displayed.
+     2. For dates entered which are before previous plan's generation date, a message like `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}` could be displayed.
+     3. For dates entered which are too far ahead of any possible plan dates, a message like `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}` could be displayed.
+  Proposed modification: Whenever `schedule` is run, retrieve the generation date of the current plan from the planner.json file. If the date is deemed to be invalid, check the input date against the retrieved generation date. 
+  If input date is within 30 days from current date but outside of planner range, return an error message prompting user to regenerate plans (e.g. `Please regenerate your plans to view your schedule.`).
+  If input date is before generation date, return an error message informing user that the date is an invalid date and the previous generation date (e.g. `Date entered must not be before the generation date of plans. The last time schedule was generated is {date}`).
+  If input date is too far in the future, return an error message informing user that the date is an invalid date as it is too far into the future. (e.g. `Date input exceeds schedule range. Input a date within 30 days of the last generation date of plans. The last time schedule was generated is {date}`)
 
-
-
-
-
-
-
+### 7.7 Empty planner file error handling
+- Currently, a new and empty `planner.json` file is created on starting the app for the first time, or when users modify the file such that it becomes invalid, or when users delete the `planner.json` file. However, data is not automatically populated and the user will need to generate a new plan to retrieve plans.
+- Issue: When users run a `schedule D/VALID_DATE` command on an empty `planner.json` file, Task Book acknowledges the command as valid and does not display any tasks since the data file is empty.
+  Expected behavior: Inform users about empty data file and prompt users to generate a new plan.
+- Proposed modification: Generate a new `planner.json` when the schedule command is run with an `E/EFFORT` tag and file is invalid or not found. In other situations, when `schedule D/VALID_DATE` encounters corrupted data or is unable to find the `planner.json` file, prompt users to generate another plan with `schedule D/VALID_DATE E/EFFORT`, which will then handle the problematic file.

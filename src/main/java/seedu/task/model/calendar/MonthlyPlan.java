@@ -66,7 +66,7 @@ public class MonthlyPlan {
             if (hasTime(daysFromToday)) {
                 dailyPlans[daysFromToday].addTask(d);
             } else {
-                int relativelyFreeDay = findMinWorkloadDate();
+                int relativelyFreeDay = findMinWorkloadDateBeforeDeadline(daysDueIn);
                 dailyPlans[relativelyFreeDay].addTask(d);
             }
         }
@@ -126,6 +126,23 @@ public class MonthlyPlan {
             }
         }
         return DATE_NOT_FOUND;
+    }
+
+    /**
+     * Helper function to find date with the least work (in terms of effort) before the specified deadline.
+     * @return number of days relative to the date command is run
+     */
+    private int findMinWorkloadDateBeforeDeadline(long days) {
+        long min = Long.MAX_VALUE;
+        int date = 0;
+        for (int i = 0; i < days; i++) {
+            long work = dailyPlans[i].getCurrentWorkload();
+            if (work < min) {
+                date = i;
+                min = work;
+            }
+        }
+        return date;
     }
 
     /**
