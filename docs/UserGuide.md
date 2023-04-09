@@ -196,8 +196,6 @@ The following picture of the main window shows the three components, numbered ac
 HMHero also has the Help Window. It is not part of the main GUI and is only
 shown after a [Help Command](#631-receive-help-during-usage-help) is run.
 
-<div style="page-break-after: always;"></div>
-
 The Help Window looks like the following:
 
 ![help_window.png](images%2Fhelp_window.png)
@@ -205,6 +203,7 @@ The Help Window looks like the following:
 [Back to Table of Contents](#table-of-contents)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ### Key Definitions
 
