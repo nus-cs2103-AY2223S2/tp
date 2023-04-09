@@ -40,7 +40,7 @@ I implemented and integrated the navigation feature. The navigation feature incl
 
 - A Navigation component which tracks the current working context and enforces navigation between the layers in the module-lecture-video hierarchy.
 - Navigation commands `nav`, `navb` that allow the user to navigate relatively or directly to a target.
-- A command preprocessing system `NavigatorInjector` that injects the necessary arguments `/mod` `/lec` based on the current working command into the user's commands before the parsing stage. Transforming input like `add` into context-specific commands like `add /mod CS2040S /lec Week 1`.
+- A command preprocessing system `NavigatorInjector` that injects the necessary arguments `/mod` `/lec` based on the current working context into the user's commands before the parsing stage. Transforming input like `add` into context-specific commands like `add /mod CS2040S /lec Week 1`.
 - UI Indicator for current working context.
   <img src="../images/RootContext.png" height="20" /> <img src="../images/ModContext.png" height="20" /> <img src="../images/LectureContext.png" height="20" />
 
