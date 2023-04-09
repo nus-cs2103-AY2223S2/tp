@@ -23,11 +23,17 @@ public class JsonTaskListStorage implements TaskListStorage {
         this.filePath = filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getTaskListFilePath() {
         return filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TaskList readTaskList() throws DataConversionException, IOException {
         return JsonUtil
@@ -35,6 +41,9 @@ public class JsonTaskListStorage implements TaskListStorage {
                 .toModelType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void saveTaskList(TaskList taskList) throws IOException {
         JsonUtil.saveJsonFile(new JsonAdaptedTaskList(taskList), filePath);

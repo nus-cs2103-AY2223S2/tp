@@ -26,6 +26,9 @@ public class SortCommand extends UiCommand {
         this.request = request;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         Comparator<Task> comparator = null;

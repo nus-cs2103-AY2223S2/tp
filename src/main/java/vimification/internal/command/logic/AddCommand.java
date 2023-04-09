@@ -28,6 +28,9 @@ public class AddCommand extends UndoableLogicCommand {
         this.addedTask = addedTask;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         taskList.add(addedTask);
@@ -35,6 +38,9 @@ public class AddCommand extends UndoableLogicCommand {
         return new CommandResult(SUCCESS_MESSAGE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult undo(LogicTaskList taskList) {
         taskList.removeLast();

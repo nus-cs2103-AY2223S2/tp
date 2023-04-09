@@ -16,6 +16,9 @@ public class QuitCommand extends UiCommand {
      */
     public QuitCommand() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         Platform.exit();

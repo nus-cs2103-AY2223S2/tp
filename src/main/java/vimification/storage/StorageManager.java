@@ -29,46 +29,73 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserPrefs readUserPrefs() throws IOException {
         return userPrefsStorage.readUserPrefs();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getTaskListFilePath() {
         return taskListStorage.getTaskListFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TaskList readTaskList() throws DataConversionException, IOException {
         return taskListStorage.readTaskList();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void saveTaskList(TaskList taskList) throws IOException {
         taskListStorage.saveTaskList(taskList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getMacroMapFilePath() {
         return macroMapStorage.getMacroMapFilePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MacroMap readMacroMap() throws IOException {
         return macroMapStorage.readMacroMap();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void saveMacroMap(MacroMap macroMap) throws IOException {
         macroMapStorage.saveMacroMap(macroMap);
