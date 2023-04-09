@@ -7,6 +7,15 @@ title: "Tutorial: Tracing code"
 >
 > —  Robert C. Martin Clean Code: A Handbook of Agile Software Craftsmanship
 
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution:**<br>
+* In order to avoid potential confusion, you many find some classes' name are different from the commit link provided.
+* This is because you will be doing this tutorial based on `Mathutoring` application which is based on pre-existing codebase `AB3`.
+* Some examples are and are not limited to: `Person` to `Student`, `AddressBook` to `Mathutoring`.
+* Please change your codes accordingly when you are going through this tutorial.
+</div>
+
 When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution path through the code base. One easy way to trace an execution path is to use a debugger to step through the code. In this tutorial, you will be using the IntelliJ IDEA’s debugger to trace the execution path of a specific user command.
 
 * Table of Contents

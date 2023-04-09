@@ -18,5 +18,7 @@ Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> Address
+Student *--> UniqueScoreList
+Student *--> UniqueTaskList
 
 @enduml
