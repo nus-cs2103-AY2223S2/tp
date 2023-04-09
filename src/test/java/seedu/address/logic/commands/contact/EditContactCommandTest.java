@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_META;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.model.application.InternshipStatus.ACCEPTED;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
@@ -30,6 +31,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
@@ -50,7 +52,8 @@ public class EditContactCommandTest {
         Contact editedContact = new ContactBuilder().build();
         EditContactCommand.EditContactDescriptor descriptor = new EditContactDescriptorBuilder(editedContact).build();
         InternshipApplication applicationWithEditedContact = new InternshipBuilder().withCompanyName("Meta")
-                .withJobTitle("Software Tester").withContact(editedContact).build();
+                .withJobTitle("Software Tester").withInterviewDate(new InterviewDate("2023-04-01 08:00 PM"))
+                .withStatus(ACCEPTED).withContact(editedContact).build();
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST_APPLICATION, descriptor);
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS,

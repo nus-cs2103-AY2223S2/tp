@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BANK_OF_A
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.model.application.InternshipStatus.DECLINED;
 import static seedu.address.testutil.TypicalContacts.BANK_OF_AMERICA_CONTACT;
 import static seedu.address.testutil.TypicalContacts.META_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
@@ -27,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
@@ -46,10 +48,14 @@ public class AddContactCommandTest {
         Contact contact = new ContactBuilder().build();
         InternshipApplication initialApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER).build();
+                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
+                .withStatus(DECLINED)
+                .withInterviewDate(new InterviewDate("2023-04-09 12:00 PM")).build();
         InternshipApplication contactAddedApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
                 .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
+                .withStatus(DECLINED)
+                .withInterviewDate(new InterviewDate("2023-04-09 12:00 PM"))
                 .withContact(contact).build();
         AddContactCommand addContactCommand = new AddContactCommand(INDEX_SECOND_APPLICATION, contact);
 

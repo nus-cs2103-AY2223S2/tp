@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_SOFTW
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.model.application.InternshipStatus.ACCEPTED;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
@@ -21,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.testutil.InternshipBuilder;
 
 /**
@@ -40,7 +42,9 @@ public class DeleteContactCommandTest {
 
         InternshipApplication contactDeletedApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_META)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER).build();
+                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER)
+                .withInterviewDate(new InterviewDate("2023-04-01 08:00 PM"))
+                .withStatus(ACCEPTED).build();
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS,
                 applicationToDeleteContact);
 
@@ -69,7 +73,9 @@ public class DeleteContactCommandTest {
 
         InternshipApplication contactDeletedApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_META)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER).build();
+                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER)
+                .withInterviewDate(new InterviewDate("2023-04-01 08:00 PM"))
+                .withStatus(ACCEPTED).build();
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS,
                 applicationToDeleteContact);

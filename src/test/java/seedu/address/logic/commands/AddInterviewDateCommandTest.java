@@ -2,12 +2,18 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_BANK_OF_AMERICA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_CARL_KURZ;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_SOFTWARE_ENGINEER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_WEB_DEVELOPER;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.model.application.InternshipStatus.DECLINED;
+import static seedu.address.model.application.InternshipStatus.PENDING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SEVENTH_APPLICATION;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
 import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
@@ -32,15 +38,17 @@ public class AddInterviewDateCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        InterviewDate interviewDate = new InterviewDateBuilder().build();
+        InterviewDate interviewDate = new InterviewDate("2023-04-09 12:00 PM");
         InternshipApplication initialApplication = new InternshipBuilder()
-                .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER).build();
+                .withCompanyName(VALID_COMPANY_NAME_CARL_KURZ)
+                .withJobTitle(VALID_JOB_TITLE_WEB_DEVELOPER)
+                .withStatus(PENDING).build();
         InternshipApplication interviewDateAddedApplication = new InternshipBuilder()
-                .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
-                .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
+                .withCompanyName(VALID_COMPANY_NAME_CARL_KURZ)
+                .withJobTitle(VALID_JOB_TITLE_WEB_DEVELOPER)
+                .withStatus(PENDING)
                 .withInterviewDate(interviewDate).build();
-        AddInterviewDateCommand addInterviewDateCommand = new AddInterviewDateCommand(INDEX_SECOND_APPLICATION,
+        AddInterviewDateCommand addInterviewDateCommand = new AddInterviewDateCommand(INDEX_SEVENTH_APPLICATION,
                 interviewDate);
 
         String expectedMessage = String.format(AddInterviewDateCommand.MESSAGE_ADD_INTERVIEW_DATE_SUCCESS,
@@ -48,7 +56,7 @@ public class AddInterviewDateCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(1), interviewDateAddedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(6), interviewDateAddedApplication);
 
         assertCommandSuccess(addInterviewDateCommand, model, expectedMessage, expectedModel);
     }

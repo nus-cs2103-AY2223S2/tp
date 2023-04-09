@@ -25,6 +25,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.testutil.InternshipBuilder;
 
 public class EditStatusCommandTest {
@@ -42,7 +43,8 @@ public class EditStatusCommandTest {
         InternshipApplication updatedApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
                 .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
-                .withStatus(InternshipStatus.ACCEPTED).build();
+                .withStatus(InternshipStatus.ACCEPTED)
+                .withInterviewDate(new InterviewDate("2023-04-09 12:00 PM")).build();
 
         String expectedMessage = String.format(EditStatusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, updatedApplication);
 
@@ -76,7 +78,8 @@ public class EditStatusCommandTest {
         InternshipApplication updatedApplication = new InternshipBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BANK_OF_AMERICA)
                 .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
-                .withStatus(InternshipStatus.ACCEPTED).build();
+                .withStatus(InternshipStatus.ACCEPTED)
+                .withInterviewDate(new InterviewDate("2023-04-09 12:00 PM")).build();
 
         String expectedMessage = String.format(EditStatusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, updatedApplication);
 

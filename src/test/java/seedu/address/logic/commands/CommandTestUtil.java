@@ -46,11 +46,13 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_COMPANY_A = "33333333";
     public static final String VALID_PHONE_COMPANY_B = "55555555";
     public static final String VALID_COMPANY_NAME_BANK_OF_AMERICA = "Bank of America";
+    public static final String VALID_COMPANY_NAME_CARL_KURZ = "Carl Kurz";
     public static final String VALID_COMPANY_NAME_DEUTSCHE_BANK = "Deutsche Bank";
     public static final String VALID_COMPANY_NAME_META = "Meta";
     public static final String VALID_JOB_TITLE_SOFTWARE_ENGINEER = "Software Engineer";
     public static final String VALID_JOB_TITLE_SOFTWARE_TESTER = "Software Tester";
     public static final String VALID_JOB_TITLE_CLOUD_ENGINEER = "Cloud Engineer";
+    public static final String VALID_JOB_TITLE_WEB_DEVELOPER = "Web Developer";
     public static final String VALID_COMPANY_NAME_AMAZON = "Amazon";
     public static final String VALID_JOB_TITLE_META = "Software Tester";
     public static final String VALID_PHONE_BANK_OF_AMERICA = "33333333";
