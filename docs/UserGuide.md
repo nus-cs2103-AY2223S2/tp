@@ -10,6 +10,30 @@ With FAid, financial advisors will no longer have to worry about missing a meeti
 ## Table of Contents
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## About this User Guide
+
+### How to use this guide?
+
+If you are new to FAid, don't worry! This guide will walk you through the [basic setup](#quick-start) necessary to get you ready to use FAid.
+
+Additionally, this guide provides you with in-depth information on the functionality FAid provides, which will turn you into a FAid pro in the [features](#features) section.
+
+For experienced users of FAid, this guide also provides a [command summary](#command-summary) for your reference, so you can quickly look up all of FAid's core commands at one glance.
+
+### Reading the document
+
+This guide utilizes symbols and syntax to highlight certain points made throughout the guide and enhance your overall reading experience. The section below provides meaning of the symbols used for your reference.
+
+### General symbols used
+
+This table describes the main symbols used in this user guide and their meanings.
+
+Symbol | Meaning
+--------|------------------
+:exclamation: | Indicates warnings (take caution when you see this symbol)
+:grey_question: | Frequently asked questions
+:information_source: | Important information to take note
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -146,18 +170,18 @@ Finds clients whose names is any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `lim` will match `Lim`
+* The order of the keywords does not matter. e.g. `Jun Jie` will match `Jie Jun`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
+* Only full words will be matched e.g. `Ro` will not match `Rohit`
+* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Lim Qi` will return `Lim Jun Jie`
+  , `Tan Jia Qi`
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find lim jun jie ` returns `Lim Jun Jie`
+* `find Lim Qi` returns `Lim Jun Jie`, `Tan Jia Qi`<br>
+  ![result for 'find Lim Qi'](images/findPerson.png)
 
 ### Deleting a client : `delete`
 
@@ -170,7 +194,7 @@ Format: `delete INDEX`
 Examples:
 
 * `listPerson` followed by `delete 2` deletes the 2nd client in FAid.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `find Fariq` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
@@ -184,7 +208,6 @@ Required Information:
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
-* `TAGS`: Optional labels to put for the meeting
 
 Example:
 
@@ -194,6 +217,7 @@ Example:
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
 * Meeting must not conflict in timing with other meetings scheduled for the day.
+* Meetings must not be scheduled before the current date and time.
 
 * ![result for meetingAdd 3 md/Meeting with Fariq ms/10-06-2023 12:30 me/10-06-2023 13:30](images/meetingAdd.png)
 
@@ -220,7 +244,7 @@ Note:
 * Doing a meetingFind `CLIENT_INDEX` is necessary to get the meeting index required. Using the meeting index in the initially displayed page or the page after listMeeting may result in an incorrect meeting update.
 
 
-![result for meetingRemove 3 1](images/RemoveMeeting.png)
+![result for meetingRemove 3 1](images/Removemeeting.png)
 
 ### Updating a meeting : `meetingUpdate`
 
