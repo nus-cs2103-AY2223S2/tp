@@ -474,6 +474,9 @@ EduMate is a command-driven application, which means that its various functional
 * [Prefixes](#prefixes) must be preceded by a space.<br>
   e.g. `sort m/an/Tan` is not an accepted command for prefixes `m/` and `n/`.
 
+
+* Commands and prefixes are **CASE-SENSITIVE**.
+
 </div>
 
 <div markdown="block" class="alert alert-success">
