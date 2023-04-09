@@ -153,6 +153,7 @@ Item | Description
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Please refer to the commands for a full explanation.
 
 | Action       | Format, Examples                                                                                                                                                                                                       |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -493,7 +494,7 @@ Format: `import [FILENAME]`
 
 * The dengue case list imported must be valid. Some criteria are as follows:
     * No duplicates
-    * All data fields must be [valid](#Valid-data-field-inputs)
+    * All data fields must be [valid](#valid-data-field-inputs)
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
 
