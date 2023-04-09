@@ -43,6 +43,7 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
     - [4.1.3 Delete/deletetask feature](#413-deletedeletetask-feature)
     - [4.1.4 Assign Task feature](#414-assign-task-feature)
     - [4.1.5 Mark/Unmark Task feature](#415-markunmark-task-feature)
+    - [4.1.6 Review feature](#416-review-feature)
   - [4.2 Future features](#42-proposed-implementation-of-future-features)
 - [5. Other guides](#5-documentation-logging-testing-configuration-dev-ops)
 - [6. Appendix: Requirements](#6-appendix-requirements)
@@ -213,9 +214,7 @@ an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own
 without depending on other components)
 
-**Note**:
-- Tasks are handled in a similar way in the `TaskBookModel` component.
-- It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
+:information_source: **Note:**Tasks are handled in a similar way in the `TaskBookModel` component. It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Role` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Role` object per unique role, instead of each `Person` needing their own `Role` objects.<br>
 
@@ -288,7 +287,7 @@ Step 5. `LogicManager` then calls `execute` in `ToDoCommand`, which carries out 
 
 <i>Similarly, the above implementation applies to `deadline` and `event` tasks but with different arguments.</i>
 
-**Note:** The command can only work if a task with the same description is not already present in Pied Piper. Additionally, the above implmentation comes with the `edittask` feature, which allows the user to edit the details of a task in the task book.
+:information_source: **Note:**The command can only work if a task with the same description is not already present in Pied Piper. Additionally, the above implmentation comes with the `edittask` feature, which allows the user to edit the details of a task in the task book.
 
 The following sequence diagram shows how the addition operation works:
 
@@ -318,7 +317,7 @@ Step 4. A `AddCommandParser` is created, which generates a new `toAdd:Person` an
 
 Step 5. `LogicManager` then calls `execute` in `AddCommand`, which carries out the addition if the person details aer valid. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the addition has taken place.
 
-**Note:** The command can only work if a task with the same details is not already present in Pied Piper. Additionally, the above implmentation comes with the `edit` feature, which allows the user to edit the details of a person in the address book.
+:information_source: **Note:**The command can only work if a task with the same details is not already present in Pied Piper. Additionally, the above implmentation comes with the `edit` feature, which allows the user to edit the details of a person in the address book.
 
 The following sequence diagram shows how the addition operation works:
 
@@ -348,9 +347,8 @@ Step 4. A `DeleteTaskCommandParser` is created, which generated a new `DeleteTas
 
 Step 5. `LogicManager` then calls `execute` in `DeleteTaskCommand`, which carries out the deletion if the task exists. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the deletion has taken place.
 
-**Note:** The command can only work if there is at least 1 person or task present in Pied Piper, and the specified index must not be greater than the index of the last item on the list.
-
-**Note:** In case of deleting a person, all the tasks assigned to that particular person must be handled (unassigned). The same sequence as above applies to the deletion of a person from address book, but the following classes are different:
+:information_source: **Note:**The command can only work if there is at least 1 person or task present in Pied Piper, and the specified index must not be greater than the index of the last item on the list.
+In case of deleting a person, all the tasks assigned to that particular person must be handled (unassigned). The same sequence as above applies to the deletion of a person from address book, but the following classes are different:
 1. `DeleteTaskCommandParser` &rarr; `DeleteCommandParser`
 2. `DeleteTaskCommand` &rarr; `DeleteCommand`
 
@@ -387,7 +385,7 @@ This method creates a new `Task` object with the same description as the task to
 This new instance of `Task` is then replaced with the existing instance in the `UniqueTaskList` in `TaskBook`. 
 It then returns a `CommandResult` to be displayed to the user to acknowledge whether the assignment has taken place.
 
-**Note:** Multiple tasks can be assigned to a single person.
+:information_source: **Note:**Multiple tasks can be assigned to a single person. 
 The command can only work if the person to be assigned has been given a role. 
 
 
@@ -428,9 +426,8 @@ This method creates a new `Task` object with the same description as the task to
 This new instance of `Task` is then replaced with the existing instance in the `UniqueTaskList` in `TaskBook`. 
 It then returns a `CommandResult` to be displayed to the user to acknowledge whether the task has been marked as complete.
 
-**Note:** Any task cannot be marked if it not assigned to a person. Additionally, the user can mark the task again to give a different score. The score will be updated to the new score.
-
-**Note:** The implemention of the unmark function is similar to the mark function, except that the status of the task is marked as incomplete.
+:information_source: **Note:**Any task cannot be marked if it not assigned to a person. Additionally, the user can mark the task again to give a different score. The score will be updated to the new score.
+The implemention of the unmark function is similar to the mark function, except that the status of the task is marked as incomplete.
 
 
 The following sequence diagram shows how the mark/unmark operation works:
@@ -442,7 +439,7 @@ The following sequence diagram shows how the mark/unmark operation works:
 [↑ Return to table of contents](#table-of-contents)
 
 
-### 4.1.6 Review Task feature
+### 4.1.6 Review feature
 
 The implementation of the mark function is facilitated by `LogicManager`. It takes user input as 1 arguments, 
 the command word being `review`.
@@ -468,7 +465,7 @@ It then returns a `CommandResult` to be displayed to the user to acknowledge whe
 
 The following sequence diagram shows how the review operation works:
 
-<img src="images/DeleteCommandUML.png"/>
+<img src="images/ReviewSequenceDiagram.png"/>
 
 [↑ Return to start of section](#4-implementation)
 
