@@ -17,17 +17,23 @@ ExecutivePro (EP) is a desktop app for Human Resource managers to manage their e
 
 
 **Contributions to the UG:**
-* Edited instructions for `delete` command such that it follows `EmployeeId`
+* Edited instructions for most commands.
 * Edited information in tables of field formats, command summary and `batchadd`
+* Changed the introduction and added details for documentation bugs.
+* Added a new section on how to use user guide.
 
 **Contributions to the DG:**
 * Edited information for `delete command`
-* Created Style.puml such that the diagrams would have standardized colors
+* Created style.puml such that the diagrams would have standardized colors.
+* Updated all the diagrams to remove any instances of AddressBook.
+* Implemented Planned Enhancements to target feature flaws.
+* Implemented more user stories.
+* Implemented more use cases.
 
 **Contributions to team-based tasks:**
-* Participated in team discussions
-* Fixed bugs received from PE-D
-* Edited UG tables based on changes in command format
+* Actively participated in team discussions.
+* Fixed bugs received from PE-D.
+* Edited UG tables based on changes in command format.
 
 **Review/Mentoring Contributions:**
 * Pull Requests reviewed and merged: [#132](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/132),
