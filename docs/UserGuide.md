@@ -119,7 +119,7 @@ for your reference. </div>
 
 
 <p align="center">
-  <img height="400" width="400" src="images/Ui.png">
+  <img height="500" width="500" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
@@ -135,7 +135,7 @@ In case you are unsure of what you see in front of you now, we have come up with
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 <p align="center">
-  <img height="300" width="600" src="images/User_Interface.png">
+  <img height="500" width="700" src="images/User_Interface.png">
 </p>
 
 <div align="center">Figure 2: Annotations about the user interface</div>
@@ -275,7 +275,7 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img height="400" width="335" src="images/delete.png">
+   <img height="400" width="300" src="images/delete.png">
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
@@ -392,7 +392,7 @@ to use the commands.
 * This is a straight-forward command, and all you have to type is `help`
 
 <p align="center">
-   <img src="images/helpMessage.png">
+   <img height="450" width="400" src="images/helpMessage.png">
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
