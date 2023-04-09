@@ -251,6 +251,8 @@ Examples
 * `markAtd 1 w/1` (marks attendance of student with index 1 for week 1)
 * `markAtd 2 w/1` (marks attendance of student with index 2 for week 1)
 
+<img src="images/markAtd.png">
+
 #### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
 Format: `unmarkAtd STUDENT_INDEX w/WEEK_NUMBER`
@@ -263,6 +265,8 @@ the successful unmarking message being displayed `Attendance unmarked successful
 Examples
 * `unmarkAtd 1 w/1` (unmarks attendance of student with index 1 for week 1)
 * `unmarkAtd 2 w/1` (unmarks attendance of student with index 2 for week 1)
+
+<img src="images/unmarkAtd.png">
 
 #### List Attendance: `listAtd`
 Lists the attendance of a student from week 1 to week 12<br>
@@ -290,6 +294,8 @@ Example
   `Week 10: []` <br>
   `Week 11: []` <br>
   `Week 12: []` <br>
+
+<img src="images/listAtd.png">
 
 The above example shows that the student is present for week 1,2,3 and absent for the rest of the weeks
 
@@ -326,6 +332,8 @@ Examples
 * `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
 * `insertPP 2 w/1 pp/300` (inserts participation points of 200 for week 1 of student with index 2)
 
+<img src="images/insetPP.png">
+
 #### List participation points: `listPP`
 Lists the participation points of a student from week 1 to week 12<br>
 Format: `listPP STUDENT_INDEX`
@@ -356,6 +364,7 @@ Example
 The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3 <br>
 And -1 for the rest of the weeks (attendance is not marked)
 
+<img src="images/listPP.png">
 
 ### Assignments & Submissions
 
