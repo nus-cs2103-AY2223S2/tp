@@ -222,20 +222,21 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Pros: Easy to implement. No need to worry about multiple people with same name, since everyone has a unique nric number.
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
+    
+### Displaying detailed person view
 
 ### Appointment feature
 
-* `Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
-  * Patient's `Nric` of the `Patient` scheduled for an appointment
-  * `Booking` consisting the date of the appointment
-  * Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
-
-The sequence diagram below shows how the AppointmentCommand is parsed:
-{add a sequence diagram}
+`Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
+* Patient's `Nric` of the `Patient` scheduled for an appointment
+* `Booking` consisting the date of the appointment
+* Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
+  
+# Adding an appointment
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
 
-Scenario: Mary Smith is an outpatient (already registered in the system) due for her medical check-up with Dr. Paul West (already registered in the system) in 2 weeks, on 01-02-2023 10:00. This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.
+Scenario: Mary Smith is an outpatient (already registered in the system) due for her medical check-up with Dr. Paul West (already registered in the system) in 2 weeks, on 01-02-2023 10:00. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
 Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `appointment ic/S1234567X d/01-02-2023 10:00 dric/S7654321R` command to add an appointment for Mary Smith at the specified date, with Dr Paul West. This adds an `Appointment` to Mary, an`Appointment` to Dr. Paul, and an `Appointment` to the `HospitalAppointmentList`. The successful execution of the command confirms that both Mary Smith does not have any prior booking on this date and that Dr. Paul West is not scheduled to meet any other patients on the same date.
 
@@ -244,13 +245,28 @@ Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` w
 The sequence diagram below shows the AppointmentCommand works:
 {add a sequence diagram}
 
-### \[Proposed\] Deleting an appointment
+* When the user inputs `appointment ic/[NRIC] d/[DATE] dric/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the patient's `Nric`, `Booking`, and doctor's `Nric` inputs through `ParserUtil`
+  * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates an `AppointmentCommand` with the new `Appointment` created. The `LogicManager` then executes the `AppointmentCommand`, upon which the `Appointment` is added to the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#bookAppointment()`. 
+  * `CommandException` is thrown
+    * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
+    * if `Appointment` already exists in `Model`
+* Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
 
-The delete appointment mechanism is facilitated by `MediConnect`.
+# Deleting an appointment
+
+The sequence diagram below shows how the `DeleteAppointmentCommand` is parsed:
+{add a sequence diagram}
 
 Given below is an example usage scenario and how the delete appointment mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Scenario: Mary Smith already has a medical check-up scheduled with Dr. Paul West (already registered in the system) on 01-02-2023 10:00. However, she realizes that she cannot make it and wishes to cancel the appointment. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
+
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X` to view all her existing appointment bookings. 
+
+When view INDEX is inputted, the UI calls the LogicManager which then calls the AddressBookParser to parse the input. This then creates an instance of the ViewCommandParser to parse the INDEX with static ParserUtil#parseIndex() function. If the INDEX format is invalid, a ParseException will be thrown.
+
+The ViewCommandParser then creates the ViewCommand and returns it. The LogicManager then executes the ViewCommand, which updates the ModelManager#currentlyViewedPerson in the ModelManager to the one specified in the INDEX if it is valid. A CommandException is thrown if the INDEX is out of bounds.
 
 Step 2. The user executes `deleteAppointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to delete an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `deleteAppointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deleteAppointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
