@@ -41,7 +41,6 @@ public class InternshipBuilder {
     // Interview fields
     private InterviewDate interviewDate;
     private InternshipStatus status;
-    private InterviewDate interviewDate;
     private boolean isArchived;
 
     // Data fields
