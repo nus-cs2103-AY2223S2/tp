@@ -1126,7 +1126,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list command is invalid.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1144,13 +1144,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The module does not exists.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. The list command is invalid.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1168,19 +1168,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The module does not exists.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. The lecture does not exists.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. The list command is invalid.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1196,13 +1196,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The keyword is in wrong format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. The find command is invalid.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1218,19 +1218,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The keyword is in wrong format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. The module does not exists.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. The find command is invalid.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1246,25 +1246,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The keyword is in wrong format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. The module does not exists.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. The lecture does not exists.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. The find command is invalid.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1504,7 +1504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to mark/unmark a video
 2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
-3. Le Tracker marks/unmarks the video as watched/unwatched
+3. LeTracker marks/unmarks the video as watched/unwatched
 
    Use case ends.
 
@@ -1512,49 +1512,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Invalid module code that does not follow module code format is supplied.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Invalid lecture name that does not follow lecture name format is supplied.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Invalid video name that does not follow video name format is supplied.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. Video name does not exist in lecture of lecture name in module of module code.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 3a. Video to mark is already marked as watched.
 
-  - 3a1. Le Tracker shows an error message.
+  - 3a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 3b. Video to unmark is already unmarked.
 
-  - 3b1. Le Tracker shows an error message.
+  - 3b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1566,7 +1566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
 2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
-3. Le Tracker marks/unmarks the videos as watched/unwatched.
+3. LeTracker marks/unmarks the videos as watched/unwatched.
 
   Use case ends
 
@@ -1574,47 +1574,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Invalid module code that does not follow module code format is supplied.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Invalid lecture name that does not follow lecture name format is supplied.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. At least one of video names supplied does not follow video name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. The video names contain duplicates.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
 
-  - 2g1. Le Tracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
 - 3a. At least one of the videos to mark is already marked as watched.
 
-  - 3a1. Le Tracker shows an error message.
+  - 3a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1626,7 +1626,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to delete a module
 2. User requests to delete the specific module by specifying the module code
-3. Le Tracker deletes the module
+3. LeTracker deletes the module
 
    Use case ends.
 
@@ -1634,13 +1634,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The given module code does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-  2b. Module of module code does not exist in Le Tracker.
+  2b. Module of module code does not exist in LeTracker.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1652,25 +1652,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to delete multiple modules
 2. User requests to delete specific modules by specifying their respective module codes
-3. Le Tracker deletes the specified modules
+3. LeTracker deletes the specified modules
 
 **Extensions**
 
 - 2a. At least one of module codes supplied does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Module codes supplied contains duplicates.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2c. At least one Module of module codes do not exist in Le Tracker.
+- 2c. At least one Module of module codes do not exist in LeTracker.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1682,7 +1682,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to delete a lecture
 2. User requests to delete a specific lecture by specifying a module code and lecture name
-3. Le Tracker deletes the lecture
+3. LeTracker deletes the lecture
 
    Use case ends.
 
@@ -1690,25 +1690,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The supplied module code does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. The supplied lecture name does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. The lecture of lecture name does not exist in module of module code.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1720,37 +1720,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to delete multiple lectures under the same module
 2. User specifies multiple lecture names to be deleted and a module code
-3. Le Tracker deletes the specified lectures of lecture names from the specified module of module code.
+3. LeTracker deletes the specified lectures of lecture names from the specified module of module code.
 
 **Extensions**
 
 - 2a. The module code specified does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. At least one of the lecture names supplied does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Lecture names supplied contains duplicates.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case ends.
 
-- 2d. The Module of module code does not exist in Le Tracker.
+- 2d. The Module of module code does not exist in LeTracker.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1770,37 +1770,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module code supplied does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Lecture name supplied does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Video name supplied does not follow the video name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2d. There is no such module of module code in Le Tracker.
+- 2d. There is no such module of module code in LeTracker.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. There is no such lecture in the module.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. There is no such video in the lecture.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1812,49 +1812,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User wants to delete multiple videos under the same lecture of the same module
 2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
-3. Le Tracker deletes the specified videos from the lecture of the module.
+3. LeTracker deletes the specified videos from the lecture of the module.
 
 **Extensions**
 
 - 2a. Module code supplied does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Lecture name supplied does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. At least one of the video names supplied does not follow the video name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. The video names supplied contains duplicates.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
-- 2e. There is no such module of module code in Le Tracker.
+- 2e. There is no such module of module code in LeTracker.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. There is no such lecture in the module.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2g. At least one of the videos do not exist in the lecture.
 
-  - 2g1. Le Tracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1872,19 +1872,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. No tag is provided.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1904,31 +1904,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. No tag is provided.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -1949,43 +1949,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. Video does not exist.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. Reference to video is empty.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2g. No tag is provided.
 
-  - 2g1. Le Tracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2005,25 +2005,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. No tag is provided.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Module tags do not exist.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2043,37 +2043,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. No tag is provided.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. Lecture tags do not exist.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2094,49 +2094,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. Video does not exist.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2f. Reference to video is empty.
 
-  - 2f1. Le Tracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2g. No tag is provided.
 
-  - 2g1. Le Tracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2h. Video tags do not exist.
 
-  - 2h1. Le Tracker shows an error message.
+  - 2h1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2154,13 +2154,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. File already exists.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2178,19 +2178,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. File cannot be written to.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. No indication of overwriting file.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2208,25 +2208,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. File does not exist.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. File cannot be read.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Some modules already exist in the current tracker.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2244,25 +2244,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. File does not exist.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. File cannot be read.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Some modules already exist in the current tracker.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2280,31 +2280,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-  - 2a1. Le Tracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2b. File does not exist.
 
-  - 2b1. Le Tracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2c. File cannot be read.
 
-  - 2c1. Le Tracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2d. Some modules already exist in the current tracker.
 
-  - 2d1. Le Tracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
 - 2e. Specified modules do not exist in the saved file.
 
-  - 2e1. Le Tracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -2543,9 +2543,9 @@ Expected:
 | 1. `nav CS2040S` <br> 2. `delete CS2040S /r`| Same as previous |
 | `delete CS2040S, ST2334`                    | CS2040S and ST2334 are deleted |
 | 1. `nav CS2040S` <br> 2. `delete CS2040S, ST2334 /r`| Same as previous |
-| 1. `delete CS2040S` <br> 2. `delete CS2040S` | Alert user that CS2040S does not exist and cannot be deleted. No change made to Le Tracker |
+| 1. `delete CS2040S` <br> 2. `delete CS2040S` | Alert user that CS2040S does not exist and cannot be deleted. No change made to LeTracker |
 | 1. `delete CS2040S` <br> 2. `delete CS2040S, ST2334` | Same as previous |
-| 1. `delete CS2040S, ST2334` <br> 2. `delete CS2040S, ST2334` | Alert user that CS2040S and ST2334 do not exist and cannot be deleted. No change made to Le Tracker |
+| 1. `delete CS2040S, ST2334` <br> 2. `delete CS2040S, ST2334` | Alert user that CS2040S and ST2334 do not exist and cannot be deleted. No change made to LeTracker |
 
 ### Delete Lecture(s)
 
@@ -2652,6 +2652,6 @@ Expected:
 
 | Test Case | Expected Result |
 | --------- | --------------- |
-| `clear`   | All modules deleted from Le Tracker |
+| `clear`   | All modules deleted from LeTracker |
 | 1. `nav CS2040S` <br> 2. `clear` | Same as previous |
 | 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `clear` | Same as previous |
