@@ -1310,6 +1310,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `view 0`<br>
       Expected: No contact is displayed in the person details panel. An error message is shown as an invalid index was given. An error is logged in the console. 
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a project
 
 1. Adding a project to the project list.
@@ -1347,8 +1349,6 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
        Expected: No project is edited. An error message is shown as an invalid command was given.
 
-<div style="page-break-after: always;"></div>
-
 ### Deleting a project
 
 1. Deleting a project while all projects are being shown
@@ -1383,8 +1383,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `removepj 0`<br>
       Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
-
-<div style="page-break-after: always;"></div>
 
 ### Clearing all projects
 
