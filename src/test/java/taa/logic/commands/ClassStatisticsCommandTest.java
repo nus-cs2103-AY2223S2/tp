@@ -68,4 +68,11 @@ public class ClassStatisticsCommandTest {
 
         CommandTestUtil.assertCommandFailure(displayAttendanceChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
     }
+
+    @Test
+    public void execute_emptyClassList_displayGradesChart_failure() {
+        ClassStatisticsCommand displayGradesChartCommand = new ClassStatisticsCommand(ChartType.CLASS_GRADES, "test1");
+
+        CommandTestUtil.assertCommandFailure(displayGradesChartCommand, emptyClassListModel, ClassStatisticsCommand.MESSAGE_EMPTY_CLASSLIST);
+    }
 }
