@@ -709,7 +709,7 @@ The following is a description of the code execution flow
    - LectureName: valid lecture name that does not containt symbols
    - VideoName: valid lecture name that does not contain symbols
 
-   Note: LectureName and VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
+   Note: VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
 
 3. The appropriate `MarkCommand` subclass object is created then returned to its caller
 
@@ -717,7 +717,10 @@ The following is a description of the code execution flow
 
    - ModuleCode: if module with ModuleCode exists in Le Tracker
    - LectureName: if lecture with LectureName exists in module ModuleCode
-   - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether the video(s) is/are marked or unmarked (differs according to whether `mark` or `unmark` is called)
+   - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether there are duplicates specified
+      - For `mark`, the videos of the specified VideoName(s) are checked on whether they are marked as watched
+      - For `unmark` and a **single** VideoName is specified, VideoName is checked on whether it is marked as unwatched
+      - For `unmark` and **multiple** VideoNames are specified, VideoNames are **not** checked on whether they are marked as unwatched (unlike its counterparts)
 
 5. If no exceptions are thrown, Le Tracker has successfully managed to mark/unmark the specified video(s)
 
