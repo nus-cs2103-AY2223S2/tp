@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
 import seedu.address.model.application.JobTitle;
 import seedu.address.model.application.Review;
 import seedu.address.model.contact.Contact;
@@ -24,6 +25,7 @@ public class InternshipBuilder {
     private Documents documents;
     private Contact contact;
     private InternshipStatus status;
+    private InterviewDate interviewDate;
     private boolean isArchived;
 
     /**
@@ -35,6 +37,7 @@ public class InternshipBuilder {
         reviews = new HashSet<>();
         status = InternshipStatus.PENDING;
         isArchived = false;
+        interviewDate = null;
     }
 
     /**
@@ -48,6 +51,7 @@ public class InternshipBuilder {
         contact = internshipToCopy.getContact();
         status = internshipToCopy.getStatus();
         isArchived = internshipToCopy.isArchived();
+        interviewDate = internshipToCopy.getInterviewDate();
     }
 
     /**
@@ -95,6 +99,14 @@ public class InternshipBuilder {
      */
     public InternshipBuilder withIsArchived(boolean isArchived) {
         this.isArchived = isArchived;
+        return this;
+    }
+
+    /**
+     * Sets the {@code InterviewDate} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withInterviewDate(InterviewDate interviewDate) {
+        this.interviewDate = interviewDate;
         return this;
     }
 
