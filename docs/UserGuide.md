@@ -428,6 +428,21 @@ Removes the athlete at index 1 of the contact list from the session `Hall`.
 
 <div style="page-break-after: always;"></div>
 
+## **Calendar**
+The **Calendar** includes various functions that enable users to manage their schedules effectively. These features are designed to simplify the process of tracking Sessions.
+
+## How to view
+Users can access the Calendar Features by interacting with the Calendar UI in the Calendar tab. 
+<br> The user can click on the "Prev" and "Next" buttons to navigate through the months. 
+
+## Features
+The Calendar Features allow users to view their schedules on a monthly basis. Users can also click on a Session to view its details.
+
+<br>
+![CalendarUI](images/calendar.png)
+<br>
+![PopUpContent](images/popup.png)
+
 ## **Income Analytics**
 
 The **Income Analytics** Panel is an automated feature that tracks and displays your coaching income based on athlete attendance and pay rates.
@@ -440,7 +455,7 @@ It displays income earned on the current day, week, month, and lifetime.
 The displayed income is based on the athlete's pay rate per hour and the duration of the session(s) the athletes belong to.<br>
 An athlete only contributes to your income if they are marked as present.
 <br>
-![IncomeAnalytics](images/IncomeAnalytics.png)
+![IncomeAnalytics](images/incomeAnalytics.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

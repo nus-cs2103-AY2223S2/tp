@@ -3,12 +3,14 @@ package seedu.address.ui;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -109,7 +111,6 @@ public class SessionListPanel extends UiPart<Region> {
 
         sessionList.addListener((ListChangeListener<Session>) change -> {
             getStatistics(logic.getFilteredSessionList());
-            updateDisplay(null);
         });
     }
 
@@ -134,6 +135,17 @@ public class SessionListPanel extends UiPart<Region> {
         thisWeek.setText("$" + String.format("%.2f", weeklyEarnings));
         thisMonth.setText("$" + String.format("%.2f", monthlyEarnings));
         lifetime.setText("$" + String.format("%.2f", lifetimeEarnings));
+
+        Node oldBarChart = earningsChart.lookup("EarningsBarChart");
+        if (oldBarChart != null) {
+            earningsChart.getChildren().remove(oldBarChart);
+        } else {
+            // Try using lookupAll() to search the entire subtree rooted at earningsChart
+            Set<Node> nodes = earningsChart.lookupAll("EarningsBarChart");
+            for (Node node : nodes) {
+                earningsChart.getChildren().remove(node);
+            }
+        }
 
         EarningsBarChart barChart = new EarningsBarChart(sessionList);
         barChart.setStyle("-fx-text-inner-color: white;");
@@ -231,12 +243,10 @@ public class SessionListPanel extends UiPart<Region> {
      * Set up event listener to listen to updates within the ObservableList
      */
     private void setUpdateEventListener(Logic logic) {
-        logic.getFilteredSessionList().addListener(new ListChangeListener<Session>() {
-            @Override
-            public void onChanged(Change<? extends Session> c) {
-                Session selectedSession = sessionListView.getSelectionModel().getSelectedItem();
-                updateDisplay(selectedSession);
-            }
+        logic.getFilteredSessionList().addListener((ListChangeListener<Session>) change -> {
+            getStatistics(logic.getFilteredSessionList());
+            Session selectedSession = sessionListView.getSelectionModel().getSelectedItem();
+            updateDisplay(selectedSession);
         });
     }
 
@@ -331,7 +341,6 @@ public class SessionListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new SessionCard(session, getIndex() + 1).getRoot());
-                updateDisplay(session);
             }
         }
     }
