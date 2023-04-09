@@ -2,10 +2,7 @@
 layout: page
 title: Ho Yin's Project Portfolio Page
 ---
-
-### Overview
-Project: EZ-Schedule
-
+### Project: EZ-Schedule
 _EZ-Schedule_ is a desktop application for managing and scheduling of events,
 optimized for use via a Command Line Interface (CLI)
 while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
@@ -14,11 +11,8 @@ _EZ-Schedule_ has about 13kLoC and 2.5k lines of documentation.
 It is developed in Java, and uses JavaFX to create the GUI.
 
 ### Summary of Contributions
-
-**Code Contributed**
-
-Check it out RepoSense link [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lhy-hoyin&breakdown=true)
-
+**Code Contributed** - Check it out RepoSense link 
+[here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lhy-hoyin&breakdown=true)
 
 **Enhancements Implemented**
 
@@ -57,16 +51,6 @@ Check it out RepoSense link [here](https://nus-cs2103-ay2223s2.github.io/tp-dash
   - Assign task to team member in charge
 - Rename `package` and all references to previous package
 - User Guide: Came up with the template structure for details of commands
-  ```
-  <Command Action>
-  <Format>
-  <Description>
-  <Example>
-  <Parameters>
-  <Screenshots> - recommended by Jeremy
-  <Notes/Warnings>
-  <Back to top hyperlink>
-  ```
 - Make running `shadowJar` in gradle also run all tests and checkstyles
 - Release `v1.3` and `v1.3.1` on [GitHub](https://github.com/AY2223S2-CS2103-W17-3/tp/releases)
 
@@ -80,16 +64,14 @@ Check it out RepoSense link [here](https://nus-cs2103-ay2223s2.github.io/tp-dash
 [pr-reviewed-others]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin+no%3Amilestone
 [pr-reviewed-total]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Alhy-hoyin
 
-| Milestone                       |                   PRs reviewed                   |
-|---------------------------------|:------------------------------------------------:|
-| v1.1                            |              [4] [pr-reviewed-v1.1]              |
-| v1.2                            |              [1] [pr-reviewed-v1.2]              |
-| v1.3/b                          | [4] [pr-reviewed-v1.3] + [6] [pr-reviewed-v1.3b] |                                                                               
-| v1.4                            |             [30] [pr-reviewed-v1.4]              | 
- | Others (Not milestone specific) |             [3] [pr-reviewed-others]             |
-| Total:                          |             [48] [pr-reviewed-total]             |
+- Milestone v1.1: [4] [pr-reviewed-v1.1]
+- Milestone v1.2: [1] [pr-reviewed-v1.2]
+- Milestone v1.3/b: [4] [pr-reviewed-v1.3] + [6] [pr-reviewed-v1.3b]
+- Milestone v1.4: [30] [pr-reviewed-v1.4]
+- Others: [3] [pr-reviewed-others]
+- Total: [48] [pr-reviewed-total]
 
-PR Highlights
+_PR Highlights_
 - Milestone 1
   - [Updated AboutUs and UserGuide](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/9)
   - [Branch user story Developer Guide](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/31)
@@ -103,7 +85,7 @@ PR Highlights
   - [Fix end time earlier than start time bug](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/167)
   - [Add Instructions for Manual Testing in DG](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/212)
 
-Mentoring Highlights
+_Mentoring Highlights_
 - Help resolve [Add InvalidDateException to CommandBox](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/189)
   through [Exception handling for DateTimeParseException](https://github.com/AY2223S2-CS2103-W17-3/tp/issues/175)
 
