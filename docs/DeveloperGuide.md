@@ -87,10 +87,10 @@ The `Main` part of the app has 2 classes called `Main` and `MainApp`. Its respon
 
 * On shutdown: Shuts down all the components and invokes cleanup methods wherever necessary.
 
-The `commons` package represents a collection of classes used by multiple other components, and it stores information 
+The `Commons` package represents a collection of classes used by multiple other components, and it stores information 
 like GUI settings and user-visible error messages.
 
-The rest of the App consists of four components, each as their own package of related files:
+The rest of the App consists of four components, each as their own package of related files, with these main responsibilities:
 
 * `UI`: The user interface of the app.
 * `Logic`: The command executor.
@@ -811,4 +811,4 @@ testers are expected to do more *exploratory* testing.
 ## Conclusion
 
 We hope that this has given you a sufficient understanding of our product, as well as the design considerations behind it.
-Regardless, if you have any queries, feel free to submit an **issue** **[here](https://github.com/AY2223S2-CS2103T-T13-2/tp/issues/new/choose)**m, and we will do our best to get back to you.
+Regardless, if you have any queries, feel free to submit an **issue [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/issues/new/choose)**, and we will do our best to get back to you.
