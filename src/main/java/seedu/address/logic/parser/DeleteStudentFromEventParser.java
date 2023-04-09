@@ -32,10 +32,9 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
 
-        if (argMultimap.getSize() > 2
-                || argMultimap.getAllValues(PREFIX_TUTORIAL).size() > 1
-                || argMultimap.getAllValues(PREFIX_LAB).size() > 1
-                || argMultimap.getAllValues(PREFIX_CONSULTATION).size() > 1) {
+        try {
+            AddAndDeleteStudentHelper.checkFieldCount(argMultimap);
+        } catch (ParseException e) {
             throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_TOO_MANY_FIELDS);
         }
 
@@ -55,18 +54,14 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
             throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_EVENT_INDEX_INVALID);
         }
 
-        if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
+        try {
+            AddAndDeleteStudentHelper.checkIfFieldsAreEmpty(tutorialName, labName, consultationName);
+        } catch (ParseException e) {
             throw new ParseException(DeleteStudentFromEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
                     + DeleteStudentFromEventCommand.MESSAGE_USAGE);
         }
 
-        String eventType = PREFIX_TUTORIAL.getPrefix();
-        if (!labName.isEmpty()) {
-            eventType = PREFIX_LAB.getPrefix();
-        }
-        if (!consultationName.isEmpty()) {
-            eventType = PREFIX_CONSULTATION.getPrefix();
-        }
+        String eventType = AddAndDeleteStudentHelper.getEventType(tutorialName, labName, consultationName);
 
         return new DeleteStudentFromEventCommand(studentIndex, eventIndex, eventType);
     }

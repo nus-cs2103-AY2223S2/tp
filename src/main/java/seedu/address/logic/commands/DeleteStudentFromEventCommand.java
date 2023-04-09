@@ -54,13 +54,8 @@ public class DeleteStudentFromEventCommand extends Command {
         this.eventType = type;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException, ParseException {
-        requireNonNull(model);
-        assert(studentIndex != null);
-        assert(eventIndex != null);
-        assert(eventType != null);
-
+    private void checkFields(Index studentIndex, Index eventIndex,
+                             String eventType, Model model) throws CommandException {
         switch (eventType) {
         case TUTORIAL_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {
@@ -91,7 +86,21 @@ public class DeleteStudentFromEventCommand extends Command {
             break;
         default:
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
-            + MESSAGE_USAGE);
+                    + MESSAGE_USAGE);
+        }
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        assert(studentIndex != null);
+        assert(eventIndex != null);
+        assert(eventType != null);
+
+        try {
+            checkFields(studentIndex, eventIndex, eventType, model);
+        } catch (CommandException e) {
+            throw e;
         }
 
         model.deleteStudentFromEvent(this.studentIndex, this.eventIndex, this.eventType);

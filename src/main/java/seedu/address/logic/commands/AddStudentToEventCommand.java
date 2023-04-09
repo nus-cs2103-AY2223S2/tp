@@ -52,9 +52,8 @@ public class AddStudentToEventCommand extends Command {
         this.eventType = type;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    private void checkFields(Index studentIndex, Index eventIndex, String eventType, Model model)
+            throws CommandException {
         if (studentIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
             throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
         }
@@ -64,18 +63,44 @@ public class AddStudentToEventCommand extends Command {
             if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
-            model.addStudentToTutorial(this.studentIndex, this.eventIndex);
             break;
         case LAB_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredLabList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
-            model.addStudentToLab(this.studentIndex, this.eventIndex);
             break;
         case CONSULTATION_STRING:
             if (eventIndex.getZeroBased() >= model.getFilteredConsultationList().size()) {
                 throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
             }
+            break;
+        default:
+            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED
+                    + MESSAGE_USAGE);
+        }
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        assert(studentIndex != null);
+        assert(eventIndex != null);
+        assert(eventType != null);
+
+        try {
+            checkFields(studentIndex, eventIndex, eventType, model);
+        } catch (CommandException e) {
+            throw e;
+        }
+
+        switch (eventType) {
+        case TUTORIAL_STRING:
+            model.addStudentToTutorial(this.studentIndex, this.eventIndex);
+            break;
+        case LAB_STRING:
+            model.addStudentToLab(this.studentIndex, this.eventIndex);
+            break;
+        case CONSULTATION_STRING:
             model.addStudentToConsultation(this.studentIndex, this.eventIndex);
             break;
         default:
