@@ -44,8 +44,8 @@ Student *--> Phone
 Student *--> Email
 Student *--> Address
 Student *--> "*" Tag
-Student *--> UniqueTaskList
-Student *--> UniqueScoreList
+Student *--> "1" UniqueTaskList
+Student *--> "1" UniqueScoreList
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
