@@ -1,33 +1,31 @@
 @startuml
-!include <office/Concepts/globe_internet>
 !include <office/Concepts/documents>
 !include <office/Users/user>
 !include style.puml
 
-Package " "<<Rectangle>>{
+Package " " {
     Class UI UI_COLOR
     Class Logic LOGIC_COLOR
     Class Storage STORAGE_COLOR
-    Class Model MODEL_COLOR
+    Package "Model component" {
+	    Class DummyModel #FFFFFF
+    }
     Class Main #grey
-    Class Commons LOGIC_COLOR_T2
+    Class Common LOGIC_COLOR_T2
 }
 
 Class "<$user>" as User MODEL_COLOR_T2
 Class "<$documents>" as File UI_COLOR_T1
 
+User .down.> UI
+UI -right[UI_COLOR]> Logic
 
-UI -[#green]> Logic
-UI -right[#green]-> Model
-Logic -[#blue]-> Storage
-Logic -down[#blue]-> Model
-Main -[#grey]-> UI
-Main -[#grey]-> Logic
-Main -[#grey]-> Storage
-Main -up[#grey]-> Model
-Main -down[hidden]-> Commons
+Logic -down[LOGIC_COLOR]-> "Model component"
+Logic -down[LOGIC_COLOR]-> Storage
 
-Storage -up[STORAGE_COLOR].> Model
-Storage .right[STORAGE_COLOR].>File
-User ..> UI
+Main -right[#grey]-> UI
+Main -down[hidden]-> Common
+
+Storage .right[STORAGE_COLOR].> "Model component"
+Storage .down[STORAGE_COLOR].>File
 @enduml

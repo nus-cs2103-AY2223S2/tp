@@ -47,7 +47,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/ArchitectureDiagram.png" width="300" />
 
 The **Architecture Diagram** given above explains the high-level design of the App.
 
@@ -123,7 +123,7 @@ The **API** of this component is specified in [`Logic.java`](https://github.com/
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550" />
+<img src="images/LogicClassDiagram.png" width="600" />
 
 **How the `Logic` component works:**
 
@@ -141,9 +141,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 -->
 
-Here are the parser classes (omitted from the class diagram above) that are used for parsing a user command:
+Here are the parser classes that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600" />
 
 **How the parsing works:**
 
@@ -169,13 +169,17 @@ Therefore, we decided to split the `Model` components into different classes and
 - **`MacroMap`**: Stores and manages all macros in the memory.
 - **`CommandStack`**: Manages a stack of `UndoableLogicCommand` (a subclass of `Command`) objects for the undo feature.
 
+Here's a (partial) class diagram of the `Model` component:
+
+<img src="images/ModelClassDiagram.png" width="600" />
+
 Currently, `MacroMap` and `CommandStack` are classes and are used directly in other components (without using an immediate interface). With the current version of the app, using interfaces for these classes to hide the implementation details are not very necessary. We do plan to introduce interfaces for these classes in future version of the app.
 
 ### Storage component
 
 The **API** of this component is specified in [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java).
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="600" />
 
 The `Storage` component:
 

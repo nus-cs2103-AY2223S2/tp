@@ -1,46 +1,62 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
-skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
-
-Class AddressBookParser
-Class XYZCommand
-Class CommandResult
-Class "{abstract}\nCommand" as Command
-
-
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
+package "Logic component" {
+    Class VimificationParser LOGIC_COLOR
+    Class "<<interface>>\nCommand" as Command LOGIC_COLOR
+    Class "<<interface>>\nLogicCommand" as LogicCommand LOGIC_COLOR
+    Class "<<interface>>\nUiCommand" as UiCommand LOGIC_COLOR
+    Class "<<interface>>\nMacroCommand" as MacroCommand LOGIC_COLOR
+    Class CommandResult LOGIC_COLOR
+    Class "<<interface>>\nLogic" as Logic LOGIC_COLOR
+    Class LogicManager LOGIC_COLOR
 }
 
-package Model{
-Class HiddenModel #FFFFFF
+package "Model component" {
+    Class "<<interface>>\nLogicTaskList" as LogicTaskList MODEL_COLOR
+    Class TaskList MODEL_COLOR
+    Class CommandStack MODEL_COLOR
+    Class MacroMap MODEL_COLOR
 }
 
-package Storage{
+package "Storage component" {
+    Class "<<interface>>\nStorage" as Storage STORAGE_COLOR
+}
+
+package "Ui component" {
+    Class MainScreen UI_COLOR
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
-LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+LogicManager .left.|> Logic
+TaskList .left[MODEL_COLOR].|> LogicTaskList
 
-XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+LogicManager -down-> VimificationParser
+LogicManager --> TaskList
+LogicManager --> MacroMap
+LogicManager --> CommandStack
+LogicManager -up-> Storage
+LogicManager --> MainScreen
 
-LogicManager --> Model
-LogicManager --> Storage
-Storage --[hidden] Model
-Command .[hidden]up.> Storage
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+VimificationParser .down.> Command : creates >
+LogicManager .down.> Command : executes >
 
-Logic ..> CommandResult
+LogicCommand -up-|> Command
+MacroCommand -up-|> Command
+UiCommand -up-|> Command
+
+LogicCommand .up.> LogicTaskList
+LogicCommand .up.> CommandStack
+MacroCommand .right.> MacroMap
+UiCommand .up.> MainScreen
+
+Logic .down.> CommandResult
 LogicManager .down.> CommandResult
-Command .up.> CommandResult : produces >
+Command .down.> CommandResult : produces >
+
+TaskList -down[hidden]-> CommandStack
+CommandStack -down[hidden]-> MacroMap
 @enduml
