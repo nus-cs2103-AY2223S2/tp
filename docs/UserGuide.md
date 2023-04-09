@@ -82,7 +82,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME [t/TAG] [t/MORE_TAGS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -110,7 +110,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [t/MORE_TAGS]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -189,31 +189,56 @@ Examples:
 
 ### Filter by fields : `filter`
 
-Search for persons whose fields all match one or more regexes.
+Search for persons whose fields all match one or more keywords.
+
+* Note that these keywords are case-sensitive, unlike `find`.
 
 Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`
 
-* Displays the data of persons who's every field matches at least one respective regex,
-if such a regex exists for that field.
+* Displays the data of persons who:
+  * For every field you entered one or more keywords for,
+    * that person's field matches at least one of those keywords.
 
 Examples:
-* `filter t/^banker$` will list all persons with exactly the tag “banker”.
-* `filter e/.*\.org$ n/rin e/.*\.net$` will list all persons with the substring "rin" in their name,
+
+* `filter t/bank` will list all persons with a tag containing "bank", such as `banker`, `bankrupt`, or `riverbanks`.
+* `filter p/8765 e/hotmail` will list all persons with a phone number containing "8765", and an email address containing "hotmail".
+* `filter e/org e/net` will list all persons with email addresses containing "org" **or** "net".
+
+Important note:
+* These keywords are matched as [regular expressions](https://regexone.com/).
+  * This gives you more flexibility in finding matches, but means that using non-alphanumeric characters, like `$`, `.`, `-` or `*`, might display unexpected results.
+  * If you need to non-alphanumeric characters anyway, write a backslash "\\" before each such character:
+  * `filter a/\#459\-2965 \\ Navarro` will list all persons with an address containing "#459-2965 \ Navarro".
+
+Advanced examples:
+
+* `filter t/^bank$` will list all persons with exactly the tag `bank`,
+and will not match `banker` or `bankrupt`.
+* `filter i/.{7}` will list all persons with 7 or more digits in their income.
+* `filter e/.*\.org$ n/(?<!len)rin(?!len) e/.*\.net$` will list all persons with the substring "rin" but not "len" in their name,
 as well as an email that ends in ".org" or ".net".
 
 ### Freezing the display : `freeze`
 
-Freezes the current _selection_ of persons displayed. The details of these persons will still be updated,
-if modified.
+Freezes the current <span style="color:green">selection</span> of persons displayed.
+
+* By default, persons which no longer satisfy the conditions of the most recent `find`/`filter` are automatically dropped from the visible list.
+  * This can happen e.g. if you `filtered` for a tag `x`, but then deleted `x` from a displayed Person.
+  * `freeze` temporarily prevents persons from being hidden from view in such a scenario.
+
+<span style="color:red">The visible details **within** each Person will still be updated,
+if modified.</span>
 
 Format: `freeze`
 
 * Commands that reference indices / the list of persons being displayed will be subject to `freeze`,
 and will act on the display as it appears to you.
+* The effects of a `freeze` are withdrawn when a new `list`, `find`, or `filter` command is entered.
 
 ### Unfreezing the display : `unfreeze`
 
-Unfreezes the current _selection_ of persons displayed. Any changes to the selection which were previously withheld
+Unfreezes the current <span style="color:green">selection</span> of persons displayed. Any changes to the selection which were previously withheld
 due to a `freeze` will now be applied.
 
 Format: `unfreeze`
@@ -251,9 +276,13 @@ Undo one or more of the most recent commands done.
 Format: `undo [NUM]`
 
 * Undoes `NUM` of the most recent commands, or the 1 most recent if `NUM` is not specified.
+  * If specified, `NUM` must be a positive integer less than 2^31 ≈ 2 billion.
 * Only undoes commands which affect data or the display. E.g.:
   * `edit`, `filter`, `freeze`, and `import` can be undone
   * `help` and `export` cannot be undone; `undo` will skip them for the next most recent command.
+* Only undoes commands executed within the current session.
+  * **If the program is closed and relaunched, commands performed before the relaunch will no longer be undoable,
+  even if they remain visible on the Input Log.**
 
 Examples:
 * `undo 3` will undo the last 3 commands.
@@ -265,6 +294,11 @@ Redo one or more of the most recent commands undone.
 Format: `redo [NUM]`
 
 * Redoes `NUM` of the most recent undone commands, or the 1 most recent if `NUM` is not specified.
+  * If specified, `NUM` must be a positive integer less than 2^31 ≈ 2 billion.
+
+* Only redoes commands undone within the current session.
+    * **If the program is closed and relaunched, commands undone before the relaunch will no longer be redoable,
+      even if they remain visible on the Input Log.**
 
 Examples:
 * `redo 3` will redo 3 commands.
@@ -321,8 +355,8 @@ E-Lister data is saved as a JSON file `[JAR file location]/data/elister.json`. A
 If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
 
-### History Display
-As you can see, at the right side of the application, there is a section which is used to display the commands you inputted and were executed succesfully.
+### Input Log
+On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
 
 *Why do we need this?* Keeping a record of all commands executed in a contacts managing app is important for several reasons.
 - It provides a historical log of all actions taken by the insurance agent, which can be useful in case of any disputes or discrepancies that may arise in the future.

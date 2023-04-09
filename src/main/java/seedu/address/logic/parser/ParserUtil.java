@@ -21,7 +21,8 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a positive integer under 2^31.";
+    public static final String MESSAGE_INVALID_VALUE = "Value is not a positive integer under 2^31.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -37,9 +38,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code count} into an {@code int} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified value is invalid (not non-zero unsigned integer).
      */
     public static int parseCommandCount(String count) throws ParseException {
         String trimmedCount = count.trim();
@@ -47,7 +48,7 @@ public class ParserUtil {
             return 1;
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedCount)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_VALUE);
         }
         return Integer.parseInt(trimmedCount);
     }

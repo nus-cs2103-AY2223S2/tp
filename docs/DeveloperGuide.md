@@ -391,7 +391,6 @@ Given the complexity of the CSV file format, it was deemed impractical to suppor
 * If a field is wrapped in quotation marks `""` (such as due to the previous rule), any existing `"` within the field is converted to `""`.
 
 The `CsvUtil` class provides a method to handle these rules:
-=======
 ```java
 public static String toCsvField(String str) {
    if (str.contains(",")) {
@@ -577,3 +576,27 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. Currently, the default parse failure message is displayed when `delete`, `delete_tag`, `undo`, or `redo` is
+called with an index argument which is non-positive, or greater than `Integer.MAX_VALUE`, 2^31 - 1.  
+A common user complaint is that this leads to confusion,
+as it does not point out the index argument as a problem - in an often otherwise-correct command.  
+We plan to make these error messages mention this cause of failure: `The index entered must be a positive integer below 2^31`.
+3. The Input Log displays commands entered in previous sessions identically to those entered this session.  
+This can cause confusion as the `undo` command is able to revert the latter, but not the former, leading to
+`undo` appearing to fail on commands without an obvious reason.  
+We plan to color the Input Log text of commands entered in previous sessions
+<span style="color:#3CDFFF">light blue</span> to distinguish them and indicate them as non-undoable.
+4. The Input Log cannot be cleared from within the program, causing it to grow cluttered over time and
+increasingly difficult to scroll. We plan to add a command `wipelog` to clear the Input Log of its contents.
+5. Command shortcuts can be created with the same name as each other or as existing commands, leading to ambiguous
+outcomes when these shortcuts are used. We plan to disable creating new command shortcuts with the same alias as existing
+commands or shortcuts; an error message shall be raised to notify the user.
+6. Command shortcuts cannot be deleted from within the program, making it difficult to remove an alias once
+it is no longer required. We plan to add a command to delete such shortcuts: `delete_shortcut SHORTCUT`. To avoid making
+commands inaccessible, shortcuts will only be deletable when more than one alias exists for the
+command in question; an error message shall be raised otherwise.
