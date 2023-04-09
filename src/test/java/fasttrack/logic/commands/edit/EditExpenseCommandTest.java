@@ -1,7 +1,6 @@
 package fasttrack.logic.commands.edit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
@@ -82,7 +81,7 @@ public class EditExpenseCommandTest {
         EditExpenseCommand sameExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
                 "NewExpenseName", null, null,
                 category.getCategoryName());
-        assertEquals(editExpenseCommand, sameExpenseCommand);
+        assert(editExpenseCommand.equals(sameExpenseCommand));
     }
 
     @Test
@@ -96,6 +95,6 @@ public class EditExpenseCommandTest {
         EditExpenseCommand sameExpenseCommand = new EditExpenseCommand(Index.fromOneBased(1),
                 "NewExpenseName", 200.0, null,
                 category.getCategoryName());
-        assertNotEquals(editExpenseCommand, sameExpenseCommand);
+        assert(!editExpenseCommand.equals(sameExpenseCommand));
     }
 }
