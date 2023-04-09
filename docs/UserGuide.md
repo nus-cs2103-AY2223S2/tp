@@ -1,16 +1,19 @@
 ---
 layout: page
-title: MediMate 
---- 
+title: MediMate
+---
+MediMate (MM) is a cross-platform desktop application designed to help medical professionals efficiently manage patient data.
+Whether you currently use paper records, electronic records, or other applications to store patient information,
+MM provides an effective solution for updating, accessing, and adding new patient details easily.
 
-MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
-their receptionists,
-who are experienced with computers and currently using paper records to store patient information.
-With this solution, they will be able to better manage their patient data, including updating,
-accessing and adding new patient details easily. It is optimized for use via a Command Line Interface (CLI) while still
-having the
-benefits of a Graphical User Interface (GUI). If you can type fast, MM can get your contact management tasks done faster
-than traditional GUI apps.
+MM is intended for medical professionals who possess basic computer skills, such as the ability to navigate through folders and files
+on a computer, use a keyboard and mouse, open and close applications, and enter data into forms and fields.
+The user interface of MM has been designed to be intuitive and easy to navigate,
+accommodating users with varying levels of computer proficiency.
+
+MM is cross-platform compatible, which means that it can be used on different operating systems such as Windows, Mac, or Linux,
+allowing users to access their patient data from any device they choose.
+By using MM, medical professionals can manage patient data more efficiently and effectively, which can lead to better patient outcomes.
 
 ## Table of Contents
 
@@ -43,35 +46,42 @@ than traditional GUI apps.
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `MediMate.jar`
-   from [here](https://github.com/AY2223S2-CS2103T-W11-4/tp/releases/tag/v1.3.0-alpha).
-3. Copy the file to the folder you want to use as the _home folder_ for your MediMate.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MediMate.jar` command
-   to run the application.<br>
-   A GUI similar to the below should appear in a few seconds with sample data included.<br>
+1. To check if you have Java `11` or above installed on your computer, open a command terminal and type the command `java -version`.
+   If Java is installed, the terminal will display the version number.
+   If not, you can download Java 11 or later from the official website: https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+2. Download the latest version of the MediMate.jar file from the following link:
+   from [here](https://github.com/AY2223S2-CS2103T-W11-4/tp/releases/tag/v1.3b).
+3. Copy the downloaded file to the desired folder on your computer that will be used as the home folder for MediMate.
+4. To open a command terminal on Windows, click the Start button, type `cmd` in the search bar, and press Enter.
+   On Mac, open the Terminal application. Navigate to the folder where you saved the MediMate-v1.3b.jar file using the `cd` command.
+   For example, if the file is saved in the `Downloads` folder, you would enter the command `cd Downloads` in the terminal. Then, use the command `java -jar MediMate-v1.3b.jar` to run the application.
+   The graphical user interface (GUI) will appear in a few seconds with sample data included.<br>
    ![Ui](images/userGuide/Ui.png)
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. After running the application, the MediMate user interface will open. The user interface consists of five parts: the command box, 
+   result display, left panel, right panel, and patient medical report. The command box is where users can type commands to perform various tasks 
+   in the application. The result display shows the outcome of the executed command. The left panel provides a list of patients, while the right panel 
+   displays the details of the selected patient record. The patient medical report displays the medical history of the selected patient. 
+   The user interface is designed to be simple, intuitive, and easy to navigate, with a menu bar and buttons for performing common tasks. 
+   A sample data set is included to help users get started with using the application.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
-
    * `list` : Lists all patients.
    * `add n/John Doe p/98765432 e/johnd@example.com a/Jo0hn street, block 123, #01-01 ag/20 m/cough t/classmate` : Adds
      a patient named `John Doe` to the Patient List.
    * `delete 3` : Deletes the 3rd patient shown in the current list.
-   * `clear` : Deletes all patients.
    * `exit` : Exits the app.
-6. Refer to the [Features](#features) below for details of each command.
-
+7. Refer to the [Features](#features) below for details of each command.
 ---
 
 ## Features
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:**<br> 
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* When you see words in UPPER_CASE in the MediMate user interface, it means that you need to fill in those words with actual values. 
+  These words in UPPER_CASE are called parameters, and they help MediMate know what information to add or retrieve from the patient records.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -91,11 +101,13 @@ than traditional GUI apps.
 
 ### Help
 
-Shows a message explaning how to access the help page.
+Format: `help` 
+
+To access the help page in MediMate, simply type `help` in the command box and press `Enter`, and click on the URL link. 
+The help page provides detailed information about the different commands and their usage in the application. 
+The help page is a great resource for learning how to use MediMate effectively and efficiently.
 
 ![help message](images/userGuide/help-message.png)
-
-Format: `help`
 
 ### Add a patient : `add`
 
@@ -115,7 +127,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
   e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * OPTIONAL: You can also add patient's age, medical condition, nric.
-* NRIC has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9. 
+* NRIC has restriction for first letter, where it must be either 'S', 'T' or 'G' (E.g. S9935010Y) and length must be 9.
 * NRIC is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
 * NRIC has no restriction from second letter onwards, hence user need to be careful as alphabets can still be added.
 * NRIC is not unique. Hence, please be aware to check your NRIC input before adding to prevent duplicate.
@@ -123,19 +135,18 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
 * To record a patient's other information, add them as additional tags to the patient's profile.
 * Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
 
-The first example contains strictly required information to identify a patient.
-
-The second example contains more information relevant to that patient.
-
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
-* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` command to fail.
+* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01`  
 
-<div markdown="span" class="alert alert-primary">
-:bulb:**Tip:** A patient can have any number of tags (including 0)
-</div>
+1. The first example contains strictly required information to identify a patient.
+2. The second example contains more information relevant to that patient.
+3. The third example demonstrates how using an invalid prefix can cause the add command to fail or produce unexpected results.
+   This will cause MediMate to assume that `A/John street, block 123, #01-01` is part of the email address, rather than the address.
+   This will cause the add command not to be recognized correctly.
+   To avoid this issue, make sure that you use the correct prefixes and follow the correct format when using the add command.
 
 Adds a patient to MediMate through button method:
 
@@ -144,8 +155,10 @@ Adds a patient to MediMate through button method:
 1. Click the add button as shown in the screenshot above.
 
 ![Add_Pop_up_Window](images/userGuide/Add_2.png "Add Pop Up Window")
-
-2. A popup window will show and you can starting add the patient's details, once all the mandatory blanks as mentioned in the CLI method are filled in, click on the **+ ADD PATIENT** as shown in the screenshot above and the patient will be added successfully.
+2. After clicking on the Add Patient button, a popup window will appear where you can enter the patient's details. 
+   Make sure to fill in all the required fields that were mentioned in the CLI method. Once all the mandatory fields are filled in, 
+   click on the **+ ADD PATIENT** button to successfully add the patient. The patient's details will be saved in MediMate, 
+   and you can view them later in the patient list. 
 
 ### Listing all patients : `list`
 
@@ -153,11 +166,19 @@ Shows a list of all patients in MediMate.
 
 Format: `list`
 
-### Listing patients in alphabetical order : `list_name`
+### Listing patients in alphabetical order : `list_name` 
 
-Shows a list of all patients in MediMate by their name in alphabetical order. The screenshot below shows the list of patient
+Format: `list_name` 
 
-Format: `list_name`
+Shows a list of all patients in MediMate by their name in alphabetical order.
+
+<div style="display:flex;">
+    <img src="images/userGuide/list_name_before.png" style="width:50%; padding-right:10px;">
+    <img src="images/userGuide/list_name_after.png" style="width:50%; padding-left:10px;">
+</div> 
+
+1. As shown in the screenshot below, once `list_name` command is entered,  
+**Zoe** moved from the first index to the last index, as Zoe is the last according to the alphabetical order.  
 
 ### Show a patient's information: `show`
 
