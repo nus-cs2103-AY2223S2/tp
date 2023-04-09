@@ -5,11 +5,13 @@ title: User Guide
 
 <img src="./images/Banner.png">
 
-FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs. With FriendlyLink, administrators such as yourself can easily manage your database and pair volunteers with the elderly as you wish, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple, efficient, and effective, so that you can focus on making a difference in your communities.
+FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs. 
+With FriendlyLink, administrators such as yourself can easily manage your data and pair volunteers with the elderly 
+as you wish, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management 
+simple, efficient, and effective, so that you can focus on making a difference in your communities.
 
-With its easy-to-use **text-based interface** and contact management features, say goodbye to manual record-keeping and hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
-
-With FriendlyLink, you can record elderly and volunteer information and pair them up automatically. You can also update and delete records easily, and see a summary of all records in FriendlyLink!
+With our easy-to-use **text-based interface** and contact management features, say goodbye to manual record-keeping and 
+hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details!
 
 ----------------------------------------------------
 
