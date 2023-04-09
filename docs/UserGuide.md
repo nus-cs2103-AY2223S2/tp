@@ -59,12 +59,13 @@ forgetting about a client!
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+### If this is your first time using FAid, this is what the app provides you with and how to use it
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -90,9 +91,9 @@ forgetting about a client!
 
 * Index must be a positive number
 
-* Meetings displayed when app is opened initially are those meetings for the current day, and user input of 'listMeeting' is required to list all meetings stored in FAid
+* Meetings displayed when app is opened initially are those meetings for the current day, and your input of 'listMeeting' is required to list all meetings stored in FAid
 
-* `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of the user input but not both
+* `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of your input but not both
 
 </div>
 
@@ -106,13 +107,19 @@ Format: `help`
 
 ### Adding a client : `add`
 
-Adds a client to the address book.
+Adds a client to FAid.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0)
 </div>
+
+Required Information:
+* `NAME`: Name of a client whose contact is to be stored in FAid
+* `PHONE_NUMBER`: Phone number of a client whose contact is to be stored in FAid, which must be a valid number with 8 digits and starts with 6, 8 or 9
+* `EMAIL`: A valid email of a client whose contact is to be stored in FAid
+* `TAGS`: Optional labels to put for clients, such as tagging which policy they bought or are interested in buying
 
 Examples:
 
@@ -124,13 +131,13 @@ Note:
 
 ### Listing all clients : `listPerson`
 
-Shows a list of all clients in the address book.
+Shows a list of all clients in the FAid.
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the address book.
+Edits an existing client in the FAid.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -168,7 +175,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the address book.
+Deletes the specified client from FAid.
 
 Format: `delete INDEX`
 
@@ -176,21 +183,21 @@ Format: `delete INDEX`
 
 Examples:
 
-* `listPerson` followed by `delete 2` deletes the 2nd client in the address book.
+* `listPerson` followed by `delete 2` deletes the 2nd client in FAid.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Add meeting : `meetingAdd`
 
-Adds a meeting to the address book.
+Adds a meeting to the FAid.
 
 Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME [TAGS]`
 
 Required Information:
-
-* `client_INDEX`: Index of a client in address book
+* `CLIENT_INDEX`: Index of a client in FAid
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
+* `TAGS`: Optional labels to put for the meeting
 
 Example:
 
@@ -199,22 +206,21 @@ Example:
 
 Notes:
 * Meetings with the same client with overlapping times are not allowed but meetings with different clients at the same time are.
-
-![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
-
-Notes:
-
 * Meeting must not conflict in timing with other meetings scheduled for the day.
+
+* ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
+
+
 
 ### Remove meeting : `meetingRemove`
 
-Removes meeting from the address book.
+Removes meeting from the FAid.
 
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
 Required Information:
 
-* `CLIENT_INDEX`: Index of a client already in address book
+* `CLIENT_INDEX`: Index of a client already in FAid
 * `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
 
 Examples:
@@ -230,13 +236,13 @@ Note:
 
 ### Updating a meeting : `meetingUpdate`
 
-Updates an existing meeting belonging to a client in the address book
+Updates an existing meeting belonging to a client in the FAid
 
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
 Required Information:
 
-* `CLIENT_INDEX`:Index of a client already in address book
+* `CLIENT_INDEX`:Index of a client already in FAid
 * `MEETING_INDEX`: Meeting index after searching for meetings for a specific client by doing a meetingFind CLIENT_INDEX to get the required meeting index
 
 Examples:
@@ -256,18 +262,18 @@ Notes:
 
 ### Find meeting : `meetingFind`
 
-Finds meetings from the address book based on the date of meeting or person index but not both
+Finds meetings from FAid based on the date of meeting or person index but not both
 
 Format: `meetingFind DATE|CLIENT_INDEX `
 
 Required Information:
 
 * Date (dd/mm/yyyy)
-* Index of a client already in address book
+* Index of a client already in FAid
 
 Examples:
 * `meetingFind 11/05/2023` Lists out all meetings that start on 11th May 2023
-* `meetingFind 5` Lists out all meetings with client of index 5 in the address book
+* `meetingFind 5` Lists out all meetings with client of index 5 in FAid
 
 
 ### List meeting : `listMeeting`
@@ -285,7 +291,7 @@ Required information:
 
 Examples:
 
-* `listRegion Central` lists all clients from the Central region in the address book
+* `listRegion Central` lists all clients from the Central region in FAid
 
 ### Find clients by policy name : `findPolicy`
 
@@ -322,7 +328,7 @@ manually.
 
 ### Editing the data file
 
-FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
+FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -336,7 +342,7 @@ If your changes to the data file makes its format invalid, FAid will discard all
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous FAid home folder.
 
 **Q**: How do I key in my client's region?<br>
 **A**: FAid automatically detects region based on address keyed in
