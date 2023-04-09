@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletec 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -171,43 +171,41 @@ However, certain users may find it more convenient to select the icon or prefer 
 
 ### Add/Deduct reward points feature
 
-#### Implementation
-
 From `Points` class, a new feature of adding and deducting from the points a customer has, was required.
 A cumulative points system also had to be introduced. Adding points should increase the cumulative points a customer
 has while deducting points should not affect the cumulative points of the customer.
 
 As a result, a new attribute, `cumulative` was introduced to `Points`.
-For the parsing of the `addpoints` command, I had to consider between different design choices.
-The one I ultimately settled on was merely utilising `Integer.valueOf` method to parse the points inputted by the user.
-Also, in the execution of `AddPointsCommand` class, the points to add would exist as an Integer object instead of a
+For the parsing of the `addpoints` command, we had to consider between different design choices.
+The one we ultimately settled on was simply utilising `Integer.valueOf` method to parse the points inputted by the user.
+Also, in the execution of `AddPointsCommand` class, the points to add would exist as an `Integer` object instead of a
 `Points` object. The addition or subtraction of points from the `Points` class would then be as simple as adding the
 points to current points and cumulative points when it is positive, and subtracting from current points when it is 
-negative. This simple design would be sufficient to achieve the intended feature.
-Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to the
+negative. This straightforward design would be sufficient to achieve the intended feature.
+Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to
 `JsonAdaptedCustomer`.
 
-### Alternatives considered
-There were other designs I was considering, listed below.
+#### Alternative approaches
+There were other designs we were considering, listed below.
 
-1. A design choice I had to make was for the `addpoints` command, originally I intended for the command users inputted
-to include a modifier syntax for the user to specify if he or she wishes to add or subtract points.
+1. A design choice we had to make was for the implementation of the `addpoints` command, originally we intended 
+for the command users input to include a modifier syntax for the user to specify if he or she wishes to 
+add or subtract points from the customer.
 For instance, the command could be `addpoints 1 mod/- pt/100` to indicate that the user wants to subtract 100 points
-from the customer in the first index. I wanted to follow this implementation as many commands follow the syntax of
-`[PREFIX]/` for the user to specify their command. However, I subsequently decided that this may be too inconvenient for
-the user, and since it is intuitive for 100 or -100 points to exist, I decided to allow the specification of the
-modifier of points to come after `pt/`
-2. I also considered to have a static inner class, as encapsulation of the information of the addition or subtraction
-of points, and for `AddPointsCommand` to take in a `Points.AddPoints` as an attribute. This would allow an enum
-modifier to exist within the `AddPoints` inner class, allowing future extension of editing reward points by simply
-including new enumeration of modifiers. This would also allow a validity check of the points to be added or deducted.
-However, with the help of my teammate, I later decided that this may not be necessary as checking the validity of the
+from the customer in the first index. We wanted to follow this implementation as many commands follow the syntax of
+`[PREFIX]/` for the user to specify their command. However, we subsequently decided that this may be too inconvenient 
+for the user, and since it is intuitive for 100 or -100 points to exist, we decided to implement the command in the way
+that the modifier of points come after `pt/`
+2. We also considered to have a static inner class of `AddPoints` in `Points`. This is for encapsulation of 
+information for the addition or subtraction of points. Consequently, `AddPointsCommand` would take in 
+`Points.AddPoints` as an attribute. This would allow an enum `modifier` to exist within the `AddPoints` inner class, 
+allowing future extension of editing reward points by simply including a new enumeration of modifier. 
+This would also allow a validity check of the points to be added or deducted.
+However, we later decided that this may not be necessary as checking the validity of the
 resultant `Points` after adding or subtracting is sufficient. Moreover, utilising the `Integer.valueOf` method in
-`AddPointsCommandParser` would make parsing much simpler as compared to evaluating the modifier in front of points.
-This simpler design would also be sufficient as we had no plans to incorporate
+`AddPointsCommandParser` would make parsing much simpler as compared to evaluating the enum modifier that would come 
+before points. This simpler design would also be sufficient as we had no plans to incorporate
 features other than the addition or subtraction of points.
-
-
 
 ### Customer and Order Notes
 
