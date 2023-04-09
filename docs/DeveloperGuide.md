@@ -262,13 +262,22 @@ Given below is an example usage scenario and how the delete appointment mechanis
 
 Scenario: Mary Smith already has a medical check-up scheduled with Dr. Paul West (already registered in the system) on 01-02-2023 10:00. However, she realizes that she cannot make it and wishes to cancel the appointment. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
-Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X` to view all her existing appointment bookings. 
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X` to view all her existing appointment bookings. This displays Mary's list of appointments, and the appointment that needs to be cancelled is located at index 1.
 
-When view INDEX is inputted, the UI calls the LogicManager which then calls the AddressBookParser to parse the input. This then creates an instance of the ViewCommandParser to parse the INDEX with static ParserUtil#parseIndex() function. If the INDEX format is invalid, a ParseException will be thrown.
+Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete the appointment at index 1 of Mary's list of appointments. This removes the `Appointment` from Mary's and Dr. Paul's appointment list, and from `HospitalAppointmentList`.
 
-The ViewCommandParser then creates the ViewCommand and returns it. The LogicManager then executes the ViewCommand, which updates the ModelManager#currentlyViewedPerson in the ModelManager to the one specified in the INDEX if it is valid. A CommandException is thrown if the INDEX is out of bounds.
+{add a object diagram}
 
-Step 2. The user executes `deleteAppointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to delete an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `deleteAppointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deleteAppointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The sequence diagram below shows the DeleteAppointmentCommand works:
+{add a sequence diagram}
+
+* When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
+    * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates a `DeleteAppointmentCommand`. The `LogicManager` then executes the `DeleteAppointmentCommand`, upon which the `Appointment` to be deleted is retrieved and removed from the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#deleteAppointment()`.
+    * `CommandException` is thrown
+        * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
+        * if `INDEX` is invalid
+* Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
 
 ### \[Proposed\] Undo/redo feature
 
