@@ -438,8 +438,6 @@ Examples:
   </p>
 
 
-<div style="page-break-after: always;"></div>
-
 * `removepj 1 d/01/01/23-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
   <br/><br/>
   <p align="center"><img src="images/removepj2.png" width="450"/></p>
@@ -471,9 +469,7 @@ Clears all the projects in SOCket.
 
 Format: `clearpj`
 
-<div style="page-break-after: always;"></div>
-
-#### Sorting projects (by other fields): `sortpj`
+### Sorting projects (by other fields): `sortpj`
 
 Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 
@@ -493,6 +489,8 @@ Format: `sortpj [CATEGORY]`
 Use the deadline category to sort your projects based on the nearest due dates!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
 <br/><br/>
@@ -503,8 +501,6 @@ Examples:
   </p>
 
 
-<div style="page-break-after: always;"></div>
-
 * `sortpj name` Sort the project list by **Project Name**.
 <br/><br/>
   <p align="center"><img src="images/SortpjByName.png" width="450"/></p>
@@ -513,6 +509,8 @@ Examples:
   <br>
   </p>
 
+
+<div style="page-break-after: always;"></div>
 
 #### Assign a contact to a project: `assign`
 
@@ -530,8 +528,6 @@ Examples:
   </p>
 
 
-<div style="page-break-after: always;"></div>
-
 * After Assigning:<br/><br/>
   <p align="center"><img src="images/AssignAfter.png" width="450"/></p>
   <p align="center">
@@ -539,6 +535,8 @@ Examples:
   <br>
   </p>
 
+
+<div style="page-break-after: always;"></div>
 
 #### Unassign a contact from a project: `unassign`
 
@@ -548,7 +546,8 @@ Format: `unassign INDEX n/NAME`
 
 * Removes the contact with the specified `NAME` from the project with the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed project list.
-* `NAME` is case-insensitive, and must match in full.
+* `NAME` is case-insensitive.
+* `NAME` must match in full.
 
 Examples:
 * Before Unassigning:<br/><br/>
@@ -558,8 +557,6 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
 
 * After Unassigning:<br/><br/>
   <p align="center"><img src="images/UnassignAfter.png" width="450"/></p>
