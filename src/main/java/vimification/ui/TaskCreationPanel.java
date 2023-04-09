@@ -15,7 +15,7 @@ public class TaskCreationPanel extends UiPart<VBox> {
 
     private static final String FXML = "TaskCreationPanel.fxml";
 
-    Node parent;
+    private Node parent;
 
     @FXML
     private TextField nameField;
@@ -23,6 +23,9 @@ public class TaskCreationPanel extends UiPart<VBox> {
     @FXML
     private TextArea descriptionField;
 
+    /**
+     * Creates a {@code TaskCreationPanel} with the given {@code Node}.
+     */
     public TaskCreationPanel(Node parent) {
         super(FXML);
         this.parent = parent;

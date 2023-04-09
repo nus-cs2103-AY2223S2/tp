@@ -1,9 +1,10 @@
 package vimification.ui;
 
-import javafx.fxml.FXML;
-import javafx.application.Platform;
-import javafx.scene.control.ListView;
 import java.util.function.Predicate;
+
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import vimification.model.UiTaskList;

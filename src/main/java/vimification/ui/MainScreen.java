@@ -32,8 +32,7 @@ public class MainScreen extends UiPart<VBox> {
     private static final double RIGHT_COMPONENT_WIDTH_PROPORTION =
             1 - LEFT_COMPONENT_WIDTH_PROPORTION;
 
-    private static DoubleBinding TOP_COMPONENT_HEIGHT;// Height of left and right
-                                                      // component
+    private static DoubleBinding TOP_COMPONENT_HEIGHT; // Height of left and right component
     private static DoubleBinding BOTTOM_COMPONENT_HEIGHT;
     private static DoubleBinding LEFT_COMPONENT_WIDTH;
     private static DoubleBinding RIGHT_COMPONENT_WIDTH;
@@ -125,6 +124,8 @@ public class MainScreen extends UiPart<VBox> {
         case "j":
         case "k":
             taskListPanel.requestFocus();
+            break;
+        default:
             break;
         }
     }
