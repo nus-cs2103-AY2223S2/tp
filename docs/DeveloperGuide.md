@@ -480,6 +480,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Clicking on the `File` tab at the navigation bar above and then clicking `Exit` also exits the app.
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
 ---
 
 ### General Commands
@@ -510,6 +512,8 @@ These commands can be tested on any page. Specific pages are given for this sect
 
     1. Test case: `help`<br>
        Expected: Help window for Course Page pops up.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
 
@@ -593,6 +597,8 @@ These commands should be tested on the Course Page.
 
     1. Other incorrect `find course` commands to try: `find`, `find course`<br>
        Expected: The list is not filtered. Error details shown in the log box.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
 
@@ -701,6 +707,8 @@ These commands should be tested on the Group Page.
     1. Other incorrect `find group` commands to try: `find`, `find group`<br>
        Expected: The list is not filtered. Error details shown in the log box.
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
 ---
 
 ### Students Page Commands
@@ -721,15 +729,21 @@ These commands should be tested on the Students Page.
 
 2. _{ more test cases …​ }_
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
 ---
 
 ### Session Page Commands
 These commands should be tested on the Session Page.
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
 ---
 
 ### Attendance Page Commands
 These commands should be tested on the Attendance Page.
+
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
 
@@ -817,6 +831,7 @@ These commands should be tested on the Task Page.
     1. Other incorrect `find task` commands to try: `find`, `find task`<br>
        Expected: The list is not filtered. Error details shown in the log box.
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
 
@@ -834,6 +849,8 @@ These commands should be tested on the Grades Page.
        , `assign x -1` or `assign x 101` (where x is a valid index from the student list) <br>
        Expected: No student is assigned a mark. Error details shown in the log box.
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
 ---
 
 ### Saving data
@@ -848,3 +865,4 @@ These commands should be tested on the Grades Page.
       Expected: A set of roster sample data from `sampleRoster.json` will be copied and loaded into a newly created `roster.java` 
       Do exit the app for `roster.java` to be created.
 
+[Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
