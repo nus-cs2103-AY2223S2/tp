@@ -11,7 +11,7 @@ title: Developer Guide
 
 * [CS2103/T instructors](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for helping us answer our queries.
 * [AB3](https://github.com/se-edu/addressbook-level3) for providing us with a brownfield project to work on.
-* [JavaFX](https://openjfx.io/) because this project is based on it.
+* JavaFX, because this project is based on it.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -426,7 +426,7 @@ is created, empty note list will be created and up to 20 notes can be added to a
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-1. Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have.
+Epic: As a CS2040 TA, I can monitor my schedule through the number of events (consultations / labs / tutorials) I have.
 
 | Priority    | As a CS2040 …​ | I want to …​                     | so that I …​                                                      |
 |-------------|----------------|----------------------------------|-------------------------------------------------------------------|
@@ -441,8 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  | `* * *`     | TA             | delete a consultation event      | can remove completed or cancelled consultations.                  |
  | `* * *`     | New TA         | see all upcoming the 2040 events | can effectively pre-plan the schedule for the rest of my modules. |
 
-
-2. Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
+Epic: As a CS2040 TA, I can effectively manage and keep track of all my students.
 
 | Priority | As a CS2040 …​| I want to …​                                             | so that I …​                                                                                            |
 |----------|------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
@@ -452,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA               | have a filter function to filter for the desired student | do not have to scroll through the namelist when marking attendance or giving class participation marks. |
 | `* * *`  | New TA           | see all my students of CS2040                            | can view all my students at a glance.                                                                   |
 
-3. Epic: As a CS2040 TA, I can track students progress.
+Epic: As a CS2040 TA, I can track students progress.
 
 | Priority | As a CS2040 …​   | I want to …​                                                                                                                    | So that I …​                                                                                                              |
 |----------|------------------|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -464,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Motivational TA  | find out who are the most consistent students                                                                                   | can recommend them for future TA positions.                                                                               |
 
 
-4. Epic: As a CS2040 TA, I want to note down important information during an event.
+Epic: As a CS2040 TA, I want to note down important information during an event.
 
 | Priority | As a CS2040 …​ | I want to …​                                                        | so that I …​                                               |
 |----------|----------------|---------------------------------------------------------------------|------------------------------------------------------------|
@@ -475,7 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | TA             | note my performances at the end of this semester for the last event | may reflect upon them.                                     |
 | `*`      | Lab TA         | note down some common vim commands as a cheatsheet                  | can better navigate to inspect student codes via terminal. |
 
-5. Epic: As a CS2040 TA, I want to see a help guide.
+Epic: As a CS2040 TA, I want to see a help guide.
 
 | Priority | As a CS2040 …​ | I want to …​                                          | so that I …​                                                               |
 |----------|----------------|----------------------------------------------------------|----------------------------------------------------------------------------|
@@ -1048,24 +1047,28 @@ Given below are our planned enhancements.
 
 ### Planned Enhancements
 
-1. The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
+- The current mapping of students to student photo is mapped randomly to any 23 icons. This means that two or more students could
 be mapped to the same photo, which undermines the uniqueness of the photo. Since the photo is suppose to simulate the student's profile, it
-is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below. 
-
-<img src="images/SameProfile.png" width="550" /> 
-
+is considered a feature flaw that two or more students have the same face, as seen for student index 5 and index 8 below.
 We plan to remedy it by restricting the number of students a TA can take. For example, in a usual class size, there can be a maximum of about 20 students to a TA
 for CS2040 events. Therefore, by restricting the class size, we can ensure no two students in the current list have the same profile photo since there are a total of 23 icons.
 However, this does not fully solve an issue, because deleting a student and adding a new student might result in the same profile photo. Hence, we plan to further enhance this by
 changing from icons to fetching from a simulated database that ensures a unique photo is always fetched for a new unique student, which slightly pivots to more backend heavy tasks.
 
-2. The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
+<img src="images/SameProfile.png" width="550" /> 
+
+
+- The current TrAcker displays empty students and empty events if the json data is garbled. This results in the user being unsure if what he / she has to do.
     We plan to implement a warning window to warn the user that the data is corrupted / garbled and they will have to close the application. Once the application
     is closed, TrAcker will refresh the garbled data with a new original data. Then when the user starts TrAcker again, TrAcker will inform the user that due to a corrupted
     data, the data has been reset to the original one. This way, the user will not have to manually reset and delete the data file without knowing the cause.
 
-3. The current noting-take function does not support editing notes directly on old notes. For example, user can click
-on an old note and edit its content to update the notes. This would be especially useful for super long notes. 
-
+- The current noting-take function does not support editing notes directly on old notes. For example, user can click
+on an old note and edit its content to update the notes. This would be especially useful for super long notes.
 We plan to update the GUI to include an expandable panel that holds the existing note once clicked, and users may edit
 the texts as they like. After finishing editing, there is a yes button to click and exit. 
+
+- The current events card does not have an end date and end time feature. It only displays the start date. By displaying the end date and time,
+it will be easier for a TA to manually check if he is actually busy and when will be busy until, rather than having to calculate the
+end time. This feature can be implemented by adding 1 hour to the start time for tutorial, 2 hour to the start time for lab, and 1 hour to the start 
+time for consultations.
