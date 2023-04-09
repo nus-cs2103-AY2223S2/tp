@@ -12,6 +12,8 @@ import trackr.model.item.Item;
  */
 public class OrderContainsKeywordsPredicate extends OrderDescriptor implements Predicate<Item> {
     private List<String> orderNameKeywords;
+    private List<String> customerNameKeywords;
+
 
     public OrderContainsKeywordsPredicate() {
         super();
@@ -28,7 +30,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         setOrderStatus(toCopy.getOrderStatus().isPresent() ? toCopy.getOrderStatus().get() : null);
         setOrderQuantity(toCopy.getOrderQuantity().isPresent() ? toCopy.getOrderQuantity().get() : null);
         setCustomerAddress(toCopy.getCustomerAddress().isPresent() ? toCopy.getCustomerAddress().get() : null);
-        setCustomerName(toCopy.getCustomerName().isPresent() ? toCopy.getCustomerName().get() : null);
+        setCustomerNameKeywords(toCopy.customerNameKeywords);
         setCustomerPhone(toCopy.getCustomerPhone().isPresent() ? toCopy.getCustomerPhone().get() : null);
     }
 
@@ -39,13 +41,19 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
     public Optional<List<String>> getOrderNameKeywords() {
         return Optional.ofNullable(orderNameKeywords);
     }
+    public void setCustomerNameKeywords(List<String> customerNameKeywords) {
+        this.customerNameKeywords = customerNameKeywords;
+    }
 
+    public Optional<List<String>> getCustomerNameKeywords() {
+        return Optional.ofNullable(customerNameKeywords);
+    }
     /**
      * Returns true if any of the fields in the {@code Order} object are present or not.
      * @return true if any of the fields in the {@code Order} object are present or not.
      */
     public boolean isAnyFieldPresent() {
-        return isAnyFieldNonNull() || orderNameKeywords != null;
+        return isAnyFieldNonNull() || orderNameKeywords != null || customerNameKeywords != null;
     }
 
     @Override
@@ -89,10 +97,10 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
             isOrderStatusMatch = true;
         }
 
-        if (getCustomerName().isPresent()) {
-            isCustomerNameMatch = getCustomerName().stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getCustomer()
-                    .getCustomerName().getName(), keyword.getName()));
+        if (customerNameKeywords != null) {
+            return customerNameKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                            order.getCustomer().getCustomerName().getName(), keyword));
         } else {
             isCustomerNameMatch = true;
         }
@@ -127,7 +135,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         OrderContainsKeywordsPredicate predicate = (OrderContainsKeywordsPredicate) other;
 
         return getCustomerAddress().equals(predicate.getCustomerAddress())
-                && getCustomerName().equals(predicate.getCustomerName())
+                && getCustomerNameKeywords().equals(predicate.getCustomerNameKeywords())
                 && getCustomerPhone().equals(predicate.getCustomerPhone())
                 && getOrderNameKeywords().equals(predicate.getOrderNameKeywords())
                 && getOrderQuantity().equals(predicate.getOrderQuantity())

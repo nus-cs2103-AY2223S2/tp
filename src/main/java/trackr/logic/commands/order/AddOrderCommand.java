@@ -31,17 +31,18 @@ public class AddOrderCommand extends Command {
     public static final String COMMAND_WORD_SHORTCUT = "add_o";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a order to the order list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a order to the order list if order name matches an existing item in the menu.\n"
             + "Parameters: "
             + PREFIX_ORDERNAME + "ORDER NAME "
-            + PREFIX_ORDERQUANTITY + "ORDER QUANTITY"
+            + PREFIX_ORDERQUANTITY + "ORDER QUANTITY "
             + PREFIX_DEADLINE + "DEADLINE "
             + "[" + PREFIX_STATUS + "STATUS] "
             + PREFIX_NAME + "CUSTOMER'S NAME "
             + PREFIX_PHONE + "CUSTOMER'S PHONE NUMBER "
             + PREFIX_ADDRESS + "CUSTOMER'S ADDRESS\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ORDERNAME + "CHOCOLATE COOKIES "
+            + PREFIX_ORDERNAME + "Chocolate Cookies "
             + PREFIX_ORDERQUANTITY + "5 "
             + PREFIX_DEADLINE + "01/01/2024 "
             + PREFIX_STATUS + "N "

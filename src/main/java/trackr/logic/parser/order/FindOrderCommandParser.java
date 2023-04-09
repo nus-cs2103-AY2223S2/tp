@@ -55,8 +55,8 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
                     ParserUtil.parseOrderQuantity(argMultimap.getValue(PREFIX_ORDERQUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            predicate.setCustomerName(
-                    ParserUtil.parseCustomerName(argMultimap.getValue(PREFIX_NAME).get()));
+            String[] customerNameKeywords = argMultimap.getValue(PREFIX_NAME).get().trim().split("\\s+");
+            predicate.setCustomerNameKeywords(Arrays.asList(customerNameKeywords));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
