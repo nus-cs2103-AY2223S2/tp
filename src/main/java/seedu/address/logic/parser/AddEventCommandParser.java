@@ -36,7 +36,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         DateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
         DateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
 
-        assert startDateTime != null && endDateTime != null: "Start and end date times of an event must not be null";
+        assert startDateTime != null && endDateTime != null : "Start and end date times of an event must not be null";
 
         if (!DateTime.isValidDateRange(startDateTime.toString(), endDateTime.toString())) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
