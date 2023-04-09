@@ -2526,6 +2526,7 @@ Some incorrect commands to try from root context:
 - `edit CS2040S /tags T@g` (invalid tag)
 
 ### Edit a Lecture
+
 | Test Case                                                                                | Expected Result                                                                                                                                                                                                                                                                     |
 | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`                                    | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** None                                                             |
