@@ -16,8 +16,8 @@ title: Developer Guide
 OfficeConnect is a task management tool designed specifically for managerial role personnels based within Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
-* work overload among subordinates
-* difficulties in coordinating tasks with a large number of employees
+* work overload among subordinates,
+* difficulties in coordinating tasks with a large number of employees,
 * inefficient, time-consuming administrative tasks like typing and sending emails.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing
@@ -34,6 +34,7 @@ the [AB3 project template](https://github.com/se-edu/addressbook-level3)
 by [se-education.org](https://se-education.org).
 
 * Libraries used include: [JavaFx](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+* Images retrieved from freepik and ICON8.
 * [JUnit5](https://junit.org/junit5/)
 
 
@@ -92,7 +93,7 @@ Each of the other three main components (excluding OfficeConnectModel), defines 
 same name as the Component. The components implement their functionality using a concrete `{Component Name}Manager` class.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
-using the `LogicManager.java` class which follows the `Logic` interface. All 4 components work together as illustrated 
+using the `LogicManager.java` class which follows the `Logic` interface. The components work together as illustrated 
 in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
@@ -117,7 +118,8 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `OfficeConnectModel` data so that the UI can be updated with the modified data. 
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. 
-* depends on some classes in the `OfficeConnectModel` component, as it displays `Person` object residing in the `OfficeConnectModel`.
+* depends on some classes in the `OfficeConnectModel` component, as it displays `Person` and `Task` objects residing in
+the `OfficeConnectModel`.
 
 ### 2.3 Logic component
 
@@ -137,7 +139,7 @@ a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")`
-API call, which deletes the person located at index one.
+API call, which deletes the person located at index 1.
 
 ![Interactions Inside the Logic Component for the `deletep 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -169,7 +171,8 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 * Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as separate _filtered_ lists
   which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be
   'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* Stores data of all persons in OfficeConnect using a concrete implementation of the Model interface. Greater elaboration of the Model component is provided below.
+* Stores data of all persons in OfficeConnect using a concrete implementation of the `Model` interface. Greater elaboration 
+of the `Model` component is provided below.
 * Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain,
 they should make sense on their own without depending on other components)
 
@@ -200,7 +203,7 @@ OfficeConnect Storage Component
 The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect
 necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
 
-To address this requirement, a new generic class called RepositoryStorage has been introduced to the storage component.
+To address this requirement, a new generic class called `RepositoryStorage` has been introduced to the storage component.
 This addition allows for increased extensibility and flexibility in the storage component's functionality.
 
 The enhanced design is extendable and also capable of supporting the integration of additional databases into the
@@ -252,7 +255,7 @@ titles, we encourage users to be specific in the title (purpose) of the task (e.
 able to clearly distinguish the purpose of each task just by looking at the title.  
 
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
-to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
+to distinguish between the tasks unless they read each of the task content individually. It would also reduce the visual
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
 Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in
 both the short and long term.
@@ -283,7 +286,7 @@ Below is an activity diagram showcasing the 2 steps:
     obtaining the index needed for `deletet`.
 
 * **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can
-  use this index when deleting tasks
+  use this index when deleting tasks.
   * Pros: If the user remembers the index of each task, they will not need to call `listt`. Hence, it will be less
     troublesome for them to delete tasks as the number of steps required is reduced by one.
     Also reduces coupling, as `deletet` will not have to depend on `listt` to function properly.
@@ -323,12 +326,12 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
 
 **Aspect: Form of query**
 
-* **Alternative 1 (current choice):** Query using TASK_TITLE
+* **Alternative 1 (current choice):** Query using `TASK_TITLE`
     * Pros: More intuitive as users do not have to keep track of the list index of the tasks.
       Able to query for tasks that are already logged in OfficeConnect using the title of the task.
     * Cons: Length of commands are dependent on length of title. Users have to remember the name of the tasks.
 
-* **Alternative 2:** Query using INDEX
+* **Alternative 2:** Query using `INDEX`
     * Pros: Shorter command to type out.
     * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
       to execute the findt command if the current display is empty.
@@ -347,9 +350,10 @@ Syntax: `assign pi/INDEX ti/INDEX`
 Purpose: Allows users to assign a person to a task in OfficeConnect.
 
 #### 3.6.1 Implementation
-The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`,
-`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. Below are the steps required to assign a task
-to a person in OfficeConnect.
+The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`, `ListAssignment`
+`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. 
+
+Below are the steps required to assign a task to a person in OfficeConnect.
 
 Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
 * Alternative steps to Step 1:
@@ -559,23 +563,24 @@ in extra effort to learn and memorize the commands.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                        | So that I can…​                                                              |
-|----------|----------|-----------------------------------------------------|------------------------------------------------------------------------------|
-| `* * *`  | new user | see usage instructions                              | refer to instructions when I forget how to use the App                       |
-| `* * *`  | manager  | add tasks                                           |                                                                              |
-| `* * *`  | manager  | edit tasks                                          | keep the task updated with the most updated information                      |
-| `* * *`  | manager  | delete tasks                                        | remove tasks that I no longer need                                           |
-| `* * *`  | manager  | mark tasks as done and undone                       | keep track of tasks that are completed                                       |
-| `* * *`  | manager  | find tasks assigned to specific subordinate         | better manage my subordinates workload                                       |
-| `* * *`  | manager  | check all ongoing tasks available                   | better delegate my tasks                                                     |
-| `* * *`  | manager  | assign tasks to a subordinate                       | keep track of which subordinate is in charge of which task                   |
-| `* * *`  | manager  | unassign tasks from a subordinate                   | assign this task to other subordinates                                       |
-| `* * *`  | manager  | add a subordinate                                   |                                                                              |
-| `* * *`  | manager  | delete a subordinate                                | remove subordinates that I no longer need                                    |
-| `* * *`  | manager  | find a subordinate by name                          | locate details of a subordinate without having to go through the entire list |
-| `* * *`  | manager  | filter subordinates based on their department (tag) | locate subordinates based on their department (tag)                          |
-| `* * *`  | manager  | view assigned tasks and persons                     | have an overview of tasks and persons that are assigned                      |
-| `* * *`  | manager  | view unassigned tasks and persons                   | have an overview of tasks and persons that are not assigned                  |
+| Priority | As a …​        | I want to …​                                        | So that I can…​                                                             |
+|----------|----------------|-----------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | new user       | see a brief and simple guide                        | quick-start the application without reading long documentations             |
+| `* * *`  | forgetful user | see usage instructions                              | refer to instructions when I forget how to use the App                      |
+| `* * *`  | manager        | add tasks                                           |                                                                             |
+| `* * *`  | manager        | edit tasks                                          | keep the task updated with the most updated information                     |
+| `* * *`  | manager        | delete tasks                                        | remove tasks that I no longer need                                          |
+| `* * *`  | manager        | mark tasks as done and undone                       | keep track of tasks that are completed                                      |
+| `* * *`  | manager        | find tasks assigned to specific subordinate         | better manage my subordinates workload                                      |
+| `* * *`  | manager        | check all ongoing tasks available                   | better delegate my tasks                                                    |
+| `* * *`  | manager        | assign tasks to a subordinate                       | keep track of which subordinate is in charge of which task                  |
+| `* * *`  | manager        | unassign tasks from a subordinate                   | assign this task to other subordinates                                      |
+| `* * *`  | manager        | add a subordinate                                   |                                                                             |
+| `* * *`  | manager        | delete a subordinate                                | remove subordinates that I no longer need                                   |
+| `* * *`  | manager        | find a subordinate by name                          | locate details of a subordinate without having to go through the entire list |
+| `* * *`  | manager        | filter subordinates based on their department (tag) | locate subordinates based on their department (tag)                         |
+| `* * *`  | manager        | view assigned tasks and persons                     | have an overview of tasks and persons that are assigned                     |
+| `* * *`  | manager        | view unassigned tasks and persons                   | have an overview of tasks and persons that are not assigned                 |
 
 
 ### 6.3 Use cases
@@ -1131,10 +1136,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and sample tasks. The window size may not be
       optimum.
-
 
 2. Saving window preferences
 
@@ -1156,7 +1160,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### 7.3 Assigning a Task to a Person
+### 7.3 Assigning a task to a person
 
 1. Assigning a task to a person while all tasks and persons are being shown
 
@@ -1249,7 +1253,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/INPUT`, where INPUT is anything that is not true/false.
       Expected: Similar to previous.
 
-2. Adding a task with deadline.
+2. Adding a task with deadline
    1. Prerequisites: There are no tasks with the same title present.
    2. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01`<br>
       Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
@@ -1356,12 +1360,64 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
         Expected: No person details are displayed. "Person index is invalid" shown in status message.
 
+### 7.12 Edit task 
+
+  1. Task to be edited is available in OfficeConnect
+     1. Prerequisites: The specified task index is invalid
+     2. Test case: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` (replace with valid index and inputs) <br>
+     3. Expected: Task details are displayed. "Task edited: [TITLE]; Status: [STATUS]; Content: [CONTENT]" shown in status message.
+
+  2. Task to be edited is not available in OfficeConnect
+     1. Prerequisites: The specified task index is invalid
+     2. Test case: `editt 0`
+     3. Expected: "The task index provided is invalid" shown in status message.
+
+### 7.13 Find persons by name
+
+  1. There are persons in OfficeConnect with the specified name.
+     1. Prerequisites: Only one person can be specified.
+     2. Test case: `findp NAME` <br>
+        Expected: All persons whose name contains given input are displayed. "[number] person found" shown in status message.
+     3. Test case: `findp` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4. Other incorrect find persons commands to try: `findp !@#`)<br>
+        Expected: No changes in GUI. "No such person found" shown in status message.
+  
+  2. There are no persons in OfficeConnect with the specified name.
+     1. Prerequisites: Only one person can be specified.
+     2. Test case: `findp NAME` <br>
+        Expected: No persons are displayed. "No such person found" shown in status message.
+     3. Test case: `findp` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4. Other incorrect find persons commands to try: `findp !@#`)<br>
+        Expected: No persons are displayed. "No such person found" shown in status message.
+
+### 7.14 Find tasks by title
+
+  1. There are tasks in OfficeConnect with the specified title.
+     1. Prerequisites: Only one title can be specified.
+     2. Test case: `findt TITLE` <br>
+        Expected: All tasks in which title contains given input are displayed. "[number] task/s found" shown in status message.
+     3. Test case: `findt` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4. Other incorrect find tasks commands to try: `findt !@#`)<br>
+        Expected: No changes in GUI. "No such task found" shown in status message.
+  
+  2. There are no tasks in OfficeConnect with the specified title.
+     1. Prerequisites: Only one title can be specified.
+     2. Test case: `findt TITLE` <br>
+        Expected: No tasks are displayed. "No such task found" shown in status message.
+     3. Test case: `findt` <br>
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+     4.  Other incorrect find tasks commands to try: `findt !@#`)<br>
+         Expected: No tasks are displayed. "No such task found" shown in status message.
+
 --------------------------------------------------------------------------------------------------------------------
 ## 8. Appendix: Effort
-OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group, F10-1, has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
-Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and in AB3.
+OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
+Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
 
-In this section, we will detail some of the hurdles that we faced through the iterations of our tP.
+In the section, we will detail some of the hurdles that we faced through the iterations of our tP, both design and technical wise.
 ### 8.1 Design Challenges
 Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some big design changes includes:
 * Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.

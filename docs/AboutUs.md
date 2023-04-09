@@ -44,7 +44,7 @@ You can reach us at the email `chuyiting@nus.edu.sg`
 [[portfolio](team/spwwj.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Architecture
 
 ### Guo Kecheng
 

@@ -28,7 +28,8 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [KEYWORD]\n"
             + "Example: " + COMMAND_WORD + " CS2103 TP";
 
-    public static final String MESSAGE_TASK_FOUND = "%1$s task found.";
+    public static final String MESSAGE_TASK_FOUND_S = "%1$s task found";
+    public static final String MESSAGE_TASK_FOUND_P = "%1$s tasks found";
     public static final String MESSAGE_NO_TASK_FOUND = "No such task found.";
 
     private static final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
@@ -68,7 +69,8 @@ public class FindTaskCommand extends Command {
             return new CommandResult(MESSAGE_NO_TASK_FOUND);
         } else {
             int numOfTaskFound = taskModelManager.getFilteredListSize();
-            return new CommandResult(String.format(MESSAGE_TASK_FOUND, numOfTaskFound));
+            String message = numOfTaskFound > 1 ? MESSAGE_TASK_FOUND_P : MESSAGE_TASK_FOUND_S;
+            return new CommandResult(String.format(message, numOfTaskFound));
         }
     }
 
