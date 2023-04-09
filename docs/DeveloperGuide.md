@@ -58,8 +58,16 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 - [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
   - [7.1 Launch and Shutdown](#71-launch-and-shutdown)
   - [7.2 Adding a Person](#72-adding-a-person)
-  - [7.3 Deleting a Person](#73-deleting-a-person)
-  - [7.4 Saving Data](#74-saving-data)
+  - [7.3 Editing a Person](#73-editing-a-person)
+  - [7.4 Deleting a Person](#74-deleting-a-person)
+  - [7.5 Adding Additional Tags](#75-adding-additional-tags-to-a-person)
+  - [7.6 Deleting Individual Tags](#76-deleting-tags-from-a-person)
+  - [7.7 Searching for a Person](#77-searching-for-a-person)
+  - [7.8 Opening a Person's social media links in app](#78-opening-a-persons-social-media-links-in-app)
+  - [7.9 Opening a social media platform with prefilled message](#79-opening-a-social-media-platform-with-prefilled-message)
+  - [7.10 Viewing Upcoming Birthdays](#710-view-upcoming-birthdays)
+
+
 - [8. Requirements](#8-requirements)
   - [8.1 Product Scope](#81-product-scope)
   - [8.2 User Stories](#82-user-stories)
@@ -727,7 +735,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.3 Deleting a `Person`:
+## 7.4 Deleting a `Person`:
 
 1. Deleting a `Person` while all persons are being shown
    1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
@@ -743,7 +751,7 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to table of contents](#table-of-contents)
 <div style="page-break-after: always"></div>
 
-## 7.4 Adding additional tags to a `Person`:
+## 7.5 Adding additional tags to a `Person`:
 1. Adding tags to a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
     2. Test case: `add-t 1 r/friends mod/CS2103T`<br>
@@ -761,7 +769,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.5 Deleting tags from a `Person`:
+## 7.6 Deleting tags from a `Person`:
 1. Deleting tags from a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. Assuming the first
         `Person` in the list has the remark tag `friends` and module tag `CS2103T`.
@@ -777,7 +785,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.6 Searching for a `Person`:
+## 7.7 Searching for a `Person`:
 1. Searching for a `Person`:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `search cs`<br>.
@@ -795,7 +803,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.7 Opening a `Person`'s social media links in app:
+## 7.8 Opening a `Person`'s social media links in app:
 1. Opening a `Person`'s social media links:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `open 1 tg/`<br>
@@ -811,7 +819,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.8 Opening a social media platform with prefilled message:
+## 7.9 Opening a social media platform with prefilled message:
 1. Opening a social media platform with prefilled message:
     1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list. 
     2. Test case: `open 1 wa/ m/Hello World`<br>
@@ -824,7 +832,7 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 7.9 View upcoming birthdays:
+## 7.10 View upcoming birthdays:
 1. View people whose birthday are in the next 60 days:
   1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
   2. Test case: `upcoming-b`<br>
