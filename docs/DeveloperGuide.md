@@ -228,7 +228,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState0.png">
 
-      Initial state of the address book history upon startup
+      <p>Initial state of the address book history upon startup</p>
 
    </div>
 
@@ -238,7 +238,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState1.png">
 
-      State of the address book history after calling <code>delete 5</code>
+      <p>State of the address book history after calling <code>delete 5</code></p>
 
    </div>
 
@@ -248,7 +248,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState2.png">
 
-      State of the address book history after calling <code>add n/David …​</code>
+      <p>State of the address book history after calling <code>add n/David …​</code></p>
 
    </div>
 
@@ -264,7 +264,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState3.png">
 
-      State of the address book history after calling <code>undo</code>
+      <p>State of the address book history after calling <code>undo</code></p>
 
    </div>
 
@@ -274,7 +274,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState4.png">
 
-      State of the address book history after calling <code>list</code>. Note that it hasn't changed from Figure 4
+      <p>State of the address book history after calling <code>list</code>. Note that it hasn't changed from the previous figure above</p>
 
    </div>
 
@@ -284,7 +284,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState5.png">
 
-      State of the address book history after calling <code>undo</code> again
+      <p>State of the address book history after calling <code>undo</code> again</p>
 
    </div>
 
@@ -300,7 +300,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
       <img src="images/UndoState6.png">
 
-      State of the address book history after having "overwritten" old states
+      <p>State of the address book history after having "overwritten" old states</p>
 
    </div>
 
