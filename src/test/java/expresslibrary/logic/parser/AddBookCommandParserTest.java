@@ -14,7 +14,7 @@ import static expresslibrary.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static expresslibrary.testutil.TypicalBooks.BELOVED;
+import static expresslibrary.testutil.TypicalBooks.HARRY_POTTER;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class AddBookCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Book expectedBook = new BookBuilder(BELOVED).build();
+        Book expectedBook = new BookBuilder(HARRY_POTTER).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_HARRY + AUTHOR_DESC_ROWLING

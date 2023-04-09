@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import expresslibrary.commons.core.index.Index;
+import expresslibrary.commons.util.DateUtil;
 import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.Model;
@@ -48,9 +49,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String VALID_AUTHOR_ROWLING = "JK Rowling";
-    public static final LocalDate VALID_BORROW_DATE = LocalDate.parse("30/03/2023");
+    public static final LocalDate VALID_BORROW_DATE = DateUtil.parseDate("30/03/2023");
     public static final Person VALID_BORROWER_ALICE = TypicalPersons.ALICE;
-    public static final LocalDate VALID_DUE_DATE = LocalDate.parse("06/04/2023");
+    public static final LocalDate VALID_DUE_DATE = DateUtil.parseDate("06/04/2023");
     public static final String VALID_ISBN_HARRY = "9780747532743";
     public static final String VALID_TITLE_ANIMAL = "Animal Farm";
     public static final String VALID_AUTHOR_ALEX = "Alexandra Harris";
@@ -175,7 +176,7 @@ public class CommandTestUtil {
 
         Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
         final String[] splitTitle = book.getTitle().title.split("\\s+");
-        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[3])));
 
         assertEquals(1, model.getFilteredBookList().size());
     }

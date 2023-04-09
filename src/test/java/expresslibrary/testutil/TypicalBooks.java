@@ -23,6 +23,8 @@ public class TypicalBooks {
     public static final Book GREAT_GATSBY = new Book(new Title("Great Gatsby"),
             new Author("F Scott Fitzgerald"),
             new Isbn("9780743273565"));
+    public static final Book HARRY_POTTER = new Book(new Title("Harry Potter"), new Author("JK Rowling"),
+            new Isbn("9780747532743"));
     public static final Book HEART_OF_DARKNESS = new Book(new Title("Heart of Darkness"), new Author("Joseph Conrad"),
             new Isbn("9780141441672"));
     public static final Book INVISIBLE_MAN = new Book(new Title("Invisible Man"), new Author("Ralph Ellison"),

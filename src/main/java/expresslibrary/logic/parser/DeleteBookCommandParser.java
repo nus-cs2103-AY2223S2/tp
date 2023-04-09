@@ -1,11 +1,13 @@
 package expresslibrary.logic.parser;
 
+import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_FORCE;
 import static java.util.Objects.requireNonNull;
 
 import expresslibrary.commons.core.Messages;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.logic.commands.DeleteBookCommand;
+import expresslibrary.logic.commands.DeletePersonCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,7 +31,7 @@ public class DeleteBookCommandParser implements Parser<DeleteBookCommand> {
             bookIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                    Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX, pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookCommand.MESSAGE_USAGE), pe);
         }
 
         Boolean deleteOption = false;

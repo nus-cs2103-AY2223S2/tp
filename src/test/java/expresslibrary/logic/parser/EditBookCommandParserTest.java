@@ -52,10 +52,10 @@ public class EditBookCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + TITLE_DESC_HARRY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + AUTHOR_DESC_ROWLING, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + TITLE_DESC_HARRY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + AUTHOR_DESC_ROWLING, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);

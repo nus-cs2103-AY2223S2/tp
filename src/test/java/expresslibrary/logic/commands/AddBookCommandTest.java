@@ -54,26 +54,26 @@ public class AddBookCommandTest {
 
     @Test
     public void equals() {
-        Book alice = new BookBuilder().withTitle("Alice").build();
-        Book bob = new BookBuilder().withTitle("Bob").build();
-        AddBookCommand addAliceCommand = new AddBookCommand(alice);
-        AddBookCommand addBobCommand = new AddBookCommand(bob);
+        Book harry = new BookBuilder().withTitle("Harry Potter").build();
+        Book beloved = new BookBuilder().withTitle("Beloved").build();
+        AddBookCommand addHarryCommand = new AddBookCommand(harry);
+        AddBookCommand addBelovedCommand = new AddBookCommand(beloved);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addHarryCommand.equals(addHarryCommand));
 
         // same values -> returns true
-        AddBookCommand addAliceCommandCopy = new AddBookCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddBookCommand addAliceCommandCopy = new AddBookCommand(harry);
+        assertTrue(addHarryCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addHarryCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addHarryCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different title -> returns false
+        assertFalse(addHarryCommand.equals(addBelovedCommand));
     }
 
     /**
