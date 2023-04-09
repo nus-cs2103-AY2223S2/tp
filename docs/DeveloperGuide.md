@@ -179,7 +179,7 @@ including the role, company, email, and status.
 with an application, users are only allowed to add a task to an application via the 
 <a href="#56-add-task-feature">add task command</a>.</div>
 
-With thia command, users no longer have to rely on memory or scattered notes to keep track of their
+With this command, users no longer have to rely on memory or scattered notes to keep track of their
 applications. Instead, they can quickly and easily input all relevant information into sprINT, and access it at any
 time to monitor their progress.
 
