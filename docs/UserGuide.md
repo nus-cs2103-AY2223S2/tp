@@ -292,7 +292,7 @@ Search for a contact based on matching KEYWORD to any attribute of a Person reco
 
 Format: `findall KEYWORD`
 
-\*`TAG` and `STATUS` attributes as they have their own separate commands for searching.  
+\*`KEYWORD` includes all attributes except `TAG` and `STATUS` because they have their own separate commands for searching.  
 \*Does not parse through tasklist and transactions (For future extensions).
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
@@ -300,9 +300,9 @@ The user can search for any attribute and if it matches with any Person, that pe
 - The search is case-insensitive. e.g `u` will match `U`
 - The search will match with any attribute
 - Persons matching the search will be returned:
-  Example 1: `findall NAME`: `findall John` will return contacts with gender attributes that contains the keyword like `John Doe` and `John The Builder`  
-  Example 2: `findall ADDRESS`: `findall Blk 30` will return contacts with address attributes that contains the keyword like `Blk 16 Hello Drive` and `Blk Goodbye Drive`  
-  Applicable for all the following attributes in a person's details: `NAME GENDER PHONE_NUMBER EMAIL COMPANY LOCATION OCCUPATION JOBTITLE ADDRESS`
+  1. Example 1: `findall NAME`: `findall John` will return contacts with gender attributes that contains the keyword like `John Doe` and `John The Builder`  
+  2. Example 2: `findall ADDRESS`: `findall Blk 30` will return contacts with address attributes that contains the keyword like `Blk 16 Hello Drive` and `Blk Goodbye Drive`  
+  3. Applicable for all the following attributes in a person's details: `NAME GENDER PHONE_NUMBER EMAIL COMPANY LOCATION OCCUPATION JOBTITLE ADDRESS`
 
 ### Finding a contact and their transactions list: `findtxn`
 
@@ -311,7 +311,7 @@ Search for a single contact and all transactions related to this contact. The us
 Format: `findtxn NAME`
 
 - The search is case-insensitive and exact-match. e.g `John Doe` will match `john doe` and all transactions with `john doe` as the owner in the transaction
-- The spaces before and after keywords does not matter. e.g. `Hans Bo ` will match `Bo Hans`
+- The spaces before and after keywords does not matter. e.g. `   Hans Bo ` will match `Hans Bo`
   e.g. `findtxn John Doe` will return `John Doe` and all txns with the same owner name `John Doe`
 
 Examples:

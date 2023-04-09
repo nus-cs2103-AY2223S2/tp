@@ -14,7 +14,7 @@ for fast typists.
 
 ### Summary of contributions
 
-#### Code contributed: [RepoSense link]()
+#### Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=wesleybldc&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 #### Enhancements to existing features:
 Enhancements implemented: A summary of the enhancements you implemented.
