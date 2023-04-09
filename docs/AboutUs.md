@@ -14,8 +14,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/alson001)]
 [[portfolio](team/alson001.md)]
 
-- Role: Project Advisor
-- Responsibilities: ***TBC***
+- Role: Project Advisor, Testing
+- Responsibilities: Code Quality
 
 ### Filbert Phang
 
