@@ -543,14 +543,30 @@ The application provides users with two different methods of entering or editing
 * Using the pop-up text box implemented in this feature
 * Adding the remark through the [add feature](#add-feature)
 
+The remark mechanism will be facilitated by a pop-up text box.
+They can do this by simply omitting the optional `REMARK` parameter, which will cause the pop-up text box to appear.
+This will allow users to format their remarks however they like, rather than being restricted to a single line in the command line.
+Users can use the `CTRL` + `S` combination to close the remark box without using the mouse to click on the "X", thereby
+staying through to the goal of catering to fast typists.
+
+However, should the user prefer it, they can also directly input their remarks into the pop-up text box
+by specifying the optional `REMARK` parameter.
+
+Currently, to differentiate between an empty remark specified from the text box and the `remark INDEX` command to open
+the text box, empty, or whitespace only remarks are represented by the null character `\0`. This means that if the
+user somehow types only a single `\0` character into the text box, it can be seen as a bug as it will be cleared 
+upon closing the text box. However, we do not consider this to be a legitimate use of the program, and see no use in
+changing the design.
+
 #### Feature Details
-1. The remark feature can be facilitated by a pop-up text box using `remark INDEX`.
+1. The remark feature can be facilitated by a pop-up text box using `remark INDEX [REMARK]`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
 3. If the content of the remarks is blank, the command will be treated as a delete command and any existing remarks will be deleted.
 
 #### General Design Considerations
 
-In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
+In order to make this feature as versatile as possible, 
+the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
 
 Additionally, we opted for a pop-up text window as the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
 
@@ -558,6 +574,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
 * **Alternative 1:** Adding the `remark` through the command line.
   * Pros:
     * Easier to implement
+    * Fewer chances of bugs to appear
   * Cons:
     * Restricts users to a single line or continuous paragraph of remark.
     * Limits formatting options for remark.
@@ -565,8 +582,16 @@ Additionally, we opted for a pop-up text window as the command line only provide
   * Pros:
     * Provides users flexibility in the format of their remarks.
     * Remarks are not restricted to a single line or continuous paragraph.
+    * Allows the future implementation of enhanced formatting, like using Markdown.
   * Cons:
-    * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting erros.
+    * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting errors.
+    * Have to make sure the user does not enter any state-changing commands like `add` and even `find`/`list`.
+* **Alternative 3: ** Adding remark through an in-window text box
+  * Pros:
+    * Has the same level of flexibility as Alternative 2.
+    * No need for a pop up text window, which could be beneficial for cross-platform support.
+  * Cons:
+    * Less intuitive for the user as the user could try to input more commands into the application while editing remarks, which would cause bugs due to the 2-step nature of the command.
 
 **Aspect: Remark display**
 * **Alternative 1: (Current implementation)** Preview the first line (truncated) of a student's remarks under all the other attributes
