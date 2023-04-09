@@ -121,7 +121,7 @@ public class Patient extends Person {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());
-        sb.append("; Details: ")
+        sb.append("; Status: ")
                 .append(details.toString())
                 .append("; Todos: ")
                 .append(toDos.toString())
