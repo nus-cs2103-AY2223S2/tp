@@ -9,7 +9,7 @@ participant ":Model" as Model LOGIC_COLOR
 participant "lastShownList:\nList<Person>" as List LOGIC_COLOR
 participant ":Person" as Person LOGIC_COLOR
 participant ":LeadStatus" as LeadStatus LOGIC_COLOR
-participant ":AddressBook" as AddressBook LOGIC_COLOR
+
 -> StatusCommand: execute()
 activate StatusCommand
 
@@ -54,10 +54,6 @@ deactivate StatusCommandClass
 
 StatusCommand -> Model : setPerson(toBeUpdated, updatedPerson)
 activate Model
-Model -> AddressBook : setPerson(toBeUpdated, updatedPerson)
-activate AddressBook
-AddressBook --> Model
-deactivate AddressBook
 Model --> StatusCommand
 deactivate Model
 
@@ -66,6 +62,7 @@ StatusCommand -> Model : updateFilteredPersonList()
 activate Model
 Model --> StatusCommand
 deactivate Model
+<-- StatusCommand
 deactivate StatusCommand
 
 box

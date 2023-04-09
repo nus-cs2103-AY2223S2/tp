@@ -27,25 +27,25 @@ public class StatusCommandParser implements Parser<StatusCommand> {
 
         LeadStatus status;
 
-        if (argMultimap.getValue(PREFIX_STATUS_ASSIGN).isPresent()) {
-            Index index;
-            try {
-                index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        StatusCommand.MESSAGE_USAGE), pe);
-            }
-
-            String statusText = argMultimap.getValue(PREFIX_STATUS_ASSIGN).get();
-            if (!LeadStatusName.isValidStatusName(statusText)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LeadStatus.MESSAGE_CONSTRAINTS));
-            }
-
-            status = new LeadStatus(statusText);
-            return new StatusCommand(index, status);
+        if (argMultimap.getValue(PREFIX_STATUS_ASSIGN).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    StatusCommand.MESSAGE_USAGE));
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                StatusCommand.MESSAGE_USAGE));
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    StatusCommand.MESSAGE_USAGE), pe);
+        }
+
+        String statusText = argMultimap.getValue(PREFIX_STATUS_ASSIGN).get();
+        if (!LeadStatusName.isValidStatusName(statusText)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LeadStatus.MESSAGE_CONSTRAINTS));
+        }
+
+        status = new LeadStatus(statusText);
+        return new StatusCommand(index, status);
     }
 }
