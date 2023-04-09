@@ -102,12 +102,15 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
 4. You should now see a window similar to the one shown below. 
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
-for your reference. </div>
+for your reference. </div>  
+<br>  
 
 
-![Ui](images/Ui.png)
+<p align="center">
+  <img src="images/Ui.png">
+</p>
 
-Figure 1 : The starting window for the coNtactUS application.
+<div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Familiarising yourself with the user interface 
@@ -115,10 +118,11 @@ Figure 1 : The starting window for the coNtactUS application.
 In case you are unsure of what you see in front of you now, we have come up with annotations to
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
+<p align="center">
+  <img src="images/User_Interface.png">
+</p>
 
-![Ui](images/User_Interface.png)
-
-Figure 2: Annotations about the user interface
+<div align="center">Figure 2: Annotations about the user interface</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Familiarising yourself with a module
@@ -209,7 +213,12 @@ Examples of valid usages:
 * `add n/CS1101S t/Tutorial e/Monday 10:00 12:00 a/COM1-0217 s/Sam Wan`
 * `add n/CS2030S t/Lab a/COM1-B112 d/040423 23:59 r/Attendance not compulsory :)`
 
-![image](https://user-images.githubusercontent.com/82088609/230762259-5f9f5b2c-18d2-4e9b-9d27-6a07c99c6bcb.png)
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/82088609/230762259-5f9f5b2c-18d2-4e9b-9d27-6a07c99c6bcb.png">
+</p>
+
+<div align="center">Figure 3 : Adding a new module into the tracker.</div>  
+<br>  
 
 Examples of invalid usages: 
 * `add n/CS2103T` - there is no description provided.
@@ -234,7 +243,11 @@ Format: `delete INDEX`
 
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
-![image](https://user-images.githubusercontent.com/82088609/230761749-73b7be3f-117d-42f5-bcc2-a1bbbe63fe6b.png)
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/82088609/230761749-73b7be3f-117d-42f5-bcc2-a1bbbe63fe6b.png">
+</p>
+
+<div align="center">Figure 4 : Deleting a module from the tracker.</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Editing a module: `edit`
@@ -260,7 +273,12 @@ Examples of valid usages:
 * `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd
   module to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 
-![image](https://user-images.githubusercontent.com/82088609/230762280-a40ed804-c8a7-40cd-87ac-a921654ec1bd.png)
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/82088609/230762280-a40ed804-c8a7-40cd-87ac-a921654ec1bd.png">
+</p>
+
+<div align="center">Figure 5 : Editing a module in the tracker.</div>  
+<br>  
 
   
 Examples of invalid usages:
@@ -287,7 +305,12 @@ Format: `find KEYWORD`
 
 Examples:
 * `find CS2103T` finds all modules with name and/or description including the word `CS2103T`. 
-![image](https://user-images.githubusercontent.com/82088609/230762292-af7a1943-277f-499e-835f-0f4fec87f16d.png)
+
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/82088609/230762292-af7a1943-277f-499e-835f-0f4fec87f16d.png">
+</p>
+
+<div align="center">Figure 6 : Finding a module in the tracker.</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Sorting the modules: `sort`
@@ -307,7 +330,11 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 * The `sort deadline` command will sort the modules based on their deadline.
 * For example, a module with deadline `250623` will be shown before a module with deadline `260623`.
 
-![image](https://user-images.githubusercontent.com/82088609/230762314-1a02a759-57a6-45e1-84cc-fad35ef77804.png)
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/82088609/230762314-1a02a759-57a6-45e1-84cc-fad35ef77804.png">
+</p>
+
+<div align="center">Figure 7 : Sorting the modules in the tracker.</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Clearing all modules: `clear`
@@ -324,11 +351,11 @@ to use the commands.
 
 * This is a straight-forward command, and all you have to type is `help`
 
-<div style="text-align: center;"> <image src = 
-"images/helpMessage.png"></image>
-</div>
+<p align="center">
+   <img src="images/helpMessage.png">
+</p>
 
-<div style="text-align: center;"> Figure : An example of the help window  </div>
+<div align="center">Figure 8 : Help window.</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Exiting the module tracker: `exit`
@@ -361,11 +388,11 @@ to enjoy its benefits!
 to display the pop-up window at any other point in time. However, this will be a future enhancement. Do take a look at 
 features [coming soon](#coming-soon) if you are interested. 
 
-<div style="text-align: center;"> <image src = 
-"https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png"></image>
-</div>
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png">
+</p>
 
-<div style="text-align: center;"> Figure : An example of the reminder window  </div>
+<div align="center">Figure 9 : Reminder window.</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Format Restrictions
@@ -444,20 +471,123 @@ You can refer to this section for more examples of valid and invalid input value
 know what information are considered valid and what are not.<br>
 
 :bulb: ` ` refers to a blank value.
-</div>
+</div>  
 
-| Attributes  | Valid                                                            | Invalid                                                            |
-|-------------|------------------------------------------------------------------|--------------------------------------------------------------------|
-| MODULE_NAME | `CS2103T` `CS 2101` `gea1000` `ST2334` `Programming Methodology` | ` ` `C$2103T` `CS2101!!` `CS21.01`                                 |
-| TAG         | `Lecture` `Tutorial` `Assignment2` `lab` `PROJECT` ` `           | ` ` `Assignment 2` `l@b`                                           |
-| TIMESLOT    | `Friday 12:00 14:00` `Tuesday 09:00 10:00`                       | ` ` `Mon 12:00 14:00` `Wednesday 7:00 8:00` `Thursday 11:00 10:00` |
-| VENUE       | `COM1` `COM 3.` `com1-0117`                                      | ` `                                                                |
-| TEACHER     | `Damyth.` `Prof John Lee` `Dr Ch'ng` `mr. anderson`              | ` `                                                                |
-| DEADLINE    | `100423 23:59` `120423 11:00` `280223 09:00` `290224 12:00`      | ` ` `10423 23:59` `320423 11:00` `290223 09:00` `290224 25:61`     |
-| REMARK      | `Hard module.` `Can S/U.` `Rewatch` `PAY ATTENTION`              | ` `                                                                |
-| RESOURCE    | `www.google.com` `WWW.YOUTUBE.COM` `WwW.GmAiL.cOm`               | ` `                                                                |
---------------------------------------------------------------------------------------------------------------------
+<table class="center">
+   <tr>
+      <th>Attributes</th>
+      <th>Valid</th>
+      <th>Invalid</th>
+   <tr>
+   <tr>
+      <td>MODULE_NAME</td>
+      <td>
+         <code>CS2103T</code>
+         <code>CS 2101</code>
+         <code>gea1000</code>
+         <code>ST2334</code>
+         <code>Programming Methodology</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>C$2103T</code>
+         <code>CS2101!!</code>
+         <code>CS21.01</code>
+      </td>
+   <tr>
+   <tr>
+      <td>TAG</td>
+      <td>
+         <code>Lecture</code>
+         <code>Tutorial</code>
+         <code>Assignment2</code>
+         <code>lab</code>
+         <code>PROJECT</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>Assignment 2</code>
+         <code>l@b</code>
+      </td>
+   <tr>
+   <tr>
+      <td>TIMESLOT</td>
+      <td>
+         <code>Friday 12:00 14:00</code>
+         <code>Tuesday 09:00 10:00</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>Mon 12:00 14:00</code>
+         <code>Wednesday 7:00 8:00</code>
+         <code>Thursday 11:00 10:00</code>
+      </td>
+   <tr>
+   <tr>
+      <td>VENUE</td>
+      <td>
+         <code>COM1</code>
+         <code>COM 3.</code>
+         <code>com1-0117</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+   <tr>
+      <td>TEACHER</td>
+      <td>
+         <code>Prof Damyth.</code>
+         <code>Mr. John Lee</code>
+         <code>Dr Ch'ng</code>
+         <code>anderson</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+   <tr>
+      <td>DEADLINE</td>
+      <td>
+         <code>100423 23:59</code>
+         <code>120423 11:00</code>
+         <code>280223 09:00</code>
+         <code>290224 12:00</code>
+      </td>
+      <td>
+         <code> </code>
+         <code>10423 23:59</code>
+         <code>320423 11:00</code>
+         <code>290223 09:00</code>
+         <code>290224 25:61</code>
+      </td>
+   <tr>
+   <tr>
+      <td>REMARK</td>
+      <td>
+         <code>Hard module.</code>
+         <code>Can S/U</code>
+         <code>rewatch</code>
+         <code>PAY ATTENTION</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+   <tr>
+      <td>RESOURCES</td>
+      <td>
+         <code>www.google.com</code>
+         <code>WWW.YOUTUBE.COM</code>
+         <code>WwW.GmAiL.cOm</code>
+      </td>
+      <td>
+         <code> </code>
+      </td>
+   <tr>
+</table>  
 
+--------------------------------------------------------------------------------------------------------------------  
 
 ## Data Storage
 
@@ -486,11 +616,12 @@ Note that currently, coNtactUS does not enforce any additional checks for confli
 
 * For example, you will be allowed to create two module listings as follows.
 
-<div style="text-align: center;"> <image src = 
-"images/noConflictChecks.png"></image>
-</div>
+<p align="center">
+   <img src ="images/noConflictChecks.png">
+</p>
 
-<div style="text-align: center;"> Figure : An example of the help window  </div>
+<div align="center">Figure 10 : Two modules with the same teacher.</div>  
+<br>  
 
 * It might not make sense to have the same teacher `Bob`, teaching two different classes 
 that are located at different venues (`LT-19` and `COM1-B1`) at the same timing (`Monday 11:00 15:00`). However, we 
@@ -511,7 +642,24 @@ for you to do so, so you can see the reminders at any time you wish.
  --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
-Some text here
+If you have any confusion about some of the technical terms used in this user guide, you may 
+refer to the glossary below.  
+
+#### Attribute  
+Refers to a specific input value from the user that provides details to execute a command. Attributes, except for
+are preceded by their prefixes. Example includes ```n/MODULE_NAME``` and ```d/DEADLINE```. 
+
+#### Command Word  
+Refers to the keyword in a valid user command. Examples include ```add```, ```edit``` and ```delete```.  
+
+#### Module Tracker  
+Refers to the application used to track the entries of different modules input by users.  
+
+#### Prefix  
+Refers to a character ending in a slash ("/") that precedes an attribute value. It indicates the type of
+information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
+as prefix for ```TEACHER``` attribute.  
+
 
 --------------------------------------------------------------------------------------------------------------------
 

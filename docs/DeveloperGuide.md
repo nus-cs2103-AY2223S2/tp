@@ -65,7 +65,7 @@ The rest of the module tracker consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="https://ay2223s2-cs2103t-w10-1.github.io/tp/images/ArchitectureSequenceDiagram.png" width="574" />
 
 Figure 1: How a `delete 1` function is parsed through the different components.
 
@@ -215,31 +215,46 @@ Some txt here.
 This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users
 to search for modules whose names or types contain any of the specified keywords (case-insensitive).
 
-FindCommand Class
-The FindCommand class is responsible for finding and listing all modules in the module tracker whose name contains any
-of the argument keywords. Keyword matching is case insensitive.
-The FindCommandParser is responsible for parsing the input given by the user.
+##### FindCommand Class
+The **FindCommand** class is responsible for finding and listing all modules in the module tracker whose name contains any of the argument keywords. Keyword matching is case-insensitive. The **FindCommandParser** is responsible for parsing the user input.
 
-The FindCommand utilizes the FilteredList from JavaFx and uses a predicate to initialize a FindCommand object. This
-predicate is programmed such that it will match for the name of the module and type of the module.
+The **FindCommand** utilizes the **FilteredList** from JavaFX and uses a predicate to initialize a **FindCommand** object. This predicate is programmed to match both the name and the type of the module.
 
-The predicate passed to the FindCommand constructor is from the class NameContainsKeywordsPredicate. This class has a
-test method which is used by the FilteredList.
+The predicate passed to the **FindCommand** constructor is from the **NameContainsKeywordsPredicate** class. This class has a test method, which is used by the **FilteredList**.
 
-Given below is an example usage scenario and how the find command behaves at each step.
+Below is an example usage scenario and how the find command behaves at each step:
 
-Step 1. The user launches the application for the first time. The `ModuleTracker` will be initialized with the initial
-module tracker state.
+**Step 1:** he user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
 
-Step 2. The user executes `find CS3263` command. The 'find CS3263' will be handled by the LogicManager and
-ModuleTrackerParser which will extract out the needed argument, more importantly the predicate.
+**Step 2:** The user writes "find CS3263" in the terminal. This command will be handled by the **LogicManager** and **ModuleTrackerParser**, which will extract the needed argument, most importantly the predicate.
 
-Step 3. Now, the command is executed through the execute method which will update the list through
-`Model#updateFilteredModuleList`
+**Step 3:** The command is executed through the execute method, which updates the list through **Model#updateFilteredModuleList**.
 
-Step 4. The method set the predicate to the filtered list which will run the `NameContainsKeywordsPredicate#test()` to
-find the items based on name or type
+**Step 4:** The method sets the predicate to the filtered list, which runs the **NameContainsKeywordsPredicate#test()** method to find the items based on name or type.
 
+### Reminder feature
+
+#### Reminder Implementation
+This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots and deadlines on the current day (based on the system's time).
+
+The **LogicManager** class is responsible for finding all the modules in the module tracker whose date (timeslot or deadline) matches the current date. The **UiManager** class is responsible for alerting the user of the deadlines and timeslots for today.
+
+There are 3 methods in the **LogicManager** class:
+1. A method that deals with finding the timeslots for the day.
+2. A method that deals with finding the deadlines for the day.
+3. A method that combines and parses everything into a string.
+
+The string is then passed to a method in the **UiManager** that handles showing the alert to the user upon launching the application. Exceptions and null values are handled to avoid processing null dates, as they are optional fields.
+
+Exceptions and null values are handled to avoid looking at null dates as they are optional.
+
+Below is an example usage scenario of the reminder feature:
+
+**Step 1:** The user launches the application for the first time. The **`ModuleTracker`** will be initialized with the initial module tracker state.
+
+**Step 2:** An alert pops up, showing the user the timeslots and deadlines for the day, along with the module name and type. The title of the alert is "Work Today."
+
+**Step 3:** The user can now close the alert and continue using the application.
 
 <!--
 #### Design considerations:
@@ -260,10 +275,18 @@ _{more aspects and alternatives to be added}_
 
 ------------------------------------------------------------------------------------------------------------------------
 
-### 6. \[Proposed\] Planned Enhancements
+## 6. \[Proposed\] Planned Enhancements
 
-1. Reminder function.
-2. More checks to teacher, remarks and one more i forgot.
+### 6.1 Reminder command.
+We propose extending the reminder feature to allow users to call it at any time, instead of only at the application's launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
+
+To implement this, we plan to add a new command, similar to the existing commands, by creating a **ReminderCommand** class and a **ReminderCommandParser** class, analogous to the **FindCommand** and **FindCommandParser**.
+
+These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an improved user experience.
+
+### 6.2 More checks to teacher, remarks
+
+Bla bla 
 
 --------------------------------------------------------------------------------------------------------------------
 ## **7. Documentation, logging, testing, configuration, dev-ops**

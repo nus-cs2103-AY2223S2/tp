@@ -11,7 +11,7 @@ import seedu.address.model.ModuleTracker;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Contact nUS has been cleared!";
+    public static final String MESSAGE_SUCCESS = "CoNtactUS has been cleared!";
 
 
     @Override
