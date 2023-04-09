@@ -1,60 +1,60 @@
 @startuml
 !include style.puml
 
-box ApplicationLogic LOGIC_COLOR_T1
-participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
-participant "d:ClearApplicationsCommand" as ClearApplicationsCommand LOGIC_COLOR
+participant ":ClearCommand" as ClearCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box ApplicationModel MODEL_COLOR_T1
-participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
 participant ":InternshipBook" as InternshipBook MODEL_COLOR
 end box
 
-[-> ApplicationLogicManager : execute("clear")
-activate ApplicationLogicManager
+[-> LogicManager : execute("clear")
+activate LogicManager
 
-ApplicationLogicManager -> InternshipBookParser : parseCommand("clear")
+LogicManager -> InternshipBookParser : parseCommand("clear")
 activate InternshipBookParser
 
-create ClearApplicationsCommand
-InternshipBookParser -> ClearApplicationsCommand
-activate ClearApplicationsCommand
+create ClearCommand
+InternshipBookParser -> ClearCommand
+activate ClearCommand
 
-ClearApplicationsCommand --> InternshipBookParser : clearCommand
-deactivate ClearApplicationsCommand
+ClearCommand --> InternshipBookParser : clearCommand
+deactivate ClearCommand
 
-InternshipBookParser --> ApplicationLogicManager : clearCommand
+InternshipBookParser --> LogicManager : clearCommand
 deactivate InternshipBookParser
 
-ApplicationLogicManager -> ClearApplicationsCommand : execute()
-activate ClearApplicationsCommand
+LogicManager -> ClearCommand : execute()
+activate ClearCommand
 
 create InternshipBook
-ClearApplicationsCommand -> InternshipBook : new InternshipBook()
+ClearCommand -> InternshipBook : new InternshipBook()
 activate InternshipBook
 
-InternshipBook --> ClearApplicationsCommand : newIB
+InternshipBook --> ClearCommand : newIB
 deactivate InternshipBook
 
-ClearApplicationsCommand -> ApplicationModel : setInternshipBook(newIB)
-activate ApplicationModel
+ClearCommand -> Model : setInternshipBook(newIB)
+activate Model
 
-ApplicationModel --> ClearApplicationsCommand
-deactivate ApplicationModel
+Model --> ClearCommand
+deactivate Model
 
 create CommandResult
-ClearApplicationsCommand -> CommandResult
+ClearCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ClearApplicationsCommand : result
+CommandResult --> ClearCommand : result
 deactivate CommandResult
 
-ClearApplicationsCommand --> ApplicationLogicManager : result
-deactivate ClearApplicationsCommand
+ClearCommand --> LogicManager : result
+deactivate ClearCommand
 
-[<--ApplicationLogicManager
-deactivate ApplicationLogicManager
+[<--LogicManager
+deactivate LogicManager
 @enduml

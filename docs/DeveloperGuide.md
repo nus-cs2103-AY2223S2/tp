@@ -53,8 +53,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/Main.java) 
-and [`MainApp`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). 
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/Main.java) 
+and [`MainApp`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/MainApp.java). 
 It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -94,14 +94,14 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicationListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/sprint/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Application` objects residing in the `Model`.
 
 ### 4.3 Logic component
 
@@ -114,8 +114,8 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternshipBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddApplicationCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add an application).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete-app 1")` API call.
 
@@ -141,7 +141,7 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 
 The `Model` component,
 
-* stores the address book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
+* stores the internship book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
 * stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -179,7 +179,7 @@ including the role, company, email, and status.
 with an application, users are only allowed to add a task to an application via the 
 <a href="#56-add-task-feature">add task command</a>.</div>
 
-With the add application command, users no longer have to rely on memory or scattered notes to keep track of their
+With this command, users no longer have to rely on memory or scattered notes to keep track of their
 applications. Instead, they can quickly and easily input all relevant information into sprINT, and access it at any
 time to monitor their progress.
 
@@ -203,8 +203,8 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for the specific purpose of 
 parsing user commands for adding applications.
 5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
@@ -216,8 +216,8 @@ must provide in the input when using the add application feature.</div>
 
 7. These fields will then be used to create an `Application` instance.
 8. The newly created `Application` instance will then be used to create an `AddApplicationCommand`. This command instances
-is returned back to `ApplicationLogicManager`.
-9. The `ApplicationLogicManager` then calls the `execute()` method of the `AddApplicationCommand`. This initializes the execution
+is returned back to `LogicManager`.
+9. The `LogicManager` then calls the `execute()` method of the `AddApplicationCommand`. This initializes the execution
 the logic behind adding the associated application instance to the existing `InternshipBook`.
 10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
 the execution of the command. 
@@ -256,16 +256,16 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
+3. The `LogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `EditApplicationCommandParser` that is responsible for the specific purpose of
    parsing user commands for editing applications.
 5. The `InternshipBookParser` then passes the string input to the `EditApplicationCommandParser` via the `parse()` method.
 6. The `EditApplicationCommandParser` then identifies the input prefixes in the string and edits the fields for the application.
 7. These fields will then be used to create an edited `Application` instance through `createEditedApplication` method.
 8. The newly created `Application` instance will then be used to create an `EditApplicationCommand`. This command instances
-   is returned back to `ApplicationLogicManager`.
-9. The `ApplicationLogicManager` then calls the `execute()` method of the `EditApplicationCommand`. This initializes the execution
+   is returned back to `LogicManager`.
+9. The `LogicManager` then calls the `execute()` method of the `EditApplicationCommand`. This initializes the execution
    the logic behind adding the associated application instance to the existing `InternshipBook`.
 10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
     the execution of the command.
@@ -401,9 +401,9 @@ The implementation of the `sort` command shares some similarities with the `list
 The `list` command lists all applications in the order of creation; i.e., applications that are more recently added
 will be shown higher up in the list.
 The execution of these commands is essentially a two-step process of first **filtering** and then **storing**: 
-1. `ApplicationLogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
+1. `LogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
 list in `FilteredList`.
-2. `ApplicationLogicManager` takes the `FilteredList` and stores a **sorted** version of this list in `SortedList`.
+2. `LogicManager` then takes the `FilteredList` and stores a **sorted** version of this list in `SortedList`.
 
 See the following activity diagram that illustrates this workflow with some example executions of the `sort`, `find`
 and `list` commands:
@@ -487,7 +487,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. Since the `currentStatePointer` is not pointing at the end of the `internshipBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add-app c/Google …​` command. This is the behaviour that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. Since the `currentStatePointer` is not pointing at the end of the `internshipBookStateList`, all internship book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add-app c/Google …​` command. This is the behaviour that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -585,11 +585,11 @@ To exit sprINT, simply issue the command `exit` or click on the X button on the 
 
 #### Implementation
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+2. The command is processed as a value of type string, and is passed to `LogicManager` via it's `execute()` method.
+3. The `LogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. Upon parsing the `exit` Command Keyword, the `InternshipBookParser` creates a `ExitSprintCommand`. This command instance
-   is returned back to `ApplicationLogicManager`.
-5. The `ApplicationLogicManager` then calls the `execute()` method of the `ExitSprintCommand`.
+   is returned back to `LogicManager`.
+5. The `LogicManager` then calls the `execute()` method of the `ExitSprintCommand`.
 6. An instance of `CommandResult` is created and returned to the Ui component.
 7. The Ui component detects the `CommandResult` initiated from an `ExitSprintCommand`, and then handles the closure
    of the desktop application.
@@ -1005,7 +1005,7 @@ UC05, UC06, UC10).</u>
 
 ---
 
-### Non-Functional Requirements
+### 8.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should take less than 500MB of memory while in operation.
@@ -1358,7 +1358,7 @@ dependent on the Role length.
 This enables the automatic wrap around to be applied to both the Tags and Role fields, preventing the truncation issue which
 would negatively affect user's readability.
 
-#### 6. Integer overflow, zero or negative index error message for commands that take in an index (edit-app, edit-task, delete-app, delete-task) not specific enough
+#### 6. Integer overflow, zero or negative index error message for commands that take in an index (`edit-app`, `edit-task`, `delete-app`, `delete-task`) not specific enough
 
 When a user types in an edit or delete command with a non-positive value for the index, the error message just states
 invalid command format, instead of being specific that the index given is invalid.
