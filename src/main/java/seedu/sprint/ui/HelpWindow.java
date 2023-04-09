@@ -67,7 +67,6 @@ public class HelpWindow extends UiPart<Stage> {
     @SuppressWarnings("unchecked")
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpTable = new TableView<>();
         helpTable.setEditable(true);
         commandColumn.setCellValueFactory(
                 new PropertyValueFactory<>("command"));
