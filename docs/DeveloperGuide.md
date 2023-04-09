@@ -42,13 +42,11 @@ This Developer Guide provides in-depth documentation on how MyLib is designed an
 
 You can use this guide to maintain and evolve MyLib.
 
-This Developer Guide is accurate as of 30 March 2023.
-
 <div style="page-break-after: always;"></div>
 
 ## **Design**
 
-This section gives you a high-level overview of how the application is structured and what the key components of FoodRem are.
+This section gives you a high-level overview of how the application is structured and what the key components of MyLib are.
 
 
 <div markdown="span" class="alert alert-primary">
@@ -536,30 +534,34 @@ books in the `Library`.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I want to …​                            | So that I can…​                                      |
-|----------|----------------------------------------|-----------------------------------------|--------------------------------------------------------------- |
-| `* * *`  | new user                               | see usage instructions                  | refer to instructions when I forget how to use the App         |
-| `* * *`  | user                                   | add a new bookmark                      | start tracking a book                                          |
-| `* * *`  | user                                   | delete a bookmark                       | remove entries that I no longer need                           |
-| `* * *`  | user                                   | edit a bookmark                         | update the information in my bookmark                          |
-| `* *`    | user                                   | view the details of a single bookmark   | see information about a particular book I am tracking          |
-| `* *`    | user with mostly unnecessary bookmarks | clear all bookmarks                     | not delete each bookmark one by one                            |
-| `* *`    | user with many bookmarks               | find bookmarks by book type             | view bookmarks of only a certain type                          |
-| `* *`    | user with many bookmarks               | find bookmarks by book genre            | sview bookmarks of only a certain genre                        |
-| `* *`    | user                                   | rate a book through its bookmark        | remember how much I enjoyed the book                           |
-| `* *`    | user with many bookmarks               | sort bookmarks by book title            | locate a bookmark easily                                       |
-| `* *`    | user with many bookmarks               | sort bookmarks by rating                | locate bookmarks of books I enjoyed easily                     |
-| `* *`    | user who likes detail                  | add tags to bookmark                    | give additional labels to a bookmark                           |
-| `* *`    | user with many bookmarks               | find bookmarks by their tags            | view only bookmarks who have certain tags                      |
-| `* *`    | user with many bookmarks               | find bookmarks by book author           | view bookmarks of books written by a specific author           |
-| `* *`    | user                                   | add hyperlinks to bookmarks             | link the website where I am reading the book's chapters from   |
-| `* *`    | user                                   | goto url of bookmarks                   | easily go to site of bookmark                                  |
-|  `*`     | user                                   | add book characters to a bookmark       | store noteworthy characters which I remember the book by       |
-|  `*`     | user                                   | find bookmarks using name of characters | locate books with certain characters easily                    |
-| `* *`    | user with many bookmarks               | sort bookmarks by date of creation      | view bookmarks in order of creation                            |
-| `* *`    | user with many bookmarks               | find bookmarks by last modified date    | view bookmarks in order of most recently updated               |
-| `* *`    | user                                   | add last read chapter to a bookmark     | know where I last left off with a certain book                 |
-| `* *`    | user                                   | find bookmarks based on their progress  | view only bookmarks of a certain progress easily               |
+| Priority | As a …​                                | I want to …​                                   | So that I can…​                                                    |
+|----------|----------------------------------------|------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | new user                               | see usage instructions                         | refer to instructions when I forget how to use the App             |
+| `* * *`  | user                                   | add a new bookmark                             | start tracking a book                                              |
+| `* * *`  | user                                   | delete a bookmark                              | remove entries that I no longer need                               |
+| `* * *`  | user                                   | edit a bookmark                                | update the information in my bookmark                              |
+| `* *`    | user                                   | view the details of a single bookmark          | see information about a particular book I am tracking              |
+| `* *`    | user with mostly unnecessary bookmarks | clear all bookmarks                            | not delete each bookmark one by one                                |
+| `* *`    | user with many bookmarks               | find bookmarks by book type                    | view bookmarks of only a certain type                              |
+| `* *`    | user with many bookmarks               | find bookmarks by book genre                   | view bookmarks of only a certain genre                             |
+| `* *`    | user                                   | rate a book through its bookmark               | remember how much I enjoyed the book                               |
+| `* *`    | user with many bookmarks               | sort bookmarks by book title                   | locate a bookmark easily                                           |
+| `* *`    | user with many bookmarks               | sort bookmarks by rating                       | locate bookmarks of books I enjoyed easily                         |
+| `* *`    | user who likes detail                  | add tags to bookmark                           | give additional labels to a bookmark                               |
+| `* *`    | user with many bookmarks               | find bookmarks by their tags                   | view only bookmarks who have certain tags                          |
+| `* *`    | user with many bookmarks               | find bookmarks by book author                  | view bookmarks of books written by a specific author               |
+| `* *`    | user                                   | add hyperlinks to bookmarks                    | link the website where I am reading the book's chapters from       |
+| `* *`    | user                                   | goto url of bookmarks                          | easily go to site of bookmark                                      |
+| `*`      | user                                   | add book characters to a bookmark              | store noteworthy characters which I remember the book by           |
+| `*`      | user                                   | find bookmarks using name of characters        | locate books with certain characters easily                        |
+| `* *`    | user with many bookmarks               | sort bookmarks by their rating                 | view bookmarks in order of their rating                            |
+| `* *`    | user with many bookmarks               | find bookmarks by last modified date           | view bookmarks in order of most recently updated                   |
+| `* *`    | user                                   | add the current reading progress to a bookmark | know where I last left off with a certain book                     |
+| `* *`    | user                                   | find bookmarks based on their progress         | view only bookmarks of a certain progress easily                   |
+| `* *`    | user                                   | add tags to an approved tag list               | standardize the tags used and make finding bookmark by tags easily |
+| `* *`    | user                                   | delete a tag from the approved tag list        | remove tags that I no longer need                                  |
+| `* *`    | user                                   | view tags in the approved tag list             | see that tags have been added and available for use                |
+| `* *`    | user                                   | view the list of valid genres                  | see what are genres that can be added to a bookmark                |
 
 <div style="page-break-after: always;"></div>
 
@@ -654,6 +656,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. MyLib shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Finding a bookmark**
+
+**MSS**
+
+1.  User requests to find a bookmark by title of some keyword
+2.  MyLib finds and displays all bookmarks which contains keyword in its title
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Not all compulsory fields provided.
+
+    * 1a1. MyLib shows an error message.
+
+      Use case resumes at step 2
+
+* 1b. Value is invalid for any field.
+
+    * 1b1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Sorting all bookmark**
+
+**MSS**
+
+1. User requests to list bookmarks
+2. MyLib shows a list of bookmarks
+3. User requests to sort all bookmark 
+4. MyLib sorts all bookmarks by rating.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Not all compulsory fields provided.
+
+    * 1a1. MyLib shows an error message.
+
+      Use case resumes at step 2
+
+* 1b. Value is invalid for any field.
+
+    * 1b1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: View a bookmark**
+
+**MSS**
+
+1.  User requests to list bookmarks
+2.  MyLib shows a list of bookmarks
+3.  User requests to view a specific bookmark in the list
+4.  MyLib views the bookmark in right panel of UI
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Goto bookmark's Url**
+
+**MSS**
+
+1.  User requests to list bookmarks
+2.  MyLib shows a list of bookmarks
+3.  User requests to goto a specific bookmark's Url in the list
+4.  MyLib opens url in user's default browser
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. MyLib shows an error message.
+
+      Use case resumes at step 2.
+
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
@@ -829,6 +926,30 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
    **Expected**: The first bookmark of title `Solo Leveling` is deleted. A success message is displayed in the Result Display.
 
+
+### Going to bookmarks' url
+Prerequisites: List all bookmarks using the `list` command. Multiple bookmarks are present in the list.
+Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries.
+
+1. `goto 1`
+
+   **Expected**: The first bookmark's url is opened in users default browser. A success message is displayed in the Result Display.
+
+2. `goto 1 2`
+
+   **Expected**: An error message is displayed in the Result Display. This is because goto only takes in 1 positive index.
+
+3. `goto`
+
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1 index must be specified.
+
+3. Going to bookmark's url after finding
+    1. `find n/Solo`
+    2. `goto 1`
+
+   **Expected**: The first bookmark's url of title `Solo Leveling` is opened in browser. A success message is displayed in the Result Display.
+
+
 ### Clear all bookmark
 
 1. `clear`
@@ -893,7 +1014,7 @@ Currently, there a few feature flaws with the application. These are some propos
 
 ![edit-8](images/edit-8.png)
 <figcaption style="text-align:center"><em><strong>
-   Figure 1
+   Figure 2
    </strong>
    : After executing edit 8
    </em></figcaption>
@@ -902,8 +1023,8 @@ Currently there is a discrepancy where `edit 0` with missing prefix causes an er
 while `edit` with any positive index and missing prefix causes an error message of at least 1 field must be present.
 
 **Potential Enhancement and Suggested Implementation:**
-It would be great to streamline this error message by perhaps having a separate error message of "index cannot be <= 0"
-for index <=0 since the bookmarklist index starts from 1. And keep the current error message for indexes > 0
+It would be great to streamline this error message by perhaps having a separate error message of "index cannot be less 
+than 1 0" since the bookmarklist index starts from 1. And keep the current error message for indexes more than 0
 
-In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be <= 0" when 
+In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
