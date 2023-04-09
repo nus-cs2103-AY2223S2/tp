@@ -13,12 +13,13 @@ public class AddAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_asgn";
     public static final String MESSAGE_SUCCESS = "Assignment %s with total marks %s added.";
-    public static final String MESSAGE_USAGE = "Format: asgn_add n/{name} (optional: m/{total marks})";
+    public static final String MESSAGE_USAGE = "Format: \"" + COMMAND_WORD + "\" n/{name} (optional: m/{total marks})";
     private final String toAdd;
     private final int totalMarks;
 
     /**
      * Constructor for our command
+     *
      * @param assignmentName
      * @param totalMarks
      */

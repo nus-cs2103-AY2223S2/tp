@@ -8,6 +8,8 @@ layout: page title: Developer Guide
 
 ## **Teaching Assistant Assistant**
 
+<img src="images/TAA_logo.jpg">
+
 Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 TAA can get your teaching assistant tasks done faster than traditional GUI apps.
@@ -211,6 +213,117 @@ This section describes some noteworthy details on how certain features are imple
 
 _{TODO Explain here how the data archiving feature will be implemented}_
 
+## **Add Assignment**
+
+AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
+
+* `AddAssignmentCommandParser`-- Parse the input of users
+* `AddAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for adding an assignment.
+
+<img src="images/AddAssignmentSequenceDiagram.png" />
+
+**Design Considerations**
+
+Aspect: How TAA adds an assignment to the classlist.
+
+1. Alternative 1 (Chosen): Assignment will be added for all students in the classlist.
+
+* Pros: Easier to implement, less likely for bugs.
+
+* Cons: Less robust
+
+2. Alternative 2: Assignment will be added for select students in the classlist.
+
+* Pros: More extensive
+
+* Cons: More likely for bugs, harder to implement.
+
+## **Delete Assignment**
+
+DeleteAssignment command is facilitated by `DeleteAssignmentCommandParser`, `DeleteAssignmentCommand` and `Model`
+
+* `DeleteAssignmentCommandParser`-- Parse the input of users
+* `DeleteAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for deleting an assignment.
+
+<img src="images/DeleteAssignmentSequenceDiagram.png" />
+
+**Design Considerations**
+
+Aspect: How the DeleteAssignmentCommand is parsed.
+
+1. Alternative 1 (Chosen): Use the assignment name to refer to the assignment.
+
+* Pros: More intuitive.
+
+* Cons: TA may have to keep track of many assignment names, or type more than usual as opposed to just typing the index.
+
+2. Alternative 2: Use assignment id to refer to an assignment.
+
+* Pros: TA will have to type less, less assignment names to keep track
+
+* Cons: Unintuitive and confusing.
+
+## **Grade Assignment**
+
+Grade command is facilitated by `GradeCommandParser`, `GradeCommand` and `Model`
+
+* `GradeCommandParser`-- Parse the input of users
+* `GradeCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for grading a student submission.
+
+<img src="images/GradeSequenceDiagram.png" />
+
+**Design Considerations**
+
+Aspect: How to indicate a late student submission.
+
+1. Alternative 1 (Chosen): Use an optional late/ prefix to indicate a late submission.
+
+* Pros: More intuitive, shorter code, does not require a whole new command just to mark a submission as late.
+
+* Cons: None
+
+2. Alternative 2: Create a new command to indicate a late submission.
+
+* Pros: None
+
+* Cons: More code, less intuitive and more commands to remember.
+
+## **Ungrade Assignment**
+
+Ungrade command is facilitated by `UngradeCommandParser`, `UngradeCommand` and `Model`
+
+* `UngradeCommandParser`-- Parse the input of users
+* `UngradeCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for ungrading a student submission.
+
+<img src="images/UngradeSequenceDiagram.png" />
+
+**Design Considerations**
+
+Aspect: How to handle ungrading a submission that was not graded / already ungraded.
+
+1. Alternative 1 (Chosen): Always set the marks to 0 and the late submission status to false.
+
+* Pros: Less code, also makes sense as the overall effect will be the same.
+
+* Cons: Less intuitive for the user.
+
+2. Alternative 2: Throw an error message saying that the assignment has not been graded before / was already ungraded.
+
+* Pros: More intuitive for the user.
+
+* Cons: More code.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -277,31 +390,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAA` and the **Actor** is the `user`, unless specified otherwise)
 
-**use case: mark attendance of a student**
+**Use case: mark attendance of a student**
 
-**use case: unmark attendance of a student**
+**Use case: unmark attendance of a student**
 
-**use case: insert participation points of a student**
+**Use case: insert participation points of a student**
 
 **Use case: delete a student**
 
 **Use case: Add Assignment**
-asgn_add
 
 **Use case: Delete Assignment**
-asgn_delete
 
 **Use case: Grade Student Submission of an Assignment**
-grade
 
 **Use case: Ungrade Student Submission of an Assignment**
-ungrade
 
-**Use case: Add Class List** classlist
+**Use case: Add Class List**
 
-**User case: List Student** list
+**Use case: List Student**
 
-**User case: SearchStudent** search
+**Use case: Search Student**
 
 ## **Mark Attendance**
 
@@ -384,7 +493,7 @@ Below is the sequence diagram for inserting participation points
 
 ## **Add Assignment**
 
-Below is the main success scenario of adding an Assignment
+Below is the main success scenario of adding an Assignment.
 
 **MSS**
 
@@ -409,13 +518,83 @@ Below is the main success scenario of adding an Assignment
 
 AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
 
-* `AddAssignmentCommandParser`-- Parse the input of users
-* `AddAssignmentCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
+## **Delete Assignment**
 
-Below is the sequence diagram for adding an assignment.
+Below is the main success scenario of deleting an Assignment
 
-<img src="images/AddAssignmentSequenceDiagram.png" width="574" />
+**MSS**
+
+1. User requests to delete an assignment of a specific name.
+2. TAA deletes the assignment.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is an assignment with that particular name, .
+
+    * Use case resumes from step 2.
+
+* 1b. There is no assignment with that particular name.
+
+    * 1b1. TAA shows an error message
+
+## **Grade Assignment**
+
+Below is the main success scenario of grading a student submission.
+
+**MSS**
+
+1. User requests to grade a student submission for an assignment, with given marks, and optionally indicating the
+   submission as late.
+
+3. TAA grades the student submission.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is an assignment with that particular name, student index exists in the class list and marks given are
+  valid.
+
+    * Use case resumes from step 2.
+
+* 1b. There is no assignment with that particular name.
+
+    * 1b1. TAA shows an error message.
+
+* 1c. The student index does not exist in the class list.
+
+    * 1c1. TAA shows an error message.
+
+* 1d. The marks given are invalid, where the marks given lies outside the range of 0 to totalMarks for the assignment.
+
+    * 1d1. TAA shows an error message.
+
+## **Ungrade Assignment**
+
+Below is the main success scenario of ungrading a student submission.
+
+**MSS**
+
+1. User requests to ungrade a student submission for an assignment.
+2. TAA grades the student submission.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is an assignment with that particular name, student index exists in the class list.
+
+    * Use case resumes from step 2.
+
+* 1b. There is no assignment with that particular name.
+
+    * 1b1. TAA shows an error message.
+
+* 1c. The student index does not exist in the class list.
+
+    * 1c1. TAA shows an error message.
 
 ## **Students-Related Commands**
 

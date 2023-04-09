@@ -2,9 +2,12 @@
 layout: page title: User Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents
+{:toc}
 
 ## **Introduction**
+
+![TAA logo](./images/TAA_logo.jpg)
 
 ### About this application
 
@@ -19,8 +22,6 @@ TAA provides a one-stop solution that meets the following teaching needs of a TA
    too much time on a single question during tutorial or forgetting to mark students' attendance at the end of class.
 4. You can save the troubles of manually importing and exporting data into and out of the TAA application, thanks to our
    CSV parser!
-
-![TAA logo](./images/TAA_logo.jpg)
 
 Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
 
@@ -435,6 +436,8 @@ Example:
 * `add_asgn n/Lab 1`
 * `add_asgn n/Lab 2 m/50`
 
+<img src="images/AddAssignmentDemo.png">
+
 #### Delete Assignment: `delete_asgn`
 
 Deletes the assignment of assignment_name you provided, along with the student submissions for that assignment.
@@ -459,6 +462,8 @@ Example:
 * `grade n/Lab 1 i/2 m/20`
 * `grade n/Lab 1 i/3 m/30 late/`
 
+<img src="images/GradeDemo.png">
+
 #### Ungrade Assignment: `ungrade`
 
 Resets the grade of the submission of assignment_name and student_id. It will also reset the late submission status of
@@ -473,8 +478,23 @@ Example:
 * `ungrade n/Lab 1 i/2`
 
 #### List all assignments: `list_asgn`
+Lists all assignments, submissions and their respective information.
 
-Lists all assignments, submissions and their respective information. Format: `list_asgn`
+Format: `list_asgn`
+
+Example Output:
+* `Assignment Lab 1:` <br>
+`  [X] Alice: 50/100 marks.` <br>
+`  [ ] Bob: 0/100 marks.` <br>
+*  `Assignment Lab 2:` <br>
+`  [ ] Alice: 0/100 marks.` <br>
+`  [X] Bob: 77/100 marks. (*Late Submission*)` <br>
+
+The example output above shows that there are 2 assignments: Lab 1 & Lab 2.
+
+Alice has a graded submission for Lab 1, and Bob has a graded late submission for Lab 2.
+
+<img src="images/ListAssignmentDemo.png">
 
 ### Class List
 
