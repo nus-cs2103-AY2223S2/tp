@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 /**
  * Represents the filepath of an employee's picture, that can be used to locate the picture in the file system.
- * Guarantees: is valid as declared in {@link #isValidPicturePath(String)}
+ * Guarantees: is valid as declared in {@link #isValidPicturePath(String)}.
  */
 public class PicturePath {
 
@@ -36,7 +36,7 @@ public class PicturePath {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidPicturePath(String test) {
-        return (test.startsWith(VALID_DIRECTORY) && test.endsWith(VALID_EXTENSION));
+        return ((test.startsWith(VALID_DIRECTORY) && test.endsWith(VALID_EXTENSION)) || test.equals(""));
     }
 
     /**

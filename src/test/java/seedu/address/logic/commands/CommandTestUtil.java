@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_DEPARTMENT_AMY = "Finance";
     public static final String VALID_DEPARTMENT_BOB = "Marketing";
-    public static final String VALID_PICTURE_PATH_AMY = "src/main/resources/employeepictures/default.png";
-    public static final String VALID_PICTURE_PATH_BOB = "src/main/resources/employeepictures/default.png";
+    public static final String VALID_PICTURE_PATH_AMY = "src/main/resources/employeepictures/default_employee.png";
+    public static final String VALID_PICTURE_PATH_BOB = "src/main/resources/employeepictures/default_employee.png";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
