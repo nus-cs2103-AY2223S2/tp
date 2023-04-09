@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.internship.commons.core.Messages;
@@ -92,6 +93,14 @@ public class EditCommand extends Command {
         // if internshipToEdit is not changed.
         if (internshipToEdit.equals(editedInternship)) {
             throw new CommandException(MESSAGE_INTERNSHIP_UNCHANGED);
+        }
+
+        model.updateFilteredEventList(new EventByInternship(internshipToEdit));
+        List<Event> oldEvents = model.getFilteredEventList().stream().collect(Collectors.toList());
+        for (Event oldEvent : oldEvents) {
+            Event newEvent = oldEvent.getCopyOf();
+            newEvent.setInternship(editedInternship);
+            model.setEvent(oldEvent, newEvent);
         }
 
         model.setInternship(internshipToEdit, editedInternship);

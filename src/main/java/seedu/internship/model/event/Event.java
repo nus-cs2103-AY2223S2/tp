@@ -15,15 +15,15 @@ import seedu.internship.model.internship.Internship;
  */
 public class Event {
     private final Name name;
-    private final DateTime start;
-    private final DateTime end;
+    private final Start start;
+    private final End end;
     private final EventDescription eventDescription;
     private Internship internship = Internship.EMPTY_INTERNSHIP;
 
     /**
      * Every Field must be present and not null.
      */
-    public Event(Name name, DateTime start, DateTime end, EventDescription eventDescription, Internship internship) {
+    public Event(Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
         requireAllNonNull(name, start, end, eventDescription, internship);
         this.name = name;
         this.start = start;
@@ -50,6 +50,13 @@ public class Event {
         if (this.internship == Internship.EMPTY_INTERNSHIP) {
             this.internship = internship;
         }
+    }
+
+    /**
+     * Returns of copy of this Event with empty, undefined internship.
+     */
+    public Event getCopyOf() {
+        return new Event(name, start, end, eventDescription);
     }
 
     public Name getName() {
