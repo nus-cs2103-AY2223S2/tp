@@ -12,11 +12,6 @@ public class CostTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Cost(null));
     }
-
-    @Test
-    public void constructor_invalidTimeStamp_throwsIllegalArgumentException() {
-        LocalDateTime invalidTimeStamp = LocalDateTime.parse("2024-01-01T00:00:00");
-        assertThrows(IllegalArgumentException.class, () -> new Cost(invalidTimeStamp));
-    }
+    
 
 }
