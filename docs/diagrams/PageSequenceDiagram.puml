@@ -2,14 +2,14 @@
 !include style.puml
 
 box Ui UI_COLOR_T1
-participant "__:MainWindow__" as MainWindow UI_COLOR_T3
+participant ":MainWindow" as MainWindow UI_COLOR_T3
 participant "{abstract}\nPage" as Page UI_COLOR_T3
-participant "__:HomePage__" as HomePage UI_COLOR_T3
+participant ":HomePage" as HomePage UI_COLOR_T3
 
 end box
 box Logic LOGIC_COLOR_T1
-participant "__:LogicManager__" as LogicManager LOGIC_COLOR
-participant "__commandResult:CommandResult__" as CommandResult LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 [-> MainWindow : executeCommand("home")
