@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Developer Guide
-show-toc: true
+toc: true
 ---
 
 * TOC
