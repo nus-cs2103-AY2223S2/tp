@@ -3,9 +3,13 @@ package vimification.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.Set;
 import java.time.LocalDateTime;
 
@@ -18,7 +22,7 @@ public class TaskTest {
         assertNull(task.getDeadline());
         assertEquals(task.getStatus(), Status.NOT_DONE);
         assertEquals(task.getPriority(), Priority.NOT_URGENT);
-        assert task.getLabels().isEmpty();
+        assertTrue(task.getLabels().isEmpty());
     }
 
     @Test
@@ -28,7 +32,7 @@ public class TaskTest {
         assertNull(task.getDeadline());
         assertEquals(task.getStatus(), Status.NOT_DONE);
         assertEquals(task.getPriority(), Priority.UNKNOWN);
-        assert task.getLabels().isEmpty();
+        assertTrue(task.getLabels().isEmpty());
     }
 
     @Test
@@ -69,10 +73,10 @@ public class TaskTest {
     public void testHasStatus() {
         Task task = new Task("Buy milk");
         assertEquals(task.getStatus(), Status.NOT_DONE);
-        assert task.hasStatus(Status.NOT_DONE);
+        assertTrue(task.hasStatus(Status.NOT_DONE));
         task.setStatus(Status.IN_PROGRESS);
         assertEquals(task.getStatus(), Status.IN_PROGRESS);
-        assert task.hasStatus(Status.IN_PROGRESS);
+        assertTrue(task.hasStatus(Status.IN_PROGRESS));
     }
 
     @Test
@@ -87,23 +91,23 @@ public class TaskTest {
     public void testHasPriority() {
         Task task = new Task("Feed my cat");
         assertEquals(task.getPriority(), Priority.UNKNOWN);
-        assert task.hasPriority(Priority.UNKNOWN);
+        assertTrue(task.hasPriority(Priority.UNKNOWN));
         task.setPriority(Priority.NOT_URGENT);
         assertEquals(task.getPriority(), Priority.NOT_URGENT);
-        assert task.hasPriority(Priority.NOT_URGENT);
+        assertTrue(task.hasPriority(Priority.NOT_URGENT));
     }
 
     @Test
     public void testContainsLabel() {
         Task task = new Task("Buy detergent");
-        assert !task.containsLabel("food");
-        assert !task.containsLabel("errands");
+        assertFalse(task.containsLabel("food"));
+        assertFalse(task.containsLabel("errands"));
 
         task.addLabel("food");
         task.addLabel("errands");
         task.removeLabel("food");
-        assert !task.containsLabel("food");
-        assert task.containsLabel("errands");
+        assertFalse(task.containsLabel("food"));
+        assertTrue(task.containsLabel("errands"));
     }
 
     @Test
@@ -111,15 +115,25 @@ public class TaskTest {
         Task task = new Task("ES2660 Essay");
         task.addLabel("academic");
         task.addLabel("ES2660");
-        assert task.containsLabel("academic");
-        assert task.containsLabel("ES2660");
+        assertTrue(task.containsLabel("academic"));
+        assertTrue(task.containsLabel("ES2660"));
 
         Set<String> labels = task.getLabels();
-        assert !labels.isEmpty();
-        assert labels.size() == 2;
-        assert labels.contains("academic");
-        assert !labels.contains("ES2660");
-        assert labels.contains("es2660");
+        assertFalse(labels.isEmpty());
+        assertTrue(labels.size() == 2);
+        assertTrue(labels.contains("academic"));
+        assertFalse(labels.contains("ES2660"));
+        assertTrue(labels.contains("es2660"));
+    }
+
+    @Test
+    public void testAddLabel_throwsException() {
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> {
+            Task task = new Task("GEX Essay");
+            task.addLabel("academic");
+            task.addLabel("academic");
+        });
+        assertEquals("Label already exists", ex.getMessage());
     }
 
     @Test
@@ -127,15 +141,26 @@ public class TaskTest {
         Task task = new Task("GEX Essay");
         task.addLabel("academic");
         task.addLabel("GEX1001");
-        assert task.containsLabel("academic");
-        assert task.containsLabel("GEX1001");
+        assertTrue(task.containsLabel("academic"));
+        assertTrue(task.containsLabel("GEX1001"));
 
         task.removeLabel("academic");
-        assert !task.containsLabel("academic");
-        assert task.containsLabel("GEX1001");
+        assertFalse(task.containsLabel("academic"));
+        assertTrue(task.containsLabel("GEX1001"));
 
         task.removeLabel("GEX1001");
-        assert !task.containsLabel("GEX1001");
+        assertFalse(task.containsLabel("GEX1001"));
+    }
+
+    @Test
+    public void testRemoveLabel_throwsException() {
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> {
+            Task task = new Task("GEX Essay");
+            task.addLabel("academic");
+            task.removeLabel("academic");
+            task.removeLabel("academic");
+        });
+        assertEquals("Label does not exist", ex.getMessage());
     }
 
     @Test
@@ -172,15 +197,15 @@ public class TaskTest {
         assertNotEquals(clonedTask.getStatus(), task.getStatus());
         assertNotEquals(clonedTask.getPriority(), task.getPriority());
         assertNotEquals(clonedTask.getLabels(), task.getLabels());
-        assert clonedTask != task;
+        assertTrue(clonedTask != task);
     }
 
     @Test
     public void testContainsKeyword() {
         Task task = new Task("Buy chicken rice");
-        assert task.containsKeyword("chicken");
-        assert task.containsKeyword("Buy");
-        assert task.containsKeyword(" ");
+        assertTrue(task.containsKeyword("chicken"));
+        assertTrue(task.containsKeyword("Buy"));
+        assertTrue(task.containsKeyword(" "));
         assert !task.containsKeyword("buy"); // It is case sensitive.
     }
 
