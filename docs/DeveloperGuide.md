@@ -291,7 +291,6 @@ Here is a sequence diagram showing the interactions between components when `add
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
 3. If the input passes the validation check, a new `Person` entry is created and stored in the `VersionedAddressBook`.
-4. The `add` command will commit the previous version of the `VersionedAddressBook` to `versionStateHistory` (will be explained later in the [`undo/redo`](#undo/redo-feature) command).
 
 #### General Design Considerations
 
@@ -302,17 +301,17 @@ Some additions made to the original AB3 attributes are the `Education`, `Module`
 
 
 **Aspect: Optional fields**
-* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Person` entry.
+* **Alternative 1 (current choice):** Only `Name` has to be specified to add a new `Person` entry.
     * Pros:
-        * Improves user convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
+        * Improves the user's convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
     * Cons:
-        * A lot of modification for empty/*null* inputs have to be accounted for when saving the data and testing.
+        * Many cases of empty/*null* inputs in the optional fields have to be accounted for when saving the data and testing.
 * **Alternative 2:** All parameters have to be filled in
     * Pros:
-        * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs
+        * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs among the optional fields
     * Cons:
         * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
-        * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
+        * Users are inconvenienced as "useful" entries that can be made are limited to students whose details are all known.
 
 [↑ Back to top](#table-of-contents)
 
@@ -329,38 +328,32 @@ Here is a sequence diagram showing the interactions between components when `del
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Proposed Implementation
+#### Feature Details
 
-The proposed `delete` implementation supports deleting multiple `Person` entries at once. For example, `delete 1 3 5` will delete the `Person` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Person` entries will be deleted.
+1. The `delete` command supports deleting multiple entries at once by specifying multiple indexes. 
+>For example, `delete 1 3 5` will delete the entries at indexes 1, 3 and 5 in the `AddressBook`. 
+2. If any of the indexes given is not a positive integer or is out of bounds of the current list of entries, none of the entries will be deleted and an error will be shown.
+3. If duplicate indexes are given, none of the entries will be deleted and an error will be shown.
+4. If the command is valid, the entries at the specified indexes will be deleted from the `VersionedAddressBook`.
 
 
 #### Design Considerations
 
-Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Person` entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
+Taking into consideration that users might make a typo as well as the time cost of using [`undo`](#undoredo-feature) (will be explained later) to restore the deleted entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
 
-**Aspect: Handling invalid indexes in delete**
+**Aspect: Handling invalid indexes and duplicate indexes in delete**
 
-* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're invalid indexes.
+* **Alternative 1: (Current choice)** Command is not executed and an error message for is shown.
   * Pros:
-    * Invalid indexes might mean the command contain other erroneous indexes.
-    * Allows user to edit the erroneous command input _(as the command isn't cleared from the input box)_.
+    * As the command input is not cleared in the case of an invalid command, this allows user to edit the erroneous command.
   * Cons:
     * Harder for users to find the invalid index and correct it.
 * **Alternative 2:** Delete all valid `Person` entries out of the given indexes.
   * Pros:
-    * If command had only minor typos, it might saves the user time editing their command.
+    * If command had only minor typos, this might save the user time by not needing to editing their command.
   * Cons:
-    * Harder to implement as we have to keep track of the valid indexes.
-    * If command unintentionally deletes wrong user, it'll costs the user more time to correct the mistake + retype their correct delete command.
-
-**Aspect: Handling duplicate indexes in delete _(`delete 1 1`)_**
-
-* **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're duplicate indexes.
-  * Pros/Cons:
-    * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 1**
-* **Alternative 2:** Delete all unique `Person` entries out of the given indexes.
-  * Pros/Cons:
-    * Same as **Aspect: Handling invalid indexes in delete** > **Alternative 2**
+    * The index of the intended entry to delete might be invalid, so after the other entries with valid indexes are deleted, the user needs to run `delete` again anyway to fully delete their desired entries.
+    * Reduces the defensiveness of the application, making it more susceptible to bugs and unexpected behaviours.ee
 
 [↑ Back to top](#table-of-contents)
 
@@ -369,9 +362,9 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 #### Implementation Details
 
 The implementation of `edit` involves creating a new `Person` object with updated details to replace the previous `Person` object.
-This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Person` object.
+This is done using the `EditPersonDescriptor` class, which creates the new `Person` object.
 
-`edit` has similar fields to the [add feature](#add-feature) and an additional `INDEX` parameter.
+`edit` has similar fields to the [add feature](#add-feature), but with an additional `INDEX` parameter.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** While all the fields are optional, at least 1 needs to be given.
 </div>
@@ -396,7 +389,7 @@ Here is a sequence diagram showing the interactions between components when `edi
 #### Feature details
 1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
-3. If the input passes the validation check, the corresponding `Person` is replaced by a new edited `Person` object and stored in the `VersionedAddressBook`.
+3. If the input passes the validation check, the corresponding `Person` is replaced by a new `Person` object with the edited attributes and stored in the `VersionedAddressBook`.
 
 #### General Design Considerations
 Whether a new `Person` object should be created when editing a student entry.
@@ -419,8 +412,7 @@ Whether a new `Person` object should be created when editing a student entry.
 #### Implementation Details
 The implementation of `find` involves searching for entries that matches all the fields specified.
 
-The `find` feature supports matching of partial keywords, as well as specifying which field to match the keyword in using [prefixes](#add-feature).
-
+The `find` feature supports matching of partial keywords using the `StringUtil::containsPartialIgnoreCase`, as well as specifying which field to match the keyword in using [prefixes](#add-feature).
 
 The `find` feature uses `FullMatchKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
@@ -451,29 +443,29 @@ Here is a sequence diagram showing the interactions between components when `fin
 > find edu/p5 a/Pasir Ris
 > ```
 
+
 3. If `find` is used without any fields, it will [list](#list-feature) all existing entries.
 4. If no entries can be matched, nothing will be shown.
 
 
 
 #### General Design Considerations
-The implementation of `find` is built on top of the original AB3 codebase's `find` command.
-We felt that the default `find` feature was too restrictive.
+The implementation of `find` is built on top of the original `find` command in the AB3 codebase as we felt that the default implementation of `find` was too restrictive.
 
-Our implementation has some additions such as:
+Our implementation has some modifications such as:
 
-1. Allow matching by partial keyword so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
-2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
+1. Allow matching by partial keyword so that the user do not have to input the full keyword everytime.
+2. Specifying fields to search in by inputting the corresponding prefixes.
 
 **Aspect: Command format:**
 * **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
   * Pros:
-    * Improves user convenience by giving them flexibility in the completeness of their desired find keyword.
+    * Improves the user's convenience as they do not have to type the full keyword everytime.
     * Extensible across other attributes.
     * Narrows down the list to be very succinct and specific to the desired keyword.
   * Cons:
     * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
-    * Might be slightly challenging for new users to enter the `PREFIX`.
+    * Might be slightly challenging for new users to enter `PREFIX`.
 * **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD` (With no `PREFIX`)
   * Pros:
     * Easier to implement as there is lesser validating done by the app.
@@ -483,7 +475,7 @@ Our implementation has some additions such as:
     * The filtered list may not be what was desired as short partial keywords like `a` is unlikely to result in a succinct list.
     * Users will not be able to search keywords for a particular attribute.
     * The resulting filtered list will span across multiple different fields, where all attributes in all fields containing the specified keyword will be displayed.
-
+    
 [↑ Back to top](#table-of-contents)
 
 ### Filter feature
@@ -492,11 +484,7 @@ Our implementation has some additions such as:
 
 The `filter` command involves searching and listing all entries which has a match in at least one field specified. 
 
-Similar to [`find`](#find-feature), `filter` uses `ContainsKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
-The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
-
-Filter was implemented on top of find to allow users to find students with fewer restrictions, as `find` only returns the students that satisfy all the specified criteria.
-This was done to take improve the flexibility of filtering the student list, allowing the categorisation of students to be easier.
+Similar to [`find`](#find-feature), `filter` uses `StringUtil::containsPartialIgnoreCase` for matching of partial keywords, as well as `ContainsKeywordsPredicate` which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
 
 Here is a sequence diagram showing the interactions between components when `filter n/Alice p/12345678` is run:
 
@@ -514,10 +502,31 @@ This will return all entries that match at least one keyword in any fields speci
 
 
 #### General Design Considerations
-Although the function of `filter` is rather similar to that of `find`, there might be cases say the target user saved the tutorial timeslot of 
-each student in the `tag` field, and wants to view all students who are either in the 9am class or 1pm class.
-We felt that this is a common scenario that our target user might encounter and in this case, `find` is unable to give the desired outcome.
-Therefore, a `filter` feature is implemented on top of `find` to give users more flexibility in these scenarios.
+The `filter` was implemented to improve the flexibility of filtering the student list, allowing easier categorisation of students.
+
+Although the function of `filter` is rather similar to that of [`find`](#find-feature), there might be cases where [`find`](#find-feature) is unable to give the desired outcome.
+Therefore, a `filter` feature is implemented on top of [`find`](#find-feature) to give users more flexibility in these kinds of scenarios.
+
+> For example, take these two different scenarios:<br>
+> 
+> _**Scenario 1:**_ The TA saved the tutorial timeslot of each student in the [`Tag`](#add-feature) field and wants to view all students who are either in the 9am class or 1pm class.<br>
+>
+> _**Scenario 2:**_ The TA wants to see the students who have "lagging behind" as a tag, has a question asked by them saved in the remarks field, and are in the 9am class.
+> 
+> Both scenarios require a different implementation each in order to return the desired results. 
+
+**Aspect: `find` or `find` + `filter`**
+* **Alternative 1 (Current choice):** Separate into `find` and `filter`
+  * Pros:
+    * Allows for better filtering based on the needs of the user as both commands have scenarios that they are each useful in.
+  * Cons:
+    * Some of their functionalities might overlap, causing them to be indistinguishable in some scenarios.
+    * Might be harder for new users to learn the differences between the two commands.
+* **Alternative 2:** Only have the `find` command
+  * Pros:
+    * Easier to learn.
+  * Cons:
+    * A single command is unable to implement matching of all fields and matching of at least one field at the same time, so a single command might be inadequate for certain scenarios.
 
 [↑ Back to top](#table-of-contents)
 
@@ -526,12 +535,18 @@ Therefore, a `filter` feature is implemented on top of `find` to give users more
 #### Implementation Details
 The `list` implementation is identical to the implementation in AB3's codebase.
 
+The `list` command makes use of the `FilteredPersonList` by passing in a dummy `Predicate<T>` that always evaluates to true,
+such that the `FilteredPersonList` returns every existing `Person`.
+
 Here is a sequence diagram showing the interactions between components when `list` is run.:
 
 ![list_sequence](images/ListSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+#### Feature Details
+1. `list` shows all existing entries at once.
 
 #### Design Consideration
 The `list` command does not accept any arguments in order to make it as convenient for users to view their full list of students after a prior command 
@@ -544,10 +559,13 @@ The application provides users with two different methods of entering or editing
 * Using the pop-up text box implemented in this feature
 * Adding the remark through the [add feature](#add-feature)
 
+Similar to [`edit`](#edit-feature), this feature makes use of the `EditPersonDescriptor` to create a new `Person` object with the updated remarks. Then, the previous `Person` object is replaced.
+
 #### Feature Details
-1. The remark feature can be facilitated by a pop-up text box using `remark INDEX`.
+1. The remark feature is facilitated by a pop-up text box brought up by using the command `remark INDEX`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
 3. If the content of the remarks is blank, the command will be treated as a delete command and any existing remarks will be deleted.
+4. Similar to [`edit`](#edit-feature), a new `Person` object is created with the new remarks and replaces the old `Person` object in the `VersionedAddressBook`
 
 #### General Design Considerations
 
@@ -567,7 +585,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
     * Provides users flexibility in the format of their remarks.
     * Remarks are not restricted to a single line or continuous paragraph.
   * Cons:
-    * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting erros.
+    * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting errors.
 
 **Aspect: Remark display**
 * **Alternative 1: (Current implementation)** Preview the first line (truncated) of a student's remarks under all the other attributes
@@ -598,13 +616,20 @@ Additionally, we opted for a pop-up text window as the command line only provide
 
 #### Implementation Details
 
-The implementation of `show` is similar to the [`list`](#list-feature) command in the AB3 codebase. 
-The `show` feature was implemented to support the [`remark`](#remark-feature) feature.
+The implementation of `show` retrieves and shows the information from the [`Remark`](#add-feature) field of the entry with the specified index.
 
-Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. 
-Hence, `show` allows users to view the full remark in the `ResultDisplay` where scrolling is supported.
+
+#### Feature Details
+1. If the `Remark` field is not empty, the contents of the `Remark` field are shown in the `ResultDisplay` box, and the `PersonListCard` of the entry with the specified index is shown below the `ResultDisplay`.
+2. If there are no remarks, a message indicating such is shown in the `ResultDisplay`.
 
 #### General Design Considerations
+The `show` feature was implemented to support the [`remark`](#remark-feature) feature,
+where this provides a way to view the remarks of an entry other than bringing up the pop-up text box.
+
+Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible.
+Hence, `show` allows users to view the full remark in the `ResultDisplay` where scrolling is supported.
+
 **Aspect: Display output**
 * **Alternative 1: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
   * Pros:
@@ -631,7 +656,7 @@ This feature involves restoring the current address book to its previous version
 
 Examples of such commands are:
 * [`add`](#add-feature)
-* [`delete`](#delete-feature)
+* [`delete`](#delete-feature) _(and also `clear`)_
 * [`edit`](#edit-feature)
 * [`remark`](#remark-feature)
 
@@ -770,8 +795,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 | **`HIGH`** | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
 | **`HIGH`** | tutor   | include the modules I'm teaching a student to their entry (eg. CS2101, CS4243)                                 | keep track of what modules I'm teaching the student                         |
 | **`HIGH`** | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
-| **`HIGH`** | tutor   | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
-| **`HIGH`** | tutor   | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
+| **`HIGH`** | tutor   | include tags on a student to group them by categories (eg. classes)                                            | categorise my students into groups.                                         |
+| **`HIGH`** | tutor   | delete a student entry from my list by index(es)                                                               | remove all details related to a certain student                             |
 | **`HIGH`** | tutor   | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
 | **`HIGH`** | tutor   | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
 | **`HIGH`** | tutor   | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
@@ -780,7 +805,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 | **`HIGH`** | tutor   | edit a student's name                                                                                          | correct a student's name                                                    |
 | **`HIGH`** | tutor   | edit the modules I'm teaching a particular student                                                             | update or correct a student's records                                       |
 | **`HIGH`** | tutor   | edit a student's education level                                                                               | update or correct a student's records                                       |
-| **`HIGH`** | tutor   | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| **`HIGH`** | tutor   | receive an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
 | **`HIGH`** | tutor   | be able to ask for help                                                                                        | learn how to use the app                                                    |
 |   `MED`    | tutor   | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
 |   `MED`    | tutor   | filter my students by modules                                                                                  | view all the student's I'm teaching a particular module to                  |
@@ -857,15 +882,15 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
     Use case resumes from step 1
 
-#### Use case UC3: Delete a student
+#### Use case UC3: Delete students
 {:.no_toc}
 
 **MSS**
 
 1.  User requests to list students
 2.  System shows a list of students
-3.  User requests to delete a specific student in the list by their index from the list
-4.  System deletes the student
+3.  User requests to delete multiple students in the list by their indexes from the list
+4.  System deletes the students
 
     Use case ends
 
@@ -882,8 +907,13 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
   Use case ends
 
-* 3a. The given index is invalid
+* 3a. A given index is invalid
   * 3a1. System shows an error message
+
+    Use case resumes at step 2
+
+* 3b. Duplicated indexes is given
+  * 3b1. System shows an error message
 
     Use case resumes at step 2
 
@@ -912,9 +942,9 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 1. User requests to list students
 2. System shows a list of students
 3. User requests to edit a student's remarks of a specific student in the list by their index from the list
-4. Program allows multi-line input of remarks
-5. User enters remarks
-6. User can exit writing the remarks at any time
+4. System shows a pop-up text box
+5. User enters remarks in the text box
+6. User exits from the text box
 7. System saves the remarks
 
    Use case ends
@@ -930,12 +960,18 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
     Use case resumes at step 2
 
+* 5a. The inputted remarks is empty
+  * 5a1. System deletes the old remarks
+  * 5a2. System saves with no remarks
+
+    Use case ends
+
 #### Use case UC6: Edit particulars
 {:.no_toc}
 
 **MSS**
 
-1. User requests to edit a student's particulars based on the list displayed
+1. User requests to edit a student's particulars based on their index in the list displayed
 2. System replaces the specified fields with the new details
 
    Use case ends
@@ -987,7 +1023,7 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 * **Tutors**: (NUS) Teaching Assistants.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Save FIle**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
+* **Save File**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
 
 [↑ Back to top](#table-of-contents)
 
@@ -1027,7 +1063,7 @@ Currently, the `edit` feature allows editing all fields except for remarks and t
 
 ### Autocomplete
 #### Feature flaw
-Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
+Currently, the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
 leads users to believe that their input (without `n/NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/NAME`.
 
 ### Find/Filter
@@ -1048,7 +1084,7 @@ Currently, all the labels except for remarks are truncated. When the texts are t
 ### General
 #### Feature Flaw
 Currently, the user will experience noticeable lagging issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
-We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future.
+We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future to fulfil our non-functional requirements.
 
 ### Error handling
 #### Feature flaw
