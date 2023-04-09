@@ -378,6 +378,27 @@ This command changes the appearance of ExecutivePro's GUI to the specified theme
 The appearance of ExecutivePro's GUI is determined by the CSS stylesheets used by its JavaFX `Scene`.
 The `theme` command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme, as shown below.
 
+![ThemeCommand](images/ThemeSequenceDiagram.png)
+
+Step 1. User enters a valid command, e.g. `theme light`.
+
+Step 2. `LogicManager` parses and executes the command, and returns to the `MainWindow` a `CommandResult` object containing the specified theme "light".
+
+Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then calls its own `handleChangeTheme` method with this theme.
+
+Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
+
+Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
+
+### Set Picture Feature: `setpicture`
+This command allows the user to select an image file from their computer,
+and sets that image as the profile picture for the specified employee.
+
+Note: ExecutivePro currently only accepts images in the `.jpg`, `.jpeg`, or `.png` file format.
+
+#### Implementation
+
+
 ![ListCommand](images/ThemeSequenceDiagram.png)
 
 Step 1. User enters a valid command, e.g. `theme light`.
@@ -389,6 +410,7 @@ Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then call
 Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
 
 Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
+
 
 ### Find Feature: `find`
 This command displays all employees whose full names partially or fully match the keyword inputed by the user.
