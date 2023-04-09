@@ -255,9 +255,24 @@ Below is the sequence diagram indicating what happens when the user executes `un
 
 ![RedoSequenceDiagram.png](images/UndoRedo/UndoSequenceDiagram.png)
 
+### Login
+**Purpose:** Allow user to login into ModCheck with password.
 
+#### Implementation
+
+Below is an activity diagram that shows what happens when a user logins into ModCheck.
+
+![Login](images/Login.png)
+
+### Create Password
+**Purpose:** Allow user to create a password to secure ModCheck
+
+#### Implementation
+Below is an activity diagram that shows what happens when a user tries to create a new password
+
+![CreatePassword](images/CreatePassword.png)
 ### Filtering contacts
-**Purpose:** Allow users to filter contacts based on criteria given
+**Purpose:** Allow user to filter contacts based on criteria given.
 
 Formats: 
 1. `filter n/NAME `
@@ -363,31 +378,76 @@ The possible paths of the `load` command is shown in the activity diagram below.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                                        | So that I can…​                                                        |
-|----------|----------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | Student                    | see usage instructions                              | refer to instructions when I forget how to use the App                 |
-| `* * *`  | Student                    | add a new contact                                   |                                                                        |
-| `* * *`  | Student                    | delete a contact                                    | remove a contact that I no longer need                                 |
-| `* * *`  | Student                    | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
-| `* * *`  | Student                    | find a contact by name                              | locate details of persons without having to go through the entire list |
-| `* * *`  | Student                    | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
-| `* * *`  | Student                    | edit a contact                                      | update the contact details of my contacts when they change             |
-| `* * *`  | Student                    | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
-| `* * *`  | Student                    | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
-| `* *`    | Student                    | undo my last command                                | reverse my actions if i made a wrong change to ModCheck                |
-| `* *`    | Student                    | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
-| `* *`    | Student                    | hide private contact details                        | minimize chance of someone else seeing them by accident                |
-| `* *`    | Student                    | delete all contacts                                 | remove all contacts for a fresh start                                  |
-| `*`      | Student with many contacts | sort contacts by name                               | locate a contact easily                                                |
-| `*`      | Student                    | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
-| `*`      | Student                    | export selected contacts                            | transfer those contacts easily                                         |
-*{More to be added}*
+| Priority | As a …​ | I want to …​                                        | So that I can…​                                                        |
+|----------|---------|-----------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | Student | see usage instructions                              | refer to instructions when I forget how to use the App                 |
+| `* * *`  | Student | add a new contact                                   |                                                                        |
+| `* * *`  | Student | delete a contact                                    | remove a contact that I no longer need                                 |
+| `* * *`  | Student | view a person's contact details                     | contact the person(TA/Professor) to seek help for my tutorials         |
+| `* * *`  | Student | filter a contact by name                            | locate details of persons without having to go through the entire list |
+| `* * *`  | Student | filter my contacts by tag                           | find my contacts that is related to the tag quickly                    |
+| `* * *`  | Student | filter my contacts by module                        | find all the relevant contacts of a module I am taking                 |
+| `* * *`  | Student | filter my contacts by description                   | find all contacts with the matching description                        |
+| `* * *`  | Student | filter my contacts by phone number                  | find all contacts that has the phone number                            |
+| `* * *`  | Student | edit a contact                                      | update the contact details of my contacts when they change             |
+| `* * *`  | Student | assign modules to my contacts                       | know which of my contacts are in charge of which modules               |
+| `* *`    | Student | login into ModCheck                                 | access ModCheck privately                                              |
+| `* *`    | Student | create a new password                               | secure ModCheck and prevent other unwanted users from using it         |
+| `* *`    | Student | undo my last command                                | reverse my actions if i made a wrong change to ModCheck                |
+| `* *`    | Student | be able to set certain fields as 'unknown'          | add contacts that I may not know all the details of                    |
+| `* *`    | Student | hide private contact details                        | minimize chance of someone else seeing them by accident                |
+| `* *`    | Student | delete all contacts                                 | remove all contacts for a fresh start                                  |
+| `*`      | Student | use the arrow keys to re-enter my previous commands | enter recently used commands much faster                               |
+| `*`      | Student | export selected contacts                            | transfer those contacts easily                                         |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `ModCheck` and the **Actor** is the `Student`, unless specified otherwise)
 
-**Use case: Add a person**
+#### Use case: Login
+
+**MSS**
+
+1. ModCheck displays default login screen
+2. ModCheck requests for Student's password
+3. Student enters password
+4. ModCheck displays loading screen
+    Use case ends.
+
+**Extensions**
+
+* 1a. ModCheck detects that student is a first time user.
+    * 1a1. ModCheck displays welcome screen.
+    * 1a2. ModCheck request for student desire to create password.
+    * 1a3. Student request to <u>create password</u>.
+
+        Use case ends.
+  
+* 3a. ModCheck detects that password given is wrong.
+    * 3a1. ModCheck displays error message.
+        
+        Use case resumes at step 2.
+
+#### Use case: Create password
+
+**MSS**
+
+1. ModCheck request for Student's new password.
+2. Student enters new password.
+3. ModCheck request for the same password for confirmation.
+4. Student enters password.
+5. ModCheck displays success loading screen.
+    
+    Use case ends.
+
+**Extensions**
+
+* 4a. ModCheck detects that the confirmation password is not similar to the first password.
+    * 4a1. ModCheck displays error message
+        
+        Use case resumes at step 4.
+  
+#### Use case: Add a person
 
 **MSS**
 
@@ -729,14 +789,16 @@ testers are expected to do more *exploratory* testing.
        4. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
           Expected: Similar to previous.
 
+## **Appendix: Planned Enhancements**
 
+1. `Login feature` will include two other important details that ModCheck will have to capture which is the Student's
+    `username` and a ` question dropdown` such as `What is you best friend name`, `What is your pet name`, `What is your favourite food` etc. 
+    so that `Reset Password` feature can be realistically done to allow Students to reset their password safely.
+2. `Reset password feature` to be included in the future to allow Students to reset their password in case they forgot their password.
+3. Hashing of password will be done in the future as current requirements require the data to be readable by human.
 
-1. _{ more test cases …​ }_
+## **Appendix: Known Limitations**
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. `Login feature` does not provide a way for Student to reset password as it is very hard to identify if the user that wants to reset the password is actually the correct user using ModCheck.
+2. The Student is expected to reset the password by going through `userData.json` file and modifying the `hashedPassword` variable directly.
+3. Hashing was not implemented as the Student is only able to reset the password by modifying `userData.json` which requires the data to be humanly readable.
