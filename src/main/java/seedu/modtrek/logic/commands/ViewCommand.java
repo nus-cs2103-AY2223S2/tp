@@ -33,7 +33,7 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (isProgress) {
-            DegreeProgressionData details = model.getDegreeProgression().getProgressionData();
+            DegreeProgressionData details = model.generateData();
             if (details.isValid()) {
                 return new CommandResult(MESSAGE_PROGRESS_SUCCESS + details, false, true, false, false);
             } else {
@@ -43,4 +43,13 @@ public class ViewCommand extends Command {
             return new CommandResult(MESSAGE_MODULES_SUCCESS);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof ViewCommand)) {
+            return false;
+        }
+        return this.isProgress == ((ViewCommand) o).isProgress;
+    }
+
 }

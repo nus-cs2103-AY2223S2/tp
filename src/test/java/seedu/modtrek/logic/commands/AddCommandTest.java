@@ -21,6 +21,7 @@ import seedu.modtrek.model.DegreeProgression;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.ReadOnlyUserPrefs;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.testutil.ModuleBuilder;
 
@@ -79,6 +80,7 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -166,6 +168,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredModuleList(Predicate<Module> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DegreeProgressionData generateData() {
             throw new AssertionError("This method should not be called.");
         }
     }

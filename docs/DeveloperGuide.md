@@ -321,11 +321,11 @@ User may choose between the two formats for the FindCommand which function diffe
 
 The following sequence diagram shows how the `find` command works:
 
-![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
+<img src="images/FindSequenceDiagram.png" width="1750" height="598">
 
 The following activity diagram shows what happens when a user executes a `find` command:
 
-![Activity diagram of find command](images/FindActivityDiagram.png)
+<img src="images/FindActivityDiagram.png" width="1375" height="504">
 
 [Back to Table of Contents](#toc)
 
@@ -518,9 +518,9 @@ The following activity diagram illustrates the workflow of the algorithm when `D
 ![DataCalculation](images/DataCalculation.png)
 
 #### Design considerations
-**Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Single Responsibility Principle_ is not violated?**
+**Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Separation of concerns principle_ is not violated?**
 
-The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the _Single Responsibility Principle_, we have to find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
+The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the _Separation of concerns principle_, we have to find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
 - **Solution:** Pass the information to the `CommandResult` returned by executing `ViewCommand`. Since `MainWindow` already has access to `CommandResult`, we can easily obtain the correct information regarding which screen to display through `CommandResult`.
 
 [Back to Table of Contents](#toc)
