@@ -231,9 +231,15 @@ Throughout this user guide, you may come across different formatting styles and 
       <details>
       <summary> II. For Windows:</summary>
    <ul>
-   <li>
-          To Be Added
-   </li>
+    <li>
+    Step 1: Press the <code>⊞ Windows Key</code> on your keyboard to open the Start Menu.
+    </li>
+    <li>
+    Step 2: Type <code>Command Prompt</code> once the Start Menu is opened and press the <code>Enter Key</code> on your keyboard. 
+    </li>
+    <li>
+    Step 3: You will now see a command prompt on the screen.
+    </li>
    </ul>
          </details>
          </details>
