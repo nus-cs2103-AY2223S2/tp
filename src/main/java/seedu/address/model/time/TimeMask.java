@@ -67,8 +67,8 @@ public class TimeMask {
                 return;
             }
 
-            LocalDateTime start = event.getStartDate();
-            LocalDateTime end = event.getEndDate();
+            LocalDate start = event.getStartDate().toLocalDate();
+            LocalDate end = event.getEndDate().toLocalDate();
 
             int startIndex = getZeroBasedDayIndex(event.getStartDate().getDayOfWeek());
             int startTime = event.getStartDate().getHour();
@@ -77,13 +77,15 @@ public class TimeMask {
 
             if (endTime < 0) {
                 endTime = LAST_HOUR_INDEX;
+                end = end.minusDays(1);
+                System.out.println(end);
             }
 
-            if (!start.toLocalDate().isEqual(end.toLocalDate())) {
+            if (!start.isEqual(end)) {
                 // check if end date after date limit
-                boolean isAfterDateLimit = isEndDateAfterDateLimit(end.toLocalDate(), dateLimit);
+                boolean isAfterDateLimit = isEndDateAfterDateLimit(end, dateLimit);
                 // get the days between the start and end/ start and date limit
-                long daysBetween = getDaysBetween(start.toLocalDate(), end.toLocalDate(), dateLimit);
+                long daysBetween = getDaysBetween(start, end, dateLimit);
                 // if end date after date limit, need to change end time of event
                 int modifiedEndTime = getUpdatedEndTime(endTime, isAfterDateLimit);
                 occupyMultipleDay(startIndex, daysBetween, startTime, modifiedEndTime);
@@ -144,7 +146,8 @@ public class TimeMask {
         int mask = startBits << startHour;
         weeklyOccupancy[curr] = weeklyOccupancy[curr] | mask;
         curr = curr == LAST_DAY_INDEX ? 0 : curr + 1;
-
+        System.out.println(curr);
+        System.out.println(diff);
         // filled the in between days as busy for every time slots
         while (counter < diff) {
             startBits = Integer.parseInt("1".repeat(24), 2);
