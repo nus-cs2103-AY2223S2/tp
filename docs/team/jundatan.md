@@ -11,16 +11,10 @@ It is written in Java.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added *Calorie* class to client and enhanced **Add** and **Edit** Command.
-  * What it does: allows the user to add and edit the recommended calorie intake of the client. (Optional attribute)
+* **New Feature**: Added attribute classes (*Calorie, Appointment, routine and more*) to client and enhanced **Add** and **Edit** Command.
+  * What it does: allows the user to add and edit the appointment, calorie and routine of the client. (Optional attribute)
   * Justification: This feature improves the product significantly because a user may want to keep track of the
-    recommended calorie's intake of its clients which makes it easier for the client to keep track.
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-
-* **New Feature**: Added *Appointment* class to client and enhanced **Add** and **Edit** Command.
-  * What it does: allows the user to add and edit the appointment of the client. (Optional attribute)
-  * Justification: This feature improves the product significantly because a user may want to keep track of the
-    appointment dates and time of its clients which makes it easier for the client to keep track.
+    appointment dates and time, recommended calorie intake and exercise routine of its clients which makes it easier for the user to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
 * **New Feature**: Added *Routine* class to client and enhanced **Add** and **Edit** Command.
@@ -70,7 +64,7 @@ Given below are my contributions to the project.
     * Added Appendix for Challenges and future enhancements [\#206](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/206)
 
 * **Community**:
-  * PRs reviewed (Not all are added:
+  * PRs reviewed (Not all are added):
   [\#165](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/165),
   [\#158](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/158),
   [\#156](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/156),
