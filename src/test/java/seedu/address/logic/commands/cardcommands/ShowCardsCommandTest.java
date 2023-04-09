@@ -49,6 +49,17 @@ public class ShowCardsCommandTest {
     }
 
     @Test
+    public void execute_listIsNotFiltered_showsSameList() {
+        Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
+        model.selectDeck(INDEX_FIRST);
+        expectedModel.selectDeck(INDEX_FIRST);
+        CommandResult commandResult = new ShowCardsCommand().execute(model);
+        assertEquals(expectedModel.getFilteredCardList(), model.getFilteredCardList());
+        assertEquals("Listed all cards in selected deck", commandResult.getFeedbackToUser());
+    }
+
+    @Test
     void equals() {
         ShowCardsCommand command = new ShowCardsCommand();
         assertEquals(command, command); // same instance -> returns true
