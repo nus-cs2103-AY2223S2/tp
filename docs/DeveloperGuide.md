@@ -343,6 +343,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+<sub>[return to table of contents](#table-of-contents)</sub>
+
 ### Add patient feature
 
 #### Implementation
@@ -592,6 +594,8 @@ identity.
     * Pros: It will not be as messy since there will be less `/` when adding a person.
     * Cons: User will have to type more which might result in more errors when adding a person.
 
+<sub>[return to table of contents](#table-of-contents)</sub>
+
 ### Adding Health Conditions
 
 The proposed implementation of separate `Conditions` object to encapsulate health conditions of a patient.
@@ -618,6 +622,8 @@ what known conditions he/she has.
     * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
       as obvious as well compared to the current display of tags.
 
+<sub>[return to table of contents](#table-of-contents)</sub>
+
 ### Adding Gender
 
 The proposed `Gender` field is done similar to the implementation of the `Name` field.
@@ -633,7 +639,8 @@ The addition of this field will allow staff to quickly verify the gender of a pa
 * **Alternative 1 (current choice):** Gender is restricted to `Male`, `Female`, `Others`.
     * Pros: There will only be 3 categories to classify a person.
     * Cons: Cannot represent other genders.
-    
+
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Adding Attending Doctor
 
@@ -685,6 +692,8 @@ what doctor is in charge of him/her.
 **Value proposition**: HospiSearch is a comprehensive hospital records management system designed to streamline
 administrative tasks and improve patient care. With our app, you can easily store, retrieve, and manage patient records,
 appointment schedules, and billing information all in one place
+
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### User stories
 
@@ -801,7 +810,7 @@ otherwise)
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Glossary
 
@@ -836,6 +845,7 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Adding a person
 
@@ -853,6 +863,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is added. Error details shown in the status message. Status bar remains the same.
     6. Other incorrect add commands to try: `add`, `add x/...`, `...` (where x is some invalid tag)
 
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Deleting a person
 
@@ -865,6 +876,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 
 ### Finding a person
@@ -900,6 +913,8 @@ testers are expected to do more *exploratory* testing.
 2. Returning to the full list of persons
     1. List all persons using the `list` command to return back to the full list of persons in the database.
 
+<sub>[return to table of contents](#table-of-contents)</sub>
+
 ### Saving and Loading data
 
 1. Saving current state of HospiSearch
@@ -931,3 +946,5 @@ make it such that you can input `Name`s with non-alphanumeric characters such as
 
 5. Currently, whenever a user `views` a patient, the scroll bar will bring you back to the very top of the list of 
 patients. In the future, we will ensure tha the scroll bar remains in position even after running a `view` command.
+
+<sub>[return to table of contents](#table-of-contents)</sub>
