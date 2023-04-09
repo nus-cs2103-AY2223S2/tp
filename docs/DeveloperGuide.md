@@ -519,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                                                                                  | refer to instructions when I forget how to use the App              |
 | `* * *`  | Beginner user                              | add a new internship listing                                                                            | record details of my internship application                         |
 | `* * *`  | Beginner user                              | delete a previously added internship listing                                                            | rid of dummy data or unwanted internship application                |
-| `* *`    | user                                       | hide private internship description                                                                     | minimize chance of someone else seeing them by accident             |
+| `* *`    | user                                       | hide internship descriptions unless selected.                                                           | minimize chance of someone else seeing them by accident             |
 | `* *`    | novice user                                | edit existing internship applications                                                                   | update outdated information or add new details                      |
 | `*`      | intermediate user                          | quickly update the status of an internship                                                              | keep the status of my applications up to date                       |
 | `* *`    | expert user                                | see all internship events that have clashes in dates                                                    | try to reschedule some of those events                              |
@@ -575,23 +575,27 @@ Use Case ends.
 Use Case ends.
 
 **Extensions**
-* 1aUser inputs invalid Position.
 
-    * 5a1. System shows an error message.
+* 1a User inputs invalid Position.
+
+    * 1a1. System shows an error message.
+    
     
 
 **Use case: List all internship applications**
 
 **MSS**
 
-1.  User requests to list all internship applications saved on System.
-2.  System displays a list of internships.
-    Use case ends.
+1. User requests to list all internship applications saved on System.
+2. System displays a list of internships.
+    
+Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  * 2a1. 
+  
+    Use Case ends.
   
 
 **Use Case: Delete Internship Listing**
@@ -600,17 +604,17 @@ Use Case ends.
 
 1. User requests to list internships inputted
 2. System shows a list all the inputted internships
-3. User requests to delete an internship listing
+3. User requests to delete an internship listing by its index
 4. System deletes the internship listing
 
 Use case ends.
 
 **Extensions**
 
-* 4a. User enters an invalid ID
-    * System will show an error message and not delete any listing.
-
-Use Case Ends.
+* 3a. User enters an invalid ID
+    * 3a1. System will show an error message and not delete any listing.
+    
+       Use Case resumes at Step 3
 
 **Use case: List all internship events with a deadline on a particular date**
 
@@ -623,13 +627,13 @@ Use case ends.
 
 **Extensions**
 
-* 3a. The date given by user is invalid (i.e. not formatted correctly).
+* 1a. The date given by user is invalid (i.e. not formatted correctly).
 
-  * 3a1. System displays an error message to inform the user that the input date is not valid.
+  * 1a1. System displays an error message to inform the user that the input date is not valid.
 
-* 4a. The list is empty.
+* 2a. The list is empty.
 
-* 4b. There are no internship applications with the upcoming deadline.
+* 2b. There are no internship applications with the upcoming deadline.
 
 
 **Use case: List internships by desired criteria**
@@ -651,8 +655,7 @@ Use case ends.
 * 3a. The given criteria is invalid.
 
     * 3a1. TinS shows an error message.
-
-  Use case ends.
+    
 
 **Use case: View all clashes of internship Events.**
 
