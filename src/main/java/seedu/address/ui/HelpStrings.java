@@ -33,7 +33,7 @@ public class HelpStrings {
     public static final String EDITPERSON_HELP = "Edits an existing person in OfficeConnect.\n\n"
             + "Format: editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…";
     public static final String EDITTASK_HELP = "Edits an existing task in OfficeConnect.\n\n"
-            + "Format: editt INDEX [title/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [createdate/CREATEDATE]";
+            + "Format: editt INDEX [title/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]";
     public static final String LISTMETHODS_HELP = "List commands shows results of persons, or tasks.";
     public static final String LISTPERSON_HELP = "What it does: Lists all persons in OfficeConnect. \n\n"
             + "Format: listp";
