@@ -6,10 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Optional;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddStudentToEventCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Aids in checking validity of inputs for AddStudentToEventParser and DeleteStudentFromEventParser.
  * Deals with common checks between the 2 classes.
