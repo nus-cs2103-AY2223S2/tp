@@ -966,6 +966,8 @@ Precondition: There are shortlisted applicants in HMHero.
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 #### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
