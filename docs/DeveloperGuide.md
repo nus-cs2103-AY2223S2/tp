@@ -224,11 +224,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* private math tuition teachers
-* has a need to manage a number of students' contacts and performance
-* prefer desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Private math tuition teachers
+* Has a need to manage a number of students' contacts and performance
+* Prefer desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
@@ -241,22 +241,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​ | I want to …​                                                | So that I can…​                                                                          |
 |----------|---------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have                                    |
-| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app                         |
-| `* * *`  | user    | create my student contacts                                  | add new students into my contact list                                                    |
-| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible                                               |
-| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore                                   |
-| `* * *`  | user    | use the help section                                        | learn the available commands in the application                                          |
-| `* * *`  | user    | import my data                                              | backup data and open in another device                                                   |
-| `* * *`  | user    | export my data                                              | load data into a new device                                                              |
-| `* * *`  | user    | delete / mark student’s tasking(s)                          | identify what taskings are done/obsolete                                                 |
-| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing                                                 |
-| `* * `   | user    | filter my student contacts                                  | look up on a single student/students of the same level instead of reading through a list |
-| `* * `   | user    | create a progress report                                    | keep track of the student's progress                                                     |
-| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance                                                 |
-| `* `     | user    | note down a more detailed class description                 | know what I need to do for a certain class                                               |
-| `* `     | user    | filter the calendar                                         | see clearly how many classes I have within a period of time (week/month, etc.)           |
-| `* `     | user    | be able to do a wildcard search                             | know what I can do on the app if I forgot the exact command I want to execute            |
+| `* * *`  | user    | see a list of my students                                   | know who my students are and how many students I have |
+| `* * *`  | user    | purge all current data                                      | get rid of sample/experimental data I used for exploring the app |
+| `* * *`  | user    | create my student contacts                                  | add new students into my contact list |
+| `* * *`  | user    | edit my student contacts                                    | my contact list is more extensive/flexible |
+| `* * *`  | user    | delete my student contacts                                  | remove contacts of students that I don't teach anymore |
+| `* * *`  | user    | use the help section                                        | learn the available commands in the application |
+| `* * *`  | user    | import my data                                              | backup data and open in another device |
+| `* * *`  | user    | export my data                                              | load data into a new device |
+| `* * *`  | user    | add / delete / mark student’s tasking(s)                    | keep track of the task(s) that assign to a student and identify what taskings are done/in progress/overdue |
+| `* * *`  | user    | add / delete student’s score(s)                             | record down the student's score(s) |
+| `* * *`  | user    | check the student’s taskings                                | understand how good the student is doing |
+| `* * *`  | user    | check the student’s score(s)                                | understand the student's performance in school |
+| `* * `   | user    | filter my student contacts                                  | easily find a group of students based on the tag given |
+| `* * `   | user    | generate a progress chart                                   | keep track of the student's progress |
+| `* * `   | user    | extract students' progress report                           | show the parents their kids' performance |
 
 ### Use cases
 
@@ -549,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. Export progress window closed by Tutor by mistake.
-    
+
   Use case ends.
 
 * 2b. Export progress window closed by Tutor by mistake.
@@ -567,13 +566,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. File name specified is invalid.
 
   * 4a1. File explorer informs the tutor that the file name is invalid.
-      
+
     Use case resumes at step 2.
 
 * 4b. A file with the exact same name and type exists in the selected directory and is currently being opened.
-  
-  * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened. 
-  
+
+  * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened.
+
     Use case ends.
 
 ### Non-Functional Requirements
@@ -608,15 +607,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch 
+1. Initial launch
 
-   1. Download the jar file and copy into an empty folder 
+   1. Download the jar file and copy into an empty folder
    2. Double-click the jar file <br>
    Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
-2. Saving window preferences 
+2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
@@ -632,8 +631,9 @@ testers are expected to do more *exploratory* testing.
     Filter or find students as desired using the `filter` or `find` commands. Number of students in the list depends on the condition given.
 
     1. Test case: `delete 1`<br>
-    Expected: If the filtered student list is empty, error details shown in the status message. No student is deleted.
-    Else, the first student is deleted from the displayed list. Details of the deleted student shown in the status message. If the deleted student was being checked 
+
+    Expected: If the displayed student list is empty, error details shown in the status message. No student is deleted.
+    Else, the first student is deleted from the displayed list. Details of the deleted student shown in the status message. If the deleted student was being checked
     using the `check` command, the task list and score list of the student will be cleared.
 
     1. Test case: `delete 0`<br>
@@ -655,11 +655,11 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
-   
+
 ### Difficulty level
-   
+
 ### Challenges faced
-  
+
 ### Effort required
 
 ### Achievements
@@ -698,19 +698,19 @@ Currently, student names can be numeric. i.e. student name can be "1". After som
 
 #### 3. Window does not reopen after it is minimized
 
-After help/export/import window is minimized, clicking help/export/import on the top menu will not automatically show 
+After help/export/import window is minimized, clicking help/export/import on the top menu will not automatically show
 the window again.
 
 **Solution proposed:**
 
-* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called 
-```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised). 
+* Similarly to how ```getRoot().isShowing()``` is used to check if the window is shown, there is also a function called
+```getRoot().isIconified()``` to check whether the window is minimised (returns ```true``` if minimised).
 We can then return ```getRoot().setIconified(false)``` to restore the window to its previous state.
 
 
 #### 4. Exams are not allowed to be on the same date
 
-The aim of the score list is to keep track of a student's recent performance trend (especially the chart). 
+The aim of the score list is to keep track of a student's recent performance trend (especially the chart).
 If the majority of the exams are conducted on the same date, it defeats our purpose of having the score records.<br>
 However, it is a reasonable assumption that more than one exam is conducted on the same date.
 
@@ -736,7 +736,7 @@ part of the displayed score table.<br>
 
 * Currently, if the user wants to add tags to students in the list, they can only use `edit` command and will need to input all existing tags along with the new tag.
 * Also, if the user wants to edit a specific tag, they will also be required to input all existing tags along with the one they want to edit.
-* There are currently no delete operations for tags. 
+* There are currently no delete operations for tags.
 * Without these operations, it is very hard to manage tags since the only way to do it is by using the `edit` command which is deteriorates the user experience.
 
 **Solution proposed:**
