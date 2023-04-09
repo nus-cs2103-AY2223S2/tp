@@ -15,6 +15,7 @@ class AddStudentToEventParserTest {
     public static final String TOO_MANY_EVENT_FIELDS_COMMAND = "1 Lab/1 Tutorial/1";
     public static final String INVALID_STUDENT_INDEX_COMMAND = "1 1 1 Tutorial/1";
     public static final String INVALID_EVENT_INDEX_COMMAND = "1 Tutorial/1 1 1";
+    public static final String EMPTY_EVENT_COMMAND = "1";
 
     @Test
     void parse_validTutorial_success() throws ParseException {
@@ -49,5 +50,10 @@ class AddStudentToEventParserTest {
     @Test
     void parse_invalidEventIndex_throwsParseException() {
         assertThrows(ParseException.class, () -> new AddStudentToEventParser().parse(INVALID_EVENT_INDEX_COMMAND));
+    }
+
+    @Test
+    void parse_emptyEvent_throwsParseException() {
+        assertThrows(ParseException.class, () -> new AddStudentToEventParser().parse(EMPTY_EVENT_COMMAND));
     }
 }
