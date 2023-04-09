@@ -118,17 +118,16 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
 4. You should now see a window similar to the one shown below. 
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
-for your reference. </div>  
-<br>  
+for your reference. </div>
 
 
 <p align="center">
-  <img height="500" width="500" src="images/Ui.png">
+  <img height="480" width="480" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
-
-<div align="right"> [Return to ToC](#table) </div>
+<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -143,7 +142,7 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 
 <div align="center">Figure 2: Annotations about the user interface</div>   
 <br>   
-<div align="right">[Return to ToC](#table)</div>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -164,9 +163,10 @@ fields.
 * RESOURCE: A link to a resource for the module, if any. 
 
 This is all you need to know for the time being. Now let's take a closer look at the commands.  
-<div align="right">[Return to ToC](#table)</div> 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p> 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="commands"></a>Familiarising yourself with the commands  
 
@@ -194,9 +194,10 @@ command, refer to the next section.
 
 <div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
 list. Only use it if you are sure! </div>   
-<div align="right">[Return to ToC](#table)</div>
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 -------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="features"></a>Features  
 
@@ -212,7 +213,7 @@ This section introduces you to detailed information about how to use each comman
 * [Help command](#help)
 * [Exit command](#exit)
 
-<div align="right">[Return to ToC](#table)</div>
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="list"></a>Listing all modules: `list`
@@ -221,7 +222,7 @@ By using the `list` command, you can list all the modules that you have stored i
 
 This is a straightforward command. To use it, all you have to type is `list`
 
-<div align="right">[Return to ToC](#table)</div> 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p> 
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -263,7 +264,7 @@ Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t
 `d/DEADLINE`.
 Please refer to [format restrictions](#format) to find out more.
 
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -287,8 +288,8 @@ Examples:
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>  
-
-<div align="right">[Return to ToC](#table)</div>  
+<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -323,7 +324,6 @@ Examples of valid usages:
 <div align="center">Figure 5 : Editing a module in the tracker.</div>  
 <br>  
 
-<div style="page-break-after: always;"></div>  
 
 Examples of invalid usages:
 * `edit 0 n/CS2101 t/Tutorial` - The index must be a positive integer.
@@ -333,7 +333,7 @@ Examples of invalid usages:
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
 `d/DEADLINE`. Please refer to [format restrictions](#format) to find out more.
 
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>  
@@ -357,8 +357,8 @@ Examples:
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
-
-<div align="right">[Return to ToC](#table)</div>  
+<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -385,8 +385,8 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 </p>
 
 <div align="center">Figure 7 : Sorting the modules based on deadline.</div>
-
-<div align="right">[Return to ToC](#table)</div>   
+<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -397,7 +397,7 @@ By using the `clear` command, you can remove all the modules from the module tra
 
 * This is a straight-forward command, and all you have to type is `clear`
 
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="help"></a>Viewing help : `help`
@@ -412,8 +412,8 @@ to use the commands.
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
-
-<div align="right">[Return to ToC](#table)</div>  
+<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="exit"></a>Exiting the module tracker: `exit`
@@ -422,7 +422,7 @@ By using the `exit` command, you can close and exit the application.
 
 * This is a straight-forward command, and all you have to type is `exit`
 
-<div align="right">[Return to ToC](#table)</div>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -450,12 +450,12 @@ to display the pop-up window at any other point in time. However, this will be a
 features [coming soon](#coming-soon) if you are interested. 
 
 <p align="center">
-   <img height="150" width="250" src="images/reminder.png">
+   <img height="250" width="350" src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
-
-<div align="right">[Return to ToC](#table)</div>  
+<br>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>  
@@ -500,7 +500,7 @@ key in `230223`. It cannot be blank.
 If you are an advanced user who is concerned about further information regarding how you can use the commands of 
 coNtactUS, read on for the next section. 
 
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -528,7 +528,7 @@ and `clear`), the input value will be ignored. For example, `help 123` will simp
 
 </div>
 
-<div align="right">[Return to ToC](#table)</div>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -660,10 +660,9 @@ know what information are considered valid and what are not.<br>
   </tr>
 </table>  
 
-<div align="right">[Return to ToC](#table)</div>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
---------------------------------------------------------------------------------------------------------------------  
-<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
 ## <a id="data"></a>Data Storage 
 
@@ -684,7 +683,7 @@ If your changes to the data file makes its format invalid, coNtactUS will discar
 data file at the next run.
 </div>
 
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
  --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -708,7 +707,7 @@ that are located at different venues (`LT-19` and `COM1-B1`) at the same timing 
 felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
 conflict checks. After all, `Bob` may be referring to two different persons.  
 
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -716,13 +715,13 @@ conflict checks. After all, `Bob` may be referring to two different persons.
 ## <a id="coming"></a>Coming soon 
 
 coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
-Here are some new features that you can look forward to in the near future: 
+Here are some new features you can look forward to in the near future: 
 
-* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
-view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
+* Currently, the reminder pop-up window only appears when coNtactUS is launched. You may want to 
+view this reminder pop-up window at any moment while you are using coNtactUs. Hence, we will be adding a command
 for you to do so, so you can see the reminders at any time you wish.   
 
-<div align="right">[Return to ToC](#table)</div>   
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
  --------------------------------------------------------------------------------------------------------------------
 ## <a id="glossary"></a>Glossary 
@@ -731,7 +730,7 @@ If you have any confusion about some of the technical terms used in this user gu
 refer to the glossary below.  
 
 #### Attribute  
-Refers to a specific input value from the user that provides details to execute a command. Attributes, except for
+Refers to a specific input value from the user that provides details to execute a command. Attributes
 are preceded by their prefixes. Example includes ```n/MODULE_NAME``` and ```d/DEADLINE```. 
 
 #### Command Word  
@@ -745,7 +744,7 @@ Refers to a character ending in a slash ("/") that precedes an attribute value. 
 information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
 as prefix for ```TEACHER``` attribute.  
 
-<div align="right">[Return to ToC](#table)</div>
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -758,7 +757,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 **Q**: Can I only exit coNtactUS through the `exit` command? <br>
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.  
-<div align="right">[Return to ToC](#table)</div>  
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## <a id="command-summary"></a>Command summary 
@@ -775,7 +774,6 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 | **help**   | `help`                                                                                                                |
 | **exit**   | `exit`                                                                                                                |
 
-<div align="right">[Return to ToC](#table)</div>
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
-------------------------------------------------------------------------------------
 
