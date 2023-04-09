@@ -12,7 +12,7 @@ import fasttrack.logic.parser.exceptions.ParseException;
 
 public class EditExpenseCommandParserTest {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "The index provided is invalid.";
     private final EditExpenseCommandParser parser = new EditExpenseCommandParser();
 
     @Test
