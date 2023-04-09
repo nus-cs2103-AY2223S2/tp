@@ -113,7 +113,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         codoc.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, "");
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_PERSONS_INPUT);
     }
 
     @Override

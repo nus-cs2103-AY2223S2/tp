@@ -14,6 +14,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** User input that corrospond to show all person predicate */
+    String PREDICATE_SHOW_ALL_PERSONS_INPUT = "";
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

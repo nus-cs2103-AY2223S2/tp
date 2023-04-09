@@ -1,6 +1,7 @@
 package codoc.logic.commands;
 
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS_INPUT;
 import static java.util.Objects.requireNonNull;
 
 import codoc.model.Model;
@@ -18,7 +19,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, "");
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_PERSONS_INPUT);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
