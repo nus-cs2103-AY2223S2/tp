@@ -208,7 +208,7 @@ Examples:
 
 ![Edit](images/command_result/Edit.png)
 
-Above is the execution result of the input `edit 2 i/G3787219P`.
+Above is the execution result of the input `edit 7 i/G0000000A`.
 
 ### Viewing a patient detailed particulars: `view`
 
@@ -216,8 +216,12 @@ Views a patient detailed particulars.
 
 Format : `view i/NRIC`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For other commands, the view pane will show the particulars of the first patient in our system by default.
+But after ADD or EDIT command, the view pane will show the corresponding patient's particulars.
+</div>
+
 Examples:
-* `view i/S1234567H` shows detailed information about the patient on the view pane.
+* `view i/G0000000A` shows detailed information about the patient on the view pane.
 
 ![View](images/command_result/View.png)
 
@@ -252,8 +256,6 @@ Format: `list`
 that you have loaded.
 </div>
 
-
-Format: `list`
 
 ![List](images/command_result/List.png)
 
@@ -293,7 +295,7 @@ Examples (The following results are based of the sample data provided):
 
 ![Find](images/command_result/Find.png)
 
-Above is the execution result of the input `find i/S1234567A`.
+Above is the execution result of the input `find ad/Alex`.
 
 ### Backing up patient records: `backup`
 
