@@ -126,7 +126,7 @@ Shows a message explaining how you can access our user guide.
 
 Format: `help`, `h` or Press `F1`
 
-![help](images/UG/help.png)
+![help](images/UG/help_new.png)
 
 
 
@@ -136,7 +136,7 @@ Shows a list of all pets stored in your PetPal.
 
 Format: `list` or `l`
 
-![list](images/UG/list.png)
+![list](images/UG/list_new.png)
 
 
 
@@ -181,7 +181,7 @@ The format of the timestamp should strictly follow the convention `YYYY-MM-DD HH
 otherwise you will encounter errors when adding a new pet
 </div>
 
-![create](images/UG/add.png)
+![create](images/UG/add_new.png)
 
 Example given: `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua`
 
@@ -202,7 +202,7 @@ Get a filtered list of things you should do soon!
 
 Format: `remind`
 
-![remind](images/UG/remind.png)
+![remind](images/UG/remind_new.png)
 
 :bulb: **Note:**
 The pets highlighted in bright orange are reminders that are due within a day!<br>
@@ -267,12 +267,14 @@ the `undo` command to revert the wrong changes.
 
 Format: `edit INDEX [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG...]`
 
-![update](images/UG/edit.png)
-Example given: `edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`
+![update](images/UG/edit_new.png)
+
+Example given: `edit 6 t/GoldenRetriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`
 
 <div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**
+
 If you wish to add tags to the pet, take note to include all previous tags in the edit, or they will be overridden.
 
 Only parameters provided will be changed.
@@ -291,7 +293,7 @@ Pet Card information indicates the amount of money owed to you for taking good c
 
 Cost is calculated based on initial timestamp input by user. The cost is updated based on user interaction, clicking the petcard or reopening petpal!
 
-![](images/UG/amount.png)
+![](images/UG/amount_new.png)
 
 
 #### Changing the cost : `changecost`
@@ -304,16 +306,17 @@ Cost is incremented in real time and is calculated based on `FLAT_RATE + (TIMEST
 
 <div markdown="block" class="alert alert-block alert-success">
 
-* :bulb: **Note:**
+:bulb: **Note:**
 
 The cost will only update in your PetPal list when you click on the PetPal entry.
 
-The update applies to all PetPal entries.
+The update only applies to the selected PetPal entry.
 </div>
 
 Format: `changecost INDEX RATE FLAT_RATE`
 
-![update](images/UG/changecost.png)
+![update](images/UG/cc_new.png)
+
 Example given `changecost 1 0.1 0.5`
 
 <div markdown="block" class="alert alert-block alert-info">
@@ -337,10 +340,11 @@ Example given `mark 1`
 
 <div markdown="block" class="alert alert-block alert-success">
 
-* :bulb: **Note:**
+:bulb: **Note:**
 
-1. You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
-2. Pet deadline status will be automatically saved in the form of `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
+You should always mark the pet's deadline when you finished it. Otherwise, it will be highlighted as undone.
+
+Pet deadline status will be automatically saved in the form of `status` field in the `petpal.json` file. `Unmarked` means have not finished yet and `Marked` means already finished.
 
 </div>
 
@@ -360,7 +364,7 @@ You can use this command when:
 
 Format: `delete INDEX`
 
-![delete](images/UG/delete.png)
+![delete](images/UG/delete_new.png)
 
 Examples:
 * `delete 2` deletes the second pet in the currently displayed pet list in the PetPal.
@@ -381,9 +385,10 @@ Note that:
 
 Format: `archive INDEX`
 
-![archive](images/UG/archive.png)
+![archive](images/UG/archive_new.png)
+
 Example:
-* `delete 3` deletes the third pet in the currently displayed list in PetPal
+* `archive 2` archives the second pet in the currently displayed list in PetPal
 
 
 
@@ -415,20 +420,12 @@ make a mistake while using PetPal.
 
 Format: `undo`
 
-![undo](images/UG/undo.png)
-
-<div markdown="block" class="alert alert-block alert-success">
-
-* :bulb: **Note:**
-You can `undo` an `undo` command
-
-</div>
-
+![undo](images/UG/undo_new.png)
 
 
 ### Exiting the program : `exit`
 
-Exits the program. Data is [automatically saved](#saving-the-data)
+Exits the program. Data is [automatically saved](#saving-the-data).
 
 Format: `exit` or `e`
 
@@ -443,7 +440,7 @@ This means hassle-free saving.
 ### Editing the data file
 
 PetPal data are saved as a JSON file `[JAR file location]/data/PetPal.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
-Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`. You can also
+Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`.
 
 <div markdown="block" class="alert alert-block alert-danger">
 
@@ -529,7 +526,7 @@ or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Edit**        | `edit p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG...]`<br> e.g `Example: edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`                                                                                                       |                       |
 | **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                       |
 | **Remind**      | `remind`                                                                                                                                                                                                                                                                |                       |
-| **Mark**        | `mark INDEX`                                                                                                                                                                                                                                                            |                       | 
+| **Mark**        | `mark INDEX` <br>e.g `mark 1`                                                                                                                                                                                                                                           |                       | 
 | **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    | `f`                   |
 | **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                       |
 | **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        | `cc`                  |
