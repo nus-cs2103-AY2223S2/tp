@@ -8,6 +8,7 @@ title: User Guide
 ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
 
 We're focused on:
+
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
 - **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
 

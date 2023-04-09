@@ -562,7 +562,7 @@ The following sequence diagram shows how `delete-t` works:
 
 **Overview:**
 
-The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday` and `tag` (`Module`, `CCA`, `Major`, `Remarks`) fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
+The `search` command is used to search ConnectUS for all `Person`s for whom the specified keyword matches the specified field information in the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday` and [tags](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#59-tags) (`Module`, `CCA`, `Major`, `Remarks`) fields. If no field is specified, the command searches ConnectUS for all `Person`s for whom the specified keyword matches any of the information fields.
 
 The format for the `search` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#49-searching-for-contact-information-search).
 
@@ -617,9 +617,9 @@ The `upcoming-b` command allows the user to view the birthdays of all contacts t
 
 [↑ Back to table of contents](#table-of-contents)
 
-<div style="page-break-after: always"></div>
-
 ---
+
+<div style="page-break-after: always"></div>
 
 # 5. Planned Enhancements
 
@@ -784,9 +784,7 @@ testers are expected to do more _exploratory_ testing.
 2. Adding a `Person` with additional fields such as address, birthday, social medias etc. (For a detailed list see [this](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#5-information-fields--prefixes))
    1. Test case: `add n/Peter Davis e/peter@example.com p/92849132 b/11/09/1989 a/Road No. 12, Kent Ridge, Singapore ig/peterdavis cca/ICS mod/CS3230`. Expected a new `Person` named Peter Davis with given email, phone number, birthday, address and Instagram handle is created. It also
    adds two tags showing that he is in the ICS cca and in the CS3230 module.  Details of the new `Person` shown in the status message. `Person` is visible in contact list.
-  
-
-
+   
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
@@ -834,8 +832,7 @@ testers are expected to do more _exploratory_ testing.
         in the status bar. Assuming there are less than 1029 `Persons` in the list.
     4. Test case `add-t`, `add-t 10`<br>
         Expected: No `Person` is edited. Error showing invalid command format shown in the status bar.
-
-
+    
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
@@ -868,7 +865,6 @@ testers are expected to do more _exploratory_ testing.
     4. Test case: `search r/friends`<br>
         Expected: All `Persons` whose information contains `friends` in any of the remark tags.
         For instance, if a person with a remark tag `friends` would be shown in the list.
-    
 
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
 
@@ -897,8 +893,7 @@ testers are expected to do more _exploratory_ testing.
         Expected: The first `Person`'s WhatsApp account is opened in the app with the message `Hello World`. Assuming the first `Person` WhatsApp field is not empty,
         is a valid WhatsApp number and the WhatsApp app is installed on the user's computer.
     3. **Note:** Only WhatsApp is supported right now due to platform limitations.
-
-
+    
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
 
 [↑ Back to table of contents](#table-of-contents)
@@ -912,6 +907,9 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to top of section](#7-instructions-for-manual-testing)
 
 [↑ Back to table of contents](#table-of-contents)
+
+---
+
 <div style="page-break-after: always"></div>
 
 # 8. Requirements
@@ -929,6 +927,8 @@ testers are expected to do more _exploratory_ testing.
 - is reasonably comfortable using <u>CLI</u> apps
 
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends' information, saving time and effort as users can access this information at their fingertips.
+
+[↑ Back to top of section](#8-requirements)
 
 [↑ Back to table of contents](#table-of-contents)
 
@@ -1239,12 +1239,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [↑ Back to table of contents](#table-of-contents)
 
+---
+
 <div style="page-break-after: always"></div>
 
 # 9. Glossary
 
 ### A
-
 > **Alphanumeric:**
 > English alphabet letters and numbers only.
 >
@@ -1252,12 +1253,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > The architecture of a system describes its major components, their relationships (structures), and how they interact with each other.
 
 ### B
-
 > **Brownfield:**
 > Brownfield software development refers to the development and deployment of a new software system in the presence of existing or legacy software systems. Brownfield application development usually happens when developing or improving upon an existing application.
 
 ### C
-
 > **CCA:**
 > Co-curricular activities that students participate in.
 >
@@ -1275,17 +1274,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div style="page-break-after: always"></div>
 
 ### F
-
 > **Format:**
 > In this Developer Guide, the format of a command is the correct input usage of a command.
 
 ### G
-
 > **Graphical User Interface (GUI):**
 > A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
 
 ### J
-
 > **Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
 >
 > **JavaFX:**
@@ -1298,7 +1294,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > JUnit 5 is a unit testing framework for the Java programming language, and is important in the development of test-driven development.
 
 ### M
-
 > **Mainstream OS:**
 > Short for Mainstream Operating Systems. This refers to Windows, Linux, Unix, OS-X.
 >
@@ -1314,17 +1309,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div style="page-break-after: always"></div>
 
 ### N
-
 > **NUS:**
 > Short for the National University of Singapore.
 
 ### P
-
 > **Parameter:**
 > Parameters are user inputs that ConnectUS requires to perform certain commands.
 
 ### S
-
 > **School of Computing:**
 > Also known as SoC. A computing school in the National University of Singapore.
 >
@@ -1332,7 +1324,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 > Characters that are not alphabetic or numeric.
 
 ### U
-
 > **Use Case:**
 > A use case describes the interaction between the system and the user for a specific functionality of the system.
 >
