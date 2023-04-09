@@ -47,7 +47,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[portfolio](team/seeusim.md)]
 
 - Role: Code Quality, Integration Head
-- Responsibilities: ***TBC***
+- Responsibilities: Core Infrastructure, Code Validation, Project Management
 
 ### Tang Zong Hao
 
