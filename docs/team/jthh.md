@@ -27,10 +27,10 @@ Given below are my contributions to the project.
     * Justification: Useful since TAs will be able to edit or delete notes more efficiently by our internal search optimisations. 
     * Highlights: Supports wildcard matching with event names and note indices.
 
-* **Code contributed**: [RepoSense link](https://github.com/jthh/tp)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=JThh&tabRepo=AY2223S2-CS2103-F11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * Assisted in releases `v1.3` - `v1.4` (2 releases) on GitHub.
+    * Releases `v1.2` - `v1.4` (3 releases) on GitHub.
 
 * **Enhancements to existing features**:
     * Created part of the GUI for displaying list of notes: 
@@ -50,6 +50,7 @@ Given below are my contributions to the project.
         * Added implementation details of the `note` feature: 
         [\#135](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/135), 
         [\#158](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/158).
+        * Added planned enhancement feature and anticipated actions required: [\#299](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/299).
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#16](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/16), 
@@ -59,6 +60,7 @@ Given below are my contributions to the project.
     [\#86](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/86)
     * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/JThh/ped/issues/1), 
     [2](https://github.com/JThh/ped/issues/2), [3](https://github.com/JThh/ped/issues/3))
+    * Authored [7 issues](https://github.com/AY2223S2-CS2103-F11-1/tp/issues?q=is%3Aissue+author%3AJThh+is%3Aclosed) and [16 PRs](https://github.com/AY2223S2-CS2103-F11-1/tp/pulls?q=is%3Apr+author%3AJThh+is%3Aclosed).
 
 * **Tools**:
     * JavaFX BorderPane, ScrollPane, VBox.
