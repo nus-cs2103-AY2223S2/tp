@@ -746,7 +746,7 @@ These commands should be tested on the Students Page.
    3. Other incorrect `delete student` commands to try: `delete`, `delete student x` (where x is larger than the list size)<br>
           Expected: Similar to previous step 1.2 under `Deleting a student`.
 
-2. Deleting a student while the student list is empty in the Course Page.
+2. Deleting a student while the student list is empty in the Student Page.
 
     1. Incorrect `delete student` commands to try: `delete`, `delete student x` (where x is any number)<br>
        Expected: No student is deleted. Error details shown in the log box.
@@ -759,10 +759,10 @@ These commands should be tested on the Students Page.
    `n/<NAME>`, `p/<PHONE_NUMBER>`, `e/<EMAIL>` or `sid/<STUDENT_NUMBER>` must be provided<br>
        Expected: First student is edited to have the new field details provided. Details of the edited student shown in the log box.
 
-    1. Test case: `edit student 0 n/John`<br>
+   2. Test case: `edit student 0 n/John`<br>
        Expected: No student is edited. Error details shown in the log box.
 
-    1. Other incorrect `edit student` commands to try: `edit`, `edit student`, `edit student x` (where x is any number), `edit student x n/John` (where x is larger than the list size) <br>
+   3. Other incorrect `edit student` commands to try: `edit`, `edit student`, `edit student x` (where x is any number), `edit student x n/John` (where x is larger than the list size) <br>
        Expected: Similar to previous step 1.2 under `Editing a student`.
 
 2. Editing a student while the student list is empty in the Student Page.
@@ -776,7 +776,7 @@ These commands should be tested on the Students Page.
     1. Test case: `select 1`<br>
        Expected: First student is selected. Details of the selected student shown in the log box. Displays the student's information on the view panel on the right.
 
-    1. Test case: `select x` (where x is larger than the list size)<br>
+   2. Test case: `select x` (where x is larger than the list size)<br>
        Expected: No student is selected. Error details shown in the log box.
 
 
@@ -786,19 +786,19 @@ These commands should be tested on the Students Page.
 with respective student IDs `A1234567X`, `A123`, `A98765432X`.
 
    1. Test case: `find student John`<br>
-         Expected: `John Doe` and `Johnny Yu` is displayed. Details of the found students shown in the log box.
+   Expected: `John Doe` and `Johnny Yu` is displayed. Details of the found students shown in the log box.
 
-   1. Test case: `find student A123`<br>
-      Expected: students with student ID `A1234567X` and `A123` are displayed. Details of the found students shown in the log box.
+   2. Test case: `find student A123`<br>
+   Expected: students with student ID `A1234567X` and `A123` are displayed. Details of the found students shown in the log box.
 
-   1. Test case: `find student Alice Yu`<br>
-      Expected: `Alice Yeoh` and `Johnny Yu` are displayed. Details of the found students shown in the log box.
-   
-   1. Test case: `find student Alex Tan` (this student does not exist in the list)<br>
-      Expected: The list is not filtered. Details of no found students shown in the log box.
+   3. Test case: `find student Alice Yu`<br>
+   Expected: `Alice Yeoh` and `Johnny Yu` are displayed. Details of the found students shown in the log box.
 
-   1. Other incorrect `find student` commands to try: `find`, `find student`<br>
-      Expected: The list is not filtered. Error details shown in the log box.
+   4. Test case: `find student Alex Tan` (this student does not exist in the list)<br>
+   Expected: The list is not filtered. Details of no found students shown in the log box.
+
+   5. Other incorrect `find student` commands to try: `find`, `find student`<br>
+   Expected: The list is not filtered. Error details shown in the log box.
 
 
 #### Deleting a student
@@ -808,11 +808,11 @@ with respective student IDs `A1234567X`, `A123`, `A98765432X`.
     1. Test case: `delete student 1`<br>
        Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
 
-    1. Test case: `delete student 0`<br>
+    2. Test case: `delete student 0`<br>
        Expected: No student is deleted. Error details shown in the log box.
 
-    1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, (where x is larger than the list size)<br>
-       Expected: No student is deleted. Error details shown in the log box.
+   3. Other incorrect `delete student` commands to try: `delete`, `delete student x`, (where x is larger than the list size)<br>
+          Expected: No student is deleted. Error details shown in the log box.
 
 2. Deleting a student while the student list is empty on the Students Page.
     1. Test case: `delete student 1`<br>
@@ -826,7 +826,7 @@ with respective student IDs `A1234567X`, `A123`, `A98765432X`.
    Expected: No student email is copied. Error details shown in the log box.
    3. Other incorrect `copy` commands to try: `copy`, `copy x`, (where x is larger than the student list)
    Expected: No student email is copied. Error details shown in the log box.
-3. Copying a student's email while the student list is empty on the Students Page.
+2. Copying a student's email while the student list is empty on the Students Page.
     1. Test case: `copy 1`<br>
     Expected: Nothing is copied to your clipboard. Error details shown in the log box.
 
