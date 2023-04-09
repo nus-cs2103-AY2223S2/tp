@@ -9,15 +9,7 @@ title: amoonguss1's Project Portfolio Page
 
 I worked on the backend mainly and documentation. I was mainly in charge of implementation and testing.
 
-## Table of Contents
-
-* [Contributions](#contributions)
-* [Enhancements](#enhancements)
-* [Bug Fixes](#bug-fixes)
-* [Links to Contributions](#links-to-contributions)
-
 ## Contributions
-
 * **New Feature**: Added the `salary` parameter for `add` command.
   * What it does: User can input `salary` for the `roles`.
   * Justification: The addition of `salary` is important for any applicant looking to apply for internships/jobs,    
@@ -42,36 +34,38 @@ I worked on the backend mainly and documentation. I was mainly in charge of impl
   * Highlights: Allows for a separate, unique predicate checking on keywords parsed to the `Company` command.
 
 
-* **Refactoring**: Refactored all instances of `Person` to `role` in all the files.
-  * What it does: Renamed all methods, classes and variables that contained `person`
-    to `role`.
-  * Justification: Roles fits towards TechTrack instead of person in AB3 and would be clearer for future developments.
-  * Highlights: Refactored AB3 code and tests.
-
-
-* **Testing**: Tests new implementation and class created.
-  * What it does: Allow the code to be covered by more tests and making it more robust.
-  * Justification: New classes such as `CompanyCommandParser`, `salary` and `CompanyCommand` have test cases in their
-    respective test classes. These tests are written to ensure the reliability of these classes.
-  * Highlights: Better code coverage and robustness of TechTrack.
-
-## Enhancements
-
-* Implementation of `salary` in TechTrack.
-* Implementation of `CompanyCommand` where users can filter for various companies.
-
-## Bug Fixes
-* Fixed UG bugs reported in PE-Dry run. (missing commands in command summary)
+* **Enhancements to existing features**: 
+  * Refactored all instances of `Person` to `role` in all the files.
+    * What it does: Renamed all methods, classes and variables that contained `person`
+      to `role`.
+    * Justification: Roles fits towards TechTrack instead of person in AB3 and would be clearer for future developments.
+    * Highlights: Refactored AB3 code and tests.
 
 * **Documentation:**
   * User Guide:
     * Added the `$/` parameter for the `salary` field in the `add` command
-    * Wrote and provided the screenshots of `company` command.
+    * Wrote and provided the UI screenshots of `company` command.
+    * Proof-read and edited mistakes in the UG.
   * Developer Guide:
-    * Wrote the implementation and alternatives of CompanyCommand.
-    * Edited the implementation of DeleteCommand and its dependencies.
-    * Constructed the sequence diagram of CompanyCommand.
-    * Added all Use cases for TechTrack v2 commands. 
+    * Wrote the implementation and alternatives of `CompanyCommand`.
+    * Wrote the implementation of `DeleteCommand` and its dependencies.
+    * Constructed the sequence diagram of `CompanyCommand`.
+    * Added all Use cases for TechTrack v2 commands.
+    * Changed all uml diagrams to use `role` instead of `address`.
+    * Updated the class diagrams to use the current TechTrack role fields.
+
+* **Contributions to team-based tasks**:
+  * Created several tags in team repository to help manage the work done by the team.
+  * Managed and reviewed most of the Pull Requests done by the team.
+  * Proof-read documentation to rectify any mistakes done by team members.
+  * Facilitated team meetings by planning out what we needed to do for the week.
+  * Bug Fixes
+    * Fixed UG bug, where command summary was not explained clearly.
+    * Fixed multiple UG bugs where grammatical errors were found.
+    * Fixed DG bug, where uml diagrams would display wrongly after refactoring the code base.
+
+* **Review/mentoring contributions**:
+  Offered useful and feedback reviewing PRs. Examples: [1](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/292/), [2](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/254/), [3](https://github.com/AY2223S2-CS2103-W16-2/tp/pull/254/)
 
 ## Links to Contributions
 
