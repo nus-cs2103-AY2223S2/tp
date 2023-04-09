@@ -793,24 +793,319 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a customer
 
-### Deleting a person
+1. Adding an individual customer
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: No customer with the name `Amy Bee` exists in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `addc ct/ind n/Amy Bee p/12345678 e/amy@example.com a/312, Amy Street 1`,
+      Expected: Customer 'Amy Bee' is added to the list. The added customer is displayed in the information panel. Details of the added customer shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Adding an enterprise customer
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Prerequisites: No customer with the name `The Enterprise` exists in the list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `addc ct/ent n/The Enterprise p/12345678 e/the@enterprise.com a/Enterprise Street 1`,
+      Expected: Customer 'The Enterprise' is added to the list. The added customer is displayed in the information panel. Details of the added customer shown in the status message.
+
+1. Adding a customer with invalid parameters
+
+   1. Prerequisites: No customer with the name `Amy Bee` exists in the list.
+
+   1. Test case: `addc ct/invalid n/Amy Bee p/12345678 e/amy@example.com a/312, Amy Street 1`,
+      Expected: No customer is added. Information panel remains the same. Error details shown in the status message.
+
+   1. Test case: `addc ct/ind n/Amy Bee* p/12345678 e/amy@example.com a/312, Amy Street 1`,
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+   1. Test case: `addc ct/ind n/Amy Bee p/invalid e/amy@example.com a/312, Amy Street 1`,
+      Expected: Similar to previous.
+
+   1. Test case: `addc ct/ind n/Amy Bee p/12345678 e/invalid a/312, Amy Street 1`,
+      Expected: Similar to previous.
+
+   1. Test case: `addc ct/ind n/Amy Bee p/12345678 e/amy@example.com a/`,
+      Expected: Similar to previous.
+
+### Listing customers
+
+1. Listing all customers
+
+   1. Prerequisites: Multiple customers in the list.
+
+   1. Test case: `listc`<br>
+      Expected: All customers are shown in the list. Success message shown in the status message.
+
+1. Listing customers with valid sorting and filter options
+
+   1. Prerequisites: Multiple customers in the list.
+
+   1. Test case: `listc s/points`<br>
+      Expected: All customers are shown in the list sorted by points. Success message shown in the status message.
+
+   1. Test case: `listc f/ind`<br>
+      Expected: Only individual customers are shown in the list. Success message shown in the status message.
+
+   1. Test case: `listc s/points f/filtered`<br>
+      Expected: Only individual customers are shown in the list sorted by points. Success message shown in the status message.
+
+   1. Other valid test cases to try: `listc s/x`, `listc f/y`, `listc s/x f/y`, `...`
+      (where x is a valid sorting option and y is a valid filter option)<br>
+      Expected: List is sorted or filtered according to x and y.
+
+1. Listing customers with invalid sorting or filter options
+
+   1. Prerequisites: Multiple customers in the list.
+
+   1. Test case: `listc s/invalid f/marked`<br>
+      Expected: List remains the same. Error details shown in the status message.
+
+   1. Test case: `listc s/points f/invalid`<br>
+      Expected: List remains the same. Error details shown in the status message.
+
+   1. Other incorrect test cases to try: `listc s/x`, `listc f/y`, `listc s/x f/y`, `...`
+      (where x is an invalid sorting option and y is an invalid filter option)<br>
+      Expected: Similar to previous.
+
+### Finding customers
+
+1. Finding existing customers
+
+   1. Prerequisite: Only the customers 'Amy Bee' and 'Bob Choo' exists in the list.
+
+   1. Test case: `findc Amy`<br>
+      Expected: Only the customer 'Amy Bee' is shown. Success message with number of listed customers (1) shown in the status message.
+
+   1. Test case: `findc Bee Amy`<br>
+      Expected: Only the customer 'Amy Bee' is shown. Success message with number of listed customers (1) shown in the status message.
+
+   1. Test case: `findc Amy Bob`<br>
+      Expected: Both customers 'Amy Bee' and 'Bob Choo' are shown. Success message with number of listed customers (2) shown in the status message.
+
+1. Finding non-existing customers
+
+   1. Prerequisite: Only the customers 'Amy Bee' and 'Bob Choo' exists in the list.
+
+   1. Test case: `findc A`<br>
+      Expected: No customers are shown. Success message with number of listed customers (0) shown in the status message.
+
+1. Finding customers with zero keywords
+
+   1. Prerequisite: Multiple customers in the list
+
+   1. Test case: `findc`<br>
+      Expected: List remains the same. Error details shown in the status message.
+
+### Viewing a customer
+
+1. Viewing a customer with a valid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `viewc 1`<br>
+      Expected: First customer is displayed in the information panel. Details of the viewed customer shown in the status message.
+
+1. Viewing a customer with an invalid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `viewc 0`<br>
+      Expected: Information panel remains the same. Error details shown in the status message.
+
+   1. Other incorrect view commands to try: `viewc`, `viewc x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Editing a customer
+
+1. Editing a customer with valid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list. No customer with the name `Amy Bee` exists in the list.
+
+   1. Test case: `editc 1 p/12345678`
+      Expected: First customer's phone number updated to '12345678'. The updated customer is displayed in the information panel. Details of the updated customer shown in the status message.
+
+   1. Test case: `editc 1 ct/ent n/Amy Bee`
+      Expected: First customer's customer type updated to enterprise and name updated to 'Amy Bee'. The updated customer is displayed in the information panel. Details of the updated customer shown in the status message.
+
+1. Editing a customer with invalid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `editc ct/invalid`,
+      Expected: No customer is edited. Error details shown in the status message.
+
+   1. Test case: `editc n/Amy Bee*`,
+      Expected: Similar to previous.
+
+   1. Test case: `editc p/invalid`,
+      Expected: Similar to previous.
+
+   1. Test case: `editc e/invalid`,
+      Expected: Similar to previous.
+
+   1. Test case: `editc a/`,
+      Expected: Similar to previous.
+
+1. Editing a customer with an invalid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `editc 0`<br>
+      Expected: Information panel remains the same. Error details shown in the status message.
+
+   1. Other incorrect edit commands to try: `editc`, `editc x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Deleting a customer
+
+1. Deleting a customer with a valid index while all customers are being shown
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `delete 1`<br>
+      Expected: First customer and any orders belonging to the customer is deleted from the list. Details of the deleted customer shown in the status message.
+
+1. Deleting a customer with a valid index while the customer is being displayed
+
+   1. Prerequisites: List and view the first customer using `listc` followed by `viewc 1`. Multiple customers in the list.
+
+   1. Test case: `delete 1`<br>
+      Expected: First customer and any orders belonging to the customer is deleted from the list. Information panel is cleared. Details of the deleted customer shown in the status message. 
+
+1. Deleting a customer with a valid index while the customer's order is being displayed
+
+   1. Prerequisites: At least one order is in the list. List and view the first order using `listo` followed by `viewo 1`.
+      Find the order's customer using `findc FULL CUSTOMER NAME`.
+
+   1. Test case: `delete 1`<br>
+      Expected: First customer and any orders belonging to the customer is deleted from the list. Information panel is cleared. Details of the deleted customer shown in the status message.
+
+1. Deleting a customer with an invalid index
+
+   1. Prerequisites: List customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `delete 0`<br>
+      Expected: No person or order is deleted. Information panel remains the same. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Marking/Unmarking a customer
+
+1. Marking/Unmarking a customer with a valid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `markc 1`<br>
+      Expected: First customer is marked. The marked customer is displayed in the information panel. Details of the marked customer shown in the status message.
+   
+   1. Test case: `unmarkc 1`<br>
+      Expected: First customer is unmarked. The marked customer is displayed in the information panel. Details of the unmarked customer shown in the status message.
+
+1. Marking/Unmarking a customer with an invalid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `markc 0`<br>
+      Expected: No customer is marked/unmarked. Information panel remains the same. Error details shown in the status message.
+   
+   1. Test case: `unmarkc 0`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect mark/unmark commands to try: `markc`, `markc x`, `unmarkc`, `unmarkc x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Setting/Appending a customer's note
+
+1. Setting/Appending the note of a customer with valid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list. First customer in the list has a non-empty note.
+
+   1. Test case: `setnotec 1 nt/`<br>
+      Expected: The first customer's note is cleared. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+   1. Test case: `setnotec 1 nt/Example Note`<br>
+      Expected: The first customer's note is set to 'Example Note'. The customer is displayed in the information panel. Details of the customer shown in the status message.
+   
+   1. Test case: `appendnotec 1 nt/Extra Note`<br>
+      Expected: 'Extra Note' is appended to the first customer's existing note. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+1. Setting/Appending the note of a customer with invalid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `setnotec 0 nt/`<br>
+      Expected: No customer's note is affected. Information panel remains the same. Error details shown in the status message.
+
+   1. Test case: `appendnotec 0 nt/`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect note commands to try: `setnotec 1`, `appendnotec 1`, `setnotec x nt/`, `appendnotec x nt/`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
+### Setting/Adding a customer's points
+
+1. Setting/Adding the points of a customer with valid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `setpoints 1 pt/0`<br>
+      Expected: The first customer's points and cumulative points is set to zero. The customer is displayed in the information panel. Details of the customer shown in the status message.
+  
+   1. Test case: `setpoints 1 pt/100`<br>
+      Expected: The first customer's points and cumulative points is set to 100. The customer is displayed in the information panel. Details of the customer shown in the status message.
+  
+   1. Test case: `addpoints 1 pt/0`<br>
+      Expected: The first customer's points and cumulative points remains the same. The customer is displayed in the information panel. Details of the customer shown in the status message.
+  
+   1. Test case: `addpoints 1 pt/100`<br>
+      Expected: 100 is added to the first customer's points and cumulative points. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+   1. Test case: `addpoints 1 pt/-100`<br>
+      Expected: 100 is subtracted from the first customer's points, while cumulative points remains the same. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+1. Adding the points of a customer resulting in points being out of range
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+  
+   1. Test Case: `setpoints 1 pt/999999`, followed by `addpoints 1 pt/1`<br>
+      Expected: Points will end up out of range. No customer's points is affected. Information panel remains the same. Error details shown in the status message.
+
+   1. Test Case: `setpoints 1 pt/0`, followed by `addpoints 1 pt/-1`<br>
+      Expected: Points will end up out of range. Similar to previous.
+
+   1. Test Case: `setpoints 1 pt/999999`, followed by `addpoints 1 pt/-999999`, followed by `addpoints 1 pt/1`<br>
+      Expected: Cumulative points will end up out of range. Similar to previous.
+
+1. Setting/Adding the points of a customer with invalid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `setpoints 1 pt/1000000`<br>
+      Expected: No customer's points is affected. Information panel remains the same. Error details shown in the status message.
+
+   1. Test case: `setpoints 1 pt/-1`<br>
+      Expected: Similar to previous.
+
+   1. Test case: `addpoints 1 pt/1000000`<br>
+      Expected: Similar to previous.
+
+   1. Test case: `setpoints 0 pt/100`<br>
+      Expected: Similar to previous.
+   
+   1. Test case: `addpoints 0 pt/100`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect points commands to try: `setpoints x pt/100`, `addpoints x pt/100`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
