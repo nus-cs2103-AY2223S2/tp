@@ -168,9 +168,7 @@ How the parsing works:
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
-<!--- insert main class diagram here --->
+<img src="images/ModelClassDiagram1.png" width="450" />
 
 
 The `Model` component,
@@ -180,14 +178,15 @@ The `Model` component,
 * `UserPref` stores an object that represents the user's preference. This is exposed to the outside as a `ReadOnlyUserPref` objects. 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<!--- insert TaskBook class diagram here --->
+<img src="images/ModelClassDiagram2.png" width="450" />
 The `TaskBook` component,
 * stores `Task` are contained in a `UniqueTaskList` object.
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
-<!--- insert Planner class diagram here --->
+<img src="images/ModelClassDiagram3.png" width="450" />
+* stores the generated plan, i.e. all `DailyPlan` objects<br>
+We wish to show more details in the DailyPlan Class but the styling restricts us from doing so
 The `Planner` component,
-* stores the generated plan, i.e. all `DailyPlan` objects
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Task` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
 
