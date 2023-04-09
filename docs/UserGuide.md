@@ -131,6 +131,8 @@ for your reference. </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## <a id="ui"></a> Familiarising yourself with the user interface  
 
 In case you are unsure of what you see in front of you now, we have come up with annotations to
@@ -419,6 +421,8 @@ to use the commands.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="exit"></a>Exiting the module tracker: `exit`
 
 By using the `exit` command, you can close and exit the application.
@@ -562,7 +566,7 @@ know what information are considered valid and what are not.<br>
       <code>CS 2101</code>
       <code>gea1000</code>
       <code>ST2334</code>
-      <code>Programming Methodology</code>
+      <code>Programming</code>
     </td>
     <td>
       <code> </code>
@@ -654,8 +658,8 @@ know what information are considered valid and what are not.<br>
     <td>RESOURCES</td>
     <td>
       <code>www.google.com</code>
-      <code>WWW.YOUTUBE.COM</code>
       <code>WwW.GmAiL.cOm</code>
+      <code>WWW.YOUTUBE.COM</code>
     </td>
     <td>
       <code> </code>
@@ -665,8 +669,9 @@ know what information are considered valid and what are not.<br>
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
+------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>   
 
-<div style="page-break-after: always;"></div>  
 ## <a id="data"></a>Data Storage 
 
 If you are interested to read about how coNtactUS stores data on your computer, read this section to find out more.
@@ -729,12 +734,12 @@ for you to do so, so you can see the reminders at any time you wish.
  --------------------------------------------------------------------------------------------------------------------
 ## <a id="glossary"></a>Glossary 
 
-If you have any confusion about some of the technical terms used in this user guide, you may 
+If you have any confusion about the technical terms used in this user guide, you may 
 refer to the glossary below.  
 
 #### Attribute  
 Refers to a specific input value from the user that provides details to execute a command. Attributes
-are preceded by their prefixes. Example includes ```n/MODULE_NAME``` and ```d/DEADLINE```. 
+are preceded by their prefixes. Example includes ```n/MODULE_NAME```. 
 
 #### Command Word  
 Refers to the keyword in a valid user command. Examples include ```add```, ```edit``` and ```delete```.  
