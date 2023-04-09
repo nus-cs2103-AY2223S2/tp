@@ -154,6 +154,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Add feature
+
+#### Current Implementation
+
+Adding a person is a feature that uses the command `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`.
+
+The following activity diagram shows how the add operation works when given valid parameters or invalid parameters and with or without the optional event tag parameter.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Every person object has a set of events, denoted by `eventSet`. If event tag parameter `evt/EVENT_INDEX` is present, the event at the displayed list's `EVENT_INDEX`, denoted as `eventToAdd`, will be added to the `eventSet` of the person. Otherwise, the person object will have an empty `eventSet`.
+
+This operation is similar to that of adding an event. Adding a person involves calling `Model#addPerson(Person)`, which in turn calls `AddressBook#addPerson(Person)` to add the Person object to the existing `AddressBook`.
+
+
 ### \[Implemented] Add event feature
 
 #### Current Implementation

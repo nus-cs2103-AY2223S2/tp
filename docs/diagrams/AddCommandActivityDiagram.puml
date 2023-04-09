@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes the Add command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([parameters are valid])
+    :Create a person with the specified parameters;
+if () then ([event tag parameter is present])
+    :Tag the event to the person;
+else ([else])
+endif
+    :Add the person to the addressbook;
+    :Add command has been successfully executed;
+else ([else])
+    :An error message is shown;
+endif
+stop
+@enduml
