@@ -33,7 +33,7 @@ public class MarkCustomerCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_CUSTOMER_SUCCESS = "Bookmarked Customer: %1$s";
+    public static final String MESSAGE_MARK_CUSTOMER_SUCCESS = "Bookmarked Customer: \n%1$s";
 
     public static final String MESSAGE_CUSTOMER_ALREADY_MARKED = "This customer is already marked!";
 

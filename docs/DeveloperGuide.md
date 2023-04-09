@@ -408,16 +408,17 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* small business owner that has a need to manage a sizeable number of customers and orders
-* increase customer loyalty and retention rate
-* engage with their customers and build long-term relationships with customers by providing incentives
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Small business owners with a need to manage a sizeable number of customers and orders
+* Small business owners who want to improve customer relations and increase customer loyalty
+* Small business owners who prefer desktop apps over using note-taking applications or spreadsheets
+* Small business owners who are proficient in typing
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI applications
 
 **Value proposition**:
-Help small business owners manage customers and their orders to boost customer satisfaction and retention rate, ultimately growing their business.
+* Manage a list of customers and their respective profiles
+* Create and tag orders with statuses to their respective customers
+* Foster lasting relationships with customers by offering rewards for their continued business with small business owners
 
 ### User stories
 
@@ -748,17 +749,21 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 customers and orders without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to handle incorrect user input without crashing, and instruct the user on correct input format.
+5. Should have a quick startup time and launch without any noticeable delays.
+6. Should have a response time of 5 seconds or less.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Small business**: product-selling business that has much fewer employees and lower revenue than a regular-sized business.
-* **Enterprise customers**: companies that order a large amount of products, much more than individual customers
+* **CLI**: Command Line Interface, a text-based interface for user interaction
+* **GUI**: Graphical User Interface, a visual interface for user interaction
+* **API**: Application Programming Interface, a set of protocols, tools, and routines for building software applications
+* **Small business**: Product-selling business that has much fewer employees and lower revenue than a regular-sized business
+* **Enterprise customers**: Companies that order a large amount of products, much more than individual customers
 
 --------------------------------------------------------------------------------------------------------------------
 
