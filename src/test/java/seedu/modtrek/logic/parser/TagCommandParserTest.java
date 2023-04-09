@@ -49,9 +49,9 @@ class TagCommandParserTest {
     @Test
     public void parse_missingPrefix_failure() {
         assertParseFailure(parser, VALID_CODE_CS1101S + " include",
-                TagCommand.MESSAGE_MISSING_PREFIX);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_MISSING_PREFIX));
         assertParseFailure(parser, VALID_CODE_CS1101S + " remove",
-                TagCommand.MESSAGE_MISSING_PREFIX);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_MISSING_PREFIX));
     }
 
     @Test

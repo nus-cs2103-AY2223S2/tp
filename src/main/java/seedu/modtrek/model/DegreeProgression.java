@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.SortCommand;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;
 

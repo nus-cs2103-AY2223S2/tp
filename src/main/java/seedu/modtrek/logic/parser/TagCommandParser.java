@@ -42,7 +42,7 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         boolean isTagPresent = argMultimap.getValue(PREFIX_TAG).isPresent();
         if (!isTagPresent) {
-            throw new ParseException(TagCommand.MESSAGE_MISSING_PREFIX);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_MISSING_PREFIX));
         }
         if (argMultimap.getAllValues(PREFIX_TAG).contains("")) {
             throw new ParseException(Tag.MESSAGE_MISSING_DETAIL);

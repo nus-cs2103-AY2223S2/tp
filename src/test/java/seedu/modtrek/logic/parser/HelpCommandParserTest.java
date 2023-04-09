@@ -1,7 +1,5 @@
 package seedu.modtrek.logic.parser;
 
-import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +18,7 @@ public class HelpCommandParserTest {
 
     @Test
     public void parse_helpNoArgs_success() {
-        assertParseSuccess(parser, "", new HelpCommand(""));
+        assertParseSuccess(parser, "", new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE));
     }
 
     @Test
@@ -59,8 +57,7 @@ public class HelpCommandParserTest {
     }
 
     @Test
-    public void parse_helpInvalidArgs_failure() {
-        assertParseFailure(parser, "wrong",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+    public void parse_helpInvalidArgs_success() {
+        assertParseSuccess(parser, "wrong", new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE));
     }
 }

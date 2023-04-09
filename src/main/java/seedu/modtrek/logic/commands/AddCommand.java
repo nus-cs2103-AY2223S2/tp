@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + " CSF";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This module has already been added. Try using edit instead.";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module has already been added. Try using edit instead.";
     public static final String MESSAGE_MISSING_PREFIXES =
             "Missing code prefix /m, credit prefix /c, and/or sem-year prefix /y.";
 
@@ -53,7 +53,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasModule(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
         model.addModule(toAdd);

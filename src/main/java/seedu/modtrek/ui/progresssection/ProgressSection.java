@@ -3,7 +3,7 @@ package seedu.modtrek.ui.progresssection;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.modtrek.model.DegreeProgressionData;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.ui.UiPart;
 
 /**
@@ -23,7 +23,7 @@ public class ProgressSection extends UiPart<Region> {
     }
 
     /**
-     * Displays the degree progress in the form of a doughnut chart.
+     * Displays the degree progress in a doughnut chart.
      * @param degreeProgressionData The degree progress data.
      */
     public void displayProgress(DegreeProgressionData degreeProgressionData) {

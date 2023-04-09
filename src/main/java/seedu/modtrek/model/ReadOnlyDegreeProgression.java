@@ -3,6 +3,7 @@ package seedu.modtrek.model;
 import java.util.TreeMap;
 
 import javafx.collections.ObservableList;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.module.Module;
 
 /**

@@ -92,7 +92,12 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ModuleCodePredicate moduleCodePredicate;
         if (!argMultimap.getPreamble().isEmpty()) {
-            Code code = ParserUtil.parseCode(argMultimap.getPreamble());
+            Code code;
+            try {
+                code = ParserUtil.parseCode(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             moduleCodePredicate = new ModuleCodePredicate(true, code.toString(), new HashSet<>(),
                     new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
             filtersList.clear();

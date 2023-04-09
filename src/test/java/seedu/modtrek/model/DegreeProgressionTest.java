@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.testutil.ModuleBuilder;

@@ -65,14 +65,22 @@ public class TypicalModules {
     private TypicalModules() {} // prevents instantiation
 
     /**
+     * Returns an {@code GradeBook} with no modules added.
+     */
+    public static DegreeProgression getEmptyDegreeProgression() {
+        DegreeProgression dp = new DegreeProgression();
+        return dp;
+    }
+
+    /**
      * Returns an {@code GradeBook} with all the typical modules.
      */
     public static DegreeProgression getTypicalDegreeProgression() {
-        DegreeProgression ab = new DegreeProgression();
+        DegreeProgression dp = new DegreeProgression();
         for (Module module : getTypicalModules()) {
-            ab.addModule(module);
+            dp.addModule(module);
         }
-        return ab;
+        return dp;
     }
 
     public static List<Module> getTypicalModules() {

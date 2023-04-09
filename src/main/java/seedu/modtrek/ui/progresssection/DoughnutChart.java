@@ -15,14 +15,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import seedu.modtrek.model.DegreeProgressionData;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.model.tag.ValidTag;
 
 /**
  * A doughnut chart that displays summary statistics of the degree progress.
- * @author jewelsea from stackoverflow.com, modified from
- *     https://stackoverflow.com/questions/24121580/can-piechart-from-javafx-be-displayed-as-a-doughnut
+ * Solution below adapted from https://stackoverflow.com/questions/24121580/
  */
 public class DoughnutChart extends PieChart {
     private DegreeProgressionData degreeProgressionData;
@@ -34,7 +33,7 @@ public class DoughnutChart extends PieChart {
     private Circle innerCircle;
 
     /**
-     * The individual tag labels representing each category of the curriculum.
+     * The individual tag labels for each degree requirement.
      */
     private VBox[] dataLabels;
 
@@ -54,6 +53,11 @@ public class DoughnutChart extends PieChart {
         addLabels();
     }
 
+    /**
+     * Feeds degree progression data into the doughnut chart.
+     * @param degreeProgressionData The degree progression data.
+     * @return The data for each arc area of the doughnut chart.
+     */
     private static ObservableList<PieChart.Data> createDoughnutData(DegreeProgressionData degreeProgressionData) {
         ObservableList<PieChart.Data> doughnutData = FXCollections.observableArrayList();
 
@@ -107,23 +111,38 @@ public class DoughnutChart extends PieChart {
         innerCircle = new Circle();
         innerCircle.setStyle("-fx-fill: -black");
 
-        Text percent = new Text(degreeProgressionData.getOverallPercentage() + "% completed");
-        percent.setStyle("-fx-fill: -teal;");
-        percent.getStyleClass().add("h2");
+        if (degreeProgressionData.isValid()) {
+            Text percent = new Text(degreeProgressionData.getOverallPercentage() + "% completed");
+            percent.setStyle("-fx-fill: -teal;");
+            percent.getStyleClass().add("h2");
 
-        Text totalMc = new Text(degreeProgressionData.getMeaningfulCredit() + "/"
-                + DegreeProgressionData.TOTALCREDIT + " MCs");
-        totalMc.setStyle("-fx-fill: -white;");
-        totalMc.getStyleClass().add("h3");
+            Text totalMc = new Text(degreeProgressionData.getMeaningfulCredit() + "/"
+                    + DegreeProgressionData.TOTALCREDIT + " MCs");
+            totalMc.setStyle("-fx-fill: -white;");
+            totalMc.getStyleClass().add("h3");
 
-        Text cap = new Text("CAP: " + degreeProgressionData.getGpa());
-        cap.setStyle("-fx-fill: -white;");
-        cap.getStyleClass().add("h3");
+            Text cap = new Text("CAP: " + degreeProgressionData.getGpa());
+            cap.setStyle("-fx-fill: -white;");
+            cap.getStyleClass().add("h3");
 
-        VBox labels = new VBox(percent, totalMc, cap);
-        labels.getStyleClass().add("doughnut-center-label");
+            VBox labels = new VBox(percent, totalMc, cap);
+            labels.getStyleClass().add("doughnut-center-label");
 
-        doughnutCenterLabel = new StackPane(innerCircle, labels);
+            doughnutCenterLabel = new StackPane(innerCircle, labels);
+        } else {
+            Text invalid = new Text("INVALID MODULES");
+            invalid.setStyle("-fx-fill: -white;");
+            invalid.getStyleClass().add("h3");
+
+            Text helpText = new Text("Input `view progress`\nto find out more!");
+            helpText.setStyle("-fx-fill: -white;");
+            helpText.getStyleClass().add("h5");
+
+            VBox labels = new VBox(invalid, helpText);
+            labels.getStyleClass().add("doughnut-center-label");
+
+            doughnutCenterLabel = new StackPane(innerCircle, labels);
+        }
     }
 
     /**
@@ -255,11 +274,12 @@ public class DoughnutChart extends PieChart {
 
     /**
      * Calculates and obtains some of the doughnut chart's geometric properties.
-     * @author jewelsea from stackoverflow.com
      * @return The x and y coordinates of the center, and radius of the doughnut chart, in the
      *     form of a hashmap.
      */
     private Map<String, Double> getChartProperties() {
+        //@@author jmestxr-reused
+        //Reused from https://stackoverflow.com/questions/24121580/ with minor modifications
         double minX = Double.MAX_VALUE;
         double minY = Double.MAX_VALUE;
         double maxX = Double.MIN_VALUE;
@@ -331,6 +351,11 @@ public class DoughnutChart extends PieChart {
     }
 
 
+    /**
+     * Gets the labels for each degree requirement, to be displayed alongside the corresponding
+     * arc area.
+     * @return The labels for each degree requirement.
+     */
     private Map<String, String> getDataLabelTexts() {
         Map<String, String> tagLongDisplay = new HashMap<>();
         tagLongDisplay.put("ULR", "University Level\nRequirements");

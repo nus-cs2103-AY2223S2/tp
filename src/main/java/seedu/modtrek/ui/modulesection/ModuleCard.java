@@ -12,7 +12,7 @@ import seedu.modtrek.model.tag.ValidTag;
 import seedu.modtrek.ui.UiPart;
 
 /**
- * Represents a module card storing module details for a semYear.
+ * A UI component storing details of a particular module.
  */
 public class ModuleCard extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleCard.fxml";
@@ -33,9 +33,9 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane moduleCardTagGroup;
 
     /**
-     * Instantiates a new ModuleCard.
-     *
-     * @param module the module
+     * Instantiates a new ModuleCard component.
+     * @param module the module object that encapsulates module information to be
+     *               displayed as a ModuleCard component.
      */
     public ModuleCard(Module module) {
         super(FXML);
@@ -48,7 +48,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     /**
-     * Instantiates a new placeholder ModuleCard. Purpose of this placeholder is to set the
+     * Instantiates a new placeholder ModuleCard component. Purpose of this placeholder is to set the
      * max width of the actual ModuleCards in ModuleGroup.
      */
     public ModuleCard() {
@@ -56,7 +56,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     /**
-     * Populate the ModuleCard with its information (module code, credits, yearsem, grade, tags)
+     * Populates the ModuleCard with its information (module code, credits, semyear, grade, tags)
      * @param module The module object that encapsulates the module information.
      */
     private void fillCard(Module module) {
@@ -78,7 +78,7 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     /**
-     * Adds a UI label to ModuleCard that corresponds to a given tag.
+     * Adds a label to the ModuleCard that corresponds to a given tag.
      * @param tagNameShort The short form of the tag name.
      * @param tagNameLong The full tag name in long form.
      * @param tagColor The color of the tag.

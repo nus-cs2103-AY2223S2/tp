@@ -32,7 +32,7 @@ public interface Logic {
     List<String> getFiltersList();
 
     /**
-     * Returns the AddressBook.
+     * Returns the Degree Progression.
      *
      * @see Model#getDegreeProgression()
      */

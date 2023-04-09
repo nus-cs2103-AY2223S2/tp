@@ -5,8 +5,6 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 DegreeProgression *-right-> "1" UniqueModuleList
-UniqueTagList -[hidden]down- UniqueModuleList
-UniqueTagList -[hidden]down- UniqueModuleList
 
 UniqueModuleList -right-> Module
 
