@@ -110,7 +110,7 @@ to [how to check the version of Java on my computer](https://blog.hubspot.com/we
 2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). Note 
 that the file is named `coNtactUs.jar`
 
-   <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
+<div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
 on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
 
 3. Run the `coNtactUs.jar` file. If you are unsure of how to do so, you may refer to [how to run a jar file]().
