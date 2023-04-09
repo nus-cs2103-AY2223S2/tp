@@ -125,7 +125,7 @@ public class ParserUtil {
         if (!MeetupDate.isValidDate(trimmedMeetupDate)) {
             throw new ParseException(MeetupDate.MESSAGE_CONSTRAINTS);
         }
-        if (MeetupDate.isFutureDate(trimmedMeetupDate)) {
+        if (!MeetupDate.isFutureDate(trimmedMeetupDate)) {
             throw new ParseException(MeetupDate.MESSAGE_PAST_DATE);
         }
         return new MeetupDate(trimmedMeetupDate);
