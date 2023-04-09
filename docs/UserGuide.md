@@ -968,7 +968,7 @@ By simply typing `sort` followed by the relevant criteria, you can sort your con
 
 </div>
 
-<br>
+
 
 <div markdown="block" class="alert alert-info">
 
