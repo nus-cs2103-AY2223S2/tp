@@ -279,7 +279,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note about the avatars (profile pictures):**<br>
+**:information_source:  Note about the avatars (profile pictures):**<br>
 * The avatar will change if the student has a "gender" tag.
 * The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
 </div>
@@ -345,6 +345,18 @@ Format: `check INDEX`
 * Checks the student at the specified `INDEX` and displays the task list and score list of the student.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source:  Note:**<br> 
+After the user checked a student, the respective student's task list and score list will continue to be displayed, unless:
+  * That respective student (the latest checked student) is being deleted.
+  * That respective student (the latest checked student) is being edited.
+  * The student list being cleared.
+  
+**Any of the above actions will alter the status to no student being checked now.**
+</div>
+
 
 Examples:
 * `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.<br>
