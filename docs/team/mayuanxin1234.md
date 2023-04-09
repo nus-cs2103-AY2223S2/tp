@@ -63,7 +63,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme and implemented images display for students and parents (Pull request [\#77](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/77))
-  * Updated parser for each new added command (Pull request[\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44))
+  * Updated parser for each new added command (Pull request [\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44))
   * Provided new StudentCommandParser (Pull request [\#44](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/44))
 
 * **Documentation**:
@@ -83,6 +83,6 @@ Given below are my contributions to the project.
   * Set up GitHub Actions (Java CI) to the project
 
 * **Community**:
-  * Reported 14 bugs and suggestions for other teams in the class ([examples](https://github.com/AY2223S2-CS2103-W16-4/tp/issues)
+  * Reported 14 bugs and suggestions for other teams in the class ([examples](https://github.com/AY2223S2-CS2103-W16-4/tp/issues))
   * Reviewed 2 other IPs and provided feedback
 
