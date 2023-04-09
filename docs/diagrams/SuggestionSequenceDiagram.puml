@@ -47,6 +47,6 @@ deactivate AutocompleteEngine
 LogicManager --> CommandBox : "add t/tag1 | tag2"
 deactivate LogicManager
 
-CommandBox --> UI : display suggestion
+CommandBox --> : display suggestion
 deactivate CommandBox
 @enduml
