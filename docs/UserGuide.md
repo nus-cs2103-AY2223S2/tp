@@ -1,7 +1,8 @@
 ---
 layout: page
-title: User Guide
+title: ExecutivePro User Guide
 ---
+
 ## Introduction
 Welcome to ExecutivePro! ExecutivePro is an all-in-one solution for managing employees' information.
 Are you tired of wasting time and energy on inefficient tasks? Do you want to streamline your HR processes and
@@ -15,8 +16,10 @@ So why wait? Don't miss out on the opportunity to bring your productivity to ano
 experience the game-changing benefits that EP can bring to your work!
 
 ### Table of Contents
-* Table of Contents
-  {:toc}
+
+* Table of Contents 
+{:toc}
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Using this Guide
@@ -26,6 +29,7 @@ Do check out our [Introduction](#introduction) if this is your first time using 
 Refer to the [Table of Contents](#table-of-contents) to easily navigate around different sections of the User Guide.
 If you require assistance in the setting up of **ExecutivePro**, head over to [Quick Start](#quick-start).
 If you have set up **ExecutivePro**, feel free to navigate to [Features](#features) to learn how to use the features we offer.
+
 ### Symbols and Syntax
 
 Here are some of the symbols to take note of when going through this user guide:
@@ -75,7 +79,6 @@ Here are some of the symbols to take note of when going through this user guide:
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 <div markdown="block" class="alert alert-info">
 
@@ -113,7 +116,6 @@ such as adding employees using the batchadd command and exporting the database u
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ### Viewing help : `help`
 There can be a lot of information to take in, so if you ever _feel lost_ while using ExecutivePro,
 getting help with the commands is just a simple step away.
@@ -162,7 +164,6 @@ Examples:
 * `add n/Betsy Crowe p/1234567 d/Sales pr/4000 1 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 dob/2000-04-21 doj/2022-01-04 t/friend`
 
 --------------------------------------------------------------------------------------------------------------------
-
 ### Adding multiple employees at once: `batchadd`
 
 Tired of adding new employees one by one?
@@ -236,7 +237,7 @@ In the upcoming versions, we will expand `batchadd` feature to:
 1. Support different types of files
 2. Include more fields like performance and leaves
 
-#### <u> Opening `.csv` files in `Excel`: </u>
+#### <u> Opening .csv files in Excel: </u>
 
 
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
@@ -246,7 +247,6 @@ Follow the steps below to ensure the dates in Excel are following the correct fo
 
 1. Firstly, you can select the two columns involving dates, `Date of Birth` and `Date of Joining`, just like the image below.
    ![](images/UserGuide/batchadd/selectingcolumns.png)
-
 
 2. Next, right-click on the selected columns so that the following shows up:
 
@@ -269,8 +269,8 @@ Once the dates in your CSV file are in the correct format (YYYY-MM-DD),
 you can proceed with the batchadd command in ExecutivePro.
 This will ensure a smooth import process, and all employee information,
 including dates, will be properly stored in the database.
---------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
 ### Exporting database into CSV file: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
@@ -288,6 +288,7 @@ Below are the steps to use this command:
 
 
 2. Go to the folder where you stored the `jar` file.
+
 3. Locate the CSV file in the `data` folder.
 
 If the command is successful, there should be CSV file that contains all the employees' details from the database,
@@ -305,7 +306,6 @@ To ensure the correct date format, please refer to the instructions [here](#u-op
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 ### Listing all employees : `list`
 
 After searching for employees using the `find` command, you might realise that the left Panel no longer shows all the employees.
@@ -315,7 +315,6 @@ their details in the ExecutivePro database.
 Format: `list`
 
 --------------------------------------------------------------------------------------------------------------------
-
 ### Editing an employee : `edit`
 
 There could be instances where you have to edit the details of an employee. It could be due to a typo or the employee has changed
@@ -334,7 +333,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ### Taking Leave : `leave`
 
 There are plenty of instances where employees take leave and it is such a tedious task to manage employee leaves.
@@ -347,9 +345,9 @@ Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
 * Existing leave count will decrease by the number of leave taken.
 
 Examples:
-*  `leave 1 l/3` Helps the employee with ID `1` take `3` days of leave.
---------------------------------------------------------------------------------------------------------------------
+* `leave 1 l/3` Helps the employee with ID `1` take `3` days of leave.
 
+--------------------------------------------------------------------------------------------------------------------
 ### Locating employees by keyword: `find`
 
 As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
@@ -370,7 +368,7 @@ Examples:
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="section-filter"></a>
 ### Filtering out employees: `filter`
 
 As your database gets larger, finding employees based on certain conditions become more and more tedious.
@@ -390,7 +388,7 @@ Examples:
 * `filter l = 1` displays list of all employees who have only 1 leave left
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="section-delete"></a>
 ### Deleting an employee : `delete`
 
 As time passes, you might run into instances where an employee leaves the company, and that their details have to be removed
@@ -407,7 +405,7 @@ Examples:
 `delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="section-theme"></a>
 ### Changing the UI theme : `theme`
 
 Want to tweak the look of ExecutivePro?
@@ -432,7 +430,7 @@ Examples:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="section-setpicture"></a>
 ### Setting an employee's picture : `setpicture`
 
 This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
@@ -458,7 +456,7 @@ Click on the specified employee on the left, and your ExecutivePro should displa
 
 --------------------------------------------------------------------------------------------------------------------
 
-
+<a name="section-exit"></a>
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -466,7 +464,7 @@ Exits the program.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="section-clear"></a>
 ### Clearing the data: `clear`
 
 Clears all the data currently stored in the database.
@@ -483,7 +481,7 @@ Once you run this command, you lose all data immediately.
 Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
-
+<a name="section-save"></a>
 ### Saving the data
 
 ExecutivePro data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -506,6 +504,7 @@ If your changes to the data file makes its format invalid, ExecutivePro will dis
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app on the other computer and overwrite the empty data file. This creates a new file that contains the data of your previous ExecutivePro home folder.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Order of Fields
@@ -525,6 +524,8 @@ This table describes the requirements and order of the fields.
 | 9.    | `DATEOFJOINING` | Optional       |
 | 10.   | `TAGS`          | Optional       |
 
+[Return to add feature](#adding-an-employee--add) 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Field Formats
@@ -543,6 +544,10 @@ This table describes the requirements for the input format of the fields.
 | `DATE_OF_BIRTH`   | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-01-10`                             |
 | `DATE_OF_JOINING` | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
 | `TAG`             | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
+
+[Return to add feature](#adding-an-employee--add) \
+[Return to batchadd feature](#adding-multiple-employees-at-once--batchadd) 
+
 
 --------------------------------------------------------------------------------------------------------------------
 

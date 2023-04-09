@@ -1,4 +1,7 @@
-# JunHao's Project Portfolio Page
+---
+layout: page
+title: JunHao's Project Portfolio Page
+---
 
 ## Overview
 
@@ -68,6 +71,13 @@ Given below are my contributions to the project.
 
 #### Reviewing Contributions
 * Pull Requests reviewed:
+  [#254](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/254),
+  [#248](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/248),
+  [#247](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/247),
+  [#239](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/239),
+  [#237](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/237),
+  [#235](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/235),
+  [#236](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/236),
   [#228](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/228),
   [#223](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/223),
   [#220](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/220),
@@ -117,8 +127,8 @@ Given below are my contributions to the project.
 
 
 **Contributions beyond the project team :**
-- Reported numerous bugs for team [_CS2103T-F11-3(Vaccination Management System)_](https://github.com/AY2223S2-CS2103-F11-3/tp)
-  Some examples are: [#296](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/296),
+- Reported numerous bugs for team [_CS2103T-F11-3(Vaccination Management System)_](https://github.com/AY2223S2-CS2103-F11-3/tp).
+Some examples are: [#296](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/296),
 [#300](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/300),
 [#307](https://github.com/AY2223S2-CS2103-F11-3/tp/issues/307)
 
