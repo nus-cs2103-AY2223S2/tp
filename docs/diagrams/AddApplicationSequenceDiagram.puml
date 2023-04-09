@@ -63,7 +63,6 @@ LogicManager -> AddApplicationCommand : execute()
 activate AddApplicationCommand
 
 AddApplicationCommand -> Model : addApplication(app)
-activate ApplicationModel
 
 Model --> AddApplicationCommand
 deactivate Model
