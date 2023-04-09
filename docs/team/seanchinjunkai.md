@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-    * Wrote test cases for `drugallergy` class [\#81](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/81), [\#96](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/96) 
+    * Wrote test cases for `drugallergy` class [\#81](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/81), [\#96](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/96)
     * Wrote test cases for `nric` class [\#96](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/96)
 
 
@@ -52,4 +52,3 @@ Given below are my contributions to the project.
 
 * **Contributions beyond project team** :
     * Reported a total of [6](https://github.com/SeanChinJunKai/ped/issues) bugs and issues for PE-D.
-    
