@@ -602,153 +602,6 @@ The activity diagram below summarises the action when the patient `ClearCommand`
 
 <img src="images/patient/dg/ClearPatientActivityDiagram.png" />
 
-<!-- Given below is an sequence diagram that illustrates the **Clearing Patients** mechanism behaves at every step.
-
-<img src="images/patient/dg/ClearPatientSequenceDiagram.png" /> -->
-
-### Appointment
-
-#### Adding a Appointment
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/appointment/AddAppointmentActivityDiagram.png" width="550" />
-<img src="images/appointment/AddAppointmentSequenceDiagram.png" width="550" />
--->
-
-#### Listing a Appointment
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/appointment/ListAppointmentActivityDiagram.png" width="550" />
-<img src="images/appointment/ListAppointmentSequenceDiagram.png" width="550" />
--->
-
-#### Finding a Appointment
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/appointment/FindAppointmentActivityDiagram.png" width="550" />
-<img src="images/appointment/FindAppointmentSequenceDiagram.png" width="550" />
--->
-
-### Keyword
-
-#### Adding a Keyword
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
--->
-
-#### Listing a Keyword
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
--->
-
-#### Finding a Keyword
-
-##### Execution Sequence
-
-<!-- TODO
-<img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
-<img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
--->
-
-<!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
-<!-- ### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedVms`. It extends `Vms` with an undo/redo history, stored internally as an `patientManagerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedVms#commit()` — Saves the current patient manager state in its history.
-* `VersionedVms#undo()` — Restores the previous patient manager state from its history.
-* `VersionedVms#redo()` — Restores a previously undone patient manager state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitVms()`, `Model#undoVms()` and `Model#redoVms()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedVms` will be initialized with the initial patient manager state, and the `currentStatePointer` pointing to that single patient manager state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th patient in the patient manager. The `delete` command calls `Model#commitVms()`, causing the modified state of the patient manager after the `delete 5` command executes to be saved in the `patientManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted patient manager state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitVms()`, causing another modified patient manager state to be saved into the `patientManagerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitVms()`, so the patient manager state will not be saved into the `patientManagerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoVms()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous patient manager state, and restores the patient manager to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Vms state, then there are no previous Vms states to restore. The `undo` command uses `Model#canUndoVms()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoVms()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the patient manager to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `patientManagerStateList.size() - 1`, pointing to the latest patient manager state, then there are no undone Vms states to restore. The `redo` command uses `Model#canRedoVms()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the patient manager, such as `list`, will usually not call `Model#commitVms()`, `Model#undoVms()` or `Model#redoVms()`. Thus, the `patientManagerStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitVms()`. Since the `currentStatePointer` is not pointing at the end of the `patientManagerStateList`, all patient manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behaviour that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire patient manager.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_ -->
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1280,13 +1133,33 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ### Glossary
 
-* **VMS**: Vaccination Management System
+* **Component**:
+  * In the context of application usage - the main functionalities of the application:
+    * Basic
+    * Keyword
+    * Patient
+    * Vaccination
+    * Appointment
+  * In the context of application design - the parts of the application design:
+    * Main
+    * Ui
+    * Logic
+    * Model
+    * Storage
+* **DOB**: Date of birth of a patient.
+* **Group** (in the context of vaccination): A group that the vaccination can be classified under.
+* **History requirement** (in the context of vaccination): A set of vaccination groups that either has to be present or cannot be present in the groups that a vaccination classifies under.
+* **Index**: The position of an element in a list-like structure (eg. position of a vaccination in the vaccination list panel).
+* **Ingredients**: ingredients used to make the vaccination / things that the patient cannot be allergic to.
+* **Keyword**: A user defined word to refer to one of the main keywords.
+* **Mainkeyword**: One of these 3 that refers to the main component of VMS.
+  * `patient`
+  * `vaccination`
+  * `appointment`
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private patient detail**: A patient detail that is not meant to be shared with others
-* **Feature**: Group of feature commands
-* **Vaccination**: The Covid-19 vaccine
-* **Patient**: Someone receiving the vaccine
-* **Command parameter**: Arguments that affect how the command work
+* **Patient**: A person who may receive the vaccination.
+* **Patient/Appointment ID**: A unique serial number for patient/appointment.
+* **VMS**: Vaccination Management System
 
 ## **Appendix: Instructions for manual testing**
 
