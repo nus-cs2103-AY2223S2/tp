@@ -906,6 +906,8 @@ testers are expected to do more _exploratory_ testing.
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 7.8 Opening a Person's social media links in app:
 
 1. Opening a `Person`'s social media links:
@@ -941,6 +943,8 @@ testers are expected to do more _exploratory_ testing.
 [↑ Back to top of section](#7-instructions-for-manual-testing)  
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 7.10 View upcoming birthdays:
 
