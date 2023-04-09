@@ -82,6 +82,7 @@ class JsonAdaptedStudent {
         if (!Attendance.isValidAttendanceStorageString(attendance)) {
             throw new IllegalValueException("Invalid attendance value \"" + attendance + "\" in JSON file");
         }
+
         final Name modelName = new Name(name);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
