@@ -49,11 +49,6 @@ UG for tasks feature
     * Added user stories and use cases ([]())
   * **Code:**
     * Added JavaDoc comments for test and java files (examples: )
-    
-    * Status features, including all UML diagrams
-      ([#66](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/66),
-      [#185](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/185))
-    * Added user stories and use cases ([#21](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/21))
 
 * **Community**:
   * Conceptualized and developed the idea and functionality behind SalesPunch.
