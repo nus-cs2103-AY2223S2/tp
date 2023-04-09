@@ -97,7 +97,7 @@ ________________________________________________________________________________
 
 <div markdown="block" class="alert alert-info">
 
-#### :information_source: Notes about the command format:<br>
+####  :information_source: Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -129,14 +129,14 @@ Don't know how to get started? Don't worry!
 
 Simply use this command to get access to our help page!
 
-####Syntax:
+#### Syntax:
 
 `help`
 
-#### Description:
+####  Description:
 Use this command when you need help!
 
-#### Image:
+####  Image:
 ![help](images/userguide/help.png)
 
 1. Links to the user guide you are reading right now!
@@ -152,11 +152,11 @@ Met a new friend?
 
 Use this command to add him/her to your NeoBook.
 
-####Syntax
+#### Syntax
 
 `add n/NAME PREFIX/PARAMETER...`
 
-####Description
+#### Description
 Here are all the prefixes that can be used:
 
 | Prefix | Name of Field                   | Optional? |
@@ -183,11 +183,11 @@ Only modules that are a part of NUS' mod systems will be allowed. This is
 to prevent any messiness and also allows for future syncing with NUSMods.
 </div>
 
-####Example Usages
+#### Example Usages
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
-####Note
+#### Note
 
 * If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
 
@@ -201,7 +201,7 @@ Want to see all your contacts?
 
 Use this command to gain access to all of them!
 
-####Syntax
+#### Syntax
 
 `list`
 
@@ -216,18 +216,18 @@ Contact someone very frequently?
 
 Use this command to favourite it so that you have easy access to it!
 
-####Syntax
+#### Syntax
 
 `fav INDEX`
 
-####Description
+#### Description
 
 `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
 
-####Important Requirements
+#### Important Requirements
 `INDEX` must be a **positive integer** (must be greater than 0).
 
-####Example Image
+#### Example Image
 Here's how NeoBook would look like after you favourite a contact!
 ![Fav](images/userguide/fav.png)
 
@@ -244,14 +244,14 @@ No longer contact someone as frequently as you used to?
 
 Use this command to unfavourite it!
 
-####Syntax
+#### Syntax
 `unfav INDEX`
 
 
-####Description
+#### Description
 `INDEX` refers to the index of the contact you wish to unfavorite in the current displayed list.
 
-####Important Requirements
+#### Important Requirements
 
 `INDEX` must be a **positive integer** and (must be greater than 0).
 
@@ -265,12 +265,12 @@ Learnt something new about your friend? Or perhaps he/she changed a particular d
 
 Use this command to edit his/her details easily!
 
-####Syntax
+#### Syntax
 
 `edit INDEX PREFIX/PARAMETER...`
 
 
-####Description
+#### Description
 
 `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
 
@@ -284,13 +284,13 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 * If the parameter already exists in the `FieldGroup` it will be removed.
 * Otherwise, the parameter will be added into the `FieldGroup`.
 
-####Important requirements
+#### Important requirements
 
 `INDEX` must be a **positive integer** (must be greater than 0).
 
 All the fields are optional. However, at least one field must be provided.
 
-#### Examples Usages
+####  Examples Usages
 The first contact has `CS2103T`, `MA2001` and `GEA1000` as its modules.
 * `edit 1 mt/CS2103T` removes CS2103T from the Modules field since it is already a part of its Modules field.
 * So the first contact in your Neobook will have `MA2001` and `GEA1000` as its only modules
@@ -315,11 +315,11 @@ The second contact has the following tags `Friend`, `Amazing Coder`
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
 
-####Example Usages:
+#### Example Usages:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-####Note
+#### Note
 
 * If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
 
@@ -334,11 +334,11 @@ Want to narrow down your displayed contacts to a certain few?
 
 Use this command to find contacts by specifying the fields and corresponding keywords you wish to search!
 
-####Syntax
+#### Syntax
 
 `find PREFIX/KEYWORD...`
 
-####Description
+#### Description
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
@@ -363,7 +363,7 @@ E.g `find n/Peter James`
 
 Above are all the prefixes you can use to find a Contact according to their fields.
 
-#### Important Requirements
+####  Important Requirements
 1. At least 1 field and corresponding keyword must be specified.
    * i.e `find PREFIX/KEYWORD`
 
@@ -400,15 +400,15 @@ Want to see more details about a certain contact in your list?
 
 Use this command to expand and view more information about the selected contact.
 
-####Syntax
+#### Syntax
 
 `select INDEX`
 
-####Important requirements
+#### Important requirements
 * `INDEX` refers to the index of the contact you wish to view more information on.
     * `INDEX` must be a **positive integer** (must be greater than 0). 
 
-####Example Usage
+#### Example Usage
 * `select 1` expands the details of the first contact in your list.
 * `select 4` expands the details of the fourth contact in your list.
 
@@ -422,19 +422,19 @@ No longer interact with someone in your contacts?
 
 Use this command to delete the specified contact from your NeoBook.
 
-####Syntax
+#### Syntax
 
 `delete INDEX`
 
-####Description
+#### Description
 `INDEX` refers to the index of the contact you wish to unfavorite in the current displayed list.
 
-####Important Requirements
+#### Important Requirements
 
 `INDEX` must be a **positive integer** and (must be greater than 0).
 
 
-####Example Usage
+#### Example Usage
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
@@ -448,7 +448,7 @@ Want to start from a clean slate?
 
 Simply use this command to clear all contacts from your NeoBook.
 
-####Syntax
+#### Syntax
 
 `clear`
 
@@ -462,7 +462,7 @@ Finished what you needed to do?
 
 Use this command to exit the application!
 
-####Syntax
+#### Syntax
 
 `exit`
 
@@ -495,7 +495,8 @@ ________________________________________________________________________________
 ____________________________________________________________________________________________________________________
 
 <div markdown="block" class="alert alert-info">
-#### :information_source: Notes about the command format:<br>
+
+####  :information_source: Notes about the command format:<br>
 
 Events have 4 components to them
 - Description
@@ -533,11 +534,11 @@ Accepted Intervals:
 4. Monthly
 5. Yearly
 
-####Syntax
+#### Syntax
 
 `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE`
 
-####Important requirements
+#### Important requirements
 
 * `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
     * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
@@ -549,7 +550,7 @@ Accepted Intervals:
 * `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
     *  Event will be automatically added as a `One Time Event`.
 
-####Example Usage
+#### Example Usage
 * `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
 * `addevent d/Catchup with John s/2023-03-30 1600 e/2023-03-30 1800 r/None` will add a One Time Event of Catchup with John that occurs from 1600 to 1800, on 2023-03-30.
 * `addevent d/Dinner with Family s/2023-03-30 1600 e/2023-03-30 1800` will add a One Time Event of Dinner with Family that occurs from 1600 to 1800, on 2023-03-30.
@@ -572,15 +573,15 @@ You no longer need to track this particular event?
 
 Use this command to delete the specified event from your NeoBook.
 
-####Syntax
+#### Syntax
 
 `delevent INDEX`
 
-####Important requirements
+#### Important requirements
 * `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
     * `INDEX` must be a **positive integer** (must be greater than 0).
 
-####Example Usage
+#### Example Usage
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
 
 [Back To Contents](#table-of-contents)
@@ -593,11 +594,11 @@ Want to change the details of a particular event?
 
 Use this command to edit the specified event in your NeoBook.
 
-####Syntax
+#### Syntax
 
 `editevent INDEX PREFIX/PARAMETER...`
 
-####Important requirements
+#### Important requirements
 
 * `INDEX` refers to the index of the event you wish to edit in the current displayed list.
     * `INDEX` must be a **positive integer** (must be greater than 0).
@@ -629,11 +630,11 @@ Want to remember who was a part of a certain event?
 Tag their contacts
 to the event using this command!
 
-####Syntax
+#### Syntax
 
 `tagpersonevent et/EVENT INDEX pt/NAME`
 
-####Important requirements
+#### Important requirements
 * The EVENT INDEX is the index of the event you want to tag the person to.
 * NAME is the name of the person you want to tag to the event.
   * NAME is **case_sensitive**.
@@ -665,11 +666,11 @@ Want to remove somebody who was a part of a certain event?
 
 Untag their contacts from the event using this command!
 
-####Syntax
+#### Syntax
 
 `untagpersonevent et/EVENT INDEX pt/NAME`
 
-####Important requirements
+#### Important requirements
 * The EVENT INDEX is the index of the event you want to tag the person to.
 * NAME is the name of the person you want to tag to the event.
     * NAME is **case_sensitive**.
@@ -718,11 +719,11 @@ Want to change one of your own details, perhaps something was out of date?
 
 Use this command to edit your details easily!
 
-####Syntax
+#### Syntax
 
 `edituser PREFIX/PARAMETER...`
 
-####Important requirements
+#### Important requirements
 
 * At least one field must be provided.
 
@@ -780,16 +781,16 @@ Looking for a faster way to switch between NeoBook and the Events?
 
 Use this command to navigate to the specified tab.
 
-####Syntax
+#### Syntax
 
 `tab INDEX`
 
-####Important requirements
+#### Important requirements
 * `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
     * `INDEX` must be 1, 2, or 3.
 * `tab` refers to the literal word to be typed into the command line, not the key on your keyboard.
 
-####Example Usage
+#### Example Usage
 * `tab 1` switches to the Address Book tab.
 * `tab 2` switches to the Events tab.
 
@@ -802,7 +803,7 @@ Want to use a brighter version of our UI?
 
 Use Light mode!
 
-####Syntax
+#### Syntax
 
 `light`
 
@@ -815,7 +816,7 @@ Want to use a darker version of our UI?
 
 Use Dark mode!
 
-####Syntax
+#### Syntax
 
 `dark`
 
