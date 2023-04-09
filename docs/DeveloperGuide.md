@@ -639,22 +639,22 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all students using the `list` command. Multiple students in the list. **OR** <br>
     Filter or find students as desired using the `filter` or `find` commands. Number of students in the list depends on the condition given.
 
-    1. Test case: `delete 1`<br>
-
+    2. Test case: `delete 1`<br>
     Expected: If the displayed student list is empty, error details shown in the status message. No student is deleted.
     Else, the first student is deleted from the displayed list. Details of the deleted student shown in the status message. If the deleted student was being checked
     using the `check` command, the task list and score list of the student will be cleared.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
     Expected: No student is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+
     Expected: Similar to previous.
 
 1. Deleting a student being checked
-    2. Prerequisites: Check a student using `check` command.
+    1. Prerequisites: Check a student using `check` command.
 
-    3. Test case: `delete x` (where x is the index of the student being checked)<br>
+    2. Test case: `delete x` (where x is the index of the student being checked)<br>
     Expected: The student is deleted from the list. Details of the deleted student shown in the status message. The task list and score list shown
     will be cleared.
 
@@ -681,6 +681,15 @@ testers are expected to do more *exploratory* testing.
 ### Difficulty level
 
 ### Challenges faced
+
+We faced several challenges when we were working on this application, the following are some examples and not limited to:
+
+* As lacking experience in working with pre-existing codebase, and AB3 is a relatively large project that we did not encounter before,
+we had to take time to learn from scratch that how the AB3 works, such as how does user input handled by AB3.
+* Since we are relatively new to JavaFx, we had to spend a lot of time looking at the JavaFx library and learning how to use some
+specific structures when designing the GUI.
+* We also had to spend time searching CSS format in order to make the GUI meet our requirements.
+* Thinking how to design the structure of our application based on existing AB3 structure to make it follow Object-oriented programming.
 
 ### Effort required
 
