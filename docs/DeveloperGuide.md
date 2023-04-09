@@ -150,20 +150,9 @@ Developer Guide.
     <th><strong>Meaning / Purpose</strong></th>
   </tr>
   <tr>
-    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td><strong>Activity Diagram</strong></td>
     <td>
-      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
-      allows a user to perform tasks by entering commands. <br>
-      Users enter the specific command, press “Enter”, and then wait for a response.
-      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Graphical User Interface (GUI)</strong></td>
-    <td>
-      A system of interactive visual components for computer software. A GUI displays objects that convey information,
-      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
-      interacts with them.
+      Models workflows, which define the flow in which a process or a set of tasks is executed.
     </td>
   </tr>
   <tr>
@@ -171,12 +160,6 @@ Developer Guide.
     <td>
       A set of definitions and protocols for building and integrating application software and simplifies how
       developers integrate new application components into an existing architecture.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Mainstream OS</strong></td>
-    <td>
-      Windows, Linux, Unix, OS-X.
     </td>
   </tr>
   <tr>
@@ -195,6 +178,36 @@ Developer Guide.
     </td>
   </tr>
   <tr>
+    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td>
+      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
+      allows a user to perform tasks by entering commands. <br>
+      Users enter the specific command, press “Enter”, and then wait for a response.
+      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>FX Markup Language (FXML)</strong></td>
+    <td>
+      File format JavaFX uses to create layouts on the screen. 
+It    It is a better alternative than creating user interfaces using procedural code. 
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Graphical User Interface (GUI)</strong></td>
+    <td>
+      A system of interactive visual components for computer software. A GUI displays objects that convey information,
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
+      interacts with them.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Mainstream OS</strong></td>
+    <td>
+      Windows, Linux, Unix, OS-X.
+    </td>
+  </tr>
+  <tr>
     <td><strong>Object-Oriented Programming (OOP)</strong></td>
     <td>
       A computer programming model that organizes software design around data, or objects, rather than functions and logic.
@@ -202,22 +215,22 @@ Developer Guide.
     </td>
   </tr>
   <tr>
-    <td><strong>Sequence Diagram</strong></td>
-    <td>
-      Captures the interactions between multiple objects for a given scenario.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Activity Diagram</strong></td>
-    <td>
-      Models workflows, which define the flow in which a process or a set of tasks is executed.
-    </td>
-  </tr>
-  <tr>
     <td><strong>Object Diagram</strong></td>
     <td>
       Used to complement class diagrams. Object diagrams can be used to model different object
       structures that can result from a design represented by a given class diagram.
+    </td>
+  </tr>
+<tr>
+    <td><strong>PlantUML</strong></td>
+    <td>
+      Tool which uses plain text language to create Sequence, Object and Activty Diagrams.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Sequence Diagram</strong></td>
+    <td>
+      Captures the interactions between multiple objects for a given scenario.
     </td>
   </tr>
   <tr>
