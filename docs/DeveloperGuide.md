@@ -193,10 +193,10 @@ The `Person` object is composed of attributes:
 
 The `add` command has the following fields:
 
-> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
-> Unless stated as`[COMPULSORY]`, the field is optional.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** (COMPULSORY) indicates that the field is cannot be omitted when using `add`. Unless stated as (COMPULSORY), the field is optional.
+</div>
 
-* Prefix `n/` followed by the name of the student `[COMPULSORY]`.
+* Prefix `n/` followed by the name of the student (COMPULSORY).
 * Prefix `p/` followed by the phone number of the student.
 * Prefix `e/` followed by the student's email.
 * Prefix `a/` followed by the student's address.
