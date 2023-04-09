@@ -173,20 +173,6 @@ public class UniqueScoreList implements Iterable<Score> {
         return internalList.hashCode();
     }
 
-    /**
-     * Returns true if {@code scores} contains only unique scores.
-     */
-    private boolean scoresAreUnique(List<Score> scores) {
-        for (int i = 0; i < scores.size() - 1; i++) {
-            for (int j = i + 1; j < scores.size(); j++) {
-                if (scores.get(i).isSameScore(scores.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public int size() {
         return internalList.size();
     }

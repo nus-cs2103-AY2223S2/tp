@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -36,6 +37,7 @@ public class DeleteScoreCommand extends Command {
      * Creates a DeleteScoreCommand to delete the specified score from a specified student
      */
     public DeleteScoreCommand(Index studentIndex, Index scoreIndex) {
+        requireAllNonNull(studentIndex, scoreIndex);
         this.studentIndex = studentIndex;
         this.scoreIndex = scoreIndex;
     }
