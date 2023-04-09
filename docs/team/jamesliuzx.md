@@ -30,7 +30,7 @@ RIZZipe is a desktop recipe book application used for busy cooks who want to tra
 **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jamesliuzx&breakdown=true)
 
 **Project management**:
-    * Managed releases `v1.1` - `v1.4` (# releases) on GitHub
+    * Managed releases [`v1.2` - `v1.3`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tags) on GitHub
 
 **Enhancements to existing features**:
 * Refactored storage (Pull request [\#91](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/91))
@@ -38,8 +38,8 @@ RIZZipe is a desktop recipe book application used for busy cooks who want to tra
 
 **Documentation**:
 * User Guide:
-    * Added documentation for the features `delete` [\#f8a7ea1]()
-    * Added table of contents and hyperlinks [\#2307c7f]()
+    * Added documentation for the feature `delete` [\#f8a7ea1](https://github.com/AY2223S2-CS2103T-T13-2/tp/commits/f8a7ea1)
+    * Added table of contents and hyperlinks [\#2307c7f](https://github.com/AY2223S2-CS2103T-T13-2/tp/commits/2307c7f)
     * Added command fields format [\#261](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/261)  
 
 * Developer Guide:
@@ -47,5 +47,5 @@ RIZZipe is a desktop recipe book application used for busy cooks who want to tra
     * Added UI section and diagrams[\#126]()
 
 **Community**:
-* PRs reviewed (with non-trivial review comments): [\#30](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/30), [\#35](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/35), [\#37](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/37), [\#75](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/75), [\#77](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/77), [\#127](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/127), [\#137](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/137), [\#138](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/138), [\#189](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/189), [\#245](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/245), [\#252](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/245)
+* PRs reviewed (with non-trivial review comments): [\#30](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/30), [\#35](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/35), [\#37](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/37), [\#75](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/75), [\#77](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/77), [\#127](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/127), [\#137](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/137), [\#138](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/138), [\#189](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/189), [\#245](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/245), [\#252](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/245), [\#270](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/270)
 * Reported 12 bugs in the Practical Exam dry run: [Bug Report](https://github.com/JamesLiuZX/ped/tree/main/files)
