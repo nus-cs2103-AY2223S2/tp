@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -95,6 +96,24 @@ public class TemporaryMemoryTest {
         this.memory.undo();
         this.memory.saveNewLatest(inputs.get(2));
         assertEquals(this.memory.getUndoHistory().size(), 0);
+    }
+
+    // Saves multiple files into the stack, then perform undo a number of times
+    // less than the number of saves.
+
+    @Test
+    public void saveMultipleThenUndoFewerTimes_randomNumberOfRandomFiles_loadsCorrectFile()
+            throws CommandException {
+        Random random = new Random();
+        int numFiles = random.nextInt(10) + 3;
+        for (int i = 0; i < numFiles; i++) {
+            this.memory.saveNewLatest(inputs.get(i));
+        }
+        int numUndos = random.nextInt(numFiles - 2) + 1;
+        for (int j = 0; j < numUndos; j++) {
+            this.memory.undo();
+        }
+        assertEquals(this.memory.loadCurrent(), inputs.get(numFiles - numUndos - 1));
     }
 
     // Negative test cases.
