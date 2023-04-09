@@ -248,9 +248,9 @@ Format:
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:computer: **Keyboard Shortcut**:
+:computer: **Keyboard Shortcut**:<br>
 
-* To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
+To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
 While the recipe to that you want to zoom in to is being selected, simply type <kbd>p</kbd> to view that particular recipe's details! 
 
 </div>
