@@ -82,6 +82,8 @@ making it a reliable and efficient tool for organizing events.
 - #### User Guide:
     - Added documentation for the features `edit`, `delete`, `find`, and `GUI`
       [#103](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/103)
+    - Standardized the use of icons and added prefix summary
+      [#208](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/208/files)
     - Added all the images in User Guide
       [#210](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/210)
 - #### Developer Guide:
