@@ -30,8 +30,10 @@ Class JsonAdaptedEvent
 Class JsonAdaptedInternship
 }
 
+}
+
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ...> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage

@@ -13,6 +13,7 @@ class StatsPage
 class HomePage
 class CalendarPage
 class EventCard
+class FindEventResultsPage
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,13 +31,15 @@ Page <|-down- HomePage
 Page <|-down- ClashInfoPage
 Page <|-down- StatsPage
 Page <|-down- CalendarPage
+Page <|-down- FindEventResultsPage
 
 ClashInfoPage -down-> "*" ClashInfoItem
 HomePage -down-> "*" EventCard
 InternshipInfoPage -down-> "*" EventCard
+ClashInfoItem -down-> "*" EventCard
+FindEventResultsPage -down-> "*" EventCard
 
 EventCard .down.> Event
-ClashInfoItem .down.> Event
 CalendarPage .down.> Event
 
 InternshipInfoPage .down.> Internship

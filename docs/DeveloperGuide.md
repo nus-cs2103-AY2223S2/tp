@@ -242,7 +242,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Selecting an `Internship`: `select` command
 
-**Implementation**
+#### Implementation
 
 The `select` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
 
@@ -281,7 +281,7 @@ lifeline reaches the end of diagram.
 
 The `event add` command allows users to add instances of `Event` to a selected `Internship`.
 
-**Implementation**
+#### Implementation
 
 Below is an example usage. 
 
@@ -323,7 +323,7 @@ The *Sequence Diagram* for the adding the `Event` is below:
 
 The `calendar` command displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
 
-**Implementation**
+#### Implementation
 
 Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
 
@@ -341,15 +341,26 @@ Step 6. The `execute` method creates a `CommandResult` that encapsulates the `Ob
 
 Step 7. In `MainWindow`'s `executeCommand` method, `Page.of(CommandResult)` is called to create a `Page` to show on the UI.
 
-Step 8. `Page.of(CommandResult)` recognizes that `ResultType` of the `CommandResult` is `CALENDAR`, and creates a `CalendarPage` to be shown by calling `new CalendarPage(commandResult.getEvents())`.
+Step 8. `Page.of(CommandResult)` recognizes that `ResultType` of the `CommandResult` is `CALENDAR`, and creates a `CalendarPage` to be shown by calling its constructor. THe `ObservableList` of `Event` is passed to the constructor.
 
-Step 9. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
-* Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all `Event` (in the form of `Entry`), whereas `MonthPage` is a composite CalendarFX control that showcases all `Event` in a month in grids.
+Step 9. Within constructor of the `CalendarPage`, here is an outline of what happens under the hood:
+* A `MonthPage` is created. It is a composite CalendarFX control responsible for displaying all `Event` in a month in grids.
+* The `MonthPage` is initialized with the current time and set up such that it updates its timing accordingly.
+* A `Calendar` is created. It is a CalendarFX class that stores our `Event` in the form of `Entry` (another CalendarFX class you will see again in a later step)
+* The `MonthPage` is connected to the `Calendar` through a wrapper class called `CalendarSource`. This is to allow the `MonthPage` to show the events in `Calendar`.
 
-Step 10. The `ObservableList` of `Event` received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`. 
+Step 10. Now, we will add each `Event` in the `ObservableList` of `Event` received by the `CalendarPage` constructor earlier to `Calendar`, each as an `Entry`. 
 * `Entry` is a CalendarFX class that represents an event in the `Calendar`. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
 
-Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
+Step 11. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI.
+
+Step 8 till Step 11 are depicted in the *Sequence Diagram* below.
+
+<p align="center">
+
+<img src="images/CalendarSequenceDiagram.png" width="700" />
+
+</p>
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
