@@ -344,17 +344,15 @@ The following activity diagram summarizes what happens when a user executes a `d
 
 #### 3.3.1 Design Consideration
 
-#### Option 1: Allow multiple deletions
+#### Option 1 (current choice): Allow multiple deletions
 Pros: Saves user some time as they do not need to enter `delete` multiple times.
 Cons: Entire command must be rejected if one of the input is wrong to avoid unintended behaviours.
+
+Option 1 is chosen as a more experienced user will know what types of input are accepted by Clock-Work. Our target users, Computer Science students, should be quick on the uptake of syntax, and should be able to reap the efficiency benefits of multiple deletions.
 
 #### Option 2: Only allow single deletion
 Pros: User can pinpoint which index is causing the rejection.
 Cons: Takes more time to delete multiple task at once.
-
-#### Eventual Decision
-Option 1 is chosen as a more experienced user will know what types of input are accepted by Clock-Work. Our target users, Computer Science students, should be quick on the uptake of syntax, and should be able to reap the efficiency benefits of multiple deletions.
-
 
 ### 3.4 Edit Feature
 
@@ -483,8 +481,10 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 What type of information should be displayed by `stats`
 
-#### Option 1: Number of tasks per tag
+#### Option 1 (current choice): Number of tasks per tag
 Pros: Assuming user uses tags to categorise tasks into subject folders, this will be useful in showing the user which subject requires more time on.
+
+As Clock-Work is an application to help Computer Science students improve their productivity, option 1 is chosen, as it can provide the most benefit to our target user group.
 
 #### Option 2: Number of completed tasks
 Pros: Motivational for users to know their progress
@@ -493,9 +493,6 @@ Cons: May have a reverse effect as users feel complacent about their progress
 #### Option 3: Number of tasks under each category (_SimpleTask, Deadline, Event_)
 Pros: Users can get an overview of their task composition
 Cons: Does not improve productivity
-
-#### Eventual Decision
-As Clock-Work is an application to help Computer Science students improve their productivity, option 1 is chosen, as it can provide the most benefit to our target user group.
 
 ### 3.9 Sort Feature
 
@@ -521,7 +518,7 @@ Sorts the list using the following format:
 
 Aspect: How are tasks sorted:
 
-#### Option 1(current choice):
+#### Option 1 (current choice):
 
 * SimpleTask is listed above Deadline and Event.
 * Deadline is  listed below SimpleTask and above Event.
@@ -598,10 +595,14 @@ The algorithm allocates tasks as such:
 Step 1: Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
 <br>
 <details>
+<br>
 <summary>More about scheduling for Events</summary>
+<br>
 After getting a list of Events from all tasks within TaskBook, a scheduling algorithm for events is run. The following diagram shows its behaviour.
 <br>
+<br>
 <img src="images/EventAllocation.png">
+<br>
 <br>
 <b>Some Rules</b>
 <ul>
@@ -621,13 +622,16 @@ After getting a list of Events from all tasks within TaskBook, a scheduling algo
 <br>
 
 Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+<br>
 <details>
 <br>
 <summary>More about scheduling for Deadlines</summary>
 <br>
 After getting a list of Deadlines from all tasks within Task Book, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
 <br>
+<br>
 <img src="images/DeadlineAllocation.png">
+<br>
 <br>
 <b>Some Rules</b>
 <ul>
@@ -655,7 +659,9 @@ Step 3: Allocate all SimpleTasks in descending order of effort required. As we a
 <br>
 After getting a list of Simple Tasks from all tasks within TaskBook, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
 <br>
+<br>
 <img src="images/SimpleTaskAllocation.png">
+<br>
 <br>
 <b>Some Rules</b>
 <ul>
@@ -681,9 +687,9 @@ Step 1. The user launches the application.
 
 Step 2. The application displays a list of tasks (that can also be empty).
 
-Step 2. The user executes `schedule D/TODAY'S DATE` command to sort the list.
+Step 2. The user executes `schedule D/SHORT_DATE` command to display the schedule of the date specified.
 
-Step 3. The sequence diagram below shows how the sort operation works:
+Step 3. The sequence diagram below shows how the schedule operation works:
 
 ![ScheduleCommandNoPlanSequenceDiagram](images/ScheduleCommandNoPlanSequenceDiagram.png)
 
@@ -695,9 +701,9 @@ Step 1. The user launches the application.
 
 Step 2. The application displays a list of tasks (that can also be empty).
 
-Step 2. The user executes `schedule D/TODAY'S DATE E/EFFORT` command to sort the list.
+Step 2. The user executes `schedule D/DATE E/EFFORT` command to plan and display the schedule of the date entered.
 
-Step 3. The sequence diagram below shows how the sort operation works:
+Step 3. The sequence diagram below shows how the chained schedule operation works:
 
 ![ScheduleCommandHavePlanSequenceDiagram](images/ScheduleCommandHavePlanSequenceDiagram.png)
 
@@ -707,24 +713,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <br>
 
-#### 3.11.3 Storing a Plan
+#### 3.11.3 Design Consideration
 
-#### 3.11.4 Design Consideration
-
-#### Option 1: Combine Schedule and Plan into a Single Command
+#### Option 1 (current choice): Combine Schedule and Plan into a Single Command
 Allow users to generate a new plan by adding a parameter to the schedule command.
 
 Pros: Faster for users to create a plan and see generated plan.
 Cons: More features attached to a single command may confuse new users.
+
+In the long run, users should be familiar with the usage scenarios of the commands, so the efficiency benefits of a chained command outweighs the costs of command complexity.
 
 #### Option 2: Separate Schedule and Plan
 Users will have to use a separate command to generate a plan, before using `schedule` to view daily schedule.
 
 Pros: Clearer separation of features may be easier for new users to understand.
 Cons: Slower in regular usage as two commands are needed for feature to work, instead of one.
-
-#### Eventual Decision
-In the long run, users should be familiar with the usage scenarios of the commands, so the efficiency benefits of a chained command outweighs the costs of command complexity.
 
 ### 3.12 Tag color codes
 
@@ -821,8 +824,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a2. TaskBook shows an error message
 
       Use case resumes at step 1.
-
-
+<br>
+<br>
 **Use case: Delete a task**
 
 **MSS**
@@ -845,8 +848,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TaskBook shows an error message.
 
       Use case resumes at step 2.
-
-
+<br>
+<br>
 **Use case: Edit a task**
 
 **MSS**

@@ -20,7 +20,7 @@ With basic commands like `add`, `delete`, `edit`, and special commands like `ale
 
 Table of Contents
 * [1. Quick start](#1-quick-start)
-* [2. The GUI of Clock-Work](#2-the-gui-of-clock-work)
+* [2. The Layout of Clock-Work](#2-the-layout-of-clock-work)
 * [3. Introducing a Task](#3-a-task-in-clock-work)
 * [4. Features and commands](#4-features-and-commands)
   * [4.1 add](#41-adding-a-task--add)
@@ -65,7 +65,7 @@ If you like our product and want to contribute to it, consider looking at the [D
 7. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+8. Type the command in the [command box](#2-the-layout-of-clock-work) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all tasks.
@@ -78,10 +78,10 @@ If you like our product and want to contribute to it, consider looking at the [D
 
    * `exit` : Exits the app.
 
-9. Refer to the [Features and Commands](#2-features-and-commands) below for details of each command.
+9. Refer to the [Features and Commands](#4-features-and-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. The GUI of Clock-Work
+## 2. The Layout of Clock-Work
 
 Now that you've opened up the app, let's start by introducing you to the basic GUI of Clock-Work.
 
@@ -122,13 +122,14 @@ This is what each component mean:
 
 | Component | Meaning | How to use it | Usage Specifications                                                                       |
 |--| --------- | ------------- |--------------------------------------------------------------------------------------------|
-| [Name](#q2-what-is-a-valid-name) | Name of task | Identify tasks | Must be unique, Case-insensitive  |
-| [Tag](#q3-what-is-a-valid-tag) | Labels / Folders | Group related tasks | Must be a single word, Case-sensitive, Tags of the same name are only added once, Colour randomly generated, Displayed lexicographically|
+| [Name](#q2-what-is-a-valid-name)* | Name of task | Identify tasks | Must be unique, Case-insensitive|
+| [Tag](#q3-what-is-a-valid-tag)* | Labels / Folders | Group related tasks | Must be a single word, Case-sensitive, Tags of the same name are only added once, Colour randomly generated, Displayed lexicographically|
 | [Time](#q4-what-is-a-valid-long-date) | Type of task | Keep track of time-related information here | Simple tasks have no dates, Deadlines have 1 long date, Events have 2 long dates |
 | [Effort](#q7-what-is-an-effort-level) | Estimated amount of work to complete task | Set realistic effort estimates to help with scheduling | Default value of 24                                                                        |
 | [Description](#q8-what-is-a-valid-description) | Good-to-know | Useful things to remember | Text with at least 1 character                                                             |
 | [Subsection](#q9-what-is-a-valid-subsection) | Smaller tasks to complete | Split a larger task into more manageable pieces | Has its own name and description                                                           |
 
+\* Must be alphanumeric and must not contain special characters
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,6 +173,8 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 4. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+5. There are reserved keywords like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/` to identify inputs as needed in commands.
+
 </div>
 
 ### 4.1 Adding a task : `add`
@@ -191,8 +194,6 @@ Format:
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
-
-:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`. Input fields will have unexpected behaviour when it contains these characters.
 
 e.g. `add n/Sample d/Why can't I add n/?`
 
@@ -329,7 +330,7 @@ e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/N
 
 :man_technologist: **Some statistics will do no harm. Stats is here to help you visualise your tasks in numbers!**
 
-Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
+Prints the top 10 tags (if applicable) from the list of tasks currently shown, and its corresponding number of occurrences of tasks per tag.
 
 Format: `stats`
 
@@ -358,36 +359,37 @@ Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTD
 
 <details>
 <summary>How are my plans generated?</summary>
+<br>
 When the schedule command is ran with an <code>E/EFFORT</code> flag, a new 30-day plan is generated, starting from the day the command is run.
-Tasks allocated to a day should not exceed the intended `E/EFFORT` level indicated.
+Tasks allocated to a day should not exceed the intended <code>E/EFFORT</code> level indicated.
+<br>
 However, if the need arises, the effort allocated for a day can exceed your preferred <code>E/EFFORT</code> level.
-
-Task book allocates tasks as such:
-1. Allocate all events to the day(s) it is supposed to be happening.
-
-2. Allocate all deadlines to the first [free day](#q11-what-is-a-free-day) before it is due (exclusive of due date). Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).
-
-3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).
+<br>
+Task book allocates tasks as such:<br>
+1. Allocate all events to the day(s) it is supposed to be happening.<br>
+2. Allocate all deadlines to the first day before the deadline (exclusive of due date), such that adding a task to that day does not exceed the user-preferred workload. Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).<br>
+3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).<br>
 </details>
 <br>
 <details>
 
 <summary>Need more help?</summary>
-
+<br>
 Displaying Daily Plans
 <br>
-Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.
-As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.
-If no tasks are shown, it means that there are no tasks planned for that day.
-An error message that prompts users to re-generate a plan will be shown if the entered date is out of range (either too far in the future, or a date before the start date of generated plan).
+<br>
+Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
+As plans are only valid for 30 days from the last time it was generated, you are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.<br>
+If no tasks are shown, it means that there are no tasks planned for that day, or a plan has not yet been generated.<br>
 </details>
 
 <br>
 :warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
 <br>
 :warning: Select an effort estimate that you can realistically complete in a day. Having abnormally high desired effort levels in comparison to effort per task (eg. desired workload of 10000 and each task has effort 1) may result in undesired behaviour where all tasks are allocated to the same day.
-
-
+<br>
+:warning: If an empty plan is shown, it could mean that a plan has not yet been generated. Please enter `schedule D/SHORTDATE E/EFFORT` to generate a new plan. If the plan is still empty after generating a new plan, it means that there are no tasks allocated to that day.
+<br>
 Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
 - `schedule D/2023-04-02` will show tasks which should be completed on April 2, 2023, based on a previously generated schedule (which should be generated between 3 Mar 2023, and 2 Apr 2023).
