@@ -234,6 +234,333 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add Expense feature
+
+#### **Command Format**
+
+`add n/EXPENSE_NAME c/CATEGORY_NAME p/PRICE [d/DATE]`, whereby the date is an optional field.
+
+#### **What is this feature for?**
+
+The `add` command enables users to add an `Expense` to the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `add` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `add n/Milk p/4.50 c/Groceries` as an example.
+1. The user inputs `add n/Milk p/4.50 c/Groceries` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddExpenseCommand` object is created using the given fields.
+
+
+3. `AddExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model` and adds the `Expense` used to instantiate the `AddExpenseCommand` through the `Model#addExpense()` method, which adds the new `Expense` object to the list of current `Expense` objects. Note that if the newly instantiated `Expense` has a `Category` that does not match any existing `Category` objects, the `Expense` object's `Category` will be added to the `ExpenseTracker` as a new `Category`.
+
+
+4. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully logged.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#1
+
+### \[Implemented\] Delete Expense feature
+
+#### **Command Format**
+
+`delete INDEX`
+
+#### **What is this feature for?**
+
+The `delete` command enables users to delete an `Expense` from the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `delete` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `delete 1` as an example.
+1. The user inputs `delete 1` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `DeleteExpenseCommand` object is created using the given fields.
+
+
+3. `DeleteExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model`, retrieves the `Expense` object at the specified `INDEX`, and deletes it from the underlying list of `Expense` objects of the `Model` instance using `Model#deleteExpense()`.
+
+
+4. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully deleted.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#2
+
+### \[Implemented\] Edit Expense feature
+
+#### **Command Format**
+
+`edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [d/DATE]`, whereby all fields except the `INDEX` field are optional, BUT at least one of the optional fields
+must be used (Otherwise, there is no purpose for calling this command).
+
+#### **What is this feature for?**
+
+The `edexp` command enables users to edit an `Expense` in the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `edexp` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `edexp 1 n/Chicken` as an example, whereby the original `Expense` object has a `EXPENSE_NAME` of `Milk`.
+1. The user inputs `edexp 1 n/Chicken` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `EditExpenseCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `EditExpenseCommand#execute()` to be called, which takes in the currently-running instance of `Model`, retrieves the `Expense` object at the specified `INDEX` from the `FilteredList<Expense>` of the `Model` instance, and instantiates a new `Expense` object that has the same fields as the retrieved `Expense` object except for the `EXPENSE_NAME`. Note that if the newly instantiated `Expense` has a `Category` that does not match any existing `Category` objects, the `Expense` object's `Category` will NOT be added to the `ExpenseTracker` as a new `Category`, and an error indicating that no such `CATEGORY_NAME` exists will pop up.
+
+
+4. The newly-instantiated `Expense` object with the updated `EXPENSE_NAME`, namely `Chicken`, will then replace the retrieved `Expense` object at the specified `INDEX` in the `ExpenseList` using `Model#setExpense()`.
+
+
+5. A `CommandResult` instance is then returned, with feedback that the `Expense` was successfully edited.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#3
+
+### **Design Considerations**
+**Aspect: How the expense is edited**:
+
+* **Alternative 1 (Current choice):** Retrieve the specified `Expense`, instantiate a new `Expense` with specified edited fields, and replace the retrieved `Expense` in the `ExpenseList`.
+  * Pros: As the UI implementation requires listening in on the `ObservableList<Expense>`, replacing the previous `Expense` object with a new `Expense` object makes the live-refreshing of our UI much more intuitive.
+  * Cons: There is an additional `Expense` object being instantiated to replace the previous `Expense` object.
+
+* **Alternative 2:** Retrieve the specified `Expense` and use setter methods to set the specified fields to be edited.
+  * Pros: No additional `Expense` object needs to be instantiated, and it is easier to simply set the fields.
+  * Cons: The listeners for the `ObservableList<Expense>` only detect when there is an actual operation being done on the list, therefore setting fields will not cause the listeners to be updated, making our UI implementation much more complicated.
+
+### \[Implemented\] List feature
+
+#### **Command Format**
+
+`list [c/CATEGORY_NAME] [t/TIMEFRAME]`, whereby both `CATEGORY_NAME` and `TIMEFRAME` are optional.
+
+#### **What is this feature for?**
+
+The `list` command enables users to view all expenses within the expense tracker, and even allows them to view the expenses affiliated with a certain category or timeframe, or a combination of both.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `list` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `list c/Groceries t/week` as an example.
+1. The user inputs `list c/Groceries t/week` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `ListExpensesCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `ListExpensesCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and applies the `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` sequentially onto the `Model` object's `FilteredList<Expense>` by `Model#updateFilteredExpensesList()`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of how many `Expenses` are currently listed under the current filters.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#4
+
+### **Design Considerations**
+**Aspect: Whether to make `ListExpensesCommand` have multiple constructors or to make it take in `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` as `Optional` objects.**
+
+* **Alternative 1 (Current choice):** `ListExpensesCommand` takes in `Optional<ExpenseInCategoryPredicate>` and `Optional<ExpenseInTimespanPredicate`
+  * Pros: Makes for cleaner code, and allows for less clutter in terms of using multiple constructors.
+  * Cons: Usage of multiple constructors could have been easier to understand in terms of what the idea is.
+
+* **Alternative 2:** `ListExpensesCommand` has multiple constructors to differentiate the different possible cases of user input for filters.
+  * Pros: Easier to understand, and all differentiation is done at the parsing stage.
+  * Cons: Much more cluttered and code will not be as clean.
+
+
+### \[Implemented\] Add RecurringExpenseManager feature
+
+#### **Command Format**
+
+`addrec n/EXPENSE_NAME c/CATEGORY_NAME p/PRICE sd/START_DATE t/FREQUENCY [ed/END_DATE]`, whereby only `END_DATE` is an optional field.
+
+#### **What is this feature for?**
+
+The `addrec` command enables users to add recurring expenses within the expense tracker, which will automatically generate expenses based on the provided `FREQUENCY`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `addrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `addrec n/Broth c/Groceries p/3 sd/06/04/23 t/week` as an example.
+1. The user inputs `addrec n/Broth c/Groceries p/3 sd/06/04/23 t/week` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddRecurringExpenseCommand` object is created using the given fields.
+
+
+3. `AddRecurringExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model`, and adds the previously instantiated `RecurringExpenseManager` to the `Model` object's current list of `RecurringExpenseManager` objects. Note that if the newly instantiated `RecurringExpenseManager` has a `Category` that does not match any existing `Category` objects, the `RecurringExpenseManager` object's `Category` will be added to the `ExpenseTracker` as a new `Category`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of the `RecurringExpenseManager` object being successfully added.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#5
+
+
+### **Design Considerations**
+**Aspect: Whether `Expense` objects should be retroactively added for `RecurringExpenseManager` objects that have `START_DATE` in the past.**
+
+* **Alternative 1 (Current choice):** `Expense` objects are retroactively added.
+  * Pros: Allows users to easily add recurring expenses, even if they are in the past.
+  * Cons: If the user keys in the wrong `START_DATE`, they will need to take some time to manually remove all retroactively created `Expense` objects.
+
+* **Alternative 2:** `Expense` objects should not be retroactively added.
+  * Pros: Wrong input for the `START_DATE` will not cause a flood of retroactively created `Expense` objects to be added.
+  * Cons: Users might not want to take the time to accurately add the `Expense` objects in the past, which goes against our group's aim.
+
+
+### \[Implemented\] Delete RecurringExpenseManager feature
+
+#### **Command Format**
+
+`delrec INDEX`
+
+#### **What is this feature for?**
+
+The `delrec` command enables users to delete a `RecurringExpenseManager` from the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `delrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `delrec 1` as an example.
+1. The user inputs `delrec 1` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddRecurringExpenseCommand` object is created using the given fields.
+
+
+3. `DeleteRecurringExpenseCommand#execute()` is called, which takes in the currently-running instance of `Model`, retrieves the `RecurringExpenseManager` object at the specified `INDEX`, and deletes it from the underlying list of `RecurringExpenseManager` objects of the `Model` instance using `Model#deleteRecurringExpense()`.
+
+
+4. The `RecurringExpenseManager` object, after being added to the list of other current `RecurringExpenseManager` objects, will retroactively add in `Expense` objects if the `START_DATE` and `FREQUENCY` make sense to do so. (e.g. The `START_DATE` is 03/02/2023, and the `FREQUENCY` is weekly, then, however many `Expense` objects will be generated up-to-date to try and help the user track recurring expenses accurately.)
+
+
+5. A `CommandResult` instance is then returned, with feedback that the `RecurringExpenseManager` object was successfully deleted.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#6
+
+### **Design Considerations**
+**Aspect: Whether expenses generated by the `RecurringExpenseManager` object should also be deleted.**
+
+* **Alternative 1 (Current choice):** `Expense` objects generated by the `RecurringExpenseManager` object are NOT deleted upon the deletion of the `RecurringExpenseManager` object itself.
+  * Pros: Makes more intuitive sense when a `RecurringExpenseManager` expires or is terminated by the user, past `Expense` objects should still remain as they have already been spent and allows for accurate tracking.
+  * Cons: If user unintentionally keys in wrong information for the `RecurringExpenseManager` that is irreversible in terms of generating `Expense` objects, it could end up taking a while for them to manually delete the `Expense` objects.
+
+* **Alternative 2:** `Expense` objects generated by the `RecurringExpenseManager` object are deleted upon the deletion of the `RecurringExpenseManager` object itself.
+  * Pros: If user unintentionally keys in wrong information for the `RecurringExpenseManager` that is generally irreversible in terms of generating `Expense` objects, it is easily undone by simply deleting the `RecurringExpenseManager` object.
+  * Cons: Users will not be able to accurately track past spendings as expired `RecurringExpenseManager` objects will delete affiliated `Expense` objects.
+
+
+### \[Implemented\] Edit RecurringExpenseManager feature
+
+#### **Command Format**
+
+`edrec INDEX [n/EXPENSE_NAME] [c/CATEGORY_NAME] [p/PRICE] [t/FREQUENCY] [ed/END_DATE]`, whereby all fields except for `INDEX` are optional, but at least one 
+of them must be specified (Otherwise, there is no point in editing).
+
+#### **What is this feature for?**
+
+The `edrec` command enables users to edit a `RecurringExpenseManager` in the `ExpenseTracker`.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `edrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `edrec 1 n/Coconut Milk` as an example.
+1. The user inputs `edrec 1 n/Coconut Milk` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `AddRecurringExpenseCommand` object is created using the given fields.
+
+
+3. `EditRecurringExpenseManagerCommand#execute()` is called, which takes in the currently-running instance of `Model`, retrieves the `RecurringExpenseManager` object at the specified `INDEX` from the `FilteredList<RecurringExpenseManager>` of the `Model` instance, and sets the `EXPENSE_NAME` field of the `RecurringExpenseManager` object found at the given `INDEX` to be `Coconut Milk`.
+
+
+4. A `CommandResult` instance is then returned, with feedback that the `RecurringExpenseManager` object was successfully edited.
+
+
+A sequence diagram is provided as follows, which matches the list of steps mentioned above:
+
+SEQ#7
+
+### **Design Considerations**
+**Aspect: Whether the `RecurringExpenseManager` object should be replaced instead of having its fields set.**
+
+* **Alternative 1 (Current choice):** Retrieve the specified `RecurringExpenseManager` and use setter methods to set the specified fields to be edited.
+  * Pros: Easy to simply retrieve the `RecurringExpenseManager` object and use setter for the fields.
+  * Cons: If any future developments require close listening to the `ObservableList<RecurringExpenseManager>` to be displayed in the UI, some refactoring might need to be done.
+
+* **Alternative 2:** Retrieve the specified `RecurringExpenseManager`, instantiate a new `RecurringExpenseManager` with specified edited fields, and replace the retrieved `RecurringExpenseManager` in the underlying `RecurringExpenseList`.
+  * Pros: Future developments which rely on the `ObservableList<RecurringExpenseManager` will be able to be smoothly implemented, as there are list operations being carried out by replacing objects.
+  * Cons: Extra layers of code required to instantiate a new `RecurringExpenseManager` object to replace the original.
+
+### \[Implemented\] List RecurringExpenseManager feature
+
+#### **Command Format**
+
+`lrec`.
+
+#### **What is this feature for?**
+
+The `lrec` command enables users to view all `RecurringExpenseManager` objects within the expense tracker.
+
+### **Sequence of action**
+
+To aid you in understanding how exactly the `lrec` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
+
+We will be using the user input `lrec` as an example.
+1. The user inputs `lrec` in the command box.
+
+
+2. The input is then [parsed](#logic-component) and a `ListRecurringExpensesCommand` object is created using the given fields.
+
+
+3. The `LogicManager#execute()` function causes `ListRecurringExpensesCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and calls `Model#updateFilteredExpenseList()` with `PREDICATE_SHOW_ALL_EXPENSES`.
+
+
+4. A `CommandResult` instance is then returned, with feedback of how many `RecurringExpenseManager` objects are present in the expense tracker, as well as switching to a screen of the list of `RecurringExpenseManager` objects.
+
+
+As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+
+SEQ#4
+
+### **Design Considerations**
+**Aspect: Whether to make `ListExpensesCommand` have multiple constructors or to make it take in `ExpenseInCategoryPredicate` and `ExpenseInTimespanPredicate` as `Optional` objects.**
+
+* **Alternative 1 (Current choice):** `ListExpensesCommand` takes in `Optional<ExpenseInCategoryPredicate>` and `Optional<ExpenseInTimespanPredicate`
+  * Pros: Makes for cleaner code, and allows for less clutter in terms of using multiple constructors.
+  * Cons: Usage of multiple constructors could have been easier to understand in terms of what the idea is.
+
+* **Alternative 2:** `ListExpensesCommand` has multiple constructors to differentiate the different possible cases of user input for filters.
+  * Pros: Easier to understand, and all differentiation is done at the parsing stage.
+  * Cons: Much more cluttered and code will not be as clean.
+
+
 ### \[Implemented\] Delete Category feature
 
 The delete category feature, `delcat` command, is implemented similarly to the command add category. The command takes in one parameter index, which is the index of the category to delete when `lcat` is called. The specified category will be removed from the database.
@@ -310,39 +637,36 @@ that uses the same name and summary before replacing the required name or summar
   * Pros: Enforces immutability by replacing the previous `Category` object.
   * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
 
-### \[Implemented\] List feature
-The list feature is implemented similarly to all the other commands. It has two optional fields for the category and timespan. The method of handling the user input falls into the following:
 
-1. The user wishes to list all expenses.
-2. The user wishes to only list expenses in a category.
-3. The user wishes to only list expenses in the past week/month/year.
-4. The user wishes to list expenses in a category from the past week/month/year.
+### \[Implemented\] List Category feature
 
-In order to deal with the multiple scenarios, `ListCommand` constructor uses `Optional<Predicate>` parameters in the case that the user did not specify a certain filter. `ListCommandParser#parse()` allows for optional tags of category and timespan, passing in `Optional<Predicate>` objects into the `ListCommand` constructor, and returning a `ListCommand` object with the required predicates.
+#### **Command Format**
 
-To list expenses, we pass in the predicates (if given) into the model, with `Model#updateFilteredExpensesList()`, updating the `ObservableList` in the model.
+`lcat`.
 
-Given below is an example usage scenario of how the List Command behaves:
+#### **What is this feature for?**
 
-Step 1. The user launches the application with prior data.
+The `lcat` command enables users to view all `Category` objects within the expense tracker.
 
-//Insert pictures of launched app.
+### **Sequence of action**
 
-Step 2. The user uses the `list` command to list out all expenses.
+To aid you in understanding how exactly the `lcat` command works, here is a list of steps illustrating what occurs when [`LogicManager#execute()` is invoked](#logic-component):
 
-// Insert pictures of results of `list`
+We will be using the user input `lcat` as an example.
+1. The user inputs `lcat` in the command box.
 
-Step 2a. The user uses the `list c/category` command.
 
-// Insert pictures of command
+2. The input is then [parsed](#logic-component) and a `ListCategoryCommand` object is created using the given fields.
 
-Step 2b. The user uses the `list t/(week/month/year)` command.
 
-//Insert pictures of command
+3. The `LogicManager#execute()` function causes `ListCategoryCommand#execute()` to be called, which takes in the currently-running instance of `Model`, and calls `Model#updateFilteredExpenseList()` with `PREDICATE_SHOW_ALL_EXPENSES`.
 
-The following sequence diagram shows the order of operations of the ListCommand command:
 
-// Insert sequence diagram of how listcommand works.
+4. A `CommandResult` instance is then returned, with feedback of how many `Category` objects are present in the expense tracker, as well as switching the screen to that of a list of the `Category` objects.
+
+
+As the flow of events are almost identical to that of the [`list` command](#implemented-list-feature) with the sole difference being the different method names and the lack of filters, there are no sequence diagrams provided for this feature.
+
 
 ### \[Implemented\] Expense Statistics Feature
 FastTrack allows the user to view a summary of their expense statistics for both the current week and month.

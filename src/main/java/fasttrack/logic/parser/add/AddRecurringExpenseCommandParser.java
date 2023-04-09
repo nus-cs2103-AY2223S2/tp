@@ -26,7 +26,7 @@ import fasttrack.model.expense.RecurringExpenseType;
 /**
  * Parses input arguments and creates a new AddCategoryCommand object
  */
-public class AddRecurringExpenseParser implements Parser<AddRecurringExpenseCommand> {
+public class AddRecurringExpenseCommandParser implements Parser<AddRecurringExpenseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

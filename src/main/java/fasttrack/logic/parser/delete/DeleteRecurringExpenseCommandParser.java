@@ -11,7 +11,7 @@ import fasttrack.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteExpenseCommandParser object
  */
-public class DeleteRecurringExpenseParser implements Parser<DeleteRecurringExpenseCommand> {
+public class DeleteRecurringExpenseCommandParser implements Parser<DeleteRecurringExpenseCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteExpenseCommandParser
