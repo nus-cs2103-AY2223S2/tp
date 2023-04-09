@@ -19,15 +19,15 @@ for an explanation.
 
 ### Navigating the User Guide
 **Note Box**
-<div markdown="span" class="alert alert-success">**:bulb: Note:** Provides information that is useful to know.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Provides information that is useful to know.
 </div>
 
 **Tip Box**
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Provides information that can help enhance the user experience but is not necessary to know.
+<div markdown="span" class="alert alert-success">:bulb: **Tip:** Provides information that can help enhance the user experience but is not necessary to know.
 </div>
 
 **Warning Box**
-<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** Important information to take note of to avoid any unintended effects!
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Important information to take note of to avoid any unintended effects!
 </div>
 
 **Hyperlinks**
