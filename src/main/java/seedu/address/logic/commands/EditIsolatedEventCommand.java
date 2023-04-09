@@ -88,10 +88,11 @@ public class EditIsolatedEventCommand extends Command {
         } catch (EventConflictException e) {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, e.getMessage()));
         }
+
         isolatedEventList.edit(originalEvent, editedIsolatedEvent);
         model.setPerson(personToEdit, personToEdit);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " for " + personToEdit.getName()
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent, personToEdit.getName())
                 + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
     }
 
