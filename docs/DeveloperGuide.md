@@ -91,6 +91,8 @@ license, making it open source and available for anyone to use and modify.
   - [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Acknowledgements
 
 WIFE is a brownfield software project developed at the School of Computing at National University of Singapore.
@@ -114,6 +116,7 @@ Documentation dependencies:
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
