@@ -177,8 +177,8 @@ The `CommandBox` UI class then integrates the autocomplete feature. It listens f
 
 The public methods of the `AutocompleteEngine` class are:
 
-- `suggestCommand(String userInput)` - Suggests a command _(including it's arguments)_ based on the user input.
-- `autocompleteCommand(String userInput, String commandSuggestion)` - Returns the new user input when the user autocompletes the command.
+- `suggestCommand(String userInput)`: Suggests a command _(including it's arguments)_ based on the user input.
+- `autocompleteCommand(String userInput, String commandSuggestion)`: Returns the new user input when the user autocompletes the command.
 
 New methods in the `Model` interface for the autocomplete feature include:
 
@@ -193,21 +193,31 @@ Given below is an example usage scenario and how the autocomplete mechanism work
 
 - **Step 1.** The user launches the application for the first time. The `LogicManager` initializes the `AutocompleteEngine` with the predefined `Model`.
 
-- **Step 2.** As the user types a command _(such as `add`)_, the `CommandBox` listens for user input and calls the `Logic::suggestCommand` method to get suggestions based on the current input.
+- **Step 2.** The user types the input `add t/`. `CommandBox` detects the change in user input, and calls the `Logic::suggestCommand` method to get suggestions based on the said input.
 
-- **Step 3.** The `LogicManager` in turn calls the `AutocompleteEngine#suggestCommand` method, which in turn queries the `Model` for existing tag, module, and education values.
+- **Step 3.** The `LogicManager` in turn calls the `AutocompleteEngine#suggestCommand` method, which in turn queries the `Model` for existing tag, module, and education values. In this example, `Model::getExistingTagValues()` returns the list `["tag1", "tag2"]`.
+  <div markdown="span" class="alert alert-info">:information_source: **Note:** For **Step 3**, since the existing module and education values aren't used, they're omitted in this example.
+  </div>
 
-- **Step 4.** The `AutocompleteEngine` processes the user input and existing values to generate a suggestion string, and returns it to `CommandBox`.
+- **Step 4.** The `AutocompleteEngine` processes the user input and existing values to generate the suggestion `add n/tag1 | tag2`, and returns it to `CommandBox`, which displays it to the user in a shadow-like autocomplete suggestion.
 
-- **Step 5.** The `CommandBox` component then displays the suggestion to the user in a shadow-like autocomplete suggestions.
+Here's the suggestion sequence diagram showing the above 4 steps:
 
-- **Step 6.** If the user presses the `TAB` key, the `CommandBox` component calls the `Logic#autocompleteCommand` method to complete the user input, based on the current suggestion generated.
+![suggestion_sequence](images/SuggestionSequenceDiagram.png)
 
-- **Step 7.** The `LogicManager` in turn calls the `AutocompleteEngine#autocompleteCommand` method to generate said suggestion.
+<br>
 
-- **Step 8.** The updated user input is set in the command box.
+- **Step 5.** The user then presses the `TAB` key, and `CommandBox` component calls the `Logic#autocompleteCommand` method to complete the user input `add t/`, based on the current suggestion `add t/tag1 | tag2`.
 
-- **Step 9.** If the user types an invalid command-word or index, `AutocompleteEngine#suggestCommand` will throw a `ParseException`, which causes the text to be displayed in red.
+- **Step 6.** The `LogicManager` in turn calls the `AutocompleteEngine#autocompleteCommand` method to generate said suggestion, and returns the autocompleted user input `add t/tag1` to `CommandBox`, which sets that as the command box value.
+
+Here's the autocompletion sequence diagram showing the above 2 steps:
+
+![autocomplete_sequence](images/AutocompleteSequenceDiagram.png)
+
+<br>
+
+If the user types an invalid command-word or index, `AutocompleteEngine#suggestCommand` will throw a `ParseException`, which causes the text to be displayed in red.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** For **Step 9**, the autocomplete feature does not actually validate whether the argument values are valid or indexes exist. It's merely a simple heuristic check, to help users avoid making obvious syntax mistakes in the commands.
 </div>

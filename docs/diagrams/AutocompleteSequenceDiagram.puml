@@ -13,18 +13,18 @@ end box
 [-> CommandBox : user presses TAB
 activate CommandBox
 
-CommandBox -> LogicManager : autocompleteCommand(userInput, commandSuggestion)
+CommandBox -> LogicManager : autocompleteCommand("add t/", "add t/tag1 | tag2")
 activate LogicManager
 
-LogicManager -> AutocompleteEngine : autocompleteCommand(userInput, commandSuggestion)
+LogicManager -> AutocompleteEngine : autocompleteCommand("add t/", "add t/tag1 | tag2")
 activate AutocompleteEngine
 
-AutocompleteEngine --> LogicManager : autocompletedCommand
+AutocompleteEngine --> LogicManager : "add t/tag1"
 deactivate AutocompleteEngine
 
-LogicManager --> CommandBox : autocompletedCommand
+LogicManager --> CommandBox : "add t/tag1"
 deactivate LogicManager
 
-CommandBox --> UI : update user input
+CommandBox --> UI : set user input to "add t/tag1"
 deactivate CommandBox
 @enduml
