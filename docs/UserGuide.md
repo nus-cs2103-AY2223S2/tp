@@ -389,7 +389,7 @@ You can add a contact using the `add` command followed by the parameters (as sho
 
 * A contact can have any number of <u>module</u>, <u>CCA</u>, and <u>remark</u> <a href="#59-tags" class="alert-link">tags</a> (including 0)!
 
-* A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters!
+* A contact can have at most 2 major tags. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters!
 
 </div>
 
