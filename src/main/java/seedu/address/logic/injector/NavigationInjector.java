@@ -27,27 +27,34 @@ public class NavigationInjector extends Injector {
     public String inject(String commandText, Model model) {
         final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(commandText.trim());
 
-        // If input does not match syntax, return unmodified user input.
-        if (!matcher.matches()) {
-            return commandText;
-        }
-
-        final String commandWord = matcher.group("commandWord");
-
-        // If command is whitelisted, return unmodified user input.
-        if (isCommandWhitelisted(commandWord)) {
+        if (shouldIgnoreCommand(matcher)) {
             return commandText;
         }
 
         final String arguments = matcher.group("arguments");
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_ROOT, PREFIX_MODULE, PREFIX_LECTURE);
-        NavigationContext navContext = model.getCurrentNavContext();
-        return injectMissingArgs(commandText, argMultimap, navContext).trim();
+        return injectMissingArgs(commandText, arguments, model).trim();
     }
 
-    private String injectMissingArgs(String commandText, ArgumentMultimap argMultimap, NavigationContext navContext) {
+    private boolean shouldIgnoreCommand(Matcher matcher) {
+        if (!matcher.matches()) {
+            return true;
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        if (isCommandWhitelisted(commandWord)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private String injectMissingArgs(String commandText, String arguments, Model model) {
+        NavigationContext navContext = model.getCurrentNavContext();
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_ROOT, PREFIX_MODULE, PREFIX_LECTURE);
+
         boolean hasRootPrefix = argMultimap.getValue(PREFIX_ROOT).isPresent();
         boolean hasLecturePrefix = argMultimap.getValue(PREFIX_LECTURE).isPresent();
         boolean hasModulePrefix = argMultimap.getValue(PREFIX_MODULE).isPresent();
