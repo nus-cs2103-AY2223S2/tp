@@ -9,6 +9,7 @@ import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;
 import seedu.address.ui.testutil.UiPartExtension;
 
+// @@author seanfirefox-reused
 /**
  * A GUI unit test class for AddressBook. Referenced from AB4.
  */

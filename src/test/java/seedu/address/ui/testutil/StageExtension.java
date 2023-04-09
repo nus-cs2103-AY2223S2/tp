@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testfx.api.FxToolkit;
 
+// @@author seanfirefox-reused
 /**
  * Properly sets up and tears down a JavaFx stage for our testing purposes. Referenced from AB4.
  */

@@ -2,6 +2,7 @@ package guitests.guihandles;
 
 import javafx.scene.control.TextArea;
 
+// @@author seanfirefox-reused
 /**
  * A handler for the {@code ResultDisplay} of the UI. Referenced from AB4.
  */

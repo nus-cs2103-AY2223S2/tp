@@ -10,6 +10,7 @@ import guitests.guihandles.PersonCardHandle;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
+// @@author seanfirefox-reused
 /**
  * GUI test for PersonCard. Referenced from AB4.
  */

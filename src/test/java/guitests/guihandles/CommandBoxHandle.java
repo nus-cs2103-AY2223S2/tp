@@ -11,10 +11,12 @@ public class CommandBoxHandle extends NodeHandle<TextField> {
 
     public static final String COMMAND_INPUT_FIELD_ID = "#commandTextField";
 
+    // @@author seanfirefox-reused
     public CommandBoxHandle(TextField commandBoxNode) {
         super(commandBoxNode);
     }
 
+    // @@author seanfirefox-reused
     /**
      * Returns the text in the command box.
      */
@@ -22,6 +24,7 @@ public class CommandBoxHandle extends NodeHandle<TextField> {
         return getRootNode().getText();
     }
 
+    // @@author seanfirefox-reused
     /**
      * Enters the given command in the Command Box and presses enter.
      */
@@ -42,6 +45,7 @@ public class CommandBoxHandle extends NodeHandle<TextField> {
         guiRobot.pauseForHuman();
     }
 
+    // @@author seanfirefox-reused
     /**
      * Returns the list of style classes present in the command box.
      */

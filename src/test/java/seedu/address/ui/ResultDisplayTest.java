@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import guitests.guihandles.ResultDisplayHandle;
 
+// @@author seanfirefox-reused
 /**
  * GUI test for result display. Referenced from AB4.
  */

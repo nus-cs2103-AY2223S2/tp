@@ -32,6 +32,7 @@ public class PersonListPanelTest extends GuiUnitTest {
 
     private PersonListPanelHandle personListPanelHandle;
 
+    // @@author seanfirefox-reused
     @Test
     public void display() {
         initUi(TYPICAL_PERSONS);
@@ -45,6 +46,7 @@ public class PersonListPanelTest extends GuiUnitTest {
         }
     }
 
+    // @@author seanfirefox-reused
     /**
      * Verifies that creating and deleting large number of persons in {@code PersonListPanel} requires lesser than
      * {@code CARD_CREATION_AND_DELETION_TIMEOUT} milliseconds to execute.
@@ -80,6 +82,7 @@ public class PersonListPanelTest extends GuiUnitTest {
         return backingList;
     }
 
+    // @@author seanfirefox-reused
     /**
      * Initializes {@code personListPanelHandle} with a {@code PersonListPanel} backed by {@code backingList}.
      * Also shows the {@code Stage} that displays only {@code PersonListPanel}.

@@ -48,6 +48,7 @@ public class GuiTestAssert {
 
     }
 
+    // @@author seanfirefox-reused
     /**
      * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
      * in the correct order.
@@ -59,6 +60,7 @@ public class GuiTestAssert {
         }
     }
 
+    // @@author seanfirefox-reused
     /**
      * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
      * in the correct order.
@@ -67,6 +69,7 @@ public class GuiTestAssert {
         assertListMatching(personListPanelHandle, persons.toArray(new Person[0]));
     }
 
+    // @@author seanfirefox-reused
     /**
      * Asserts the size of the list in {@code personListPanelHandle} equals to {@code size}.
      */
@@ -75,6 +78,7 @@ public class GuiTestAssert {
         assertEquals(size, numberOfPeople);
     }
 
+    // @@author seanfirefox-reused
     /**
      * Asserts the message shown in {@code resultDisplayHandle} equals to {@code expected}.
      */

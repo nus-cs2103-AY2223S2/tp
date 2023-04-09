@@ -3,7 +3,7 @@ package guitests.guihandles;
 import guitests.GuiRobot;
 import javafx.stage.Stage;
 
-
+// @@author seanfirefox-reused
 /**
  * A handle to the {@code HelpWindow} of the application. Referenced from AB4.
  */
