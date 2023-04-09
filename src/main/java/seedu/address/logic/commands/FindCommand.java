@@ -39,6 +39,10 @@ public class FindCommand extends Command {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
+    public Predicate<Person> getPredicate() {
+        return findPredicate;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

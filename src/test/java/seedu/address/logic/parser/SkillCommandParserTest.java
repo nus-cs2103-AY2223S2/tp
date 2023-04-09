@@ -30,8 +30,10 @@ public class SkillCommandParserTest {
                 SkillCommand.MESSAGE_USAGE));
     }
 
-    @Test void parse_invalidArgNoteTooLong_throwsParseException() {
+    @Test
+    public void parse_invalidArgNoteTooLong_throwsParseException() {
         assertParseFailure(parser, "a".repeat(46), Note.MESSAGE_LENGTH_CONSTRAINTS);
+        assertParseFailure(parser, "a".repeat(100), Note.MESSAGE_LENGTH_CONSTRAINTS);
     }
 
     @Test
