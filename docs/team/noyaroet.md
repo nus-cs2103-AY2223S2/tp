@@ -20,7 +20,8 @@ Given below are my contributions to the project.
   * Justification: many fields that a bookmark can contain may not be required for bookmarking tasks. For example, some users may not care about the author of a book. Hence, it is more convenient for the user if only certain fields were made compulsory.
   * Highlights:  many issues arose due to the fact that we inherited most of AB3's code, where all the fields in a Person object were compulsory.
     * The Bookmark class was created by modifying the Person class. It inherited all of Person's test cases which expects all fields to be compulsory. These test cases needed to be tracked down, updated or deleted. 
-    * When loading the data for MyLib from json, the conversion from json to a `Bookmark` object expects the fields to be present and non-null. Needed to modify the conversion from json to a Bookmark object to accept optional fields that are not present.
+    * When loading the data for MyLib from json, the conversion from json to a `Bookmark` object expects the fields to be present and non-null. Needed to modify the conversion from json to a Bookmark object to accept optional fields that are not present. 
+<br/>
 
 * **New Feature**: Added a `Progress` field to a bookmark
   * What it does: allows a bookmark to track a user's progress with regards to the book being bookmarked.
