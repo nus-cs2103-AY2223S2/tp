@@ -45,7 +45,8 @@ Given below are my contributions to the project.
 * **Community**:
    * Reviewed PRs (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/192), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/195), [3](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/84))
    * Authored issues regarding improvements to application (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/47), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/53))
-
+   * Contributed to [PE-D bug catching](https://github.com/cjyothika/ped/issues)
+  
 * **Tools**:
     * Java (for code)
     * PlantUML (for diagrams)
