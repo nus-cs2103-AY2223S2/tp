@@ -132,16 +132,20 @@ Note that beside the navigation commands (`h`,`j`,`k`,`l`), the rest of the comm
 
 In Vimification, a task can has the following attributes:
 
-| Attribute | Its meaning & purpose                                    | Flag | The range of values it accepts                   |
-| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------ |
-| Title^    | Name or general description of a task.                   | `-t` | Any phrase enclosed in quotation marks (" ")*.   |
-| Status    | Status of a task, indicating that is it done or not.     | `-s` | 0, 1, 2 or 3. See below for more details.        |
-| Deadline  | The date (and time) the task is due at.                  | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm. |
-| Labels    | The tags that the task has.                              | `-l` | Any phrase enclosed in quotation marks (" ")*.   |
-| Priority  | How important/urgent a task is.                          | `-p` | 0, 1, 2 or 3. See below for more details.        |
+| Attribute | Its meaning & purpose                                    | Flag | The range of values it accepts                          |
+| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------- |
+| Title^    | Name or general description of a task.                   | `-t` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
+| Status    | Status of a task, indicating that is it done or not.     | `-s` | 0, 1, 2 or 3. See below for more details.               |
+| Deadline  | The date (and time) the task is due at.                  | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm.        |
+| Labels    | The tags that the task has.                              | `-l` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
+| Priority  | How important/urgent a task is.                          | `-p` | 0, 1, 2 or 3. See below for more details.               |
 
 ^Title is the only compulsory field while creating a new task, the other fields are all optional.
+
 *For a title or label, if the phrase is only one single word, the quotation marks are optional.
+Another 2 constraints on the quotation marks are:
+* There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
+* 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
 
 | Priority | Meaning          |
 | -------- | ---------------- |
@@ -168,7 +172,6 @@ _Take note of how the command format is being interpretted, to know what paramet
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
 
 - e.g. `:a "<title>" [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
-- Refer to the [Flag summary](#flag-summary) below for details of each flag.
 
 Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
 
