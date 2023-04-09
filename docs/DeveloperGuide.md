@@ -965,7 +965,7 @@ testers are expected to do more *exploratory* testing.
     * Resize the window to an optimum size, preferably full screen. Close the window.
     * Re-launch the app by double-clicking the jar file.
     * Expected: The most recent window size and location is retained.
-    * Note: The window looks best under 1920x1200 resolution, 125% scale.
+    * Note: The window looks best under 1920x1080 resolution, 125% scale.
 
 1. Saving data
     * Launch the app by double-clicking the jar file.
