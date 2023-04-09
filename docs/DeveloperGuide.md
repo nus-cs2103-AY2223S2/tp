@@ -623,9 +623,18 @@ testers are expected to do more *exploratory* testing.
    1. Type `exit` in the command box.<br>
    Expected: The application window closes
 
+### Adding a student
+
+1. Adding a student to the student list
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`<br>
+   Expected: The student is added to the student list. Details of the added student shown in the status message. Student list reverts to show
+   all students.
+   3. Test case: `add n/John Doe p/98765432 e/bob@example.com a/Down street #01-01 c/98762837` after entering previous test case<br>
+   Expected: The student is not added to the student list. Error details shown in the status message
+
 ### Deleting a student
 
-1. Deleting a student while all students are being shown
+1. Deleting a student while students are being shown
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list. **OR** <br>
     Filter or find students as desired using the `filter` or `find` commands. Number of students in the list depends on the condition given.
@@ -649,6 +658,19 @@ testers are expected to do more *exploratory* testing.
     Expected: The student is deleted from the list. Details of the deleted student shown in the status message. The task list and score list shown
     will be cleared.
 
+### Adding a task for a student
+
+1. Adding a task for a student in the student list when the student is being checked
+   2. Prerequisites: Check a student using `check` command.
+   3. Test case: `addtask x t/Complete Math Exercise` (where x is the index of the student being checked)<br>
+   Expected: The task is added to the task list of the student. Student's name and details of the added task shown in the status message.
+   The displayed task list of the checked student is updated with the added task.
+
+2. Adding a task for a student in the student list when the student is not being checked
+   3. Prerequisites: Student with index x is not being checked.
+   4. Test case: `addtask x t/Complete Math Exercise` (where x is the index of student not being checked)<br>
+   Expected: The task in added to the task list of the student. Student's name and details of the added task shown in the status message.
+   The displayed task list is not updated since the student is not being checked.
 
 ### Saving data
 
