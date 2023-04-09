@@ -14,7 +14,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-skinparam sequenceReferenceBackgroundColor #EC7474
+skinparam sequenceReferenceBackgroundColor #FFC6C6
 
 [-> LogicManager : execute("find n/alex t/friend")
 activate LogicManager

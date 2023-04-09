@@ -9,8 +9,8 @@ end box
 
 skinparam sequenceReferenceBackgroundColor #FFC6C6
 
-create FindCommandNamePredicate
 group sd Inner working
+    create FindCommandNamePredicate
     FindCommandPersonPredicate-> FindCommandNamePredicate : FindCommandNamePredicate("alex")
     activate FindCommandNamePredicate
 
