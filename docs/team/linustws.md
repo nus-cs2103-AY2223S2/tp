@@ -7,7 +7,7 @@ title: Linus Tan's Project Portfolio Page
 
 CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 9 kLoC.
 
-Given below are my contributions to the project.
+#### Summary of contributions
 
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linustws&tabRepo=AY2223S2-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 * **Major Enhancement**: Boosted `find` command. [#74](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/74), [#82](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/82), [#94](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/94)
