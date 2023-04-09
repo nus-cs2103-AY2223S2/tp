@@ -22,18 +22,33 @@ Given below are my contributions to the project.
     
 * **Project management**:
     * Managed documentation for release `v1.3` on GitHub
+    * Managed User Guide and oversaw documentation for release `v1.4` on GitHub
 
 * **Enhancements to existing features**:
     * Initial refactoring of `model` package ([\#65](), [\#77]())
-    * Wrote additional tests to ensure 100% coverage for `model` package ([\#260]())
+    * Wrote additional tests to ensure 100% coverage for the following classes in `model` package ([\#260]())
+      * ModelManagerTest
+      * RecipeBookTest
+      * UserPrefsTest
+      * RecipeDurationInvalidArgumentLengthExceptionTest
+      * RecipeQuantityInvalidArgumentExceptionTest
+      * IngredientBuilderTest
+      * IngredientInformationTest
+      * IngredientParserTest
+      * IngredientQuantityTest
+      * IngredientTest
+      * UnitTest
+      * IngredientUtilTest
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `add` [\28](), `edit` [\#179](), `addf` [\#179](), `find`[\#179]() and sub`[#201]()
-    * Consistently refine additional tips and comments for all features
-    * Add introduction and purpose of UG 
-    * Ensure outgoing tone is consistent throughout UG
+    * Added documentation for the features `add` [\#28](), `edit` [\#179](), `addf` [\#179](), `find`[\#179]() and sub`[#201]()
+    * Consistently refined additional tips and comments for all features
+    * Added introduction and purpose of UG [\#266]()
+    * Ensured outgoing tone is consistent throughout UG [\#266]()
+    * Added colour coding/symbols to UG to improve reader experience [\#270]()
     * Added import/export instructions [\#179]()
+    * Ensured readability and flow of document for final UG release [\#270]()
     * Formatted and updated User Guide to reflect Keyboard Shortcuts
     * Added Keyboard Shortcuts summary table
     * Added glossary of tech jargon terms

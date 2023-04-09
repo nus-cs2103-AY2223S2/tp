@@ -57,4 +57,4 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[portfolio](team/zhtang29.md)]
 
 - Role: Deliverables, Tracking and Deadlines Head, Documentation Head
-- Responsibilities: ***TBC***
+- Responsibilities: Project management, Project Documentation
