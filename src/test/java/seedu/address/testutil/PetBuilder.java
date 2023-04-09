@@ -23,7 +23,7 @@ public class PetBuilder {
     public static final String DEFAULT_NAME = "Amy Bee Woof";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final LocalDateTime DEFAULT_TIMESTAMP = LocalDateTime.now().minusDays(1);
+    public static final LocalDateTime DEFAULT_TIMESTAMP = LocalDateTime.now();
     public static final Deadline DEFAULT_DEADLINE = new Deadline("Feed medicine",
             LocalDateTime.now().plusDays(1));
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";

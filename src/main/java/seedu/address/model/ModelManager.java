@@ -134,7 +134,9 @@ public class ModelManager implements Model {
     public void undo() {
         PetPal temp = new PetPal(petPalCache);
         petPal.setPets(temp.getPetList());
-
+        if (archiveCache == null) {
+            archiveCache = new PetPal();
+        }
         PetPal archiveTemp = new PetPal(archiveCache);
         archiveStorage.setPets(archiveTemp.getPetList());
     }
