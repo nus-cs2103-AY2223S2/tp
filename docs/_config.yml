@@ -2,6 +2,7 @@ title: "MediMate"
 theme: minima
 
 header_pages:
+  - README.md
   - UserGuide.md
   - DeveloperGuide.md
   - AboutUs.md
