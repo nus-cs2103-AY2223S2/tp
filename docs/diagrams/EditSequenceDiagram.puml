@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(edit)
+activate LogicManager
+
+LogicManager -> InternEaseParser: parseCommand(edit)
+activate InternEaseParser
+
+create EditCommandParser
+InternEaseParser -> EditCommandParser : EditCommandParser()
+activate EditCommandParser
+
+EditCommandParser --> InternEaseParser
+deactivate EditCommandParser
+
+InternEaseParser -> EditCommandParser : parse(args)
+activate EditCommandParser
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(index, editInternshipDescriptor)
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> InternEaseParser : e
+deactivate EditCommandParser
+EditCommandParser -[hidden]--> InternEaseParser : e
+destroy EditCommandParser
+
+InternEaseParser --> LogicManager : e
+deactivate InternEaseParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setApplication(internshipToEdit, editedInternship)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+EditCommand -[hidden]--> LogicManager
+destroy EditCommand
+
+<-- LogicManager
+deactivate LogicManager
+@enduml
+
+@enduml
