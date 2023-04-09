@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+title Customer removal activity diagram
+start
+:removeCustomer(customerId);
+if (customer exists?) then (no)
+  :throw CustomerNotFoundException;
+  stop
+else (yes)
+:push copy of current shop to undo stack;
+:clear redo stack;
+  repeat: for vehicleId in customer.getVehicleIds()
+    :removeVehicle(vehicleId) <$rake>;
+  repeat while (has next) is (yes) not (no)
+  repeat: for appointmentId in customer.getAppointmentIds()
+    :removeAppointment(appointmentId) <$rake>;
+  repeat while (has next) is (yes) not (no)
+  :remove customer from shop;
+  :update customer mappings;
+  :set customer ID unused in ID generator;
+  stop
+@enduml
