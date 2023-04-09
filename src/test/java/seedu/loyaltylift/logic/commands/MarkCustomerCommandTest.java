@@ -6,6 +6,7 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_D
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.loyaltylift.logic.commands.MarkCustomerCommand.MESSAGE_CUSTOMER_ALREADY_MARKED;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
@@ -58,6 +59,14 @@ public class MarkCustomerCommandTest {
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), markedCustomer);
 
         assertCommandSuccess(markCustomerCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_alreadyMarkedUnfilteredList_throwsCommandException() {
+        Index customerAlreadyMarkedIndex = INDEX_SECOND;
+        MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(customerAlreadyMarkedIndex);
+
+        assertCommandFailure(markCustomerCommand, model, MESSAGE_CUSTOMER_ALREADY_MARKED);
     }
 
     @Test

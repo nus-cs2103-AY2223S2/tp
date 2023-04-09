@@ -33,6 +33,8 @@ public class UnmarkCustomerCommand extends Command {
 
     public static final String MESSAGE_UNMARK_CUSTOMER_SUCCESS = "Un-bookmarked Customer: %1$s";
 
+    public static final String MESSAGE_CUSTOMER_ALREADY_UNMARKED = "This customer is already unmarked!";
+
     private final Index index;
 
     /**
@@ -52,6 +54,11 @@ public class UnmarkCustomerCommand extends Command {
         }
 
         Customer customerToUnmark = lastShownList.get(index.getZeroBased());
+
+        if (!customerToUnmark.getMarked().value) {
+            throw new CommandException(MESSAGE_CUSTOMER_ALREADY_UNMARKED);
+        }
+
         Customer unmarkedCustomer = createUnmarkedCustomer(customerToUnmark);
         model.setCustomer(customerToUnmark, unmarkedCustomer);
         return new CommandResult(String.format(MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer));
