@@ -3,20 +3,19 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "delete 5"
+title After command "undo 10"
 
 package States <<rectangle>> {
     class State1 as "dht0:DengueHotspotTracker"
     class State2 as "dht1:DengueHotspotTracker"
-    class State3 as "dht2:DengueHotspotTracker"
+    class State3 as "dht3:DengueHotspotTracker"
 }
 
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 
-hide State3
-
 class Pointer as "Current State" #8980FE
 
-Pointer -up-> State2
+Pointer -up-> State1
+note right on link: Maximum undos reached.
 @end
