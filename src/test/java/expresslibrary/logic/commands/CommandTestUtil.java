@@ -1,6 +1,15 @@
 package expresslibrary.logic.commands;
 
-import static expresslibrary.logic.parser.CliSyntax.*;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_BORROW_DATE;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_DUE_DATE;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_ISBN;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_NAME;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_PHONE;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_TAG;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_TITLE;
 import static expresslibrary.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,9 +24,8 @@ import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.Model;
 import expresslibrary.model.book.Book;
-import expresslibrary.model.person.Name;
-import expresslibrary.model.person.NameContainsKeywordsPredicate;
 import expresslibrary.model.book.TitleContainsKeywordsPredicate;
+import expresslibrary.model.person.NameContainsKeywordsPredicate;
 import expresslibrary.model.person.Person;
 import expresslibrary.testutil.EditBookDescriptorBuilder;
 import expresslibrary.testutil.EditPersonDescriptorBuilder;

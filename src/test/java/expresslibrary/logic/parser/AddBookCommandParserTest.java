@@ -1,7 +1,17 @@
 package expresslibrary.logic.parser;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static expresslibrary.logic.commands.CommandTestUtil.*;
+import static expresslibrary.logic.commands.CommandTestUtil.AUTHOR_DESC_ROWLING;
+import static expresslibrary.logic.commands.CommandTestUtil.INVALID_AUTHOR_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.INVALID_ISBN_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.ISBN_DESC_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static expresslibrary.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static expresslibrary.logic.commands.CommandTestUtil.TITLE_DESC_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_AUTHOR_ROWLING;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static expresslibrary.testutil.TypicalBooks.BELOVED;
@@ -60,7 +70,7 @@ public class AddBookCommandParserTest {
                 Title.MESSAGE_CONSTRAINTS);
 
         // invalid author
-        assertParseFailure(parser, TITLE_DESC_HARRY+ INVALID_AUTHOR_DESC + ISBN_DESC_HARRY,
+        assertParseFailure(parser, TITLE_DESC_HARRY + INVALID_AUTHOR_DESC + ISBN_DESC_HARRY,
                 Author.MESSAGE_CONSTRAINTS);
 
         // invalid isbn

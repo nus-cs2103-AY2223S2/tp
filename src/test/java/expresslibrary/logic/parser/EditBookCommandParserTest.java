@@ -1,7 +1,19 @@
 package expresslibrary.logic.parser;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static expresslibrary.logic.commands.CommandTestUtil.*;
+import static expresslibrary.logic.commands.CommandTestUtil.AUTHOR_DESC_ROWLING;
+import static expresslibrary.logic.commands.CommandTestUtil.BORROW_DATE_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.DUE_DATE_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.INVALID_AUTHOR_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.INVALID_ISBN_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static expresslibrary.logic.commands.CommandTestUtil.ISBN_DESC_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.TITLE_DESC_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_AUTHOR_ROWLING;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_BORROW_DATE;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_DUE_DATE;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static expresslibrary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
@@ -57,8 +69,8 @@ public class EditBookCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid title
         assertParseFailure(parser, "1" + INVALID_AUTHOR_DESC, Author.MESSAGE_CONSTRAINTS); // invalid author
         assertParseFailure(parser, "1" + INVALID_ISBN_DESC, Isbn.MESSAGE_CONSTRAINTS); // invalid isbn
-//        assertParseFailure(parser, "1" + INVALID_BORROW_DATE, .MESSAGE_CONSTRAINTS); // invalid borrow date
-//        assertParseFailure(parser, "1" + INVALID_DUE_DATE, .MESSAGE_CONSTRAINTS); // invalid due date
+        // assertParseFailure(parser, "1" + INVALID_BORROW_DATE, .MESSAGE_CONSTRAINTS); // invalid borrow date
+        // assertParseFailure(parser, "1" + INVALID_DUE_DATE, .MESSAGE_CONSTRAINTS); // invalid due date
 
         // invalid title followed by valid author
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + AUTHOR_DESC_ROWLING, Title.MESSAGE_CONSTRAINTS);

@@ -1,8 +1,12 @@
 package expresslibrary.logic.commands;
 
-//import static expresslibrary.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-//import static expresslibrary.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static expresslibrary.logic.commands.CommandTestUtil.*;
+import static expresslibrary.logic.commands.CommandTestUtil.DESC_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_AUTHOR_ROWLING;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
+import static expresslibrary.logic.commands.CommandTestUtil.assertCommandFailure;
+import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static expresslibrary.logic.commands.CommandTestUtil.showBookAtIndex;
 import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
 import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND;
@@ -19,9 +23,8 @@ import expresslibrary.model.Model;
 import expresslibrary.model.ModelManager;
 import expresslibrary.model.UserPrefs;
 import expresslibrary.model.book.Book;
-import expresslibrary.model.person.Person;
-import expresslibrary.testutil.EditBookDescriptorBuilder;
 import expresslibrary.testutil.BookBuilder;
+import expresslibrary.testutil.EditBookDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -48,7 +51,7 @@ public class EditBookCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastBook = Index.fromOneBased(model.getFilteredBookList().size());
-        Book lastBook= model.getFilteredBookList().get(indexLastBook.getZeroBased());
+        Book lastBook = model.getFilteredBookList().get(indexLastBook.getZeroBased());
 
         BookBuilder bookInList = new BookBuilder(lastBook);
         Book editedBook = bookInList.withTitle(VALID_TITLE_HARRY).withAuthor(VALID_AUTHOR_ROWLING)

@@ -1,16 +1,12 @@
 package expresslibrary.testutil;
 
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import expresslibrary.logic.commands.EditBookCommand.EditBookDescriptor;
 import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
-import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
 
 /**
