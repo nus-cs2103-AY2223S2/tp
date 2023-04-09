@@ -124,7 +124,7 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="600" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -192,7 +192,7 @@ How the parsing works:
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/NricModelClassDiagram.png" width="450" />
+<img src="images/NricModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -208,7 +208,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterNricModelClassDiagram.png" width="450" />
+<img src="images/BetterNricModelClassDiagram.png" width="500" />
 
 </div>
 
@@ -472,11 +472,12 @@ Given below is an example usage scenario and how the find command works at each 
 Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A
 T0124563B.
 
-Step 2. The administrator executes `find i/T0123456A T0124563B`. The `FindCommand` is executed and for each `NRIC`
-in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called, the model then filters the list of person to reflect
-patients matching the 2 NRICs.
+Step 2. The administrator executes `find n/Alice`. The model then creates a `Predicate` based on the provided prefix and 
+passes the `Predicate` as an argument when creating a `FindCommand`. The `FindCommand` will then be executed by the model 
+and it filters the list of person that matches the provided `NAME`.
 
-The following sequence diagram shows how the delete command works:
+
+The following sequence diagram shows how the find command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
@@ -484,11 +485,11 @@ The following sequence diagram shows how the delete command works:
 
 **Aspect: Filter criteria**
 
-* **Alternative 1 (current choice):** Find by `NRIC`, `Name`, `Health Conditions`, `Medicine`.
+* **Alternative 1 (current choice):** Find by `NRIC`, `Name`, `Tag`, `Medicine`, `Doctor`.
     * Pros:
         * Very efficient as program will search for the record with specified `NRIC` and return the filtered person list
         * Allows clinical administrator to filter for frequently used `Medicine` and stock up relevant supplies
-        * Allows clinical administrator to filter for common health conditions of patients at the clinic.
+        * Allows clinical administrator to filter for common health condition `Tag` of patients at the clinic.
     * Cons:
         * Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for the
           top few records displayed.
@@ -570,6 +571,27 @@ Given below is an updated `Model` component diagram.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
+### Adding Date Of Birth
+
+The proposed `DateOfBirth` field is done similar to the implementation of the `Name` field.
+
+E.g., 12 April 2000, 1 January 2001
+
+The addition of this field will allow staff to quickly filter by date of birth, or quickly glance at a patient to verify 
+identity.
+
+#### Design considerations:
+
+**Aspect: Implementing a new object to represent `DateOfBirth`:**
+
+* **Alternative 1 (current choice):** Convert `DateOfBirth` given in the format `dd/mm/yyyy` to `dd month yyyy`.
+    * Pros: User does not have to type the full date in string when adding a person.
+    * Cons: It might be messy when adding a person since there will be more `/`.
+
+* **Alternative 2:** User have to type in the full date when adding a person.
+    * Pros: It will not be as messy since there will be less `/` when adding a person.
+    * Cons: User will have to type more which might result in more errors when adding a person.
+
 ### Adding Health Conditions
 
 The proposed implementation of separate `Conditions` object to encapsulate health conditions of a patient.
@@ -581,7 +603,7 @@ what known conditions he/she has.
 
 #### Design considerations:
 
-**Aspect: Implementing a new object to represent conditions:**
+**Aspect: Implementing a new object to represent `Conditions`:**
 
 * **Alternative 1 (current choice):** Convert `Tag` objects to health conditions.
     * Pros: The `Tag` object originally implemented in AB3 currently does not have much meaning in the context of
@@ -595,6 +617,23 @@ what known conditions he/she has.
       deprecated.
     * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
       as obvious as well compared to the current display of tags.
+
+### Adding Gender
+
+The proposed `Gender` field is done similar to the implementation of the `Name` field.
+
+E.g., Male, Female, Others
+
+The addition of this field will allow staff to quickly verify the gender of a patient.
+
+#### Design considerations:
+
+**Aspect: Implementing a new object to represent `Gender`:**
+
+* **Alternative 1 (current choice):** Gender is restricted to `Male`, `Female`, `Others`.
+    * Pros: There will only be 3 categories to classify a person.
+    * Cons: Cannot represent other genders.
+    
 
 ### Adding Attending Doctor
 
@@ -873,3 +912,22 @@ testers are expected to do more *exploratory* testing.
 
 
 <sub>[return to table of contents](#table-of-contents)</sub>
+
+### Appendix:Planned Enhancements
+
+1. At present, a user has the option to enter an individual's `NRIC` number in the future, such as adding a person with 
+NRIC T99******, despite the year 2099 being in the future. We intend to implement a feature that will validate 
+`NRIC`s and generate an error message `Please input a valid NRIC` should an `NRIC` from the future be inputted.
+
+2. Currently, a user is unable to input a `DateOfBirth` with a year that is in the future.In the future, We plan to make 
+it such that we will check for future dates inputted as `DateOfBirth` and generate an error message `Only dates that 
+have occurred are valid inputs`
+
+3. Currently, a user is unable to input `Medicine`s that contain non-alphanumeric characters.In the future, we plan to 
+make it such that you can input `Medicine`s with non-alphanumeric characters such as "retin-A".
+
+4. Currently, you are unable to input `Name`s that contain non-alphanumeric characters.In the future, we plan to
+make it such that you can input `Name`s with non-alphanumeric characters such as "s/o".
+
+5. Currently, whenever a user `views` a patient, the scroll bar will bring you back to the very top of the list of 
+patients. In the future, we will ensure tha the scroll bar remains in position even after running a `view` command.
