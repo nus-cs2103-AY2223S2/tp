@@ -1711,7 +1711,7 @@ vaccination add Dose 1 (Moderna)
 
 #### Adding a valid appointment
 
-appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Moderna)
+`appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Moderna)`
 
 #### Prerequisites
 
@@ -1734,7 +1734,7 @@ Invalid appointments include:
 
 #### Adding a invalid appointment - Missing parameters
 
-appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400
+`appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400`
 
 ##### Expected
 
@@ -1742,8 +1742,9 @@ appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400
 
 #### Adding a invalid appointment - Existing upcoming appointment
 
-appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Moderna)
-appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Moderna)
+`appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Moderna)`
+
+`appointment add --p 1 --s 2024-01-01 1330 --e 2024-01-01 1400 --v Dose 1 (Moderna)`
 
 ##### Expected
 
