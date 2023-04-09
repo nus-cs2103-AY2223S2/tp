@@ -502,7 +502,8 @@ Examples:
 ### Command Recommendation
 
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
-This feature helps to facilitate user input, therefore achieve better efficiency and input accuracy.
+Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting
+with our application. 
 
 <img src="images/CommandRecommendations.png" alt="Command Recommendation Example" width="1000">
 
