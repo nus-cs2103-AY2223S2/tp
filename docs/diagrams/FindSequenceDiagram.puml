@@ -48,7 +48,7 @@ deactivate TrackerParser
 LogicManager -> FindCommand : execute(model)
 activate FindCommand
 
-FindCommand -> FindCommand : filterByVideoList(model)
+FindCommand -> FindCommand : filterByModuleList(model)
 
 FindCommand -> Model : updateFilteredModuleList(\npredicate)
 activate Model
@@ -60,7 +60,7 @@ create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindCommand : result
+CommandResult --> FindCommand
 deactivate CommandResult
 
 FindCommand --> LogicManager : result
