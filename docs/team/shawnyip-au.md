@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     * What is does: supports showing image when starting CoDoc from a jar file.
     * Justification: the hierarchy is different from our development environment thereby causing the application to work abnormally when launched from a jar file.
     * Highlights: Was able to convert CoDoc to use relative file path in an existing code base that highly depends on absolute file path with minimal changes to the code base.
-=
+
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shawnyip-au&breakdown=true)
 
 * **Project management**:
@@ -46,8 +46,7 @@ Given below are my contributions to the project.
     * Change test cases of storage component to reflect CoDoc's implementation
     * Minor Ui alignments [#124](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/124)
     * Found and resolved bug that crash the program upon clear command [#189](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/198)
-    * Clean up code residues 
-    * Remove magic variables
+    * Clean up code residues and remove magic variables [#227](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/227)
 
 * **Documentation**:
     * User Guide:
@@ -55,7 +54,7 @@ Given below are my contributions to the project.
         * Created "How to Open CoDoc for Mac" in additional resources section
         * `find` command documentation
         * Incorporate improvement suggestion from PE(Dry Run) [#205](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/205)
-        * Conversion to PDF [#219](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/219)
+        * Proofreading, editing and conversion to PDF [#219](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/219)
     * Developer Guide:
         * Re-organise entire DG 
         * Created class diagram to reflect changes done for storage component
