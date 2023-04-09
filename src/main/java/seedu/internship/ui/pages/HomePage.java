@@ -23,6 +23,9 @@ import seedu.internship.logic.commands.HomeCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.StatsCommand;
+import seedu.internship.logic.commands.event.EventAddCommand;
+import seedu.internship.logic.commands.event.EventDeleteCommand;
+import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.model.event.Event;
 
 /**
@@ -46,7 +49,10 @@ public class HomePage extends Page {
             + HomeCommand.MESSAGE_USAGE + "\n\n"
             + ListCommand.MESSAGE_USAGE + "\n\n"
             + SelectCommand.MESSAGE_USAGE + "\n\n"
-            + StatsCommand.MESSAGE_USAGE + "\n\n";
+            + StatsCommand.MESSAGE_USAGE + "\n\n"
+            + EventAddCommand.MESSAGE_USAGE + "\n\n"
+            + EventDeleteCommand.MESSAGE_USAGE + "\n\n"
+            + EventFindCommand.MESSAGE_USAGE + "\n\n";
 
     private final Logger logger = LogsCenter.getLogger(HomePage.class);
 

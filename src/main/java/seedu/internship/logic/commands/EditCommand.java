@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.internship.commons.core.Messages;
@@ -37,7 +38,7 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_POSITION + "POSITION] "
@@ -61,8 +62,8 @@ public class EditCommand extends Command {
     /**
      * Creates Edit Command.
      *
-     * @param index of the person in the filtered person list to edit
-     * @param editInternshipDescriptor details to edit the person with
+     * @param index of the internship in the filtered internship list to edit
+     * @param editInternshipDescriptor details to edit the internship with
      */
     public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);
@@ -92,6 +93,14 @@ public class EditCommand extends Command {
         // if internshipToEdit is not changed.
         if (internshipToEdit.equals(editedInternship)) {
             throw new CommandException(MESSAGE_INTERNSHIP_UNCHANGED);
+        }
+
+        model.updateFilteredEventList(new EventByInternship(internshipToEdit));
+        List<Event> oldEvents = model.getFilteredEventList().stream().collect(Collectors.toList());
+        for (Event oldEvent : oldEvents) {
+            Event newEvent = oldEvent.getCopyOf();
+            newEvent.setInternship(editedInternship);
+            model.setEvent(oldEvent, newEvent);
         }
 
         model.setInternship(internshipToEdit, editedInternship);

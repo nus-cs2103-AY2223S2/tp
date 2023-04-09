@@ -21,14 +21,14 @@ import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
 
 /**
- * Parses input arguments and creates a new EventAddCommand object
+ * Parses input arguments and creates a new EventAddCommand object.
  */
 public class EventAddCommandParser implements Parser<EventAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the EventAddCommand
+     * and returns an EventAddCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EventAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

@@ -17,6 +17,9 @@ import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternshipCatalogue;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -34,6 +37,7 @@ import seedu.internship.model.internship.Internship;
 import seedu.internship.testutil.EditInternshipDescriptorBuilder;
 import seedu.internship.testutil.InternshipBuilder;
 
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
@@ -50,9 +54,20 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new InternshipCatalogue(model.getInternshipCatalogue()),
                 new EventCatalogue(model.getEventCatalogue()), new UserPrefs());
+
+        // Change events of edited internship in the expected model
+        model.updateFilteredEventList(new EventByInternship(model.getFilteredInternshipList().get(0)));
+        List<Event> oldEvents = model.getFilteredEventList().stream().collect(Collectors.toList());
+        for (Event oldEvent : oldEvents) {
+            Event newEvent = oldEvent.getCopyOf();
+            newEvent.setInternship(editedInternship);
+            expectedModel.setEvent(oldEvent, newEvent);
+        }
+
+        // change internship in expected model
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
-        // Changes in Model after Editing the Event
+        // Changes in Model after Editing the Internship
         expectedModel.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         expectedModel.updateSelectedInternship(editedInternship);
 
@@ -95,7 +110,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noChangesMadeUnfilteredList_failiure() {
+    public void execute_noChangesMadeUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, new EditInternshipDescriptor());
         Internship editedInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
 
@@ -126,9 +141,20 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(
                 new InternshipCatalogue(model.getInternshipCatalogue()),
                 new EventCatalogue(model.getEventCatalogue()), new UserPrefs());
+
+        // Change events of edited internship in the expected model
+        model.updateFilteredEventList(new EventByInternship(model.getFilteredInternshipList().get(0)));
+        List<Event> oldEvents = model.getFilteredEventList().stream().collect(Collectors.toList());
+        for (Event oldEvent : oldEvents) {
+            Event newEvent = oldEvent.getCopyOf();
+            newEvent.setInternship(editedInternship);
+            expectedModel.setEvent(oldEvent, newEvent);
+        }
+
+        // change internship in expected model
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
-        // CHanges in Model after Editing the Event
+        // Changes in Model after Editing the Event
         expectedModel.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         expectedModel.updateSelectedInternship(editedInternship);
 
@@ -138,7 +164,6 @@ public class EditCommandTest {
         CommandResult expectedCommandResult =
                 new CommandResult(String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship),
                         ResultType.SHOW_INFO, editedInternship, events);
-
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }

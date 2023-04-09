@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Unmodifiable view of an Internship Catalogue
+ * Unmodifiable view of an Internship Catalogue.
  */
 public interface ReadOnlyInternshipCatalogue {
 

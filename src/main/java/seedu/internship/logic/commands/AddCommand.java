@@ -22,12 +22,12 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to the internship catalogue.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship to the internship catalogue.\n"
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_COMPANY + "COMPANY "
             + PREFIX_STATUS + "STATUS "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Software Engineer "

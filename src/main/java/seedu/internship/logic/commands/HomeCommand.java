@@ -17,7 +17,7 @@ public class HomeCommand extends Command {
 
     public static final String COMMAND_WORD = "home";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the home screen.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the home page.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HOME_MESSAGE = "Showing home screen.";

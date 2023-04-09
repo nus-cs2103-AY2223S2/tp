@@ -20,16 +20,19 @@ import seedu.internship.model.internship.Internship;
 public class EventDeleteCommand extends EventCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " "
-            + EventDeleteCommand.COMMAND_WORD + ": Deletes an event in the event catalogue. \n"
+            + COMMAND_WORD + ": Deletes an event from the event catalogue.\n"
             + "Parameters: EVENT_INDEX (must be a positive integer)\n"
             + "Example: " + EventCommand.COMMAND_WORD + " "
-            + EventDeleteCommand.COMMAND_WORD + " "
+            + COMMAND_WORD + " "
             + "1";
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Event deleted: %1$s";
     public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before deleting an event.";
 
     private final Index targetIndex;
 
+    /**
+     * Creates an EventDeleteCommand to delete the specified event of index {@code Index}
+     */
     public EventDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

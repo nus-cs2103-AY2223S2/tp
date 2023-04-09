@@ -20,16 +20,16 @@ import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
 
 /**
- * Finds an Event from TinS.
+ * Finds events from the event catalogue based on parameters given.
  */
 public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + COMMAND_WORD
-            + ": Finds internships from the catalogue based on predicates provided by the user.\n"
+    public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Finds events from the catalogue based on parameters given.\n"
             + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
             + "[" + PREFIX_EVENT_START + "START] "
             + "[" + PREFIX_EVENT_END + "END] "
-            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500";
+            + "Example: " + COMMAND_WORD + " na/Technical Interview " + "st/10/09/2023 1500 ";
 
     public static final String MESSAGE_SUCCESS = "Found events : %1$s";
 

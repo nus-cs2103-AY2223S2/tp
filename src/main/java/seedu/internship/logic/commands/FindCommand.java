@@ -2,6 +2,11 @@ package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,7 +16,6 @@ import java.util.function.Predicate;
 
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
-import seedu.internship.logic.parser.CliSyntax;
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;
@@ -21,23 +25,22 @@ import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
 /**
- * Finds internships from the catalogue based on predicates provided by the user.
+ * Finds internships from the internship catalogue based on parameters given.
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds internships from the catalogue based on predicates provided by the user.\n"
-            + "Parameters: [" + CliSyntax.PREFIX_POSITION + "POSITION] "
-            + "[" + CliSyntax.PREFIX_COMPANY + "COMPANY]"
-            + "[" + CliSyntax.PREFIX_STATUS + "STATUS]"
-            + "[" + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION]"
-            + "[" + CliSyntax.PREFIX_TAG + "TAG]\n"
-            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + " c/ Grab";
+            + ": Finds internships from the catalogue based on parameters given.\n"
+            + "Parameters: [" + PREFIX_POSITION + "POSITION] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_STATUS + "STATUS] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]\n"
+            + "Example: " + COMMAND_WORD + " p/Software Engineer" + " c/Grab";
 
     public static final String MESSAGE_SUCCESS = "Found internships : %1$s";
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
-
 
     private final FilterInternshipDescriptor filterInternshipDescriptor;
 
