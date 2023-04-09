@@ -6,29 +6,126 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## **Teaching Assistant Assistant**
-Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your teaching assistant tasks done faster than traditional GUI apps.
+## **Introduction**
+### About this application
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities,
+optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
-<img src="https://user-images.githubusercontent.com/59087730/222305199-8590f0f0-7e6d-4801-bcb9-cbb2a48fa28e.png" width="580"/>
+TAA provides a one-stop solution that meets the following teaching needs of a TA in just one single application:
+1. You can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
+2. You can even view grade statistics without the use of a dedicated data analysis application!
+3. You can schedule alarms that help you manage your time during class. Gone are the days of you unknowingly spending
+   too much time on a single question during tutorial or forgetting to mark students' attendance at the end of class.
+4. You can save the troubles of manually importing and exporting data into and out of the TAA application, thanks to our
+   CSV parser!
 
---------------------------------------------------------------------------------------------------------------------
+![TAA logo](./images/TAA_logo.jpg)
 
-## **Acknowledgements**
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
+
+### Objectives of this guide
+This guide is written to provide comprehensive technical guidance for developers to develop and maintain TAA effectively and efficiently.
+
+This guide includes descriptions and explanations on the architecture and design of the TAA application, complemented with UML diagrams where necessary.
+
+With this guide, any developers who wish to extend on, or modify this project to their liking should be able to do so with ease and confidence.
+
+
+### Using the guide
+#### Navigation
+To use the guide, you may wish to take a look at the table of contents at the start of the page.
+You can click on the relevant sections you wish to visit, and the hyperlink will bring you straight to the relevant section.
+
+Alternatively, you may wish to use the built-in search function in your browser (<Button>Ctrl</Button> + <Button>F</Button>) to look for specific keywords relevant to your query.
+
+#### Formatting
+Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
+
+##### Callouts
+
+Callouts are identified by a coloured box containing some text.
+
+**Note**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** Contains important information on how the application is designed to be used.
+</div>
+
+**Information**
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Provides information that is not essential, but may be useful (especially for advanced users!).
+</div>
+
+**Tip**
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** Provides recommendations on how you can use the app more effectively.
+</div>
+
+**Warning**
+<div markdown="span" class="alert alert-danger">
+:warning: **Warning:** Describes actions that may cause the application to function unexpectedly.
+</div>
+
+##### Syntax highlighting
+Text contained within a `grey background` are used to denote either of the following:
+- commands that can be entered into the command bar
+- file names
+- command line commands, to be run in the [terminal](#glossary) of the host machine
+
+##### Keys
+Keys such as <Button>A</Button> <Button>B</Button> <Button>C</Button> are used to denote keys on the keyboard that can be pressed to perform certain things.
+
+They can also be used to denote keys that should be held together, at the same time. For example, <Button>Ctrl</Button> + <Button>F</Button> indicates that the user can press both the Ctrl and F keys together to perform a given action.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md) to get the project set up in your local machine.
+
+Figure 1 below gives an overview of the major components in the application's graphical user interface (GUI).
+
+![Labelled GUI](./images/Ui_labelled.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 1
+</strong>:
+Labelled components of the TAA GUI
+</em></figcaption>
+
+<br />
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Each Class List consists of 0 or more Student Cards.
+</div>
+
+The purposes of each component are described in Table 1 below.
+<br />
+
+<div style="text-align:center"><strong>
+Table 1
+</strong>:
+Purposes of each GUI component
+</div>
+
+|     Component      |                                      Purpose                                       |
+|:------------------:|:----------------------------------------------------------------------------------:|
+|    Command Box     |                         To accept commands from the user.                          |
+|     Output Box     |             To display the result of the commands issued by the user.              |
+| Class List Display |        To display the list of students in the currently active class list.         |
+|    Student Card    | To display the relevant information for a single Student in the active class list. |
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Many operations were designed to interact with the students that are currently visible in the active class list.
+This is intended to make it easier for users to use the application, as it is unlikely for the user to refer to something that they cannot see.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The following sections are mostly filled with UML diagrams to give a high-level overview of how each section is designed.
 
-<div markdown="span" class="alert alert-primary">
+After reading this section, you should have a clearer understanding of the major components in the application, along with how they interact with each other.
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T14-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -704,4 +801,9 @@ However, in the real world, this is unlikely the case. Such entities are likely 
 
 Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
 Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
 
