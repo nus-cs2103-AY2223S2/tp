@@ -25,11 +25,7 @@ import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ModelState;
-import seedu.address.model.ReadOnlyMasterDeck;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -170,6 +166,13 @@ public class LogicManagerTest {
         assertEquals(ModelState.REVIEW_MODE, logic.getMode());
     }
 
+    @Test
+    public void factoryReset_success() {
+        Model exepctedModel = new ModelManager(new MasterDeck(), model.getUserPrefs());
+        logic.factoryReset();
+        assertEquals(exepctedModel, model);
+    }
+
 
     private void assertLogicSuccess(String inputCommand, String expectedMessage,
                                     Logic logic) throws CommandException, ParseException {
@@ -212,7 +215,6 @@ public class LogicManagerTest {
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
      *
-     * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, Model expectedModel) {
