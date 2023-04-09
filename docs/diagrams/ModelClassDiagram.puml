@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyDengueHotspotTracker" as ReadOnlyDengueHotspotTracker
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as ModelInterface
 Class "<<enumeration>>\nDengueVariant" as DengueVariant
 Class DengueHotspotTracker
 Class ModelManager
@@ -24,13 +24,13 @@ Class Variant
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelInterface
 
 DengueHotspotTracker .up.|> ReadOnlyDengueHotspotTracker
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyDengueHotspotTracker
+ModelManager .up.|> ModelInterface
+ModelInterface .right.> ReadOnlyUserPrefs
+ModelInterface .left.> ReadOnlyDengueHotspotTracker
 ModelManager -left-> "1" DengueHotspotTracker
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
