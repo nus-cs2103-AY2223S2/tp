@@ -13,6 +13,7 @@ import seedu.address.model.NavigationStack;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
+import seedu.address.testutil.ObjectUtil;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
@@ -89,5 +90,16 @@ public class RelativeNavCommandTest {
         RelativeNavCommand cmd = new RelativeNavCommand("invalid");
 
         assertThrows(CommandException.class, () -> cmd.execute(model));
+    }
+
+    @Test
+    void equals() {
+        final String target = "target";
+        final String target2 = "target2";
+        RelativeNavCommand cmd = new RelativeNavCommand(target);
+        RelativeNavCommand cmdWithSameTarget = new RelativeNavCommand(target);
+        RelativeNavCommand cmdWithDiffTarget = new RelativeNavCommand(target2);
+
+        ObjectUtil.testEquals(cmd, cmdWithSameTarget, 1, cmdWithDiffTarget);
     }
 }

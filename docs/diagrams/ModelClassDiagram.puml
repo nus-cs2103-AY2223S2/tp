@@ -12,7 +12,7 @@ Class "<<interface>>\nReadOnlyNavigation" as ReadOnlyNavigation
 Class ModelManager
 Class Tracker
 Class UserPrefs
-Class Navigation
+Class "<<interface>>\nNavigation" as Navigation
 
 Class UniqueModuleList
 Class "<<interface>>\nReadOnlyModule" as ReadOnlyModule
@@ -36,7 +36,7 @@ Model .right.> ReadOnlyNavigation
 ModelManager .up.|> Model
 Tracker .up.|> ReadOnlyTracker
 UserPrefs .up.|> ReadOnlyUserPrefs
-Navigation .up.|> ReadOnlyNavigation
+Navigation -up-|> ReadOnlyNavigation
 
 ModelManager -left-> "1" Tracker
 ModelManager -right-> "1" UserPrefs
