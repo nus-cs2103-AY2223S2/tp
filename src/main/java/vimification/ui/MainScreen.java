@@ -76,12 +76,18 @@ public class MainScreen extends UiPart<VBox> {
         this.getRoot().setFocusTraversable(true); // Important
     }
 
+    /**
+     * Initialize the components of the main screen.
+     */
     private void setupComponents() {
         loadRightComponent(new WelcomePanel());
         intializeCommandInput();
         initializeTaskListPanel();
     }
 
+    /**
+     * Bind the height and width of the components to the window size.
+     */
     private void bindHeightAndWidth() {
         TOP_COMPONENT_HEIGHT = WINDOW_HEIGHT.multiply(TOP_COMPONENT_HEIGHT_PROPORTION);
         BOTTOM_COMPONENT_HEIGHT = WINDOW_HEIGHT.multiply(BOTTOM_COMPONENT_HEIGHT_PROPORTION);
@@ -94,12 +100,18 @@ public class MainScreen extends UiPart<VBox> {
         bottomComponent.prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
     }
 
+    /**
+     * Initialize the task list panel.
+     */
     public void initializeTaskListPanel() {
         taskListPanel = new TaskListPanel(logic.getUiTaskList(), this);
         loadLeftComponent(taskListPanel);
         taskListPanel.requestFocus();
     }
 
+    /**
+     * Initialize the command input.
+     */
     private void intializeCommandInput() {
         commandInput = new CommandInput(this, logic);
     }
@@ -129,11 +141,19 @@ public class MainScreen extends UiPart<VBox> {
         }
     }
 
+    /**
+     * Loads the command input component into the bottom component.
+     */
     private void loadCommandInputComponent() {
         loadBottomComponent(commandInput);
         commandInput.requestFocus();
     }
 
+    /**
+     * Loads the result of the command into the right component.
+     *
+     * @param result
+     */
     protected void loadCommandResultComponent(CommandResult result) {
         CommandResultPanel resultPanel = new CommandResultPanel(this);
         resultPanel.display(result);
@@ -153,6 +173,11 @@ public class MainScreen extends UiPart<VBox> {
         bottomComponent.getChildren().clear();
     }
 
+    /**
+     * Loads the given component into the left component.
+     *
+     * @param component
+     */
     private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
@@ -160,6 +185,11 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefWidthProperty().bind(LEFT_COMPONENT_WIDTH);
     }
 
+    /**
+     * Loads the given component into the right component.
+     *
+     * @param component
+     */
     public <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
@@ -167,6 +197,11 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefWidthProperty().bind(RIGHT_COMPONENT_WIDTH);
     }
 
+    /**
+     * Loads the given component into the bottom component.
+     *
+     * @param component
+     */
     public <T extends Pane> void loadBottomComponent(UiPart<T> component) {
         bottomComponent.getChildren().clear();
         bottomComponent.getChildren().add(component.getRoot());

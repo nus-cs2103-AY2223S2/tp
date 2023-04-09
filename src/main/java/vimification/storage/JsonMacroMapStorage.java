@@ -22,16 +22,25 @@ public class JsonMacroMapStorage implements MacroMapStorage {
         this.filePath = filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getMacroMapFilePath() {
         return filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MacroMap readMacroMap() throws IOException {
         return JsonUtil.readJsonFile(filePath, MacroMap.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void saveMacroMap(MacroMap macroMap) throws IOException {
         JsonUtil.saveJsonFile(macroMap, filePath);

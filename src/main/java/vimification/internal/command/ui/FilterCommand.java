@@ -28,6 +28,9 @@ public class FilterCommand extends UiCommand {
         this.request = request;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         List<Predicate<Task>> predicates = new ArrayList<>();

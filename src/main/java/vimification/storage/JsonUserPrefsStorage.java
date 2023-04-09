@@ -22,16 +22,25 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
         this.filePath = filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getUserPrefsFilePath() {
         return filePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserPrefs readUserPrefs() throws IOException {
         return JsonUtil.readJsonFile(filePath, UserPrefs.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);

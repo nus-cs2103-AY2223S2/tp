@@ -16,6 +16,9 @@ public class HelpCommand extends UiCommand {
      */
     public HelpCommand() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         HelpManualPanel helpManualPanel = new HelpManualPanel();

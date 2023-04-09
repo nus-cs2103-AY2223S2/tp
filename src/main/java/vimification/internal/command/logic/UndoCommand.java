@@ -16,6 +16,9 @@ public class UndoCommand extends LogicCommand {
      */
     public UndoCommand() {}
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         return commandStack.pop().undo(taskList);

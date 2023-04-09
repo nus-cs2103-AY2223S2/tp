@@ -35,6 +35,10 @@ public class CommandStack {
         ensureSize();
     }
 
+    /**
+     * Ensures that the size of the stack does not exceed the maximum size.
+     * If it does, the oldest command will be discarded.
+     */
     private void ensureSize() {
         while (commands.size() > MAX_SIZE) {
             commands.pollFirst();

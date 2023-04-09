@@ -112,6 +112,9 @@ public class LogsCenter {
         return fileHandler;
     }
 
+    /**
+     * Creates a {@code ConsoleHandler} for the log file.
+     */
     private static ConsoleHandler createConsoleHandler() {
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(currentLogLevel);

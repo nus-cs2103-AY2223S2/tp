@@ -18,6 +18,9 @@ public class HelpManualPanel extends UiPart<VBox> {
     @FXML
     private WebView webView;
 
+    /**
+     * Constructor for HelpManualPanel.
+     */
     public HelpManualPanel() {
         super(FXML);
         Path manualHtml = Path.of(FXML_FILE_FOLDER, "HelpManualPanel.html");

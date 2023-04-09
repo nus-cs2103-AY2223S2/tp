@@ -8,6 +8,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
+/**
+ * Panel containing the creation of a task.
+ */
 public class TaskCreationPanel extends UiPart<VBox> {
 
     private static final String FXML = "TaskCreationPanel.fxml";
@@ -25,12 +28,18 @@ public class TaskCreationPanel extends UiPart<VBox> {
         this.parent = parent;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void requestFocus() {
         super.requestFocus();
         this.nameField.requestFocus();
     }
 
+    /**
+     * Returns focus to parent.
+     */
     private void returnFocusToParent() {
         parent.requestFocus();
         this.getRoot().setVisible(false);
