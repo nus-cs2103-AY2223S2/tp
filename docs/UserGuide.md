@@ -226,7 +226,8 @@ Find your pets by their names.
 
 Format: `find n/PET_NAME`
 
-![find](images/UG/find.png)
+![find](images/UG/find_new.png)
+
 Example given: `find Milo Charlie`
 
 Other examples:
