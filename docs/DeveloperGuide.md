@@ -169,7 +169,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Autocomplete feature
 
-#### Implementation
+#### Implementation Details
 
 The autocomplete feature is implemented through the `AutocompleteEngine` class, which is aggregated inside the `LogicManager` class. The `LogicManager` class implements the `Logic` interface, which exposes the `AutocompleteEngine` methods. The `LogicManager` initializes the `AutocompleteEngine` with a predefined `Model`, and the `AutocompleteEngine` utilizes methods from the `Model` interface to access existing tag, module, and education values.
 
@@ -185,6 +185,8 @@ New methods in the `Model` interface for the autocomplete feature include:
 - `getExistingTagValues()` — Returns a list of all existing tag values contained in the person list.
 - `getExistingModuleValues()` — Returns a list of all existing module values contained in the person list.
 - `getExistingEducationValues()` — Returns a list of all existing education values contained in the person list.
+
+#### Feature Details
 
 Given below is an example usage scenario and how the autocomplete mechanism works at each step:
 
@@ -257,12 +259,10 @@ The `Person` object is composed of attributes:
 * `Education`: The education level of the student.
 * `Telegram`: The telegram handle of the student.
 * `Module`: The modules the TA is teaching the student.
-* `Remark`: Remarks/notes the tutor has about the student.
-* `Tags`: Qualities a student has.
+* `Remark`: Remarks/notes the TA has about the student.
+* `Tags`: Categories a student belong to.
 
-#### Proposed Implementation
-
-The `add` command has the following fields:
+The `add` command has the following fields, each representing an attribute:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** (COMPULSORY) indicates that the field is cannot be omitted when using `add`. Unless stated as (COMPULSORY), the field is optional.
 </div>
@@ -277,6 +277,9 @@ The `add` command has the following fields:
 * Prefix `r/` followed by the remarks/notes on the student.
 * Prefix `t/` followed by the tags a student has.
 
+The [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class was utilised to encapsulate the optional logic of the attributes.
+
+
 Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Year 1` is run.:
 
 ![add_sequence](images/AddSequenceDiagram.png)
@@ -288,20 +291,18 @@ Here is a sequence diagram showing the interactions between components when `add
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
 2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
 3. If the input passes the validation check, a new `Person` entry is created and stored in the `VersionedAddressBook`.
+4. The `add` command will commit the previous version of the `VersionedAddressBook` to `versionStateHistory` (will be explained later in the [`undo/redo`](#undo/redo-feature) command).
 
 #### General Design Considerations
 
-The implementation of the attributes of a `Person` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature.
+Some additions made to the original AB3 attributes are the `Education`, `Module` and `Remark`.
+1. `Education` is implemented similarly to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
+2. `Module` is implemented similarly to `Tags` but has been modified to accommodate module names that are more than one word long.
+3. Every attribute except `Name` has been made optional during the inputting of the command in case the student's details are unknown at the time of entry.
 
-Some additions made were the `Education`, `Module` and `Remark` attributes.
-1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
-2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
-3. Every attribute except `Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
-    * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
-4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
-When adding a student entry, these were the alternatives considered.
-* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Person` entry, making the other attributes optional.
+**Aspect: Optional fields**
+* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Person` entry.
     * Pros:
         * Improves user convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
     * Cons:
