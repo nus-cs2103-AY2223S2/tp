@@ -9,10 +9,10 @@ import java.time.format.DateTimeParseException;
  * when its status was set.
  */
 public abstract class Status {
-    private static int NUM_SECS_IN_A_YEAR = 60 * 60 * 24 * 365;
-    private static int NUM_SECS_IN_A_DAY = 60 * 60 * 24;
-    private static int NUM_SECS_IN_AN_HOUR = 60 * 60;
-    private static int NUM_SECS_IN_A_MINUTE = 60;
+    private static final int NUM_SECS_IN_A_YEAR = 60 * 60 * 24 * 365;
+    private static final int NUM_SECS_IN_A_DAY = 60 * 60 * 24;
+    private static final int NUM_SECS_IN_AN_HOUR = 60 * 60;
+    private static final int NUM_SECS_IN_A_MINUTE = 60;
 
     private Instant timestamp;
 

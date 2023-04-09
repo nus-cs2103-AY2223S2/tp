@@ -5,54 +5,54 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":LogicManager" as LM LOGIC_MANAGER_COLOR
 Participant ":AddressBookParser" as ABP ADDRESS_BOOK_PARSER_COLOR
-Participant ":FindTagCommandParser" as SCP FindTag_COMMAND_PARSER_COLOR
-Participant ":FindTagCommand" as SC FindTag_COMMAND_COLOR
+Participant ":FindTagCommandParser" as SCP SORT_COMMAND_PARSER_COLOR
+Participant ":FindTagCommand" as SC SORT_COMMAND_COLOR
 Participant "model:ModelManager" as MM MODEL_MANAGER_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+'Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "FindTag friends"
+user -[USER_COLOR]> ui : "findtag friends"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> LM : execute("FindTag friends")
+ui -[UI_COLOR]> LM : execute("findtag friends")
 activate LM LOGIC_MANAGER_COLOR
 
-LM -[LOGIC_MANAGER_COLOR]> ABP : parseCommand("FindTag friends")
+LM -[LOGIC_MANAGER_COLOR]> ABP : parseCommand("findtag friends")
 activate ABP ADDRESS_BOOK_PARSER_COLOR
 
 ABP -[ADDRESS_BOOK_PARSER_COLOR]> SCP : parse("friends")
-activate SCP FindTag_COMMAND_PARSER_COLOR
+activate SCP SORT_COMMAND_PARSER_COLOR
 
 create SC
-SCP -[FindTag_COMMAND_PARSER_COLOR]> SC : FindTagCommand("friends")
-activate SC FindTag_COMMAND_COLOR
+SCP -[SORT_COMMAND_PARSER_COLOR]> SC : FindTagCommand("friends")
+activate SC SORT_COMMAND_COLOR
 
-SC -[FindTag_COMMAND_COLOR]-> SCP
+SC -[SORT_COMMAND_COLOR]-> SCP
 deactivate SC
 
-SCP -[FindTag_COMMAND_PARSER_COLOR]-> ABP
+SCP -[SORT_COMMAND_PARSER_COLOR]-> ABP
 deactivate SCP
 
 ABP --[ADDRESS_BOOK_PARSER_COLOR]> LM : command
 deactivate ABP
 
 LM -[LOGIC_MANAGER_COLOR]> SC : execute(model)
-activate SC FindTag_COMMAND_COLOR
+activate SC SORT_COMMAND_COLOR
 
-SC -[FindTag_COMMAND_COLOR]> MM : FindTagPersonList("friends")
+SC -[SORT_COMMAND_COLOR]> MM : updateFilteredPersonList(predicate)
 activate MM MODEL_MANAGER_COLOR
 deactivate MM
 
-SC --[FindTag_COMMAND_COLOR]> LM : commandResult
+SC --[SORT_COMMAND_COLOR]> LM : commandResult
 deactivate SC
 
-LM -[LOGIC_MANAGER_COLOR]> storage : saveAddressBook(addressBook)
-activate storage STORAGE_COLOR
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[STORAGE_COLOR]> storage
-deactivate storage
-storage --[STORAGE_COLOR]> LM
-deactivate storage
+'LM -[LOGIC_MANAGER_COLOR]> storage : saveAddressBook(addressBook)
+'activate storage STORAGE_COLOR
+'storage -[STORAGE_COLOR]> storage : Save to file
+'activate storage STORAGE_COLOR_T1
+'storage --[STORAGE_COLOR]> storage
+'deactivate storage
+'storage --[STORAGE_COLOR]> LM
+'deactivate storage
 
 LM --[LOGIC_MANAGER_COLOR]> ui
 deactivate LM

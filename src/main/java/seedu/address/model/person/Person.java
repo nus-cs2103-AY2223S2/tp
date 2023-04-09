@@ -32,7 +32,6 @@ public class Person {
     private final Occupation occupation;
     private final JobTitle jobTitle;
     private final Set<Tag> tags = new HashSet<>();
-
     private final Remark remark;
     private final LeadStatus status;
     private final TaskList tasks;
@@ -312,10 +311,12 @@ public class Person {
                 .append(getTasks());
 
         Set<Tag> tags = getTags();
+
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 
