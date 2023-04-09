@@ -964,7 +964,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
       Use case resumes at step 1.
 
-#### UC-APT-002 - View appointments
+#### UC-APT-002 - List appointments
 
 ##### MSS
 
@@ -1005,12 +1005,41 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 ##### Extensions
 
-* 2a. The list is empty.
+##### Extensions
 
-  Use case ends.
+* 1a. VMS detects error in the command entered.
+    * 1a1. VMS shows an error message.
 
-* 3a. The given ID is invalid.
-    * 3a1. VMS shows an error message.
+      Use case resumes from step 1.
+
+* 1b. User requested to delete an appointment that does not exist.
+    * 1a1. VMS shows an error message.
+
+      Use case ends.
+
+#### UC-APT-005 - Find appointments
+
+##### MSS
+
+1. User requests to find appointments.
+2. VMS shows a list of appointments that matches search criteria.
+
+   Use case ends.
+
+##### Extensions
+
+* 1a. The list is empty.
+    * 1a1. VMS returns an empty list.
+
+      Use case resumes at step 1.
+
+* 1b. Some appointments match the search criteria.
+    * 1b1. VMS returns the list of appointment that matches.
+
+      Use case resumes at step 1.
+
+* 1c. No appointment match the search criteria.
+    * 1c1. VMS returns an empty list.
 
       Use case resumes at step 1.
 
