@@ -45,7 +45,7 @@ class JsonAppointmentStorageTest {
         JsonAppointmentStorage storage = new JsonAppointmentStorage(VALID_APPOINTMENT_FILE);
         assertDoesNotThrow(storage::loadAppointments);
 
-        AppointmentManager appointmentManager = storage.loadAppointments();
-        assertDoesNotThrow(() -> storage.saveAppointments(appointmentManager));
+        JsonAppointmentStorage tempStorage = new JsonAppointmentStorage(testFolder.resolve("testSaveAppointmentManager.json"));
+        assertDoesNotThrow(() -> tempStorage.saveAppointments(storage.loadAppointments()));
     }
 }
