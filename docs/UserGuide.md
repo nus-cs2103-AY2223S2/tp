@@ -527,7 +527,7 @@ Edit details of the internship application selected by ID.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Edits to `TAG` field in TinS would remove all existing `TAG` associated with the
-selected internship, and attach your newly indicated `TAG` fields to your selected internship.<br><br>
+selected internship, and attach your newly indicated `TAG` fields to your selected internship.<br>
     
 Example: If the 1st internship in the list panel has the `TAG` fields, `IMPORTANT` and `PRIORITY`, the command
 `edit 1 t/GOOD` will modify the `TAG` field of the internship to contain `GOOD` only.
@@ -781,8 +781,8 @@ de/On Zoom</code> adds the event to the first internship in List Panel</td>
 <tr>
 <td><b>Delete Event</b></td>
 <td><code>select ID</code>, then <code>event delete ID</code><br>
-E.g. <code>select 1</code>, then <code>event delete 1</code> deletes the first event from the first internship</td>
-listed in the List Panel
+E.g. <code>select 1</code>, then <code>event delete 1</code> deletes the first event from the first internship
+listed in the List Panel</td>
 </tr>
 
 <tr>
