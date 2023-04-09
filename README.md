@@ -1,17 +1,33 @@
-
 ![Ui](docs/images/Ui.png)
 
-# Quick Contacts
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T11-2/tp/actions)
-[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T11-2/tp/branch/master/graph/badge.svg?token=1KZTHMDDUF)](https://codecov.io/gh/AY2223S2-CS2103T-T11-2/tp)
-## About Quick Contacts
+<p >
+  <a href="https://github.com/AY2223S2-CS2103T-T11-2/tp/actions">
+    <img src="https://github.com/AY2223S2-CS2103T-T11-2/tp/workflows/Java%20CI/badge.svg" alt="CI Status">
+  </a>
+  <a href="https://codecov.io/gh/AY2223S2-CS2103T-T11-2/tp">
+    <img src="https://codecov.io/gh/AY2223S2-CS2103T-T11-2/tp/branch/master/graph/badge.svg?token=1KZTHMDDUF" alt="codecov">
+  </a>
+</p>
 
-* Quick Contacts (QC) is a cross-platform desktop application that enables you to easily manage your contacts and meetings all in one place!
-  * Designed for users who have a **large** number of contacts (many of which are only **temporarily**)<br>
-  * **Fast** and **easy** to use
-  * **GUI** and **CLI** supported
-    * **Lightweight** and **portable**
+## About QuickContacts
 
-* It is named `Quick Contacts` (`QC` for short) because most contacts stored in here are intended to be stored quickly and deleted promptly when not needed.
-### Acknowledgements
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+QuickContacts (QC) is a **cross-platform desktop application** that enables you to easily manage your contacts and meetings **all in one place**! With QC, you will never miss any meetings with your friends or colleagues.
+
+QC is specially designed for:
+
+* _Seamless_ creation and management of contacts and meetings
+* Users who have a _large_ number of contacts and _meetings_
+* Typists
+
+For more information, check out our [developer guide](https://ay2223s2-cs2103t-t11-2.github.io/tp/DeveloperGuide.html)
+
+## Features
+
+* Create and manage contacts and their details
+* Create and manage meetings with contact(s)
+* Autocomplete command inputs
+* Traverse back and forth between commands
+
+## Acknowledgements
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

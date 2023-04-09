@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickBookParser" as QuickBookParser LOGIC_COLOR
+participant ":ExportCommandParser" as ExportCommandParser LOGIC_COLOR
+participant "d:ExportCommand" as ExportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> QuickBookParser : parseCommand()
+activate QuickBookParser
+
+create ExportCommandParser
+QuickBookParser -> ExportCommandParser
+activate ExportCommandParser
+
+ExportCommandParser --> QuickBookParser
+deactivate ExportCommandParser
+
+QuickBookParser -> ExportCommandParser : parse()
+activate ExportCommandParser
+
+create ExportCommand
+ExportCommandParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> ExportCommandParser : d
+deactivate ExportCommand
+
+ExportCommandParser --> QuickBookParser : d
+deactivate ExportCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ExportCommandParser -[hidden]-> QuickBookParser
+destroy ExportCommandParser
+
+QuickBookParser --> LogicManager : d
+deactivate QuickBookParser
+
+LogicManager -> ExportCommand : execute()
+activate ExportCommand
+
+ExportCommand -> Model : ExportPerson()
+activate Model
+
+Model --> ExportCommand
+deactivate Model
+
+create CommandResult
+ExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCommand
+deactivate CommandResult
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
