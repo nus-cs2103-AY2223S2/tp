@@ -474,9 +474,64 @@ Step 1. placeholder
     * Pros: placeholder
     * Cons: placeholder
 
-### Import/export/checkout features
+### Import feature
 
-DengueHotspotTracker data is stored in a CSV file format.
+#### Implementation
+
+The import mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
+`ImportCommandParser#parse()`, `ImportCommand#execute()` and
+`CsvDengueHotspotStorage#readDengueHotspotStorage()` methods.
+
+Given below is an example usage scenario and how the import csv mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes the `import sampledata.csv` command to import a list of cases from `sampledata.csv`.
+`DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `import` command word,
+passes the argument `sampledata.csv` to the `importCommandParser`.
+
+Step 3. `ImportCommandParser#parse()` is called. `sampledata.csv` is checked whether it contains any special characters,
+and ends with `.csv`. `ImportCommand` is constructed, taking in the trimmed filepath `sampledata.csv` as an argument.
+
+Step 4. `ImportCommand#execute()` will get the trimmed filepath and retrieve the list of cases to import from `sampledata.csv`.
+
+Step 5. A `CsvDengueHotspotStorage` is created and `CsvDengueHotspotStorage#readDengueHotspotStorage()` is called,
+importing the valid case list if the format is valid.
+
+The following sequence diagram shows how the import command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes an Import command:
+
+![ImportActivityDiagram](images/ImportActivityDiagram.png)
+
+### Export feature
+
+#### Implementation
+
+The feature is largely similar to the [import](#import-feature) up to step 4.
+
+Step 5. A `CsvDengueHotspotStorage` is created and `CsvDengueHotspotStorage#saveDengueHotspotStorage()` is called,
+saving the csv to `sampledata.csv`.
+
+The following sequence diagram represents the difference in step 5:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes an Export command:
+
+![ImportActivityDiagram](images/ExportActivityDiagram.png)
+
+### Checkout feature
+
+This feature is largely similar to the [export](#export-feature) up to step 4.
+
+Step 5: Model calls `Overview#getOverviewContent()` to obtain the list to export to CSV.
+
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
+
+The activity diagram is similar to that of export.
 
 --------------------------------------------------------------------------------------------------------------------
 

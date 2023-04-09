@@ -14,6 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
+box Storage STORAGE_COLOR_T1
+participant ":CsvDengueHotspotStorage" as CsvDengueHotspotStorage STORAGE_COLOR
+end box
+
 [-> LogicManager : execute("import sampledata.csv")
 activate LogicManager
 
@@ -46,8 +50,21 @@ deactivate DengueHotspotTrackerParser
 LogicManager -> ImportCommand : execute()
 activate ImportCommand
 
-ImportCommand -> Model : model.importCsv("sampledata.csv")
+ImportCommand -> Model : importCsv("sampledata.csv")
 activate Model
+
+create CsvDengueHotspotStorage
+Model --> CsvDengueHotspotStorage
+activate CsvDengueHotspotStorage
+
+CsvDengueHotspotStorage --> Model
+deactivate CsvDengueHotspotStorage
+
+Model --> CsvDengueHotspotStorage: readDengueHotspotTracker()
+activate CsvDengueHotspotStorage
+
+Model <-- CsvDengueHotspotStorage
+deactivate CsvDengueHotspotStorage
 
 Model --> ImportCommand
 deactivate Model
@@ -58,8 +75,6 @@ activate CommandResult
 
 CommandResult --> ImportCommand : result
 deactivate CommandResult
-
-
 
 ImportCommand --> LogicManager : result
 deactivate ImportCommand

@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+hide footbox
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Overview" as Overview MODEL_COLOR_T2
+end box
+
+[-> Model : checkout("sampledata.csv")
+activate Model
+
+Model --> Overview: getOverviewContent()
+activate Overview
+
+Overview --> Model
+deactivate Overview
+
+Model --> Overview: getHeaders()
+activate Overview
+
+Model <-- Overview
+deactivate Overview
+
+[<-- Model
+deactivate Model
+@enduml
