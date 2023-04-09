@@ -130,7 +130,7 @@ Nonetheless, you can always type the following commands to list all customers an
 {: .no_toc}
 
 Now that _Lyndon Edwards_ is in LoyaltyLift, we can add an order for him.
-This can be with the [`addo`](#adding-an-order--addo) command like the following.
+This can be done with the [`addo`](#adding-an-order--addo) command like the following.
 
     addo 1 n/Banana Cake q/2 
 
@@ -147,7 +147,7 @@ To do this manually, you can list all your orders and view the first order's inf
 
 Before ending this tutorial, let us clear our application data by removing both _Lyndon Edwards_ and his _Banana Cake_ order.
 
-While [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
+While the [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from LoyaltyLift with the [`deletec`](#deleting-a-customer--deletec) command.
 
     deletec 1
 
