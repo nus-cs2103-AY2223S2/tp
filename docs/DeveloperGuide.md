@@ -39,7 +39,7 @@ Images used:
 
 Formatting of Developer Guide is adapted from:
 * [AY22/23S1 CS2103T Team W16-2](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
-* [AY22/23S1 CS2103T Team W16-3](https://ay2223s1-cs2103t-w16-2.github.io/tp/DeveloperGuide.html)
+* [AY22/23S1 CS2103T Team W16-3](https://ay2223s1-cs2103t-w16-3.github.io/tp/DeveloperGuide.html)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -780,28 +780,28 @@ Initial launch on a fresh installation
 
 1. Test case (adding a role): `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-Expected Output in the Result Display Box: Details of the role added will be displayed.
+    Expected Output in the Result Display Box: Details of the role added will be displayed.
 
-Expected Output in the Role List Box: Role is added to the bottom of the Role List Box. Name, company, tags, salary, deadline, experience required are shown.
+    Expected Output in the Role List Box: Role is added to the bottom of the Role List Box. Name, company, tags, salary, deadline, experience required are shown.
 The rest of roles in the list remains unchanged.
 
 2. Test case (missing parameter): `add n/Software Engineer e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `add` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `add` command is included.
 
-Expected Output in the Role List Box: No changes to the role list.
+    Expected Output in the Role List Box: No changes to the role list.
 
 3. Test case (missing optional `tag`): `add n/Software Engineer c/98765432 e/google@example.com coy/Google w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
-Expected Output in the Result Display Box: Same as test 1.
+    Expected Output in the Result Display Box: Same as test 1.
 
-Expected Output in the Role List Box: Same as test 1.
+    Expected Output in the Role List Box: Same as test 1.
 
 4. Other incorrect delete commands to try: `add`, `add 1`, `...`<br>
 
-Expected Output in the Result Display Box: Same as test 2.
+    Expected Output in the Result Display Box: Same as test 2.
 
-Expected Output in the Role List Box: Same as test 2.
+    Expected Output in the Role List Box: Same as test 2.
    
 
 ### Editing a Role
@@ -810,27 +810,27 @@ Expected Output in the Role List Box: Same as test 2.
 
 1. Test case: `edit 1`<br>
 
-Expected Output in the Result Display Box: Updated details of the role added will be displayed.
+    Expected Output in the Result Display Box: Updated details of the role added will be displayed.
 
-Expected Output in the Role List Box: Name of the first role on the list changes to `Software Developer`.
+    Expected Output in the Role List Box: Name of the first role on the list changes to `Software Developer`.
 
 2. Test case: `edit 0`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `edit` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `edit` command is included.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 3. Test case: `edit 1`<br>
 
-Expected Output in the Result Display Box: Same as test 2.
+    Expected Output in the Result Display Box: Same as test 2.
 
-Expected Output in the Role List Box: Same as test 2.
+    Expected Output in the Role List Box: Same as test 2.
    
 4. Other incorrect delete commands to try: `edit n/`, `edit -1`, `...`<br>
 
-Expected Output in the Result Display Box: Same as test 2.
+    Expected Output in the Result Display Box: Same as test 2.
 
-Expected Output in the Role List Box: Same as test 2.
+    Expected Output in the Role List Box: Same as test 2.
 
 ### Deleting a Role
 
@@ -838,90 +838,90 @@ Expected Output in the Role List Box: Same as test 2.
 
 1. Test case: `delete 1`<br>
 
-Expected Output in the Result Display Box: Details of the deleted role will be displayed.
+    Expected Output in the Result Display Box: Details of the deleted role will be displayed.
 
-Expected Output in the Role List Box: First role is deleted from the list.
+    Expected Output in the Role List Box: First role is deleted from the list.
 
 2. Test case: `delete 0`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `delete` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `delete` command is included.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
 
-Expected Output in the Result Display Box: Same as test 2.
+    Expected Output in the Result Display Box: Same as test 2.
 
-Expected Output in the Role List Box: Same as test 2.
+    Expected Output in the Role List Box: Same as test 2.
 
 ### Finding by Name
 
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have its name as `Software Developer`, 
 and the other must have its name as `Data Analyst`.
 
-2. Test case: `name analyst software`<br>
+1. Test case: `name analyst software`<br>
 
-Expected Output in the Result Display Box: Display the number of roles found.
+    Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Only display roles that has either `analyst` or `software` in its name.
+    Expected Output in the Role List Box: Only display roles that has either `analyst` or `software` in its name.
 
-3. Test case: `name software`<br>
+2. Test case: `name software`<br>
 
-Expected Output in the Result Display Box: Display the number of roles found.
+    Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Only display roles that has `software` in its name.
+    Expected Output in the Role List Box: Only display roles that has `software` in its name.
 
-5. Test case: `name`<br>
+3. Test case: `name`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `name` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `name` command is included.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 ### Finding by Company
 
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have its company as `Tampines Street`,
 and the other must have its company as `Mega Soft`.
 
-2. Test case: `company tampines soft`<br>
+1. Test case: `company tampines soft`<br>
 
-Expected Output in the Result Display Box: Display the number of roles found.
+    Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Only display roles that has either `tampines` or `soft` in its company.
+    Expected Output in the Role List Box: Only display roles that has either `tampines` or `soft` in its company.
 
-3. Test case: `company tampines`<br>
+2. Test case: `company tampines`<br>
 
-Expected Output in the Result Display Box: Display the number of roles found.
+    Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Only display roles that has `tampines` in its company.
+    Expected Output in the Role List Box: Only display roles that has `tampines` in its company.
 
-5. Test case: `company`<br>
+3. Test case: `company`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `company` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `company` command is included.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 ### Finding by tags
 
 **Prerequisites:** There are at least 2 roles in the Role List Box - one must have one of its tags as `Applied`,
 and the other must have one of its tags as `Offered`.
 
-2. Test case: `tag applied offered`<br>
+1. Test case: `tag applied offered`<br>
 
-Expected Output in the Result Display Box: Display the number of roles found.
+    Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Only display roles that has either `applied` or `offered` in its company.
+    Expected Output in the Role List Box: Only display roles that has either `applied` or `offered` in its company.
 
-3. Test case: `tag applied`<br>
+2. Test case: `tag applied`<br>
 
-Expected Output in the Result Display Box: Display the number of roles found.
+    Expected Output in the Result Display Box: Display the number of roles found.
 
-Expected Output in the Role List Box: Only display roles that has `applied` in its company.
+    Expected Output in the Role List Box: Only display roles that has `applied` in its company.
 
-5. Test case: `tag`<br>
+3. Test case: `tag`<br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `tag` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `tag` command is included.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 ### Sort roles by salary
 
@@ -929,15 +929,15 @@ Expected Output in the Role List Box: No changes.
 
 1. Test case: `salary asc` <br>
 
-Expected Output in the Result Display Box: Displays a success message.
+    Expected Output in the Result Display Box: Displays a success message.
 
-Expected Output in the Role List Box: Roles are now sorted according to their salary, in ascending order.
+    Expected Output in the Role List Box: Roles are now sorted according to their salary, in ascending order.
 
 2. Test case: `salary desc` <br>
 
-3. Expected Output in the Result Display Box: Displays a success message.
+    Expected Output in the Result Display Box: Displays a success message.
 
-Expected Output in the Role List Box: Roles are now sorted according to their salary, in descending order.
+    Expected Output in the Role List Box: Roles are now sorted according to their salary, in descending order.
 
 ### Sort roles by deadline
 
@@ -950,53 +950,53 @@ in the given commands. The roles in the Role List Box would then be sorted accor
 
 1. Test Case: `view 1` <br>
 
-Expected Output in the Result Display Box: Display information regarding the first role, including: name, company, 
+    Expected Output in the Result Display Box: Display information regarding the first role, including: name, company, 
 salary, deadline, experience, job description, email, contact and website.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 2. Test Case: `view 0` <br>
 
-Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `view` command is included.
+    Expected Output in the Result Display Box: Error message displayed. Details on how to properly use the `view` command is included.
 
-Expected Output in the Role List Box: No changes.
+    Expected Output in the Role List Box: No changes.
 
 ### Clear
 
 1. Test Case: `clear`
 
-Expected Output in the Result Display Box: Success message for the `clear` command is displayed.
+    Expected Output in the Result Display Box: Success message for the `clear` command is displayed.
 
-Expected Output in the Role List Box: All roles are deleted.
+    Expected Output in the Role List Box: All roles are deleted.
 
 ### List
 
 1. Test Case: `list`
 
-Expected Output in the Result Display Box: Success message for the `list` command is displayed.
+    Expected Output in the Result Display Box: Success message for the `list` command is displayed.
 
-Expected Output in the Role List Box: All current existing roles of TechTrack are displayed.
+    Expected Output in the Role List Box: All current existing roles of TechTrack are displayed.
 
 ### Help
 
 1. Test Case: `help`
 
-Expected Output: Help window pops out.
+    Expected Output: Help window pops out.
 
-Expected Output in the Result Display Box: Success message for the `help` command is displayed.
+    Expected Output in the Result Display Box: Success message for the `help` command is displayed.
 
 2. Test Case: `help 123`
 
-Expected Output: Help window pops out.
+    Expected Output: Help window pops out.
 
-Expected Output in the Result Display Box: Success message for the `help` command is displayed.
+    Expected Output in the Result Display Box: Success message for the `help` command is displayed.
 
 
 ### Exit
 
 1. Test Case: `exit`
 
-Expected Output: TechTrack closes.
+    Expected Output: TechTrack closes.
 
 
 --------------------------------------------------------------------------------------------------------------------
