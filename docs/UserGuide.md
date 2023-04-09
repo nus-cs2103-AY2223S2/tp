@@ -579,9 +579,9 @@ Parameters:
 > :bulb: Tip: See what happens to [invalid last fed dates!](#last-fed-date-lfdlast_fed_date)
 
 Example:
-* `fish add n/Nemo s/Clown Fish lfd/04/04/2023 11:30 fi/2d0h tk/1` adds a new fish with the following details:
-  * Name: Nemo
-  * Species: Clown Fish
+* `fish add n/Carl s/Lion Fish lfd/04/04/2023 11:30 fi/2d0h tk/1` adds a new fish with the following details:
+  * Name: Carl
+  * Species: Lion Fish
   * Last fed date: 4th April 2023, 1130 am
   * Feeding interval: 2 days 0 hours
   * Tank: Tank with index 1
@@ -689,7 +689,7 @@ Parameters:
 
 Example:
 * There are 3 fishes, 'Nemo', 'Dory' and 'Marlin' in the tank with index 1. There is a fish named 'Crush' in the tank with index 2.
-Using `tank view 1` followed by `tank sort by/n tk/1` will result in the following fishes displayed in the fish panel in the order:
+Using `fish sort by/n tk/1` will result in the following fishes from tank 1 being displayed in the fish panel in the order:
   * 1 - 'Dory'
   * 2 - 'Marlin'
   * 3 - 'Nemo'
