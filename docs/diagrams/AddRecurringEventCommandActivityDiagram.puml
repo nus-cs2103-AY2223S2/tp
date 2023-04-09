@@ -1,0 +1,19 @@
+@startuml
+
+start
+:User executes command;
+
+if() then ([valid arguments])
+    if() then ([the event not in recurring event list\n or isolated event list])
+        :Add event in the addressBook;
+        :Update TimeMask in the RecurringEventList;
+    else([else])
+        endif
+
+else([else])
+    endif
+
+stop
+
+@enduml
+

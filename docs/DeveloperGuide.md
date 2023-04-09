@@ -488,6 +488,63 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
+
+### \[Developed\] Adding Recurring Event
+User can add recurring events. Adding a recurring event is almost similar to the adding isolated event except that it is implemented using `AddRecurringEventCommand`,
+`AddRecurringEventCommandParser` and `RecurringEventList`, `TimeMaksk`  classes.
+
+The `AddRecurringEventCommand` receives a recurring event to be added into the person's `RecurringEventList` and updates the `TimeMask` in the perons's `RecurringEventList`.
+
+#### Activity diagram
+The following activity diagram summarises what happens when a user executes an `event_create_recur` command:
+
+<img src="images/AddRecurringEventCommandActivityDiagram.png" width="300" />
+
+The recurring event list is fix to span over 7 days from Monday to Sunday, while the isolated events in the list may span over an infinite amount of days.
+Since there is only 7 days in the recurring event list, it would be guaranteed that the TimeMask will only have a maximum of 7 days. Therefore, updating the 
+TimeMask while adding a recurring event is possible and convenient for finding free time slots.
+
+### Sequence diagram
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call.
+
+<img src="images/AddRecurringEventCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command
+   `event_create_recur 1 ie/biking d/Monday 14:00 t/15:00`, it calls the `AddressBookParser` class to parse the
+   user command.
+2. Since the user command has the `event_create_recur` command word, it is a valid command. The `AddressBookParser` creates an
+   `AddRecurringEventCommandParser` to parse the user input.
+3. The `AddRecurringEventCommandParser` will checks if the command is valid through the `parse()` method.
+   If it parses the command successfully, `AddRecurringEventCommand` is created.
+4. The `AddRecurringEventCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `AddRecurringEventCommand` instance which add the recurring event to the requested
+   person's `RecurringEventList` and updates the `TimeMask` in the person's `RecurringEventList`.
+6. Execution of `AddRecurringEventCommand` results in a CommandResult created and returned to the LogicManager.
+
+#### Design consideration
+**Aspect: Concern while adding a new command**
+- Workflow must be consistent with other commands.
+
+**Aspect: Should we allow recurring event's duration to span over multiple days**
+
+* **Alternative 1:** Allows recurring events' duration to span over two or more days.
+    * Pros:
+        * Users can just add one recurring event instead of adding the recurring event multiple times.
+    * Cons:
+        * Harder to implement finding free time slots.
+      
+
+* **[Current implementation] Alternative 2:** Only allows recurring event to start and end on the same day.
+    * Pros:
+        * Easy implementation and will be easier to implement find free time slots.
+        * Having an event be fixed to one day is less prone to bugs
+    * Cons:
+        * There will be instances when users will have event that span over multiple days such as studying overnight 
+          from 23:00 to 01:00. Hence, it will reduce the user-friendliness if we restrict isolated events to be only one day long.
+
+
 ### \[Developed\] Export
 
 The export feature allows users to export a person's details to a json file. Groups and tags are not exported.

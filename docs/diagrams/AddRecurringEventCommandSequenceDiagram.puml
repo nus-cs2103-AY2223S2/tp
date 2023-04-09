@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddRecurringEventCommandParser" as AddRecurringEventCommandParser LOGIC_COLOR
+participant "re:AddRecurringEventCommand" as AddRecurringEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("event_create_recur 1 re/biking \n d/Monday f/14:00 t/15:00")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("event_create_recur\n 1 re/biking d/Monday f/14:00 t/15:00")
+activate AddressBookParser
+
+create AddRecurringEventCommandParser
+AddressBookParser -> AddRecurringEventCommandParser : parse(1 re/biking d/Monday \nf/14:00 t/15:00)
+activate AddRecurringEventCommandParser
+
+create AddRecurringEventCommand
+AddRecurringEventCommandParser -> AddRecurringEventCommand
+activate AddRecurringEventCommand
+
+AddRecurringEventCommand --> AddRecurringEventCommandParser
+deactivate AddRecurringEventCommand
+
+AddRecurringEventCommandParser --> AddressBookParser : re
+deactivate AddRecurringEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddRecurringEventCommandParser -[hidden]-> AddressBookParser
+destroy AddRecurringEventCommandParser
+
+AddressBookParser --> LogicManager : re
+deactivate AddressBookParser
+
+LogicManager -> AddRecurringEventCommand : execute()
+activate AddRecurringEventCommand
+
+
+AddRecurringEventCommand -> Model : addRecurringEvent(personToEdit, \neventToAdd)
+activate Model
+
+Model --> AddRecurringEventCommand
+deactivate Model
+
+AddRecurringEventCommand --> Model:updateFilteredPersonList(\nPREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model --> AddRecurringEventCommand
+deactivate Model
+
+create CommandResult
+AddRecurringEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddRecurringEventCommand
+deactivate CommandResult
+
+AddRecurringEventCommand --> LogicManager : result
+deactivate AddRecurringEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
