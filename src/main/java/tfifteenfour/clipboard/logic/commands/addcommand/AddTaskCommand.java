@@ -24,6 +24,7 @@ public class AddTaskCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New task added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the course";
+    public static final String MESSAGE_WRONG_PAGE = "Wrong page. Navigate to task page to add tasks";
 
     private final Task taskToAdd;
 
@@ -48,7 +49,7 @@ public class AddTaskCommand extends AddCommand {
         CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
-            throw new CommandException("Wrong page. Navigate to task page to add tasks");
+            throw new CommandException(AddTaskCommand.MESSAGE_WRONG_PAGE);
         }
 
         Group targetGroup = currentSelection.getSelectedGroup();
