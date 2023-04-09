@@ -527,7 +527,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delevent`, `delevent x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Deleting an event while event with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
+2. Deleting an event while events with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
 
     1. Prerequisites: Find all events with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple events in the list.
 
