@@ -689,7 +689,7 @@ Parameters:
 
 Example:
 * There are 3 fishes, 'Nemo', 'Dory' and 'Marlin' in the tank with index 1. There is a fish named 'Crush' in the tank with index 2.
-Using `tank view 1` followed by `fish sort by/n tk/1` will result in the following fishes displayed in the fish panel in the order:
+Using `fish sort by/n tk/1` will result in the following fishes from tank 1 being displayed in the fish panel in the order:
   * 1 - 'Dory'
   * 2 - 'Marlin'
   * 3 - 'Nemo'
