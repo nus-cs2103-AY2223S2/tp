@@ -782,7 +782,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 - [5.9 Tags](#59-tags)
   - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
   - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
-  - [5.9.3 Major Tags: `maj`](#593-major-tags-maj)
+  - [5.9.3 Major Tags: `maj/`](#593-major-tags-maj)
   - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 
 <div style="page-break-after: always"></div>
