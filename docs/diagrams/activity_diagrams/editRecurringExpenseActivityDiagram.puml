@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes "edrec" command;
+:"edrec" command is parsed;
+
+if () then ([at least one argument is present])
+    if () then ([arguments in valid format and index within range])
+        :Get RecurringExpenseManager instance to edit;
+        :Search category list for instance matching category name;
+        if () then ([matching instance found])
+            :Link matching category to RecurringExpenseManager;
+            :Update necessary attributes in RecurringExpenseManager;
+            :Display success message;
+        else ([else])
+            :Error message displayed specifying nonexistent category;
+        endif;
+    else ([else])
+        :Error message displayed specifying an error in the command format or index out of range;
+    endif
+else ([else])
+    :Error message displayed specifying no attributes given to edit;
+endif
+stop
+@enduml
