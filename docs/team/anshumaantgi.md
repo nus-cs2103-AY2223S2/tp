@@ -12,13 +12,13 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability add an event to Tins.
     * What it does: 
-      * Allows the user to add an event after selecting an internship.
+      * Allows the user to add an event after selecting an internship. ([#104](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/104))
     * Justification: This feature is vital for users to use Tins, as it ensures the users can add different event associated with their internship applications.
     * Highlights: It involved making a parser and command class that adhered with the current logical structure and made semantic sense to the user.
 
 * **New Feature**: Added the ability delete an event from Tins.
     * What it does:
-        * Allows the user to delete an event after selecting an internship.
+        * Allows the user to delete an event after selecting an internship. ([#129](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/129))
     * Justification: This feature is vital for users to use Tins, as it ensures the users can delete added events associated with their internship applications.
     * Highlights: It involved making a parser and command class that adhered with the current logical structure and made semantic sense to the user.
 
