@@ -303,7 +303,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 
 <img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 1.1</b> Architecture Diagram for the high-level design of the App
+    <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
 
@@ -331,7 +331,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 1.2</b> Sequence Diagram for the command <code>delete 1</code>
+    <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
 </div>
 <br>
 
@@ -344,7 +344,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 1.3</b> Class Diagram for Component Managers
+    <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
 <br>
 
@@ -358,13 +358,13 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <img src="images/UiClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 2.1</b> Class Diagram for UI Controllers
+    <b>Figure 4.2.1</b> Class Diagram for UI Controllers
 </div>
 <br>
 
 <img src="images/UiComponentClassDiagram.svg" style="width:90%;margin:0 5%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 2.2</b> Class Diagram for UI Components
+    <b>Figure 4.2.2</b> Class Diagram for UI Components
 </div>
 <br>
 
@@ -392,7 +392,7 @@ The `UI` component,
 
 <img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.1</b> Activity Diagram for UP and DOWN keys
+    <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
 </div>
 
 <br>
@@ -407,7 +407,7 @@ The above activity diagram does not include the mapping of the UP and DOWN keys 
 
 <img src="images/ModelClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1</b> Class Diagram for Model Components
+    <b>Figure 4.4.1</b> Class Diagram for Model Components
 </div>
 <br>
 
@@ -425,7 +425,7 @@ The `Model` component,
 
 <img src="images/PersonClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.2</b> Class Diagram for Person Components
+    <b>Figure 4.4.2</b> Class Diagram for Person Components
 </div>
 
 #### **Name**
@@ -478,7 +478,7 @@ objects which is then used elsewhere in the codebase.
 
 <img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.3</b> Class Diagram for classes in Time Package.
+    <b>Figure 4.4.3</b> Class Diagram for classes in Time Package.
 </div>
 
 #### **Day**
@@ -557,7 +557,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <img src="images/CommitmentClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4</b> Class Diagram for Commitment Components
+    <b>Figure 4.4.4</b> Class Diagram for Commitment Components
 </div>
 <br>
 
@@ -587,7 +587,7 @@ The `Timetable` represents the daily schedule of the user or contact.
 
 <img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.5</b> Class Diagram for Timetable and related classes.
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
 </div>
 
 <br>
@@ -619,7 +619,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.1</b> Class Diagram for Logic Components
+    <b>Figure 4.5.1</b> Class Diagram for Logic Components
 </div>
 <br>
 
@@ -672,7 +672,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.2</b> Activity Diagram for a typical <code>add</code> command
+    <b>Figure 4.5.2</b> Activity Diagram for a typical <code>add</code> command
 </div>
 
 #### **Edit Command**
@@ -723,7 +723,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/EditActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.3</b> Activity Diagram for a typical <code>edit</code> command
+    <b>Figure 4.5.3</b> Activity Diagram for a typical <code>edit</code> command
 </div>
 
 #### **Delete Command**
@@ -732,7 +732,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.4</b> Sequence Diagram for a typical <code>delete</code> command
+    <b>Figure 4.5.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
 <br>
 
@@ -770,7 +770,7 @@ The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing 
 
 <img src="images/TagActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
+    <b>Figure 4.5.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
 </div>
 <br>
 
@@ -800,7 +800,7 @@ Similar to the `tag` command, the `untag` command allows user to remove `ModuleT
 
 <img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
+    <b>Figure 4.5.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
 </div>
 <br>
 
@@ -839,13 +839,13 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 
 <img src="images/ViewParserSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+    <b>Figure 4.5.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
+    <b>Figure 4.5.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
 </div>
 
 #### **Find Command**
@@ -883,7 +883,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/FindActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.9</b> Activity Diagram for a typical <code>find</code> command
+    <b>Figure 4.5.9</b> Activity Diagram for a typical <code>find</code> command
 </div>
 
 
@@ -973,7 +973,7 @@ We cannot save the json file directly from the command, because the command only
 
 <img src="images/SaveSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.10</b> Sequence Diagram for a typical <code>save</code> command.
+    <b>Figure 4.5.10</b> Sequence Diagram for a typical <code>save</code> command.
 </div>
 
 #### **Load Command**
@@ -990,7 +990,7 @@ Similar to the Save Command, we pass the file path through a `LoadCommandResult`
 
 <img src="images/LoadSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.11</b> Sequence Diagram for a typical <code>load</code> command.
+    <b>Figure 4.5.11</b> Sequence Diagram for a typical <code>load</code> command.
 </div>
 
 #### **Meet Command**
@@ -1071,7 +1071,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.12</b> Class Diagram for Parser Components
+    <b>Figure 4.5.12</b> Class Diagram for Parser Components
 </div>
 <br>
 
@@ -1093,7 +1093,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 <img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.13</b> Class Diagram for Recommender Module
+    <b>Figure 4.5.13</b> Class Diagram for Recommender Module
 </div>
 <br>
 
@@ -1113,7 +1113,7 @@ How the `Recommender` Component works:
 
 <img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.14</b> Sequence Diagram for Recommender Module
+    <b>Figure 4.5.14</b> Sequence Diagram for Recommender Module
 </div>
 <br>
 
@@ -1124,7 +1124,7 @@ will be free so that a meetup could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.15</b> Activity Diagram for <code>TimingRecommender</code>
+    <b>Figure 4.5.15</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
 <br>
 
@@ -1173,7 +1173,7 @@ The process of getting a recommendation is as follows:
 
 <img src="images/StorageClassDiagram.svg" style="width:100%;margin:0 0%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 6.1</b> Class Diagram for Storage Components
+    <b>Figure 4.6.1</b> Class Diagram for Storage Components
 </div>
 <br>
 
