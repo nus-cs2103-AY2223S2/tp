@@ -51,7 +51,7 @@ public class EditCommandParserTest {
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
     private static final String MESSAGE_INVALID_INDEX =
-        String.format("Invalid index: Make sure index is an integer of at least 1.");
+        String.format("Invalid input: The person index is invalid or empty.");
     private EditCommandParser parser = new EditCommandParser();
 
     @Test

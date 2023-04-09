@@ -18,7 +18,7 @@ import seedu.address.logic.commands.DeleteCommand;
 public class DeleteCommandParserTest {
 
     private static final String MESSAGE_INVALID_INDEX =
-        String.format("Invalid index: Make sure index is an integer of at least 1.");
+        String.format("Invalid input: The person index is invalid or empty.");
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test

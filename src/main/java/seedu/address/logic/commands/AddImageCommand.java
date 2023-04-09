@@ -28,7 +28,7 @@ public class AddImageCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an image to the person identified "
             + "by the index number used in the last person listing.\n"
             + "Existing image will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a valid index) "
             + PREFIX_ADD_IMAGE + "[IMAGE_PATH]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADD_IMAGE + "/Users/user/pictures/johndoe.png";
     public static final String MESSAGE_SUCCESS = "Image Added";
