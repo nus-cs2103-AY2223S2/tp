@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=junyi00&breakdown=true)
 
-* **New Feature**: Added `viewc` and `viewo` commands and GUI changes for viewing a customer's and order's information in the information panel ([#28](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/28), [#92](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/92))
+* **New Feature**: Added `viewc` and `viewo` commands ([#28](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/28), [#92](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/92))
     * What it does: When the user uses `viewc` / `viewo` command or clicks on the customer / order in the list, the information panel will display the customer or order's information.
     * Justification: As there are many details to a customer or an order, a bigger view allows proper display of information for the user to read the information easily. 
     * Highlights: This allows for additional information to be shown such as an order history of a customer. This also sets up for other commands (e.g. `edito`, `markc`), to also display the customer or order in the information panel automatically.
@@ -22,8 +22,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added storage for `Order` ([#50](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/50), [#56](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/56))
     * What it does: Whenever an `Order` is created, updated or deleted, the application automatically saves order list into the local storage.
-    * Justification: Similar to how `Customer` data are saved, `Order` data is also saved. 
-    * Highlights: As an order is associated to a customer, the association needs to be saved as well. This required analysis for different design alternatives on the structure of storage.
+    * Justification: Similar to how `Customer` data are saved, `Order` data is saved as well so the data is lost on application close.
 
 * **New Feature**: Added Status / Progress History for `Order` ([#75](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/75))
     * What it does: Allows the user to view how an `Order` has progressed as the status changed.
@@ -42,6 +41,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
+        * Added `viewc` command [#82](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/82) 
         * Added and updated _Introduction_, _Tutorials_ & _Frequently Asked Questions_ [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
         * Updated language to be more user-friendly [#180](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/180)
         * Organised _Features_ & _Command Summary_ into sections for improved readability [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
