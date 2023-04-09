@@ -180,6 +180,12 @@ Format: `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate
 - If `COMPANY_NAME` or `JOB_TITLE` is empty in the form, they will retain the former value, but the `COMPANY_NAME` or `JOB_TITLE` in CLI command cannot be empty.
 - Other attribute can be left as empty string.
 
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/edit-internship-button.png" alt="Edit Internship" height = "25"/> button to edit an internship application.
+2. A popup window similar to the image below will appear. <br/>
+<img align="center" src = "images/ui/popups/edit-internship-popup.png" alt="Edit Internship Popup">
+3. You can fill in the fields accordingly and press the `Edit` button to execute the `edit` command.
+
 Examples:
 * `edit 1 q/Singapore citizen q/Pursuing CS degree` updates the qualification of the internship with first index to `Singapore citizen` and `Pursuing CS degree`.
 * `edit 2 n/LinkedIn j/Data Engineer` updates the second internship company name to `LinkedIn` and job title to `Data Engineer`.
@@ -313,6 +319,9 @@ Format: `delete_docs INDEX`
 Examples:
 * `delete_docs 1` deletes the documents for the 1st application in the list of applications.
 
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/delete-internship-button.png" alt="Delete Internship" height = "25"/> button to delete an internship application.
+
 ### Archive an internship application : `archive`
 
 Archives a specified application so that it would be hidden from the list of ongoing applications.
@@ -325,6 +334,9 @@ Format: `archive INDEX`
 Examples:
 * `archive 1` archives the 1st application in the list of applications.
 
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/archive-internship-button.png" alt="Archive Internship" height = "25"/> button to archive an internship application that is not archived.
+
 ### Unarchive an internship application : `unarchive`
 
 Unarchives a specified application that was previously archived so that it would be shown in the list of ongoing applications.
@@ -336,6 +348,9 @@ Format: `unarchive INDEX`
 
 Examples:
 * `unarchive 1` unarchives the 1st application in the list of applications.
+
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/archive-internship-button.png" alt="Archive Internship" height = "25"/> button to unarchive an internship application that is archived.
 
 ### Display a list of archived internship applications : `list_archived`
 
