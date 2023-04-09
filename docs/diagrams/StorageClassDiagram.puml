@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-package Storage{
+package "Storage" as StoragePackage{
 
 package "UserPrefs Storage" #F4F6F6{
 Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
@@ -15,29 +15,37 @@ Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
 package "DengueHotspotTracker Storage" #F4F6F6{
-Class "<<interface>>\nDengueHotspotTrackerStorage" as DengueHotspotTrackerStorage
-Class CsvDengueHotspotTrackerStorage
-Class CsvSerializableDengueHotspotTracker
-Class CsvAdaptedPerson
-Class CsvAdaptedVariant
+Class "<<interface>>\nDengueHotspotStorage" as DengueHotspotStorage
+Class CsvDengueHotspotStorage
 }
 
+package "Temporary Storage" #F4F6F6{
+Class SpecialisedStackForMemory
+Class "<<interface>>\nStackWithStorage" as StackWithStorage
+Class TemporaryMemory
+}
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+package Model{
+Class "<<interface>>\nReadOnlyDengueHotspotTracker" as ReadOnlyDengueHotspotTracker
+}
+
+Class HiddenOutside1 #FFFFFF
+Class HiddenOutside2 #FFFFFF
+HiddenOutside1 ..> Storage
+HiddenOutside2 ..> StackWithStorage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" DengueHotspotTrackerStorage
+StorageManager -up-> "1" DengueHotspotStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> DengueHotspotTrackerStorage
+Storage -right-|> DengueHotspotStorage
 
 CsvUserPrefsStorage .up.|> UserPrefsStorage
-CsvDengueHotspotTrackerStorage .up.|> DengueHotspotTrackerStorage
-CsvDengueHotspotTrackerStorage ..> CsvSerializableDengueHotspotTracker
-CsvSerializableDengueHotspotTracker --> "*" CsvAdaptedPerson
-CsvAdaptedPerson --> "*" CsvAdaptedVariant
+CsvDengueHotspotStorage .up.|> DengueHotspotStorage
+CsvDengueHotspotStorage .down..> ReadOnlyDengueHotspotTracker
 
+SpecialisedStackForMemory .up.|> StackWithStorage
+TemporaryMemory –up-|> SpecialisedStackForMemory
 @enduml
