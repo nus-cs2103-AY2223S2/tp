@@ -1315,7 +1315,7 @@ We utilised GUI tests from [AB4](https://github.com/se-edu/addressbook-level4/tr
 
 <img src="images/UiTestClassDiagram.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.1</b> Class Diagram for UI Tests
+    <b>Figure 5.5.1</b> Class Diagram for UI Tests
 </div>
 <br>
 
@@ -1324,13 +1324,13 @@ Note that `AllUITests` above refers to all UI Tests in `seedu.address.ui` except
 
 <img src="images/NodeHandleClassDiagram.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.2</b> Class Diagram for Node Handle
+    <b>Figure 5.5.2</b> Class Diagram for Node Handle
 </div>
 <br>
 
 <img src="images/StageHandleClassDiagram.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.3</b> Class Diagram for Stage Handle
+    <b>Figure 5.5.3</b> Class Diagram for Stage Handle
 </div>
 <br>
 
