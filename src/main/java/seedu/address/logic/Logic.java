@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -37,6 +38,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of persons
      */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Changes the list of filtered people
+     */
+    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Returns an unmodifiable view of backups
