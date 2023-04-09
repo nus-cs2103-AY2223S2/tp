@@ -1,0 +1,31 @@
+@startuml
+skinparam defaultTextAlignment center
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([missing arguments])
+    :Error: Invalid command format;
+stop
+else if () then ([invalid arguments])
+    :Error: Invalid arguments;
+stop
+else ([else])
+endif
+switch ()
+case ( [name and date are both present])
+    :Create
+    EventMatchesKeywordsAndDatePredicate;
+case ( [only name is present])
+    :Create
+    EventContainsKeywordsPredicate;
+case ( [else])
+    :Create
+    EventMatchesDatePredicate;
+endswitch
+:Update ObservableList with predicate;
+:Success message is returned;
+stop
+@enduml
