@@ -187,9 +187,9 @@ to prevent any messiness and also allows for future syncing with NUSMods.
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
-#### Note
+#### Extra Notes
 
-* If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
+* If said contact identifies himself as a gender that is two words or is hyphenated like "non-binary", you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
 ____________________________________________________________________________________________________________________
@@ -222,7 +222,7 @@ Use this command to favourite it so that you have easy access to it!
 
 #### Description
 
-`INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+`INDEX` refers to the index of the contact you wish to favourite in the current displayed list.
 
 #### Important Requirements
 `INDEX` must be a **positive integer** (must be greater than 0).
@@ -319,9 +319,9 @@ The second contact has the following tags `Friend`, `Amazing Coder`
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-#### Note
+#### Extra Notes
 
-* If said contact identifies himself as non-binary, you can save his `Gender` as `nonbinary`.
+* If said contact identifies himself as a gender that is two words or is hyphenated like "non-binary", you can save his `Gender` as `nonbinary`.
 
 [Back To Contents](#table-of-contents)
 
@@ -404,11 +404,14 @@ Use this command to expand and view more information about the selected contact.
 
 `select INDEX`
 
-#### Important requirements
+#### Description
 * `INDEX` refers to the index of the contact you wish to view more information on.
-    * `INDEX` must be a **positive integer** (must be greater than 0). 
 
-#### Example Usage
+#### Important requirements
+
+* `INDEX` must be a **positive integer** (must be greater than 0).
+
+#### Example Usages
 * `select 1` expands the details of the first contact in your list.
 * `select 4` expands the details of the fourth contact in your list.
 
@@ -427,14 +430,14 @@ Use this command to delete the specified contact from your NeoBook.
 `delete INDEX`
 
 #### Description
-`INDEX` refers to the index of the contact you wish to unfavorite in the current displayed list.
+`INDEX` refers to the index of the contact you wish to delete in the current displayed list.
 
 #### Important Requirements
 
 `INDEX` must be a **positive integer** and (must be greater than 0).
 
 
-#### Example Usage
+#### Example Usages
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
@@ -517,7 +520,20 @@ Want to keep track of current events?
 
 Use this command to add events into your Event Section of your NeoBook.
 
-Moreover, you can add 2 types of Events:
+#### Syntax
+
+`addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE`
+
+#### Description
+
+| Prefix   | Name of Field                 | Optional? |
+|----------|-------------------------------|-----------|
+| d        | Description of Event          | No        |
+| s        | Start Date and Time of Event  | No        |
+| e        | End Date and Time of Event    | No        |
+| r        | Recurrence Interval           | Yes       |
+
+You can add 2 types of Events:
 1. One Time Events
 2. Recurring Events (of various Intervals):
     * Daily Events
@@ -534,34 +550,27 @@ Accepted Intervals:
 4. Monthly
 5. Yearly
 
-#### Syntax
 
-`addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE`
 
 #### Important requirements
 
-* `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
+1) `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
     * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
     * `START DATE & START TIME` must be before `END DATE & END TIME`
-    *  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
-    *  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
-    *  `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
+    * If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+    * If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
+    * `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
         e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead.
-* `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
-    *  Event will be automatically added as a `One Time Event`.
+2) `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
+    * If unspecified, Event will be automatically added as a `One Time Event`.
 
-#### Example Usage
+#### Example Usages
 * `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
 * `addevent d/Catchup with John s/2023-03-30 1600 e/2023-03-30 1800 r/None` will add a One Time Event of Catchup with John that occurs from 1600 to 1800, on 2023-03-30.
 * `addevent d/Dinner with Family s/2023-03-30 1600 e/2023-03-30 1800` will add a One Time Event of Dinner with Family that occurs from 1600 to 1800, on 2023-03-30.
 
 
-| Prefix   | Name of Field                 | Optional? |
-|----------|-------------------------------|-----------|
-| d        | Description of Event          | No        |
-| s        | Start Date and Time of Event  | No        |
-| e        | End Date and Time of Event    | No        |
-| r        | Recurrence Interval           | Yes       |
+
 
 [Back To Contents](#table-of-contents)
 ____________________________________________________________________________________________________________________
@@ -577,9 +586,11 @@ Use this command to delete the specified event from your NeoBook.
 
 `delevent INDEX`
 
+#### Description
+`INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
+
 #### Important requirements
-* `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
-    * `INDEX` must be a **positive integer** (must be greater than 0).
+`INDEX` must be a **positive integer** (must be greater than 0).
 
 #### Example Usage
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
@@ -598,15 +609,9 @@ Use this command to edit the specified event in your NeoBook.
 
 `editevent INDEX PREFIX/PARAMETER...`
 
-#### Important requirements
+#### Description
+`INDEX` refers to the index of the event you wish to edit in the current displayed list.
 
-* `INDEX` refers to the index of the event you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer** (must be greater than 0).
-*  If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
-*  If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
-*  `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
-    e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead. 
-* At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
 |--------|-------------------------------|-----------|
@@ -615,7 +620,19 @@ Use this command to edit the specified event in your NeoBook.
 | e      | End Date and Time of Event    | Yes       |
 | r      | Recurrence Interval           | Yes       |
 
-Examples:
+#### Important requirements
+
+`INDEX` must be a **positive integer** (must be greater than 0).
+
+#### Extra Notes
+* If the year is not a Leap Year, inputting `29-02-YYYY` will get bumped down to `28-02-YYYY` for both `START DATE` and `END DATE`
+* If the month has only 30 days, inputting `31-MM-YYYY` will get bumped down to `30-MM-YYYY` for both `START DATE` and `END DATE`
+* `2400` is also accepted as an input for `START TIME` and `END TIME`, this will roll the date input by the user to the next day
+    e.g. Inputting `2023-03-10 2400` will be accepted and will be rolled over to `2023-03-11 0000` instead. 
+* At least one field must be provided.
+
+
+#### Example Usages
 *  `editevent 1 d/read book r/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
 *  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
@@ -634,12 +651,18 @@ to the event using this command!
 
 `tagpersonevent et/EVENT INDEX pt/NAME`
 
+#### Description
+The EVENT INDEX is the index of the event you want to tag the person to.
+
+NAME is the name of the person you want to tag to the event.
+
+
 #### Important requirements
-* The EVENT INDEX is the index of the event you want to tag the person to.
-* NAME is the name of the person you want to tag to the event.
-  * NAME is **case_sensitive**.
-  * NAME must be the name of a contact already registered in NeoBook
-Examples:
+1) NAME is **case_sensitive**.
+2) NAME must be the name of a contact already registered in NeoBook.
+
+
+#### Example Usages
 * Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
 `END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` 
 
@@ -650,7 +673,7 @@ Examples:
 ![img_1.png](images/TaggedEvent.png)
 
 
-_For more advanced users_
+#### For more advanced users
 * Be careful when directly editing the tagged contacts in `userdata.json`.
 It may cause the person to become unlinked from the event completely.
 
@@ -670,11 +693,13 @@ Untag their contacts from the event using this command!
 
 `untagpersonevent et/EVENT INDEX pt/NAME`
 
+#### Description
+The EVENT INDEX is the index of the event you want to tag the person to. 
+
+NAME is the name of the person you want to untag from the event.
 #### Important requirements
-* The EVENT INDEX is the index of the event you want to tag the person to.
-* NAME is the name of the person you want to tag to the event.
-    * NAME is **case_sensitive**.
-    * NAME must be the name of a contact already registered in NeoBook and
+1) NAME is **case_sensitive**.
+2) NAME must be the name of a contact already registered in NeoBook and
 tagged to that event.
 
 Examples:
@@ -687,7 +712,7 @@ Examples:
 
 ![img.png](images/UntaggedEvent.png)
 
-_For more advanced users_
+#### For more advanced users
 * Be careful when directly editing the tagged contacts in `userdata.json`.
   It may cause the person to become unlinked from the event completely.
 
@@ -708,10 +733,14 @@ _For more advanced users_
 ## User Features
 ____________________________________________________________________________________________________________________
 
+### Introduction
 
 The user features are reflected under the 'Me' tab (tab 3).
 
 Here, you can edit personal information about yourself, the user, which can be used in future features such streamlined contact exchanging.
+
+____________________________________________________________________________________________________________________
+
 
 ### Editing the details of the user : `edituser`
 
@@ -723,9 +752,8 @@ Use this command to edit your details easily!
 
 `edituser PREFIX/PARAMETER...`
 
-#### Important requirements
 
-* At least one field must be provided.
+#### Description
 
 For the following fields, they are considered a `FieldGroup`.
 * Modules
@@ -754,12 +782,18 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
 
+#### Important requirements
 
-More examples:
+* At least one field must be provided.
+
+#### Example Usages
 *  `edituser p/91234567 e/johndoe@example.com` Edits the user's phone number and email address to be `91234567` and `johndoe@example.com` respectively.
 *  `edituser n/Betsy Crower t/` Edits the user's name to be `Betsy Crower` and clears all existing tags.
 
 [Back To Contents](#table-of-contents)
+
+____________________________________________________________________________________________________________________
+
 ### User Command Summary
 
 | Action       | Format, Examples                                                                        |
@@ -785,9 +819,11 @@ Use this command to navigate to the specified tab.
 
 `tab INDEX`
 
-#### Important requirements
+#### Description
 * `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
-    * `INDEX` must be 1, 2, or 3.
+
+#### Important requirements
+* `INDEX` must be 1, 2, or 3.
 * `tab` refers to the literal word to be typed into the command line, not the key on your keyboard.
 
 #### Example Usage
