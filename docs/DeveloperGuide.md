@@ -262,7 +262,7 @@ Step 3. After which the parser creates the respective sort command which is exec
 Step 4. On execution of the sort command, the database of contacts is sorted accordingly using the Java `Collections` library and the new list is displayed.
 
 The following sequence diagram shows how the filter operation works:
-![FilterSequenceDiagram](images/filterSeqDiag.png) #TODO
+![FilterSequenceDiagram](images/filterSeqDiag.png)
 
 _Notes:_
 _In our example, `sort size asc` sorts the list of contacts by ascending potential business size,
@@ -342,7 +342,7 @@ _Notes:_
 
 1. Sometimes users may forget if a contact they have in NBF is marked or unmarked, and proceed to mark or umark the contact again respectively. This may cause the contact to unmarked / marked, opposite of the user's intention. Hence an error message is shown, informing the user that the spcified contact is already marked or unmarked, and the original marking of the specified contact does not change.
 2. When adding a new contact into NBF using `add`, the new contact is marked as requiring follow-ups by default. This is so that the user does not get overwhelmed with all the fields that need to be filled in with the `add` command. Furthermore, it doesn't make sense for new contacts to not need any follow-ups in the general case.
-3. Intead of using `unmark`, the `mark` command is implemented with an addition field `m/ YES/NO` to indicate to mark or to unmark. This is to simplify the model by using 1 command to do both things.
+3. Instead of using `unmark`, the `mark` command is implemented with an addition field `m/ YES/NO` to indicate to mark or to unmark. This is to simplify the model by using 1 command to do both things.
 
 #### Why this implementation
 
@@ -751,5 +751,3 @@ testers are expected to do more *exploratory* testing.
    1. Expected: Summary window pops up.
 2. Test case: click 'Summary' -> 'Summary'
    1. Expected: Summary window pops up.
-
-
