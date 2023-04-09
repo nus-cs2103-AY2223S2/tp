@@ -960,8 +960,8 @@ The current `edit` feature allows editing all fields except for remarks and the 
 
 ### Autocomplete
 #### Feature flaw
-Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/STUDENT_NAME` input which
-leads users to believe that their input (without `n/STUDENT_NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/STUDENT_NAME`.
+Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
+leads users to believe that their input (without `n/NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/NAME`.
 
 ### Find/Filter
 #### Feature flaw
