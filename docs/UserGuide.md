@@ -18,7 +18,7 @@ easier way to set up proper communication channels.
     * [Help command](#help-command-help)
     * [Add an image for contacts](#add-an-image-for-contacts-add-image)
     * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
-    * [Quick import admin contacts](#quick-import-for-admin-contacts-import)
+    * [Quick import admin contacts](#quick-import-for-faculty-contacts--import)
     * [Exit the program](#exit-the-program-exit)
     * [Editing the data file](#editing-the-data-file)
 * [Command summary](#command-summary)
@@ -281,9 +281,9 @@ It is *possible* but **not recommended** for users to manually edit any of the J
 | **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                        |
 | **List**         | `list`                                                                                                                                                                                                                        |
 | **Help**         | `help`                                                                                                                                                                                                                        |
-| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                          |
-| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                             |                                                                                                                       |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                       |
+| **Add-Image**    | `add-image INDEX ai/PATH-TO-IMAGE` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                            |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                             |
+| **Import**       | `import FACULTY` <br> e.g.,  `import soc, import chs`                                                                                                                                                                         |
 | **Exit**         | `exit`                                                                                                                                                                                                                        |
 
 [Back to top](#top)
