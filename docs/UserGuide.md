@@ -116,6 +116,11 @@ Adds a tutorial to the TA’s schedule.
 
 Format: `touch Tutorial/NAME [-date dd/MM/yyyy HH:mm]`
 
+{% include important.html content="
+
+TrAcker only accepts the following 24-hour date format.
+" %}
+
 :information_source: TrAcker only accepts the following 24-hour date format.
 ```
 date format: dd/MM/yyyy HH:mm
@@ -696,6 +701,7 @@ Examples:
          </ul>
       </td>
    </tr>
+   <tr>
       <td><strong>Sort Students</strong>
       </td>
       <td><code>sort-student GROUP METRIC SORTING_ORDER</code>
