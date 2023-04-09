@@ -2,7 +2,6 @@ package expresslibrary.logic;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static expresslibrary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static expresslibrary.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static expresslibrary.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static expresslibrary.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static expresslibrary.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -58,8 +57,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deletePersonCommand = "deletePerson 9";
+        assertCommandException(deletePersonCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,8 +78,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddPersonCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
@@ -153,8 +151,8 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
         // will fix later
-        //assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
-        //assertEquals(expectedModel, model);
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertEquals(expectedModel, model);
     }
 
     /**
