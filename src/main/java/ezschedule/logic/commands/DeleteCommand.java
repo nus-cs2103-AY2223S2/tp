@@ -35,7 +35,6 @@ public class DeleteCommand extends Command {
     public String commandWord() {
         return COMMAND_WORD;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -47,14 +46,15 @@ public class DeleteCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(
                         String.format(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, targetIndex.getZeroBased() + 1));
-            } else {
-                model.clearRecent();
-                model.addRecentCommand(this);
-                Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
-                model.deleteEvent(eventToDelete);
-                model.addRecentEvent(eventToDelete);
-                feedback.insert(0, eventToDelete.toString());
             }
+        }
+        model.clearRecent();
+        for (Index targetIndex: targetIndexes) {
+            model.addRecentCommand(this);
+            Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteEvent(eventToDelete);
+            model.addRecentEvent(eventToDelete);
+            feedback.insert(0, eventToDelete.toString());
         }
         feedback.insert(0, MESSAGE_DELETE_EVENT_SUCCESS);
         return new CommandResult(feedback.toString());

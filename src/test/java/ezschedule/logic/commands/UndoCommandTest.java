@@ -86,7 +86,7 @@ public class UndoCommandTest {
         Command deleteCommand = new DeleteCommand(targetIndexes);
         model.addRecentCommand(deleteCommand);
         assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
-                        deleteCommand.commandWord()),
+                deleteCommand.commandWord()),
                 expectedModel);
     }
     @Test
@@ -110,7 +110,7 @@ public class UndoCommandTest {
             break;
         }
         assertCommandSuccess(new UndoCommand(), model, String.format(UndoCommand.MESSAGE_UNDONE_SUCCESS,
-                        recurCommand.commandWord()),
+                recurCommand.commandWord()),
                 expectedModel);
     }
     @Test
