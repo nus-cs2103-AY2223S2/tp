@@ -18,9 +18,9 @@ Given below are my contributions to the project.
 * **New Feature**: Changed most of bookmark data to be optional
   * What it does: allows the user to omit certain bookmark data when adding bookmarks
   * Justification: many fields that a bookmark can contain may not be required for bookmarking tasks. For example, some users may not care about the author of a book. Hence, it is more convenient for the user if only certain fields were made compulsory.
-  * Highlights: although it seemed like a simple task, there were many issues that arose when trying to make a subset of fields in a bookmark optional. Most of these issues were due to the fact that we inherited most of AB3's code with MyLib. In AB3, all the fields in a Person object were compulsory, leading to these issues:
-    * When creating a Bookmark class to convert from AB3 to MyLib, we essentially modified the Person class to hold the data we wanted to have in a Bookmark rather than its original member variables. While doing so, we let MyLib inherit all the old test cases for the Person class from AB3. The inherited test cases expect all the fields in a bookmark to be compulsory. I needed to track down and update these test cases, as well as the sample test data they were using.
-    * When loading the data for MyLib from json, the conversion from json to a `Bookmark` object expects the fields to be present and non-null, else an exception will be thrown. I needed to modify JsonAdaptedBookmark and its dependencies to accept a bookmark where optional fields can be empty.
+  * Highlights:  many issues arose due to the fact that we inherited most of AB3's code, where all the fields in a Person object were compulsory.
+    * The Bookmark class was created by modifying the Person class. It inherited all of Person's test cases which expects all fields to be compulsory. These test cases needed to be tracked down, updated or deleted. 
+    * When loading the data for MyLib from json, the conversion from json to a `Bookmark` object expects the fields to be present and non-null. Needed to modify the conversion from json to a Bookmark object to accept optional fields that are not present.
 
 * **New Feature**: Added a `Progress` field to a bookmark
   * What it does: allows a bookmark to track a user's progress with regards to the book being bookmarked.
@@ -31,6 +31,8 @@ Given below are my contributions to the project.
   * Added documentation for Introduction section, which gives a brief overview of what to expect from MyLib.
   * Added documentation for Getting Started section, which gives a step-by-step guide on how to download and start using MyLib.
   * Added documentation for About User Guide section, which informs the reader on the objective of the user guide and how to use it.
+  * Added documentation for Key Definitions section to explain what a bookmark, genre and a tag is.
+  * Added documentation for Adding a Bookmark in Commands section.
 
 * **Contributions to DG**:
   * Added a detailed description of the implementation of the `Progress` class and its related classes.
@@ -40,4 +42,3 @@ Given below are my contributions to the project.
   * Arranged and lead the discussion for project meetings.
   * Lead the brainstorming and confirmation of features for each iteration.
   * Set up most of the Github issues that need to be addressed for each milestone.
-* to be added soon
