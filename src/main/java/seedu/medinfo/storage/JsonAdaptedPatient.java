@@ -89,8 +89,8 @@ class JsonAdaptedPatient {
         if (ward == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Ward.class.getSimpleName()));
         }
-        if (!Ward.isValidWard(ward)) {
-            throw new IllegalValueException(Ward.MESSAGE_CONSTRAINTS);
+        if (!Ward.isValidWardName(ward)) {
+            throw new IllegalValueException(WardName.MESSAGE_CONSTRAINTS);
         }
         final WardName modelWard = new WardName(ward);
 

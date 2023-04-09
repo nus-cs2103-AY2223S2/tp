@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.medinfo.commons.exceptions.DataConversionException;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.ReadOnlyUserPrefs;
 import seedu.medinfo.model.UserPrefs;
@@ -24,7 +25,7 @@ public interface Storage extends MedInfoStorage, UserPrefsStorage {
     Path getMedInfoFilePath();
 
     @Override
-    Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException;
+    Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException, CommandException;
 
     @Override
     void saveMedInfo(ReadOnlyMedInfo addressBook) throws IOException;

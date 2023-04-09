@@ -94,8 +94,8 @@ public class ParserUtil {
     public static WardName parseWardName(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
-        if (!Ward.isValidWard(trimmedWard)) {
-            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        if (!WardName.isValidWardName(trimmedWard)) {
+            throw new ParseException(WardName.MESSAGE_CONSTRAINTS);
         }
         return new WardName(trimmedWard);
     }
@@ -124,7 +124,7 @@ public class ParserUtil {
     public static Discharge parseDischarge(String discharge) throws ParseException {
         requireNonNull(discharge);
         String trimmedDischarge = discharge.trim();
-        if (!Discharge.isValidFutureDischarge(trimmedDischarge)) {
+        if (!Discharge.isValidDischarge(trimmedDischarge)) {
             throw new ParseException(Discharge.MESSAGE_CONSTRAINTS);
         }
         return new Discharge(trimmedDischarge);

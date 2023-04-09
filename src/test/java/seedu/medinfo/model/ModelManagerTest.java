@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.medinfo.commons.core.GuiSettings;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.patient.NameContainsKeywordsPredicate;
 import seedu.medinfo.testutil.MedInfoBuilder;
 
@@ -84,7 +85,10 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInMedInfo_returnsTrue() {
-        modelManager.addPatient(ALEX);
+        try {
+            modelManager.addPatient(ALEX);
+        } catch (CommandException e) {
+        }
         assertTrue(modelManager.hasPatient(ALEX));
     }
 

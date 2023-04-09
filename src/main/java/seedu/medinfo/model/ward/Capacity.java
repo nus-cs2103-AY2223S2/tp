@@ -4,11 +4,12 @@ package seedu.medinfo.model.ward;
  * Represents the capacity and occupancy of a ward.
  */
 public class Capacity {
-    private static final int MIN_CAPACITY = 0;
+    private static final int MIN_CAPACITY = 1;
     private static final int MAX_CAPACITY = 1000;
 
     public static final String MESSAGE_CONSTRAINTS = "Capacity should be a"
-            + " positive integer (less than " + Integer.valueOf(MAX_CAPACITY) + ")"
+            + " positive integer (at least " + Integer.valueOf(MIN_CAPACITY) + " and less than "
+            + Integer.valueOf(MAX_CAPACITY) + ")"
             + " and it should not be blank";
 
     private int value;

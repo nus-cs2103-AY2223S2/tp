@@ -5,6 +5,7 @@ import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;

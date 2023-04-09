@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.ward.Ward;
@@ -81,14 +82,18 @@ public class TypicalPatients {
      */
     public static MedInfo getTypicalMedInfo() {
         MedInfo ab = new MedInfo();
+        try {
+            for (Ward ward : getTypicalWards()) {
+                ab.addWard(ward);
+            }
 
-        for (Ward ward : getTypicalWards()) {
-            ab.addWard(ward);
+            for (Patient patient : getTypicalPatients()) {
+                ab.addPatient(patient);
+            }
+        } catch (CommandException e) {
+
         }
 
-        for (Patient patient : getTypicalPatients()) {
-            ab.addPatient(patient);
-        }
         return ab;
     }
 
