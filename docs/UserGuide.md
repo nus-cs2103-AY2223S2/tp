@@ -59,7 +59,7 @@ By students, for advisors
 
 #### 1. Ensure you have Java `11` or above installed in your Computer.
 * To check if you have Java `11` installed, follow these steps
-* `java -version` <br> 
+* `java -version` <br>
 * You should have the following output:
 ![Java-version](images/java-version.png)
 
@@ -180,7 +180,7 @@ Thus following commands can't be called to Undo/Redo
 
 ### Redo previous command : `redo`
 
-Redo one previous command and restore that version of clientele. 
+Redo one previous command and restore that version of clientele.
 
 Format: `redo`
 
@@ -277,7 +277,7 @@ Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
   and johndoe@example.com respectively.
- 
+
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
 If you accidentally edited a client's information, you can use the <code>undo</code>  command to retrieve the previous information.
 </div>
@@ -310,7 +310,7 @@ Examples:
 ![result for 'find alex david'](images/findalexdavid.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>WARNING:</b>
-`find` gives you a temporary view of the filtered client list. Calling `clear` after `find` will clear the entire client list <b>NOT</b> the filtered client list. You can use `undo` if you accidentally cleared the entire client list. 
+`find` gives you a temporary view of the filtered client list. Calling `clear` after `find` will clear the entire client list <b>NOT</b> the filtered client list. You can use `undo` if you accidentally cleared the entire client list.
 </div>
 
 ### Deleting a client : `delete`
@@ -425,7 +425,7 @@ You will then be able to view the policies on the right side under 'Policies'
 
 ### Editing a policy : `editPolicy`
 
-To edit one of your specified policy from one of your client in your clientele. 
+To edit one of your specified policy from one of your client in your clientele.
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
 
@@ -448,7 +448,7 @@ If you accidentally edit a policy, you can use the <code>undo</code>  command to
 
 ### Deleting a policy `deletePolicy`
 
-To delete one of your specified policy from one of your clientale. 
+To delete one of your specified policy from one of your clientale.
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 

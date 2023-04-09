@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/tituswe.md)]
 
 * Role: Developer (Co-team lead)
-* Responsibilities: Front-end, UI. In charge of `select` command. Assigns gitHub issues, took charge of handling milestones and managed merged requests. 
+* Responsibilities: Front-end, UI. In charge of `select` command. Assigns gitHub issues, took charge of handling milestones and managed merged requests.
 
 ### Ang Yuze
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/yzmunchmunch)]
 [[portfolio](team/yzmunchmunch.md)]
 
-* Role: Developer    
-* Responsibilities: In charge of `Policy` class. 
+* Role: Developer
+* Responsibilities: In charge of `Policy` class.
 
 ### Pang Rui Wei
 
@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/pangrwa)]
 [[portfolio](team/pangrwa.md)]
 
-* Role: Developer (Co-team lead) 
+* Role: Developer (Co-team lead)
 * Responsibilities: Back-end, storage. In charge of `deletePolicy`, `editPolicy`, `addApt`, `deleteApt` commands. In charge of User Guide and Developer Guide. Handles gitHub releases and managed merged requests.
 
 ### Lu Chenyu
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/adam07018.md)]
 
 * Role: Developer
-* Responsibilities: In charge of `undo`, `redo`, `sortClientEmail`, `sortClientName`, `sortClientPhone` commands. 
+* Responsibilities: In charge of `undo`, `redo`, `sortClientEmail`, `sortClientName`, `sortClientPhone` commands.
 
 ### Anunaya Joshi
 
