@@ -7,7 +7,9 @@ participant ":FindCommandNamePredicate" as FindCommandNamePredicate LOGIC_COLOR
 participant ":FindCommandTagPredicate" as FindCommandTagPredicate LOGIC_COLOR
 end box
 
-group sd FindCommandPersonPredicate inner working
+skinparam sequenceReferenceBackgroundColor #FFC6C6
+
+group sd Inner working
     create FindCommandNamePredicate
     FindCommandPersonPredicate-> FindCommandNamePredicate : FindCommandNamePredicate("alex")
     activate FindCommandNamePredicate

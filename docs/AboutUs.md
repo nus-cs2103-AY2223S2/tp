@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `socketnus[at]gmail.com`
 
 ## Project team
 
@@ -34,7 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/dillongoh.png" width="200px">
 
-[[github](http://github.com/dillongoh)] [[portfolio](team/dillongoh.md)]
+[[github](https://github.com/dillongoh)]
+[[portfolio](team/dillongoh.md)]
 
 * Role: Developer
 * Responsibilities: Development
@@ -44,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/huanghao1998.png" width="200px">
 
-[[github](http://github.com/huanghao1998)]
+[[github](https://github.com/huanghao1998)]
 [[portfolio](team/huanghao1998.md)]
 
 * Role: Developer
@@ -55,7 +56,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/nus-jeff.png" width="200px">
 
-[[github](http://github.com/nus-jeff)]
+[[github](https://github.com/nus-jeff)]
 [[portfolio](team/nus-jeff.md)]
 
 * Role: Developer

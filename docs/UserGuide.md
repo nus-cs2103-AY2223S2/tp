@@ -371,13 +371,13 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
     * not exceed 100 characters.
     * e.g `r/project_1`.
 * Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
-    * e.g `d/ 30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
+    * e.g `d/30/03/22-2045` would be **30th March 2022, 8:45 p.m.**
 * A project is considered to be the same if it has the same project name **(case-insensitive)**.
 
 <div style="page-break-after: always;"></div>
 
 Examples:
-* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`
+* `addpj n/test proj h/t-proj r/test_proj d/30/03/22-2045`
 <br/><br/>
   <p align="center"><img src="images/addpjResult.png" width="450"/></p>
   <p align="center">
