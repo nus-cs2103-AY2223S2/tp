@@ -439,6 +439,8 @@ It displays income earned on the current day, week, month, and lifetime.
 ### Features
 The displayed income is based on the athlete's pay rate per hour and the duration of the session(s) the athletes belong to.<br>
 An athlete only contributes to your income if they are marked as present.
+<br>
+![IncomeAnalytics](images/IncomeAnalytics.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

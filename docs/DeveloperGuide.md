@@ -66,6 +66,13 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
+How the Logic component works during the user's interaction with the Calendar:
+![Structure of the Calendar Logic](images/calendarLogic.png)
+
+
+CalendarLogic listens to any changes in Model's filteredSessionList, which contains different Sessions, upon interaction with the Calendar Ui.
+CalendarLogic will then update the corresponding Calendar components in Ui that are dependent on these CalendarEvents.
+
 The sections below give more details of each component.
 
 ### UI component

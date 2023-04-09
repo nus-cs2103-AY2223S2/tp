@@ -3,61 +3,58 @@ layout: page
 title: Oliver Loo's Project Portfolio Page
 ---
 
-## **Project: SportSync**
+## Project: SportSync
 
 SportSync is a desktop address book application used for coaching student athletes. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
-Given below are my contributions to the project.
+### New Features
 
-* **New Feature**:
-* ### Session function [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/76)
+#### Filtering based on tags function [\#31](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/31)
 
-Added the ability to sort the contact list.
+- Implemented the ability to filter athletes based on tags assigned to them.
+- Justification: This feature enables users to quickly search for a specific group of athletes while facilitating better organization.
+- Highlight: Required a solid understanding of how tags and the filtered person list work.
 
-* **What it does:** Allows the creation and deletion of session object and enable scheduling of session with athletes.
-* **Justification:** This feature provides scheduling, a primary function of SportsSync for coaches to arrange session with their athletes.
-* **Highlights:** Implementing this feature involved understanding general architecture and relationship between all classes.
+#### Scheduling of Session [\#69](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/69)
 
-### Mark/Unmark function [\#50](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/50)
+- Added the ability to schedule sessions, create and delete sessions, and add and delete athletes from a session.
+- Justification: This feature enables coaches to arrange sessions with their athletes, which is the primary function of SportSync.
+- Highlight: Involved understanding the general architecture and relationship between all classes.
 
-Added the ability to undo and redo previously entered commands.
+#### Mark/Unmark function [\#75](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/75)
 
-* **What it does:** Allows each student in the addressbook to be mark and unmarked.
-* **Justification:** This feature enables users to calculate their earnings more accurately since athletes only pay for training if they attend.
-* **Highlights:** Implementing this feature required understanding the right data structures to use, e.g. a HashMap to store the attendance field.
+- Added the ability to take attendance of an athlete in a session.
+- Justification: This feature enables users to track the attendance of participating athletes in every session.
+- Highlight: Required understanding the right data structures to use, such as a HashMap to store the attendance field.
 
+#### Basic UI for Session List Panel [\#76](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/76)
 
-### Add tag/Remove tag function [\#50](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/87)
+- Implemented the baseline UI for a session list panel.
+- Justification: This feature enables users to view all sessions and their specific details, making it easier to plan and organize them.
+- Highlight: Involved understanding the existing UI structure of the Person List Panel.
 
-Added the ability to undo and redo previously entered commands.
+### Enhancements to Existing Features
 
-* **What it does:** Allows users to add and remove tags, creating a grouping functionality in a sense.
-* **Justification:** This feature provides greater convenience to users who would simply like to add and remove a single tag. 
-* **Highlights:** Implementing this feature involved a good understanding of the already implemented edit-command.
+#### Add tag/Remove tag function [\#87](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/87)
 
+- Added the ability to add and remove tags from an existing athlete.
+- Justification: This feature provides greater convenience to users who would like to add or remove a single tag.
+- Highlight: Involved a good understanding of the already-implemented edit-command.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Olive&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Oliverloo0909&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+### Code Contributions
 
-* **Project management**:
-* Helped with debugging and testing the app to ensure correct functionality.
-* Participated in key team discussions to decide on direction of project.
-* Regularly reviewed and merged pull requests from other team members.
+Check out my contributions on [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Olive&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Oliverloo0909&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
+### Project Management
 
-* **Enhancements to existing features**:
+- Assisted in debugging and testing the application to ensure it performs accurately.
+- Took part in crucial team discussions to determine the project's direction.
+- Routinely examined and incorporated pull requests submitted by other team members.
 
-* **Documentation**:
-    * User Guide:
-    * Developer Guide:
+##**Documentation**:
+* About Us: [\#12](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/20) [\#157](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/157)
+* User Guide: [\#91](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/91) [\#98](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/98)
+* Developer Guide: [\#52](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/52)
 
-* **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#1](https://github.com/nus-cs2103-AY2223S2/ip/pull/268/files/4ab762fcdf788b39ccd9a54756e40336b1284ef4), [\#2](https://github.com/nus-cs2103-AY2223S2/ip/pull/236/files/c28028a6dfb59dee69061e00e77305dad24c2931)
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library * to the project ([\#42]())
-
-* _{you can add/remove categories in the list above}_
-
+##**Community**:
+* PRs reviewed (with non-trivial review comments): [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/29)
