@@ -138,6 +138,9 @@ public class ParserUtil {
     public static Education parseEducation(String education) throws ParseException {
         requireNonNull(education);
         String trimmedEducation = education.trim();
+        if (trimmedEducation.isEmpty()) {
+            return null;
+        }
         if (!Education.isValidEducation(trimmedEducation)) {
             throw new ParseException(Education.MESSAGE_CONSTRAINTS);
         }
