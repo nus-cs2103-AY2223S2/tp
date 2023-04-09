@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.student.Exam;
-import seedu.address.model.student.Lesson;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.student.Lesson;
 
 class JsonAdaptedLessonTest {
     private final String validTitle = "valid title";
@@ -33,13 +33,13 @@ class JsonAdaptedLessonTest {
     }
 
     @Test
-    public void toModelType_CheckReturnedLessonEqualsOriginal_returnsTrue() throws Exception {
+    public void toModelType_checkReturnedLessonEqualsOriginal_returnsTrue() throws Exception {
         Lesson returnedValidLesson = validJsonLesson.toModelType();
         assertEquals(returnedValidLesson, validLesson);
     }
 
     @Test
-    public void toModelType_CheckReturnedLessonFields_success() throws Exception {
+    public void toModelType_checkReturnedLessonFields_success() throws Exception {
         JsonAdaptedLesson adaptedHomework = new JsonAdaptedLesson(validLesson);
         assertEquals(adaptedHomework.getTitle(), validLesson.getTitle());
         assertEquals(adaptedHomework.getStartTime(), validLesson.getStartTime());

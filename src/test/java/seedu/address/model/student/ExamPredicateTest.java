@@ -1,10 +1,12 @@
 package seedu.address.model.student;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ExamPredicateTest {
     private final String validExamName = "valid name";
@@ -12,7 +14,7 @@ class ExamPredicateTest {
     private final Exam validExam = new Exam(validExamName, LocalDateTime.now(), LocalDateTime.now(), null,
             null);
     private final Exam anotherExam = new Exam("another name", LocalDateTime.now(), LocalDateTime.now(),
-            null,null);
+            null, null);
 
     @Test
     public void constructor_validParams_success() throws Exception {
