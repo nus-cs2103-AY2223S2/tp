@@ -13,10 +13,10 @@ import seedu.address.logic.commands.MarkCommand;
 public class MarkCommandParserTest {
     private MarkCommandParser parser = new MarkCommandParser();
 
-    //@Test
-    //public void parse_validArgs_returnsMarkCommand() {
-    //    assertParseSuccess(parser, "1", new MarkCommand(INDEX_FIRST_PET));
-    //}
+    @Test
+    public void parse_validArgs_returnsMarkCommand() {
+        assertParseSuccess(parser, "1", new MarkCommand(INDEX_FIRST_PET));
+    }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
