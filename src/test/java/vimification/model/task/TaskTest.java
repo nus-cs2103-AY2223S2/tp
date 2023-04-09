@@ -2,6 +2,8 @@ package vimification.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import java.util.Set;
@@ -13,7 +15,7 @@ public class TaskTest {
     void testRobustConstructor() {
         Task task = new Task("GEX Essay", null, Status.NOT_DONE, Priority.NOT_URGENT);
         assertEquals(task.getTitle(), "GEX Essay");
-        assertEquals(task.getDeadline(), null);
+        assertNull(task.getDeadline());
         assertEquals(task.getStatus(), Status.NOT_DONE);
         assertEquals(task.getPriority(), Priority.NOT_URGENT);
         assert task.getLabels().isEmpty();
@@ -23,7 +25,7 @@ public class TaskTest {
     void testSimpleConstructor() {
         Task task = new Task("GEX Essay");
         assertEquals(task.getTitle(), "GEX Essay");
-        assertEquals(task.getDeadline(), null);
+        assertNull(task.getDeadline());
         assertEquals(task.getStatus(), Status.NOT_DONE);
         assertEquals(task.getPriority(), Priority.UNKNOWN);
         assert task.getLabels().isEmpty();
@@ -41,9 +43,9 @@ public class TaskTest {
     void testDeleteDeadline() {
         Task task = new Task("Eat Vitamin C");
         task.setDeadline(LocalDateTime.of(2023, 04, 11, 00, 00));
-        assertNotEquals(task.getDeadline(), null);
+        assertNotNull(task.getDeadline());
         task.deleteDeadline();
-        assertEquals(task.getDeadline(), null);
+        assertNull(task.getDeadline());
     }
 
     @Test
@@ -106,16 +108,18 @@ public class TaskTest {
 
     @Test
     void testAddLabel() {
-        Task task = new Task("GEX Essay");
+        Task task = new Task("ES2660 Essay");
         task.addLabel("academic");
-        task.addLabel("GEX1001");
+        task.addLabel("ES2660");
         assert task.containsLabel("academic");
-        assert task.containsLabel("GEX1001");
+        assert task.containsLabel("ES2660");
 
         Set<String> labels = task.getLabels();
+        assert !labels.isEmpty();
         assert labels.size() == 2;
         assert labels.contains("academic");
-        assert labels.contains("GEX1001");
+        assert !labels.contains("ES2660");
+        assert labels.contains("es2660");
     }
 
     @Test
@@ -183,26 +187,22 @@ public class TaskTest {
     @Test
     void testIsDateAfter() {
         Task task = new Task("Rehearse for concert");
-        assertEquals(task.getDeadline(), null);
+        assertNull(task.getDeadline());
         assert !task.deadlineIsAfter(LocalDateTime.now());
         task.setDeadline(LocalDateTime.of(2023, 04, 11, 00, 00));
-        assertNotEquals(task.getDeadline(), null);
-        if (task.getDeadline() != null) {
-            assert task.deadlineIsAfter(LocalDateTime.of(2023, 04, 10, 00, 00));
-            assert !task.deadlineIsAfter(LocalDateTime.of(2023, 04, 12, 00, 00));
-        }
+        assertNotNull(task.getDeadline());
+        assert task.deadlineIsAfter(LocalDateTime.of(2023, 04, 10, 00, 00));
+        assert !task.deadlineIsAfter(LocalDateTime.of(2023, 04, 12, 00, 00));
     }
 
     @Test
     void testIsDateBefore() {
         Task task = new Task("CS2102 project meeting");
-        assertEquals(task.getDeadline(), null);
+        assertNull(task.getDeadline());
         assert !task.deadlineIsBefore(LocalDateTime.now());
         task.setDeadline(LocalDateTime.of(2023, 04, 11, 00, 00));
-        assertNotEquals(task.getDeadline(), null);
-        if (task.getDeadline() != null) {
-            assert task.deadlineIsBefore(LocalDateTime.of(2023, 04, 12, 00, 00));
-            assert !task.deadlineIsBefore(LocalDateTime.of(2023, 04, 10, 00, 00));
-        }
+        assertNotNull(task.getDeadline());
+        assert task.deadlineIsBefore(LocalDateTime.of(2023, 04, 12, 00, 00));
+        assert !task.deadlineIsBefore(LocalDateTime.of(2023, 04, 10, 00, 00));
     }
 }
