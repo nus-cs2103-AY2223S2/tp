@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Highlight: It was challenging to write to CSV as it required exploring a new package `OpenCSV`. Exploring a new codebase and adding it into our project was nonetheless a very fruitful experience.
   I had to add a new `CsvUtil` file to handle all the reading and writing from CSV.
 * **New Feature**: Added the ability to import and export data as a csv file
-  * Justification: This feature allows users to edit csv files to be able to import into `DengueHotspotTracker` and export from.
+  * Justification: This feature allows users to export, edit, and import csv files into `DengueHotspotTracker`. 
   Additionally allowing users to export files, edit them offline, then import them back into the DHT, is more convenient for sharing information with those without direct access to the DengueHotspotTracker.
   * This feature also pairs with the `find` function with allows users to filter the data and also export that specific set of data to be shared with others.
 * **New Feature**: Added the ability to checkout overview data as a csv file
