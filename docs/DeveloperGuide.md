@@ -38,6 +38,7 @@ With AIO, financial advisors of all expertise are able to keep track their ever-
     * [**Non-Functional Requirements**](#non-functional-requirements)
     * [**Glossary**](#glossary)
 * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+* [**Appendix: Efforts**](#appendix-efforts)
 * [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -995,8 +996,26 @@ testers are expected to do more *exploratory* testing.
    
       Expected : Similar to previous.
 
+## **Appendix: Efforts**
+1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity.                                   We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
 
 
+2. Challenges Faced: Because each member worked on many issues and features, the list below is not exhaustive.
+   * Having to integrate the list of clients as well their respective policies into the UI, so that the application's main window can contain both the client list and their policy list.
+   * The policylist was constructed on top of the existing AB-3 architecture, which required extensive modification and extensions to obtain the desired final result.
+   * There were many non-code issues such as the checkstyle of each pull requests, which took up a considerable amount of time.
+
+
+3. Effort Required:
+   * The current code base has to be heavily modified for our application.
+   * A large number of test cases were written in order to cover as many possibilities as practical.
+   * We held comprehensive weekly meetings early in the week to ensure that every developer is well-informed about what is planned for the rest of the week.
+
+
+4. Achievements of the Project:
+   * Our team created a software product that we believe meets our intended goals.
+   * All of the Must-have User Stories were met by our software application.
+   * Our team has met all set milestones and deadlines.
 
 ## **Appendix: Planned Enhancements**
 
@@ -1019,22 +1038,3 @@ testers are expected to do more *exploratory* testing.
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
 6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
 7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
-
-## **Appendix: Efforts**                                                                                                       
-1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity.                                   We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3                               
-2. Challenges Faced: Because each member worked on many issues and features, the list below is not exhaustive.                 
-   * Having to integrate the list of clients as well their respective policies into the UI, so that the                        
-   application's main window can contain both the client list and their policy list.                                           
-   * The policylist was constructed on top of the existing AB-3 architecture, which                                            
-   required extensive modification and extensions to obtain the desired final result.                                          
-   * There were many non-code issues such as the checkstyle of each pull requests, which took up a considerable amount of time.
-                                                                                                                               
-3. Effort Required:                                                                                                            
-   * The current code base has to be heavily modified for our application.                                                     
-   * A large number of test cases were written in order to cover as many possibilities as practical.                           
-   * We held comprehensive weekly meetings early in the week to ensure that every developer is                                 
-   well-informed about what is planned for the rest of the week.                                                               
-4. Achievements of the Project:                                                                                                
-   * Our team created a software product that we believe meets our intended goals.                                             
-   * All of the Must-have User Stories were met by our software application.                                                   
-   * Our team has met all set milestones and deadlines.
