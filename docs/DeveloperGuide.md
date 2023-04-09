@@ -197,89 +197,14 @@ Classes used by multiple components are in the `seedu.library.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedLibrary`. It extends `Library` with an undo/redo history, stored internally as an `libraryStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### Add Feature
 
-* `VersionedLibrary#commit()` — Saves the current Library state in its history.
-* `VersionedLibrary#undo()` — Restores the previous Library state from its history.
-* `VersionedLibrary#redo()` — Restores a previously undone Library state from its history.
+#### Implementation
 
-These operations are exposed in the `Model` interface as `Model#commitLibrary()`, `Model#undoLibrary()` and `Model#redoLibrary()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedLibrary` will be initialized with the initial library state, and the `currentStatePointer` pointing to that single Library state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-<div style="page-break-after: always;"></div>
-
-Step 2. The user executes `delete 5` command to delete the 5th bookmark in the library. The `delete` command calls `Model#commitLibrary()`, causing the modified state of the Library after the `delete 5` command executes to be saved in the `libraryStateList`, and the `currentStatePointer` is shifted to the newly inserted Library state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/Hobbit …​` to add a new bookmark. The `add` command also calls `Model#commitLibrary()`, causing another modified library state to be saved into the `libaryStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitLibrary()`, so the library state will not be saved into the `libraryStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibraryk()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Library state, then there are no previous Library states to restore. The `undo` command uses `Model#canUndoLibrary()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Library to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `libraryStateList.size() - 1`, pointing to the latest Library state, then there are no undone Library states to restore. The `redo` command uses `Model#canRedoLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-<div style="page-break-after: always;"></div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the Library, such as `list`, will usually not call `Model#commitLibrary()`, `Model#undoLibrary()` or `Model#redoLibrary()`. Thus, the `libraryStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitLibrary()`. Since the `currentStatePointer` is not pointing at the end of the `libraryStateList`, all Library states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-<div style="page-break-after: always;"></div>
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire Library.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the bookmark being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-<div style="page-break-after: always;"></div>
+The `add` command creates a new bookmark in the library. This allows users to keep easily keep track of their readings.
+A bookmark contains the following fields
 
 ### GoTo Feature
 
@@ -347,69 +272,6 @@ if a bookmark exists in the bookmarkList Panel
     * Cons: Some titles may have similar titles so user may have to type out entire title which may be quite long or
       have some sort of combination of Title and author to identify the unique bookmark.
 
-<div style="page-break-after: always;"></div>
-
-### Progress Field
-
-#### Implementation
-
-The `Progress` field of a `Bookmark` is used to track the latest read portion of the associated book. This could be many
-things including the latest read volume of a series, or the chapter or page of a single book. It is mainly for a user to
-remember where he last left off when they revisit the book.
-
-Currently, `Progress` contains 3 public attributes: `volume`, `chapter` and `page`, all of which are implemented as
-separate `String` objects. While these attributes can be empty, at least one of them must not be empty.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For a case where all 3 attributes are empty
-, this should be reflected by a `Bookmark` with `Progress = null`.
-</div>
-
-The valid range of values for the 3 attributes are as follows:
-1. Each of the 3 attributes can only be `~` or an unsigned integer in the form of a `String`
-   * `~` represents an empty value.
-   * If it is an unsigned integer, it may not start with `0`.
-2. At least one of the 3 attributes must be an unsigned integer
-   * They cannot all be `~`. i.e. Cannot have an empty `Progress`
-
-The format for user input is: `p/VOLUME CHAPTER PAGE`.
-
-The valid range of values for `VOLUME`, `CHAPTER` and `PAGE` are identical to that of the `volume`, `chapter` and `page`
-attributes. Similarly, the value of the 3 attributes is identical to the value stored in JSON when the `Bookmark` is
-saved. For example, if `page` has the value `~`, that exact value is saved into the JSON file.
-<div style="page-break-after: always;"></div>
-
-#### Design considerations:
-
-**Aspect: What data should `Progress` contain?:**
-
-Currently, Progress stores information about the volume, chapter and page of the book being tracked.
-
-This is believed to be sufficient for tracking basically any book since most, if not all books (online or physical)
-organise themselves with the 3 attributes.
-
-Other possible attributes that were considered include: line number and word number. However, if we consider a user revisiting a book and wanting to continue where they last left off,
-it is very unlikely that they will continue from the word or line that they stopped at.
-
-**Aspect: What data type to use?:**
-
-Currently, `volume`, `chapter` and `page` are all stored as separate `String` objects.
-
-This makes it easy to parse user input (which is a `String`) into a `Progress` object, and easy for a `Progress`
-object to be converted into a set of `String` objects to be saved into a JSON file for storage.
-
-A considered alternative is to use 3 `Integer` objects instead. The benefit of this would be allowing integer
-arithmetic while requiring slightly less memory. However, there are no plans for allowing a user to update `Progress`
-in a way that would require integer arithmetic and the difference in memory cost is negligible. Furthermore, like other
-`Bookmark` fields, `Progress` is designed to be immutable.
-
-**Aspect: How to represent a value that does not exist?:**
-
-Currently, `~` is used to represent absence of a value.
-
-The main reason is to simplify the logic for parsing user input.
-
-A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
-then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
-prefixes to differentiate them, but parsing becomes more complex.
 <div style="page-break-after: always;"></div>
 
 ### Find Feature
@@ -500,6 +362,152 @@ books in the `Library`.
   - Pros: User can view ratings of books without having to click on the Bookmark Card
   - Cons: Harder to implement in the UI
 
+### Progress Field
+
+#### Implementation
+
+The `Progress` field of a `Bookmark` is used to track the latest read portion of the associated book. This could be many
+things including the latest read volume of a series, or the chapter or page of a single book. It is mainly for a user to
+remember where he last left off when they revisit the book.
+
+Currently, `Progress` contains 3 public attributes: `volume`, `chapter` and `page`, all of which are implemented as
+separate `String` objects. While these attributes can be empty, at least one of them must not be empty.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For a case where all 3 attributes are empty
+, this should be reflected by a `Bookmark` with `Progress = null`.
+</div>
+
+The valid range of values for the 3 attributes are as follows:
+1. Each of the 3 attributes can only be `~` or an unsigned integer in the form of a `String`
+    * `~` represents an empty value.
+    * If it is an unsigned integer, it may not start with `0`.
+2. At least one of the 3 attributes must be an unsigned integer
+    * They cannot all be `~`. i.e. Cannot have an empty `Progress`
+
+The format for user input is: `p/VOLUME CHAPTER PAGE`.
+
+The valid range of values for `VOLUME`, `CHAPTER` and `PAGE` are identical to that of the `volume`, `chapter` and `page`
+attributes. Similarly, the value of the 3 attributes is identical to the value stored in JSON when the `Bookmark` is
+saved. For example, if `page` has the value `~`, that exact value is saved into the JSON file.
+<div style="page-break-after: always;"></div>
+
+#### Design considerations:
+
+**Aspect: What data should `Progress` contain?:**
+
+Currently, Progress stores information about the volume, chapter and page of the book being tracked.
+
+This is believed to be sufficient for tracking basically any book since most, if not all books (online or physical)
+organise themselves with the 3 attributes.
+
+Other possible attributes that were considered include: line number and word number. However, if we consider a user revisiting a book and wanting to continue where they last left off,
+it is very unlikely that they will continue from the word or line that they stopped at.
+
+**Aspect: What data type to use?:**
+
+Currently, `volume`, `chapter` and `page` are all stored as separate `String` objects.
+
+This makes it easy to parse user input (which is a `String`) into a `Progress` object, and easy for a `Progress`
+object to be converted into a set of `String` objects to be saved into a JSON file for storage.
+
+A considered alternative is to use 3 `Integer` objects instead. The benefit of this would be allowing integer
+arithmetic while requiring slightly less memory. However, there are no plans for allowing a user to update `Progress`
+in a way that would require integer arithmetic and the difference in memory cost is negligible. Furthermore, like other
+`Bookmark` fields, `Progress` is designed to be immutable.
+
+**Aspect: How to represent a value that does not exist?:**
+
+Currently, `~` is used to represent absence of a value.
+
+The main reason is to simplify the logic for parsing user input.
+
+A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
+then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
+prefixes to differentiate them, but parsing becomes more complex.
+
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedLibrary`. It extends `Library` with an undo/redo history, stored internally as an `libraryStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedLibrary#commit()` — Saves the current Library state in its history.
+* `VersionedLibrary#undo()` — Restores the previous Library state from its history.
+* `VersionedLibrary#redo()` — Restores a previously undone Library state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitLibrary()`, `Model#undoLibrary()` and `Model#redoLibrary()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedLibrary` will be initialized with the initial library state, and the `currentStatePointer` pointing to that single Library state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+<div style="page-break-after: always;"></div>
+
+Step 2. The user executes `delete 5` command to delete the 5th bookmark in the library. The `delete` command calls `Model#commitLibrary()`, causing the modified state of the Library after the `delete 5` command executes to be saved in the `libraryStateList`, and the `currentStatePointer` is shifted to the newly inserted Library state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/Hobbit …​` to add a new bookmark. The `add` command also calls `Model#commitLibrary()`, causing another modified library state to be saved into the `libaryStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitLibrary()`, so the library state will not be saved into the `libraryStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibraryk()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Library state, then there are no previous Library states to restore. The `undo` command uses `Model#canUndoLibrary()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Library to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `libraryStateList.size() - 1`, pointing to the latest Library state, then there are no undone Library states to restore. The `redo` command uses `Model#canRedoLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+<div style="page-break-after: always;"></div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the Library, such as `list`, will usually not call `Model#commitLibrary()`, `Model#undoLibrary()` or `Model#redoLibrary()`. Thus, the `libraryStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitLibrary()`. Since the `currentStatePointer` is not pointing at the end of the `libraryStateList`, all Library states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire Library.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the bookmark being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
