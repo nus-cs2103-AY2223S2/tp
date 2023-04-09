@@ -1031,17 +1031,17 @@ Similar to **UC03 Delete a contact**, except,
 
 Similar to **UC02 Edit a contact**, except, 
 * a list of projects is shown instead of contacts. 
-* a project's details is edited instead of a contact's details.
+* a project's details are edited instead of a contact's details.
 
 **Use case: UC25 Removing a project's fields**
 
 Similar to **UC17 Removing tag/language(s)**, except, 
-* a project's fields is removed instead of tag/languages(s)
+* a project's details are removed instead of tag/languages(s)
 
 **Use case: UC26 Clear projects**
 
 Similar to **UC06 Clear contacts/tag**, except, 
-* all projects are cleared instead of contacts.
+* all projects are cleared instead of all contacts.
 
 <div style="page-break-after: always;"></div>
 
