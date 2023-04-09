@@ -21,14 +21,14 @@ Given below are my contributions to the project.
     * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#87]())
+    * Updated the GUI color scheme (Pull requests [\#87](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/87))
     * Wrote additional tests for existing features to increase coverage)
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `summary`, `mark` [\#12]()
-        * Updated table of contact [\#94]()
-        * Did cosmetic tweaks to existing documentation of all features ([\#57](), [\#79](), [\#94]()
+        * Added documentation for the features `summary`, `mark` [\#12](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/12)
+        * Updated table of content [\#94](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/94)
+        * Did cosmetic tweaks to existing documentation of all features ([\#57](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/57), [\#79](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/79), [\#94](https://github.com/AY2223S2-CS2103-F10-4/tp/pull/94)
     * Developer Guide:
         * Added implementation details of the `summary` feature.
 
@@ -37,9 +37,4 @@ Given below are my contributions to the project.
     * Arrive punctually to project meeting.
     * Contribute meaningfully to the discussing.
     * Offer help to teammates frequently.
-
-* **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#77](), [\#80](), [\#86](), [\#137](), [\#147]()
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-
 

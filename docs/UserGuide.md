@@ -8,10 +8,7 @@ If you can type fast, NBF can get your client and lead management tasks done fas
 NBF allows client contacts to hold data on their potential business size and counts of past transactions and aids users in categorising them using `tag`s
 On top of that, NBF also provides a summary page to allow users to quickly get an overview of their performance each season, detailing relevant statistics.
 
-
- Viewing help : `help`
-=======
-* Table of Contents
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
