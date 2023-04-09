@@ -1106,6 +1106,7 @@ Expected: No applicant is deleted. Error message for not finding any applicant.
 Test case: `delete n/Fred`<br>
 Expected: No applicant is deleted. Error message for invalid command format.
 
+<div style="page-break-after: always;"></div>
 
 ### Advancing an applicant
 
@@ -1142,6 +1143,8 @@ Expected: Applicant is not rejected. Error message for applicant is already reje
 
 Test case: `reject n/Fred`<br>
 Expected: Applicant is not rejected. Error message for invalid command format.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding applicants
 
