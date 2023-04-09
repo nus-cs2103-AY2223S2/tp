@@ -949,7 +949,17 @@ The current version of TeachMeSenpai certainly has its flaws and here are some o
 Currently, name fields are case-sensitive so an input like `Shaun` and `shaun` will be considered as unique names. A planned enhancement for the name field is to check for case-insensitivity in `add` and `edit` in order to disallow such duplicate names.
 
 #### Feature flaw 2
-Currently, name fields allow alphanumeric characters only. This means that inputs like `Mary 123` is allowed, while names like `Roy s/o Balakrishnan` is not allowed. In order to make the app more inclusive, the name field will be enhanced to allow alphabets, and symbols only.
+Currently, name fields allow alphanumeric characters only. This means that inputs like:
+
+- `Mary 2` is allowed
+- `Roy s/o Balakrishnan` is not allowed _(contains `/`)_
+- `John D. Smith` is not allowed _(contains `.`)_
+- `D'Angelo` is not allowed _(contains `'`)_
+- Elon Musk's son's name `X AE A-XII` is not allowed _(contains `-`)_
+
+In order to make the app more inclusive, the name field will be enhanced to allow the characters `.`, `'`, `'`, but not the `/` symbol as in `Roy s/o Balakrishnan`, as in this case it can be parsed as the `s/` prefix and cause other problems.
+
+We still plan to allow numbers in names to allow users to number their student names _(eg. `Shaun 1`, `Shaun 2`)_ in the case where students having same names.
 
 #### Feature flaw 3
 Currently, duplicate Telegram handle and phone fields are allowed. This means that entries like `add n/Shaun p/000` and `add n/Shao Hong p/000` as well as `add n/Shaun tele/@sh123` and `add n/Shao Hong tele/@sh123` are valid.
