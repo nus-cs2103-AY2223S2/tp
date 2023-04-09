@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.patient.exceptions.DuplicatePatientException;
 import seedu.medinfo.model.ward.Ward;
@@ -65,13 +66,20 @@ public class MedInfoTest {
 
     @Test
     public void hasPerson_personInMedInfo_returnsTrue() {
-        medInfo.addPatient(ALEX);
+        try {
+            medInfo.addPatient(ALEX);
+        } catch (CommandException e) {
+        }
+
         assertTrue(medInfo.hasPatient(ALEX));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInMedInfo_returnsTrue() {
-        medInfo.addPatient(ALEX);
+        try {
+            medInfo.addPatient(ALEX);
+        } catch (CommandException e) {
+        }
         Patient editedAlice = new PatientBuilder(ALEX).withStatus("YELLOW")
                 .build();
         assertTrue(medInfo.hasPatient(editedAlice));

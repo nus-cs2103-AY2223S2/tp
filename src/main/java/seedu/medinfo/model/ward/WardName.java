@@ -9,15 +9,14 @@ import static seedu.medinfo.commons.util.AppUtil.checkArgument;
  */
 public class WardName {
 
-    public static final String MESSAGE_CONSTRAINTS = "Ward names should be 40 characters or less,"
-            + "should only contain alphanumeric characters"
+    public static final String MESSAGE_CONSTRAINTS = "Ward names should only contain alphanumeric characters"
             + "and spaces, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,39}";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String wardName;
 

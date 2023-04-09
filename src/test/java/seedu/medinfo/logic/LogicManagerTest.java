@@ -27,6 +27,8 @@ import seedu.medinfo.model.ModelManager;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.UserPrefs;
 import seedu.medinfo.model.patient.Patient;
+import seedu.medinfo.model.ward.Ward;
+import seedu.medinfo.model.ward.WardName;
 import seedu.medinfo.storage.JsonMedInfoStorage;
 import seedu.medinfo.storage.JsonUserPrefsStorage;
 import seedu.medinfo.storage.StorageManager;
@@ -43,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonMedInfoStorage addressBookStorage = new JsonMedInfoStorage(
-                temporaryFolder.resolve("addressBook.json"));
+        JsonMedInfoStorage medInfoStorage = new JsonMedInfoStorage(
+                temporaryFolder.resolve("medinfo.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(medInfoStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -59,7 +61,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        String expectedMessage = MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
+        assertCommandException(deleteCommand, expectedMessage);
     }
 
     @Test
@@ -86,7 +89,10 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + NRIC_DESC_AMY + STATUS_DESC_AMY;
         Patient expectedPatient = new PatientBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPatient(expectedPatient);
+        try {
+            expectedModel.addPatient(expectedPatient);
+        } catch (CommandException e) {
+        }
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

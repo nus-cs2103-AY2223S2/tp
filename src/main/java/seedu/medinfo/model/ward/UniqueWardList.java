@@ -130,7 +130,7 @@ public class UniqueWardList implements Iterable<Ward> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new WardNotFoundException();
+            throw new WardNotFoundException(target.getNameString());
         }
 
         if (!target.isSameWard(editedWard) && contains(editedWard)) {
@@ -192,7 +192,7 @@ public class UniqueWardList implements Iterable<Ward> {
     public void remove(Ward toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new WardNotFoundException();
+            throw new WardNotFoundException(toRemove.getNameString());
         }
     }
 

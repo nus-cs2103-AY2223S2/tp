@@ -115,8 +115,6 @@ public class ModelManager implements Model {
     @Override
     public void addPatient(Patient patient) throws CommandException {
         medInfo.addPatient(patient);
-//        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-//        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
     }
 
     @Override
@@ -147,7 +145,6 @@ public class ModelManager implements Model {
     @Override
     public void addWard(Ward ward) {
         medInfo.addWard(ward);
-        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
     }
 
     @Override

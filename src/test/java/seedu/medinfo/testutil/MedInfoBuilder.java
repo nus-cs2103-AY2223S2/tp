@@ -1,7 +1,10 @@
 package seedu.medinfo.testutil;
 
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.patient.Patient;
+
+import static seedu.medinfo.testutil.TypicalPatients.ALEX;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -24,7 +27,10 @@ public class MedInfoBuilder {
      * Adds a new {@code Patient} to the {@code MedInfo} that we are building.
      */
     public MedInfoBuilder withPerson(Patient patient) {
-        medInfo.addPatient(patient);
+        try {
+            medInfo.addPatient(patient);
+        } catch (CommandException e) {
+        }
         return this;
     }
 

@@ -32,7 +32,7 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "S8888888P";
     public static final String VALID_STATUS_AMY = "RED";
     public static final String VALID_STATUS_BOB = "GRAY";
-    public static final String VALID_WARD_AMY = "A1";
+    public static final String VALID_WARD_AMY = "Waiting Room";
     public static final String VALID_WARD_BOB = "A2";
     public static final String VALID_DISCHARGE_AMY = "04/12/2023 1200";
     public static final String VALID_DISCHARGE_BOB = "25/07/2023 1600";

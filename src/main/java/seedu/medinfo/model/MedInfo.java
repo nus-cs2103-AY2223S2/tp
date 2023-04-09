@@ -112,7 +112,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      */
     public void addPatient(Patient p) throws CommandException {
         if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
-            throw new WardNotFoundException();
+            throw new WardNotFoundException(p.getWardNameString());
         }
         patients.add(p);
         try {
