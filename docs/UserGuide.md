@@ -8,12 +8,12 @@ Are you a NUS computing student who is struggling to keep track of your school m
 
 coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like you. It is a module tracker that lets you store information related to your modules like: 
 
-1) Lecture and tutorial timeslots
-2) Lecture and tutorial venues
-3) Deadlines
-4) Module official resources 
-5) Module notes
-6) Contact details of Professors and Teaching assistants
+1) Lecture and tutorial timeslots  
+2) Lecture and tutorial venues  
+3) Deadlines  
+4) Module official resources   
+5) Module notes  
+6) Contact details of Professors and Teaching assistants  
 
 and more.... 
 
@@ -33,7 +33,8 @@ familiarise yourself with the features of coNtactUS. It also shows you how to se
 on your computer.
 
 Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are
-unsure of how to use.
+unsure of how to use.  
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +50,9 @@ Symbols are used in the user guide to facilitate your understanding of the conte
 </div>
 
 <div markdown="span" class="alert alert-primary"> :exclamation: This indicates an important piece of information 
-that you should pay attention to. </div>
+that you should pay attention to. </div>  
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -85,6 +88,8 @@ that you should pay attention to. </div>
 * [**FAQ**](#faq)
 * [**Command summary**](#command-summary)
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ## Getting started
 
@@ -112,6 +117,8 @@ for your reference. </div>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ## Familiarising yourself with the user interface 
 
@@ -123,6 +130,8 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 </p>
 
 <div align="center">Figure 2: Annotations about the user interface</div>
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## Familiarising yourself with a module
@@ -140,6 +149,8 @@ fields.
 * RESOURCE: A link to a resource for the module, if any. 
 
 This is all you need to know for the time being. Now let's take a closer look at the commands.
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -170,6 +181,8 @@ command, refer to the next section.
 <div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
 list. Only use it if you are sure! </div> 
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ## Features
 
@@ -185,12 +198,16 @@ This section introduces you to detailed information about how to use each comman
 * [Help command](#viewing-help--help)
 * [Exit command](#exiting-the-module-tracker--exit)
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ### Listing all modules: `list`
 
 By using the `list` command, you can list all the modules that you have stored in the module tracker.
 
 This is a straightforward command. To use it, all you have to type is `list`
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### Adding a module: `add`
@@ -228,6 +245,8 @@ Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t
 `d/DEADLINE`.
 Please refer to [format restrictions](#format-restrictions) to find out more.
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a module: `delete`
 
@@ -248,6 +267,8 @@ Examples:
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### Editing a module: `edit`
@@ -289,6 +310,7 @@ Examples of invalid usages:
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
 `d/DEADLINE`. Please refer to [format restrictions](#format-restrictions) to find out more.
 
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -311,6 +333,8 @@ Examples:
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### Sorting the modules: `sort`
@@ -336,12 +360,16 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 
 <div align="center">Figure 7 : Sorting the modules in the tracker.</div>
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ### Clearing all modules: `clear`
 
 By using the `clear` command, you can remove all the modules from the module tracker. 
 
 * This is a straight-forward command, and all you have to type is `clear`
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing help : `help`
@@ -357,12 +385,16 @@ to use the commands.
 
 <div align="center">Figure 8 : Help window.</div>
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ### Exiting the module tracker: `exit`
 
 By using the `exit` command, you can close and exit the application.
 
 * This is a straight-forward command, and all you have to type is `exit`
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -393,6 +425,8 @@ features [coming soon](#coming-soon) if you are interested.
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## Format Restrictions
@@ -435,6 +469,8 @@ key in `230223`. It cannot be blank.
 If you are an advanced user who is concerned about further information regarding how you can use the commands of 
 coNtactUS, read on for the next section. 
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ## Further information about commands
 <div markdown="block" class="alert alert-info">
@@ -459,6 +495,9 @@ and `clear`), the input value will be ignored. For example, `help 123` will simp
 
 </div>
 
+<br>  
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## More examples of valid and invalid input values
@@ -470,122 +509,124 @@ You can refer to this section for more examples of valid and invalid input value
 **:exclamation: Note:** the examples given here are **not exhaustive!** They serve as a **guideline** so that you
 know what information are considered valid and what are not.<br>
 
-:bulb: ` ` refers to a blank value.
+:bulb: <code> </code> refers to a blank value.
 </div>  
 
 <table class="center">
-   <tr>
-      <th>Attributes</th>
-      <th>Valid</th>
-      <th>Invalid</th>
-   <tr>
-   <tr>
-      <td>MODULE_NAME</td>
-      <td>
-         <code>CS2103T</code>
-         <code>CS 2101</code>
-         <code>gea1000</code>
-         <code>ST2334</code>
-         <code>Programming Methodology</code>
-      </td>
-      <td>
-         <code> </code>
-         <code>C$2103T</code>
-         <code>CS2101!!</code>
-         <code>CS21.01</code>
-      </td>
-   <tr>
-   <tr>
-      <td>TAG</td>
-      <td>
-         <code>Lecture</code>
-         <code>Tutorial</code>
-         <code>Assignment2</code>
-         <code>lab</code>
-         <code>PROJECT</code>
-      </td>
-      <td>
-         <code> </code>
-         <code>Assignment 2</code>
-         <code>l@b</code>
-      </td>
-   <tr>
-   <tr>
-      <td>TIMESLOT</td>
-      <td>
-         <code>Friday 12:00 14:00</code>
-         <code>Tuesday 09:00 10:00</code>
-      </td>
-      <td>
-         <code> </code>
-         <code>Mon 12:00 14:00</code>
-         <code>Wednesday 7:00 8:00</code>
-         <code>Thursday 11:00 10:00</code>
-      </td>
-   <tr>
-   <tr>
-      <td>VENUE</td>
-      <td>
-         <code>COM1</code>
-         <code>COM 3.</code>
-         <code>com1-0117</code>
-      </td>
-      <td>
-         <code> </code>
-      </td>
-   <tr>
-   <tr>
-      <td>TEACHER</td>
-      <td>
-         <code>Prof Damyth.</code>
-         <code>Mr. John Lee</code>
-         <code>Dr Ch'ng</code>
-         <code>anderson</code>
-      </td>
-      <td>
-         <code> </code>
-      </td>
-   <tr>
-   <tr>
-      <td>DEADLINE</td>
-      <td>
-         <code>100423 23:59</code>
-         <code>120423 11:00</code>
-         <code>280223 09:00</code>
-         <code>290224 12:00</code>
-      </td>
-      <td>
-         <code> </code>
-         <code>10423 23:59</code>
-         <code>320423 11:00</code>
-         <code>290223 09:00</code>
-         <code>290224 25:61</code>
-      </td>
-   <tr>
-   <tr>
-      <td>REMARK</td>
-      <td>
-         <code>Hard module.</code>
-         <code>Can S/U</code>
-         <code>rewatch</code>
-         <code>PAY ATTENTION</code>
-      </td>
-      <td>
-         <code> </code>
-      </td>
-   <tr>
-   <tr>
-      <td>RESOURCES</td>
-      <td>
-         <code>www.google.com</code>
-         <code>WWW.YOUTUBE.COM</code>
-         <code>WwW.GmAiL.cOm</code>
-      </td>
-      <td>
-         <code> </code>
-      </td>
-   <tr>
+  <tr>
+    <th>Attributes</th>
+    <th>Valid</th>
+    <th>Invalid</th>
+  </tr>
+  <tr>
+    <td>MODULE_NAME</td>
+    <td>
+      <code>CS2103T</code>
+      <code>CS 2101</code>
+      <code>gea1000</code>
+      <code>ST2334</code>
+      <code>Programming Methodology</code>
+    </td>
+    <td>
+      <code> </code>
+      <code>C$2103T</code>
+      <code>CS2101!!</code>
+      <code>CS21.01</code>
+    </td>
+  </tr>
+  <tr>
+    <td>TAG</td>
+    <td>
+      <code>Lecture</code>
+      <code>Tutorial</code>
+      <code>Assignment2</code>
+      <code>lab</code>
+      <code>PROJECT</code>
+    </td>
+    <td>
+      <code> </code>
+      <code>Assignment 2</code>
+      <code>l@b</code>
+    </td>
+  </tr>
+  <tr>
+    <td>TIMESLOT</td>
+    <td>
+      <code>Friday 12:00 14:00</code>
+      <code>Tuesday 09:00 10:00</code>
+    </td>
+    <td>
+      <code> </code>
+      <code>Mon 12:00 14:00</code>
+      <code>Wednesday 7:00 8:00</code>
+      <code>Thursday 11:00 10:00</code>
+    </td>
+  </tr>
+  <tr>
+    <td>VENUE</td>
+    <td>
+      <code>COM1</code>
+      <code>COM 3.</code>
+      <code>com1-0117</code>
+    </td>
+    <td>
+      <code> </code>
+    </td>
+  </tr>
+  <tr>
+    <td>TEACHER</td>
+    <td>
+      <code>Prof Damyth.</code>
+      <code>Mr. John Lee</code>
+      <code>Dr Ch'ng</code>
+      <code>anderson</code>
+    </td>
+    <td>
+      <code> </code>
+    </td>
+  </tr>
+  <tr>
+    <td>DEADLINE</td>
+    <td>
+      <code>100423 23:59</code>
+      <code>120423 11:00</code>
+      <code>280223 09:00</code>
+      <code>290224 12:00</code>
+    </td>
+    <td>
+      <code> </code>
+      <code>10423 23:59</code>
+      <code>320423 11:00</code>
+      <code>290223 09:00</code>
+      <code>290224 25:61</code>
+    </td>
+  </tr>
+  <tr>
+    <td>REMARK</td>
+    <td>
+      <code>Hard module.</code>
+      <code>Can S/U</code>
+      <code>rewatch</code>
+      <code>PAY ATTENTION</code>
+    </td>
+    <td>
+      <code> </code>
+    </td>
+  </tr>
+  <tr>
+    <td>RESOURCES</td>
+    <td>
+      <code>www.google.com</code>
+      <code>WWW.YOUTUBE.COM</code>
+      <code>WwW.GmAiL.cOm</code>
+    </td>
+    <td>
+      <code> </code>
+    </td>
+  </tr>
 </table>  
+
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------  
 
@@ -608,6 +649,8 @@ If your changes to the data file makes its format invalid, coNtactUS will discar
 data file at the next run.
 </div>
 
+<br>  
+
  --------------------------------------------------------------------------------------------------------------------
 ## Current product limitations (Important)
 
@@ -628,6 +671,8 @@ that are located at different venues (`LT-19` and `COM1-B1`) at the same timing 
 felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
 conflict checks. After all, `Bob` may be referring to two different persons. 
 
+<br>  
+
 --------------------------------------------------------------------------------------------------------------------
 ## Coming soon
 
@@ -638,6 +683,7 @@ Here are some new features that you can look forward to in the near future:
 view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
 for you to do so, so you can see the reminders at any time you wish. 
 
+<br>  
 
  --------------------------------------------------------------------------------------------------------------------
 ## Glossary
@@ -660,6 +706,8 @@ Refers to a character ending in a slash ("/") that precedes an attribute value. 
 information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
 as prefix for ```TEACHER``` attribute.  
 
+<br>  
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -671,6 +719,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 **Q**: Can I only exit coNtactUS through the `exit` command? <br>
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.
+<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
