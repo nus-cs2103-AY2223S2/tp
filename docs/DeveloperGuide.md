@@ -303,7 +303,7 @@ Step 2a. The PetPal list does not have any pets, the pet at list position 1 does
 ```
 
 
-### Highlight Feature
+#### Highlight Feature
 
 #### Current Implementation
 The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCommand' classes.
@@ -396,7 +396,40 @@ to application readable json data.
   the data into json format and refreshes the database.
     - Pros: Easier and more intuitive for users to use
     - Cons: Builds upon **Alternative 1**, requiring more work to implement
-  
+
+
+### \[Proposed\] Add medical key information to pet (not shown in UI)
+#### Proposed Implementation
+The proposed function is an extension of the base `PetPal`, uses a `Medical` class to store medical information, and users will be able to input medical information.
+
+#### Design considerations:
+- **Alternative 1 (current choice)** : Store information such as vaccination information all in the Medical Class
+  Users will only be able to access if they type in keyword such as "vaccination" or "vaccine" followed by their password
+  which they will have to set at the start of the application.
+    - Pros: Provides a way for users to store medical information without having to worry about it being shown in the UI
+    - Cons: Might be hard for users to remember the password
+
+- **Alternative 2** : Show all the information in the UI
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Not secure, anyone can see the information
+
+### \[Proposed\] Importing data from excel (csv)
+
+#### Proposed Implementation
+The proposed importing function is an extension of the base `PetPal`, uses a `CsvToJsonParser` to convert csv data
+to application readable json data.
+
+#### Design considerations:
+- **Alternative 1 (current choice)** : Write an external script that parses the csv data based on the column names
+  into a json save file that works with PetPal, which they will then put into the data file before starting PetPal
+  for PetPal to be able to read and modify the imported data
+    - Pros: Might be easier to implement
+    - Cons: Might be confusing for users to use (running external script)
+
+- **Alternative 2** : Provide an interface for users to upload their csv data into PetPal and automatically parses
+  the data into json format and refreshes the database.
+    - Pros: Easier and more intuitive for users to use
+    - Cons: Builds upon **Alternative 1**, requiring more work to implement
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -506,22 +539,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: View reminders**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to see reminders that are due soon
+2. System filters the pet list to show desired pets<br>
+   Use case ends.
 
 
 **Use case: Find pet by name**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to find pet(s) by name(s)
+2. System filter the list to show the desired pet(s)<br>
+   Use case ends.
 
 
 **Use case: Edit a pet**
 
-[//]: # TODO()
+**Use case: View Cost of Pet**
+
+**MSS**
+1. Actor requests to change a pet's cost calculation rate and additional flat cost
+2. System updates cost based on calculation
+3. Update is done when user clicks on another PetCard
 
 
-**Use case: Change rate of Cost**
+**Use case: View Cost of Pet**
 
-[//]: # TODO()
+**MSS**
+1. Actor requests to change a pet's cost calculation rate and additional flat cost
+2. System edits the pet's cost calculation formula<br>
+   Use case ends.
+
+**Extensions**
+* 2a. Any required detail(s) are missing
+    * 2a1. System shows an error message.<br>
+      Use case ends.
 
 
 **Use case: Mark deadline**
@@ -591,6 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
