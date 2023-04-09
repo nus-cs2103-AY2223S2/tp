@@ -63,4 +63,10 @@ public class AddSessionCommand extends AddCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, sessionToAdd), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddSessionCommand // instanceof handles nulls
+                && sessionToAdd.equals(((AddSessionCommand) other).sessionToAdd));
+    }
 }

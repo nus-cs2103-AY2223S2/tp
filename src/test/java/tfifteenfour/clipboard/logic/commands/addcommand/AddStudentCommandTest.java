@@ -18,7 +18,7 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.testutil.StudentBuilder;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
-class AddStudentCommandTest {
+public class AddStudentCommandTest {
     public static final Student JOHN = new StudentBuilder()
             .withName("John")
             .withPhone("98765422")

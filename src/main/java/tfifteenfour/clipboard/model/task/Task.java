@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentWithGrades;
@@ -165,6 +166,15 @@ public class Task {
 
     public boolean getSelectionStatus() {
         return isSelected;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Task)) {
+            return false;
+        }
+        Task otherTask = (Task) o;
+        return isSameTask(otherTask);
     }
 
     @Override
