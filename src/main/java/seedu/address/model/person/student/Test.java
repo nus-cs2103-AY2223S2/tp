@@ -1,6 +1,10 @@
 package seedu.address.model.person.student;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Test extends Assignment {
 
@@ -26,7 +30,65 @@ public class Test extends Assignment {
         if (test.equals("Insert student test here!")) {
             return true;
         }
+
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a trimmed deadline.
+     * @param deadline
+     * @return LocalDate
+     * @throws ParseException
+     */
+    public static LocalDate getTrimmedDeadline(String deadline) throws ParseException {
+        LocalDate localDate = null;
+        if (deadline != "Insert student deadline here!") {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                localDate = LocalDate.parse(deadline, formatter);
+            } catch (DateTimeParseException e) {
+                throw new ParseException("Date must be in the format dd/mm/yyyy");
+            }
+        }
+        return localDate;
+    }
+
+    /**
+     * Returns a trimmed weightage.
+     * @param weightage
+     * @return String
+     * @throws ParseException
+     */
+    public static String getTrimmedWeightage(String weightage) throws ParseException {
+        String trimmedWeightage = weightage.trim();
+        if (!trimmedWeightage.matches("^([0-9]|[1-9][0-9]|100)$") //check if weightage is less than 100
+                && !trimmedWeightage.equals("Insert student weightage here!")) {
+            throw new ParseException("Weightage(%) cannot be more than 100 and must contain numbers only");
+        }
+        if (trimmedWeightage.equals("Insert student weightage here!")) {
+            trimmedWeightage = "-100";
+        }
+        return trimmedWeightage;
+    }
+
+    /**
+     * Returns a trimmed score.
+     * @param score
+     * @return String
+     * @throws ParseException
+     */
+    public static String getTrimmedScore(String score) throws ParseException {
+        String trimmedScore = score.trim();
+        if (!trimmedScore.matches("^([0-9]|[1-9][0-9]|100)$")
+                && !trimmedScore.equals("Insert student score here!")) {
+            throw new ParseException("Score cannot be more than 100 and must contain numbers only");
+        }
+
+
+        if (trimmedScore.equals("Insert student score here!")) {
+            trimmedScore = "-100";
+        }
+        return trimmedScore;
     }
 
     @Override

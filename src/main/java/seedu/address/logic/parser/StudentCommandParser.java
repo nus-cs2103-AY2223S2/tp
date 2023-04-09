@@ -95,39 +95,50 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         }
         final String studentClass = matcher.group("class");
         final String arguments = matcher.group("arguments");
-        ArgumentMultimap commandMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_DELETE, PREFIX_ADD, PREFIX_ADDATTENDANCE);
+        ArgumentMultimap argMultimapAdd = getArgAdd(arguments);
+        ArgumentMultimap argMultimapDelete = getArgDelete(arguments);
+        ArgumentMultimap argMultimap = getArg(arguments);
+        ArgumentMultimap argMultimapGrade = getArgGrade(arguments);
+        ArgumentMultimap argMultimapGradeDelete = getArgGradeDelete(arguments);
+        ArgumentMultimap argMultimapEdit = getArgEdit(arguments);
+        ArgumentMultimap argumentMultimapAtt = getArgAtt(arguments);
+        return getCommand(argMultimapAdd, argMultimapDelete, argMultimap, argMultimapGrade,
+                argMultimapGradeDelete, argMultimapEdit, argumentMultimapAtt, studentClass, arguments);
+    }
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_LIST, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT,
-                        PREFIX_ADD, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
-                        PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
-                        PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
-                        PREFIX_ADDRESS);
-        ArgumentMultimap argMultimapGrade =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_GRADE, PREFIX_INDEXNUMBER, PREFIX_TEST,
-                        PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE, PREFIX_HOMEWORKDONE);
-        ArgumentMultimap argMultimapGradeDelete =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_GRADEDELETE, PREFIX_INDEXNUMBER, PREFIX_TEST,
-                        PREFIX_HOMEWORK);
-
-
-
-        if (commandMultimap.getValue(PREFIX_ADD).isPresent()) {
-            return parseStudentAddCommand(studentClass, arguments);
-        } else if (commandMultimap.getValue(PREFIX_DELETE).isPresent()) {
-            return parseStudentDeleteCommand(studentClass, arguments);
+    /**
+     * Get the arguments for the student commands
+     * @param argMultimapAdd
+     * @param argMultimapDelete
+     * @param argMultimap
+     * @param argMultimapGrade
+     * @param argMultimapGradeDelete
+     * @param argMultimapEdit
+     * @param argumentMultimapAtt
+     * @param studentClass
+     * @param arguments
+     * @return StudentCommand
+     * @throws ParseException
+     */
+    private StudentCommand getCommand(ArgumentMultimap argMultimapAdd, ArgumentMultimap argMultimapDelete,
+            ArgumentMultimap argMultimap, ArgumentMultimap argMultimapGrade,
+            ArgumentMultimap argMultimapGradeDelete, ArgumentMultimap argMultimapEdit,
+            ArgumentMultimap argumentMultimapAtt, String studentClass, String arguments) throws ParseException {
+        if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
+            return parseStudentAddCommand(studentClass, argMultimapAdd);
+        } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
+            return parseStudentDeleteCommand(studentClass, argMultimapDelete);
         } else if (argMultimap.getValue(PREFIX_COMMENTCOMMAND).isPresent()) {
             return commentCommand(studentClass, argMultimap);
         } else if (argMultimapGrade.getValue(PREFIX_GRADE).isPresent()
-            && !argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
+                && !argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeCommand(studentClass, argMultimapGrade);
         } else if (argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeDeleteCommand(studentClass, argMultimapGradeDelete);
-        } else if (commandMultimap.getValue(PREFIX_EDIT).isPresent()) {
-            return parseStudentEditCommand(studentClass, arguments);
-        } else if (commandMultimap.getValue(PREFIX_ADDATTENDANCE).isPresent()) {
-            return parseStudentAttCommand(studentClass, arguments);
+        } else if (argMultimapEdit.getValue(PREFIX_EDIT).isPresent()) {
+            return parseStudentEditCommand(studentClass, argMultimapEdit);
+        } else if (argumentMultimapAtt.getValue(PREFIX_ADDATTENDANCE).isPresent()) {
+            return parseStudentAttCommand(studentClass, argumentMultimapAtt);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
             if (arguments.trim().equals(PREFIX_FIND.toString())) {
                 throw new ParseException(MESSAGE_BLANK_FIND);
@@ -140,39 +151,101 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
     }
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArgAtt(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_ADDATTENDANCE, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE);
+    }
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArgEdit(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
+                PREFIX_NEWPARENTNAME, PREFIX_NEWPHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
+                PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_ADDRESS,
+                PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME, PREFIX_COMMENT);
+
+    }
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArgGradeDelete(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_GRADEDELETE, PREFIX_INDEXNUMBER, PREFIX_TEST,
+                PREFIX_HOMEWORK);
+    }
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArgGrade(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_GRADE, PREFIX_INDEXNUMBER, PREFIX_TEST,
+                PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE, PREFIX_HOMEWORKDONE);
+    }
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArg(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_LIST, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT,
+                PREFIX_ADD, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
+                PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
+                PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
+                PREFIX_ADDRESS);
+    }
+
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArgDelete(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_DELETE, PREFIX_INDEXNUMBER);
+    }
+
+    /**
+     * Parse the command into their respective prefixes
+     * @param arguments
+     * @return ArgumentMultimap
+     */
+    private ArgumentMultimap getArgAdd(String arguments) {
+        return ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
+                PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
+                PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
+                PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
+                PREFIX_ADDRESS);
+    }
 
     private StudentAttendanceCommand parseStudentAttCommand(String studentClass,
-                                                            String arguments) throws ParseException {
-        ArgumentMultimap argumentMultimapAtt =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_ADDATTENDANCE, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE);
-
-        if (!arePrefixesPresent(argumentMultimapAtt, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE)
-                || !argumentMultimapAtt.getPreamble().isEmpty()
+                                                            ArgumentMultimap argumentMultimap) throws ParseException {
+        if (!arePrefixesPresent(argumentMultimap, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE)
+                || !argumentMultimap.getPreamble().isEmpty()
                 || studentClass.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StudentAttendanceCommand.MESSAGE_USAGE));
         }
         Class sc = ParserUtil.parseStudentClass(studentClass);
-        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argumentMultimapAtt.getValue(PREFIX_INDEXNUMBER).get());
-        Attendance attendance = ParserUtil.parseAttendance(argumentMultimapAtt.getValue(PREFIX_ATTENDANCE).get());
+        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argumentMultimap.getValue(PREFIX_INDEXNUMBER).get());
+        Attendance attendance = ParserUtil.parseAttendance(argumentMultimap.getValue(PREFIX_ATTENDANCE).get());
         return new StudentAttendanceCommand(sc, indexNumber, attendance);
     }
 
     /**
      * Function to parse the "student class add" command
      * @param studentClass class of student
-     * @param arguments the command input by user
+     * @param argMultimap mapper for each prefix
      * @return A StudentAddCommand
      * @throws ParseException
      */
-    private StudentAddCommand parseStudentAddCommand(String studentClass, String arguments) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
-                        PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
-                        PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
-                        PREFIX_ADDRESS);
-
+    private StudentAddCommand parseStudentAddCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME,
                 PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP)
                 || !argMultimap.getPreamble().isEmpty()
@@ -246,8 +319,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
 
     /**
      * Function to parse the "student class comment" command
-     * @param studentClass
-     * @param argMultimap
+     * @param studentClass class of student
+     * @param argMultimap mapper for each prefix
      * @return A StudentCommentCommand
      * @throws ParseException
      */
@@ -267,13 +340,11 @@ public class StudentCommandParser implements Parser<StudentCommand> {
     /**
      * Function to parse the "student class delete" command
      * @param studentClass class of student
-     * @param arguments the command input by user
+     * @param argMultimap mapper for each prefix
      * @return A StudentDeleteCommand
      * @throws ParseException
      */
-    public StudentDeleteCommand parseStudentDeleteCommand(String studentClass, String arguments) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_DELETE, PREFIX_INDEXNUMBER);
-
+    public StudentDeleteCommand parseStudentDeleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -286,8 +357,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
 
     /**
      * Function to parse the "student class grade" command
-     * @param studentClass
-     * @param argMultimap
+     * @param studentClass class of student
+     * @param argMultimap mapper for each prefix
      * @return A StudentGradeCommand
      * @throws ParseException
      */
@@ -318,8 +389,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
     }
     /**
      * Function to parse the "student class grade delete" command
-     * @param studentClass
-     * @param argMultimap
+     * @param studentClass class of student
+     * @param argMultimap mapper for each prefix
      * @return A StudentGradeDeleteCommand
      * @throws ParseException
      */
@@ -352,17 +423,11 @@ public class StudentCommandParser implements Parser<StudentCommand> {
     /**
      * Function to parse the "student class edit" command
      * @param sc class of student
-     * @param arguments the command input by user
+     * @param argMultimap mapper for each prefix
      * @return A StudentEditCommand
      * @throws ParseException
      */
-    private StudentEditCommand parseStudentEditCommand(String sc, String arguments) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_NEWPARENTNAME, PREFIX_NEWPHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
-                        PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_ADDRESS,
-                        PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME, PREFIX_COMMENT);
-
+    private StudentEditCommand parseStudentEditCommand(String sc, ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
                 || !argMultimap.getPreamble().isEmpty()
                 || sc.length() == 0) {

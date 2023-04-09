@@ -68,7 +68,6 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
       17. [Saving preferences](#savingwindow)
       18. [Shutdown of application](#shutdown)
       19. [Saving data](#saving-data)
-      
    3. [Appendix-Effort](#effort)
 
 <div style="page-break-after: always;"></div>
@@ -278,7 +277,7 @@ This section describes some noteworthy details on how certain features are imple
 ## Delete student/parent feature
 
 ### Current Implementation
-PowerConnect allows users to delete 
+PowerConnect allows users to delete:
 * Student from `UniqueStudentList` of `Class` using their class and index number.
 * Parent from `UniqueParentList` of `parents` using their name and phone number.
 
@@ -292,7 +291,7 @@ However, a parent can only be deleted if no student is attached to that parent.
 4. The user then tries to delete that student using `student 1A delete in/1`.
 5. `PowerConnectParser` and `StudentCommandParser` will check if command provided by the user is valid before `StudentDeleteCommand#execute(Model)` is called.
 6. This would call `Model#deleteStudent(Student)` method to delete the student.
-7. It will then check if the student to be deleted exists in `UniqueStudentList` of `Class` before deleting the student. 
+7. It will then check if the student to be deleted exists in `UniqueStudentList` of `Class` before deleting the student.
 8. The deleted student will also be removed from its parent's list of children.
 9. The success message and resulting list of students will be displayed via the dashboard.
 10. The user tries deleting the parent again, it follows `step 5-7` in a similar way to just that it is now for parent instead of student.
@@ -312,7 +311,7 @@ However, a parent can only be deleted if no student is attached to that parent.
 #### Aspect 1: How to delete students
 
 * **Alternative 1 (current choice):** Delete student from their class's student list.
-    * Pros: Provides flexibility in adding new features. e.g. deleting all students in a class 
+    * Pros: Provides flexibility in adding new features. e.g. deleting all students in a class
     * Cons: Harder to implement
 
 * **Alternative 2:** Delete student from a student list containing all students.
@@ -1076,7 +1075,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case 1: `student 3A attendance in/25 att/T`. <br>
       Expected: The attendance of the student is marked as T (present) for today's date.
    3. Test case 2: `student 3A attendance in/25 att/25/02/2023`. <br>
-      Expected: The attendance of the student is marked as F if today's date is not 25/02/2023. PowerConnect V1.4 only supports display of today's date for attendance. 
+      Expected: The attendance of the student is marked as F if today's date is not 25/02/2023. PowerConnect V1.4 only supports display of today's date for attendance.
    <br><br>
 <a name = "addinggrade"/>
 
@@ -1129,8 +1128,8 @@ testers are expected to do more *exploratory* testing.
        Expected: All students with name TanAhCow in class 1A will be listed.
     <br><br>
 <a name = "deletingstudent"/>
-
-11. Deleting a student 
+    
+11. Deleting a student
     1. Prerequisites: List all the students with `list student` command.
     2. Test case 1: `student 1A delete in/3`. <br>
        Expected: The student with index number 3 will be deleted.
@@ -1175,8 +1174,8 @@ testers are expected to do more *exploratory* testing.
 17. Saving window preferences
      1. Resize the window to an optimum size. Move the window to a different location. Close the window.
      2. Re-launch the app by double-clicking the jar file.<br>
-        Expected: The most recent window size and location is retained. 
-     <br><br> 
+        Expected: The most recent window size and location is retained.
+     <br><br>
 <a name = "shutdown"/>
 
 18. Shutdown of Application
@@ -1259,13 +1258,13 @@ students and parents that inherited from persons, the AB3 model storage could no
 to overhaul the whole storage package, and we also supported class functionality for students which made things even harder.<br>
 
 We also made linkages between parents and students to better model the relationship between students and parents. This was
-quite time-consuming as we had to make sure each command we implemented adjusted this relationship accordingly. 
+quite time-consuming as we had to make sure each command we implemented adjusted this relationship accordingly.
 
-The UI package also took us quite a while as we were not really familiar with JavaFX, and we had to make sure the information 
+The UI package also took us quite a while as we were not really familiar with JavaFX, and we had to make sure the information
 displays correctly especially with expanding number of information (tests/homework).
 
 The novelty of giving users both the option to specify an image path or use the images folder method to store images for students
-or parents also took us some time as we were unsure to hard code the location or not. 
+or parents also took us some time as we were unsure to hard code the location or not.
 
 [Back to Table of Contents](#table-of-contents)
 
