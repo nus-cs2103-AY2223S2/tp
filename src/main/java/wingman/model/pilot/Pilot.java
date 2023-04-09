@@ -31,9 +31,6 @@ public class Pilot implements Item {
             Map.of(
                     PilotLocationType.LOCATION_USING, 1000000
             );
-    private static final String UUID_STRING = "UUID";
-
-    private static final String NAME_STRING = "Name";
 
     private static final String GENDER_STRING = "Gender";
 
@@ -42,8 +39,6 @@ public class Pilot implements Item {
     private static final String RANK_STRING = "Rank";
 
     private static final String FLIGHT_HR_STRING = "Flight Hours";
-
-    private static final String AVAILABILITY_STRING = "Status";
 
     private final String name;
 
@@ -180,8 +175,8 @@ public class Pilot implements Item {
      */
     public String getAvailabilityString() {
         return (this.isAvailable)
-                ? "Available"
-                : "Unavailable";
+                       ? "Available"
+                       : "Unavailable";
     }
 
     @Override
@@ -205,7 +200,8 @@ public class Pilot implements Item {
         return String.format(
                 "%s %s",
                 rank,
-                name);
+                name
+        );
     }
 
     @Override
