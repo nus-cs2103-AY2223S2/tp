@@ -38,13 +38,15 @@ Given below are my contributions to the project.
   * Enforce 8-digit requirement for phone number field [[PR#204]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/204)
 
 * **Documentation**:
-  * Add design considerations for `Employee` class in DG [[PR#146]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/146/files)
-  * Add documentation for `Employee` fields and commands in UG [[PR#177]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/177/files)
+  * Add design considerations for `Employee` class in DG [[PR#146]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/146)
+  * Add documentation for `Employee` fields and commands in UG [[PR#177]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/177)
+  * Add documentation for `Employee` fields, commands, and design consideration in DG [[PR#295]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/295)
 
 * **Code Quality and Bug Fixing**:
-  * Fixed issue where changes cascaded to `Leave` and `Department` classes were not reflected in UI [[PR#205]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/205/files)
+  * Fixed issue where changes cascaded to `Leave` and `Department` classes were not reflected in UI [[PR#205]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/205)
   * Fixed PE-D testers bug reports [[PR#285]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/285) 
 
-* **Miscellaneous PRs**
+* **Miscellaneous PRs / Team-based Contribution**
   * Refactoring of code and documentation to remove references to `Person` and use `Employee` class instead. [[PR#106]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/106)
-  * Update PPP 
+  * One of the main PR reviewers. Helped to review > 1/3 of the team's PRs.
+  * Comprehensive test cases in several PRs as per the Equivalence Partitioning and Boundary Value Analysis principles. For example, see [[PR#93]](https://github.com/AY2223S2-CS2103T-T17-2/tp/pull/93)
