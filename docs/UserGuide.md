@@ -36,6 +36,10 @@ on your computer.
 
 Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are
 unsure of how to use.  
+
+To help you better navigate through our user guide, the [Return to ToC](#table) at the end of each section
+allows you return to the Table of Contents. From there, you can quickly access 
+another section by clicking the respective header.  
 <br>  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -119,15 +123,14 @@ for your reference. </div>
 
 
 <p align="center">
-  <img height="400" width="400" src="images/Ui.png">
+  <img height="500" width="500" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
 
-<br>  
+<div align="right"> [Return to ToC](#table) </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## <a id="ui"></a> Familiarising yourself with the user interface  
 
@@ -135,12 +138,13 @@ In case you are unsure of what you see in front of you now, we have come up with
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 <p align="center">
-  <img height="300" width="600" src="images/User_Interface.png">
+  <img height="500" width="700" src="images/User_Interface.png">
 </p>
 
-<div align="center">Figure 2: Annotations about the user interface</div>
+<div align="center">Figure 2: Annotations about the user interface</div>   
+<br>   
+<div align="right">[Return to ToC](#table)</div>   
 
-<br>  
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -159,7 +163,8 @@ fields.
 * REMARK: A remark for the module, if any.
 * RESOURCE: A link to a resource for the module, if any. 
 
-This is all you need to know for the time being. Now let's take a closer look at the commands.
+This is all you need to know for the time being. Now let's take a closer look at the commands.  
+<div align="right">[Return to ToC](#table)</div> 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -188,11 +193,10 @@ command, refer to the next section.
    * `exit` : Exits the application.
 
 <div markdown="span" class="alert alert-primary"> :exclamation: The clear command removes all the modules in the 
-list. Only use it if you are sure! </div> 
+list. Only use it if you are sure! </div>   
+<div align="right">[Return to ToC](#table)</div>
 
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+-------------------------------------------------------------------------------------------------------------------
 
 ## <a id="features"></a>Features  
 
@@ -208,7 +212,7 @@ This section introduces you to detailed information about how to use each comman
 * [Help command](#help)
 * [Exit command](#exit)
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="list"></a>Listing all modules: `list`
@@ -217,7 +221,7 @@ By using the `list` command, you can list all the modules that you have stored i
 
 This is a straightforward command. To use it, all you have to type is `list`
 
-<br>  
+<div align="right">[Return to ToC](#table)</div> 
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -249,6 +253,8 @@ Examples of valid usages:
 <div align="center">Figure 3 : Adding a new module into the tracker.</div>  
 <br>  
 
+<div style="page-break-after: always;"></div>
+
 Examples of invalid usages: 
 * `add n/CS2103T` - there is no description provided.
 * `add t/Tutorial` - there is no module name provided.
@@ -257,9 +263,11 @@ Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t
 `d/DEADLINE`.
 Please refer to [format restrictions](#format) to find out more.
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="delete"></a>Deleting a module: `delete`
 
 By using the `delete` command, you can delete a module from the module tracker.
@@ -275,14 +283,16 @@ Format: `delete INDEX`
 Examples:
 *  `delete 2` deletes the 2nd module in the module tracker.
 <p align="center">
-   <img height="400" width="335" src="images/delete.png">
+   <img height="400" width="300" src="images/delete.png">
 </p>
 
-<div align="center">Figure 4 : Deleting a module from the tracker.</div>
+<div align="center">Figure 4 : Deleting a module from the tracker.</div>  
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="edit"></a>Editing a module: `edit`
 
 By using the `edit` command, you can edit the information for a module that is already listed in the 
@@ -313,7 +323,8 @@ Examples of valid usages:
 <div align="center">Figure 5 : Editing a module in the tracker.</div>  
 <br>  
 
-  
+<div style="page-break-after: always;"></div>  
+
 Examples of invalid usages:
 * `edit 0 n/CS2101 t/Tutorial` - The index must be a positive integer.
 
@@ -322,9 +333,10 @@ Examples of invalid usages:
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
 `d/DEADLINE`. Please refer to [format restrictions](#format) to find out more.
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
 
 ### <a id="find"></a>Finding a module: `find`
 
@@ -346,9 +358,11 @@ Examples:
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="sort"></a>Sorting the modules: `sort`
 
 By using the `sort` command, you can display the modules in a sorted order by either their `timeslot` 
@@ -372,16 +386,18 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 
 <div align="center">Figure 7 : Sorting the modules based on deadline.</div>
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>   
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### <a id="clear"></a>Clearing all modules: `clear`
 
 By using the `clear` command, you can remove all the modules from the module tracker. 
 
 * This is a straight-forward command, and all you have to type is `clear`
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="help"></a>Viewing help : `help`
@@ -392,12 +408,12 @@ to use the commands.
 * This is a straight-forward command, and all you have to type is `help`
 
 <p align="center">
-   <img src="images/helpMessage.png">
+   <img height="450" width="400" src="images/helpMessage.png">
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
 ### <a id="exit"></a>Exiting the module tracker: `exit`
@@ -406,9 +422,10 @@ By using the `exit` command, you can close and exit the application.
 
 * This is a straight-forward command, and all you have to type is `exit`
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>   
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="addfeat"></a>Additional Features 
 
@@ -438,9 +455,11 @@ features [coming soon](#coming-soon) if you are interested.
 
 <div align="center">Figure 9 : Reminder window.</div>
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>  
+
 ## <a id="format"></a>Format Restrictions 
 
 When keying in input values for certain fields when you [add](#add) or [edit](#edit) 
@@ -481,9 +500,11 @@ key in `230223`. It cannot be blank.
 If you are an advanced user who is concerned about further information regarding how you can use the commands of 
 coNtactUS, read on for the next section. 
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="further-info"></a> Further information about commands 
 <div markdown="block" class="alert alert-info">
 
@@ -507,10 +528,11 @@ and `clear`), the input value will be ignored. For example, `help 123` will simp
 
 </div>
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>   
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="input"></a> More examples of valid and invalid input values 
 
@@ -638,9 +660,10 @@ know what information are considered valid and what are not.<br>
   </tr>
 </table>  
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>   
 
 --------------------------------------------------------------------------------------------------------------------  
+<div style="page-break-after: always;"></div>
 
 ## <a id="data"></a>Data Storage 
 
@@ -661,9 +684,11 @@ If your changes to the data file makes its format invalid, coNtactUS will discar
 data file at the next run.
 </div>
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
  --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="limitation"></a>Current product limitations (Important) 
 
 Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/teacher`, `e/timeslot`, 
@@ -681,11 +706,13 @@ Note that currently, coNtactUS does not enforce any additional checks for confli
 * It might not make sense to have the same teacher `Bob`, teaching two different classes 
 that are located at different venues (`LT-19` and `COM1-B1`) at the same timing (`Monday 11:00 15:00`). However, we 
 felt that this allows you the flexibility to supply an input value that you desire without being subjected to unnecessary
-conflict checks. After all, `Bob` may be referring to two different persons. 
+conflict checks. After all, `Bob` may be referring to two different persons.  
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## <a id="coming"></a>Coming soon 
 
 coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
@@ -693,9 +720,9 @@ Here are some new features that you can look forward to in the near future:
 
 * Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
 view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
-for you to do so, so you can see the reminders at any time you wish. 
+for you to do so, so you can see the reminders at any time you wish.   
 
-<br>  
+<div align="right">[Return to ToC](#table)</div>   
 
  --------------------------------------------------------------------------------------------------------------------
 ## <a id="glossary"></a>Glossary 
@@ -718,10 +745,10 @@ Refers to a character ending in a slash ("/") that precedes an attribute value. 
 information to follow. Example includes ```a/``` as prefix for ```VENUE``` attribute and ```s/```
 as prefix for ```TEACHER``` attribute.  
 
-<br>  
-
+<div align="right">[Return to ToC](#table)</div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="faq"></a>FAQ 
 
@@ -731,7 +758,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 **Q**: Can I only exit coNtactUS through the `exit` command? <br>
 **A**: Not at all! It is one of the ways you can exit the program. You may also simply close the browser window.  
-<br>  
+<div align="right">[Return to ToC](#table)</div>  
 
 --------------------------------------------------------------------------------------------------------------------
 ## <a id="command-summary"></a>Command summary 
@@ -748,4 +775,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 | **help**   | `help`                                                                                                                |
 | **exit**   | `exit`                                                                                                                |
 
+<div align="right">[Return to ToC](#table)</div>
+
+------------------------------------------------------------------------------------
 
