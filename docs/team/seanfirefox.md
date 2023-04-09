@@ -38,5 +38,5 @@ Given below are my contributions to the project.
   * [Forum Activity](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=is%3Aissue+commenter%3Aseanfirefox)
 
 * **Tools**:
-  * Java 11, JavaFX, TestFX, JUnit, Gradle, CSS
+  * Java 11, JavaFX, TestFX, JUnit, Gradle, CSS, Joda-TIme
 
