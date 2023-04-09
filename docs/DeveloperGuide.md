@@ -891,6 +891,11 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 
 <div style="page-break-after: always;"></div>
 
+### Listing valid genres
+1. `genre`
+
+   **Expected**: A list of valid genres are displayed in Result Display.
+
 ### Get Help
 
 1. `help`
