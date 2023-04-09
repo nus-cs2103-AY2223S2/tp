@@ -45,7 +45,6 @@ Given below are my contributions to the project.
         * Added a documentation and command summaries for adding, deleting, and editing notes: 
         [\#162](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/162), 
         [\#265](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/265).
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`.
     * Developer Guide:
         * Added implementation details of the `note` feature: 
         [\#135](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/135), 
