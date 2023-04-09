@@ -370,7 +370,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design considerations
 
-**Aspect: How undo & redo executes:**
+**Aspect: How undo & redo executes**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -383,10 +383,48 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### \[Proposed\] Exporting User information
 
+#### Proposed Implementation
+
+Using the User model already implemented into NeoBook. We can create a string that a user can copy to send to their friends, such that when they run that string, the user's contact will be added into their NeoBook. The string can then be easily copy-pasted by displaying it as the CommandResult of the ExportCommand.
+
+The following sequence diagram shows how the undo operation works:
+
+![ExportUserSequence](images/ExportUserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The return result of exportData(ReadOnlyObjectWrapper<User>) will be the String that the user can copy and easily send to a friend.
+
+For example:
+User has
+- Name: John
+- Address: Serangoon Central
+- Tags: Friend, Soccer Fanatic
+- Gender: Male
+
+The return result of exportData(ReadOnlyObjectWrapper<User>) will be:
+<br>
+`add n/John a/Serangoon Central t/Friend t/Soccer Fanatic g/Male`
+
+Then this String will be displayed as a CommandResult on the UI for the User to easily copy.
+
+#### Design considerations
+
+**Aspect: How the user can send the information to another user:**
+
+* **Alternative 1 (current choice):** Copy and paste.
+    * Pros: Easy to implement.
+    * Cons: May be too analog.
+    * Extra: Make the result be auto copied to the user's clipboard upon click.
+
+* **Alternative 2:** Email.
+    * Pros: Easier to format and for the user to use in a more professional setting. The user can also specify which contact he is sending the exported information to and NeoBook can create a draft email to the email of the contact specified.
+    * Cons: Difficult to implement.
 
 --------------------------------------------------------------------------------------------------------------------
 
