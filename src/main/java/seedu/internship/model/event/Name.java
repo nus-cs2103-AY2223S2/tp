@@ -9,7 +9,7 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Name of event should not be blank";
-    public static final String VALIDATION_REGEX = "\\S.+";
+    public static final String VALIDATION_REGEX = "\\S.*";
     public final String name;
 
     /**
@@ -40,7 +40,7 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && name.equals(((Name) other).name)); // state check
+                && name.toLowerCase().contains(((Name) other).name.toLowerCase())); // state check
     }
 
     @Override
