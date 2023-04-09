@@ -106,7 +106,7 @@ Salespeople managing client contacts who prefer a CLI
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   <br>
 
- - Current iteration can only accept up to 2147483647 contacts and and up to 2147483647 transactions. Therefore command referencing INDEX can only reach up to 2147483647.
+- Current iteration can only accept up to 2147483647 contacts and and up to 2147483647 transactions. Therefore command referencing INDEX can only reach up to 2147483647.
 
 </div>
 
@@ -184,7 +184,6 @@ should be done via the `status` command.
 
 Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`
 
-
 - Edits the person at the specified required `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
@@ -206,8 +205,10 @@ Contacts can have multiple optional tags associated with them.
 Assigns the lead status of a contact. At the same time, saves the timestamp of when the lead status has changed. The
 user can use this information as a gauge of how long a client has stayed in a certain status.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the lead status specified is the same as the previous, nothing is changed and the timestamp is not refreshed. This is
 to mitigate the chances of accidental reassignment of the same lead status by the user.
+</div>
 
 The 4 types of lead statuses supported are:
 
@@ -217,6 +218,11 @@ The 4 types of lead statuses supported are:
 | WORKING     | `Working` or `W`         | The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
 | QUALIFIED   | `Qualified` or `Q`       | The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
 | UNQUALIFIED | `Unqualified` or `X`     | This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all. |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Note that there might be other types of lead statuses definitions (<a href="https://www.varicent.com/blog/6-essential-salesforce-lead-status-options-that-align-sales-and-marketing">examples</a>)
+that you might want to use. For this application, we have implemented only 4 types of lead statuses for simplicity's sake.
+</div>
 
 Format:
 `status INDEX s/STATUS`
@@ -318,7 +324,6 @@ Adds a transaction record to the transaction list.
 
 Format: `addtxn td/DESCRIPTION tv/VALUE ts/STATUS to/OWNER`
 
-Format for ts/STATUS
 
 | Type   | Formats (Case-sensitive) | Meaning                |
 |--------|--------------------------|------------------------|
@@ -422,23 +427,23 @@ If your changes to the data file makes its format invalid, SalesPunch will disca
 
 | Action        | Format, Examples                                                                                                                                                                                                                                                      |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**      | `help`                                                                                                                                                                                                                                                                |
 | **Add**       | `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL c/COMPANY l/LOCATION o/OCCUPATION j/JOBTITLE a/ADDRESS [t/TAG…] ​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
-| **Sort**      | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
-| **AddTxn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                   |
-| **AddTask**   | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Arrange for sales pitch meeting`                                                                                                                                                                          |
-| **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1`                                                                                                                                                                                                                            |
-| **Clear**     | `clear`                                                                                                                                                                                                                                                               |
 | **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |     
-| **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                             |
-| **Edit**      | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
-| **EditTxn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                   |
-| **Status**    | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
 | **List**      | `list`                                                                                                                                                                                                                                                                |
-| **ListTxn**   | `listtxn`                                                                                                                                                                                                                                                             |
+| **Sort**      | `sort ATTRIBUTE`, where `ATTRIBUTE` is one of: <br> `name, gender, phone number, email, company, location, occupation, job title, address, status`<br> e.g., `sort name`                                                                                              |
+| **Edit**      | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
+| **Status**    | `status INDEX_NUMBER s/STATUS` <br> e.g., `status 1 s/Unqualified`                                                                                                                                                                                                    |
 | **Find**      | `find [n/NAME]`<br> e.g., `find Alex`                                                                                                                                                                                                                                 |
 | **FindTag**   | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                       |
 | **FindLead**  | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`                                                                                                                                                                                                   |
 | **FindAll**   | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`                                                                                                                                    |
 | **FindTxn**   | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                     |
-| **Help**      | `help`                                                                                                                                                                                                                                                                |
+| **AddTxn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                   |
+| **DeleteTxn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                             |
+| **ListTxn**   | `listtxn`                                                                                                                                                                                                                                                             |
+| **EditTxn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                   |
+| **AddTask**   | `addtask INDEX at/TASK_DESCRIPTION` <br> e.g. `addtask 1 at/Arrange for sales pitch meeting`                                                                                                                                                                          |
+| **ClearTask** | `cleartask INDEX` <br> e.g., `cleartask 1`                                                                                                                                                                                                                            |
+| **Clear**     | `clear`                                                                                                                                                                                                                                                               |
 | **Exit**      | `exit`                                                                                                                                                                                                                                                                |
