@@ -878,28 +878,79 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a task
+
+1. Adding a simple task
+
+   1. Test case: `add n/homework d/chapter 1 t/CS2103T E/20`<br>
+     Expected: A new simple task with the name homework, description chapter 1 and tag CS2103T with an effort level of 20 will be added. The success message will be shown in the message panel.
+   2. Test case: `add n/homework`<br>
+     Expected: A new simple task with name homework, no description, no tags with default effort level of 24 will be added to the task list. The success message will be shown in the message panel.
+   3. Incorrect Test case: `Add d/homework`(no name provided)<br>
+     Expected: No task will be added to the task panel and the error message will be shown in the message panel.
+
+2. Adding a deadline task
+
+   1. Test case: `add n/submission d/chapter 1 t/CS2103T E/20 D/2023-05-05 1200`<br>
+     Expected: A new deadline task with the name submission, description chapter 1, tag CS2103T, an effort level of 20 and a deadline on 5th May 2023 at 12:00 will be added to the task list. Success message will be shown in the message panel.
+   2. Incorrect test case: `add n/submission d/chapter 1 t/CS2103T E/20 D/2023-05-05`(no time provided)<br>
+     Expected: No new task will be added to the task list, error message will be shown in the message panel.
+
+3. Adding an event task
+
+   1. Test case: `add n/test d/chapter 1 t/CS2103T E/20 F/2023-05-05 1200 T/2023-05-05 1400`<br>
+     Expected: A new event task with the name test, description chapter 1, tag CS2103T, effort level 20, with start time on 5th May 2023 at 12:00 to end time on 5th May 2023 at 14:00 will be added. Success message will be shown in the message panel.
+   2. Incorrect test case: `add n/test d/chapter 1 t/CS2103T E/20 F/2023-05-05 1200`(no to date)<br>
+     Expected: No new event will be added to the task list, error message will be shown in the message panel.
+
+4. Adding multiple tasks at the same time
+   1. Test case: `add n/homework 1 n/homework 2 d/chapter 1 t/CS2103T E/20`<br>
+     Expected: Two simple tasks will be added to the task list. They have the same description of chapter 1, tag of CS2103T, and effort level of 20. However, the only difference is that they have different names.
+
+
+### Adding a subsection
+
+1. Adding a subsection where there is at least one main task
+
+   1. Prerequisites: Add at least one main task to the task list. Assuming that we are adding subsections to the task with index number 1.
+   2. Test case: `subsection 1 n/homework d/CS2103T`<br>
+     Expected: The subsection with name "homework" and description "CS2103T" is added to the first main task in the list.
+   3. Other incorrect `subsection` commands: `subsection 1 n/` and  `subsection 0 n/Test`. The result of the command would be no subsection added
+     and error details are shown in the status message.
+
+### Deleting a subsection
+
+1. Deleting a subsection where there is at least one main task
+
+   1. Prerequisites: Add at least one main task to the task list and one subsection to the first task in the list.
+   2. Test case: `remove-subsection 1 I/1`<br>
+     Expected: The first subsection in the first main task will be removed. The other indexes of the subsections within the same main task will be numbered again.
+   3. Other incorrect `subsection` commands: `remove-subsection 0 I/1` and `remove-subsection 1 I/0`. The result of the command would be no subsection added
+     and error details are shown in the status message.
+
+     
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First task is deleted from the list. Details of the deleted task shown in the status message. 
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Set an alert window
@@ -907,15 +958,15 @@ testers are expected to do more *exploratory* testing.
 1. Add a task that starts or ends within 24 hours
    1. Prerequisites: It is the first start-up of Clock-Work with no `alert` command calls. OR <br>
     User has already called `alert 24`.
-   1. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
+   2. Test case: `add n/Test D/2023-04-08 0900` assuming that is it currently `2023-04-07 1000` <br>
     Expected: Task added to the task list. Details of added task shown in status message. <br>
     If it is first time start up of Clock-Work or alert window already set to 24, the task should already appear in the alert window.
 2. Add a task that starts or ends within 48 hours
    1. Prerequisites: It is the first start-up of Clock-Work with no changes `alert` command calls. OR <br>
       User has already called `alert` with an alert window less than 48 hours.
-   1. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
+   2. Set up: `add n/Test D/2023-04-09 0900` assuming that is it currently `2023-04-07 1000` <br>
       Expected: Task added to the task list. Details of added task shown in status message. <br>
-   1. Test case: `alert 48`. <br>
+   3. Test case: `alert 48`. <br>
    Expected: The task should already appear in the alert window.
 
 ### Saving data
@@ -926,9 +977,37 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a subsection
+### Find a task
 
-1. 
+1. Find a task by its name/description/tags/effort level
+
+   1. Prerequisites: There is at least one task in the task list with description and one task with tags. Please note that the find command can only find using one prefix at a time.
+   2. For the following test cases, you could create a task using `add n/test d/all chapters t/CS2103T E/20`
+   3. Test cases: `find n/test`, `find d/all chapters`， `find t/CS2103T`, `find E/20`.<br>
+   Expected: The task with the relevant name/description/tags/effort level will be listed in the task panel now. The status bar shows the success message.
+   4. Some incorrect test cases: `find n/`, `find d/`, `find t/`, `find E/`.<br>
+   Expected: The task list will not change and the error message will be shown in the message panel.
+
+2. Find a task by its from date/to date/deadline
+
+   1. Prerequisites: Create an event and a deadline in the task list. <br>
+   You can do so using `add n/test F/2023-05-05 1200 T/2023-05-05 1400` and `add n/homework D/2023-05-05 1200`.
+   2. Test cases: `find F/2023-05-05`, `find T/2023-05-05`<br>
+   Expected: Events with a from date on 5th May 2023 and events with a to date on 5th May 2023 will be listed in the task list. Success message will be shown in the message panel.
+   3. Test case: `find D/2023-05-05`<br>
+   Expected: Deadlines on 5th May 2023 will be listed in the task list. Success message will be shown in the message panel.
+   4. Some incorrect test cases: `find F/`, `find D/` and `find T/`.<br>
+   Expected: The task list will not change and the error message will be shown in the message panel.
+
+3. Find a task using the `all/` prefix so that tasks containing all inputs will be returned. Bear in mind that only one single type of prefix should be searched, i.e. you still only can search using a single type of prefix but many inputs can be entered.
+
+   1. Prerequisites: Create a task that contains the fields you wish to search.
+   2. Test cases: `find all/ n/watch n/lecture`<br>
+   Expected: Only tasks that contains both "watch" and "lecture" in their name will be listed in the task list now. Success message will be shown in the message panel.
+   3. Test cases: `find all/ t/CS2103T t/urgent`<br>
+   Expected: Only tasks that has both "CS2103T" and "urgent" as tags will be displayed in the task list. Success message will be shown in the message panel.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
