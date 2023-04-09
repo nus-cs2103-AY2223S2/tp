@@ -27,7 +27,7 @@ public class CreateExamCommand extends Command {
 
     public static final String COMMAND_WORD = "new-exam";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to students.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
         + PREFIX_EXAM + "EXAM_NAME "
