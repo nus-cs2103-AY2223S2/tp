@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to delete the specified internship of index {@code Index}
+     * Creates a DeleteCommand to delete the specified internship of index {@code Index}.
      */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

@@ -13,7 +13,7 @@ public class StatsCommand extends Command {
 
     public static final String COMMAND_WORD = "stats";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display useful statistics on application progress.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the statistics page.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_STATS_MESSAGE = "Showing statistics.";

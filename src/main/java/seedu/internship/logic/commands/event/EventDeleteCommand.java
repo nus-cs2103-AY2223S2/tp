@@ -20,7 +20,7 @@ import seedu.internship.model.internship.Internship;
 public class EventDeleteCommand extends EventCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " "
-            + EventDeleteCommand.COMMAND_WORD + ": Deletes an event in the event catalogue. \n"
+            + EventDeleteCommand.COMMAND_WORD + ": Deletes an event from the event catalogue.\n"
             + "Parameters: EVENT_INDEX (must be a positive integer)\n"
             + "Example: " + EventCommand.COMMAND_WORD + " "
             + EventDeleteCommand.COMMAND_WORD + " "

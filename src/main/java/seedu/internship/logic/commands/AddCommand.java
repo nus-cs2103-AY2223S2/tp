@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_POSITION + "POSITION "
             + PREFIX_COMPANY + "COMPANY "
             + PREFIX_STATUS + "STATUS "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Software Engineer "
