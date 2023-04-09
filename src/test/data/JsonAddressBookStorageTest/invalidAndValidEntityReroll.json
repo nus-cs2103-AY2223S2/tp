@@ -28,7 +28,7 @@
     "tagged" : [ ]
   } ],
   "items" : [ {
-    "name" : "VALID NAME",
+    "name" : "!NVALID NAME",
     "cost" : -1,
     "weight" : 0.0,
     "tagged" : [ ]
