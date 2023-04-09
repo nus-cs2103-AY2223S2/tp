@@ -6,9 +6,9 @@ skinparam ClassBorderColor #000000
 title After command "clear"
 
 package States <<rectangle>> {
-    class State1 as "__ab0:DengueHotspotTracker__"
-    class State2 as "__ab1:DengueHotspotTracker__"
-    class State3 as "__ab3:DengueHotspotTracker__"
+    class State1 as "ab0:DengueHotspotTracker"
+    class State2 as "ab1:DengueHotspotTracker"
+    class State3 as "ab3:DengueHotspotTracker"
 }
 
 State1 -[hidden]right-> State2
