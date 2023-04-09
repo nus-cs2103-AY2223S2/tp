@@ -820,10 +820,19 @@ testers are expected to do more _exploratory_ testing.
         is a valid whatsapp number and the whatsapp app is installed on the user's computer.
     3. **Note:** Only whatsapp is supported right now due to platform limitations.
 
-[↑ Back to top of section](#7-instructions-for-manual-testing)
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)  
 
 [↑ Back to table of contents](#table-of-contents)
 
+## 7.9 View upcoming birthdays:
+1. View people whose birthday are in the next 60 days:
+  1. Prerequisites: List all `Persons` using the `list` command. Multiple `Persons` in the list.
+  2. Test case: `upcoming-b`<br>
+    Expected: All `Persons` whose birthday is in the next 60 days are shown in the list.
+
+[↑ Back to top of section](#7-instructions-for-manual-testing)
+[↑ Back to table of contents](#table-of-contents)
 <div style="page-break-after: always"></div>
 
 # 8. Requirements
