@@ -120,13 +120,13 @@ When a command such as `select` is called, the left pane or the right pane, or b
 *Figure 4: Sequence Diagram for `select`*
 
 
-Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (in this case `Course` -> `Group`) is tracked by the `CurrentSelection` class as they navigate through the application.
+Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (in this case `Course` -> `Group`) is tracked by the `CurrentSelection` class as they navigate from the Course Page to the Group Page.
 
-To display the Group Page after a user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
+To display the Group Page after the user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
 
 Before creating the `GroupListPanel` to display the groups in the selected `Course`, the UI obtains an `ObservableList<Group>` from the selected `Course` in the `Model` component.
 Each `Group` in the `ObservableList<Group>` is then mapped into a `GroupListViewCell` in `GroupListPanel`.
-At the end of the `showGroupPane` method call, the Left Pane, previously occupied by the `CourseListPanel`, will be refreshed to show the `GroupListPanel`
+At the end of the `showGroupPane` method call, the Left Pane, previously populated by the `CourseListPanel`, will be refreshed to show the `GroupListPanel`
 
 This sequence of interactions is similar across each page navigation.
 
@@ -140,9 +140,9 @@ This sequence of interactions is similar across each page navigation.
 
 
 In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectively.
-The navigation from Session Page to Attendance Page does not close the `SessionListPanel` in the Left Pane, instead the `SessionListPanel` remains and the `AttendanceListPanel` is displayed in the Right Pane.
+The navigation from Session Page to Attendance Page does not close the `SessionListPanel`, instead the `SessionListPanel` remain displayed in the Left Pane and the `AttendanceListPanel` is displayed in the Right Pane.
 However, the current page shown in Figure 5 is still treated as the Attendance Page, hence only commands applicable to the Attendance Page is accepted.
-This also applies to the Grades Page, when the `GradesListPanel` is displayed alongside the `SessionListPanel`.
+This also applies to the Grades Page, when the `SessionListPanel` is displayed alongside the `GradesListPanel`.
 
 Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
 After marking a student's attendance with the `mark` command, the student card will be changed to green.
