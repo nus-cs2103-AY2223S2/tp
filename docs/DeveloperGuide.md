@@ -481,7 +481,7 @@ no star logos would be displayed. The sort command also sorts the bookmarks base
 
 #### Design considerations:
 
-##### Aspect: How should `Rating` be stored?
+**Aspect: How should `Rating` be stored?**
 The `Rating` field is represented by integer values from 0 to 5. This allows for a simple and intuitive way to rate
 books in the `Library`.
 
@@ -492,7 +492,7 @@ books in the `Library`.
   - Pros: Higher level of granularity
   - Cons: Difficult to represent with visual symbols in the UI to accurately reflect difference in ratings.
 
-##### Aspect: How should `Rating` be displayed to users?
+**Aspect: How should `Rating` be displayed to users?**
 - Alternative 1: Represented as a number for example "Rating: 4".
   - Pros: Easy to implement in the UI
   - Cons: Lots of textual information already present in the UI, adding more text makes it less visually appealing
