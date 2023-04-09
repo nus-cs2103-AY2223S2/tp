@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAA" as TAA LOGIC_COLOR
+participant ":UnmarkAttendanceParser" as UnmarkAttendanceParser LOGIC_COLOR
+participant "d:UnmarkAttendanceCommand" as UnmarkAttendanceCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unmarkAtd 1 w/1")
+activate LogicManager
+
+LogicManager -> TAA : parseCommand("unmarkAtd 1 w/1")
+activate TAA
+
+create UnmarkAttendanceParser
+TAA -> UnmarkAttendanceParser
+activate UnmarkAttendanceParser
+
+UnmarkAttendanceParser --> TAA
+deactivate UnmarkAttendanceParser
+
+TAA -> UnmarkAttendanceParser : parse("1 w/1")
+activate UnmarkAttendanceParser
+
+create UnmarkAttendanceCommand
+UnmarkAttendanceParser -> UnmarkAttendanceCommand
+activate UnmarkAttendanceCommand
+
+UnmarkAttendanceCommand --> UnmarkAttendanceParser : d
+deactivate UnmarkAttendanceCommand
+
+UnmarkAttendanceParser --> TAA : d
+deactivate UnmarkAttendanceParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnmarkAttendanceParser -[hidden]-> TAA
+destroy UnmarkAttendanceParser
+
+TAA --> LogicManager : d
+deactivate TAA
+
+LogicManager -> UnmarkAttendanceCommand : execute()
+activate UnmarkAttendanceCommand
+
+UnmarkAttendanceCommand -> Model : updateStudent(student)
+activate Model
+
+Model --> UnmarkAttendanceCommand
+deactivate Model
+
+create CommandResult
+UnmarkAttendanceCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnmarkAttendanceCommand
+deactivate CommandResult
+
+UnmarkAttendanceCommand --> LogicManager : result
+deactivate UnmarkAttendanceCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
