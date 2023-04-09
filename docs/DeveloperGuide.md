@@ -118,7 +118,8 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `OfficeConnectModel` data so that the UI can be updated with the modified data. 
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. 
-* depends on some classes in the `OfficeConnectModel` component, as it displays `Person` object residing in the `OfficeConnectModel`.
+* depends on some classes in the `OfficeConnectModel` component, as it displays `Person` and `Task` objects residing in
+the `OfficeConnectModel`.
 
 ### 2.3 Logic component
 
@@ -138,7 +139,7 @@ a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")`
-API call, which deletes the person located at index one.
+API call, which deletes the person located at index 1.
 
 ![Interactions Inside the Logic Component for the `deletep 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -170,7 +171,8 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 * Stores the currently 'selected' `Task` and `AssignTask` objects (e.g., results of a search query) as separate _filtered_ lists
   which is exposed to outsiders as an unmodifiable `ObservableList<Task>` and `ObservableList<AssignTask>` that can be
   'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* Stores data of all persons in OfficeConnect using a concrete implementation of the Model interface. Greater elaboration of the Model component is provided below.
+* Stores data of all persons in OfficeConnect using a concrete implementation of the `Model` interface. Greater elaboration 
+of the `Model` component is provided below.
 * Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain,
 they should make sense on their own without depending on other components)
 
@@ -201,7 +203,7 @@ OfficeConnect Storage Component
 The initial storage component was specifically designed to accommodate the address book model. However, OfficeConnect
 necessitates the inclusion of two additional storage types, namely task storage and assignment storage.
 
-To address this requirement, a new generic class called RepositoryStorage has been introduced to the storage component.
+To address this requirement, a new generic class called `RepositoryStorage` has been introduced to the storage component.
 This addition allows for increased extensibility and flexibility in the storage component's functionality.
 
 The enhanced design is extendable and also capable of supporting the integration of additional databases into the
@@ -348,9 +350,10 @@ Syntax: `assign pi/INDEX ti/INDEX`
 Purpose: Allows users to assign a person to a task in OfficeConnect.
 
 #### 3.6.1 Implementation
-The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`,
-`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. Below are the steps required to assign a task
-to a person in OfficeConnect.
+The implementation of this feature is supported by `AssignCommand`, `AssignCommandParser`, `ListCommand`, `ListAssignment`
+`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`. 
+
+Below are the steps required to assign a task to a person in OfficeConnect.
 
 Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
 * Alternative steps to Step 1:
