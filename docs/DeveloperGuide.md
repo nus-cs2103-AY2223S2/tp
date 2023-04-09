@@ -367,13 +367,14 @@ Step 1. The user launches the application for the first time.
 Step 2. The user decides to add a pet to the pet list. The user executes `add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
 
 Step 3. The user realises that he has made a mistake and executes `undo`.
-</pre>
+
 Step 4. The list displayed returns to previous state without the new Doggo added.
+</pre>
 ##### Extensions:
 <pre>
 Step 2a. The user decides to delete a pet from the pet list. The user executes `delete 1`.
-     3a. The user realises that he has made a mistake and executes `undo`.
-     4a. The list displayed returns to previous state with item 1 that was just deleted.
+     2b. The user realises that he has made a mistake and executes `undo`.
+     2c. The list displayed returns to previous state with item 1 that was just deleted.
 </pre>
 
 The following sequence diagram shows how the undo operation works:
@@ -591,7 +592,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [//]: # TODO()
 
-
 **Use case: Delete a pet**
 
 **MSS**
@@ -642,8 +642,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: Undo a command**
 
-[//]: # TODO()
-
+**MSS**
+1. Actor requests a `add`, `delete` or `archive`
+2. System executes
+3. Actor realises he made a mistake and `undo`
+4. System returns to previous state
 
 **Use case: Exit the System**
 
