@@ -113,14 +113,17 @@ public class ModelManager implements Model {
     }
 
     //=========== Versioned Address Book =====================================================================
+    @Override
     public void commit() {
         versionedAddressBook.commit(addressBook);
     }
 
+    @Override
     public boolean canUndo() {
         return versionedAddressBook.canUndo();
     }
 
+    @Override
     public boolean canRedo() {
         return versionedAddressBook.canRedo();
     }
@@ -128,6 +131,7 @@ public class ModelManager implements Model {
     /**
      * Undo and checkout the version of AddressBook that we want
      */
+    @Override
     public void undo() {
         AddressBook ab = versionedAddressBook.undo();
         setAddressBook(ab);
@@ -136,6 +140,7 @@ public class ModelManager implements Model {
     /**
      * Redo and checkout the version of AddressBook that we want
      */
+    @Override
     public void redo() {
         AddressBook ab = versionedAddressBook.redo();
         setAddressBook(ab);
@@ -238,7 +243,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
             && userPrefs.equals(other.userPrefs);
-        //&& filteredClients.equals(other.filteredClients);
     }
 
 }

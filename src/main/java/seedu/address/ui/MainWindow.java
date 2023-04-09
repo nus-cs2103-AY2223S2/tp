@@ -20,7 +20,7 @@ import seedu.address.model.client.Client;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "Base.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

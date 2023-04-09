@@ -26,19 +26,19 @@ public class AddPolicyCommand extends Command {
     public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the client identified by "
-            + "the index number used in the displayed client list." + "\n"
-            + "Parameters: "
-            + "INDEX (must be a positive integer) "
-            + PREFIX_POLICY_NAME + "POLICY_NAME "
-            + PREFIX_POLICY_START_DATE + "POLICY_DATE "
-            + PREFIX_POLICY_PREMIUM + "PREMIUM "
-            + PREFIX_POLICY_FREQUENCY + "FREQUENCY " + "\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "1 "
-            + PREFIX_POLICY_NAME + "Fire Insurance "
-            + PREFIX_POLICY_START_DATE + "01.01.2021 "
-            + PREFIX_POLICY_PREMIUM + "1000 "
-            + PREFIX_POLICY_FREQUENCY + "yearly ";
+        + "the index number used in the displayed client list." + "\n"
+        + "Parameters: "
+        + "INDEX (must be a positive integer) "
+        + PREFIX_POLICY_NAME + "POLICY_NAME "
+        + PREFIX_POLICY_START_DATE + "POLICY_DATE "
+        + PREFIX_POLICY_PREMIUM + "PREMIUM "
+        + PREFIX_POLICY_FREQUENCY + "FREQUENCY " + "\n"
+        + "Example: " + COMMAND_WORD + " "
+        + "1 "
+        + PREFIX_POLICY_NAME + "Fire Insurance "
+        + PREFIX_POLICY_START_DATE + "01.01.2021 "
+        + PREFIX_POLICY_PREMIUM + "1000 "
+        + PREFIX_POLICY_FREQUENCY + "yearly ";
 
     public final Index index;
     public final Policy policy;
@@ -63,8 +63,10 @@ public class AddPolicyCommand extends Command {
         if (index.getZeroBased() >= lastshownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
+
         Client clientToAddPolicy = lastshownList.get(index.getZeroBased());
         Client addedPolicyClient = clientToAddPolicy.cloneClient();
+
         // handle duplicate policies
         if (clientToAddPolicy.getPolicyList().contains(policy)) {
             throw new CommandException("This policy already exists in the client's policy list");
@@ -100,6 +102,6 @@ public class AddPolicyCommand extends Command {
         // state check
         AddPolicyCommand otherPolicy = (AddPolicyCommand) other;
         return index.equals(otherPolicy.index)
-                && policy.equals(otherPolicy.policy);
+            && policy.equals(otherPolicy.policy);
     }
 }

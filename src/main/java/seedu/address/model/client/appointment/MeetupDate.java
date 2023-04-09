@@ -15,13 +15,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class MeetupDate {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should only contain numbers, in the format of dd.mm.yyyy. Do ensure that the date "
-                    + "given is a valid date.";
+        "Date should only contain numbers, in the format of dd.mm.yyyy. Do ensure that the date "
+            + "given is a valid date.";
 
     public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}.\\d{4}$";
 
     public static final String MESSAGE_PAST_DATE = "Appointment dates have to be scheduled in advanced."
-            + " Today's date is " + LocalDate.now();
+        + " Today's date is " + LocalDate.now();
 
     public final LocalDate value;
 
@@ -34,6 +34,7 @@ public class MeetupDate {
 
     /**
      * Constructs a {@code MeetupDate}
+     *
      * @param value The meetup date of the appointment.
      */
     public MeetupDate(String value) {
@@ -59,6 +60,7 @@ public class MeetupDate {
 
     /**
      * Returns true if the given date is after the current date.
+     *
      * @param date The appointment date.
      */
     public static boolean isFutureDate(String date) {
@@ -71,16 +73,14 @@ public class MeetupDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String date) {
-        boolean valid = true;
-        if (!date.matches(VALIDATION_REGEX)) {
-            valid = false;
-        }
+        boolean valid = date.matches(VALIDATION_REGEX);
         try {
             String[] dateParts = date.split("\\.");
             int day = Integer.parseInt(dateParts[0]);
             int month = Integer.parseInt(dateParts[1]);
             int year = Integer.parseInt(dateParts[2]);
 
+            // Logic to accommodate for leap year corner case
             boolean isLeap = Year.of(year).isLeap();
             int numDays = Month.of(month).length(isLeap);
             if (day > numDays || day <= 0) {
