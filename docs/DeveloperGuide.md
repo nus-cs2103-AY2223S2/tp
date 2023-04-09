@@ -876,7 +876,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findc Amy Bob`<br>
       Expected: Both customers 'Amy Bee' and 'Bob Choo' are shown. Success message with number of listed customers (2) shown in the status message.
 
-1. Finding non-existing customers
+1. Finding non-existent customers
 
    1. Prerequisite: Only the customers 'Amy Bee' and 'Bob Choo' exists in the list.
 
@@ -958,14 +958,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `deletec 1`<br>
       Expected: First customer and any orders belonging to the customer is deleted from the list. Details of the deleted customer shown in the status message.
 
 1. Deleting a customer with a valid index while the customer is being displayed
 
    1. Prerequisites: List and view the first customer using `listc` followed by `viewc 1`. Multiple customers in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `deletec 1`<br>
       Expected: First customer and any orders belonging to the customer is deleted from the list. Information panel is cleared. Details of the deleted customer shown in the status message. 
 
 1. Deleting a customer with a valid index while the customer's order is being displayed
@@ -973,17 +973,17 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: At least one order is in the list. List and view the first order using `listo` followed by `viewo 1`.
       Find the order's customer using `findc FULL CUSTOMER NAME`.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `deletec 1`<br>
       Expected: First customer and any orders belonging to the customer is deleted from the list. Information panel is cleared. Details of the deleted customer shown in the status message.
 
 1. Deleting a customer with an invalid index
 
    1. Prerequisites: List customers using the `listc` command. Multiple customers in the list.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deletec 0`<br>
       Expected: No person or order is deleted. Information panel remains the same. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...`
+   1. Other incorrect delete commands to try: `deletec`, `deletec x`, `...`
       (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
@@ -1100,13 +1100,253 @@ testers are expected to do more *exploratory* testing.
       (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Saving data
+### Adding an order
 
-1. Dealing with missing/corrupted data files
+1. Adding an order
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: A customer with the name `Amy Bee` exists as the **first** customer in the customer list, but has no orders
 
-1. _{ more test cases …​ }_
+   2. Test case: `addo 1 n/Banana Cake` <br />
+      Expected: Order `Banana Cake` is added to the order list. The order should have a quantity of 1 and address that is the same to `Amy Bee`. The added order is displayed in the information panel. Details of the added order shown in the status message.
+
+   3. Test case: `addo 1 n/Chocolate Roll q/5 a/Gardens By The Bay` <br />
+      Expected: Order `Chocolate Roll` is added to the order list. The order should have a quantity of 5 and address of `Gardens By The Bay`. The added order is displayed in the information panel. Details of the added order shown in the status message.
+
+2. Adding an order with invalid parameters
+
+   1. Prerequisites: Only 1 customer exist in the customer list.
+
+   2. Test case: `addo 0 n/Banana Roll` <br />
+     Expected: No order is added. Information panel remains the same. Error details shown in the status message.
+
+   3. Test case: `addo 2 n/Banana Roll` <br />
+     Expected: Similar to previous.
+
+### Listing orders
+
+1. Listing all orders
+
+   1. Prerequisites: Multiple orders in the orders list.
+
+   2. Test case: `listo`<br />
+     Expected: All orders are shown in the list. Success message shown in the status message.
+
+2. Listing orders with valid sorting and filter option
+
+   1. Prerequisites: Multiple orders in the orders list.
+
+   2. Test case: `listo s/status`<br>
+      Expected: All orders are shown in the list sorted by status. Success message shown in the status message.
+
+   3. Test case: `listo f/pending`<br>
+      Expected: Only orders whose status are 'pending' are shown in the list. Success message shown in the status message.
+
+   4. Test case: `listo s/name f/paid`<br>
+      Expected: Only orders whose status are 'paid' are shown in the list sorted by name. Success message shown in the status message.
+
+   5. Other valid test cases to try: `listo s/x`, `listo f/y`, `listo s/x f/y`, `...`
+      (where x is a valid sorting option and y is a valid filter option)<br>
+      Expected: List is sorted or filtered according to x and y.
+
+3. Listing orders with invalid sorting or filter options
+
+    1. Prerequisites: Multiple orders in the list.
+
+    2. Test case: `listo s/invalid f/pending`<br>
+       Expected: List remains the same. Error details shown in the status message.
+
+    3. Test case: `listo s/status f/invalid`<br>
+       Expected: List remains the same. Error details shown in the status message.
+
+    4. Other incorrect test cases to try: `listo s/x`, `listo f/y`, `listo s/x f/y`, `...`
+       (where x is an invalid sorting option and y is an invalid filter option)<br>
+       Expected: Similar to previous.
+
+### Finding orders
+
+1. Finding existing orders
+
+    1. Prerequisite: Only the orders 'Banana Cake' and 'Chocolate Roll' exists in the order list.
+   
+    2. Test case: `findo Banana`<br>
+       Expected: Only the order 'Banana Cake' is shown. Success message with number of listed orders (1) shown in the status message.
+   
+    3. Test case: `findo Cake Banana`<br>
+       Expected: Only the order 'Banana Cake' is shown. Success message with number of listed orders (1) shown in the status message.
+   
+    4. Test case: `findo Banana Chocolate`<br>
+       Expected: Both orders 'Banana Cake' and 'Chocolate Roll' are shown. Success message with number of listed orders (2) shown in the status message.
+   
+2. Finding non-existent orders
+
+    1. Prerequisite: Only the orders 'Banana Cake' and 'Chocolate Roll' exists in the order list.
+
+    2. Test case: `findo A`<br>
+       Expected: No orders are shown. Success message with number of listed orders (0) shown in the status message.
+
+3. Finding orders with zero keywords
+
+    1. Prerequisite: Multiple orders in the list
+
+    2. Test case: `findo`<br>
+       Expected: List remains the same. Error details shown in the status message.
+
+### Viewing an order
+
+1. Viewing an order with a valid index
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `viewo 1`<br>
+       Expected: First order is displayed in the information panel. Details of the viewed order shown in the status message.
+
+2. Viewing an order with an invalid index
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple customers in the list.
+
+    2. Test case: `viewo 0`<br>
+       Expected: Information panel remains the same. Error details shown in the status message.
+
+    3. Other incorrect view commands to try: `viewo`, `viewo x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing an order
+
+1. Editing an order with valid parameters
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. No order with the name of 'Banana Cake', with quantity of 50 exists.
+
+    2. Test case: `edito 1 a/5th Smith Street`
+       Expected: First order's address updated to '5th Smith Street'. The updated order is displayed in the information panel. Details of the updated order shown in the status message.
+
+    3. Test case: `edito 1 q/50 n/Banana Cake`
+       Expected: First order's quantity updated to 50 and name updated to 'Banana Cake'. The updated order is displayed in the information panel. Details of the updated order shown in the status message.
+
+2. Editing an order with invalid parameters
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `edito q/invalid`,
+       Expected: No order is edited. Error details shown in the status message.
+
+    3. Test case: `edito a/`,
+      Expected: Similar to previous.
+
+### Deleting an order
+
+1. Deleting an order with a valid index while all orders are being shown
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `deleteo 1`<br>
+       Expected: First order is deleted from the list. Details of the deleted order shown in the status message.
+
+2. Deleting an order with a valid index while the order is being displayed
+
+    1. Prerequisites: List and view the first order using `listo` followed by `viewo 1`. Multiple orders in the list.
+
+    2. Test case: `deleteo 1`<br>
+       Expected: First order is deleted from the list. Information panel is cleared. Details of the deleted order shown in the status message.
+
+3. Deleting an order with an invalid index
+
+    1. Prerequisites: List orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `deleteo 0`<br>
+       Expected: No order is deleted. Information panel remains the same. Error details shown in the status message.
+
+    3. Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Setting/Appending an order's note
+
+1. Setting/Appending the note of an order with valid parameters
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. First order in the list has a non-empty note.
+
+    2. Test case: `setnoteo 1 nt/`<br>
+       Expected: The first order's note is cleared. The order is displayed in the information panel. Details of the order shown in the status message.
+
+    3. Test case: `setnoteo 1 nt/Example Note`<br>
+       Expected: The first order's note is set to 'Example Note'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+    4. Test case: `appendnoteo 1 nt/Extra Note`<br>
+       Expected: 'Extra Note' is appended to the first order's existing note. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Setting/Appending the note of an order with invalid parameters
+
+    1. Prerequisites: List all order using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `setnoteo 0 nt/`<br>
+       Expected: No order's note is affected. Information panel remains the same. Error details shown in the status message.
+
+    3. Test case: `appendnoteo 0 nt/`<br>
+       Expected: Similar to previous.
+
+    4. Other incorrect note commands to try: `setnoteo 1`, `appendnoteo 1`, `setnoteo x nt/`, `appendnoteo x nt/`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+
+### Advancing an order's status
+
+1. Advancing an order
+    
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `advo 1` <br />
+       Expected: The first order's note status is now 'Paid'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Advancing an order that is completed
+
+   1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Completed' status.
+
+   2. Test case: `advo 1` <br />
+      Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+3. Advancing an order that is cancelled
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Cancelled' status.
+
+    2. Test case: `advo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+
+### Reverting an order's status
+
+1. Reverting an order
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Paid' status.
+
+    2. Test case: `revo 1` <br />
+       Expected: The first order's note status is now 'Pending'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Advancing an order that is pending
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `revo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+
+### Cancelling an order
+
+1. Cancelling an order
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `cancelo 1` <br />
+       Expected: The first order's note status is now 'Cancelled'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Cancelling an order that is completed
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `cancelo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
