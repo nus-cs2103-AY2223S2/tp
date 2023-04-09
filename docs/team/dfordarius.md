@@ -68,6 +68,7 @@ Given below are my contributions to the project.
   * Refactored entire code-base to suit naming conventions for FitBook.
   * Handled miscellaneous administrative tasks including:
     * Setting up project website.
+    * Set up CodeCov to keep track of testing coverage
     * Enabling assertions in `build.gradle`.
     * `v1.3(final)`(1 releases) on GitHub
 
