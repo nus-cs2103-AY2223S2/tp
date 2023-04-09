@@ -1,5 +1,5 @@
 @startuml
-title Autocomplete Activity Diagram
+title Undo Activity Diagram
 
 start
 :User inputs the undo command into the command box;
