@@ -5,7 +5,7 @@ title Remove Appointment Activity Diagram
 start
 skinparam conditionStyle diamond
 :check if appointment exists;
-if () then (else)
+if () then ([else])
     :throw AppointmentNotFoundException;
 stop
 else ([exist])

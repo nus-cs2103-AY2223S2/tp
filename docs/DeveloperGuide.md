@@ -202,6 +202,9 @@ Related entities are updated automatically.
 <img src="images/RemoveCustomerInternalActivityDiag.png" height="800">
 <img src="images/RemoveVehicleInternalActivityDiag.png" height="700"> 
 <img src="images/RemoveAppointmentInternalActivityDiag.png" height="700">
+<img src="images/RemoveServiceInternalActivityDiag.png" height="1130">
+
+Above are the activity diagrams relevant to removing a customer. The cascading effects are automated by the `Shop` class and entity relations are preserved.
 
 ### Add Feature
 
