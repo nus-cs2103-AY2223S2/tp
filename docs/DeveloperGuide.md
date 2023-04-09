@@ -15,9 +15,9 @@ title: Developer Guide
 
 **sprINT** is an **internship-tracking application** that was created to assist students in their internship hunt. 
 
-Students often face a great administrative burden in keeping track of the high volume of job or internship 
+Students often face a great administrative burden in keeping track of the high volume of internship 
 applications. With sprINT, students can easily manage details of their internship applications, including the company, 
-contacts, status and task deadlines.
+company contact information, status and task deadlines.
 
 ### 1.2 About this guide
 
@@ -59,14 +59,14 @@ It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#42-ui-component): The UI of the App.
+* [**`Logic`**](#43-logic-component): The command executor.
+* [**`Model`**](#44-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -78,7 +78,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -143,7 +143,7 @@ The `Model` component,
 
 * stores the internship book data i.e., all `Application` objects (which are contained in a `UniqueApplicationList` object).
 * stores the currently 'selected' `Application` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Application>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` object.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### 4.5 Storage component
@@ -173,7 +173,7 @@ This section describes some noteworthy details on how certain features are imple
 #### About
 The add application command is a core feature of sprINT, allowing users to easily keep track of their internship
 applications. By issuing the command with the appropriate prefixes, users can input the key details of their application,
-including the role, company, email, and status. 
+including the role, company, company email, and status. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** While `task` is also a field associated
 with an application, users are only allowed to add a task to an application via the 
@@ -186,7 +186,7 @@ time to monitor their progress.
 #### Usage
 To add an application in sprINT, simply issue the command in the following format:
 
-`add-app r/[role] c/[company name] e/[company email] s/[status]`
+`add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 Here's a breakdown of what each prefix means:
 
@@ -245,7 +245,7 @@ can edit any field(s) of an existing application to update it or rectify input e
 #### Usage
 To edit an application in sprINT, simply issue the command in the following format:
 
-`edit-app INDEX r/[role] c/[company name] e/[company email] s/[status]`
+`edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]`
 
 Apart from `INDEX`, all other fields are optional. However, at least one of the optional fields must be provided.
 
@@ -298,7 +298,7 @@ Here's a breakdown of what each prefix means:
 
 - `r/` - finds the role of the application.
 - `c/` - finds the company name of the application.
-- `s/` - finds the status of the application. The only valid values are "interested", "applied", "rejected" and "offered".
+- `s/` - finds the [status](#status) of the application. The only valid values are "interested", "applied", "rejected" and "offered".
 
 When no prefix is specified, the keywords are searched in the role, company name and status fields of applications.
 
@@ -336,7 +336,13 @@ sequence diagram:
 
 #### About
 The sort command is a feature that enables users to rearrange the list of applications they see on the GUI.
-The following table details the parameters to be used with the `sort` command:
+
+#### Usage
+To sort applications in sprINT, use the command in the following format:
+
+`sort SEQUENCE ORDER`
+
+The following table explains the parameters to be used with the `sort` command:
 
 | Parameter | Compulsory | Constraints                                 | 
 |-----------|------------|---------------------------------------------|
@@ -539,7 +545,7 @@ The add task mechanism is facilitated by the Ui, Logic and Model components of s
 class (`AddTaskCommandParser`), the steps taken when it receives a valid add task command from the user are largely 
 similar to the [edit application](#52-edit-application-feature) command, since the add task feature uses existing logic
 from `EditApplicationCommand` under the hood (for why this is the case, refer to 
-[Design Considerations](#design-considerations)).
+[Design Considerations](#design-considerations-1)).
 
 The following sequence diagram provides a graphical illustration of how the add task operation works:
 
@@ -657,7 +663,7 @@ Windows, Linux, Unix, OS-X
 
 * is a student going to or is currently applying for internships
 * has a need to manage a significant number of internship applications
-* prefer desktop apps over other types of apps
+* prefers desktop apps over other types of apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps

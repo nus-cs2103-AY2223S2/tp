@@ -36,7 +36,7 @@ activate Model
 Model -> VersionedInternshipBook : undo()
 activate VersionedInternshipBook
 
-VersionedInternshipBook -> VersionedInternshipBook :resetData(ReadOnlyAddressBook)
+VersionedInternshipBook -> VersionedInternshipBook :resetData(ReadOnlyInternshipBook)
 VersionedInternshipBook --> Model :
 deactivate VersionedInternshipBook
 

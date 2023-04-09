@@ -16,7 +16,7 @@ participant ":ApplicationContainsKeywordsPredicate" as ApplicationContainsKeywor
 end box
 
 note left of LogicManager #aqua
-Let user input be: find <str>
+Let user input be: <str>
 str = "r/SWE c/Google s/Applied"
 end note
 
@@ -47,16 +47,16 @@ activate ApplicationContainsKeywordsPredicate
 ApplicationContainsKeywordsPredicate --> FindCommand : predicate
 deactivate ApplicationContainsKeywordsPredicate
 
-FindCommand --> FindCommandParser : FindCommand
+FindCommand --> FindCommandParser : findCommand
 deactivate FindCommand
 
-FindCommandParser --> InternshipBookParser : FindCommand
+FindCommandParser --> InternshipBookParser : findCommand
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindCommandParser -[hidden]-> InternshipBookParser
 destroy FindCommandParser
 
-InternshipBookParser --> LogicManager : FindCommand
+InternshipBookParser --> LogicManager : findCommand
 deactivate InternshipBookParser
 
 LogicManager -> FindCommand : execute()
