@@ -17,7 +17,7 @@ experience the game-changing benefits that EP can bring to your work!
 
 ### Table of Contents
 
-* Table of Contents 
+* Table of Contents
 {:toc}
 
 
