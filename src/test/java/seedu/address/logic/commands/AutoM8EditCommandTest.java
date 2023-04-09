@@ -66,14 +66,15 @@ public class AutoM8EditCommandTest {
     private static final Address customerAddressA = new Address("Blk 30 Geylang Street 29, #06-40");
     private static final Address technicianAddressA = new Address("Blk 586 Bedok Street 23, #08-46");
     private static final Address sampleAddress = new Address("1007 Mountain Drive");
-
     private static final Set<Tag> customerTagA = getTagSet("regular");
     private static final Set<Tag> technicianTagA = getTagSet("big boss");
     //    private static final Set<Integer> customerVehicleIdA = getIntegerSet(1, 2);
     //    private static final Set<Integer> customerAppointmentIdA = getIntegerSet(1, 2, 3, 4);
     //    private static final Set<Integer> technicianServiceIdA = getIntegerSet(1, 4, 5, 6);
     //    private static final Set<Integer> technicianAppointmentIdA = getIntegerSet(1, 4);
-    private static final LocalDateTime sampleLocalDateTimeA = LocalDateTime.parse("10/12/2022 02:00 PM",
+    private static final LocalDateTime appointmentLocalDateTimeA = LocalDateTime.parse("10/12/2022 02:00 PM",
+            AutoM8CommandTestUtil.getDtf());
+    private static final LocalDateTime sampleLocalDateTime = LocalDateTime.parse("29/04/2020 01:00 AM",
             AutoM8CommandTestUtil.getDtf());
     private static final String vehiclePlateNumberA = "SKA1234A";
     private static String samplePlate = "ZU 0666',0,0); DROP DATABASE TABLICE";
@@ -163,10 +164,10 @@ public class AutoM8EditCommandTest {
         // Fail condition is only id
         // Does not check if time < time
 
-        assertFailure(new EditAppointmentCommand(-1, Optional.of(customerIdA), Optional.of(sampleLocalDateTimeA)),
+        assertFailure(new EditAppointmentCommand(-1, Optional.of(customerIdA), Optional.of(appointmentLocalDateTimeA)),
                 model, new AppointmentNotFoundException(-1));
 
-        assertFailure(new EditAppointmentCommand(99, Optional.of(customerIdA), Optional.of(sampleLocalDateTimeA)),
+        assertFailure(new EditAppointmentCommand(99, Optional.of(customerIdA), Optional.of(appointmentLocalDateTimeA)),
                 model, new AppointmentNotFoundException(99));
 
         assertFailure(new EditAppointmentCommand(appointmentIdA, Optional.empty(), Optional.empty()),
@@ -399,12 +400,41 @@ public class AutoM8EditCommandTest {
     @Test
     public void validAppointment_success() {
         Model model = new TypicalShop().getTypicalModel();
+        Appointment appointment = model.getShop().getAppointmentList().stream().filter(a -> a.getId() == appointmentIdA)
+                .findFirst().get();
 
-        //        assertSuccess(new EditVehicleCommand(vehicleIdA, Optional.of(2),
-        //                Optional.of(samplePlate), Optional.of(sampleColor), Optional.of(sampleBrand),
-        //                Optional.of(sampleVehicleType)), model, new CommandResult(String.format
-        //                (MESSAGE_EDIT_VEHICLE_SUCCESS,
-        //                vehicleIdA), Tab.VEHICLES).getFeedbackToUser());
+        assertFalse(appointment.getCustomerId() == 2);
+        assertFalse(appointment.getTimeDate().equals(sampleLocalDateTime));
+
+        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.of(2),Optional.of(sampleLocalDateTime)),
+                model, new CommandResult(String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
+                        appointmentIdA), Tab.APPOINTMENTS).getFeedbackToUser());
+
+        appointment = model.getShop().getAppointmentList().stream().filter(a -> a.getId() == appointmentIdA)
+                .findFirst().get();
+        assertTrue(appointment.getCustomerId() == 2);
+        assertTrue(appointment.getTimeDate().equals(sampleLocalDateTime));
+        assertTrue(appointment.getDateStatus().equals(Appointment.DateStatus.PASSED));
+
+        LocalDateTime futureTime = LocalDateTime.now();
+
+        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.empty(),Optional.of(futureTime)),
+                model, new CommandResult(String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
+                        appointmentIdA), Tab.APPOINTMENTS).getFeedbackToUser());
+
+        appointment = model.getShop().getAppointmentList().stream().filter(a -> a.getId() == appointmentIdA)
+                .findFirst().get();
+        assertTrue(appointment.getDateStatus().equals(Appointment.DateStatus.NOW));
+
+        futureTime = LocalDateTime.now();
+        futureTime = futureTime.plusDays(7);
+        assertSuccess(new EditAppointmentCommand(appointmentIdA, Optional.empty(),Optional.of(futureTime)),
+                model, new CommandResult(String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
+                        appointmentIdA), Tab.APPOINTMENTS).getFeedbackToUser());
+
+        appointment = model.getShop().getAppointmentList().stream().filter(a -> a.getId() == appointmentIdA)
+                .findFirst().get();
+        assertTrue(appointment.getDateStatus().equals(Appointment.DateStatus.UPCOMING));
 
     }
 
