@@ -24,17 +24,12 @@ public class Cost {
      */
     public Cost(LocalDateTime timeStamp) {
         requireNonNull(timeStamp);
-        if (!isValidTimeStamp(timeStamp)) {
-            throw new IllegalArgumentException("Invalid time stamp");
-        }
+
         this.timeStamp = timeStamp;
         this.rate = 0.10;
         this.flatCost = 0.00;
     }
 
-    public boolean isValidTimeStamp(LocalDateTime timeStamp) {
-        return timeStamp.isBefore(LocalDateTime.now());
-    }
 
     public void setRate(double rate) {
         this.rate = rate;
