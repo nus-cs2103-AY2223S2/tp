@@ -2463,11 +2463,67 @@ TODO: to be removed
 | Test Case                                                    | Expected Result                             |
 | ------------------------------------------------------------ | ------------------------------------------- |
 | `nav CS2040S`<br/> `nav Week 2`<br/>`find math /byTag` | List should show videos with name [`Vid 2`] |
-| `nav CS2040S`<br/> `find math /lec Week 2 /byTag`        | Same as previous                            |
-| `nav /mod CS2040S /lec Week 2`<br/>`find math /byTag`    | Same as previous                            |
-| `find math /mod CS2040S /lec Week 2 /byTag`                  | Same as previous                            |
-| `nav /mod CS2040S /lec Week 2`<br/>`find`                | Invalid command                             |
 
+### Add a Module
+
+| Test Case                                                                                               | Expected Result                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `add CS2103T /name Software Engineering /tags Coding, 4MCs`                                             | **Message:**<br/>`New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`<br/>**List updates:** New entry for "CS2103T", with name "Software Engineering" and tags "Coding", and "4MCs" |
+| 1. `nav CS2040S`<br/>2. `add CS2103T /r /name Software Engineering /tags Coding, 4MCs`                  | **Message:**<br/>`New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`<br/>**List updates:** None                                                                                    |
+| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add CS2103T /r /name Software Engineering /tags Coding, 4MCs` | **Message:**<br/>`New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]`<br/>**List updates:** None                                                                                    |
+
+Some incorrect commands to try from root context:
+- `add` (incorrect format)
+- `add CS2040S` (duplicate module)
+- `add 123` (invalid module code)
+- `add CS2103T /name N@me` (invalid module name)
+- `add CS2103T /tags T@g` (invalid tag)
+
+### Add a Lecture
+
+| Test Case                                                                                | Expected Result                                                                                                                                                       |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add Week 7 /mod CS2040S /tags AVLTree, Census`                                          | **Message:**<br/>`New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>**List updates:** None                                                    |
+| 1. `nav CS2040S`<br/>2. `add Week 7 /tags AVLTree, Census`                               | **Message:**<br/>`New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>**List updates:** New entry for "Week 7" with tags "AVLTree" and "Census" |
+| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add Week 7 /mod CS2040S /tags AVLTree, Census` | **Message:**<br/>`New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]`<br/>**List updates:** None                                                    |
+
+Some incorrect commands to try from root context:
+- `add /mod CS2040S` (incorrect format)
+- `add Week 1 /mod CS2040S` (duplicate lecture)
+- `add Lecture N@me /mod CS2040S` (invalid lecture name)
+- `add Week 7 /mod CS2040S /tags T@g` (invalid tag)
+
+### Add a Video
+
+| Test Case                                                                                                 | Expected Result                                                                                                                                                                                                                              |
+| --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`                      | **Message:**<br/>`New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`<br/>**List updates:** None                                                                                |
+| 1. `nav CS2040S`<br/>2. `add Vid 3 /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`           | **Message:**<br/>`New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`<br/>**List updates:** None                                                                                |
+| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add Vid 3 /lec Week 1 /timestamp 01:04:20 /tags Analysis, BigO` | **Message:**<br/>`New video added to module CS2040S of lecture Week 1: Vid 3; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** New entry for "Vid 3" with timestamp "01:04:20" and tags "Analysis" and "BigO" |
+
+Some incorrect commands to try from root context:
+- `add /mod CS2040S /lec Week 1` (incorrect format)
+- `add Vid 1 /mod CS2040S /lec Week 1` (duplicate video)
+- `add V!deo /mod CS2040S /lec Week 1` (invalid video name)
+- `add Vid 3 /mod CS2040S /lec Week 1 /tags T@g` (invalid tag)
+
+### Edit a Module
+
+| Test Case                                                                                                 | Expected Result                                                                                                                                                                                              |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`                                             | **Message:**<br/>`Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20`<br/>**List updates:** Entry for "CS2040S" updated to "CS2040", with name "DSAG" and tags "Analytical" and "4MCs" |
+| 1. `nav CS2040S`<br/>2. `edit CS2040S /r /code CS2040 /name DSAG /tags Analytical, 4MCs`                  | **Message:**<br/>`Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20`<br/>**List updates:** None |
+| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit CS2040S /r /code CS2040 /name DSAG /tags Analytical, 4MCs` | **Message:**<br/>`Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20`<br/>**List updates:** None                                                                                    |
+
+Some incorrect commands to try from root context:
+- `edit` (incorrect format)
+- `edit CS2040S /code ST2334` (duplicate module)
+- `edit 123` (invalid module code)
+- `edit CS2040S` (no updated fields)
+- `edit CS2103 /code CS2103T` (non-existent module)
+- `edit CS2040S /code 123` (invalid module code)
+- `edit CS2040S /name N@me` (invalid module name)
+- `edit CS2040S /tags T@g` (invalid tag)
 ### Delete Module(s)
 
 | Test Case                                   | Expected Result |
