@@ -51,6 +51,7 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
+    //@@author lywich-reused
     @Test
     public void taskBookReadSave() throws Exception {
         /*
@@ -64,6 +65,7 @@ public class StorageManagerTest {
         assertEquals(original, new TaskBook(retrieved));
     }
 
+    //@@author joyngjr
     @Test
     public void plannerReadSave() throws Exception {
         /*
@@ -78,6 +80,7 @@ public class StorageManagerTest {
     }
 
 
+    //@@author
     @Test
     public void getTaskBookFilePath() {
         assertNotNull(storageManager.getTaskBookFilePath());

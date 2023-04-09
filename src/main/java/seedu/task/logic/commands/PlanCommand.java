@@ -13,6 +13,9 @@ public class PlanCommand extends Command {
 
     private final long workload;
 
+    /**
+     * Creates a new {@code PlanCommand} with user preferred effort level.
+     */
     public PlanCommand(Effort effort) {
         this.workload = effort.getEffort();
     }

@@ -22,6 +22,7 @@ import seedu.task.model.task.Task;
 import seedu.task.model.task.exceptions.DuplicateTaskException;
 import seedu.task.testutil.SimpleTaskBuilder;
 
+//@@author
 public class TaskBookTest {
 
     private final TaskBook taskBook = new TaskBook();
@@ -43,6 +44,7 @@ public class TaskBookTest {
         assertEquals(newData, taskBook);
     }
 
+    //@@author Huggenguggen
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
@@ -55,6 +57,7 @@ public class TaskBookTest {
         assertThrows(DuplicateTaskException.class, () -> taskBook.resetData(newData));
     }
 
+    //@@author
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> taskBook.hasTask(null));
@@ -71,6 +74,7 @@ public class TaskBookTest {
         assertTrue(taskBook.hasTask(ALICE));
     }
 
+    //@@author Huggenguggen
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskBook_returnsTrue() {
         taskBook.addTask(ALICE);
@@ -80,6 +84,7 @@ public class TaskBookTest {
         assertTrue(taskBook.hasTask(editedAlice));
     }
 
+    //@@author
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> taskBook.getTaskList().remove(0));

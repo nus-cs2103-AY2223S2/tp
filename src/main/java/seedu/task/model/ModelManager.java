@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Task> alertTasks;
 
     /**
-     * Initializes a ModelManager with the given taskBook and userPrefs.
+     * Initializes a ModelManager with the given taskBook, planner and userPrefs.
      */
     public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs, ReadOnlyPlanner planner) {
         requireAllNonNull(taskBook, userPrefs);

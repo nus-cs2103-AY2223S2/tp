@@ -4,7 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
-participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
 participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
 participant "p:PlanCommand" as PlanCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
@@ -21,25 +20,12 @@ activate LogicManager
 LogicManager -> TaskBookParser : parseCommand("schedule D/2023-06-28 E/50")
 activate TaskBookParser
 
-create ScheduleCommandParser
-TaskBookParser -> ScheduleCommandParser : ScheduleCommandParser()
-activate ScheduleCommandParser
-
-ScheduleCommandParser --> TaskBookParser
-deactivate ScheduleCommandParser
-
-TaskBookParser -> ScheduleCommandParser : parse("D/2023-06-28 E/50")
-activate ScheduleCommandParser
-
 create ScheduleCommand
-ScheduleCommandParser -> ScheduleCommand : ScheduleCommand(date, effort)
+TaskBookParser -> ScheduleCommand
 activate ScheduleCommand
 
-ScheduleCommand --> ScheduleCommandParser : s
+ScheduleCommand --> TaskBookParser : s
 deactivate ScheduleCommand
-
-ScheduleCommandParser --> TaskBookParser : s
-deactivate ScheduleCommandParser
 
 TaskBookParser --> LogicManager : d
 deactivate TaskBookParser

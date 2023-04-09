@@ -45,8 +45,11 @@ public class Index {
         return new Index(oneBasedIndex - 1);
     }
 
-    public void modifyIndex(int x) {
-        this.zeroBasedIndex = this.zeroBasedIndex + x;
+    /**
+     * Modifies this index by the amount passed into the function.
+     */
+    public void modifyIndex(int change) {
+        this.zeroBasedIndex = this.zeroBasedIndex + change;
     }
     @Override
     public boolean equals(Object other) {

@@ -45,6 +45,9 @@ public class Planner implements ReadOnlyPlanner {
         setDailyPlans(newDailyPlans.getDailyPlanList());
     }
 
+    /**
+     * Adds a daily plan into Planner.
+     */
     public void addDailyPlan(DailyPlan dp) {
         plansList.add(dp);
     }
@@ -76,11 +79,9 @@ public class Planner implements ReadOnlyPlanner {
         }
     }
 
-    @Override
-    public List<DailyPlan> getDailyPlanList() {
-        return plansList;
-    }
-
+    /**
+     * Retrieves a list of tasks to be completed on a particular date.
+     */
     public DailyPlan getDailyPlanOn(LocalDate date) {
         int n = plansList.size();
 
@@ -91,6 +92,11 @@ public class Planner implements ReadOnlyPlanner {
         }
 
         return null;
+    }
+
+    @Override
+    public List<DailyPlan> getDailyPlanList() {
+        return plansList;
     }
 
     @Override

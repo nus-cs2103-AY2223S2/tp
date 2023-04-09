@@ -9,6 +9,10 @@ import java.util.function.Predicate;
 public class IsSameTaskPredicate implements Predicate<Task> {
     private final List<Task> taskList;
 
+    /**
+     * Creates a {@code IsSameTaskPredicate} with a list of tasks to check against.
+     * @param taskList list of tasks to be checked against
+     */
     public IsSameTaskPredicate(List<Task> taskList) {
         this.taskList = taskList;
     }

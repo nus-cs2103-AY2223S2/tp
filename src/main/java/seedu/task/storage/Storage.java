@@ -10,6 +10,7 @@ import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.UserPrefs;
 
+//@@author
 /**
  * API of the Storage component
  */
@@ -30,6 +31,7 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage, PlannerStora
     @Override
     void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
 
+    //@@author joyngjr
     @Override
     Optional<ReadOnlyPlanner> readPlanner() throws DataConversionException, IOException;
 }
