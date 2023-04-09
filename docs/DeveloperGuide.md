@@ -178,7 +178,7 @@ One way to reduce the amount of overhead in each edit command is to store only t
 
 **Overview**
 
-Edits an appointment in the appointment list.
+Edits an appointment in the appointment list. Editing appointment may update calendar if there is a change in date/time.
 
 **Implementation**
 
@@ -232,7 +232,7 @@ We chose to use a single command instead of two different commands like `find` a
 
 **Overview**
 
-Deletes a patient from the patient list. Also deletes any appointments for the patient from the appointment list.
+Deletes a patient from the patient list. Also deletes any appointments for the patient from the appointment list. This will update calendar accordingly.
 
 ![sequence diagram for delete patient](images/DeleteSequenceDiagram-0.png)
 
@@ -244,7 +244,7 @@ The delete patient command allows the user to delete an existing patient from Me
 
 **Overview**
 
-Deletes an appointment from the appointment list.
+Deletes an appointment from the appointment list. Calendar is updated accordingly.
 
 **Implementation**
 
