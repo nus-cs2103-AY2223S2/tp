@@ -165,6 +165,8 @@ Here are all the prefixes that can be used:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
 
+If the person identify himself as non-binary, you can save his gender as `nonbinary`.
+
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding prefix.
 
@@ -249,6 +251,8 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer** (must be greater than 0).
 * All the fields are optional. However, at least one field must be provided.
+* If the person identify himself as non-binary, you can save his gender as `nonbinary`.
+
 
 For the following fields, they are considered a `FieldGroup`.
 * Modules
