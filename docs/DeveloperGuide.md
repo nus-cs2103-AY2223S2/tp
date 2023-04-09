@@ -5,29 +5,34 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-------------------------------------------------------------------------------------------------------------------------
+## 1. Introduction
+
+### 1.1 About coNtactUS
 
 coNtactUS is a **university module tracker and timetable/deadline sorting application**, optimized for use via a
 **Command Line Interface (CLI)** while still having the _benefits_ of a **Graphical User Interface (GUI)**. This
 application uses the **AddressBook-Level3** project created by the [SE-EDU initiative](https://se-education.org/)
 as its framework.
 
+### 1.2 About the developer guide
 
-<!-- -------------------------------------------------------------------------------------------------------------- -->
+Gonna update this- tingyic.
 
 ------------------------------------------------------------------------------------------------------------------------
-## **Acknowledgements**
+## **2. Acknowledgements**
 
 No external sources or libraries were used.
 
 ------------------------------------------------------------------------------------------------------------------------
- ## **Setting up, getting started**
+ ## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md) to start developing your own coNtactUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Architecture
+## **4. Design**
+
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 Architecture of the module tracker.
@@ -79,7 +84,7 @@ to the implementation of a component), as illustrated in the (partial) class dia
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2 UI component
 
 The **API** of this component is specified in
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -104,7 +109,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
 
-### Logic component
+### 4.3 Logic component
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -144,7 +149,7 @@ as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
 interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 4.4 Model component
 **API** :
 [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -173,7 +178,7 @@ A more OOP model of the Model component
 </div>
 
 
-### Storage component
+### 4.5 Storage component
 
 **API** :
 [`Storage.java`](https://tinyurl.com/3dmsfunt)
@@ -189,24 +194,24 @@ the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.moduletracker.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort Feature
+### 5.1 Sort Feature
 
-#### Sort Command Implementation
+#### 5.1.1 Sort Command Implementation
 Some txt here.
 
-### Find feature
+### 5.2 Find feature
 
-#### Find Command Implementation
+#### 5.2.1 Find Command Implementation
 This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users
 to search for modules whose names or types contain any of the specified keywords (case-insensitive).
 
@@ -236,7 +241,7 @@ Step 4. The method set the predicate to the filtered list which will run the `Na
 find the items based on name or type
 
 
-
+<!--
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -251,16 +256,17 @@ find the items based on name or type
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+-->
 
-### \[Proposed\] Planned Enhancements
+------------------------------------------------------------------------------------------------------------------------
+
+### 6. \[Proposed\] Planned Enhancements
 
 1. Reminder function.
 2. More checks to teacher, remarks and one more i forgot.
 
-
-
 --------------------------------------------------------------------------------------------------------------------
-## **Documentation, logging, testing, configuration, dev-ops**
+## **7. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -270,9 +276,9 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **8. Appendix: Requirements**
 
-### Product scope
+### 8.1 Product scope
 
 **Target user profile**
 
@@ -295,7 +301,7 @@ not be able to remember them
   * Sort existing modules based on their deadline or class time slots
 
 
-### User stories
+### 8.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -314,7 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 8.3 Use cases
 
 (For all use cases below, the **System** is the `coNtactUS` and the **Actor** is an `NUS computing student`, unless
 specified otherwise)
@@ -512,7 +518,7 @@ bottom. Modules without `timeslot` will be pushed to the back, unsorted.
 
   Use case ends.
 
-### Non-Functional Requirements
+### 8.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
@@ -520,11 +526,12 @@ bottom. Modules without `timeslot` will be pushed to the back, unsorted.
 be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Only language supported is English
 5. The software size (including the data file with up to 1000 modules) should not exit 100MB.
-6. 
 
 *{More to be added}*
 
-### Glossary
+------------------------------------------------------------------------------------------------------------------------
+
+## 9. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private module detail**: A module detail that is not meant to be shared with others
@@ -548,7 +555,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **10. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -558,7 +565,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 10.1 Launch and shutdown
 
 1. Initial launch
 
@@ -576,7 +583,7 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
-### Deleting a module
+### 10.2 Deleting a module
 
 1. Test case: `delete 1`<br>
       Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
@@ -591,7 +598,7 @@ Timestamp in the status bar is updated.
 4. _{ more test cases …​ }_
 
 
-### Adding a module
+### 10.3 Adding a module
 
 1. Adding a module
 
@@ -611,7 +618,7 @@ Timestamp in the status bar is updated.
    using the prefixes)<br>
    Expected: Similar to previous.
 
-### Editing a module
+### 10.4 Editing a module
   1. Test case: `edit 1 n/CS1101S` <br>
    Expected: The name of the first module in the list is edited, and is now `CS1101S`. Details of the updated module
    is shown in the status message.
@@ -637,7 +644,7 @@ Timestamp in the status bar is updated.
    and y is the attribute you want to edit, either without using the prefixes, or the format is incorrect).
    Expected: Similar to previous.
 
-### Finding a module/type
+### 10.5 Finding a module/type
 
 1. Test case: `find CS2103T` <br>
    Expected: Module(s) with the name `CS2103T` is (are) found. Details of the found module(s) are shown in the list.
@@ -662,7 +669,7 @@ Expected: No modules are found, because the keyword does not exist in the existi
    
 7. Note: Make sure to list the modules again when you want to find another module.
    
-### Sorting a module by `timeslot` or `deadline`
+### 10.6 Sorting a module by `timeslot` or `deadline`
 
 1. Test case: `sort timeslot` <br>
 Expected: If there are modules with different `timeslot`, the modules will be sorted by earliest first and latest last.
@@ -675,7 +682,7 @@ The modules without `deadline` will be unsorted at the very end of the list.
 3. Test case: `sort x` (where x is empty, or anything other than `timeslot` or `deadline`) <br>
 Expected: The modules will not be sorted.
 
-### Saving data
+### 10.7 Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -684,13 +691,13 @@ Expected: The modules will not be sorted.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Effort
+## 11. Appendix: Effort
 
-### **Overall Difficulty level: 7 / 10**
+**Overall Difficulty level: 7 / 10**
 
-### **Overall effort required: 8 / 10**
+**Overall effort required: 8 / 10**
 
-#### Challenges faced:
+### 11.1 Challenges faced:
 
 1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
 required: 9 / 10)
