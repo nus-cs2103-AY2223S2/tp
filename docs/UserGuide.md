@@ -103,7 +103,7 @@ The life of a student is busy, but also vibrant and filled with a variety of act
 
 ### Basic Information about Tasks
 * A Task can be:
-    * A simpleTask, which does not have a [_long date_](#q4-what-is-a-valid-long-date) attached to it.
+    * A simple task, which does not have a [_long date_](#q4-what-is-a-valid-long-date) attached to it.
     * A deadline, which has a _long date_ known as `deadline`.
     * An event, which has 2 _long dates_ also known as `from` and `to`.
 
@@ -111,7 +111,6 @@ The life of a student is busy, but also vibrant and filled with a variety of act
     * Tags
     * Description
     * Effort level
-    * Alert window
     * Subsection
 
 This is what a task looks like in Clock-Work.
@@ -126,10 +125,11 @@ This is what each component mean:
 | [Tag](#q3-what-is-a-valid-tag)* | Labels / Folders | Group related tasks | Must be a single word, Case-sensitive, Tags of the same name are only added once, Colour randomly generated, Displayed lexicographically|
 | [Time](#q4-what-is-a-valid-long-date) | Type of task | Keep track of time-related information here | Simple tasks have no dates, Deadlines have 1 long date, Events have 2 long dates |
 | [Effort](#q7-what-is-an-effort-level) | Estimated amount of work to complete task | Set realistic effort estimates to help with scheduling | Default value of 24                                                                        |
-| [Description](#q8-what-is-a-valid-description) | Good-to-know | Useful things to remember | Text with at least 1 character                                                             |
+| [Description](#q8-what-is-a-valid-description)** | Good-to-know | Useful things to remember | Text with at least 1 character                                                             |
 | [Subsection](#q9-what-is-a-valid-subsection) | Smaller tasks to complete | Split a larger task into more manageable pieces | Has its own name and description                                                           |
 
 \* Must be alphanumeric and must not contain special characters
+\*\* Allowed to contain special characters, but it should not be used alongside [reserved keywords](#inputs-into-clock-work)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -173,7 +173,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 4. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-5. There are reserved keywords like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/` to identify inputs as needed in commands.
+5. There are reserved keywords like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/` to identify inputs. You should not be using these, except to differentiate parts of a command.
 
 </div>
 
@@ -185,7 +185,7 @@ You can create different types of tasks depending on the input parameters you en
 
 Format:
 
-* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
+* Simple Task: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
 * Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
@@ -195,7 +195,9 @@ Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
-e.g. `add n/Sample d/Why can't I add n/?`
+
+:warning: While you are allowed to use special characters in the description, using [reserved keywords](#inputs-into-clock-work) may cause unintended behavior. You are **strongly discouraged** from using reserved keywords in your description.
+This is a bad example: `add n/Sample d/Why can't I add n/?`.
 
 <br>
 
@@ -220,17 +222,17 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* `DEADLINE`, `FROMDATE`, `TODATE` can also be altered if and only if the original tasks has these fields. (You are unable to assign a `deadline` to a `SimpleTask`).
+* `DEADLINE`, `FROMDATE`, `TODATE` can also be altered if and only if the original tasks has these fields. (You are unable to assign a deadline to a simple task).
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
 * You can remove a description with `d/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
-*  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be `CS2102 Finals` and clears all existing tags.
+*  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be 'CS2102' and 'URGENT'.
+*  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be 'CS2102 Finals' and clears all existing tags.
 
-:warning: When editing the tags of a task, multiple tags of the same name is ignored!
+:warning: **IMPORTANT** When editing the tags of a task, multiple tags of the same name is ignored!
 
 e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
@@ -262,7 +264,7 @@ Shows a list of all tasks in the task book.
 
 Format: `list`
 
-:bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
+:bulb: **PRO TIP**: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 
 ### 4.5 Sorting tasks : `sort`
@@ -271,9 +273,9 @@ Format: `list`
 
 Sorts the list using the following format:
 
-* SimpleTask is listed above Deadline and Event.
-* Deadline is  listed below SimpleTask and above Event.
-* Event is  listed below SimpleTask and Event.
+* Simple Task is listed above Deadline and Event.
+* Deadline is  listed below Simple Task and above Event.
+* Event is  listed below Simple Task and Event.
 * When comparing 2 tasks of the same class:
     * SimpleTask
         * The task with lesser tags is listed above the task with more tags.
@@ -307,23 +309,23 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 * For Event, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
     * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
     * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
-* :warning: Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
 
 Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
 
-:bulb: Here are some **PRO TIPS**:
-* For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs. Repeated inputs are only considered once.
+:bulb: **PRO TIP** For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs. Repeated inputs are only considered once.
     * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
     * e.g. `find all/ n/try n/try n/lab` is interpreted as `find all/ n/try n/lab`
-* For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
+
+:bulb: **PRO TIP** For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
     * e.g. `find t/veryUrgent t/important` will match with tags `t/veryVeryUrgent t/math t/hard` since it has `veryurgent`.
     * e.g. `find all/ t/veryUrgent t/important` will match with tags `t/veryUrgent t/important` since it has both tags.
 
-:warning: When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
-
+:warning: **IMPORTANT** When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
 e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return a list with only the latter task.
+
+:warning: **IMPORTANT** Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
 
 
 ### 4.7 Getting statistics : `stats`
@@ -339,8 +341,8 @@ Format: `stats`
 
 :man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
 
-On opening of app, the **alert panel** will open to show **Tasks** which **start or have deadlines** within the **latest** window specified.
-Displays in the tasks that fall within the window specified in the **Alert Panel**. If not supplied, assumed to be 24 hours.
+On opening of app, the **alert panel** will open to show **tasks** which **start or have deadlines** within the **latest** window specified.
+Displays in the tasks that fall within the window specified in the **alert panel**. If not supplied, assumed to be 24 hours.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
@@ -355,6 +357,7 @@ Examples:
 `schedule` displays a planned daily schedule according to the tasks currently stored.
 
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
+
 Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-longdate-and-a-shortdate)
 
 <details>
@@ -363,9 +366,13 @@ Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTD
 When the schedule command is ran with an <code>E/EFFORT</code> flag, a new 30-day plan is generated, starting from the day the command is run.
 Tasks allocated to a day should not exceed the intended <code>E/EFFORT</code> level indicated.
 <br>
+<br>
 However, if the need arises, the effort allocated for a day can exceed your preferred <code>E/EFFORT</code> level.
 <br>
+<br>
 Task book allocates tasks as such:<br>
+<br>
+
 1. Allocate all events to the day(s) it is supposed to be happening.<br>
 2. Allocate all deadlines to the first day before the deadline (exclusive of due date), such that adding a task to that day does not exceed the user-preferred workload. Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).<br>
 3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).<br>
@@ -375,12 +382,12 @@ Task book allocates tasks as such:<br>
 
 <summary>Need more help?</summary>
 <br>
-Displaying Daily Plans
+<b>Displaying Daily Plans</b>
 <br>
 <br>
 Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
 As plans are only valid for 30 days from the last time it was generated, you are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.<br>
-If no tasks are shown, it means that there are no tasks planned for that day, or a plan has not yet been generated.<br>
+<br>
 </details>
 
 <br>
@@ -390,9 +397,9 @@ If no tasks are shown, it means that there are no tasks planned for that day, or
 <br>
 :warning: If an empty plan is shown, it could mean that a plan has not yet been generated. Please enter `schedule D/SHORTDATE E/EFFORT` to generate a new plan. If the plan is still empty after generating a new plan, it means that there are no tasks allocated to that day.
 <br>
+
 Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
-- `schedule D/2023-04-02` will show tasks which should be completed on April 2, 2023, based on a previously generated schedule (which should be generated between 3 Mar 2023, and 2 Apr 2023).
 
 ## 4.10 Subsections
 
@@ -426,6 +433,8 @@ Format: `help`
 
 
 ### 4.12 Clearing all entries : `clear`
+
+:man_technologist: **Starting from a clean slate? Use this!**
 
 Clears all entries from the task book.
 
@@ -669,4 +678,3 @@ _Details coming soon ..._
 3. Graphical User Interface (GUI): A system of interactive visual components for computer software.
 4. Long date: Date in the format YYYY-MM-DD HHMM.
 5. Short date: Date in the format YYYY-MM-DD.
-6. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the preferred daily effort level.
