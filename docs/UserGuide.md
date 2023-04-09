@@ -118,16 +118,15 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
 4. You should now see a window similar to the one shown below. 
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application 
-for your reference. </div>  
-<br>  
+for your reference. </div>
 
 
 <p align="center">
-  <img height="500" width="500" src="images/Ui.png">
+  <img height="480" width="480" src="images/Ui.png">
 </p>
 
 <div align="center">Figure 1 : The starting window for the coNtactUS application.</div>
-
+<br>  
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -167,6 +166,7 @@ This is all you need to know for the time being. Now let's take a closer look at
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p> 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="commands"></a>Familiarising yourself with the commands  
 
@@ -197,6 +197,7 @@ list. Only use it if you are sure! </div>
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 -------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## <a id="features"></a>Features  
 
@@ -287,7 +288,7 @@ Examples:
 </p>
 
 <div align="center">Figure 4 : Deleting a module from the tracker.</div>  
-
+<br>  
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -323,7 +324,6 @@ Examples of valid usages:
 <div align="center">Figure 5 : Editing a module in the tracker.</div>  
 <br>  
 
-<div style="page-break-after: always;"></div>  
 
 Examples of invalid usages:
 * `edit 0 n/CS2101 t/Tutorial` - The index must be a positive integer.
@@ -357,7 +357,7 @@ Examples:
 </p>
 
 <div align="center">Figure 6 : Finding a module in the tracker.</div>
-
+<br>  
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -385,7 +385,7 @@ Tuesday, then a module with timeslot `Wednesday 05:00 - 07:00` will be shown bef
 </p>
 
 <div align="center">Figure 7 : Sorting the modules based on deadline.</div>
-
+<br>  
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
 --------------------------------------------------------------------------------------------------------------------
@@ -412,7 +412,7 @@ to use the commands.
 </p>
 
 <div align="center">Figure 8 : Help window.</div>
-
+<br>  
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -450,11 +450,11 @@ to display the pop-up window at any other point in time. However, this will be a
 features [coming soon](#coming-soon) if you are interested. 
 
 <p align="center">
-   <img height="150" width="250" src="images/reminder.png">
+   <img height="250" width="350" src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
-
+<br>  
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -662,8 +662,7 @@ know what information are considered valid and what are not.<br>
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
---------------------------------------------------------------------------------------------------------------------  
-<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
 ## <a id="data"></a>Data Storage 
 
@@ -716,10 +715,10 @@ conflict checks. After all, `Bob` may be referring to two different persons.
 ## <a id="coming"></a>Coming soon 
 
 coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
-Here are some new features that you can look forward to in the near future: 
+Here are some new features you can look forward to in the near future: 
 
-* Currently, the reminder pop-up window only appears when coNtactUS is launched. We understand that you may want to 
-view this reminder pop-up window at any moment while you are using coNtactUs. This is why we will be adding a command
+* Currently, the reminder pop-up window only appears when coNtactUS is launched. You may want to 
+view this reminder pop-up window at any moment while you are using coNtactUs. Hence, we will be adding a command
 for you to do so, so you can see the reminders at any time you wish.   
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
@@ -731,7 +730,7 @@ If you have any confusion about some of the technical terms used in this user gu
 refer to the glossary below.  
 
 #### Attribute  
-Refers to a specific input value from the user that provides details to execute a command. Attributes, except for
+Refers to a specific input value from the user that provides details to execute a command. Attributes
 are preceded by their prefixes. Example includes ```n/MODULE_NAME``` and ```d/DEADLINE```. 
 
 #### Command Word  
@@ -777,6 +776,4 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
-
-------------------------------------------------------------------------------------
 
