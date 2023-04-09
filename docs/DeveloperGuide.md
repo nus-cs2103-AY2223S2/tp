@@ -726,51 +726,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 [↑ Back to top](#table-of-contents)
 
-### \[Proposed\] Sort feature
-
-#### Proposed Implementation
-
-The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of:
-
-* `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
-  * In order to sort by `Name`, the comparator will be as follows `Comparator<Name>`.
-* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders.
-
-An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
-</div>
-
-**Expected execution:**
-
-1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
-2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
-
-#### Design Considerations:
-
-**Aspect: Command format:**
-
-* **Alternative 1:** `sort`
-  * Pros:
-    * Simpler command for users to execute
-  * Cons:
-    * Less flexible as users cannot decide which attribute to sort by.
-    * Reduces extensibility of the feature (eg. sort by module tag is more complicated if `sort` doesn't accept inputs)
-    * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
-* **Alternative 2 (Current choice):** `sort ORDER`
-  * Pros:
-    * Provides extensibility of sort (eg. future implementation of `sort edu ORDER` to sort by education level)
-    * Allows users to choose the order they would like to sort the list by
-    * Gives flexibility and convenience to users.
-  * Cons:
-    * Adds complexity to the implementation as more error checking of the inputs is required.
-
-_{more aspects to be added}_
-
-
-[↑ Back to top](#table-of-contents)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
