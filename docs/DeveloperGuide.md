@@ -7,10 +7,9 @@ title: Developer Guide
 
 ## Advisio
 
-Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
-available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a
-Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll see
-in your career.
+Advis.io (AIO) is a all-in-one solution for financial advisors to better manage their clientele and their clients respective policies. AIO is currently available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll see in your career.
+
+With AIO, financial advisors of all expertise are able to keep track their ever-growing clientele and always be prepared for the needs of their clients. AIO makes it easier for you to keep track of your clients' policies and appointment dates, providing them more time for you to focus on expanding your network and providing the best service for your beloved clients.
 
 ## Table of Contents
 
@@ -79,7 +78,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/Main.java
+called [`Main`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
