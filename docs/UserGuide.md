@@ -47,13 +47,13 @@ appropriate version for your system [here](https://www.oracle.com/java/technolog
 ### Quick Start
 1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases).
 
-2. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
+2. Copy the file to the folder you want to use as the [_home folder_](#glossary) for your MedInfo.
 
 3. Run the application by
-   2. Double-clicking the `.jar` file or
-   3. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar`
+   2. Double-clicking the [`.jar`](#glossary) file or
+   3. Opening a [command terminal](#glossary), `cd` into the folder you put the `.jar` file in, and use the `java -jar medinfo.jar`
 command to run the application.<br>
-4. A GUI similar to the one below should appear in a few seconds. If you are starting the app for the first time, the 
+4. A [GUI](#glossary) similar to the one below should appear in a few seconds. If you are starting the app for the first time, the 
 app will contain some sample data for you to try commands.<br>
       ![Ui](images/Ui.png)
 
@@ -95,7 +95,7 @@ The main GUI has 7 sections as highlighted above.
 ## How to use the User Guide
 
 ### Navigation
-This Guide contains detailed explanations on the **commmands** available and what they do. If you wish to navigate to
+This Guide contains detailed explanations on the **commands** available and what they do. If you wish to navigate to
 any section within this Guide, the [**Table of Contents**](#table-of-contents) above provides a quick way to do so.
 Each section in the User Guide comes with a [Back to Table of Contents](#table-of-contents) link in the footer to
 take you back to the Table of Contents.
@@ -111,6 +111,8 @@ for a keyword.
 | :bulb:               | Tips that will optimize your usage of MedInfo.              |
 | :exclamation:        | Information that is crucial to know before using a command. |
 
+---
+
 ## Features
 
 The section below describes the commands available in MedInfo. The commands fall under 3 categories:
@@ -125,7 +127,7 @@ yourself with the command format from the notes below.
 
 **:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add nric/NRIC name/NAME`, `NRIC` and `NAME` are parameters which can be used as `add nric/S1234567A name/John Doe`.
 
 - Items in square brackets are optional.<br>
@@ -155,10 +157,15 @@ Adds the patient (NRIC, name and status).
 
 Format: `add nric/NRIC name/NAME [s/STATUS]`
 
-<!-- EXAMPLE OF TIP -->
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
-- The default condition is set to `GRAY`. <br/>
-- The default ward is set to `Waiting Room`. <br/>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The first and last letters in NRIC must be capitalised.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `add`:**<br>
+- The default status is set to `GRAY`.
+- The default ward is set to `Waiting Room`.
 - No discharge date is added by default.
 </div>
 
@@ -216,8 +223,9 @@ Format: `sort FIELD/ORDER`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about sort:**<br>
+**:information_source: Notes about `sort`:**<br>
 - You can only sort by one field in a command.
+- When sorting by status (in ascending order), the order is `GRAY`, `GREEN`, `YELLOW`, then `RED`. The `GRAY` status is given the lowest priority as the patient's condition is unknown, while the `RED` status is given the highest priority due to the patient's critical condition.
 </div>
 
 Examples:
@@ -231,7 +239,7 @@ Examples:
 
 Shows a list of all patients with their details that match input name or NRIC.
 
-Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`
+Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`, `find w/WARD`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -239,6 +247,11 @@ Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`
 - Only full words will be matched e.g. `Han` will not match `Hans`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<!-- EXAMPLE OF TIP -->
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Using `find` with a status acts as a filter on that status.
+</div>
 
 Examples:
 
@@ -261,9 +274,18 @@ Format: `delete INDEX`
 
 - Deletes the patient at the specified index as of the currently displayed list.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `delete`:**<br>
+On entering a `delete` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that you truly intend to perform that action and are fully aware of its consequences.
+</div>
+
 Examples:
 
 `delete 1`
+
+
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -279,6 +301,11 @@ Format: `addward w/WARD [c/CAPACITY]`
 
 <!-- EXAMPLE OF TIP -->
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `add`:**
 The default capacity is set to 10.
 </div>
 
@@ -306,7 +333,6 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-
 ### Deleting a ward from the system: `deleteward`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -318,6 +344,15 @@ Deletes a ward by index.
 Format: `deleteward INDEX`
 
 - Deletes the ward at the specified index as of the currently displayed list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `deleteward`:**<br>
+- On entering a `deleteward` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that you truly intend to perform that action and are fully aware of its consequences.
+- You will not be able to delete a ward that currently has patients assigned to it.
+</div>
+
+<div markdown="block" class="alert alert-info">
 
 Examples:
 
@@ -366,7 +401,7 @@ MedInfo data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users are welcome to update the data directly by editing that data file.
+MedInfo data are saved as a JSON file `[JAR file location]/data/medinfo.json`. Advanced users can update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Edit the data file at your own risk! Any changes that make the data invalid will lead to MedInfo clearing
@@ -402,19 +437,39 @@ the file that contains the data of your previous MedInfo home folder.<br>
 
 ## Command summary
 
-| Action          | Format, Examples                                                                           |
-|-----------------|--------------------------------------------------------------------------------------------|
-| **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN` |
-| **List**        | `list`                                                                                     |
-| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                   |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                               |
-| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
-| **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                        |
-| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
-| **Clear**       | `clear`                                                                                    |
-| **Help**        | `help`                                                                                     |
-| **Exit**        | `exit`                                                                                     |
+| Action          | Format, Examples                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN`          |
+| **List**        | `list`                                                                                              |
+| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                            |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`, `sort d/desc`                                        |
+| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`or `find w/WARD` <br> e.g., `find name/John` |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                                 |
+| **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                                 |
+| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                           |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                                        |
+| **Clear**       | `clear`                                                                                             |
+| **Help**        | `help`                                                                                              |
+| **Exit**        | `exit`                                                                                              |
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+## Glossary
+
+| Term                 | Definition                                                                                                                                                             |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`.jar`**           | A package file format that groups together Java program files and data files for ease of distribution.                                                                 |
+| **`cd`**             | A command used to change the current working directory in various operating systems. To use it, type `cd` followed by a space and the folder you wish to work in.      |
+| **Command terminal** | A program that allows the user to enter commands that the computer processes. Examples of popular terminals include Terminal (for macOS) and PowerShell (for Windows). |
+| **Discharge Date**   | The date on which a patient can be discharged from the hospital.                                                                                                       |
+| **GUI**              | Graphical User Interface. A form of user interface that allows users to interact primarily through graphics.                                                           |
+| **Home folder**      | The main folder you wish to run MedInfo in. On running MedInfo, this folder will become populated with data and preference files.                                      |
+| **In-process**       | The process of checking in patients with their identifying information before they consult a medical professional.                                                     |
+| **Occupancy**        | The number of patients in a given ward at a point in time.                                                                                                             |
+| **Status**           | A code indicating a patient's current condition. MedInfo works with 4 statuses: GRAY (unknown), GREEN (stable), YELLOW (serious), and RED (critical).                  |
+| **Ward**             | A separate room in a hospital, typically allocated to a particular type of patient.                                                                                    |
+
 
 [Back to Table of Contents](#table-of-contents)

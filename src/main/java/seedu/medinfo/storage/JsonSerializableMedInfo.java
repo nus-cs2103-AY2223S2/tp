@@ -14,6 +14,7 @@ import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.ward.Ward;
+import seedu.medinfo.model.ward.exceptions.WardNotFoundException;
 
 /**
  * An Immutable MedInfo that is serializable to JSON format.
@@ -23,6 +24,7 @@ class JsonSerializableMedInfo {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
     public static final String MESSAGE_DUPLICATE_WARD = "Ward list contains duplicate ward(s).";
+    public static final String MESSAGE_MISSING_WARD = "Patient(s) linked to wards that do not exist.";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedWard> wards = new ArrayList<>();
@@ -66,7 +68,11 @@ class JsonSerializableMedInfo {
             if (medInfo.hasPatient(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
             }
-            medInfo.addPatient(patient);
+            try {
+                medInfo.addPatient(patient);
+            } catch (WardNotFoundException e) {
+                throw new IllegalValueException(MESSAGE_MISSING_WARD);
+            }
         }
         return medInfo;
     }
