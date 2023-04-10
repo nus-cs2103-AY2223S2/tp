@@ -76,13 +76,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+💡 **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
 
 <p>
   <img class="diagram" src="images/ArchitectureDiagram.png" />
+  
   <em>Architecture Diagram for GoodMatch</em>
 </p>
 
@@ -160,9 +161,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ListingBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a Listing).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a Listing).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -312,6 +313,34 @@ Please refer to the activity diagram below to see what happens when the user ent
   * Return the command result from the `XYZCommand` mentioned in the step above.
 * However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
 
+
+### Find feature
+
+The `find` command works by taking in keywords (can be a single keyword or multiple keywords) and identifies all the listings that contains at least one of the keywords in the title.
+These listings are filtered out and displayed as a separate list. 
+GoodMatch currently supports finding listings that contain the entire keyword inside, that is, listings that contain only part of the keyword will not be considered. For example, if the keyword is `pillow`, a listing with the title `pill` will not be identified.
+
+Refer to the activity diagram below for a typical `find` command.
+<p>
+  <img class="diagram" src="images/FindActivityDiagram.png" />
+  <em>Activity Diagram for the `find` command</em>
+</p>
+
+
+#### Feature Implementation Details
+
+1. The user will be specifying the `keyword(s)` in the find command.
+2. The `keyword(s)` cannot be empty.
+3. The check for whether a `Listing` contains the keyword or not `model` or not is done using the `JobTitle` of the `Listing` only.
+
+Refer to the sequence diagram below for a typical `find` command.
+<p>
+  <img class="diagram" src="images/FindSequenceDiagram.png" />
+  <em>Sequence Diagram for the `find` command</em>
+</p>
+
+
+
 ### Sort feature
 
 The `sort` feature works by taking in a field that the user wants to sort the ListingBook by, and then sorts according to that.
@@ -321,11 +350,19 @@ Sorting is all done in ascending order.
 
 Refer to the activity diagram below for what happens when a user runs a sort command.
 
-> insert activity diagram here
+<p>
+  <img class="diagram" 
+   src="images/SortActivityDiagram.png" />
+  <em>Activity Diagram for the `sort` command</em>
+</p>
 
-#### Feature details
+Refer to the sequence diagram below for a typical `sort` command using `title` as the sorting field.
 
-#### Design considerations
+<p>
+  <img class="diagram" 
+   src="images/SortSequenceDiagram.png" />
+  <em>Sequence Diagram for the `sort` command</em>
+</p>
 
 ### Undo feature
 

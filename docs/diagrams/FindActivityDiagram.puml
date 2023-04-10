@@ -1,0 +1,19 @@
+@startuml
+title Find Activity Diagram
+
+start
+:User inputs the find command into the command box;
+if () then ([keyword(s) are present])
+  :GoodMatch identifies listings that contain
+  at least one of the keyword(s);
+  if () then ([there is at least one listing identified])
+    :GoodMatch displays identified listings;
+  else ([else])
+    :GoodMatch does not show any listings;
+  endif
+else ([else])
+  :Error: Invalid command format;
+  stop
+endif
+stop
+@enduml

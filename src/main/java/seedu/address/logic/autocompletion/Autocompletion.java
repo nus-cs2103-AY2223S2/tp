@@ -61,7 +61,7 @@ public class Autocompletion {
             put(EditCommand.COMMAND_WORD, "INDEX "
                     + PREFIX_TITLE + "TITLE "
                     + PREFIX_DESCRIPTION + "DESCRIPTION "
-                    + PREFIX_APPLICANT + "APPLICANT"
+                    + PREFIX_APPLICANT + "APPLICANT "
                     + PREFIX_PLATFORM + "PLATFORM");
             put(EditApplicantCommand.COMMAND_WORD, "INDEX "
                             + PREFIX_APPLICANT_WITH_ID + "OLD_APPLICANT#ID "

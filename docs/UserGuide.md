@@ -49,7 +49,7 @@ Welcome to the user guide for GoodMatch. This guide will help you understand how
 
 ### How to use this guide
 
-To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
+To make the most of this guide, start by reading it from beginning to end. If you are an experienced user, you can skip to the [Features](#features) section for a detailed guide. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
 You can use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
 
@@ -137,6 +137,7 @@ These job platforms that you published on are referred to as "platforms released
 
 A list of job platforms on which the job listing has been published.
 - It is possible for a job listing to have no platforms released.
+- Platform names in a job listing should be unique
 
 ### Applicant
 
@@ -156,7 +157,7 @@ The ID will be displayed (behind the applicant's name) in the case that there ar
 
 > If the listing has only one applicant named *Tom*, the applicant will be displayed as `Tom`.
 
-> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#6969`
+> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#2103`
 
 
 ### Platform
@@ -164,6 +165,7 @@ The ID will be displayed (behind the applicant's name) in the case that there ar
 A platform refers to a site or avenue in which your job listing has been published. 
 
 Some of the more well known platforms are Linkedin, Indeed, etc.
+
 - A platform must have a name.
 - A platform's name must contain only alphanumeric characters.
 - Platforms in the same listing cannot have identical names (**no duplicates**).
@@ -188,13 +190,14 @@ Here is a list of GoodMatch features, click on them to jump to the section! Each
 6.  [`add_app`](#adding-an-applicant-to-listing-add_app)
 7.  [`edit_app`](#editing-an-applicant-of-a-listing-edit_app)
 8.  [`del_app`](#deleting-an-applicant-from-a-listing-del_app)
-9.  [`find`](#locating-job-listings-by-title-find)
-10.  [`sort`](#sorting-job-listings-sort)
-11.  [`undo`](#undo-latest-command-undo)
-12.  [`exit`](#exit-the-application-exit)
-13.  [Saving data](#saving-the-data)
-14.  [Editing data file](#editing-the-data-file)
-
+15.  [`add_plat`](#adding-a-platform-add_plat)
+16.  [`del_plat`](#delete-a-platform-from-a-listing-del_plat)
+17.  [`find`](#locating-job-listings-by-title-find)
+18.  [`sort`](#sorting-job-listings-sort)
+19.  [`undo`](#undo-latest-command-undo)
+20.  [`exit`](#exit-the-application-exit)
+21.  [Saving data](#saving-the-data)
+22.  [Editing data file](#editing-the-data-file)
 
 <div markdown="block" class="alert alert-info">
 
@@ -276,13 +279,14 @@ Adds a listing to the listing book.
 - `add t/NodeFlair SWE Intern d/Fullstack Experience`
 
 🎯 **Expected Output:**
-You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+You should see a confirmation message showing the job title, description, applicants (if any) and platforms (if any). An example is shown below:
 
 ```ignorelang
 Added new listing:
 Job Title: Chicken Rice Uncle
 Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
+Platforms: JobStreet
 ```
 
 ❌ **Possible Errors:**
@@ -290,10 +294,10 @@ Applicants: Nicholas, Tom, Adele
 If the above format is not followed, an error message will be displayed.
 
 ```ignorelang
-Invalid Command Format!
+Invalid command format!
 add: Adds a listing to the listing book.
 Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORMS]...
-Example: add t/Cool job title d/Informative job description a/John a/Sam
+Example: add t/Cool job title d/Informative job description a/John a/Sam p/LinkedIn
 ```
 
 If a listing with the same title exists, the following error message will be displayed.
@@ -332,15 +336,15 @@ Edits the details of a job listing.
 
 📚 **Examples:**
 
-- `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson`
+- `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson p/Glints`
 - `edit 2 t/Videographer d/Films videos`
 - `edit 1 a/` (clears all applicants from the listing)
 - `edit 3 p/` (clears all platforms from the listing)
-- `edit 1 t/Photographer p/`
+- `edit 1 t/Photographer p/Glints`
 
 🎯 **Expected Output:**
 
-You will see a confirmation message showing the edited job title, description and applicants (if any).
+You will see a confirmation message showing the edited job title, description, applicants (if any) and platforms (if any).
 An example is shown below:
 
 ```ignorelang
@@ -348,6 +352,7 @@ Edited listing:
 Job Title: Noodle seller
 Job Description: Cooks tasty noodles
 Applicants: Johnson
+Platforms: Glints
 ```
 
 ❌ **Possible Errors:**
@@ -367,7 +372,7 @@ Example: edit 1 t/Cool job title a/John a/Sam p/LinkedIn
 The listing index provided exceeded the number of listings shown!
 ```
 
-If there is an attempt to edit the title to an existing title, the following error message will be shown.
+If there is an attempt to edit the title to an existing title in the listing book, the following error message will be shown.
 
 ```ignorelang
 A listing with the given title already exists!
@@ -400,6 +405,7 @@ Deleted listing:
 Job Title: Chicken farmer
 Job Description: farms chickens
 Applicants: Tommy, Connor
+Platforms: Glints
 ```
 
 ❌ **Possible Errors:**
@@ -436,7 +442,7 @@ Adds an applicant to a specified listing.
 - `add_app 1 a/Tom`
 
 🎯 **Expected Output:**
-You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+You should see a confirmation message showing the added applicant and the job title. An example is shown below:
 
 ```ignorelang
 Applicant Tom added to the listing Computer Science Intern
@@ -477,8 +483,7 @@ Edits the name of an applicant in a specified listing.
 
 🎯 **Expected Output:**
 
-You will see a confirmation message showing the edited job title, description and applicants (if any).
-An example is shown below:
+You will see a confirmation message showing the edited applicant and the job title.
 
 ```ignorelang
 Applicant: Tom#1334 has been edited to Johnson in Computer Science Intern
@@ -530,7 +535,7 @@ Deletes an applicant from a specified listing.
 
 🎯 **Expected Output:**
 
-A confirmation message will show, along with the details of the listing. An example message is shown below:
+A confirmation message will show, along with the details of the deleted applicant. An example message is shown below:
 
 ```ignorelang
 Applicant: Tom has been deleted from Computer Science Intern!
@@ -584,14 +589,14 @@ Adds a new platform to the specified job listing.
 - The command only adds one platform at a time. Should there be more than one platform per command then only the latest platform will be taken into consideration. If the lastest platform provided is invalid, an error will occur even if the rest of the provided platforms are valid.
 
 📚 **Examples:**
-- `add_plat 1 p/linkedin`
-- `add_plat 3 p/indeed`
-- `add_plat 2 p/glints p/jobstreet` (only "jobstreet" will be added)
+- `add_plat 1 p/LinkedIn`
+- `add_plat 3 p/Indeed`
+- `add_plat 2 p/Glints p/jobstreet` (only "jobstreet" will be added)
 
 🎯 **Expected Output:**
 A confirmation message showing the platform as well as the title of the listing that it is added to will be shown. An example of the message is shown below:
 ```ignorelang
-Platform linkedin added to listing Computer Science Intern
+Platform LinkedIn added to listing Computer Science Intern
 ```
 
 ❌ **Possible Errors:**
@@ -608,7 +613,7 @@ This listing already contains the provided platform.
 
 If the platform name provided is invalid, the following error message will show:
 ```ignorelang
-Names should only contain alphanumeric characters and spaces, and it should not be blank.
+Platforms should only contain alphanumeric characters and spaces, and it should not be blank.
 ```
 
 If there are any other deviations from the expected format of the command, there will be an error message shown along with the correct usage of the command:
@@ -637,13 +642,13 @@ Deletes a platform from a specified job listing.
 
 📚 **Examples:**
 
-- `del_plat 1 p/linkedin`
-- `del_plat 2 p/linkedin p/glints` - Only "glints" will be deleted
+- `del_plat 1 p/LinkedIn`
+- `del_plat 2 p/LinkedIn p/Glints` - Only "Glints" will be deleted
 
 🎯 **Expected Output:**
 A confirmation message showing the deleted platform and the listing it was deleted from will be displayed, such as the one shown below:
 ```ignorelang
-Platform: glints has been deleted from Computer Science Intern!
+Platform: Glints has been deleted from Computer Science Intern!
 ```
 
 ❌ **Possible Errors:**
@@ -655,7 +660,7 @@ The listing index provided exceeded the number of listings shown!
 
 If the platform provided does not exist in the specified listing, an error message such as the one below will show:
 ```ignorelang
-Platform linkedin cannot be found in Computer Science Intern.
+Platform LinkedIn cannot be found in Computer Science Intern.
 ```
 
 If there are other deviations from the expected command format, an error message will be displayed along with the expected usage of the command:
@@ -765,9 +770,17 @@ Example: sort f/applicants
 
 ### Undo latest command: `undo`
 
-Undo the latest command.
+You can undo your latest executed command that 
+modifies the listing book using our `undo` command.
 
 ✏️ **Format:** `undo`
+
+ℹ️ **Notes:**
+- Commands that are not undoable include:
+  - `help`, `view`, `exit`, `find` & `sort`.
+- `Undo` still works after a `find` command, to visually see the effects of 
+`undo` execute a `view` command.
+  
 
 🎯 **Expected Output:**
 
@@ -776,6 +789,22 @@ Previous change should be reversed and a confirmation message will show:
 ```ignorelang
 Undo success
 ```
+
+❌ **Possible Errors:**
+If there aren't any commands that can be undone (i.e. when you first open GoodMatch or when all 
+undoable commands have been undone), an error message will be shown:
+
+<p>
+  <img class="diagram" src="images/UndoError.png"/>
+  <em>Undo error message</em>
+</p>
+
+❗**Caution** 
+`undo` is irreversible. If you want to reverse an `undo` you can retype the command that was undone.
+
+❗**Caution**
+Once you exit GoodMatch, all command history will be wiped.
+Meaning you can't undo commands executed before the app was closed.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
@@ -865,13 +894,13 @@ Please refer to the screenshots below to see the various ways you can exit the a
 | **help**     | `help`                                                                                                                                                  |
 | **view**     | `view`                                                                                                                                                  |
 | **add**      | `add t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORM]...` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom a/Adele p/JobStreet` |
-| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/`               |
+| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/LinkedIn`               |
 | **delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                     |
 | **add_app**  | `add_app INDEX a/APPLICANT`<br> e.g.,`add_app 1 a/Tom`                                                                                                  |
 | **edit_app** | `edit_app INDEX id/APPLICANT a/APPLICANT`<br> e.g.,`edit_app 1 id/Tom a/Johnson`, `edit_app 2 id/Tom#1334 a/Johnson `                                   |
 | **del_app**  | `del_app INDEX id/APPLICANT`<br> e.g.,`del_app 1 id/Tom`, `del_app 2 id/Tom#1334`                                                                       |
-| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/linkedin`                                                                                            |
-| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/glints`                                                                                             |  
+| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/LinkedIn`                                                                                            |
+| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/Glints`                                                                                             |  
 | **find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                                          |
 | **sort**     | `sort f/[FIELD]`<br> e.g., `sort f/title`, `sort f/description`, `sort f/applicants`                                                                    |
 | **undo**     | `undo`                                                                              |
@@ -879,3 +908,4 @@ Please refer to the screenshots below to see the various ways you can exit the a
 
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+

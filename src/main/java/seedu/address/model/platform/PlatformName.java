@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class PlatformName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Platforms should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -20,7 +20,7 @@ public class PlatformName {
     public final String fullPlatformName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code PlatformName}.
      *
      * @param platformName A valid name.
      */

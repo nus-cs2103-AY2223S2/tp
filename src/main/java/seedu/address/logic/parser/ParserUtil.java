@@ -91,8 +91,8 @@ public class ParserUtil {
     public static Platform parsePlatform(String platformName) throws ParseException {
         requireNonNull(platformName);
         String trimmedName = platformName.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!PlatformName.isValidName(trimmedName)) {
+            throw new ParseException(PlatformName.MESSAGE_CONSTRAINTS);
         }
         return new Platform(new PlatformName(trimmedName));
     }
