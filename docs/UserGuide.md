@@ -543,7 +543,7 @@ save manually.
 
 ### Editing the data file
 
-FriendlyLink data are saved in the [JSON](#glossary) files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
+FriendlyLink data are saved in the [JSON](#technical) files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
@@ -660,7 +660,7 @@ A date represents a point in time, such as birthdate or starting or ending days 
 </div>
 
 #### BirthDate
-The birthdate of a person, in the same format as other [dates](#date)
+The birthdate of a person, in the same format as other [dates](#dates)
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Although a birthdate is required for personal information input, it is not displayed on personal information cards; only the age is displayed.
@@ -670,7 +670,7 @@ If you wish to view the specific birthdate of a particular person, you can refer
 
 #### Available Dates
 
-The availability of a person, in the same format as other [dates](#date).
+The availability of a person, in the same format as other [dates](#dates).
 * The start date of the available period must come before its end date.
 * A person with no specified available dates is considered as available all the time.
 
