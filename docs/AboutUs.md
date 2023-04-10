@@ -9,7 +9,7 @@ You can reach us at these emails :
 * `e0773591@u.nus.edu` - Zhu Yufan
 * `e0774823@u.nus.edu` - Niu Boqian
 * `e0727234@u.nus.edu` - Sze Jian Cheng
-* `@u.nus.edu`
+* `fahim.tajwar@u.nus.edu` - Muhammad Fahim Tajwar
 
 ## Project team
 
@@ -50,5 +50,5 @@ You can reach us at these emails :
 [[github](http://github.com/fahim-tazz)]
 [[portfolio](team/fahim-tazz.md)]
 
-* Role: coder
-* Responsibilities: Developer Guide, software design, implementation
+* Role: Development, User and Developer Documentation, and Testing 
+* Responsibilities: Developer Guide, User Guide, Unit and Integration Testing, Student Info Implementation
