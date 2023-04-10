@@ -28,7 +28,7 @@ Contributions to my project are given below. [RepoSense link](https://nus-cs2103
 ### Enhancements implemented:
 
 * Project management
-  * Managed releases of `1.3.trial` and `1.3` 
+  * Managed releases of `1.3.trial`, `1.3` and `1.4`.
 
 * Edit command
   * What it does: Allows the editing of groups. Has a new prefix to allow merging of new tags/groups inputted.
