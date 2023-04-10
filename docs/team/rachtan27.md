@@ -3,9 +3,9 @@ layout: page
 title: Rachel's Project Portfolio Page
 ---
 
-### Project: AddressBook Neo
+### Project: NeoBook
 
-AddressBook Neo is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NeoBook is a desktop application for NUS students to better manage their contacts and the events they have scheduled with them. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
@@ -41,8 +41,3 @@ Given below are my contributions to the project.
     * Added documentation for manual testing for the following commands (PR [#318](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/318)):
       * [Select Command](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#selecting-a-contact)
       * [Tab Command](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#moving-to-another-tab-in-neobook)
-* **Community**:
-  * `to be added soon`
-
-* **Tools**:
-  * `to be added soon`

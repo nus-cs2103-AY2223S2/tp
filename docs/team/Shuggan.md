@@ -35,8 +35,3 @@ Given below are my contributions to the project.
     * Resolve PE-D Documentation issues (PR [#263](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/263)).
     * Constantly update and format Developer Guide to keep up to date (PR [#70](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/70)).
 
-* **Community**:
-  * `to be added soon`
-
-* **Tools**:
-  * `to be added soon`

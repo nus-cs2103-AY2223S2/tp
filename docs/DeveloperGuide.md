@@ -835,7 +835,7 @@ testers are expected to do more *exploratory* testing.
     2. Test Cases
         1. Test case 1: `light`
             - Testing for: Successful command execution
-            - Expected: UI updates to light mode
+            - Expected: UI stays in light mode
 
 3. Set UI to dark mode from light mode
 
@@ -845,24 +845,15 @@ testers are expected to do more *exploratory* testing.
         1. Test case 1: `dark`
             - Testing for: Successful command execution
             - Expected: UI updates to dark mode
-<<<<<<< HEAD
 
-4. Set UI to light mode from light mode
+4. Set UI to dark mode from dark mode
 
    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
 
    2. Test Cases
        1. Test case 1: `dark`
            - Testing for: Successful command execution
-           - Expected: UI updates to dark mode
-=======
-1. Set UI to dark mode from dark mode
-    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
-    2. Test Cases
-        1. Test case 1: `dark`
-            - Testing for: Successful command execution
-            - Expected: UI updates to dark mode
->>>>>>> master
+           - Expected: UI stays in dark mode
 
 ### Moving to another tab in NeoBook
 1. Changing to a different tab
