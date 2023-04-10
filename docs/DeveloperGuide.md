@@ -1477,5 +1477,3 @@ Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the sa
 
 - **Mainstream OS** :Windows, Linux, Unix, OS-X
 - **Private contact detail** : A contact detail that is not meant to be shared with others
-- **Primary Key** : 
-- **Field** :
