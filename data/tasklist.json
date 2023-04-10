@@ -1,7 +1,0 @@
-{
-  "tasks" : [ {
-    "type" : "todo",
-    "description" : "todo",
-    "isDone" : false
-  } ]
-}
