@@ -86,7 +86,7 @@ public class AppointmentCommand extends Command {
      * @param editedPatient
      * @param editedDoctor
      */
-    private static void updateModel(Model model, Patient appointmentPatient, Doctor appointmentDoctor,
+    private void updateModel(Model model, Patient appointmentPatient, Doctor appointmentDoctor,
                                     Patient editedPatient, Doctor editedDoctor) {
         model.setPerson(appointmentPatient, editedPatient);
         model.setPerson(appointmentDoctor, editedDoctor);
@@ -99,7 +99,7 @@ public class AppointmentCommand extends Command {
      * @param appointmentDoctor
      * @return Doctor
      */
-    private static Doctor createEditedDoctor(Doctor appointmentDoctor) {
+    private Doctor createEditedDoctor(Doctor appointmentDoctor) {
         Doctor editedDoctor = new Doctor(appointmentDoctor.getName(), appointmentDoctor.getPhone(),
                 appointmentDoctor.getEmail(), appointmentDoctor.getNric(), appointmentDoctor.getAddress(),
                 appointmentDoctor.getTags(),
@@ -112,7 +112,7 @@ public class AppointmentCommand extends Command {
      * @param appointmentPatient
      * @return Patient
      */
-    private static Patient createdEditedPatient(Patient appointmentPatient) {
+    private Patient createdEditedPatient(Patient appointmentPatient) {
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
                 appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
@@ -141,7 +141,7 @@ public class AppointmentCommand extends Command {
      * @param model
      * @throws CommandException
      */
-    public void checkInputs(Model model) throws CommandException {
+    private void checkInputs(Model model) throws CommandException {
         if (!model.hasPatientByNric(appointment.getPatientNric())) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
@@ -160,7 +160,7 @@ public class AppointmentCommand extends Command {
      * @param model
      * @return person array containing patient and doctor
      */
-    public Person[] retrievePersonsFromAppointment(Model model) {
+    private Person[] retrievePersonsFromAppointment(Model model) {
         Person[] retrievedPersons = new Person[2];
         Nric patientNricAppointment = appointment.getPatientNric();
         List<Person> persons = model.getFilteredPersonList();
