@@ -2,6 +2,7 @@ package vimification.ui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -84,7 +85,23 @@ public class CommandInput extends UiPart<HBox> {
         // System.out.println("Your command is " + input);
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
+        refreshRightComponent(result);
         returnFocusToTaskListPanel();
+    }
+
+    private void refreshRightComponent(CommandResult result) {
+        Node rightComponent = mainScreen.getRightComponent().getChildren().get(0);
+        boolean isWelcomePanelLoaded = mainScreen.getWelcomePanel().equals(rightComponent);
+        boolean isHelpManualPanelLoaded = mainScreen.getHelpManualPanel().equals(rightComponent);
+
+        System.out.println("welcomepanelloaded:" + isWelcomePanelLoaded);
+
+        // Only refresh the TaskDetailPanel
+        boolean shouldRefreshUi =
+                result.getShouldRefreshUi() && !(isHelpManualPanelLoaded || isWelcomePanelLoaded);
+        if (shouldRefreshUi) {
+            mainScreen.getTaskListPanel().loadTaskDetailPanel();
+        }
     }
 
     /**

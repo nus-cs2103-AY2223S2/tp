@@ -2,6 +2,11 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
 import java.util.function.Predicate;
 import javafx.scene.input.KeyEvent;
@@ -97,6 +102,8 @@ public class TaskListPanel extends UiPart<VBox> {
             taskListView.requestFocus();
             taskListView.getSelectionModel().selectFirst();
         });
+
+        // taskListView.getItems().addListener();
     }
 
     /**
