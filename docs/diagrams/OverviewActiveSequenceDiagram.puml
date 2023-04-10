@@ -71,5 +71,4 @@ deactivate OverviewCommand
 
 LogicManager -->[ : res
 deactivate LogicManager
-
 @enduml
