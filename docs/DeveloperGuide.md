@@ -188,37 +188,36 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-Step 1. placeholder
+The add feature is accessed through the `addPerson` operation that allows users to add a new case to the `Person` class of the application.
 
-#### Design considerations
+The `Person` added by the user has four compulsory fields and one optional field.
+* `Name` of the person
+* `Date` of the case
+* `Postal` code of the case
+* `Age` of the person
+* `Variant` of the case (optional)
 
-**Aspect: xxx**
+The `addPerson` operation is facilitated by `AddCommand` which extends from `Command`. 
 
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+Step 1. `DengueHotspotTracker#parseCommand()` checks that the user input matches that the `COMMAND_WORD` of `AddCommand`
 
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+Step 2. `AddPersonParse#parse()` will process the additional inputs and return an `AddCommand`.
+
+Step 3. `AddCommand` is executed and `AddCommand#execute()` triggers the `Model` interface's `Model#addCommand()`.
+
+Step 4. `DengueHotspotTracker#addPerson` will add a person to a `uniquePersonList` via the `uniquePersonList#add()` command.
+
+Step 5. Additionally `StorageManager#saveDengueHotspotTracker()` is called every time after a command to save the event to `data/denguehotspottracker.csv`.
+
+The following sequence diagram will illustrate how `addPerson` operation works:
+
+[!AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
 ### Edit feature
 
 #### Implementation
 
-Step 1. placeholder
-
-#### Design considerations
-
-**Aspect: xxx**
-
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
-
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+The implementation for the `edit` command is largely similar to that of the [`add`](#add-feature) command.
 
 ### Multi-index delete feature
 
@@ -471,10 +470,13 @@ than attempting to perform the undo.
 Step 5. The user again decides that adding the case was not a mistake, and decides to redo the action by executing the `redo` command. The `redo` command pops an item from the auxiliary `Stack` in `TemporaryMemory` and pushes it back into the primary stack `Deque`, where it is being read as the current file.
 
 Step 6. The user now wishes to perform an undo ten times. The user executes the `undo 10` command to undo ten steps. However, only two iterations of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`. Because only three `DengueHotspotTracker` states exist, only two undos are possible.
+
 ![UndoRedoState6](images/UndoRedoState6.png)
+
 The following activity and sequence diagrams shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoActivityDiagram.png)
+
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -543,9 +545,101 @@ Step 1. placeholder
     * Pros: placeholder
     * Cons: placeholder
 
-### Import/export/checkout features
+### Import feature
 
-DengueHotspotTracker data is stored in a CSV file format.
+#### Implementation
+
+The import mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
+`ImportCommandParser#parse()`, `ImportCommand#execute()` and
+`CsvDengueHotspotStorage#readDengueHotspotStorage()` methods.
+
+Given below is an example usage scenario and how the import csv mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes the `import sampledata.csv` command to import a list of cases from `sampledata.csv`.
+`DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `import` command word,
+passes the argument `sampledata.csv` to the `importCommandParser`.
+
+Step 3. `ImportCommandParser#parse()` is called. It checks that `sampledata.csv` does not contain any special characters,
+and that it ends with `.csv`. An `ImportCommand` is constructed, taking in the trimmed filepath `sampledata.csv` as an argument.
+
+Step 4. `ImportCommand#execute()` will get the trimmed filepath and retrieve the list of cases to import from `sampledata.csv`.
+
+Step 5. A `CsvDengueHotspotStorage` is created and `CsvDengueHotspotStorage#readDengueHotspotStorage()` is called,
+importing the valid case list if the format is valid.
+
+The following sequence diagram shows how the import command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes an import command:
+
+![ImportActivityDiagram](images/ImportActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: What filenames and directories accepted**
+
+* **Alternative 1 (current choice):** Accept only filenames without special characters and are contained within the
+same directory. This is done by checking the inputted filename ends with .csv and does not contain non-alphanumeric
+characters.
+    * Pros: This makes storage of the files easy and it is easy to validate the filename.
+    * Cons: Less flexibility in where the user can import their files from. It is limited to the same
+      directory.
+      * We also do not currently accept additional directory specifications and files must be imported from the same
+      directory as `dht.jar`.
+
+* **Alternative 2:** Allows a wider range of filename inputs including subdirectories.
+    * Pros: More flexibility as to where the user can import their files from.
+    * Cons: Harder to implement. Refer to planned enhancements.
+
+### Export feature
+
+#### Implementation
+
+The feature is largely similar to the [import](#import-feature) up to step 4.
+
+Step 5. A `CsvDengueHotspotStorage` is created and `CsvDengueHotspotStorage#saveDengueHotspotStorage()` is called,
+saving the csv to `sampledata.csv`.
+
+The following sequence diagram represents the difference in step 5:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes an export command:
+
+![ImportActivityDiagram](images/ExportActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: What filenames and directories accepted**
+
+Same as import command design considerations for what filenames are accepted.
+
+**Aspect: Overwrite checking**
+
+* **Alternative 1 (current choice):** We currently allow the user to overwrite CSV files stored as long as the IO operations are successful.
+    * Cons: This is an issue as a user can accidentally override important CSV files.
+    * Pros: It is easier to implement.
+
+* **Alternative 2:**
+    * Pros: Adds an additional layer of check so that the user does not override previously stored CSV files.
+    * Cons: Harder to implement. Look at future work.
+
+### Checkout feature
+
+This feature is largely similar to the [export](#export-feature) up to step 4.
+
+Step 5: Model calls `Overview#getOverviewContent()` to obtain the list to export to CSV.
+
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
+
+The activity diagram is similar to that of the `export` command.
+
+#### Design considerations
+
+The design considerations and future are the same of that as [export](#export-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -809,16 +903,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case: Import/export/checkout data
+#### Use case: Import data
 
 **MSS**
 
-1. placeholder
+1. User requests to import list of cases from filepath
+2. DengueHotspotTracker updates case list with new list of cases
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. placeholder
-    * 1a1. placeholder
+* 1a. The filepath is invalid
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+
+* 1a. The filepath contains an empty file or a file in an incorrect format
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+
+#### Use case: Export/checkout data
+
+**MSS**
+
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to export list of cases or checkout overview
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The filepath is invalid
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
+
+* 1a. The file at given filepath is used by another application
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -880,6 +998,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
 
 ### Exporting/Importing data
+
 1. Testing import CSV
    1. Remove `denguehotspottracker.csv` file in the /data folder.
    1. Run `DengueHotSpotTracker` to obtain an initialized list of cases.
@@ -954,3 +1073,17 @@ within which the cases were found:
 
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
+
+### Do an existence check on the files before export
+
+We will implement a checker that will prompt the user asking if they're sure they want to override the CSV file
+currently at the filename location.
+
+We did not implement this due to the difficulty as well as not having thought about it prior to `v1.3`.
+
+### Check the validity of filenames which include subdirectories
+
+This feature helpful as described under export command's design considerations. However, this is an additional feature
+and we were not able to add it into `v1.4`.
+
+This is a very helpful feature since it prevents accidental mistakes of overwriting preexisting CSV files.
