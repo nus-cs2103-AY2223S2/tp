@@ -442,24 +442,6 @@ Currently, the ordering of the student list in Students Page is not consistent w
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Effort
-
-### Page Navigation
-As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
-
-Additionally, navigating a page also meant traversing the object hierarchy.
-There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
-
-In short, page information as well as pointers to the objects selected by the user needed to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
-
-Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
-
-### Storage
-As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
-
-The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
-
-On top of creating the respective `json` serializing classes for each different type of object, each type of object would also have slightly different fields to keep track of, which added further complexity to serializing these objects.
 
 
 ## **Appendix: Requirements**
@@ -506,8 +488,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user           | see notifications/alert of upcoming events                                            | be reminded of assignments that are due soon                                                      |
 | `*`      | expert user    | see a graph with the students’ performances from this semester and previous semesters | compare the overall performance of my students from this semester and last semester               |
 | `*`      | expert user    | have an export function that allows me to export data from the app to an excel sheet  | easily transfer student data from the app to excel sheet if my higher ups require it              |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -633,16 +613,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * Similar to UC2 extension, for student index
 
-
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
