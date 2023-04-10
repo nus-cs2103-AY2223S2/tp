@@ -711,7 +711,7 @@ testers are expected to do more *exploratory* testing.
 **Example:** `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10 t/friends t/Friends` <br>
     In this command, the tags given are `friends` and `Friends` which have the same tag name but treated as 2 different tags because of an uppercase letter in `Friends`.
 
-    ![featureflaw1](./images/featureflaw1.png)
+![featureflaw1](./images/featureflaw1.png)
 
 **Proposed Enhancement:** We plan on improving the validation by making sure that tags are case-insensitive so that when 2 tags of same name and different cases are provided, an error message will be displayed to the user: `Duplicate tags are provided!`.
 
