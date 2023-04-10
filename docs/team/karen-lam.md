@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   * Merging of code of newly implemented features for v1.3 [(#125](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/125), 
     [#134](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/134), [#139)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/139)
   * Merging and Formatting of User Guide [(#233)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/223/)
-  
+
 * **Documentation**:
     * User Guide:
       * Modification for User Guide Command Summary:
