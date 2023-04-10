@@ -10,8 +10,6 @@ import javafx.scene.layout.VBox;
 import vimification.model.UiTaskList;
 import vimification.model.task.Task;
 
-
-
 /**
  * Panel containing the list of tasks.
  */
@@ -98,6 +96,8 @@ public class TaskListPanel extends UiPart<VBox> {
             taskListView.requestFocus();
             taskListView.getSelectionModel().selectFirst();
         });
+
+        // taskListView.getItems().addListener();
     }
 
     /**

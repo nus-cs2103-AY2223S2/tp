@@ -1,5 +1,7 @@
 package vimification.model.task;
 
+import java.util.Optional;
+
 /**
  * Represents different priority levels of a task in the application.
  */
@@ -9,26 +11,24 @@ public enum Priority {
 
     /**
      * Possible helper function used by the parser. Help parser processes Integer input (as an
-     * alternative input) to return the corresponding Priority enum. 1 being the highest priority, 3
-     * being the lowest priority. Other integers will be treated as unknown priority.
+     * alternative input) to return the corresponding Priority enum. 0 will be treated as unknown
+     * priority. 1 being the highest priority, 3 being the lowest priority.
      *
      * @param level the integer representation of the priority level
-     * @return the corresponding Priority enum
-     * @throws IllegalArgumentException if the integer is not between 0 and 3
+     * @return an Optional containing the corresponding Priority enum
      */
-    public static Priority fromInt(int level) throws IllegalArgumentException {
-        if (level < 0 || level > 3) {
-            throw new IllegalArgumentException("Priority level must be between 0 and 3");
-        }
+    public static Optional<Priority> fromInt(int level) {
         switch (level) {
+        case 0:
+            return Optional.of(UNKNOWN);
         case 1:
-            return VERY_URGENT;
+            return Optional.of(VERY_URGENT);
         case 2:
-            return URGENT;
+            return Optional.of(URGENT);
         case 3:
-            return NOT_URGENT;
-        default: // 0
-            return UNKNOWN;
+            return Optional.of(NOT_URGENT);
+        default:
+            return Optional.empty();
         }
     }
 

@@ -1,28 +1,32 @@
 package vimification.model.task;
 
+import java.util.Optional;
+
 /**
  * Represents possible status of a task in the application.
  */
 public enum Status {
 
-    NOT_DONE, IN_PROGRESS, COMPLETED, OVERDUE;
+    NOT_DONE, IN_PROGRESS, COMPLETED;
 
     /**
-     * Returns a status, based on a numeric value.
+     * Possible helper function used by the parser. Help parser processes Integer input (as an
+     * alternative input) to return the corresponding Status enum. 0 will be treated as "Not done"
+     * status; 1 being the "In progress" status; 2 being the "Completed" status.
+     *
+     * @param statusCode the integer to be converted
+     * @return an optional of the status corresponding to the given integer
      */
-    public static Status fromInt(int level) {
-        if (level < 0 || level > 3) {
-            throw new IllegalArgumentException("Status level must be between 0 and 3");
-        }
-        switch (level) {
+    public static Optional<Status> fromInt(int statusCode) {
+        switch (statusCode) {
+        case 0:
+            return Optional.of(NOT_DONE);
         case 1:
-            return IN_PROGRESS;
+            return Optional.of(IN_PROGRESS);
         case 2:
-            return COMPLETED;
-        case 3:
-            return OVERDUE;
-        default: // 0
-            return NOT_DONE;
+            return Optional.of(COMPLETED);
+        default:
+            return Optional.empty();
         }
     }
 

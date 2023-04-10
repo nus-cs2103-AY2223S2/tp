@@ -32,7 +32,7 @@ public class SampleDataUtil {
         sampleTaskList.add(new Task("watch lecture", null, Status.COMPLETED, Priority.URGENT));
         sampleTaskList.add(new Task("do assignment",
                 LocalDateTime.parse("2023-02-02 23:59", FORMATTER),
-                Status.OVERDUE, Priority.VERY_URGENT));
+                Status.IN_PROGRESS, Priority.VERY_URGENT));
         return sampleTaskList;
     }
 }

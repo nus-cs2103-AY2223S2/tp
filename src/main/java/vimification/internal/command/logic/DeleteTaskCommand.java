@@ -35,7 +35,8 @@ public class DeleteTaskCommand extends DeleteCommand {
         actualIndex = taskList.getLogicSourceIndex(targetIndex.getZeroBased());
         deletedTask = taskList.remove(actualIndex);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask.display()));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask.display()),
+                true);
     }
 
     /**
@@ -44,7 +45,7 @@ public class DeleteTaskCommand extends DeleteCommand {
     @Override
     public CommandResult undo(LogicTaskList taskList) {
         taskList.add(actualIndex, deletedTask);
-        return new CommandResult(UNDO_MESSAGE);
+        return new CommandResult(UNDO_MESSAGE, true);
     }
 
     @Override

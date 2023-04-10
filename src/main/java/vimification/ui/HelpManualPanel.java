@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -40,6 +41,10 @@ public class HelpManualPanel extends UiPart<VBox> {
 
         webView.prefWidthProperty().bind(this.getRoot().widthProperty());
         webView.prefHeightProperty().bind(this.getRoot().heightProperty());
+    }
+
+    public boolean equals(Node obj) {
+        return getRoot().equals(obj);
     }
 
 }

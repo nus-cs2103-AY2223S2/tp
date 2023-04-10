@@ -21,8 +21,7 @@ public class HelpCommand extends UiCommand {
      */
     @Override
     public CommandResult execute(MainScreen mainScreen) {
-        HelpManualPanel helpManualPanel = new HelpManualPanel();
-        mainScreen.loadRightComponent(helpManualPanel);
+        mainScreen.loadRightComponent(mainScreen.getHelpManualPanel());
         return new CommandResult(SUCCESS_MESSAGE);
     }
 

@@ -13,7 +13,7 @@ import vimification.ui.MainScreen;
  */
 public class SortCommand extends UiCommand {
 
-    private static final String SUCCESS_MESSAGE = "Here are your search results:";
+    private static final String SUCCESS_MESSAGE = "Here are your sorted results:";
 
     private final SortRequest request;
 
@@ -48,7 +48,7 @@ public class SortCommand extends UiCommand {
         mainScreen.getTaskListPanel()
                 .getUiTaskList()
                 .setComparator(comparator);
-        return new CommandResult(SUCCESS_MESSAGE);
+        return new CommandResult(SUCCESS_MESSAGE, true);
     }
 
     @Override
