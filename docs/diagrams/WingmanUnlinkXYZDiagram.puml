@@ -2,7 +2,6 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":Logic" as Logic LOGIC_COLOR
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 end box
 

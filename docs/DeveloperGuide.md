@@ -29,7 +29,8 @@ title: Developer Guide
 
 ## Acknowledgements
 
-Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/).
+Wingman was built atop the codebase
+for [AB3](https://se-education.org/addressbook-level3/).
 Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
 albeit involving different implementations and classes.
 
@@ -65,13 +66,17 @@ Main has two classes called Main and MainApp. It is responsible for,
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App. The UI of Wingman is built using JavaFX with FXML.
-* [**`Logic`**](#logic-component): The command executor. This layer is responsible for parsing user
+* [**`UI`**](#ui-component): The UI of the App. The UI of Wingman is built using
+  JavaFX with FXML.
+* [**`Logic`**](#logic-component): The command executor. This layer is
+  responsible for parsing user
   input into executable commands, and executing them. It adopts the command
   pattern, the facade pattern, and the factory pattern.
-* [**`Model`**](#model-component): Holds the data of the App in memory and defines the different
+* [**`Model`**](#model-component): Holds the data of the App in memory and
+  defines the different
   entities.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the
+  hard disk.
 
 <div style="page-break-after: always;"></div>
 
@@ -90,7 +95,8 @@ in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main
 
 The UI consists of a `MainWindow` that is made up of parts
 e.g.`CommandBox`, `ResultDisplay`, `XYZListPanel`, `StatusBarFooter` etc.
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class
+which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
@@ -117,7 +123,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies
   on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays
-  `Flight`, `Crew`, `Plane`, `Pilot`, `Location` objects residing in the `Model`.
+  `Flight`, `Crew`, `Plane`, `Pilot`, `Location` objects residing in
+  the `Model`.
 
 <div style="page-break-after: always;"></div>
 
@@ -140,9 +147,11 @@ We shall be looking at the 3 parts one by one.
 
 #### Command Parser
 
-Wingman abandoned the use of the parser design in AB3. The main motivation behind
+Wingman abandoned the use of the parser design in AB3. The main motivation
+behind
 this decision was that we felt that AB3's parser design was too complicated.
-Furthermore, AB3's parser didn't have the `mode` component, which was crucial to the
+Furthermore, AB3's parser didn't have the `mode` component, which was crucial to
+the
 design of Wingman.
 
 ![Wingman's parser design](images/ParserLogicSequenceDiagram.png)
@@ -240,27 +249,35 @@ it does not differ significantly from the command pattern in AB3.
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
 </p>
 
-The `Model` package consists of a `Model Manager`, which stores the `UserPref` and `Wingman` data.
-`Wingman` data is stored in 5 separate `ItemManager` objects (one for each resource type),
+The `Model` package consists of a `Model Manager`, which stores the `UserPref`
+and `Wingman` data.
+`Wingman` data is stored in 5 separate `ItemManager` objects (one for each
+resource type),
 each of which has an `UniqueList` object.
 
 The `Model` component,
 
 * stores in memory the Wingman data
-  i.e., all `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects (which are contained in separate
+  i.e., all `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects (which are
+  contained in separate
   `UniqueList` objects).
-* stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects
+* stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location`
+  and `Crew` objects
   as separate _filtered_ lists (one for each resource type).
-    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
-      For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
-      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
+    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>`
+      objects that can be 'observed'.
+      For instance, the UI can be bound to these lists so that the UI
+      automatically updates when the data in the
+      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or
+      Location)
 * stores in memory a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
     * Essentially, the `Model` component could be considered as the **domain**
-      layer of the application. It contains core application logic that should not
+      layer of the application. It contains core application logic that should
+      not
       be altered even if we completely swap out the UI or storage components.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
@@ -289,17 +306,17 @@ The `Storage` component,
 * can save both Wingman data and user preference data in json format,
   and read them back into corresponding objects.
 * depends on some classes in the `Model` component (e.g. `UserPref`)
-  because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
+  because the `Storage` component's job is to save/retrieve objects that belong
+  to the `Model`
 
 <<<<<<< HEAD
-> **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
-> user when he/she directly modifies the data files. The user is expected to 
+> **IMPORTANT**: Wingman is not responsible for the data loss caused by the
+> user when he/she directly modifies the data files. The user is expected to
 > work with the data files only through Wingman.
 
 =======
->>>>>>> master
+> > > > > > > master
 <div style="page-break-after: always;"></div>
-
 
 ### Overall Sequence
 
@@ -331,9 +348,11 @@ diagrams to depict the processes at each layer in greater detail.
 <img src="images/WingmanDeleteCrewActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
 
-These activity diagrams represent the paths a user will take when trying to link/unlink a
+These activity diagrams represent the paths a user will take when trying to
+link/unlink a
 resource entity, XYZ
-to a flight, as well as deleting a `Crew` entity. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
+to a flight, as well as deleting a `Crew` entity. XYZ can be
+a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
 entity.
 
 <div style="page-break-after: always;"></div>
@@ -449,13 +468,17 @@ passes control to the logic layer.
 At the logic layer, `execute(input)` parses the input using the
 WingmanParser's `parse` function.
 
-Firstly, the WingmanParser separates the input into tokens. Secondly, it determines
-what mode the command is from using the `parse` command in the `CommandGroup` class.
-Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser` class
+Firstly, the WingmanParser separates the input into tokens. Secondly, it
+determines
+what mode the command is from using the `parse` command in the `CommandGroup`
+class.
+Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser`
+class
 which uses the `createCommand` method to finally create a `DeleteCommand`.
 Finally, the `DeleteCommand` is returned in the original `LogicManager`.
 
-The next step in the `LogicManager` is to execute the returned command. To do so,
+The next step in the `LogicManager` is to execute the returned command. To do
+so,
 it calls the command's `execute` method which in this example, uses a
 `DeleteFunction` to run `delete(model, xyz)` (where xyz is the resource
 to be deleted).
@@ -470,8 +493,10 @@ indicating a successful deletion.
 
 For the parsing logic in the Wingman app, the commands were split based on their
 related "mode." This is due to the nature that there are some commands which
-only concern some modes. This implementation decision was made so that parsing would be
-more simple across the five modes since each mode would only have to handle their
+only concern some modes. This implementation decision was made so that parsing
+would be
+more simple across the five modes since each mode would only have to handle
+their
 related commands only.
 
 <div style="page-break-after: always;"></div>
@@ -492,9 +517,10 @@ Hence, in this description the general term XYZ is used instead.
 
 This feature is enabled by the following classes in particular:
 
-- `LinkXYZCommand` - The command that links a crew to a flight
-- `LinkXYZCommandFactory` - The factory class that creates an {@code
-  LinkCrewCommand}
+- `LinkXYZToFlightCommand` - The command that links a crew to a flight
+- `XYZFlightLinkCommandFactory` - The factory class that creates an
+  `LinkXYZToFlightCommand` (It's also capable of creating an
+  `UnlinkXYZFromFlightCommand`)
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
 
@@ -508,11 +534,12 @@ this command is passed from the UI layer to the logic layer similar to the
 way described above, in the 'Unlinking XYZ' section.
 
 At the logic layer, while the sequence of method calls is similar to what is
-described in the 'Adding XYZ' section, the `LinkXYZCommand.execute(model)`
-method is called instead of the `UnlinkXYZCommand.execute(model)` method.
+described in the 'Adding XYZ' section, the 
+`LinkXYZToFlightCommand.execute(model)` method is called instead of the 
+`UnlinkXYZToFlightCommand.execute(model)` method.
 
-This method then calls the `flight.XYZLink.add(entry.getKey(), entry.getValue
-())` method where entry refers to one key-value pairing in a mapping of
+This method then calls the `flight.XYZLink.add(entry.getKey(), entry.getValue())` 
+method where entry refers to one key-value pairing in a mapping of
 `FlightXYZType` keys to `XYZ` values. At this point, the process is at the
 model layer and continues with method calls similar to the ones described in
 the 'Unlinking XYZ from a flight' section until the control is passed back
@@ -563,7 +590,8 @@ Hence, in this description the general term XYZ is used instead.
 This feature is enabled by the following classes in particular:
 
 - `UnlinkXYZtoFlightCommand` - The command that unlinks a crew from a flight
-- `XYZFlightLinkCommandFactory` - The factory class that creates an `UnlinkXYZtoFlightCommand`
+- `XYZFlightLinkCommandFactory` - The factory class that creates
+  an `UnlinkXYZtoFlightCommand`
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
 
@@ -577,8 +605,10 @@ this command is passed from the UI layer to the logic layer similar to the way
 described above, in the
 'Adding XYZ' section.
 
-At the logic layer, while the sequence of method calls is similar to what is described in the 'Deleting XYZ' section,
-the `UnlinkXYZtoFlightCommand.execute(model)` method is called instead of the `DeleteCommand.execute(model)` method.
+At the logic layer, while the sequence of method calls is similar to what is
+described in the 'Deleting XYZ' section,
+the `UnlinkXYZtoFlightCommand.execute(model)` method is called instead of
+the `DeleteCommand.execute(model)` method.
 
 This method then calls
 the `flight.XYZLink.delete(entry.getKey(), entry.getValue())` method
@@ -589,20 +619,30 @@ similar to the ones described in the
 'Linking XYZ to a flight' section until the control is passed back to the logic
 layer.
 
-Subsequently, the control is passed to the storage layer through the `logicManager.save()` method.
-This method calls the `storage.saveXYZManager(model.getXYZManager())` for all resource types
-(i.e. `Flight`, `Pilot`, `Plane`, `Location` and `Crew`) to save all the updates made across all objects
-in storage. Since these method calls work in the same way for each resource type, we shall focus on just the
-method call to save the updated flight objects in storage, to keep the diagram simple.
+Subsequently, the control is passed to the storage layer through
+the `logicManager.save()` method.
+This method calls the `storage.saveXYZManager(model.getXYZManager())` for all
+resource types
+(i.e. `Flight`, `Pilot`, `Plane`, `Location` and `Crew`) to save all the updates
+made across all objects
+in storage. Since these method calls work in the same way for each resource
+type, we shall focus on just the
+method call to save the updated flight objects in storage, to keep the diagram
+simple.
 
 <img src="images/WingmanUnlinkXYZSequenceDiagram.png" width="966" alt="Sequence diagram at Storage layer">
 
-After `model.getFlightManager()` returns the model, the `saveFlightManager` method calls the
-`saveFlightManager(flightManager, flightStorage.getPath())` method in the same `StorageManager` class.
-For the parameters, flightManager is a `ReadOnlyItemManager<Flight>` object and `flightStorage` is
+After `model.getFlightManager()` returns the model, the `saveFlightManager`
+method calls the
+`saveFlightManager(flightManager, flightStorage.getPath())` method in the
+same `StorageManager` class.
+For the parameters, flightManager is a `ReadOnlyItemManager<Flight>` object
+and `flightStorage` is
 a `ItemStorage<Flight>` object.
-This method call uses the imported json package to store 'JsonIdentifiableObject' versions of the flightManager
-which in turn contains the JsonAdaptedFlights, including the flight with the updated link represented as a
+This method call uses the imported json package to store '
+JsonIdentifiableObject' versions of the flightManager
+which in turn contains the JsonAdaptedFlights, including the flight with the
+updated link represented as a
 `Map<FlightXYZType, Deque<String>>` object.
 
 **Why was it implemented this way?**
@@ -1049,7 +1089,8 @@ made or not. This is another aspect of input validation as described
 earlier.
 
 Therefore, due to the error-prone nature of this command,
-we decided to exclude it from this release. However, the nature of Wingman as a scheduling app would require an
+we decided to exclude it from this release. However, the nature of Wingman as a
+scheduling app would require an
 availability feature. So, with more time, we should be able to implement
 this feature - perhaps by making `Link` bidirectional, or rethinking
 our approach to availability.
