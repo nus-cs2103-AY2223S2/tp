@@ -50,7 +50,7 @@ sprite $rake [16x16/8] {
 0000000000000000
 }
 
-skinparam dpi 300
+skinparam dpi 500
 
 skinparam BackgroundColor #FFFFFFF
 

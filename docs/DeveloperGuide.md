@@ -720,7 +720,7 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
 person.
 
-![Edit Command Sequence Diagram](images/NewEditSequenceDiagram.png)
+![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 

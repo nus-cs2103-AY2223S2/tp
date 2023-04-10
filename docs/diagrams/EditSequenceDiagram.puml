@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("edit c/2 s+/python")
 activate LogicManager
 
-LogicManager -> CodocParser : parseCommand("edit c/2 s+/python")
+LogicManager -> CodocParser : parseCommand\n("edit c/2 s+/python")
 activate CodocParser
 
 create EditCommandParser
@@ -54,17 +54,17 @@ activate Model
 Model --> EditCommand : personToEdit
 deactivate Model
 
-EditCommand -> EditCommand : createEditedPerson(personToEdit, editPersonDescriptor)
+EditCommand -> EditCommand : createEditedPerson\n(personToEdit, editPersonDescriptor)
 activate EditCommand
 deactivate EditCommand
 
-EditCommand -> Model : setPerson(personToEdit, editedPerson)"
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
 activate Model
 
 Model --> EditCommand
 deactivate Model
 
-EditCommand -> Model : setProtagonist(editedPerson)"
+EditCommand -> Model : setProtagonist(editedPerson)
 activate Model
 
 Model --> EditCommand
