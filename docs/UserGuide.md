@@ -809,6 +809,8 @@ Syntax: `find_supplier NAME`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -825,8 +827,6 @@ Syntax: `find_supplier NAME`
   :x: Example of suppliers that do not match:
   * `Prim`
   * `PrimaFlour`
-
-<div style="page-break-after: always;"></div>
 
 :clipboard: **Example 2: Shortcut command**
 
