@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +93,75 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String businessSize} into an {@code BusinessSize}.
+     *
+     * @throws ParseException if the given {@code businessSize} is invalid.
+     */
+    public static BusinessSize parseBusinessSize(String businessSize) throws ParseException {
+        requireNonNull(businessSize);
+        String trimmedBusinessSize = businessSize.strip().replaceFirst("^0+(?!$)", "");
+        System.out.println(trimmedBusinessSize);
+        if (!BusinessSize.isValidBusinessSize(trimmedBusinessSize)) {
+            throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
+        }
+        return new BusinessSize(trimmedBusinessSize);
+    }
+
+    /**
+     * Parses a {@code String Company} into an {@code Company}.
+     *
+     * @throws ParseException if the given {@code Company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        if (!Company.isValidCompany(company)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(company);
+    }
+
+    /**
+     * Parses a {@code String priority} into an {@code Priority}.
+     *
+     * @throws ParseException if the given {@code Priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return new Priority(trimmedPriority);
+    }
+
+    /**
+     * Parses a {@code String transactionCount} into an {@code transactionCount}.
+     *
+     * @throws ParseException if the given {@code transactionCount} is invalid.
+     */
+    public static TransactionCount parseTransactionCount(String transactionCount) throws ParseException {
+        requireNonNull(transactionCount);
+        String trimmedTransactionCount = transactionCount.strip().replaceFirst("^0+(?!$)", "");
+        if (!TransactionCount.isValidTransactionCount(trimmedTransactionCount)) {
+            throw new ParseException(TransactionCount.MESSAGE_CONSTRAINTS);
+        }
+        return new TransactionCount(trimmedTransactionCount);
+    }
+
+    /**
+     *
+     */
+    public static Mark parseMark(String mark) throws ParseException {
+        requireNonNull(mark);
+        String trimmedMark = mark.trim();
+        if (!Mark.isValidMark(trimmedMark)) {
+            throw new ParseException(Mark.MESSAGE_CONSTRAINTS);
+        }
+        return new Mark(trimmedMark);
+    }
+
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -121,4 +187,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }

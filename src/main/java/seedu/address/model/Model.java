@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Person;
 
 /**
@@ -70,6 +72,17 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Marks the given person.
+     * {@code mark) must be different from {@code person}'s current marking.
+     */
+    void markPerson(Index index, Mark mark);
+
+    /**
+     * Return the size of list.
+     */
+    int size();
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -78,6 +91,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the person list, sorted by business size */
+    void sortPersonList(String type, boolean ascending);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

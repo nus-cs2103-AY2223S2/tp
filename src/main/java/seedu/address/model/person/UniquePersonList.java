@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -69,6 +70,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Return the size of the list.
+     *
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
@@ -95,6 +104,17 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Marks a person as marked or unmarked.
+     * @param index The person at index index to be marked.
+     * @param mark The mark.
+     */
+    public void markPerson(Index index, Mark mark) {
+        requireAllNonNull(index, mark);
+        Person target = internalList.get(index.getZeroBased());
+        target.changeMark();
     }
 
     /**

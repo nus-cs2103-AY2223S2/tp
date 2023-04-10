@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +24,15 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+
+    private final String businessSize;
+
+    private final String company;
+
+    private final String priority;
+
+
+    private final String transactionCount;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +41,19 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("businessSize") String businessSize, @JsonProperty("company") String company,
+                             @JsonProperty("priority") String priority,
+                             @JsonProperty("transactionCount") String transactionCount,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.businessSize = businessSize;
+        this.company = company;
+        this.priority = priority;
+        this.transactionCount = transactionCount;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +67,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        businessSize = source.getBusinessSize().value;
+        company = source.getCompany().value;
+        priority = source.getPriority().value;
+        transactionCount = source.getTransactionCount().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +119,47 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (businessSize == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    BusinessSize.class.getSimpleName()));
+        }
+        if (!BusinessSize.isValidBusinessSize(businessSize)) {
+            throw new IllegalValueException(BusinessSize.MESSAGE_CONSTRAINTS);
+        }
+        final BusinessSize modelBusinessSize = new BusinessSize(businessSize);
+
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Company.class.getSimpleName()));
+        }
+
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+        }
+
+        final Company modelCompany = new Company(company);
+
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
+        }
+
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        final Priority modelPriority = new Priority(priority);
+
+        if (!TransactionCount.isValidTransactionCount(transactionCount)) {
+            throw new IllegalValueException(TransactionCount.MESSAGE_CONSTRAINTS);
+        }
+
+        final TransactionCount modelTransactionCount = new TransactionCount(transactionCount);
+
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBusinessSize, modelCompany,
+                modelPriority, modelTransactionCount, modelTags);
     }
 
 }

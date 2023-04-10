@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Person;
 
 /**
@@ -111,6 +113,19 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void markPerson(Index index, Mark mark) {
+        requireAllNonNull(index, mark);
+
+        addressBook.markPerson(index, mark);
+    }
+
+    @Override
+    public int size() {
+        System.out.println(addressBook.size());
+        return addressBook.size();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -120,6 +135,32 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public void sortPersonList(String type, boolean ascending) {
+//        assert Objects.equals(type, "size")
+//                || Objects.equals(type, "priority")
+//                || Objects.equals(type, "trans")
+//                || Objects.equals(type, "name");
+        switch (type) {
+            case "size":
+                addressBook.sortPersonsBusinessSize(ascending);
+                break;
+            case "name":
+                addressBook.sortPersonsName(ascending);
+                break;
+            case "priority":
+                addressBook.sortPersonsPriority(ascending);
+                break;
+            case "trans":
+                addressBook.sortPersonsTransactionCount(ascending);
+                break;
+            default:
+                addressBook.sortPersonsName(ascending);
+        }
+
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
