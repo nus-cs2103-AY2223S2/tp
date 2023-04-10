@@ -372,10 +372,10 @@ Among the two options described below, our team decided to choose the former as 
 ### Mark Attendance
 
 #### Implementation
-Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand`, and `Model`
+Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttendanceCommand` and `Model`
 
 * `MarkAttendanceParser`-- Parse the input of users
-* `MarkAttednanceCommand` -- Execute the command given the parsed user input
+* `MarkAttendanceCommand` -- Execute the command given the parsed user input
 * `Model` -- Updates the student list.
 
 Below is the sequence diagram for marking attendance of a student
@@ -403,10 +403,11 @@ Sequence Diagram for Marking Attendance
 ### Unmark Attendance
 
 #### Implementation
-Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand`, and `Model`
 
-* `UnarkAttendanceParser`-- Parse the input of users
-* `UnarkAttednanceCommand` -- Execute the command given the parsed user input
+Unmark Attendance command is facilitated by `UnmarkAttendanceParser`, `UnmarkAttendanceCommand` and `Model`
+
+* `UnmarkAttendanceParser`-- Parse the input of users
+* `UnmarkAttendanceCommand` -- Execute the command given the parsed user input
 * `Model` -- Updates the student list.
 
 Below is the sequence diagram for unmarking attendance of a student
@@ -423,11 +424,11 @@ Sequence Diagram for Unmarking Attendance
 
 **Aspect: How TAA should search for users**
 
-1. **Alternative 1 (Chosen):** UnarkAttendanceCommand will take in student index.
+1. **Alternative 1 (Chosen):** UnmarkAttendanceCommand will take in student index.
     * Pros: Easy to type, and index can be found easily by just looking.
     * Cons: Might need some scrolling to find student's index if there is many students.
 
-2. **Alternative 2:** UnarkAttendanceCommand will take in student name.
+2. **Alternative 2:** UnmarkAttendanceCommand will take in student name.
     * Pros: More typing for the user.
     * Cons: No need to scroll and find student's index.
 
@@ -787,9 +788,9 @@ Below is the main success scenario of marking a student's attendance.
     * 1a1. TAA shows an error message.
 
       Use case ends.
-* 3b. The given week's attendance is already marked
+* 1b. The given week's attendance is already marked
 
-    * 3a1. TAA shows message that attendance for that week is already marked.
+    * 1a1. TAA shows message that attendance for that week is already marked.
 
       Use case ends.
 
@@ -1213,6 +1214,9 @@ Therefore, we plan to further extend the checks performed on the student name pr
 and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to
 be the same student. Consequently, such operations will not be allowed to execute, and an error message "A student with
 a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
+
+### 3. Allow users to be added into groups
+We plan to be able to group users into different groups as a future feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
