@@ -66,7 +66,6 @@ This section provides a brief overview of the graphical user interface (GUI) com
 ![User Interface](images/interface.png)
 
 ### Menu Bar
-
 The menu bar is typically located at the top of the user interface and is primarily used for navigation purposes. It provides users with access to various features and functions within the application or dashboard, allowing them to easily navigate between different tabs. The menu bar is commonly used in user guides to help users understand how to navigate and use the different features within the application.
 
 #### FitBook
@@ -83,7 +82,6 @@ The menu bar is typically located at the top of the user interface and is primar
 * Provides a new tab outside FitBook with the link to the User Guide.
 
 ### Result Panel
-
 Panels are _empty_ when the data for that specific panel is _empty_.
 
 #### Schedule
@@ -207,21 +205,6 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/93125841 t/John's Friend w/55 g/F`
 * `add n/Betsy Crowe app/12-12-2030 12:00 cal/2300 g/F e/betsycrowe@example.com a/Newgate Prison p/93125841 t/Friend`
 
-#### Listing all clients : `listClients`
-
-{% include information.html content="
-
-Displays a list of all clients in the FitBook under the Client panel.
-
-" %}
-
-Format: `listClients`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
-
-* Initiate the command with `listClients`
-* All clients in FitBook has been listed once again!
-
 #### Editing a client : `edit`
 
 {% include information.html content="
@@ -284,6 +267,21 @@ Examples:
 * `find p/91234567` returns every client with phone numbers that match or contains '91234567'.
 * `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
   '91234567'
+
+#### Listing all clients : `listClients`
+
+{% include information.html content="
+
+Displays a list of all clients in the FitBook under the Client panel.
+
+" %}
+
+Format: `listClients`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
+
+* Initiate the command with `listClients`
+* All clients in FitBook has been listed once again!
 
 <div style="page-break-after: always;"></div>
 
@@ -686,8 +684,8 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 | **Export Client Details**               | `export`                                                                                                                                                                                                                                                                                |
 | **Add Exercise**                        | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                                                                                                                                      |
 | **Add Routine**                         | `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​` <br> e/g, `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks `                                                                                                                                                                       |
-| **Edit Routine** (routine name)         | `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` <br> e/g, `editRoutine 1 r/Cardio`                                                                                                                                                                                                           |
-| **Edit Routine** (exercise)             | `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE` <br> e/g, `editRoutine 1 exno/1 ex/3x10sets of Dumbbell curls`                                                                                                                                                                      |
+| **Edit Routine**(RoutineName)           | `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` <br> e/g, `editRoutine 1 r/Cardio`                                                                                                                                                                                                           |
+| **Edit Routine**(Exercise)              | `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE` <br> e/g, `editRoutine 1 exno/1 ex/3x10sets of Dumbbell curls`                                                                                                                                                                      |
 | **Delete Exercise**                     | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                                                                                                                                            |
 | **Delete Routine**                      | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                                                                                                                                              |
 | **List Routine**                        | `listRoutines`                                                                                                                                                                                                                                                                          |
