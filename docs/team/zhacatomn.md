@@ -27,6 +27,9 @@ This command helps to give the user a starting point for how the unpaired elderl
 * **Enhancements to existing features**:
     * Added the `PersonBuilderScaffold` class in tests for better abstraction
     * Created the `Volunteer` class, as well as the `add_volunteer` command
+    
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
     * User Guide:
         * Added documentation for the command `add_volunteer`.
@@ -38,6 +41,7 @@ This command helps to give the user a starting point for how the unpaired elderl
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#184](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/184), 
   [\#180](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/180),
-  [\#148](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/148)
+  [\#148](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/148),
+  [\#112](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/112)
   
 
