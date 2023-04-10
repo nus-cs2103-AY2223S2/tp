@@ -1,0 +1,114 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ElisterParser" as ElisterParser LOGIC_COLOR
+participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":CsvElisterStorage" as CsvElisterStorage STORAGE_COLOR
+participant "csvElister:CsvSerializableElister" as CsvSerializableElister STORAGE_COLOR
+end box
+
+box Commons MODEL_COLOR_T1
+participant "<<class>> FileUtil" as FileUtil MODEL_COLOR
+participant "<<class>> CsvUtil" as CsvUtil MODEL_COLOR
+end box
+
+[-> LogicManager : execute("export")
+activate LogicManager
+
+LogicManager -> ElisterParser : parseCommand("export")
+activate ElisterParser
+
+create ExportCommand
+ElisterParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> ElisterParser
+deactivate ExportCommand
+
+ElisterParser --> LogicManager : e
+deactivate ElisterParser
+
+LogicManager -> ExportCommand : execute(m)
+activate ExportCommand
+
+create CsvElisterStorage
+ExportCommand -> CsvElisterStorage
+activate CsvElisterStorage
+
+CsvElisterStorage -> ExportCommand
+deactivate CsvElisterStorage
+
+ExportCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model -> ExportCommand : list
+deactivate Model
+
+ExportCommand -> CsvElisterStorage : saveElister(list)
+activate CsvElisterStorage
+
+create CsvSerializableElister
+CsvElisterStorage -> CsvSerializableElister
+activate CsvSerializableElister
+
+CsvSerializableElister -> CsvElisterStorage
+deactivate CsvSerializableElister
+
+CsvElisterStorage -> CsvSerializableElister : toString()
+activate CsvSerializableElister
+
+CsvSerializableElister -> CsvElisterStorage : str
+deactivate CsvSerializableElister
+
+CsvElisterStorage -> FileUtil : createIfMissing(filePath)
+activate FileUtil
+
+FileUtil -> CsvElisterStorage
+deactivate FileUtil
+
+CsvElisterStorage -> CsvUtil : saveCsvFile(filePath, csvElister)
+activate CsvUtil
+
+
+
+create PreviousModel
+StateHistory -> PreviousModel
+activate PreviousModel
+
+PreviousModel --> StateHistory
+deactivate PreviousModel
+
+StateHistory --> UndoCommand : prev
+deactivate StateHistory
+
+UndoCommand -> PreviousModel : getElister()
+activate PreviousModel
+
+PreviousModel --> UndoCommand : ab
+deactivate PreviousModel
+
+UndoCommand -> Model : setElister(ab)
+activate Model
+
+Model --> UndoCommand
+deactivate Model
+
+UndoCommand --> LogicManager : result
+deactivate UndoCommand
+
+UndoCommand -[hidden]-> LogicManager : result
+destroy UndoCommand
+destroy PreviousModel
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
