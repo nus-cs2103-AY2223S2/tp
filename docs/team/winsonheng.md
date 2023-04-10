@@ -6,7 +6,7 @@ E-Lister is a desktop address book application used for streamlining contact man
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the `export` command.
+* **Feature I**: Added the `export` command.
   * What it does: Exports the data into a csv file at a location selected by the user.
   * Justification: This feature provides a convenient way for insurance agents to mass extract contact information such as email and phone number.
   * Highlights: This feature required the implementation of new helper classes to convert Person objects into csv-friendly text outputs.
@@ -14,7 +14,7 @@ Given below are my contributions to the project.
     * `all` exports all contacts on the app
     * `shown` exports only contacts which are displayed, which is useful when the agent wants to target a specific group of potential customers
 
-* **New Feature**: Added the `import` command.
+* **Feature II**: Added the `import` command.
   * What it does: Imports the data from a csv file selected by the user.
   * Justification: This feature provides allows insurance agents to directly work on an existing dataset rather than adding contacts one by one.
   * Highlights: This feature required the implementation of new helper classes to parse csv inputs into instances of Person.
@@ -25,19 +25,19 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=winsonheng&breakdown=true)
 
 * **Project management**:
-  * To be added soon
+  * Ensured the harmonisation of different features in solving the needs of our target users
+  * Adviced and assisted feature design and debugging
+  * Managed milestone progress and ensured tasks were completed on time
 
 * **Enhancements to existing features**:
-  * To be added soon
+  * Ideation and design of UI enhancements, including the tags and history panes
+  * Refactored multiple classes and comments to match the E-Lister name
 
 * **Documentation**:
   * User Guide:
-    * To be added soon
+    * Added documentation for own features
+    * Addition of various screenshots with labelled pointers to aid user navigation
   * Developer Guide:
-    * To be added soon
-
-* **Community**:
-  * To be added soon
-
-* **Tools**:
-  * To be added soon
+    * Added implementation for `import` and `export` features
+    * Added information on CSV-format conversion
+    * Updated UML diagrams such as StorageClassDiagram.puml
