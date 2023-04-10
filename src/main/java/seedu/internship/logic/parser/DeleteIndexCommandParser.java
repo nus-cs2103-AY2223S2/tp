@@ -25,17 +25,17 @@ public class DeleteIndexCommandParser implements Parser<DeleteIndexCommand> {
         if (args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS, DeleteIndexCommand.MESSAGE_USAGE));
         }
+
+        List<Index> indexes;
+
         try {
-            List<Index> indexes = ParserUtil.parseIndexes(args);
+            indexes = ParserUtil.parseIndexes(args);
             assert indexes != null;
-            return new DeleteIndexCommand(indexes);
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
-                throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
-            } else {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteIndexCommand.MESSAGE_USAGE), pe);
-            }
+            ParseException e = ParserUtil.handleIndexException(pe, DeleteIndexCommand.MESSAGE_USAGE);
+            throw e;
         }
+
+        return new DeleteIndexCommand(indexes);
     }
 }
