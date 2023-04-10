@@ -21,7 +21,7 @@ class Project {
 class Client {
 	- name: Name
 	- email: Email
-	- yearOfBirth: YearOfBirth
+	- yearOfBirth: Optional<YearOfBirth>
 	- source: Optional<NonEmptyString>
 	- mobileNumber: Optional<Phone>
 }
