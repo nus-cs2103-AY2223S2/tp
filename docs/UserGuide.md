@@ -297,13 +297,17 @@ and it should look something like the below image.
 ![](images/UserGuide/batchexport/exportedFileLocation.png)
 
 <div markdown="span" class="alert alert-warning">
-:warning: Caution: If you open the exported `.csv file` in `Excel`
+:warning: Caution: 
+If you open the exported `.csv file` in `Excel`
 and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
 This could lead to issues when importing the file using the batchadd command. 
-To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).
-
+To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).\
 </div>
 
+<div markdown="span" class="alert alert-warning">
+:warning: Caution: 
+**Do take note to only export in `.csv file` and not any other file types.**
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### Listing all employees : `list`
@@ -368,7 +372,6 @@ Examples:
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="section-filter"></a>
 ### Filtering out employees: `filter`
 
 As your database gets larger, finding employees based on certain conditions become more and more tedious.
@@ -384,11 +387,10 @@ Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 * The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
 
 Examples:
-* `filter pr > 1000` displays list of all employees whose payroll value is greater than 0
+* `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
 * `filter l = 1` displays list of all employees who have only 1 leave left
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="section-delete"></a>
 ### Deleting an employee : `delete`
 
 As time passes, you might run into instances where an employee leaves the company, and that their details have to be removed
@@ -405,7 +407,6 @@ Examples:
 `delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="section-theme"></a>
 ### Changing the UI theme : `theme`
 
 Want to tweak the look of ExecutivePro?
@@ -422,7 +423,6 @@ Format: `theme THEME_NAME`
 Examples:
 `theme light` applies the `light` theme to ExecutivePro.
 --------------------------------------------------------------------------------------------------------------------
-
 <div markdown="span" class="alert alert-warning">
 
 :warning:
@@ -430,7 +430,6 @@ Examples:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="section-setpicture"></a>
 ### Setting an employee's picture : `setpicture`
 
 This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
@@ -464,7 +463,6 @@ Exits the program.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="section-clear"></a>
 ### Clearing the data: `clear`
 
 Clears all the data currently stored in the database.
@@ -481,7 +479,6 @@ Once you run this command, you lose all data immediately.
 Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
-<a name="section-save"></a>
 ### Saving the data
 
 ExecutivePro data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -524,7 +521,6 @@ This table describes the requirements and order of the fields.
 | 9.    | `DATEOFJOINING` | Optional       |
 | 10.   | `TAGS`          | Optional       |
 
-[Return to add feature](#adding-an-employee--add) 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -545,9 +541,6 @@ This table describes the requirements for the input format of the fields.
 | `DATE_OF_JOINING` | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
 | `TAG`             | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
 
-[Return to add feature](#adding-an-employee--add) \
-[Return to batchadd feature](#adding-multiple-employees-at-once--batchadd) 
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -563,7 +556,7 @@ This table describes the requirements for the input format of the fields.
 | **List**        | `list`                                                                                                                                                                                                                                                                                                          |
 | **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                                          |
 | **Leave**       | `leave EMPLOYEE_ID l/LEAVE_COUNT`<br> e.g.,`leave 1 l/3`                                                                                                                                                                                                                                                        |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                      |
+| **Find**        | `find [*] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                  |
 | **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                       |
 | **Theme**       | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                                                                                                                     |
 | **SetPicture**  | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                                                                                                                               |

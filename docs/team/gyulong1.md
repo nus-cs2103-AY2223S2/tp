@@ -1,4 +1,7 @@
-# Yulong's Project Portfolio Page
+---
+layout: page
+title: Yulong's Project Portfolio Page
+---
 
 ## Project: ExecutivePro
 ### Overview:

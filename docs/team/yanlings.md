@@ -1,4 +1,8 @@
-# Yan Ling's Project Portfolio Page
+---
+layout: page
+title: Yan Ling's Project Portfolio Page
+---
+
 
 ## Project: ExecutivePro
 ### Overview:

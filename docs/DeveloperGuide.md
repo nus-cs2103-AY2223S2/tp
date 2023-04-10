@@ -497,8 +497,8 @@ As such, we plan to implement a check that requires at least `1` day specified f
 We plan to take into account case sensitivity in addition to the current check of phone number and email.
 6. Currently, there are no error messages for invalid Date Of Birth, such as using future dates.
 We plan to implement checks for date validity and return an error message: `Invalid Date Of Birth`
-7. Currently, BatchExport with invalid path is not handled. We plan to check for file path validity and
-return an error message: `Invalid file path`
+7. Currently, BatchExport with invalid path or invalid file type is not handled. We plan to check for file path 
+validity and file type validity, returning an error message: `Invalid file path` and `Invalid file type` respectively.
 8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
