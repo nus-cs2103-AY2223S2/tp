@@ -196,10 +196,13 @@ p/ : Phone numbers should contain only numbers, and it should be at least 3 digi
 
 t/ or m/ : Alphanumeric characters
 
+:information_source: Not allowed to create new person if name already exist in ModCheck
+
 #### Implementation
 
-The implementation of this feature requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
-Below is an activity diagram that shows what happens when a user executes the `filter` command
+The implementation of this feature requires 'AddCommand' and 'AddCommandParser'.
+
+Below is an activity diagram that shows what happens when a user executes the `add` command
 
 ![AddActivityDiagram](images/addcommandActivityDiagram.png)
 
