@@ -170,7 +170,7 @@ This operation is similar to that of adding a person. Adding an event involves c
 
 #### Current Implementation
 
-Finding an event is a feature that uses the command `findevent [EVENT_NAME]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Finding an event is a feature that uses the command `findevent KEYWORD [MORE_KEYWORDS]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
 Below is the sequence diagram detailing how the `findevent` operation works.
 
 ![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
@@ -178,6 +178,22 @@ Below is the sequence diagram detailing how the `findevent` operation works.
 Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
 This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
 The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+
+### \[Implemented] Edit event feature
+
+#### Current Implementation
+
+Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`. The following activity diagram shows how the edit event operation works when given valid parameters or invalid parameters.
+
+![EditEventActivityDiagram](images/EditEventActivityDiagram.png)
+
+The event at the displayed list's `EVENT_INDEX` is denoted as `eventToEdit`. The edited version is denoted as `editedEvent`. 
+
+Editing an event involves calling `Model#setEvent(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEvent(eventToEdit, editedEvent)` to edit the specified event, `eventToEdit`, in the `AddressBook`.
+
+Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and editing the specified event, `eventToEdit`. This is done by calling `Model#setEventFromPersonList(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEventFromPersonList(eventToEdit, editedEvent)`.
+
+The `setEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely edit the specified event in the `AddressBook`.
 
 ### \[Implemented] Delete event feature
 
@@ -191,7 +207,7 @@ This operation is similar to that of deleting a person. Deleting an event involv
 
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
-The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
+The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely remove the specified event from the `AddressBook`.
 
 ### \[Implemented] Sort events feature
 
@@ -540,6 +556,13 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
        Expected: Similar to previous.
 
+### Listing Events
+
+1. No prerequisite.
+
+2. Test case: `listevent`<br>
+   Expected: All events are displayed. Details of successful command execution shown in the status message.
+
 ### Sorting event list
 
 1. Prerequisite: Current list of events has at least 2 events.
@@ -552,6 +575,34 @@ testers are expected to do more *exploratory* testing.
 
 4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
    Expected: Similar to previous.
+
+### Editing an Event
+
+1. Editing an event while all events are being shown
+
+    1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
+
+    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+       Expected: First event is edited from the event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+    3. Test case: `editevent 0`<br>
+       Expected: No event is edited. Error details shown in the status message.
+
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+       Expected: Similar to previous.
+
+2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
+
+    1. Prerequisites: List all events using the `listevent` command, then find all events with `KEYWORD` using the `findevent KEYWORD [MORE_KEYWORDS]` command. Multiple events in the list.
+
+    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+      Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+    3. Test case: `editevent 0`<br>
+      Expected: No event is edited. Error details shown in the status message.
+
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
