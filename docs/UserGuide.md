@@ -54,6 +54,14 @@ In general, the following command format is adopted in FriendlyLink.
 
 `command <[PREAMBLE]> PREFIX/FIELD [PREFIX/OPTIONAL_FIELD] [PREFIX/OPTIONAL_FIELD]…`
 
+* Words that are `CAPITALISED` are placeholders that should be replaced by you.
+* Items in `[square brackets]` are optional.
+* Items in `<angled brackets>` are the preamble. The inclusion of `[]` indicates that the preamble is optional.
+* Items with `…` can be entered 0 or more times.
+
+For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
+`example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
+
 | Name       | Meaning                                                                                                       | Examples                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command    | An instruction given by you to FriendlyLink to perform a specific task.                                       | `add_elderly`                                                                                                                                                                                 | 
@@ -62,14 +70,6 @@ In general, the following command format is adopted in FriendlyLink.
 | Preamble   | Preamble is a special piece of information specified for certain commands that are entered without prefixes.  | `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.          |
 
 <div markdown="block" class="alert alert-info">:information_source: **Notes on Command Format**
-
-* Words that are `CAPITALISED` are placeholders that should be replaced by you.
-* Items in `[square brackets]` are optional.
-* Items in `<angled brackets>` are the preamble. The inclusion of `[]` indicates that the preamble is optional.
-* Items with `…` can be entered 0 or more times.
-
-For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
-`example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
 
 **Prefix**
 * Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`. 
