@@ -32,6 +32,7 @@ their assigned tasks.
 
 * **Documentation**:
   * Developer Guide:
+    * Added activity diagram for STATUS
     * Added more cases for manual testing
   * User Guide:
     * Added explanation for colour codes of status tag - Key definitions
