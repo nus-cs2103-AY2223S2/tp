@@ -1,9 +1,14 @@
 package fasttrack.logic.parser;
 
 import static fasttrack.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static fasttrack.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static fasttrack.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import static fasttrack.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static fasttrack.logic.parser.ParserUtil.Timespan.MONTH;
+import static fasttrack.logic.parser.ParserUtil.Timespan.WEEK;
 import static fasttrack.logic.parser.ParserUtil.Timespan.YEAR;
 import static fasttrack.testutil.TypicalCategories.FOOD;
+import static fasttrack.testutil.TypicalCategories.TECH;
 
 import java.util.Optional;
 
@@ -18,51 +23,97 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_categoryFieldPresent_success() {
-        ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(FOOD);
-        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.of(predicate), Optional.empty());
+        ExpenseInCategoryPredicate predicateFood = new ExpenseInCategoryPredicate(FOOD);
+        ExpenseInCategoryPredicate predicateTech = new ExpenseInCategoryPredicate(TECH);
+        ListExpensesCommand expectedCommandFood = new ListExpensesCommand(Optional.of(predicateFood),
+                Optional.empty());
+        ListExpensesCommand expectedCommandTech = new ListExpensesCommand(Optional.of(predicateTech),
+                Optional.empty());
 
-        // whitespace only preamble
-        // assertParseSuccess(parser,
-        //         ListExpensesCommand.COMMAND_WORD + PREAMBLE_WHITESPACE + PREFIX_CATEGORY + FOOD.getCategoryName(),
-        //         expectedCommand);
 
-        // no preamble
-        // String command = PREFIX_CATEGORY + FOOD.getCategoryName();
-        // assertParseSuccess(parser, command, expectedCommand);
+        assertParseSuccess(parser, " " + PREFIX_CATEGORY + FOOD.getCategoryName(), expectedCommandFood);
+        assertParseSuccess(parser, " " + PREFIX_CATEGORY + TECH.getCategoryName(), expectedCommandTech);
     }
 
     @Test
     public void parse_timespanFieldPresent_success() {
-        ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(YEAR);
-        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.empty(), Optional.of(predicate));
+        ExpenseInTimespanPredicate predicateWeek = new ExpenseInTimespanPredicate(WEEK);
+        ExpenseInTimespanPredicate predicateMonth = new ExpenseInTimespanPredicate(MONTH);
+        ExpenseInTimespanPredicate predicateYear = new ExpenseInTimespanPredicate(YEAR);
 
-        // whitespace only preamble
-        // assertParseSuccess(parser, PREAMBLE_WHITESPACE + PREFIX_TIMESPAN + "year", expectedCommand);
+        ListExpensesCommand expectedCommandWeek =
+                new ListExpensesCommand(Optional.empty(), Optional.of(predicateWeek));
+        ListExpensesCommand expectedCommandMonth =
+                new ListExpensesCommand(Optional.empty(), Optional.of(predicateMonth));
+        ListExpensesCommand expectedCommandYear =
+                new ListExpensesCommand(Optional.empty(), Optional.of(predicateYear));
 
-        // no preamble
-        // assertParseSuccess(parser, PREFIX_TIMESPAN + "year", expectedCommand);
+        // spelt in full, lowercase
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "week", expectedCommandWeek);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "month", expectedCommandMonth);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "year", expectedCommandYear);
+
+        // spelt in full, UPPERCASE
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "WEEK", expectedCommandWeek);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "MONTH", expectedCommandMonth);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "YEAR", expectedCommandYear);
+
+        // spelt in full, Capitalized
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "Week", expectedCommandWeek);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "Month", expectedCommandMonth);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "Year", expectedCommandYear);
+
+        // abbreviation, lowercase
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "w", expectedCommandWeek);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "m", expectedCommandMonth);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "y", expectedCommandYear);
+
+        // abbreviation, uppercase
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "W", expectedCommandWeek);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "M", expectedCommandMonth);
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "Y", expectedCommandYear);
     }
 
     @Test
     public void parse_categoryTimespanPresent_success() {
-        ExpenseInTimespanPredicate timespanPredicate = new ExpenseInTimespanPredicate(YEAR);
-        ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(FOOD);
-        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.of(categoryPredicate),
-                Optional.of(timespanPredicate));
+        ExpenseInTimespanPredicate predicateWeek = new ExpenseInTimespanPredicate(WEEK);
+        ExpenseInTimespanPredicate predicateMonth = new ExpenseInTimespanPredicate(MONTH);
+        ExpenseInTimespanPredicate predicateYear = new ExpenseInTimespanPredicate(YEAR);
 
-        // whitespace only preamble
-        //    assertParseSuccess(parser,
-        //            PREAMBLE_WHITESPACE + PREFIX_TIMESPAN + "year" + PREFIX_CATEGORY + FOOD.getCategoryName(),
-        //            expectedCommand);
-        //    assertParseSuccess(parser,
-        //            PREAMBLE_WHITESPACE + PREFIX_CATEGORY + FOOD.getCategoryName() + PREFIX_TIMESPAN + "year",
-        //            expectedCommand);
+        ExpenseInCategoryPredicate categoryPredicateFood = new ExpenseInCategoryPredicate(FOOD);
+        ExpenseInCategoryPredicate categoryPredicateTech = new ExpenseInCategoryPredicate(TECH);
 
-        //     no preamble
-        //    assertParseSuccess(parser, PREFIX_TIMESPAN + "year" + PREFIX_CATEGORY + FOOD.getCategoryName(),
-        //            expectedCommand);
-        //    assertParseSuccess(parser, PREFIX_CATEGORY + FOOD.getCategoryName() + PREFIX_TIMESPAN + "year",
-        //            expectedCommand);
+        ListExpensesCommand expectedCommandFoodYear = new ListExpensesCommand(Optional.of(categoryPredicateFood),
+                Optional.of(predicateYear));
+        ListExpensesCommand expectedCommandTechWeek = new ListExpensesCommand(Optional.of(categoryPredicateTech),
+                Optional.of(predicateWeek));
+        ListExpensesCommand expectedCommandFoodMonth = new ListExpensesCommand(Optional.of(categoryPredicateFood),
+                Optional.of(predicateMonth));
+
+
+        // List by Food, Year
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "year" + " "
+                        + PREFIX_CATEGORY + FOOD.getCategoryName(),
+                expectedCommandFoodYear);
+        assertParseSuccess(parser, " " + PREFIX_CATEGORY
+                        + FOOD.getCategoryName() + " " + PREFIX_TIMESPAN + "year",
+                expectedCommandFoodYear);
+
+        // List by Tech, Week
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "week" + " "
+                        + PREFIX_CATEGORY + TECH.getCategoryName(),
+                expectedCommandTechWeek);
+        assertParseSuccess(parser, " " + PREFIX_CATEGORY
+                        + TECH.getCategoryName() + " " + PREFIX_TIMESPAN + "w",
+                expectedCommandTechWeek);
+
+        // List by Food, Month
+        assertParseSuccess(parser, " " + PREFIX_TIMESPAN + "m" + " "
+                        + PREFIX_CATEGORY + FOOD.getCategoryName(),
+                expectedCommandFoodMonth);
+        assertParseSuccess(parser, " " + PREFIX_CATEGORY
+                        + FOOD.getCategoryName() + " " + PREFIX_TIMESPAN + "MONTH",
+                expectedCommandFoodMonth);
     }
 
     @Test
