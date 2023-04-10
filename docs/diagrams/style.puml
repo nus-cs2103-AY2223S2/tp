@@ -61,7 +61,7 @@ skinparam Sequence {
 
 skinparam Participant {
     FontColor #FFFFFFF
-    Padding 20
+    Padding 30
 }
 
 skinparam MinClassWidth 50
