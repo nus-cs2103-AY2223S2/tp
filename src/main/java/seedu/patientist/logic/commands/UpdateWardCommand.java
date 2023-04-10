@@ -23,7 +23,8 @@ import seedu.patientist.model.ward.Ward;
 public class UpdateWardCommand extends Command {
     public static final String COMMAND_WORD = "trfward";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves the person."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Transfers the person indicated by the index to the "
+            + "specified ward. "
             + "Parameters: "
             + "Index " + PREFIX_WARD + "WARD "
             + "Example: " + COMMAND_WORD + " "
