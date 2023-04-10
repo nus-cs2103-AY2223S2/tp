@@ -11,7 +11,7 @@ public class HelpStudentCommand extends HelpCommand {
 
     public static final String HEADER_1 = "----- Student Control Commands -----";
 
-    public static final String PERFORMANCE_WARNING = "      [WARNING: Performance score will be 1 if no value specified]";
+    public static final String PERFORMANCE_WARNING = "   [WARNING: Performance score will be 1 if no value specified]";
 
     @Override
     public CommandResult execute(Model model) {
