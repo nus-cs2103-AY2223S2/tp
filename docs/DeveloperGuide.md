@@ -505,7 +505,18 @@ The user stories are not limited to those in this list. More can be added in the
 * **Items**: Weapons, armor or tools that players can keep and use
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
 
+Future enhancements are planned to improve Reroll.
+
+1. Currently, fields such as weight and cost accepts negative values. Parser will be updated to detect such invalid values and print an error message.
+2. Originally, our team believed that a case-sensitive naming system is justified in a TTRPG. However after
+   responses from testers, we decided to implement names to be case-insensitive instead.
+3. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work,
+   causing confusion among the testers.
+4. Entities with very long name does not wrap in the GUI. Changes to GUI to remedy this is expected.
+
+--------------------------------------
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -538,13 +549,13 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all entities using the `list` command. Multiple entities in the list.
 
-    2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete char Mike`<br>
+       Expected: The character named Mike is deleted from Reroll. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    3. Test case: `delete 0`<br>
+    3. Test case: `delete item Does Not Exist`<br>
        Expected: No entity is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` where x is not char, item or mob<br>
        Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
