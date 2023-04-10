@@ -215,7 +215,7 @@ Format: `sort FIELD/ORDER`
 
 **:information_source: Notes about `sort`:**<br>
 - You can only sort by one field in a command.
-- When sorting by status (in ascending order), the order is `GRAY`, `GREEN`, `YELLOW`, then `RED`. The `GRAY` status is given the lowest priority as the patient's condition is not yet diagnosed, while the `RED` status is given the highest priority due to the patient's critical condition.
+- When sorting by status (in ascending order), the order is `GRAY`, `GREEN`, `YELLOW`, then `RED`. The `GRAY` status is given the lowest priority as the patient's condition is unknown, while the `RED` status is given the highest priority due to the patient's critical condition.
 </div>
 
 Examples:
