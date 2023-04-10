@@ -24,6 +24,7 @@ title: Developer Guide
     - **[Functional Programming](#functional-programming)**
 - **[Appendix: Requirements](#appendix--requirements)**
 - **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
+- **[Appendix: Efforts](#appendix--efforts)**
 
 <div style="page-break-after: always;"></div>
 
@@ -361,41 +362,35 @@ entity.
 **How is this feature implemented?**
 
 In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and
-users can add new objects
-into the database via `add` command.
+users can add new objects into the database via `add` command.
 
 This feature is enabled by the following classes:
-
 * `AddCommand` - the command that can be executed and adds a new entity
   into the system
 * `AddCommandFactory` - The factory class that creates `AddCommand`
   object, which can be executed to complete the task
 
 When a user enters the command
-
 ```
 add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
 ```
 
-Initially, when the input is received, it is processed by the UI layer, which
-calls the logic.execute(input) function
-and transfers the control to the logic layer. The execute(input) function in the
-logic layer then utilizes the
-WingmanParser to break down the input into tokens, determine the command's mode,
-such as Crew, Flight, Location, Pilot,
-or Plane, and identify the command's nature.
+Initially, when the input is received, it is processed by the `Ui` layer, which
+calls the `logic.execute(input)` function and transfers the control to the logic layer. 
+The `execute(input)` function in the logic layer then utilizes the
+`WingmanParser` to break down the input into tokens, determine the command's mode,
+such as Crew, Flight, Location, Pilot, or Plane, and identify the command's nature.
 
 The WingmanParser's primary goal is to recognize the command type based on the
-input and return the corresponding
-command object. For instance, the AddXYZCommand object is returned with the {XYZ
-identifier} after analyzing the input's
+input and return the corresponding command object. For instance, the `AddXYZCommand` 
+object is returned with the {XYZ identifier} after analyzing the input's
 tokens.
 
-To execute the DeleteXYZCommand, the appropriate XYZManager is employed.
-Firstly, the getItem(id) function is used to
-retrieve the corresponding XYZ that needs to be deleted. Next, the addXYZ(id)
-function is called, which removes the
-desired XYZ from the Wingman app using the item.removeItem(id) method.
+To execute the `DeleteXYZCommand`, the appropriate `XYZManager` is employed.
+Firstly, the `getItem(id)` function is used to
+retrieve the corresponding `XYZ` that needs to be deleted. Next, the `addXYZ(id)`
+function is called, which removes the desired `XYZ` from the Wingman 
+app using the `item.removeItem(id)` method.
 
 Finally, the CommandResult message, indicating a successful deletion, is
 returned to the user. GUI will display the
@@ -473,6 +468,11 @@ Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser`
 class
 which uses the `createCommand` method to finally create a `DeleteCommand`.
 Finally, the `DeleteCommand` is returned in the original `LogicManager`.
+The WingmanParser separates the input into tokens, determines what mode the
+command is from, and then returns the
+desired command type. In this case, the input allows the WingmanParser to
+recognize it is a `DeleteXYZCommand` and as a
+result, returns a new `DeleteXYZCommand` with the `{XYZ identifier}`.
 
 The next step in the `LogicManager` is to execute the returned command. To do
 so,
@@ -656,6 +656,78 @@ attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations as
 discussed in the previous section.
 
+<div style="page-break-after: always;"></div>
+
+### 4. Linking XYZ to a location
+
+**Rationale**
+
+Since there are associations between flight-related resources and locations, we use this command 
+for users to capture such associations. For example, a crew might be staying at some places, then the
+user should be able to link a crew to a few places. 
+
+**How is this feature implemented?**
+
+This linking feature is implemented in a similar way to the feature that links
+flight-related resources to flights. 
+
+To be more concrete, we will take linking a plane to a location as an example. Linking other entities, 
+such as crews, pilots, and planes, to locations, are very similar to linking a plane to a location.
+
+This feature is enabled by the following classes in particular:
+
+- `LinkPlaneToLocationCommand` - The command that links a plane to a location
+- `PlaneLocationLinkCommandFactory` - The factory class that creates an {@code
+  LinkPlaneToLocationCommand}
+- `Link` - The class defining a link to a target
+- `Location` - The class defining a location object in Wingman
+
+- When a user enters the command:
+
+```
+linklocation /lo {location-index} /pl {plane-index}
+```
+
+this command is passed from the UI layer to the logic layer similar to the
+other methods in previous sections. 
+
+At the logic layer, the app parses the command with the `parse` command from `WingmanParser`, which
+calls the `parse` method from the `CommandGroup` class. `CommandGroup` class then 
+class the method `parseFactory` from the `FactoryParser` class, which instantiates 
+an object of class `PlaneLocationLinkCommandFactory`. The object of `PlaneLocationLinkCommandFactory`
+is able to create a command object of type `LinkPlaneToLocationCommand`. 
+
+This command is passed all the way back to `PlaneLocationLinkCommandFactory`, then
+`FactoryParser`, `CommandGroup`, `WingmanParser`, and finally `LogicManager`.
+
+To execute the command, `LogicManager` calls the `execute` method of the command object, 
+which gets the `Link` object that contains all the planes linked to the location
+from the `Location` object by calling the method `getPlaneLink`.
+Next, to put the plane into the `Link` object, it calls the `putRevolve` method of 
+the `planLink` with the plane object as the parameter. One note here is that, the plane object
+is stored in a Map object, so we need to retrieve the plane from the map before sending it
+to `putRevolve`. This can be done with a loop, i.e., iterating all the values in the Map, 
+although the Map only contains one value only.
+
+Finally, the command object returns the execution result to `LogicManager`, which
+returns the result to `Ui` for display.
+
+The sequence diagram below shows the process. Note that storage layer and model layers have
+been omitted for brevity.
+
+<img src="images/WingmanLinkLocationSequenceDiagram.png" width="966">
+
+**Why this way?**
+
+In this way, we are able to make the linklocation feature work in a very similar way
+to the linkflight feature, simply by adding a `planeLink` object atrribute
+to the location class.
+
+**Alternatives that were considered:**
+
+One alternative implementation that was considered was to set the link as an
+attribute in the location class and update it directly with every change. However, 
+this approach had a few limitations as discussed in the previous section.
 
 <div style="page-break-after: always;"></div>
 
@@ -1069,3 +1141,49 @@ Below, are the details of the planned enhancements:
 - Given the time constraints of our project, this was not feasible
   for this iteration but with more time, we can implement it for
   upcoming versions.
+
+
+<div style="page-break-after: always;"></div>
+
+## Appendix: Effort
+If the efforts required to implement the full AB3 from scratch, we believe our effort
+in this project is almost 20.
+
+Firstly, we refactored the codebase of AB3. We abstract away unnecessary abstractions, and add new
+ones needed.
+
+Second, we adopt a `modal` design, and we have different object classes, i.e., `crew`, `plane`,
+`flight`, `pilot`, and `location`. For each of these classes, we need to implement basic commands such
+as adding and deleting, and also handle the display of these objects. Moreover, as we want to minimize code
+duplication, we need more abstractions to abstract out their commonalities. This is already `5x` of the
+number of classes in AB3, though we have fewer command features for each class.
+
+Third, we need to handle the relation between these different objects. These classes are not standalone,
+but also connected to each other. For this, we implemented the `link` command. The efforts required here
+are huge, because we need to implement the data structure for the link, while considering how to store the
+link (which is not a primitive type, but a data structure class) on the disk and load it when
+start-up. Think about it, assuming `A`is linked to `B`, when we load `A` from the disk, `B` may have been
+instantiated, then the `Link` between `A` and `B` cannot be instantiated. To address this, we implemented
+the `Link` in a lazy-evaluation manner, such that it does not require both `A` and `B` to be instantiated
+before the `Link` can be read from the disk. There are other corner cases, such as
+* Assuming `A` is linked to `B`, what should happen if one of them is deleted?
+* How many `A`s can we link to `B`? This number may differ for different `A` and `B`.
+  How to implement it in systematic manner?
+* How to display the link information on the GUI?
+
+These are all additional complexities when we capture the associations between
+these classes. The efforts here would be much larger, compared to implementing features that are only
+dependent on one class only. Also note that, we need to implement this `Link` for many class pairs, i.e.,
+between all other classes and `Flight`, and between all other classes and `Location`. Also, we need to link
+`Flight` to `Location`. These are probably equivalent to at least 10 features on one standalone class.
+
+Last by not least, we also spent a lot of time refining the UG and DG. Due to the large number
+of classes we have, it is not easy to teach readers how to use/develop it in a succinct manner. These efforts
+are significantly higher than that of AB3.
+
+Overall, our team really scaled up AB3 in terms of models and features, which we believe way exceed
+what is required for this class. Roughly speaking, we should be able to claim that we took 2x of the
+efforts needed to create AB3 from scratch. We wish graders to take this into account when grading our
+efforts and product quality.
+
+Thank you!

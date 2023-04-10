@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WingmanParser" as WingmanParser LOGIC_COLOR
+participant ":CommandGroup" as CommandGroup LOGIC_COLOR
+participant ":FactoryParser" as FactoryParser LOGIC_COLOR
+participant "factory:PlaneLocationLinkCommandFactory" as PlaneLocationLinkCommandFactory LOGIC_COLOR
+participant "command:LinkPlaneToLocationCommand" as LinkPlaneToLocationCommand LOGIC_COLOR
+participant "command:Link" as LinkPlaneToLocationCommand LOGIC_COLOR
+participant "location:Location" as Location LOGIC_COLOR
+participant "planeLink:Link" as Link LOGIC_COLOR
+end box
+
+'box Model MODEL_COLOR_T1
+'participant ":ModelManager" as ModelManager MODEL_COLOR
+'end box
+
+[-> MainWindow : executeCommand("linklocation /lo 1 /pl 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("linklocation /lo 1 /pl 1")
+activate LogicManager
+
+LogicManager -> WingmanParser : parse(getOperationMode(), "linklocation /lo 1 /pl 1")
+activate WingmanParser
+
+WingmanParser -> CommandGroup : parse(tokens)
+activate CommandGroup
+
+CommandGroup -> FactoryParser : parseFactory(tokens)
+activate FactoryParser
+
+create PlaneLocationLinkCommandFactory
+FactoryParser -> PlaneLocationLinkCommandFactory
+activate PlaneLocationLinkCommandFactory
+
+create LinkPlaneToLocationCommand
+
+PlaneLocationLinkCommandFactory -> LinkPlaneToLocationCommand
+activate LinkPlaneToLocationCommand
+
+LinkPlaneToLocationCommand --> PlaneLocationLinkCommandFactory : command
+
+deactivate LinkPlaneToLocationCommand
+
+PlaneLocationLinkCommandFactory --> FactoryParser : command
+deactivate PlaneLocationLinkCommandFactory
+
+FactoryParser --> CommandGroup : command
+deactivate FactoryParser
+
+CommandGroup --> WingmanParser : command
+deactivate CommandGroup
+
+WingmanParser --> LogicManager : command
+deactivate WingmanParser
+
+LogicManager -> LinkPlaneToLocationCommand : execute(model)
+activate LinkPlaneToLocationCommand
+
+LinkPlaneToLocationCommand -> Location : getPlaneLink()
+activate Location
+
+Location ---> LinkPlaneToLocationCommand : planeLink
+deactivate Location
+
+loop [[util entry : plane.entrySet() runs out]]
+LinkPlaneToLocationCommand -> Link : putRevolve(entry.getKey(), entry.getValue()))
+activate Link
+
+Link ---> LinkPlaneToLocationCommand
+deactivate Link
+end
+
+LinkPlaneToLocationCommand -> LogicManager
+deactivate LinkPlaneToLocationCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<-- MainWindow
+deactivate MainWindow
+
+@enduml
