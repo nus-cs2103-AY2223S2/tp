@@ -1,14 +1,13 @@
 ---
-BagDownB3nny's Project Portfolio Page
+layout: page
+title: BagDownB3nny's Project Portfolio Page
 ---
 
 ### Project: Ultron
 
 Ultron is an application to help students track their internship applications as openings. It is able to keep track of the details of an application and associated deadlines.
 
-
 * [Code contributed](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bagdownb3nny&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
 
 * **Code refactored**
   * Delete command
