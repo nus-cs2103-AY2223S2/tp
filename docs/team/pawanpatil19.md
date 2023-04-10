@@ -46,7 +46,12 @@ Given below are my contributions to Pied Piper:
 
 * **Documentation**:
   * Developer Guide:
-    * Added implementation details of the `todo` feature aka feature to add tasks.[\#173](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/173)
+    * Added implementation details and sequence diagrams for the `assign`, `mark/unmark`, `review`, `add person` feature.
+    * Added class diagrams for `UI` and `TaskBookModel` class
+    [\#182](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/182)
+  * User Guide:
+    * Added important notes for different commands for potential command related requirements and restrictions.
 
 * **Community**:
   * PRs reviewed: [\#91](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/91), [\#95](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/95), [\#73](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/73), [\#49](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/49), [\#56](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/56), [\#100](https://github.com/AY2223S2-CS2103T-W15-3/tp/pull/100)
+  * Reviewed another group's project and reported 7 bugs during PE-DryRun [issues](https://github.com/PawanPatil19/ped/issues)
