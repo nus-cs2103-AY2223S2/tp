@@ -30,10 +30,15 @@ title: User Guide
     * [4.3.1 Listing all applications](#431-listing-all-applications--list)
     * [4.3.2 Finding applications](#432-finding-applications--find)
     * [4.3.3 Sorting applications](#433-sorting-applications--sort)
-  * [4.4 Miscellaneous Commands](#44-miscellaneous-commands)
+  * [4.4 Miscellaneous](#44-miscellaneous)
     * [4.4.1 Viewing help](#441-viewing-help--help)
     * [4.4.2 Undoing a command](#442-undoing-a-command--undo)
     * [4.4.3 Redoing a command](#443-redoing-a-command--redo)
+    * [4.4.4 Viewing application statistics](#444-viewing-application-statistics)
+    * [4.4.5 Clearing all applications](#445-clearing-all-applications--clear)
+    * [4.4.6 Exiting the program](#446-exiting-the-program--exit)
+    * [4.4.7 Saving the data](#447-saving-the-data)
+    * [4.4.8 Editing the data file](#448-editing-the-data-file-for-advanced-users)
 * [5. FAQ](#5-faq)
 * [6. Glossary](#6-glossary)
 * [7. Command Summary](#7-command-summary)
@@ -156,15 +161,15 @@ The table below describes the function(s) of each component. Don't worry if you'
 remember everything; sprINT is designed to have an intuitive interface that should allow you to familiarise yourself
 with in no time. You are also welcome to revisit this section again anytime. 
 
-| No. | Component                | Description                                                                                                                                                                                                              |
-|-----| :------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Toolbar                  | Contains buttons to exit sprINT (access by clicking the File button) and view help information quickly.                                                                                                                  |
-| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the issued command.                                                                                                                                  |
-| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                   |
-| 4   | Statistics Display Panel | Displays statistics about your internship applications, including a pie chart that updates automatically after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
-| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if it executed successfully, or if not, what went wrong (e.g. incorrect command format).                                                             |
-| 6   | Command Box              | This is where you type all your commands; press Enter on your keyboard to execute them.                                                                                                                                  |
-| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                           |
+| No. | Component                | Description                                                                                                                                                                                                                    |
+|-----| :------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar                  | Contains buttons to exit sprINT (access by clicking the File button) and view help information quickly.                                                                                                                        |
+| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the issued command.                                                                                                                                        |
+| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                         |
+| 4   | Statistics Display Panel | Displays [statistics](#444-viewing-application-statistics) about your internship applications, including a pie chart that updates automatically after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
+| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if it executed successfully, or if not, what went wrong (e.g. incorrect command format).                                                                   |
+| 6   | Command Box              | This is where you type all your commands; press Enter on your keyboard to execute them.                                                                                                                                        |
+| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                                 |
 
 <div style="page-break-after: always;"></div>
 
@@ -549,7 +554,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### 4.4 Miscellaneous Commands
+### 4.4 Miscellaneous
 
 #### 4.4.1 Viewing help : `help`
 
@@ -585,7 +590,16 @@ If you executed another command immediately after undo, you will no longer be ab
 
 Format: `redo`
 
-#### 4.4.4 Clearing all applications : `clear`
+#### 4.4.4 Viewing application statistics 
+
+Displays statistics information for the current list of applications shown in the Application List Panel.  
+
+This includes the total number of applications currently displayed in the Application List Panel, as well as a 
+breakdown of these applications by status (shown both in numbers and as a pie chart).
+
+Format: no command is needed. Statistics information is recomputed and regenerated upon every command execution. 
+
+#### 4.4.5 Clearing all applications : `clear`
 
 Clears all existing application entries.
 
@@ -596,7 +610,7 @@ The `clear` command must be used with extreme caution, as it might potentially l
 If you accidentally issued the `clear` command, use the `undo` command to revert to the previous state.
 </div>
 
-#### 4.4.5 Exiting the program : `exit`
+#### 4.4.6 Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window. sprINT updates
@@ -604,12 +618,12 @@ your data [periodically](#446-saving-the-data), so you don't have to worry about
 
 Format: `exit`
 
-#### 4.4.6 Saving the data
+#### 4.4.7 Saving the data
 
 Changes you've made  to your applications are automatically saved in your local storage after each command you execute
 that modifies the application data. There is no need to save manually.
 
-#### 4.4.7 Editing the data file **(for Advanced users)**
+#### 4.4.8 Editing the data file **(for Advanced users)**
 
 Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. 
 Advanced users are welcome to update their data directly by editing that data file.
