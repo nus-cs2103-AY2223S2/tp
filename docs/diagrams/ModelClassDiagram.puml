@@ -36,20 +36,21 @@ ModelManager -left-> "1" Mathutoring
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Mathutoring *--> "1" UniqueStudentList
-UniqueStudentList --> "~* all" Student
+Mathutoring *---> "1" UniqueStudentList
+UniqueStudentList --left-> "~* all" Student
 
 Student *--> Name
-Student *--> Phone
+Student *--> "2" Phone
 Student *--> Email
 Student *--> Address
 Student *--> "*" Tag
 Student *--> "1" UniqueTaskList
 Student *--> "1" UniqueScoreList
 
-Name -[hidden]right-> Phone
+Name -[hidden]right-> "2" Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Name -[hidden]up-> UniqueStudentList
 
-ModelManager --> Student
+ModelManager --> "~* filtered" Student
 @enduml
