@@ -651,7 +651,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. FAQ**
+# **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and replace the default empty data file `sudohr.json` with the file that contains the data of your previous SudoHR home folder.
@@ -666,7 +666,7 @@ This list is also available on the app, which can be accessed with the `help` fu
 
 [//]: # (To be added before Week 13)
 
-## **6. Glossary**
+# **6. Glossary**
 
 - **CLI** : CLI stands for Command Line Interface. When an application uses a Command Line Interface, it mean that the user gives commands to an application through text instead of buttons.
 - **GUI** : GUI stands for Graphical User Interface. It is a way to interact with your computer using visual componants such as icons or buttons. Additionally, it also includes displaying information to users with visuals instead of just text.
