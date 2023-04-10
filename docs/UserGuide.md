@@ -486,7 +486,7 @@ session <INDEX>
 Examples:
 - `session 1` will return a list of sessions from the first group.
 
-<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
  Adding new student under a group will propagate to session, but deleting a student will NOT propagate to session.
 </div>
 <br>
@@ -507,7 +507,7 @@ task <INDEX>
 Examples:
 - `task 1` will return a list of tasks for the first group.
 
-<div markdown="span" class="alert alert-primary">:exclamation: *Note:**
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
  Adding new student under a group will propagate to task, but deleting a student will NOT propagate to task.
 </div>
 <br>
@@ -758,7 +758,7 @@ add session <SESSION>
 - Adding a session with the same session name is not allowed.
     - For example, if a session with name `Tutorial1` already exists in CLIpboard,
       entering `add session Tutorial1` will display an error message inside the result display.
-    - Note: whitespaces are not allowed in session names.
+    - Whitespaces are not allowed in session names.
 
 Examples:
 - `add session Tutorial4`
