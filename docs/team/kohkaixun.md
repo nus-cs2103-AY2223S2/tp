@@ -29,10 +29,11 @@ My code contributions can be found [here](https://nus-cs2103-ay2223s2.github.io/
     * Suppose there was a past input that was of the wrong format, the user would be able to navigate to it and make edits before entering instead of typing everything out again
 
 * **Enhancements to existing features**:
-  * Made displayed indexing error messages more specific. [#131](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/131) [#133](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/133)
+  * Made displayed indexing error messages more specific. [#131](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/131) [#133](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/133) [#216](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/216)
   * Addressed integer overflow bug in displayed error messages, but enhancement was not merged after discovering it violated feature freeze. [#194](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/194)
 
 **Project Management**
+* Set up certain issues.
 * Reviewed and approved pull requests for merging.
 * Testing of InternBuddy releases on MacOS environment.
 
@@ -42,8 +43,11 @@ My code contributions can be found [here](https://nus-cs2103-ay2223s2.github.io/
   * Update of `find` command according to new implementation [#123](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/123)
   * Add and update of navigating through command history section [#149](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/149) [#202](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/202)
 * Developer Guide:
-  * Update of `find` command with inclusion of UML sequence diagrams [#88](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/88) [#90](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/90) [#95](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/95) [#123](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/123)
+  * Wrote use cases for `list` command [#30](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/30)
+  * Wrote use cases for `edit` command [#30](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/30)
+  * Update of `find` command with inclusion of UML sequence diagrams [#88](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/88) [#90](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/90) [#95](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/95) [#123](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/123) [#203](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/203)
   * Update set up and get started section [#107](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/107)
+  * Wrote design tweaks addressing bugs found in PE dry run [#202](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/202/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb)
 
 **Community**
 * PRs reviewed (with non-trivial review comments): [#79](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/79), [#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80)
