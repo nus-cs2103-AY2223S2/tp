@@ -74,7 +74,17 @@ public class MedInfo implements ReadOnlyMedInfo {
      * {@code wards} must not contain duplicate wards.
      */
     public void setWards(List<Ward> wards) {
-        this.wards.setWards(wards);
+        List<Ward> wardsCopy = new ArrayList<>();
+        for (Ward ward : wards) {
+            Ward toCopy = new Ward(ward.getName(), ward.getCapacity());
+            wardsCopy.add(toCopy);
+        }
+        this.wards.setWards(wardsCopy);
+
+        for (Patient patient : patients) {
+            Ward target = this.wards.getWard(patient.getWardNameString());
+            target.addPatient(patient);
+        }
     }
 
     /**
@@ -114,11 +124,10 @@ public class MedInfo implements ReadOnlyMedInfo {
         if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
             throw new WardNotFoundException(p.getWardNameString());
         }
-        patients.add(p);
         try {
             wards.addPatient(p);
+            patients.add(p);
         } catch (WardFullException e) {
-            patients.remove(p);
             throw new CommandException(e.toString(), e);
         }
     }
@@ -132,11 +141,10 @@ public class MedInfo implements ReadOnlyMedInfo {
      */
     public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireAllNonNull(target, editedPatient);
-        patients.setPatient(target, editedPatient);
         try {
             wards.setPatient(target, editedPatient);
+            patients.setPatient(target, editedPatient);
         } catch (WardFullException e) {
-            patients.setPatient(target, target);
             throw new CommandException(e.toString(), e);
         }
     }
