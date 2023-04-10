@@ -39,4 +39,9 @@ public class Budget {
                 || (other instanceof Budget // instanceof handles nulls
                 && monthBudget == ((Budget) other).monthBudget);
     }
+
+    @Override
+    public int hashCode() {
+        return Double.hashCode(monthBudget);
+    }
 }
