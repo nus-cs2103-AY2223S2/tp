@@ -519,9 +519,6 @@ The following activity diagram shows how the colour is set:
 
 [↑ Return to table of contents](#table-of-contents)
 
-<div style="page-break-after: always"></div>
-
-
 ## 4.2 Proposed implementation of future features:
 
 **Aspect: How to undo & redo executes:**
@@ -547,6 +544,8 @@ The following activity diagram shows how the colour is set:
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
@@ -558,8 +557,6 @@ The following activity diagram shows how the colour is set:
 [↑ Return to table of contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always"></div>
 
 # 6. Appendix: Requirements
 
