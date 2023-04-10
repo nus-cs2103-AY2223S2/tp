@@ -509,6 +509,8 @@ The following sequence diagram illustrates how the assign patient operation work
 
 ![](images/AssignPatientSequenceDiagram.png)
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Unassign Patient Feature
 
 #### What it does
@@ -534,6 +536,8 @@ Step 3. If the indexes provided are valid and patient is assigned to doctor, the
 The following sequence diagram illustrates how the unassign patient operation works:
 
 ![](images/UnassignPatientSequenceDiagram.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Find Doctor Feature
 
@@ -561,6 +565,11 @@ The following sequence diagram illustrates how the find doctor operation works:
 
 ![](images/FindDoctorSequenceDiagram.png)
 
+*args: Refers to a valid sequence of arguments provided by the user. Example: "n/John Doe p/98765432 e/johnd@example.com
+s/Cardiology y/5 t/surgeon"
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Find Patient Feature
 
 #### What it does
@@ -586,6 +595,11 @@ Step 3. The model's list of filtered patients is updated.
 The following sequence diagram illustrates how the find patient operation works:
 
 ![](images/FindPatientSequenceDiagram.png)
+
+*args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com
+h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### GUI Features
 
