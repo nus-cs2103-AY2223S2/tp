@@ -53,9 +53,9 @@ public class AutoM8UndoCommandTest {
     private static final Set<Tag> technicianTagA = getTagSet("big boss");
 
 
-    private static String samplePlate = "ZU 0666',0,0); DROP DATABASE TABLICE";
+    private static final String samplePlate = "ZU 0666',0,0); DROP DATABASE TABLICE";
 
-    private static String sampleColor = "Metallic Midnight Blue";
+    private static final String sampleColor = "Metallic Midnight Blue";
 
     private static final String sampleBrand = "Pegassi";
     private static final VehicleType vehicleTypeA = VehicleType.CAR;

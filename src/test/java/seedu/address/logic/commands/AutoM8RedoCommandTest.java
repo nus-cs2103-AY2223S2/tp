@@ -46,9 +46,9 @@ public class AutoM8RedoCommandTest {
 
     private static final Address sampleAddress = new Address("1007 Mountain Drive");
 
-    private static String samplePlate = "ZU 0666',0,0); DROP DATABASE TABLICE";
+    private static final String samplePlate = "ZU 0666',0,0); DROP DATABASE TABLICE";
 
-    private static String sampleColor = "Metallic Midnight Blue";
+    private static final String sampleColor = "Metallic Midnight Blue";
 
     private static final String sampleBrand = "Pegassi";
 
