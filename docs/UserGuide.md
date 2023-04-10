@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 <p align="center">
-<img src="images/Wingman.png" width="2032">
+<img src="images/Wingman.png" width="100">
 </p>
 
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
@@ -16,6 +16,8 @@ for managers to monitor the status of airline-related resources.
 
 In this flight, we will guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
 such as flight scheduling and management of crew, pilot, plane and location.
+
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -30,12 +32,11 @@ such as flight scheduling and management of crew, pilot, plane and location.
         - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
     - **[Mode-Specific Commands](#mode-specific-commands)**
         - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
-        -
-            *
-      *[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)
-      **
-        - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
-        - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
+        - *
+          *[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)
+          **
+    - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
+    - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command Summary](#command-summary)**
 - **[FAQ](#faq)**
@@ -91,6 +92,9 @@ following sections:
 3. [Command Formatting](#command-formatting) to understand how we explain how to use each command in the following
    [Features](#features) section.
 
+[Back to contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Layout of Wingman Application Window
 
@@ -109,6 +113,8 @@ The following table describes the sections in detail:
 | `Mode Indicator`     | Displays the current mode.                                                          |
 
 [Back to contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Modal Editing
 
@@ -138,6 +144,10 @@ corner of the window. The window also displays a list for each resource, to aid 
 resources.
 
 <img src="images/ug/UG-mode.jpg" width="2032" alt="Screenshot of Wingman's main page">
+
+[Back to contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Command Formatting
 
@@ -389,7 +399,6 @@ the command is valid, Wingman will return a response confirming the link that ha
 <img src="images/ug/UG-linklocation.jpg" width="2032" alt="Screenshot depicting execution of a link command">
 
 We detail the format for different modes below.
-
 
 ###### Crew mode: `linklocation /lo location-index /cr {crew-index}`
 
@@ -801,6 +810,8 @@ Unlinked A380 from SQ230.
 
 [Back to contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 ### 1. Why is Wingman not opening when I run the `java -jar` command?
@@ -825,6 +836,8 @@ OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
 ```
 
 [Back to contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Other information
 
