@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.StringUtil;
-import seedu.internship.logic.commands.ViewCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.internship.Comment;
 import seedu.internship.model.internship.CompanyName;
