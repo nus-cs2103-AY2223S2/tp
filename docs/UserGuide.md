@@ -104,7 +104,7 @@ should be able to see the list being updated as such:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may notice that there are progress bars of different 
    <span style="color:red">**c**</span><span style="color:orange">**o**</span><span style="color:yellow">**l**</span><span style="color:green">**o**</span><span style="color:blue">**r**</span><span style="color:violet">**s**</span> within each task, as well as circles besides each person with a percentage(%) written below it. Let's look at what these colors and circle mean! Let's see an example with all the different types of progress bars below. <br>
-   ![image](images/product-screenshots/color_bars.jpg)
+   ![image](images/product-screenshots/color_bars.png)
 <br>
 <br>- The <span style="color:green">**green**</span> colored progress bar indicates that the task is done, and before the deadline.
 <br>- The <span style="color:red">**red**</span> colored progress bar indicates that the task is not done, and that the deadline has passed.
