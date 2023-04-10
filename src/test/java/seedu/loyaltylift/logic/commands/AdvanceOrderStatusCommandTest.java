@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.AdvanceOrderStatusCommand.MESSAGE_ADVANCE_STATUS_SUCCESS;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.model.order.StatusUpdate.DATE_FORMATTER;
@@ -44,11 +45,10 @@ public class AdvanceOrderStatusCommandTest {
         Order advancedOrder = new OrderBuilder(orderToAdvance).withNextStatus(formattedDate).build();
         String expectedMessage = String.format(MESSAGE_ADVANCE_STATUS_SUCCESS,
                 advancedOrder, advancedOrder.getStatus().getLatestStatus());
-        System.out.println(expectedMessage);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.setOrder(orderToAdvance, advancedOrder);
-        assertCommandSuccess(advanceOrderStatusCommand, model, expectedMessage, expectedModel);
+        expectedModel.setOrder(model.getFilteredOrderList().get(0), advancedOrder);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, LIST_AND_SHOW_ORDER);
+        assertCommandSuccess(advanceOrderStatusCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

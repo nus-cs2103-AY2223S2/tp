@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -41,7 +42,8 @@ public class RevertOrderStatusCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setOrder(orderToRevert, revertedOrder);
-        assertCommandSuccess(revertOrderStatusCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, LIST_AND_SHOW_ORDER);
+        assertCommandSuccess(revertOrderStatusCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

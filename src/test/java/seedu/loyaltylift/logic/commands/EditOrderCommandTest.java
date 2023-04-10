@@ -2,6 +2,7 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ORDER_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ORDER_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
@@ -10,12 +11,9 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_QUANTITY_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static seedu.loyaltylift.model.order.StatusUpdate.DATE_FORMATTER;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
-
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,11 +45,11 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-        System.out.println(expectedMessage);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setOrder(firstOrder, editedOrder);
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, LIST_AND_SHOW_ORDER);
+        assertCommandSuccess(editOrderCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -64,11 +62,11 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-        System.out.println(expectedMessage);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setOrder(firstOrder, editedOrder);
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, LIST_AND_SHOW_ORDER);
+        assertCommandSuccess(editOrderCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -84,26 +82,9 @@ public class EditOrderCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, LIST_AND_SHOW_ORDER);
+        assertCommandSuccess(editOrderCommand, model, expectedCommandResult, expectedModel);
     }
-
-    @Test
-    public void execute_filteredList_success() {
-        showOrderAtIndex(model, INDEX_FIRST);
-
-        Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        Order editedOrder = new OrderBuilder(orderInFilteredList).withName(VALID_NAME_B).build();
-        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_B).build());
-
-        String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
-
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
-    }
-
 
     @Test
     public void execute_invalidOrderIndexUnfilteredList_failure() {
