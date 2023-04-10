@@ -184,7 +184,7 @@ To enforce this, the `LogicManager` class checks the current mode of the user an
     - No deck is selected in this mode, so card-related and review-related commands are disabled.
 - #### When the user is in `MAIN_SELECTED_MODE`:
     - This mode primarily handles **card-related** commands, such as `AddCardCommand` and `FindCardsCommand`.
-    - A deck is selected in this mode, so deck-related commands, such as `AddDeckCommand`, are disabled.
+    - A deck is selected in this mode, so deck-related commands are disabled.
     - Review-related commands are also disabled, as there is no ongoing review.
 - #### When the user is in `REVIEW_MODE`:
     - This mode primarily handles **review-related** commands, such as `FlipCardCommand` and `NextCardCommand`.
@@ -192,26 +192,15 @@ To enforce this, the `LogicManager` class checks the current mode of the user an
 
 ### Implementation of `MAIN_UNSELECTED_MODE` Features
 
-Commands in the `MAIN_UNSELECTED_MODE` that are implemented for when a **deck is not selected** behave similarly as the example below: 
-
-List of decks and list of cards are stored separately in `UniqueDeckList` and `UniqueCardList`. Although a card belongs to a deck, it is not stored within a deck. Each card indicates a deck that it belongs to itself.
-
-Commands in the Main Mode that are implemented for **when a deck is not selected** behave similarly as the example below: 
+Commands in the `MAIN_UNSELECTED_MODE` that are implemented for when a **deck is not selected** behave similarly as the example below:
 
 #### addDeck Feature
 
-`MasterDeck` extends `ReadOnlyMasterDeck`, which stores a reference to `UniqueDeckList`. It implements following operation:
-- `MasterDeck#addDeck()` - Add a new deck to the list.
-
-This operation is exposed in the Model interface as `Model#addDeck()`. It is supported by the dependence of the model interface on `MasterDeck#addDeck()`.
-
 Given below is an example usage scenario and how the `addDeck()` mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MasterDeck` will be initialized with the default MasterDeck state.
+Step 1. The user executes `addDeck Math` command to add a new deck. The `addDeck` command calls `Model#addDeck()`, which executes adding a new deck feature.
 
-Step 2. The user executes `addDeck Math` command to add a new deck. The `addDeck` command calls `Model#addDeck()`, which executes adding a new deck feature.
-
-Step 3. A new deck is now added on the list and able to execute further functionalities.
+Step 2. A new deck is now added on the list and able to execute further functionalities.
 
 <div markdown="span" class="alert alert-info">
 
