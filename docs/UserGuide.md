@@ -166,7 +166,7 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 
 Examples:
 
-- `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com p/91649723 a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`<br>
+- `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`<br>
   Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
   <div style="text-align: center;">
     <img src="images/addLawrenceSuccess.png">
