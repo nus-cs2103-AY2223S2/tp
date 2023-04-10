@@ -17,7 +17,7 @@ Given below are my contributions to the project. (Some of the )
       and the app provides a convenient way to record down and get an overview of their tasks.
     * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
 <br><br>
-* Added the ability to edit existing tasks and list tasks.
+* Added the ability to edit existing tasks.
     * What it does:
         * Allows users to edit existing tasks so that they can keep tasks details correct and up to date.
         * Justification: This feature improves the product because users may sometimes key in the wrong info
