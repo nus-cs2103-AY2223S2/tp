@@ -646,7 +646,7 @@ Use Case ends.
 
 **MSS**
 
-1. User requests to add an internship and provides details of the internship (i.e. position, company name, application status, description and tag).
+1. User requests to add an internship and provides details of the internship (i.e. position, company, application status, description and tag).
 2. System adds the internship listing.
 
 Use Case ends.
@@ -679,8 +679,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list internships inputted.
-2. System shows a list all the inputted internships.
+1. User requests to list internship applications saved on system.
+2. System shows a list all the internship applications saved on system.
 3. User requests to delete an internship listing by its index.
 4. System deletes the internship listing.
 
