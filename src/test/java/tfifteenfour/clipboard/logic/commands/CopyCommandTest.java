@@ -25,30 +25,6 @@ class CopyCommandTest {
         actualSelection.setCurrentPage(PageType.STUDENT_PAGE);
     }
 
-    /*
-    @Test
-    public void execute_copyCommand_success() throws CommandException {
-        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
-        String expectedMessage = CopyCommand.MESSAGE_SUCCESS;
-
-        assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
-        copyCommand.execute(model);
-    }
-
-    @Test
-    public void execute_indexOutOfBounds_throwsCommandException() {
-        CopyCommand copyCommand = new CopyCommand(INDEX_OUT_OF_BOUND);
-        assertThrows(CommandException.class, () -> copyCommand.execute(model));
-    }
-
-    @Test
-    public void execute_wrongPage_throwsCommandException() {
-        actualSelection.setCurrentPage(PageType.COURSE_PAGE);
-        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST);
-        assertThrows(CommandException.class, () -> copyCommand.execute(model));
-    }
-     */
-
     @Test
     public void equals() {
         CopyCommand copyCommand1 = new CopyCommand(INDEX_FIRST);

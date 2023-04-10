@@ -8,14 +8,6 @@ import tfifteenfour.clipboard.model.course.Course;
  */
 public interface ReadOnlyRoster {
 
-    /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
-     */
-    // ObservableList<Student> getUnmodifiableStudentList();
-
-    // ObservableList<Student> getModifiableStudentList();
-
     ObservableList<Course> getUnmodifiableCourseList();
 
     ObservableList<Course> getUnmodifiableFilteredCourseList();

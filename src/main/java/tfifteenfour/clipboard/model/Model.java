@@ -43,7 +43,7 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setRosterFilePath(Path addressBookFilePath);
+    void setRosterFilePath(Path rosterFilePath);
 
     /**
      * Replaces address book data with the data in {@code roster}.
