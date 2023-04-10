@@ -747,11 +747,11 @@ testers are expected to do more *exploratory* testing.
           - Expected: List does not update. Error details shown in the status message.
 
 ### Favouriting/Unfavouriting a contact
-1. Favourite a contact or unfavourite a contact
+1. Favouriting a contact
 
-   1. Prerequisites: Non-empty address book with at only 1 contact. Navigate to the `Address book` tab using `tab 1`
+   1. Prerequisites: Non-empty address book with only 1 contact. Navigate to the `Address book` tab using `tab 1`
 
-      2. Test Cases
+   2. Test Cases
       1. Test case 1: `fav 1`
          - Testing for: Successful Command Execution
          - Expected: Contact at index 1 on the list will be favourited and a Star emoji will appear on their Person Card and their Person Card will appear in a Favourite List.
@@ -761,14 +761,19 @@ testers are expected to do more *exploratory* testing.
       3. Test case 3: `fav 1` when Contact at Index 1 is already favourited 
           - Testing for: Successful Command Execution
           - Expected: Contact at index 1 on the list will remain favourited and will pass as Successful Command Execution. Same result as Test Case 1.
-         
-      4. Test case 4: `unfav 1` when Contact at Index 1 is already favourited
+
+2. Unfavouriting a contact
+
+   1. Prerequisites: Non-empty address book with only 1 contact. Navigate to the `Address book` tab using `tab 1`
+   
+   2. Test Cases
+      1. Test case 1: `unfav 1` when Contact at Index 1 is already favourited
           - Testing for: Successful Command Execution
           - Expected: Contact at index 1 on the list will be unfavourited and the Star emoji will be removed on their Person Card and their Person Card will disappear in the Favourite List.
-      5. Test case 5: `unfav 2`
+      2. Test case 2: `unfav 2`
           - Testing for: Index Specified Results in Command Failure
           - Expected: No changes to list and Favourite Contact List. Error details shown in the status message.
-      6. Test case 6: `unfav 1` when Contact at Index 1 is already unfavourited
+      3. Test case 3: `unfav 1` when Contact at Index 1 is already unfavourited
           - Testing for: Successful Command Execution
           - Expected: Contact at index 1 on the list will remain unfavourited and will pass as Successful Command Execution. Same result as Test Case 1.
       
