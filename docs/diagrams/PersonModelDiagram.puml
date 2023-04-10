@@ -13,9 +13,9 @@ Class Phone
 Class Tag
 
 Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "0..1   " Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
 Person *--> "*" Tag
 
 }
