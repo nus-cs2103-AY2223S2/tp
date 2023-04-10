@@ -815,10 +815,6 @@ testers are expected to do more *exploratory* testing.
 
 
 ### Delivery Job System
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
 
 1. Add a job by command
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
@@ -839,12 +835,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to `1.ii`
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
-<<<<<<< HEAD
-   1. Other incorrect approach to try:
-
-=======
    1. Other incorrect approach to try:  
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  
       - date: invalid date.  
@@ -885,11 +876,8 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Job to delete is in the list.
    1. Test case: `select a job` > press `del` key<br>
       Expected: Job selected is removed.
-### Notifications
-<<<<<<< HEAD
-=======
 
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
+### Notifications
 
 1. Display a notification for a reminder
    1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
