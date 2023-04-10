@@ -33,6 +33,7 @@ Given below are my contributions to the project.
     * Fixed Bugs relating to undo and redo feature (Pull requests [\#91](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/91))
     * Added undo command test (Pull requests [\#139](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/139))
     * Added redo command test (Pull requests [\#141](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/141))
+    * Added undo redo command test with shop api (Pull requests [\#169](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/169))
 
 
 * **Documentation**:
