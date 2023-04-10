@@ -717,12 +717,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I can …​                                               | So that I can…​                                                          |
 |----------|------------------------|--------------------------------------------------------|--------------------------------------------------------------------------|
-| `***`    | As a financial advisor | generate reports on client financial information       | analyze trends and make informed decisions                               |
-| `***`    | As a financial advisor | share client information with colleagues               | collaborate and provide the best advice.                                 |
+| `**`     | As a financial advisor | generate reports on client financial information       | analyze trends and make informed decisions                               |
+| `**`     | As a financial advisor | share client information with colleagues               | collaborate and provide the best advice.                                 |
 | `***`    | As a financial advisor | store client financial documents securely              | ensure their sensitive information is protected                          |
-| `***`    | As a financial advisor | access the platform on any device                      | manage my clients' information on any device that supports the platform  |
-| `***`    | As a financial advisor | create custom categories for client information        | I can organize and categorize their data in a way that makes sense to me |
-| `***`    | As a financial advisor | view a summary of my clients' overall financial health | I can quickly assess their current situation and make recommendations    |
+| `**`     | As a financial advisor | access the platform on any device                      | manage my clients' information on any device that supports the platform  |
+| `*`      | As a financial advisor | create custom categories for client information        | I can organize and categorize their data in a way that makes sense to me |
+| `**`     | As a financial advisor | view a summary of my clients' overall financial health | I can quickly assess their current situation and make recommendations    |
 
 ### **Novice**
 
@@ -735,14 +735,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I can …​                                                                            | So that I can…​                               |
 |----------|------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------|
-| `***`    | As a financial advisor | customize the financial planning software to fit my specific advising methodologies | provide clients with the best possible advice |
+| `**`     | As a financial advisor | customize the financial planning software to fit my specific advising methodologies | provide clients with the best possible advice |
 
 ### Use cases
 
 (For all use cases below, the **System** is `Advis.io` and the **Actor** is the `user (Financial Advisor)`, unless
 specified otherwise)
 
-**Use case: Manage client’s personal information**
+**Use case: Add a new client’s personal information**
 
 **MSS**
 
@@ -759,9 +759,58 @@ specified otherwise)
 
     Steps 1a1-1b are repeated until the data entered are correct.
 
+    Use case resumes from step 2. 
+
+**Use case: Edit a client's personal information**
+
+**MSS**
+
+1. User inputs the client’s index and modified personal information
+2. Advis.io confirms and modifies the client profile
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs the wrong format for the client’s information.
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs correct data
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
     Use case resumes from step 2.
 
-**Use case: Manage client’s policy information**
+
+* 1b. The user inputs an invalid client index 
+  * 1b1. Advis.io displays a message indicating that the client index is invalid. 
+  * 1b2. User inputs another client index with the modified information
+
+    Steps 1b1-1b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+
+**Use case: Delete a client**
+
+**MSS**
+
+1. User inputs the delete command and the index of the client to delete.
+2. Advis.io confirms and deletes the client profile
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client index
+  * 1a1. Advis.io displays a message indicating that the client index is invalid.
+  * 1a2. User inputs another client index.
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+
+**Use case: Add client’s policy information**
 
 **MSS**
 
@@ -780,6 +829,53 @@ specified otherwise)
 
     Use case resumes from step 2.
 
+**Use case: Edit client’s policy information**
+
+**MSS**
+
+1. User inputs the client’s policy index and modified policy information
+2. Advis.io confirms and modifies the policy under the client's profile
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs the wrong format for the policy’s information.
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs revised data
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+* 1b. The user inputs an invalid client or policy index
+  * 1b1. Advis.io displays a message indicating that the client or policy index is invalid.
+  * 1b2. User inputs another client or policy index with the modified information
+
+    Steps 1b1-1b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+**Use case: Delete a client’s policy**
+
+**MSS**
+
+1. User inputs the delete command and the index of the client and policy to delete.
+2. Advis.io confirms and deletes the policy under the client's profile
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client or policy index
+  * 1a1. Advis.io displays a message indicating that the client or policy index is invalid.
+  * 1a2. User inputs another client or policy index.
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+
 **Use case: Find Client**
 
 **MSS**
@@ -796,17 +892,20 @@ specified otherwise)
 
 * 2a. Advis.io does not find any clients matching the entered information.
   * 2a1. Advis.io displays a message indicating that no clients were found.
+  * 2a2. The user enters another search query with another set of information.
 
-    Use case resumes from step 1.
+    Steps 2a1-2a2 are repeated until the user enters a valid search query.
+
+    Use case resumes from step 3.
 
 **Use case: Undo and redo actions**
 
 **MSS**
 
-1. The user performs an action within Advis.io. 
-2. The user selects the "undo" command within Advis.io. 
-3. Advis.io undoes the last action taken by the user. 
-4. The user selects the "redo" command within Advis.io. 
+1. The user performs an action within Advis.io.
+2. The user selects the "undo" command within Advis.io.
+3. Advis.io undoes the last action taken by the user.
+4. The user selects the "redo" command within Advis.io.
 5. Advis.io redoes the previously undone action.
 
    Use case ends.
@@ -838,7 +937,9 @@ specified otherwise)
   * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
   * 1a2. The user enters a new appointment name and date.
 
-  Use case ends
+  Steps 1a1-1b are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
 
 
 * 1b. Advis.io adds an invalid appointment date.
@@ -847,16 +948,71 @@ specified otherwise)
 
   Steps 1b1-1b2 are repeated until the date entered is valid.
 
-  Use case ends.
+  Use case resumes from step 2.
 
+**Use case: Delete Appointment for Client**
+
+**MSS**
+
+1. The user inputs the deleteAppointment command and the index of the client to delete it from.
+2. Advis.io confirms and deletes the appointment under the client's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client index.
+  * 1a1. Advis.io displays a message indicating that the client index is invalid.
+  * 1a2. User inputs another client index.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
+
+**Use case: Selecting a Client**
+
+**MSS**
+
+1. The user selects a client index from the list of clients, to display their information and policies.
+2. Advis.io displays the client's information and policies.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client index.
+  * 1a1. Advis.io displays a message indicating that the client index is invalid.
+  * 1a2. User inputs another client index.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
+
+**Use case: Sorting clients**
+
+**MSS**
+
+1. The user inputs the sort command and the field to sort by, as well as an integer to indicate the order.
+2. Advis.io sorts the list of clients by the specified field and order.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs a non-integer value to indicate the order.
+* 1a1. Advis.io displays a message indicating that the command format is invalid.
+* 1a2. User inputs another value to indicate the order.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
 
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be accessible offline so financial advisors can manage client information without internet connection
 5. Should have a user-friendly interface so that target users can navigate the platform with ease without any
    technological knowledge.
@@ -910,19 +1066,19 @@ testers are expected to do more *exploratory* testing.
    3. Test case : `select 0`<br>
       Expected : Client list remains displayed. Error details shown in the status message.
    4. Other incorrect select commands to try : `select`, `select x` (where x is larger than the list size).
- 
       Expected : Client list remains displayed. Error details shown in the status message.
 
 ### Adding a client
 
 1. Add a client to the client list
    1. Prerequisites: List all clients is currently being displayed in the clients display box.
-   2. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 `    
-      Expected : Name of client added will be displayed in the status message. Client list will be updated to include the added client
+   2. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`
+
+      Expected : Name of client added will be displayed in the status message. Client list will be updated to include the added client.
    3. Test case : `add`
 
       Expected : No client is added. Error details shown in the status message. Client list remains the same.
-   4. Test case : `add n/John Doe p/98765432 e/x a/311, Clementi Ave 2, #02-25 `
+   4. Test case : `add n/John Doe p/98765432 e/x a/311, Clementi Ave 2, #02-25`
    
       Expected : No client is added. Invalid email format will result in email error message to be displayed in the status message.
 
@@ -938,12 +1094,12 @@ testers are expected to do more *exploratory* testing.
    
        Expected : No client is deleted. Error details shown in the status message. Client list remains the same.
     4. Other incorrect delete commands to try : `delete x` (where x is larger than the list size)
-   
+ 
        Expected : Similar to previous.
 
-### Editing a client                                                                                                                               
+### Editing a client
                                                                                                                                                     
-1. Editing an existing client's personal particulars                                                                                                                               
+1. Editing an existing client's personal particulars
                                                                                                                                                     
     1. Prerequisites: Client list is currently being displayed. At least 1 client in the list. Select the particular client with the command `select x`, where x is the index of the client to edit. The client's details will be displayed on the top right display box.
     2. Test case : `edit 1 p/91234567 e/johndoe@example.com`
@@ -956,14 +1112,15 @@ testers are expected to do more *exploratory* testing.
    
        Expected : Similar to previous.
 
-### Adding a policy to a client                                                                                                                   
+### Adding a policy to a client 
                                                                                                                                       
-1. Add a policy to a specific client                                                                                                
-   1. Prerequisites: Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box.                                     
-   2. Test case : `addPolicy 1 pn/Fire Insurance pd/01.01.2021 pp/1000 pf/yearly `                                      
+1. Add a policy to a specific client
+   1. Prerequisites: Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box.
+   2. Test case : `addPolicy 1 pn/Fire Insurance pd/01.01.2021 pp/1000 pf/yearly`
+   
       Expected : Name of client at index 1 and name of the policy added will be displayed in the status message. Client's policy list will be updated to include the added policy.
-   3. Test case : `addPolicy`                                                                                                               
-                                                                                                                                            
+   3. Test case : `addPolicy`
+
       Expected : No policy is added. Error details shown in the status message. All client's policy list remains the same.                         
    4. Other incorrect add policy commands to try : `addPolicy 0`, `addPolicy x` (where x is larger than the client list size)
    
@@ -986,7 +1143,7 @@ testers are expected to do more *exploratory* testing.
 ### Edit a policy from a client
 1. Edit a policy from a specific client
    1. Prerequisites : Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box. Client should have at least 1 policy in the policy list.
-   2. Test case : `editPolicy 1 pi/1 pn/Travel Insurance pp/2000 `
+   2. Test case : `editPolicy 1 pi/1 pn/Travel Insurance pp/2000`
    
       Expected : Name of the client at index 1, and name of the policy at index 1 will be displayed in the status message. Edited policy will be updated accordingly.
    3. Test case : `editPolicy`
@@ -997,24 +1154,25 @@ testers are expected to do more *exploratory* testing.
       Expected : Similar to previous.
 
 ## **Appendix: Efforts**
-1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity.                                   We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
+1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity. A thorough understanding of the system architecture was required, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
 
 
-2. Challenges Faced: Because each member worked on many issues and features, the list below is not exhaustive.
+2. Challenges Faced: Because each member worked on many issues and features, the list below may not cover all the challenges faced by the team.
    * Having to integrate the list of clients as well their respective policies into the UI, so that the application's main window can contain both the client list and their policy list.
    * The policylist was constructed on top of the existing AB-3 architecture, which required extensive modification and extensions to obtain the desired final result.
    * There were many non-code issues such as the checkstyle of each pull requests, which took up a considerable amount of time.
+   * Refactoring the person class to client was a challenge as it was a core class that was used by many other classes.
 
 
 3. Effort Required:
    * The current code base has to be heavily modified for our application.
-   * A large number of test cases were written in order to cover as many possibilities as practical.
+   * A large number of test cases were written in order to cover as many edge cases as possible, and to ensure that the application does not break easily.
    * We held comprehensive weekly meetings early in the week to ensure that every developer is well-informed about what is planned for the rest of the week.
 
 
 4. Achievements of the Project:
    * Our team created a software product that we believe meets our intended goals.
-   * All of the Must-have User Stories were met by our software application.
+   * Most of the Must-have User Stories were met by our software application.
    * Our team has met all set milestones and deadlines.
 
 ## **Appendix: Planned Enhancements**
@@ -1038,3 +1196,4 @@ testers are expected to do more *exploratory* testing.
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
 6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
 7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
+8. For the sorting commands, which are `sortClientEmail` , `sortClientName`, `sortClientPhone` - we plan to fix a feature flaw such that the index the user can put in is only binary. Currently, the user can put in any integer and the command will still work. Only if the user puts the index as 0, it will be in descending order. We plan to fix this such that the user can only put in 1 or 0. If the user puts in 1, the list will be sorted in ascending order. If the user puts in 0, the list will be sorted in descending order. This will make the command more intuitive for the user.
