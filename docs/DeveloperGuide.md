@@ -5,9 +5,13 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-------------------------------------------------------------------------------------------------------------------------
 # About coNtactUS
 
+## **1. Introduction**
+
+### **1.1 About coNtactUS**
+
+Welcome!
 coNtactUS is a module tracker made by NUS computing students, for NUS computing students. It provides a centralised
 platform for students to conveniently store and access information about their modules. coNtactUS is optimised for use 
 via typing instead of clicking, allowing NUS computing students to store and retrieve information faster than ever before.
@@ -23,24 +27,44 @@ including but not limited to the following...
 * Module notes
 * Contact details of Professors and Teaching assistants and more...
 
-<!-- -------------------------------------------------------------------------------------------------------------- -->
+### 1.2 About the developer guide
+
+This developer guide describes the high-level software architecture and how user inputs are parsed into corresponding
+commands in coNtactUS. 
+
+If you simply want to start using coNtactUS in your daily university life, look no further and jump
+straight into our user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html). 
+
+If who want to understand how the software works, or you want to further
+develop coNtactUS for yourself, you may feel free to proceed with this guide.
+
+If you have any difficulties understanding what some terminologies mean at any point, you may refer 
+to the [glossary](#9-glossary) for that.
 
 ------------------------------------------------------------------------------------------------------------------------
- ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md) to start developing your own coNtactUS.
+## **2. Acknowledgements**
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5)
+
+------------------------------------------------------------------------------------------------------------------------
+ ## **3. Setting up, getting started**
+
+If you want to get started with developing your own coNtactUS, you may refer to the guide 
+[_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **4. Overview of the Design**
 
-## Architecture
+### 4.1 The components in the architecture
 
-The Architecture Diagram (Figure 1) given below explains the high-level design of the module tracker.
+This section gives you a quick overview of the architecture components of coNtactUS.
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
 Figure 1: Architecture of the module tracker.
 
-## A quick overview of the architecture components
 
 ### `Main`
 [`Main`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
@@ -62,7 +86,7 @@ and is responsible for:
 [**`Storage`**](#storage-component) reads data from, and writes data to, the hard disk.
 
 
-## How the architecture components interact with each other
+### 4.2 How the architecture components interact with each other
 
 To illustrate how the components interact with each other, let us take a look at the scenario where 
 the user issues the command `delete 1` to delete the first module from the list.
@@ -73,7 +97,7 @@ The *Sequence Diagram* below illustrates this in detail:
 
 Figure 2: How the different components interact with each other upon the command `delete 1`
 
-## Interfaces that are implemented by the architecture components
+### 4.3 Interfaces that are implemented by the architecture components
 
 Each of the four components `UI`, `Logic`, `Model` and `Storage` (also shown in Figure 2 above),
 
@@ -81,19 +105,22 @@ Each of the four components `UI`, `Logic`, `Model` and `Storage` (also shown in 
 * implements its functionality using a concrete `{Component Name}Manager` class
 which follows the corresponding API `interface` mentioned in the previous point.
 
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
 component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
 to the implementation of a component), as illustrated in the (partial) class diagram (Figure 3) below.
+
+<br>
 
 <img src="images/ComponentManagers.png" width="300" />
 
 Figure 3: Relationship between the Interfaces and their concrete classes
 
 
-## Details about each architecture component 
+## **5. An in-depth look at each architecture component**
 
-### UI component
+### 5.1 The UI component
 
 The **API** of this component is specified in
 [`Ui.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/ui)
@@ -118,7 +145,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
 
-### Logic component
+### 5.2 The Logic component
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -158,7 +185,7 @@ as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
 interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 5.3 The Model component
 **API** :
 [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -187,7 +214,7 @@ A more OOP model of the Model component
 </div>
 
 
-### Storage component
+### 5.4 The Storage component
 
 **API** :
 [`Storage.java`](https://tinyurl.com/3dmsfunt)
@@ -203,25 +230,26 @@ the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.moduletracker.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort Feature
+### 5.1 Sort Feature
 
-#### Sort Command Implementation
+#### 5.1.1 Sort Command Implementation
 Some txt here.
 
-### Find feature
+### 5.2 Find feature
 
-#### Find Command Implementation
-This section explains the implementation of the **FindCommand** and **FindCommandParser**. The **FindCommand** allows users to search for modules whose names or types contain any of the specified keywords (case-insensitive).
+#### 5.2.1 Find Command Implementation
+This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users
+to search for modules whose names or types contain any of the specified keywords (case-insensitive).
 
 ##### FindCommand Class
 The **FindCommand** class is responsible for finding and listing all modules in the module tracker whose name contains any of the argument keywords. Keyword matching is case-insensitive. The **FindCommandParser** is responsible for parsing the user input.
@@ -240,31 +268,37 @@ Below is an example usage scenario and how the find command behaves at each step
 
 **Step 4:** The method sets the predicate to the filtered list, which runs the **NameContainsKeywordsPredicate#test()** method to find the items based on name or type.
 
-### Reminder feature
+### 5.3 Reminder feature
 
 #### Reminder Implementation
-This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots and deadlines on the current day (based on the system's time).
+This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots
+and deadlines on the current day (based on the system's time).
 
-The **LogicManager** class is responsible for finding all the modules in the module tracker whose date (timeslot or deadline) matches the current date. The **UiManager** class is responsible for alerting the user of the deadlines and timeslots for today.
+The `LogicManager` class is responsible for finding all the modules in the module tracker whose date (`timeslot` or
+`deadline`) matches the current date. The `UiManager` class is responsible for alerting the user of the deadlines and
+timeslots for today.
 
-There are 3 methods in the **LogicManager** class:
+There are 3 methods in the `LogicManager` class:
 1. A method that deals with finding the timeslots for the day.
 2. A method that deals with finding the deadlines for the day.
 3. A method that combines and parses everything into a string.
 
-The string is then passed to a method in the **UiManager** that handles showing the alert to the user upon launching the application. Exceptions and null values are handled to avoid processing null dates, as they are optional fields.
+The string is then passed to a method in the `UiManager` that handles showing the alert to the user upon launching the
+software. Exceptions and null values are handled to avoid processing null dates, as they are optional fields.
 
 Exceptions and null values are handled to avoid looking at null dates as they are optional.
 
 Below is an example usage scenario of the reminder feature:
 
-**Step 1:** The user launches the application for the first time. The **`ModuleTracker`** will be initialized with the initial module tracker state.
+**Step 1:** The user launches the software for the first time. The **`ModuleTracker`** will be initialized with the
+initial module tracker state.
 
-**Step 2:** An alert pops up, showing the user the timeslots and deadlines for the day, along with the module name and type. The title of the alert is "Work Today."
+**Step 2:** An alert pops up, showing the user the timeslots and deadlines for the day, along with the module name and
+type. The title of the alert is "Work Today."
 
-**Step 3:** The user can now close the alert and continue using the application.
+**Step 3:** The user can now close the alert and continue using the software.
 
-
+<!--
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -279,21 +313,28 @@ Below is an example usage scenario of the reminder feature:
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+-->
 
-## \[Proposed\] Planned Enhancements
+------------------------------------------------------------------------------------------------------------------------
 
-### Reminder command.
-We propose extending the reminder feature to allow users to call it at any time, instead of only at the application's launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
+## **6. \[Proposed\] Planned Enhancements**
 
-To implement this, we plan to add a new command, similar to the existing commands, by creating a **ReminderCommand** class and a **ReminderCommandParser** class, analogous to the **FindCommand** and **FindCommandParser**.
+### 6.1 Reminder command.
+We propose extending the reminder feature to allow users to call it at any time, instead of only at the software's
+launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
 
-These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an improved user experience.
+To implement this, we plan to add a new command, similar to the existing commands, by creating a `ReminderCommand` class
+and a `ReminderCommandParser` class, analogous to the `FindCommand` and `FindCommandParser`.
 
+These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an
+improved user experience.
 
-* More checks to teacher, remarks and one more i forgot.
+### 6.2 More checks to teacher, remarks
+
+Bla bla 
 
 --------------------------------------------------------------------------------------------------------------------
-## **Documentation, logging, testing, configuration, dev-ops**
+## **7. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -303,13 +344,13 @@ These enhancements should provide users with more flexibility in accessing and m
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **8. Appendix: Requirements**
 
-### Product scope
+### 8.1 Product scope
 
 **Target user profile**
 
-* NUS Computing Students who are more tech savvy than the general population and are also fast typists
+* NUS Computing Students who are more tech-savvy than the general population and are also fast typists
 * computing students would have to refer to these details regularly throughout the course of the semester as they may
 not be able to remember them
 * has a need to manage a significant number of lecture
@@ -328,7 +369,7 @@ not be able to remember them
   * Sort existing modules based on their deadline or class time slots
 
 
-### User stories
+### 8.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -347,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 8.3 Use cases
 
 (For all use cases below, the **System** is the `coNtactUS` and the **Actor** is an `NUS computing student`, unless
 specified otherwise)
@@ -545,7 +586,7 @@ bottom. Modules without `timeslot` will be pushed to the back, unsorted.
 
   Use case ends.
 
-### Non-Functional Requirements
+### 8.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
@@ -553,13 +594,16 @@ bottom. Modules without `timeslot` will be pushed to the back, unsorted.
 be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Only language supported is English
 5. The software size (including the data file with up to 1000 modules) should not exit 100MB.
-6. 
 
 *{More to be added}*
 
-### Glossary
+------------------------------------------------------------------------------------------------------------------------
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+## **9. Glossary**
+
+### 9.1 coNtactUS related terminology
+
+* **Module Tracker**: The coNtactUS application
 * **Private module detail**: A module detail that is not meant to be shared with others
 * **Module**: The module to be recorded in coNtactUS
 * **Address**: The location/venue for the class of a module
@@ -570,18 +614,22 @@ be able to accomplish most of the tasks faster using commands than using the mou
 * **Description**: The type of the module (Lecture, Tutorial, Lab, etc.)
 * **Teacher**: The name of the teacher conducting the module
 * **TimeSlot**: The time of the class of a module
-* **XYZCommand**:
-* **Software**:
-* **API**:
-* **CLI**:
-* **GUI**:
-* **Module Tracker**:
-* **UML**:
-* **Parser**:
+
+### 9.2 Miscellaneous
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: Command-Line Interface
+* **GUI**: Graphics-based User Interface
+* **Software**: The coNtactUS application
+* **XYZCommand**: Represents all commands. E.g: `AddCommand`, `DeleteCommand`
+* **API**: Application Programming Interface
+* **UML**: Unified Modelling Language
+* **Parser**: A class that translates user inputs to machine language to run the corresponding commands.
+* **JAR**: Java ARchive
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **10. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -591,7 +639,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 10.1 Launch and shutdown
 
 1. Initial launch
 
@@ -607,9 +655,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
-### Deleting a module
+### 10.2 Deleting a module
 
 1. Test case: `delete 1`<br>
       Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
@@ -621,30 +667,24 @@ Timestamp in the status bar is updated.
 3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-4. _{ more test cases …​ }_
+### 10.3 Adding a module
+ 1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
+     Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added
+     module is shown in the status message. Empty optional fields are left as "None.".
 
+ 2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>
+     Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3,
+     TimeSlot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
 
-### Adding a module
+ 3. Test case: `add n/CS1101S`<br>
+    Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the
+    status message.
 
-1. Adding a module
+ 4. Other incorrect add commands to try: `add`, `add x`, `...` (where x is the attribute you want to add, without
+     using the prefixes)<br>
+     Expected: Similar to previous.
 
-     1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
-   Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added
-   module is shown in the status message. Empty optional fields are left as "None.".
-
-     2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>
-   Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3,
-   TimeSlot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
-
-     3. Test case: `add n/CS1101S`<br>
-   Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the
-   status message.
-
-     4. Other incorrect add commands to try: `add`, `add x`, `...` (where x is the attribute you want to add, without
-   using the prefixes)<br>
-   Expected: Similar to previous.
-
-### Editing a module
+### 10.4 Editing a module
   1. Test case: `edit 1 n/CS1101S` <br>
    Expected: The name of the first module in the list is edited, and is now `CS1101S`. Details of the updated module
    is shown in the status message.
@@ -670,7 +710,7 @@ Timestamp in the status bar is updated.
    and y is the attribute you want to edit, either without using the prefixes, or the format is incorrect).
    Expected: Similar to previous.
 
-### Finding a module/type
+### 10.5 Finding a module/type
 
 1. Test case: `find CS2103T` <br>
    Expected: Module(s) with the name `CS2103T` is (are) found. Details of the found module(s) are shown in the list.
@@ -695,7 +735,7 @@ Expected: No modules are found, because the keyword does not exist in the existi
    
 7. Note: Make sure to list the modules again when you want to find another module.
    
-### Sorting a module by `timeslot` or `deadline`
+### 10.6 Sorting a module by `timeslot` or `deadline`
 
 1. Test case: `sort timeslot` <br>
 Expected: If there are modules with different `timeslot`, the modules will be sorted by earliest first and latest last.
@@ -708,7 +748,7 @@ The modules without `deadline` will be unsorted at the very end of the list.
 3. Test case: `sort x` (where x is empty, or anything other than `timeslot` or `deadline`) <br>
 Expected: The modules will not be sorted.
 
-### Saving data
+### 10.7 Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -717,13 +757,13 @@ Expected: The modules will not be sorted.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Effort
+## 11. Appendix: Effort
 
-### **Overall Difficulty level: 7 / 10**
+**Overall Difficulty level: 7 / 10**
 
-### **Overall effort required: 8 / 10**
+**Overall effort required: 8 / 10**
 
-#### Challenges faced:
+### 11.1 Challenges faced:
 
 1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
 required: 9 / 10)
@@ -747,9 +787,6 @@ Effort required: 8 / 10)
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
-  [JUnit5](https://github.com/junit-team/junit5)
 
-------------------------------------------------------------------------------------------------------------------------
+
