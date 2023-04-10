@@ -30,11 +30,47 @@ and delete records easily, and see a summary of all records in FriendlyLink!
 
 This guide aims to quickly get you started in using and navigating FriendlyLink.
 
-We suggest reading this guide in sequential order to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
+We suggest reading this guide in sequential order to familiarise yourself with the keywords used in this guide in the 
+glossary and differently styled text which have special meanings.
 
-If you are already familiar with the following terminology, you might want to go ahead to see the [Quick Start](#quick-start) guide, 
+If you are already familiar with the following, you might want to go ahead to see the [Quick Start](#quick-start) guide, 
 [Features](#features) explained with examples, or [Fields](#fields) and their specification (such as email, phone numbers and addresses). 
 All terms used are summarised in the [Glossary](#glossary)
+
+### Callouts 
+
+The following callouts can be found throughout our user guide:
+
+<div markdown="span" class="alert alert-info">:information_source: **Information:** This provides some additional information that you are recommended to know.  </div> 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. </div>
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Do pay attention to the information here carefully. </div> 
+
+## How to use FriendlyLink
+
+### Interpreting our Command Format
+
+In general, the following command format is adopted in FriendlyLink.
+
+<pre style="color: #457C51">
+    command <[PREAMBLE]> prefix/FIELD [prefix/OPTIONAL_FIELD] [prefix/OPTIONAL_FIELD]…
+</pre>
+
+| Name      | Meaning                                                                | Notes | Examples       |
+|-----------|------------------------------------------------------------------------|-------|----------------|
+| Command   | An instruction given by you to FriendlyLink to perform a specific task |       | `add_elderly`  | 
+
+
+<div markdown="block" class="alert alert-info">:information_source: **Notes**
+
+* Words that are `CAPITALISED` are placeholders that should be replaced by you.
+* Items in `[square brackets]` are optional.
+* Items in `<angled brackets>` are the [preamble](#preamble). The inclusion of `[]` indicates that the preamble is optional.
+* Items with `…` can be entered 0 or more times.
+
+For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
+`example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
+
+</div> 
 
 ### Prefix
 Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent.
@@ -57,32 +93,6 @@ Preamble is a special piece of information specified for certain commands that a
 * They need to be specified right after the [command](#command) word and before any other [Fields](#field)
   e.g.`edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid
   as the preamble `S1234567A` has to come before all other fields.
-
-### Callouts 
-
-The following callouts can be found throughout our user guide:
-
-<div markdown="span" class="alert alert-info">:information_source: **Information:** This provides some additional information that you are recommended to know.  </div> 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. </div>
-<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Do pay attention to the information here carefully. </div> 
-
-## Icons
-
-The following icons are found in our application: 
-
-| **Icons**                                                        | **Meaning**            |
-|------------------------------------------------------------------|------------------------|
-| <img src="images/userGuide/icons/calendar.png" width="20"/>      | Available dates        |
-| <img src="images/userGuide/icons/region.png" width="20"/>        | Region                 |
-| <img src="images/userGuide/icons/home-address.png" width="20"/>  | Address                |
-| <img src="images/userGuide/icons/nric.png" width="20"/>          | NRIC                   |
-| <img src="images/userGuide/icons/age.png" width="20"/>           | Age                    |
-| <img src="images/userGuide/icons/phone.png" width="20"/>         | Phone number           |
-| <img src="images/userGuide/icons/email.png" width="20"/>         | Email                  |
-| <img src="images/userGuide/icons/tags.png" width="20"/>          | Tags                   |
-| <img src="images/userGuide/icons/medical-tags.png" width="20"/>  | Medical Qualifications |
-
-For more information about what they represent, refer to the [Fields](#fields) section.
 
 [Back to top](#table-of-contents)
 
@@ -135,25 +145,6 @@ Opening multiple instances may result in unexpected behaviours.
 [Back to top](#table-of-contents)
 
 -------------------------------------------
-
-### Command Format
-
-A command is an instruction given by you to FriendlyLink to perform a specific task. In general, the following command 
-format is adopted in FriendlyLink.
-
-<pre style="color: #457C51">
-    command <[PREAMBLE]> prefix/FIELD [prefix/FIELD] [prefix/FIELD]…
-</pre>
-
-* Words that are `CAPITALISED` are placeholders that should be replaced by you.
-* Items in `[square brackets]` are optional.
-* Items in `<angled brackets>` are the [preamble](#preamble). The inclusion of `[]` indicates that the preamble is optional.
-* Items with `…` can be entered 0 or more times.
-
-For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
-`example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
-
---------------------------------------------------------------
 
 ## Features
 
@@ -722,6 +713,26 @@ The following features are planned for v1.5
 | **Exit Program**      | `exit`                                                                                                                                                                                              |
 
 [Back to top](#table-of-contents)
+
+-------------------------------------------
+
+## Icons
+
+The following icons are found in our application:
+
+| **Icons**                                                        | **Meaning**            |
+|------------------------------------------------------------------|------------------------|
+| <img src="images/userGuide/icons/calendar.png" width="20"/>      | Available dates        |
+| <img src="images/userGuide/icons/region.png" width="20"/>        | Region                 |
+| <img src="images/userGuide/icons/home-address.png" width="20"/>  | Address                |
+| <img src="images/userGuide/icons/nric.png" width="20"/>          | NRIC                   |
+| <img src="images/userGuide/icons/age.png" width="20"/>           | Age                    |
+| <img src="images/userGuide/icons/phone.png" width="20"/>         | Phone number           |
+| <img src="images/userGuide/icons/email.png" width="20"/>         | Email                  |
+| <img src="images/userGuide/icons/tags.png" width="20"/>          | Tags                   |
+| <img src="images/userGuide/icons/medical-tags.png" width="20"/>  | Medical Qualifications |
+
+For more information about what they represent, refer to the [Fields](#fields) section.
 
 -------------------------------------------
 
