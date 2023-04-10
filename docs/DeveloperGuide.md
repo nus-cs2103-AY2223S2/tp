@@ -234,7 +234,8 @@ Moving on to the implementation, some things to note.
 _Pre-requisites: User has a CSV file filled with whatever information they want to `batchadd`
 and has stored it in the `/data` folder of the repository._
 
-UML Diagram:
+Below is a sequence diagram and the explanation of `batchadd` command.
+
 ![BatchAdd](images/BatchAddSequenceDiagram.png)
 
 **Steps:**
@@ -296,8 +297,9 @@ Moving on to the implementation, some things to note.
 
 #### Implementation:
 
-UML Diagram:
-![BatchExport]()
+Below is a sequence diagram and the explanation of `batchexport` command.
+
+![BatchExport](images/BatchExportSequenceDiagram.png)
 
 **Steps:**
 
@@ -581,6 +583,8 @@ validity and file type validity, returning an error message: `Invalid file path`
 8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
+
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
