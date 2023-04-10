@@ -533,9 +533,12 @@ Additional things to note:
 * `a` and `d` for `SEQEUENCE` refer to **ascending** and **descending** respectively.
 * Currently, there are two orders you can choose for `ORDER`: `alphabetical` and `deadline`
 1. Choosing `alphabetical` will sort applications by their roles in alphabetical order. Should
-   there be multiple application entries with the same role, they will be ranked alphabetically by their company names.
+   there be multiple application entries with the same role, their company names will be used as a tiebreaker.
+   In the event that there is still a tie (i.e., two applications with same role, same company), then they will be ranked in the order of when they are created;
+   more recently created application entries will be shown higher up in the list.
 2. Choosing `deadline` will display applications with tasks (and therefore, deadlines) only. (Therefore, if you have no applications with no deadlines,
-an empty list will be displayed.) The applications will be sorted by their task's deadline. 
+   an empty list will be displayed.) The applications will be sorted by their task's deadline. Should there be two applications with
+   the same deadline, the application entry that is more recently created will show up higher in the list.
 
 Examples:
 * `sort a deadline` will show only applications with task deadlines. Those with earlier deadlines will be higher up in the list.
