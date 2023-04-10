@@ -363,7 +363,7 @@ Both commands will result in a Help Window appearing which shows the various com
 
 ### Exit Button
 
-Clicking the Exit Button will allow users to quit EduMate.
+Clicking the Exit Button will allow you to quit EduMate.
 
 [Return to the top](#table-of-contents)
 
