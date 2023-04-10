@@ -23,9 +23,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
@@ -130,17 +131,18 @@ The `Model` component
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="block" class="alert alert-info">
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
+**:information_source: Note:**<br> An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
 
 ![!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-Here are some more details on how `Overview` is designed:
+<br> Here are some more details on how `Overview` is designed:
 
 ![!OverviewClassDiagram](images/OverviewClassDiagram.png)
 
-How the `Overview` component works:
+<br> How the `Overview` component works:
+
 * There are 3 implementations of `Overview`: `AgeOverview`, `PostalOverview` and `VariantOverview`. Only one is active in a `Model` at a time.
 * Each of these implementations has a respective `Analyst` class, which sorts `Person` objects into groups and counts the number in each.
   * The way a `Person` is sorted depends on the type of `Analyst` employed.
@@ -420,8 +422,10 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** Sorting is performed directly on the **entire** list. Sorting is also **permanent**, i.e. it cannot be undone.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** Sorting is performed directly on the **entire** list. Sorting is also **permanent**, i.e. it cannot be undone.
+
 </div>
 
 ### Undo/redo feature
@@ -457,7 +461,9 @@ Step 3. The user executes `add n/David d/2000 31 January...` to add a new case. 
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#saveChanges()`, so the Dengue Hotspot Tracker state will not be saved into the `TemporaryMemory`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** If a command fails its execution, it will not call `Model#saveChanges()`, so the Dengue Hotspot Tracker state will not be saved into the `TemporaryMemory`.
 
 </div>
 
@@ -465,7 +471,9 @@ Step 4. The user now decides that adding the case was a mistake, and decides to 
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only 1 element in the `Deque`, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `TemporaryMemory#canUndo` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** If there is only 1 element in the `Deque`, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `TemporaryMemory#canUndo` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -482,7 +490,9 @@ The following activity and sequence diagrams shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -962,7 +972,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
