@@ -11,9 +11,6 @@ FastTrack is a desktop application to help you keep track of daily expenses, opt
 - Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nicleejy&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 
-
-[//]: # (https://github.com/AY2223S2-CS2103T-W09-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Anicleejy)
-
 Enhancements implemented:
 - Implemented new category autocomplete feature which allows users to autocomplete category names from a list of suggestions using arrow/enter/tab keys (Pull request [#148](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/148))
 - Added new UI screen for recurring expense feature (Pull request [#145](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/145))
@@ -38,14 +35,13 @@ Contributions to the DG:
 - Sketched and implemented Activity Diagrams in PlantUML for recurring expense (Pull request [#218](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/218))
 - Add writeup for autocompletion feature in the DG (Pull request [#218](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/218))
 
-
 - Contributions to team-based tasks:
 - Participated in weekly (sometimes biweekly) meetings to discuss project structure and direction.
 - Took part actively in debugging other teammate's issues.
-- Fixed [several bugs]() reported from PE Dry Run
+- Fixed [several bugs](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Anicleejy+pe-d) reported from PE Dry Run
 
 Review/Mentoring Contributions:
-- Reviewed multiple PRs made by teammates ([#101](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/101), [#90](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/90), [#72](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/72)).
+- Reviewed [23 PRs](https://github.com/AY2223S2-CS2103T-W09-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) made by teammates
 
 Contributions beyond team project:
-- Reported bugs for another team during the PE-Dry run (T11-4): HospiSearch.
+- Reported bugs for another team during the PE-Dry run (F10-1): OfficeConnect.
