@@ -940,9 +940,9 @@ is the `user`, unless specified otherwise)
 ### Glossary
 
 * **Location**: A unit place that flights may depart from or arrive at.
-* **Crew**: A unit person who can be added to or deleted from a flight.
+* **Crew**: A unit person who can be assigned to a flight to assist passengers.
 * **Pilot**: Someone that is certified to fly an aircraft.
-* **Plane**: A unit plane which can be assigned to flights.
+* **Plane**: A unit plane which can be assigned to be used in flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
 
