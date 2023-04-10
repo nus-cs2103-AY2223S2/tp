@@ -163,7 +163,7 @@ Format: `list_patient`
 
 Edits an existing patient in MediMeet.
 
-Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `ep`
 
 * Edits the patient at the specified `INDEX`. The index refers to the patient index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -341,7 +341,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook and Appointment List data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Patient list and appointment list data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -355,8 +355,8 @@ If your changes to the data files make their format invalid, MediMeet will disca
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MediMeet home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -392,7 +392,7 @@ If your changes to the data files make their format invalid, MediMeet will disca
 | **Mainstream OS** | Mainstream OSes include Windows and MacOS. They are the operating systems that are supported by MediMeet.                                                                                |
 | **Java**          | Java is a popular programming language that MediMeet is written in.                                                                                                                      |
 | **Gradle**        | Gradle is a build tool that MediMeet uses.                                                                                                                                               |
-| **IntelliJ**      | IntelliJ is an Integrated Development Environment (IDE) that MediMeet uses.                                                                                                              |
+| **IntelliJ**      | IntelliJ is an Integrated Development Environment (IDE) that MediMeet was written in.                                                                                                    |
 
 
 --------------------------------------------------------------------------------------------------------------------
