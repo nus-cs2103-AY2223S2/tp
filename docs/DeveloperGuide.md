@@ -559,6 +559,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Find a person**
+
+**MSS**
+
+1.  User searches for person/s based on an attribute
+2.  SalesPunch shows a list of person/s that match
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 1a. SalesPunch detects an error in the entered data.
+
+  - 1a1. SalesPunch requests for the correct data.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+  - Use case resumes from step 2.
+
+  Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
@@ -696,13 +720,25 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. To simulate corrupted file, do not follow the JSON syntax by deleting several curly braces 
+   2. To simulate missing file, directly remove the storage file from the project directory
+   3. To resolve these issues, remove the storage file and restart the application. Then the application will reload with the sample data provided.
 
 ## **Appendix: Effort**
 
 <!-- Explain the difficulty level, challenges faced, effort required, and achievements of the project. -->
+The project aims to build a useful tool for salespersons to keep track of their leads, this includes basic features such
+as adding, deleting, updating, and sorting leads. The leads have attributes associated to them such as gender, company,
+industry, occupation, and status to capture the nature of the contacts. While they may be simple to implement, it was
+tedious to ensure the correctness of these features as they are the building blocks for upcoming add-on enhancements.
+Unit testing was crucial in this part to make sure that they were correctly implemented and worked as expected.
+<br/>
+<br/>
+Additionally, advanced features were added to further cater to the needs of a salesperson. Transaction and task
+recording features complement the contact list by extending the lead's details to include dealings and reminders. These
+features were implemented with a certain level of difficulty as they each require a level of complexity akin to the 
+original contact list which requires a list to capture the sequence of data for each lead together with complementary 
+features to add and delete.
 
 ### Challenges Faced
 
