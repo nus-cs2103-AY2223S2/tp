@@ -11,8 +11,7 @@ title: MediMate's Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/)
-* Reused code from [`AY2223S1-CS2103T-T17-1`](https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui) for UI design 
-* Reused code from [`AY2223S1-CS2103T-W11-3`](https://github.com/AY2223S1-CS2103T-W11-3/tp) for UI design
+* Reused code from [`AY2223S1-CS2103T-T17-1`](https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui) for UI design
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -602,7 +601,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Appointment**: A scheduled meeting or consultation with a private doctor.
 * **Patient**: A person who is receiving medical treatment from a doctor or other healthcare professional.
 * **Medical certificate**: A legal document issued by a doctor that certifies a patient's medical condition or ability to perform certain tasks.
-* **NRIC**: National Registration Identity Card, an identification document issued to citizens and permanent residents of Singapore.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
