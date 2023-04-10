@@ -304,6 +304,9 @@ Format: `find_appt TIMESLOT [TIMESLOT]`
 Examples:
 *  `find_appt 04032023 10:00` Finds all appointments during `04032023 10:00`, i.e `March 4, 2023` `10:00` hrs.
    ![Find appointment](images/findAppt.png)
+
+<div style="page-break-after: always;"></div>
+
 *  `find_appt 19032023 00:00 26032023 23:59` Finds all appointments between `find_appt 19032023 00:00` and `26032023 23:59`.
    ![Find appointment](images/findAppt2.png)
 
