@@ -18,10 +18,12 @@ The app simplifies the organization and maintenance of patient and doctor data, 
 
 * Based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used:
+  * [PlantUML](https://plantuml.com/sitemap) 
   * [Jackson](https://github.com/FasterXML/jackson)
   * [JavaFX](https://openjfx.io/index.html)
   * [JUnit5](https://github.com/junit-team/junit5)
-  * [PlantUML](https://plantuml.com/sitemap)
+  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
