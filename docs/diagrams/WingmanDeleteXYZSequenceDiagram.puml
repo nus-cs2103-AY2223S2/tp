@@ -10,8 +10,9 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":WingmanParser" as WingmanParser LOGIC_COLOR
 participant ":CommandGroup" as CommandGroup LOGIC_COLOR
 participant ":FactoryParser" as FactoryParser LOGIC_COLOR
-participant "factory:DeleteCommandFactory" as DeleteCommandFactory LOGIC_COLOR
+participant ":DeleteCommandFactory" as DeleteCommandFactory LOGIC_COLOR
 participant "command:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteFunction" as DeleteFunction LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -33,8 +34,10 @@ activate CommandGroup
 CommandGroup -> FactoryParser : parseFactory(tokens)
 activate FactoryParser
 
-create DeleteCommandFactory
-FactoryParser -> DeleteCommandFactory
+FactoryParser -> DeleteCommandFactory : createCommand(commandParam)
+activate DeleteCommandFactory
+
+
 
 create DeleteCommand
 DeleteCommandFactory -> DeleteCommand
@@ -44,6 +47,8 @@ DeleteCommand --> DeleteCommandFactory : command
 deactivate DeleteCommand
 
 DeleteCommandFactory --> FactoryParser : command
+deactivate DeleteCommandFactory
+
 FactoryParser --> CommandGroup : command
 deactivate FactoryParser
 
@@ -53,14 +58,21 @@ deactivate CommandGroup
 WingmanParser --> LogicManager : command
 deactivate WingmanParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> ModelManager : deleteXYZ()
+DeleteCommand -> DeleteFunction : delete(model, xyz)
+activate DeleteFunction
+
+DeleteFunction -> ModelManager : deleteXYZ(xyz)
 activate ModelManager
 
-ModelManager --> DeleteCommand : commandResult
+ModelManager --> DeleteFunction : commandResult
 deactivate ModelManager
+
+DeleteFunction --> DeleteCommand : commandResult
+deactivate DeleteFunction
+
 DeleteCommand --> LogicManager : commandResult
 deactivate DeleteCommand
 

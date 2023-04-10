@@ -291,7 +291,12 @@ The `Storage` component,
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
 
+> **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
+> user when he/she directly modifies the data files. The user is expected to 
+> work with the data files only through Wingman.
+
 <div style="page-break-after: always;"></div>
+
 
 ### Overall Sequence
 
@@ -426,39 +431,34 @@ refer to all for simplicity.
 
 This feature is enabled by the following classes in particular:
 
-- `DeleteXYZCommand` - The command that deletes a XYZ from the Wingman app
-- `DeleteXYZCommandFactory` - The factory class that creates a {@code
-  DeleteXYZCommand}
+- `DeleteCommand` - The command that deletes an item from the Wingman app
+- `DeleteCommandFactory` - The factory class that creates a `DeleteCommand`
 
 When a user enters the command:
 
 ```
-delete {XYZ identifier}
+delete {item index}
 ```
 
 the input goes through the UI layer where `logic.execute(input)` is called which
 passes control to the logic layer.
 
-At the logic layer, `execute(input)` first parses the input using the
-WingmanParser's `parse` function. The aim of
-parsing is to determine what type of command the user's input is and determine
-which mode - Crew, Flight, Location,
-Pilot, or Plane - should handle the execution of said command.
+At the logic layer, `execute(input)` parses the input using the
+WingmanParser's `parse` function.
 
-The WingmanParser separates the input into tokens, determines what mode the
-command is from, and then returns the
-desired command type. In this case, the input allows the WingmanParser to
-recognize it is a `DeleteXYZCommand` and as a
-result, returns a new `DeleteXYZCommand` with the {XYZ identifier}.
+Firstly, the WingmanParser separates the input into tokens. Secondly, it determines
+what mode the command is from using the `parse` command in the `CommandGroup` class.
+Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser` class
+which uses the `createCommand` method to finally create a `DeleteCommand`.
+Finally, the `DeleteCommand` is returned in the original `LogicManager`.
 
-The `DeleteXYZCommand` is executed using the corresponding `XYZManager`.
-Firstly, the `XYZManager` uses `getItem(id)`
-to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls
-the `deleteXYZ(id)` method. The
-`deleteXYZ(id)` method uses the `item.removeItem(id)` method in order to remove
-the desired XYZ from the Wingman app.
+The next step in the `LogicManager` is to execute the returned command. To do so,
+it calls the command's `execute` method which in this example, uses a
+`DeleteFunction` to run `delete(model, xyz)` (where xyz is the resource
+to be deleted).
 
-Finally, the `CommandResult` is returned which is the message the user will see
+The deletion of the resource is handled under the model layer. Once deleted,
+a `CommandResult` is returned which is the message the user will see
 indicating a successful deletion.
 
 <img src="images/WingmanDeleteXYZSequenceDiagram.png" width="966">
@@ -466,15 +466,10 @@ indicating a successful deletion.
 **Why was it implemented this way?**
 
 For the parsing logic in the Wingman app, the commands were split based on their
-related "mode." This implementation
-decision was made so that parsing would be more simple across the five modes. To
-elaborate, each mode would handle their
+related "mode." This is due to the nature that there are some commands which
+only concern some modes. This implementation decision was made so that parsing would be
+more simple across the five modes since each mode would only have to handle their
 related commands only.
-
-**Alternatives considered for deleting XYZ:**
-
-Description coming soon
-
 
 <div style="page-break-after: always;"></div>
 
