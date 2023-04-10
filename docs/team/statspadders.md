@@ -36,10 +36,13 @@ Given below are my contributions to the project.
         * Light/Dark Mode
     * Developer Guide:
         * User stories
+        * Glossary
+        * Non-functional requirements
 
 * **Contributions to team-based tasks:**
     * Upload Trial Jar file
     * Upload Dry PE Jar file
+    * Feedback on PE-D Testers
 
 * **Review/mentoring contributions**:
 [#16](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/16) 
