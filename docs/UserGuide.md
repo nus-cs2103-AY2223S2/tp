@@ -726,7 +726,6 @@ You can refer to the [search by name mechanism](#search-by-name-mechanism) for m
 
 :exclamation: **Caution:** STUDENT_NAME should appear exactly once and should not be empty.
 
-
 ### Global Commands
 
 #### Get Help for TutorPro

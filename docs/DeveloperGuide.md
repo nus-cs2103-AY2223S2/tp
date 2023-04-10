@@ -268,7 +268,6 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
   7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyHomeworkContent`  or `FilledHomeworkContent`created from the previous calls. 
   8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
 
-
 * `EmptyLessonsContent` and `FilledLessonsContent` extend `GeneralLessonsContent`, representing the situation where the `Student` has `Lessons` and where the `Student` has no `Lessons` respectively. 
 
   Specifically, `FilledLessonsContent` has `PastLessonsListPanel` with `LessonCard` on it, showing all past `Lessons` of a `Student` and `UpcomingLessonsListPanel` with `LessonCard` on it, showing all upcoming `Lessons` of a `Student`.
@@ -469,13 +468,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
