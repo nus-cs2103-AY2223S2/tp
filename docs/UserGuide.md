@@ -14,6 +14,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1.1. How to use the User Guide
 
@@ -22,8 +23,11 @@ This user guide will help you use PowerCards with ease and integrate it into you
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#3-features) section.
 * Having **issues**? Check out the [FAQ](#4-faq) section and see if you can find your solutions there!
 
-**:bulb: Tip:**<br>
-* There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
+<div markdown="block" class="alert alert-info">
+💡 **Tip:**
+- There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. 
+- We hope this approach will make it easier for you to digest the content.
+</div>
 
 ## 1.2. Key Terms
 
@@ -57,6 +61,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 | **Result Display** | This is where the **results** of your commands will be shown.                                                |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 2. Quick Start
 
@@ -76,6 +81,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 6. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 3. Features
 
@@ -102,6 +108,8 @@ This section explains some common components you may find in a command.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## 3.2. Main Mode
 
 Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
@@ -118,6 +126,8 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 | **Question**      | The question that you assign to the card.                                                                                                  |
 | **Answer**        | The corresponding answer to the question.                                                                                                  |
 | **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation. Each card can only be tagged with **at most** 1 difficulty. |
+
+<div style="page-break-after: always;"></div>
 
 ## 3.3. Main Mode - Before Selecting a Deck
 
@@ -226,6 +236,8 @@ Format: `clear`
   ![clear confirm](./images/ClearConfirm.png)
 
 - Selecting `Yes` will clear all data.  
+
+<div style="page-break-after: always;"></div>
 
 ## 3.4. Main Mode - After Selecting a Deck
 
@@ -356,6 +368,7 @@ Examples:
 * `setLimit none`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3.6. Review Mode
 
@@ -453,6 +466,7 @@ Tags the current card as hard. This replaces any previous tags.
 Format: `'`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3.7. Other Features
 
@@ -489,6 +503,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. FAQ
 
@@ -514,8 +529,9 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 **A**: **No**. The name of the deck is case-sensitive and cannot be duplicated, e.g., if you already have a deck named `Science`, you cannot create another deck named `Science`. However, you can create a deck named `SCIENCE` since `SCIENCE` may be an acronym.
 
 **Q**: What if I would like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
-**A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we used backslash `&#92;` rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
+**A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we use backslash &#92; rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 5. Command Summary
 
@@ -535,6 +551,8 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 | Help           | `help`                                                               |
 | Exit           | `exit`                                                               |
 
+<div style="page-break-after: always;"></div>
+
 ## 5.2. Main Mode - after selecting a Deck
 
 | Action         | Format, Examples                                                                                                                                 |
@@ -550,6 +568,8 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 | Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`                                                                                                  |
 | Help           | `help`                                                                                                                                           |
 | Exit           | `exit`                                                                                                                                           |
+
+<div style="page-break-after: always;"></div>
 
 ## 5.3. Review mode
 
