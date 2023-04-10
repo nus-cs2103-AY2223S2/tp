@@ -13,7 +13,8 @@ import java.util.List;
 import fasttrack.model.Budget;
 import fasttrack.model.ExpenseTracker;
 import fasttrack.model.expense.Expense;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -36,6 +37,10 @@ public class TypicalExpenses {
             new Expense("Fig", 1000, LocalDate.of(2023, 2, 15), MISCCAT);
     public static final Expense GRAPE =
             new Expense("Grape", 10, LocalDate.of(2023, 3, 17), MISCCAT);
+
+    public static final ObservableList<Expense> TYPICAL_EXPENSES = FXCollections.observableArrayList(
+            APPLE, BANANA, CHERRY, DURIAN, ELDERBERRY, FIG, GRAPE
+    );
 
 
     private TypicalExpenses() {} // prevents instantiation

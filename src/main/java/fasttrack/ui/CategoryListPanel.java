@@ -1,8 +1,5 @@
 package fasttrack.ui;
 
-import java.util.logging.Logger;
-
-import fasttrack.commons.core.LogsCenter;
 import fasttrack.model.category.Category;
 import fasttrack.model.expense.Expense;
 import javafx.collections.ObservableList;
@@ -16,7 +13,6 @@ import javafx.scene.layout.Region;
  */
 public class CategoryListPanel extends UiPart<Region> {
     private static final String FXML = "CategoryListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(CategoryListPanel.class);
     private final ObservableList<Expense> expenseObservableList;
 
     @FXML

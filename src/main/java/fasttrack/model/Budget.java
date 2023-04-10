@@ -1,5 +1,6 @@
 package fasttrack.model;
 
+
 /**
  * Represents a budget which users of FastTrack can set.
  */
@@ -30,5 +31,12 @@ public class Budget {
     @Override
     public String toString() {
         return Double.toString(this.monthBudget);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Budget // instanceof handles nulls
+                && monthBudget == ((Budget) other).monthBudget);
     }
 }
