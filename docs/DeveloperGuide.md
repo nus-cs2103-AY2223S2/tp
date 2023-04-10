@@ -773,16 +773,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Undo/redo an action
+#### Use case: Undo an action
 
 **MSS**
 
-1. placeholder
+1. User requests to undo one action by executing `undo`. 
+2. DengueHotspotTracker is restored to a state before step 1, performing an undo operation a certain number of times, according to the specified argument.
+3. A list of persons is reflecting the previous state is displayed.
 
 **Extensions**
 
-* 1a. placeholder
-    * 1a1. placeholder
+* 1a. An invalid argument is supplied.
+
+    * 1a1. DengueHotspotTracker shows an error message.
+
+    Use case ends.
+
+* 1b. No previous states are detected, and an undo is not possible.
+
+    * 1b1. DengueHotspotTracker shows an error message.
+
+    Use case ends.
+
+* 1c. There is no argument supplied.
+
+    Use case resumes at step 2 with argument set to 1.
+
+* 1d. The argument specified is a positive integer, and at least 1 previous state is detected, but there are not enough previous states available.
+
+    Use case resumes at step 2 with argument set to the maximum number of possible undo operations possible.
+
+* 2a. The DengueHotspotTracker is displaying a filtered list instead of the full list of cases.
+
+    * 2a1. DengueHotspotTracker reverts to showing the complete list.
+
+    Use case resumes at step 3.
 
 #### Use case: Import/export/checkout data
 
