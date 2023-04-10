@@ -84,7 +84,7 @@ Welcome to the user guide for GoodMatch. This guide will help you understand how
 
 ### How to use this guide
 
-To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
+To make the most of this guide, start by reading it from beginning to end. If you are an experienced user, you can skip to the [Features](#features) section for a detailed guide. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
 Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
 
@@ -874,3 +874,4 @@ Add tags to a job listing for easy reference.
 
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
