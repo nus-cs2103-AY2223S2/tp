@@ -6,7 +6,6 @@ title: User Guide
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
@@ -19,6 +18,8 @@ With MyLib, you have the ability to throw all your bookmarks onto a **single pla
 MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks. However, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **About this User Guide**
 
 ### Target Audience
@@ -39,7 +40,6 @@ This User Guide is split into multiple important sections:
 
 If you are a new user, we recommend going through the sections in the order provided above. If you are an experienced user and are just looking for a quick reference, we recommend either going through the [Commands](#commands) section or the [Command Summary](#command-summary) table. The [Commands](#commands) section will provide a detailed explanation of each command. If you're only looking for a brief overview of the commands, we recommend the [Command Summary](#command-summary) table.
 
-
 The user guide will contain certain visuals to aid in conveying information more effectively. These include:
 
 :information_source: **Info** - Useful supplementary information
@@ -49,6 +49,7 @@ The user guide will contain certain visuals to aid in conveying information more
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Getting Started**
 
@@ -67,6 +68,7 @@ The user guide will contain certain visuals to aid in conveying information more
 6. If this is your first time running the application, it should contain some sample bookmarks.
 
 7. MyLib's functionality is accessed through typed commands. These commands are entered into the [command box](#graphical-user-interface) at the very top of the GUI. After entering the command, press enter to execute it and the result of that command will be displayed below the command box.
+<div style="page-break-after: always;"></div>
 
 ### Let's try out some of the features
 1. Let's start by trying to add a bookmark.
@@ -91,6 +93,8 @@ The user guide will contain certain visuals to aid in conveying information more
 4. You will be able to find a detailed guide on the list of available commands in the [Commands](#commands) section.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Key Definitions**
 This section provides explanations of important terms that will be used in this User Guide.
 
@@ -115,7 +119,7 @@ As mentioned in [Bookmark](#bookmark), a genre in a bookmark indicates the genre
 In MyLib, a bookmark's genre may only be selected from a fixed list of genres provided by MyLib.
 
 To find out how to view this fixed list of genres, go [here](#viewing-genres-genre).
-
+<div style="page-break-after: always;"></div>
 
 ### Tags
 As mentioned in [Bookmark](#bookmark), tags are custom labels that you can attach to a bookmark to categorize them.
@@ -187,12 +191,6 @@ This section provides an in-depth explanation of MyLib's commands. For a quick r
 </div>
 <div style="page-break-after: always;"></div>
 
-<div markdown="block" class="alert alert-info">
-* List of prefixes used in commands :
-
-</div>
-<div style="page-break-after: always;"></div>
-
 ### Tag Commands
 This section goes through the commands for viewing and modifying your tag list.
 
@@ -224,6 +222,7 @@ Format: `dtag TAG`
 
 Example:
 * `dtag MaleProtagonist`
+<div style="page-break-after: always;"></div>
 
 ### Viewing genres: `genre`
 You can view MyLib's fixed list of genres using the `genre` command.
@@ -275,7 +274,6 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
 * `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
-<div style="page-break-after: always;"></div>
 
 ### Editing a bookmark : `edit`
 
@@ -293,6 +291,7 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
 *  `edit 2 n/The Odyssey t/` Edits the name of the 2nd bookmark to be `The Odyssey` and clears all existing tags.
+<div style="page-break-after: always;"></div>
 
 ### Sorting bookmarks : `sort`
 
@@ -305,7 +304,6 @@ Format : sort [ORDER]
 Examples:
 * sort asc
 * sort desc
-<div style="page-break-after: always;"></div>
 
 ### Locating bookmarks by specific fields: `find`
 
@@ -330,6 +328,7 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
 * If multiple tags are provided, any bookmarks containing at least one of the tags would be returned.
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
@@ -475,8 +474,6 @@ _Details coming soon ..._
 **Delete a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
 **List all genres** | `genre`
 
-<div style="page-break-after: always;"></div>
-
 ## **Parameters Summary**
 
 | Prefix | Parameter | Description                                                                                                                                                                                                                                                                                                                                        |
@@ -488,6 +485,7 @@ _Details coming soon ..._
 |  `u/`  |    URL    | This is the url to the website containing the bookmarked content. <br/><br/>**Restrictions:**<br/>Must contain [Protocol][Domain name] for example: [http://]www.[example.com]                                                                                                                                                        |
 |  `r/`  |  RATING   | This is the rating to give the bookmark.<br/><br/>**Restrictions:**<br/>Must be a number from 0 to 5 (without any additional symbols like +/-)                                                                                                                                                                                                                                             |
 |  `t/`  |    TAG    | This is a tag that you want to attach to the bookmark. <br/><br/>**Restrictions:**<br/>Only tags that are in your tag list can be added to a bookmark.<br/> For more information on how to modify your tag list, go to the [Tags](#tags) section.                                                                                                                                                                                |
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 
