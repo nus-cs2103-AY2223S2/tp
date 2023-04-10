@@ -67,6 +67,6 @@ destroy AddFormCommand
 RecipeBookParser --> LogicManager : result
 deactivate RecipeBookParser
 
-[<-[hidden]-LogicManager
+[<--LogicManager
 deactivate LogicManager
 @enduml
