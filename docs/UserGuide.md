@@ -90,11 +90,11 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
     * Extraneous details for commands that do not take in any (such as `help`) will be ignored.
       <br>
       Example: If the command specifies `help 123`, it will be interpreted as `help`.
-  
+
     * Extraneous details for commands that take in only one (such as `delete-client`) will be ignored.
       <br>
       Example: If the command specifies `delete-client 1 abc` it will be interpreted as `delete-client 1`.
-  
+
     * Most command words and prefixes have shorter short forms that can be used the same way, so that you can complete the same tasks faster once you’re used to the application. For example, `list-project` has the short form `lp` and `name/` has the short form `n/`.
       <br>
       Example: Entering `list-project` is the same as entering `lp` and entering `add-project name/John Doe` is the same as entering `add-project n/John Doe`.
@@ -207,7 +207,7 @@ Note:
 * Provided details will overwrite existing ones entirely. E.g. `edit-client <index> tag/Friend` will change the client displayed at `<index>` to only have the tag `Friend`.
 * Using an empty `tag/` prefix removes all tags of the client. This cannot be used with any non-empty `tag/` prefixes. E.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one detail to edit must be provided.
-* If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only. 
+* If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only.
 * A client list needs to be shown for this command to be executed successfully.
 
 Examples:
@@ -312,7 +312,7 @@ The available project-related commands are:
 
 Short form: `lp`
 
-Lists out all projects and shows the project list. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed. 
+Lists out all projects and shows the project list. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed.
 Note that an OVERDUE project is also considered as a NOT DONE project.
 
 ![ListProjectExample](images/ListProjectExample.png)
@@ -330,7 +330,7 @@ Deadlines can be in natural language, e.g. `tomorrow` or `3pm next week`. Otherw
 
 Price must be a positive number given in 0 or 2 decimal places, e.g. `7` or `5.08`.
 
-Clients: Linking a project to a client means the project is for a certain client. You might do this if a specific client commissions a project. 
+Clients: Linking a project to a client means the project is for a certain client. You might do this if a specific client commissions a project.
 The project can be linked to a client by specifying individual keywords that are part of the client's name in the command after the `client/` prefix. If any such details are mentioned, the application will enter link mode. Further steps can be found [here](#linking-a-project-to-a-client).
 
 Note:
