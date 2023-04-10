@@ -718,16 +718,16 @@ These commands should be tested on the Students Page.
 
 1. Adding a student while the student list is empty or the student does not exist in the course list.
 
-   1. Test case: ` add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`<br>
+   1. Test case: `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`<br>
       Expected: New student is added into the list. Details of the added student shown in the log box.
 
-   2. Other incorrect `add student` commands to try: `add`, `add student` (where the name, phone number, email or student ID is empty)<br>
+   2. Other incorrect `add student` commands to try: `add`, `add student` (where the name, phone number, email or student ID is not specified)<br>
       Expected: No student is added. Error details shown in the log box.
 
-2. Adding a student whose student ID already exists in the list.
+2. Adding a student whose student ID already exists in the list.<br>
 
     1. Test case: `add student n/John p/98765432 e/johnd@example.com sid/A1234567X`, where another student with student ID A1234567X already exists in the student list<br>
-       Expected: No course is added. Error details shown in the log box.
+       Expected: No student is added. Error details shown in the log box.
    
 3. Adding a student whose name already exists in the list.
    1. Test case: `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`, where John Doe with a different student ID exists in the student list.
@@ -824,7 +824,7 @@ with respective student IDs `A1234567X`, `A123`, `A98765432X`.
     Expected: First student's email is copied to your clipboard. Successful command message shown in the log box.
    2. Test case: `copy 0`<br>
    Expected: No student email is copied. Error details shown in the log box.
-   3. Other incorrect `copy` commands to try: `copy`, `copy x`, (where x is larger than the student list)
+   3. Other incorrect `copy` commands to try: `copy`, `copy x`, (where x is larger than the student list)<br>
    Expected: No student email is copied. Error details shown in the log box.
 2. Copying a student's email while the student list is empty on the Students Page.
     1. Test case: `copy 1`<br>
@@ -832,26 +832,26 @@ with respective student IDs `A1234567X`, `A123`, `A98765432X`.
 
 #### Sorting students by their name or student ID
 1. Sorting student list by their name
-    1. Test case: `sort name`
+    1. Test case: `sort name`<br>
    Expected: Student list sorted by name in alphabetical order.
 2. Sorting student list by their student IDs
-    1. Test case: `sort id`
+    1. Test case: `sort id`<br>
    Expected: Student list sorted by student ID.
 
 #### Adding or deleting a remark
 1. Adding a remark to a student that does not have an existing remark.
-    1. Test case: `remark 1 Loves photography`
+    1. Test case: `remark 1 Loves photography`<br>
    Expected: Adds a remark `Loves photography` to the first student on the student list. Details of the new remark displayed in the log box.
-   2. Test case: `remark 0 Loves sci-fi movies`
+   2. Test case: `remark 0 Loves sci-fi movies`<br>
    Expected: Displays error message on the log box.
-   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student lit)
+   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student list)<br>
    Expected: Displays error message on the log box.
 2. Adding a remark to a student that already has a remark.
-   1. Test case: `remark 1 Plays football` 
+   1. Test case: `remark 1 Plays football` <br>
       Expected: Replaces the previous remark that the first student has with `Plays football`. Details of the new remark displayed in the log box.
-   2. Test case: `remark 0 Loves sci-fi movies`
+   2. Test case: `remark 0 Loves sci-fi movies`<br>
      Expected: Displays error message on the log box.
-   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student lit)
+   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student list)<br>
       Expected: Displays error message on the log box.
    4. Test case: `remark 1` where the first student already has a remark. <br>
       Expected: Deletes the remark from the first student listed in the student list.
@@ -880,7 +880,7 @@ These commands should be tested on the Session Page.
 1. Adding a session while the session list is empty, or the session does not exist in the session list.
 
     1. Test case: `add session Tutorial1`<br>
-       Expected: New session is added into the list. Details of the added task shown in the log box.
+       Expected: New session is added into the list. Details of the added session shown in the log box.
 
     1. Other incorrect `add session` commands to try: `add`, `add session` (where the session name is empty)<br>
        Expected: No session is added. Error details shown in the log box.
@@ -916,7 +916,7 @@ These commands should be tested on the Session Page.
 1. Editing a session which exists in the Session list.
 
    1. Test case: `edit session 1 Tutorial4`<br>
-      Expected: First session is edited to the new task name. Details of the edited session shown in the log box.
+      Expected: First session is edited to the new session name. Details of the edited session shown in the log box.
 
    2. Test case: `edit session 0 Tutorial4`<br>
       Expected: No session is edited. Error details shown in the log box.
@@ -973,8 +973,7 @@ These commands should be tested on the Attendance Page.
    1. Test case: `mark 1`<br>
       Expected: First student is marked as present. Details of the student marked as present shown in the log box.
 
-   2. Other incorrect `mark` commands to try: `mark`, `mark x` (where x is larger than the student list size)
-      , `mark -1` or `mark 101` (where x is a valid index from the student list) <br>
+   2. Other incorrect `mark` commands to try: `mark`, `mark x` (where x is larger than the student list size, `mark -1` <br>
       Expected: No student is marked as present. Error details shown in the log box.
    
 2. Marking selected students as present, with 6 students in the list.
@@ -991,8 +990,7 @@ These commands should be tested on the Attendance Page.
     1. Test case: `unmark 1`<br>
        Expected: First student is marked as absent. Details of the student marked as absent shown in the log box.
 
-    2. Other incorrect `unmark` commands to try: `unmark`, `unmark x` (where x is larger than the student list size)
-       , `unmark -1` or `unmark 101` (where x is a valid index from the student list) <br>
+    2. Other incorrect `unmark` commands to try: `unmark`, `unmark x` (where x is larger than the student list size), `unmark -1`<br>
        Expected: No student is marked as absent. Error details shown in the log box.
 
 2. Marking selected students as absent, with 6 students in the list.
