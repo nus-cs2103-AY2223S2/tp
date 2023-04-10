@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class StudentRemoveCommand extends Command {
      * Represents a command to remove a student from a session.
      */
     public StudentRemoveCommand(Index index, SessionName sessionName) {
+        requireAllNonNull(index, sessionName);
         this.index = index;
         this.sessionName = sessionName;
     }
