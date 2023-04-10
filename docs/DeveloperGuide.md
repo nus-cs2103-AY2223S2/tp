@@ -405,6 +405,8 @@ Step 1: User executes `listall` to list all the people and tasks in OfficeConnec
 Step 2: User executes `assign pi/1 ti/1` to assign the first task on the list of tasks to the first person on the list
 of tasks.
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user wants to execute an `assign` command:
 
 ![Assign Activity Diagram](images/AssignActivityDiagram.png)
@@ -1403,7 +1405,7 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
         Expected: No person details are displayed. "Person index is invalid" shown in status message.
 
-### 7.12 Edit task 
+### 7.13 Edit task 
 
   1. Task to be edited is available in OfficeConnect
      1. Prerequisites: The specified task index is invalid
@@ -1415,7 +1417,7 @@ testers are expected to do more *exploratory* testing.
      2. Test case: `editt 0`
      3. Expected: "The task index provided is invalid" shown in status message.
 
-### 7.13 Find persons by name
+### 7.14 Find persons by name
 
   1. There are persons in OfficeConnect with the specified name.
      1. Prerequisites: Only one person can be specified.
@@ -1435,7 +1437,7 @@ testers are expected to do more *exploratory* testing.
      4. Other incorrect find persons commands to try: `findp !@#`)<br>
         Expected: No persons are displayed. "No such person found" shown in status message.
 
-### 7.14 Find tasks by title
+### 7.15 Find tasks by title
 
   1. There are tasks in OfficeConnect with the specified title.
      1. Prerequisites: Only one title can be specified.
