@@ -310,8 +310,6 @@ The following sequence diagram summarises what happens when a user executes a Pr
 
 The following activity diagram summarises what happens when a user executes a Prefix find operation:
 
-![PrefixFindActivityDiagram](images/PrefixFindActivityDiagram.png)
-
 #### Design Considerations
 
 **Aspect: How Prefix find handle input that does not make sense (Numerics in names, non-existent postal codes
@@ -508,14 +506,22 @@ The following activity diagram summarises what happens when a user executes an i
 
 ![ImportActivityDiagram](images/ImportActivityDiagram.png)
 
-#### Design considerations
+#### Design Considerations
 
-**Aspect: Filenames and directories accepted**
-* We currently only accept filenames with no special characters.
-* We also do not currently accept additional directory specifications. Files are stored in the same directory as `dht.jar`.
+**Aspect: What filenames and directories accepted**
 
-**Future work**
-* Instead of having a single default location, we could accept a directory as part of the input, create it if it does not exist, and save the file there instead.
+* **Alternative 1 (current choice):** Accept only filenames without special characters and are contained within the
+same directory. This is done by checking the inputted filename ends with .csv and does not contain non-alphanumeric
+characters.
+    * Pros: This makes storage of the files easy and it is easy to validate the filename.
+    * Cons: Less flexibility in where the user can import their files from. It is limited to the same
+      directory.
+      * We also do not currently accept additional directory specifications and files must be imported from the same
+      directory as `dht.jar`.
+
+* **Alternative 2:** Allows a wider range of filename inputs including subdirectories.
+    * Pros: More flexibility as to where the user can import their files from.
+    * Cons: Harder to implement. Refer to planned enhancements.
 
 ### Export feature
 
@@ -536,13 +542,19 @@ The following activity diagram summarises what happens when a user executes an e
 
 #### Design considerations
 
+**Aspect: What filenames and directories accepted**
+
+Same as import command design considerations for what filenames are accepted.
+
 **Aspect: Overwrite checking**
-* We currently allow the user to overwrite CSV files stored as long as the IO operations are successful.
-  * This is an issue as a user can accidentally override important CSV files.
-  
-**Future work**
-  * We will implement a checker that will prompt the user asking if they're sure they want to override the CSV file
-currently at the filename location.
+
+* **Alternative 1 (current choice):** We currently allow the user to overwrite CSV files stored as long as the IO operations are successful.
+    * Cons: This is an issue as a user can accidentally override important CSV files.
+    * Pros: It is easier to implement.
+
+* **Alternative 2:**
+    * Pros: Adds an additional layer of check so that the user does not override previously stored CSV files.
+    * Cons: Harder to implement. Look at future work.
 
 ### Checkout feature
 
@@ -890,6 +902,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
 
 ### Exporting/Importing data
+
 1. Testing import CSV
    1. Remove `denguehotspottracker.csv` file in the /data folder.
    1. Run `DengueHotSpotTracker` to obtain an initialized list of cases.
@@ -964,3 +977,17 @@ within which the cases were found:
 
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
+
+### Do an existence check on the files before export
+
+We will implement a checker that will prompt the user asking if they're sure they want to override the CSV file
+currently at the filename location.
+
+We did not implement this due to the difficulty as well as not having thought about it prior to `v1.3`.
+
+### Check the validity of filenames which include subdirectories
+
+This feature helpful as described under export command's design considerations. However, this is an additional feature
+and we were not able to add it into `v1.4`.
+
+This is a very helpful feature since it prevents accidental mistakes of overwriting preexisting CSV files.
