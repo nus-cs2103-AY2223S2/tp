@@ -241,8 +241,8 @@ just add more `[t/TAG]` to the end of the command, separated by a space.
 </div>
 
 Examples:
-* `add id/123 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Residences p/1234567 t/intern t/vegan`
-* `add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern`
+* `add id/123 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Residences p/1234 5678 t/intern t/vegan`
+* `add id/777 n/John Doe p/9876 5432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern`
 
 
 ![result for 'add id/777 n/John Doe p/98765432 a/311, Clementi Ave 2, #02-25 e/johnd@example.com t/vegan t/intern'](images/UiAddEmployeeCommand.png)
