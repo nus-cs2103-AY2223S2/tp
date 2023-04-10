@@ -103,7 +103,7 @@ The information below specifies parameter description, constraints and usage thr
 | t/                | Tags (optional parameter)          | Single string of characters not separated by any whitespace                     | pendingReview, recurrentProblem   | N/A                                          |
 | INDEX<sup>*</sup> | Index in doctors/patients list     | Positive integer less than or equal to 2147483649                               | 1, 2147483647                     | -1, 2147483649                               |
 
-<sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#unassigning-a-patient-from-a-doctor)
+<sup>*</sup>Index is prefaced by doc/ and ptn/ in the commands [`assign-ptn`](#assigning-a-patient-to-a-doctor) and [`unassign-ptn`](#undoing-assignment-of-a-patient-from-a-doctor)
 
 #### Doctor Parameters
 
