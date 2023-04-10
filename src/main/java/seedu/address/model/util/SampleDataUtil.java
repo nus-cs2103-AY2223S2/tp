@@ -42,8 +42,6 @@ public class SampleDataUtil {
     public static InternshipApplication[] getSampleInternshipApplications() {
         return new InternshipApplication[] {
             new InternshipApplication(new CompanyName("Facebook"), new JobTitle("Software Engineer")),
-            new InternshipApplication(new CompanyName("Meta"), new JobTitle("Cloud Engineer")),
-            new InternshipApplication(new CompanyName("Google"), new JobTitle("Frontend Developer")),
             new InternshipApplication(new CompanyName("Grab"), new JobTitle("Backend Developer"),
                     getReviewSet("Competitive environment"),
                     new Contact(new Phone("98765432"), new Email("career@grab.com")), InternshipStatus.RECEIVED,
