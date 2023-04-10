@@ -45,8 +45,9 @@ StorageManager -up-> "1" ShopStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonShopStorage .up.|> ShopStorage
 JsonShopStorage ..> JsonSerializableShop
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson -right-> "*" JsonAdaptedTag
 JsonAdaptedCustomer -up-|> JsonAdaptedPerson
+JsonAdaptedTechnician -up-|> JsonAdaptedPerson
 JsonSerializableShop --> "*" JsonAdaptedCustomer
 JsonSerializableShop ---> "*" JsonAdaptedVehicle
 JsonSerializableShop ---> "*" JsonAdaptedService
