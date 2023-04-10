@@ -361,6 +361,9 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
+
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -380,6 +383,8 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding persons by name : `find`
 
@@ -540,6 +545,8 @@ input data. For more details, refer to the [autocomplete section](#autocomplete-
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Finding Meetings by Attendee Name : `findm`
 
 Find meetings whose names contain any of the given keywords.
@@ -584,6 +591,8 @@ Exports the meetings at the specified `INDEX`'s and between `start` and `end` da
 Format: `exportm p/INDEX [p/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]`
 
 Example: `exportm start/01/01/23 m/1` will export the first meeting and any meetings starting from 01/01/23
+
+<div style="page-break-after: always;"></div>
 
 ### Import Meetings : `importm`
 
@@ -636,6 +645,8 @@ Example:
 Optional Parameter `f/` that forces imports regardless of duplicate values. `f/` does not take any values.
 
 Format: `importm JSON f/`
+
+<div style="page-break-after: always;"></div>
 
 ### Delete Meetings : `delm`
 
@@ -692,6 +703,9 @@ Toggles the theme from dark to light or vice versa.
 
 ![toggle theme](images/toggleTheme.png)
 
+<div style="page-break-after: always;"></div>
+
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -711,6 +725,9 @@ Format: `help [COMMAND_WORD]`
 Clears all entries from the address book.
 
 Format: `clear`
+
+<div style="page-break-after: always;"></div>
+
 
 ### Saving the data
 
