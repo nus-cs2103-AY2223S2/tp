@@ -461,10 +461,10 @@ Unlike `find`, the `filter` command instead show entries that match **at least o
 
 Please refer to the [Prefix Summary](#prefix-summary) for more details!
 
-<div markdown="span" class="alert alert-success">:bulb: **Tip:** 
+<div markdown="block" class="alert alert-success">:bulb: **Tip:** 
 
 * Using `find` without specifying any fields has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
-* Using `filter` without any `PREFIX`s will result in an empty list!
+* Using `filter` without specifying any fields will result in an empty list!
 </div>
 
 Examples:
@@ -600,7 +600,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                                   |
 | Edit   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
 | Exit   | `exit`                                                                                                                                                                                                                                                            |
-| Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                               |                                                                                                                                                                                           |
+| Find   | `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                               |                                                                                                                                                                                           |
 | List   | `list`                                                                                                                                                                                                                                                            |
 | Redo   | `redo`                                                                                                                                                                                                                                                            |
 | Remark | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                              |
