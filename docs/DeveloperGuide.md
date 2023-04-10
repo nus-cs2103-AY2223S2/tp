@@ -857,10 +857,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to find cases by age range in the list
-4.  DengueHotspotTracker finds cases
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to find cases by age range in the list.
+4.  DengueHotspotTracker finds cases.
 
     Use case ends.
 
