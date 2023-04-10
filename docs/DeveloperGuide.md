@@ -234,27 +234,24 @@ Seed states are captured
 These details are handled transparently by `StateHistory`.
 
 ### Input Log
-
-This is a new nice-to-have feature, it helps the users to manage their workflow with E-Lister more efficiently by allowing them to see all the commands they keyed in that were successfully executed.
+This is a GUI enhancement we implemented to provide users with more information. A new UI component `HistoryDisplay` was created along with some changes and additions to other high-level components (`Model`, `Storage`, `Commons`) in order to record the executed commands (noted that unsuccessfully executed inputs will not be recorded) and store it in a local `.txt` file and read from that `.txt` file and show to user.
 
 #### Implementation
 
 The feature implementation involves in almost all high-level components which are `UI`, `Model`, `Storage` and `Commons`:
 
 * `HistoryDisplay` class in the `UI` encapsulates the visual display of the saved data onto the GUI.
-* `History` class in the `Model` represents the list of executed commands.
+* `History` class in the `Model` represent the list of executed commands.
 * `TxtHistoryStorage` and `HistoryStorage` from the `Storage` represents the `.txt` file and the action of reading/writing from/to that file.
 
-1. Initially, when E-Lister is run, a new `TxtHistoryStorage` will be initialized along with other parts of high-level components.
-2. Then, the history will be read from the file after the `Elister` is read.
-3. It will then be passed to `Logic` where the users' command in `String` type is going to be execute and write the commands into the file if the commands are succesfully executed.
+1. Initially, when E-Lister is run, a new `TxtInputHistoryStorage` will be initialized along with other parts of high-level components.
+2. Then, the history will be read from the `.txt` file after the `Elister` is read.
+3. It will then be passed to `Logic` where the users' commands in `String` type are going to be executed and written into the `.txt` file if the commands were succesfully executed.
 4. After the execution, the new `String` from `.txt` file will be read and display the updated history list to the users.
 
-Below is the diagram showing the process [*To-be-add*]
-
 ### Design Consideration:
-1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a seperate `.txt` file to store the commands, it would be much more convenient and less methods invoking among high-level components because:
-    * The expected behaviour is that it displays exactly the commands that user inputted before, so if we use `.txt` file, we only need to check the command is succesfully executed before write the whole `String` command into the `txt` file.
+1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a separate `.txt` file to store the commands, it would be much more convenient and fewer methods invoking among high-level components because:
+    * The expected behavior is that it displays exactly the commands that the user inputted before, so if we use `.txt` file, we only need to check the command is successfully executed before write the whole `String` command into the `txt` file. 
     * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
 ```
    historyStringOptional = storage.readHistoryString();
@@ -264,15 +261,18 @@ Below is the diagram showing the process [*To-be-add*]
    initialHistory = new History(historyStringOptional.orElse(""));
 ```
 2. Inspired by the `Optional<ReadOnlyAdressBook` from the read and write process to the `.json` file, I also implement the read/write process of history such that the content will be encapsulated with an `Optional<String>` instead of `String`. This is useful since `Optional<T>` helps to avoid `NullPointException` and also lead to cleaner codes.
-```markdown
-    /**
-     * Returns history string.
-     * Returns {@code Optional.empty()} if storage file is not found.
-     *
-     * @throws IOException if there was any problem when reading from the storage.
-     */
-    Optional<String> readHistoryString() throws IOException;
-```
+
+### Displaying filters that are currently applied
+This is another GUI enhancement that is similar to the display of executed inputs from the previous section. Instead of displaying executed commands, this new UI component displays those filters that are applied on the contact list.
+
+#### Implementation
+In order to implement this new feature, there are some changes and additions to `Ui`, `Model` and `Logic`:
+* `FiltersDisplay` class in the `Ui` encapsulates the visual display of those applying filters.
+* `Filter` class in the `Model` represent a filter coming from user inputs with the `filter` command.
+
+A brief description of how E-Lister keep track of which filters are applied on its contact list is:
+1. `MainWindow#executeCommand()` in the `Ui` will invoke a call to `ModelManager#getApplyingFilterList()` and hence it will returns an `ObservableList<filter>` and be passed into `FiltersDisplay#setApplyingFilters()`.
+2. A `ModelManager` object keeps updating the list of filters to be shown to user along with its `filteredPerson` through `ModelManager#updateFilteredPersonList()`.
 
 ### Creating shortcuts using the command `shortcut`
 
