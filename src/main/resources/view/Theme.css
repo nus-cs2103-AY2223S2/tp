@@ -199,18 +199,18 @@
 }
 
 /* styles the individual stats in the list view */
-#reviewStatsPane {
+#reviewStatsElement {
     -fx-background-radius: 15;
     -fx-border-radius: 15;
     -fx-background-color: transparent;
 }
 
-#reviewStatsPane #title {
+#reviewStatsElement #title {
     -fx-text-fill: black;
     -fx-underline: true;
 }
 
-#reviewStatsPane #description {
+#reviewStatsElement #description {
     -fx-text-fill: black;
     -fx-font-size: 20px;
 }
