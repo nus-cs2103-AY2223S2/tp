@@ -220,7 +220,7 @@ public class MakeCommandTest {
         }
 
         @Override
-        public Character createFromTemplate(Name entityName, Name templateName) {
+        public Character createFromTemplate(Name entityName, String templateName) {
             throw new AssertionError("This method should not be called.");
         }
 

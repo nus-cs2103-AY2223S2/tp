@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.entity.Character.CharacterBuilder;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
@@ -26,8 +29,7 @@ public class JsonAdaptedCharacter {
     private final String name;
     private final JsonAdaptedStats stats;
     private final JsonAdaptedInventory inventory;
-    private final int level;
-    private final int xp;
+    private final JsonAdaptedProgression progression;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,12 +38,11 @@ public class JsonAdaptedCharacter {
     @JsonCreator
     JsonAdaptedCharacter(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
                          @JsonProperty("inventory") JsonAdaptedInventory inventory,
-                         @JsonProperty("level") int level, @JsonProperty("xp") int xp,
+                         @JsonProperty("progression") JsonAdaptedProgression progression,
                          @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.stats = stats;
-        this.level = level;
-        this.xp = xp;
+        this.progression = progression;
         this.inventory = inventory;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -55,8 +56,7 @@ public class JsonAdaptedCharacter {
         name = source.getName().fullName;
         stats = new JsonAdaptedStats(source.getStats());
         inventory = new JsonAdaptedInventory(source.getInventory());
-        level = source.getLevel();
-        xp = source.getXP();
+        progression = new JsonAdaptedProgression(source.getProgression());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -70,6 +70,7 @@ public class JsonAdaptedCharacter {
     public Character toModelType() throws IllegalValueException {
         Stats stat = stats.toModalType();
         Inventory inventory = this.inventory.toModelType();
+        Progression progression = this.progression.toModalType();
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -86,7 +87,13 @@ public class JsonAdaptedCharacter {
             tags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Character(modelName, stat, level, xp, inventory, modelTags);
+        CharacterBuilder builder = new CharacterBuilder(modelName)
+                .setStats(stat)
+                .setProgression(progression)
+                .setInventory(inventory)
+                .setTags(modelTags);
+
+        return builder.build();
     }
 
 }

@@ -11,9 +11,12 @@ import seedu.address.model.entity.Entity;
  */
 public class MakeCommand extends Command {
 
-    public static final String COMMAND_WORD = "make|m";
+    public static final String COMMAND_WORD = "make";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entity to the management system. ";
+    public static final String SHORT_FORM_COMMAND = "m";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " CLASSIFICATION NAME: "
+            + "Adds an entity to the management system.";
 
     public static final String MESSAGE_SUCCESS = "New entity added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTITY = "This entity already exists in Reroll";

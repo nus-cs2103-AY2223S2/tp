@@ -11,54 +11,24 @@ import seedu.address.model.tag.Tag;
  * Represents an item, which is a child class of Entity
  */
 public class Item extends Entity {
-
-    public static final int DEFAULT_COST = 0;
-    public static final int DEFAULT_WEIGHT = 0;
-    private final int cost;
-    private final float weight;
+    private final Cost cost;
+    private final Weight weight;
 
     /**
-     * Every field should be present and non-null.
-     *
-     * @param name   name of the character
-     * @param cost   price of the item
-     * @param weight weight of the item
-     * @param tags   tags categorizing the item
+     * Constructs an item using a given ItemBuilder
+     * @param builder given ItemBuilder
      */
-    public Item(Name name, int cost, float weight, Set<Tag> tags) {
-        super(name, tags);
-        this.cost = cost;
-        this.weight = weight;
+    public Item(ItemBuilder builder) {
+        super(builder.name, builder.tags);
+        this.cost = builder.cost;
+        this.weight = builder.weight;
     }
 
-    /**
-     * Every field should be present and non-null.
-     *
-     * @param name name of the character
-     * @param tags tags categorizing the item
-     */
-    public Item(Name name, Set<Tag> tags) {
-        super(name, tags);
-        cost = DEFAULT_COST;
-        weight = DEFAULT_WEIGHT;
-    }
-
-    /**
-     * Every field should be present and non-null.
-     *
-     * @param name name of the character
-     */
-    public Item(Name name) {
-        super(name, new HashSet<>());
-        cost = DEFAULT_COST;
-        weight = DEFAULT_WEIGHT;
-    }
-
-    public int getCost() {
+    public Cost getCost() {
         return this.cost;
     }
 
-    public float getWeight() {
+    public Weight getWeight() {
         return this.weight;
     }
 
@@ -68,8 +38,8 @@ public class Item extends Entity {
         final StringBuilder serializedTags = new StringBuilder();
         tags.forEach(serializedTags::append);
         return List.of(
-                new Pair<>("Cost", String.valueOf(getCost()) + "g"),
-                new Pair<>("Weight", String.valueOf(getWeight())),
+                new Pair<>("Cost", getCost().toString()),
+                new Pair<>("Weight", getWeight().toString()),
                 new Pair<>("Tags", serializedTags.toString())
         );
     }
@@ -79,5 +49,64 @@ public class Item extends Entity {
         return otherEntity == this
                 || (otherEntity instanceof Item
                 && otherEntity.getName().equals(getName()));
+    }
+
+    /**
+     * Builder class for Item
+     */
+    public static class ItemBuilder {
+        private final Name name;
+        private Cost cost = new Cost();
+        private Weight weight = new Weight();
+        private Set<Tag> tags = new HashSet<>();
+
+        public ItemBuilder(Name name) {
+            this.name = name;
+        }
+
+        /**
+         * Set tags of the ItemBuilder instance
+         * @param tags given tags to set
+         * @return this
+         */
+        public ItemBuilder setTags(Set<Tag> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+
+        /**
+         * Set cost of the ItemBuilder instance
+         * @param cost given cost to set
+         * @return this
+         */
+        public ItemBuilder setCost(Cost cost) {
+            this.cost = cost;
+            return this;
+        }
+
+        /**
+         * Set weight of the ItemBuilder instance
+         * @param weight given weight to set
+         * @return this
+         */
+        public ItemBuilder setWeight(Weight weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        /**
+         * Create a copy of a given CharacterBuilder
+         * @param toCopy given CharacterBuilder to copy
+         */
+        public void copy(ItemBuilder toCopy) {
+            this.weight = toCopy.weight;
+            this.cost = toCopy.cost;
+            this.tags = toCopy.tags;
+        }
+
+        public Item build() {
+            return new Item(this);
+        }
     }
 }

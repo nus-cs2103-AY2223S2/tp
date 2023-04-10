@@ -14,8 +14,8 @@ import seedu.address.model.entity.Name;
  * Creates a new character from a template.
  */
 public class TemplateCommand extends Command {
-
-    public static final String COMMAND_WORD = "template|t";
+    public static final String COMMAND_WORD = "template";
+    public static final String SHORT_FORM_COMMAND = "t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a character using a template. ";
 
@@ -23,13 +23,13 @@ public class TemplateCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ENTITY = "This character name already exists in Reroll";
     public static final String MESSAGE_NO_TEMPLATE = "No such template was found in Reroll!";
 
-    private final Name templateName;
+    private final String templateName;
     private final Name newName;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public TemplateCommand(Name templateName, Name newName) {
+    public TemplateCommand(String templateName, Name newName) {
         requireAllNonNull(templateName, newName);
         this.templateName = templateName;
         this.newName = newName;
@@ -42,7 +42,7 @@ public class TemplateCommand extends Command {
         try {
             toAdd = model.createFromTemplate(newName, templateName);
         } catch (NoSuchElementException e) {
-            throw new CommandException(e.getMessage());
+            throw new CommandException(MESSAGE_NO_TEMPLATE);
         }
         requireNonNull(toAdd);
         if (model.hasEntity(toAdd)) {

@@ -2,10 +2,13 @@ package seedu.address.model.entity;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.entity.Character.CharacterBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import seedu.address.model.entity.exceptions.DuplicateTemplateException;
 
@@ -13,13 +16,13 @@ import seedu.address.model.entity.exceptions.DuplicateTemplateException;
  * Class which stores a list of pre-determined character templates
  */
 public class Template {
-    private final ArrayList<Character> templates;
+    private final HashMap<String, CharacterBuilder> templates;
 
     /**
      * Initialize list of character templates
      */
     private Template() {
-        this.templates = new ArrayList<>();
+        this.templates = new HashMap<>();
     }
 
     /**
@@ -31,12 +34,13 @@ public class Template {
         Stats orcStats = new Stats(15, 6, 1);
         Stats elfStats = new Stats(6, 10, 10);
         Stats humanStats = new Stats(7, 9, 9);
-        Character orcTemplate = new Character(new Name("orc"), orcStats);
-        Character elfTemplate = new Character(new Name("elf"), elfStats);
-        Character humanTemplate = new Character(new Name("human"), humanStats);
-        presetTemplates.addTemplate(orcTemplate);
-        presetTemplates.addTemplate(elfTemplate);
-        presetTemplates.addTemplate(humanTemplate);
+        Name template = new Name("template");
+        CharacterBuilder orcTemplate = new CharacterBuilder(template).setStats(orcStats);
+        CharacterBuilder elfTemplate = new CharacterBuilder(template).setStats(elfStats);
+        CharacterBuilder humanTemplate = new CharacterBuilder(template).setStats(humanStats);
+        presetTemplates.addTemplate("orc", orcTemplate);
+        presetTemplates.addTemplate("elf", elfTemplate);
+        presetTemplates.addTemplate("human", humanTemplate);
         return presetTemplates;
     }
 
@@ -45,19 +49,9 @@ public class Template {
      * @param toCheck name of template
      * @return existence check
      */
-    public boolean contains(Name toCheck) {
+    public boolean contains(String toCheck) {
         requireNonNull(toCheck);
-        return templates.stream().anyMatch(t -> t.getName().equals(toCheck));
-    }
-
-    /**
-     * Checks if a character template with the same name exists
-     * @param toCheck Character to be added
-     * @return existence check
-     */
-    public boolean contains(Character toCheck) {
-        requireAllNonNull(toCheck);
-        return contains(toCheck.getName());
+        return templates.containsKey(toCheck);
     }
 
     /**
@@ -65,12 +59,12 @@ public class Template {
      * @param toAdd template to add
      * @throws DuplicateTemplateException if template with same name already exists
      */
-    public void addTemplate(Character toAdd) throws DuplicateTemplateException {
-        requireNonNull(toAdd);
-        if (this.contains(toAdd)) {
+    public void addTemplate(String templateName, CharacterBuilder toAdd) throws DuplicateTemplateException {
+        requireAllNonNull(templateName, toAdd);
+        if (this.contains(templateName)) {
             throw new DuplicateTemplateException();
         } else {
-            templates.add(toAdd);
+            templates.put(templateName, toAdd);
         }
     }
 
@@ -79,22 +73,20 @@ public class Template {
      * @return the list
      */
     public List<String> list() {
-        ArrayList<String> list = new ArrayList<>();
-        this.templates.forEach(t -> list.add(t.getName().fullName));
-        return list;
+        Set<String> templateSet = this.templates.keySet();
+        return new ArrayList<>(templateSet);
     }
     /**
      * Primitive version of generating character from template.
      */
-    public Character generateCharacter(Name characterName, Name templateName) throws NoSuchElementException {
+    public Character generateCharacter(Name characterName, String templateName) throws NoSuchElementException {
         requireAllNonNull(characterName, templateName);
-        Character c = templates.stream()
-                .filter(t -> t.getName().equals(templateName))
-                .findFirst()
-                .orElse(null);
-        if (c == null) {
+        CharacterBuilder builder = new CharacterBuilder(characterName);
+        CharacterBuilder template = this.templates.get(templateName);
+        if (template == null) {
             throw new NoSuchElementException("Template does not exist!");
         }
-        return new Character(characterName, c.getStats(), c.getLevel(), c.getXP(), c.getInventory(), c.getTags());
+        builder.copy(template);
+        return builder.build();
     }
 }

@@ -48,37 +48,45 @@ public class RerollParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        // TODO: Improve code quality
-        if (Pattern.matches(MakeCommand.COMMAND_WORD, commandWord)) {
-            return new MakeCommandParser().parse(arguments);
-        } else if (Pattern.matches(DeleteCommand.COMMAND_WORD, commandWord)) {
-            return new DeleteCommandParser().parse(arguments);
-        } else if (Pattern.matches(EditCommand.COMMAND_WORD, commandWord)) {
-            return new EditCommandParser().parse(arguments);
-        } else if (Pattern.matches(TemplateCommand.COMMAND_WORD, commandWord)) {
-            return new TemplateCommandParser().parse(arguments);
-        } else if (Pattern.matches(ListCommand.COMMAND_WORD, commandWord)) {
-            return new ListCommandParser().parse(arguments);
-        }
-
         switch (commandWord) {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case DeleteCommand.SHORT_FORM_COMMAND:
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+
+        case EditCommand.SHORT_FORM_COMMAND:
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
 
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case ListCommand.SHORT_FORM_COMMAND:
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
+
+        case MakeCommand.SHORT_FORM_COMMAND:
+        case MakeCommand.COMMAND_WORD:
+            return new MakeCommandParser().parse(arguments);
+
         case ShowTemplatesCommand.COMMAND_WORD:
             return new ShowTemplatesCommand();
+
+        case TemplateCommand.SHORT_FORM_COMMAND:
+        case TemplateCommand.COMMAND_WORD:
+            return new TemplateCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
