@@ -72,6 +72,8 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 3. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
+**NOTE: The text of Vimification may sometimes wrap over to the next line on Windows, enlarge the window size to prevent this issue!**
+
 ### For Mac
 
 1. Ensure that you have Java `11` Zulu SDK installed in your computer.
@@ -81,6 +83,20 @@ The guide will walk you through the process of creating and managing tasks, sett
 3. Run `java -jar vimification.jar`.
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds.
+
+**NOTE: The text of Vimification may sometimes wrap over to the next line on Mac, enlarge the window size to prevent this issue!**
+
+### For Linux
+
+1. Ensure that you have Java `11` Zulu SDK installed in your computer.
+
+2. Open your Terminal, and `cd` into the folder you put the JAR file in.
+
+3. Run `java -jar vimification.jar`.
+
+4. The application should launch, and a GUI similar to the below should appear in a few seconds.
+
+**NOTE: You may still be able to resize the window of Vimification in Linux to a size that is smaller than the default! Resize the window to full-screen if you have any difficulties seeing the tasks.**
 
 <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
 <br><br>
@@ -134,15 +150,47 @@ Similarly, pressing `k` brings us up the task list.
 
 In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right-side panel and display the task detail.
 
-<img class="ui-img" src="images/ug-images/6.before-l.png">
-
-<img class="ui-img" src="images/ug-images/7.after-l.png">
+<table>
+  <tr>
+    <th>
+      Before
+    </th>
+    <th>
+      After
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img class="ui-img" src="images/ug-images/6.before-l.png">
+    </td>
+    <td>
+      <img class="ui-img" src="images/ug-images/7.after-l.png">
+    </td>
+  </tr>
+</table>
 
 In Vim, pressing `h` moves you to the left, but in Vimification, pressing `l` would move you back to the task list(and hence clear out the right-side panel!).
 
-**NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again.**
+<table>
+  <tr>
+    <th>
+      Before
+    </th>
+    <th>
+      After
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img class="ui-img" src="images/ug-images/10.before-h.png">
+    </td>
+    <td>
+      <img class="ui-img" src="images/ug-images/11.after-h.png">
+    </td>
+  </tr>
+</table>
 
-**NOTE: Currently, pressing `h` does nothing. This key is reserved for future versions.**
+**NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again, otherwise, use your mouse to click on the task list in Vimification to recalibrate the focus.**
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -184,7 +232,7 @@ Similar to Vim, you can access command mode by **pressing the `:` key** on your 
 
 <img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-**NOTE: Besides the navigation commands (`j`, `k`, `l`), every command always starts with a colon (`:`).**
+**NOTE: Besides the navigation commands (`h`, `j`, `k`, `l`), every command always starts with a colon (`:`).**
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -266,7 +314,24 @@ Redundant parameter(s) at the end will raise an error, and the command will not 
 
 Show a manual page on the right hand side of Vimification.
 
-![help message](images/helpMessage.png)
+<table>
+  <tr>
+    <th>
+      Before
+    </th>
+    <th>
+      After
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img class="ui-img" src="images/ug-images/12.before-help.png">
+    </td>
+    <td>
+      <img class="ui-img" src="images/ug-images/13.after-help.png">
+    </td>
+  </tr>
+</table>
 
 Format: `:help`
 
@@ -452,7 +517,6 @@ Example of command
 4. `:f -p 1` filter for tasks with the priority "urgent"
 5. `:f -a -l "label1" -l "label2"` filter for tasks contain "label1" and "label2"
 6. `:f -o -l "label1" -l "label2"` filter for tasks contain "label1" or "label2"
-
 
 Condition
 
