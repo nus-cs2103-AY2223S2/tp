@@ -440,7 +440,7 @@ testers are expected to do more _exploratory_ testing.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** Advanced users of ExpressLibrary are welcome to manually edit the data file if they wish to do so. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/UserGuide.html#how-data-is-saved).
+:information_source: **Note:** Advanced users of ExpressLibrary are welcome to manually edit the data file if they wish to do so. Please refer to [_How data is saved_](../UserGuide.html#how-data-is-saved).
 
 </div>
 
