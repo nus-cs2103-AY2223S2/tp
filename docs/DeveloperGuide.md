@@ -606,7 +606,7 @@ Use case ends.
    
   * 1a1. MATHUTORING shows an error message.
    
-  Use case resumes at step 1.
+    Use case resumes at step 1.
    
 **14. Use case: Switch panel via GUI**
 
@@ -636,13 +636,13 @@ Use case ends.
    
   * 1a1. MATHUTORING shows an error message.
    
-  Use case resumes at step 1.
+    Use case resumes at step 1.
    
 * 1b. The given command argument(s) are invalid.
    
   * 1b1. MATHUTORING shows an error message.
    
-  Tutor case resumes at step 1.
+    Tutor case resumes at step 1.
    
 **16. Use case: Check a student**
 
@@ -661,19 +661,19 @@ Use case ends.
 **Extensions**
 * 2a. The student list is empty.
    
-  Use case ends.
+    Use case ends.
    
 * 3a. The given command is invalid.
    
   * 3a1. MATHUTORING shows an error message.
    
-  Use case resumes at step 2.
+    Use case resumes at step 2.
    
 * 3b. The given index is invalid.
    
   * 3b1. MATHUTORING shows an error message.
    
-  Use case resumes at step 2.
+    Use case resumes at step 2.
    
 ### Non-Functional Requirements
 
