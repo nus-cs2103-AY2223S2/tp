@@ -49,7 +49,7 @@ public class ListingBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case ViewCommand.COMMAND_WORD:
             return new ViewCommand();
 
