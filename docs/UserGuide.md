@@ -3,19 +3,13 @@ layout: page
 title: AIMS User Guide
 ---
 
-Army Information Management System (AIMS) is **the** desktop app built for army admin clerks with **3 main aims:**.
-1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#adding-a-person-to-favorites--favorite) sidebar).
-2. Ensure that your **data is properly and efficiently checked and validated** before storing.
-3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
-
-AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical
-User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
-GUI apps.
-
 <!-- omit from toc -->
-## Table of Contents
+## Table of Contents\
 
-- [Purpose](#purpose)
+- [Introduction](#introduction)
+  - [What is AIMS?](#what-is-aims)
+  - [Our Target](#our-target)
+  - [User Guide](#user-guide)
 - [Legend](#legend)
 - [Quick start](#quick-start)
 - [Overview of AIMS GUI](#overview-of-aims-gui)
@@ -40,14 +34,21 @@ GUI apps.
 - [Command summary](#command-summary)
 
 ---
+## Introduction
 
-## Purpose
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS.
+### What is AIMS?
+Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
 
+### Our Target
+AIMS was designed to achieve **3 main targets:**
+1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#adding-a-person-to-favorites--favorite) sidebar).
+2. Ensure that your **data is properly and efficiently checked and validated** before storing.
+3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
 
-AIMS is intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. Seasoned users will find that AIMS helps smoothen the administrative flow of managing contact information. Let's start your journey with AIMS today!
+### User Guide
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS. Mastering the use of AIMS will vastly improve your experience tackling the administrative flow of managing contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
 
-For a more technical and comprehesive overview of AIMS's codebase, please refer to our [Developer Guide.](DeveloperGuide.md)
+For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
 ## Legend
 
