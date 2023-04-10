@@ -76,10 +76,19 @@ title: Developer Guide
    * [Commons Classes](#common-classes)
      * [MathUtil](#mathutil)
 5. [Testing](#5-testing)
-   * [Unit Tests](#unit-tests)
-   * [Testing Models](#testing-models)
+   * [Testing Types](#testing-types)
+     * [Developer Testing](#developer-testing)
+     * [Regression Testing](#regression-testing)
+     * [Unit Tests](#unit-tests)
+     * [Stubs](#stubs)
+     * [Integration Testing](#integration-testing)
+     * [Dogfooding](#dogfooding)
+   * [Model](#model)
    * [Testing Commands](#testing-commands)
    * [Testing Parsers](#testing-parsers)
+   * [GUI Tests](#gui-tests)
+     * [Setting up automated GUI Tests in Github Actions](#setting-up-automated-gui-tests-in-github-actions)
+     * [Understanding GUI Tests](#understanding-gui-tests)
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
@@ -294,7 +303,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 
 <img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 1.1</b> Architecture Diagram for the high-level design of the App
+    <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
 
@@ -322,7 +331,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 1.2</b> Sequence Diagram for the command <code>delete 1</code>
+    <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
 </div>
 <br>
 
@@ -335,7 +344,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 1.3</b> Class Diagram for Component Managers
+    <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
 <br>
 
@@ -349,13 +358,13 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <img src="images/UiClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 2.1</b> Class Diagram for UI Controllers
+    <b>Figure 4.2.1</b> Class Diagram for UI Controllers
 </div>
 <br>
 
 <img src="images/UiComponentClassDiagram.svg" style="width:90%;margin:0 5%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 2.2</b> Class Diagram for UI Components
+    <b>Figure 4.2.2</b> Class Diagram for UI Components
 </div>
 <br>
 
@@ -383,7 +392,7 @@ The `UI` component,
 
 <img src="images/KeyMapActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 3.1</b> Activity Diagram for UP and DOWN keys
+    <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
 </div>
 
 <br>
@@ -398,7 +407,7 @@ The above activity diagram does not include the mapping of the UP and DOWN keys 
 
 <img src="images/ModelClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1</b> Class Diagram for Model Components
+    <b>Figure 4.4.1</b> Class Diagram for Model Components
 </div>
 <br>
 
@@ -416,7 +425,7 @@ The `Model` component,
 
 <img src="images/PersonClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.2</b> Class Diagram for Person Components
+    <b>Figure 4.4.2</b> Class Diagram for Person Components
 </div>
 
 #### **Name**
@@ -469,7 +478,7 @@ objects which is then used elsewhere in the codebase.
 
 <img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.3</b> Class Diagram for classes in Time Package.
+    <b>Figure 4.4.3</b> Class Diagram for classes in Time Package.
 </div>
 
 #### **Day**
@@ -548,7 +557,7 @@ A `Commitment` is something that a person needs to do at a certain time and plac
 
 <img src="images/CommitmentClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4</b> Class Diagram for Commitment Components
+    <b>Figure 4.4.4</b> Class Diagram for Commitment Components
 </div>
 <br>
 
@@ -578,7 +587,7 @@ The `Timetable` represents the daily schedule of the user or contact.
 
 <img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.5</b> Class Diagram for Timetable and related classes.
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
 </div>
 
 <br>
@@ -610,7 +619,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.1</b> Class Diagram for Logic Components
+    <b>Figure 4.5.1</b> Class Diagram for Logic Components
 </div>
 <br>
 
@@ -663,7 +672,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/AddActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.2</b> Activity Diagram for a typical <code>add</code> command
+    <b>Figure 4.5.2</b> Activity Diagram for a typical <code>add</code> command
 </div>
 
 #### **Edit Command**
@@ -714,7 +723,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/EditActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.3</b> Activity Diagram for a typical <code>edit</code> command
+    <b>Figure 4.5.3</b> Activity Diagram for a typical <code>edit</code> command
 </div>
 
 #### **Delete Command**
@@ -723,7 +732,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.4</b> Sequence Diagram for a typical <code>delete</code> command
+    <b>Figure 4.5.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
 <br>
 
@@ -761,7 +770,7 @@ The `tag` command allows user to add `ModuleTag`s or `GroupTag`s to an existing 
 
 <img src="images/TagActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
+    <b>Figure 4.5.5</b> Sequence Diagram for a typical <code>TagCommand</code> execution
 </div>
 <br>
 
@@ -791,7 +800,7 @@ Similar to the `tag` command, the `untag` command allows user to remove `ModuleT
 
 <img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
+    <b>Figure 4.5.6</b> Sequence Diagram for a typical <code>UntagCommand</code> execution
 </div>
 <br>
 
@@ -830,13 +839,13 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 
 <img src="images/ViewParserSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+    <b>Figure 4.5.7</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
+    <b>Figure 4.5.8</b> Sequence Diagram for a typical <code>ViewCommand</code> execution
 </div>
 
 #### **Find Command**
@@ -874,7 +883,7 @@ In summary, the activity diagram is as such:
 
 <img src="images/FindActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.9</b> Activity Diagram for a typical <code>find</code> command
+    <b>Figure 4.5.9</b> Activity Diagram for a typical <code>find</code> command
 </div>
 
 
@@ -964,7 +973,7 @@ We cannot save the json file directly from the command, because the command only
 
 <img src="images/SaveSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.10</b> Sequence Diagram for a typical <code>save</code> command.
+    <b>Figure 4.5.10</b> Sequence Diagram for a typical <code>save</code> command.
 </div>
 
 #### **Load Command**
@@ -981,7 +990,7 @@ Similar to the Save Command, we pass the file path through a `LoadCommandResult`
 
 <img src="images/LoadSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.11</b> Sequence Diagram for a typical <code>load</code> command.
+    <b>Figure 4.5.11</b> Sequence Diagram for a typical <code>load</code> command.
 </div>
 
 #### **Meet Command**
@@ -1062,7 +1071,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.12</b> Class Diagram for Parser Components
+    <b>Figure 4.5.12</b> Class Diagram for Parser Components
 </div>
 <br>
 
@@ -1084,7 +1093,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 <img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.13</b> Class Diagram for Recommender Module
+    <b>Figure 4.5.13</b> Class Diagram for Recommender Module
 </div>
 <br>
 
@@ -1104,7 +1113,7 @@ How the `Recommender` Component works:
 
 <img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.14</b> Sequence Diagram for Recommender Module
+    <b>Figure 4.5.14</b> Sequence Diagram for Recommender Module
 </div>
 <br>
 
@@ -1115,7 +1124,7 @@ will be free so that a meetup could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 5.15</b> Activity Diagram for <code>TimingRecommender</code>
+    <b>Figure 4.5.15</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
 <br>
 
@@ -1164,7 +1173,7 @@ The process of getting a recommendation is as follows:
 
 <img src="images/StorageClassDiagram.svg" style="width:100%;margin:0 0%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 6.1</b> Class Diagram for Storage Components
+    <b>Figure 4.6.1</b> Class Diagram for Storage Components
 </div>
 <br>
 
@@ -1187,31 +1196,97 @@ The `MathUtil` class contains generic functions for mathematical operations such
 
 ---
 
-## **Unit Tests**
+## **Testing Types**
 
-Our organisation primarily utilises `JUnit5` for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+Types of tests used:
+* Developer Testing
+* Regression Testing
+* Unit Tests
+* Stubs
+* Integration testing
+* Dogfooding
+
+Our organisation made use of different testing types in order to cover multiple grounds. Types of testings also changed 
+with the progress of the product.
+
+### **Developer Testing**
+
+Our organisation opted to use developer testing right from the start with every increment of the product, instead of 
+waiting for the whole product to be ready before conducting more tests.
+
+This type of testing involved the developers trying out the product with the various commands implemented, to 
+discover possible bugs early, and avoid major reworks in future increments and iterations.
+
+### **Regression Testing**
+
+Our organisation continued with regression testing as increments came in, to ensure that previous features were not 
+broken with changes and modifications. This is due to the interconnectedness of certain features implemented, such as 
+commands and the model. Our project followed a breadth-first iterative model, and hence it was crucial for us to carry 
+out regression testing as the project evolved and morphed. 
+
+Our organisation did this both with automated unit tests and manual testing. 
+We put a greater emphasis on unit tests due to the expensive cost of manual testing, especially at stages of the product 
+where it is not complete in its entirety.
+
+### **Unit Tests**
+
+Our organisation primarily utilised `JUnit5` for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
-### **Testing Models**
+Unit tests were implemented as features were added in, to ensure that as the product evolves, these features will have tests to ensure 
+that they are still working as intended. Unit tests were also changed and added on as the product progressed, to ensure
+that the features were tested more thoroughly as the team learned new testing types and techniques.
 
-Models used:
-* Waterfall model
-* Agile model
-* Breadth-first iterative model
 
-We used a mixture of models to suit our needs for different features. We applied the waterfall model to features that required individual work and the agile model for the others that required teamwork. We also had considerations for the time-limit imposed on this project so we applied the breadth-first iterative model to ensure basic functionalities.
+### **Stubs**
 
-### **Testing Commands**
+Stubs were used to test features and classes in isolation, so that any bugs in dependencies will not affect the tests
+that are in place. Use of stubs is common in our testing for models, as they have a lot of dependencies
+that make it difficult to test the entire logic in total. The model stubs are in use when testing other classes like commands. 
+Stubs help to isolate dependencies so that each component's logic are tested without being affected by other components.
 
-Equivalence partitions and stubs were mainly used to test commands.
+### **Integration Testing**
 
-### **Testing Parsers**
+Integration testing was used extensively in the testing of the GUI, as part of CI. Integration testing were also 
+included in unit tests to ensure that our features work well with each other. It was also covered manually via developer
+testing and dogfooding.
 
-Positive and negative test cases were mainly used to test parsers.
+
+### **Dogfooding**
+
+Towards the completion of our product, our developers used the product on a regular basis in an attempt to simulate how 
+a normal user might use the product. This helped ensure that our product would be relatively bug-free for a regular use
+case.
+
+## **Model**
+
+Our organisation created dummy values for a model of a simulated list of persons that our product might, and used that
+to carry out testing on. When changes were made to the model in the product, any changes required were reflected in 
+this testing model as well, to ensure that unit tests are testing on a correct simulation of the program.
+
+## **Testing Commands**
+
+Our organisation tested commands by creating commands with the correct parameters, bypassing the parser, and executed 
+them. Assertions were used to ensure that commands created, when executed, performed the correct operations on the model
+created specifically for tests, as well as to ensure that correct exceptions are thrown as and when needed, especially for
+invalid inputs.
+
+Our organisation made use of equivalence partitions to tests for the types of commands that can be executed. The rationale
+is that since we have a relatively large number of variants for each command, we needed to test all possible inputs and 
+partitions.
+
+## **Testing Parsers**
+
+Our organisation opted to use stubs in order to test the parsers, to isolate that the parser is firstly parsing the 
+correct text, and returning the correct corresponding command. 
+
+Negative and positive test cases were used to ensure that invalid inputs throws the correct exceptions, and that valid 
+inputs creates and returns the correct command with correct parameters. This testing ensures that our definitions for 
+equivalent commands were well-defined.
 
 ## **GUI Tests**
-Our organisation utilises `TestFX` for conducting GUI tests. `TestFX` is a popular testing framework for `JavaFX` applications as it provides a set of tools and utilities for writing tests that interact with `JavaFX` UI components, simulate user interactions, and perform assertions on the state of the UI.
+Our organisation utilised `TestFX` for conducting GUI tests. `TestFX` is a popular testing framework for `JavaFX` applications as it provides a set of tools and utilities for writing tests that interact with `JavaFX` UI components, simulate user interactions, and perform assertions on the state of the UI.
 
 We referenced from [Addressbook Level 4 (AB4)](https://github.com/se-edu/addressbook-level4) on automated GUI testing. 
 * What's different from AB4:
@@ -1237,27 +1312,27 @@ test {
 }
 ```
 
-## Understanding GUI tests
+### **Understanding GUI Tests**
 We utilised GUI tests from [AB4](https://github.com/se-edu/addressbook-level4/tree/master/src/test/java) and here is a summary of it.
 
 <img src="images/UiTestClassDiagram.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.1</b> Class Diagram for UI Tests
+    <b>Figure 5.1.1</b> Class Diagram for UI Tests
 </div>
 <br>
 
-Note that `AllUITests` above refer to all UI Tests in `seedu.address.ui` except for `TestFxmlObject`. The handles used in the corresponding test cases can be easily seen from their names. For example, `CommandBoxTest` contains `CommandBoxHandle`.
+Note that `AllUITests` above refers to all UI Tests in `seedu.address.ui` except for `TestFxmlObject`. The handles used in the corresponding test cases can be easily seen from their names. For example, `CommandBoxTest` contains `CommandBoxHandle`.
 <br>
 
 <img src="images/NodeHandleClassDiagram.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.2</b> Class Diagram for Node Handle
+    <b>Figure 5.1.2</b> Class Diagram for Node Handle
 </div>
 <br>
 
 <img src="images/StageHandleClassDiagram.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 5.3</b> Class Diagram for Stage Handle
+    <b>Figure 5.1.3</b> Class Diagram for Stage Handle
 </div>
 <br>
 
@@ -1336,10 +1411,20 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 ## **Planned Enhancements**
 
 1. To handle cases where the module code provided is not a valid NUS module, we propose the use of the NUSMods API to check whether the module exists. In this way, we can also tag the lessons with a more specific venue to improve recommendation of locations within NUS. This is currently not implemented as EduMate is an offline application, and existing modules will change overtime.
+
+
 2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature.
+
+
 3. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.
+
+
 4. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.
+
+
 5. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
+
+
 6. More explicit feedback messages for `tag` and `untag` commands for users.
 
 ## **Project Requirements**

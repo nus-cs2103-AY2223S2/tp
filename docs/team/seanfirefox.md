@@ -22,8 +22,10 @@ Given below are my contributions to the project.
     * Pushed the first version of the User Guide that is drafted by the whole team.
     * Updated User Guide for Find command and Key Maps.
   * Developer Guide:
-    * Updated Developer Guide Find command and Key Maps.
-    * Created activity diagrams for the above two.
+    * Updated Developer Guide Find command, Key Maps and GUI testing.
+    * Created activity diagrams for Find Command and Key Maps.
+    * Created class diagrams for GUI testing.
+  
 
 * **Testing**:
   * UI tests:
