@@ -105,12 +105,12 @@ public class ParseFromCsvToPersons {
         }
     }
 
-    private Set<Tag> getTagsFromRow(int rowIndex) {
+    private Set<Tag> getTagsFromRow(int rowIndex) throws ParseException {
         Set<Tag> tags = new HashSet<Tag>();
         for (int i = csv.getColumnIndex("tags"); i < csv.getNumOfCols(); i++) {
             String tagValue = csv.getEntry(rowIndex, i);
             if (!tagValue.equals("")) {
-                Tag tag = new Tag(tagValue);
+                Tag tag = ParserUtil.parseTag(tagValue);
                 tags.add(tag);
             }
         }
