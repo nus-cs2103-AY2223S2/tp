@@ -64,19 +64,12 @@ public class ParserUtil {
         return result;
     }
 
-    /**
-     * Check index error message to determine
-     * @param pe
-     * @param commandFormatMessage
-     * @throws ParseException
-     */
-    public static void indexErrorMessageCheck(ParseException pe, String commandFormatMessage) throws ParseException {
+    public static ParseException indexErrorMessageCheck(ParseException pe, String commandFormatMessage) {
         if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
-            throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
-        } else {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, commandFormatMessage), pe);
+            return new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
+        return new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, commandFormatMessage), pe);
     }
 
     /**
