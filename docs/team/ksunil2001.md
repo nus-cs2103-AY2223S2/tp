@@ -30,19 +30,19 @@ Given below are my contributions to the project.
     - Organised features by Patient, Ward and Utility in the User Guide
     - Updated the editward and addward command features in the User Guide
     - Added a use case for the find command in the Developer Guide
-    - Updated the product scope, target user profile, value proposition, user stories, use cases and glossary of the Developer Guide
+    - Updated the product scope, target user profile, value proposition, user stories, use cases and glossary of the Developer Guide <br>
 
-<div style="page-break-after: always;"></div>
 
 - **Contributions to Team-based tasks**:
     - Refactored Person to Patient throughout the code
-    - Fixed checkstyle issues <br>
+    - Fixed checkstyle issues
 
+<div style="page-break-after: always;"></div>
 
 - **Review/mentoring contributions**:
     - This link lists all the PRs I have reviewed: [Reviewed PRs](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aksunil2001)
-    - Helped to verify the checkstlye and clarify a doubt in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/121)
-    - Corrected the code to implement abstraction and improve the checkstyle in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/159)
+    - Helped to verify the code style and clarify a doubt in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/121)
+    - Corrected the code to implement abstraction and improve the code style in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/159)
     - Checked the grammar of the UG in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/249) <br>
 
 
