@@ -380,7 +380,7 @@ Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanc
 
 Below is the sequence diagram for marking attendance of a student
 
-<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
+<img src="images/MarkAttendanceSequenceDiagram.png" />
 <figcaption style="text-align:center"><em><strong>
 Figure 13
 </strong>:
@@ -411,7 +411,7 @@ Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAtted
 
 Below is the sequence diagram for unmarking attendance of a student
 
-<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
+<img src="images/UnmarkAttendanceSequenceDiagram.png" />
 <figcaption style="text-align:center"><em><strong>
 Figure 14
 </strong>:
@@ -442,7 +442,7 @@ Insert Participation command is facilitated by `InsertParticipationParser`, `Ins
 
 Below is the sequence diagram for inserting participation of a student
 
-<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
+<img src="images/InsertParticipationSequenceDiagram.png" />
 <figcaption style="text-align:center"><em><strong>
 Figure 15
 </strong>:
