@@ -190,6 +190,18 @@ public class MainWindow extends UiPart<Stage> {
         partListPlaceholder.getChildren().add(partListPanel.getRoot());
     }
 
+    private void initBasicComponents() {
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getShopFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
+    }
+
     private void initTabResultDisplayMessages() {
         tabResultDisplayMessages[Tab.CUSTOMERS.ordinal()] = ListCustomersCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
@@ -213,16 +225,7 @@ public class MainWindow extends UiPart<Stage> {
         initPartListPanel();
 
         initSelected();
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getShopFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
+        initBasicComponents();
 
         //@@author kimberlybp-reused
         //Reused from https://stackoverflow.com/a/56516060

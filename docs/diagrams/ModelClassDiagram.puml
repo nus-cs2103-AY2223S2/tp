@@ -12,12 +12,13 @@ Class Shop
 Class ModelManager
 Class UserPrefs
 
-Class UniqueXList
+Class "List<X>"
 Class X
-Class Service
-Class PartMap
-'Class Part
-Class ServiceList
+Class "Map<String, Integer> Parts"
+Class YDataMap
+Class Y
+Class IdGenerator
+Class "Stack<Shop>"
 }
 
 Class HiddenOutside #FFFFFF
@@ -28,20 +29,21 @@ Shop .up.|> ReadOnlyShop
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyShop
-ModelManager -left-> "1" Shop
+ModelManager -right-> "1" Shop
 ModelManager -right-> "1" UserPrefs
+ModelManager -right-> "1" Y
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Shop *--> "1" UniqueXList
-Shop *--> "1" ServiceList
-UniqueXList --> "~* all" X
+Shop *--> "1" "List<X>"
+"List<X>" --> "~* all" X
 ModelManager -->"~* filtered" X
+ModelManager -->"~* sorted" X
 
-Shop *--> "1" PartMap
-'PartMap --> "~* all" Part
-ModelManager -->"1" PartMap
+Shop *--> "1" "Map<String, Integer> Parts"
+Shop *---> "1" YDataMap
+Shop *---> "1" IdGenerator
+Shop *---> "2" "Stack<Shop>"
 
-ServiceList --> "~* all" Service
-ModelManager -->"~* filtered" Service
+
 
 @enduml

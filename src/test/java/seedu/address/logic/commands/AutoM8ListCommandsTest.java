@@ -19,7 +19,7 @@ import seedu.address.testutil.TypicalShop;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListCommandsTest {
+public class AutoM8ListCommandsTest {
     private Model model;
     private Model expectedModel;
 

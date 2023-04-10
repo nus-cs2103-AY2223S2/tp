@@ -77,6 +77,8 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part(Map.Entry<..>)/Technician`. And `Y` can be `Customer/Appointment/Service/Vehicle/Technician`
+
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `XListPanel` (`X` is a placeholder for a specific model list panel  e.g., `CustomerListPanel`, `VehicleListPanel`), `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
@@ -86,7 +88,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays specific objects residing in the `Model` such as the `Customer`, `Vehicle`, `Service`, `Appointment` and `PartMap` objects.
+* depends on some classes in the `Model` component, as it displays specific objects residing in the `Model` such as the `Customer`, `Vehicle`, `Service`, `Appointment`, `Technician` and `Map.Entry<> (Part)` objects.
 * also depends on some mapping classes in the `Model` component as certain objects have an integer array of object ids that refer to another object. One example is the Customer class, which has a `HashSet<Integer>` of `Vehicle` IDs. To associate each `Customer` object with the corresponding `Vehicle` objects, the Model uses an object called `CustomerDataMap`. The `UI` component then displays the relevant objects based on these mappings. In essence, the `Model` uses these mapping classes to ensure that objects with references to one another are properly connected and displayed in the user interface.
 
 ### Logic component
@@ -134,13 +136,13 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part(Map.Entry<..>)/Technician`. And `Y` can be `Customer/Appointment/Service/Vehicle/Technician`
 
 The `Model` component,
 
-* stores the address book data i.e., all `X` objects (which are contained in a `UniqueXList` object) where X are Customer/Service/Appointments/Vehicles/Technicians, and all `Part` objects (which are contained in a `partMap` object).
-* in the case of X, stores the currently 'selected' `X` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<X>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* in the case of Part, stores the currently 'selected' `Part` objects (e.g., results of a search query) as a separate hashmap.
-* in the case of ServiceList, it acts functionally the same as an `UniqueXList` except that the entry can be non-unique.
+* stores the AutoM8 shop data i.e., all `X` objects (which are contained in a `List` object), `Part` objects (are also contained in a `Map` object), `YDataMap`s that store mappings between `Y` and their associated entities.
+* in the case of `X`, `ModelManager` stores filtered `X` objects as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<X>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* in the case of `Y`, `ModelManager` stores selected `Y` objects to store the user's current viewed entity
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -220,7 +222,7 @@ The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. A
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire shop.
     * Pros: Implementation is easy.
     * Cons: Memory usage may cause performance issues.
 
@@ -273,7 +275,7 @@ The undo and redo commands call the `revert()` and `redo()` API of the `Shop`. A
 ### Mapping classes
 We use nested integer object ID arrays to establish 1-to-many relationships between entities generated by an ID generator. However, this required multiple mapping classes to retrieve the nested objects by their IDs and display necessary information in the UI.
 
-Below shows an activity diagram of how `CustomerDataMap` is iniatialised/reset everytime there's a necessary update to any entities involved
+Below shows an activity diagram of how `CustomerDataMap` is iniatialised/reset everytime there's a necessary update to any entities involved. Most XDataMaps are implemented similarly*
 <img src="images/CustomerDataMapInitActivityDiag.png" height="700">
 
 > <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
@@ -281,6 +283,18 @@ Below shows an activity diagram of how `CustomerDataMap` is iniatialised/reset e
 The XDataMap class represents a mapping between X and their associated entities. It maintains several maps to efficiently retrieve information based on unique IDs. The class also provides methods to initialize the mappings, modify them, and retrieve data from them.
 
 Overall, the XDataMap classes provides a convenient way to maintain and access information about X and their associated entities
+
+#### Design considerations:
+
+**Aspect: The way mappings are implemented**
+
+* **Alternative 1 (current choice):** Reset all mappings everytime there's an entity update
+    * Pros: Easier to implement, eliminates potential errors of inaccurate data being displayed, nullpointer exceptions due to deprecated entities
+    * Cons: Memory, Performance issues when dealing with more and more data
+
+* **Alternative 2:** Update only affected object
+    * Pros: Better app performance in the long run
+    * Cons: Potential errors of inaccurate data being displayed, ensuring UI does not throw exceptions before the map has updated, Slightly more tedious implementation as we need to find a way to only let affected maps be updated
 
 ### Find/List Feature
 #### Current Implementation
@@ -885,7 +899,7 @@ For example, a single customer could have multiple appointments, services, and v
 
 ### Appendix: Planned Enhancements (Max 8*)
 1. Less general error messages, especially those for invalid indexes. The current error message is too general for the user to understand that the error comes from invalid indexes. (E.g. Command format may be correct except index but error message show is `Input is not a number` instead of a more intuitive error message like `Invalid vehicle index input` to help the user correct the command format entered)
-2. Enabling `Find` for Parts. As of v1.4, the find command works for all entities except parts, we plan to implement this to ensure the feature consistency of the app for all entities.
+2. Implementing `Find`, `Edit`, `View` for Parts. As of v1.4, the respective command works for all entities except parts, we plan to implement this to ensure the feature consistency of the app for all entities.
 3. `View` command should not filter the list panel, to allow users to continuously use the view command instead of needing to use the `list` command first to refer to the entity id, before using `view` again.
 4. Data Archiving. To allow user to revert to a previous save (possibly max 5 or user settable).
 5. Save file checks, to reduce the effects of malicious edit impacting program operations.
@@ -894,4 +908,5 @@ For example, a single customer could have multiple appointments, services, and v
     * Impact: Due to how delete operations are cascades, this edit can cause a user to delete vehicles that are not originally assigned to the customer.
     * Plan: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
     * Note: This is applicable for all entries that have some form of mapping.
+
 

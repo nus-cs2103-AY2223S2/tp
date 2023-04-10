@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javafx.fxml.FXML;
@@ -49,8 +48,6 @@ public class VehicleDetailsPanel extends UiPart<Region> {
     }
 
     private void update(Vehicle vehicle, VehicleDataMap dataMap) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
-
         if (vehicle == null) {
             parentContainer.getChildren().clear();
             parentContainer.getChildren().add(new EmptyDetailsPanelPlaceholder("Vehicle").getRoot());
