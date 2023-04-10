@@ -5,27 +5,9 @@ title: User Guide
 
 # SudoHR User Guide
 
-# Table of contents:
-
-
-1. [Introduction](#1-introduction)
-    1. [What is SudoHR?](#11-what-is-sudohr)
-    1. [Features](#13-features)
-2. [Quick start](#2-quick-start)
-3. [Quick Reference Guide](#3-quick-reference-guide)
-    1. [Layout](#31-layout)
-    2. [Key Definitions](#32-key-definitions)
-    3. [Command format](#33-command-format)
-4. [Commands](#4-commands)
-    1. [Employee commands](#41-employee-commands)
-    2. [Department commands](#42-department-commands)
-    3. [Leave commands](#43-leave-commands)
-    4. [General commands](#44-general-commands)
-    5. [Data storage](#45-data-storage)
-    6. [Command summary](#46-command-summary)
-5. [FAQs](#5-faq)
----
-
+* Table of Contents
+  {:toc}
+  
 
 # 1. Introduction
 
@@ -71,7 +53,7 @@ and 10,000 tags!
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **2. Quick start**
+# **2. Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -86,15 +68,13 @@ and 10,000 tags!
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
+    * `help` : Brings up the list of commands for reference
 
 6. Refer to the [Command](#4-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-
---------------------------------------------------------------------------------------------------------------------
 
 # **3. Quick Reference Guide**
 
@@ -126,7 +106,7 @@ employee.
 
 ### 3.1.4 Departments
 The leftmost panel is the Departments section. Here you can view the status of the departments in your
-company. The main data displayed is the number of employees available.
+company. The main data displayed is the number of employees in each department.
 
 ### 3.1.5 Leaves
 The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have
