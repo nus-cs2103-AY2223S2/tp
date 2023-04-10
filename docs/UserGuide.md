@@ -266,7 +266,8 @@ Format: `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS`
 * Create a PDF medical certificate for a patient at the specified `INDEX`. The index refers to the index number shown in
   the displayed patient list. The index **must be a positive integer** 1,2,3 …
 * Days representing the number of days of unfit, and it **must be positive integer** 1,2,3 …
-* The maximum allowed days is 60. Hence, any days more than 60 is regards as invalid.
+* The maximum allowed days is 60. Hence, any days more than 60 is regards as invalid. 
+* Medical condition is optional for command method.
 
 Examples:
 
@@ -280,7 +281,8 @@ Create a PDF Medical Certificate for a patient button method:
 1. Click on the **Create button** as shown in the screenshot above.
 
 ![Create_Popup](images/userGuide/Create_2.png "Create Popup")
-2. A popup window appear, as shown in the screenshot above. Fill in the Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC.
+2. A popup window appear, as shown in the screenshot above. Fill in all the blanks namely: Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC. 
+3. For button method, medical condition is mandatory.
 
 ### View the Medical File of a patient: `view`
 
@@ -446,10 +448,10 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 
 * Name allows number as a valid input.
 * No special characters is allowed at the start or end of the email `username`. (username@domain.com)
-* No multiple (More than 1) special characters is allowed at the middle of the email username.
+* No multiple consecutive (More than 1) special characters is allowed at the middle of the email username.
 * Allowed special characters for email are `+` , `_`, `-`, `.`
   e.g. `abc@gmail.com` is allowed
-  e.g. `ab.c@gmail.com` is allowed
+  e.g. `a.b.c@gmail.com` is allowed
   e.g. `ab..c@gmail.com` is not allowed
   e.g. `abc.@gmail.com` is not allowed
   e.g. `.abc@gmail.com` is not allowed
