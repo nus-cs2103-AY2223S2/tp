@@ -46,8 +46,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Glossary of common terms used.
     * Added draft for `sort` command.
-    * Created activity diagram for data generation.
-    * Created sequence diagram for view command logic implementation.
+    * Created activity diagram for data generation and sort command.
+    * Created sequence diagram for view command logic implementation and sort command.
     * Provided feedbacks on DG (eg. layout, readability, documentation bugs)
 
 * **Contributions to team-based tasks**:
