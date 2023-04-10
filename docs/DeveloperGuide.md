@@ -493,11 +493,13 @@ In TinS, there are two kinds of events: **Interviews** and **Deadlines**. Having
 does not result in a clash. However, having multiple Interviews with overlapping timings would result in a clash in
 timing. Therefore, Interviews with overlapping timing would need to be picked up by the `clash` function.
 
-#### Design Considerations
+#### Design considerations:
 
-There were two possible ways of implementing the `clash` function:
+**Aspect: How statistics are generated and used:**
 
-1. Organising clash timing by Events: For each Event, event, stored in TinS, TinS will compare that particular Event will
+There were two possible ways of implementing the clash function:
+
+* **Alternative 1:** Organising clash timing by Events: For each Event, event, stored in TinS, TinS will compare that particular Event will
    all other Events, otherEvents. If there is a clash found, the otherEvent will be placed in a list. After comparison
    with all other Events, the event and its corresponding list will be added to a hash map. This is repeated for all
    Events in TinS. 
@@ -510,7 +512,7 @@ There were two possible ways of implementing the `clash` function:
      the list corresponding to event 1, and event 1 will be recorded in the list corresponding to event 2. This results
      in two records of the same clash.
 
-2. Organising clash timings by Date: For each day, list out all the Events with clashes in timing on that day.
+* **Alternative 2 (current choice):** Organising clash timings by Date: For each day, list out all the Events with clashes in timing on that day.
 
    Advantage:
    - No duplicated records of clashes.
