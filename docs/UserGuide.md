@@ -8,10 +8,8 @@ title: User Guide
 Too many students to count? Sick and tired of scrolling through excel cells to find the date of your student's next lesson? Fret not, we present to you our revolutionary solution for managing your tutees, the Tutee managing system (TMS).
 TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
-[TABLE OF CONTENTS](#table-of-content)
-
-[Quick start](#quickstart)
-
+[TABLE OF CONTENTS](#table-of-content)  
+[Quick start](#quickstart)  
 [Features](#features)
 1. [Viewing help](#help)
 2. [Add student](#add)
@@ -95,11 +93,11 @@ Format: `help`
 
 Adds a student to the managing system.
 
-Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
+Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
 
-*Subject supported: {`Math`, `Physics`, `English`}
-*Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
-*The added student must have a unqique name, phone number and email address
+*Subject supported: {`Math`, `Physics`, `English`}  
+*Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
+*The added student must have a unqique name, phone number and email address  
 
 Examples:
 
