@@ -844,7 +844,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing an event
 1. Edit data of Event.
+
     1. Prerequisites: Non-empty Events Tab. Navigate to the `Event` tab using `tab 2`
+    
     2. Test Cases
         1. Test case 1: `editevent N d/CS2103T Lecture`, `editevent N r/Weekly`, ... where N is a number between 1 and the number of Event in the list
             - Testing for: Successful command execution
