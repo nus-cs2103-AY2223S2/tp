@@ -8,7 +8,7 @@ if () then ([correct format])
     :Doctor is edited;
     :Save Doctor to
     model;
-    :Update filteredDoctorList;
+    :Update filteredDoctors list;
 else ([else])
     :System throws
     ParseException;

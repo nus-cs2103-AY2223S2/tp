@@ -483,6 +483,124 @@ The following sequence diagram illustrates how the delete patient operation work
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+### Assign Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Assigns a patient at the specified **one-based index** of list of currently existing/found patient to a doctor at the specified **one-based index** of list of currently existing/found doctor. If indexes provided are larger or equal to the size of their respective lists, the command will not be allowed and an error will be thrown. If specified patient is already assigned to specified doctor, the command will not be allowed and an error will be thrown.
+
+Example Use: `assign-ptn ptn/1 doc/1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the assign patient command, a `AssignPatientCommand` class is created. The `AssignPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is assigned to the doctor at specified **one-based index** if both indexes provided are valid and the patient is not assigned to the doctor yet. The `AssignPatientCommand` class creates a new `Patient` object with the specific `Doctor` reference and a new `Doctor` object with the specific `Patient` reference. The previous `Patient` and `Doctor` objects are then replaced with the new `Patient` and `Doctor` objects.
+
+Given below is an example usage scenario of how the assign patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `assign-ptn ptn/1 doc/1` to assign the patient at index 1 to the doctor at index 1 (one-based indexing).
+
+Step 3. If the indexes provided are valid and patient is not assigned to doctor yet, the patient at index 1 is replaced with a patient with doctor reference and the doctor at index 1 is replaced with a doctor with patient reference.
+
+The following sequence diagram illustrates how the assign patient operation works:
+
+![](images/AssignPatientSequenceDiagram.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Unassign Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Unassigns a patient at the specified **one-based index** of list of currently existing/found patient from a doctor at the specified **one-based index** of list of currently existing/found doctor. If indexes provided are larger or equal to the size of their respective lists, the command will not be allowed and an error will be thrown. If specified patient is not assigned to specified doctor, the command will not be allowed and an error will be thrown.
+
+Example Use: `unassign-ptn ptn/1 doc/1`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the unassign patient command, a `UnassignPatientCommand` class is created. The `UnassignPatientCommand` class extends the abstract `Command` class and implements the `execute()` method. Upon execution of this method, the patient at specified **one-based index** is unassigned from the doctor at specified **one-based index** if both indexes provided are valid and the patient is assigned to the doctor. The `AssignPatientCommand` class creates a new `Patient` object without the specific `Doctor` reference and a new `Doctor` object without the specific `Patient` reference. The previous `Patient` and `Doctor` objects are then replaced with the new `Patient` and `Doctor` objects.
+
+Given below is an example usage scenario of how the unassign patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `unassign-ptn ptn/1 doc/1` to unassign the patient at index 1 from the doctor at index 1 (one-based indexing).
+
+Step 3. If the indexes provided are valid and patient is assigned to doctor, the patient at index 1 is replaced with a patient without doctor reference and the doctor at index 1 is replaced with a doctor without patient reference.
+
+The following sequence diagram illustrates how the unassign patient operation works:
+
+![](images/UnassignPatientSequenceDiagram.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Find Doctor Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a doctor with the specified parameters. 
+
+Example Use: `find-doc n/Alice`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find doctor command, a `FindDoctorCommand` class is created. The `FindDoctorCommand` class takes a predicate created by `DoctorContainsKeywordsPredicate` class. The `FindDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method which updates the model's list of filtered doctors.
+
+Given below is an example usage scenario of how the find doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-doc n/Alice` to find a doctor with the name Alice.
+
+Step 3. The model's list of filtered doctors is updated.
+
+The following sequence diagram illustrates how the find doctor operation works:
+
+![](images/FindDoctorSequenceDiagram.png)
+
+*args: Refers to a valid sequence of arguments provided by the user. Example: "n/John Doe p/98765432 e/johnd@example.com
+s/Cardiology y/5 t/surgeon"
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Find Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a patient with the specified parameters.
+
+Example Use: `find-ptn n/Bob`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find patient command, a `FindPatientCommand` class is created. The `FindPatientCommand` class takes a predicate created by `PatientContainsKeywordsPredicate` class. The `FindPatientCommand` class extends the abstract `Command` class and implements the `execute()` method which updates the model's list of filtered patients.
+
+Given below is an example usage scenario of how the find patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-ptn n/Bob` to find a patient with the name Bob.
+
+Step 3. The model's list of filtered patients is updated.
+
+The following sequence diagram illustrates how the find patient operation works:
+
+![](images/FindPatientSequenceDiagram.png)
+
+*args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com
+h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### GUI Features
 
 #### Enlarged Info Card feature
@@ -585,7 +703,7 @@ Here are some useful links on the following!
 
 ## **Appendix A: Planned Enhancements**
 
-### Feedback To User
+### Feedback to User
 
 #### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
@@ -644,21 +762,17 @@ line `"At least one parameter other than INDEX should be provided\n"`.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Scalability
+#### Problem 4: Better error/exception handling for invalid command inputs
+- **Scenario**: User enters an invalid variation of a command
+- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
+- **Potential issue**: User has to guess which parameter/section of the command is invalid.
+- **Why did it happen**: Implementation of feature freeze prior to resolution
 
-#### Problem 4: Use of association classes instead of lists to capture doctor-patient relationship on assignment
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
+**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 5: Adding input validation to find commands
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
+### Scalability
 
 #### Enhancement 1: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
@@ -678,19 +792,10 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 8: Better error/exception handling for invalid command inputs
-- **Scenario**: User enters an invalid variation of a command
-- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
-- **Potential issue**: User has to guess which parameter/section of the command is invalid.
-- **Why did it happen**: Implementation of feature freeze prior to resolution
-
-**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
-
-[Scroll back to Table of Contents](#table-of-contents)
 
 ## **Appendix B: Product scope**
 
-**Target user profile**
+**Target user profile:**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
 Here are some characteristics of our target user profile: <br>
 
@@ -950,13 +1055,23 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 ## **Appendix G: Effort**
 
+| Feature       | AB3 | Docedex |
+|---------------|-----|---------|
+| Effort        | 10  | 22      |
+| Lines of Code | 6k  | +13k    |
+
 The Docedex project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of doctors and patients. One of the major changes was the addition of two new models, Doctor and Patient, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
 
-While Doctor and Patient models extended AB3's Patient model, there were several challenges to overcome. The most significant challenge was to map a many-to-many relationship between doctors and patients during assignment. To solve this, the team decided to create a list of patients inside each Doctor instance (and vice versa for patients). This change required us to modify multiple components to update the lists after patient assignment and display them onto the UI.
+Firstly, although code was reused from AB3, a lot of it had to be refactored to fit our use case. We now had to deal with 2 entity types, patient and doctor, which meant that the way we stored the information also had to change. Moreover, with more attributes for both `Doctor` and `Patient` classes, it also meant more effort in validating the inputs and writing high quality test cases for each attribute, an extremely time-consuming process.
+
+The most significant challenge was to map a many-to-many relationship between doctors and patients during assignment. To solve this, the team decided to create a list of patients inside each Doctor instance (and vice versa for patients). This change required us to modify multiple components to update the lists after patient assignment and display them onto the UI.
+
+Our work on implementing the assignment feature is the most prominent in the AssignDoctorCommand and AssignPatientCommand, and their relevant parsers and model methods.
 
 Another challenge was redesigning the interface to display more information. Changing the interface of an application can be a major undertaking. In the case of Docedex, this involved designing new UI components, updating existing components to reflect the new models and data, and potentially creating new navigation and layout structures to support the new workflows. Significant time was taken to learn JavaFX and implementing the components to fit Docedex use cases.
 
-Our work on implementing the assignment feature is the most prominent in the AssignDoctorCommand and AssignPatientCommand, and their relevant parsers and model methods.
+We even tried to add test cases to the UI, following AB4 example closely. This can be seen in an open pull request which we have intentionally chosen to not merge because we felt that the complexity in implementing the test cases extended beyond the objectives of the module, and we did not want to submit half completed work.
+
 
 
 
@@ -976,18 +1091,54 @@ Testers are encouraged to do more *exploratory* testing.
 
 1. Initial launch
 
-1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-1. Re-launch the app by double-clicking the jar file.<br>
-   Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Exiting the app
+   
+   1. With the app still open, enter `exit` in the command box or click on the close window button. <br>
+      Expected: The app closes.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Adding a doctor
+{: .no_toc}
+
+1. Adding a doctor
+
+   1. Test case: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`<br>
+      Expected: New doctor added. Command Success status message shown with doctor details.
+
+   1. Test case: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` (Existing doctor with same parameters has already been added)<br>
+      Expected: No doctor added. Duplicate doctor error message shown.
+
+   1. Test case: `add-doc n/John Doe`<br>
+      Expected: No doctor added. Error message shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Adding a patient
+{: .no_toc}
+
+1. Adding a patient
+
+    1. Test case: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`<br>
+       Expected: New patient added. Command Success status message shown with patient details.
+
+    1. Test case: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` (Existing patient with same parameters has already been added)<br>
+       Expected: No patient added. Duplicate patient error message shown.
+
+    1. Test case: `add-ptn n/John Doe`<br>
+       Expected: No patient added. Error message shown in the status message.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -996,19 +1147,279 @@ Testers are encouraged to do more *exploratory* testing.
 
 1. Deleting a doctor while all doctors are being shown
 
-1. Prerequisites: List all doctors using the `list-doc` command. Multiple doctors in the list.
+    1. Prerequisites: List all doctors using the `list-doc` command. Multiple doctors in the list.
 
-1. Test case: `del-doc 1`<br>
-   Expected: First doctor contact is deleted from the displayed doctors list. Details of the deleted contact shown in
-   the status message.
+    1. Test case: `del-doc 1`<br>
+       Expected: First doctor contact is deleted from the displayed doctors list. Details of the deleted contact shown in the status message.
 
-1. Test case: `del-doc 0`<br>
-   Expected: No doctor is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `del-doc 0`<br>
+       Expected: No doctor is deleted. Error details shown in the status message.
 
-1. Other incorrect delete commands to try: `delete`, `del-doc x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+    1. Test case: `delete`<br>
+       Expected: No doctor is deleted. Unknown command error shown in the status message.
 
-1. _{ more test cases …​ }_
+    1. Test case: `del-doc a`<br>
+       Expected: No doctor is deleted. Error details shown in the status message.
+
+    1. Test case: `del-doc x` (where x is larger than the doctor list size)<br>
+       Expected: No doctor is deleted. Invalid index error shown in the status message.
+
+1. Deleting a doctor while doctor list is filtered
+
+    1. Prerequisites: Filter doctors using the `find-doc` command. At least one doctor must be in the doctor list.
+
+    1. Test case: `del-doc 1`<br>
+       Expected: First doctor contact in the filtered doctor list is deleted. Details of the deleted contact shown in the status message.
+
+    1. Test case: `del-doc x` (where x larger than the filtered doctor list size, but smaller than the unfiltered doctor list from `list-doc` command)<br>
+       Expected: No doctor is deleted. Invalid index error shown in the status message.
+
+    1. Other test cases to try: `delete`, `del-doc 0`, `del-doc a`.
+       Expected: Similar outputs as deleting a doctor while all doctors are being shown.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Deleting a patient
+{: .no_toc}
+
+1. Deleting a patient while all patients are being shown
+
+    1. Prerequisites: List all patients using the `list-ptn` command. Multiple patients in the list.
+
+    1. Test case: `del-ptn 1`<br>
+       Expected: First patient contact is deleted from the displayed patients list. Details of the deleted contact shown in the status message.
+
+    1. Test case: `del-ptn 0`<br>
+       Expected: No patient is deleted. Error details shown in the status message.
+
+    1. Test case: `delete`<br>
+       Expected: No patient is deleted. Unknown command error shown in the status message.
+
+    1. Test case: `del-ptn a`<br>
+       Expected: No patient is deleted. Error details shown in the status message.
+
+    1. Test case: `del-ptn x` (where x is larger than the patient list size)<br>
+       Expected: No patient is deleted. Invalid index error shown in the status message.
+
+1. Deleting a patient while patient list is filtered
+
+    1. Prerequisites: Filter patients using the `find-ptn` command. At least one patient must be in the patient list.
+
+    1. Test case: `del-ptn 1`<br>
+       Expected: First patient contact in the filtered patient list is deleted. Details of the deleted contact shown in the status message.
+
+    1. Test case: `del-ptn x` (where x larger than the filtered patient list size, but smaller than the unfiltered patient list from `list-ptn` command)<br>
+       Expected: No patient is deleted. Invalid index error shown in the status message.
+
+    1. Other test cases to try: `delete`, `del-ptn 0`, `del-ptn a`.
+       Expected: Similar outputs as deleting a patient while all patients are being shown.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Editing a doctor
+{: .no_toc}
+
+1. Editing an existing doctor
+    
+   1. Prerequisites: Filter doctors using `find-doc` command or list all doctors using `list-doc` command. At least one doctor must be in the doctor list.
+    
+   1. Test case: `edit-doc 1 n/Bob`<br>
+      Expected: Name of first doctor contact in the filtered doctor list changed to Bob. Command success status message shown with new doctor details.
+
+   1. Test case: `edit-doc 0 n/Bob` <br>
+      Expected: No doctor is edited. Invalid doctor index error shown in status message.
+
+   1. Test case: `edit-doc x n/Bob` (where x is larger than doctor list size)<br>
+      Expected: No doctor is edited. Invalid doctor index error shown in status message.
+
+   1. Test case: `edit-doc 1` <br>
+      Expected: No doctor is edited. Missing field error shown in status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Editing a patient
+{: .no_toc}
+
+1. Editing an existing patient
+
+    1. Prerequisites: Filter patients using `find-ptn` command or list all patient using `list-ptn` command. At least one patient must be in the patient list.
+
+    1. Test case: `edit-ptn 1 n/Bob`<br>
+       Expected: Name of first patient contact in the filtered patient list changed to Bob. Command success status message shown with new patient details.
+
+    1. Test case: `edit-ptn 0 n/Bob` <br>
+       Expected: No patient is edited. Invalid patient index error shown in status message.
+
+    1. Test case: `edit-ptn x n/Bob` (where x is larger than patient list size)<br>
+       Expected: No patient is edited. Invalid patient index error shown in status message.
+
+    1. Test case: `edit-ptn 1` <br>
+       Expected: No patient is edited. Missing field error shown in status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Assigning a patient to a doctor
+{: .no_toc}
+
+1. Assigning a patient to a doctor
+
+   1. Test case: `assign-ptn ptn/1 doc/1` (where patient at index `1` is not assigned to doctor at index `1`)<br>
+      Expected: Patient at index `1` is assigned to Doctor at index `1`. Command success status message with patient and doctor names shown.
+
+   1. Test case: `assign-ptn ptn/1 doc/1` (where patient at index `1` is already assigned to doctor at index `1`)<br>
+      Expected: No assignment done. Already assigned error shown in the status message.
+
+   1. Test case: `assign-ptn ptn/0 doc/1`
+      Expected: No assignment done. Error details shown in the status message.
+
+   1. Test case: `assign-ptn ptn/1 doc/0`
+      Expected: No assignment done. Error details shown in the status message.
+
+   1. Test case: `assign-ptn 1 1`
+      Expected: No assignment done. Error details shown in the status message.
+
+   1. Test case: `assign-ptn ptn/x doc/1` (where x is larger than patient list size)<br>
+      Expected: No assignment done. Invalid patient index error shown in the status message.
+
+   1. Test case: `assign-ptn ptn/1 doc/x` (where x is larger than doctor list size)<br>
+      Expected: No assignment done. Invalid doctor index error shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Removing an assignment of a patient from a doctor
+{: .no_toc}
+
+1. Removing an assignment of a patient from a doctor
+
+    1. Test case: `unassign-ptn ptn/1 doc/1` (where patient at index `1` is assigned to doctor at index `1`)<br>
+       Expected: Assignment of Patient at index `1` from Doctor at index `1` removed. Command success status message with patient and doctor names shown.
+
+    1. Test case: `unassign-ptn ptn/1 doc/1` (where patient at index `1` is not assigned to doctor at index `1`)<br>
+       Expected: No unassignment done. Not assigned error shown in the status message.
+
+    1. Test case: `unassign-ptn ptn/0 doc/1`
+       Expected: No unassignment done. Error details shown in the status message.
+
+    1. Test case: `unassign-ptn ptn/1 doc/0`
+       Expected: No unassignment done. Error details shown in the status message.
+
+    1. Test case: `unassign-ptn 1 1`
+       Expected: No unassignment done. Error details shown in the status message.
+
+    1. Test case: `unassign-ptn ptn/x doc/1` (where x is larger than patient list size)<br>
+       Expected: No unassignment done. Invalid patient index error shown in the status message.
+
+    1. Test case: `unassign-ptn ptn/1 doc/x` (where x is larger than doctor list size)<br>
+       Expected: No unassignment done. Invalid doctor index error shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Finding a doctor
+{: .no_toc}
+
+1. Finding a doctor with specific parameters
+
+   1. Test case: `find-doc n/Bob`
+      Expected: All doctor contacts with the name containing `Bob` is filtered and shown. Command success status message shown with number of doctors listed (can be 0 if no valid doctors found).
+
+   1. Test case: `find-doc t\surgeon`
+      Expected: All doctor contacts that contains tag `surgeon` is filtered and shown. Command success status message shown with number of doctors listed (can be 0 if no valid doctors found).
+
+   1. Test case: `find-doc`
+      Expected: No change to doctor list. Error details shown in the status message.
+
+   1. Test case: `find`
+      Expected: No change to doctor list. Unknown command error shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Finding a patient
+{: .no_toc}
+
+1. Finding a patient with specific parameters
+
+    1. Test case: `find-ptn n/Bob`
+       Expected: All patient contacts with the name containing `Bob` is filtered and shown. Command success status message shown with number of patients listed (can be 0 if no valid patients found).
+
+    1. Test case: `find-ptn t\pendingReview`
+       Expected: All patient contacts that contains tag `pendingReview` is filtered and shown. Command success status message shown with number of patients listed (can be 0 if no valid patients found).
+
+    1. Test case: `find-ptn`
+       Expected: No change to patient list. Error details shown in the status message.
+
+    1. Test case: `find`
+       Expected: No change to patient list. Unknown command error shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Listing all doctors
+{: .no_toc}
+
+1. Listing all doctors while Docedex is showing only filtered doctors
+
+   1. Prerequisite: At least one doctor has been added to Docedex. Doctor list is being filtered using `find-doc` command or `sp` command.
+
+   1. Test case: `list-doc`<br>
+      Expected: All doctors in Docedex are shown. Command success status message shown.
+
+   1. Test case: `list`<br>
+      Expected: No change to doctor list. Unknown command error shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Listing all patients
+{: .no_toc}
+
+1. Listing all patients while Docedex is showing only filtered patients
+
+    1. Prerequisite: At least one patient has been added to Docedex. Patient list is being filtered using `find-ptn` command or `sd` command.
+
+    1. Test case: `list-ptn`<br>
+       Expected: All patients in Docedex are shown. Command success status message shown.
+
+    1. Test case: `list`<br>
+       Expected: No change to patient list. Unknown command error shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Selecting a doctor
+{: .no_toc}
+
+1. Selecting a doctor from doctor list using index
+
+   1. Prerequisites: Filter doctors using `find-doc` command or list all doctors using `list-doc` command. At least one doctor must be in the doctor list.
+
+   1. Test case: `sd 1`<br>
+      Expected: First doctor in doctor list is selected. The doctor's details are shown in the enlarged contact card. Patient list filtered to Patients assigned to selected doctor. Command success status message shown with doctor's details.
+   
+   1. Test case: `sd 0`<br>
+      Expected: No new doctor selected. Error details shown in the status message.
+
+   1. Test case: `sd x` (where x is larger than the filtered doctor list size)<br>
+      Expected: No new doctor selected. Invalid index error shown in the status message.
+
+   1. Test case: `sd`<br>
+      Expected: No new doctor selected. Error details shown in the status message.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Selecting a patient
+{: .no_toc}
+1. Selecting a patient from patient list using index
+
+    1. Prerequisites: Filter patients using `find-ptn` command or list all patient using `list-ptn` command. At least one patient must be in the patient list.
+
+     1. Test case: `sd 1`<br>
+       Expected: First patient in patient list is selected. The patient's details are shown in the enlarged contact card. Doctor list filtered to doctors assigned to selected patient. Command success status message shown with patient's details.
+
+    1. Test case: `sd 0`<br>
+       Expected: No new patient selected. Error details shown in the status message.
+
+    1. Test case: `sd x` (where x is larger than the filtered patient list size)<br>
+       Expected: No new patient selected. Invalid index error shown in the status message.
+
+    1. Test case: `sd`<br>
+       Expected: No new patient selected. Error details shown in the status message.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -1017,9 +1428,17 @@ Testers are encouraged to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisite: Have opened and closed the application and confirmed that the files `data/docedex.json` have been created in the same directory that docedex was run from.
 
-1. _{ more test cases …​ }_
+   1. Manually edit the file `data/docedex.json` with any text editing software to break the JSON format or edit the keys of JSON file. Alternatively, you may delete the `data/docedex.json` file.
+
+   1. Re-launch the app.
+
+   1. Test case: `data/docedex.json` was deleted. <br>
+      Expected: Docedex starts with empty doctor and patient list. All contacts have been deleted.
+
+   1. Test case: `data/docedex.json` was corrupted. <br>
+      Expected: Docedex starts with empty doctor and patient list. All contacts have been deleted.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
