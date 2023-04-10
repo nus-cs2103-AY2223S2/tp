@@ -62,12 +62,13 @@ In general, the following command format is adopted in FriendlyLink.
 For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
 `example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
 
-| Name       | Meaning                                                                                                       | Examples                                                                                                                                                                                      |
-|------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command    | An instruction given by you to FriendlyLink to perform a specific task.                                       | `add_elderly`                                                                                                                                                                                 | 
-| Field      | Information following a slash in a command, providing information to the relevant prefix                      | `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`. |
-| Prefix     | Characters appearing before a slash in a command. Prefixes label the information that they represent.         | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.                                                                    |
-| Preamble   | Preamble is a special piece of information specified for certain commands that are entered without prefixes.  | `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.          |
+| Name     | Meaning                                                                                                                                                     | Examples                                                                                                                                                                                      |
+|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command  | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     | `add_elderly`                                                                                                                                                                                 | 
+| Field    | Information following a slash in a command, providing information to the relevant prefix                                                                    | `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`. |
+| Prefix   | Characters appearing before a slash in a command. Prefixes label the information that they represent.                                                       | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.                                                                    |
+| Preamble | Preamble is a special piece of information specified for certain commands that are entered without prefixes.                                                | `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.          |
+| Index    | Indexes are used as preamble in some commands. They are positive natural numbers (numbers used for counting) that are used for numbering persons in a list. | `1` or `2` or `100`                                                                                                                                                                           |
 
 <div markdown="block" class="alert alert-info">:information_source: **Notes on Command Format**
 
@@ -85,10 +86,6 @@ For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]�
 
 **Preamble**
 * They need to be specified right after the command word and before any other fields.
-
-  **Index**
-  * Indexes are used as preamble in some commands. They are natural numbers (numbers used for counting) that are used for numbering persons in a list.
-  * An index must be a positive integer e.g. 1, 2, 3, …​.
 
 </div>
 
