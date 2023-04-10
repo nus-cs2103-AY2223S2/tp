@@ -75,7 +75,6 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments):
     * [#96](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/96),
     [#126](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/126),
-    [#126](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/126),
     [#148](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/148),
     [#164](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/164),
     [#250](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/250),
