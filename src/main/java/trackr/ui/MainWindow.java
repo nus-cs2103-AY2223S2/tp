@@ -119,12 +119,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        //@@author arkarsg
         tabPanel = new TabPanel(logic);
         tabPanelPlaceholder.getChildren().add(tabPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
+        //@@author
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTrackrFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -208,7 +209,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            //@@author arkarsg
             ObservableTabIndex.updateToTab(getTabIndex(getModel(commandText)));
+            //@@author arkarsg
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

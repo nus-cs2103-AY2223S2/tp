@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import trackr.model.order.Order;
 import trackr.ui.UiPart;
 
+//@@author arkarsg
 /**
  * A UI component that displays summarised information of {@code Order}.
  */

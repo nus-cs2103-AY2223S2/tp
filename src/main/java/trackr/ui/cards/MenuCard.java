@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import trackr.model.menu.MenuItem;
 import trackr.ui.UiPart;
 
+//@@author arkarsg
 /**
  * An UI component that displays information of a {@code Order}.
  */

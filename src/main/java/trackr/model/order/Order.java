@@ -37,6 +37,7 @@ public class Order extends Item {
     // MenuItem
     private final MenuItem orderItem;
 
+    //@@author arkarsg
     /**
      * Every field must be present and not null
      */
@@ -45,6 +46,7 @@ public class Order extends Item {
         this(orderItem, new OrderName(orderItem.getItemName().toString()), orderDeadline, orderStatus, orderQuantity,
                 customer, LocalDateTime.now());
     }
+    //@@author
 
     /**
      * Every field must be present and not null
@@ -88,6 +90,7 @@ public class Order extends Item {
         this.timeAdded = timeAdded;
     }
 
+    //@@author arkarsg
     public MenuItem getOrderItem() {
         return orderItem;
     }
@@ -117,17 +120,23 @@ public class Order extends Item {
         return timeAdded;
     }
 
+    //@@author arkarsg
     public ItemProfit getTotalProfit() {
         return OrderUtil.getTotalProfit(orderQuantity, orderItem);
     }
+    //@@author
 
+    //@@author arkarsg
     public ItemPrice getTotalCost() {
         return OrderUtil.getTotalCost(orderQuantity, orderItem);
     }
+    //@@author
 
+    //@@author arkarsg
     public ItemPrice getTotalRevenue() {
         return OrderUtil.getTotalRevenue(orderQuantity, orderItem);
     }
+    //@@author
 
     /**
      * Compares 2 tasks using their time added.

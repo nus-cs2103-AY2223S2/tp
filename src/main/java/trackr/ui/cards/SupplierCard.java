@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import trackr.model.person.Supplier;
 import trackr.ui.UiPart;
 
+//@@author arkarsg
 /**
  * An UI component that displays information of a {@code Supplier}.
  */

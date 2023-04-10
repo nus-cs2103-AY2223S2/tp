@@ -14,6 +14,7 @@ import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
+//@@author arkarsg
 public class ClearMenuItemCommandTest {
 
     @Test
