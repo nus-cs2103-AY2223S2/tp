@@ -70,16 +70,9 @@ Here are some descriptions of the words we use throughout the User Guide:
 They include details you would include about the doctor/patient.
 - **Command**: An input from the user that tells Docedex to perform an action (ie. add a doctor).
 - **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
-- **GUI component**: A subsection of the Graphical User Interface.
+- **GUI component**: A subsection of the Graphical User Interface. For more information on specific GUI
+components, refer to [this section](#navigating-the-graphical-user-interface-gui).
 - **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
-- **Doctors List**: A scrollable GUI component that displays a list of doctors.
-  Each doctor in the doctors list is encapsulated within a doctor card.
-- **Doctor Card**: A small rectangular GUI component that displays key information about
-  a doctor such as name, phone number, email and tags.
-- **Patients List**: A scrollable GUI component that displays a list of patients.
-  Each patient in the patients list is encapsulated within a patient card.
-- **Patient Card**: A small rectangular GUI component that displays key information about
-  a patient such as name, phone number, email and tags.
 
 ### Parameter Information
 
