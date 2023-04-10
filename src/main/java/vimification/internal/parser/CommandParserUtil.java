@@ -155,9 +155,9 @@ public class CommandParserUtil {
     public static final ApplicativeParser<String> LABEL_PARSER =
             STRING_PARSER;
     public static final ApplicativeParser<Status> STATUS_PARSER =
-            INT_PARSER.map(Status::fromInt);
+            INT_PARSER.optionalMap(Status::fromInt);
     public static final ApplicativeParser<Priority> PRIORITY_PARSER =
-            INT_PARSER.map(Priority::fromInt);
+            INT_PARSER.optionalMap(Priority::fromInt);
     public static final ApplicativeParser<LocalDateTime> DEADLINE_PARSER =
             DATE_TIME_PARSER;
 

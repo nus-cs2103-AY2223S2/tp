@@ -40,18 +40,14 @@ public class MainScreen extends UiPart<VBox> {
 
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
-    private CommandInput commandInput;
 
     @FXML
     private VBox leftComponent;
-
     @FXML
     private VBox rightComponent;
-
     @FXML
-    protected HBox bottomComponent;
+    private HBox bottomComponent;
 
     /**
      * Creates a {@code MainWindow} with {@code Logic}.
@@ -80,9 +76,8 @@ public class MainScreen extends UiPart<VBox> {
      * Initialize the components of the main screen.
      */
     private void setupComponents() {
-        loadRightComponent(new WelcomePanel());
-        intializeCommandInput();
         initializeTaskListPanel();
+        loadRightComponent(new WelcomePanel());
     }
 
     /**
@@ -107,13 +102,6 @@ public class MainScreen extends UiPart<VBox> {
         taskListPanel = new TaskListPanel(logic.getUiTaskList(), this);
         loadLeftComponent(taskListPanel);
         taskListPanel.requestFocus();
-    }
-
-    /**
-     * Initialize the command input.
-     */
-    private void intializeCommandInput() {
-        commandInput = new CommandInput(this, logic);
     }
 
     /**
@@ -145,6 +133,7 @@ public class MainScreen extends UiPart<VBox> {
      * Loads the command input component into the bottom component.
      */
     private void loadCommandInputComponent() {
+        CommandInput commandInput = new CommandInput(this, logic);
         loadBottomComponent(commandInput);
         commandInput.requestFocus();
     }
@@ -169,7 +158,7 @@ public class MainScreen extends UiPart<VBox> {
     /**
      * Clears the bottom component.
      */
-    protected void clearBottomComponent() {
+    public void clearBottomComponent() {
         bottomComponent.getChildren().clear();
     }
 
@@ -208,4 +197,41 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
         component.getRoot().prefWidthProperty().bind(WINDOW_WIDTH);
     }
+
+    public Logic getLogic() {
+        return this.logic;
+    }
+
+    public void setLogic(Logic logic) {
+        this.logic = logic;
+    }
+
+    public void setTaskListPanel(TaskListPanel taskListPanel) {
+        this.taskListPanel = taskListPanel;
+    }
+
+    public VBox getLeftComponent() {
+        return this.leftComponent;
+    }
+
+    public void setLeftComponent(VBox leftComponent) {
+        this.leftComponent = leftComponent;
+    }
+
+    public VBox getRightComponent() {
+        return this.rightComponent;
+    }
+
+    public void setRightComponent(VBox rightComponent) {
+        this.rightComponent = rightComponent;
+    }
+
+    public HBox getBottomComponent() {
+        return this.bottomComponent;
+    }
+
+    public void setBottomComponent(HBox bottomComponent) {
+        this.bottomComponent = bottomComponent;
+    }
+
 }

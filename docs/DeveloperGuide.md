@@ -3,6 +3,16 @@ layout: page
 title: Developer Guide
 ---
 
+## **Overview**
+
+Vimification is a **desktop app for managing to-do and deadlines, optimized for use via a Command Line Interface** (CLI) **that uses vim-like command syntax** while still having the benefits of a Graphical User Interface (GUI).
+
+If you're interested in contributing to the Vimification project, this Developer Guide will assist you in becoming acquainted with Vimification's architecture, as well as comprehending the design decisions and key feature implementations.
+
+---
+
+---
+
 ## **Table of Contents**
 
 - [Acknowledgements](#acknowledgements)
@@ -15,17 +25,13 @@ title: Developer Guide
 
 ---
 
-
-
-
 ## **Acknowledgements**
 
-<!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
-
-<!-- Mentioned Jackson for serialization -->
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
-
 
 ## **Setting up, getting started**
 
@@ -43,130 +49,142 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<!-- change the architechture diagram a little bit -->
+<img src="images/ArchitectureDiagram.png" width="300" />
 
-<img src="images/ArchitectureDiagram.png" width="280" />
-
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The **Architecture Diagram** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Common`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the app consists of four components:
 
-- [**`UI`**](#ui-component): The UI of the App.
+- [**`UI`**](#ui-component): The UI of the app.
 - [**`Logic`**](#logic-component): The command executor.
-- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Model`**](#model-component): Holds the data of the app in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+**How the components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+Each of the main components (except the `Model` component):
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+- Defines its **API** in an interface with the same name as the component.
+- Implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding interface mentioned in the previous point).
 
-Each of the four main components (also shown in the diagram above),
-
-- defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
-
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic` interface and implements its functionality using the `LogicManager` class. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components from being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+
+The **API** of the `Model` component is defined in multiple interfaces, instead of a single interface. The detailed reason behind this design is discussed [here](#model-component).
 
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/Ui.java).
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+Here's a (partial) class diagram of the `UI` component:
 
-The `UI` consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskDetailPanel`, `TaskListPanel`, `CommandInput` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<img src="images/UiClassDiagram.png" width="800" />
 
-The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+`UI` consists of a `MainScreen` that is made up of `TaskListPanel`,`TaskDetailPanel`,`CommandInput`,`CommandResultPanel`,`HelpManualPanel` and `WelcomePanel`.
 
-The `UI` component,
+The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are first defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
 
-- communicates with back-end via a single-entry point `Logic` component to exectue user commands.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands and to display the list of tasks.
-- updates the UI every time a command is executed.
+`MainScreen` is the component that represents the `Window` and is divided into 3 main parts, as shown in the diagram below.
+
+1. `leftComponent`
+2. `rightComponent`
+3. `bottomComponent`
+
+`leftComponent` _always_ and _only_ loads the `TaskListPanel` upon initialization.
+
+`bottomComponent` loads the `CommandInput` when the user presses `:` key on their keyboard.
+After the user finishes typing their command in `CommandInput` and presses `Enter`, `bottomComponent` loads `CommandResultPanel` to show the command result at the bottom of the screen.
+
+`rightComponent` loads the `WelcomePanel` when Vimification first launches to show a breif guide to guide the user.
+`rightComponent` loads the `HelpManualPanel` when the user executes the `:help` command using `CommandInput`.
+`rightComponent` loads the `TaskDetailPanel` when the user presses `l` key on their keyboard when they hover over a `TaskCell`(a cell in `TaskListPanel` in `LeftComponent`).
+
+All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component:
+
+- Communicates with the back-end via a single-entry point `Logic` component to execute user commands.
+- Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands and to display the list of tasks.
+- Updates the UI every time a command is executed.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java).
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="800" />
 
-How the `Logic` component works:
+**How the `Logic` component works:**
 
-1. When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with multiple model objects (`TaskList`, `MacroMap`, etc.) when it is executed (e.g. to add a task).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+- When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
+- This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+- The command can communicate with multiple model objects (`TaskList`, `MacroMap`, etc.) when it is executed (e.g. to add a task).
+- The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-<!-- The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. -->
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("d 1")` API call.
 
-<!-- ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<img src="images/DeleteSequenceDiagram.png" width="800" />
 
-<div markdown="span" class="alert alert-info">**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+Here are the parser classes that are used for parsing a user command:
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+<img src="images/ParserClasses.png" width="600" />
 
-<img src="images/ParserClasses.png" width="600"/> -->
-
-How the parsing works:
+**How the parsing works:**
 
 - Each command has a dedicated parser, `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) to parse it.
-- The main entry point of the parser, `VimificationParser` , combines the command parsers together.
-- When called upon to parse a user command, the `VimificationParser` class tries to parse different prefixes. Each prefixes maps to a single `XYZCommandParser` which parses the remaining user input and create a `XYZCommand` object (e.g., `AddCommand`) which the `VimificationParser` returns back as a `Command` object.
+- When called upon to parse a user command, the `VimificationParser` forwards the user input to different `XYZCommandParser` objects. If the `XYZCommandParser` recognizes the command, it will continue to parse the user input and create an `XYZCommand` object (e.g., `AddCommand`) which the `VimificationParser` returns back as a `Command` object. Otherwise, `VimificationParser` will move on and tries the next parser available.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
 Compared to the original design of AB3, we decided to split the model components into multiple classes and interfaces with different purposes.
 
-We argue that the original `Model` component from AB3 handles too many responsibilities - which result in high coupling and low cohesion. Therefore, we decided to split the `Model` components into different classes and interfaces, following the (interface segregation principle)[https://en.wikipedia.org/wiki/Interface_segregation_principle].
+We argue that the original `Model` component from AB3 handles too many responsibilities (it handles both the business logic and the view at the same time) - which results in high coupling and low cohesion. This causes a number of bad consequences on the code base - one of them is mentioned below.
 
-<!-- **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java) -->
+Consider the command classes in AB3 - they are dependent on the `Model` interface. A change in the `Model` interface forces us to recompile all command classes (and remember, there are classes that are dependent on the command classes - we also need to recompile them), even if the change is not related to the command.
 
-<!-- <img src="images/ModelClassDiagram.png" width="450" /> -->
+We may add a method to sort data, and then we must recompile `AddCommand` because `Model` has changed. But, `AddCommand` only modifies internal data - it is not dependent on the view, and ideally, we do not need to recompile it.
 
-The `Model` component,
+Therefore, we decided to split the `Model` components into different classes and interfaces, following the [interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle):
 
-- stores the data i.e., all `Task` objects.
-- stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- **`ReadOnlyUserPrefs`**: Stores the user's preferences.
+- **`LogicTaskList`**: Stores and manages all `Task` objects in memory.
+- **`UiTaskList`**: Selects and orders `Task` objects to be displayed to the user.
+- **`MacroMap`**: Stores and manages all macros in the memory.
+- **`CommandStack`**: Manages a stack of `UndoableLogicCommand` (a subclass of `Command`) objects for the undo feature.
 
-<!-- <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vimification`, which `Person` references. This allows `Vimification` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+Here's a (partial) class diagram of the `Model` component:
 
-<img src="images/BetterModelClassDiagram.png" width="450" /> -->
+<img src="images/ModelClassDiagram.png" width="600" />
 
-<!-- </div> -->
+Currently, `MacroMap` and `CommandStack` are classes and are used directly in other components (without using an immediate interface). With the current version of the app, using interfaces for these classes to hide the implementation details are not very necessary. We do plan to introduce interfaces for these classes in future version of the app as it makes the code base more consistent.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java).
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="600" />
 
-The `Storage` component,
+The `Storage` component:
 
-- can save both user preference data, task data and macro data in JSON format, and read them back into corresponding objects.
-- inherits from both `TaskListStorage`, `MacroMapStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+- Can save both user preference data, task data and macro data in JSON format, and read them back into corresponding objects.
+- Inherits from both `TaskListStorage`, `MacroMapStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -178,24 +196,17 @@ Classes used by multiple components are in the `vimificationbook.common` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<!-- ### Architechture modification to AB3
-
-Vimification uses the **Model–view–controller (MVC)** design pattern. One detail we observed is that the `Model` uses `ObservableList` to carry application data, however, we argued that this is not the optimal design, since `ObservableList` should be used for `view`. Vimification implementation makes the view and bussiness logic bundled together, hinder our development speed.
-
-Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>. -->
-
-
 ### ApplicativeParser\<T\>
 
-`ApplicativeParser` is an idea from function programming language, where we have a set of **combinators**, and we can combine these combinators to form more powerful combinators.
+`Applicative Parser` is an idea from functional programming languages, where we have a set of **basic parsers** (also called **combinators**), and we can combine them to form more powerful parsers.
 
-#### Motivation
+**Motivation**
 
-The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `Regex` expression.
+The parser of Vimification is implemented with `ApplicativeParser` instead of `regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `regex` expression.
 
-#### Implementation overview
+**Implementation overview**
 
-`ApplicativeParser` is implemented as a wrapper around a function that accepts some input sequence, and returns an container that:
+`ApplicativeParser` is implemented as a wrapper around a function that accepts some input sequence, and returns a container that:
 
 - Is empty, if the parser fails.
 - Contains the remaining input sequence, together with the parsing result, if the parser succeeds.
@@ -205,11 +216,9 @@ For example, consider a parser that tries to parse the string `"foo"`:
 - If the input sequence is `"bar"`, the parser will fail (no `"foo"` to parse). The returned container after running the parser will be empty.
 - If the input sequence is `"foo bar"`, the parser will succeed. The returned container after running the parser will contain the remaining input sequence `" bar"`, and the parsing result `"foo"`.
 
-The parsing result can be further transformed into objects of the desired type, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
+The parsing result can be further transformed, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
 
-<!-- insert sequence diagram -->
-
-#### Concrete implementation
+**Concrete implementation**
 
 The current signature of the wrapped function is:
 
@@ -219,7 +228,22 @@ private Function<StringView, Optional<Pair<StringView, T>>> runner;
 
 Where `T` is the type of the parsing result.
 
-For example, consider an `ApplicativeParser<Integer>` that tries to parse an integer - given the input sequence `"10"`, the returned container will contain the remaining sequence `""` and the parsing result `10`.
+For example, suppose we have an `ApplicativeParser` that parses an integer:
+
+```java
+ApplicativeParser<String> wordParser = ApplicativeParser.nonWhitespaces1();
+ApplicativeParser<Integer> intParser = wordParser.flatMap(word -> {
+    try {
+        return ApplicativeParser.of(Integer.parseInt(word));
+    } catch (NumberFormatException ex) {
+        return ApplicativeParser.fail();
+    }
+});
+```
+
+Given the input sequence `"10"`, the returned container will contain the remaining sequence `""` and the parsing result `10`.
+
+<img src="images/ApplicativeParserSequenceDiagram.png" width="600" />
 
 The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`:
 
@@ -233,62 +257,53 @@ public class StringView {
 }
 ```
 
-This choice is purely for performance reason - consuming input with `StringView` is much faster as we only need to change the offset stored in the `StringView` in `O(1)`, instead of having to copy the entire substring into a new `String` in `O(n)`.
+This choice is purely for performance reasons - consuming input with `StringView` is much faster as we only need to change the offset stored in the `StringView` in `O(1)`, instead of having to copy the entire substring into a new `String` in `O(n)`.
 
 In the current implementation, the container used is `Optional` from the Java standard library. One problem with `Optional` is that it cannot contain error infomation, and we currently have to use `Exception` for that purpose. However, `Exception` may create unpredictable control flow, and must be used with care. When an `Exception` is thrown, the parser will stop immediately and control is returned to the caller.
 
 The only way to create new `ApplicativeParser` instances is to use static factory methods. This is to ensure that the implementation of `ApplicativeParser` is hidden, and allows us to change the internal implementation of the parser to a more suitable one (in the future, if necessary) without breaking the exposed **API**.
 
-
-
 ### Command parser
 
-All command parsers implements a common interface:
+All command parsers implement a common interface:
 
 ```java
 public interface CommandParser<T extends Command> { /* implementation details */ }
 ```
 
-Where `T` is the type of the command returned by the parser.
+Where `T` is the type of the command object returned by the parser.
 
-<!-- insert diagram here -->
+**Implementation overview**
 
-#### Implementation overview
+`ApplicativeParser` combinators will be combined to create powerful parsers that can recognize different commands.
 
-The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
-
-A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to be used by `CommandParser#parse()`.
-
-
-
+A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to parse the user input.
 
 ### Command implementation
 
-All command classes in the application inherit from a common interface.
+All command classes in the application inherit from a common interface:
 
 ```java
-public interface Command {}
+public interface Command { /* implementation details */ }
 ```
 
-#### Inheritance hierarchy
+**Inheritance hierarchy**
 
 Currently, there are 3 kinds of commands in the application:
 
 - `LogicCommand`: responsible for modifying the internal data.
-- `MacroCommand`: responsible for handing macro-related features.
-- `UiCommand`: responsible for chaging the GUI.
+- `MacroCommand`: responsible for handling macro-related features.
+- `UiCommand`: responsible for changing the GUI.
 
-<!-- insert diagram here -->
-
-Each kind has a single interface, with a single abtract method:
+Each kind has a single interface, with a single abstract method:
 
 ```java
 public CommandResult execute(/* parameters */);
 ```
 
-#### Motivation
+**Motivation**
 
-This desgin allows the parameters required by different kinds to be different. For example, the signature of `LogicCommand#execute()` is:
+This design allows the parameters required by different kinds to be different. For example, the signature of `LogicCommand#execute()` is:
 
 ```java
 public CommandResult execute(LogicTaskList taskList, CommandStack commandStack);
@@ -300,17 +315,17 @@ While the signature of `UiCommand#execute()` is:
 public CommandResult execute(MainScreen mainScreen);
 ```
 
-This is a big modification compared to the original design in AB3. The reason behind this is because we want to reduce the coupling between different kinds of command - `LogicCommand` does not need to know about UI details to be executed.
+This is a big modification compared to the original design in AB3. The reason is that we want to reduce the coupling between different kinds of commands - `LogicCommand` does not need to know about UI details to be executed. This also aligns with our design of the `Model` component.
 
 Concrete classes will implements the corresponding interfaces.
 
-#### Design consideration
+**Design considerations**
 
 The current downside of this design is that, in order to execute a certain command, we need to check the runtime type (using `instanceof`) operator and cast the instance to the appropriate type before calling its `execute` method (by providing the correct arguments).
 
-This is very error prone, due to some reasons:
+This is very error-prone, due to some reasons:
 
-- Mismatch between the type used with `instanceof` operator and the type used to cast instance:
+- Mismatch between the type used with `instanceof` operator and the type used to cast the instance.
 
 ```java
 if (command instanceof LogicCommand) {
@@ -318,7 +333,7 @@ if (command instanceof LogicCommand) {
 }
 ```
 
-- Missing a kind of commands:
+- Missing a kind of command.
 
 ```java
 if (command instanceof LogicCommand) {
@@ -337,38 +352,38 @@ Future versions of Java contain features that can handle the problems mentioned 
 
 ### Atomic data modification
 
-#### Motivation
+**Motivation**
 
-Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
+Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all changes completed so far must be discarded, and the operation must stop. This ensures that the system is always left in a consistent state.
 
-#### Implementation detail
+**Implementation details**
 
-Currently, the only modification that can fail is modification to `Task`s.
+Currently, the only modification that can fail is a modification to `Task` object(s).
 
-Whenever a task (in the task list) need to be modified, the following workflow will be applied:
+Whenever a task (in the task list) needs to be modified, the following workflow will be applied:
 
 - Copy the task to be modified.
-- Sequentially applies different modifications on the new task.
-- If there is a failure, we discard the new task and return.
+- Sequentially applies different modifications to the new task.
+- If there is a failure, we discard the new task and stop the operation.
 - If there is no failure, we replace the old task with the new (modified) task.
 
 Refer to the diagram below for a visualization of this workflow:
 
-<!-- insert diagram here -->
+<img src="images/AtomicTaskModification.png" width="300" />
 
-Apart from ensuring atomic data operation, this implementation greatly simpifies the implementation of the undo feature. Must be nice!
+Apart from ensuring atomic data operation, this implementation also greatly simplifies the implementation of the undo feature.
 
 ### Undo feature
 
-The undo can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
+The user can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
 
-#### Motivation
+**Motivation**
 
-Users may make mistakes in their command, and command can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes is troublesome.
+Users may make mistakes in their commands, and commands can be destructive. For example, the user may accidentally issue a delete command and delete _all_ information about a task. This is annoying and sometimes troublesome.
 
 Undo command is implemented to addresss this concern. Note that in our application, undo command only undoes modifications to the internal data.
 
-#### Current implementation
+**Implementation details**
 
 The undo mechanism is facilitated by 2 classes: `CommandStack` and `UndoableLogicCommand`.
 
@@ -381,96 +396,95 @@ public interface UndoableLogicCommand extends LogicCommand {
 }
 ```
 
-All command that modifies the internal data (`AddCommand`, `DeleteCommand`, etc.) must implement `UndoableLogicCommand` and provide an implementation for the `undo` method.
+All command that modifies the internal data (`AddCommand`, `DeleteCommand`, etc.) must implement `UndoableLogicCommand` and provide an implementation for `UndoableLogicCommand#undo()`.
 
-Also, apart from modifying the data (atomically), `execute` method now:
+Apart from modifying the data (atomically), `UndoableLogicCommand#execute()` also:
 
 - Maintains relevant information (before modification) for the `undo` method.
-- Pushes the command (itself) into the stack of previous commands (if the command succeeds).
+- Pushes the command into the stack of commands (if the command succeeds).
 
 To undo a command, the following steps are executed:
 
-- A `UndoCommand` instance is created after the user type `"undo"` into the command box.
-- The command pops the first command out of the stack.
-- The command then calls the `undo` method of the poped command.
+- An `Undo Command` object is created after the user type `"undo"` into the command box.
+- Pops the first command out of the stack.
+- Calls the `undo` method of the popped command.
 
 Refer to the diagram below for a visualization of this workflow:
 
-<!-- insert diagram here -->
+<img src="images/UndoSequenceDiagram.png" width="800" />
 
-Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command. Simple!
+Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command.
 
-#### Design consideration
+**Design considerations**
 
 Currently, undo command does not support commands that modify the macros and GUI. We do not plan to implement a undo command that reverses changes to the GUI, it does not make sense (as the user can just refresh or retype the command to change the view again). However, undoing a command that modifies the macros may be beneficial. We can extend the behavior of undo command to support this behavior in future versions.
 
 ### Macro feature
 
-Macro are just shortcuts for longer commands. This feature allows the user to define, delete and view macro(s) in the application.
+Macros are just shortcuts for longer commands. This feature allows the user to define, delete and view macro(s) in the application.
 
-#### Motivation
+**Motivation**
 
-The motivation for this feature comes from **bash aliases**, where the user may define customized shortcut to invoke their command.
+The motivation for this feature comes from **bash aliases**, where the user may define customized shortcuts to invoke their commands.
 
-#### Implementation detail
+**Implementation details**
 
 The macro mechanism is facilitated by 3 classes: `MacroMap`, `MacroCommand` and `VimificationParser`.
 
 Macro is expanded using the following workflow:
 
-- The parser try to parse the first "word" in the user input.
-- If there is a macro that matches the word, the entire word will be expanded into a command string.Otherwise, the word is kept unchangd.
+- The parser try to parse the first word in the user input.
+- If there is a macro that matches the word, the entire word will be expanded into a command string. Otherwise, the word is kept unchanged.
 - The remaining input will be concatenated with the processed word and feed into the command parser.
 
-Consider the following scenario: the user already defined a macro `"cs2103t"`, and associated this macro with the command `"a 'weekly quiz' -d Fri 14:00"`. Now, if the users type `"cs2103t -l cs2103t"`, the following transformation will happen:
+Consider the following scenario: the user already defined a macro `"cs2103t"`, and associated this macro with the command `"a 'weekly quiz' -d Fri 14:00"`. Now, if the user types `"cs2103t -l cs2103t"`, the following actions will happen:
 
-- The parser identifies the first word occured in the input: `"cs2103t"`.
-- There is a macro that matches the word, the word will be expanded into `"a 'weekly quiz' -d Fri 14:00"`.
+- The parser identifies the first word that appeared in the input: `"cs2103t"`.
+- There is a macro that matches the word. The word will be expanded into `"a 'weekly quiz' -d Fri 14:00"`.
 - The remaining input is concatenated with the expanded macro, forming the string `"a 'weekly quiz' -d Fri 14:00 -l cs2103t"`.
-- This preprocessed string will be feed into the command parser, and returns an `AddCommand` object.
+- This preprocessed string will be fed into the command parser. An `AddCommand` object is then returned.
 
 Refer to the diagram below for a visualization of this workflow:
 
-<!-- insert diagram here -->
+<img src="images/MacroSequenceDiagram.png" width="800" />
 
-#### Design consideration
+**Design considerations**
 
-The current version, while useful, is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that, the macro engine cannot reject invalid macro when it was registered, and this can confuse the user when their commands are expanded.
+The current implementation is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that the macro engine cannot reject an invalid macro (e.g. macros that expand to invalid command string) when it is registered, and the user may use these invalid macros.
 
 Currently, there is no proposal to improve this behavior - any idea is appreciated.
 
-### Storage
-
-<!--
-`Task` and its subclasses have can be converted from and to JSON format using `JsonAdoptedXYZ` (`XYZ` is a placeholder for the specific task name e.g., `Todo`).
-
-We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
-
-One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation. -->
-
 ### Syncing view with internal logic
 
-#### Reason
+**Motivation**
 
-After the user uses the `sort` or `filter` command, the displayed index may not reflect the actual index of the data in the internal list. Syncing the display index with internal logic is neccessary to ensure intuative and understandable behavior.
+After the user uses the `sort` or `filter` command, the displayed index may not reflect the actual index of the data in the internal list. Syncing the display index with internal logic is necessary to ensure intuative and understandable behavior.
 
-#### Problem
+**Problem**
 
-We still want to separate the ui details from logic details, as we don't want to introduce high coupling into our system.
+We still want to separate the UI details from logic details, as we don't want to introduce high coupling into our system.
 
-#### Solution
+**Implementation details**
 
-Two interfaces were created to handle this problem: `LogicTaskList` and `UiTaskList`. `LogicTaskList` declares methods that modifies the internal data, and a single method used to transform the display index into the actual index in the underlying data list, while `UiTaskList` declares methods that modifies the GUI by setting appropriate predicates and comparators to filter and/or sort tasks. `TaskList` (the main class that controls the data of the application) will implement both interfaces.
+Two interfaces were created to handle this problem: `LogicTaskList` and `UiTaskList`. `LogicTaskList` declares methods that modify the internal data, and a single method used to transform the display index into the actual index in the underlying data list, while `UiTaskList` declares methods that modify the GUI by setting appropriate predicates and comparators to filter and/or sort tasks. `TaskList` (the main class that controls the data of the application) will implement both interfaces.
 
 The `TaskList` contains:
 
 - An `ObservableList` object that stores all tasks in the application.
 - A `FilteredList`, which stores the `ObservableList` as its source. We can set the predicate attached to this list to select the data to be displayed.
-- A `SortedList`, which stores the `FilteredList` as its source. We can set the comparator attached to this list to order the data to be displayed.
+- A `SortedList`, which stores the `FilteredList` as its source. We can set the comparator attached to this list to sort the data to be displayed.
 
-<!-- insert diagram here -->
+<img src="images/TaskListClass.png" width="300" />
 
-Note that, the command classes do not interact directly with `TaskList`, but with the interfaces `LogicTaskList` and `UiTaskList`. This prevents the commands from interacting with unrelated code, while still ensures that they will act on a single source of information - syncing the display index with the internal logic.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The classes in orange above are provided by **JavaFX**.
+
+</div>
+
+Note that, the command classes do not interact directly with `TaskList`, but with the interfaces `LogicTaskList` and `UiTaskList`.
+
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -502,8 +516,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                   | I want to …​                                                     | So that I can…​                                                                                         |
 | -------- | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --- |
-| `* * *`  | SoC Student who knows Vim | use my task planner fast and efficiently                         | reduce time spent on editing the task planner                                                           |
-| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to do list                         | get an overview of all the things I need to do at one glance                                            |
+| `* * *`  | SoC Student who knows Vim | use my task planner fast and efficiently                         | reduce the time spent on editing or updating my task/deadlines                                          |
+| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to-do list                         | get an overview of all the things I need to do at one glance                                            |
 | `* * *`  | SoC Student who knows Vim | add entries of task for the things to do into the task planner   | keep track of things to do                                                                              |
 | `* * *`  | SoC Student who knows Vim | add priority to a task                                           | give higher priority to more important tasks which should be completed first                            |
 | `* * *`  | SoC Student who knows Vim | add tag to a task                                                | categorize the tasks                                                                                    |
@@ -525,7 +539,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | search for tasks by deadlines within a specified period of time  | find all tasks that need to be done within that specified period of time                                |
 | `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                 | view all the tasks in the order of upcoming deadlines and know which tasks I should be completing first |
 | `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                     | see which are the more important tasks I should focus on completing first                               |
-| `* *`    | SoC Student who knows Vim | config the storage location of the file                          | customize the location to my own preference for easy reference                                          |
 | `* * *`  | SoC Student who knows Vim | view tasks with priorities in different color                    | visualize the important tasks more easily                                                               |
 | `* * *`  | New user                  | I can use :help                                                  | to access a brief user guide of all the commands and intended use cases of each command                 |
 
@@ -812,15 +825,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a task
 
-1. Deleting a task while all tasks are being shown
+1. Deleting a task while all of the tasks are being shown and there are multiple tasks.
 
    1. Test case: `:d 1`<br>
       Expected: First task is deleted from the list.
 
-   1. Test case: `delete -1`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `d -1`<br>
+      Expected: No task is deleted. Error details shown at the bottom of the screen.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `:delete`, `:delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
