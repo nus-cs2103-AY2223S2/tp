@@ -45,3 +45,7 @@ This project has three types of tests:
    e.g. `seedu.recipe.storage.StorageManagerTest`
 1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
    e.g. `seedu.recipe.logic.LogicManagerTest`
+
+## User Acceptance Testing (UAT)
+
+As our product has many Graphic User Interface features, we recommend that you follow the UAT procedures, as defined [here](DeveloperGuide.md#appendix-instructions-for-user-acceptance-testing)

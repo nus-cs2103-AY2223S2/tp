@@ -62,11 +62,14 @@ Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-success">
+
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/docs/diagrams/) folder. 
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
@@ -78,6 +81,7 @@ To better illustrate and explain the high-level design of the App, we have also 
 <img class="diagram" src="images/ArchitectureDiagram.png" width="400px">
 
 <div style="page-break-after: always;"></div>
+
 #### Main components of the architecture
 
 The `Main` part of the app has 2 classes called `Main` and `MainApp`. Its responsibilities are:
@@ -106,7 +110,7 @@ scenario where the user issues the command `delete 1`.
 
 Each of the four main components as shown in the diagram above,
 * defines its API in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component name}Manager` class 
+* implements its functionality using a concrete `{Component name}Manager` class
   (which follows the corresponding API `interface` mentioned above).
 
 For instance, the `Logic` component defines its APi in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
@@ -136,7 +140,9 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
 <div style="page-break-after: always;"></div>
+
 ### Logic component
+
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -255,6 +261,7 @@ Classes used by multiple components are in the `seedu.recipe.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
+
 ## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -309,6 +316,7 @@ The following sequence diagram illustrates how the different components interact
 <img class="diagram" src="images/EditRecipeFormSequenceDiagram.png" width="1128"/>  
 
 <div style="page-break-after: always;"></div>
+
 #### Implementation
 
 Likewise, the `EditRecipeForm` also inherits from the `RecipeForm` base class and hence supports a similar set of operations

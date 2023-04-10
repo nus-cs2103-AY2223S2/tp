@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/seeusim.md)]
 
 - Role: Code Quality, Integration Head
-- Responsibilities: Core Infrastructure, Code Validation, Project Management
+- Responsibilities: Core Infrastructure, Project Management, Lead Editor
 
 ### Tang Zong Hao
 
@@ -55,4 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/zhtang29.md)]
 
 - Role: Deliverables, Tracking and Deadlines Head, Documentation Head
-- Responsibilities: Project management, Project Documentation
+- Responsibilities: Project Management, Project Documentation

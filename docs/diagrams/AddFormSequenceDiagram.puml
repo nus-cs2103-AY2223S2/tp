@@ -41,9 +41,9 @@ deactivate AddRecipeForm
 
 AddFormCommand --> AddRecipeForm : display()
 activate AddRecipeForm
-
-AddRecipeForm --> AddFormCommand : data
 deactivate AddRecipeForm
+
+AddRecipeForm -[hidden]->
 destroy AddRecipeForm
 
 AddFormCommand --> AddCommandParser : parseTo\nRecipeDescriptor\n(commandString)
@@ -51,6 +51,8 @@ activate AddCommandParser
 
 AddCommandParser -> AddFormCommand : recipeToAdd
 deactivate AddCommandParser
+AddCommandParser -[hidden]->
+destroy AddCommandParser
 
 AddFormCommand -> Model : addRecipe(recipeToAdd)
 activate Model
@@ -59,13 +61,12 @@ deactivate Model
 AddFormCommand --> RecipeBookParser : result
 deactivate AddFormCommand
 
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddFormCommand -[hidden]-> RecipeBookParser
+AddFormCommand -[hidden]->
+destroy AddFormCommand
 
 RecipeBookParser --> LogicManager : result
 deactivate RecipeBookParser
 
-
-[<--LogicManager
+[<-[hidden]-LogicManager
 deactivate LogicManager
 @enduml
