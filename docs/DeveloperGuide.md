@@ -1107,6 +1107,8 @@ for more information about this package.
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### **Potential Enhancement**
 
 #### \[Proposed\] Undo and Redo Feature
@@ -1214,6 +1216,8 @@ _{more aspects and alternatives to be added}_
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Planned Enhancements**
 
 1. CoDoc does not check for duplicate `GitHub` usernames or `LinkedIn` profile URLs, so the user can add 2 or more contacts with the same `GitHub` usernames and/or `LinkedIn` profile URLs. We plan to make it such that CoDoc checks for this, on top of email, so each person can be uniquely identified by their `GitHub` username and `LinkedIn` profile URL as well. 
@@ -1254,6 +1258,7 @@ relevant contact information through a comprehensive UI. Furthermore, users can 
 to effectively sort/filter contacts to easily identify people of interest, such as study or project partners.
 
 [Scroll back to top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### User stories 📝
 
@@ -1278,6 +1283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 [Scroll back to top](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -1443,6 +1449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
