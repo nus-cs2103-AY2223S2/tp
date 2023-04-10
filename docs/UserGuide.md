@@ -398,7 +398,7 @@ If you need more info on the usage of each command, refer to the relevant sectio
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-[Scroll back to top](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
 <div style="page-break-after: always;"></div>
