@@ -129,6 +129,7 @@ public class EditCommand extends Command {
             return new Deadline(updatedName, updatedDescription, updatedTags, updatedDeadline, updatedEffort,
                 subtaskList);
         } else {
+            assert taskToEdit instanceof Deadline;
             if (deadlinePresent) {
                 throw new CommandException(MESSAGE_DEADLINE_ON_EVENT);
             }

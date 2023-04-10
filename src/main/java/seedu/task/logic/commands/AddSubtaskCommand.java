@@ -7,7 +7,9 @@ import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
 import seedu.task.logic.commands.exceptions.CommandException;
@@ -24,10 +26,13 @@ import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.exceptions.DuplicateTaskException;
 
+
 /**
  * Adds a task to the task book.
  */
 public class AddSubtaskCommand extends Command {
+
+    private static final Logger logger = LogsCenter.getLogger(AddSubtaskCommand.class);
 
     public static final String COMMAND_WORD = "subsection";
 
@@ -65,6 +70,7 @@ public class AddSubtaskCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()
             || index.getZeroBased() < 0) {
+            logger.info("Index provided for adding subtask is invalid.");
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         Task taskToEdit = lastShownList.get(index.getZeroBased());
@@ -92,6 +98,7 @@ public class AddSubtaskCommand extends Command {
             try {
                 newSimpleTask.addSubtask(subtask);
             } catch (DuplicateTaskException e) {
+                logger.info("Duplicated task added while adding a simple task.");
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);
             }
             return newSimpleTask;
@@ -103,17 +110,20 @@ public class AddSubtaskCommand extends Command {
             try {
                 newEvent.addSubtask(subtask);
             } catch (DuplicateTaskException e) {
+                logger.info("Duplicated task added while adding an event.");
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);
             }
             return newEvent;
 
         } else {
+            assert task instanceof Deadline;
             Deadline deadline = (Deadline) task;
             Date deadlineDate = deadline.getDeadline();
             Deadline newDeadline = new Deadline(name, description, tags, deadlineDate, effort, subtasks);
             try {
                 newDeadline.addSubtask(subtask);
             } catch (DuplicateTaskException e) {
+                logger.info("Duplicated task added while adding a deadline.");
                 throw new CommandException(MESSAGE_DUPLICATE_TASK);
             }
             return newDeadline;

@@ -101,6 +101,7 @@ public class DeleteSubtaskCommand extends Command {
             newEvent.removeSubtask(subtaskIndex);
             return newEvent;
         } else {
+            assert task instanceof Deadline;
             Deadline deadline = (Deadline) task;
             Date deadlineDate = deadline.getDeadline();
             Deadline newDeadline = new Deadline(name, description, tags, deadlineDate, effort, subtasks);
