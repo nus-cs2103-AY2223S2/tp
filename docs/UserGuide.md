@@ -13,31 +13,63 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ## Table of Contents
 
-- [User Guide Information](#user-guide-information)
-  - [Purpose of this guide](#purpose-of-this-guide)
-  - [How to use this guide](#how-to-use-this-guide)
-  - [Legends](#legends)
-- [Quick Start](#quick-start)
-- [Get to know GoodMatch](#get-to-know-goodmatch)
-- [Features](#features)
-  - [Viewing help: `help`](#viewing-help-help)
-  - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
-  - [Adding a job listing: `add`](#adding-a-job-listing-add)
-  - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
-  - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
-  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
-  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
-  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
-  - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
-  - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-  - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
-  - [Sorting job listings: `sort`](#sorting-job-listings-sort)
-  - [Undo latest command: `undo`](#undo-latest-command-undo)
-  - [Exit the application: `exit`](#exit-the-application-exit)
-  - [Saving data](#saving-the-data)
-  - [Editing data file](#editing-the-data-file)
-- [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [GoodMatch](#goodmatch)
+  - [title: User Guide](#title-user-guide)
+  - [**Overview**](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [User Guide Information](#user-guide-information)
+    - [Purpose of this guide](#purpose-of-this-guide)
+    - [How to use this guide](#how-to-use-this-guide)
+    - [Legends](#legends)
+  - [**Quick Start**](#quick-start)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents-)
+  - [Get to know GoodMatch](#get-to-know-goodmatch)
+    - [Listing](#listing)
+      - [Title](#title)
+      - [Description](#description)
+      - [Applicants List](#applicants-list)
+      - [Platforms released](#platforms-released)
+    - [Applicant](#applicant)
+      - [IDs](#ids)
+    - [Platform](#platform)
+    - [Commands](#commands)
+  - [**Features**](#features)
+    - [Viewing help: `help`](#viewing-help-help)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--1)
+    - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--2)
+    - [Adding a job listing: `add`](#adding-a-job-listing-add)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--3)
+    - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--4)
+    - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--5)
+    - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--6)
+    - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--7)
+    - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--8)
+    - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--9)
+    - [Delete a platform from a listing: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--10)
+    - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--11)
+    - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--12)
+    - [Undo latest command: `undo`](#undo-latest-command-undo)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--13)
+    - [Saving the data](#saving-the-data)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--14)
+    - [Editing the data file](#editing-the-data-file)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--15)
+    - [Exit the application: `exit`](#exit-the-application-exit)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--16)
+  - [**FAQ**](#faq)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--17)
+  - [**Command summary**](#command-summary)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--18)
 
 ---
 
@@ -235,7 +267,15 @@ Shows a message explaining how to access the help page.
 
 ✏️ **Format:** `help`
 
-You
+You can access the help page by these 3 methods:
+1. You can run the `help` command
+2. You can press **F1** button
+3. You can click the **Help** menu button located on the top left of the application
+
+<p>
+  <img class="diagram" src="images/HelpButton.png" />
+  <em>GoodMatch Help button</em>
+</p>
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
