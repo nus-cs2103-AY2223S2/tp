@@ -21,9 +21,9 @@ title: Developer Guide
 - **[Additional Information](#additional-information)**
     - **[Service Locator](#service-locator)**
     - **[Functional Programming](#functional-programming)**
-- **[Appendix: Requirements](#appendix--requirements)**
-- **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
-- **[Appendix: Efforts](#appendix--effort)**
+- **[Appendix: Requirements](#appendix-requirements)**
+- **[Appendix: Planned Enhancements](#appendix-planned-enhancements)**
+- **[Appendix: Efforts](#appendix-effort)**
 
 <div style="page-break-after: always;"></div>
 
