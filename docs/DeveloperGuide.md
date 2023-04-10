@@ -180,22 +180,19 @@ _Architecture_ section above.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-[SchedulerParser]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/SchedulerParser.java
-[ParseException]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/exceptions/ParseException.java
-[CommandException]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/exceptions/CommandException.java
-[InvalidDateException]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/exceptions/InvalidDateException.java
-
 ### **Add Command**
 
+[AddCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/AddCommand.java
+[AddCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/AddCommandParser.java
+
 For _Add_ command, the noteworthy classes are:
-- `AddCommandParser.java` - For parsing the arguments to `AddCommand.java`.
-- `AddCommand.java` - For execution.
+- [`AddCommandParser.java`][AddCommandParser.java] - For parsing the arguments to [`AddCommand.java`][AddCommand.java].
+- [`AddCommand.java`][AddCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
 - ParseException for invalid arguments
 - InvalidDateException for correct syntax but invalid (do not exist) dates
-- ParseException for invalid time
 - CommandException for identical events
 - CommandException for events with clashing time
 
@@ -225,14 +222,18 @@ _Activity Diagram for a typical `add` command_
 
 ### **Recur Command**
 
+[RecurCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/RecurCommand.java
+[RecurCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/RecurCommandParser.java
+
 For _Recur_ command, the noteworthy classes are:
-- `RecurCommandParser.java` - For parsing the arguments to `RecurCommand.java`.
-- `RecurCommand.java` - For execution.
+- [`RecurCommandParser.java`][RecurCommandParser.java] - For parsing the arguments to [`RecurCommand.java`][RecurCommand.java].
+- [`RecurCommand.java`][RecurCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
 - ParseException for invalid arguments
 - ParseException for index out of range
+- InvalidDateException for correct syntax but invalid (do not exist) dates
 - CommandException for end dates in the past
 - CommandException for recur factor exceeding max allowable
 
@@ -261,14 +262,17 @@ The execution, with Step 9 in further detail, can be seen in the activity diagra
 _Activity Diagram for a typical `recur` command_
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
 
-_Activity: Check for time clash for all recurring dates._
+_Activity: Check for time clash for all recurring dates._  
 ![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
 ### **Edit Command**
 
+[EditCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/EditCommand.java
+[EditCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/EditCommandParser.java
+
 For _Edit_ command, the noteworthy classes are:
-- `EditCommandParser.java` - For parsing the arguments to `EditCommand.java`.
-- `EditCommand.java` - For execution.
+- [`EditCommandParser.java`][EditCommandParser.java] - For parsing the arguments to [`EditCommand.java`][EditCommand.java].
+- [`EditCommand.java`][EditCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
@@ -311,10 +315,6 @@ Activity Diagram for a typical `delete` command
 
 [FindCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/FindCommand.java
 [FindCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/FindCommandParser.java
-[FindEventDescriptor]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/FindCommand.java#L86
-[EventMatchesKeywordsAndDatePredicate]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/EventMatchesKeywordsAndDatePredicate.java
-[EventContainsKeywordsPredicate]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/EventContainsKeywordsPredicate.java
-[EventMatchesDatePredicate]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/EventMatchesDatePredicate.java
 
 For _Find_ command, the noteworthy classes are:
 - [`FindCommandParser.java`][FindCommandParser.java] - For parsing the arguments to [`FindCommand.java`][FindCommand.java].
@@ -330,37 +330,35 @@ Given below is an example usage scenario of how the _Find_ command executes.
 -- user input --  
 Step 1. User executes find command with correct and valid arguments.
 
--- [`SchedulerParser`][SchedulerParser] --  
-Step 2. Returns new [`FindCommandParser.java`][FindCommandParser.java].
+-- `SchedulerParser` --  
+Step 2. Returns new `FindCommandParser`.
 
--- [`FindCommandParser.java`][FindCommandParser.java] --  
+-- `FindCommandParser` --  
 Step 3. Verify that at least one of the argument prefixes is present.  
 Step 4. Verify that provided arguments are valid.  
 Step 5. Creates a `FindEventDescriptor`  
-Step 6. Returns new [`FindCommand.java`][FindCommand.java] using [`FindEventDescriptor`][FindEventDescriptor].
+Step 6. Returns new `FindCommand.java` using `FindEventDescriptor`.
 
 -- `FindCommand` --  
-Step 7. Determine if `Name`, `Date` or both are present from [`FindEventDescriptor`][FindEventDescriptor].  
+Step 7. Determine if `Name`, `Date` or both are present from `FindEventDescriptor`.  
 Step 8. Create one of the following predicates, depending on the arguments provided: 
-[`EventMatchesKeywordsAndDatePredicate`][EventMatchesKeywordsAndDatePredicate], 
-[`EventContainsKeywordsPredicate`][EventContainsKeywordsPredicate] or 
-[`EventMatchesDatePredicate`][EventMatchesDatePredicate].  
+`EventMatchesKeywordsAndDatePredicate`, `EventContainsKeywordsPredicate` or`EventMatchesDatePredicate`.  
 Step 9. Updates the `ObservableList` using the predicate.
 
 The execution can be seen in the activity diagram given below.
 
+_Activity Diagram for a typical `find` command_
 ![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
-Activity Diagram for a typical `find` command
 
 ### **Next Command**
 
+_Activity Diagram for a typical `next` command_
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
-Activity Diagram for a typical `next` command
 
 ### **Undo Command**
 
+_Activity Diagram for a typical `undo` command_
 ![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
-Activity Diagram for a typical `undo` command
 
 ### **List Command**
 
