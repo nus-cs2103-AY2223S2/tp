@@ -59,7 +59,7 @@ public class RemoveMeetingCommandTest {
             INDEX_FIRST_MEETING);
 
         CommandResult actualSuccessMessage = sampleRemoveMeetingCommand.execute(model);
-        assertEquals(String.format(MESSAGE_REMOVE_SUCCESS, samplePerson),
+        assertEquals(String.format(MESSAGE_REMOVE_SUCCESS, samplePerson.getName()),
             actualSuccessMessage.getFeedbackToUser());
     }
 
