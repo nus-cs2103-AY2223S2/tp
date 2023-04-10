@@ -438,9 +438,12 @@ results of the `sub` command return ingredients instead of recipes.
 
 #### Overview
 
-The `import` command allows the user to import another RecipeBook JSON file into the app.
+The `import` command allows the user to import another RecipeBook JSON file into the app, and in so doing, import new Recipes to use!.
 
-If the imported file parses correctly into a RecipeBook, the recipes in the JSON file are successfully imported while ignoring duplicates. Else, if the file does not parse correctly, the import operation will fail and be cancelled.
+If the imported file parses correctly into a RecipeBook, the recipes in the JSON file will be successfully imported while ignoring duplicates (with respect to the
+App's current Recipe Book).
+Else, if the file is improperly formatted, the import operation will fail and be
+cancelled.
 
 <img class="diagram" src="images/ImportSequenceDiagram.png" width="1128" />
 
@@ -448,12 +451,13 @@ If the imported file parses correctly into a RecipeBook, the recipes in the JSON
 
 The `import` command goes through the standard command execution pipeline, skipping the parser phase.
 
-During the execution of the import command, we will call `execute()` on `ImportManager` class instance. This class, which is a part of
-the `Storage` package, allows the user to select another Recipe Book JSON file for
-import from their file system. The parsing is performed using the existing `parse`
-methods in the `seedu.recipe.commons.util.JsonUtil` class.
-Afterwards, we will cross-check with our current RecipeBook to filter out
-duplicate recipes, and add the remaining non-duplicate recipes.
+During the execution of the import command, we will call `execute()` on an instance
+of the `ImportManager` class. This class, which is a part of the `Storage` package,
+allows the user to select another Recipe Book JSON file for import from their file
+system. The parsing is performed using the existing `parse` methods in the
+`seedu.recipe.commons.util.JsonUtil` class. Afterwards, we will cross-check with
+our current RecipeBook to filter out duplicate recipes, and add the remaining
+non-duplicate recipes.
 
 <div markdown="span" class="alert alert-info">
 
