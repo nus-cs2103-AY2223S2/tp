@@ -12,9 +12,9 @@ recipes, *RIZZipe* is for you.
 ## Site Map
 
 - **[Product Website](https://ay2223s2-cs2103t-t13-2.github.io/tp/)**
-- **[User Guide](docs/UserGuide.md)**
-- **[Developer Guide](docs/AboutUs.md)**
-- **[About Us](docs/AboutUs.md)**
+- **[User Guide](https://ay2223s2-cs2103t-t13-2.github.io/tp/UserGuide.html)**
+- **[Developer Guide](https://ay2223s2-cs2103t-t13-2.github.io/tp/DeveloperGuide.html)**
+- **[About Us](https://ay2223s2-cs2103t-t13-2.github.io/tp/AboutUs.html)**
 
 ## Acknowledgements
 
