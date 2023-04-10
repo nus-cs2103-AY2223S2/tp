@@ -21,18 +21,21 @@ Given below are my contributions to the project:
     - Student Page GUI: Designed student list panel and view pane which refreshes after each change in student detail.
     - Attendance Page GUI: Designed student attendance list which changes colour (red/green) to reflect if a student is present or absent.
     - Grades Page GUI: Designed student grades list which displays a student's grade for a particular task.
+    - Also participated in coordinating front-end GUI and back-end code.
 
 - ### Contributions to the UG
   * Drafted UG for V1.2
   * Created screenshots for v1.3
+  * Created Visual Guide image for v1.4
 
 - ### Contributions to the DG
+  * Changed AB3 UI component to suit CLIpboard.
+  * Added UI Implementation section which includes design considerations.
+  * Added implementation details for Select Command.
 
 - ### Contributions to team-based tasks
   * Upload product demo screenshots for v1.2
   * Created release for v1.3
-
-- ### Review/mentoring contributions
 
 - ### Contributions beyond the project team
   * Participated in PE-D bug-catching exercise.
