@@ -36,10 +36,9 @@ Without further ado, let's get started!
          9. [Deleting a student: `delete`](#deleting-student-student-class-delete)
     3. [Parent Features: `parent`](#parent)
         1. [Add Parent/Next-of-Kin: `add`](#adding-a-parentnok-parent-add)
-        2. [Listing all Parents/Next-of-Kins: `list`](#listing-all-parentsnoks--parent-list)
-        3. [Editing a Parent/Next-of-Kin particulars: `edit`](#edit-parent-parent-edit)
-        4. [Searching Parents/Next-of-Kins: `find`](#locating-parent-by-name-parent-find)
-        5. [Deleting a Parent/Next-of-Kin: `delete`](#deleting-parent-parent-delete)
+        2. [Editing a Parent/Next-of-Kin particulars: `edit`](#edit-parent-parent-edit)
+        3. [Searching Parents/Next-of-Kins: `find`](#locating-parent-by-name-parent-find)
+        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleting-parent-parent-delete)
     4. [General Features](#general)
        1. [List all students / parents](#listing-students--parents-list)
        2. [Viewing help: `help`](#viewing-help--help)
@@ -580,26 +579,6 @@ It is recommended to store the images using the folder [method](#images) instead
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name = "listparent" />
-
-### Listing all Parents/NOKs : `parent list`
-
-Shows a list of all Parents/[NOKs](#glossary) in the database with their corresponding particulars.
-
-Format: `list`
-
-Examples of Full Command:
-* `list parent` <br>
-
-**Expected Outcome:**
-![list message](images/listParent.png)
-
-[Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
-
-----------------------------------------------------------------------------------------------------------------
-
 <a name = "editparent" />
 
 ### Edit Parent: `parent edit`
@@ -661,7 +640,7 @@ To list back all parent, use the [general list](#listing)command! <br><br>
 
 Deletes parent with corresponding `NAME` and `PHONE_NUMBER` from the database.
 
-Format: `parent delete n/NAME pnP/PHONE_NUMBER`
+Format: `parent delete n/<NAME> pnP/<PHONE_NUMBER>`
 
 Examples:
 * `parent delete n/TanAhCow pnP/91234566` <br>
@@ -875,7 +854,6 @@ Need to add parent before each command!!
 | Action     | Format, Examples                                                                                                                                                                           |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`                                                      |
-| **List**   | `list`                                                                                                                                                                                     |
 | **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
 | **Delete** | `delete n/<NAME> pnP/<PHONE>`                                                                                                                                                              |
 

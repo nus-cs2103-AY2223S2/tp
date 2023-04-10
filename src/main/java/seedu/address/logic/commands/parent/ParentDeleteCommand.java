@@ -13,11 +13,15 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Deletes a parent identified using his or her name and phone number displayed on PowerConnect's parent list.
  */
 public class ParentDeleteCommand extends ParentCommand {
 
+    private static Logger logger = Logger.getLogger(ParentDeleteCommand.COMMAND_WORD);
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the parent identified by their name and phone number used.\n"
@@ -52,17 +56,22 @@ public class ParentDeleteCommand extends ParentCommand {
         //with modifications
         Parent parentToDelete = model.getParent(parentName, phoneNumber);
         if (parentToDelete == null) {
+            logger.log(Level.WARNING, "----------------[PARENT DELETE][Parent does not exists]");
             throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
         }
 
         if (parentToDelete.hasStudents()) {
+            logger.log(Level.WARNING, "----------------[PARENT DELETE][Parent has students attached]");
             throw new CommandException(Messages.MESSAGE_INVALID_PARENT_DELETE);
         }
         //@@author
 
         model.deleteParent(parentToDelete);
+        logger.log(Level.INFO, "----------------[PARENT DELETE][Parent successfully deleted]");
         Name deletedParentName = parentToDelete.getName();
         Phone deletedParentPhoneNumber = parentToDelete.getPhone();
+        assert  deletedParentName != null : "Name of deleted parent should not be null";
+        assert  deletedParentPhoneNumber != null : "phone number of deleted parent should not be null";
 
         return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, deletedParentName,
                 deletedParentPhoneNumber));

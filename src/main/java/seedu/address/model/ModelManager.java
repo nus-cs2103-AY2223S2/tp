@@ -174,7 +174,10 @@ public class ModelManager implements Model {
             IndexNumber currStudentIndexNumber = student.getIndexNumber();
             Class currStudentClass = student.getStudentClass();
 
-            if (currStudentIndexNumber.equals(indexNumber) && currStudentClass.equals(studentClass)) {
+            boolean isSameIndexNumber = currStudentIndexNumber.equals(indexNumber);
+            boolean isSameStudentClass = currStudentClass.equals(studentClass);
+
+            if (isSameIndexNumber && isSameStudentClass) {
                 return student;
             }
         }
@@ -208,7 +211,10 @@ public class ModelManager implements Model {
             Name currParentName = parent.getName();
             Phone currParentPhoneNumber = parent.getPhone();
 
-            if (currParentName.equals(name) && currParentPhoneNumber.equals(phone)) {
+            boolean isSameName = currParentName.equals(name);
+            boolean isSamePhoneNumber = currParentPhoneNumber.equals(phone);
+
+            if (isSameName && isSamePhoneNumber) {
                 return parent;
             }
         }

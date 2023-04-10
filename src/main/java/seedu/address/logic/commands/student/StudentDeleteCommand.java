@@ -13,10 +13,15 @@ import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Deletes a student identified using his or her class and index number from PowerConnect.
  */
 public class StudentDeleteCommand extends StudentCommand {
+
+    private static Logger logger = Logger.getLogger(StudentDeleteCommand.COMMAND_WORD);
 
     public static final String COMMAND_WORD = "delete";
 
@@ -52,13 +57,16 @@ public class StudentDeleteCommand extends StudentCommand {
         //with modifications
         Student studentToDelete = model.getStudent(targetIndex, studentClass);
         if (studentToDelete == null) {
+            logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student does not exists]");
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
         model.deleteStudent(studentToDelete);
+        logger.log(Level.INFO, "----------------[STUDENT DELETE][Student deleted successfully]");
 
         Parent parentToUnbind = model.getParent(studentToDelete.getParentName(), studentToDelete.getParentNumber());
 
         if (parentToUnbind == null) {
+            logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student's parent does not exists]");
             throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
         }
         //@@author
