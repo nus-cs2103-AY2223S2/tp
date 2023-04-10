@@ -379,7 +379,7 @@ As `list` resets all active filters, one of the most common uses of the `list` c
 You might like to use `list` in conjunction with the following commands:
 * [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
 * [`overview`](#changing-the-overview-type-overview), which shows an overview of the cases in the current list view
-* [`find`](#finding-cases-by-prefixes-find) which filters the current list view
+* [`find`](#finding-cases-by-prefixes-find) to show all the cases that is considered when it is called
 
 You may wish to use `list` **before** any of these commands in order to process the *full* list of data within DHT.
 
@@ -406,11 +406,11 @@ Format: `find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 
 **:bulb: Tip:**<br>
 
-The tags for age (`a/AGE`) and date (`d/DATE`) can be replaced with ranges instead to find cases which fall within that range. Use:
+The prefixes for age (`a/AGE`) and date (`d/DATE`) can be replaced with ranges instead to find cases which fall within that range. Use:
 * `[sa/START_AGE] [ea/END_AGE]` for a range of ages
 * `[sd/START_DATE] [ed/END_DATE]` for a range of dates
 
-Be careful not to use both the 'specific' tag and 'range' tags for the same property in one command! e.g. `find a/25 sa/20` will not be accepted.
+Be careful not to use both the 'specific' prefix and 'range' prefixes for the same property in one command! e.g. `find a/25 sa/20` will not be accepted.
 
 </div>
 
