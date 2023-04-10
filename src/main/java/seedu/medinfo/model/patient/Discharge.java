@@ -19,7 +19,6 @@ public class Discharge {
     public static final String DATE_FORMAT = "dd/MM/yyyy HHmm";
     public final String value;
 
-
     /**
      * Constructs a {@code Discharge}.
      *
@@ -30,7 +29,6 @@ public class Discharge {
         checkArgument(isValidDischarge(discharge), MESSAGE_CONSTRAINTS);
         value = discharge;
     }
-
 
     /**
      * Returns true if a given discharge date-time is valid.
