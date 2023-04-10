@@ -11,15 +11,17 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as dataStorage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "ExpenseTracker Storage" #F4F6F6{
+Class "<<interface>>\nExpenseTrackerStorage" as ExpenseTrackerStorage
+Class JsonExpenseTrackerStorage
+Class JsonSerializableExpenseTracker
+Class JsonAdaptedExpense
+Class JsonAdaptedCategory
+Class JsonAdaptedRecurringExpense
+Class JsonAdaptedBudget
 }
 
 }
@@ -27,17 +29,19 @@ Class JsonAdaptedTag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
+StorageManager .up.|> dataStorage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" ExpenseTrackerStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+dataStorage -left-|> UserPrefsStorage
+dataStorage -right-|> ExpenseTrackerStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonExpenseTrackerStorage .up.|> ExpenseTrackerStorage
+JsonExpenseTrackerStorage ..> JsonSerializableExpenseTracker
+JsonSerializableExpenseTracker --> "*" JsonAdaptedExpense
+JsonSerializableExpenseTracker --> "*" JsonAdaptedCategory
+JsonSerializableExpenseTracker --> "*" JsonAdaptedRecurringExpense
+JsonSerializableExpenseTracker --> "*" JsonAdaptedBudget
 
 @enduml
