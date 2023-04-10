@@ -290,7 +290,7 @@ Examples:
 * `event_create_recur 1 re/CS2103T Lecture d/Friday f/16:00 t/18:00`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Constrains:**
-Recurring event consist of the whole day from `00:00` to `00:00`. The maximum time period that is allowed is from 00:00 to 23:00.
+Recurring event consisting of the whole day from `00:00` to `00:00` is not allowed. The maximum time period that is allowed is from 00:00 to 23:00.
 </div>
 
 ### Deleting an event:
