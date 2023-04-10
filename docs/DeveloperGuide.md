@@ -290,7 +290,7 @@ Classes used by multiple components are in the [`seedu.internship.commons`](http
  
 The following section describes some noteworthy details on how certain features are implemented.
 
-### Selecting an `Internship`: `select` command
+### Selecting an Internship: `select` command
 
 #### Purpose of `select` command
 
@@ -333,7 +333,7 @@ lifeline reaches the end of diagram.
 
 <div style="page-break-after: always;"></div>
 
-### Adding `Event` to an `Internship`: `event add` command
+### Adding Event to an Internship: `event add` command
 
 #### Purpose of `event add` command
 
@@ -381,9 +381,9 @@ The *Sequence Diagram* for the adding the `Event` is below:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing all `Event` on a calendar: `calendar` command
+### Viewing all Event on a calendar: `calendar` command
 
-#### Purpose of `calendar` command
+#### Purpose of calendar command
 
 The `calendar` command displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
 
@@ -432,7 +432,7 @@ To learn more about CalendarFX, you may visit its Developer Guide [here](https:/
 
 <div style="page-break-after: always;"></div>
 
-### View useful `Statistics`: `stats` command
+### View useful statistics: `stats` command
 
 #### Purpose of `stats` command
 
@@ -482,7 +482,7 @@ The following sequence diagram shows how the `stats` command works:
 
 <div style="page-break-after: always;"></div>
 
-### View all clashing `Event`: `clash` command
+### View all clashing event: `clash` command
 
 #### Purpose of `clash` command
 
@@ -644,7 +644,7 @@ Use Case ends.
 
       Use case resumes at step 4.
 
-#### Use Case: Add an internship listing
+#### Use case: Add an internship listing
 
 **MSS**
 
@@ -677,7 +677,7 @@ Use case ends.
     Use Case ends.
   
 
-#### Use Case: Delete an internship listing
+#### Use case: Delete an internship listing
 
 **MSS**
 
