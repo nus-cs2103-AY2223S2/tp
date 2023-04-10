@@ -230,7 +230,7 @@ slightly easier.
 Format: `auto_pair`
 
 * The volunteer and elderly in each pair generated will 
-always have **compatible [regions](#region) and [available dates](#date)**.
+always have **compatible [regions](#region) and [available dates](#available-dates)**.
    * We consider a volunteer/elderly with no specified region to be compatible with _any_ region. Similarly, a volunteer/elderly with no availabilities specified will be considered to be available at _any_ time. 
 * In the event that no pairs can be formed satisfying the above constraints 
 (either because there are no unpaired volunteers or elderly, or all the unpaired volunteers 
