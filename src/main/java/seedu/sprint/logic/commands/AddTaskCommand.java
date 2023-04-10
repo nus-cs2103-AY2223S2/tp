@@ -33,6 +33,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s.";
     public static final String MESSAGE_TASK_EXISTS = "This application already has an existing task.";
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in the internship book";
 
     private final Index targetIndex;
     private final EditApplicationDescriptor editApplicationDescriptor;
@@ -63,6 +64,12 @@ public class AddTaskCommand extends Command {
         }
 
         Application editedApplication = createEditedApplication(applicationToAddTask, editApplicationDescriptor);
+
+
+        if (model.hasApplication(editedApplication)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
+        }
+
 
         model.setApplication(applicationToAddTask, editedApplication);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
