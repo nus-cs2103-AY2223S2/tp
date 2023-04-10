@@ -8,7 +8,7 @@ title: Hmuu Myat Moe's Project Portfolio Page
 Trackr is a desktop address book application used for teaching Software Engineering principles.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project. (Some of the )
 
 * Added the ability to add tasks to a task list and list tasks.
     * What it does:
@@ -31,8 +31,11 @@ Given below are my contributions to the project.
       and may wish to quickly find out which orders or tasks are more urgent at one glance.
       This feature provides a convenient way for the home business owners to do so.
     * Highlights: Users are able to sort the tasks or orders based on various criterias (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline)
+    * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
 <br><br>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=hmuumyatmoe&breakdown=true)
+<br>All the functional and test codes reused or adapted are reused from and adapated from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org).
+<br>Code used for rake symbol used in Edit Command Activity Diagram in the DG is reused from [this Plant Uml forum](https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol).
 <br><br>
 * **Project management**:
     * Managed project documentation (UG & DG)
