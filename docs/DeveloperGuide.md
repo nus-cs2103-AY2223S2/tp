@@ -168,6 +168,12 @@ Classes used by multiple components are in the `seedu.sprint.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In the sequence diagrams included in
+sections 5.1-5.4 and 5.6, the lifeline for `XYZCommandParser` (e.g. `AddApplicationCommandParser`) should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ### 5.1 Add Application feature
 
 #### About
@@ -756,6 +762,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case resumes at step 1.
 
+* 2c. User did not provide at least one field to edit.
+  * 2c1. sprINT shows an error message.
+
+    Use case resumes at step 1. 
+
 ---
 
 **Use case: UC03 - Delete an application entry**
@@ -790,8 +801,9 @@ ___
 
 **MSS**
 
-1. User provides task details (description, deadlines) and specifies the application to add this task to.
-2. sprINT adds the task to the specified application and shows the updated list of application entries.
+1. sprINT displays a list of current application entries. 
+2. User provides task details (description, deadline) and specifies the application to add this task to.
+3. sprINT adds the task to the specified application and shows the updated list of application entries.
 
    Use case ends.
 
@@ -906,7 +918,7 @@ status as the keyword.
 
 * 2a. No matching applications are found and the filtered list is empty.
   
-  Use case resumes at step 2.
+  Use case ends.
 
 ---
 
