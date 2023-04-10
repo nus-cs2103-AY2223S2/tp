@@ -25,7 +25,7 @@ Given below are my contributions to the project.
         * See PR [#107](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/107)
         * What it does: Groups modules in the module list by category for the user to view
         * Justification: This feature allows users to have flexibility in the order and grouping by which modules are shown to them on UI instead of by only chronological year-semester order
-        * In-depth: `UniqueModuleList::sortByObject` iterates through the module list and adds module objects to module lists of their specified category which are retrieved by key (String object of that category) in a TreeMap to pass to the UI through the `UniqueModuleList::getModuleList` method to show to the user
+        * In-depth: `UniqueModuleList::sortByObject` iterates through the module list and adds module objects to module lists of their specified category which are retrieved by key (String object of that category) in a TreeMap to pass to the UI through the `UniqueModuleList::getModuleGroups` method to show to the user
         * Highlights: Implemented the `sort` function by creating the `SortCommandParser`, `SortCommand` classes and enhancing `UniqueModuleList` to return TreeMap<Object, ObservableList<Module>> objects in the `getModuleGroups` method to the UI where module lists are split into categorical groups for the UI to show to the user.
         
     * **Enhancement to existing features:** Update Add, Delete, Edit, Find command classes of AB3 to add, delete, edit and find modules in module list
