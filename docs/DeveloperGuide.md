@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 ## <a id="table"></a>**Table of Contents**
-
+* Table of Contents
 {:toc}
 
 
@@ -940,7 +940,7 @@ Expected: The modules will not be sorted.
 
     1. If the data file is _missing_, coNtactUS will create a new data file, with sample data.
     2. Similar outcome for _corrupted_ data files.
-   3. 
+
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ------------------------------------------------------------------------------------------------------------------------
