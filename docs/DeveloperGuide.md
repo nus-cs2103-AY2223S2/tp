@@ -677,6 +677,9 @@ person.
 Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
 
 ![Add Activity Diagram](images/AddActivityDiagram.png)
+<img src="images/createAttributes.png" width="170">
+
+
 
 ##### Design Considerations
 
@@ -830,7 +833,10 @@ The following sequence diagram summarizes what happens when the user executes a 
 
 Given below is the activity diagram to illustrate what happens when the user calls the `find` command:
 
-![Find Activity Diagram](images/FindActivityDiagram.png)
+<img src="images/FindActivityDiagram.png" width="600">
+
+<img src="images/createCombinedPredicate.png" width="300">
+
 
 ##### Design Considerations
 

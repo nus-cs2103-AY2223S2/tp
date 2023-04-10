@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+
+partition "act CreateAttributes" {
+    start
+    :create new Name;
+    :create new Github;
+    :create new Email;
+    :create new Course;
+    :create new Year;
+    :create new Linkedin;
+    :create new SkillSet;
+    :create new ModuleSet;
+    stop
+}
+@enduml

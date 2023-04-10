@@ -1,4 +1,5 @@
 @startuml
+!include style.puml
 start
 :User inputs Add command;
 :CodocParser reads user input and recognises the add command;
@@ -8,14 +9,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([has compulsory arguments])
-    :create new Name;
-    :create new Github;
-    :create new Email;
-    :create new Course;
-    :create new Year;
-    :create new Linkedin;
-    :create new SkillSet;
-    :create new ModuleSet;
+    :create attributes for the person <$rake>;
     :create new Person from attributes;
     :create AddCommand using the Person;
     if () then ([model does not have same person])

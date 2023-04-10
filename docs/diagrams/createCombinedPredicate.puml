@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+partition "act CreateCombinedPredicate" {
+    start
+    if () then ([name arguments not empty])
+        :Add namePredicate to combinedPredicate using logical AND;
+    else ([else])
+    endif
+    if () then ([year arguments not empty])
+        :Add yearPredicate to combinedPredicate using logical AND;
+    else ([else])
+    endif
+    if () then ([course arguments not empty])
+        :Add coursePredicate to combinedPredicate using logical AND;
+    else ([else])
+    endif
+    if () then ([module arguments not empty])
+        :Add modulePredicate to combinedPredicate using logical AND;
+    else ([else])
+    endif
+    if () then ([skill arguments not empty])
+        :Add skillPredicate to combinedPredicate using logical AND;
+    else ([else])
+    endif
+    stop
+}
+@enduml
