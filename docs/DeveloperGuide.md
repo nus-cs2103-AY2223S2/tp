@@ -165,6 +165,7 @@ The `Model` component,
 * A `Student` has a `UniqueTaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
 * The `creationDate` will be hidden from the user and only be used for sorting the `UniqueTaskList`.
+* The `UniqueTaskList` is sorted according to `TaskStatus`, and if two tasks have the same `TaskStatus`, they will be compared using their creation date.
 
 #### UniqueScoreList model
 **API** : [`UniqueScoreList.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/score/UniqueScoreList.java)
@@ -655,7 +656,6 @@ testers are expected to do more *exploratory* testing.
     Expected: No student is deleted. Error details shown in the status message.
 
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
-
     Expected: Similar to previous.
 
 1. Deleting a student being checked
@@ -684,6 +684,46 @@ testers are expected to do more *exploratory* testing.
    Expected: The task in added to the task list of the student. Student's name and details of the added task shown in the status message.
    The displayed task list is not updated since the student is not being checked.
 
+### Deleting a task for a student
+
+1. Deleting a task for a student in the student list when the student is being checked
+
+   2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+   
+   3. Test case: `deletetask x 1`<br>
+   Expected: The first task is deleted from the task list of the checked student. Student's name and details of the deleted task shown in the status message.
+      The deleted task is removed from the displayed task list of the checked student.
+   
+   4. Test case: `deletetask x 0`
+   Expected: No task is deleted from the task list of the checked student. Error details shown in the status message.
+   
+   5. Test case: Other incorrect delete commands to try:`deletetask`, `deletetask x`, `deletetask x y`, `...` (where y is larger than the checked student's task list size)<br>
+   Expected: Similar to previous.
+
+### Marking a task of a student
+
+1. Marking a task of a student as late, in progress or complete
+
+   2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+   
+   3. Test case: `markinprogress x 1`<br>
+   Expected: The first task in the task list of the checked student is marked as in progress. Student's name and details of the marked task shown in the status message.
+      The symbol representing the status of the task selected to be marked is yellow.
+
+   4. Test case: `marklate x 1`<br>
+   Expected: The first task in the task list of the checked student is marked as late. Student's name and details of the marked task shown in the status message.
+      The symbol representing the status of the task selected to be marked is red.
+
+   5. Test case: `markcomplete x 1`<br>
+   Expected: The first task in the task list of the checked student is marked as complete. Student's name and details of the marked task shown in the status message.
+      The symbol representing the status of the task selected to be marked is green.
+
+   6. Test case: `markinprogress x 0`, `marklate x 0` or `markcomplete x 0`
+   Expected: No task in the task list of the checked student is marked. Error details shown in the status message.
+
+   7. Test case: Other incorrect delete commands to try:`markinprogress`, `marklate x`, `markcomplete x y`, `...` (where y is larger than the checked student's task list size)<br>
+      Expected: Similar to previous.
+
 ### Saving data
 
 --------------------------------------------------------------------------------------------------------------------
@@ -696,11 +736,11 @@ testers are expected to do more *exploratory* testing.
 
 We faced several challenges when we were working on this application, the following are some examples and not limited to:
 
-* As lacking experience in working with pre-existing codebase, and AB3 is a relatively large project that we did not encounter before,
-we had to take time to learn from scratch that how the AB3 works, such as how does user input handled by AB3.
-* Since we are relatively new to JavaFx, we had to spend a lot of time looking at the JavaFx library and learning how to use some
+* As we lack experience in working with the pre-existing codebase, and AB3 is a relatively large project that we did not encounter before,
+we had to take some time to learn from how AB3 works, such as how the user input is handled by AB3.
+* Since we are relatively new to JavaFx, we also had to spend quite some time looking at the JavaFx library and learning how to use some
 specific structures when designing the GUI.
-* We also had to spend time searching CSS format in order to make the GUI meet our requirements.
+* We also had to spend time searching CSS format in order to tweak the GUI to meet our requirements.
 * Thinking how to design the structure of our application based on existing AB3 structure to make it follow Object-oriented programming.
 
 ### Effort required
