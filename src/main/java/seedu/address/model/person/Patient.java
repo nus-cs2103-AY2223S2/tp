@@ -30,19 +30,6 @@ public class Patient extends Person {
     }
 
     /**
-     * Returns true if both Patient have the same NRIC.
-     * This defines a weaker notion of equality between two patients.
-     */
-    public boolean isSamePatient(Patient otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getNric().equals(getNric());
-    }
-
-    /**
      * Returns a copy of the prescriptions
      * @return a copy of the patient's set of prescriptions
      */
@@ -116,21 +103,5 @@ public class Patient extends Person {
      */
     public void deletePatientAppointment(Appointment appointment) {
         patientAppointments.remove(appointment);
-    }
-
-    /**
-     * Get the patient's appointments as a String in list form.
-     * @return list of patient's appointment bookings in String
-     */
-    public String patientAppointmentstoString() {
-        ArrayList<Appointment> patientAppointments = getPatientAppointments();
-        String string = "";
-        int count = 1;
-        for (Appointment appointment : patientAppointments) {
-            String appointmentBooking = appointment.getBooking().toString();
-            string += count + ". " + appointmentBooking + "; " + appointment.getDrNric().toString() + "\n";
-            count++;
-        }
-        return string;
     }
 }

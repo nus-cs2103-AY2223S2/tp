@@ -18,10 +18,12 @@ The app simplifies the organization and maintenance of patient and doctor data, 
 
 * Based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used:
+  * [PlantUML](https://plantuml.com/sitemap) 
   * [Jackson](https://github.com/FasterXML/jackson)
   * [JavaFX](https://openjfx.io/index.html)
   * [JUnit5](https://github.com/junit-team/junit5)
-  * [PlantUML](https://plantuml.com/sitemap)
+  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -104,8 +106,8 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command. 
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDoctorCommand`) which is executed by the `LogicManager`. 
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDoctorCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a doctor).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -321,7 +323,7 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
 
 #### Design considerations:
 
-**Aspect: Command format:**
+* Aspect: Command format:
 
 * **Alternative 1 (current choice):** Delete appointment specified by the `INDEX`.
     * Pros: User can input a shorter command.
@@ -331,6 +333,24 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
     * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
     * Cons: More tedious to implement and less convenient for the user to input command.
 
+## Prescribe Feature
+`Prescription` refers to a `Medication` being sold at a `Cost`. Each `Patient` can have one or more `Prescriptions`
+which can help generate their bill. There are a few ways to implement connecting these 4 classes, and we opted for
+the one simplest for the User to use as our Users could be not tech-savvy.
+
+#### Design considerations:
+* **Alternative 1 (Current Choice):** Allow `Patient` to have direct access to `Prescription`, which encapsulates `Medication` and `Cost`.
+  * Pros: Simpler to implement as it reuses existing code.
+  * Cons: Duplicated information, if multiple `Patient` have the same `Prescription`.
+
+![PrescriptionImplementationCurrent.png](images/PrescriptionImplementationCurrent.png)
+
+* **Alternative 2:**  Allow `Patient` to have access to only `Medication`. And store the `Prescription` relationship of
+`Medication` and `Cost` in a separate table.
+  * Pros: This is the most object-oriented, and thus intuitive design. `Patient` is less coupled to `Cost`.
+  * Cons: Most challenging design. Does not allow prescribing `Medication` at a different `Cost`, such as if the prices rise.
+
+![PrescriptionImplementationAlternative.png](images/PrescriptionImplementationAlternative.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -352,7 +372,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 Step 2. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<img src="images/UndoRedoState1.png" width="446" height="200" />
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
@@ -443,35 +463,29 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority  | As a …​                                     | I want to …​                                                                                                             | So that …​                                                                           |
-|-----------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`   | healthcare provider                         | access a dashboard to keep track of my patients' information, medical history, and appointment schedules                    | I can provide better care.                                                              |
-|           | healthcare provider                         | view bed availability in real-time                                                                                          | I can make informed decisions about patient admission and discharge.                    |
-| `* * *`   | healthcare provider                         | update patient information and medical history after each appointment                                                       | I have a complete and accurate record of the patient's health.                          |
-|           | healthcare provider                         | generate and send prescription orders to the pharmacy directly from the application                                         | I can streamline the process for my patients.                                           |
-|           | healthcare provider                         | access real-time data on the patient's vital signs and monitor the patient's health remotely                                | I can quickly respond to changes in the patient's health.                               |
-|           | healthcare provider                         | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       | 
-|           | healthcare provider                         | view and manage patient waiting times                                                                                       | I can minimize wait times and improve patient satisfaction.                             |
-| `* * *`   | healthcare provider                         | access a directory of specialist doctors and referral information                                                           | I can quickly and easily connect my patients with the right care.                       |
-|           | healthcare provider                         | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
-|           | healthcare provider                         | access a library of patient education materials and resources                                                               | I can provide better information and support to my patients.                            |
-|           | healthcare provider                         | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
-|           | healthcare provider                         | access and view patient insurance information and make necessary updates                                                    | I can accurately bill patients and manage healthcare costs.                             |
-|           | healthcare provider                         | send appointment confirmations and reminders to patients                                                                    | they can arrive prepared for their appointments.                                        |
-|           | healthcare administrator                    | access analytics and metrics on patient engagement, appointment booking, and resource utilization                           | I can make data-driven decisions to improve the hospital's operations.                  |
-|           | healthcare administrator                    | access real-time data on hospital utilization and resource allocation                                                       | I can optimize the hospital's operations and improve patient outcomes.                  |
-| `* * *`   | healthcare administrator                    | access patients' records on the go/at home any time when it's necessary to provide admin support anytime.                   |                                                                                         |
-|           | healthcare administrator                    | manage the hospital staff and workload better using the app                                                                 | there are sufficient people during each shift.                                          |
-|           | healthcare administrator                    | quickly retrieve patient's bill through the application                                                                     | I can send invoices to the patients more efficiently.                                   |
-|           | healthcare administrator                    | receive reminders for appointments and medication                                                                           | I don't forget to inform any patients.                                                  |
-|           | healthcare administrator                    | provide feedback and rate my experience with the application                                                                | I can improve the application to better suit my needs.                                  |
-|           | healthcare administrator                    | access patient's test results and medical records through the application                                                   | I can provide doctors with the patient's health history.                                |
-|           | healthcare administrator                    | create an account                                                                                                           | I can login and handle patient's and doctor's information.                              |
-|           | healthcare administrator                    | communicate with the rest of the healthcare team and provide updates on patient's health status                             | I can provide better healthcare to the patients.                                        |
-|           | healthcare administrator                    | schedule and reschedule appointments through the application                                                                | I can accomodate to the patients and doctors availability.                              |
-|           | healthcare administrator                    | provide emergency contact information through the application                                                               | I can quickly find the patient's designated emergency contacts in case of an emergency. |
-|           | healthcare administrator                    | view and manage patient's bills and medication through the application                                                      | I can keep track of patient bills and medical records.                                  |
-|           | tech illiterate healthcare administrator    | navigate through the app easily without help.                                                                               |                                                                                         |
+| Priority | As a …​                                   | I want to …​                                                                                                             | So that …​                                                                           |
+|----------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | healthcare provider                       | access a dashboard to keep track of my patients' information, medical history, and appointment schedules                    | I can provide better care.                                                              |
+| `* * *`  | healthcare provider                       | update patient information and medical history after each appointment                                                       | I have a complete and accurate record of the patient's health.                          |
+| `* * *`  | healthcare provider                       | access a directory of specialist doctors and referral information                                                           | I can quickly and easily connect my patients with the right care.                       |
+| `* * *`  | healthcare administrator                  | access patients' records on the go/at home any time when it's necessary to provide admin support anytime.                   |                                                                                         |
+| `* * *`  | healthcare administrator                  | quickly retrieve patient's bill through the application                                                                     | I can send invoices to the patients more efficiently.                                   |
+| `* * *`  | healthcare administrator                  | schedule and reschedule appointments through the application                                                                | I can accomodate to the patients and doctors availability.                              |
+| `* *`    | tech illiterate healthcare administrator  | navigate through the app easily without help.                                                                               |                                                                                         |
+| `* *`    | healthcare administrator                  | create an account                                                                                                           | I can login and handle patient's and doctor's information.                              |
+| `* *`    | healthcare administrator                  | access patient's test results and medical records through the application                                                   | I can provide doctors with the patient's health history.                                |
+| `* *`    | healthcare provider                       | access and view patient insurance information and make necessary updates                                                    | I can accurately bill patients and manage healthcare costs.                             |
+| `* *`    | healthcare provider                       | send appointment confirmations and reminders to patients                                                                    | they can arrive prepared for their appointments.                                        |
+| `* *`    | healthcare provider                       | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       |
+| `*`      | healthcare administrator                  | access analytics and metrics on patient engagement, appointment booking, and resource utilization                           | I can make data-driven decisions to improve the hospital's operations.                  |
+| `*`      | healthcare administrator                  | manage the hospital staff and workload better using the app                                                                 | there are sufficient people during each shift.                                          |
+| `*`      | healthcare administrator                  | provide feedback and rate my experience with the application                                                                | I can improve the application to better suit my needs.                                  |
+| `*`      | healthcare provider                       | view bed availability in real-time                                                                                          | I can make informed decisions about patient admission and discharge.                    |
+| `*`      | healthcare provider                       | generate and send prescription orders to the pharmacy directly from the application                                         | I can streamline the process for my patients.                                           |
+| `*`      | healthcare provider                       | view and manage patient waiting times                                                                                       | I can minimize wait times and improve patient satisfaction.                             |
+| `*`      | healthcare provider                       | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
+| `*`      | healthcare provider                       | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
+
 
 ### Use cases
 
@@ -501,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 3a1-3a2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
-  
+
 * 3b. MC detects that the patient already exists in the list.
 
   * 3b1. MC informs user that the patient already exists.
@@ -734,6 +748,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
+**Use case: UC09 - Prescribing medication to a Patient**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User wants to prescribe a patient medication.
+2. MC requests for relevant details required to perform the operation.
+3. User enters the relevant details.
+4. MC prescribes the patient medication.
+5. MC shows the User the result.
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters the wrong information, but is a valid command accepted by MC
+
+  * 3a1. MC prescribes the incorrect patient medication.
+
+  * 3a2. MC shows the User the result.
+
+  * 3a3. User notices the wrong result.
+
+  * 3a4. User removes the wrong medication (UC10).
+
+    Use case restarts from step 3.
+
+**Use case: UC10 - Removing prescribed medication from Patient**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+1. User wants to remove a prescribed medication from a patient.
+2. MC requests for relevant details required to perform the operation.
+3. User enters the relevant details.
+4. MC removes the prescribed medication from a patient.
+5. MC shows the User the result.
+   Use case ends.
+
+**Use case: UC11 - Calculate the bill for a Patient**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+1. User wants to know the bill of a Patient.
+2. MC requests for relevant details required to perform the operation.
+3. User enters the relevant details.
+4. MC shows the user the Bill.
+   Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. Users cannot view information of unassigned patients
@@ -797,7 +862,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No doctor is added to the list. Error details are shown in the status message.
     4. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T765 a/Sarah Rd t/Pediatrician` (Wrong NRIC format)<br>
        Expected: No doctor is added to the list. Error details are shown in the status message.
-   
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -805,7 +870,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    2. Test case: `delete ic/S1234567A`<br>
-      Expected: Contact with the `NRIC S1234567A` is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: Contact with the `NRIC S1234567A` is deleted from the list. Details of the deleted contact shown in the status message.
 
    3. Test case: `delete ic/0`<br>
       Expected: No person is deleted. Error details shown in the status message. No change made to the list.
@@ -813,8 +878,23 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `DELETE`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Prescribe, Unprescribe, Bill
+1. Prescribing medication to someone with existing medication
+   1. Prerequisites: Have a patient with no existing medication as the current display. This can be achieved by adding
+   a patient using `addPatient`. Then `display`. We will assume the Patient has an IC of S1234567A.
+   2. Test case: `prescribe ic/S1234567A m/drugA c/1`<br>
+      Expected: Patient has gained 1 prescription.
+   3. Test case: `prescribe ic/S1234567A m/drugA c/2`<br>
+      Expected: Patient's 1 prescription has changed to reflect the new cost.
+   4. Test case: `prescribe ic/S1234567A m/drugA c/2`<br>
+      Expected: No change.
+   5. Test case: `prescribe ic/S1234567A m/drugB c/4`<br>
+      Expected: Patient has 2 prescriptions.
+   6. Test case: `bill ic/S1234567A`.<br>
+      Expected: Bill is $6.00
+   7. Test case: `unprescribe ic/S1234567A m/drugA c/2`<br>
+      Expected: Patient has 1 prescription.
 
-    
 ## **Appendix: Planned Enhancements**
 
 Given below are the current known feature flaws and the plans the team have for them in the future versions.
