@@ -79,8 +79,8 @@ Given below are my contributions to the project.
     * [#74](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/74)
     * [#138](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/138)
     * [#147](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/147)
-    * Change the product icon
-    * Change the product name displayed from "AB3" to "Clock-Work"
+  * Change the product icon
+  * Change the product name displayed from "AB3" to "Clock-Work"
 
 
 * **Tools**:
