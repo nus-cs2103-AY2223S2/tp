@@ -809,7 +809,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a score for a student
 
-1. Adding a score which is one of the recent five scores for a student in the student list when the student is being checked.
+1. Adding a score which is one of the recent five scores for a student in the student list when the student is being checked
 
    1. Prerequisites: Check a student using `check` command.
 
@@ -820,7 +820,7 @@ testers are expected to do more *exploratory* testing.
       Student's name and details of the added score shown in the status message.
       The displayed score list of the checked student is updated with the added score.
 
-2. Adding a score which is not one of the recent five scores for a student in the student list when the student is being checked.
+2. Adding a score which is not one of the recent five scores for a student in the student list when the student is being checked
 
     1. Prerequisites: Check a student using `check` command.
 
@@ -842,13 +842,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a score for a student
 
-1. Deleting a task for a student in the student list when the student is being checked
+1. Deleting a score which is one of the recent five scores for a student in the student list when the student is being checked
 
-    2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+    2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more scores.
 
     3. Test case: `deletetask x 1`<br>
-       Expected: The first task is deleted from the task list of the checked student. Student's name and details of the deleted task shown in the status message.
-       The deleted task is removed from the displayed task list of the checked student.
+       Expected: The first score is deleted from the score list of the checked student. Student's name and details of the deleted score shown in the status message.
+       The deleted score is removed from the displayed score list of the checked student.
 
     4. Test case: `deletetask x 0`
        Expected: No task is deleted from the task list of the checked student. Error details shown in the status message.
