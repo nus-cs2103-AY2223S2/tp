@@ -2,9 +2,13 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
+import static seedu.address.testutil.TypicalMockStudents.getTypicalMockStudents;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -12,8 +16,11 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.junit.jupiter.api.Test;
+import seedu.address.model.student.Student;
 
 public class PdfConverterTest {
+
+    private List<Student> typicalStudentList = getTypicalMockStudents();
     private static String stringSample = "THIS_IS_A_SAMPLE_STRING:)";
     private final float horizontalWrap = 432;
     private final float xInit = 90;
@@ -63,6 +70,24 @@ public class PdfConverterTest {
     @Test
     public void exportProgress_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> pdfConverter.exportProgress(null));
+    }
+
+    @Test
+    public void createContents_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> pdfConverter.createContents(null));
+    }
+
+    @Test
+    public void createContents_methodCalled_success() throws Exception {
+        Student key = typicalStudentList.get(0);
+        String docTitle = key.getName().fullName + "'s Progress Report";
+        String dateCreated = "Date created: " + LocalDate.now();
+        String taskList = "Task List";
+        String scoreList = "Score List";
+
+        PdfConverter mock = spy(PdfConverter.class);
+        mock.exportProgress(key);
+        verify(mock, times(1)).setup();
     }
 
     @Test
