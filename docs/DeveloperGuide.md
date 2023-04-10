@@ -4,7 +4,15 @@ title: Developer Guide
 ---
 
 ## **Overview**
-**MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. MediMeet enables doctors to effectively manage patient details and appointments, and saves costs by reducing the need for personal assistants or appointment managers.
+
+**MediMeet** is a patient appointment management system for individual medical practitioners and small clinics.
+With MediMeet, you can efficiently manage patient and appointment information in one place,
+saving you both time and the hassle of maintaining records across multiple systems. <br>
+
+MediMeet is a command-line interface (CLI) application with fast, easy-to-use commands which make it ideal for the
+fast typist.
+With MediMeet, we make it easy to add and edit patient information, appointments and so much more, making it
+a one-stop solution to manage your individual medical practice or small clinic! <br>
 
 ## **Table of Contents**
 * Table of Contents
@@ -623,8 +631,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. A sample of the expected result is shown below:
-   ![v1.2_jar](images/v1.2_jar.jpg)
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample patients and appointments. The window size may not be optimum. A sample of the expected result is shown below:
+   ![v1.2_jar](images/v1.4_jar.png)
 
 1. Saving window preferences
 
