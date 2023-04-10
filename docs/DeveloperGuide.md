@@ -697,7 +697,7 @@ testers are expected to do more *exploratory* testing.
         4. Test case 4: `edit M n/Pierce`, ... where M is a number not between 1 and the number of contacts in the list
             - Testing for: Unspecified field results in command failure
             - Expected: Contacts do not update. Error details shown in the status message.
-        5. Test case 4: `edit`
+        5. Test case 5: `edit`
             - Testing for: No fields specified results in command failure
             - Expected: User does not update. Error details shown in the status message.
 
@@ -840,6 +840,21 @@ testers are expected to do more *exploratory* testing.
           - Expected: Similar to test case 2
 
 ### Editing an event
+1. Edit data of Event.
+    1. Prerequisites: Non-empty Events Tab. Navigate to the `Event` tab using `tab 2`
+    2. Test Cases
+        1. Test case 1: `editevent N d/CS2103T Lecture`, `editevent N r/Weekly`, ... where N is a number between 1 and the number of Event in the list
+            - Testing for: Successful command execution
+            - Expected: Field of first Event updates to that specified in the command
+        2. Test case 2: `editevent 1 x d/CS2103T Lecture`, ... where x is anything that does not have a field specifier.
+            - Testing for: Unspecified field results in command failure
+            - Expected: Events do not update. Error details shown in the status message.
+        3. Test case 3: `editevent M d/CS2103T Lecture`, ... where M is a number not between 1 and the number of Events in the list
+             - Testing for: Unspecified field results in command failure
+             - Expected: Events do not update. Error details shown in the status message.
+        4. Test case 4: `editevent`
+             - Testing for: No fields specified results in command failure
+             - Expected: Event does not update. Error details shown in the status message.
 
 ### Tagging/Untagging a contact to an event
 
