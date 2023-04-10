@@ -3,7 +3,7 @@ package seedu.address.model.employee;
 import java.util.function.Predicate;
 
 /**
- * FilterByLeave class.
+ * Tests that a {@code Employee}'s {@code Payroll} satisfies the criteria for filtering.
  */
 public class FilterByLeaveCountPredicate implements Predicate<Employee> {
 
@@ -14,7 +14,9 @@ public class FilterByLeaveCountPredicate implements Predicate<Employee> {
     private final boolean isEqualTo;
 
     /**
-     * FilterByLeave constructor.
+     * Creates a {@code FilterByLeavePredicate} object and initialises values.
+     * @param comparisonAmount the amount to be compared to.
+     * @param possibleOperators the type of relation to be checked.
      */
     public FilterByLeaveCountPredicate(int comparisonAmount, boolean[] possibleOperators) {
         this.comparisonAmount = comparisonAmount;
@@ -24,6 +26,11 @@ public class FilterByLeaveCountPredicate implements Predicate<Employee> {
         this.isEqualTo = possibleOperators[2];
     }
 
+    /**
+     * Sets up the {@code Predicate} to check that {@code Employee}'s {@code LeaveCount} satisfies the criteria given.
+     * @param employee the employee to be checked.
+     * @return whether the condition is satisfied.
+     */
     @Override
     public boolean test(Employee employee) {
         if (isGreaterThan) {
@@ -35,6 +42,11 @@ public class FilterByLeaveCountPredicate implements Predicate<Employee> {
         }
     }
 
+    /**
+     * Checks if two instances of {@code FilterByLeaveCountPredicate} are equal.
+     * @param other the other instance.
+     * @return a boolean value.
+     */
     @Override
     public boolean equals(Object other) {
 

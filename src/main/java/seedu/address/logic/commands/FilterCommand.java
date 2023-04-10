@@ -10,7 +10,7 @@ import seedu.address.model.employee.Employee;
 
 
 /**
- * Class for filter command.
+ * Filters and lists all the employees who satisfy the condition specified by the user.
  */
 public class FilterCommand extends Command {
 
@@ -24,6 +24,10 @@ public class FilterCommand extends Command {
             + "Example: " + COMMAND_WORD + " pr > 1000";
     private final Predicate<Employee> predicate;
 
+    /**
+     * Creates a {@code FilterCommand} to filter employees according to the {@code Predicate}
+     * @param predicate the condition to filter employees.
+     */
     public FilterCommand(Predicate<Employee> predicate) {
         this.predicate = predicate;
     }
@@ -40,6 +44,11 @@ public class FilterCommand extends Command {
                 String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, listSize));
     }
 
+    /**
+     * Checks whether one instance of {@code FilterCommand} is equal to another.
+     * @param other the other instance.
+     * @return boolean value.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

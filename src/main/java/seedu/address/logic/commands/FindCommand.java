@@ -11,7 +11,7 @@ import seedu.address.model.employee.Employee;
 
 
 /**
- * Finds and lists all employees in address book whose name contains any of the argument keywords.
+ * Finds and lists all employees in ExecutivePro whose name contains any or all of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
@@ -26,6 +26,10 @@ public class FindCommand extends Command {
 
     private final Predicate<Employee> predicate;
 
+    /**
+     * Creates a {@code FindCommand} to find employees according to keywords.
+     * @param predicate the predicate to be searched on.
+     */
     public FindCommand(Predicate<Employee> predicate) {
         this.predicate = predicate;
     }
@@ -42,6 +46,11 @@ public class FindCommand extends Command {
                 String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, listSize));
     }
 
+    /**
+     * Checks whether one instance of {@code FindCommand} is equal to another.
+     * @param other the other instance.
+     * @return boolean value.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
