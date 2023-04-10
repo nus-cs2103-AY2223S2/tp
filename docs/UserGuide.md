@@ -542,7 +542,7 @@ Events will automatically update to their next earliest occurrence for recurring
 
 One-time events will be automatically grayed out once the event has been passed.
 
-In the case where a one-time event is supposed to be greyed out (i.e. the time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
+In the case where a one-time event is supposed to be greyed out (i.e. the current time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
 
 </div>
 
