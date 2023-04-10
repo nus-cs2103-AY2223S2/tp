@@ -97,11 +97,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMasterDeckIoExceptionThrowingStub
-        JsonMasterDeckStorage addressBookStorage =
+        JsonMasterDeckStorage masterDeckStorage =
              new JsonMasterDeckIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMasterDeck.json"));
         JsonUserPrefsStorage userPrefsStorage =
             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(masterDeckStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
