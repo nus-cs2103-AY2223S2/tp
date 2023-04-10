@@ -64,7 +64,7 @@ Representation of important dates or deadlines of key events such as an Online A
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ultron.jar` command to run the application.<br>
    You should see something similar to the image below in a few seconds. Note how the app contains some sample data.<br>
 
-![Ui](images/Ui.png)
+![Ui](images/InitialScreenUG.png)
 
 5. The app provides you with a text input box at the top for user commands, as well as both a summary list of openings on the left panel and a right panel containing more details of any particular opening.
 
@@ -129,12 +129,9 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 
 **:information_source: Notes about the command format:**<br>
 
-- All commands consists of a command word e.g `add`. Some commands require fields which start with 
-- their corresponding prefixes e.g. `r/` for remarks. Indexes are required for some commands to specify the exact opening of interest. e.g. `delete 1` deletes the first opening.
+- Words in `UPPER_CASE` are the fields to be supplied by the user.<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-
-  e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
+  e.g. in `add p/POSITION`, `POSITION` is a field which can be used as `add p/Software Engineer`.
 
 - Items in square brackets are optional.<br>
   e.g. `c/COMPANY [d/KEYDATE]` can be used as `c/Google d/Interview@2023-04-01` or as `c/Google`.
@@ -142,13 +139,13 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[d/KEYDATE]…​` can be used as ` ` (i.e. 0 times), `d/Interview@2023-04-01`, `d/Interview@2023-04-01 d/OA@2023-05-02` etc.
 
-- Parameters can be in any order.<br>
+- Fields can be in any order.<br>
   e.g. if the command specifies `p/POSITION c/COMPANY`, `c/COMPANY p/POSITION` is also acceptable.
 
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken, excluding `status` command.<br>
+- If a field is expected only once in the command but you specified it multiple times, only the last occurrence of the field will be taken, excluding `status` command.<br>
   e.g. if you specify `c/Google c/Shopee`, only `c/Shopee` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+- Extraneous fields for commands that do not take in fields (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
@@ -221,7 +218,7 @@ Format: `remark INDEX r/REMARK`
 - The index **must be a positive integer** 1, 2, 3, …​
 - Existing values will be updated to the input values.
 - When editing `REMARK`, the existing `REMARK` of the opening will be removed i.e editing of `REMARK` is not cumulative.
-- You can remove all the `REMARK` of the opening by typing `d/` without
+- You can remove all the `REMARK` of the opening by typing `r/` without
   specifying any `REMARK` after it.
 
 ![Remark](images/Remark.png)
