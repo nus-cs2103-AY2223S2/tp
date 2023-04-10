@@ -20,7 +20,9 @@ tracking an effortless process**.
 coNtactUS is written in **Java**. The development team consists of 4 intermediate student developers, including myself. 
 Given below are my contributions to the project.
 
+
 <div style="page-break-after: always;"></div>
+
 
 #### Feature and enhancements
 
@@ -71,7 +73,9 @@ Given below are my contributions to the project.
 * Setting priority and assigning appropriate tags to issues.
 * Strategised further feature developments for planned enhancements with the team.
 
+
 <div style="page-break-after: always;"></div>
+
 
 #### Documentation
 
@@ -106,4 +110,3 @@ Given below are my contributions to the project.
 #### Community contribution outside current project
 
 * Reported bugs and suggestions for [other teams](https://github.com/tingyic/ped/issues) in the class
-
