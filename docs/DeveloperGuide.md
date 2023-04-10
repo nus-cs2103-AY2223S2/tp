@@ -824,22 +824,22 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
    
    2. Test Cases
-      1. **Test Case 1** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+      1. Test Case 1 `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
          - Testing for: Command Successful Execution
          - Expected: A Weekly Event is added to the Events Tab.
-      2. **Test Case 2** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600`
+      2. Test Case 2 `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600`
          - Testing for: Command Successful Execution
          - Expected: An One-Time Event is added to the Events Tab.
-      3. **Test Case 3** `addevent d/CS2103T Lecture e/2023-03-10 1600 r/Weekly`
+      3. Test Case 3 `addevent d/CS2103T Lecture e/2023-03-10 1600 r/Weekly`
          - Testing for: No Start Date and Time Specified
          - Expected: No Event is added. Error details show in the status message.
-      4. **Test Case 4** `addevent d/CS2103T Lecture s/2023-03-10 1400 r/Weekly`
+      4. Test Case 4 `addevent d/CS2103T Lecture s/2023-03-10 1400 r/Weekly`
          - Testing for: No End Date and Time Specified
          - Expected: No Event is added. Error details show in the status message.
-      5. **Test Case 5** `addevent s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+      5. Test Case 5 `addevent s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
          - Testing for: No Description Specified
          - Expected: No Event is added. Error details show in the status message.
-      6. **Test Case 6** `addevent d/CS2103T Lecture s/2023-03-10 1800 e/2023-03-10 1600 r/Weekly`
+      6. Test Case 6 `addevent d/CS2103T Lecture s/2023-03-10 1800 e/2023-03-10 1600 r/Weekly`
          - Testing for: Start Date Time is after End Date Time
          - Expected: No Event is added. Error details show in the status message.
 
@@ -850,13 +850,13 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
    
    2. Test Cases
-      1. **Test Case 1**: `delevent 1`
+      1. Test Case 1: `delevent 1`
          - Testing for: Command successful execution
          - Expected: Event at Index 1 will be deleted from the list. Details of the event will be shown in the status message. Existing Events Index will be updated.
-      2. **Test Case 2**: `delevent 0`
+      2. Test Case 2: `delevent 0`
          - Testing for: Erroneous index results in command failure
          - Expected: No event is deleted. Error details shown in the status message.
-      3. **Other test cases**: `delevent`, `delevent x` (where x is larger than the list size), `delevent -1`
+      3. Other test cases: `delevent`, `delevent x` (where x is larger than the list size), `delevent -1`
           - Testing for: Erroneous index results in command failure
           - Expected: Similar to test case 2
 
@@ -1022,7 +1022,8 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Edit the `userdata.json` or `addressbook.json` to have erroneous values.
+   2. When this happens, just delete the files and start on a fresh file, or you can try to salvage it by trying to ascertain the bug.
 
 ## **Appendix: Effort**
 
