@@ -184,7 +184,7 @@ _**Find Person**_ feature in AB3.
 
 The following class diagram shows the classes that help achieve this functionality.
 
-> Search feature class diagram
+<img src="./images/SearchTaskClassDiagram.png" width="100%"/>
 
 The `SearchTaskCommandParser` parses the required details - keywords to search for `Task`'s by, and returns
 a `SearchTaskCommand`, that is executed.
@@ -196,7 +196,7 @@ The execution of an `SearchTaskCommand` makes use of the following functions pro
 
 The following sequence diagram shows how the _**Search**_ feature works.
 
-> Search feature sequence diagram
+<img src="./images/SearchTaskSequenceDiagram.png" width="100%"/>
 
 #### Design Considerations
 
