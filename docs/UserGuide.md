@@ -13,7 +13,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3).
+2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases).
 
 3. Copy the file to a local folder you want to use as the _home folder_ for your PlanEase application.
 
@@ -67,7 +67,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
   E.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. 
+  E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. E.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
 
@@ -120,8 +120,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]�
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing event tags, the event tags will be added to the existing event tags of the person i.e. adding of event tags is cumulative.
-* You can remove all the person’s event tags by typing `evt/` only without specifying any event index after it. 
-* Either the addition of event tags or the removal of event tags can be done at a time, i.e. removal and addition of event tags cannot be done in a single command. For example, `evt/ evt/2` cannot be recognised as removing all the event tags and adding event at event index 2 and `evt/2 evt/` cannot be recognised as adding event at event index 2 then removing all the event tags. 
+* You can remove all the person’s event tags by typing `evt/` only without specifying any event index after it.
+* Either the addition of event tags or the removal of event tags can be done at a time, i.e. removal and addition of event tags cannot be done in a single command. For example, `evt/ evt/2` cannot be recognised as removing all the event tags and adding event at event index 2 and `evt/2 evt/` cannot be recognised as adding event at event index 2 then removing all the event tags.
 
 Examples:
 *  `edit 2 n/Betsy Crower evt/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing event tags.
@@ -331,8 +331,9 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder. <br>
+**Q**: My commands are not working properly? <br>
+**A**: Check that your commands are using the correct prefix. Check for extra `/` being used.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -344,8 +345,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Event** | `delevent EVENT_INDEX` <br> e.g., `delevent 2`
-**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g.,`editevent 1 ev/Birthday Party from/17-07-2023 12:00`
+**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
+**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g., `editevent 1 ev/Birthday Party from/17-07-2023 12:00`
 **Find Contact** |  `find KEYWORD [MORE_KEYWORDS]`
 **Find Event** | `findevent KEYWORD [MORE_KEYWORDS]`
 **List All Contacts and Events** | `listall`

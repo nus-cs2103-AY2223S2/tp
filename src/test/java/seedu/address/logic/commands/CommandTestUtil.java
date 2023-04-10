@@ -42,11 +42,9 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    //public static final String VALID_EVENT_TAG_SPORTS_DAY = "20th Sports Day @ Sports Hub";
     public static final String VALID_EVENT_INDEX_CARNIVAL = "2";
     public static final String VALID_EVENT_INDEX_SPORTS_DAY = "3";
     public static final String VALID_EVENT_INDEX_WEDDING_DINNER = "1";
-
 
     public static final String VALID_EVENT_NAME_CARNIVAL = "Carnival";
     public static final String VALID_EVENT_NAME_SPORTS_DAY = "20th Sports Day @ Sports Hub";
@@ -54,6 +52,9 @@ public class CommandTestUtil {
     public static final String VALID_START_DATE_TIME_SPORTS_DAY = "02-03-2024 08:30";
     public static final String VALID_END_DATE_TIME_CARNIVAL = "10-02-2024 22:00";
     public static final String VALID_END_DATE_TIME_SPORTS_DAY = "02-03-2024 18:30";
+
+    // Invalid date time range
+    public static final String INVALID_START_DATE_TIME_CARNIVAL = "20-02-2024 09:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,6 +71,8 @@ public class CommandTestUtil {
 
     public static final String EVENT_NAME_DESC_CARNIVAL = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_CARNIVAL;
     public static final String EVENT_NAME_DESC_SPORTS_DAY = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME_SPORTS_DAY;
+    public static final String INVALID_START_DATE_TIME_DESC_CARNIVAL = " " + PREFIX_START_DATE_TIME
+            + INVALID_START_DATE_TIME_CARNIVAL;
     public static final String START_DATE_TIME_DESC_CARNIVAL = " " + PREFIX_START_DATE_TIME
             + VALID_START_DATE_TIME_CARNIVAL;
     public static final String START_DATE_TIME_DESC_SPORTS_DAY = " " + PREFIX_START_DATE_TIME
