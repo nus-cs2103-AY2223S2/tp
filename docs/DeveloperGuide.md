@@ -312,6 +312,27 @@ Please refer to the activity diagram below to see what happens when the user ent
   * Return the command result from the `XYZCommand` mentioned in the step above.
 * However, one disadvantage for using this design choice is the file directory might be very difficult to understand for newcomers because function calls are very deeply nested.
 
+
+### Find feature
+
+The `find` command works by taking in keywords (can be a single keyword or multiple keywords) and identifies all the listings that contains at least one of the keywords in the title.
+These listings are filtered out and displayed as a separate list. 
+GoodMatch currently supports finding listings that contain the entire keyword inside, that is, listings that contain only part of the keyword will not be considered. For example, if the keyword is `pillow`, a listing with the title `pill` will not be identified.
+
+#### Feature Implementation Details
+
+1. The user will be specifying the `keyword(s)` in the find command.
+2. The `keyword(s)` cannot be empty.
+3. The check for whether a `Listing` contains the keyword or not `model` or not is done using the `JobTitle` of the `Listing` only.
+
+Refer to the sequence diagram below for a typical `find` command.
+<p>
+  <img class="diagram" src="images/FindSequenceDiagram.png" />
+  <em>Sequence Diagram for the `find` command</em>
+</p>
+
+
+
 ### Sort feature
 
 The `sort` feature works by taking in a field that the user wants to sort the ListingBook by, and then sorts according to that.
