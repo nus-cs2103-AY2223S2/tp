@@ -45,7 +45,6 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model dataModel;
-    protected AnalyticModel analyticModel;
     protected Config config;
 
     @Override
@@ -87,7 +86,6 @@ public class MainApp extends Application {
             if (!expenseTrackerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ExpenseTracker");
             }
-            // TODO update sample data
             initialData = expenseTrackerOptional.orElseGet(SampleExpenseTracker::getSampleExpenseTracker);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ExpenseTracker");
