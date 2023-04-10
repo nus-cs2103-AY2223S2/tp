@@ -1184,7 +1184,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 |            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]</code> <br> e.g. `editc 1 p/91234567 e/johndoe@example.com`                     |
 |          **Delete Customer** | `deletec CINDEX`<br> e.g. `deletec 3`                                                                                                                           |
 |            **Mark Customer** | `markc CINDEX` <br> e.g. `markc 1`                                                                                                                              |
-|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g. `unmarkc 1`                                                                                                                          |                                                                                                                                      |
+|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g. `unmarkc 1`                                                                                                                          |
 |    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g. `setnotec 2 nt/Very friendly!`                                                                                              |
 | **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g. `appendnotec 2 nt/Very friendly!`                                                                                        |
 
@@ -1208,7 +1208,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 |         **Advance Order** | `advo OINDEX`<br> e.g. `advo 1`                                                      |
 |          **Revert Order** | `revo OINDEX`<br> e.g. `revo 2`                                                      |
 |          **Cancel Order** | `cancelo OINDEX`<br> e.g. `cancelo 3`                                                |
-|          **Delete Order** | `deleteo OINDEX`<br> e.g. `deletec 3`                                                |                                                                                                                                     |
+|          **Delete Order** | `deleteo OINDEX`<br> e.g. `deletec 3`                                                |
 |    **Set Note for Order** | `setnoteo OINDEX nt/NOTE` <br> e.g. `setnoteo 2 nt/Very friendly!`                   |
 | **Append Note for Order** | `appendnoteo OINDEX nt/NOTE` <br> e.g. `appendnoteo 2 nt/Very friendly!`             |
 
