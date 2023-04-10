@@ -448,7 +448,7 @@ The following sequence diagram shows how `SortCommand` works during execution fo
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-The following activity diagram shows the logic flow as the user inputs the `sort` command for `sort /m`:
+The following activity diagram shows the logic flow as the user inputs the `sort` command:
 
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
