@@ -8,8 +8,7 @@
 ## Description
 OfficeConnect is a task management tool tailored to meet the needs of managers working in corporate settings. 
 In today's office environment, it can be challenging for managers to keep track of the workload of their subordinates,
-which can lead to work overload and coordination issues among employees. Additionally, administrative tasks such as 
-sending emails can consume valuable time and resources.
+which can lead to work overload and coordination issues among employees.
 
 OfficeConnect addresses these problems by providing managers with enhanced visibility into their subordinates' 
 workloads. This enables managers to delegate tasks efficiently and in an organized manner. With OfficeConnect, 

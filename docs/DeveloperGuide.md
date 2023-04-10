@@ -8,17 +8,14 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## 1. Introduction
-
 
 ### 1.1 Product Overview
 OfficeConnect is a task management tool designed specifically for managerial role personnels based within Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
 * work overload among subordinates,
-* difficulties in coordinating tasks with a large number of employees,
-* inefficient, time-consuming administrative tasks like typing and sending emails.
+* difficulties in coordinating tasks with a large number of employees.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing
 managers to efficiently delegate tasks in an organised manner. 
@@ -37,13 +34,11 @@ by [se-education.org](https://se-education.org).
 * Images retrieved from freepik and ICON8.
 * [JUnit5](https://junit.org/junit5/)
 
-
 ### 1.4 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## 2. Design
 
 <div markdown="span" class="alert alert-primary">
@@ -53,6 +48,7 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
+
 ### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -60,6 +56,7 @@ to learn how to create and edit diagrams.
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
 
 #### 2.1.1 Main components of the architecture
 
@@ -69,13 +66,14 @@ It is responsible for
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 [**`Commons`**](#27-common-classes) represents a collection of classes used by multiple other components.
+<div style="page-break-after: always;"></div>
 
 The rest of the App consists of four components.
 
 * [**`UI`**](#22-ui-component): The UI of the App.
 * [**`Logic`**](#23-logic-component): The command executor.
-* [**`OfficeConnectModel`**](#24-model-component): Holds the data of the App in memory.
-* [**`Storage`**](#26-storage-component): Reads data from, and writes data to, the hard disk.
+* [**`OfficeConnectModel`**](#24-officeconnectmodel-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 #### 2.1.2 How the architecture components interact with each other
 
@@ -91,12 +89,14 @@ the person model manager implements the Model interface and is used to keep trac
 
 Each of the other three main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the 
 same name as the Component. The components implement their functionality using a concrete `{Component Name}Manager` class.
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. The components work together as illustrated 
 in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
+<div style="page-break-after: always;"></div>
 
 ### 2.2 UI component
 
@@ -120,6 +120,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. 
 * depends on some classes in the `OfficeConnectModel` component, as it displays `Person` and `Task` objects residing in
 the `OfficeConnectModel`.
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Logic component
 
@@ -159,7 +160,7 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 `AddressBookParser` returns back as a `Command` object. 
 * All `XYZCommandParser` classes (e.g., `AddTaskCommandParser`, 
 `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
+<div style="page-break-after: always;"></div>
 
 ### 2.4 OfficeConnectModel component
 
@@ -175,6 +176,7 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 of the `Model` component is provided below.
 * Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain,
 they should make sense on their own without depending on other components)
+<div style="page-break-after: always;"></div>
 
 ### 2.4.1 Model component
 
@@ -191,7 +193,7 @@ the UI can be bound to this list so that the UI automatically updates when the d
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a`ReadOnlyUserPref` 
 object.
 
-
+<div style="page-break-after: always;"></div>
 ### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -219,6 +221,7 @@ means it can be treated as either (if the functionality of only one is needed). 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3. Implementation
 This section describes some noteworthy details on how certain features are implemented.
@@ -277,6 +280,7 @@ If the index is invalid, an error will be thrown.
 Below is an activity diagram showcasing the 2 steps:  
 ![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png)
 
+
 #### 3.2.2 Design Considerations
 **Aspect: Implementation of Delete Task Command**
 
@@ -314,6 +318,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 Syntax: `findt TASKNAME` 
 
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
+<div style="page-break-after: always;"></div>
 
 #### 3.4.1 Implementation
 The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
@@ -343,6 +348,19 @@ Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
 The implementation of this feature is supported by `EditTaskCommand` and `EditTaskCommandParser`.
+
+#### 3.5.2 Design Considerations
+
+**Aspect: Parameters required**
+
+* **Alternative 1 (current choice):** Edit using at least one of the fields of the task.
+  * Pros: More intuitive and convenient for users as they do not have to retype every field.
+  * Cons: Users have to keep in mind which task the task index is referring to.
+
+* **Alternative 2:** Edit by retyping all the fields of the task to be edited.
+  * Pros: Forces users to be aware of the task to be edited instead of relying on subconscious mapping between index and tasks.
+  * Cons: Less intuitive and less user-friendly. Users would be forced to retype all the fields of the task before being able
+    to edit a single field.
 
 ### 3.6 Assigning a Task
 Syntax: `assign pi/INDEX ti/INDEX` 
@@ -411,6 +429,7 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 
 This window was made by the `HelpWindow` class, which ties in its respective `fxml` and `css` files to display the relevant UI to the user.
 To provide the instructions to the user, a `HelpStrings` class is maintained to give instructions stored in lengthy strings.
+<div style="page-break-after: always;"></div>
 
 A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar.
 The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
@@ -440,8 +459,6 @@ information, the user can choose to view the comprehensive User Guide instead.
     * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no restructuring of the list needed
     * Cons: Design not too intuitive, user may need to eyeball through all the commands in order to find what he/she is looking for.
 
-<br>
-
 ### 3.8 Unassigning a Task from a Person
 
 Syntax: `unassign pi/PERSON_INDEX ti/TASK_INDEX`  
@@ -451,6 +468,7 @@ Purpose: Allows users to unassign a task from a person in OfficeConnect.
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/UnassignActivity.png" width="550" />
+<div style="page-break-after: always;"></div>
 
 Below is a sequence diagram that illustrates how a user unassign a tasks from a person in the OfficeConnectModel. 
 
@@ -491,6 +509,7 @@ The implementation of this feature is supported by `FilterCommand` and `FilterCo
 Below is an activity diagram that illustrates how a user finds all persons with the specified tag.
 
 ![FilterTaskActivityDiagram](images/FilterTaskActivityDiagram.png)
+<div style="page-break-after: always;"></div>
 
 #### 3.10.2 Design Considerations
 **Aspect: Number of tags that users can input**
@@ -512,6 +531,8 @@ Similar to Help Window in section 3.7, this window is maintained by `QuickstartW
 similarly named `fxml` and `css` to display the relevant quickstart information.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 4. Planned Enhancements
 
 ### 4.1 Support for overseas domains
@@ -531,6 +552,8 @@ would result in a constant need to refer to the User Guide for assistance. Likew
 in extra effort to learn and memorize the commands.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
@@ -558,6 +581,7 @@ in extra effort to learn and memorize the commands.
 * Manage tasks and contacts faster than a typical mouse/GUI driven app
 * Able to view all upcoming tasks to be completed at one glance
 * Allows efficient delegation of tasks to subordinates in an organised and centralised manner
+<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
@@ -614,6 +638,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 ---
+<div style="page-break-after: always;"></div>
 #### 6.3.2 Use case 2: Delete a Person
 
 **Main Success Scenario (MSS):**
@@ -1008,6 +1033,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 ---
+<div style="page-break-after: always;"></div>
+
 #### 6.3.20 Use case 20: View unassigned Persons
 
 **Main Success Scenario (MSS):**
@@ -1121,6 +1148,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. Appendix: Instructions for manual testing
 
@@ -1413,6 +1441,8 @@ testers are expected to do more *exploratory* testing.
          Expected: No tasks are displayed. "No such task found" shown in status message.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 8. Appendix: Effort
 OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
 Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
