@@ -215,6 +215,18 @@ for the specified person. The following sequence diagram illustrates the descrip
 
 ![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
 
+#### 3.2 Design consideration
+
+**Aspect: meetingRemove format:**
+
+- **Alternative 1(current choice)**: `meetingRemove CLIENT_INDEX MEETING_INDEX` command format; MEETING_INDEX refers to the internal meeting list of `Person`
+    - Pros: Simpler to implement
+    - Cons: Can cause more confusion
+
+- **Alternative 2(future plan)**: `meetingRemove MEETING_INDEX` command format; MEETING_INDEX refers to the meeting list in Meeting List Panel instead
+    - Pros: Easier to use
+    - Cons: Required overhaul of implementation of meetingRemove (To be implemented in future version)
+
 ### 4. Region Feature
 
 Every `Address` is composed with an additional `Regions` Enumeration, which represents all the 5 regions in Singapore.
@@ -295,7 +307,21 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
 policy names are displayed. The following sequence diagram illustrates the description for finding policy:
 
-![FindPolicySequenceDiagram](images/FindPolicySequenceDiagram.PNG)
+![FindPolicyParseSequenceDiagram](images/FindPolicyParseSequenceDiagram.PNG)
+
+![FindPolicyExecuteSequenceDiagam](images/FindPolicyExecuteSequenceDiagram.PNG)
+
+#### 8.2 Design consideration
+
+**Aspect: How PolicyTag works:**
+
+- **Alternative 1(current choice)**: Convert `Tag` class to `PolicyTag` 
+    - Pros: Just simple refactoring of class name
+    - Cons: Allows keywords not related to financial policies to be parsed
+
+- **Alternative 2(future plan)**: Ensure `PolicyTag` accepts a set of names only
+    
+    - Pros: Ensures PolicyTag names have financial policies only 
 
 ### \[Proposed\] Undo/redo feature
 

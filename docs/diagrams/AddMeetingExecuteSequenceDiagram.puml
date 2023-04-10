@@ -11,6 +11,8 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 box end
 
+activate LogicManager
+
 LogicManager -> AddMeetingCommand : execute(model)
 activate AddMeetingCommand
 
@@ -42,5 +44,7 @@ deactivate CommandResult
 AddMeetingCommand --> LogicManager : result
 deactivate AddMeetingCommand
 
+[<-- LogicManager
+deactivate LogicManager
 
 @enduml
