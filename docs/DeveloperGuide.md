@@ -352,6 +352,8 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
    </div>
 
+   <br>
+
 1. The user executes `clear`, which calls `Model#commit()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
    <div style="text-align: center;">
@@ -378,8 +380,6 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
   - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
-*{more aspects and alternatives to be added}*
-
 [Back to Top ↑](#table-of-contents)
 
 ### Filter feature
@@ -403,7 +403,7 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The lifeline for `FilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -638,7 +638,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
    1. Download the jar file and copy into an empty folder
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 1. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by double-clicking the jar file.<br>
