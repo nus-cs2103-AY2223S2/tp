@@ -264,8 +264,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-<div style="page-break-after: always"></div>
-
 # 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -492,8 +490,6 @@ The following sequence diagram shows how the review operation works:
 [↑ Return to start of section](#4-implementation)
 
 [↑ Return to table of contents](#table-of-contents)
-
-<div style="page-break-after: always"></div>
 
 ### 4.1.7 STATUS feature
 
