@@ -52,7 +52,7 @@ public class Title {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof Title // instanceof handles nulls
-            && value.toLowerCase().equals(((Title) other).value.toLowerCase())); // state check
+            && value.toLowerCase().trim().equals(((Title) other).value.toLowerCase().trim())); // state check
     }
 
     @Override
