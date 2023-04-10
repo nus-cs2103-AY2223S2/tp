@@ -66,17 +66,17 @@ than current GUI apps in the industry.
 ### Definitions
 
 Here are some descriptions of the words we use throughout the User Guide:
-- **Parameter**: Parameters are like fields in a form you are required to fill up.
-They include details you would include about the doctor/patient.
-- **Command**: An input from the user that tells Docedex to perform an action (ie. add a doctor).
-- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
-- **GUI component**: A subsection of the Graphical User Interface. For more information on specific GUI
-components, refer to [this section](#navigating-the-graphical-user-interface-gui).
-- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
+
+| Term          | Definition                                                                                                                                                            |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter     | Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.                                    |
+| Command       | An input from the user that tells Docedex to perform an action (ie. add a doctor).                                                                                    |
+| GUI           | Graphical User Interface (GUI) represents the visual display of Docedex that users can see.                                                                           |
+| GUI component | A subsection of the Graphical User Interface. For more information on specific GUI components, refer to [this section](#navigating-the-graphical-user-interface-gui). |
+| CLI           | Command Line Interface (CLI) represents a text-based user interface to interact with the application.                                                                 |
+
 
 ### Parameter Information
-
-*Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.*
 
 The information below specifies parameter description, constraints and usage through valid and invalid examples.
 
@@ -390,7 +390,10 @@ For more information see: [Selecting doctors or patients through commands](#sele
 #### Listing all doctors
 
 `list-doc`
+- Possible use cases: Retrieval of all doctors in Docedex after commands involving selection.
+- What it does: Lists all doctors in Docedex.
 
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -538,6 +541,10 @@ For more information see: [Selecting doctors or patients through commands](#sele
 #### Listing all patients
 
 `list-ptn`
+- Possible use cases: Retrieval of all patients in Docedex after commands involving selection.
+- What it does: Lists all patients in Docedex.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 
 [Scroll back to Table of Contents](#table-of-contents)
 

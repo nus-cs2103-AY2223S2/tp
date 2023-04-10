@@ -689,7 +689,7 @@ Here are some useful links on the following!
 
 ## **Appendix A: Planned Enhancements**
 
-### Feedback To User
+### Feedback to User
 
 #### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
@@ -748,21 +748,17 @@ line `"At least one parameter other than INDEX should be provided\n"`.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Scalability
+#### Problem 4: Better error/exception handling for invalid command inputs
+- **Scenario**: User enters an invalid variation of a command
+- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
+- **Potential issue**: User has to guess which parameter/section of the command is invalid.
+- **Why did it happen**: Implementation of feature freeze prior to resolution
 
-#### Problem 4: Use of association classes instead of lists to capture doctor-patient relationship on assignment
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
+**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 5: Adding input validation to find commands
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
+### Scalability
 
 #### Enhancement 1: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
@@ -782,15 +778,6 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 8: Better error/exception handling for invalid command inputs
-- **Scenario**: User enters an invalid variation of a command
-- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
-- **Potential issue**: User has to guess which parameter/section of the command is invalid.
-- **Why did it happen**: Implementation of feature freeze prior to resolution
-
-**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
-
-[Scroll back to Table of Contents](#table-of-contents)
 
 ## **Appendix B: Product scope**
 

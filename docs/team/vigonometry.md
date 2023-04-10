@@ -76,7 +76,8 @@ Here are my contributions to team-based tasks
   - Reviewed pull requests from other team members
   - Provided links to relevant development resources through communication channels
   - Co-led code-cleanup in v1.4 through PR reviews and discussions
-  - Improved test coverage by 7%
+  - Improved test coverage to 67%
+  - Led attempt to integrate GUI testing through TestFX (increases coverage to 78%). The pull request can be found [here](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/271).
 - Meeting related:
   - Creation of meeting agenda
   - Scribing of meetings
