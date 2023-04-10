@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new DeliveryJobSystem(), new DeliveryJobSystem(modelManager.getDeliveryJobSystem()));
     }
 
     @Test
@@ -73,6 +75,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setDeliveryJobSystemFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setDeliveryJobSystemFilePath(null));
+    }
+
+    @Test
+    public void setDeliveryJobSystemFilePath_validPath_setsDeliveryJobSystemFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setDeliveryJobSystemFilePath(path);
+        assertEquals(path, modelManager.getDeliveryJobSystemFilePath());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
@@ -94,14 +108,53 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredDeliveryJobList().remove(0));
+    }
+
+    @Test
+    public void getSortedDeliveryJobListByComparator_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getSortedDeliveryJobListByComparator().remove(0));
+    }
+
+    @Test
+    public void updateSortedDeliveryJobList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSortedDeliveryJobList(null));
+    }
+
+    @Test
+    public void updateSortedDeliveryJobListByComparator_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSortedDeliveryJobListByComparator(null));
+    }
+
+    @Test
+    public void updateWeekDeliveryJobList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateWeekDeliveryJobList(null));
+    }
+
+    @Test
+    public void updateFocusDate_returnsTrue() {
+        modelManager.updateFocusDate(LocalDate.now());
+        assertEquals(LocalDate.now(), modelManager.getFocusDate());
+    }
+
+    @Test
+    public void updateFocusDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFocusDate(null));
+    }
+
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
+        DeliveryJobSystem deliveryJobSystem = new DeliveryJobSystem();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, deliveryJobSystem, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, deliveryJobSystem, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +167,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, deliveryJobSystem, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, deliveryJobSystem, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +180,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, deliveryJobSystem, differentUserPrefs)));
     }
+
 }

@@ -6,14 +6,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
+
+    private final String personId;
 
     // Identity fields
     private final Name name;
@@ -27,13 +31,48 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(String personId, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(personId, name, phone, email, address, tags);
+        this.personId = personId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(genPersonId(name, phone), name, phone, email, address, tags);
+    }
+
+    /**
+     * Empty initialisation for ImportDeliveryJobCommand.
+     */
+    public Person() {
+        this.personId = "null";
+        this.name = null;
+        this.phone = null;
+        this.email = null;
+        this.address = null;
+        this.tags.add(null);
+    }
+
+    private static String genPersonId(Name name, Phone phone) {
+        requireAllNonNull(name, phone);
+        String prefix = name.fullName.trim();
+        if (name.fullName.length() < 3) {
+            prefix = name.fullName + "0".repeat(3 - name.fullName.length());
+        }
+        prefix = prefix.substring(0, 3);
+        return prefix.concat(UUID.randomUUID().toString().substring(0, 3))
+                .toUpperCase();
+    }
+
+    public String getPersonId() {
+        return personId;
     }
 
     public Name getName() {
@@ -53,7 +92,8 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -98,7 +138,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(personId, name, phone, email, address, tags);
     }
 
     @Override

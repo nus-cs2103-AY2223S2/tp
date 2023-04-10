@@ -13,15 +13,20 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.StatisticsCommand;
+import seedu.address.logic.commands.person.AddCommand;
+import seedu.address.logic.commands.person.ClearCommand;
+import seedu.address.logic.commands.person.DeleteCommand;
+import seedu.address.logic.commands.person.EditCommand;
+import seedu.address.logic.commands.person.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.person.FindCommand;
+import seedu.address.logic.commands.person.ListCommand;
+import seedu.address.logic.commands.timetable.TimetableCommand;
+import seedu.address.logic.commands.timetable.TimetableCompletedCommand;
+import seedu.address.logic.commands.timetable.TimetableDateCommand;
+import seedu.address.logic.commands.timetable.TimetableUnscheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -31,7 +36,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final DukeDriverParser parser = new DukeDriverParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -80,6 +85,40 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_timetable() throws Exception {
+        assertTrue(parser.parseCommand(TimetableCommand.COMMAND_WORD) instanceof TimetableCommand);
+        assertTrue(parser.parseCommand(TimetableCommand.COMMAND_WORD + " 3") instanceof TimetableCommand);
+    }
+
+    @Test
+    public void parseCommand_timetableDate() throws Exception {
+        assertTrue(parser.parseCommand(TimetableDateCommand.COMMAND_WORD
+                + " date/2023-03-03") instanceof TimetableDateCommand);
+        assertTrue(parser.parseCommand(TimetableDateCommand.COMMAND_WORD
+                + " date/2023-03-03") instanceof TimetableDateCommand);
+    }
+
+    @Test
+    public void parseCommand_timetableUnschedule() throws Exception {
+        assertTrue(parser.parseCommand(TimetableUnscheduleCommand.COMMAND_WORD) instanceof TimetableUnscheduleCommand);
+        assertTrue(parser.parseCommand(TimetableUnscheduleCommand.COMMAND_WORD
+                + " 3") instanceof TimetableUnscheduleCommand);
+    }
+
+    @Test
+    public void parseCommand_timetableComplete() throws Exception {
+        assertTrue(parser.parseCommand(TimetableCompletedCommand.COMMAND_WORD) instanceof TimetableCompletedCommand);
+        assertTrue(parser.parseCommand(TimetableCompletedCommand.COMMAND_WORD
+                + " 3") instanceof TimetableCompletedCommand);
+    }
+
+    @Test
+    public void parseCommand_statistics() throws Exception {
+        assertTrue(parser.parseCommand(StatisticsCommand.COMMAND_WORD) instanceof StatisticsCommand);
+        assertTrue(parser.parseCommand(StatisticsCommand.COMMAND_WORD + " 3") instanceof StatisticsCommand);
     }
 
     @Test

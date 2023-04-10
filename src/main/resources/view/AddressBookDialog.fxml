@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root height="600.0" maxWidth="450.0" minHeight="600" minWidth="450" onCloseRequest="#handleExit" resizable="false" title="Duke Driver Address Book" type="javafx.stage.Stage" width="450.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/address_book_32.png" />
+  </icons>
+   <scene>
+      <Scene fill="#1d1d1d">
+         <BorderPane>
+            <center>
+                <AnchorPane prefHeight="200" prefWidth="200">
+                  <children>
+                     <StackPane fx:id="commandBoxPlaceholder" prefHeight="50.0" styleClass="pane-with-border" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <padding>
+                           <Insets bottom="5" left="10" right="10" top="5" />
+                        </padding>
+                     </StackPane>
+                     <SplitPane dividerPositions="0.4" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                        <items>
+                           <AnchorPane minHeight="60.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100" prefHeight="100" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <padding>
+                                       <Insets bottom="5" left="10" right="10" top="5" />
+                                    </padding>
+                                 </StackPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane maxHeight="1.7976931348623157E308" minHeight="300.0" minWidth="0.0" prefWidth="160.0">
+                              <children>
+                                 <VBox fx:id="personList" maxHeight="1.7976931348623157E308" minWidth="340" prefWidth="340" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <padding>
+                                       <Insets bottom="10" left="10" right="10" top="10" />
+                                    </padding>
+                                    <children>
+                                       <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </AnchorPane>
+                        </items>
+                     </SplitPane>
+                  </children>
+               </AnchorPane>
+            </center>
+            <bottom>
+               <StackPane fx:id="statusbarPlaceholder" BorderPane.alignment="CENTER" />
+            </bottom>
+            <top>
+               <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+                  <menus>
+                     <Menu mnemonicParsing="false" text="File">
+                        <items>
+                           <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                        </items>
+                     </Menu>
+                  </menus>
+               </MenuBar>
+            </top>
+         </BorderPane>
+         <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+         </stylesheets>
+      </Scene>
+   </scene>
+</fx:root>

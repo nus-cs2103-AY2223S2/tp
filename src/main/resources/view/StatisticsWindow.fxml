@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<fx:root minHeight="450" minWidth="450" resizable="false" title="Statistics" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/stats_icon.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@StatisticsWindow.css" />
+                <URL value="@DarkTheme.css" />
+            </stylesheets>
+                <HBox alignment="CENTER" fx:id="statsMessageContainer">
+                    <children>
+                        <VBox>
+                            <Label fx:id="header" text="Label">
+                                <VBox.margin>
+                                    <Insets bottom="10" />
+                                </VBox.margin>
+                            </Label>
+                            <Label fx:id="titleAllStats" text="Label">
+                                <VBox.margin>
+                                    <Insets bottom="10" />
+                                </VBox.margin>
+                            </Label>
+                            <Label fx:id="allStats" text="Label">
+                                <VBox.margin>
+                                    <Insets bottom="50" />
+                                </VBox.margin>
+                            </Label>
+                            <Label fx:id="titleLastWeek" text="Label">
+                                <VBox.margin>
+                                    <Insets bottom="10" />
+                                </VBox.margin>
+                            </Label>
+                            <Label fx:id="lastWeekStats" text="Label">
+                                <VBox.margin>
+                                    <Insets bottom="10" />
+                                </VBox.margin>
+                            </Label>
+                        </VBox>
+
+                    </children>
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    </padding>
+                </HBox>
+        </Scene>
+    </scene>
+</fx:root>

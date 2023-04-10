@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DukeDriverParser" as DukeDriverParser LOGIC_COLOR
+participant "t:TimetableCompleteCommand" as TimetableCompleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("timetable_completed")
+activate LogicManager
+
+LogicManager -> DukeDriverParser : parseCommand("timetable_completed")
+activate DukeDriverParser
+
+create TimetableCompleteCommand
+DukeDriverParser -> TimetableCompleteCommand
+activate TimetableCompleteCommand
+
+TimetableCompleteCommand --> DukeDriverParser : t
+deactivate TimetableCompleteCommand
+
+DukeDriverParser --> LogicManager : t
+deactivate DukeDriverParser
+
+LogicManager -> TimetableCompleteCommand : execute()
+activate TimetableCompleteCommand
+TimetableCompleteCommand -> Model : updateSortedDeliveryJobList(new SortbyTimeAndEarn())
+TimetableCompleteCommand -> Model : getCompletedDeliveryJobList()
+activate Model
+
+
+Model --> TimetableCompleteCommand
+deactivate Model
+
+TimetableCompleteCommand --> LogicManager : result
+deactivate TimetableCompleteCommand
+TimetableCompleteCommand -[hidden]-> LogicManager : result
+destroy TimetableCompleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

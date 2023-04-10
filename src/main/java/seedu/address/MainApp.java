@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
@@ -16,18 +17,22 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.DeliveryJobSystem;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.DeliveryJobSystemStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.json.storage.JsonAddressBookStorage;
+import seedu.address.storage.json.storage.JsonDeliveryJobSystemStorage;
+import seedu.address.storage.json.storage.JsonUserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -36,7 +41,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -48,7 +53,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing DukeDriver ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +62,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DeliveryJobSystemStorage deliveryJobSystemStorage = new JsonDeliveryJobSystemStorage(
+                userPrefs.getDeliveryJobSystemFilePath());
+        storage = new StorageManager(addressBookStorage, deliveryJobSystemStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,28 +76,55 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address
+     * book and {@code userPrefs}. <br>
+     * The data from the sample address book will be used instead if
+     * {@code storage}'s address book is not found,
+     * or an empty address book will be used instead if errors occur when reading
+     * {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        ReadOnlyAddressBook initialAddressData;
+
+        Optional<ReadOnlyDeliveryJobSystem> deliveryJobSystemOptional;
+        ReadOnlyDeliveryJobSystem initialDeliveryJobSystemData;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("[AB] Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAddressData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("[AB] Data file not in the correct format. Will be starting with an empty AddressBook");
+            initialAddressData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("[AB] Problem while reading from the file. Will be starting with an empty AddressBook");
+            initialAddressData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            deliveryJobSystemOptional = storage.readDeliveryJobSystem();
+
+            if (!deliveryJobSystemOptional.isPresent()) {
+                logger.info("[DS] Data file not found. Will be starting with a sample DeliveryJobSystem");
+            }
+
+            initialDeliveryJobSystemData = deliveryJobSystemOptional
+                    .orElseGet(SampleDataUtil::getSampleDeliveryJobSystem);
+        } catch (IllegalArgumentException | NullPointerException | DataConversionException e) {
+            logger.warning(
+                    "[DS] Data file not in the correct format. Will be starting with an empty DeliveryJobSystem");
+            initialDeliveryJobSystemData = new DeliveryJobSystem();
+        } catch (IOException e) {
+            logger.warning(
+                    "[DS] Problem while reading from the file. Will be starting with an empty DeliveryJobSystem");
+            initialDeliveryJobSystemData = new DeliveryJobSystem();
+        }
+
+        return new ModelManager(initialAddressData, initialDeliveryJobSystemData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -124,7 +158,8 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are
+        // new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -134,7 +169,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
+     * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs
+     * file path,
      * or a new {@code UserPrefs} with default configuration if errors occur when
      * reading from the file.
      */
@@ -155,7 +191,8 @@ public class MainApp extends Application {
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are
+        // new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
@@ -167,17 +204,19 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting DukeDriver " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping DukeDriver ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+        Platform.exit();
+        System.exit(0);
     }
 }

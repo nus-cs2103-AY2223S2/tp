@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chin Jun An
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chinjunan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ChinJunAn)]
+[[portfolio]](https://ay2223s2-cs2103-f11-2.github.io/tp/team/chinjunan.html)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Notification and reminder function
 
-### Jean Doe
+### Do Ha Duong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dohaduong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/dohaduong)]
+[[portfolio]](https://ay2223s2-cs2103-f11-2.github.io/tp/team/dohaduong.html)
+* Role: Developer
+* Responsibility: Timetable function
+
+### Chen Zuo Hui
+
+<img src="images/zuohui48.png" width="200px">
+
+[[github](https://github.com/zuohui48)]
+[[portfolio]](https://ay2223s2-cs2103-f11-2.github.io/tp/team/zuohui48.html)
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Statistics function
 
-### James Doe
+### Zhu Le Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhuleyao.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ZhuLeYao)]
+[[portfolio]](https://ay2223s2-cs2103-f11-2.github.io/tp/team/zhuleyao.html)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Data, Add and view jobs function
+
+### Chen Junsheng
+
+<img src="images/c0j0s.png" width="200px">
+
+[[github](http://github.com/c0j0s)]
+[[portfolio]](https://ay2223s2-cs2103-f11-2.github.io/tp/team/c0j0s.html)
+
+* Role: Developer
+* Responsibilities: Delivery jobs function

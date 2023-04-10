@@ -41,7 +41,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
+    String jUnitVersion = '5.9.2'
     String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
@@ -60,13 +60,19 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
+    implementation 'org.controlsfx:controlsfx:11.1.2'
+
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'dukedriver.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

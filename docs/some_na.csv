@@ -1,0 +1,4 @@
+Recipient ID,Sender ID,Delivery date,Delivery slot,Price,Recipient ID,Recipient Name,Recipient Phone,Recipient Email,Recipient Address,Recipient Tag,Sender ID,Sender Name,Sender Phone,Sender Email,Sender Address,Sender Tag
+JUS456,JUL789,2023-01-01,1,5.00,JUS456,Justin,23456789,jus@gmail.com,Sg st 42,Customer,JUL789,Julian,34567890,jul@gmail.com,Sg st 43,na
+JUS456,JUL789,na,na,5.00,JUS456,Justin,23456789,jus@gmail.com,Sg st 42,Customer,JUL789,Julian,34567890,jul@gmail.com,Sg st 43,Customer
+JUS456,JUL789,2023-01-03,1,5.00,JUS456,Justin,23456789,jus@gmail.com,Sg st 42,Customer,JUL789,Julian,34567890,jul@gmail.com,Sg st 43,Customer

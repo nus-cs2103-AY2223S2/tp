@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" prefWidth="102" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+            <padding>
+                <Insets right="2.0" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="jobID" styleClass="cell_small_label" text="\\$jobID" />
+            </HBox>
+            <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="earn" styleClass="cell_small_label" text="\$address" />
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

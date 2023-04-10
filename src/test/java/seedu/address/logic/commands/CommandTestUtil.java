@@ -9,17 +9,26 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.jobs.EditDeliveryJobCommand;
+import seedu.address.logic.commands.person.EditCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.jobs.DeliveryDate;
+import seedu.address.model.jobs.DeliverySlot;
+import seedu.address.model.jobs.Earning;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains helper methods for testing commands.
@@ -34,8 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_REGULAR = "Regular";
+    public static final String VALID_TAG_NEW = "New";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,8 +54,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_NEW;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_REGULAR;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -60,13 +69,49 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditDeliveryJobCommand.EditDeliveryJobDescriptor DESC_JOBA;
+    public static final EditDeliveryJobCommand.EditDeliveryJobDescriptor DESC_JOBB;
+
+    public static final String VALID_SENDER = TypicalPersons.ALICE.getPersonId();
+    public static final String INVALID_SENDER = "ABC";
+
+    public static final String VALID_RECIPIENT = TypicalPersons.BOB.getPersonId();
+    public static final String INVALID_RECIPIENT = "ABC";
+
+    public static final String VALID_EARNING = "1";
+    public static final String INVALID_EARNING = "a";
+
+    public static final String VALID_DELIVERY_DATE = "2023-03-03";
+    public static final String INVALID_DELIVERY_DATE = "20231-03-03";
+
+    public static final String VALID_DELIVERY_SLOT = "1";
+    public static final String INVALID_DELIVERY_SLOT = "a";
+
+    public static final String VALID_TIMETABLE_DATE = " date/2023-03-03";
+    public static final String MISSING_PREFIX_TIMETABLE_DATE = "2023-03-03";
+    public static final String INVALID_TIMETABLE_DATE = " date/202";
+    public static final LocalDate VALID_DATE_ARG = LocalDate.parse("2023-03-03");
+
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_NEW).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_REGULAR, VALID_TAG_NEW).build();
+        DESC_JOBA = new EditDeliveryJobCommand.EditDeliveryJobDescriptor();
+        DESC_JOBA.setSender(VALID_SENDER);
+        DESC_JOBA.setRecipient(VALID_RECIPIENT);
+        DESC_JOBA.setEarning(new Earning(VALID_EARNING));
+        DESC_JOBA.setDeliveryDate(new DeliveryDate(VALID_DELIVERY_DATE));
+        DESC_JOBA.setDeliverySlot(new DeliverySlot(VALID_DELIVERY_SLOT));
+        DESC_JOBB = new EditDeliveryJobCommand.EditDeliveryJobDescriptor();
+        DESC_JOBB.setSender(VALID_RECIPIENT);
+        DESC_JOBB.setRecipient(VALID_SENDER);
+        DESC_JOBB.setEarning(new Earning(VALID_EARNING));
+        DESC_JOBB.setDeliveryDate(new DeliveryDate(VALID_DELIVERY_DATE));
+        DESC_JOBB.setDeliverySlot(new DeliverySlot(VALID_DELIVERY_SLOT));
     }
 
     /**
@@ -82,6 +127,10 @@ public class CommandTestUtil {
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
+        } catch (FileNotFoundException e) {
+            throw new AssertionError("File does not exist.", e);
+        } catch (ParseException e) {
+            throw new AssertionError("File should be selected.", e);
         }
     }
 

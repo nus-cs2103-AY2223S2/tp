@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <icons>
+      <Image url="@/images/clock.png" />
+   </icons>
+   <scene>
+      <Scene fx:id="scene">
+         <stylesheets>
+            <URL value="@DarkTheme.css" />
+         </stylesheets>
+
+         <VBox fx:id="contentContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0">
+            <MenuBar fx:id="menuBar">
+               <Menu mnemonicParsing="false" text="File">
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+               </Menu>
+            </MenuBar>
+
+            <StackPane fx:id="commandBoxPlaceholder" prefHeight="25.0" prefWidth="800.0" styleClass="pane-with-border">
+               <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+               </padding>
+            </StackPane>
+
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="50.0" prefHeight="50.0" styleClass="pane-with-border">
+               <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+               </padding>
+            </StackPane>
+            <StackPane fx:id="timetablePlaceholder" maxHeight="1.7976931348623157E308" minWidth="800.0" style="-fx-background-color: derive(#1d1d1d, 20%); -fx-text-fill: white;" stylesheets="@DarkTheme.css" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="3.0" right="10.0" />
+               </padding>
+            </StackPane>
+            <StackPane fx:id="statusbarPlaceholder" alignment="CENTER_LEFT" maxHeight="25.0" prefHeight="25.0" style="-fx-background-color: GREY;" VBox.vgrow="ALWAYS" />
+
+         </VBox>
+
+      </Scene>
+   </scene>
+</fx:root>
