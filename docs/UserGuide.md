@@ -235,6 +235,8 @@ Shows a message explaining how to access the help page.
 
 ✏️ **Format:** `help`
 
+You
+
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
 --- 
