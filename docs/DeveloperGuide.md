@@ -975,7 +975,7 @@ testers are expected to do more *exploratory* testing.
 
 ------------------------------------------------------------
 
-## Appendix: Feature Flaws
+## Appendix: Feature Flaws and Planned Enhancements
 
 When creating software, there are always areas that can be improved upon.
 In the interest of transparency and keeping our users informed, we have identified some aspects
@@ -988,6 +988,6 @@ we are actively working to find the best solution to address these feature flaws
    However, if tags with excessively long names are used, they could potentially affect the UI display and impact user experience.
 4. Our auto_pair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always 
 be the most optimal in terms of time efficiency or number of pairings.
-5. Allow users to enter hours into the available dates fields to provide greater flexibility in specifying availability period.
-6. A command to view pairing details, instead of hovering over the pair item, and reading from the popover card.
+5. Currently, the user could only enter dates for their available period. In future, we would allow users to enter hours into the available dates fields, so as to provide greater flexibility in specifying availability period.
+6. In future, we plan to add an command to view pairing details directly, instead of hovering over the pair item and reading from the popover card.
 
