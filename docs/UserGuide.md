@@ -38,7 +38,8 @@ this user guide has everything you need. Head over to the [Getting started](#get
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents{:exclude}
+## Table of Contents
+{:exclude}
 
 * Table of Contents
 {:toc}
