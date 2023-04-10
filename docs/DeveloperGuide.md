@@ -633,27 +633,27 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a patient
 
-1. Adding a patient while all patients are being shown
+1. Adding a new patient's while all existing patients are shown
 
-   1. Prerequisites: List all patients using the list command. Multiple recipes in the list.
+   1. Prerequisites: List all patients using the list command.
 
    2. Test case: add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
-      Expected: John Doe is added into the list. Success message shown in the result display.
+      Expected: John Doe is added into the list. Result Display shows a success message.
 
    3. Test case: add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ag/20 n/Flu nric/S9524050Y t/friend t/colleague
-      Expected: James Ho is added. Success message shown in the result display.
+      Expected: James Ho is added. Result Display shows a success message.
    
    4. Test case: add n/James Lu p/22224444 e/example.com a/123, Clementi Rd, 1234665 ag/20 n/Flu nric/S9524050Y t/friend t/colleague
-      Expected: No patient is added. Error message shown in the result display indicating wrong email format.
+      Expected: No patient is added. Error message of wrong email format is shown on the result display.
    
 ### Editing a patient
 
-1. Editing a recipe while all recipes are being shown
+1. Editing a patient's while all patients are shown
 
-   1. Prerequisites: List all patients using the list command. Multiple patients in the list.
+   1. Prerequisites: List all patients using the list command.
 
    2. Test case: edit 1 n/James Lee e/jameslee@example.com 
-      Expected: The name of the first patient is changed to James Lee and its email changed to jameslee@example.com. Success message shown in the result display.
+      Expected: The name of the first patient and email is changed to James Lee and jameslee@example.com respectively. Result display shows a success message.
    
    3. Test case: edit 1 Expected: The first patient remains the same. Error message shown in the result display.
     
