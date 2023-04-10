@@ -10,29 +10,32 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* Added the ability to add tasks to a task list and list tasks.
+* **Added the ability to add tasks to a task list and list tasks.**
     * What it does:
         * Allows users to add tasks with task description, deadline of task and completion status (DONE / NOT DONE) of task.
     * Justification: This feature is made to cater to the needs of home business owners as they usually have a lot of tasks (such as ordering supplies, making deliveries) to deal with
       and the app provides a convenient way to record down and get an overview of their tasks.
     * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
 <br><br>
-* Added the ability to edit existing tasks and list tasks.
+* **Added the ability to edit existing tasks.**
     * What it does:
         * Allows users to edit existing tasks so that they can keep tasks details correct and up to date.
         * Justification: This feature improves the product because users may sometimes key in the wrong info
           and this feature allows users to modify wrong task details easily.
         * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
 <br><br>
-* **New Feature**: Added the ability to sort orders and tasks according to a given criteria.
+* **New Feature: Added the ability to sort orders and tasks according to a given criteria.**
     * What it does:
         * Allows users to sort tasks or orders according to a given criteria.
     * Justification: This feature improves the product significantly because home business owners has a lot of orders and tasks
       and may wish to quickly find out which orders or tasks are more urgent at one glance.
       This feature provides a convenient way for the home business owners to do so.
     * Highlights: Users are able to sort the tasks or orders based on various criterias (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline)
+    * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
 <br><br>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=hmuumyatmoe&breakdown=true)
+<br>All the functional and test codes reused or adapted are reused from and adapated from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org).
+<br>Code used for rake symbol used in Edit Command Activity Diagram in the DG is reused from [this Plant Uml forum](https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol).
 <br><br>
 * **Project management**:
     * Managed project documentation (UG & DG)
@@ -58,6 +61,5 @@ Given below are my contributions to the project.
 <br><br>
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#47](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/47), [\#91](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/91) [\#154](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/154) [\#157](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/157)
-<br><br>
 * **Tools**:
     * Java 11, JavaFx, Jekyll

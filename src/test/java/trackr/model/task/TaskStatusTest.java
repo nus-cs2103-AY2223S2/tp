@@ -9,23 +9,31 @@ import org.junit.jupiter.api.Test;
 
 public class TaskStatusTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskStatus(null));
     }
+    //@@author
 
+    //Solution below adapted from AB3
     @Test
     public void constructor_blankStatus_throwsIllegalArgumentException() {
         String blankTaskStatus = "";
         assertThrows(IllegalArgumentException.class, () -> new TaskStatus(blankTaskStatus));
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void constructor_invalidStatus_throwsIllegalArgumentException() {
         String invalidTaskStatus = "Z";
         assertThrows(IllegalArgumentException.class, () -> new TaskStatus(invalidTaskStatus));
     }
+    //@@author
 
+    //Solution below adapted from AB3
     @Test
     public void constructor_noArguments_success() {
         TaskStatus expectedStatus = new TaskStatus("N");

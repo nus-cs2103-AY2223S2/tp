@@ -21,6 +21,8 @@ import trackr.testutil.TaskBuilder;
 //@@author hmuumyatmoe-reused
 public class TaskTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void isSameTask() {
         // same object -> returns true
@@ -89,6 +91,7 @@ public class TaskTest {
                              .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         assertNotEquals(SORT_INVENTORY_N, editedTask);
     }
+    //@@author
 
     //@@author liumc-sg
     @Test

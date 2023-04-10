@@ -16,6 +16,8 @@ import trackr.testutil.TaskDescriptorBuilder;
 //@@author hmuumyatmoe-reused
 public class EditTaskDescriptorTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void equals() {
         // same values -> returns true
@@ -51,4 +53,5 @@ public class EditTaskDescriptorTest {
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         assertFalse(DESC_SORT_INVENTORY.equals(editedSortInventory));
     }
+    //@@author
 }

@@ -103,6 +103,8 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
         return Optional.ofNullable(orderStatus);
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public void setOrderItem(MenuItem orderItem) {
         this.orderItem = orderItem;
     }
@@ -110,6 +112,7 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
     public Optional<MenuItem> getOrderItem() {
         return Optional.ofNullable(orderItem);
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

@@ -67,6 +67,7 @@ public class TrackrParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    //Solution below is adapted from AB3 with some parts reused from AB3 with modification
     /**
      * Parses user input into command for execution.
      *
@@ -94,9 +95,12 @@ public class TrackrParser {
         case AddSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new AddSupplierCommandParser().parse(arguments);
 
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         case AddTaskCommand.COMMAND_WORD:
         case AddTaskCommand.COMMAND_WORD_SHORTCUT:
             return new AddTaskCommandParser().parse(arguments);
+        //@@author
 
         case AddMenuItemCommand.COMMAND_WORD:
         case AddMenuItemCommand.COMMAND_WORD_SHORTCUT:
@@ -106,9 +110,12 @@ public class TrackrParser {
         case EditSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new EditSupplierCommandParser().parse(arguments);
 
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         case EditTaskCommand.COMMAND_WORD:
         case EditTaskCommand.COMMAND_WORD_SHORTCUT:
             return new EditTaskCommandParser().parse(arguments);
+        //@@author
 
         case EditMenuItemCommand.COMMAND_WORD:
         case EditMenuItemCommand.COMMAND_WORD_SHORTCUT:
@@ -176,14 +183,19 @@ public class TrackrParser {
         case ListOrderCommand.COMMAND_WORD_SHORTCUT:
             return new ListOrderCommand();
 
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         case ListTaskCommand.COMMAND_WORD:
         case ListTaskCommand.COMMAND_WORD_SHORTCUT:
             return new ListTaskCommand();
+        //@@author
 
         case ListMenuItemCommand.COMMAND_WORD:
         case ListMenuItemCommand.COMMAND_WORD_SHORTCUT:
             return new ListMenuItemCommand();
 
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         case SortTasksCommand.COMMAND_WORD:
         case SortTasksCommand.COMMAND_WORD_SHORTCUT:
             return new SortTasksCommandParser().parse(arguments);
@@ -191,6 +203,7 @@ public class TrackrParser {
         case SortOrdersCommand.COMMAND_WORD:
         case SortOrdersCommand.COMMAND_WORD_SHORTCUT:
             return new SortOrdersCommandParser().parse(arguments);
+        //@@author
 
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);

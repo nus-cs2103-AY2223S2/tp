@@ -34,6 +34,7 @@ public class OrderStatusTest {
     }
     //@@author
 
+    //Solution for isValidOrderStatus test below is adapted from AB3
     @Test
     public void isValidOrderStatus() {
         // null order status

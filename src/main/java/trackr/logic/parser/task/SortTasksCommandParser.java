@@ -12,6 +12,7 @@ import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.task.SortTasksComparator;
 
+//Solution below is adapted from AB3
 /**
  * Parses input arguments and creates a new SortTasksCommand object.
  */

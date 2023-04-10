@@ -138,6 +138,7 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //Solution below adapted from AB3.
     /**
      * Parses a {@code Optional<String> criteria} into a {@code CriteriaEnum}.
      *
@@ -161,6 +162,8 @@ public class ParserUtil {
 
     //========================Parse those related to task==================================
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     /**
      * Parses a {@code String taskName} into a {@code TaskName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -190,7 +193,9 @@ public class ParserUtil {
         }
         return new TaskDeadline(trimmedTaskDeadline);
     }
+    //@@author
 
+    //Solution below adapted from AB3 with some reuse.
     /**
      * Parses a {@code String taskStatus} into a {@code TaskStatus}.
      * Leading and trailing whitespaces will be trimmed.
@@ -203,11 +208,14 @@ public class ParserUtil {
             return new TaskStatus();
         }
 
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         String trimmedTaskStatus = taskStatus.get().trim();
         if (!TaskStatus.isValidStatus(trimmedTaskStatus, TaskStatus.STATUSES)) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
         return new TaskStatus(trimmedTaskStatus);
+        //@@author
     }
     //========================Parse those related to menu item==================================
 

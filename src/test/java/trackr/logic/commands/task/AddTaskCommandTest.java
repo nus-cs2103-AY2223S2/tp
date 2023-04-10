@@ -24,6 +24,8 @@ import trackr.testutil.TestUtil.ModelStub;
 //@@author hmuumyatmoe-reused
 public class AddTaskCommandTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
@@ -75,7 +77,9 @@ public class AddTaskCommandTest {
         // different task -> returns false
         assertFalse(addSortInventoryCommand.equals(addBuyEggsCommand));
     }
+    //@@author
 
+    //Solution below adapted from AB3.
     /**
      * A Model stub that contains a single task.
      */

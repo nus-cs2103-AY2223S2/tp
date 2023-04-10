@@ -3,6 +3,8 @@ package trackr.model;
 import trackr.model.item.ItemList;
 import trackr.model.task.Task;
 
+//@@author HmuuMyatMoe-reused
+//Reused from AB3 with minor modifications
 /**
  * Wraps all data at the task-list level.
  * Duplicates are not allowed (by .isSameItem comparison).
@@ -20,3 +22,4 @@ public class TaskList extends ItemList<Task> implements ReadOnlyTaskList {
         super(toBeCopied);
     }
 }
+//@@author

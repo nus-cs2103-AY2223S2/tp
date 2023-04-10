@@ -9,8 +9,11 @@ import trackr.model.task.Task;
  */
 public class ListTaskCommand extends ListItemCommand<Task> {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String COMMAND_WORD = "list_task";
     public static final String COMMAND_WORD_SHORTCUT = "list_t";
+    //@@author
 
     /**
      * Creates a ListTaskCommand to list all the tasks.

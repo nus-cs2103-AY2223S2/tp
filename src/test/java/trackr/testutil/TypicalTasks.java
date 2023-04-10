@@ -14,6 +14,7 @@ import trackr.model.task.Task;
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
+//Solution below is largely adapted from AB3, with some parts below reused from AB3 with modifications
 public class TypicalTasks {
 
     public static final Task SORT_INVENTORY_N = new TaskBuilder().withTaskName("Sort Inventory")
@@ -45,6 +46,8 @@ public class TypicalTasks {
 
     private TypicalTasks() {} // prevents instantiation
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     /**
      * Returns an {@code TaskList} with all the typical tasks.
      */
@@ -60,4 +63,5 @@ public class TypicalTasks {
         return new ArrayList<>(
                 Arrays.asList(SORT_INVENTORY_N, THROW_EXPIRED_N, BUY_EGGS_D));
     }
+    //@@author
 }

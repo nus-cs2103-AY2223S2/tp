@@ -9,9 +9,11 @@ import trackr.model.commons.Name;
 //@@author changgittyhub-reused
 public class ItemName extends Name {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String MESSAGE_CONSTRAINTS =
             "Item names should only contain alphanumeric characters and spaces, and it should not be blank";
-
+    //@@author
 
     /**
      * Constructs an {@code ItemName}.

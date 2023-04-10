@@ -6,6 +6,7 @@ import trackr.model.commons.Deadline;
  * Represents a Task's deadline in the task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
+//Solution below adapted from AB3
 public class TaskDeadline extends Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
