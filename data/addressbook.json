@@ -71,22 +71,6 @@
       "categoryName" : "Transportation",
       "summary" : "For bus, car, train"
     }
-  }, {
-    "name" : "a",
-    "amount" : "2.0",
-    "date" : "2023-02-28",
-    "category" : {
-      "categoryName" : "Housing",
-      "summary" : ""
-    }
-  }, {
-    "name" : "a",
-    "amount" : "2.0",
-    "date" : "2023-02-28",
-    "category" : {
-      "categoryName" : "Housing",
-      "summary" : ""
-    }
   } ],
   "budget" : {
     "amount" : "0.0"
