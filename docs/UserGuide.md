@@ -51,6 +51,12 @@ The following callouts can be found throughout our user guide:
 
 In general, the following command format is adopted in FriendlyLink.
 
+<pre>
+
+command <[PREAMBLE]> PREFIX/FIELD [PREFIX/OPTIONAL_FIELD] [PREFIX/OPTIONAL_FIELD]…
+
+</pre>
+
 | Name       | Meaning                                                                                                       | Examples                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command    | An instruction given by you to FriendlyLink to perform a specific task.                                       | `add_elderly`                                                                                                                                                                                 | 
@@ -62,7 +68,7 @@ In general, the following command format is adopted in FriendlyLink.
 
 * Words that are `CAPITALISED` are placeholders that should be replaced by you.
 * Items in `[square brackets]` are optional.
-* Items in `<angled brackets>` are the [preamble](#preamble). The inclusion of `[]` indicates that the preamble is optional.
+* Items in `<angled brackets>` are the preamble. The inclusion of `[]` indicates that the preamble is optional.
 * Items with `…` can be entered 0 or more times.
 
 For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
