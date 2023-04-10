@@ -24,7 +24,7 @@ title: User Guide
     ·
     <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md">Meet the Team</a>
     <br />
-    🎉 Version 1.2.1 is out. Check out the latest release
+    🎉 Version 1.4 is out! Check out the latest release
     <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">here</a>.
     <br />
     <br />
