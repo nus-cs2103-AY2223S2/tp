@@ -72,11 +72,13 @@ public class DeleteAppointmentCommand extends Command {
         Patient editedPatient = createEditedPatient(appointmentPatient);
         Doctor editedDoctor = createEditedDoctor(appointmentToDeleteDr);
 
-        updateModel(model, appointmentPatient, appointmentToDeletePatient, appointmentToDeleteDr, editedPatient, editedDoctor);
+        updateModel(model, appointmentPatient, appointmentToDeletePatient, appointmentToDeleteDr, editedPatient,
+                editedDoctor);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentToDeletePatient));
     }
 
-    private static void updateModel(Model model, Patient appointmentPatient, Appointment appointmentToDeletePatient, Doctor appointmentToDeleteDr, Patient editedPatient, Doctor editedDoctor) {
+    private static void updateModel(Model model, Patient appointmentPatient, Appointment appointmentToDeletePatient,
+                                    Doctor appointmentToDeleteDr, Patient editedPatient, Doctor editedDoctor) {
         model.setPatient(appointmentPatient, editedPatient);
         model.setDoctor(appointmentToDeleteDr, editedDoctor);
 
