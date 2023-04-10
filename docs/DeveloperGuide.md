@@ -313,12 +313,12 @@ sequence diagram:
 ### 5.3 Find Application feature
 
 #### About
-The find command is a feature that enables users to search for a specific application within the internship book.
+The find command is a feature that enables users to search for a specific application within all the existing applications in the internship book.
 
 Users can locate the application by providing its index and optionally using the parameters `r/`, `c/`, and `s/` to 
 refine their search. These parameters correspond to the role, company, and status fields in the internship book, 
 allowing for customised searches. Without any of the required prefixes, it will do a global search for the
-keyword in all fields of the applications.
+keyword in all fields of all the applications.
 
 #### Usage
 To find an application in sprINT, issue the command in the following format:
@@ -366,7 +366,7 @@ sequence diagram:
 ### 5.4 Sort Applications feature
 
 #### About
-The sort command is a feature that enables users to rearrange the list of applications they see on the GUI.
+The sort command is a feature that enables users to select and rearrange the list of applications they see on the GUI.
 
 #### Usage
 To sort applications in sprINT, use the command in the following format:
@@ -381,13 +381,14 @@ The following table explains the parameters to be used with the `sort` command:
 | Order     | Yes        | Must be either `alphabetical` or `deadline` |
 
 Examples:
-- `sort a deadline` will sort applications by the deadline of their upcoming tasks in ascending order (i.e. from earliest 
+- `sort a deadline` will select all applications in the internship book that has tasks (and therefore, deadlines) 
+and sorts them by the deadline of their upcoming tasks in ascending order (i.e. from earliest 
 to latest). 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only applications that have a task 
 associated will be displayed in the sorted list. Those without an associated task will **not** be shown.</div> 
 
-- `sort d alphabetical` will sort applications by the role in descending order (from Z to A). If there are two or more 
+- `sort d alphabetical` will sort the currently displayed application entries on the GUI by the role in descending order (from Z to A). If there are two or more 
 applications with the same role, their company name will be used as a tiebreaker. 
 
 
@@ -395,7 +396,7 @@ applications with the same role, their company name will be used as a tiebreaker
 The sort application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
 
 Given below are the steps that illustrate the interaction between the components when it receives a valid sort
-command from the user.
+command from the user to sort the current list of entries **alphabetically**.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
 2. The command is processed as a value of type `String`, and is passed to `LogicManager` via its `execute()` method.
@@ -420,6 +421,12 @@ command from the user.
     the execution of the command.
 17. The Ui component displays the contents of the `CommandResult` to the User.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For `sort a deadline` and `sort d deadline`,
+there is an extra step in step 13 where `updateFilteredApplicationList` in `ModelManager` is first called to select applications
+in the entire internship book that has outstanding tasks (and therefore, deadlines) first, before `updateSortedApplicationList` is called
+to sort these applications by deadline.
+</div>
+
 <div style="page-break-after: always;"></div>
 
 For a more graphical illustration of how a sort command is processed, please refer to the following
@@ -434,20 +441,6 @@ implements the `Comparator<Application>` interface.
 2. Modify `SortCommandParser` to accept a new sorting order.
 3. Modify `SortCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
 Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortCommand`.
-
-#### Relation with `list` command
-The implementation of the `sort` command shares some similarities with the `list` command.
-The `list` command lists all applications in the order of creation; i.e., applications that are more recently added
-will be shown higher up in the list.
-The execution of these commands is essentially a two-step process of first **filtering** and then **storing**: 
-1. `LogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
-list in `FilteredList`.
-2. `LogicManager` then takes the `FilteredList` and stores a **sorted** version of this list in `SortedList`.
-
-See the following activity diagram that illustrates this workflow with some example executions of the `sort`, `find`
-and `list` commands:
-
-![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -944,7 +937,7 @@ ___
 
 1. User requests to find applications using the role, company name, and/or the application
 status as the keyword.
-2. sprINT displays the filtered list of entries.
+2. sprINT displays all applications in the internship book that have fields which contain the corresponding keyword(s).
 
    Use case ends.
 
@@ -955,7 +948,7 @@ status as the keyword.
 
     Use case resumes at step 1.
 
-* 2a. No matching applications are found and the filtered list is empty.
+* 2a. No matching applications are found and the list shown is empty.
   
   Use case ends.
 
@@ -967,7 +960,7 @@ status as the keyword.
 
 1. sprINT displays a list of current application entries.
 2. User requests to sort applications by alphabetical order.
-3. sprINT displays the sorted list of entries.
+3. sprINT displays the same list of entries in step 1, but sorted.
 
     Use case ends.
 
@@ -975,7 +968,7 @@ status as the keyword.
 
 * 2a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
 upcoming tasks of closer deadlines being showed first.
-  * 2a1. sprINT shows list of entries that have tasks (and therefore deadlines). 
+  * 2a1. sprINT shows list of existing entries in the entire internship book that have tasks (and therefore deadlines). 
   This list is sorted with earlier deadlines being showed first.
 
       Use case ends.
@@ -986,7 +979,7 @@ upcoming tasks of closer deadlines being showed first.
 
 **MSS**
 
-1. User requests to list all applications in the internship book.
+1. User requests to list all existing applications in the internship book.
 2. sprINT displays the full list of entries, in the order of when they are added. 
 (i.e., More recently added entries are shown first.)
 
@@ -1149,7 +1142,7 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
 
 ### Finding an application
 
-Prerequisites: List of applications is displayed through means like `list` or `sort`.
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
 1. Test case 1: `find r/SWE`<br>
    Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the Command Result Box.
@@ -1213,13 +1206,27 @@ Prerequisites: sprINT's main window is open.
 2. Sorting the application list when it is a **filtered** state, due to a previously executed `find` command
 
     Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
-   
-   1. Valid test cases: Same as the test cases mentioned in steps 2-5 for sorting while all applications are being shown <br>
-      Expected: Same behaviour as when sorting while all applications are being shown. <br> Additionally, check that no application entries that are not in the currently displayed list of applications
-      shows up after sorting.
 
-   2. Other incorrect `sort` commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
-      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the Command Result Box.
+    1. Test case 1: `sort a alphabetical` <br>
+       Expected: The current filtered list of applications will be sorted in alphabetical order of their role from A to Z.
+       Applications with the same role will have their company name as a tiebreaker.
+
+    2. Test case 2: `sort d alphabetical` <br>
+       Expected: Same behaviour as the test case for `sort a alphabetical`. Except that the alphabetical order is now
+       in reverse from Z to A.
+
+    3. Test case 3: `sort a deadline` <br>
+       Expected: Applications without tasks are **not** shown. **All** existing applications in the internship book 
+       that have tasks are listed, in the order of the deadline of their task.
+       Applications with closer deadlines will be shown first.
+
+    4. Test case 4: `sort d deadline` <br>
+       Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
+       applications with further deadlines will be shown first.
+
+    5. Other incorrect `sort` commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+       `sort` (nothing specified), `...` <br>
+       Expected: No sorting is done and application list remains the same. Error details shown in the Command Result Box.
 
 ### Listing all applications
 
