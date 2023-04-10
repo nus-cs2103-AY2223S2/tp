@@ -659,7 +659,6 @@ What you should see:
 <ul>
     <li>All fields apart from <code>INDEX</code> are optional. However, you need to include at least one optional 
 parameter.</li>
-</li>
     <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 </li>
     <li> However for <code>NOTE</code>:
@@ -668,8 +667,10 @@ parameter.</li>
             <li>If an empty <code>NOTE</code> is provided, all notes will be removed.</li>
         </ul>
     </li>
-    <li>You are allowed to change <code>INTERVIEW DATETIME</code> to a value before the current datetime but after the applicant's application date time using the <code>edit</code> command.
-</ul> </div>
+    <li>You are allowed to change <code>INTERVIEW DATETIME</code> to a value before the current datetime but after the applicant's application date time using the <code>edit</code> command. </li>
+</ul> 
+
+</div>
 
 
 **Example:**
