@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the SE-Education initiative. See [se-education.org](https://se-education.org#https://se-education.org) for more info.
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -280,7 +282,8 @@ We use nested integer object ID arrays to establish 1-to-many relationships betw
 Below shows an activity diagram of how `CustomerDataMap` is iniatialised/reset everytime there's a necessary update to any entities involved. Most XDataMaps are implemented similarly*
 <img src="images/CustomerDataMapInitActivityDiag.png" height="700">
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+</div>
 
 The XDataMap class represents a mapping between X and their associated entities. It maintains several maps to efficiently retrieve information based on unique IDs. The class also provides methods to initialize the mappings, modify them, and retrieve data from them.
 
@@ -304,7 +307,8 @@ The List feature shows users the whole list of entities in their respective tabs
 
 Both features are essentially implemented the same way as both will filter the displayed lists to the user thus we will be using the sequence diagram of the Find feature to show how the different components interact with one another to execute the command.
 
-> <b>Note:</b> For List commands `X` can be `Customer/Appointment/Service/Vehicle/Technician/Part`. For Find commands `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For List commands `X` can be `Customer/Appointment/Service/Vehicle/Technician/Part`. For Find commands `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+</div>
 
 A key detail to the Find/List implementation is that the respective Find and List commands executes which calls Model#updateFilteredXList() while passing in a predicate to update the filtered list shown to the user in the UI according to a predicate. The Find command would pass in the predicate created from the FindCommandParser while the List command simply uses a static predicate called SHOW_ALL_X.
 
@@ -334,7 +338,8 @@ Note: The rest of the sequence diagram of ListCommands are the same as the Find 
 
 The Sort feature sorts the respective entities according to some of their entity specific parameters.
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+</div>
 
 A key detail to the Sort implementation is that the SortXCommandParser parses the arguments from the user input to create a comparator which is then passed onto the SortXCommand. The SortXCommand then executes which calls the Model#updateXComparator which updates a SortedList<X> according to the comparator. There is also an option `r\` flag which can reverse the sort direction in the comparator.
 
@@ -360,7 +365,8 @@ The Sequence Diagram below illustrates the interactions with the `Logic`, `Model
 #### Current Implementation
 The add function is facilitated by `AddXCommand` (`X` is a placeholder for the specific entity to be added e.g. `AddCustomerCommand`)
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+</div>
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call, , where `argks*` represents the various arguments needed for the function to run.
 
@@ -379,7 +385,8 @@ Omitted from the diagram above is:
 #### Current Implementation
 The edit function is facilitated by `EditXCommand` (`X` is a placeholder for the specific entity to be added e.g. `EditCustomerCommand`)
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+</div>
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("editX args*")` API call, where `argks*` represents the various arguments needed for the function to run.
 
@@ -399,7 +406,8 @@ Omitted from the diagram above is:
 
 The view function is facilitated by `ViewXCommand` (`X` is a placeholder for the specific command name e.g., `ViewCustomerCommand`).
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Technician`.
+</div>
 
 The Sequence Diagram below illustrates the interactions within the Logic component for the execute("viewcustomer 1") API call.
 
@@ -416,7 +424,7 @@ While the first half of the execution of ViewXCommand is the same as Find/List C
 
 The following sequence diagram shows how the `totalAppointmentCommand` operation works:
 
-![totalAppointmentSequenceDiagram](images/totalAppointmentSequenceDiagram.png)
+![totalAppointmentSequenceDiagram](images/TotalAppointmentSequenceDiagram.png)
 
 The `totalAppointmentCommand` feature mainly involves iterating through the appointment list and checking if the specified date falls on the same date as the appointment. The way that the validation check is done is by setting the previous day to be the start date and the next day to be the end date. Finally, we check if the current appointment is within the start and end date.
 
@@ -865,13 +873,13 @@ testers are expected to do more *exploratory* testing.
     3. The app may crash due to a `NullPointerException` being thrown which cause the app to catch the fatal exception and exit
     4. To successfully start the AutoM8, either manually add the missing entity and ensure all mappings are correct in the data json file and restart the application or delete the corrupted json file and restart the application.
 
-### Appendix: Effort
-#### Effort Required
+## **Appendix: Effort**
+### Effort Required
 The implementation of AutoM8 required a substantial amount of effort, primarily due to the extensive feature implementation required across six entities: Customer, Vehicle, Service, Appointment, Technician, and Part. We aimed to provide each feature to all entities, which added to the complexity of the implementation process. Additionally, our entities had one-to-many relationships, which further complicated the implementation process.<br>
 <br>
 For example, a single customer could have multiple appointments, services, and vehicles, and a technician could perform many appointments across different customers and vehicles. This required careful consideration of how the features interacted with each other and how the data would be stored and retrieved efficiently. Overall, the implementation of AutoM8 was a significant undertaking that required a thorough understanding of the relationships between entities and the various features required to meet our goals.
 
-#### Comparison with AB3
+### Comparison with AB3
 * Every Command
   * AutoM8: Deals with up to **6 entities** with various parameters that had different validations and logic
   * AB3: Only dealt with 1 entity
@@ -888,7 +896,7 @@ For example, a single customer could have multiple appointments, services, and v
   * AutoM8: Had 2 panels for each Tab which contains a different Object entity, tab navigation was automatic and messages related to certain entities are persisted in the command result component when user switches tabs
   * AB3: Only needed to handle states for 1 GUI panel
 
-#### Challenges faced:
+### Challenges faced:
 * Heavy GUI Improvement
   * Significant styling changes from AB3
   * More GUI components explored: SplitPane, Tab, Circle, ImageView, etc
@@ -899,7 +907,7 @@ For example, a single customer could have multiple appointments, services, and v
     * A lot of time and effort used by multiple AutoM8 developers to debug incorrect mappings/delayed mapping resets to accurately reflect data after a CRUD command was executed
     * Additional Mapping classes implemented to assist in displaying entities and their associated objects in the panels
 
-### Appendix: Planned Enhancements (Max 8*)
+## **Appendix: Planned Enhancements** (Max 8*)
 1. Less general error messages, especially those for invalid indexes. The current error message is too general for the user to understand that the error comes from invalid indexes. (E.g. Command format may be correct except index but error message show is `Input is not a number` instead of a more intuitive error message like `Invalid vehicle index input` to help the user correct the command format entered)
 2. Implementing `Find`, `Edit`, `View` for Parts. As of v1.4, the respective command works for all entities except parts, we plan to implement this to ensure the feature consistency of the app for all entities.
 3. `View` command should not filter the list panel, to allow users to continuously use the view command instead of needing to use the `list` command first to refer to the entity id, before using `view` again.
