@@ -71,6 +71,8 @@ Given below are my contributions to the project.
 * Setting priority and assigning appropriate tags to issues.
 * Strategised further feature developments for planned enhancements with the team.
 
+<div style="page-break-after: always;"></div>
+
 #### Documentation
 
 * User Guide:
