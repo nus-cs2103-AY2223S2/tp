@@ -472,8 +472,6 @@ Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
