@@ -545,6 +545,27 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
+#### 4.3.7. Listing department headcount
+
+The `ldhc command`
+
+Activity Diagram:
+
+![ListDepartmentHeadcountCommand](./images/commands/department/ListDepartmentHeadcountActivityDiagram.png)
+
+Sequence Diagram:
+
+![ListDepartmentHeadcountCommand](./images/commands/department/ListDepartmentHeadcountSequenceDiagram.png)
+
+##### Flow
+1. The user enters the command, e.g. `ldhc d/2023-04-10 n/Human Resources` to list the department headcount for Human Resources department
+on the given date of 2023 April 10.
+2. The parser instantiates a new `DepartmentName` object constructed from the argument prefixed by `n/` and checks that the date prefixed by `d/` is valid.
+3. `ListDepartmentHeadcountCommand` object is returned and when executed, it gets the department with the `DepartmentName` object created in step 2.
+4. It creates a new `LeaveDate` object with the valid date prefixed by `d/` and gets a `Leave` associated with `LeaveDate` object.
+5. `FilteredDepartmentList` is updated to show the department with `departmentName` and the `FilteredEmployeeList` is updated to reflect the employees that are not in the 
+`Leave` object and in the `Department` object.
+
 
 ### 4.4. Leave-related features
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
