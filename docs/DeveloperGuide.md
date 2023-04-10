@@ -130,13 +130,15 @@ The `Model` component
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: 
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
+
+![!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 Here are some more details on how `Overview` is designed:
 
-<img src="images/OverviewClassDiagram.png" width="450" />
+![!OverviewClassDiagram](images/OverviewClassDiagram.png)
 
 How the `Overview` component works:
 * There are 3 implementations of `Overview`: `AgeOverview`, `PostalOverview` and `VariantOverview`. Only one is active in a `Model` at a time.
@@ -362,6 +364,7 @@ two ages, a start date `sd/` and an end date `ed/` instead of a specific date `d
 occurred from 23rd March 2023 to 25th March 2023 inclusively.
 
 The following activity diagram summarises what happens when a user enters a find-by-range command.
+
 ![RangeFindActivityDiagram](images/RangeFindActivityDiagram.png)
 
 #### Design Considerations
