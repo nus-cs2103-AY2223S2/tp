@@ -781,7 +781,7 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 
 :clipboard: **Example 2: Shortcut command with decimal values**
 
-* `edit_i 3 d/Signature burger p/8.5 c/2.25`<br>
+* `edit_i 3 d/Signature burger pr/8.5 c/2.25`<br>
   Edits the **third** menu item information with the following details:
   * Item Name: `Signature burger`
   * Price: `8.5`
