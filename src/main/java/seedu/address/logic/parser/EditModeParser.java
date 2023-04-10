@@ -24,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Cost;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
@@ -32,6 +33,7 @@ import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
+import seedu.address.model.entity.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -206,11 +208,11 @@ public class EditModeParser {
             break;
         case "cost":
         case "c":
-            outData.setCost(Integer.valueOf(value));
+            outData.setCost(new Cost(Integer.valueOf(value)));
             break;
         case "weight":
         case "w":
-            outData.setWeight(Float.valueOf(value));
+            outData.setWeight(new Weight(Double.valueOf(value)));
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));

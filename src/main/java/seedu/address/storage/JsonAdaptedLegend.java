@@ -36,5 +36,4 @@ public class JsonAdaptedLegend {
     public Legend toModalType() throws IllegalValueException {
         return new Legend(status);
     }
-
 }

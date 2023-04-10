@@ -27,7 +27,7 @@ public class Mob extends Entity {
         this.stats = builder.stats;
         this.challengeRating = builder.challengeRating;
         this.legend = builder.legend;
-        this.inventory = Inventory.emptyInventory();
+        this.inventory = builder.inventory;
     }
 
     public ChallengeRating getChallengeRating() {
@@ -143,6 +143,7 @@ public class Mob extends Entity {
             this.inventory = toCopy.inventory;
             this.challengeRating = toCopy.challengeRating;
             this.legend = toCopy.legend;
+            this.tags = toCopy.tags;
         }
 
         public Mob build() {

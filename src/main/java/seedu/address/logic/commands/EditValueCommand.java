@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.entity.Character.CharacterBuilder;
+import static seedu.address.model.entity.Item.ItemBuilder;
 import static seedu.address.model.entity.Mob.MobBuilder;
 
 import java.util.Collections;
@@ -14,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Cost;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
@@ -22,6 +24,7 @@ import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
+import seedu.address.model.entity.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -140,11 +143,16 @@ public class EditValueCommand extends Command {
     private static Entity createEditedItem(Item charToEdit, EditItemDescriptor editItemDescriptor) {
 
         Name updatedName = editItemDescriptor.getName().orElse(charToEdit.getName());
-        Integer updatedCost = editItemDescriptor.getCost().orElse(charToEdit.getCost());
-        Float updatedWeight = editItemDescriptor.getWeight().orElse(charToEdit.getWeight());
+        Cost updatedCost = editItemDescriptor.getCost().orElse(charToEdit.getCost());
+        Weight updatedWeight = editItemDescriptor.getWeight().orElse(charToEdit.getWeight());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(charToEdit.getTags());
 
-        return new Item(updatedName, updatedCost, updatedWeight, updatedTags);
+        ItemBuilder builder = new ItemBuilder(updatedName)
+                .setCost(updatedCost)
+                .setWeight(updatedWeight)
+                .setTags(updatedTags);
+
+        return builder.build();
     }
 
     @Override
@@ -396,8 +404,8 @@ public class EditValueCommand extends Command {
      */
     public static class EditItemDescriptor extends EditEntityDescriptor {
 
-        private Integer cost;
-        private Float weight;
+        private Cost cost;
+        private Weight weight;
 
         /**
          * Creates an Item detail storage container to be edited.
@@ -414,19 +422,19 @@ public class EditValueCommand extends Command {
             setWeight(toCopy.weight);
         }
 
-        public void setCost(int cost) {
+        public void setCost(Cost cost) {
             this.cost = cost;
         }
 
-        public Optional<Integer> getCost() {
+        public Optional<Cost> getCost() {
             return Optional.ofNullable(cost);
         }
 
-        public void setWeight(float weight) {
+        public void setWeight(Weight weight) {
             this.weight = weight;
         }
 
-        public Optional<Float> getWeight() {
+        public Optional<Weight> getWeight() {
             return Optional.ofNullable(weight);
         }
 

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.model.entity.Character.CharacterBuilder;
+import static seedu.address.model.entity.Item.ItemBuilder;
 import static seedu.address.model.entity.Mob.MobBuilder;
 
 import java.util.HashSet;
@@ -53,7 +54,7 @@ public class EntityBuilder {
     }
 
     public Item buildItem() {
-        return new Item(name);
+        return new ItemBuilder(name).build();
     }
 
     public Mob buildMob() {
