@@ -1,6 +1,7 @@
 ---
 layout: page
 title: User Guide
+toc: true
 ---
 
 * Table of Contents
