@@ -481,6 +481,12 @@ Step 5. The user again decides that adding the case was not a mistake, and decid
 
 Step 6. The user now wishes to perform an undo ten times. The user executes the `undo 10` command to undo ten steps. However, only two iterations of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`. Because only three `DengueHotspotTracker` states exist, only two undos are possible.
 
+Step 7. The user decides to perform a `redo`, resulting in a change of state again.
+
+Step 8. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#saveChanges()`. Thus `Model#undo()` or `Model#redo()` will ignore this command. Thus, the `TemporaryMemory` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
 ![UndoRedoState6](images/UndoRedoState6.png)
 
 The following activity and sequence diagrams shows how the undo operation works:
@@ -496,12 +502,7 @@ The following activity and sequence diagrams shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
-
-Step 7. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#saveChanges()`. Thus `Model#undo()` or `Model#redo()` will ignore this command. Thus, the `TemporaryMemory` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command that alters the data (add, delete, edit):
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
@@ -980,13 +981,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. DengueHotspotTracker shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 * 1b. No previous states are detected, and an undo is not possible.
 
     * 1b1. DengueHotspotTracker shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 * 1c. There is no argument supplied.
 
