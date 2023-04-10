@@ -7,6 +7,7 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 1.	Basic operations (add, delete, find, clear) with the contact information via CLI (Command Line Interface) and user-customized tags for labeling.
 2.	Import and export CSV files.
 3.	Other advanced operations (filter, mass operation, freeze, undo, shortcut).
+4.  An comprehensive and friendly user interface.
 
 * Table of Contents
 {:toc}
@@ -83,7 +84,7 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### **Basic operation**
+### **Basic operations**
 
 #### Adding a person: `add`
 
