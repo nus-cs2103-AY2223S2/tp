@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.event.EventList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
@@ -28,12 +28,12 @@ import seedu.address.model.person.fields.Tags;
 public class User extends Person {
     private static final String DEFAULT_NAME = "Neo";
 
-    private final UniqueEventList events;
+    private final EventList events;
 
     /**
      * Creates a new User by copying the fields of the Person passed in
      */
-    public User(Person user, UniqueEventList events) {
+    public User(Person user, EventList events) {
         super(user.getName(),
                 user.getPhone(),
                 user.getEmail(),
@@ -57,7 +57,7 @@ public class User extends Person {
                 Favorite favorite, Faculty faculty, List<Event> events) {
         super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
         Objects.requireNonNull(events);
-        this.events = new UniqueEventList();
+        this.events = new EventList();
         this.events.setEvents(events);
     }
 
@@ -66,7 +66,7 @@ public class User extends Person {
      */
     public User(Name name, Phone phone, Email email, Address address, Gender gender,
                 Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms,
-                Favorite favorite, Faculty faculty, UniqueEventList events) {
+                Favorite favorite, Faculty faculty, EventList events) {
         super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
         Objects.requireNonNull(events);
         this.events = events;
@@ -77,7 +77,7 @@ public class User extends Person {
      */
     public User() {
         super(new Name(DEFAULT_NAME));
-        events = new UniqueEventList();
+        events = new EventList();
     }
 
     public boolean hasEvent(Event e) {
@@ -92,7 +92,7 @@ public class User extends Person {
         this.events.remove(event);
     }
 
-    public UniqueEventList getEvents() {
+    public EventList getEvents() {
         return this.events;
     }
 

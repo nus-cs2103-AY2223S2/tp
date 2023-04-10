@@ -2,6 +2,13 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventList;
+import seedu.address.model.event.OneTimeEvent;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
@@ -14,13 +21,14 @@ import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
 import seedu.address.model.person.fields.Tags;
+import seedu.address.model.user.User;
 import seedu.address.model.util.SampleDataUtil;
 
-/**
- * A utility class to help with building Person objects.
- */
-public class PersonBuilder {
 
+/**
+ * A utility class to help with building User objects.
+ */
+public class UserBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -44,45 +52,66 @@ public class PersonBuilder {
     protected CommunicationChannel comms;
 
     protected Faculty faculty;
+    protected EventList events;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code UserBuilder} with the default details.
      */
-    public PersonBuilder() {
-        this.name = new Name(DEFAULT_NAME);
-        this.phone = new Phone(DEFAULT_PHONE);
-        this.email = new Email(DEFAULT_EMAIL);
-        this.address = new Address(DEFAULT_ADDRESS);
-        this.tags = new Tags(new HashSet<>());
+    public UserBuilder() {
+        name = new Name(DEFAULT_NAME);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        address = new Address(DEFAULT_ADDRESS);
+        tags = new Tags(new HashSet<>());
         this.gender = new Gender(DEFAULT_GENDER);
         this.major = new Major(DEFAULT_MAJOR);
         this.modules = new Modules(new HashSet<>());
         this.race = new Race(DEFAULT_RACE);
         this.comms = new CommunicationChannel(DEFAULT_COMMS);
         this.faculty = new Faculty(DEFAULT_FACULTY);
+        this.events = new EventList();
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the UserBuilder with the data of {@code userToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        this.name = personToCopy.getName();
-        this.phone = personToCopy.getPhone();
-        this.email = personToCopy.getEmail();
-        this.address = personToCopy.getAddress();
-        this.tags = personToCopy.getTags();
-        this.gender = personToCopy.getGender();
-        this.major = personToCopy.getMajor();
-        this.modules = personToCopy.getModules();
-        this.race = personToCopy.getRace();
-        this.comms = personToCopy.getComms();
-        this.faculty = personToCopy.getFaculty();
+    public UserBuilder(User userToCopy) {
+        name = userToCopy.getName();
+        phone = userToCopy.getPhone();
+        email = userToCopy.getEmail();
+        address = userToCopy.getAddress();
+        tags = userToCopy.getTags();
+        this.gender = userToCopy.getGender();
+        this.major = userToCopy.getMajor();
+        this.modules = userToCopy.getModules();
+        this.race = userToCopy.getRace();
+        this.comms = userToCopy.getComms();
+        this.faculty = userToCopy.getFaculty();
+        this.events = userToCopy.getEvents();
+    }
+
+    /**
+     * Initializes the UserBuilder with the data of {@code userToCopy}.
+     */
+    public UserBuilder(Person userToCopy) {
+        name = userToCopy.getName();
+        phone = userToCopy.getPhone();
+        email = userToCopy.getEmail();
+        address = userToCopy.getAddress();
+        tags = userToCopy.getTags();
+        this.gender = userToCopy.getGender();
+        this.major = userToCopy.getMajor();
+        this.modules = userToCopy.getModules();
+        this.race = userToCopy.getRace();
+        this.comms = userToCopy.getComms();
+        this.faculty = userToCopy.getFaculty();
+        this.events = new EventList();
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public UserBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -90,7 +119,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public UserBuilder withTags(String ... tags) {
         this.tags = new Tags(SampleDataUtil.getTagSet(tags));
         return this;
     }
@@ -98,7 +127,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code mods} into a {@code Set<NusMod>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withModules(String ... mods) {
+    public UserBuilder withModules(String ... mods) {
         this.modules = new Modules(SampleDataUtil.getModsSet(mods));
         return this;
     }
@@ -106,7 +135,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public UserBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -114,7 +143,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public UserBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -122,7 +151,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public UserBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -130,7 +159,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Gender} of the {@code Person} that we are building.
      */
-    public PersonBuilder withGender(String gender) {
+    public UserBuilder withGender(String gender) {
         this.gender = new Gender(gender);
         return this;
     }
@@ -138,7 +167,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Major} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMajor(String major) {
+    public UserBuilder withMajor(String major) {
         this.major = new Major(major);
         return this;
     }
@@ -146,7 +175,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Race} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRace(String race) {
+    public UserBuilder withRace(String race) {
         this.race = new Race(race);
         return this;
     }
@@ -154,7 +183,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Comms} of the {@code Person} that we are building.
      */
-    public PersonBuilder withComms(String comms) {
+    public UserBuilder withComms(String comms) {
         this.comms = new CommunicationChannel(comms);
         return this;
     }
@@ -162,17 +191,38 @@ public class PersonBuilder {
     /**
      * Sets the {@code Faculty} of the {@code Person} that we are building.
      */
-    public PersonBuilder withFaculty(String faculty) {
+    public UserBuilder withFaculty(String faculty) {
         this.faculty = new Faculty(faculty);
         return this;
     }
 
     /**
-     * Builds the {@code person} object
+     * Adds an event with the {@code description}, {@code start}, {@code end} and {@code recurrence}
+     * to the {@code User} that we are building.
      */
-    public Person build() {
-        return new Person(this.name, this.phone, this.email, this.address, this.gender,
-                this.major, this.modules, this.race, this.tags, this.comms, null, this.faculty);
+    public UserBuilder withEvents(Description description, DateTime start, DateTime end, Recurrence recurrence) {
+        if (recurrence.isRecurring()) {
+            this.events.add(new RecurringEvent(description, start, end, recurrence, new HashSet<>()));
+        } else {
+            this.events.add(new OneTimeEvent(description, start, end, new HashSet<>()));
+        }
+        return this;
     }
 
+    /**
+     * Adds the {@code Event} to the {@code User} that we are building.
+     */
+    public UserBuilder withEvents(Event event) {
+        this.events.add(event);
+        return this;
+    }
+
+    /**
+     * Builds the {@code user} object
+     */
+    public User build() {
+        return new User(new Person(this.name, this.phone, this.email, this.address, this.gender,
+                this.major, this.modules, this.race, this.tags, this.comms, null, this.faculty),
+                this.events);
+    }
 }
