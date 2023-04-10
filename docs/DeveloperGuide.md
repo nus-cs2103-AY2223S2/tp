@@ -104,7 +104,7 @@ Timetable Window displays timetable of the specific week - which is specified by
 
 * displays the corresponding job list with the correct date and slot 
 * returns command execution result.
-* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` on `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 * `TimetableWindow` gets the sorted job list by date and slot using `Logic` component and fills in the timetable. 
 
 Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `TimetableWindow` is being instantiated by calling `TimetableWindow#fillInnerParts()` to initialize the UI, and fill in the job list/detail for the corresponding parts. 
@@ -118,7 +118,7 @@ Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `Timeta
 
 * displays the list of unscheduled jobs
 * gets the unscheduled job list using `Logic` component: `Logic#getUnscheduledDeliveryJobList()`
-* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` on `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 
 Upon calling `MainWindow#handleUnscheduledTimetable()`, the diagram below shows how `UnscheduleWindow` is being instantiated by calling `UnscheduleWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
 
@@ -131,7 +131,7 @@ Upon calling `MainWindow#handleUnscheduledTimetable()`, the diagram below shows 
 
 * displays the list of completed jobs
 * gets the completed job list using `Logic` component: `Logic#getCompletedDeliveryJobList()`
-* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` on `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 
 Upon calling `MainWindow#handleCompletedTimetable()`, the diagram below shows how `CompleteWindow` is being instantiated by calling `CompleteWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
 
@@ -654,22 +654,25 @@ _**Extensions**_
 #### [TT1] Display timetable of scheduling tasks of current week
 
 _**MSS**_
-1. User requests to display timetable by selecting Timetable option on homepage.
+1. User requests to display timetable on homepage.
 2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.
-   Use case ends.
+
+    Use case ends.
 
 #### [TT2] Display timetable of scheduling tasks of week containing a specific date
 _**MSS**_
 1. User requests to display timetable of specific week containing a specific date.
 2. System displays timetable of uncompleted/upcoming jobs in the week in Timetable Window.
-   Use case ends.
+
+    Use case ends.
 
 #### [TT3] Display list of unscheduled/completed jobs
 
 _**MSS**_
 1. User requests to display list of unscheduled/completed jobs.
 2. System displays list of unscheduled/completed jobs in Unscheduled/Completed Window.
-   Use case ends.
+
+    Use case ends.
 
 #### [RE1] Alert scheduled jobs
 
@@ -681,7 +684,8 @@ _**MSS**_
 If yes, it will count and alert the user through the notification feature.
 4. System runs in the background to only check the timetable for upcoming jobs.
    System will repeat step 2 every hour, 20 mins before the next timetable slot.
-   Use case ends.
+   
+    Use case ends.
 
 _**Extensions**_
 * 3a. If the current time is within 20 mins before the next timetable slot
@@ -907,22 +911,22 @@ has been activated.
 ### Timetable
 
 1. Display timetable for specific week containing a specific date from Main Window
-    1. Prerequisites: None.
+    1. Prerequisites: User is at the main window.
     2. Command: `timetable` (Show timetable of current week - LocalDate.now()) or `timetable date date/YYYY-mm-DD`. The date should not be left empty. Alternative, for `timetable` command, user can use GUI mode instead: Menu bar > Timetable > Scheduled jobs.
     3. The output box in the window should show a message confirming that Timetable window is opened for the specific week containing the input date.
     4. The system should open Timetable for the specific week, showing job list in respective day and slot (if there are any jobs for that day - else, the column for the day will be empty).
 2. Display list of unscheduled jobs (i.e. jobs with invalid date and slot)
-    1. Prerequisites: None.
+    1. Prerequisites: User is at the main window.
     2. Command: `timetable_unscheduled` or GUI mode: Menu bar > Timetable > Unscheduled jobs.
     3. The output box in the Main window should show a message confirming that Unscheduled job is opened for the specific week.
     4. The system should open the Unscheduled Window, showing list of unscheduled jobs and total number of unscheduled jobs.
 3. Display list of completed jobs 
-    1. Prerequisites: None.
+    1. Prerequisites: User is at the main window.
     2. Command: `timetable_completed` or GUI mode: Menu bar > Timetable > Completed jobs.
     3. The output box in the Main window should show a message confirming that Completed job is opened for the specific week.
     4. The system should open the Completed Window, showing list of completed jobs and total number of completed jobs.
 4. Display timetable for specific week containing a specific date from Timetable Window
-    1. Prerequisites: Opened Timetable window using `timetable` command from Main Window. Timetable of current week is shown in current Timetable Window.
+    1. Prerequisites: User is at Timetable window - user may open this window by using `timetable` command or GUI Mode: Menu bar > Timetable > Scheduled jobs from Main Window. Timetable of current week is shown in current Timetable Window.
     2. Command: `timetable date date/YYYY-mm-DD`. The date should not be left empty. 
     3. The output box in the Timetable window should show a message confirming that Timetable window is opened for the specific week which contains the input date.
     4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
