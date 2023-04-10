@@ -277,7 +277,7 @@ The `add` command has the following fields, each representing an attribute:
 * Prefix `r/` followed by the remarks/notes on the student.
 * Prefix `t/` followed by the tags a student has.
 
-The [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class was utilised to encapsulate the optional logic of the attributes.
+The [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class was utilised to encapsulate the optional logic of the attributes.
 
 
 Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Year 1` is run.:
