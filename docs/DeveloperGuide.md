@@ -294,8 +294,11 @@ It is important to note that the index number must be specified in order to edit
 The Tag Person to Event command allows users to tag a contact in their NeoBook to an event. Not only does it tag the person to the event, but any changes to the person will also dynamically change the information of the tagged person to the event. Currently, due to how the storage is set up, there is no way to have the same Person object be linked properly to the event. This is because on startup, NeoBook recreates a new Person object in its addressbook while each event essentially just creates a new Person object that it is tagged to. However, it would not make sense if the user had to manually update the tag if anything within the contact changed. So to dynamically pair the Person object being tagged to the event and the Person object in the Contacts list, NeoBook checks through all events on any EditPersonCommand and to look for any event where the person is tagged to. Then it edits those Person objects to its new edited version.
 
 In the future, a more proper implementation would include more coupling with storage. The flow on startup would be:
+
 1. All Person objects in NeoBook's contact list is loaded up 
+
 2. All events in NeoBook are loaded up
+
    1. While loading the events, make a reference to the appropriate Person object within the contact list within the taggedPerson set in events.
 
 This would make it such that we would not have to check through every single contact in NeoBook for edits as any changes to the Person object would be reflected in events.
