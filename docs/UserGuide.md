@@ -368,6 +368,9 @@ Format: `unmark INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, ...
 
+Examples:
+- `unmark 1` unmarks task 1 as not completed yet.
+
 ### 3.4 Assignment Commands
 
 #### 3.4.1 Assigning a Task to a Person: `assign`
