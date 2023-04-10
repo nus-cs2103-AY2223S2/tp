@@ -230,7 +230,7 @@ Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 Required Information:
 
 * `CLIENT_INDEX`: Index of a client already in FAid
-* `MEETING_INDEX`: Index of a meeting belonging to client at `CLIENT_INDEX`
+* `MEETING_INDEX`: Index of meeting list shown by `meetingFind CLIENT_INDEX`
 
 Examples:
 
@@ -254,7 +254,7 @@ Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [m
 
 Required Information:
 * `CLIENT_INDEX`:Index of a client already in FAid
-* `MEETING_INDEX`: Index of a meeting belonging to client at `CLIENT_INDEX`
+* `MEETING_INDEX`: Index of meeting list shown by `meetingFind CLIENT_INDEX`
 
 Examples:
 * `meetingUpdate 1 2 md/ Policy signing` Edits the meeting description of the 1st meeting belonging to the 1st client
