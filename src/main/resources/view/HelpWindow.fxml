@@ -256,8 +256,7 @@
                                 </Label>
                         <VBox>
                            <children>
-                              <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to meet with contacts at the" />
-                                      <Label styleClass="command-explanation" text="                                      index" />
+                              <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to meet with contacts" />
                            </children>
                         </VBox>
                             </HBox>
@@ -269,8 +268,7 @@
                                 </Label>
                         <VBox>
                            <children>
-                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to eat with contacts at the" />
-                              <Label styleClass="command-explanation" text="                                      index" />
+                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to eat with contacts" />
                            </children>
                         </VBox>
                             </HBox>
@@ -282,8 +280,7 @@
                                 </Label>
                         <VBox>
                            <children>
-                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to study with contacts at the" />
-                              <Label styleClass="command-explanation" text="                                       index" />
+                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to study with contacts " />
                            </children>
                         </VBox>
                             </HBox>
