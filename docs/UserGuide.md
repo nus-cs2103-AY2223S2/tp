@@ -762,31 +762,38 @@ the data of your previous QuickContacts home folder.
 <div style="page-break-after: always;"></div>
 
 ## Command summary
+### Person Commands
 
 | Action                       | Format, Examples                                                                                                                                                                                                     |
 |:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Create a contact**         | `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Reset all data**           | `clear`                                                                                                                                                                                                              |
-| **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
+| **List all contacts**        | `list`                                                                                                                                                                                                               |
 | **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
-| **List all contacts**        | `list`                                                                                                                                                                                                               |
-| **Help**                     | `help [COMMAND_WORD]`                                                                                                                                                                                                |
-| **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
-| **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
-| **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
-| **List all meetings**        | `findm`                                                                                                                                                                                                              |
+| **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
+| **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
+| **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
 
-<div style="page-break-after: always;"></div>
+### Meeting Commands
 
 | Action                       | Format, Examples                                                                                                                                                                                                     |
 |:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
+| **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
+| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
+| **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
+| **List all meetings**        | `findm`                                                                                                                                                                                                              |
+| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
+| **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
+| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
 | **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                   |
 | **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                 |
 | **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
-| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
-| **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
-| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
-| **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
-| **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
-| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
+
+### General Commands
+
+| Action             | Format, Examples                                                                                                                                                                                                     |
+|:-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**           | `help [COMMAND_WORD]`                                                                                                                                                                                                |
+| **Reset all data** | `clear`                                                                                                                                                                                                              |
+| **Exit the app**   | `exit`                                                                                                                                                                                                               |
