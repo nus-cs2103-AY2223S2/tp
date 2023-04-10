@@ -54,7 +54,7 @@ public class Mathutoring implements ReadOnlyMathutoring {
      */
     public void resetData(ReadOnlyMathutoring newData) {
         requireNonNull(newData);
-
+        this.selectedStudent = null;
         setStudents(newData.getStudentList());
     }
 
