@@ -6,8 +6,7 @@ title: Darius Ng's Project Portfolio Page
 
 FitBook is a desktop tracking book application used for tracking the progress and information
 for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java. <br>
-Given below are my contributions to the project.
+It is written in Java. Given below are my contributions to the project. <br>
 
 * **New Class**: Added *Weight*, *Gender*, *Goal*  class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit his/her weight/gender/goal.
@@ -24,7 +23,6 @@ Given below are my contributions to the project.
   * What it does: allows the user to delete Routines and exercises in the Routine Storage, and it will be updated in the current model for Routine.
   * Justification: This feature improves the product significantly because user gets to delete a specific Routine in the Routine Storage.
   * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
-
   <div style="page-break-after: always;"></div>
 * **New Feature**: Added *addExercise* and *listRoutines* functionality for Routine Class.
   * What it does: allows the user to list all routines as well as add exercises to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
@@ -42,7 +40,6 @@ Given below are my contributions to the project.
   * Created organisation and set up project repository.
   * Managed and created labels to organise issues and pull requests.
   * Authored 38 issues, including User Stories.
-  * Reviewed 11 pull requests to ensure quality and consistency across the code base.
   * Refactored entire code-base to suit naming conventions for FitBook.
   * Handled miscellaneous administrative tasks including:
     * Setting up project website.
