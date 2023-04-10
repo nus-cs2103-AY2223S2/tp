@@ -79,7 +79,8 @@ The rest of the App consists of four components.
 #### 2.1.2 How the architecture components interact with each other
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `deletet 1` to delete the task at index 1.
+the command `deletet 1` to delete the task at index 1. The command `deletet 1` is represented as commandText in the 
+diagram below. 
 
 <img src="images/ArchitectureSequenceDiagramTwo.png" width="574" />
 
@@ -141,7 +142,8 @@ a task).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")`
-API call, which deletes the person located at index 1.
+API call, which deletes the person located at index 1. The command `deletep 1` is represented by commandText in the 
+diagram below.
 
 ![Interactions Inside the Logic Component for the `deletep 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -377,6 +379,8 @@ The implementation of this feature is supported by `EditTaskCommand` and `EditTa
   * Pros: Forces users to be aware of the task to be edited instead of relying on subconscious mapping between index and tasks.
   * Cons: Less intuitive and less user-friendly. Users would be forced to retype all the fields of the task before being able
     to edit a single field.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Assigning a Task
 Syntax: `assign pi/INDEX ti/INDEX` 
