@@ -69,6 +69,9 @@ I worked on the backend and documentation. I was mainly in charge of implementat
     * Fixed UG bug to specify that add command will take the latter details if multiple similar parameters is given.
     * Fixed salary bug where salary of zero is allowed.
     * Fixed sorting bug, where sorting after filter commands such as tag, name deletes the original list in storage.
+
+
+* **Review/mentoring contributions**
   * Offered useful and feedback with issues and reviewing PRs
     (examples: [1](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/138),
                [2](https://github.com/AY2223S2-CS2103-W16-2/tp/issues/149),
@@ -81,7 +84,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
                [2](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/142), 
                [3](https://github.com/AY2223S2-CS2103T-W14-4/tp/issues/156) )
 
-## Links to Contributions
+### **Links to Contributions**
 
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=pzaiming&breakdown=true)
 [Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=pzaiming)
