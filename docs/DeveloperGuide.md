@@ -717,12 +717,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I can …​                                               | So that I can…​                                                          |
 |----------|------------------------|--------------------------------------------------------|--------------------------------------------------------------------------|
-| `***`    | As a financial advisor | generate reports on client financial information       | analyze trends and make informed decisions                               |
-| `***`    | As a financial advisor | share client information with colleagues               | collaborate and provide the best advice.                                 |
+| `**`     | As a financial advisor | generate reports on client financial information       | analyze trends and make informed decisions                               |
+| `**`     | As a financial advisor | share client information with colleagues               | collaborate and provide the best advice.                                 |
 | `***`    | As a financial advisor | store client financial documents securely              | ensure their sensitive information is protected                          |
-| `***`    | As a financial advisor | access the platform on any device                      | manage my clients' information on any device that supports the platform  |
-| `***`    | As a financial advisor | create custom categories for client information        | I can organize and categorize their data in a way that makes sense to me |
-| `***`    | As a financial advisor | view a summary of my clients' overall financial health | I can quickly assess their current situation and make recommendations    |
+| `**`     | As a financial advisor | access the platform on any device                      | manage my clients' information on any device that supports the platform  |
+| `*`      | As a financial advisor | create custom categories for client information        | I can organize and categorize their data in a way that makes sense to me |
+| `**`     | As a financial advisor | view a summary of my clients' overall financial health | I can quickly assess their current situation and make recommendations    |
 
 ### **Novice**
 
@@ -735,7 +735,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                | I can …​                                                                            | So that I can…​                               |
 |----------|------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------|
-| `***`    | As a financial advisor | customize the financial planning software to fit my specific advising methodologies | provide clients with the best possible advice |
+| `**`     | As a financial advisor | customize the financial planning software to fit my specific advising methodologies | provide clients with the best possible advice |
 
 ### Use cases
 
@@ -1154,24 +1154,25 @@ testers are expected to do more *exploratory* testing.
       Expected : Similar to previous.
 
 ## **Appendix: Efforts**
-1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity. We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
+1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity. A thorough understanding of the system architecture was required, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
 
 
-2. Challenges Faced: Because each member worked on many issues and features, the list below is not exhaustive.
+2. Challenges Faced: Because each member worked on many issues and features, the list below may not cover all the challenges faced by the team.
    * Having to integrate the list of clients as well their respective policies into the UI, so that the application's main window can contain both the client list and their policy list.
    * The policylist was constructed on top of the existing AB-3 architecture, which required extensive modification and extensions to obtain the desired final result.
    * There were many non-code issues such as the checkstyle of each pull requests, which took up a considerable amount of time.
+   * Refactoring the person class to client was a challenge as it was a core class that was used by many other classes.
 
 
 3. Effort Required:
    * The current code base has to be heavily modified for our application.
-   * A large number of test cases were written in order to cover as many possibilities as practical.
+   * A large number of test cases were written in order to cover as many edge cases as possible, and to ensure that the application does not break easily.
    * We held comprehensive weekly meetings early in the week to ensure that every developer is well-informed about what is planned for the rest of the week.
 
 
 4. Achievements of the Project:
    * Our team created a software product that we believe meets our intended goals.
-   * All of the Must-have User Stories were met by our software application.
+   * Most of the Must-have User Stories were met by our software application.
    * Our team has met all set milestones and deadlines.
 
 ## **Appendix: Planned Enhancements**
