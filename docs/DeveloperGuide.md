@@ -790,15 +790,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. There is no employee matching the given EmployeeId
-    * 1a1. ExecutivePro returns an error message.
+    * 1a1. ExecutivePro returns an error message. 
+
+        Use case ends
 * 1b. The remaining number of leaves inputted is invalid
     * 1b1. ExecutivePro returns an error message
+
+        Use case ends
 * 1c. The employee does not have enough leaves remaining
     * 1c1. ExecutivePro returns an error message
 
         Use case ends
 
-**Use case: UC9 - Changing the theme of ExecutivePro**
+**Use case: UC10 - Changing the theme of ExecutivePro**
 
 **MSS**
 1. HR Manager requests to change the theme of the application.
@@ -810,9 +814,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The theme inputted is invalid
     * 1a1. ExecutivePro returns an error message.
 
-      Use case ends
+    Use case ends
 
-**Use case: UC10 - Exiting the ExecutivePro program**
+**Use case: UC11 - Exiting the ExecutivePro program**
 
 **MSS**
 
@@ -821,8 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC11 - Filter employees based on a criteria**
-
+**Use case: UC12 - Filter employees based on a criteria**
 
 **MSS**
 
@@ -836,8 +839,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The criteria is invalid
     * 1a1. ExecutivePro returns an error message.
+
+      Use case ends.
+
 * 2a. There is no employee matching the given keyword
     * 2a1. ExecutivePro displays message indicating that no employee matches the given keyword
+
+      Use case ends.
+
+**Use case: UC13 - Set employee's profile picture**
+
+**MSS**
+
+1.  HR Manager wants to set an employee's profile picture.
+2ExecutivePro adds the profile picture to the employee.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. HR Manager selects an invalid file.
+    * 1a1. ExecutivePro displays error message indicating that the file is invalid.
 
       Use case ends.
 
@@ -851,14 +873,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Performance requirements
 1. Should be able to hold records of up to 1000 employees.
-2. The system should be able to execute all commands within a second.
+2. The system should be able to execute all commands within a second. 
+3. The system should start up and be ready within a second.
 
 #### Usability requirements
 1. A user with above average typing speed (above 40 WPM) for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 2. The application should be easy to use by users with little experience of using a command line application.
 3. The application should be accessible and readily available to new users.
 4. The application should offer 2 different themes (light and dark theme to accommodate the user's preference)
-5. The application should not create unnecessary files after certain command(batchexport)
+5. The application should not create unnecessary files after certain command (eg. batchexport)
 
 --------------------------------------------------------------------------------------------------------------------
 
