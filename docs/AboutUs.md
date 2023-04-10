@@ -36,7 +36,7 @@ You can reach us at the email `internease[at]comp.nus.edu.sg`
 [[github](http://github.com/benjamin-wee)] [[portfolio](team/benjamin-wee.md)]
 
 * Role: Developer
-* Responsibilities: `list` feature
+* Responsibilities: `list`, `add_date` and `remind` feature
 
 ### Lau Zhan Ming
 
