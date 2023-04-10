@@ -37,7 +37,8 @@ free time slots within a group of NUS friends, and keep track of personal and fr
   - Made sequence diagram and activity diagram for `ie_edit` feature in the DG
 
 - **Contributions to team-based tasks**:
-  - Added documentations for README.md
+  - Added documentations for README.md 
+  - Created a guideline for the suggested workflow to make it easier for the team to follow [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/issues/17)
   - Reviewed teammates' PR. 
   - Completed tasks and milestones before the deadline. 
   - Created issues on the issue tracker to track tasks/bugs, as seen [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/issues?q=is%3Aissue+author%3Agmengqi)
