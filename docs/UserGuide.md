@@ -883,6 +883,8 @@ Therefore, we strongly discourage you from editing the JSON file directly unless
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How can I transfer my data to another computer in TutorPro? <br>
@@ -953,7 +955,6 @@ Alternatively, you can also view with the profile button on the student card.
 | `done/`      | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
 
 
-<div style="page-break-after: always;"></div>
 
 ### Supported date-time formats
 * `MMM dd yyyy HHmm`
