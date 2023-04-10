@@ -34,7 +34,7 @@ class ViewLessonCommandParserTest {
 
         // All filters provided
         List<String> names = Arrays.asList("John", "Doe");
-        assertEquals(parser.parse(" name/John name/Doe date/2023-05-21 subject/Math done/done"),
+        assertEquals(parser.parse(" name/John name/Doe date/2023-05-21 lesson/Math done/done"),
             new ViewLessonCommand(names, new NamePredicate(names), new LessonBelongsToDatePredicate(LocalDate.of(2023,
                 5, 21)), new LessonSubjectPredicate("Math"), new LessonDonePredicate("done"), false));
     }
