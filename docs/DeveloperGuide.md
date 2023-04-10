@@ -337,9 +337,6 @@ The `reminder` feature is implemented with the following considerations:
 * The current time is determined by a `Clock` that is created by `LogicManager`.
 * The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer.
 
-The following object diagram shows objects involved in the execution of a <b>remind</b> command.
-![RemindObjectDiagram](images/RemindObjectDiagram.png)
-
 #### Design considerations:
 
 **Aspect: How current time is determined:**
@@ -352,6 +349,10 @@ The following object diagram shows objects involved in the execution of a <b>rem
     * Pros: Less coupling between classes.
     * Cons: Difficult to test, as the current time is based on real time.
 
+<img src="images/RemindObjectDiagram.png" width="520" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.4</b> Object diagram of objects involved in the execution of a 'remind' command
+</div>
 
 ### Linkcontact feature
 
