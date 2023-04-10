@@ -55,7 +55,7 @@ This guide has been divided into five main parts.
 
 * [Design](#design) discusses the high-level architecture of Mycelium
 * [User Interface](#user-interface) discusses GUI concerns
-* [Command Handling](#command-handling) discusses the parsing and executing of commands
+* [Command Handling](#command-handling) discusses the execution of commands
 * [Keyboard Interaction](#keyboard-interaction) discusses hotkeys and fuzzy search
 
 We strive to write each section in a relatively self-contained manner, but some
@@ -106,13 +106,19 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 ![Components Class Diagram](images/archi/ComponentsClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: Throughout this guide, you may see some references to
+"address book", such as the `AddressBook` class. This is inherited from the AB3
+codebase, and can be thought of as another name for the application.
+</div>
+
 The sections below give more details of each component.
 
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/ui/UiClassDiagram.png)
 
 ### Logic component
 
@@ -149,34 +155,19 @@ How the parsing works:
 
 ![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)
 
-The `Model` box is the central component of the Mycelium's data. It contains
-the entities `Client` and `Project` which are used to store the data of each
-entity.
+The `Model` is the central component of the Mycelium's data. It contains the
+`Client`s and `Project`s which are used to store the data of each entity. Note
+the attributes of the `Client` and `Project` classes are never allowed to be
+`null`. The optional attributes are correspondingly wrapped in an `Optional`.
 
-The `Client` class contains the attributes for a client's `Name`, `Email`,
-`YearOfBirth`, source and `Phone` number, where the name and email are
-compulsory fields. The rest of the attributes are optional, and hence stored in
-`Optional` objects. The source attribute is a `String`.
+Operations related to `Client`s and `Project`s are separately defined in the
+`ClientModel` and `ProjectModel` interfaces, to improve separation of concerns.
+The `Model` interface then extends these two interfaces.
 
-The `Project` class contains the attributes for a project's `Name`,
-`ProjectStatus`, `Email`, source, description, acceptedOn and deadline, where
-the project name and email are compulsory fields. The rest of the attributes
-are optional, where source, description and deadline are wrapped in `Optional`
-objects. These optional attributes are typed:
-
-- source: String
-- projectStatus: `ProjectStatus`
-- description: String
-- acceptedOn: `LocalDate`
-- deadline: `LocalDate`
-
-Each entity uses different methods, which they inherit from `ClientModel` and
-`ProjectModel` interface via the `Model` interface respectively.
-
-Moreover, each entity is also stored in a `UniqueList`, which ensures that the
-list do not contain duplicates. `UniqueList` from each entity is then stored in
-`AddressBook`, which contains the overarching methods for handling each type of
-list.
+Moreover, each client or project is also stored in a generic `UniqueList` which
+ensures that the list does not contain duplicates. The `UniqueList`s are then
+stored in `AddressBook`, which contains the overarching methods for handling
+each type of list.
 
 ### Storage component
 
@@ -229,7 +220,7 @@ counted as overdue. For example, if the current date is 11/04/2023, projects wit
 will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue
 project list**.
 
-Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates.
+Both **Due and Overdue project lists** utilise the `java.time` package to perform various operations on dates.
 
 For Progress Overview Pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
@@ -242,43 +233,45 @@ label.
 
 #### Updating the UI
 
-For **Due soon project lists**, **Overdue project lists** and **Pie chart**, `FilteredList` retrieved by
+For **Due soon project lists**, **Overdue project lists** and **Pie chart**, the `FilteredList` retrieved by
 using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides,
 all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`.
 Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener`
-will be attached to the original list of projects. Whenever there is a change in the project list (e.g.
+will be attached to the original list of projects.
+
+Whenever there is a change in the project list (e.g.
 a new project is added), all the statistics will be updated as well. These changes could be due to
-increased number of projects (e.g. a new project is created), or an existing project is modified.
+an increase in the number of projects (i.e. a new project is created), or a modification to an existing project.
 Moreover, when there are no projects available matching the requirements of Due soon and Overdue project lists,
-there will be messages displayed under the tab heading.
+there will be messages displayed under the tab heading to indicate this.
 
 ![NoOverdueProjectsMessage](images/NoOverdueProjectsMessage.png)
 
-The diagram following shows us that the MainWindow is responsible for instantiating the StatisticsBox.
-The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
-will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data
+The diagram below shows us that the `MainWindow` is responsible for instantiating the `StatisticsBox`.
+The `fillInnerParts()` method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
+will be called to listen for changes in project list. During the initialization of the `StatisticsBox` instance, data
 for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded.
 
-![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
+![StatisticsBoxActivityDiagram](images/statisticsbox/StatisticsBoxActivityDiagram.png)
 
 
 ### Tabs panel
 In Mycelium, there are four main tabs: **Projects**, **Clients**, **Due soon** and **Overdue**.
 The **Projects** tab will be responsible for displaying all projects created while the **Clients** tab
-will display all clients created. Each of these two tabs is a `EntityTab` object and contains a `EntityList` of
-`Project` for **Projects** tab and `Client` for **Clients** tab. Both will be in the same
+will display all clients created. Each of these two tabs is an `EntityTab` object and contains an `EntityList` of
+`Project`s for the **Projects** tab and `Client`s for the **Clients** tab. Both will be in the same
 panel `EntityPanel` on the left side of the application view.
 
 The **Due soon** tab will be responsible for displaying all projects that are due soon while the **Overdue** tab
 will display all projects that are overdue as mentioned in the [Statistics Dashboard](#statistics-dashboard) section.
 Each of these two tabs is a `StatisticsTab` object and contains a `EntityList` of `Project`. Both of these two
-tabs will be in the same panel `StatisticsPanel` on the right side of the application view.
+tabs will be in the same `StatisticsPanel` on the right side of the application view.
 
 ![Tabs](images/Tabs.png)
 
 For demonstration purposes, the following is the Activity Diagram when a `EntityPanel` is initialized:
 
-![EntityTabPanelActivityDiagram](images/TabActivityDiagram.png)
+![EntityTabPanelActivityDiagram](images/ui/TabDiagram.png)
 
 
 For more information about interacting with the tabs using hotkeys, please refer to the
@@ -293,7 +286,6 @@ For more information about interacting with the tabs using hotkeys, please refer
 user interface or perform some action. These keyboard events are handled by
 `UiEvent` handlers that are bundled together within the `UiEventManager` class.
 
-
 <div markdown="span" class="alert alert-info">
 :information_source: We will occasionally refer to each of these event handlers as a `Key`
 </div>
@@ -303,7 +295,9 @@ The following is the class diagram of the
 
 ![UiEventManager class diagram](images/uievent/UiEventManager.png)
 
-There are currently 10 registered event handlers, namely:
+The diagram above shows 4 keys for conciseness, but there are currently 10
+registered event handlers, namely:
+
 * `HelpKey` Help (F1)
 * `QuitKey` Quit (CTRL+Q)
 * `StartOfLineKey` Start of Line (CTRL+W)
@@ -315,7 +309,7 @@ There are currently 10 registered event handlers, namely:
 * `PrevItemKey` Select previous (CTRL+K)
 * `FindKey` Search (CTRL+F)
 
-Each of these event handler perform an action associated with a keyboard event.
+Each of these event handlers perform an action associated with a keyboard event.
 The action performed by each event handler can be found and modified in their respectively
 named files found in the `java/mycelium/mycelium/logic/uievent` folder.
 
@@ -586,8 +580,8 @@ Upon being executed, `UiAction` instance calls the appropriate method in `MainWi
 **Target user profile**:
 **Freelance Devs**
 
-Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects 
-and clients easily. 
+Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects
+and clients easily.
 
 **Value proposition**:
 Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects and clients from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
@@ -648,12 +642,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Required project details are not provided.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Create a client**
 
@@ -670,12 +664,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Required client details are not provided.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some client details are invalid.
    * 1b1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Delete a project**
 
@@ -692,7 +686,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Project with submitted name does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Delete a client**
 
@@ -709,7 +703,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Client with submitted email does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Edit a project**
 
@@ -726,12 +720,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Project with submitted name does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 **Use case: Edit a client**
 
@@ -748,12 +742,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Client with submitted email does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some client details are invalid.
    * 1b1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Find a project**
 
@@ -802,7 +796,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  All user operations should complete under 100ms.
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
-
 
 ## Glossary
 
@@ -1255,7 +1248,7 @@ implement the shortcuts in a way that was extensible for new shortcuts. This led
 with the `UiEvent` class as a single place to add new shortcuts.
 
 By supporting two types of entities, we would need to have commands related to each entity.
-We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
+We wanted Mycelium to have the intuitive behaviour of automatically switching between the
 project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
 we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
 onto the response of a command execution.
@@ -1279,7 +1272,7 @@ To do this, we created another panel to display
 
 * a pie chart to show the proportions of projects in each status, and
 * a table to show which projects are overdue and which projects are due soon.
- 
+
 This was a challenge as it was adding complexity to the UI and required us to learn
 how to use the `PieChart` class. With another panel, we now also need an additional
 keyboard shortcut to switch focus between the 2 main panels to ensure Mycelium
@@ -1287,8 +1280,7 @@ remained keyboard-centric.
 
 Overall, the team project was moderately challenging. Navigating the codebase was difficult
 at first as there were many levels of abstractions and many classes to understand.
-We got our hands dirty by trying to understand and starting with the easier features
-such as:
+We got our hands dirty and started with the easier features such as:
 
 * Implementing the basic CRUD functionality of projects and clients,
 * Adding tabs to the application, and

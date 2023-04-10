@@ -34,5 +34,8 @@ CommandBox --> MainWindow
 deactivate
 MainWindow --> FindKey
 deactivate MainWindow
+
+deactivate FindKey
+
 @enduml
 
