@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-This is **an ongoing project catered towards artists to help manage their projects and clients**.
+This is **an ongoing project catered towards freelance artists to help manage their projects and clients**.
 
   Example usages:
 * To add, edit, remove, and view ongoing, upcoming, and finished projects

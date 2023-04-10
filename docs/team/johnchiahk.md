@@ -32,4 +32,4 @@ Given below are my contributions to the project.
   * Contributions to [Developer Guide](https://ay2223s2-cs2103t-t14-1.github.io/tp/DeveloperGuide.html)
     * Listing and clearing
     * Marking and unmarking
-    * Use cases 
+    * Use cases

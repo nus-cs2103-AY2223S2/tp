@@ -36,7 +36,7 @@ Artistic AddressBook (ArB) is a **desktop application for freelance artists, mea
    Below is the same window annotated to show what each part is for.<br>
    ![Annotated Ui](images/UiAnnotated.png)
 
-1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list-client` : Lists all clients.
@@ -90,14 +90,14 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
     * Extraneous details for commands that do not take in any (such as `help`) will be ignored.
       <br>
       Example: If the command specifies `help 123`, it will be interpreted as `help`.
-  
+
     * Extraneous details for commands that take in only one (such as `delete-client`) will be ignored.
       <br>
       Example: If the command specifies `delete-client 1 abc` it will be interpreted as `delete-client 1`.
-  
+
     * Most command words and prefixes have shorter short forms that can be used the same way, so that you can complete the same tasks faster once you’re used to the application. For example, `list-project` has the short form `lp` and `name/` has the short form `n/`.
       <br>
-      Example: Specifying `list-project` is the same as specifying `lp` and specifying `add-project name/John Doe` is the same as specifying `add-project n/John Doe`.
+      Example: Entering `list-project` is the same as entering `lp` and entering `add-project name/John Doe` is the same as entering `add-project n/John Doe`.
 
 ## **Prefixes**
 
@@ -205,9 +205,9 @@ Details that can be changed:
 
 Note:
 * Provided details will overwrite existing ones entirely. E.g. `edit-client <index> tag/Friend` will change the client displayed at `<index>` to only have the tag `Friend`.
-* Using an empty `tag/` prefix removes all tags of the client. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-client 1 tag/ tag/friend` is not valid.
+* Using an empty `tag/` prefix removes all tags of the client. This cannot be used with any non-empty `tag/` prefixes. E.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one detail to edit must be provided.
-* If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only. 
+* If used when a subset of clients is visible (e.g. due to a previous `find-client` command), the index provided is based on the currently displayed subset only.
 * A client list needs to be shown for this command to be executed successfully.
 
 Examples:
@@ -258,9 +258,9 @@ Short form: `fc [n/NAME] [t/TAG]*`
 Finds a client based on the details provided. Details that can be supplied are the names and tags.
 
 Note:
-* The matching with supplied names and tags are case-insensitive. E.g. `name/alice` will find both `alice` and `Alice`
-* Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid names and tags will be ignored. E.g. `name/alice name/!!! name/` is treated the same as `name/alice`
+* The matching with supplied names and tags are case-insensitive. E.g. `name/alice` will find both `alice` and `Alice`.
+* Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is treated the same as `name/alice name/bob`.
+* Invalid names and tags will be ignored. E.g. `name/alice name/!!! name/` is treated the same as `name/alice`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -312,7 +312,7 @@ The available project-related commands are:
 
 Short form: `lp`
 
-Lists out all projects and shows the project list. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed. 
+Lists out all projects and shows the project list. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed.
 Note that an OVERDUE project is also considered as a NOT DONE project.
 
 ![ListProjectExample](images/ListProjectExample.png)
@@ -330,12 +330,12 @@ Deadlines can be in natural language, e.g. `tomorrow` or `3pm next week`. Otherw
 
 Price must be a positive number given in 0 or 2 decimal places, e.g. `7` or `5.08`.
 
-Clients: Linking a project to a client means the project is for a certain client. You might do this if a specific client commissions a project. 
+Clients: Linking a project to a client means the project is for a certain client. You might do this if a specific client commissions a project.
 The project can be linked to a client by specifying individual keywords that are part of the client's name in the command after the `client/` prefix. If any such details are mentioned, the application will enter link mode. Further steps can be found [here](#linking-a-project-to-a-client).
 
 Note:
 * Each tag to be added needs a separate `tag/TAG` prefix.
-* Client name keywords can be separated by either spaces or a prefix e.g. `client/alice client/wheeler` is the same as `client/alice wheeler`.
+* Client name keywords can be separated by either spaces or prefixes. E.g. `client/alice wheeler` is treated the same as `client/alice client/wheeler`.
 * Invalid client name keywords will be ignored. E.g. `client/alice client/!!! client/` is treated the same as `client/alice`.
 * Empty prefixes for optional details will be ignored.
 
@@ -360,10 +360,10 @@ Details that can be changed:
 
 Note:
 * Provided details will overwrite existing ones entirely. E.g. `edit-project <index> tag/Friend` will change the project displayed at `<index>` to only have the tag `Friend`.
-* Using an empty `tag/` prefix removes all tags of the project. This cannot be used with any non-empty `tag/` prefixes e.g. `edit-project 1 tag/ tag/painting` is not valid.
-* Using an empty `client/` prefix removes the linked client of the project. This cannot be used with any non-empty `client/` prefixes e.g. `edit-project 1 client/ client/alice` is not valid.
-* Client name keywords can be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
-* Invalid client name keywords will be ignored e.g. `client/!!! client/alice` is the same as `client/alice`
+* Using an empty `tag/` prefix removes all tags of the project. This cannot be used with any non-empty `tag/` prefixes. E.g. `edit-project 1 tag/ tag/painting` is not valid.
+* Using an empty `client/` prefix removes the linked client of the project. This cannot be used with any non-empty `client/` prefixes. E.g. `edit-project 1 client/ client/alice` is not valid.
+* Client name keywords can be separated by either spaces or prefixes. E.g. `client/alice bob` is treated the same as `client/alice client/bob`.
+* Invalid client name keywords will be ignored. E.g. `client/!!! client/alice` is treated the same as `client/alice`.
 * At least one detail to edit must be provided.
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 * A project list must be shown for this command to be executed successfully.
@@ -448,8 +448,8 @@ Short form: `fp [n/NAME]* [s/START_OF_TIMEFRAME] [e/END_OF_TIMEFRAME] [st/STATUS
 Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, tags, the client the project is linked to, and the status of the project.
 
 Note:
-* The matching with supplied names and tags are case-insensitive. E.g. `name/sky` will find both `sky` and `Sky`
-* Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/sky painting` is the same as `name/sky name/painting`
+* The matching with supplied names and tags are case-insensitive. E.g. `name/sky` will find both `sky` and `Sky`.
+* Project names, tags and linked client names can be separated by either spaces or prefixes. E.g. `name/sky painting` is treated the same as `name/sky name/painting`.
 * Invalid project names, tags and linked client names will be ignored. E.g. `name/sky name/!!! name/` is treated the same as `name/sky`.
 * Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
 * At least one valid parameter must be provided.
@@ -476,7 +476,7 @@ Sorts all **currently visible** projects in ascending order by the specified opt
 * Price (Must be specified as either `price` or `pr`)
 
 Note:
-* Option matching is case-insensitive
+* Option matching is case-insensitive. E.g. `option/NAME` and `option/Name` is treated the same as `option/name`.
 
 Example:
 
@@ -510,8 +510,8 @@ Following from the previous example, if `0` was entered, the project `oil painti
 ![LinkingCancelled](images/LinkingCancelled.png)
 
 Examples:
-* `1` links the 1st client in the shown list of clients
-* `0` cancels the linking operation and returns to the project list
+* `1` links the 1st client in the shown list of clients.
+* `0` cancels the linking operation and returns to the project list.
 
 [<small>Back to top</small>](#table-of-contents)
 
@@ -571,7 +571,7 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 
 **Q**: Which parts of the app are case-sensitive?<br>
 **A**: In a command, the prefixes are case-sensitive and need to be in lower case. The command word is not.
-In the details provided for a command, only the names or clients and projects are case-sensitive.
+In the details provided for a command, only the names of clients and projects are case-sensitive.
 
 **Q**: How do I edit the data stored in the JSON file directly?<br>
 **A**: You can open up the JSON file found in `./data/` in any text or code editor and follow the existing pattern to input your own data. If the file does not contain any data, you can delete the file to get back the default samples.
@@ -579,5 +579,5 @@ In the details provided for a command, only the names or clients and projects ar
 **Q**: I don't see all the clients/projects when running the `sort` commands. Why is this?<br>
 **A**: The `sort` commands are designed to only sort the items that are currently visible. If you have narrowed down the visible list by running a `find` command, it will only sort those items.
 
-**Q**: Why doesn't the app recognise the price as a valid amount?<br>
+**Q**: Why doesn't the app recognise the price I've entered as a valid amount?<br>
 **A**: If you see an error saying that a valid price needs to be entered even though you have already done so, it may be that the format is incorrect. The app only accepts positive price values to either 0 or 2 decimal places.
