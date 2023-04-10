@@ -887,10 +887,11 @@ For example, a single customer could have multiple appointments, services, and v
 1. Less general error messages, especially those for invalid indexes. The current error message is too general for the user to understand that the error comes from invalid indexes. (E.g. Command format may be correct except index but error message show is `Input is not a number` instead of a more intuitive error message like `Invalid vehicle index input` to help the user correct the command format entered)
 2. Enabling `Find` for Parts. As of v1.4, the find command works for all entities except parts, we plan to implement this to ensure the feature consistency of the app for all entities.
 3. `View` command should not filter the list panel, to allow users to continuously use the view command instead of needing to use the `list` command first to refer to the entity id, before using `view` again.
-4. Data Archiving. To allow user to revert to a previous save (possibly max 5 or user settable). 
-5. Save file checks, to reduce the effects of malicious edit impacting program operations. 
+4. Data Archiving. To allow user to revert to a previous save (possibly max 5 or user settable).
+5. Save file checks, to reduce the effects of malicious edit impacting program operations.
     * Example: Malicious user edits save file by adding `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
     * Impact rating: CWE-20 with CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:L (6.8 Medium)
-    * Impact: Due to how delete operations are cascades, this edit can cause a user to delete vehicles that are not originally assigned to the customer. 
+    * Impact: Due to how delete operations are cascades, this edit can cause a user to delete vehicles that are not originally assigned to the customer.
     * Plan: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
     * Note: This is applicable for all entries that have some form of mapping.
+
