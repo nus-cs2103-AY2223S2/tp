@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.entity.Item.ItemBuilder;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.Cost;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +27,7 @@ public class JsonAdaptedItem {
 
     private final String name;
     private final int cost;
-    private final float weight;
+    private final double weight;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -31,7 +35,7 @@ public class JsonAdaptedItem {
      */
     @JsonCreator
     JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("cost") int cost,
-                    @JsonProperty("weight") float weight,
+                    @JsonProperty("weight") double weight,
                     @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.cost = cost;
@@ -46,8 +50,8 @@ public class JsonAdaptedItem {
      */
     public JsonAdaptedItem(Item source) {
         name = source.getName().fullName;
-        cost = source.getCost();
-        weight = source.getWeight();
+        cost = source.getCost().getGoldCost();
+        weight = source.getWeight().getWeight();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -59,7 +63,6 @@ public class JsonAdaptedItem {
      * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalValueException {
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -69,13 +72,21 @@ public class JsonAdaptedItem {
         }
 
         final Name modelName = new Name(name);
+        final Cost modelCost = new Cost(cost);
+        final Weight modelWeight = new Weight(weight);
 
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             tags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Item(modelName, cost, weight, modelTags);
+
+        ItemBuilder builder = new ItemBuilder(modelName)
+                .setCost(modelCost)
+                .setWeight(modelWeight)
+                .setTags(modelTags);
+
+        return builder.build();
     }
 
 }

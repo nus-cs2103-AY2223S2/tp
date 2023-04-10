@@ -20,11 +20,10 @@ class JsonAdaptedCharacterTest {
 
     private static final String VALID_NAME = LEEROY.getName().toString();
     private static final JsonAdaptedStats VALID_STATS = new JsonAdaptedStats(LEEROY.getStats());
+    private static final JsonAdaptedProgression VALID_PROGRESSION = new JsonAdaptedProgression(LEEROY.getProgression());
     private static final JsonAdaptedInventory VALID_INVENTORY = new JsonAdaptedInventory(LEEROY.getInventory());
     private static final List<JsonAdaptedTag> VALID_TAGS = LEEROY.getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
-    private static final int VALID_LEVEL = LEEROY.getLevel();
-    private static final int VALID_XP = LEEROY.getXP();
 
     @Test
     public void toModelType_validCharacterDetails_returnsCharacter() throws Exception {
@@ -36,7 +35,7 @@ class JsonAdaptedCharacterTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedCharacter character =
                 new JsonAdaptedCharacter(INVALID_NAME, VALID_STATS, VALID_INVENTORY,
-                        VALID_LEVEL, VALID_XP, VALID_TAGS);
+                        VALID_PROGRESSION, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, character::toModelType);
     }
@@ -45,7 +44,7 @@ class JsonAdaptedCharacterTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedCharacter character =
                 new JsonAdaptedCharacter(null, VALID_STATS, VALID_INVENTORY,
-                        VALID_LEVEL, VALID_XP, VALID_TAGS);
+                        VALID_PROGRESSION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, character::toModelType);
     }
@@ -56,7 +55,7 @@ class JsonAdaptedCharacterTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedCharacter character =
                 new JsonAdaptedCharacter(VALID_NAME, VALID_STATS, VALID_INVENTORY,
-                        VALID_LEVEL, VALID_XP, invalidTags);
+                        VALID_PROGRESSION, invalidTags);
         assertThrows(IllegalValueException.class, character::toModelType);
     }
 }

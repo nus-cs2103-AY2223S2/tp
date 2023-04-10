@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.entity.Mob.MobBuilder;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Inventory;
+import seedu.address.model.entity.Legend;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
@@ -26,7 +30,7 @@ public class JsonAdaptedMob {
     private final String name;
     private final JsonAdaptedStats stats;
     private final JsonAdaptedInventory inventory;
-    private final float challengeRating;
+    private final double challengeRating;
     private final boolean isLegendary;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -36,7 +40,7 @@ public class JsonAdaptedMob {
     @JsonCreator
     JsonAdaptedMob(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
             @JsonProperty("inventory") JsonAdaptedInventory inventory,
-            @JsonProperty("challengeRating") float challengeRating,
+            @JsonProperty("challengeRating") double challengeRating,
             @JsonProperty("isLegendary") boolean isLegendary,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -56,8 +60,8 @@ public class JsonAdaptedMob {
         name = source.getName().fullName;
         stats = new JsonAdaptedStats(source.getStats());
         inventory = new JsonAdaptedInventory(source.getInventory());
-        challengeRating = source.getChallengeRating();
-        isLegendary = source.getLegendaryStatus();
+        challengeRating = source.getChallengeRating().getRating();
+        isLegendary = source.getLegend().getStatus();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -83,12 +87,23 @@ public class JsonAdaptedMob {
 
         Inventory inventory = this.inventory.toModelType();
 
+        ChallengeRating cr = new ChallengeRating(this.challengeRating);
+
+        Legend legend = new Legend(this.isLegendary);
+
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             tags.add(tag.toModelType());
         }
 
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Mob(modelName, stat, challengeRating, isLegendary, inventory, modelTags);
+        MobBuilder builder = new MobBuilder(modelName)
+                .setStats(stat)
+                .setInventory(inventory)
+                .setLegend(legend)
+                .setChallengeRating(cr)
+                .setTags(modelTags);
+
+        return builder.build();
     }
 }

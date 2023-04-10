@@ -16,8 +16,8 @@ import seedu.address.model.entity.Name;
 class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "BR@KEN SPOON";
 
-    private static final int VALID_COST = SPOON.getCost();
-    private static final float VALID_WEIGHT = SPOON.getWeight();
+    private static final int VALID_COST = SPOON.getCost().getGoldCost();
+    private static final double VALID_WEIGHT = SPOON.getWeight().getWeight();
     private static final List<JsonAdaptedTag> VALID_TAGS = SPOON.getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 

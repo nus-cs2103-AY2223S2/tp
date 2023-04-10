@@ -11,11 +11,13 @@ import seedu.address.model.entity.Classification;
  */
 public class ListCommand extends Command {
 
-    public static final String COMMAND_WORD = "list|l";
+    public static final String COMMAND_WORD = "list";
+
+    public static final String SHORT_FORM_COMMAND = "l";
 
     public static final String MESSAGE_SUCCESS = "Listed all entities";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists the entities of a provided classification";
+            + " [CLASSIFICATION]: List all entities or entities of an optional classification";
 
     public static final String MESSAGE_INVALID_ENTITY_TYPE = "This entity type is invalid.";
 

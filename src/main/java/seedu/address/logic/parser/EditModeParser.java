@@ -22,13 +22,18 @@ import seedu.address.logic.commands.EditValueCommand.EditMobDescriptor;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Cost;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Legend;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
+import seedu.address.model.entity.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -112,27 +117,27 @@ public class EditModeParser {
         case "s":
         case "str":
         case "strength":
-            outData.setStats(new Stats(Integer.valueOf(value),
+            outData.setStats(new Stats(Integer.parseInt(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
         case "d":
         case "dex":
         case "dexterity":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                    Integer.valueOf(value), toEdit.getStats().getIntelligence()));
+                    Integer.parseInt(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
         case "intelligence":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
-                    toEdit.getStats().getDexterity(), Integer.valueOf(value)));
+                    toEdit.getStats().getDexterity(), Integer.parseInt(value)));
             break;
         case "level":
         case "lvl":
-            outData.setLevel(Integer.valueOf(value));
+            outData.setProgression(new Progression(Integer.valueOf(value), toEdit.getXP()));
             break;
         case "xp":
         case "exp":
-            outData.setXp(Integer.valueOf(value));
+            outData.setProgression(new Progression(toEdit.getLevel(), Integer.valueOf(value)));
             break;
         case "inv":
         case "inventory":
@@ -178,12 +183,12 @@ public class EditModeParser {
             break;
         case "challengerating":
         case "cr":
-            outData.setChallengeRating(Float.valueOf(value));
+            outData.setChallengeRating(new ChallengeRating(Double.parseDouble(value)));
             break;
         case "islegendary":
         case "legend":
         case "l":
-            outData.setIsLegendary(Boolean.valueOf(value));
+            outData.setLegend(new Legend(Boolean.parseBoolean(value)));
             break;
         case "inventory":
             // Check if add or delete
@@ -215,11 +220,11 @@ public class EditModeParser {
             break;
         case "cost":
         case "c":
-            outData.setCost(Integer.valueOf(value));
+            outData.setCost(new Cost(Integer.valueOf(value)));
             break;
         case "weight":
         case "w":
-            outData.setWeight(Float.valueOf(value));
+            outData.setWeight(new Weight(Double.valueOf(value)));
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));

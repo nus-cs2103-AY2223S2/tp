@@ -1,25 +1,42 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.TemplateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Name;
 
-// TODO: Improve code quality
-
 /**
  * Parses given {@code String} of arguments in the context of TemplateCommand and returns
  * a TemplateCommand for execution
  */
 public class TemplateCommandParser implements Parser<TemplateCommand> {
+    // Arguments should have the format: TEMPLATE NAME
+    // Example: orc John Cena
+    private static final Pattern COMMAND_FORMAT = Pattern.compile(
+            "^(?<template>\\w+)\\s+(?<name>.+)$"
+    );
     @Override
     public TemplateCommand parse(String args) throws ParseException {
-        boolean isValidCommand = Pattern.matches("^([\\w]+)(\\s+[\\w]+)+$", args.trim());
-        if (!isValidCommand) {
-            throw new ParseException("To add");
+        final Matcher matcher = COMMAND_FORMAT.matcher(args.trim());
+
+        // Arguments have the wrong format
+        boolean hasInvalidFormat = !matcher.matches();
+        if (hasInvalidFormat) {
+            String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TemplateCommand.MESSAGE_USAGE);
+            throw new ParseException(errorMessage);
         }
-        String[] split = args.trim().split(" ", 2);
-        return new TemplateCommand(new Name(split[0]), new Name(split[1]));
+
+        final String templateName = matcher.group("template");
+        final String nameString = matcher.group("name");
+        final Name newEntityName = ParserUtil.parseName(nameString);
+
+        assert templateName != null;
+        assert newEntityName != null;
+
+        return new TemplateCommand(templateName, newEntityName);
     }
 }

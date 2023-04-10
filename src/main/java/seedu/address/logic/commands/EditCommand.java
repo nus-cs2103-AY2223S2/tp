@@ -14,7 +14,9 @@ import seedu.address.model.entity.Entity;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit|e";
+    public static final String COMMAND_WORD = "edit";
+
+    public static final String SHORT_FORM_COMMAND = "e";
 
     public static final String MESSAGE_SUCCESS = "Entered Edit Mode";
 

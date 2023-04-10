@@ -18,8 +18,8 @@ class JsonAdaptedMobTest {
 
     private static final JsonAdaptedStats VALID_STATS = new JsonAdaptedStats(RAT.getStats());
     private static final JsonAdaptedInventory VALID_INVENTORY = new JsonAdaptedInventory(RAT.getInventory());
-    private static final float VALID_CHALLENGE_RATING = RAT.getChallengeRating();
-    private static final boolean VALID_IS_LEGENDARY = RAT.getLegendaryStatus();
+    private static final double VALID_CHALLENGE_RATING = RAT.getChallengeRating().getRating();
+    private static final boolean VALID_IS_LEGENDARY = RAT.getLegend().getStatus();
     private static final List<JsonAdaptedTag> VALID_TAGS = RAT.getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
