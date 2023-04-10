@@ -360,7 +360,7 @@ The `calendar` command displays all Events under existing Internships in a calen
 
 The `calendar` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method.
 
-Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
+Given below is an example usage, and a trace-through of the execution of `calendar` command.
 
 Step 1. The user enters `calendar` command into the CommandBox.
 
@@ -497,7 +497,7 @@ duplicated records.
 
 The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
 `execute()` method. The `CommandResult` returns a `HashMap`, which contains mapping from a `LocalDate` to `List<Event>`.
-The `List<Event>` is the list of event with clashes on that particular date.
+The `List<Event>` is the list of events with clashes on that particular date.
 
 Given below is an example usage scenario and how the select command behaves at each step.
 
@@ -526,8 +526,6 @@ the list of events corresponding to those dates.
 </p>
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
