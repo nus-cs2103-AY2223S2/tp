@@ -151,24 +151,30 @@ public class EditModeParser {
             throws ParseException, NumberFormatException {
         EditMobDescriptor outData = new EditMobDescriptor();
         switch (fieldWord.toLowerCase()) {
+        case "n":
         case "name":
             outData.setName(new Name(value));
             break;
+        case "t":
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
             tags.ifPresent(outData::setTags);
             break;
+        case "s":
         case "str":
         case "strength":
             outData.setStats(new Stats(Integer.valueOf(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
+        case "d":
         case "dex":
+        case "dexterity":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     Integer.valueOf(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
+        case "intelligence":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     toEdit.getStats().getDexterity(), Integer.valueOf(value)));
             break;
@@ -181,6 +187,7 @@ public class EditModeParser {
         case "l":
             outData.setIsLegendary(Boolean.valueOf(value));
             break;
+        case "inv":
         case "inventory":
             // Check if add or delete
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
@@ -197,9 +204,11 @@ public class EditModeParser {
             throws ParseException, NumberFormatException {
         EditItemDescriptor outData = new EditItemDescriptor();
         switch (fieldWord.toLowerCase()) {
+        case "n":
         case "name":
             outData.setName(new Name(value));
             break;
+        case "t":
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
