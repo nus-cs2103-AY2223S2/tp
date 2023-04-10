@@ -9,23 +9,6 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
-Class ExportProgressWindow
-Class ExportWindow
-Class ImportWindow
-Class ResultDisplay
-Class StudentListPanel
-Class StudentCard
-Class TaskListPanel
-Class TaskCard
-Class ScoreListPanel
-Class ScoreCard
-Class StatusBarFooter
-Class CommandBox
-}
-
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
 }
 
 package Logic <<Rectangle>> {
@@ -37,49 +20,10 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down-> "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" StudentListPanel
-MainWindow *-down-> "1" TaskListPanel
-MainWindow *-down-> "1" ScoreListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
-MainWindow --> "0..1" ExportProgressWindow
-MainWindow --> "0..1" ExportWindow
-MainWindow --> "0..1" ImportWindow
 
-StudentListPanel -down-> "*" StudentCard
-TaskListPanel -down-> "*" TaskCard
-ScoreListPanel -down-> "*" ScoreCard
+MainWindow -down-|> UiPart
 
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-StudentListPanel --|> UiPart
-StudentCard --|> UiPart
-TaskListPanel --|> UiPart
-TaskCard --|> UiPart
-ScoreListPanel --|> UiPart
-ScoreCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
-
-StudentCard ..> Model
-TaskCard ..> Model
-ScoreCard ..> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow -right-> Logic
 
-ScoreListPanel -[hidden]left- TaskListPanel
-TaskListPanel -[hidden]left- StudentListPanel
-StudentListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- ImportWindow
-ImportWindow -[hidden]left- ExportWindow
-ExportWindow -[hidden]left- ExportProgressWindow
-ExportProgressWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
-
-MainWindow -[hidden]-|> UiPart
 @enduml

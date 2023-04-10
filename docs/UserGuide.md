@@ -95,8 +95,6 @@ If you need to switch to a new device, you can also export and import your previ
 
     ![InitialUi](images/UG-images/InitialUi.png)
 
-    <div style="page-break-after: always;"></div>
-
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
@@ -293,7 +291,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 
 **:exclamation: Caution:**<br>
 * In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name).
-* If the user wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+* If the user wishes to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -349,7 +347,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * When editing tags, all the existing tags of the student will be removed. i.e. adding of tags is not cumulative.
 * The user can remove all the student’s tags by typing `t/` without specifying any tags after it.
 * We allow the user to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
-* The user are not allowed to change the name of a student to be the same as any existing student in the list.
+* The user is not allowed to change the name of a student to be the same as any existing student in the list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -377,10 +375,10 @@ Format: `check INDEX`
 
 **:information_source:  Note:**<br>
 After the user checked a student, the respective student's task list and score list will continue to be displayed, unless:
-  * That respective student (the latest checked student) is being deleted.
-  * That respective student (the latest checked student) is being edited.
+  * The respective student (the latest checked student) is being deleted.
+  * The respective student (the latest checked student) is being edited.
   * The student list being cleared.
-  * New student date (.json file) is being imported.
+  * New student data (.json file) is being imported.
 
 **Any of the above actions will alter the status to no student being checked now.**
 </div>
@@ -431,7 +429,7 @@ Filters students whose tags match with any of the given keywords.
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-insensitive. e.g. `primary` will match `Primary`
-* The order of the keywords does not matter. e.g. `primaryprimary4` will match `primary4primary`
+* The order of the keywords does not matter. e.g. `primary primary4` and `primary4 primary` have the same filter results.
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
 * Students whose tag matches at least one keyword will be returned (i.e. `OR` search).
@@ -479,7 +477,7 @@ Examples:
 
 * `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
   student list.<br>
-    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user has [checked](#4-checking-a-student-check) the student before.<br>
     ![Add a task](images/UG-images/Add%20a%20task.png)
 * `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
@@ -502,7 +500,7 @@ Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 Examples:
 
 * `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.<br>
-    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user has [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Delete a task (before)](images/UG-images/Delete%20a%20task%20(before).png)
     After command execution:
@@ -534,15 +532,15 @@ Examples:
 
     <div style="page-break-after: always;"></div>
 
-    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user has [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
     ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
     After command execution:
     ![Mark a task complete (after)](images/UG-images/Mark%20a%20task%20complete%20(after)png)
 * `list` followed by `marklate 2 3` marks the third task of the 2nd student in the student list as late.<br>
-    The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
+    The following result assumes that the user has [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
-    ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
+    ![Mark a task late (before)](images/UG-images/Mark%20a%20task%20late%20(before).png)
     After command execution:
     ![Mark a task late (after)](images/UG-images/Mark%20a%20task%20late%20(after).png)
 * `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
@@ -582,21 +580,21 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 <div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution:**<br>
-* In order to avoid potential confusion, we only allow one score per day and the full mark of each score is 100.
-* If there are two exams in one day, e.g. `Midterm Math Paper 1` and `Midterm Math Paper 2`, user can either combine these two exams to one score with label `Midterm Math` or add them in separate dates.
-* If the full score of a test is not 100, please convert the score value with a full score of 100 before entering.
+* In order to avoid potential confusion, we only allow one score per day and the full marks of each score is 100.
+* If there are two exams in one day, e.g. `Midterm Math Paper 1` and `Midterm Math Paper 2`, the user can either combine these two exams to one score with label `Midterm Math` or add them in separate dates.
+* If the full score of a test is not 100, please convert the score value to a percentage value before entering.
 </div>
 
 Examples:
 
 * `list` followed by `addscore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a
   value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.<br>
-  The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
+  The following result assumes that the user has [checked](#4-checking-a-student-check) the student before.<br>
   * Current display for score tab is using score list.
     ![Add a score Score List](images/UG-images/Add%20a%20score%20Score%20List.png)
   * Current display for score tab is using score chart.
     ![Add a score Score Chart](images/UG-images/Add%20a%20score%20Score%20Chart.png)
-* `check 5` followed by `addscore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
+* `check 5` followed by `addscore 5 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
 
 [Back to top](#table-of-contents)
@@ -611,13 +609,13 @@ Format: `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE `
 
 * Deletes the score at the specified `INDEX_OF_SCORE` of a specified student (`INDEX_OF_STUDENT`).
 * The first index refers to the index number shown in the displayed student list and
-  the second index refers to the index of the task in the displayed score list of the student.
+  the second index refers to the index of the score in the displayed score list of the student.
 * Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 
 * `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
-  The following results assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
+  The following result assumes that the user has [checked](#4-checking-a-student-check) the student before.<br>
   * Current display for score tab is using score list.<br>
     Before command execution:
     ![Delete a score Score List (before)](images/UG-images/Delete%20a%20score%20Score%20List%20(before).png)
@@ -633,11 +631,11 @@ Examples:
 
 Switches between the score list and score chart tabs.
 
-Format: There we support using CLI or GUI.
+Format: CLI and GUI supported.
 
 **CLI**<br> `switch`
 
-**GUI**<br> Click the **Text** or **Chart** button to switch to score list and score chart tabs respectively.
+**GUI**<br> Click the **Text** or **Chart** button to switch between score list and score chart tabs respectively.
 ![Switch between Score Tabs](images/UG-images/Switch%20between%20Score%20Tabs.png)
 
 [Back to top](#table-of-contents)
@@ -651,10 +649,10 @@ Format: There we support using CLI or GUI.
 ### 1. Exporting the data of the students: `export`
 
 Exports all the student's data out. Users can export with or without specifying the path.
-The default exported position for CLI will be under the _home folder_ (the folder that contains the "mathutoring.jar" file).
+The default exported position for CLI will be in the _data folder_ under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 The exported file name is `data.json`.
 
-Format:
+Format: CLI and GUI supported.
 
 **CLI**<br> `export [FILE_PATH]`
 
@@ -689,11 +687,11 @@ Examples:
 Imports student data into the application. Users can import the file by dragging the file in or choosing the file path.
 The imported file must be in `.json` format.
 
-Format:
+Format: CLI and GUI supported.
 
-**CLI**<br> - `import FILE_PATH`
+**CLI**<br> `import FILE_PATH`
 
-**GUI**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+**GUI**<br> Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
 
 ![Import the data of the students.png](images/UG-images/Import%20the%20data%20of%20the%20students.png)
 
@@ -706,8 +704,8 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note about the format of `FILE_PATH`:**<br>
-* For Windows users, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
-* For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
+* For Windows users, the format of `FILE_PATH` must be `p/C:\bin\FILE_NAME`.
+* For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop/FILE_NAME`.
 
 </div>
 
@@ -720,7 +718,7 @@ Examples:
 Exports the specified student progress into a PDF file. Users can export without specifying the path. The default
 exported position for CLI will be under the _home folder_.
 
-Format:
+Format: CLI and GUI supported.
 
 **CLI**<br>`exportp INDEX [p/FILE_PATH]`
 
@@ -729,16 +727,16 @@ up, the user is required to specify which folder to store the exported file.
 
 * Exports the score list and task list of the specified student `INDEX` in the form of a PDF file.
 * The `INDEX` **must be a positive integer** 1, 2, 3, ...
-* If `FILE_PATH` is not specified, file will be exported as a JSON file in `[JAR file location]/data`
+* If `FILE_PATH` is not specified, file will be exported as a JSON file in `<JAR file location>/data`
 * `FILE_PATH` should be a valid path to a **directory**.
-* The exported file name is `[STUDENT_NAME]'s Progress Report.pdf`, e.g. `Alex Yeoh's Progress Report.pdf`
+* The exported file name is `<STUDENT_NAME>'s Progress Report.pdf`, e.g. `Alex Yeoh's Progress Report.pdf`
 * Sample PDF output file: [Alex Yeoh's Progress Report.pdf](pdfs/Alex Yeoh's Progress Report.pdf)
 
 ![Exporting the progress of a student](images/UG-images/Exporting%20the%20progress%20of%20a%20student.png)
 
 Examples:
 
-* `exportp 1` will export the file as a PDF file `[JAR file location]/data/[FIRST_STUDENT_NAME]'s Progress Report.pdf`
+* `exportp 1` will export the file as a PDF file `<JAR file location>/data/<STUDENT_NAME>'s Progress Report.pdf`
 * For Windows users
   * `exportp 1 p/C:\Users\John Doe\Downloads`
 * For Mac users
@@ -765,7 +763,7 @@ Examples:
 Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING.
 For more detailed information such as how to use the syntax, please refer to the help page.
 
-Format:
+Format: CLI and GUI supported.
 
 **CLI**<br> `help`
 
@@ -804,7 +802,7 @@ Format: `exit`
 
 ### Saving the data
 
-* MATHUTORING data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+* MATHUTORING data is saved in the hard disk automatically after any command. There is no need to save manually.
 * If the user would like to save the MATHUTORING data in a different location, they can use the [`export`](#1-exporting-the-data-of-the-students-export)
 command.
 
@@ -812,7 +810,7 @@ command.
 
 ### Editing the data file
 
-MATHUTORING data are saved as a JSON file `[JAR file location]/data/mathutoring.json`. Advanced users are welcome to update data directly by editing that data file.
+MATHUTORING data are saved as a JSON file `<JAR file location>/data/mathutoring.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If the changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
@@ -829,10 +827,10 @@ We have set up a few GUI display restrictions in order to avoid the GUI being af
 * If the student name is more than 29 letters, the full student name will be displayed in the student list. However, the
 task list will only display the first 29 letters, with the remaining letters shown as ellipsis.
 
-* If the exam label is more than 11 letters, the full exam label will be displayed in the score list, text panel.
+* If the score label is more than 11 letters, the full score label will be displayed in the score list, text panel.
 However, the chart tooltip will only display the first 11 letters, with the remaining letters shown as ellipsis.
 
-* When you try to open the JavaFX window, you might notice that it doesn't open if it is minimized. The proposed solution is already in the developer guide.
+* When you try to open external windows (Import, Export, Export Progress, and Help Windows), you might notice that it doesn't open if it is minimized. The proposed solution is in the developer guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -861,7 +859,7 @@ However, the chart tooltip will only display the first 11 letters, with the rema
 | [**Edit a Student**](#3-editing-a-student-edit)                                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                       |
 | [**Check a Student**](#4-checking-a-student-check)                                     | `check INDEX`<br> e.g. `check 1`                                                                                                                                                              |
 | [**Find a Student**](#5-finding-a-student-find)                                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
-| [**Filter Students**](#6-filtering-students-filter)                                    | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter friends colleagues`                                                                                                                        |
+| [**Filter Students**](#6-filtering-students-filter)                                    | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter primary secondary`                                                                                                                         |
 | [**List Students**](#7-listing-all-students-list)                                      | `list`                                                                                                                                                                                        |
 | [**Add a Task**](#1-adding-a-task-for-a-student-addtask)                               | `addtask INDEX t/TITLE`<br> e.g `addtask 2 t/Homework Assignment 1`                                                                                                                           |
 | [**Delete a Task**](#2-deleting-a-task-of-a-student-deletetask)                        | `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deletetask 2 1`                                                                                                                          |

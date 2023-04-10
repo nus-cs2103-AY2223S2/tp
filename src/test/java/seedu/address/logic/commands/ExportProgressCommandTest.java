@@ -10,12 +10,15 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -42,15 +45,24 @@ class ExportProgressCommandTest {
     }
 
     @Test
-    void execute_validStudentIndexDefaultDir_success() throws IOException {
+    void execute_validStudentIndexDefaultDir_success() throws Exception {
         Student studentToExport = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_STUDENT, "");
 
         String studentName = studentToExport.getName().fullName;
-        String defaultDir = Paths.get("").toAbsolutePath().toString();
-        String defaultPath = Paths.get(studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
+        String defaultDir = Paths.get("data").toAbsolutePath().toString();
+        String defaultPath = Paths.get("data", studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
         String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                 studentName + "'s Progress Report.pdf");
+
+        Path parentDir = Paths.get(defaultPath).getParent();
+        if (parentDir != null) {
+            try {
+                Files.createDirectories(parentDir);
+            } catch (IOException e) {
+                throw new CommandException(e.getMessage());
+            }
+        }
 
         Model expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
         expectedModel.exportProgress(studentToExport, defaultPath);
