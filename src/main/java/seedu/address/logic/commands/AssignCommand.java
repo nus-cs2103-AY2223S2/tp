@@ -5,7 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,6 +28,8 @@ public class AssignCommand extends Command {
             + PREFIX_TASK_INDEX + "TASK INDEX";
     public static final String MESSAGE_SUCCESS = "Assigned: %1$s to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This person is already assigned to this task.";
+
+    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     private final Index personIndex;
     private final Index taskIndex;
@@ -49,6 +53,7 @@ public class AssignCommand extends Command {
 
         List<Person> personList = model.getFilteredPersonList();
         if (personIndex.getZeroBased() >= personList.size()) {
+            logger.info(String.format("%s, size: %d", personIndex, personList.size()));
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
@@ -63,6 +68,7 @@ public class AssignCommand extends Command {
         AssignTask toAdd = new AssignTask(person, task);
 
         if (officeConnectModel.hasAssignTaskModelManagerItem(toAdd)) {
+            logger.info(String.format("repeated assignment, %s, %s", person, task));
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 

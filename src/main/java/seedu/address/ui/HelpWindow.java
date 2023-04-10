@@ -22,8 +22,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "\nhttps://ay2223s2-cs2103-f10-1.github.io/tp/UserGuide.html";
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
 
     @FXML
@@ -174,6 +174,7 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+        logger.info("Opening help window...");
     }
 
     /**
@@ -188,6 +189,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void hide() {
         getRoot().hide();
+        logger.info("Closing help window...");
     }
 
     /**

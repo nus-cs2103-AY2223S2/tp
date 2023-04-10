@@ -28,10 +28,10 @@ public class FilterCommandTest {
 
     @Test
     public void execute_tagPresent_personsFound() {
-        Tag presentTag = new Tag("friends");
+        Tag presentTag = new Tag("logistics");
         FilterCommand filterCommand = new FilterCommand(presentTag);
         CommandResult expectedResult = filterCommand.execute(model, new OfficeConnectModel());
-        assertEquals(model.getFilteredPersonList().size(), 3);
+        assertEquals(model.getFilteredPersonList().size(), 2);
         assertEquals(expectedResult, new CommandResult(String.format(MESSAGE_SUCCESS, presentTag)));
     }
 
