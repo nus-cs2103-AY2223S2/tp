@@ -3,6 +3,9 @@ package fasttrack.model.expense;
 import static java.util.Objects.requireNonNull;
 
 import fasttrack.logic.commands.exceptions.CommandException;
+
+import java.util.Objects;
+
 /**
  * Represents a Price of an Expense in FastTrack.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
@@ -11,7 +14,7 @@ public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Amounts should only contain numbers, and should not be negative or empty.";
-    public static final String VALIDATION_REGEX = "^(-0|[1-9]\\d*)(\\.\\d+)?$";
+    public static final String VALIDATION_REGEX = "^(-0|\\d*)(\\.\\d+)?$";
     private String value;
 
     /**
@@ -56,9 +59,10 @@ public class Price {
 
     @Override
     public boolean equals(Object other) {
+        Price otherTypecasted = (Price) other;
         return other == this // short circuit if same object
                 || (other instanceof Price // instanceof handles nulls
-                && value.equals(((Price) other).value)); // state check
+                && Objects.equals(getPriceAsDouble(), otherTypecasted.getPriceAsDouble())); // state check
     }
 
     @Override
