@@ -18,7 +18,7 @@ public class LightCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (cssFilePath.equals(model.getCssFilePath())) {
-            return new CommandResult(MESSAGE_ERROR);
+            throw new CommandException(MESSAGE_ERROR);
         } else {
             return new CommandResult(MESSAGE_SUCCESS, false);
         }
