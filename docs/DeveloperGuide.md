@@ -862,14 +862,14 @@ testers are expected to do more *exploratory* testing.
 ### Adding records
 
 1. Adding an elderly
-   * Type the following add elderly command into the text field.<br>
-     `add_elderly n/John Doe ic/S5583628H bd/1955-11-24 re/NORTH r/LOW p/93456688 e/Jdoe@gmail.com a/Coral street t/single dr/2023-06-03, dr/1933-06-25`
-   * Press enter.
-   * Expected: The GUI shows the added elderly in the elderly list.
+    * Type the following add elderly command into the text field.<br>
+     `add_elderly n/John Doe ic/S5583628H bd/1955-11-24 re/NORTH r/LOW p/93456688 e/Jdoe@gmail.com a/Coral street t/single dr/2023-06-03, 2023-06-25`
+    * Press enter.
+    * Expected: The GUI shows the added elderly in the elderly list.
 
 1. Adding a volunteer
     * Type the following add volunteer command into the text field.<br>
-      `add_elderly n/Jane Doe ic/T0058345F bd/2000-05-14 re/EAST p/91157884 e/Jane45@gmail.com a/Kings street t/strong mt/cpr BASIC dr/2023-05-03, dr/1933-09-25`
+      `add_volunteer n/Jane Doe ic/T0058345F bd/2000-05-14 re/EAST p/91157884 e/Jane45@gmail.com a/Kings street t/strong mt/cpr, BASIC dr/2023-05-03, 2023-09-25`
     * Press enter.
     * Expected: The GUI shows the added volunteer in the volunteer list.
 
@@ -965,7 +965,7 @@ testers are expected to do more *exploratory* testing.
     * Resize the window to an optimum size, preferably full screen. Close the window.
     * Re-launch the app by double-clicking the jar file.
     * Expected: The most recent window size and location is retained.
-    * Note: The window looks best under 1920x1200 resolution, 125% scale.
+    * Note: The window looks best under 1920 x 1080 resolution, 125% scale.
 
 1. Saving data
     * Launch the app by double-clicking the jar file.
