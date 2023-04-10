@@ -759,8 +759,8 @@ specified otherwise)
 
     Steps 1a1-1b are repeated until the data entered are correct.
 
-    Use case resumes from step 2.
-    
+    Use case resumes from step 2. 
+
 **Use case: Edit a client's personal information**
 
 **MSS**
@@ -1010,8 +1010,7 @@ specified otherwise)
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be accessible offline so financial advisors can manage client information without internet connection
 5. Should have a user-friendly interface so that target users can navigate the platform with ease without any
    technological knowledge.
