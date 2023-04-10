@@ -492,6 +492,8 @@ Main section consists of the following components:
 
 ![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.png)
 
+<div style="page-break-after: always;"></div>
+
 #### **CommandBox**
 
 **Main input for the UI.**
@@ -500,8 +502,6 @@ Main section consists of the following components:
 bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
 
 Users are able to write their commands into its text field and execute it by pressing `Enter` key.
-
-<div style="page-break-after: always;"></div>
 
 ##### Design considerations
 
@@ -521,8 +521,6 @@ Even though the program supports GUI, main interaction between the user and the 
 leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
 execution of commands.
 
-<br>
-
 ##### Design considerations
 
 Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
@@ -537,8 +535,6 @@ Part of the main section that displays a list of person registered to the CoDoc 
 
 The list is created as a ListView. More information about ListView
 [here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
-
-<br>
 
 ##### Design considerations
 
@@ -661,9 +657,9 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 
 [Scroll back to UI Implementation](#ui-implementation)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### **Logic Implementation**
 
