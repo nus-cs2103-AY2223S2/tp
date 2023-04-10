@@ -50,9 +50,9 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
   - [2.14 View tasks](#214-viewing-persons-view)
   - [2.15 Review](#215-viewing-statistics-review)
   - [2.16 Help](#216-getting-help-help)
-  - [2.17 Lighting modes](#217-toggling-light-and-dark-mode)
+  - [2.17 Lighting modes](#217-toggling-between-light-and-dark-mode)
 - [3. FAQ](#3-faq)
-- [4. Checking Java Version](#4-how-do-i-check-my-java-versionbr)
+- [4. Checking my Java version](#4-how-do-i-check-my-java-version)
 - [5. Command summary](#5-command-summary)
 
 ---
@@ -64,7 +64,7 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
 ## 1.1 Installation
 
 1. Ensure you have Java `11` or above installed in your Computer. If you aren't sure of the version, follow these 
-[instructions](#4-how-do-i-check-my-java-versionbr).
+[instructions](#4-how-do-i-check-my-java-version).
 If you don't have Java downloaded or have an outdated version, download it 
 [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
@@ -82,6 +82,8 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 1.2 App overview
 
 ### 1.2.1 Types of interfaces
@@ -93,6 +95,8 @@ The person list can be viewed using the [list](#214-viewing-persons-view) comman
 The task list can be viewed using the [view](#213-listing-tasks-list) command.<br>![taskViewExample](images/ViewExample.PNG)
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### 1.2.2 Layout
 
@@ -109,6 +113,8 @@ currently stored persons or tasks.
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ### 1.2.3 Key definitions
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -122,7 +128,7 @@ currently stored persons or tasks.
 * As a result of the above, the character `/` cannot be used in any parameters.
 
 * Items in square brackets are optional.<br>
-  e.g. `a/{ADDRESS} [r/{ROLE}]` can be used as `a/John street, block 123 r/Member` or as `a/John street, block 123`.
+  e.g. `a/ADDRESS [r/ROLE]` can be used as `a/John street, block 123 r/Member` or as `a/John street, block 123`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `view`) will be ignored.<br>
   e.g. if the command specifies `view 123`, it will be interpreted as `view`.
@@ -136,6 +142,8 @@ currently stored persons or tasks.
 [↑ Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 2. Features
 
@@ -157,9 +165,11 @@ currently stored persons or tasks.
 - [2.14 View tasks](#214-viewing-persons-view)
 - [2.15 Review](#215-viewing-statistics-review)
 - [2.16 Help](#216-getting-help-help)
-- [2.17 Lighting modes](#217-toggling-light-and-dark-mode)
+- [2.17 Lighting modes](#217-toggling-between-light-and-dark-mode)
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ## 2.1 Adding a person: `add`
 
@@ -177,6 +187,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.2 Creating a regular task: `todo`
 
 Creates a new task.
@@ -190,6 +202,8 @@ Example:
 **After**:<br>![todoExampleAfter](images/TodoExampleAfter.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.3 Creating a task with a deadline: `deadline`
 
@@ -205,6 +219,8 @@ Example:
 **After**:<br>![deadlineExampleAfter](images/DeadlineExampleAfter.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.4 Creating a task that is an event: `event`
 
@@ -224,6 +240,8 @@ Example:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.5 Commenting on a task: `comment`
 
 Adds a comment to a task that exists in the task list. The task index follows <br>
@@ -238,6 +256,8 @@ Example:
 ![commentExample](images/CommentExample.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.6 Editing a person: `edit`
 
@@ -256,12 +276,14 @@ Example:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.7 Editing a task: `edittask`
 
 Edits the details of the task identified by the index number used in the displayed task list. 
 Existing values will be overwritten by the input values. The desired task type must be specified, and the date 
 modifiers must match the format of the task type input. At least one optional field must be supplied.<br>
-Todo tasks should not include a {DATE} field.<br>
+Todo tasks should not include a DATE field.<br>
 The task list can be viewed using the `view` command.
 
 Format: `edittask INDEX type/TASK_TYPE [task/TASK_DESCRIPTION] [c/COMMENT] [DATE]`
@@ -283,6 +305,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.8 Assigning task to member: `assign`
 
 Assign a task to a person. The indexes used follows the index on the task and person list respectively.<br>
@@ -301,6 +325,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.9 Marking a task: `mark`
 
 Marks the target task as completed and give a score to the marked task.<br>
@@ -316,6 +342,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.10 Unmarking a task: `unmark`
 
 Sets the target task's status as incomplete and remove any given score.<br>
@@ -328,6 +356,8 @@ Examples:
 ![unmarkExample](images/UnmarkExample.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.11 Deleting a person: `delete`
 
@@ -355,6 +385,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.13 Listing tasks: `list`
 
 Shows all tasks.
@@ -371,6 +403,8 @@ Format: `view`
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.15 Viewing statistics: `review`
 
 Shows task and score statistics of all persons in the persons list.
@@ -380,6 +414,8 @@ Format: `review`
 ![reviewExample](images/ReviewCommandExample.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.16 Getting help: `help`
 
@@ -401,6 +437,8 @@ Allows for toggling between light mode and dark mode based on user preference.
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -408,7 +446,7 @@ Allows for toggling between light mode and dark mode based on user preference.
 the data of your previous Pied Piper home folder.
 
 **Q**: How do I check my Java version?<br>
-**A**: Check [here](#4-how-do-i-check-my-java-versionbr).
+**A**: Check [here](#4-how-do-i-check-my-java-version).
 
 **Q**: Where do I download the correct Java version?<br>
 **A**: Download from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
@@ -419,6 +457,7 @@ the data of your previous Pied Piper home folder.
 
 # 4. How do I check my Java version?<br>
 <b>For windows:</b>
+
 1. Open your system's command line by searching `cmd` in the windows search bar.
 2. Enter the command `java -version`.
 3. You should see the version of java installed here highlighted in yellow:<br>
@@ -433,6 +472,8 @@ the data of your previous Pied Piper home folder.
 [↑ Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 5. Command summary
 
