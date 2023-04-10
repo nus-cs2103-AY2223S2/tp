@@ -181,6 +181,26 @@ The following sequence diagram shows how the add event operation works.
 
 This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
 
+### \[Implemented] Sort events feature
+
+#### Current Implementation
+
+Sorting a list of events is a feature that uses the commands listed below.
+The events can be sorted based on their:
+- names in ascending ASCII order (using `sortevent a` command)
+- names in descending ASCII order (using `sortevent b` command)
+- start date times in ascending order (using `sortevent c` command)
+- end date times in ascending order (using `sortevent d` command)
+
+The following sequence diagram shows how the sort events operation works.
+
+![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
+
+Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
+
+This sorting feature can only be executed when there are more than 1 event listed on the UI.
+It will only sort the event list based on the last String entered in the user input.
+
 ### \[Implemented] Find event feature
 
 #### Current Implementation
@@ -223,26 +243,6 @@ This operation is similar to that of deleting a person. Deleting an event involv
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely remove the specified event from the `AddressBook`.
-
-### \[Implemented] Sort events feature
-
-#### Current Implementation
-
-Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`.
-The events can be sorted based on their:
-- names in ascending ASCII order (using `sortevent a`)
-- names in descending ASCII order (using `sortevent b`)
-- start date times in ascending order (using `sortevent c`)
-- end date times in ascending order (using `sortevent d`)
-
-The following sequence diagram shows how the sort events operation works.
-
-![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
-
-Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
-
-This sorting feature can only be executed when there are more than 1 event listed on the UI.
-It will only sort the event list based on the last String entered in the user input.
 
 ### \[Implemented] List persons from an event feature
 
@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a new event.
-2.  PlanEase shows a prompt to indicate that the event has been added successfully.
+2.  PlanEase indicates that the event has been added successfully.
 
 Use case ends.
 
@@ -333,7 +333,7 @@ Use case ends.
 
   Use case ends.
 
-- 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
+- 1c. PlanEase detects that the User entered less than or more than 2 datetime inputs.
 
   - 1c1. PlanEase shows an error message.
 
@@ -345,7 +345,7 @@ Use case ends.
 
   Use case ends.
 
-- 1e. PlanEase detects that event already exists.
+- 1e. PlanEase detects that the event already exists.
 
   - 1e1. PlanEase shows an error message.
 
@@ -368,7 +368,7 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to sort all events that are currently displayed based on a given sorting key.
+1.  User requests to sort all events based on a sorting key.
 2.  PlanEase shows the list of sorted events based on the user's choice of sorting key.
 
 Use case ends.
@@ -381,7 +381,7 @@ Use case ends.
 
   Use case ends.
 
-- 1b. The current list of events displayed has less than 2 events.
+- 1b. There are less than 2 events in the list.
 
     - 1b1. PlanEase shows an error message.
 
@@ -394,7 +394,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to edit an event.
-2.  PlanEase shows a prompt to indicate that the event has been edited successfully.
+2.  PlanEase indicates that the event has been edited successfully.
 
 Use case ends.
 
@@ -430,7 +430,7 @@ Use case ends.
 
   Use case ends.
 
-- 1f. PlanEase detects that event already exists.
+- 1f. PlanEase detects that the event already exists.
 
     - 1f1. PlanEase shows an error message.
 
@@ -481,7 +481,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to add a new contact.
-2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
+2.  PlanEase indicates that the contact has been added successfully.
 
 Use case ends.
 
@@ -505,6 +505,30 @@ Use case ends.
 
   Use case ends.
 
+- 1d. The name prefix is not used.
+
+    - 1d1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1e. The phone number prefix is not used.
+
+    - 1e1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1f. The email prefix is not used.
+
+    - 1f1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1g. The address prefix is not used.
+
+    - 1g1. PlanEase shows an error message.
+
+  Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -515,7 +539,7 @@ Use case ends.
 6.  Should minimally support ASCII characters.
 7.  Must perform without failure in 95 percent of use cases during a month.
 8.  GUI color scheme should have high contrast and font size must not be too small, to aid those with vision impairments.
-9.  Application file size should not exceed (.jar/.zip) 100MB.
+9.  Application file size (.jar) should not exceed 100MB.
 10. Should only allow for 1 instance of the application running each time to ensure that data saved is consistent.
 
 ### Glossary
@@ -684,7 +708,7 @@ testers are expected to do more *exploratory* testing.
          It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
          Format of `/data/addressbook.json` file becomes valid.
 
-## **Appendix:** Planned Enhancements
+## **Appendix: Planned Enhancements**
 
 ### Person name will not be case-sensitive
 
