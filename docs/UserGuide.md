@@ -36,12 +36,15 @@ This user guide provides a detailed documentation on QuickContacts and serves as
 QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
 this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Using this User Guide
 
@@ -75,6 +78,7 @@ Notes are general information that gives you a better understand of QuickContact
 Cautions are warnings for you to note when using QuickContacts.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Installation
 
@@ -106,6 +110,7 @@ editing or deleting such files unless you know what you are doing!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick Reference Guide
 
@@ -270,6 +275,7 @@ in year 2023 is the same as `01012023`.
 * `a` represents `AM` or `PM` for 12-hour time format
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -298,9 +304,9 @@ Examples:
 
 **:information_source: Note:**<br>
 
-Autocomplete only works for command words and prefixes that expect a corresponding input data. You may refer to the
-[Prefx](#prefix) section for more details on prefixes.
-
+* Autocomplete only works for command words and prefixes that expect a corresponding input data. You may refer to the
+[Prefix](#prefix) section for more details on prefixes.
+* If input matches a command, Autocomplete will autocomplete the [prefixes](#prefix) for the command. If the command does not require any prefix, autocomplete will not do anything.
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -319,6 +325,8 @@ QuickContacts, you will **never** have to copy and paste commands ever again.
 
 All you have to do is to hit the `UP` and `DOWN` arrow keys on your keyboard to go to the previous and next command
 respectively. It is as simple as that!
+
+<div style="page-break-after: always;"></div>
 
 ## Person-Related Commands
 
@@ -352,6 +360,9 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+<div style="page-break-after: always;"></div>
+
+
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -372,6 +383,8 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+<div style="page-break-after: always;"></div>
+
 ### Finding persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -390,6 +403,8 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a person : `delete`
 
@@ -419,6 +434,7 @@ Deleting a  person does not affect any meetings that have already been created w
 * The index **must be a positive integer**: 1, 2, 3...
 
 Format: `export p/INDEX [p/MORE_INDEXES]...`
+<div style="page-break-after: always;"></div>
 
 ### Importing of contacts : `import`
 
@@ -467,6 +483,8 @@ Duplicate values will still be ignored, but you can be assured the value is adde
 </div>
 
 Format: `import JSON [f/]`
+
+<div style="page-break-after: always;"></div>
 
 ## Meeting-Related Commands
 
@@ -522,8 +540,9 @@ Format: `sortm ATTRIBUTE [r]`
 
 * If the `r` option is included, the meetings will be sorted in reverse(descending) order.
 * Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
-* Example: `sortm m/` sorts meetings by title in ascending order.
-* Example: `sortm dt/r` sorts meetings by date/time in descending order.
+* Examples:
+  * `sortm m/` sorts meetings by title in ascending order.
+  * `sortm dt/r` sorts meetings by date/time in descending order.
 
 <div markdown="block" class="alert alert-info">
 
@@ -533,6 +552,8 @@ Autocomplete is not designed for attributes such as `m/` for `sortm` as it is no
 input data. For more details, refer to the [autocomplete section](#autocomplete-inputs).
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Finding Meetings by Attendee Name : `findm`
 
@@ -561,9 +582,11 @@ Format: `findm`
 * No parameters are required.
 * If arguments are given, will instead behave like as stated [here](#finding-meetings-by-attendee-name--findm)
 
+<div style="page-break-after: always;"></div>
+
 ### Export Meetings : `exportm`
 
-Exports the meetings at the specified `INDEX`es and between `start` and `end` dates.
+Exports the meetings at the specified `INDEX`'s and between `start` and `end` dates.
 * If only START_DATE provided, meetings after START_DATE, inclusive, will be exported
 * If only END_DATE is provided, meetings after END_DATE, inclusive, will be exported
 * If both are provided, meetings between the two dates, inclusive, will be exported
@@ -576,6 +599,8 @@ Exports the meetings at the specified `INDEX`es and between `start` and `end` da
 Format: `exportm p/INDEX [p/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]`
 
 Example: `exportm start/01/01/23 m/1` will export the first meeting and any meetings starting from 01/01/23
+
+<div style="page-break-after: always;"></div>
 
 ### Import Meetings : `importm`
 
@@ -604,31 +629,6 @@ Example:
     "description": "Weekly catchup"
   },
   {
-    "title": "Study session with Benson and Carl",
-    "dateTime": "02/03/2023 15:00",
-    "attendees": [
-      {
-        "name": "Benson Meier",
-        "phone": "98765432",
-        "email": "johnd@example.com",
-        "address": "311, Clementi Ave 2, #02-25",
-        "tagged": [
-          "owesMoney",
-          "friends"
-        ]
-      },
-      {
-        "name": "Carl Kurz",
-        "phone": "95352563",
-        "email": "heinz@example.com",
-        "address": "wall street",
-        "tagged": []
-      }
-    ],
-    "location": "Central Library",
-    "description": "Study for finals"
-  },
-  {
     "title": "Zoom meeting for agenda planning",
     "dateTime": "13/03/2023 12:45",
     "attendees": [
@@ -642,17 +642,17 @@ Example:
         ]
       }
     ],
-    "location": "https://us02web.zoom.us/j/99999999999?pwd=ABCdEfGHiJkYkRuYW5WTLmNopQrSt12",
+    "location": "https://us02web.zoom.us/j/999?pwd=ABCdEfGmNopQrSt12",
     "description": "Plan for project work"
   }
 ]
-
-
 ```
 
 Optional Parameter `f/` that forces imports regardless of duplicate values. `f/` does not take any values.
 
 Format: `importm JSON f/`
+
+<div style="page-break-after: always;"></div>
 
 ### Delete Meetings : `delm`
 
@@ -699,6 +699,8 @@ Shows meetings that are not marked as done and those that are in the future i.e 
 
 Format: `pending`
 
+<div style="page-break-after: always;"></div>
+
 ## General Features
 
 ### Theme toggling
@@ -707,19 +709,31 @@ Toggles the theme from dark to light or vice versa.
 
 ![toggle theme](images/toggleTheme.png)
 
+<div style="page-break-after: always;"></div>
+
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+If used with a command word, shows a message explaining how to use the command in the output box.
+
+Examples:
+* `help add` shows a message explaining how to use the `add` command.
+* `help delm` shows a message explaining how to use the `delm` command.
+
+Format: `help [COMMAND_WORD]`
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+<div style="page-break-after: always;"></div>
+
 
 ### Saving the data
 
@@ -751,27 +765,45 @@ the data of your previous QuickContacts home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
+### Person Commands
 
 | Action                       | Format, Examples                                                                                                                                                                                                     |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Create a contact**         | `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Reset all data**           | `clear`                                                                                                                                                                                                              |
-| **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
+| **List all contacts**        | `list`                                                                                                                                                                                                               |
 | **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
-| **List all contacts**        | `list`                                                                                                                                                                                                               |
-| **Help**                     | `help`                                                                                                                                                                                                               |
+| **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
+| **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
+| **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
+
+<div style="page-break-after: always;"></div>
+
+### Meeting Commands
+
+| Action                       | Format, Examples                                                                                                                                                                                                     |
+|:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
+| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
 | **List all meetings**        | `findm`                                                                                                                                                                                                              |
-| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                          <br/>                        <br/>                                                                                       |
-| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                        <br/>            <br/>                                                                                                   |
-| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
-| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
-| **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
 | **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
-| **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
-| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
+| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
+| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                   |
+| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                 |
+| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
+
+<div style="page-break-after: always;"></div>
+
+### General Commands
+
+| Action             | Format, Examples                                                                                                                                                                                                     |
+|:-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**           | `help [COMMAND_WORD]`                                                                                                                                                                                                |
+| **Reset all data** | `clear`                                                                                                                                                                                                              |
+| **Exit the app**   | `exit`                                                                                                                                                                                                               |

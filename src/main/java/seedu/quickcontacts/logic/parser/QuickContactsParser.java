@@ -41,9 +41,10 @@ public class QuickContactsParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     private static final String[] AVAILABLE_COMMAND_WORDS = {
-        AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+        AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteMeetingCommand.COMMAND_WORD,
+        DeleteCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
         ExportPersonsCommand.COMMAND_WORD, ImportPersonsCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
-        AddMeetingCommand.COMMAND_WORD, EditMeetingsCommand.COMMAND_WORD, DeleteMeetingCommand.COMMAND_WORD,
+        AddMeetingCommand.COMMAND_WORD, EditMeetingsCommand.COMMAND_WORD,
         ExportMeetingsCommand.COMMAND_WORD, ImportMeetingsCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
         MarkAsNotDoneCommand.COMMAND_WORD, ShowNotDoneCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, SortMeetingCommand.COMMAND_WORD,
