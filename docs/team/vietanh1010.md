@@ -3,19 +3,19 @@ layout: page
 title: Nguyen Viet Anh's Project Portfolio Page
 ---
 
-### Project: Vimification
+#### Project: Vimification
 
 **Vimification** is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). It is written in Java, and the GUI is created with JavaFX.
 
-### Contributions
+#### Contributions
 
 Given below are my contributions to the project:
 
-#### Code contribution
+##### Code contribution
 
 * [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=vietanh1010&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
-#### Features implemented
+##### Features implemented
 
 **Parsers**
 
@@ -30,7 +30,7 @@ Given below are my contributions to the project:
 
 * Allows the user to undo the previous command that modifies the underlying data of the application.
 
-#### Enhancements implemented
+##### Enhancements implemented
 
 **Atomic execution of commands**
 
@@ -55,28 +55,28 @@ Given below are my contributions to the project:
 * Set up GitHub actions to be suitable for the team's workflow.
 * Set up CodeCov to keep track of testing coverage.
 
-#### Contribution to the UG
+##### Contribution to the UG
 
 * Polished the User Guide after other members wrote it.
 * Added a section about the macro feature.
 
-#### Contribution to the DG
+##### Contribution to the DG
 
 * Designed and added multiple diagrams to the document.
 * Wrote `Design` and `Implementation` sections.
 
-#### Contribution to team-based tasks
+##### Contribution to team-based tasks
 
 * Managed the team's GitHub repo and general workflow.
 * Helped resolve merge conflicts between team members to ensure a working code base on `master` branch.
 * Created milestones, reminded team members to create issues and pull requests as per the requirement of the module.
 
-#### Review/mentoring contributions
+##### Review/mentoring contributions
 
 * Reviewed multiple pull requests: [#41](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/41), [#44](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/44), [#60](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/60), [#70](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/70), [#90](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/90), etc.
 * Answered issues: [#49](https://github.com/AY2223S2-CS2103T-T15-3/tp/issues/49), [#68](https://github.com/AY2223S2-CS2103T-T15-3/tp/issues/68), [#87](https://github.com/AY2223S2-CS2103T-T15-3/tp/issues/87), [#95](https://github.com/AY2223S2-CS2103T-T15-3/tp/issues/95), etc.
 * Gave suggestions: [#44](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/44), [#70](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/70), [#90](https://github.com/AY2223S2-CS2103T-T15-3/tp/pull/90), [#95](https://github.com/AY2223S2-CS2103T-T15-3/tp/issues/95), etc.
 
-#### Contribution beyond the project team:
+##### Contribution beyond the project team:
 
 * Answered questions on the forum: [#294](https://github.com/nus-cs2103-AY2223S2/forum/issues/294)
