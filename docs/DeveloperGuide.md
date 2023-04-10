@@ -2898,3 +2898,28 @@ This can lead to having too much memory being allocated for it and having no bou
 Set a limit to the number of commands viewable in command history.
 Perhaps allowing user to see the last 5 or 10 or 15 commands only, the oldest command will be deleted forever if the limit
 is exceeded.
+
+### Feature flaw #5: Tag constraint message does not capture the full constraint
+
+**Description**
+
+A tag should only contain alphanumeric characters and spaces, and it should not be blank. However, when an invalid tag is entered as an argument, the error message fails to mention that the tag should not be blank.
+
+For example, if an invalid tag `T@g` is provided, the error message is as follows:
+
+```
+Tag(s) T@g should be alphanumeric
+```
+
+**Proposed Solution**
+
+We would like to propose that the error message be more specific. We would also like to improve the formatting (referring to [Feature Flaw #1](#feature-flaw-1-some-messages-are-poorly-formatted)):
+
+The proposed error message is as follows:
+
+```
+Tags should only contain alphanumeric characters, and they should not be blank.
+
+The following tags provided are invalid:
+- T@g
+```
