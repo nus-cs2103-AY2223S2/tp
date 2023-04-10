@@ -84,7 +84,7 @@ public class TypicalTasks {
     } // prevents instantiation
 
     /**
-     * Returns an {@code TaskList} with all the typical persons.
+     * Returns an {@code TaskList} with all the typical tasks.
      */
     public static TaskList getTypicalTaskList() {
         TaskList ab = new TaskList();
