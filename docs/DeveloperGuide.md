@@ -611,7 +611,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
   * Cons:
     * More complicated to implement as the format of the remarks have to be saved and loaded into `VersionedAddressBook` without any formatting errors.
     * Have to make sure the user does not enter any state-changing commands like `add` and even `find`/`list`.
-* **Alternative 3: ** Adding remark through an in-window text box
+* **Alternative 3:** Adding remark through an in-window text box
   * Pros:
     * Has the same level of flexibility as Alternative 2.
     * No need for a pop up text window, which could be beneficial for cross-platform support.
