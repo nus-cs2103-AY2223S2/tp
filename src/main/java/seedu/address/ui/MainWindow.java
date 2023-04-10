@@ -268,6 +268,9 @@ public class MainWindow extends UiPart<Stage> {
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
+            if (reminderWindow.isShowing()) {
+                reminderWindow.hide();
+            }
             reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication(), this);
             statsInformationListPanel.updateDisplay();
 
