@@ -28,8 +28,7 @@ public class StudentAddCommand extends Command {
             + PREFIX_NAME + "hall";
 
     public static final String SESSION_ADD_PERSON_SUCCESS = "Added athlete %1$s to session %2$s.";
-    public static final String SESSION_NOT_FOUND_FAILURE = "Session %1$s cannot be found. "
-            + "Here is the list of existing sessions:\n %2$s";
+    public static final String SESSION_NOT_FOUND_FAILURE = "Session %1$s cannot be found. ";
     public static final String STUDENT_ALREADY_ADDED_FAILURE = "Student already belongs to %1$s.";
 
     private SessionName sessionName;
@@ -56,16 +55,19 @@ public class StudentAddCommand extends Command {
 
         Person studentToAdd = lastShownList.get(index.getZeroBased());
 
-        if (!model.hasSessionName(sessionName)) {
-            throw new CommandException(String.format(
-                    SESSION_NOT_FOUND_FAILURE,
-                    sessionName,
-                    model.getAddressBook().getSessionList()
-            ));
-        }
+        checkSessionExists(model);
+
         //Find session
         Session sessionToBeAddedTo = model.getSessionFromName(sessionName);
 
+        checkStudenAdded(sessionToBeAddedTo, studentToAdd);
+
+        model.addPersonToSession(studentToAdd, sessionToBeAddedTo);
+        model.commitAddressBook();
+        return new CommandResult(String.format(SESSION_ADD_PERSON_SUCCESS, studentToAdd.getName(), sessionToBeAddedTo));
+    }
+
+    private void checkStudenAdded(Session sessionToBeAddedTo, Person studentToAdd) throws CommandException {
         if (sessionToBeAddedTo.contains(studentToAdd
                 .getName().formattedName)) {
             throw new CommandException(
@@ -74,9 +76,16 @@ public class StudentAddCommand extends Command {
                             sessionName
                     ));
         }
-        model.addPersonToSession(studentToAdd, sessionToBeAddedTo);
-        model.commitAddressBook();
-        return new CommandResult(String.format(SESSION_ADD_PERSON_SUCCESS, studentToAdd.getName(), sessionToBeAddedTo));
+    }
+
+    private void checkSessionExists(Model model) throws CommandException {
+        if (!model.hasSessionName(sessionName)) {
+            throw new CommandException(String.format(
+                    SESSION_NOT_FOUND_FAILURE,
+                    sessionName,
+                    model.getAddressBook().getSessionList()
+            ));
+        }
     }
 
     @Override
