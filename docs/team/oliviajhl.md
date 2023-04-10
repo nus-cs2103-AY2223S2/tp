@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to view sorted appointments of clients.
     * Justification: This feature significantly improves the product by providing users with an easy way to keep track of appointment dates and times for their clients, making it easier to manage client relationships and ensure appointments are scheduled effectively.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  
+
 * **New Feature**: Added **view** Command.
     * What it does: Allows users to view detailed information about a selected client, including their basic information, as well as any attached exercises and routines.
     * Justification: This feature significantly improves the product by providing users with an easy way to keep track of detailed information about their clients, making it easier to manage client relationships and ensure that their fitness programs are tailored to their specific needs and goals.
@@ -48,7 +48,7 @@ Given below are my contributions to the project.
       * Enhanced documentation for `Quick Start`, `Prefixes for Client Commands`, `Prefixes for Routine Commands`, and `FAQ`  [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
       * Added documentation for the features `listClients` [\#72](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/72)
       * Did cosmetic tweaks to existing for `Command Sumamry` [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
-      
+
   * Developer Guide:
       * Added use case for  `listClients` feature [\#75](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/75)
       * Added use case for  `View selected client's summary information` feature [\#205](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/205)
@@ -72,5 +72,5 @@ Given below are my contributions to the project.
     [\#195](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/195),
     [\#202](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/202),
     [\#206](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/206),
-    
+
     * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/OliviaJHL/ped))
