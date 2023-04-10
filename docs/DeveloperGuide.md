@@ -12,6 +12,8 @@ Calidr is a **time-management and scheduling calendar application**, optimized f
 CLI) while still having the benefits of a Graphical User Interface (GUI). This application uses the AddressBook-Level3
 project created by the [SE-EDU initiative](https://se-education.org/) as its framework.
 
+<br>
+
 ## Implementation
 
 This section describes how certain components and features are implemented.
@@ -51,12 +53,15 @@ Below is a sequence diagram of the `updateCalendar(taskList)` operation:
 
 <img src="./images/CalendarViewSequenceDiagram.png" width="100%"/>
 
+<br>
+
 ### Add ToDo Feature
 
 This feature enables the user to add a to-do to the list of tasks. It is implemented in a way that mirrors the
 _**Add Person**_ feature in AB3.
 
 The following class diagram shows the classes that help achieve this functionality.
+
 <img src="./images/AddTodoClassDiagram.png" width="100%"/>
 
 The `AddTodoCommandParser` parses the required details, to create the `ToDo` to be added, and returns
@@ -75,6 +80,8 @@ The following sequence diagram shows how the _**Add ToDo**_ feature works.
 
 The _**Add ToDo**_ feature is implemented in this way so as to make it similar to the analogous _**Add Person**_ feature
 of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
+
+<br>
 
 ### Add Event Feature
 
@@ -101,6 +108,8 @@ The following sequence diagram shows how the _**Add Event**_ feature works.
 
 The _**Add Event**_ feature is implemented in this way so as to make it similar to the analogous _**Add Person**_
 feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
+
+<br>
 
 ### Edit task feature
 
@@ -133,6 +142,8 @@ operation and the updated task details.
     * Pros: Will use less resources and time, thus improving system performance.
     * Cons: Requires more complex implementation logic to track and update the modified fields.
 
+<br>
+
 ### Mark Task Feature
 
 The `MarkTaskCommand` class represents a command that marks an **existing** task as done. It takes in the index of the
@@ -153,6 +164,8 @@ The execution of an `MarkTaskCommand` makes use of the following functions provi
 The following sequence diagram illustrates how the _**Mark Task**_ feature works.
 
 <img src="./images/MarkTaskSequenceDiagram.png" width="100%"/>
+
+<br>
 
 ### Delete Task Feature
 
@@ -180,10 +193,53 @@ The following sequence diagram shows how the _**Delete Task**_ feature works.
 The _**Delete Task**_ feature is implemented in this way so as to make it similar to the analogous _**Delete Person**_
 feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
 
+<br>
+
+### Search Feature
+
+This feature enables the user to search for specific tasks using keywords. It is implemented in a way that mirrors the
+_**Find Person**_ feature in AB3.
+
+The following class diagram shows the classes that help achieve this functionality.
+
+<img src="./images/SearchTaskClassDiagram.png" width="100%"/>
+
+The `SearchTaskCommandParser` parses the required details - keywords to search for `Task`'s by, and returns
+a `SearchTaskCommand`, that is executed.
+
+The execution of an `SearchTaskCommand` makes use of the following functions provided by the `Model`:
+
+- `Model#updateFilteredTaskList` - to apply the keywords filter on the list of tasks
+- `Model#getFilteredTaskList` - to access the filtered list of tasks
+
+The following sequence diagram shows how the _**Search**_ feature works.
+
+<img src="./images/SearchTaskSequenceDiagram.png" width="100%"/>
+
+#### Design Considerations
+
+The _**Search**_ feature is implemented in this way so as to make it similar to the analogous _**Find Person**_
+feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
+
+<br>
+
+### Storage Feature
+
+<img src="./images/StorageClassDiagram.png" width="100%"/>
+
+The Storage Feature handles the below requirements:
+- Saves user preference data in json format, and task list items (events, todos) in ics format
+- To abstract over ics files, we use the ical4j library as a intermediate layer.
+- It depends on the classes in the Model component
+
+<br>
+
 ### Planned Enhancements
 1. The base Calendar GUI leaves much to be desired. We plan to implement a more user-friendly GUI, where the calendar entries are color-coded according to priority and status, instead of being expressed textually, to workaround text-wrapping.
 2. We plan to implement a more robust search function, where the user can search for tasks by details other than the title, such as the description, priority, and tags.
 3. We're looking to give users the option of whether they want tasks to overlap or clash. The current implementation assumes that tasks can overlap.
+
+<br>
 
 ## Appendix
 
@@ -197,6 +253,8 @@ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an 
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
+<br>
+
 #### Value Proposition
 
 * Text-based timetable management
@@ -205,6 +263,8 @@ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an 
     * Search
     * /view day
     * /view month
+
+<br>
 
 #### User Stories
 
@@ -226,6 +286,8 @@ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an 
 | NUS staff/student                | add notes or comments to each event in my calendar                                                    | note down non-critical but useful information.                                                                                                                        | *Low*    |
 | NUS staff/student                | be able to add a description to a todo/event                                                          | keep track of additional details                                                                                                                                      | *High*   |
 | NUS staff/student                | add an optional location to my todos                                                                  | record specific addresses if it is a place I need to be.                                                                                                              | *Low*    |
+
+<br>
 
 ### Use Cases
 
@@ -249,12 +311,16 @@ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an 
 - 3a1. Calidr shows an error message.
   Use case resumes at step 2.
 
+<br>
+
 ### Non-functional requirements
 
 1. Should work on any mainstream OS (in particular file I/O) with Java 11 installed.
 2. Should be able to manage 1000 items without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the todos faster using commands than using the mouse.
+
+<br>
 
 ### Glossary
 

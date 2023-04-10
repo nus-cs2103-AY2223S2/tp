@@ -327,7 +327,8 @@ Example: `show 2`
 
 Calidr user preferences and calendar information is saved in the hard disk automatically after any modification command.
 The calendar data is stored
-as an [ics file](https://www.ical4j.org/).
+as an [ics file](https://www.ical4j.org/). This data is compatible with any application that uses the ics format.
+
 
 ### Editing the data file
 
@@ -336,7 +337,8 @@ i.e. `[root_directory]/data/calendar.ics`). Advanced
 users are welcome to manipulate data directly by editing the save file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-    If your changes to the save file makes its format invalid, Calidr will discard all data and start with an empty data file the next time it's run.
+Note that if other applications uses ICS fields not set by Calindr, the app will ignore them, but work correctly otherwise.
+However, if your changes to the save file makes its format invalid, Calidr will discard all data and start with an empty data file the next time it's run.
 </div>
 
 
@@ -345,7 +347,7 @@ users are welcome to manipulate data directly by editing the save file.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+**A**: Install the app in the other computer and overwrite the empty data files it creates with the file that contains
 the data of your previous Calidr home directory.
 
 --------------------------------------------------------------------------------------------------------------------
