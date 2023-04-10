@@ -14,6 +14,9 @@ import taa.commons.core.LogsCenter;
 
 /**
  * Controller for a help page
+ * @@author bojie3-reused
+ * Reused from https://github.com/AY2223S1-CS2103T-W17-1/tp/blob/master/src/main/java/seedu/travelr/ui/HelpWindow.java
+ * by using the same UI appearance, but modified all the contents and URL to fit TAA
  */
 public class HelpWindow extends UiPart<Stage> {
     public static final String WELCOME_MESSAGE = "Welcome to TAA!!";
