@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Weight {
     public static final String CONSTRAINTS = "Weight should be an integer!";
 
-    private static final double BASE_WEIGHT = 0.5;
+    public static final double BASE_WEIGHT = 0.5;
 
     private final Double weight;
 
