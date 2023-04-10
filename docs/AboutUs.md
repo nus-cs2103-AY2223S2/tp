@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/bojie3.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Attendance, Participation point, Testing, Documentation
 
 ### Kok Chun Zhi
 
@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/cyli133.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: ClassList, Alarm, Tests, Documentation
 
 ### Gu Haiwei
 
