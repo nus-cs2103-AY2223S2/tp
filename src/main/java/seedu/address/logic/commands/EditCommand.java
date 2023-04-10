@@ -36,7 +36,7 @@ import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing employee in the address book.
+ * Edits the details of an existing employee in the ExecutivePro database.
  */
 public class EditCommand extends Command {
 

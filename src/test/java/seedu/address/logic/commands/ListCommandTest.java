@@ -29,9 +29,4 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    //    @Test
-    //    public void execute_listIsFiltered_showsEverything() {
-    //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-    //        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    //    }
 }

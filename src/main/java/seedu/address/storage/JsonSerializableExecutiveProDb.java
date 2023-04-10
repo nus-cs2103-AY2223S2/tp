@@ -46,7 +46,7 @@ class JsonSerializableExecutiveProDb {
     }
 
     /**
-     * Converts this address book into the model's {@code ExecutiveProDb} object.
+     * Converts this ExecutivePro into the model's {@code ExecutiveProDb} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

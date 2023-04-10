@@ -19,7 +19,7 @@ import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.PicturePath;
 
 /**
- * Sets the picture of an employee, identified using it's displayed index from the address book.
+ * Sets the picture of an employee, identified using it's displayed index from the ExecutivePro database.
  */
 public class SetPictureCommand extends Command {
     public static final String COMMAND_WORD = "setpicture";

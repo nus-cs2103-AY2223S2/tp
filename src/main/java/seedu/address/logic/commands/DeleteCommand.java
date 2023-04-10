@@ -11,7 +11,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
 
 /**
- * Deletes an employee identified using it's displayed index from the address book.
+ * Deletes an employee identified using it's displayed index from ExecutivePro database.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";

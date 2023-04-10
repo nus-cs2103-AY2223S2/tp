@@ -118,7 +118,7 @@ public class AddCommandTest {
 
         /**
          * Batch Adds the employees from the user input.
-         * {@code fileName} must not already exist in the address book.
+         * {@code fileName} must not already exist in the ExecutivePro.
          *
          * @param fileName
          */

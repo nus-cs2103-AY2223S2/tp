@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyExecutiveProDb executiveProDb, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(executiveProDb, userPrefs);
 
-        logger.fine("Initializing with address book: " + executiveProDb + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ExecutivePro: " + executiveProDb + " and user prefs " + userPrefs);
 
         this.executiveProDb = new ExecutiveProDb(executiveProDb);
         this.userPrefs = new UserPrefs(userPrefs);
