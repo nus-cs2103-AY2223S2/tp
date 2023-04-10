@@ -215,6 +215,13 @@ The status can be either `done` or `not done`.
 An `Exam` is a scheduled exam that a `Student` is going to sit for.
 We assume that the exams are conducted by the school, instead of you.
 It has a name, a start time, an end time, and a status, an optional weightage, and an optional grade.
+The status can be either `done` or `not done`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**<br> The status used for `Lesson` and `Exam` is different from the status used for `Homework`.<br>
+This is because the status of `Homework` is determined by the user, (using mark as done or unmark commands) while the status of `Lesson` and `Exam` is determined by the time.
+Therefore, we use different terms to avoid confusion.
+</div>
 
 ## Commands
 
@@ -490,7 +497,7 @@ even if they have different deadlines.
 
 Creates a new lesson for a given student, with a lesson title and time.
 
-Format: `new-lesson [name/STUDENT_NAME]... [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
+Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor.
 * `START_TIME` must be before `END_TIME`, and their difference must be at least 30 minutes and at most 3 hours.
@@ -513,8 +520,13 @@ For example, `john` will match `John Doe` and `john doe`. You can refer to the [
 
 :exclamation: **Caution:** LESSON_TITLE, START_TIME, and END_TIME should all appear exactly once.
 
-:exclamation: **Caution:** A student can have multiple lessons with the same lesson title, but only if their lesson times do not clash with each other. See
-[Duplicate Lesson Detection](#duplicate-lesson-detection-mechanism) for more details.
+:exclamation: **Caution:** A student can have multiple lessons with the same lesson title, provided that they do not overlap in time.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Why do TutorPro allows adding homework and exams to multiple students in one command, but only allows adding lessons to one student at a time?<br>
+This is because TutorPro assume all lessons you have with a student are one-to-one. Therefore, it is not possible for you to plan a single lesson with multiple students at the same time.
+However, on the other hand, it is perfectly possible for you to assign the same homework to multiple students at the same time. It is also possible for multiple student to attend to the same exam at the same time.
+</div>
 
 #### View Lessons
 
@@ -713,7 +725,6 @@ For example, `john` will match `John Doe` and `john doe`.
 You can refer to the [search by name mechanism](#search-by-name-mechanism) for more details.
 
 :exclamation: **Caution:** STUDENT_NAME should appear exactly once and should not be empty.
-
 
 ### Global Commands
 
