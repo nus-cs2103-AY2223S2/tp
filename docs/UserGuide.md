@@ -113,6 +113,9 @@ Deletes the specified person from MediConnect.
 Format: `delete ic/NRIC`
 
 * Deletes the person with the specified `NRIC`
+* Note that this also deletes all the appointment data associated with that patient/doctor
+  * When a patient is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the doctor's appointment list
+  * When a doctor is deleted from the system, all appointments from their appointment list will be removed. This also removes the respective appointments from the patient's appointment list
 
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
@@ -142,10 +145,17 @@ Displays personal particulars, appointments and prescription for patients.
 
 Format: `display ic/NRIC`
 
-* Displays personal particulars, appointments and prescription for the patient with the specified `NRIC`.
+* For patients:
+  * Displays personal particulars, appointments and prescription for the patient with the specified `NRIC`.
+* For doctors:
+  * Displays personal particulars, and appointments for the doctor with the specified `NRIC`.
+
+Restrictions:
+* `ic/NRIC`
+    * The patient/doctor specified by `ic/NRIC` should exist in MediConnect
 
 Examples:
-* `display ic/S1234567A` displays the information for the patient with NRIC number S1234567A.
+* `display ic/S1234567A` displays the information for the patient with NRIC number `S1234567A`.
 
 ![Display](images/Display.png)
 
@@ -167,31 +177,49 @@ Examples:
 
 ### Book appointment : `appointment`
 
-Schedules an appointment with a specific doctor for the specified person.
-Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view when 'display' command is used.
+Schedules an appointment for a patient with a specific doctor.
 
 Format: `appointment ic/NRIC d/DATE dric/NRIC`
 
-* Schedules an appointment on the given `DATE` for the patient with `ic/NRIC` with the doctor with `dric/NRIC`
+* Schedules an appointment for the patient with `ic/NRIC` and the doctor with `dric/NRIC` on the specified `d/DATE`
+* Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view panel when `display` command is used.
+
+Restrictions:
+* `ic/NRIC`
+  * The patient specified by `ic/NRIC` should exist in MediConnect
+* `dric/NRIC`
+  * The doctor specified by `dric/NRIC` should exist in MediConnect
+* `d/DATE`
+  * Adheres to `DD-MM-YYYY HH:MM` format
+  * Date is valid to the calendar (eg. `30-13-2023 10:00` is not a valid `DATE`)
+  * Time is in 24-hour notation
+  * Accepts a past, current or future date
+  * The patient does not have any prior booking on this date, **and** the doctor is not scheduled to meet any other patients on the same date.
 
 Examples:
-* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z.
+* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S7654321Z` on `01-04-2023 10:00`.
 
 ![Appointment](images/Appointment.png)
 
 ### Delete appointment : `deleteAppointment`
 
 Deletes an appointment specified by the index of the patient’s appointment list.
-Note that this command can only be used on patients (ie. you can only delete an appointment from the patient's end, and not from the doctor's end).
-Similarly, this updates the appointment list for the specified patient, and the specified doctor in the detailed person view when 'display' command is used.
 
 Format: `deleteAppointment INDEX ic/NRIC`
 
-* Deletes the appointment indicated by `INDEX` from the list of appointments for the person specified by `NRIC`.
-* `INDEX` refers to the index number shown in the displayed appointment list for the person. The *index must be a positive integer* 1, 2, 3, …​
+* Deletes the appointment indicated by `INDEX` from the list of appointments for the person specified by `NRIC`
+* `INDEX` refers to the index number shown in the appointment list of the patient.
+* Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view panel when `display` command is used.
+
+Restrictions:
+* `ic/NRIC`
+    * Nric must belong to a patient (not doctor)
+    * The patient specified by `ic/NRIC` should exist in MediConnect
+* `INDEX`
+  * The index must be a positive integer (eg. 1, 2, 3, …​)
 
 Examples:
-* `deleteAppointment 2 ic/S1234567A` deletes the 2nd appointment as displayed the list for person with NRIC number S1234567A.
+* `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`."
 
 ![DeleteAppointment](images/DeleteAppointment.png)
 
@@ -262,6 +290,7 @@ Deletes all patients' and doctors' data from the system.
 Format: `clear`
 
 * Data cannot be retrieved after `clear` is performed.
+* Note that this also deletes all the appointment data that has been previously stored in `MediConnect`
 
 Example:
 * `clear` permanently deletes all data stored in the system.
