@@ -5,14 +5,19 @@ title: Developer Guide
 
 ## <a id="table"></a>**Table of Contents**
 
-* Table of Contents
 {:toc}
+
+
+
+<div style="page-break-after: always;"></div>
+
+
 
 # **About coNtactUS**
 
 ## 1. Introduction
 
-### **1.1 About coNtactUS**
+### 1.1 About coNtactUS
 
 Welcome!
 coNtactUS is a module tracker made by NUS computing students, for NUS computing students. It provides a centralised
@@ -53,6 +58,8 @@ respective header.
 
 ------------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **2. Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
@@ -61,6 +68,7 @@ respective header.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ------------------------------------------------------------------------------------------------------------------------
+
 ## **3. Setting up, getting started**
 
 If you want to get started with developing your own coNtactUS, you may refer to the guide 
@@ -68,7 +76,10 @@ If you want to get started with developing your own coNtactUS, you may refer to 
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **4. Overview of the Design**
 
 ### 4.1 The components in the architecture
@@ -159,6 +170,10 @@ to the implementation of a component), as illustrated in the (partial) class dia
 <div align="center"> Relationship between the Interfaces and their concrete classes </div>
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
+------------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **5. An in-depth look at each architecture component**
 
@@ -302,23 +317,26 @@ package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **6. Implementation**
 
 This section describes some noteworthy details on how certain features of coNtactUS are implemented.
 
-### 5.1 Sort Feature
+### 6.1 Sort Feature
 
-#### 5.1.1 Sort Command Implementation
-This section will explain the implementation of the SortCommand. The SortCommand allows users to sort the modules in the
-displayed list by either the module's timeslot, or the module's deadline. The SortCommand will automatically take into
-consideration the current time of your computer. 
+#### 6.1.1 Sort Command Implementation
+This section will explain the implementation of the `SortCommand`. The `SortCommand` allows users to **sort the modules
+in the displayed list by either the module's `timeslot`, or the module's `deadline`**. The `SortCommand` will
+automatically take into consideration the **current time** of your computer. 
 
 For example, if the current day on your computer is Monday, a module with timeslot Tuesday 05:00 - 07:00 will be shown 
-before a module with timeslot Wednesday 06:00 - 08:00. Similarly, if the current day on your computer is Tuesday, 
-then a module with timeslot Wednesday 05:00 - 07:00 will be shown before a module with timeslot Thursday 06:00 - 08:00.
-For sorting by deadline, a module with deadline 250623 will be shown before a module with deadline 260623.
+before a module with `timeslot` `Wednesday 06:00 - 08:00`. Similarly, if the current day on your computer is Tuesday, 
+then a module with `timeslot` `Wednesday 05:00 - 07:00` will be shown before a module with `timeslot` 
+`Thursday 06:00 - 08:00`. For sorting by `deadline`, a module with `deadline` `250623` will be shown before a module
+with `deadline` `260623`.
 
-The SortCommand relies on the fact that the `ObservableList<e>` in 
+The `SortCommand` relies on the fact that the `ObservableList<e>` in 
 [`ModelManager.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/ModelManager.java) which is later on displayed to the 
 user interface, is actually a `FilteredList<e>`. In order to accomplish the sorting feature, we wrapped a `SortedList<e>` 
 inside the `FilteredList<e>`. Using the `setComparator()` method for a `SortedList<e>`, we are able to dictate the order 
@@ -334,42 +352,53 @@ to implement a `Comparator<Module>` of your choice.
 
 Below is an example usage scenario and how the sort command behaves at each step:
 
-**Step 1:** The user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
+**Step 1:** The user launches the application for the first time. The **ModuleTracker** will be initialized with the
+initial module tracker state.
 
-**Step 2:** The user writes "sort timeslot" in the terminal. This command will be handled by the **LogicManager** and **ModuleTrackerParser**, which will extract the needed argument.
+**Step 2:** The user writes `sort timeslot` in the terminal. This command will be handled by the `LogicManager` and
+`ModuleTrackerParser`, which will extract the needed argument.
 
-**Step 3:** The command is executed through the execute method, which updates the list through **Model#updateSortedModuleList**.
+**Step 3:** The command is executed through the execute method, which updates the list through
+`Model#updateSortedModuleList`.
 
-**Step 4:** The method passes the Comparator to the **SortedList**, updating the displayed list. 
+**Step 4:** The method passes the Comparator to the `SortedList`, updating the displayed list. 
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 5.2 Find feature
+### 6.2 Find feature
 
-#### 5.2.1 Find Command Implementation
-This section will explain the implementation of the FindCommand and the FindCommandParser. The FindCommand allows users
-to search for modules whose names or types contain any of the specified keywords (case-insensitive).
+#### 6.2.1 Find Command Implementation
+This section will explain the implementation of the `FindCommand` and the `FindCommandParser`. The `FindCommand` allows
+users to **search for modules whose `name` or `description` contain any of the specified keywords** (case-insensitive).
 
 ##### FindCommand Class
-The **FindCommand** class is responsible for finding and listing all modules in the module tracker whose name contains any of the argument keywords. Keyword matching is case-insensitive. The **FindCommandParser** is responsible for parsing the user input.
+The `FindCommand` class is responsible for finding and listing all modules in the module tracker whose name contains any
+of the argument keywords. Keyword matching is case-insensitive. The `FindCommandParser` is responsible for parsing the
+user input.
 
-The **FindCommand** utilizes the **FilteredList** from JavaFX and uses a predicate to initialize a **FindCommand** object. This predicate is programmed to match both the name and the type of the module.
+The `FindCommand` utilizes the `FilteredList` from **JavaFX** and uses a predicate to initialize a `FindCommand` object.
+This predicate is programmed to match both the `name` and the `description` of the module.
 
-The predicate passed to the **FindCommand** constructor is from the **NameContainsKeywordsPredicate** class. This class has a test method, which is used by the **FilteredList**.
+The predicate passed to the `FindCommand` constructor is from the `NameContainsKeywordsPredicate` class. This class has
+a test method, which is used by the `FilteredList`.
 
 Below is an example usage scenario and how the find command behaves at each step:
 
-**Step 1:** The user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
+**Step 1:** The user launches the software for the first time. The `ModuleTracker` will be initialized with the initial
+module tracker state.
 
-**Step 2:** The user writes "find CS3263" in the terminal. This command will be handled by the **LogicManager** and **ModuleTrackerParser**, which will extract the needed argument, most importantly the predicate.
+**Step 2:** The user writes `find CS3263` in the terminal. This command will be handled by the `LogicManager` and
+`ModuleTrackerParser`, which will extract the needed argument, most importantly the predicate.
 
-**Step 3:** The command is executed through the execute method, which updates the list through **Model#updateFilteredModuleList**.
+**Step 3:** The command is executed through the execute method, which updates the list through
+`Model#updateFilteredModuleList`.
 
-**Step 4:** The method sets the predicate to the filtered list, which runs the **NameContainsKeywordsPredicate#test()** method to find the items based on name or type.
+**Step 4:** The method sets the predicate to the filtered list, which runs the `NameContainsKeywordsPredicate#test()`
+method to find the items based on `name` or `description`.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 5.3 Reminder feature
+### 6.3 Reminder feature
 
 #### Reminder Implementation
 This section explains the implementation of the reminder feature. The reminder allows users to view all the timeslots
@@ -403,9 +432,11 @@ type. The title of the alert is "Work Today."
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## **6. \[Proposed\] Planned Enhancements**
+<div style="page-break-after: always;"></div>
 
-### 6.1 Reminder command.
+## **7. \[Proposed\] Planned Enhancements**
+
+### 7.1 Reminder command.
 We propose extending the reminder feature to allow users to call it at any time, instead of only at the software's
 launch. Additionally, we plan to enable users to view reminders for a specific day, week, or month.
 
@@ -417,7 +448,7 @@ improved user experience.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 6.2 Introduce a horizontal scroll bar for long attributes
+### 7.2 Introduce a horizontal scroll bar for long attributes
 
 We propose to include a horizontal scroll bar so that users can see their entire module details without being forced
 to resize the software window (e.g: Extremely long website names)
@@ -425,6 +456,8 @@ to resize the software window (e.g: Extremely long website names)
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **7. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -731,6 +764,8 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 ------------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **9. Glossary**
 
 ### 9.1 coNtactUS related terminology
@@ -764,6 +799,8 @@ be able to accomplish most of the tasks faster using commands than using the mou
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **10. Appendix: Instructions for manual testing**
 
@@ -908,6 +945,8 @@ Expected: The modules will not be sorted.
 
 ------------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 11. Appendix: Effort
 
 **Overall Difficulty level: 7 / 10**
@@ -950,7 +989,12 @@ Effort required: 8 / 10)
    `deadline`) because it does not really make sense to store date for weekly-recurring `timeslot`.
 
 5. Addition of `sort` command. (Difficulty: 9 / 10, Effort required: 8 / 10)
-   * Jia Yuan
+   * This was a challenging task as it required an in-depth understanding of how the user interface displayed the
+   modules. After studying the code, it was observed that the user interface was actually actively "listening" for
+   changes to the list of modules in the background, through the use of an ObservableList<e> to make sure that it
+   always displayed the desired list. In order to get the user interface to display a sorted version of the list of
+   modules when requested by the user, one had to understand the mechanism by which one could change the list of modules
+   and ensure that the user interface was always aware of the change.
 
 6. Addition of a `Reminder` window (Difficulty: 7 / 10, Effort required: 7 / 10)
    * Similar to the `find` command. Much of the time is spent on understanding new concepts and libraries. The `reminder` window goes through all the tasks and extract the `DateTime` and compares it to the current system time. Exceptions are checked and then the string is parsed for output. 
