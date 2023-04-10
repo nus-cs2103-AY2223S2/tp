@@ -106,7 +106,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 6. Refer to the [Features](#features) below for details of each command.
 
-[↑ Back to Top of Section](#quick-start)
+[↑ Back to Top of Section](#quick-start) <br/>
 [↑ Back to Features Menu](#features-menu)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ GUI Breakdown:
 
 </div>
 
-[↑ Back to Top of Section](#features)
+[↑ Back to Top of Section](#features) <br/>
 [↑ Back to Features Menu](#features-menu)
 
 ## Main features: Tracking applied internships
@@ -759,5 +759,5 @@ Action | Format, Examples
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
 **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
 
-[↑ Back to Top of Section](#command-summary)
+[↑ Back to Top of Section](#command-summary) <br/>
 [↑ Back to Features Menu](#features-menu)
