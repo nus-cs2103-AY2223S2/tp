@@ -47,7 +47,8 @@ Given below are my contributions to the project.
   - User Guide:
     - Contributed to explaining about the ListDepartmentHeadcountCommand.
   - Developer Guide:
-    - Contributed to writing UML diagrams for ListDepartmentHeadcountCommand.
+    - Contributed to drawing UML diagrams for ListDepartmentHeadcountCommand.
+    - Write use cases and stories for features.
 
 - **Code Quality and Bug Fixing**:
   - Ensured good code quality and spotted bugs in PRs reviewed.

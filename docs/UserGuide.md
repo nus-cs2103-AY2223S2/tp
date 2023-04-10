@@ -3,10 +3,10 @@ layout: page
 title: User Guide
 ---
 
-# SudoHR User Guide
+* Table of Contents
+  {:toc}
 
-* Table of Contents 
-{:toc}
+---
 
 # **1. Introduction**
 
@@ -303,7 +303,7 @@ Examples:
 
 
 
-### 4.1.5. Find employees by ID: `feid`
+### 4.1.5. Find employee by ID: `feid`
 
 Finds and displays the employee with the given ID.
 
