@@ -122,8 +122,8 @@ public class BatchAddCommand extends Command {
      *
      * @param model the {@code Model} object which represents the current model
      * @return a {@code CommandResult} object containing the result of the execution
-     * @throws CommandException if there is an error while adding the employees or if
-     * the CSV file does not contain any data
+     * @throws CommandException if there is an error while adding the employees or if the CSV file does not contain
+     *      any data
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
