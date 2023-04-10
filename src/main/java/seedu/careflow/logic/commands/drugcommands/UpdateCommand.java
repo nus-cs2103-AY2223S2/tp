@@ -20,7 +20,7 @@ import seedu.careflow.model.drug.TradeName;
 public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
-    public static final String MESSAGE_SUCCESS = "Drug: %1$s \nUpdated storage count: %2$s \nPlease select the patient "
+    public static final String MESSAGE_SUCCESS = "Drug: %1$s \nUpdated storage count: %2$s \nPlease select the drug "
             + "again to view changes if not displayed.";
     public static final String MESSAGE_FAILURE = "Drug not found: %1$s";
 

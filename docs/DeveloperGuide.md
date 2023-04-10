@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* PlantUML was used to create UML diagrams.
+* Existing AB3 UML diagrams were modified to suit CareFlow's software architecture.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -36,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -522,7 +523,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Planned Enhancements
 
-1. 'h view' command for viewing hospital hotline
+1. `h view` command for viewing hospital hotline
 
    1.  Currently the only way for the user to view the hospital detail is by clicking on the hospital tab using a mouse.
        We recognize that we have overlooked the need for a keyboard-only command to view hospital details, and we will

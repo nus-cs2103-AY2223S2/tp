@@ -104,7 +104,11 @@ public class PatientListPanel extends UiPart<Region> {
     private void setClickEventListener() {
         patientListView.setOnMouseClicked(event -> {
             Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-            updateDisplay(selectedPatient);
+            if (selectedPatient != null) {
+                updateDisplay(selectedPatient);
+            } else {
+                updateNullDisplay();
+            }
         });
     }
 
