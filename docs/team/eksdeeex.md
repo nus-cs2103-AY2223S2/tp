@@ -72,9 +72,14 @@ Given below are my contributions to the project.
     * [#170](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/170)
     * [#178](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/178)
     * [#229](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/229)
+    * [#230](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/230)
+    * [#235](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/235)
+    * [#238](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/238)
+    * [#239](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/239)
+    * [#246](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/246)
 
-* **Tools**:
+<!-- * **Tools**:
   * _to be added soon_
 
 * **Others**:
-  * _to be added soon_
+  * _to be added soon_ -->
