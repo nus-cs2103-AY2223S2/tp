@@ -624,7 +624,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 Step 6. The user executes `clear`, which calls `FitBookModel#commitFitBook()`. Since the `currentStatePointer` is not pointing at the end of the `fitBookStateList`, all FitBook states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
-
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
@@ -644,7 +644,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 >## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -654,7 +654,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 >## **Appendix: Requirements**
 
 ### Product scope
@@ -677,7 +677,7 @@ routines during their individual sessions. The trainer can also find the clients
 appointment dates and times they have with their clients.
 
 ---
-
+<div style="page-break-after: always;"></div>
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -716,7 +716,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 =======
 
 ---
-
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the **System** is the `FitBook` and the **Actor** is the `user`, unless specified otherwise)
