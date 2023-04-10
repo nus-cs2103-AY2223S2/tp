@@ -8,7 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CheckedFunction;
 import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.AddElderlyCommandParser;
@@ -30,6 +33,7 @@ import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.StatsCommandParser;
+import seedu.address.ui.CommandBox;
 
 /**
  * A class representing a recommendation engine that recommends a command based on the user input.
@@ -48,8 +52,10 @@ public class CommandRecommendationEngine {
      * A map containing the command registry with command word as key and CommandInfo as value.
      */
     private static final CommandInfoMap commandRegistry = new CommandInfoMap();
+    private static final Logger logger = LogsCenter.getLogger(CommandRecommendationEngine.class);
 
     static {
+        logger.log(Level.INFO, "Registering commands to recommendation engine...");
         registerCommandParser(new DeleteVolunteerCommandParser());
         registerCommandParser(new DeleteElderlyCommandParser());
         registerCommandParser(new AddVolunteerCommandParser());
@@ -167,6 +173,7 @@ public class CommandRecommendationEngine {
      * @throws RecommendationException if there is an error generating recommendations
      */
     public String autocompleteCommand(String userInput) throws RecommendationException {
+        logger.log(Level.INFO, "Generating command recommendations...");
         String recommendation = generateCommandRecommendations(userInput);
         String cmdWord = recommendation.split(" ")[0];
         CommandInfo cmdInfo = findMatchingCommandInfo(cmdWord, true);
@@ -182,6 +189,9 @@ public class CommandRecommendationEngine {
         String command = recommendation.substring(0, commandIdx == -1
                 ? recommendation.length()
                 : commandIdx);
+
+        logger.log(Level.INFO, "Autocompleting command recommendations...");
+
         if (!isCompleteCommand && !userInput.equals(command)) {
             return command;
         } else if (!preamble.isEmpty() && suggestedCommand.contains(preamble)) {
