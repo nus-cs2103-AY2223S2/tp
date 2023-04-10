@@ -7,13 +7,13 @@ title: User Guide
 * [Quick start](#quickstart)
 * [Features](#features)
     1. [Viewing help](#help)
-    2. [Add student](#add)
-    3. [Copy student](#copy)
-    4. [Delete student](#delete)
-    5. [List student](#list)
+    2. [Add Student](#add)
+    3. [Copy Student](#copy)
+    4. [Delete Student](#delete)
+    5. [List Students](#list)
     6. [Edit Student](#edit)
     7. [Find Student](#find)
-    8. [Filter student](#filter)
+    8. [Filter Students](#filter)
     9. [Add a lesson](#learn)
     10. [Remove a lesson](#unlearn)
     11. [Mark attendence](#mark)
@@ -21,7 +21,8 @@ title: User Guide
     13. [Query attendence](#query)
     14. [Local save](#save)
     15. [Local load](#load)
-    16. [Exit program](#exit)
+    16. [Clear Students](#clear)
+    17. [Exit program](#exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
@@ -105,7 +106,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 #### [Back to top](#table-of-content) 
-### Add student : `add`<a name="add"></a>
+### Add Student : `add`<a name="add"></a>
 
 Adds a student to the managing system.
 
@@ -123,7 +124,7 @@ Examples:
 * ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/08:30 et/10:30 t/JC1 t/SonOfJerry``` adds the same student with two tags, `JC1` and `SonOfJerry`
 
 #### [Back to top](#table-of-content) 
-### Copy student : `copy` <a name="copy"></a>
+### Copy Student : `copy` <a name="copy"></a>
 
 Copies an existing student to the managing system with a different subject or schedule.
 
@@ -138,7 +139,7 @@ Examples:
 * ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd student in the managing system and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
 #### [Back to top](#table-of-content) 
-### Deleting student : `delete`<a name="delete"></a>
+### Delete Student : `delete`<a name="delete"></a>
 
 Removes a student from the managing system.
 
@@ -150,7 +151,7 @@ Examples:
 * ```delete 1``` deletes the first student displayed in the system
 
 #### [Back to top](#table-of-content) 
-### Listing students : `list`<a name="list"></a>
+### List Students : `list`<a name="list"></a>
 
 Lists students in the managing system.
 
@@ -161,7 +162,7 @@ Examples:
 * ```list``` 
 
 #### [Back to top](#table-of-content) 
-### Editing a student : `edit` <a name="edit"></a>
+### Edit Student : `edit` <a name="edit"></a>
 
 Edits an existing student in the managing system.
 
@@ -179,7 +180,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 #### [Back to top](#table-of-content) 
-### Locating students by name: `find`<a name='find'></a>
+### Find Student: `find`<a name='find'></a>
 
 Finds students whose names contain any of the given keywords.
 
@@ -198,7 +199,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### [Back to top](#table-of-content) 
-### Filtering students by any fields : `filter`<a name='filter'></a>
+### Filter Students : `filter`<a name='filter'></a>
 
 Filter and list students whose fields contain any of the given keywords.
 
@@ -220,7 +221,7 @@ Examples:
 ![img.png](images/filterExampleResult.png)
 
 #### [Back to top](#table-of-content) 
-### Adding a new lesson : `learn`<a name="learn"></a>
+### Add a lesson : `learn`<a name="learn"></a>
 
 You can add a lesson taught to a student.
 
@@ -282,7 +283,7 @@ Examples:
 ![unmark.png](images/unmark.png)
 
 #### [Back to top](#table-of-content) 
-### Querying attendance : `query` <a name="query"></a>
+### Query attendance : `query` <a name="query"></a>
 Use this command to check the tutee's attendance.  
 
 Format: `query <index> [date]`
@@ -296,14 +297,14 @@ Examples:
 * `query 1 2023-03-10` displays whether the first student was marked present during his lesson on 2023-03-10
 
 #### [Back to top](#table-of-content) 
-### Saving locally <a name="save"></a>
+### Local save <a name="save"></a>
 
 Saves the current state of the program on the hard disk upon exit.
 
 Done automatically.
 
 #### [Back to top](#table-of-content) 
-### Loading locally <a name="load"></a>
+### Local load <a name="load"></a>
 
 Loads the saved state of the program (if there is any) on the hard disk.
 
@@ -313,14 +314,14 @@ Done automatically.
 
 
 #### [Back to top](#table-of-content) 
-### Clearing all entries : `clear`
+### Clear students : `clear` <a name="clear"></a>
 
 Clears all entries from the managing system.  
 
 Format: `clear`
 
 #### [Back to top](#table-of-content) 
-### Exiting program <a name="exit"></a>
+### Exit program <a name="exit"></a>
 
 Exit the program.
 
