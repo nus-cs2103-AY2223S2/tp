@@ -13,7 +13,7 @@ Given below are my contributions to the project.
    * **What it does**: model to store appointment details such as date, time, patient name and appointment description.
    * **Justification**: This feature is necessary to store appointment details entered by the user. It was implemented in a similar fashion to AB3's `Person` and `PersonList`.
    * **Highlights**: This feature was a significant undertaking, as it involved creating a new model component, and updating the existing `Model` and `ModelManager` classes to support the new component, coming to 400+ lines of code.
-   !![AppointmentModel](../images/Jayanth-AppointmentModel.png)
+   ![AppointmentModel](../images/Jayanth-AppointmentModel.png)
 2. `AppointmentCard` and `AppointmentListPanel`: UI for displaying appointment details.
    * **What it does**: displays appointment details as a list in the UI.
    * **Justification**: This feature is necessary to display appointment details to the user. It was implemented in a similar fashion to AB3's `PersonCard` and `PersonListPanel`.
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
    * **Justification**: This feature is a nice-to-have and makes it easier for the user to see at a glance what appointments on a particular date.
    * **Highlights**: This feature was implemented using the [CalendarFX](https://dlsc.com/products/calendarfx/) library.
    ![Calendar](../images/Jayanth-CalendarUiSample.png)
->>>>>>> 6d31dc90 (Add images of work to PPP)
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Jayanth-Balasubramanian&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Jayanth-Balasubramanian&tabRepo=AY2223S2-CS2103T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements implemented:
