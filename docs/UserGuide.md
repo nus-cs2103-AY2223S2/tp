@@ -620,7 +620,7 @@ This listing already contains the provided platform.
 
 If the platform name provided is invalid, the following error message will show:
 ```ignorelang
-Names should only contain alphanumeric characters and spaces, and it should not be blank.
+Platforms should only contain alphanumeric characters and spaces, and it should not be blank.
 ```
 
 If there are any other deviations from the expected format of the command, there will be an error message shown along with the correct usage of the command:
