@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-F12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-F12-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-F12-4/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/AY2223S2-CS2103T-F12-4/tp)
 
-![Ui](docs/images/InitialScreenWithRightPanelUG.png)
+![Ui](docs/images/Ui.png)
 
 Ultron is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ultron can streamline your internship management.
 
@@ -11,7 +11,7 @@ Ultron is a **desktop app for managing internships, optimized for use via a Comm
 
 **Prerequisites**: Java 11 or above
 
-1. Download the latest version of Ultron from our [release page](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases)
+1. Download the latest version of Ultron from our [release page](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases)
 2. Copy the file to the folder you want to use as the _home folder_ for your Ultron app.
 3. Run the command `java -jar ultron.jar` in the terminal to start the app.
 
