@@ -75,21 +75,21 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-2. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
+1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the *home folder* for AIMS.
+1. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-  <div style="text-align: center;">
-    <img src="images/Ui.png">
-    <p style="font-style: italic;"><br>Default state of the app on startup</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/Ui.png">
+     <p style="font-style: italic;"><br>Default state of the app on startup</p>
+     <br>
+   </div>
 
-5. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 [Back to Top ↑](#table-of-contents)
 
