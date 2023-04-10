@@ -441,9 +441,9 @@ The `find` and `filter` commands allow you to match keywords or partial keywords
 #### Find
 {:.no_toc}
 
-`find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
+The `find` command allows you to zoom in on entries that matches **all** search criterias!
 
-The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`
+`find n/Sh n/Na` displays the students with names containing both `sh` and `na` _(case-insensitive)_, such as `Shanna` or `Nashira`. This partial-keyword matching _(eg. matching `sh` in `Shaun`)_ applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
 
 > Format: \\
 > `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
@@ -452,21 +452,12 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
 #### Filter
 {:.no_toc}
 
-`filter` will also show you those who match with **at least one** of the criteria.
+Unlike `find`, the `filter` command instead show entries that match **at least one** of the search criterias!
+
+`filter n/Sh n/Na` displays the students with names containing either `sh` or `na` _(case-insensitive)_, such as `Sheryl` or `Nala`. Same as `find`, partial-keyword matching doesn't apply to tags and modules, where you will have to enter the keywords in full.
 
 > Format: \\
 > `filter [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
-
-* Input the parameter like so:
-  * Name: `n/`
-  * Address: `a/`
-  * Email: `e/`
-  * Phone No.: `p/`
-  * Education: `edu/`
-  * Telegram Handle: `tele/`
-  * Remark: `r/`
-  * Tags: `t/`
-  * Modules: `m/`
 
 Please refer to the [Prefix Summary](#prefix-summary) for more details!
 
