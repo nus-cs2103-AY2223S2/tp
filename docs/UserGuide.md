@@ -162,8 +162,8 @@ optional.
 
 Examples:
 
-* `add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus`
-* `add i/T0012345B n/Betsy Crowe dob/18/12/1998 p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
+* `add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/male ad/Alex t/Diabetic m/Lantus`
+* `add i/T0012345B n/Betsy Crowe dob/18/12/1998 p/1234567 a/Newgate Prison d/Panadol g/female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
 
 <img src="images/command_result/Add.png" alt="Add" width="63%">
 
