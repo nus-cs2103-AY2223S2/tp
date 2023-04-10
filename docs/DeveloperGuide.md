@@ -49,14 +49,18 @@ below. Here is what each of them means.
 :warning: This indicates a warning or caution.
 </div>
 
+Finally, note that in some sequence diagrams, the lifeline for a class extends
+past its destroy marker (X). This is due to a limitation in PlantUML. We will
+point this out where it occurs in the guide.
+
 ### Content overview
 
 This guide has been divided into five main parts.
 
 * [Design](#design) discusses the high-level architecture of Mycelium
 * [User Interface](#user-interface) discusses GUI concerns
-* [Command Handling](#command-handling) discusses the execution of commands
 * [Keyboard Interaction](#keyboard-interaction) discusses hotkeys and fuzzy search
+* [Command Handling](#command-handling) discusses the execution of commands
 
 We strive to write each section in a relatively self-contained manner, but some
 cross-referencing might be necessary.
@@ -138,7 +142,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `dp -pn Mycelium` Command](images/logic/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `DeleteProjectCommandParser`
+should end at the destroy marker (X).
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -148,6 +154,17 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddProjectCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddProjectCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddProjectCommandParser`, `DeleteProjectCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+The complete list of commands are:
+
+* `AddClientCommand`
+* `DeleteClientCommand`
+* `UpdateClientCommand`
+* `AddProjectCommand`
+* `DeleteProjectCommand`
+* `UpdateProjectCommand`
+
+Each `Command` has its dedicated `Parser` class, and works the same as described above.
 
 ### Model component
 
@@ -168,6 +185,14 @@ Moreover, each client or project is also stored in a generic `UniqueList` which
 ensures that the list does not contain duplicates. The `UniqueList`s are then
 stored in `AddressBook`, which contains the overarching methods for handling
 each type of list.
+
+Duplicates are handled through the `IsSame` generic interface, which provides
+an `isSame` method somewhat analogous to `equals` in Java, but for different
+semantics. It allows us to differentiate the concept of *equality* (e.g. two
+clients with exactly the same attributes) from *real-world identity* (e.g. two
+clients with the same emails). Two clients are considered the same if they have
+the same email, and two projects are considered the same if they have the same
+name.
 
 ### Storage component
 
@@ -277,6 +302,7 @@ For demonstration purposes, the following is the Activity Diagram when a `Entity
 For more information about interacting with the tabs using hotkeys, please refer to the
 [Hotkeys with UiEvent](#hotkeys-with-uievents) section.
 
+---
 
 ## Keyboard Interaction
 
@@ -350,6 +376,11 @@ sequence diagrams show what happens when the `SwitchTabKey` event handler is inv
 ![SwitchTabKey sequence diagram](images/uievent/SwitchTabKey/SwitchTabKey.png)
 ![SwitchTabKeyExecute sequence diagram](images/uievent/SwitchTabKey/SwitchTabKeyExecute.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `SwitchTabKey` should end at
+the destroy marker (X).
+</div>
+
 Note that not all event handlers are built the same. An example of a more
 complicated event handler will be `FindKey` which we will elaborate more
 in the next section.
@@ -378,11 +409,21 @@ is invoked.
 ![FindKey sequence diagram](images/uievent/FindKey/ToggleMode.png)
 ![FindKeyExecute sequence diagram](images/uievent/FindKey/ToggleModeExecute.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `FindKey` should end at
+the destroy marker (X).
+</div>
+
 Depending on the current `Mode` of the command box, triggering the `FindKey` event handler
 creates the other `Mode` and calls `MainWindow#setCommandBoxMode(Mode)` which sets `Mode`
 of the command box by calling `CommandBox#setMode(Mode)`.
 
 ![CommandBoxSetMode sequence diagram](images/commandbox/CommandBoxSetMode.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `Mode` should end at the
+destroy marker (X).
+</div>
 
 When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
 on its outgoing `Mode` to perform the necessary clean-up which includes
@@ -542,6 +583,8 @@ below.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
+---
+
 ## Command Handling
 
 ### Command Sequence
@@ -549,6 +592,7 @@ below.
 When the command box is in `CommandMode`, the user can enter commands to perform various operations in Mycelium. The following sequence diagram shows how the command is handled.
 
 ![CommandHandling Sequence Diagram](images/commandbox/CommandHandling.png)
+![CommandHandling Sequence Diagram](images/commandbox/ExecuteCommand.png)
 
 When the user enters a command, the command box calls `Mode#onInputSubmit(String)` on its current `CommandMode`.
 The input from the command box is then propagated down to the `MainWindow`, the `Logic` and finally the `Parser` to be parsed.
@@ -797,6 +841,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
 
+---
+
 ## Glossary
 
 The terms in this glossary are sorted in alphabetical order.
@@ -968,6 +1014,8 @@ emails with (ENTER).
 The testing of hotkeys is simple, and you can reference the [user
 guide](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#hotkeys) on
 the expected behaviour of each hotkey.
+
+---
 
 ## Appendix: Documentation, Logging, Testing, Configuration, and DevOps
 
@@ -1226,6 +1274,8 @@ level, the new parser for the `uc` and `up` commands would work like this:
    fields
 1. If they are *not* optional, throw an error and inform the user
 1. Otherwise, proceed to set the fields to `Optional.empty()`
+
+---
 
 ## Appendix: Effort
 

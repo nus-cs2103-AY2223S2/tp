@@ -26,7 +26,9 @@ class Client {
 	- mobileNumber: Optional<Phone>
 }
 class UniqueList<T extends IsSame<T>>
-interface "<<interface>>\nIsSame<T>" as IsSame
+interface "<<interface>>\nIsSame<T>" as IsSame {
+	+ isSame(other: T): boolean
+}
 
 Model --|> ClientModel
 Model --|> ProjectModel
