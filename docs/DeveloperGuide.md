@@ -411,6 +411,8 @@ Step 2. User executes `edit-doc n/Simon` to edit a doctor.
 
 Step 3. The doctor is edited and saved to the model’s list of doctors if valid.
 
+Step 4. filteredDoctorList is updated so that the UI can display the edited doctor.
+
 The following sequence diagram illustrates how the edit doctor operation works:
 
 ![](images/EditDoctorSequenceDiagram.png)
@@ -642,7 +644,7 @@ line `"At least one parameter other than INDEX should be provided\n"`.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Code quality + Input validation
+### Scalability
 
 #### Problem 4: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
@@ -658,21 +660,21 @@ To be added
 To be added
 </div>
 
+#### Enhancement 1: Use of association classes instead of lists to capture doctor-patient relationship on assignment
+
+- **Current**: Doctor and patient assignments are currently being stored using a list inside each instance of a Doctor and Patient class. For example, if patient1 is assigned to doctor1, patient1 will have doctor1 in its list of doctors and vice versa.
+- **Proposed**: A DoctorPatient class which models assignments between doctors and patients.
+- **Justification**: Although the current solution is sufficient to capture the relationships between a doctor and a person at this version of Docedex, in future iterations of Docedex, we may want to store more information about the details of the assignment between a doctor and a patient, such as the date. We may even want to want the patient's case details to be specific based on the assignment. An association class can help make creating these new features more scalable and easier to implement.
+  ![Proposed new DoctorPatient class](images/ProposedNewModelDiagram.png)
+
+
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 6: Improving regex validation
+#### Enhancement 2: Validation for find command
 
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
-
-[Scroll back to Table of Contents](#table-of-contents)
-
-#### Problem 7: Use of enums as patient statuses
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
+- **Current**: Users are allowed to type any search query using the find command.
+- **Proposed**: Limit search queries according to the parameter constraints.
+- **Justification**: The current find command gives an empty list when search queries which do not fit the original parameter constraints are given. This is the expected behavior. An enhancement to the find query would be to give users a more specific error message as to why the find command gives an empty list. 
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -920,27 +922,43 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 ## **Appendix F: Glossary**
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X.
-- **User**: Triage Admin Staff within the clinic.
-- **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
-- **UML**: [Unified Modeling Language](https://en.wikipedia.org/wiki/Unified_Modeling_Language)
-- **JSON**: [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON)
-- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
-- **GUI component**: A subsection of the Graphical User Interface.
-- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
-- **User Input**: An interaction from the user to Docedex. This is usually a mouse click or text input.
-- **Feedback**: An interaction from Docedex to the user. This is usually done as acknowledgement after some user input.
-- **Sequence Diagram**: A UML diagram that describes the interactions between objects within Docedex, based on a scenario.
-- **Class Diagram**: A UML diagram that describes the structure of classes within Docedex.
-- **Navigability**: A concept referring to instances of one class holding a reference to instances of another class.
-- **Association**: A concept referring to instances of classes being able to interact with each other.
-- **Association Class**: A class that represents additional information about an association.
+| Term                 | Definition                                                                                                |
+|----------------------|-----------------------------------------------------------------------------------------------------------|
+| AddressBook-Level3   | A project created by the SE-EDU initiative, which this project is based on.                               |
+| App                  | An application created by the project.                                                                    |
+| API                  | An application programming interface.                                                                     |
+| Architecture Diagram | A diagram that explains the high-level design of the App.                                                 |
+| Class diagram        | A diagram that shows the classes of the App and the relationships between them.                           |
+| CLI                  | Command Line Interface, for users to perform actions through typing commands.                             |
+| CommandBox           | A component of the UI that allows users to enter commands.                                                |
+| Commons              | A collection of classes used by multiple other components.                                                |
+| Component            | A modular part of the App that serves a specific function.                                                |
+| ContactDisplay       | A component of the UI that displays contact information.                                                  |
+| GUI                  | Graphical User Interface, a visual way for users to interact with a software program                      |
+| Logic component      | The component responsible for executing user commands.                                                    |
+| Main                 | A class with two subclasses, Main and MainApp, that initializes and shuts down the components of the App. |
+| MainWindow           | The main window of the UI that houses all the UI components.                                              |
+| Model                | The data model used by the App.                                                                           |
+| Navigability         | A concept referring to instances of one class holding a reference to instances of another class.          |
+| PlantUML             | A tool used to create diagrams.                                                                           |
+| ResultDisplay        | A component of the UI that displays the results of commands.                                              |
+| Sequence Diagram     | A diagram that shows the sequence of events between components.                                           |
+| UML                  | [Unified Modeling Language](https://en.wikipedia.org/wiki/Unified_Modeling_Language)                      |
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ## **Appendix G: Effort**
 
-This section is still being updated!
+The Docedex project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of doctors and patients. One of the major changes was the addition of two new models, Doctor and Patient, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
+
+While Doctor and Patient models extended AB3's Patient model, there were several challenges to overcome. The most significant challenge was to map a many-to-many relationship between doctors and patients during assignment. To solve this, the team decided to create a list of patients inside each Doctor instance (and vice versa for patients). This change required us to modify multiple components to update the lists after patient assignment and display them onto the UI.
+
+Another challenge was redesigning the interface to display more information. Changing the interface of an application can be a major undertaking. In the case of Docedex, this involved designing new UI components, updating existing components to reflect the new models and data, and potentially creating new navigation and layout structures to support the new workflows. Significant time was taken to learn JavaFX and implementing the components to fit Docedex use cases.
+
+Our work on implementing the assignment feature is the most prominent in the AssignDoctorCommand and AssignPatientCommand, and their relevant parsers and model methods.
+
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
