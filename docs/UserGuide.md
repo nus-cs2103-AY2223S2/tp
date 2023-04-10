@@ -349,6 +349,8 @@ Format: `mark INDEX`
 Examples:
 - `mark 2` marks task 2 as completed.
 
+<div style="page-break-after: always;"></div>
+
 #### 3.3.7 Unmarking a Task: `unmark`
 
 Unmarks a task in OfficeConnect
@@ -386,6 +388,8 @@ Format: `unassign ti/INDEX pi/INDEX`
 
 Examples:
 - `unassign ti/ 2 pi/ 3` unassigns task 2 from person 3.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Filter Commands
 
@@ -469,6 +473,7 @@ Format: `ti INDEX`
 Example:
 - `ti 1` displays task 1 and all persons assigned to that task.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Others
 
