@@ -11,6 +11,7 @@ import trackr.model.order.SortOrdersComparator;
 /**
  * Sorts all orders in the order list using a criteria given.
  */
+//Solution below adapted from AB3
 public class SortOrdersCommand extends Command {
     public static final String COMMAND_WORD = "sort_order";
     public static final String COMMAND_WORD_SHORTCUT = "sort_o";

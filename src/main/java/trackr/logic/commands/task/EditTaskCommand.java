@@ -18,7 +18,8 @@ import trackr.model.task.TaskStatus;
  * Edits the details of an existing task in the task list.
  */
 public class EditTaskCommand extends EditItemCommand<Task> {
-
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String COMMAND_WORD = "edit_task";
     public static final String COMMAND_WORD_SHORTCUT = "edit_t";
 
@@ -57,4 +58,5 @@ public class EditTaskCommand extends EditItemCommand<Task> {
 
         return new Task(updatedTaskName, updatedTaskDeadline, updatedTaskStatus);
     }
+    //@@author
 }

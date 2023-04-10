@@ -20,20 +20,23 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
-//@@author chongweiguan-reused
-public class JsonAdaptedOrderTest {
 
+public class JsonAdaptedOrderTest {
+    //@@author chongweiguan-reused
     private static final String INVALID_CUSTOMER_NAME = "R@chel";
     private static final String INVALID_CUSTOMER_PHONE = "+651234";
     private static final String INVALID_CUSTOMER_ADDRESS = " ";
     private static final String INVALID_ORDER_DEADLINE = "00/99/9999";
     private static final String INVALID_ORDER_QUANTITY = "9999";
     private static final String INVALID_ORDER_STATUS = "T";
+    //@@author
     private static final String INVALID_TIME_ADDED = "99/99/9999";
 
+    //@@author chongweiguan-reused
     private static final String VALID_CUSTOMER_NAME = AMY.getCustomerName().toString();
     private static final String VALID_CUSTOMER_PHONE = AMY.getCustomerPhone().toString();
     private static final String VALID_CUSTOMER_ADDRESS = AMY.getCustomerAddress().toString();
+    //@@author
     private static final MenuItem VALID_ORDER_ITEM = CHOCOLATE_COOKIES_O.getOrderItem();
     private static final String VALID_ORDER_DEADLINE = "01/01/2024";
     private static final String VALID_ORDER_QUANTITY = CHOCOLATE_COOKIES_O.getOrderQuantity().getValue();
@@ -164,7 +167,10 @@ public class JsonAdaptedOrderTest {
         String expectedMessage = OrderStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
+    //@@author
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with modifications
     @Test
     public void toModelType_nullOrderStatus_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -193,5 +199,4 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
     //@@author
-
 }

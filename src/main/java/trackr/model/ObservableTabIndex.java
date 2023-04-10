@@ -18,7 +18,9 @@ public class ObservableTabIndex {
         targetTabIndex.set(target);
     }
 
+    //@@author arkarsg
     public static final int getTargetTab() {
         return targetTabIndex.getValue();
     }
+    //@@author
 }

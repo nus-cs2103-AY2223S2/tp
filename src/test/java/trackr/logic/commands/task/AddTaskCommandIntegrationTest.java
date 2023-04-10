@@ -19,6 +19,8 @@ import trackr.model.UserPrefs;
 import trackr.model.task.Task;
 import trackr.testutil.TaskBuilder;
 
+//@@author HmuuMyatMoe-reused
+// Reused from AB3 with minor modifications
 /**
  * Contains integration tests (interaction with the Model) for {@code AddTaskCommand}.
  */
@@ -53,3 +55,4 @@ public class AddTaskCommandIntegrationTest {
     }
 
 }
+//@@author

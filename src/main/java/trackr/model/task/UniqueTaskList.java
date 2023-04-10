@@ -4,6 +4,7 @@ import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 import trackr.model.item.UniqueItemList;
 
+//@@author liumc-sg-reused with minor modifications
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
  * A task is considered unique by comparing using {@code Task#isSameItem(Item)}. As such, adding and updating of
@@ -22,3 +23,4 @@ public class UniqueTaskList extends UniqueItemList<Task> {
         super(ModelEnum.TASK);
     }
 }
+//@@author

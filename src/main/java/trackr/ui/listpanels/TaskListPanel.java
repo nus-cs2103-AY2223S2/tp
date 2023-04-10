@@ -12,7 +12,8 @@ import trackr.model.task.Task;
 import trackr.ui.UiPart;
 import trackr.ui.cards.TaskCard;
 
-//@@author arkarsg-reused
+//@@author HmuuMyatMoe-reused
+// Reused from AB3 with minor modifications
 /**
  * Panel containing the list of tasks.
  */
@@ -50,3 +51,4 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
 }
+//@@author

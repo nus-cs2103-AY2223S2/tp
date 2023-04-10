@@ -22,6 +22,8 @@ import trackr.testutil.TaskBuilder;
 //@@author hmuumyatmoe-reused
 public class UniqueTaskListTest {
 
+    //@@author HmuuMyatMoe-reused
+    // Reused from AB3 with minor modifications
     private final UniqueTaskList uniqueTaskList = new UniqueTaskList();
 
     @Test
@@ -181,6 +183,7 @@ public class UniqueTaskListTest {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
     }
+    //@@author
 
     //@@author liumc-sg-reused
     @Test

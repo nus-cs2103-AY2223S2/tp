@@ -8,6 +8,8 @@ import trackr.model.commons.Name;
  */
 public class TaskName extends Name {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String MESSAGE_CONSTRAINTS =
             "Task names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -16,8 +18,10 @@ public class TaskName extends Name {
      *
      * @param taskName A valid task name.
      */
+    //@@author
     public TaskName(String taskName) {
         super(taskName, "Task");
     }
+
 }
 

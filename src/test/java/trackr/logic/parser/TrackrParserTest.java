@@ -59,6 +59,8 @@ public class TrackrParserTest {
         assertEquals(new AddSupplierCommand(person), command);
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
@@ -66,6 +68,7 @@ public class TrackrParserTest {
                 TaskUtil.getAddTaskCommand(task));
         assertEquals(new AddTaskCommand(task), command);
     }
+    //@@author
 
     @Test
     public void parseCommand_addOrder() throws Exception {
@@ -75,6 +78,8 @@ public class TrackrParserTest {
         assertEquals(new AddOrderCommand(order), command);
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void parseCommand_addTaskShortcut() throws Exception {
         Task task = new TaskBuilder().build();
@@ -82,6 +87,7 @@ public class TrackrParserTest {
                 TaskUtil.getAddTaskCommandShortcut(task));
         assertEquals(new AddTaskCommand(task), command);
     }
+    //@@author
 
     @Test
     public void parseCommand_addOrderShortcut() throws Exception {
@@ -179,6 +185,8 @@ public class TrackrParserTest {
     }
     //@@author
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void parseCommand_editTask() throws Exception {
         Task task = new TaskBuilder().build();
@@ -200,7 +208,7 @@ public class TrackrParserTest {
                         + " " + TaskUtil.getTaskDescriptorDetails(descriptor));
         assertEquals(new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor), command);
     }
-
+    //@@author
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -274,6 +282,8 @@ public class TrackrParserTest {
     }
     //@@author
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void parseCommand_listTask() throws Exception {
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
@@ -285,6 +295,7 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD_SHORTCUT) instanceof ListTaskCommand);
         assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ListTaskCommand);
     }
+    //@@author
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

@@ -8,8 +8,11 @@ import trackr.model.commons.Name;
  */
 public class OrderName extends Name {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String MESSAGE_CONSTRAINTS =
             "Order names should only contain alphanumeric characters and spaces, and it should not be blank";
+    //@@author
 
     /**
      * Constructs a {@code OrderName}.

@@ -45,6 +45,8 @@ public class EditTaskCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void execute_allFieldsSpecifiedUnfilteredTaskList_success() throws ParseException {
         Task editedTask = new TaskBuilder().build();
@@ -212,5 +214,5 @@ public class EditTaskCommandTest {
         assertFalse(standardTaskCommand.equals(
                 new EditTaskCommand(INDEX_FIRST_OBJECT, DESC_BUY_FLOUR)));
     }
-
+    //@@author
 }
