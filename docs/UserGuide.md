@@ -151,7 +151,7 @@ Examples:
     <br>
   </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
