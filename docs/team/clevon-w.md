@@ -9,15 +9,35 @@ GoodMatch is a desktop application used for managing applicants and job listings
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
+* Add listing class
+* Added ListingBookParser (main parser body for user inputs)
+  Added AddCommandParser (parser for the add command)
+  Added AddCommand (add command to be executed after being parsed)
+  Added AddCommandTest (test class to test the AddCommand class)
+  Added AddCommandParserTest (test class to test the AddCommandParser class)
+  Editted the CSS for applicants to show up like tags
+  Added some prefixes
+  Added the command to the switch case in ListingBookParser
+* Commented code in CSS files
+  removed unused CSS code
+  changed the colours in a separate file in case we want to add a light and dark theme toggle in future
+  adds other CSS code to change the look of some things like rounding corners
+* Kickstart UG and DG
+* majority of UG and DG
+* **New Feature**: Added Listing class
 
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+  * What it does: It is the listing that users will be creating, deleting and editing when they use our app
+  * Justification: It is the basic building block of our application, a listing is what users are working with.
+  * Highlight: Implementation of things at the beginning were mainly handled by Homun, Branda and I. We had to get the ball rolling with though simple features but features that were tough to implement because it was the very first step taken.
+  * Credits: This class was implemented without referencing any other sources because our Listing is unique.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Add Command
 
+    * What it does: Allows the user to add a job listing into the ListingBook.
+    * Justification: This feature is a core feature of the product, without it, nothing else can be done.
+    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and also had to be up as soon as possible so that other members can work on their commands (if not they don't have any listings to test with). Since this was the first major change as well, many issues cropped up with things from AB3 that did not work with our implementation of things and it took a long time to delete and debug which we all did together as a team.
+    * Credits: The implementation was referenced from AB3. However, since a listing is completely different from a person, the only parts that could be referenced is the parsing flow, from ListingBookParser to AddCommandParser.
+    
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=clevon-w&breakdown=true)
 
 * **Project management**:
@@ -26,7 +46,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
 
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
+    * Revamped the GUI by changing the entire CSS.
     * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
