@@ -5,7 +5,6 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_KEYDATE;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
