@@ -2,8 +2,8 @@
 
 
 
-# MODCheck
-MODCheck is a contact management app that enables you to manage all your contacts easily that works on Windows, MacOS and Linux!
+# ModCheck
+ModCheck is a contact management app that enables you to manage all your contacts easily that works on Windows, MacOS and Linux!
 Our app is catered towards fast typist and many features are catered for students that need better management of their contacts.
 
 ## Main GUI
@@ -16,18 +16,57 @@ Our app is catered towards fast typist and many features are catered for student
 
 ## Key Features
 
+### 👁️ View hidden details of contacts 
 
-### 🔍 Filter contacts by their tags quickly
+ModCheck allows you to view all the details that the contacts have
 
-MODCheck can quickly filter all your contacts based on the tag provided
+### ➕ Add new contacts easily
+
+ModCheck can add new contacts quickly and supports many contacts
+
+### 🧹 Clear all existing contacts 
+
+ModCheck can clear all your contacts from the app with just one command!
+
+### ❌ Delete a specific contact
+
+ModCheck allows you to choose which contact to be deleted from the app
+
+### ✍️ Edit a specific contact
+
+ModCheck allows you to edit details of the specified contact
+
+### 🔙 Undo previous changes made in ModCheck
+
+ModCheck can undo all changes that you have made accidentally
+
+### ↩️ Redo what has been undone 
+
+ModCheck also allows you to redo changes made if you have undo accidentally
+
+### ⬇️ Load a new data file 
+
+ModCheck also allows you to quickly load data from another file to ModCheck
+
+### 📦 Export specified contacts for archiving 
+
+ModCheck can export contacts that you want to archive in another place
+
+### 🔦 Toggle between light and dark mode
+
+ModCheck allows you to quickly customize how the overall UI looks!
+
+### 🔍 Filter contacts by name, phone number, description, email address, tags and module tags quickly
+
+ModCheck can quickly filter all your contacts based on the criteria provided
 
 ### 💾 Instant saving when changes are made
 
-MODCheck can save all your work immediately on the fly
+ModCheck can save all your work immediately on the fly
 
 ### ✅ List all contacts quickly without lag
 
-MODCheck can display all your contacts in one go!
+ModCheck can display all your contacts in one go!
 
 ## Usage
 
@@ -70,21 +109,21 @@ MODCheck can display all your contacts in one go!
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                      |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​ ` <br> e.g., `add n/Benedict Tan d/Great Friend e/BenedictTan@gmail.com p/98070707 t/Friend m/CS2103 m/CS3230 `                                                                                           |
-| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
-| **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |
-| **Edit**   | `edit {INDEX or NAME} [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` or `edit James e/jameslee@example.com`                                                                                                          |                                                                                                                                                                                                                       |
-| **List**   | `list`                                                                                                                                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                |
-| **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> |
-| **Undo**   | `undo`                                                                                                                                                                                                                                                                                |
-| **Redo**   | `redo`                                                                                                                                                                                                                                                                                |
-| **Load**   | `load` OR `load <path>`                                                                                                                                                                                                                                                               |
-| **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                              |
-| **Light**  | `light`                                                                                                                                                                                                                                                                               |
-| **Dark**   | `dark`                                                                                                                                                                                                                                                                                |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​ ` <br> e.g., `add n/Benedict Tan d/Great Friend e/BenedictTan@gmail.com p/98070707 t/Friend m/CS2103 m/CS3230 `                                                                                                                                                  |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                                                                              |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                      |
+| **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                                                                                |
+| **Edit**   | `edit {INDEX or NAME} [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` or `edit James e/jameslee@example.com`                                                                                                                                                                 |                                                                                                                                                                                                                       |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                       |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                       |
+| **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> `filter m/MODULE_TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> e.g. `filter m/CS2103` <br> |
+| **Undo**   | `undo`                                                                                                                                                                                                                                                                                                                                       |
+| **Redo**   | `redo`                                                                                                                                                                                                                                                                                                                                       |
+| **Load**   | `load` OR `load <path>`                                                                                                                                                                                                                                                                                                                      |
+| **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                                                                                     |
+| **Light**  | `light`                                                                                                                                                                                                                                                                                                                                      |
+| **Dark**   | `dark`                                                                                                                                                                                                                                                                                                                                       |
 
 ---
