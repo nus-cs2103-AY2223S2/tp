@@ -12,7 +12,6 @@ You can use this guide to maintain, upgrade, and evolve **MedInfo**.
 
 ## Table of contents
 
-* [Acknowledgements](#acknowledgements)
 * [Getting Started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
