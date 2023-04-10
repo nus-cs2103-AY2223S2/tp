@@ -41,8 +41,6 @@ Given below are my contributions to the project.
     * Revamped the existing student list UI. (Pull requests [#71](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/71) [#72](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/72))
     * UI integration. (Pull requests [#81](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/81))
     * Revamped the overall UI layout and make it more responsive (Pull requests [#117](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/117))
-      * Individual scroll bar for different panels.
-      * Allow text wrap and set up display restriction to avoid unwanted text truncate.
     * Wrote additional tests for existing features and improve the Codecov. (Pull requests [#170](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/170))
 
 * **Documentation**:
@@ -69,7 +67,3 @@ Given below are my contributions to the project.
     * Contributed to forum discussions
       * [#206](https://github.com/nus-cs2103-AY2223S2/forum/issues/206)
       * [#290](https://github.com/nus-cs2103-AY2223S2/forum/issues/290)
-
-* **Tools**:
-    * Adobe Illustrator
-    * Figma
