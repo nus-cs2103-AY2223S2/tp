@@ -21,7 +21,7 @@ public class ListTagCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
-        Object[] tags = model.getFilteredTagList().toArray();
+        Object[] tags = model.getFilteredTagList().sorted().toArray();
 
         StringBuilder sb = new StringBuilder();
 
