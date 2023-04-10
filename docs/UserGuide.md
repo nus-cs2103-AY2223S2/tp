@@ -301,6 +301,15 @@ Examples:
 * `add` -> `add n/` after hitting `TAB` (since `n/` is the next prefix for `add`)
 * `add n/Bobby` -> `add n/Bobby p/` after hitting `TAB` (since `p/` is the next prefix for `add` after `n/`)
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+Autocomplete only works for command words and prefixes that expect a corresponding input data. You may refer to the
+[Prefx](#prefix) section for more details on prefixes.
+
+</div>
+
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
@@ -520,6 +529,15 @@ Format: `sortm ATTRIBUTE [r]`
 * Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
 * Example: `sortm m/` sorts meetings by title in ascending order.
 * Example: `sortm dt/r` sorts meetings by date/time in descending order.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+Autocomplete is not designed for attributes such as `m/` for `sortm` as it is not a prefix that expects a corresponding
+input data. For more details, refer to the [autocomplete section](#autocomplete-inputs).
+
+</div>
 
 ### Finding Meetings by Attendee Name : `findm`
 
