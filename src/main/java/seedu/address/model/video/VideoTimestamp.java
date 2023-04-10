@@ -12,15 +12,20 @@ import java.util.regex.Pattern;
  */
 public class VideoTimestamp {
 
+    /** The default timestamp. */
     public static final String DEFAULT_TIMESTAMP = "00:00:00";
 
+    /** Message that specifies the format constraints. */
     public static final String MESSAGE_FORMAT_CONSTRAINTS =
             "Timestamp should be of the format 'HH:mm:ss' where 'HH' is the number of hours, 'mm' is the number of "
                     + "minutes, and 'ss' is number of seconds, each integer being 2 digits long";
+
+    /** Message that specifies the range constraints. */
     public static final String MESSAGE_RANGE_CONSTRAINTS =
             "Timestamp hours should be between 0 (inclusive) and 99 (inclusive), while minutes and seconds "
                     + "should be between 0 (inclusive) and 59 (inclusive)";
 
+    /** The regex for validating the video timestamp. */
     public static final String VALIDATION_REGEX = "(\\d{2}):(\\d{2}):(\\d{2})";
 
     private static final Pattern VALIDATION_PATTERN = Pattern.compile(VALIDATION_REGEX);
@@ -47,6 +52,8 @@ public class VideoTimestamp {
      * Constructs a {@code VideoTimestamp}.
      *
      * @param timestamp A valid timestamp.
+     * @throws IllegalArgumentException Indicates that {@code timestamp} is an invalid video timestamp. The exception's
+     *                                  message contains the reason for the invalidity.
      */
     public VideoTimestamp(String timestamp) {
         requireNonNull(timestamp);

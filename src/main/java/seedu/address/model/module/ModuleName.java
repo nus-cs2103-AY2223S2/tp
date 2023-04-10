@@ -8,15 +8,18 @@ import seedu.address.model.Name;
  */
 public class ModuleName extends Name {
 
+    /** Message that specifies the constraints. */
     public static final String MESSAGE_CONSTRAINTS =
             "Module names should only contain alphanumeric characters and spaces";
 
+    /** The regex for validating the module name. */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]*";
 
     /**
      * Constructs a {@code ModuleName}.
      *
      * @param name A valid name.
+     * @throws IllegalArgumentException Indicates that {@code name} is an invalid module name.
      */
     public ModuleName(String name) {
         super(name, VALIDATION_REGEX, MESSAGE_CONSTRAINTS);
