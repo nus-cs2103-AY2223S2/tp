@@ -26,6 +26,7 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
       - Created `JsonSerializableDrugInventory` and `JsonSerializablePatientRecord` to adapt `DrugInventory` and `PatientRecord` model for storage in Json format. 
       - Created `JsonDrugInventoryStorage` and `JsonPatientRecordStorage` to facilitate the reading and writing of patient and drug data into the hard disk.
       - Created the `CareFlowStorageManager` to proxy storage related operations.
+
 ### **New Features**
   - Implemented the drug inventory in-app notification feature [#212](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/212)
     - This feature serves to remind users of low storage count to help users better plan for drug replenishment.
@@ -34,10 +35,12 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
   - Implemented the `Drug` model [#42](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/42)
     - Created `ActiveIngredient`, `Direction`, and `Drug` classes to store relevant drug information.
     - Created `UniqueDrugList` to store unique Drug objects.
+
 ### **Enhancements to Application UI**
   - Designed and implemented the patient and drug information display panel to provide better information visualisation. [#176](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/176)
   - Implemented the UI status bar footer to allow display of source file paths. [#80](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/80)
   - Added the function to remember the theme selected by the user. [#106](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/106/files)
+
 ### **Testing**
   - Created JUnit test cases for storage components. [#133](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/133)
     - Created test methods for `CareFlowStorageManager` to test the reading and saving of
@@ -72,6 +75,7 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
     - Created test methods for `JsonSerializableDrugInventory` and `JsonSerializablePatientRecord` to test the conversion of json format `DrugInventory` and `PatientRecord` objects back to java objects.
   - Created sample drug and patient data to be used in testings. [#133](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/133)
     - Created `DrugBuilder`, `PatientBuilder`, `TypicalDrugs` and `TypicalPatients` testutil classes.
+
 ### **User Guide**
   - Added detailed instruction on how to download and set up java 11 environment. [#176](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/176)
     - Created step-by-step guide on how to install java 11 on macOS and Windows operating systems.
@@ -79,9 +83,11 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
   - Added screenshots for various features to illustrate the expected interaction and outcome. [#193](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/193) [#221](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/221)
   - Reformatted each feature for better visual presentation. [#194](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/194)
   - Added notes and tips for various features to help user better understand the functionality of each feature. [#297](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/297)
+
 ### **Developer Guide**
   - Added implementation details and UML diagram for `storage` component. [#164](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/164)
   - Added execution detail and sequence diagram for `d find` command, using `d find Panadol` as the example input. [#213](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/213) [#219](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/219)
+
 ### **Issues Fixed**
   - Unable to store and read of patient record [#83](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/83)
   - Inconsistent command snytax [#151](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/151)
