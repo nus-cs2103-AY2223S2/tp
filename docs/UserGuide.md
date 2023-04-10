@@ -18,21 +18,21 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [How to use this guide](#how-to-use-this-guide)
   - [Legends](#legends)
 - [Quick Start](#quick-start)
-- [Introduction to GoodMatch](#introduction-to-goodmatch)
+- [Get to know GoodMatch](#get-to-know-goodmatch)
 - [Features](#features)
-  - [Viewing help: `help`](#viewing-help--help)
-  - [Viewing all job listings: `view`](#viewing-all-job-listings--view)
-  - [Adding a job listing: `add`](#adding-a-job-listing--add)
-  - [Editing a job listing: `edit`](#editing-a-job-listing--edit)
-  - [Deleting a job listing: `delete`](#deleting-a-job-listing--delete)
-  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing--addapp)
-  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing--editapp)
-  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing--delapp)
+  - [Viewing help: `help`](#viewing-help-help)
+  - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+  - [Adding a job listing: `add`](#adding-a-job-listing-add)
+  - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+  - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
+  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
   - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
   - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-  - [Locating job listings by title: `find`](#locating-job-listings-by-title--find)
-  - [Sorting job listings: `sort`](#sorting-job-listings--sort)
-  - [Undo latest command: `undo`](#undo-latest-command--undo)
+  - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+  - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+  - [Undo latest command: `undo`](#undo-latest-command-undo)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -93,42 +93,53 @@ Some example commands you can try:
 
 ---
 
-## Introduction to GoodMatch
-
-### Summary
-GoodMatch serves as a platform for hiring managers to manage and keep track of job listings. Essentially, it functions as a list of job listings, whereby details of each listing can be managed via various commands (which will be explained further in later parts of this guide).
+## Get to know GoodMatch
 
 ### Listing
-A job listing is the basic building block of GoodMatch. It helps managers to keep track and display all the details relating to the job. Job listings can be created, deleted, or edited. <br> A job listing in GoodMatch contains the following fields:
+
+A job listing is the basic building block of GoodMatch. It helps managers to keep track and display all the details relating to the job. Job listings can be created, deleted, or edited.
+
+A job listing in GoodMatch contains the following fields:
 
 #### Title
-What the job listing is called. It serves as an identifier for a job listing.<br> Some constraints that a job title include:
+
+What the job listing is called. It serves as an identifier for a job listing.
+
+Some constraints that a job title include:
 - It is **compulsory** in a job listing.
 - Two job listings with the same title cannot exist in GoodMatch at the same time (**no duplicates**).
 - Titles must only contain alphanumeric characters.
 
 #### Description
+
 A simple description of what the job entails.
 - It is **compulsory** in a job listing.
 
 #### Applicants List
+
 A list of people who applied for the job.
 - It is possible for a job listing to have no applicants.
 
 #### Platforms released
+
 A list of job platforms on which the job listing has been publicized.
 - It is possible for a job listing to have no platforms released.
 
 ### Applicant
-An applicant refers to someone who has applied for a job listing. Applicants are displayed according to their names and are specific to each job listing.
+
+An applicant refers to someone who has applied for a job listing. 
+
+Applicants are displayed according to their names and are specific to each job listing.
 - An applicant must have a name.
 - An applicant's name must contain only alphanumeric characters.
 - Applicants with identical names are allowed in the same job listing.
 - Can be managed individually or as a whole list in each job listing.
 
 #### IDs
-In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing. 
-<br><br> 
+In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. 
+
+The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing.
+
 
 > If the listing has only one applicant named *Tom*, the applicant will be displayed as `Tom`.
 
@@ -136,20 +147,26 @@ In a job listing, each applicant will have a unique 4-digit ID, generated automa
 
 
 ### Platform
-A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are Linkedin, Indeed, etc.
+
+A platform refers to a site or avenue in which a job listing has been publicized. 
+
+Some of the more well known platforms are Linkedin, Indeed, etc.
 - A platform must have a name.
 - A platform's name must contain only alphanumeric characters.
 - Platforms in the same listing cannot have identical names (**no duplicates**).
 - Can be managed individually as a whole list in each job listing.
 
 ### Commands
-There are various commands available in GoodMatch which will allow users to manage listings, applicants and platforms. These commands will be discussed in the following sections.
+
+There are various commands available in GoodMatch which will allow users to manage listings, applicants and platforms. 
+
+These commands will be discussed in the following sections.
 
 
 ---
 
 ## **Features**
-Here is a list of GM features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
+Here is a list of GoodMatch features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
 
 1.  [`help`](#viewing-help--help)
 2.  [`view`](#viewing-all-job-listings--view)
