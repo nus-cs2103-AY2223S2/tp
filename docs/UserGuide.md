@@ -187,11 +187,14 @@ Create a group in the address book.
 
 Format: `group_create g/GROUP_NAME`
 
-* Creates a group with the specified group name `GROUP_NAME`.
-* The group name cannot be empty and must be alphanumeric!
-* **NOTE: The group name cannot contain spaces**
-* Only one group can be created
+* Creates a group with the specified group name `GROUP_NAME`
+* The group name cannot be empty and can only contain alphanumeric characters!
+* Only one group can be created at a time
 * If more than one group is specified, only the last occurrence of a group will be taken
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Group names cannot contain spaces!
+</div>
 
 Examples:
 * `group_create g/CS2103T`
@@ -238,26 +241,26 @@ Examples:
 ## Event-related commands
 
 ### Creating an event:
-Create events and add it to a specific person in WGT. WGT supports two types of event:
-1. isolated event: one off event 
-2. recurring event: weekly events such as tutorials and lectures 
+Create events and add it to a specific person in WGT. WGT supports two types of events:
+1. Isolated events: one off events 
+2. Recurring events: weekly events such as tutorials and lectures 
 
 Note that only **hourly** events can be created.
 For example, `17:00` is a valid timing and `17:30` is an invalid timing
 
 #### 1) Isolated event: `event_create`
-Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
+Format: `event_create INDEX ie/EVENT_NAME f/START_DATETIME t/END_DATETIME`
 
 * `INDEX` refers to the index of the person to add the given isolated event
-* Creates an event with the specified name `EVENT_NAME` using the flag `ie/` which stands for Isolated event
+* Creates an event with the specified name `EVENT_NAME` using the flag `ie/` which represents the words __Isolated event__
 * The flags `f/` represent the word __from__ and `t/` represents the word __to__
-* `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
-* If there are duplicate attributes (i.e. `event_create INDEX ie/test ie/test2 f/START_DATE t/END_DATE`), WGT will take the 
+* `EVENT_NAME`, `START_DATETIME` and `END_DATETIME` cannot be left empty
+* If there are duplicate attributes (i.e. `event_create INDEX ie/test ie/test2 f/START_DATETIME t/END_DATETIME`), WGT will take the 
 info following the latest attribute (in the example case, WGT will take event name to be test 2). 
 
-* The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
-* `START_DATE` has to be before the `END_DATE`
-* `START_DATE` and `END_DATE` has to be after the current date time
+* The format of both `START_DATETIME` and `END_DATETIME` would be in `dd/MM/yyyy HH:mm`
+* `START_DATETIME` has to be before the `END_DATETIME`
+* `START_DATETIME` and `END_DATETIME` has to be after the current date and time
 
 Examples:
 * `event_create 1 ie/CS2101 Presentation f/02/02/2025 16:00 t/28/02/2025 18:00`
@@ -266,8 +269,8 @@ Examples:
 Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
 
 * `INDEX` refers to the index of the person whose recurring event list will be added with the given recurring event
-* Creates a recurring event with the specified name `EVENT_NAME` using the flag `re` which stands for Recurring event
-* The flag `d/` represents the day of the week
+* Creates a recurring event with the specified name `EVENT_NAME` using the flag `re` which represents the words __Recurring event__
+* The flag `d/` represents the __day__ of the week
 * The remaining flags `f/` represent the word __from__ and `t/` represents the word __to__
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`
 * The format of `START_TIME` and `END_TIME` would be in `HH:mm`
@@ -282,11 +285,11 @@ Delete either an isolated or a weekly recurring event
 
 Deletes an existing isolated event from a person's isolated event list in WGT.
 
-Format: `ie_delete INDEX_OF_PERSON INDEX_OF_EVENT`
+Format: `ie_delete PERSON_INDEX EVENT_INDEX`
 
-* Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
-* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing and valid person and index i.e. if there is 
-only 3 persons stored in WGT, 4 is an invalid `INDEX_OF_PERSON`
+* Deletes an event with the specified event index `EVENT_INDEX` from the specified person with person index `PERSON_INDEX`
+* Both `PERSON_INDEX` and `EVENT_INDEX` and cannot be empty and must be an existing and valid person and index i.e. if there is 
+only 3 persons stored in WGT, 4 is an invalid `PERSON_INDEX`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Expired events (events' end date is before the current date time) will be automatically deleted
@@ -298,10 +301,10 @@ Examples:
 #### 2) Delete recurring event: `re_delete`
 Deletes a recurring event from a person's recurring event list in WGT.
 
-Format: `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`
+Format: `re_delete PERSON_INDEX EVENT_INDEX`
 
-* Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
-* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
+* Deletes an event with the specified event index `EVENT_INDEX` from the specified person index `PERSON_INDEX`
+* Both `PERSON_INDEX` and `EVENT_INDEX` and cannot be empty and must be an existing person and index
 
 Examples:
 * `re_delete 1 1`
@@ -312,15 +315,15 @@ Edit the attributes of either an isolated event or a weekly recurring event
 
 Edit an existing isolated event from person's isolated event list in WGT.
 
-Format: `ie_edit INDEX_OF_PERSON INDEX_OF_EVENT [ie/NAME] [f/START_DATE] [t/END_DATE]`
+Format: `ie_edit PERSON_INDEX EVENT_INDEX [ie/NAME] [f/START_DATETIME] [t/END_DATETIME]`
 
-* Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
-* **At least one attribute** from isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATE]` and `[t/END_DATE]`
+* Edit a weekly recurring event with the specified `EVENT_INDEX` that belong to a person with a specified `PERSON_INDEX`
+* **At least one attribute** from isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATETIME]` and `[t/END_DATETIME]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
-* `START_DATE` and `END_DATE` must be in the format of `dd/MM/yyyy HH:mm`
-* `START_DATE` has to be before the `END_DATE`
-* `START_DATE` and `END_DATE` has to be after the current date time
+* `START_DATETIME` and `END_DATETIME` must be in the format of `dd/MM/yyyy HH:mm`
+* `START_DATETIME` has to be before the `END_DATETIME`
+* `START_DATETIME` and `END_DATETIME` has to be after the current date time
 
 Examples:
 * `ie_edit 1 1 ie/Biking`
@@ -329,9 +332,9 @@ Examples:
 #### 2) Edit a recurring event: `re_edit`
 Edit an existing recurring event from person's recurring event list in the address book.
 
-Format: `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`
+Format: `re_edit PERSON_INDEX EVENT_INDEX [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`
 
-* Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
+* Edit a weekly recurring event with the specified `EVENT_INDEX` that belong to a person with a specified `PERSON_INDEX`
 * At least one attribute from recurring event must be included. The attributes are `[re/NAME]`, `[d/DAY_OF_WEEK]`, `[f/START_TIME]` and `[t/END_TIME]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
@@ -384,7 +387,7 @@ Format: `import`
 ### Export a person: `export`
 Export a person's details from the address book.
 
-Format: `export [INDEX_OF_PERSON]`
+Format: `export [PERSON_INDEX]`
 
 * Exports a person's details with the specified `INDEX`
 * All details except groups and tags are exported (Reason mentioned in `Import` section)
@@ -431,11 +434,11 @@ If your changes to the data file makes its format invalid, the app will discard 
 | **Group delete**           | `group_delete GROUP_INDEX`                                                                                                                                                  |
 | **Group list**             | `group_list`                                                                                                                                                                |
 | **Group find**             | `group_find KEYWORD [MORE_KEYWORDS]` <br> e.g., `group_find CS2103 CS2101`                                                                                                  |
-| **Isolated Event create**  | `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                                  |
-| **Isolated Event delete**  | `ie_delete INDEX_OF_PERSON INDEX_OF_EVENT`                                                                                                                                  |
-| **Isolated Event update**  | `ie_edit INDEX_OF_PERSON INDEX_OF_EVENT [ie/NAME] [f/START_DATE] [t/END_DATE]`                                                                                              |
+| **Isolated Event create**  | `event_create INDEX ie/EVENT_NAME f/START_DATETIME t/END_DATETIME`                                                                                                                  |
+| **Isolated Event delete**  | `ie_delete PERSON_INDEX EVENT_INDEX`                                                                                                                                  |
+| **Isolated Event update**  | `ie_edit PERSON_INDEX EVENT_INDEX [ie/NAME] [f/START_DATETIME] [t/END_DATETIME]`                                                                                              |
 | **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
-| **Recurring Event delete** | `re_delete INDEX_OF_PERSON INDEX_OF_EVENT`                                                                                                                                  |
-| **Recurring Event update** | `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`                                                                              |
-| **Export person**          | `export [INDEX_OF_PERSON]`                                                                                                                                                  |                                                                                                                                                     |
+| **Recurring Event delete** | `re_delete PERSON_INDEX EVENT_INDEX`                                                                                                                                  |
+| **Recurring Event update** | `re_edit PERSON_INDEX EVENT_INDEX [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`                                                                              |
+| **Export person**          | `export [PERSON_INDEX]`                                                                                                                                                  |                                                                                                                                                     |
 | **Free**                   | `free GROUP_INDEX [f/START_DATE]`                                                                                                                                           |
