@@ -71,7 +71,7 @@ Given below are my contributions to the project.
     , [#126](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/126), [#214](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/214), [#234](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/234)
 
 
-* **Documentation**:
+* **Community**:
   * PRs reviewed (with non-trivial comments): [#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [#76](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/76), [#125](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/125)
   , [#131](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/131), [#134](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/134),
   * Created a total of [27](https://github.com/AY2223S2-CS2103T-T11-4/tp/issues?q=is%3Aissue+author%3ACreationsv2+) issues for GitHub issue tracker.
