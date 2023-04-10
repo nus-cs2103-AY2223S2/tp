@@ -25,7 +25,17 @@ public class FavoritesCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredRecipeList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
+        boolean isSizeOne = model.getFilteredRecipeList().size() == 1;
+        String returnedCommand;
+        if (isSizeOne) {
+            returnedCommand = String.format(Messages.MESSAGE_ONE_RECIPE_LISTED_OVERVIEW,
+                    model.getFilteredRecipeList().size());
+        } else {
+            returnedCommand = String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW,
+                    model.getFilteredRecipeList().size());
+
+        }
+        return new CommandResult(returnedCommand);
+
     }
 }
