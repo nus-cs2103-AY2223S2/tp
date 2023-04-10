@@ -48,7 +48,7 @@ task coverage(type: JacocoReport) {
     }
 }
 
-checkstyleMain.exclude('vimification/ui/*.java')
+// checkstyleMain.exclude('vimification/ui/*.java')
 
 dependencies {
     String jUnitVersion = '5.4.0'
