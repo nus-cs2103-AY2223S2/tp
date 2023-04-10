@@ -337,7 +337,7 @@ This command finds the recipes in your recipe book according to what you are loo
 - the flag `t/` searches only through the recipe's title
 - the flag `s/` searches only through the recipe's steps
 - the flag `i/` searches only through the recipe's ingredient names
-- the flag `d/` searches only thorugh the recipe's description
+- the flag `d/` searches only through the recipe's description
 - the flag `tag/` searches only through the recipe's tags
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Constraint:** <br/>

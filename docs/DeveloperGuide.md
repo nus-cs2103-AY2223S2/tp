@@ -236,7 +236,7 @@ The meaning of each prefix is as shown below:
 - the flag `t/` searches only through the recipe's title
 - the flag `s/` searches only through the recipe's steps
 - the flag `i/` searches only through the recipe's ingredient names
-- the flag `d/` searches only thorugh the recipe's description
+- the flag `d/` searches only through the recipe's description
 - the flag `tag/` searches only through the recipe's tags
 
 #### Implementation
