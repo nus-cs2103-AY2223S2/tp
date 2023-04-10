@@ -182,13 +182,12 @@ Diagram below shows an example of a client called `c0` after using the `add` com
 The `Client` consists of these objects after adding. Objects that are a `Set` can contain 0 or more objects. Goal object can contain a String `client has not added a goal` to represent that there is no goal. Calorie object can contain `0000` value to represent there is no recommended calorie input.
 All objects must contain non-null attributes. All objects must be present after adding/editing the client other than objects in the `Set` objects.
 
-<img src="images/ClientObject.png" height = "200"/>
+<img src="images/ClientObject.png"/>
 <div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClient` and all the other JsonAdapted classes accordingly.
-
-![AddEditState0](images/AddEditState0.png)
+<img src="images/AddEditState0.png" height = "400"/>
 
 Step 2. The user executes `add n/John Doe p/32692562 …​` command to add the Client in the FitBook. The `add` command calls `AddCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddCommand:execute()` to execute the command to add the Client in the FitBook.
 * The add command has a similar UML diagram as `Step 1`. The only changes are the addCommand to editCommand, edits the client and add it into storage and edits the client in the model.
