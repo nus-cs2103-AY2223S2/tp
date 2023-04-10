@@ -649,8 +649,6 @@ Use case resumes at step 2.
       Use case resumes at step 2.
 
 
-_{More to be added}_
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -659,7 +657,6 @@ _{More to be added}_
 4.  Should mask the NRIC of patients when listing (e.g. XXXXX264G).
 5.  The product is not required to validate the medical records.
 
-_{More to be added}_
 
 ### Glossary
 
@@ -669,7 +666,6 @@ _{More to be added}_
 - **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
 - **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
 
-_{More to be added}_
 
 ---
 
@@ -697,7 +693,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
 ### Delete a patient
 
@@ -714,15 +709,13 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Save data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. MedInfo will clear the current data if the data files are corrupted or modified invalidly.
 
-2. _{ more test cases …​ }_
 
 
 ---
