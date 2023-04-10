@@ -34,7 +34,8 @@ This User Guide provides brief documentation on how you can install the applicat
      * For [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt). For [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal).
    
    ![Ui](images/Ui.png)
-<div style="page-break-after: always;"></div>
+
+
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
