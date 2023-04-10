@@ -88,7 +88,7 @@ The components are summarised below.
 |        List Panel | Displays list of customers or orders                               |
 |         List Tabs | Switch between displaying customers and orders in the *List Panel* |
 
-#### Using the CLI
+#### Using the Command Panel
 {: .no_toc}
 
 The *Command Panel* is where you type and submit your commands.
