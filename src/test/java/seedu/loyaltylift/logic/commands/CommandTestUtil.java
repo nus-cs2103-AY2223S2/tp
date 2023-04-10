@@ -7,6 +7,7 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -20,7 +21,9 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.testutil.AddOrderDescriptorBuilder;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
+import seedu.loyaltylift.testutil.EditOrderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -66,12 +69,21 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_CUSTOMER_TYPE = " " + PREFIX_CUSTOMER_TYPE + "person"; // not a customer type
+    public static final String INVALID_QUANTITY = " " + PREFIX_QUANTITY + "-5"; // only positive integers allowed
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_ORDER_A;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_ORDER_B;
+    public static final AddOrderCommand.AddOrderDescriptor DESC_ADD_ORDER_A;
+    public static final AddOrderCommand.AddOrderDescriptor DESC_ADD_ORDER_B;
+
+
+
 
     // order
 
@@ -94,6 +106,14 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
+        DESC_ORDER_A = new EditOrderDescriptorBuilder().withName(VALID_NAME_A).withAddress(VALID_ADDRESS_A)
+                .withQuantity(VALID_QUANTITY_A).build();
+        DESC_ORDER_B = new EditOrderDescriptorBuilder().withName(VALID_NAME_B).withAddress(VALID_ADDRESS_B)
+                .withQuantity(VALID_QUANTITY_B).build();
+        DESC_ADD_ORDER_A = new AddOrderDescriptorBuilder().withName(VALID_NAME_A).withQuantity(VALID_QUANTITY_A)
+                .withAddress(VALID_ADDRESS_A).build();
+        DESC_ADD_ORDER_B = new AddOrderDescriptorBuilder().withName(VALID_NAME_B)
+                .withQuantity(VALID_QUANTITY_B).build();
     }
 
     /**

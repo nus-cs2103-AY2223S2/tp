@@ -189,7 +189,6 @@ public class EditOrderCommand extends Command {
             EditOrderDescriptor e = (EditOrderDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getName().equals(e.getName())
                     && getQuantity().equals(e.getQuantity())
                     && getAddress().equals(e.getAddress());
         }

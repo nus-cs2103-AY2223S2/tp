@@ -115,6 +115,24 @@ public class AddOrderCommand extends Command {
 
         public AddOrderDescriptor() {}
 
+        /**
+         * Copy constructor.
+         */
+        public AddOrderDescriptor(AddOrderDescriptor toCopy) {
+            setName(toCopy.name);
+            setQuantity(toCopy.quantity);
+            setAddress(toCopy.address);
+        }
+
+        /**
+         * Extract order descriptor from order for testing purposes.
+         */
+        public AddOrderDescriptor(Order toCopy) {
+            setName(toCopy.getName());
+            setQuantity(toCopy.getQuantity());
+            setAddress(toCopy.getAddress());
+        }
+
         public void setName(Name name) {
             this.name = name;
         }
