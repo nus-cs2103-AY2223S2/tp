@@ -14,7 +14,7 @@ Given below are my contributions to the project:
   * **New feature:** Upload Command
     - What it does: Users can upload a student photo (in .png format) to CLIpboard which will be reflected in the student view pane.
   * **New feature:** Enable scrolling through past inputs
-    - What it does: Similar to Linux command-line interface, users can use the `UP` or `DOWN` arrow kwys to scroll through previously typed commands in command box.
+    - What it does: Similar to Linux command-line interface, users can use the `UP` or `DOWN` arrow keys to scroll through previously typed commands in command box.
   * **GUI Enhancements:** GUI for different pages
     - Course Page and Group Page GUI: Designed list panel to display different courses or groups.
     - Session Page and Task Page GUI: Designed list panel to display different sessions or tasks. Upon selecting a session or task, the corresponding session and task cards change colour.
