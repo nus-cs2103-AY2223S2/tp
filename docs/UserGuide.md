@@ -22,7 +22,7 @@ Table of Contents
 * [1. Quick start](#1-quick-start)
 * [2. The Layout of Clock-Work](#2-the-layout-of-clock-work)
 * [3. Introducing a Task](#3-a-task-in-clock-work)
-* [4. Features and commands](#4-features-and-commands)
+* [4. Features and Commands](#4-features-and-commands)
   * [4.1 add](#41-adding-a-task--add)
   * [4.2 edit](#42-editing-a-task--edit)
   * [4.3 delete](#43-deleting-a-task--delete)
@@ -39,8 +39,8 @@ Table of Contents
   * [4.12 clear](#412-clearing-all-entries--clear)
   * [4.13 exit](#413-exiting-the-program--exit)
 * [5. Storage](#5-storage)
-  * [5.1 saving the data](#51-saving-the-data)
-  * [5.2 editing the data](#52-editing-the-data-file)
+  * [5.1 Saving the Data](#51-saving-the-data)
+  * [5.2 Editing the Data](#52-editing-the-data-file)
 * [6. FAQ](#6-faq)
 * [7. Command summary](#7-command-summary)
 * [8. Glossary](#8-glossary)
@@ -378,17 +378,14 @@ Tasks allocated to a day should not exceed the intended <code>E/EFFORT</code> le
 
 However, if the need arises, the effort allocated for a day can exceed your preferred <code>E/EFFORT</code> level.
 
-Task book allocates tasks as such:<br>
+Task book allocates tasks as such:
 <br>
-
 1. Allocate all events to the day(s) it is supposed to be happening.<br>
 2. Allocate all deadlines to the first day before the deadline (exclusive of due date), such that adding a task to that day does not exceed the user-preferred workload. Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).<br>
 3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).<br>
 
 
-#### 4.9.2 Need more help?
-<br>
-<b>Displaying Daily Plans</b>
+#### Displaying Daily Plans
 <br>
 <br>
 Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
