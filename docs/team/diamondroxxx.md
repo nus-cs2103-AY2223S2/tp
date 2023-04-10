@@ -3,7 +3,7 @@ layout: page
 title: Avery's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: Fish Ahoy!
 
 *Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
 Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
