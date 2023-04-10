@@ -1055,7 +1055,52 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `:d 0 -d` or `:d 2 -d`<br>
       Excepted: An error message will be displayed since there is not task at index 0 or 2.
       
-
+### Filtering
+1. Filtering the task by keyword 
+   1. Test case: `:f -w "quiz"`<br>
+      Expected: All the task with "quiz" as the keyword will be displayed
+   2. Test case: `:f -w ""` <br>
+	Excepted: An error message will be displayed since keyword cannot be empty
+2. Filtering the task by priority
+   1. Test case: `:f -p 0`<br>
+      Expected: All the task with "unknown" as the priority will be displayed
+   2. Test case: `:f -p 1`<br>
+      Expected: All the task with "very urgent" as the priority will be displayed
+   1. Test case: `:f -p 2`<br>
+      Expected: All the task with "urgent" as the priority will be displayed
+   1. Test case: `:f -p 3`<br>
+      Expected: All the task with "not urgent" as the priority will be displayed
+   1. Test case: `:f -p -1` or `:f -p 4` or `:f -p `<br>
+      Expected: An error message will be displayed since priority cannot be empty and can only be 0, 1, 2 or 3.
+3. Filtering the task by status
+   1. Test case: `:f -s 0`<br>
+      Expected: All the task with "not done" as the status will be displayed
+   2. Test case: `:f -s 1`<br>
+      Expected: All the task with "in progress" as the status will be displayed
+   3. Test case: `:f -s 2`<br>
+      Expected: All the task with "completed" as the tatus will be displayed
+   4. Test case: `:f -s -1` or `:f -s 3` or `:f -s `<br>
+      Expected: An error message will be displayed since status cannot be empty and can only be 0, 1, or 2.
+4. Filtering the task by label
+   1. Test case: `:f -l "cs2103t"`<br>
+      Expected: All the task with "cs2103t" as the label will be displayed
+   2. Test case: `:f -l ""`<br>
+      Expected: An error message will be displayed since label cannot be empty
+5. Filtering the task by date before
+   1. Test case: `:f --before 2023-04-10`<br>
+      Expected: All the task with "deadline" before 10 April 2023, 0 hours 0 secs will be displayed.
+   2. Test case: `:f --before 2023-04-10 23:59`<br>
+      Expected: All the task with "deadline" before 10 April 2023, 23 hours 59 secs will be displayed.
+   3. Test case: `:f --before 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+6. Filtering the task by date after
+   1. Test case: `:f --after 2023-04-10`<br>
+      Expected: All the task with "deadline" after 10 April 2023, 0 hours 0 secs will be displayed.
+   2. Test case: `:f --after 2023-04-10 23:59`<br>
+      Expected: All the task with "deadline" after 10 April 2023, 23 hours 59 secs will be displayed.
+   3. Test case: `:f --after 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+      
 ### Sorting
 1. Sort the task by priority
    1. Test case: `:s -p`<br>
@@ -1067,3 +1112,17 @@ testers are expected to do more *exploratory* testing.
       Expected: Task is now sorted according to deadline.
    2. Test case: `:s` <br>
 	Excepted: An error message will be displayed since no flag is specified.
+	
+### Refresh
+1. Refresh the tasklist
+   1. Test case: `:refresh`<br>
+      Expected: TaskList now has no filter and is sorted according to the time added to the task list. 
+   2. Test case: `:refresh 123` <br>
+	Excepted: An error message will be displayed.
+
+### Help
+1. View the help manual
+   1. Test case: `:help`<br>
+      Expected: A help manual will be displayed.
+   2. Test case: `:help 123` <br>
+	Excepted: An error message will be displayed.
