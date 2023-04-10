@@ -1021,9 +1021,8 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-   1. Edit the `userdata.json` or `addressbook.json` to have erroneous values.
-   2. When this happens, just delete the files and start on a fresh file, or you can try to salvage it by trying to ascertain the bug.
+1. Dealing with missing/corrupted data files (Can be simulated by edited `addressbook.json` or `userdata.json` to have erroneous values)
+   1. When this happens, just delete the files and start on a fresh file, or you can try to salvage it by trying to ascertain the bug.
 
 ## **Appendix: Effort**
 
