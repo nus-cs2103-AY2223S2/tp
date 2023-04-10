@@ -31,7 +31,7 @@ public class TypicalPatients {
     // Patients
     public static final Patient ALEX = new PatientBuilder().withNric("S1000007A")
             .withName("Alex Smith").withStatus("GRAY").withWard(new WardName("Waiting Room"))
-            .withDischarge("12/02/2023 1400").build();
+            .withDischarge("To Be Confirmed").build();
     public static final Patient BENSON = new PatientBuilder().withNric("S7654321F")
             .withName("Benson Tillman").withStatus("GRAY").withWard(new WardName("Waiting Room"))
             .withDischarge("12/02/2023 1500").build();
