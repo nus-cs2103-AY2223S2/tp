@@ -14,6 +14,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1.1. How to use the User Guide
 
@@ -60,6 +61,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 | **Result Display** | This is where the **results** of your commands will be shown.                                                |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 2. Quick Start
 
@@ -79,6 +81,7 @@ This section highlights the key components of PowerCards’ user interface. Refe
 6. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 3. Features
 
@@ -359,6 +362,7 @@ Examples:
 * `setLimit none`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3.6. Review Mode
 
@@ -456,6 +460,7 @@ Tags the current card as hard. This replaces any previous tags.
 Format: `'`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3.7. Other Features
 
@@ -492,6 +497,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 4. FAQ
 
@@ -519,6 +525,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 **Q**: What if I would like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
 **A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we use backslash &#92; rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # 5. Command Summary
 
