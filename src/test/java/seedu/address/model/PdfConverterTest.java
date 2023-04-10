@@ -91,6 +91,12 @@ public class PdfConverterTest {
         mock.exportProgress(key);
         verify(mock, times(1)).setup();
         verify(mock, times(1)).createContents(key);
+        verify(mock, times(1)).wrapText(docTitle, this.horizontalWrap, this.fontBold, this.fontTitleSize, List.of());
+        verify(mock, times(1)).wrapText(dateCreated, this.horizontalWrap, fontItalic, this.fontDateSize, List.of());
+        verify(mock, times(1)).wrapText(taskList, this.horizontalWrap, fontBold, this.fontHeadingSize, List.of());
+        verify(mock, times(1)).createTaskTable(key.getTaskList());
+        verify(mock, times(1)).wrapText(scoreList, this.horizontalWrap, fontBold, this.fontHeadingSize, List.of());
+        verify(mock, times(1)).createScoreTable(key.getScoreList());
     }
 
     @Test
