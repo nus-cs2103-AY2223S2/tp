@@ -61,7 +61,6 @@ Given below are my contributions to the project.
     * Update UML diagrams and descriptions for Storage and Model part of FitBook [\#145](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/145)
     * Added Implementation for `add` and `edit` clients [\#206](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/206)
     * Added Appendix for Challenges and future enhancements [\#206](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/206)
-
 * **Community**:
   * PRs reviewed (Not all are added:
   [\#165](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/165),
