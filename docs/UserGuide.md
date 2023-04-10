@@ -77,9 +77,9 @@ OfficeConnect comes with preloaded data that aims to help you get familiar with 
 </div>
 
 Let's first look at how you can add a new employee's contact to OfficeConnect. Enter this into the command line: <br> 
-`addp n/Johnny Ackles p/95967755 e/jensona@example.com a/512, Mary Streeth #01-01`. <br>
+`addp n/Johnny Ackles p/95967755 e/jensona@example.com a/512, Mary Streeth #01-01` <br>
 This command adds a person named `Johnny Ackles` who lives at `512, Mary Streeth #01-01` whose phone number is `95967755`
-and email address is`jensona@example.com`. If you scroll down on the contact list, you will see that the new contact is
+and email address is`jensona@example.com`. If you scroll down the contact list, you will see that the new contact is
 added.
 ![add_whitebackground.jpg](images%2Fproduct-screenshots%2Fadd_whitebackground.jpg)
 <p align="center">
