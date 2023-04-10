@@ -1,8 +1,7 @@
 package seedu.powercards.logic.commands.cardcommands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.powercards.model.tag.Tag.TagName.HARD;
 import static seedu.powercards.testutil.Assert.assertThrows;
 import static seedu.powercards.testutil.CardBuilder.DEFAULT_DECK;
@@ -88,6 +87,8 @@ public class AddCardCommandTest {
 
         // same object -> returns true
         assertEquals(addACommand, addACommand);
+
+        assertNotEquals(addACommand, addBCommand);
 
         // same values -> returns true
         AddCardCommand addGravityCommandCopy = new AddCardCommand(questionGravity);
