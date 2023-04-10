@@ -5,7 +5,7 @@ title: RIZZipe
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-T13-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103T-T13-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T13-2/tp/branch/master/graph/badge.svg?token=7VWU83CQOT)](https://codecov.io/gh/AY2223S2-CS2103T-T13-2/tp)<br/><br/>
-![Rizzipe App Screenshot](images/RizzipeAppScreenshot.png)  
+![Rizzipe App Screenshot](images/Ui.png)  
 <br>
 **RIZZipe is a desktop application for managing your delicious recipes.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
