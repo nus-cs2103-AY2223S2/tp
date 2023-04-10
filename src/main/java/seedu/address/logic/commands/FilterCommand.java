@@ -8,8 +8,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_NO_PERSONS;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.person.Person;
@@ -33,6 +35,8 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Filtered all persons with the tag: %1$s";
     public static final String MESSAGE_NO_PERSON_WITH_TAG = "There are no persons with the tag: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(FilterCommand.class);
+
     private final Tag tag;
 
     /**
@@ -50,6 +54,7 @@ public class FilterCommand extends Command {
         Set<Person> personsWithTag = uniquePersonsList.stream().filter(x ->
                 x.getTags().contains(tag)).collect(Collectors.toSet());
         if (personsWithTag.isEmpty()) {
+            logger.info("No persons with this tag");
             model.updateFilteredPersonList(PREDICATE_SHOW_NO_PERSONS);
             return new CommandResult(String.format(MESSAGE_NO_PERSON_WITH_TAG, tag));
         }

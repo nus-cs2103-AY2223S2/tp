@@ -79,7 +79,7 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
         .withPhone("94351253").withId("cfa7fa72-e310-4928-a53b-2a5658242f7b")
-        .withTags("friends").build();
+        .withTags("logistics").build();
     // public static final Person NOTALICE = new PersonBuilder().withName("Pauline Alice")
     //     .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
     //     .withPhone("94351253").withId("cfa7fa72-4928-e310-a53b-2a5658242f7b")
@@ -87,14 +87,14 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25").withId("5ad1dd04-e8d8-411e-9916-2f89bce26a85")
         .withEmail("johnd@example.com").withPhone("98765432")
-        .withTags("owesMoney", "friends").build();
+        .withTags("marketing", "logistics").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
         .withEmail("heinz@example.com").withAddress("wall street")
         .withId("5ad1dd04-e8d8-3333-9916-2f89bce26b85").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
         .withEmail("cornelia@example.com")
         .withId("5ad1dd04-e8d8-411e-9916-2f89bce26b83")
-        .withAddress("10th street").withTags("friends").build();
+        .withAddress("10th street").withTags("finance").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94802224")
         .withEmail("werner@example.com")
         .withId("5ad1dd04-2222-311e-9916-2f89bce26b85")
