@@ -480,7 +480,7 @@ objects which is then used elsewhere in the codebase.
 
 <img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.3</b> Class Diagram for classes in Time Package.
+    <b>Figure 4.4.3</b> Class Diagram for classes in Time Package
 </div>
 
 #### **Day**
@@ -589,7 +589,7 @@ The `Timetable` represents the daily schedule of the user or contact.
 
 <img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes
 </div>
 
 <br>
@@ -977,7 +977,7 @@ We cannot save the json file directly from the command, because the command only
 
 <img src="images/SaveSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.5.10</b> Sequence Diagram for a typical <code>save</code> command.
+    <b>Figure 4.5.10</b> Sequence Diagram for a typical <code>save</code> command
 </div>
 
 #### **Load Command**
@@ -994,7 +994,7 @@ Similar to the Save Command, we pass the file path through a `LoadCommandResult`
 
 <img src="images/LoadSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.5.11</b> Sequence Diagram for a typical <code>load</code> command.
+    <b>Figure 4.5.11</b> Sequence Diagram for a typical <code>load</code> command
 </div>
 
 #### **Meet Command**
