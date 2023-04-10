@@ -402,10 +402,10 @@ Step 1: User executes `listall` to list all the people and tasks in OfficeConnec
 * After this step, the target task to assign and the target person to be assigned to said task will appear in the list
   of persons and tasks displayed.
 
+<div style="page-break-after: always;"></div>
+
 Step 2: User executes `assign pi/1 ti/1` to assign the first task on the list of tasks to the first person on the list
 of tasks.
-
-<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user wants to execute an `assign` command:
 
