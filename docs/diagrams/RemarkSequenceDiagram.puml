@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("remark 1 Immunocompromised")
+[-> LogicManager : execute("remark 1 XYZ")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("remark 1 Immunocompromised")
+LogicManager -> AddressBookParser : parseCommand("remark 1 XYZ")
 activate AddressBookParser
 
 create RemarkCommandParser
@@ -26,7 +26,7 @@ activate RemarkCommandParser
 RemarkCommandParser --> AddressBookParser
 deactivate RemarkCommandParser
 
-AddressBookParser -> RemarkCommandParser : parse("1 Immunocompromised")
+AddressBookParser -> RemarkCommandParser : parse("1 XYZ")
 activate RemarkCommandParser
 
 create RemarkCommand
@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> RemarkCommand : execute()
 activate RemarkCommand
 
-RemarkCommand -> Model : editPatient(1, "Immunocompromised")
+RemarkCommand -> Model : editPatient(1, "XYZ")
 activate Model
 
 Model --> RemarkCommand

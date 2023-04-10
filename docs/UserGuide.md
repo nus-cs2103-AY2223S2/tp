@@ -159,11 +159,11 @@ Shows a list of all patients in MediMeet.
 
 Format: `list_patient`
 
-### Editing a patient : `edit_patient`
+### Editing a patient : `edit_patient` or `ep`
 
 Edits an existing patient in MediMeet.
 
-Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `ep`
+Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the patient index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
