@@ -38,7 +38,8 @@ new developers can use this guide as an entry point for navigating this extensiv
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------<div style="page-break-after: always;"></div>
+-------------------------------------------------------------------------------------------------------------------- 
+<div style="page-break-after: always;"></div>
 
 ## Design
 
