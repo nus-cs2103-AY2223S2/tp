@@ -39,7 +39,11 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
 - [4. Implementation](#4-implementation)
   - [4.1 Feature implementations](#41-feature-implementations)
     - [4.1.1 Add task feature](#411-add-task-feature)
-    - [4.1.2 Delete feature](#412-deletedeletetask-feature)
+    - [4.1.2 Add person feature](#412-add-person-feature)
+    - [4.1.3 Delete/deletetask feature](#413-deletedeletetask-feature)
+    - [4.1.4 Assign Task feature](#414-assign-task-feature)
+    - [4.1.5 Mark/Unmark Task feature](#415-markunmark-task-feature)
+    - [4.1.6 Review feature](#416-review-feature)
   - [4.2 Future features](#42-proposed-implementation-of-future-features)
 - [5. Other guides](#5-documentation-logging-testing-configuration-dev-ops)
 - [6. Appendix: Requirements](#6-appendix-requirements)
@@ -196,6 +200,11 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+**API** : [`TaskBookModel.java`](https://github.com/AY2223S2-CS2103T-W15-3/tp/blob/master/src/main/java/seedu/address/model/TaskBookModel.java)
+
+<img src="images/TaskModelClassDiagram.png" width="500" />
+
+
 The `Model` component,
 
 * stores all `Person` objects (which are contained in a `UniquePersonList` object).
@@ -205,11 +214,9 @@ an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can 
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own
 without depending on other components)
 
-**Note**:
-- Tasks are handled in a similar way in the `TaskBookModel` component.
-- It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
+:information_source: **Note:**Tasks are handled in a similar way in the `TaskBookModel` component. It interacts with components like `UniqueTaskList` and is 'observed' as an unmodifiable `ObservableList<Task>`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Role` list in Pied Piper, which `Person` references. This allows `Pied Piper` to only require one `Role` object per unique role, instead of each `Person` needing their own `Role` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -254,10 +261,19 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 4.1.1 Add Task feature
 
-The implementation of the add task function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being "todo". The second argument is a description of the task.
+The implementation of the add task function is facilitated by `LogicManager`. It takes user input depending on the task user wants to add.<br>
+- For a `todo` task, the user input consists of 2 arguments, the command word being "todo". The second argument is a description of the task.
+- For a `deadline` task, the user input consists of 3 arguments, the command word being "deadline". The second argument is a description of the task, and the third argument is the deadline of the task.
+- For an `event` task, the user input consists of 4 arguments, the command word being "event". The second argument is a description of the task, the third argument is the start date of the task, and the fourth argument is the end date of the task.
+
+
 
 The format is as follows:
 - `todo task/TASK_DESCRIPTION`
+- `deadline task/TASK_DESCRIPTION by/DEADLINE`
+- `event task/TASK_DESCRIPTION from/START_DATE to/END_DATE`
+
+Given below is an example scenario and how the adding task function works at each step.
 
 Step 1. The user executes `todo task/organise pantry` command to add the task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
 
@@ -269,7 +285,9 @@ Step 4. A `ToDoCommandParser` is created, which generates a new `toAdd:Task` and
 
 Step 5. `LogicManager` then calls `execute` in `ToDoCommand`, which carries out the addition if the task is valid. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the addition has taken place.
 
-**Note:** The command can only work if a task with the same description is not already present in Pied Piper.
+<i>Similarly, the above implementation applies to `deadline` and `event` tasks but with different arguments.</i>
+
+:information_source: **Note:**The command can only work if a task with the same description is not already present in Pied Piper. Additionally, the above implmentation comes with the `edittask` feature, which allows the user to edit the details of a task in the task book.
 
 The following sequence diagram shows how the addition operation works:
 
@@ -279,7 +297,37 @@ The following sequence diagram shows how the addition operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
-### 4.1.2 Delete/deletetask feature
+### 4.1.2 Add Person feature
+
+The implementation of the add person function is facilitated by `LogicManager`. It takes user input as 5 arguments, the command word being either `add`. The second argument is the `name`, the third argument is the `phone number`, the fourth argument is the `email`, and the fifth argument is the `address`. The `role` argument is optional and can be added by adding the argument `r/ROLE`.
+
+
+The format is as follows:
+- `add n/NAME p/PHONE e/EMAIL a/ADDRESS [r/ROLE]`
+
+Given below is an example scenario and how the adding person function works at each step.
+
+Step 1. The user executes `add n/Jane Roe p/98123456 e/janer@nus.com a/Jane street, block 321 r/Member` command to add the person in Pied Piper address book. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+
+Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
+
+Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
+
+Step 4. A `AddCommandParser` is created, which generates a new `toAdd:Person` and a new `AddCommand`.
+
+Step 5. `LogicManager` then calls `execute` in `AddCommand`, which carries out the addition if the person details aer valid. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the addition has taken place.
+
+:information_source: **Note:**The command can only work if a task with the same details is not already present in Pied Piper. Additionally, the above implmentation comes with the `edit` feature, which allows the user to edit the details of a person in the address book.
+
+The following sequence diagram shows how the addition operation works:
+
+<img src="images/AddPersonSequenceDiagram.png"/>
+
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+### 4.1.3 Delete/deletetask feature
 
 The implementation of the delete/deletetask function is facilitated by `LogicManager`. It takes user input as 2 arguments, the command word being either `delete` or `deletetask`, depending on whether the user wants to delete a person or task respectively. The second argument is an index, denoting the index of the person or task the user wishes to delete.
 
@@ -287,23 +335,22 @@ The format is as follows:
 - `delete PERSON_INDEX`
 - `deletetask TASK_INDEX`
 
-Given below is an example scenario and how the delete function woks at each step.
+Given below is an example scenario and how the delete function works at each step.
 
-Step 1. The user executes `delete 1` command to delete the 5th task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+Step 1. The user executes `deletetask 1` command to delete the 5th task in Pied Piper. The command is read by `LogicManager`, which parses the user's input into a `commandText`.
 
 Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
 
 Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
 
-Step 4. A `DeleteCommandParser` is created, which generated a new `DeleteCommand`.
+Step 4. A `DeleteTaskCommandParser` is created, which generated a new `DeleteTaskCommand`.
 
-Step 5. `LogicManager` then calls `execute` in `DeleteCommand`, which carries out the deletion if the task exists. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the deletion has taken place.
+Step 5. `LogicManager` then calls `execute` in `DeleteTaskCommand`, which carries out the deletion if the task exists. It then returns a `CommandResult` to be displayed to the user to acknowledge whether the deletion has taken place.
 
-**Note:** The command can only work if there is at least 1 person or task present in Pied Piper, and the specified index must not be greater than the index of the last item on the list.
-
-**Note:** The same sequence applies to the deletion of tasks, but the following classes are different:
-1. `DeleteCommandParser` &rarr; `DeleteTaskCommandParser`
-2. `DeleteCommand` &rarr; `DeleteTaskCommand`
+:information_source: **Note:**The command can only work if there is at least 1 person or task present in Pied Piper, and the specified index must not be greater than the index of the last item on the list.
+In case of deleting a person, all the tasks assigned to that particular person must be handled (unassigned). The same sequence as above applies to the deletion of a person from address book, but the following classes are different:
+1. `DeleteTaskCommandParser` &rarr; `DeleteCommandParser`
+2. `DeleteTaskCommand` &rarr; `DeleteCommand`
 
 The following sequence diagram shows how the delete operation works:
 
@@ -313,9 +360,123 @@ The following sequence diagram shows how the delete operation works:
 
 [↑ Return to table of contents](#table-of-contents)
 
+### 4.1.4 Assign Task feature
+
+The implementation of the assign function is facilitated by `LogicManager`. It takes user input as 3 arguments, 
+the command word being `assign`. The second argument is an task index, denoting the index of task the user wishes to assign.
+The third argument is an person index, denoting the index of the person the task is supposed to be assigned.
+
+The format is as follows:
+- `assign t/TASK_INDEX i/PERSON_INDEX`
+
+Given below is an example scenario and how the assign function works at each step.
+
+Step 1. The user executes `assign t/1 i/2` command to assign the first task in Pied Piper to second person in the address book. 
+The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+
+Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
+
+Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
+
+Step 4. A `AssignTaskCommandParser` is created, which generated a new `AssignTaskCommand`.
+
+Step 5. `LogicManager` then calls `execute` in `AssignTaskCommand`, which carries out the functionality of the command.
+This method creates a new `Task` object with the same description as the task to be assigned, but with the person assigned to it. 
+This new instance of `Task` is then replaced with the existing instance in the `UniqueTaskList` in `TaskBook`. 
+It then returns a `CommandResult` to be displayed to the user to acknowledge whether the assignment has taken place.
+
+:information_source: **Note:**Multiple tasks can be assigned to a single person. 
+The command can only work if the person to be assigned has been given a role. 
+
+
+The following sequence diagram shows how the assignment operation works:
+
+<img src="images/AssignSequenceDiagram.png"/>
+
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+### 4.1.5 Mark/Unmark Task feature
+
+The implementation of the mark function is facilitated by `LogicManager`. It takes user input as 3 arguments, 
+the command word being `mark`. The second argument is an task index, denoting the index of task the user wishes to mark as complete.
+The third argument is an score, denoting the score of the task alloted by the leader.
+<br>
+On the other hand, the implementation of the unmark function takes user input as 2 arguments, 
+the command word being `unmark`. The second argument is an task index, denoting the index of task the user wishes to mark as incomplete.
+
+The format is as follows:
+- `mark t/TASK_INDEX s/PERFORMANCE_SCORE`
+- `unmark t/TASK_INDEX`
+
+Given below is an example scenario and how the mark function works at each step.
+
+Step 1. The user executes `mark t/1 s/3` command to mark the first task in Pied Piper as complete with a score of 3. 
+The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+
+Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
+
+Step 3. `AddressBookParser` then uses `Matcher` to group the commandText into `commandWord` and `arguments`.
+
+Step 4. A `MarkCommandParser` is created, which generated a new `MarkCommand`.
+
+Step 5. `LogicManager` then calls `execute` in `MarkCommand`, which carries out the functionality of the command.
+This method creates a new `Task` object with the same description as the task to be marked, but with the status marked as complete.
+This new instance of `Task` is then replaced with the existing instance in the `UniqueTaskList` in `TaskBook`. 
+It then returns a `CommandResult` to be displayed to the user to acknowledge whether the task has been marked as complete.
+
+:information_source: **Note:**Any task cannot be marked if it not assigned to a person. Additionally, the user can mark the task again to give a different score. The score will be updated to the new score.
+The implemention of the unmark function is similar to the mark function, except that the status of the task is marked as incomplete.
+
+
+The following sequence diagram shows how the mark/unmark operation works:
+
+<img src="images/MarkSequenceDiagram.png"/>
+
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+
+### 4.1.6 Review feature
+
+The implementation of the mark function is facilitated by `LogicManager`. It takes user input as 1 arguments, 
+the command word being `review`.
+
+The format is as follows:
+- `review`
+
+Given below is an example scenario and how the review function works at each step.
+
+Step 1. The user executes `review` command to mark the first task in Pied Piper as complete with a score of 3. 
+The command is read by `LogicManager`, which parses the user's input into a `commandText`.
+
+Step 2. `LogicManager` then calls `parseCommand` on the commandText in `AddressBookParser`.
+
+Step 4. A `ReviewCommand` is created.
+
+Step 5. `LogicManager` then calls `execute` in `ReviewCommand`, which carries out the functionality of the command.
+This method goes through the `UniqueTaskList` in `TaskBook` and checks for any tasks that are marked as complete, or score is not given. After, it checks for any tasks that are assigned to a person and calculates the average score of the tasks assigned to each person.
+It then returns a `CommandResult` to be displayed to the user to acknowledge whether the averge score of each person has been calculated.
+
+
+
+
+The following sequence diagram shows how the review operation works:
+
+<img src="images/ReviewSequenceDiagram.png"/>
+
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+
+
+
 ## 4.2 Proposed implementation of future features:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How to undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -326,11 +487,19 @@ The following sequence diagram shows how the delete operation works:
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+**Aspect: How to sort my tasks/members:**
 
+* **Proposed Implementation (current choice):** Display a temporary list of tasks/members sorted by the user's preference.
+  * Pros: Better user experience.
+  * Cons: Difficult to implement in terms of memory usage and different criterias for sorting.
+    
 [↑ Return to start of section](#4-implementation)
 
 [↑ Return to table of contents](#table-of-contents)
+
+
+
+
 
 ---
 
@@ -352,7 +521,7 @@ _{more aspects and alternatives to be added}_
 
 **Target user profile**:
 
-- NUS Computing Students
+- University Students
 - has a need to manage a project with significant complexity
 - prefer desktop apps over other types
 - can type fast

@@ -5,19 +5,16 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Cyrus Krispin Vijikumar
 
 <img src="images/cyrus-krispin.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/cyrus-krispin)]
 [[portfolio](team/cyrus-krispin.md)]
 
-* Role: Project Advisor
+* Role: Team Member
 
 ### Lim Xuan Zheng
 
@@ -27,7 +24,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zhengsterz.md)]
 
 * Role: Team Member
-* Responsibilities: Undecided
 
 ### Pawan Kishor Patil
 
@@ -37,18 +33,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/pawanpatil19.md)]
 
 * Role: Team Member
-* Responsibilities: TBD
 
 
 ### Jerome Seet
 
 <img src="images/yaladah.png" width="200px">
 
-[[github](http://github.com/yaldah)]
+[[github](http://github.com/yaladah)]
 [[portfolio](team/yaladah.md)]
 
 * Role: Member
-* Responsibilities: TBD
 
 ### Jereld Lim
 
@@ -58,4 +52,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jereldlimjy.md)]
 
 * Role: Team Member
-* Responsibilities: TBD
