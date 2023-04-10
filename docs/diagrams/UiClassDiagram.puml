@@ -8,13 +8,22 @@ package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
-Class MainWindow
-Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
-Class CommandBox
+together {
+    Class MainWindow
+    Class LoginWindow
+}
+together {
+    Class HelpWindow
+    Class ResultDisplay
+    Class PersonListPanel
+    Class PersonCard
+    Class StatusBarFooter
+    Class CommandBox
+}
+Class WelcomeSection
+Class LoadingSection
+Class CreatePasswordSection
+Class DefaultLoginSection
 }
 
 package Model <<Rectangle>> {
@@ -28,17 +37,30 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
+UiManager .up.|> Ui
+UiManager -right-> "1" MainWindow
+UiManager -down-> "1" LoginWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
+LoginWindow *-down-> "1" WelcomeSection
+LoginWindow *-down-> "1" LoadingSection
+LoginWindow *-down-> "1" CreatePasswordSection
+LoginWindow *-down-> "1" DefaultLoginSection
+
+WelcomeSection --|> UiPart
+LoadingSection --|> UiPart
+CreatePasswordSection --|> UiPart
+DefaultLoginSection --|> UiPart
+
+
 PersonListPanel -down-> "*" PersonCard
 
 MainWindow -left-|> UiPart
+LoginWindow -down-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -49,7 +71,8 @@ HelpWindow --|> UiPart
 
 PersonCard ..> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow -right-> Logic
+LoginWindow -right-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox

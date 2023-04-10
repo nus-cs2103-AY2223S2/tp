@@ -1,0 +1,12 @@
+@startuml
+
+start
+:User wants to filter contacts by detail given;
+:User enters "filter" command;
+if () then ([contacts matches detail])
+    :MODCheck displays contacts;
+else ([else])
+    :MODCheck displays error;
+endif
+stop
+@enduml

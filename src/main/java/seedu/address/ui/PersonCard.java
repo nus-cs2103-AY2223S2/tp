@@ -40,21 +40,31 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane moduleTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean hidden) {
         super(FXML);
+        String curr = name.getText();
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        phone.setVisible(!hidden);
+        address.setVisible(!hidden);
+        email.setVisible(!hidden);
+
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getModuleTags().stream()
+                .sorted(Comparator.comparing(moduleTag -> moduleTag.moduleTagName))
+                .forEach(moduleTag -> moduleTags.getChildren().add(new Label(moduleTag.moduleTagName)));
     }
 
     @Override

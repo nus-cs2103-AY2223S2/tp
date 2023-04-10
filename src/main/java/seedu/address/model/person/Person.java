@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,17 +24,22 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<ModuleTag> moduleTags = new HashSet<>();
+
+    private boolean hidden;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<ModuleTag> moduleTags) {
+        requireAllNonNull(name, phone, email, address, tags, moduleTags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.moduleTags.addAll(moduleTags);
+        this.hidden = true;
     }
 
     public Name getName() {
@@ -48,6 +54,21 @@ public class Person {
         return email;
     }
 
+    /**
+     * toggle hidden.
+     */
+    public void toggleHidden() {
+        if (hidden) {
+            hidden = false;
+        } else {
+            hidden = true;
+        }
+    }
+
+    public boolean getHidden() {
+        return hidden;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -58,6 +79,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Set<ModuleTag> getModuleTags() {
+        return Collections.unmodifiableSet(moduleTags);
     }
 
     /**
@@ -109,13 +134,19 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("; Description: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<ModuleTag> moduleTags = getModuleTags();
+        if (!moduleTags.isEmpty()) {
+            builder.append("; ModuleTags: ");
+            moduleTags.forEach(builder::append);
         }
         return builder.toString();
     }

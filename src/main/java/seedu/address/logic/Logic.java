@@ -47,4 +47,35 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' theme
+     */
+    String getCssFilePath();
+
+    /**
+     * Sets the user prefs' theme
+     */
+    void setCssFilePath(String cssFilePath);
+
+    /**
+     * Set the user's password
+     */
+    void setUserHashedPassword(String hashedPassword);
+
+    /**
+     * Retrieve the user's password
+     */
+    String getUserHashedPassword();
+
+    /**
+     * Retrieves the number of times the user has used MODCheck
+     * @return number of times used
+     */
+    int getNumberOfTimesUsed();
+
+    /**
+     * Set the number of times the user has used MODCheck
+     */
+    void setNumberOfTimesUsed(int numberOfTimesUsed);
 }

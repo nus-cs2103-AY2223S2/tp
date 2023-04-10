@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.Undoable;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -77,7 +80,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private class ModelStub implements Model, Undoable {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -109,7 +112,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public String getCssFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCssFilePath(String cssFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,6 +148,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteMultiplePersons(List<Person> listOfPeople) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +165,62 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void combine(ReadOnlyAddressBook ab, String s) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void resetPersonHiddenStatus() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void showPersonContact(List<Person> personList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setHashedPassword(String hashedPassword) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getHashedPassword() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNumberOfTimesUsed(int numberOfTimesUsed) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumberOfTimesUsed() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUserData getUserData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasUndoableCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public String executeUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasRedoableCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public String executeRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
@@ -186,9 +260,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetPersonHiddenStatus() {
+            personsAdded.stream().forEach(x -> {
+                if (!x.getHidden()) {
+                    x.toggleHidden();
+                }
+            });
+        }
+
+        @Override
+        public void showPersonContact(List<Person> personList) {
+            personList.stream().forEach(x -> x.toggleHidden());
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
     }
-
 }

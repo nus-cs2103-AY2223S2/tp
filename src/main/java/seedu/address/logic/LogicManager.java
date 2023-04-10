@@ -78,4 +78,34 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public String getCssFilePath() {
+        return model.getCssFilePath();
+    }
+
+    @Override
+    public void setCssFilePath(String cssFilePath) {
+        model.setCssFilePath(cssFilePath);
+    }
+
+    @Override
+    public void setUserHashedPassword(String hashedPassword) {
+        model.setHashedPassword(hashedPassword);
+    }
+
+    @Override
+    public String getUserHashedPassword() {
+        return model.getHashedPassword();
+    }
+
+    @Override
+    public int getNumberOfTimesUsed() {
+        return model.getNumberOfTimesUsed();
+    }
+
+    @Override
+    public void setNumberOfTimesUsed(int numberOfTimesUsed) {
+        model.setNumberOfTimesUsed(numberOfTimesUsed);
+    }
 }

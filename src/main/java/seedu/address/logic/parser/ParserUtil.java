@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,6 +38,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} checks if validity of the index.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean isValidIndex(String oneBasedIndex) {
+        String trimmedIndex = oneBasedIndex.trim();
+        return StringUtil.isNonZeroUnsignedInteger(trimmedIndex);
+    }
+
+    /**
+     * Parses {@code indexes} into an {@code listOfIndexes} and returns it. Leading and trailing whitespaces will be
+     * trimmed. String of indexes will be split by ",".
+     * @param indexes String of indexes.
+     * @return ArrayList of indexes.
+     * @throws ParseException
+     */
+    public static ArrayList<Index> parseIndexes(String indexes) throws ParseException {
+        String trimmedIndexes = indexes.trim();
+        String[] splitIndexes = trimmedIndexes.split(",");
+        ArrayList<Index> listOfIndexes = new ArrayList<>();
+        for (String index: splitIndexes) {
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            Index newIndex = Index.fromOneBased(Integer.parseInt(index));
+            listOfIndexes.add(newIndex);
+        }
+        return listOfIndexes;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -51,9 +83,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code name} and checks the validity of the name.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean isValidName(String name) {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        return Name.isValidName(trimmedName);
+    }
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as phone field is not compulsory.
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -68,7 +109,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as description field is not compulsory.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -83,7 +124,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as email field is not compulsory.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -111,6 +152,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code ModuleTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Moduletag} is invalid.
+     */
+    public static ModuleTag parseModuleTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!ModuleTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleTag(trimmedTag);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -118,6 +174,18 @@ public class ParserUtil {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> moduleTags} into a {@code Set<ModuleTag>}.
+     */
+    public static Set<ModuleTag> parseModuleTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<ModuleTag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseModuleTag(tagName));
         }
         return tagSet;
     }

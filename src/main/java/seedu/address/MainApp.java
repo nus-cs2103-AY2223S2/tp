@@ -2,6 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -19,14 +20,18 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserDataStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserDataStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -57,11 +62,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        UserDataStorage userDataStorage = new JsonUserDataStorage(Paths.get("userData.json"));
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, userDataStorage);
+        UserData userData = initUserData(userDataStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(storage, userPrefs, userData);
 
         logic = new LogicManager(model, storage);
 
@@ -73,7 +80,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
@@ -90,7 +97,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, userData);
     }
 
     private void initLogging(Config config) {
@@ -165,6 +172,33 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    protected UserData initUserData(UserDataStorage userDataStorage) {
+        Path userDataFilePath = storage.getUserDataFilePath();
+        logger.info("Using prefs file : " + userDataFilePath);
+
+        UserData initializedUserData;
+        try {
+            Optional<UserData> userDataOptional = storage.readUserData();
+            initializedUserData = userDataOptional.orElse(new UserData());
+        } catch (DataConversionException e) {
+            logger.warning("UserData file at " + userDataFilePath + " is not in the correct format. "
+                    + "Using default user prefs");
+            initializedUserData = new UserData();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty user data");
+            initializedUserData = new UserData();
+        }
+
+        // Update userData file in case it was missing to begin with or there are new/unused fields
+        try {
+            storage.saveUserData(initializedUserData);
+        } catch (IOException e) {
+            logger.warning("Failed to save userData file : " + StringUtil.getDetails(e));
+        }
+
+        return initializedUserData;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
@@ -175,7 +209,9 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
+            logic.setNumberOfTimesUsed(logic.getNumberOfTimesUsed() + 1);
             storage.saveUserPrefs(model.getUserPrefs());
+            storage.saveUserData(model.getUserData());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

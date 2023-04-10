@@ -1,0 +1,35 @@
+@startuml
+start
+:Load command executed;
+:Arguments given?;
+if () then ([no arguments])
+    :throw UiInputRequired exception;
+    :Ui component catches the exception
+    and shows a file chooser;
+    if () then ([file chosen])
+        :Append file path
+        onto load command;
+    else ([else])
+        :Append "!"
+        onto load command;
+    endif
+    :Reexecute load command with
+    arguments given;
+else ([arguments given])
+endif
+
+if () then ([argument =="!"])
+    :No file chosen;
+    :throw CommandException;
+
+else ([argument == path])
+    :Path given;
+    if () then ([path is valid])
+        :Add data to ModCheck;
+    else ([else])
+        :throw CommandException;
+    endif
+endif
+end
+@enduml
+
