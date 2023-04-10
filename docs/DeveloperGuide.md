@@ -516,7 +516,7 @@ Given below is an example usage scenario and how the addRoutine/editRoutine mech
 
 Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` and `JsonAdaptedExercise` accordingly.
 
-<img src="images/AddEditRoutineState0.png" height = "300">
+<img src="images/AddEditRoutineState0.png" height = "400">
 <div style="page-break-after: always;"></div>
 Step 2. The user executes `addRoutine r/Cardio …​` command to add the Routine in the FitBookExerciseRoutine. The `addRoutine` command calls `AddRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command and calling `AddRoutineCommand:execute()` to execute the command to add the New Routine in the Exercise Routine.
 * The addRoutine command has a similar UML diagram as `Step 1`. The only changes are the AddRoutineCommand to EditRoutineCommand, edits the routine and add it into storage and edits the routine in the model instead.
@@ -548,7 +548,7 @@ The following sequence diagram shows how the addRoutine operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddRoutineCommand` should end at to destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 #### Design considerations
 
 **Aspect: How add & edit routine executes:**
@@ -575,7 +575,7 @@ The proposed undo/redo mechanism is facilitated by `VersionedFitBook`. It extend
 * `VersionedFitBook#redo()` — Restores a previously undone FitBook state from its history.
 
 These operations are exposed in the `FitBookModel` interface as `FitBookModel#commitFitBook()`, `FitBookModel#undoFitBook()` and `FitBookModel#redoFitBook()` respectively.
-
+<div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedFitBook` will be initialized with the initial FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
