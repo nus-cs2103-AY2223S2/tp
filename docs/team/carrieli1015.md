@@ -10,22 +10,22 @@ MATHUTORING is a desktop application used for private Math tuition teachers to m
 Given below are my contributions to the project.
 
 * **New Feature**:
-    * Switch command<br>
-  What it does: Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
-  Justification: This feature is convenient for the user to switch between score text panel and score chart panel.
-  Highlights: Since the switch support both CLI and mouse click. It is important to make the behaviour consistence, so the application need to remember the panel status and switch based on it.
-    * Check command<br>
-  What it does: For the user to check a specific student's task/s and score/s information.
-  Justification: This feature is important as it indicate which student the user want to check and display the selected student's information.
-  Highlights: The check result is normally continue to display. The panel will reset to no student being checked when the currently checked student is being deleted/edited, or the entire student list is cleared, or a new student list is being imported in.
-    * Filter command<br>
-  What it does: To filter out student/s from the existing list. Filter key is the tag/s.
-  Justification: This feature help the user to quickly filter out a group of students based on their given tags.
-  Highlights: To allow more flexibility, when filter by tag, it is fully case-insensitive.
-    * Score list chart<br>
-  What it does: Created the score list chart to track the student's performance.
-  Justification: The chart can clearly show the trend of a student's recent performance, whether his/her grade is improving or decreasing.
-  Highlights: The user can hover over the chart node to see tooltip that contains score label and score value.
+  1. Switch command<br>
+      * What it does: Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
+      * Justification: This feature is convenient for the user to switch between score text panel and score chart panel.
+      * Highlights: Since the switch support both CLI and mouse click. It is important to make the behaviour consistence, so the application need to remember the panel status and switch based on it.
+  2. Check command<br>
+      * What it does: For the user to check a specific student's task/s and score/s information.
+      * Justification: This feature is important as it indicate which student the user want to check and display the selected student's information.
+      * Highlights: The check result is normally continue to display. The panel will reset to no student being checked when the currently checked student is being deleted/edited, or the entire student list is cleared, or a new student list is being imported in.
+  3. Filter command<br>
+      * What it does: To filter out student/s from the existing list. Filter key is the tag/s. 
+      * Justification: This feature help the user to quickly filter out a group of students based on their given tags. 
+      * Highlights: To allow more flexibility, when filter by tag, it is fully case-insensitive.
+  4. Score list chart<br>
+      * What it does: Created the score list chart to track the student's performance. 
+      * Justification: The chart can clearly show the trend of a student's recent performance, whether his/her grade is improving or decreasing. 
+      * Highlights: The user can hover over the chart node to see tooltip that contains score label and score value.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=carrieli1015&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -67,8 +67,8 @@ Given below are my contributions to the project.
 * **Community**:
     * Shared idea and gave suggestions to another group.
     * Contributed to forum discussions
-      * [Published UG and Ui.png tag in ip dashboard not updated](https://github.com/nus-cs2103-AY2223S2/forum/issues/206)
-      * [Default window size](https://github.com/nus-cs2103-AY2223S2/forum/issues/290)
+      * [#206](https://github.com/nus-cs2103-AY2223S2/forum/issues/206)
+      * [#290](https://github.com/nus-cs2103-AY2223S2/forum/issues/290)
 
 * **Tools**:
     * JavaFX framework
