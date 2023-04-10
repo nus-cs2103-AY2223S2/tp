@@ -863,7 +863,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. DengueHotspotTracker shows an error message.
       Use case resumes at step 2.
 
-#### Use case: Delete multiple cases by date
+#### Use case: Delete multiple cases by date range
 
 **MSS**
 
@@ -883,16 +883,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. DengueHotspotTracker shows an error message.
       Use case resumes at step 2.
 
-#### Use case: Find cases
+#### Use case: Find cases by name
 
 **MSS**
 
-1. placeholder
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to find cases by name in the list.
+4.  DengueHotspotTracker finds cases.
+
+    Use case ends.
 
 **Extensions**
 
-* 1a. placeholder
-    * 1a1. placeholder
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given name is invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 2.
+
+#### Use case: Find cases by age range
+
+**MSS**
+
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to find cases by age range in the list.
+4.  DengueHotspotTracker finds cases.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given age range is invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 2.
+
+#### Use case: Find cases by name, age and date range
+
+**MSS**
+
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to find cases by name, age and date range in the list.
+4.  DengueHotspotTracker finds cases.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given name, age or date range is invalid.
+    * 3a1. DengueHotspotTracker shows an error message.
+      Use case resumes at step 2.
 
 #### Use case: Sort the case list
 
