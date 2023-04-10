@@ -12,7 +12,7 @@ import seedu.address.model.person.doctor.Specialty;
 import seedu.address.model.person.doctor.Yoe;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.LoaderUtil;
 
 /**
  * A utility class to help with building Doctor objects.
@@ -71,7 +71,7 @@ public class DoctorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Doctor} that we are building.
      */
     public DoctorBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = LoaderUtil.getTagSet(tags);
         return this;
     }
 
@@ -112,7 +112,7 @@ public class DoctorBuilder {
      * of the {@code Doctor} that we are building.
      */
     public DoctorBuilder withPatients(Patient ... patients) {
-        this.patients = SampleDataUtil.getPatientSet(patients);
+        this.patients = LoaderUtil.getPatientSet(patients);
         return this;
     }
 

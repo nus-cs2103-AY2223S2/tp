@@ -3,11 +3,11 @@ layout: page
 title: Developer Guide
 ---
 
-## Table Of Contents
+## **Table Of Contents**
 {: .no_toc}
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -103,9 +103,11 @@ represent parts of the visible GUI.
 The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching
 `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
 [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/##view/MainWindow.fxml)
+is specified
+in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component does the following
+
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
@@ -114,6 +116,7 @@ The `UI` component does the following
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Main Window
+{: .no_toc}
 
 The `MainWindow` houses all the components that make up the visual display of Docedex. Its primary
 function is to listen to user input through the `CommandBox`, initiate the execution of the command,
@@ -129,45 +132,47 @@ Here is a table containing a brief description of the purpose of the smaller com
 | `HelpWindow`          | Displays a help window containing a link to the User Guide.                                                                                                                                |
 | `StatusBarFooter`     | Shows the location of the Docedex storage.                                                                                                                                                 |
 
-
 The implementations of `CommandBox`, `ResultDisplay`, `StatusBarFooter`, and `HelpWindow` are relatively
 straightforward. Therefore, this guide will not dive deeper into how these components are implemented.
 
 You may refer to their implementations here
+
 * [Classes](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui)
 * [FXML](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/view)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Contact Display
+{: .no_toc}
 
 The `ContactDisplay` houses all the components that provide visual feedback after the manipulation
 of doctors and patients within Docedex.
 
 Here is a table containing a brief description of the purpose of the smaller components within `ContactDisplay`.
 
-| **Name of component**       | **Description**                                                                                                                                                                                                                                                             |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name of component**     | **Description**                                                                                                                                                                                                                                                          |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `DoctorListPanel`         | Shows a list of `DoctorCard`. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a `PatientCard`, this list will filter to show doctors assigned to said patient.  |
-| `DoctorCard`              | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
+| `DoctorCard`              | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                     |
 | `PatientListPanel`        | Shows a list of `PatientCard`. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a `DoctorCard`, this list will filter to show patients assigned to said doctor. |
-| `PatientCard`             | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
-| `EnlargedDoctorInfoCard`  | Displays all information about a selected doctor.                                                                                                                                                                                                                           |
-| `EnlargedPatientInfoCard` | Displays all information about a selected patient.                                                                                                                                                                                                                          |
+| `PatientCard`             | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                    |
+| `EnlargedDoctorInfoCard`  | Displays all information about a selected doctor.                                                                                                                                                                                                                        |
+| `EnlargedPatientInfoCard` | Displays all information about a selected patient.                                                                                                                                                                                                                       |
 
 Here is a class diagram of how these components come together within the `ContactDisplay`.
 
 ![Structure of the Contact Display](images/ContactDisplayClassDiagram.png)
 
 How the `ContactDisplay` works:
+
 1. Upon a user command through the `CommandBox`, the `setFeedbackToUser(CommandResult commandResult)` method
-  takes in the result of the command entered. The `CommandResult` contains information on whether the command
-  requires an update to the GUI. If such an update is required, `ContactDisplay` will proceed to update
-  all relevant components. 
+   takes in the result of the command entered. The `CommandResult` contains information on whether the command
+   requires an update to the GUI. If such an update is required, `ContactDisplay` will proceed to update
+   all relevant components.
 2. Upon a mouse click on a `DoctorCard` or `PatientCard`, the following sequence of actions is similar to
-  that described above. However, instead of `setFeedbackToUser(CommandResult commandResult)` being called,
-  either `setFeedbackUponSelectingDoctor(Doctor doctor)` or `setFeedbackUponSelectingPatient(Patient patient)`
-  is called respectively.
+   that described above. However, instead of `setFeedbackToUser(CommandResult commandResult)` being called,
+   either `setFeedbackUponSelectingDoctor(Doctor doctor)` or `setFeedbackUponSelectingPatient(Patient patient)`
+   is called respectively.
 
 To illustrate how these interactions work, let's say that the user selects a doctor through the `sd` command.
 The Sequence Diagram below illustrates the interactions within the `ContactDisplay` component upon such a command.
@@ -176,12 +181,13 @@ The Sequence Diagram below illustrates the interactions within the `ContactDispl
 
 Upon a user command, we see from the diagram that the `setFeedbackToUser(CommandResult commandResult)` method
 accomplished the following:
+
 - Update filtered patients list in `LogicManager` to show the patients assigned to the selected doctor.
 - Select the requested doctor within the `DoctorListPanel`. (This is a purely cosmetic selection, to provide
-visual feedback to the user)
+  visual feedback to the user)
 - Update the `EnlargedDoctorInfoCard` to display the information of the selected doctor.
 - Place the updated `EnlargedDoctorInfoCard` onto the placeholder `StackPane` which resides on the right-most
-column of the `ContactDisplay`. For more information on this specific step, click [here](#enlarged-info-card-feature).
+  column of the `ContactDisplay`. For more information on this specific step, click [here](#enlarged-info-card-feature).
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -245,26 +251,25 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-
 ![Structure of the Storage](images/StorageClassDiagram.png)
 
-
 The `Storage` component does the following:
+
 * Saves both address book and user preference data in JSON format after every command
 * Read saved data and create the corresponding objects when starting up Docedex.
 
 Notes about the `Storage` component
+
 * Inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as
-either one (if only the functionality of only one is needed).
+  either one (if only the functionality of only one is needed).
 * Depends on some classes in the `Model` component (because the `Storage` component's
-job is to save/load objects that belong to the `Model`)
+  job is to save/load objects that belong to the `Model`)
 
 #### Notes about storing assignments between doctors and patients
 {: .no_toc}
@@ -296,12 +301,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ---
 
-## Implementation
+## **Implementation**
 
 ### Add Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a doctor to the bottom of the list of currently existing doctors. Users are able to add any valid doctor to the
@@ -311,7 +315,6 @@ thrown to alert user.
 Example Use: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the add doctor command, an `AddDoctorCommand` class is created. The `AddDoctorCommand` class extends the
@@ -337,7 +340,6 @@ s/Cardiology y/5 t/surgeon"
 ### Add Patient Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a patient to the bottom of the list of currently existing patients. Users are able to add any valid patient to the
@@ -348,7 +350,6 @@ Example
 Use: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the add patient command, an `AddPatientCommand` class is created. The `AddPatientCommand` class extends
@@ -384,7 +385,6 @@ the doctor's index.
 
 Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 
-
 #### Implementation
 {: .no_toc}
 
@@ -411,6 +411,8 @@ Step 2. User executes `edit-doc n/Simon` to edit a doctor.
 
 Step 3. The doctor is edited and saved to the model’s list of doctors if valid.
 
+Step 4. filteredDoctorList is updated so that the UI can display the edited doctor.
+
 The following sequence diagram illustrates how the edit doctor operation works:
 
 ![](images/EditDoctorSequenceDiagram.png)
@@ -420,7 +422,6 @@ The following sequence diagram illustrates how the edit doctor operation works:
 ### Delete Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Deletes a doctor at the specified **one-based index** of list of currently existing/found doctors. Users are able to
@@ -430,7 +431,6 @@ command will not be allowed and an error will be thrown to alert user.
 Example Use: `del-doc 1`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the delete doctor command, a `DeleteDoctorCommand` class is created. The `DeleteDoctorCommand` class
@@ -454,7 +454,6 @@ The following sequence diagram illustrates how the delete doctor operation works
 ### Delete Patient Feature
 
 #### What it does
-
 {: .no_toc}
 
 Deletes a patient at the specified **one-based index** of list of currently existing/found patient. Users are able to
@@ -464,7 +463,6 @@ command will not be allowed and an error will be thrown to alert user.
 Example Use: `del-ptn 1`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the delete doctor command, a `DeletePatientCommand` class is created. The `DeletePatientCommand` class
@@ -592,7 +590,6 @@ The following sequence diagram illustrates how the find patient operation works:
 ### GUI Features
 
 #### Enlarged Info Card feature
-
 {: .no_toc}
 
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
@@ -602,7 +599,6 @@ Docedex has been reserved to show the personal information of the selected docto
 ![](images/NewUi.png)
 
 ##### Brief introduction to the components involved
-
 {: .no_toc}
 
 Let's call the card which displays this information **info cards**. However, the information
@@ -610,7 +606,7 @@ displayed for a doctor compared to a patient has a few differences. Thus, two di
 are required - one to display patient information and one to display doctor information.
 
 Let's call these cards `EnlargedDoctorInfoCard` and `EnlargedPatientInfoCard`. However, we
-only have one `StackPane` to display the information of the queried doctor or patient. This 
+only have one `StackPane` to display the information of the queried doctor or patient. This
 `StackPane` spans over the right-most column seen in the GUI above, and serves as a placeholder
 for the info cards. So, we now need a way to toggle between displaying either card, depending
 on whether the user has selected a doctor or patient to view.
@@ -618,7 +614,6 @@ on whether the user has selected a doctor or patient to view.
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Exploring the user journey
-
 {: .no_toc}
 
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
@@ -634,15 +629,15 @@ causes the display of information related to the doctor card through the `Enlarg
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### More details on implementation
-
 {: .no_toc}
 
 Before diving into the details, here are a few key points to note:
+
 - The `ContactDisplay` contains all three columns shown in the middle of the GUI.
-These columns represent the doctors list, patients list and an info card respectively,
-from left to right.
+  These columns represent the doctors list, patients list and an info card respectively,
+  from left to right.
 - There is always only one instance of the `EnlargedDoctorInfoCard`,
-`EnlargedPatientInfoCard`, `ContactDisplay` and placeholder `StackPane`.
+  `EnlargedPatientInfoCard`, `ContactDisplay` and placeholder `StackPane`.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -662,7 +657,6 @@ the `EnlargedPatientInfoCard` being populated with the appropriate data and disp
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Alternatives considered
-
 {: .no_toc}
 
 In the past, we had a different implementation of this feature, where the `DoctorListViewCell`
@@ -693,56 +687,68 @@ Here are some useful links on the following!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix A: Planned Enhancements
+## **Appendix A: Planned Enhancements**
 
-### User Interface
+### Feedback To User
 
-#### Problem 1: Clearing selections on execution of other commands
+#### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
-- Scenario: User selected a patient, before using the [`list-doc` command](./UserGuide.md#listing-all-doctors).
-- What you see: The user interface does not clear the selection on the previously selected card. However, all the
-  doctors are listed on the GUI.
-- Why did it happen: `list-doc` command does not involve selection of patient cards.
-- Potential issue: Confusion as to whether the listed doctors are assigned to the previously selected patient or not.
+- **Scenario**: User selected a patient on Docedex, before entering `list-doc`.
+- **What you see**: All the doctors in Docedex are listed on the GUI, as requested by the `list-doc` command.
+  However, the user interface does not clear the selection of the previously selected patient card.
+- **Potential issue**: Confusion may arise on whether the listed doctors are assigned
+  to the previously selected patient.
+- **Why did it happen**: `list-doc` did not clear the previous selection of patient cards.
 
-Note to users and developers: This problem exists if you select a doctor and then enter `list-ptn` too
+Note: This issue exists for the all commands that do not involve selection of doctor
+or patient cards (ie. [`list-doc`](./UserGuide.md#listing-all-doctors),
+[`find-doc`](./UserGuide.md#finding-a-doctor), [`del-doc`](./UserGuide.md#deleting-a-doctor),
+[`list-ptn`](./UserGuide.md#listing-all-patients), [`find-ptn`](./UserGuide.md#finding-a-patient)
+or [`del-ptn`](./UserGuide.md#deleting-a-patient)).
 
-**Solution:** The list commands will clear any selection of patient or doctor cards.
+**Solution:** Any commands that do not involve selection of doctor or patient cards will
+clear selection of all patient and doctor cards.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 2: Non-descriptive patient/doctor list titles
+#### Problem 2: Titles of patient/doctor lists do not well describe its contents
 
-- Scenario: User adds a doctor using the [`add-doc` command](./UserGuide.md#adding-a-doctor).
-- What you see: Docedex automatically selects the newly added doctor. The patients list disappears, as the newly added
-  doctor has no assigned patients.
-- Why did it happen: Detailed [here](./UserGuide.md#adding-a-doctor).
-- Potential issue: No visual feedback that the patients list is reflecting the newly added doctor's assigned
-  patients/confusion that all patient's have been deleted.
+- **Scenario**: User adds a doctor using the [`add-doc` command](./UserGuide.md#adding-a-doctor).
+- **What you see**: Docedex automatically selects the newly added doctor. Selection of a doctor
+  will result in an update to the patients list, as described [here](./UserGuide.md#selecting-doctors-or-patients-through-commands).
+  Since the newly added doctor has no assigned patients, the patients list is cleared.
+- **Potential issue**: Confusion may arise as no visual feedback is provided that the patients list is
+  reflecting the newly added doctor's assigned patients. Previously, some users have confused this
+  behaviour with all patients being deleted from Docedex.
+- **Why did it happen**: Titles of patient/doctor lists is not updated to describe the contents of
+  the list upon user input.
 
-Note to users and developers: This problem exists if you add a patient using `add-ptn` too
-**Solution:** The title of the patients list will be updated to display "XXX's Patients" on affected doctor commands.
-The same fix will be done for the displayed doctors list on affected patient commands.
-Note: XXX is the name of the newly added doctor/patient
+Note to users and developers: This problem exists if you add a patient using `add-ptn` too.
+
+**Solution:** The title of the patients list will be updated to display "XXX's Patients"
+when any doctor is selected, where XXX is the name of the doctor. The same fix will be done for the
+displayed doctors list upon selection of patients.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Problem 3: The command usage message is not consistent across the UserGuide and EditXYZCommands
 
-- Scenario: User enters an invalid variation of the `edit-doc` or `edit-ptn` commands
-- What you see: Error message that does not indicate that the entry of only one update parameter is compulsory while all
+- **Scenario**: User enters an invalid variation of the `edit-doc` or `edit-ptn` commands
+- **What you see**: Error message that does not indicate that the entry of only one update parameter is compulsory while all
   others are optional.
-- Why did it happen: Implementation of feature freeze prior to resolution
-- Potential issue: User assumes that all fields are compulsory
+- **Potential issue**: User assumes that all fields are compulsory
+- **Why did it happen**: Implementation of feature freeze prior to resolution
 
-- **Solution:** Update the `MESSAGE_USAGE` field
-  in [`EditDoctorCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/commands/EditDoctorCommand.java), [`EditPatientCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditPatientCommand.java)
-  and associated
-  tests ([`EditDoctorCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditDoctorCommandTest.java), [`EditPatientCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditPatientCommandTest.java))
-  with parameter information and notation present in the [UserGuide](./UserGuide.md#editing-a-doctor) and the
-  line `"At least one parameter other than INDEX should be provided\n"`.
+**Solution:** Update the `MESSAGE_USAGE` field
+in [`EditDoctorCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/tree/master/src/main/java/seedu/address/logic/commands/EditDoctorCommand.java), [`EditPatientCommand`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditPatientCommand.java)
+and associated
+tests ([`EditDoctorCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditDoctorCommandTest.java), [`EditPatientCommandTest`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/test/java/seedu/address/logic/commands/EditPatientCommandTest.java))
+with parameter information and notation present in the [UserGuide](./UserGuide.md#editing-a-doctor) and the
+line `"At least one parameter other than INDEX should be provided\n"`.
 
 [Scroll back to Table of Contents](#table-of-contents)
+
+### Scalability
 
 #### Problem 4: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
@@ -752,40 +758,41 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 5: Extending duplicates validation to other parameters
+#### Problem 5: Adding input validation to find commands
 
 <div markdown="span" class="alert alert-danger">
 To be added
 </div>
 
-[Scroll back to Table of Contents](#table-of-contents)
+#### Enhancement 1: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
-#### Problem 6: Adding input validation to find commands
+- **Current**: Doctor and patient assignments are currently being stored using a list inside each instance of a Doctor and Patient class. For example, if patient1 is assigned to doctor1, patient1 will have doctor1 in its list of doctors and vice versa.
+- **Proposed**: A DoctorPatient class which models assignments between doctors and patients.
+- **Justification**: Although the current solution is sufficient to capture the relationships between a doctor and a person at this version of Docedex, in future iterations of Docedex, we may want to store more information about the details of the assignment between a doctor and a patient, such as the date. We may even want to want the patient's case details to be specific based on the assignment. An association class can help make creating these new features more scalable and easier to implement.
+  ![Proposed new DoctorPatient class](images/ProposedNewModelDiagram.png)
 
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
-
-[Scroll back to Table of Contents](#table-of-contents)
-
-#### Problem 7: Improving regex validation
-
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-#### Problem 8: Use of enums as patient statuses
+#### Enhancement 2: Validation for find command
 
-<div markdown="span" class="alert alert-danger">
-To be added
-</div>
+- **Current**: Users are allowed to type any search query using the find command.
+- **Proposed**: Limit search queries according to the parameter constraints.
+- **Justification**: The current find command gives an empty list when search queries which do not fit the original parameter constraints are given. This is the expected behavior. An enhancement to the find query would be to give users a more specific error message as to why the find command gives an empty list. 
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+#### Problem 8: Better error/exception handling for invalid command inputs
+- **Scenario**: User enters an invalid variation of a command
+- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
+- **Potential issue**: User has to guess which parameter/section of the command is invalid.
+- **Why did it happen**: Implementation of feature freeze prior to resolution
 
-### Appendix B: Product scope
+**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+## **Appendix B: Product scope**
 
 **Target user profile**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
@@ -803,12 +810,11 @@ faster than a typical mouse/GUI driven app.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix C: User stories
+## **Appendix C: User stories**
 
 In the table below, **_user_** refers to the triage admin staff.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
 
 | Priority | As a …​ | I want to …​                                                              | So that I can…​                                                                  |
 |----------|---------|---------------------------------------------------------------------------|----------------------------------------------------------------------------------|
@@ -831,7 +837,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix D: Use cases
+## **Appendix D: Use cases**
 
 For all use cases below, we assume the following unless specified otherwise
 
@@ -856,6 +862,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 | UC6 - Assign Doctor to Patient | UC12 - Assign Patient to Doctor |
 
 #### Use case: UC1 - Add Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -880,6 +887,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC2 - Delete Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -903,6 +911,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC3 - Edit Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -931,6 +940,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC4 - Find Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -949,6 +959,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC5 - List Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -967,6 +978,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC6 - Assign Doctor To Patient
+{: .no_toc}
 
 **MSS**
 
@@ -997,7 +1009,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix E: Non-Functional Requirements
+## **Appendix E: Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 doctor contacts and 1000 patient contacts without noticeable reduction in
@@ -1012,21 +1024,49 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix F: Glossary
+## **Appendix F: Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **User**: Triage Admin Staff within the clinic.
-* **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
+| Term                 | Definition                                                                                                |
+|----------------------|-----------------------------------------------------------------------------------------------------------|
+| AddressBook-Level3   | A project created by the SE-EDU initiative, which this project is based on.                               |
+| App                  | An application created by the project.                                                                    |
+| API                  | An application programming interface.                                                                     |
+| Architecture Diagram | A diagram that explains the high-level design of the App.                                                 |
+| Class diagram        | A diagram that shows the classes of the App and the relationships between them.                           |
+| CLI                  | Command Line Interface, for users to perform actions through typing commands.                             |
+| CommandBox           | A component of the UI that allows users to enter commands.                                                |
+| Commons              | A collection of classes used by multiple other components.                                                |
+| Component            | A modular part of the App that serves a specific function.                                                |
+| ContactDisplay       | A component of the UI that displays contact information.                                                  |
+| GUI                  | Graphical User Interface, a visual way for users to interact with a software program                      |
+| Logic component      | The component responsible for executing user commands.                                                    |
+| Main                 | A class with two subclasses, Main and MainApp, that initializes and shuts down the components of the App. |
+| MainWindow           | The main window of the UI that houses all the UI components.                                              |
+| Model                | The data model used by the App.                                                                           |
+| Navigability         | A concept referring to instances of one class holding a reference to instances of another class.          |
+| PlantUML             | A tool used to create diagrams.                                                                           |
+| ResultDisplay        | A component of the UI that displays the results of commands.                                              |
+| Sequence Diagram     | A diagram that shows the sequence of events between components.                                           |
+| UML                  | [Unified Modeling Language](https://en.wikipedia.org/wiki/Unified_Modeling_Language)                      |
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix G: Effort
+## **Appendix G: Effort**
 
-This section is still being updated!
+The Docedex project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of doctors and patients. One of the major changes was the addition of two new models, Doctor and Patient, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
+
+While Doctor and Patient models extended AB3's Patient model, there were several challenges to overcome. The most significant challenge was to map a many-to-many relationship between doctors and patients during assignment. To solve this, the team decided to create a list of patients inside each Doctor instance (and vice versa for patients). This change required us to modify multiple components to update the lists after patient assignment and display them onto the UI.
+
+Another challenge was redesigning the interface to display more information. Changing the interface of an application can be a major undertaking. In the case of Docedex, this involved designing new UI components, updating existing components to reflect the new models and data, and potentially creating new navigation and layout structures to support the new workflows. Significant time was taken to learn JavaFX and implementing the components to fit Docedex use cases.
+
+Our work on implementing the assignment feature is the most prominent in the AssignDoctorCommand and AssignPatientCommand, and their relevant parsers and model methods.
+
+
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Appendix H: Instructions for manual testing
+## **Appendix H: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -1035,8 +1075,8 @@ Given below are instructions to test the app manually.
 Testers are encouraged to do more *exploratory* testing.
 </div>
 
-
 #### Launch and shutdown
+{: .no_toc}
 
 1. Initial launch
 
@@ -1056,6 +1096,7 @@ Testers are encouraged to do more *exploratory* testing.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Deleting a doctor
+{: .no_toc}
 
 1. Deleting a doctor while all doctors are being shown
 
@@ -1076,6 +1117,7 @@ Testers are encouraged to do more *exploratory* testing.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Saving data
+{: .no_toc}
 
 1. Dealing with missing/corrupted data files
 

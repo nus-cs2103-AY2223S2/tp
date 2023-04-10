@@ -10,8 +10,7 @@ title: User Guide
 Docedex is a **desktop application** built for **medical administrative assistants**
 to manage doctors and patients within clinics.
 
-Here's a **quick snapshot** of how Docedex can help you
-streamline your hospital management processes.
+Here's an **overview** of how Docedex can help you streamline your hospital management processes.
 - Store and edit information about your patients and doctors
 - Track the status of your patients and doctors
 - Assign patients to doctors upon triaging
@@ -24,8 +23,6 @@ than current GUI apps in the industry.
 
 **If you are new here**, visit our [quick start](#quick-start) guide to onboard onto Docedex smoothly!
 
-![NewUi](images/NewUi.png)
-
 ## Table of Contents
 {: .no_toc}
 
@@ -34,49 +31,52 @@ than current GUI apps in the industry.
 
 ---
 
-## Quick start
+## **Quick start**
 
 1. Make sure that you have **Java 11 or above** installed on your computer.
    - [How do I check my version of Java?](#checking-java-version)
-   <br><br><br>
 2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/).
    ![DownloadDocedex](images/DownloadDocedex.png)
-   <br><br><br>
 3. Move the jar file to a folder where you want to store the data of the doctors and patients.
 - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.).
 - Move the downloaded jar file to this folder as shown below.
-  - For Mac Users:<br>
-  <img src="images/DownloadDocedexMac.png" alt="DownloadDocedexMac" width="70%" height="70%">
-  - For Windows Users:<br>
-  <img src="images/DocedexInFileWin.png" alt="DocedexInFileWin" width="70%" height="70%">
+  - For Mac Users:
+    ![DownloadDocedexMac](images/DownloadDocedexMac.png)
   <br><br><br>
+  - For Windows Users:
+  ![DownloadDocedexWindows](images/DocedexInFileWin.png)
 4. Launch Docedex
 - For Mac Users:
   - Right-click `docedex.jar` > Open With > JavaLauncher.app
-  <img src="images/LaunchDocedexMac.png" alt="LaunchDocedexMac" width="70%" height="70%">
   - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
 - For Windows Users:
   - Double-click `docedex.jar` to launch the application.
 - If this still does not work follow the instructions listed [here.](#launching-docedex)
 - You should notice the GUI of the application pop up.
-  <img src="images/NewUi.png" alt="NewUi" width="70%" height="70%">
-  <br><br><br>
 5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
-  <br><br><br>
 6. For **new users**, learn to use Docedex [here](#docedex-tutorial-for-new-users).
-  <br><br><br>
 7. For **advanced users**, view all feature details [here](#features).
-  <br><br><br>
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ---
 
-## Glossary
+## **Glossary**
+
+### Definitions
 
 Here are some descriptions of the words we use throughout the User Guide:
-- Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.
+- **Parameter**: Parameters are like fields in a form you are required to fill up.
+They include details you would include about the doctor/patient.
+- **Command**: An input from the user that tells Docedex to perform an action (ie. add a doctor).
+- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
+- **GUI component**: A subsection of the Graphical User Interface. For more information on specific GUI
+components, refer to [this section](#navigating-the-graphical-user-interface-gui).
+- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
 
 ### Parameter Information
+
+*Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.*
 
 The information below specifies parameter description, constraints and usage through valid and invalid examples.
 
@@ -101,74 +101,18 @@ The information below specifies parameter description, constraints and usage thr
 
 #### Patient Parameters
 
+
 | Parameter | Description                             | Constraints                                                                                                                                 | Valid Examples        | Invalid Examples   |
 |-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------------|
-| h/        | Height of the patient in metres (m)     | Floating point number with 2 decimal places                                                                                                 | 1.63, 1.99            | 1, 1.2, 1.234      |
-| w/        | Weight of the patient in kilograms (kg) | Floating point number with 1 decimal place                                                                                                  | 85.0, 63.2            | 85, 63.20          |
+| h/        | Height of the patient in metres (m)     | 3-digit number with 2 decimal places representing patient's height in metres                                                                | 1.63, 1.99            | 1, 1.2, 1.234      |
+| w/        | Weight of the patient in kilograms (kg) | Number with an optional 1 decimal place representing patient's weight in kg                                                                 | 85.0, 63.2            | -85, 63.20         |
 | d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
 | st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
 
-## Navigating the Graphical User Interface (GUI)
+## **Command format**
 
-Docedex comes with a GUI to allow for a nice visual feedback for our users. Here
-is a quick runthrough of the different sections of our GUI, as well as some notes
-regarding the use of the GUI.
-
-### Quick Orientation
-
-![GuiOrientation](images/gui-display-annotated.png)
-
-Here is a quick summary of each GUI component within Docedex.
-
-| **Name of component** | **Description**                                                                                                                                                                                                                                                                 |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                     |
-| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                         |
-| **Result Display**    | Provides CLI-based feedback upon a user command.<br>Allows users to see if their command was successful or not.<br>Provides error messages to guide user on how to use Docedex commands.                                                                                      |
-| **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br><br>Upon starting the app, this list will reflect all doctors in Docedex.<br><br>Upon selection of a **Patient Card**, this list will filter to show doctors assigned to said patient.  |
-| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                            |
-| **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br><br>Upon starting the app, this list will reflect all patients in Docedex.<br><br>Upon selection of a **Doctor Card**, this list will filter to show patients assigned to said doctor. |
-| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                           |
-| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                    |
-| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                      |
-
-
-### Notes about the GUI
-
-#### Selecting doctors or patients through commands**
-
-Certain commands involve the selection of doctors
-and patients immediately after they are entered.
-
-For example, when you type in the `add-doc` command, Docedex will automatically select
-the newly added doctor and display their details to you. This gives the user (you!)
-a nice visual feedback that the command is successful.
-
-Upon selecting a doctor, the Patient List displays the patients assigned
-to the selected doctor. However, if the doctor is newly added, said doctor will have
-no patients, and thus the Patient List will be empty.
-
-This behaviour will also exist if the user adds a patient instead too.
-
-<div markdown="block" class="alert alert-warning">
-Some users have mentioned being alarmed by sudden disappearances of
-their Doctor Cards and Patient Cards within their respective lists
-after entering certain commands. The explainer above details why this happens.
-Fret not, as this is part of the functionality of Docedex. Your storage is still secure.
-</div>
-
-#### Unselecting doctors or patients**
-
-Unselecting doctors and patients is currently not supported in Docedex. If you wish to
-look through all the doctors and patients in Docedex, please use the
-[`list-doc`](#listing-all-doctors) and [`list-ptn`](#listing-all-patients) commands instead.
-
-[Scroll back to Table of Contents](#table-of-contents)
-
-## Notes about the command format
-
-| Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
+| Format                                                                                                       | Explanation                                                                  | Examples                                                                                          |
 |--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
 | Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
@@ -179,7 +123,9 @@ look through all the doctors and patients in Docedex, please use the
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-## Command Summary
+---
+
+## **Command Summary**
 
 | Command               | Shorthand   | What it does                                                                              |
 |-----------------------|-------------|-------------------------------------------------------------------------------------------|
@@ -199,12 +145,106 @@ look through all the doctors and patients in Docedex, please use the
 
 ---
 
-## Docedex Tutorial (for new users)
+## **Navigating the Graphical User Interface (GUI)**
+
+Docedex comes with a GUI to allow for a nice visual feedback for our users. Here
+is a quick runthrough of the different sections of our GUI, as well as some notes
+regarding the use of the GUI.
+
+### Quick Orientation
+
+![GuiOrientation](images/gui-display-annotated.png)
+
+Here is a quick summary of each GUI component within Docedex.
+
+| **Name of component** | **Description**                                                                                                                                                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                 |
+| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                     |
+| **Result Display**    | Provides CLI-based feedback upon a user command.<br>Allows users to see if their command was successful or not.<br>Provides error messages to guide user on how to use Docedex commands.                                                                                    |
+| **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br><br>Upon starting the app, this list will reflect all doctors in Docedex.<br><br>Upon selection of a **Patient Card**, this list will filter to show doctors assigned to said patient.  |
+| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
+| **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br><br>Upon starting the app, this list will reflect all patients in Docedex.<br><br>Upon selection of a **Doctor Card**, this list will filter to show patients assigned to said doctor. |
+| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
+| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
+| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
+
+
+### Notes about the GUI
+
+#### Selecting doctors or patients through commands
+
+Certain commands involve the selection of doctors
+and patients immediately after they are entered.
+
+For example, when you type in the `add-doc` command, Docedex will automatically select
+the newly added doctor and display their details to you. This gives the user (you!)
+a nice visual feedback that the command is successful.
+
+Upon selecting a doctor, the Patient List displays the patients assigned
+to the selected doctor. However, if the doctor is newly added, said doctor will have
+no patients, and thus the Patient List will be empty.
+
+This behaviour will also exist if the user adds a patient instead too.
+
+<div markdown="span" class="alert alert-danger">
+    :exclamation: Some users have mentioned being alarmed by <strong>sudden disappearances of
+    their Doctor Cards and Patient Cards</strong> within their respective lists
+    after entering certain commands. The explainer above details why this happens.
+    <br/><br/>
+    Fret not, as this is part of the functionality of Docedex.
+    <br/><br/>
+    <b><em>Your storage is still secure.</em></b>
+</div>
+
+#### Unselecting doctors or patients
+
+Unselecting doctors and patients is currently not supported in Docedex. If you wish to
+look through all the doctors and patients in Docedex, please use the
+[`list-doc`](#listing-all-doctors) and [`list-ptn`](#listing-all-patients) commands instead.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+## **Notes about the command format**
+
+| Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                   | These are parameters that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                              | N/A                                                                          | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+---
+
+## **Command Summary**
+
+| Command               | Shorthand   | What it does                                                                              |
+|-----------------------|-------------|-------------------------------------------------------------------------------------------|
+| `add-doc / add-ptn`   | `ad / ap`   | Adds a doctor or patient into Docedex.                                                    |
+| `edit-doc / edit-ptn` | `ed / ep`   | Edits the specified doctor or patient.                                                    |
+| `del-doc / del-ptn`   | `dd / dp`   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
+| `find-doc / find-ptn` | `fd / fp`   | Finds the doctor(s) and patient(s) which matches the search query.                        |
+| `list-doc / list-ptn` | `lsd / lsp` | Lists all doctors or patients.                                                            |
+| `assign-ptn`          | `asn`       | Assigns a patient to a doctor.                                                            |
+| `unassign-ptn`        | `uasn`      | Unassigns a patient from a doctor.                                                        |
+| `sd / sp`             | `sd / sp`   | Selects the specified doctor or patient and displays the person's information on the GUI. |
+| `help`                | N/A         | Displays the link to the User Guide.                                                      |
+| `clear`               | N/A         | Clears all entries from Docedex. **This action cannot be undone.**                        |
+| `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+---
+
+## **Docedex Tutorial (for new users)**
 
 This is a tutorial for **first-time** Docedex users.
 1. Launch Docedex. You may refer to the instructions [here](#quick-start)
    - Note: On launch, Docedex will not contain any doctor or patient records.
-     ![LaunchUi](images/LaunchUi.png)
 2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
    - Note: On adding a new doctor, the patients' list is filtered to show only patients associated with the doctor. To view all patient records, simply type `list-ptn` in the command box.
      ![AddDoc](images/AddDoc.png)
@@ -236,8 +276,7 @@ This is a tutorial for **first-time** Docedex users.
 
 ---
 
-## Features
-
+## **Features**
 
 ### Doctor Commands
 #### Adding a doctor
@@ -253,9 +292,9 @@ This is a tutorial for **first-time** Docedex users.
 
 <div markdown="span" class="alert alert-info">
 Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
-If no patients appear in the patients list, it is because none have been assigned to the doctor.
+**If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -264,7 +303,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 
 ```edit-doc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YOE] [t/TAGS]…```
 - To view parameter information click [here](#parameter-information)
-- What it does: Edits the doctor at the specified `INDEX`.
+- What it does: Edits the doctor at the specified `INDEX` using any specified parameters as the new value.
 - Possible use cases: Updating contact information of a doctor.
 <div markdown="span" class="alert alert-warning">
 **WARNING**: This command overwrites existing data within Docedex, proceed with caution.
@@ -274,7 +313,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
     - The index refers to the index number shown in the displayed doctor list.
     - Users can edit specific doctors in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
     - At least one of the optional parameters must be provided.
-    - When editing tags, the existing tags of the person will be removed i.e., adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without any tag string.
+    - When editing tags, you have to include any previous tags that was already included in the doctor, or else these tags will be removed. This also means that you can use `t/` to remove all tags from a doctor using the `edit-doc` command.
 
 - Examples:
     - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
@@ -282,9 +321,9 @@ For more information see: [Selecting doctors or patients through commands](#sele
 
 <div markdown="span" class="alert alert-info">
 Edit doctor command, also calls select doctor to display the recently updated information in the Enlarged Contact Card.
-If no patients appear in the patients list, it is because none have been assigned to the doctor.
+**If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -297,8 +336,9 @@ For more information see: [Selecting doctors or patients through commands](#sele
 <div markdown="span" class="alert alert-warning">
 **WARNING**: This command is destructive. Doctor's removed will need to be added back.
 </div>
+
 - Note to user:
-    - The index refers to the index number shown in the displayed doctor list.
+    - The index refers to the index number shown in the displayed doctor list. If the doctor you wish to delete is not shown on the doctor's list, you can try using `list-doc` to list out all the doctors first.
 
 Examples:
 * `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
@@ -318,11 +358,13 @@ Examples:
     - At least one of the parameters must be provided.
     - More than one tag can be provided.
     - Blank parameters will be ignored.
+    - Please follow the parameter constraints closely, or you will not retrieve any doctors.
 
 - Examples:
     - `find-doc n/Gabriel` matches any doctor with the name containing the string `Gabriel`.
     - `find-doc n/Gabriel t/friend t/expert` matches any doctor with the name containing the string `Gabriel` and has tags `friend` and `expert`.
     - `find-doc y/3` matches any doctor that has the number 3 in their years of experience, i.e. `3`,`30`,`23` will be matched but `5` and `10` will not be matched.
+    - `find-doc n/@#$!` will not return any doctors because the search query for name does not follow the constraints for the name parameter.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -335,11 +377,11 @@ Examples:
 - Note to user:
   - The index refers to the index number shown in the displayed doctor list.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
-If no patients appear in the patients list, it is because none have been assigned to the doctor.
+**If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 
@@ -365,11 +407,11 @@ For more information see: [Selecting doctors or patients through commands](#sele
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
-If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+**If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -383,11 +425,11 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Assign patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -401,11 +443,11 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Examples:
   - `unassign-ptn ptn/1 doc/1` undoes the assignment of the first patient from the first doctor.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Unassign (undo assignment) patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient is assigned to no doctors).
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -423,8 +465,8 @@ For more information see: [Selecting doctors or patients through commands](#sele
     - The index refers to the index number shown in the displayed patient list.
     - Users can edit specific patients in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
     - At least one of the optional parameters must be provided.
-    - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
-      specifying any tags after it.
+    - When editing tags, you have to include any previous tags that was already included in the patient, or else these tags will be removed. This also means that you can use `t/` to remove all tags from a doctor using the `edit-doc` command.
+
 
 - Examples:
     - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
@@ -434,7 +476,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Edit patient command, also calls select patient to display the recently updated information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient has not been assigned to any doctor). 
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -466,6 +508,7 @@ Examples:
     - At least one of the parameters must be provided.
     - More than one tag can be provided.
     - Blank parameters will be ignored.
+    - Please follow the parameter constraints closely, or you will not retrieve any patients.
 
 - Examples:
   - `find-ptn n/Alice` matches any patient with the name containing the string `Alice`.
@@ -485,9 +528,9 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
-If no doctors appear in the doctors list, it is because the patient has not been assigned to any doctor.
+**If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -504,7 +547,6 @@ For more information see: [Selecting doctors or patients through commands](#sele
 - Command format: `help`
 - What it does: Shows a message explaining how to access this help page.
 
-![help message](images/HelpWindow.png)
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Exiting the program
@@ -540,7 +582,7 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 ---
 
-## FAQ
+## **FAQ**
 
 ### Launching Docedex
 **Q**: How can I launch docedex if the clicking on the JAR file does not work?<br>
@@ -579,8 +621,9 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
 
 ### Using Docedex
-**Q**: I entered a command and my doctor/patient list was cleared. What happenned?
-**A**: Within the [Notes about the GUI](#notes-about-the-gui) section, refer to the
-subsection titled _"Selecting doctors or patients through commands"_ for an explanation of why this occurs.
+**Q**: I entered a command and my doctor/patient list was cleared. What happened?<br>
+**A**: Refer to the subsection titled
+[Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
+for an explanation of why this occurs.
 
 [Scroll back to Table of Contents](#table-of-contents)
