@@ -31,7 +31,6 @@ Given below are my contributions to the project.
     * Create issues, assign roles and set internal deadlines.
 
 * **Enhancements to existing features**:
-    * Refactor and rename many classes to follow naming consistency (e.g., `Person` to `Card`).
     * Add and modify exising test cases to increase code coverage (e.g. create the test cases in ReviewTest).
     * Refactor many classes to follow OOP and design patterns, e.g., `MasterDeckParser` was refactored to follow Don't Repeat Yourself (DRY) principle. 
     * Modify Storage components to allow Cards and Decks to be saved as JSON data.
