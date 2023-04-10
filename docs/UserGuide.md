@@ -151,7 +151,7 @@ Here is the **summary** for input restrictions. Users are advised to skim throug
 ### Student contact
 
 #### Name
-A **name** can only contain **alphanumeric** characters and **spaces**.
+A **name** can only contain **alphanumeric** characters and **spaces** (Blanks are not allowed).
 
 [Back to top](#table-of-contents)
 
@@ -187,7 +187,7 @@ A **tag** can only contain **alphanumeric** characters and should not contain mo
 ### Task
 
 #### Name/Title
-A **name** can only contain **alphanumeric** characters and **spaces**.
+A **name** can only contain **alphanumeric** characters and **spaces** (Blanks are not allowed).
 
 [Back to top](#table-of-contents)
 
@@ -196,7 +196,7 @@ A **name** can only contain **alphanumeric** characters and **spaces**.
 ### Score
 
 #### Label
-A **label** can only contain **alphanumeric** characters and **spaces**.
+A **label** can only contain **alphanumeric** characters and **spaces** (Blanks are not allowed).
 
 [Back to top](#table-of-contents)
 
@@ -224,13 +224,14 @@ Note if the index given is too large and exceed the integer limit, the command w
 * File path separator (e.g. backward/forward slash) should **follow user's operating system**.
   * e.g. Windows uses backward slash and Mac uses forward slash
 * Export path should be a **directory**, not a file!
+* The directory cannot be a write-protected folder!
 
 [Back to top](#table-of-contents)
 
 #### File path for import
 * File path separator (e.g. backward/forward slash) should **follow user's operating system**.
     * e.g. Windows uses backward slash and Mac uses forward slash
-* Export path should be a **file**, not a directory!
+* Import path should be a **file**, not a directory!
 
 [Back to top](#table-of-contents)
 
