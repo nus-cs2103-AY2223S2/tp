@@ -11,12 +11,17 @@ title: User Guide
     3. [Copy student](#copy)
     4. [Delete student](#delete)
     5. [List student](#list)
-    6. [Filter student](#filter)
-    7. [Add a lesson](#learn)
-    8. [Remove a lesson](#unlearn)
-    9. [Local save](#save)
-    10. [Local load](#load)
-    11. [Exit program](#exit)
+    6. [Edit Student](#edit)
+    7. [Find Student](#find)
+    8. [Filter student](#filter)
+    9. [Add a lesson](#learn)
+    10. [Remove a lesson](#unlearn)
+    11. [Mark attendence](#mark)
+    12. [Unmark attendence](#unmark)
+    13. [Query attendence](#query)
+    14. [Local save](#save)
+    15. [Local load](#load)
+    16. [Exit program](#exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
@@ -91,7 +96,7 @@ Is it hard for private tutor such as yourself to keep track of the students' inf
 
 #### [Back to top](#table-of-content) 
 
-### Viewing help <a name="help"></a>
+### Viewing help : `help`<a name="help"></a>
 
 Shows a message explaning how to access the help page.
 
@@ -100,7 +105,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 #### [Back to top](#table-of-content) 
-### Add student <a name="add"></a>
+### Add student : `add`<a name="add"></a>
 
 Adds a student to the managing system.
 
@@ -118,7 +123,7 @@ Examples:
 * ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/08:30 et/10:30 t/JC1 t/SonOfJerry``` adds the same student with two tags, `JC1` and `SonOfJerry`
 
 #### [Back to top](#table-of-content) 
-## Copy student <a name="copy"></a>
+### Copy student : `copy` <a name="copy"></a>
 
 Copies an existing student to the managing system with a different subject or schedule.
 
@@ -131,7 +136,7 @@ Examples:
 * ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd student in the managing system and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
 #### [Back to top](#table-of-content) 
-### Deleting student <a name="delete"></a>
+### Deleting student : `delete`<a name="delete"></a>
 
 Removes a student from the managing system.
 
@@ -143,7 +148,7 @@ Examples:
 * ```delete 1``` deletes the first student displayed in the system
 
 #### [Back to top](#table-of-content) 
-### Listing students <a name="list"></a>
+### Listing students : `list`<a name="list"></a>
 
 Lists students in the managing system.
 
@@ -154,7 +159,7 @@ Examples:
 * ```list``` 
 
 #### [Back to top](#table-of-content) 
-### Editing a student : `edit`
+### Editing a student : `edit` <a name="edit"></a>
 
 Edits an existing student in the managing system.
 
@@ -172,7 +177,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 #### [Back to top](#table-of-content) 
-### Locating students by name: `find`
+### Locating students by name: `find`<a name='find'></a>
 
 Finds students whose names contain any of the given keywords.
 
@@ -191,7 +196,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### [Back to top](#table-of-content) 
-### Filtering students by any fields <a name='filter'></a>
+### Filtering students by any fields : `filter`<a name='filter'></a>
 
 Filter and list students whose fields contain any of the given keywords.
 
@@ -213,7 +218,7 @@ Examples:
 ![img.png](images/filterExampleResult.png)
 
 #### [Back to top](#table-of-content) 
-### Adding a new lesson <a name="learn"></a>
+### Adding a new lesson : `learn`<a name="learn"></a>
 
 You can add a lesson taught to a student.
 
@@ -228,7 +233,7 @@ Example:
   * The command adds the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh learn Rational Number`.
 
 #### [Back to top](#table-of-content) 
-### Removing a lesson <a name="unlearn"></a>
+### Removing a lesson : `unlearn`<a name="unlearn"></a>
 
 You can remove a lesson taught to a student.
 
@@ -243,7 +248,7 @@ Examples:
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
 #### [Back to top](#table-of-content) 
-### Marking/Unmarking attendance
+### Marking/Unmarking attendance : `mark` and `unmark` <a name="mark"></a>
 Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
 they were absent. 
 
@@ -258,7 +263,7 @@ Examples:
 ![mark.png](images/mark.png)
 
 #### [Back to top](#table-of-content) 
-### Querying attendance
+### Querying attendance : `query` <a name="query"></a>
 Use this command to check the tutee's attendance.  
 
 Format: `query <index> [date]`
@@ -320,7 +325,7 @@ Format: ```exit```
 | **Copy Student** | `copy INDEX`<br> e.g., `delete 1` |
 | **Delete Student** | `delete INDEX`<br> e.g., `delete 1` |
 | **Clear** | `clear`                             |
-| **Edit** |                                     |
+| **Edit** | |
 | **Find** |                                     |
 | **Filter** |                                     |
 | **List Students** | `list`                              |
