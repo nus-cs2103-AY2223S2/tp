@@ -68,8 +68,8 @@ public class EditCommand extends Command {
     private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
-     * @param employeeId of the employee in the filtered employee list to edit
-     * @param editEmployeeDescriptor details to edit the employee with
+     * @param employeeId EmployeeId of the employee in the filtered employee list to edit.
+     * @param editEmployeeDescriptor Details to edit the employee with.
      */
     public EditCommand(EmployeeId employeeId, EditEmployeeDescriptor editEmployeeDescriptor) {
         requireNonNull(employeeId);
@@ -79,6 +79,13 @@ public class EditCommand extends Command {
         this.editEmployeeDescriptor = new EditEmployeeDescriptor(editEmployeeDescriptor);
     }
 
+    /**
+     * Executes the EditCommand and returns the result message.
+     *
+     * @param model {@code Model} which the EditCommand should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during EditCommand execution.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -107,6 +114,10 @@ public class EditCommand extends Command {
     /**
      * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
      * edited with {@code editEmployeeDescriptor}.
+     *
+     * @param employeeToEdit Employee to edit.
+     * @param editEmployeeDescriptor Details to edit the employee with.
+     * @return New edited employee.
      */
     static Employee createEditedEmployee(Employee employeeToEdit,
                                          EditEmployeeDescriptor editEmployeeDescriptor) {
@@ -286,6 +297,8 @@ public class EditCommand extends Command {
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
+         *
+         * @param tags The tags to replace the object's {@code tags}.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
