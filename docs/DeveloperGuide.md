@@ -220,7 +220,7 @@ The following sequence diagram shows how the add operation works:
 
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How add & edit client executes:**
 
@@ -324,37 +324,23 @@ The following sequence diagram shows how the `edit` command works with appointme
 
 The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
 
-* `FitBook#getFilteredClientList()` — Retrieves the client list.
 * `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the given predicate.
 
 These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
-FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial FitBook state.
 
 ![FindState0](images/FindState0.png)
 
 Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
-FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
-modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
-`currentStatePointer` is shifted to the newly inserted FitBook state.
+FitBook. The `find` command calls `FindCommandParser`, causing the command to be parsed and checked for any errors before executing the command.
 
-![FindState1](images/FindState1.png)
+Step 3. After the command is parsed and there are no errors in the format of the command, `FindCommand#execute()` is called, which
+calls `FitBook#updateFilteredClientList(Predicate<Client> predicate)`.
 
-Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
-`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
-`fitBookStateList`.
-
-![FindState2](images/FindState2.png)
-
-![FindState3](images/FindState3.png)
-
-Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
-the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
-
-![FindState3](images/FindState4.png)
+Step 4. The user now wishes to find clients with phone number '91234567'. The user executes `find p/91234567` and the process restarts at step 2.
 
 The following sequence diagram shows how the find operation works:
 
@@ -364,11 +350,7 @@ The following sequence diagram shows how the find operation works:
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/FindActivityDiagram.png" width="250" />
-
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How find executes more than once:**
 
@@ -380,6 +362,15 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Better performance.
     * Cons: May result in high memory usage as each new state has to be saved.
 
+**Aspect: How find filters by keyword:**
+
+* **Alternative 1 (current choice):** Finds using predicates i.e. `n/`, `p/`, `add/`…​
+    * Pros: User-friendly.
+    * Cons: Harder implementation due to the need to create specific predicates e.g. `NameContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`.
+
+* **Alternative 2:** Finds using only keywords.
+    * Pros: Easy to implement.
+    * Cons: Poor design which may give rise to higher chances of errors in the future. This implementation may also be confusing for users.
 
 ### Add Exercise feature
 
@@ -416,7 +407,7 @@ The following sequence diagram shows how the add exercise operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 
-#### Design considerations:
+#### Design considerations
 
 * **Alternative 1 (current choice):** Adds the exercise into the specific Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
     * Pros: Easy to implement.
@@ -461,7 +452,7 @@ The following sequence diagram shows how the deleteRoutine operation works:
 </div>
 
 
-#### Design considerations:
+#### Design considerations
 
 * **Alternative 1 (current choice):** Delete the Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
     * Pros: Easy to implement.
@@ -508,7 +499,7 @@ The following sequence diagram shows how the find operation works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to export the client details :**
 
@@ -567,7 +558,7 @@ The following sequence diagram shows how the addRoutine operation works:
 
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How add & edit routine executes:**
 
@@ -647,7 +638,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -695,7 +686,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with
 targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and
-inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as
+inefficient. Our product aims to help solve this by combining the addressbook with additional features such as
 adding fitness routines to each client with checkboxes for easy access and to check if they have completed their
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
@@ -1202,7 +1193,8 @@ testers are expected to do more *exploratory* testing.
 
    A. Download the jar file and copy into an empty folder
 
-   B. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   B. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
