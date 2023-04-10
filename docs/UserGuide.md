@@ -98,7 +98,7 @@ open the help window.<br>
 
     * `undo 1`: Undoes up to five actions.
 
-    * `redo 1: Redoes up to five actions.
+    * `redo 1`: Redoes up to five actions.
 
     * `clear`: Deletes all cases shown in the current list.
 
@@ -133,7 +133,7 @@ Item | Description
 **age** | Age of the person who got dengue.
 **postal** | Postal code of the person who got dengue.
 **date** | Date that the person got dengue.
-**variant** | Dengue variant of the case (DENV1, DENV2, DENV3, or DENV4).
+**variant** | Dengue variant of the case.
 
 <div style="page-break-after: always;"></div>
 Here is the breakdown of an individual **bin card**.
@@ -267,6 +267,7 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
   * `DENV2`
   * `DENV3`
   * `DENV4`
+* Variants input are case insensitive (i.e. `DenV1` and `deNv4` will be accepted)
 
 ### Indexes
 * Indexes must be a positive integer. Index values can be up to ~2 billion, specifically 2147483647.
