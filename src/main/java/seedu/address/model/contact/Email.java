@@ -30,6 +30,7 @@ public class Email extends InternshipApplicationAttribute {
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
 
+    //Adapted from https://owasp.org/www-community/OWASP_Validation_Regex_Repository
     private static final String VALIDATION_REGEX =
             LOCAL_PART_REGEX + "@" + "(" + DOMAIN_PART_REGEX + "\\.)+[a-zA-Z]{2,7}$";
 

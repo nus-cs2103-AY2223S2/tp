@@ -24,7 +24,10 @@ public class ResumeLink extends InternshipApplicationAttribute {
             + "    - end with a domain label of 2 to 7 characters long\n"
             + "    - have each domain label start and end with alphanumeric characters\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+
+    //Adapted from https://owasp.org/www-community/OWASP_Validation_Regex_Repository
     private static final String DOMAIN_REGEX = "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    //Adapted from https://owasp.org/www-community/OWASP_Validation_Regex_Repository
     private static final String IP_ADDRESS_REGEX =
             "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\."
                     + "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
