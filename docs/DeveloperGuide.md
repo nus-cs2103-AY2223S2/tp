@@ -685,45 +685,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `showCards` <br>
       Expected: Cards in the deck are shown.
 
-#### Starting review
-
-1. Starting review on a deck
-    1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
-    2. Test case: `review 1` <br>
-       Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
-    3. Test case: `review 0` <br>
-       Expected: Review Mode is not started. Error details shown in the status message.
-    4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the number of decks) <br>
-       Expected: Similar to previous.
-
-#### Setting the limit of cards
-
-1. Setting the limit of cards per review
-    1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
-    2. Test case: `setLimit 10` <br>
-       Expected: Sets the limit per review of 10 cards.
-    3. Test case: `setLimit none` <br>
-       Expected: Resets the limit per review.
-    4. Test case: `setLimit 0` <br>
-       Expected: Does not set up the limit per review. Error details shown in the status message.
-    5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
-       Expected: Similar to previous.
-
-#### Opening help window
-
-1. Opening the help window to display the UG link
-    1. Test case: `help` <br>
-       Expected: A pop-up window is shown containing a link to UG with a copy button.
-
-#### Exiting the program
-
-1. Exiting the program
-    1. Test case: `exit` <br>
-       Expected: Exists the program. Window is closed.
-
-
 ### Testing Commands for Review Mode
-
 
 #### Ending a Review
 
@@ -775,6 +737,45 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `'`<br>
        Expected: Tag the card as hard.
+
+
+### Other Testing Commands
+
+#### Starting review
+
+1. Starting review on a deck
+    1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
+    2. Test case: `review 1` <br>
+       Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
+    3. Test case: `review 0` <br>
+       Expected: Review Mode is not started. Error details shown in the status message.
+    4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the number of decks) <br>
+       Expected: Similar to previous.
+
+#### Setting the limit of cards
+
+1. Setting the limit of cards per review
+    1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
+    2. Test case: `setLimit 10` <br>
+       Expected: Sets the limit per review of 10 cards.
+    3. Test case: `setLimit none` <br>
+       Expected: Resets the limit per review.
+    4. Test case: `setLimit 0` <br>
+       Expected: Does not set up the limit per review. Error details shown in the status message.
+    5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
+       Expected: Similar to previous.
+
+#### Opening help window
+
+1. Opening the help window to display the UG link
+    1. Test case: `help` <br>
+       Expected: A pop-up window is shown containing a link to UG with a copy button.
+
+#### Exiting the program
+
+1. Exiting the program
+    1. Test case: `exit` <br>
+       Expected: Exists the program. Window is closed.
 
 ###\# Saving data
 
