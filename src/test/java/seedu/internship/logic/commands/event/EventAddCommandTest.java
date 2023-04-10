@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.internship.logic.commands.event.EventAddCommand.MESSAGE_EVENT_CLASH_WARNING;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalInternships.ML1;
 
@@ -47,6 +48,19 @@ public class EventAddCommandTest {
     }
 
     @Test
+    public void execute_internshipAcceptedByModel_addSuccessfulWithWarning() throws Exception {
+        EventAddCommandTest.ModelStubAcceptingEventAdded modelStub =
+                new EventAddCommandTest.ModelStubAcceptingEventAdded();
+        Event validEvent = new EventBuilder().withStart("09/04/2023 1500").withEnd("09/04/2023 1900").build();
+        Event clashEvent = new EventBuilder().withStart("09/04/2023 1700").withEnd("09/04/2023 2100").build();
+        modelStub.addEvent(validEvent);
+        CommandResult commandResult = new EventAddCommand(clashEvent).execute(modelStub);
+
+        assertEquals(String.format(MESSAGE_EVENT_CLASH_WARNING, clashEvent), commandResult.getFeedbackToUser());
+
+    }
+
+    @Test
     public void execute_duplicateEvent_throwsCommandException() {
         Event validEvent = new EventBuilder().build();
         EventAddCommand addCommand = new EventAddCommand(validEvent);
@@ -65,6 +79,7 @@ public class EventAddCommandTest {
         assertThrows(CommandException.class, EventAddCommand.MESSAGE_NO_INTERNSHIP_SELECTED, () ->
                 addCommand.execute(modelStub));
     }
+
 
     @Test
     public void execute_eventWithEndBeforeStart_throwsCommandException() {

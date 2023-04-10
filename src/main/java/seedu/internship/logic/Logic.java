@@ -14,7 +14,7 @@ import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**

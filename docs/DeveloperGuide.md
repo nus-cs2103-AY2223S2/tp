@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -364,6 +365,48 @@ Step 8 till Step 11 are depicted in the *Sequence Diagram* below.
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
+### View useful `Statistics`: `stats` command
+
+The `stats` command displays useful statistics based on `Internship` and `Event` data.
+
+#### Design considerations:
+
+**Aspect: How statistics are generated and used:**
+
+* **Alternative 1 (current choice):** Separate `Statistics` class. `Statistics` parses lists of `Internship` and `Event` to create specified `Datapoint` fields.
+  The `Statistics` is then passed into the `CommandResult`.
+    * Pros: Allows for easy expansion for more kinds of statistics to be shown by adding more `Datapoint` fields in `Statistics`.
+    * Cons: Difficult to implement.
+
+* **Alternative 2:** `StatsCommand` parses the lists of `Internship` and `Event` to create list of `Datapoint`.
+  The list of `Datapoint` is then passed into `CommandResult`.
+    * Pros: Easy to implement.
+    * Cons: Difficult to expand to add more kinds of statistics.
+
+#### Implementation
+
+The `stats` command is a standard command that extends `Comand` and returns a `CommandResult` in the `execute()` methods, which does the following:
+
+* Obtains a `ObservableList<Event>` and `ObservableList<Internship>` from `Model`, which are lists containing all `Events` and `Internships`.
+* Creates a `Statistics` object from those 2 lists.
+* Returns a `CommandResult` of `ResultType.STATS` containing the `Statistcs` object, to be passed to the UI for displaying.
+
+Given below is an example usage scenario and how the stats command behaves at each step.
+
+Step 1. The user enters the `stats` command into the CLI: `stats`.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `select`, creating a `StatsCommand` and passes it to `LogicManager`
+
+Step 3. `LogicManager` calls the `execute()` method of the `StatSCommand` instance, which invokes `getFilteredInternshipList()` and `getFilteredEventList()` on `Model` to get a list of internships and events.
+
+Step 4. A `Statistics` object is created from the 2 lists. Which parses the list of `Internship` and `Event` to instantiate the appropriate `Datapoint` fields.
+
+Step 5. Finally, a `CommandResult` is created containing that `Statistics` instance, which is then returned to `LogicManager` for use in the UI.
+
+The following sequence diagram shows how the `stats` command works:
+
+![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+
 
 ### View all clashing `Event`: `clash` command
 
@@ -471,27 +514,18 @@ the list of events corresponding to those dates.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                    | I want to …​                                          | So that I can…​                                                        |
-|----------|--------------------------------------------|-------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                                | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                                      |                                                                        |
-| `* * *`  | user                                       | delete a person                                       | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                                 | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                          | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                                  | locate a person easily                                                 |
-| `* *`    | novice user                                | edit existing internship applications                 | update outdated information or add new details                         |
-| `*`      | intermediate user                          | quickly update the status of an internship            | keep the status of my applications up to date                          |
- | `* *`    | expert user                                | see all internship events that have clashes in dates  | try to reschedule some of those events                                 |
-| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                |
-| `* * *`  | Beginner user                              | add a new internship listing                 | record details of my internship application                           |
-| `* * *`  | Beginner user                              | delete a previously added internship listing | rid of dummy data or unwanted internship application                  |
-| `* * *`  | user                                       | find a person by name                        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                 | minimize chance of someone else seeing them by accident               |
-| `*`      | user with many persons in the address book | sort persons by name                         | locate a person easily                                                |
-| `* * *`  | novice user                                | list all my intership applications easily | can confirm that my internship listing has been created
-| `* *`    | intermediate user                          | list all internships that have deadlines on a particular date	| avoid scheduling an interview on that day |
-| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about |
-| `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on |
+| Priority | As a …​                                    | I want to …​                                                                                            | So that I can…​                                                     |
+|----------|--------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                                                                  | refer to instructions when I forget how to use the App              |
+| `* * *`  | Beginner user                              | add a new internship listing                                                                            | record details of my internship application                         |
+| `* * *`  | Beginner user                              | delete a previously added internship listing                                                            | rid of dummy data or unwanted internship application                |
+| `* *`    | user                                       | hide internship descriptions unless selected.                                                           | minimize chance of someone else seeing them by accident             |
+| `* *`    | novice user                                | edit existing internship applications                                                                   | update outdated information or add new details                      |
+| `*`      | intermediate user                          | quickly update the status of an internship                                                              | keep the status of my applications up to date                       |
+| `* *`    | expert user                                | see all internship events that have clashes in dates                                                    | try to reschedule some of those events                              |
+| `* * *`  | novice user                                | list all my intership applications easily                                                               | can confirm that my internship listing has been created             
+| `* *`    | intermediate user                          | list all internship events that have deadlines on a particular date	                                    | avoid scheduling an interview on that day                           |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about                |
 
 
 ### Use cases
@@ -534,48 +568,34 @@ Use Case ends.
 
 **MSS**
 
-1. User requests to Add
-2. System asks the user for Internship Position
-3. User inputs the Internship Position
-4. System asks the user for Company Name
-5. User inputs the Company Name
-6. System asks the user for application status
-7. User inputs the Status
-8. System Confirms Internship Addition
-9. User confirms addition
-10. System adds the internship listing
+1. User requests to Add Internship followed by Internship Position, Company Name, Application Status, Description and Tag
+2. System adds the internship listing
 
 Use Case ends.
 
 **Extensions**
-* 7.a System asks User to add addition information
-* 7.a1 System ask User for Application Link
 
-    * 7.a2 User inputs Application link
+* 1a User inputs invalid Parameter.
 
-    * 7.a3 System ask User for Contact details of Hiring Manager
-
-    * 7.a3 User inputs Contact details of Hiring Manager
-
-* 8a. User denies the addition of the listing
-      Use Case ends.
+    * 1a1. System shows an error message.
+    
+    
 
 **Use case: List all internship applications**
 
 **MSS**
 
-1.  User requests to list all internship applications saved on System.
-2.  System displays a list of internships.
-    Use case ends.
+1. User requests to list all internship applications saved on System.
+2. System displays a list of internships.
+    
+Use case ends.
 
-* 1a. User requests to list all internship applications that have not received updates in a long time.
-
-  * 1b1. System displays all internships that have not had a change in status in a week.
-
-    Use case ends.
+**Extensions**
 
 * 2a. The list is empty.
-    Use case ends.
+  
+    Use Case ends.
+  
 
 **Use Case: Delete Internship Listing**
 
@@ -583,49 +603,43 @@ Use Case ends.
 
 1. User requests to list internships inputted
 2. System shows a list all the inputted internships
-3. User requests to delete an internship listing
-4. System Confirms the listing User wants to delete
-5. User confirms the listing to be deleted
-6. System deletes the internship listing
+3. User requests to delete an internship listing by its index
+4. System deletes the internship listing
 
 Use case ends.
 
 **Extensions**
 
-* 4a. User decides to not delete the listing
-Use Case Ends.
+* 3a. User enters an invalid ID
+    * 3a1. System will show an error message and not delete any listing.
+    
+       Use Case resumes at Step 3
 
-**Use case: List all internship applications with a deadline on a particular date**
+**Use case: List all internship events with a deadline on a particular date**
 
 **MSS**
 
-1.  User requests to list all internship applications with an upcoming deadline on a particular date.
-2.  System prompts user to key in a date.
-3.  User inputs a date.
-4.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
-
-    Use case ends.
+1. User requests to find events that end on a particular date.
+2. System displays the list of events.
+ 
+Use case ends.
 
 **Extensions**
 
-* 3a. The date given by user is in the future (i.e. later than today).
+* 1a. The date given by user is invalid (i.e. not formatted correctly).
 
-  * 3a1. System displays an error message to inform the user that the input date is not valid and needs to be today's date and earlier.
-
-    Use case resumes from step 2.
-
-* 4a. The list is empty.
+  * 1a1. System displays an error message to inform the user that the input date is not valid.
+  
+* 2a. There are no internship events on the particular date.
 
   Use case ends.
-
-* 4b. There are no internship applications with an upcoming deadline.
 
 
 **Use case: List internships by desired criteria**
 
 **MSS**
 
-1. User requests to list sorted internships
+1. User requests to list internships by desired criteria
 2. System prompts user to choose a criteria to list internship by
 3. User inputs desired criteria
 4. System displays list of all internships sorted in order based on chosen
@@ -640,15 +654,14 @@ Use Case Ends.
 * 3a. The given criteria is invalid.
 
     * 3a1. TinS shows an error message.
-
-  Use case ends.
+    
 
 **Use case: View all clashes of internship Events.**
 
 **MSS**
 
 1.  User requests to view all clashes of internship Event dates.
-2.  AddressBook shows a list of dates that have clashes and the Events that clashed.
+2.  TinS shows a list of dates that have clashes and the Events that clashed.
 
     Use case ends.
 
@@ -697,7 +710,7 @@ testers are expected to do more <b>exploratory</b> testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample internships. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -705,8 +718,6 @@ testers are expected to do more <b>exploratory</b> testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting an Internship
 
@@ -723,13 +734,4 @@ testers are expected to do more <b>exploratory</b> testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 

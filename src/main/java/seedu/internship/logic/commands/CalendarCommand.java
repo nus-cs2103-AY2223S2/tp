@@ -12,7 +12,7 @@ public class CalendarCommand extends Command {
 
     public static final String COMMAND_WORD = "calendar";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays calendar view of events.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the calendar page.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SHOW_CALENDAR = "Showing calendar ... \n";

@@ -7,13 +7,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Helper functions for handling LocalDateTime
+ * Helper functions for handling LocalDateTime.
  */
 public class DateTimeUtil {
 
     /**
-     * Checks is given string is in the appropriate format for parsing into a LocalDateTime object by the given
-     * DateTimeFormatter.
+     * Returns true if the given string is in the appropriate format for parsing into a LocalDateTime
+     * object by the given DateTimeFormatter.
      * @param s String to be parsed.
      * @param dateTimeFormatter Formatter to parse the string by.
      * @return True/False if the string can be parsed into LocalDateTime.

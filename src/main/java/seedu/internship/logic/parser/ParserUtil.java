@@ -36,7 +36,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String position} into a {@code Position}.
+     * Parses {@code position} into a {@code Position}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code position} is invalid.
@@ -51,7 +51,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String company} into a {@code Company}.
+     * Parses {@code company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code company} is invalid.
@@ -66,7 +66,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into an {@code Status}.
+     * Parses {@code status} into an {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code status} is invalid.
@@ -85,7 +85,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String description} into an {@code Description}.
+     * Parses {@code description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code description} is invalid.
@@ -93,15 +93,12 @@ public class ParserUtil {
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        // No need ot check valid descripiton , as anything an be in description
-        // if (!Description.isValidDescription(trimmedDescription)) {
-        //   throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        // }
+        // No need to check valid description , as anything can be in description
         return new Description(trimmedDescription);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses {@code tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.

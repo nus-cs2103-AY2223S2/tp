@@ -7,13 +7,13 @@ import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new SelectCommand object.
  */
 public class SelectCommandParser implements Parser<SelectCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewCommand
-     * and returns a ViewCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SelectCommand
+     * and returns a SelectCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SelectCommand parse(String args) throws ParseException {

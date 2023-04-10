@@ -8,7 +8,7 @@ import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
 
 /**
- * Clears the internship catalogue.
+ * Deletes all data in the internship and event catalogue.
  */
 public class DeleteAllCommand extends Command {
 
@@ -16,8 +16,8 @@ public class DeleteAllCommand extends Command {
 
     public static final String CONFIRMATION_CODE = "confirm";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes all internships and events.\n"
-            + "Enter \"" + CONFIRMATION_CODE + "\" after to verify deleting all data\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes all internships and events. "
+            + "Enter \"" + CONFIRMATION_CODE + "\" after to verify execution of command\n"
             + "Example: " + COMMAND_WORD + " " + CONFIRMATION_CODE;
 
     public static final String MESSAGE_SUCCESS = "All data deleted!";
@@ -27,6 +27,9 @@ public class DeleteAllCommand extends Command {
 
     private final String code;
 
+    /**
+     * Creates a DeleteALlCommand with the given code {@code String}
+     */
     public DeleteAllCommand(String str) {
         this.code = str;
     }

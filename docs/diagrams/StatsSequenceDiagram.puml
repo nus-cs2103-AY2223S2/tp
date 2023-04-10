@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipCatalogueParser" as InternshipCatalogueParser LOGIC_COLOR
+participant "s:StatsCommand" as StatsCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "statistics:Statistics" as Statistics MODEL_COLOR
+end box
+
+[-> LogicManager : execute("stats")
+activate LogicManager
+
+LogicManager -> InternshipCatalogueParser : parseCommand("stats")
+activate InternshipCatalogueParser
+
+create StatsCommand
+InternshipCatalogueParser -> StatsCommand : StatsCommand()
+activate StatsCommand
+
+StatsCommand --> InternshipCatalogueParser : s
+deactivate StatsCommand
+
+InternshipCatalogueParser --> LogicManager :s
+deactivate InternshipCatalogueParser
+
+LogicManager -> StatsCommand : execute()
+activate StatsCommand
+
+StatsCommand -> Model : getFilteredInternshipList()
+activate Model
+
+Model --> StatsCommand : internships
+deactivate Model
+
+StatsCommand -> Model : getFilteredEventsList()
+activate Model
+
+Model --> StatsCommand : events
+deactivate Model
+
+create Statistics
+StatsCommand -> Statistics : Statistics(internships, events)
+activate Statistics
+
+Statistics -> Statistics : parseInternshipList(internships)
+activate Statistics
+
+Statistics --> Statistics :
+deactivate Statistics
+
+Statistics -> Statistics : parseEventList(events)
+activate Statistics
+
+Statistics --> Statistics :
+deactivate Statistics
+
+Statistics --> StatsCommand : statistics
+deactivate Statistics
+
+create CommandResult
+StatsCommand -> CommandResult : CommandResult(statistics)
+activate CommandResult
+
+CommandResult --> StatsCommand : result
+deactivate CommandResult
+
+StatsCommand --> LogicManager : result
+deactivate StatsCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StatsCommand -[hidden]-> InternshipCatalogueParser
+destroy StatsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

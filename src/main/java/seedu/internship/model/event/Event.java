@@ -11,19 +11,19 @@ import java.util.Objects;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Represents a Event in the internship.
+ * Represents an Event belonging to an internship.
  */
 public class Event {
     private final Name name;
-    private final DateTime start;
-    private final DateTime end;
+    private final Start start;
+    private final End end;
     private final EventDescription eventDescription;
     private Internship internship = Internship.EMPTY_INTERNSHIP;
 
     /**
      * Every Field must be present and not null.
      */
-    public Event(Name name, DateTime start, DateTime end, EventDescription eventDescription, Internship internship) {
+    public Event(Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
         requireAllNonNull(name, start, end, eventDescription, internship);
         this.name = name;
         this.start = start;
@@ -43,13 +43,20 @@ public class Event {
     }
 
     /**
-     * The class still is immutable , once internship is defined , it cannot be changed
+     * The class still is immutable, once internship is defined, it cannot be changed.
      * @param internship
      */
     public void setInternship(Internship internship) {
         if (this.internship == Internship.EMPTY_INTERNSHIP) {
             this.internship = internship;
         }
+    }
+
+    /**
+     * Returns of copy of this Event with empty, undefined internship.
+     */
+    public Event getCopyOf() {
+        return new Event(name, start, end, eventDescription);
     }
 
     public Name getName() {
@@ -73,7 +80,7 @@ public class Event {
     }
 
     /**
-     * Returns True if both events have the same start, end and internship
+     * Returns True if the given Internship is the same as the Internship this events belongs to.
      */
     public boolean isSameInternship(Internship intern) {
         return internship != null
@@ -81,7 +88,7 @@ public class Event {
     }
 
     /**
-     * Returns True if both events have the same start, end and internship
+     * Returns True if both events have the same Name, Start, End and Internship.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
@@ -96,10 +103,10 @@ public class Event {
     }
 
     /**
-     * Checks if an Event clashes in timing with another Event
+     * Checks if an Event clashes in timing with another Event.
      *
-     * @param otherEvent Other Event to compare with
-     * @return True if the two Events clashes in timing
+     * @param otherEvent Other Event to compare with.
+     * @return True if the two Events clashes in timing.
      */
     public boolean isClash(Event otherEvent) {
         return !this.equals(otherEvent)
@@ -111,10 +118,10 @@ public class Event {
     }
 
     /**
-     * Returns the timing of which two events clash
+     * Returns the timing of which two events clash.
      *
-     * @param otherEvent Other Event to compare with
-     * @return null if there is no clash in events; List of start and end clash timing if events clash
+     * @param otherEvent Other Event to compare with.
+     * @return null if there is no clash in events; List of start and end clash timing if events clash.
      */
     public List<LocalDateTime> clashingTimings(Event otherEvent) {
         if (!this.isClash(otherEvent)) {
@@ -189,6 +196,9 @@ public class Event {
         return Objects.hash(start, end, internship, eventDescription);
     }
 
+    /**
+     * Returns true if this event has the same start and end datetime, in other words it is of a deadline type.
+     */
     public boolean isDeadline() {
         return this.start.compareTo(end) == 0;
     }

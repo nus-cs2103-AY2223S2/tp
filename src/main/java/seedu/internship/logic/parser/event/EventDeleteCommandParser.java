@@ -8,14 +8,14 @@ import seedu.internship.logic.parser.Parser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EventDeleteCommand object
+ * Parses input arguments and creates a new EventDeleteCommand object.
  */
 public class EventDeleteCommandParser implements Parser<EventDeleteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EventDeleteCommand
      * and returns an EventDeleteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EventDeleteCommand parse(String args) throws ParseException {
         try {
