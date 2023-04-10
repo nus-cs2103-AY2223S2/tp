@@ -1446,7 +1446,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 7. `delete-field s/Assessment s/Interview t/Android`
 
-   **Expected**: Only the internship with status `Assessment` and tag `Android` is deleted, because
+   **Expected**: Only the internship with status `Interview` and tag `Android` is deleted, because
    all the other internships do not have a matching field for both `Status` and `Tag`.
 
 <div style="page-break-after: always;"></div>
