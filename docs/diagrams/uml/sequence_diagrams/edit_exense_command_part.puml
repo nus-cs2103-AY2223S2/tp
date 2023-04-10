@@ -1,4 +1,5 @@
 @startuml  EditExpenseFindPartSequenceDiagram
+!include ../../style.puml
 
 hide footbox
 skinparam MinClassWidth 50
@@ -7,25 +8,23 @@ skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
-participant ":EditExpenseCommand" as Command  order 1
-participant "category: Category" as Category order 2
-skinparam Sequence {
-    MessageAlign center
-    BoxFontSize 15
-    BoxPadding 0
-    BoxFontColor #FFFFFF
-    ReferenceBackgroundColor #FFFFFF
-}
+box Logic LOGIC_COLOR_T1
+participant ":EditExpenseCommand" as Command  order 1 LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "category: Category" as Category order 2 MODEL_COLOR
+end box
 
 loop until matching category is found
     create Category
     Command -> Category
-    activate Category #Brown
+    activate Category
     Category -[hidden]> Command
     deactivate Category
 
     Command-[hidden]->Category
-     activate Category #Brown
+     activate Category
     Category -> Category :equals(newExpenseCategoryInString)
     opt if equals check is true
        Category -[hidden]> Category
