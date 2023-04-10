@@ -299,14 +299,14 @@ public class AutocompleteEngine {
     private String getMatchingArgSuggestion(List<Prefix> argPrefixes, ArgumentMultimap argumentMultimap,
             String lastWord) {
         String matchingArgs = argPrefixes.stream()
-        // Excludes prefix-less arguments like index/keywords.
-        .filter(prefix -> !prefix.isPlaceholder())
-        // Remove filled non-repeating prefixed arguments.
-        .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
-                || prefix.isRepeatable())
-        .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
-        .map(Prefix::toPlaceholderString)
-        .collect(Collectors.joining(" "));
+                // Excludes prefix-less arguments like index/keywords.
+                .filter(prefix -> !prefix.isPlaceholder())
+                // Remove filled non-repeating prefixed arguments.
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
+                        || prefix.isRepeatable())
+                .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
+                .map(Prefix::toPlaceholderString)
+                .collect(Collectors.joining(" "));
 
         return matchingArgs.isEmpty()
                 ? ""
