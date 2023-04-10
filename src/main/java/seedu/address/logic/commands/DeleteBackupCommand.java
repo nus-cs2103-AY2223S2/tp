@@ -16,7 +16,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 
 /**
- * Deletes a backup from a specified index
+ * Deletes a backup from a specified index.
  */
 public class DeleteBackupCommand extends Command {
 
@@ -36,7 +36,7 @@ public class DeleteBackupCommand extends Command {
     private final Path backupDataPath = Path.of("data/backup/backupData.json");
 
     /**
-     * @param index of the backup file
+     * @param index of the backup file.
      */
     public DeleteBackupCommand(Index index) {
         requireAllNonNull(index);

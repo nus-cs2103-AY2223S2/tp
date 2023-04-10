@@ -11,14 +11,14 @@ import seedu.address.logic.commands.BackupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new {@code BackupCommand} object
+ * Parses input arguments and creates a new {@code BackupCommand} object.
  */
 public class BackupCommandParser implements Parser<BackupCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code BackupCommand}
      * and returns a {@code BackupCommand} object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public BackupCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -38,7 +38,7 @@ public class BackupCommandParser implements Parser<BackupCommand> {
     }
 
     /**
-     * Returns true if a given index is a valid
+     * Returns true if a given index is valid.
      */
     public static boolean isValidIndex(Index test) {
         return test.getOneBased() <= 10 && test.getOneBased() > 0;

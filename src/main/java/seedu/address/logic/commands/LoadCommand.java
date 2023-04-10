@@ -16,7 +16,7 @@ import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
- * Loads the data from a specified backup
+ * Loads the data from a specified backup.
  */
 public class LoadCommand extends Command {
 
@@ -36,7 +36,7 @@ public class LoadCommand extends Command {
     private final Backup backup;
 
     /**
-     * @param index of the backup file
+     * @param index of the backup file.
      */
     public LoadCommand(Index index) {
         requireAllNonNull(index);

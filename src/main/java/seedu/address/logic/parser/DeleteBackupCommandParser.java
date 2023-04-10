@@ -9,7 +9,7 @@ import seedu.address.logic.commands.DeleteBackupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteBackupCommand object
+ * Parses input arguments and creates a new DeleteBackupCommand object.
  */
 public class DeleteBackupCommandParser implements Parser<DeleteBackupCommand> {
 
@@ -17,7 +17,7 @@ public class DeleteBackupCommandParser implements Parser<DeleteBackupCommand> {
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns an DeleteCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteBackupCommand parse(String args) throws ParseException {
         requireNonNull(args);

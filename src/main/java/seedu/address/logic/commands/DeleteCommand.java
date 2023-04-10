@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Deletes person(s) identified by their NRIC from the address book. (at least one NRIC to be supplied)
+ * Deletes person(s) identified by their NRIC from the patient records. (at least one NRIC to be supplied)
  */
 public class DeleteCommand extends Command {
 
@@ -34,7 +34,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        boolean throwException = false;
+        boolean isMissing = false;
         String errorMessage = "";
         String deletedPersonMessage = MESSAGE_DELETE_PERSON_SUCCESS;
         requireNonNull(model);
@@ -42,14 +42,14 @@ public class DeleteCommand extends Command {
         for (Nric nric: nricList) {
             Person personToDelete = model.findPersonByNric(nric);
             if (personToDelete == null) {
-                throwException = true;
+                isMissing = true;
                 errorMessage += String.format(Messages.MESSAGE_NRIC_DOES_NOT_EXIST, nric);
             } else {
                 model.deletePerson(personToDelete);
                 deletedPersonMessage += String.format("%s\n", nric);
             }
         }
-        if (throwException) {
+        if (isMissing) {
             throw new CommandException(errorMessage);
         }
         return new CommandResult(deletedPersonMessage);
