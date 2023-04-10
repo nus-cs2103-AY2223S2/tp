@@ -1143,35 +1143,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Assign a task to a person.
 
 #### *M*
-  - ##### Mark
+  -  Mark
     - Mark a task as completed.
-  - ##### Mainstream OS
+  -  Mainstream OS
     - Windows, Linux, Unix, OS-X
 
 #### *P*
-  - ##### P
+  - P
     - A person.
-  - ##### PI
+  - PI
     - View a person's details.
 
-#### *P*
-  - ##### Quickstart: 
+#### *Q*
+  - Quickstart: 
     - Launch the application with sample data.
 
 #### *T*
-  - ##### T
+  - T
     - A Task.
-  - ##### TI
+  - TI
     - View a task's details.
 
 #### *U*
-  - ##### Unassign
+  - Unassign
     - Unassign a task from a person.
-  - ##### Unmark
+  - Unmark
     - Unmark a completed task.
 
 #### *V*
-  - ##### View
+  - View
     - A term used in the app to refer to the action of accessing and reviewing detailed information about records, such as person details or task details.
 
 
