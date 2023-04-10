@@ -24,7 +24,7 @@ This User Guide provides brief documentation on how you can install the applicat
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook. You may create a new folder under any directory.
 4. Open a command terminal and navigate into the folder you put the jar file in using `cd`. Then, use the `java -jar fitbook.jar` command to run the application.<br>
-   A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br> 
+   A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
    * For example, if your jar file is stored in a folder 'FitBook' located in the desktop directory of your computer, the commands in the command terminal will be:
      1. `cd Desktop`
      2. `cd FitBook`
@@ -32,7 +32,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
    * If you are unsure how to open the command terminal, you may refer to the guide below.
      * For [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt). For [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal).
-   
+
    ![Ui](images/Ui.png)
 
 
@@ -87,7 +87,7 @@ Panels are _empty_ when the data for that specific panel is _empty_.
 #### Schedule
 * Left panel (`Schedule` tab) displays the list of clients' basic information.
 * Right panel (`Schedule` tab) displays the list of appointments sorted chronologically. (Refresh the page by changing tabs or reopening FitBook to see the appointment get removed after it passes its deadline.)
-  
+
 
   ![Schedule Panel](images/schedule.png)
 
@@ -220,7 +220,7 @@ Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GE
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
 * Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​ 
+* The index **must be a positive integer** 1, 2, 3, …​
 * The index must not contain signs +1, +2, +3, …​
 * The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * At least one of the optional fields must be provided.
