@@ -36,7 +36,4 @@ deactivate AddMeetingCommandParser
 
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
-
-[<-- LogicManager
-deactivate LogicManager
 @enduml
