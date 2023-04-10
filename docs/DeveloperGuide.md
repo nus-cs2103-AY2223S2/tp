@@ -353,6 +353,7 @@ Step 2. The user executes `mass tag good` command to tag all the people in the a
 every person in the addressbook list is `tag` with good.
 
 ![TagSequenceDiagram](images/MassOpSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
