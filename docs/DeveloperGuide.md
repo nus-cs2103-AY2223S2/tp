@@ -428,7 +428,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to find an event based on a given keyword.
-2.  PlanEase shows the list of sorted events based on the user’s choice of keyword.
+2.  PlanEase shows the list of filtered events based on the user’s choice of keyword.
 
 Use case ends.
 
