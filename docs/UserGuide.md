@@ -4,7 +4,7 @@ title: AIMS User Guide
 ---
 
 <!-- omit from toc -->
-## Table of Contents\
+## Table of Contents
 
 - [Introduction](#introduction)
   - [What is AIMS?](#what-is-aims)
@@ -152,7 +152,7 @@ Examples:
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
-Adds all persons from a given valid CSV file to AIMS.
+Adds all persons from a given valid CSV (Comma-Separated Values) file to AIMS. Excel and Google spreadsheets can be easily converted into CSV files for quick importing.
 
 Format: `importcsv PATH_TO_CSV_FILE`
 
@@ -161,23 +161,30 @@ The given CSV file must fulfill the following conditions:
 1. File given must end with '.csv'.
 2. Each row in the CSV File must have the same number of rows
 3. The first row of the CSV file must be reserved for headers.
-4. Each field, namely `rank, name, unit, phone, email, address, tags`, must appear as a header in this exact form (but
+4. Each field, namely `rank, name, unit, company, platoon, phone, email, address, tags`, must appear as a header in this exact form (but
    in any order, except tag which has to be the last header).
-5. Each person cannot have blank entries for any of the fields (except tag)
+5. Each person cannot have blank entries for any of the fields (except for unit, company, platoon, tags)
 6. If a person has more than one tag, they are to be listed horizontally. (Additional tags cannot have a header)
 
-Examples:
+Step-by-step example of converting and importing an Excel spreadsheet:
 
-- example of a Google Sheet that would be valid once converted to CSV.
+1. Ensure that Excel sheet passes conditions 4 to 6 above. It should look something like this:
+![demo excel](images/demoExcel.png)
 
-![demo sheets](images/demoSheets.png)
-- valid CSV file:
+2. Click on "Save As" and save the Excel sheet as a CSV file. Take note where the saved file is located in your computer.
+![demo save as csv](images/demoSaveAsCsv.png)
 
-![demo CSV](images/demoCsv.png)
+3. Find the new CSV file in your computer and copy its path.
+![demo copy path](images/demoCopyPath.png)
 
-- `importcsv C:\file\6coy_platoon_four_data.csv`
+4. Open AIMS. Into the command line input `importcsv ` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
+![demo importcsv command](images/demoImportcsvCommand.png)
 
-![importcsv success](images/importcsvSuccess.png)
+5. Make changes based on any error messages received. For example, if there is an issue with phone numbers, you have to make sure that the Excel file you want to import has no empty entries or invalid characters (i.e. spaces, alphabets, any other non-numeric characters)
+![demo importcsv error](images/demoImportcsvError.png)
+
+6. You should see the following screen if you are successful!
+![importcsv success](images/demoImportcsvSuccess.png)
 
 [Return to Top](#table-of-contents)
 
