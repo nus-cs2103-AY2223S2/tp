@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,6 +33,8 @@ public class StudentDeleteCommand extends StudentCommand {
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS =
             "Deleted Student: %1$s; Class: %2$s; Index Number: %3$s;";
 
+    private static Logger logger = Logger.getLogger(StudentDeleteCommand.COMMAND_WORD);
+
     private final IndexNumber targetIndex;
     private final Class studentClass;
 
@@ -52,13 +57,16 @@ public class StudentDeleteCommand extends StudentCommand {
         //with modifications
         Student studentToDelete = model.getStudent(targetIndex, studentClass);
         if (studentToDelete == null) {
+            logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student does not exists]");
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
         model.deleteStudent(studentToDelete);
+        logger.log(Level.INFO, "----------------[STUDENT DELETE][Student deleted successfully]");
 
         Parent parentToUnbind = model.getParent(studentToDelete.getParentName(), studentToDelete.getParentNumber());
 
         if (parentToUnbind == null) {
+            logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student's parent does not exists]");
             throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
         }
         //@@author

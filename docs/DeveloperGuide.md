@@ -294,7 +294,7 @@ However, a parent can only be deleted if no student is attached to that parent.
 7. If the student exists, he/she will then be deleted and their parent will be updated if their parent can be found.
 8. The result of the command execution is encapsulated as a `CommandResult` object which is returned to `Logic`.
 9. The user tries deleting the parent again, it follows `step 5 & 6` in a similar way to just that it is now for parent instead of student.
-10. It will then check if the parent has no students attached before deleting the parent
+10. It will then check if the parent has no students attached before deleting the parent.
 11. Afterwards, `step 8` happens for `parent delete`.
 
 **Activity diagram for Student Delete**
