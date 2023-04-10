@@ -86,7 +86,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/Ui.java).
 
 Here's a (partial) class diagram of the `UI` component:
 
@@ -159,7 +159,7 @@ Compared to the original design of AB3, we decided to split the model components
 
 We argue that the original `Model` component from AB3 handles too many responsibilities (it handles both the business logic and the view at the same time) - which results in high coupling and low cohesion. This causes a number of bad consequences on the code base - one of them is mentioned below.
 
-Consider the command classes in AB3 - they are dependent on the `Model` interface. A change in the `Model` interface forces us to recompile all command classes (and remember, there are classes that are dependent on the command classes - we also need to recompile them) - even if the change is not related to the command.
+Consider the command classes in AB3 - they are dependent on the `Model` interface. A change in the `Model` interface forces us to recompile all command classes (and remember, there are classes that are dependent on the command classes - we also need to recompile them), even if the change is not related to the command.
 
 We may add a method to sort data, and then we must recompile `AddCommand` because `Model` has changed. But, `AddCommand` only modifies internal data - it is not dependent on the view, and ideally, we do not need to recompile it.
 
@@ -175,7 +175,7 @@ Here's a (partial) class diagram of the `Model` component:
 
 <img src="images/ModelClassDiagram.png" width="600" />
 
-Currently, `MacroMap` and `CommandStack` are classes and are used directly in other components (without using an immediate interface). With the current version of the app, using interfaces for these classes to hide the implementation details are not very necessary. We do plan to introduce interfaces for these classes in future version of the app.
+Currently, `MacroMap` and `CommandStack` are classes and are used directly in other components (without using an immediate interface). With the current version of the app, using interfaces for these classes to hide the implementation details are not very necessary. We do plan to introduce interfaces for these classes in future version of the app as it makes the code base more consistent.
 
 ### Storage component
 
@@ -205,7 +205,7 @@ This section describes some noteworthy details on how certain features are imple
 
 **Motivation**
 
-The parser of Vimification is implemented with `ApplicativeParser` instead of `Regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `Regex` expression.
+The parser of Vimification is implemented with `ApplicativeParser` instead of `regex`. The main reason why we use `ApplicativeParser` becauses it allows a more declarative style to write the parser, which is (arguably) easier to read and maintain, compared to a long `regex` expression.
 
 **Implementation overview**
 
@@ -219,7 +219,7 @@ For example, consider a parser that tries to parse the string `"foo"`:
 - If the input sequence is `"bar"`, the parser will fail (no `"foo"` to parse). The returned container after running the parser will be empty.
 - If the input sequence is `"foo bar"`, the parser will succeed. The returned container after running the parser will contain the remaining input sequence `" bar"`, and the parsing result `"foo"`.
 
-The parsing result can be further transformed into objects of the desired type, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
+The parsing result can be further transformed, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
 
 <!-- insert sequence diagram -->
 
@@ -255,21 +255,21 @@ The only way to create new `ApplicativeParser` instances is to use static factor
 
 ### Command parser
 
-All command parsers implements a common interface:
+All command parsers implement a common interface:
 
 ```java
 public interface CommandParser<T extends Command> { /* implementation details */ }
 ```
 
-Where `T` is the type of the command returned by the parser.
+Where `T` is the type of the command object returned by the parser.
 
 <!-- insert diagram here -->
 
 **Implementation overview**
 
-The combinators of `ApplicativeParser` will be combined and used in `CommandParser` to parse different commands of the application.
+`ApplicativeParser` combinators will be combined to create powerful parsers that can recognize different commands.
 
-A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to be used by `CommandParser#parse()`.
+A class implementing `CommandParser` must provide an implementation for `CommandParser#getInternalParser()`. This method will return the appropriate `ApplicativeParser` to parse the user input.
 
 ### Command implementation
 
@@ -319,7 +319,7 @@ The current downside of this design is that, in order to execute a certain comma
 
 This is very error-prone, due to some reasons:
 
-- Mismatch between the type used with `instanceof` operator and the type used to cast instance.
+- Mismatch between the type used with `instanceof` operator and the type used to cast the instance.
 
 ```java
 if (command instanceof LogicCommand) {
@@ -348,7 +348,7 @@ Future versions of Java contain features that can handle the problems mentioned 
 
 **Motivation**
 
-Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all of the changes completed so far must be discarded. This ensures that the system is always left in a consistent state.
+Modifications to data inside the application must be atomic. Within a single operation, if there is a failure, then all changes completed so far must be discarded, and the operation must stop. This ensures that the system is always left in a consistent state.
 
 **Implementation details**
 
@@ -358,18 +358,18 @@ Whenever a task (in the task list) needs to be modified, the following workflow 
 
 - Copy the task to be modified.
 - Sequentially applies different modifications to the new task.
-- If there is a failure, we discard the new task and return it.
+- If there is a failure, we discard the new task and stop the operation.
 - If there is no failure, we replace the old task with the new (modified) task.
 
 Refer to the diagram below for a visualization of this workflow:
 
-<!-- insert diagram here -->
+<img src="images/AtomicTaskModification.png" width="300" />
 
 Apart from ensuring atomic data operation, this implementation also greatly simplifies the implementation of the undo feature.
 
 ### Undo feature
 
-The undo can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
+The user can undo the previous command (that modifies the internal data) by typing `"undo"` in the command box.
 
 **Motivation**
 
@@ -390,18 +390,18 @@ public interface UndoableLogicCommand extends LogicCommand {
 }
 ```
 
-All command that modifies the internal data (`AddCommand`, `DeleteCommand`, etc.) must implement `UndoableLogicCommand` and provide an implementation for the `undo` method.
+All command that modifies the internal data (`AddCommand`, `DeleteCommand`, etc.) must implement `UndoableLogicCommand` and provide an implementation for `UndoableLogicCommand#undo()`.
 
-Also, apart from modifying the data (atomically), `execute` method now:
+Apart from modifying the data (atomically), `UndoableLogicCommand#execute()` also:
 
 - Maintains relevant information (before modification) for the `undo` method.
-- Pushes the command (itself) into the stack of previous commands (if the command succeeds).
+- Pushes the command into the stack of commands (if the command succeeds).
 
 To undo a command, the following steps are executed:
 
-- A `UndoCommand` instance is created after the user type `"undo"` into the command box.
-- The command pops the first command out of the stack.
-- The command then calls the `undo` method of the poped command.
+- An `Undo Command` object is created after the user type `"undo"` into the command box.
+- Pops the first command out of the stack.
+- Calls the `undo` method of the popped command.
 
 Refer to the diagram below for a visualization of this workflow:
 
@@ -427,16 +427,16 @@ The macro mechanism is facilitated by 3 classes: `MacroMap`, `MacroCommand` and 
 
 Macro is expanded using the following workflow:
 
-- The parser try to parse the first "word" in the user input.
+- The parser try to parse the first word in the user input.
 - If there is a macro that matches the word, the entire word will be expanded into a command string. Otherwise, the word is kept unchanged.
 - The remaining input will be concatenated with the processed word and feed into the command parser.
 
-Consider the following scenario: the user already defined a macro `"cs2103t"`, and associated this macro with the command `"a 'weekly quiz' -d Fri 14:00"`. Now, if the users type `"cs2103t -l cs2103t"`, the following transformation will happen:
+Consider the following scenario: the user already defined a macro `"cs2103t"`, and associated this macro with the command `"a 'weekly quiz' -d Fri 14:00"`. Now, if the user types `"cs2103t -l cs2103t"`, the following actions will happen:
 
-- The parser identifies the first word appeared in the input: `"cs2103t"`.
-- There is a macro that matches the word, the word will be expanded into `"a 'weekly quiz' -d Fri 14:00"`.
+- The parser identifies the first word that appeared in the input: `"cs2103t"`.
+- There is a macro that matches the word. The word will be expanded into `"a 'weekly quiz' -d Fri 14:00"`.
 - The remaining input is concatenated with the expanded macro, forming the string `"a 'weekly quiz' -d Fri 14:00 -l cs2103t"`.
-- This preprocessed string will be fed into the command parser and returns an `AddCommand` object.
+- This preprocessed string will be fed into the command parser. An `AddCommand` object is then returned.
 
 Refer to the diagram below for a visualization of this workflow:
 
@@ -444,7 +444,7 @@ Refer to the diagram below for a visualization of this workflow:
 
 **Design considerations**
 
-The current version, while useful, is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that the macro engine cannot reject an invalid macro when it was registered, and this can confuse the user when their commands are expanded.
+The current implementation is still fairly minimal - the main mechanism is just simple string substitution. The problem with this mechanism is that the macro engine cannot reject an invalid macro (e.g. macros that expand to invalid command string) when it is registered, and the user may use these invalid macros.
 
 Currently, there is no proposal to improve this behavior - any idea is appreciated.
 
@@ -468,7 +468,13 @@ The `TaskList` contains:
 - A `FilteredList`, which stores the `ObservableList` as its source. We can set the predicate attached to this list to select the data to be displayed.
 - A `SortedList`, which stores the `FilteredList` as its source. We can set the comparator attached to this list to sort the data to be displayed.
 
-<!-- insert diagram here -->
+<img src="images/TaskListClass.png" width="300" />
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The classes in orange above are provided by **JavaFX**.
+
+</div>
 
 Note that, the command classes do not interact directly with `TaskList`, but with the interfaces `LogicTaskList` and `UiTaskList`.
 
