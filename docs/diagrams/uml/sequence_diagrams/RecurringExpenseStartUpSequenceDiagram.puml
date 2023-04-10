@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include ../../style.puml
 
 participant ":Mainapp" as Main #097969
 

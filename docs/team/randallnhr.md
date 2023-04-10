@@ -23,7 +23,8 @@ The following [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=
 * Implement `lcat` command and parser. (PR)
   * What it does: This feature allows users to list all added `Category`.
   * Justification: Gives users the ability to see all `Category` added in a glance, it is also used in conjuction to `delcat` and `edcat` commands as index of the `Category` is needed.
-* Implement
+* Implement `Budget` class. (PR)
+  * What it does: Allows users to add a monthly budget into FastTrack. This is used in conjunction with the Statistics feature to allow users to 
 
 #### **Contributions to the UG:** to be added soon
 

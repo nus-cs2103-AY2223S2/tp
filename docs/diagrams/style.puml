@@ -55,7 +55,7 @@ skinparam Sequence {
     MessageAlign center
     BoxFontSize 15
     BoxPadding 0
-    BoxFontColor #FFFFFF
+    BoxFontColor #000000
     FontName Arial
     ReferenceBackgroundColor #FFFFFF
 }

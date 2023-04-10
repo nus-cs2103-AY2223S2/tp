@@ -138,13 +138,13 @@ public class ParserUtil {
         assert timespan != null : "input should not be null";
         requireNonNull(timespan);
         String trimmedTimespan = timespan.trim();
-        if (trimmedTimespan.equals("week") || trimmedTimespan.equals("w")) {
+        if (trimmedTimespan.equalsIgnoreCase("week") || trimmedTimespan.equalsIgnoreCase("w")) {
             return Timespan.WEEK;
         }
-        if (trimmedTimespan.equals("month") || trimmedTimespan.equals("m")) {
+        if (trimmedTimespan.equalsIgnoreCase("month") || trimmedTimespan.equalsIgnoreCase("m")) {
             return Timespan.MONTH;
         }
-        if (trimmedTimespan.equals("year") || trimmedTimespan.equals("y")) {
+        if (trimmedTimespan.equalsIgnoreCase("year") || trimmedTimespan.equalsIgnoreCase("y")) {
             return Timespan.YEAR;
         }
         throw new ParseException("Not a valid date format (week, month, year)");
@@ -157,16 +157,16 @@ public class ParserUtil {
         assert timespan != null : "input should not be null";
         requireNonNull(timespan);
         String trimmedTimespan = timespan.trim();
-        if (trimmedTimespan.equals("day") || trimmedTimespan.equals("d")) {
+        if (trimmedTimespan.equalsIgnoreCase("day") || trimmedTimespan.equalsIgnoreCase("d")) {
             return RecurringExpenseType.DAILY;
         }
-        if (trimmedTimespan.equals("week") || trimmedTimespan.equals("w")) {
+        if (trimmedTimespan.equalsIgnoreCase("week") || trimmedTimespan.equalsIgnoreCase("w")) {
             return RecurringExpenseType.WEEKLY;
         }
-        if (trimmedTimespan.equals("month") || trimmedTimespan.equals("m")) {
+        if (trimmedTimespan.equalsIgnoreCase("month") || trimmedTimespan.equalsIgnoreCase("m")) {
             return RecurringExpenseType.MONTHLY;
         }
-        if (trimmedTimespan.equals("year") || trimmedTimespan.equals("y")) {
+        if (trimmedTimespan.equalsIgnoreCase("year") || trimmedTimespan.equalsIgnoreCase("y")) {
             return RecurringExpenseType.YEARLY;
         }
         throw new ParseException("Not a valid date format (day, week, month, year)");

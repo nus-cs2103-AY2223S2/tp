@@ -97,6 +97,16 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> {
             ParserUtil.parseDate("2023/03/14");
         });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseDate("2023-04-10");
+        });
+
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseDate("14-3-2023");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseDate("2/23/2023");
+        });
     }
 
     @Test
@@ -107,12 +117,30 @@ public class ParserUtilTest {
         assertEquals(ParserUtil.Timespan.WEEK, ParserUtil.parseTimespan("w"));
         assertEquals(ParserUtil.Timespan.MONTH, ParserUtil.parseTimespan("m"));
         assertEquals(ParserUtil.Timespan.YEAR, ParserUtil.parseTimespan("y"));
+        assertEquals(ParserUtil.Timespan.WEEK, ParserUtil.parseTimespan("WEEK"));
+        assertEquals(ParserUtil.Timespan.MONTH, ParserUtil.parseTimespan("MONTH"));
+        assertEquals(ParserUtil.Timespan.YEAR, ParserUtil.parseTimespan("YEAR"));
+        assertEquals(ParserUtil.Timespan.WEEK, ParserUtil.parseTimespan("W"));
+        assertEquals(ParserUtil.Timespan.MONTH, ParserUtil.parseTimespan("M"));
+        assertEquals(ParserUtil.Timespan.YEAR, ParserUtil.parseTimespan("Y"));
+        assertEquals(ParserUtil.Timespan.WEEK, ParserUtil.parseTimespan("Week"));
+        assertEquals(ParserUtil.Timespan.MONTH, ParserUtil.parseTimespan("Month"));
+        assertEquals(ParserUtil.Timespan.YEAR, ParserUtil.parseTimespan("Year"));
     }
 
     @Test
     void parseTimespan_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> {
-            ParserUtil.parseTimespan("wk");
+            ParserUtil.parseTimeSpanRecurringExpense("wk");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("mon");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("      ");
         });
     }
 
@@ -129,6 +157,26 @@ public class ParserUtilTest {
     }
 
     @Test
+    void parseTimeSpanRecurringExpense_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("wk");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("mon");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("      ");
+        });
+        assertThrows(ParseException.class, () -> {
+            ParserUtil.parseTimeSpanRecurringExpense("days");
+        });
+    }
+
+
+    @Test
     void getDateByTimespan_validInput_success() {
         LocalDate expectedWeekDate = LocalDate.now().with(DayOfWeek.MONDAY);
         LocalDate expectedMonthDate = LocalDate.now().withDayOfMonth(1);
@@ -137,4 +185,6 @@ public class ParserUtilTest {
         assertEquals(expectedMonthDate, ParserUtil.getDateByTimespan(ParserUtil.Timespan.MONTH));
         assertEquals(expectedYearDate, ParserUtil.getDateByTimespan(ParserUtil.Timespan.YEAR));
     }
+
+
 }

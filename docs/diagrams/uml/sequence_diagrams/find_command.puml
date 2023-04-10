@@ -1,23 +1,24 @@
 @startuml  FindSequenceDiagram
+!include ../../style.puml
 
-box Logic #C8C8FA
-participant ":FindCommand" as FindCommand  order 1
+box Logic LOGIC_COLOR_T1
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model #F97181
-participant "model:Model" as Model order 3
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model order 3 MODEL_COLOR
 end box
-participant ":CommandResult" as CommandResult order 2
 
 [-> FindCommand : execute(model)
-activate FindCommand #LightBlue
+activate FindCommand
 FindCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
 deactivate Model
 create CommandResult
 FindCommand -> CommandResult
 
-activate CommandResult #SpringGreen
+activate CommandResult
 CommandResult --> FindCommand
 deactivate CommandResult
 ' FindCommand --> [ : result
