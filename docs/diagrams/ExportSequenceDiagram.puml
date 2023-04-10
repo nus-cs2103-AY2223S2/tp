@@ -13,12 +13,12 @@ end box
 
 box Storage STORAGE_COLOR_T1
 participant ":CsvElisterStorage" as CsvElisterStorage STORAGE_COLOR
-participant "csvElister:CsvSerializableElister" as CsvSerializableElister STORAGE_COLOR
+participant ":CsvSerializableElister" as CsvSerializableElister STORAGE_COLOR
 end box
 
-box Commons MODEL_COLOR_T1
-participant "<<class>> FileUtil" as FileUtil MODEL_COLOR
-participant "<<class>> CsvUtil" as CsvUtil MODEL_COLOR
+box Commons COMMONS_COLOR_T1
+participant "<<class>> FileUtil" as FileUtil COMMONS_COLOR
+participant "<<class>> CsvUtil" as CsvUtil COMMONS_COLOR
 end box
 
 [-> LogicManager : execute("export")
@@ -44,13 +44,13 @@ create CsvElisterStorage
 ExportCommand -> CsvElisterStorage
 activate CsvElisterStorage
 
-CsvElisterStorage -> ExportCommand
+CsvElisterStorage --> ExportCommand
 deactivate CsvElisterStorage
 
 ExportCommand -> Model : getFilteredPersonList()
 activate Model
 
-Model -> ExportCommand : list
+Model --> ExportCommand : list
 deactivate Model
 
 ExportCommand -> CsvElisterStorage : saveElister(list)
@@ -60,54 +60,35 @@ create CsvSerializableElister
 CsvElisterStorage -> CsvSerializableElister
 activate CsvSerializableElister
 
-CsvSerializableElister -> CsvElisterStorage
+CsvSerializableElister --> CsvElisterStorage
 deactivate CsvSerializableElister
 
 CsvElisterStorage -> CsvSerializableElister : toString()
 activate CsvSerializableElister
 
-CsvSerializableElister -> CsvElisterStorage : str
+CsvSerializableElister --> CsvElisterStorage : str
 deactivate CsvSerializableElister
 
 CsvElisterStorage -> FileUtil : createIfMissing(filePath)
 activate FileUtil
 
-FileUtil -> CsvElisterStorage
+FileUtil --> CsvElisterStorage
 deactivate FileUtil
 
-CsvElisterStorage -> CsvUtil : saveCsvFile(filePath, csvElister)
+CsvElisterStorage -> CsvUtil : saveCsvFile(filePath, str)
 activate CsvUtil
 
+CsvUtil --> CsvElisterStorage
+deactivate CsvUtil
 
+CsvElisterStorage --> ExportCommand
+deactivate CsvElisterStorage
 
-create PreviousModel
-StateHistory -> PreviousModel
-activate PreviousModel
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
 
-PreviousModel --> StateHistory
-deactivate PreviousModel
-
-StateHistory --> UndoCommand : prev
-deactivate StateHistory
-
-UndoCommand -> PreviousModel : getElister()
-activate PreviousModel
-
-PreviousModel --> UndoCommand : ab
-deactivate PreviousModel
-
-UndoCommand -> Model : setElister(ab)
-activate Model
-
-Model --> UndoCommand
-deactivate Model
-
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
-destroy PreviousModel
+ExportCommand -[hidden]-> LogicManager : result
+destroy ExportCommand
 
 [<--LogicManager
 deactivate LogicManager
