@@ -10,7 +10,6 @@ public class CommandResult {
     private final String feedbackToUser;
     private boolean shouldRefreshUi;
 
-
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
      */

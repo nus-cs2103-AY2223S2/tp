@@ -38,7 +38,6 @@ title: User Guide
   - [Saving the task list data](#saving-the-task-list-data)
   - [Editing existing task list data](#editing-existing-task-list-data)
   - [Editing existing macro data](#editing-existing-macro-data)
-- [FAQ](#faq)
 - [Command summary](#command-summary)
 
 ## Introduction
@@ -73,7 +72,7 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 3. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
-**NOTE: The text of Vimification may sometimes wrap over to the next line in Windows, enlarge the window size to prevent this issue!**
+**NOTE: The text of Vimification may sometimes wrap over to the next line on Windows, enlarge the window size to prevent this issue!**
 
 ### For Mac
 
@@ -85,7 +84,7 @@ The guide will walk you through the process of creating and managing tasks, sett
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
-**NOTE: The text of Vimification may sometimes wrap over to the next line in Mac, enlarge the window size to prevent this issue!**
+**NOTE: The text of Vimification may sometimes wrap over to the next line on Mac, enlarge the window size to prevent this issue!**
 
 ### For Linux
 
@@ -100,7 +99,9 @@ The guide will walk you through the process of creating and managing tasks, sett
 **NOTE: You may still be able to resize the window of Vimification in Linux to a size that is smaller than the default! Resize the window to full-screen if you have any difficulties seeing the tasks.**
 
 <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
-<br><br><p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+<br><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Navigating Vimification
 
 Similar to Vim, you can use the `j` and `k` (or `↓` and `↑`) key to move down and up the task-list respectively.
@@ -616,13 +617,6 @@ Existing macro data is saved at a JSON file `[JAR file location]/.vimification/m
 If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
 
 </div>
-
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
-
-## FAQ
-
-**Q**: How do I transfer my data to another computer?
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
