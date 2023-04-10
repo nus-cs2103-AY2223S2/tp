@@ -133,6 +133,27 @@ operation and the updated task details.
     * Pros: Will use less resources and time, thus improving system performance.
     * Cons: Requires more complex implementation logic to track and update the modified fields.
 
+### Mark Task Feature
+
+The `MarkTaskCommand` class represents a command that marks an **existing** task as done. It takes in the index of the
+task in the task list to be marked and returns a `CommandResult`.
+
+The following class diagram shows the classes that help achieve this functionality.
+
+<img src="./images/MarkTaskClassDiagram.png" width="100%"/>
+
+The `MarkTaskCommandParser` parses the required index to find the `Task` to be deleted, and returns
+a `MarkTaskCommand`, that is executed.
+
+The execution of an `MarkTaskCommand` makes use of the following functions provided by the `Model`:
+
+- `Model#getFilteredTaskList` - to access the list of tasks, to find the task to be marked
+- `Model#markTask` - to mark the `Task` int the `TaskList` as done
+
+The following sequence diagram illustrates how the _**Mark Task**_ feature works.
+
+<img src="./images/MarkTaskSequenceDiagram.png" width="100%"/>
+
 ### Delete Task Feature
 
 This feature enables the user to delete a task from the list of tasks. It is implemented in a way that mirrors the
@@ -158,23 +179,6 @@ The following sequence diagram shows how the _**Delete Task**_ feature works.
 
 The _**Delete Task**_ feature is implemented in this way so as to make it similar to the analogous _**Delete Person**_
 feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
-
-### Mark Task Feature
-
-The `MarkTaskCommand` class represents a command that marks an **existing** task as done. It takes in the index of the
-task in the task list to be marked and returns a `CommandResult`.
-
-The following class diagram shows the classes that help achieve this functionality.
-
-<img src="./images/MarkTaskClassDiagram.png" width="100%"/>
-
-The `MarkTaskCommandParser` parses the required index to find the `Task` to be deleted, and returns
-a `MarkTaskCommand`, that is executed.
-
-The execution of an `MarkTaskCommand` makes use of the following functions provided by the `Model`:
-
-- `Model#getFilteredTaskList` - to access the list of tasks, to find the task to be marked
-- `Model#markTask` - to mark the `Task` int the `TaskList` as done
 
 ### Planned Enhancements
 1. The base Calendar GUI leaves much to be desired. We plan to implement a more user-friendly GUI, where the calendar entries are color-coded according to priority and status, instead of being expressed textually, to workaround text-wrapping.
