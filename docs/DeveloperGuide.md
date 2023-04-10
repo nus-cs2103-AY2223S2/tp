@@ -423,211 +423,193 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ArB` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Artistic AddressBook`, or `ArB`, and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a client**
-
-**MSS**
-
-1.  User requests to list clients
-2.  ArB shows a list of clients
-3.  User requests to delete a specific client in the list
-4.  ArB deletes the client
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. ArB shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Delete a project**
+**Use case 1 (UC1): Delete a client**
 
 **MSS**
 
-1.  User requests to list project
-2.  ArB shows a list of projects
-3.  User requests to delete a specific project in the list
-4.  ArB deletes the project
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. ArB shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Mark a project**
-
-**MSS**
-
-1.  User requests to list projects
-2.  ArB shows a list of projects
-3.  User requests to mark a specific project in the list
-4.  ArB marks the project
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-   * 3a1. ArB shows an error message.
-
-     Use case resumes at step 2.
-
-**Use case: Unmark a project**
-
-**MSS**
-
-1.  User requests to list projects
-2.  ArB shows a list of projects
-3.  User requests to unmark a specific project in the list
-4.  ArB unmarks the project
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-   * 3a1. ArB shows an error message.
-
-     Use case resumes at step 2.
-
-**Use case: List all projects**
-
-**MSS**
-
-1.  User requests to list projects
-2.  ArB shows a list of projects
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Clear all projects**
-
-**MSS**
-
-1. User requests to list projects
-2. ArB shows a list of projects
-3. User requests to clear all projects in the list
-4. ArB clears all projects in the list
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: List all clients**
-
-**MSS**
-
-1.  User requests to list clients
-2.  ArB shows a list of clients
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-**Use case: Clear all clients**
-
-**MSS**
-
-1. User requests to list clients
-2. ArB shows a list of clients
-3. User requests to clear all clients in the list
-4. ArB clears all clients in the list
-
+1. User requests to list clients.
+2. ArB shows a list of clients.
+3. User requests to delete a specific client in the list.
+4. ArB deletes the client.<br>
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-
+* 2a. The list is empty.<br>
   Use case ends.
 
-**Use case: Edit Project**
+**Use case 2 (UC2): Delete a project**
+
+**MSS**
+
+1. User requests to list projects.
+2. ArB shows a list of projects.
+3. User requests to delete a specific project in the list.
+4. ArB deletes the project.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+* 3a. Provided index is invalid.
+  * 3a1. ArB shows an error message.<br>
+    Use case resumes at step 3.
+
+**Use case 3 (UC3): Mark a project as done**
+
+**MSS**
+
+1. User requests to list projects.
+2. ArB shows a list of projects.
+3. User requests to mark a specific project in the list as done.
+4. ArB marks the project as done.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+* 3a. Provided index is invalid.
+  * 3a1. ArB shows an error message.<br>
+    Use case resumes at step 3.
+
+**Use case 4 (UC4): Unmark a project**
+
+**MSS**
+
+1. User requests to list projects.
+2. ArB shows a list of projects.
+3. User requests to unmark a specific project in the list.
+4. ArB unmarks the project.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+* 3a. Provided index is invalid.
+  * 3a1. ArB shows an error message.<br>
+    Use case resumes at step 3.
+
+**Use case 5 (UC5): List all clients**
+
+**MSS**
+
+1. User requests to list clients.
+2. ArB shows a list of clients.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+
+**Use case 6 (UC6): List all projects**
+
+**MSS**
+
+1. User requests to list projects.
+2. ArB shows a list of projects.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+
+**Use case 7 (UC7): Clear all clients**
+
+**MSS**
+
+1. User requests to list clients.
+2. ArB shows a list of clients.
+3. User requests to clear all clients in the list.
+4. ArB clears all clients in the list.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+
+**Use case 8 (UC8): Clear all projects**
+
+**MSS**
+
+1. User requests to list projects.
+2. ArB shows a list of projects.
+3. User requests to clear all projects in the list.
+4. ArB clears all projects in the list.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+
+**Use case 9 (UC9): Add a client**
 
 **MSS**:
-1. User enters command to editing project, including project ID and details to edit
-2. ArB edits project to use new details
+
+**Extensions**
+
+**Use case 10 (UC10): Add a project**
+
+**MSS**:
+
+**Extensions**
+
+**Use case 11 (UC11): Edit a client**
+
+**MSS**
+
+**Extensions**
+
+**Use case 12 (UC12): Edit a project**
+
+**MSS**:
+1. User selects a project to edit, and provides ArB with the details to edit.
+2. ArB edits project to use new details.
 3. Use case ends.
 
 **Extension**:
 
-1a. ArB detects that the command is inaccurate/incomplete
+* 1a. Provided details are invalid.
+  * 1a1. ArB shows an error message.<br>
+    Use case ends.
+* 1b. Provided index is invalid.
+  * 1b1. ArB shows an error message.<br>
+    Use case ends.
 
-1a1. ArB tells user that the command is incorrect and displays the correct format
-
-Use case ends.
-
-1b. ArB detects that the project does not exist
-
-1b1. ArB tells user that the project does not exist
-
-Use case ends.
-
-**Use case: Find Project**
+**Use case 13 (UC13): Find Clients**
 
 **MSS**:
-1. User enters command to find projects, including parameters such as name, deadline, tags or linked clients.
+1. User requests to find clients, providing ArB with the necessary parameters.
+2. ArB lists all clients that match the provided parameters.<br>
+   Use case ends.
+
+**Extension**:
+* 1a. None of the parameters provided are valid.
+  * 1a1. ArB shows an error message.<br>
+  Use case ends.
+
+**Use case 14 (UC14): Find Projects**
+
+**MSS**:
+1. User requests to find projects, providing ArB with the necessary parameters.
 2. ArB lists all projects that match the provided parameters.<br>
    Use case ends.
 
 **Extension**:
 
-* 1a. ArB detects that none of the parameters provided are valid.
-  * 1a1. ArB informs user that no valid parameters were provided.<br>
+* 1a. None of the parameters provided are valid.
+  * 1a1. ArB shows an error message.<br>
   Use case ends.
 
-**Use case: Find Client**
-
-**MSS**:
-1. User enters command to find clients, including parameters such as name or tags.
-2. ArB lists all clients that match the provided parameters.<br>
-   Use case ends.
-
-**Extension**:
-* 1a. ArB detects that none of the parameters provided are valid.
-  * 1a1. ArB informs user that no valid parameters were provided.<br>
-  Use case ends.
-
-**Use case: Link Project To Client**
+**Use case 15 (UC15): Link Project To Client**
 
 **MSS**:
 1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords.
@@ -639,7 +621,7 @@ Use case ends.
 **Extension**:
 * 3a. User chooses to cancel the linking.<br>
   Use case ends.
-* 3b. User makes an invalid selection.
+* 3b. Provided index is invalid.
   * 3b1. ArB shows an error message.<br>
     Use case resumes at step 3.
 
@@ -1069,11 +1051,11 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-1. Error messages for invalid indexes are vague, only stating `The provided index is invalid`. In future, we can display clearer error messages corresponding to each case:
+1. Error messages for invalid indexes are vague, sometimes stating `Invalid command format!` or `The index provided is invalid`. In future, we can display clearer error messages corresponding to each case:
    1. Index provided is not a number: `The index you provided was not a number! Index must be a positive number, e.g. 1, 2, 3...`
    1. Index provided is not a positive number: `The index you provided was not a positive number! Index must be a positive number, e.g. 1, 2, 3...`
    1. Index provided is larger than the currently visible list: `The index you provided was larger than the currently visible list!`
-1. Client list and project list are not displayed together, which can inconvenience users as they have to constantly switch between the lists with an additional commands.
+1. The client list and project list are not displayed together, which can inconvenience users as they have to constantly switch between the lists with additional commands. This especially makes it difficult for users to link projects to clients since they are unable to see what clients are available to link to when editing projects.
    1. The client and project list could be displayed on one screen, with special care taken to ensure that the size of the information never becomes too small.
 1. Checking for duplicate client names is not case-sensitive. However, most people consider `alice` and `Alice` to be the same person and may input `alice` intending for the name to be `Alice`.
-   1. Parsing for client names should be made insensitive. User input for names should be parsed to title case, as should data in the JSON file.
+   1. Parsing for client names should be made insensitive. User input for names should be parsed to title case e.g. `alice leong` is parsed to `Alice Leong`, as should `name` attributes in the JSON file.
