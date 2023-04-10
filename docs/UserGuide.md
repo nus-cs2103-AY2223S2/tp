@@ -94,7 +94,7 @@ meant to be defeated by player characters.
 can be used by the player characters.
 
 ## Entity Fields
-The definitive list of the different fields each entity has:
+This is a definitive list of the different fields each entity has:
 
 | Character    | Mob              | Item   |
 |--------------|------------------|--------|
@@ -107,21 +107,23 @@ The definitive list of the different fields each entity has:
 | Tags         | Tags             |        |
 | Inventory    | Inventory        |        |
 
-Each field accepts a certain type of value, as seen below:
+Each field accepts a certain type of value and has a number of command terms, as seen below:
 
-| Field            | Value Type           |
-|------------------|----------------------|
-| Name             | Alphanumeric String  | 
-| Strength         | `int`                |
-| Dexterity        | `int`                | 
-| Intelligence     | `int`                |
-| Level            | `int`                |
-| XP               | `int`                |
-| Challenge Rating | `int`                |
-| Legendary        | `boolean`            |
-| Tags             | Alphanumeric Strings |
-| Inventory        | Items                |
+| Field            | Command Term           | Value Type           |
+|------------------|------------------------|----------------------|
+| Name             | name, n                | Alphanumeric String  | 
+| Strength         | strength, str, s       | `int`                |
+| Dexterity        | dexterity, dex, d      | `int`                | 
+| Intelligence     | intelligence, int      | `int`                |
+| Level            | level, lvl             | `int`                |
+| XP               | exp, xp                | `int`                |
+| Challenge Rating | challengerating, cr    | `int`                |
+| Legendary        | isLegendary, legend, l | `boolean`            |
+| Tags             | tags, tag, t           | Alphanumeric Strings |
+| Inventory        | inventory, inv         | Items                |
 
+An edit command mentioned later will allow you to edit the values of these fields. Fill in one of the field's 
+command terms into where the command says to fill in `FIELD` to edit the corresponding field.
 
 Here's a general breakdown of what each field means:
 
@@ -225,10 +227,14 @@ Enter into edit mode for the specified entity.
 
 Format: `edit CLASSIFICATION NAME`
 
-* In edit mode, changes can be made with the following format: <br>
+* In edit mode, changes can be made to any of the fields with the following format: <br>
   * `FIELD NEW_VALUE`
-  * e.g. `name gilded staff` or `level 9000`
+  * e.g. `name gilded staff` or `lvl 9000`
+  * Put the command word of the field you want to edit into the FIELD portion of the command.
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
+* Inventory has a different command format for adding and removing items from the inventory:
+  * `inventory add/remove NAME`
+  * e.g. `inventory add fish`
 * Edit mode may be left by entering the command: `back` or `b` while in edit mode.
 
 ### Filter entities by tags : `filter`
