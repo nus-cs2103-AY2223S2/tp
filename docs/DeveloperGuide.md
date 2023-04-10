@@ -388,6 +388,7 @@ Step 6. `storage#saveExecutiveProDb()` is then called, and updates the storage t
 - Alternative 2: Edits the employee field in the employee list using setters.
     - Pros: Easier to implement.
     - Cons: Employee list is not hashable if it is not immutable. Breaking abstraction barrier by directly assessing each employee.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Leave Feature : `leave`
@@ -983,7 +984,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting an employee
 
-1. Deleting a employee while all employees are being shown
+1. Deleting an employee while all employees are being shown
 
    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
