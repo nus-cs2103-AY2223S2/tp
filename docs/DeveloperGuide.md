@@ -1011,6 +1011,13 @@ We should improve it to also allow users to enter time into the availability fie
 Currently, names do not accept `.` and `\\`. This may cause some problems where a person's legal name contains these special characters.
 We should modify the name to accept these special characters.
 
+### Enhance warning message for input validation
+
+Currently, when a wrong command or prefix is entered, the input will simply turn red. While this may be intuitive for experienced users, 
+it may not provide the best experience for new users. As such, we intend to implement a feature which can convert the current recommendation 
+feature to also display the warning. For example, if the user enters `add_person`, this is currently an invalid command,
+so the corresponding error message will be displayed in the same text box (replacing the command recommendation).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
