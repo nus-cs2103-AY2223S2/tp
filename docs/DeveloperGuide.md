@@ -123,7 +123,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram-new.png)
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** 
@@ -182,15 +182,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### **Add Command**
 
+[AddCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/AddCommand.java
+[AddCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/AddCommandParser.java
+
 For _Add_ command, the noteworthy classes are:
-- `AddCommandParser.java` - For parsing the arguments to `AddCommand.java`.
-- `AddCommand.java` - For execution.
+- [`AddCommandParser.java`][AddCommandParser.java] - For parsing the arguments to [`AddCommand.java`][AddCommand.java].
+- [`AddCommand.java`][AddCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
 - ParseException for invalid arguments
 - InvalidDateException for correct syntax but invalid (do not exist) dates
-- ParseException for invalid time
 - CommandException for identical events
 - CommandException for events with clashing time
 
@@ -215,19 +217,23 @@ Step 9. Event is added.
 
 The execution can be seen in the activity diagram given below.
 
-_Activity Diagram for a typical `add` command_
+_Activity Diagram for a typical `add` command_  
 ![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
 ### **Recur Command**
 
+[RecurCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/RecurCommand.java
+[RecurCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/RecurCommandParser.java
+
 For _Recur_ command, the noteworthy classes are:
-- `RecurCommandParser.java` - For parsing the arguments to `RecurCommand.java`.
-- `RecurCommand.java` - For execution.
+- [`RecurCommandParser.java`][RecurCommandParser.java] - For parsing the arguments to [`RecurCommand.java`][RecurCommand.java].
+- [`RecurCommand.java`][RecurCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
 - ParseException for invalid arguments
 - ParseException for index out of range
+- InvalidDateException for correct syntax but invalid (do not exist) dates
 - CommandException for end dates in the past
 - CommandException for recur factor exceeding max allowable
 
@@ -253,17 +259,20 @@ Step 10. Add event into Ez-Schedule on all dates to be recurred.
 
 The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
 
-_Activity Diagram for a typical `recur` command_
+_Activity Diagram for a typical `recur` command_  
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
 
-_Activity: Check for time clash for all recurring dates._
+_Activity: Check for time clash for all recurring dates._  
 ![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
 ### **Edit Command**
 
+[EditCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/EditCommand.java
+[EditCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/EditCommandParser.java
+
 For _Edit_ command, the noteworthy classes are:
-- `EditCommandParser.java` - For parsing the arguments to `EditCommand.java`.
-- `EditCommand.java` - For execution.
+- [`EditCommandParser.java`][EditCommandParser.java] - For parsing the arguments to [`EditCommand.java`][EditCommand.java].
+- [`EditCommand.java`][EditCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
@@ -294,7 +303,7 @@ Step 9. Event is edited.
 
 The execution can be seen in the activity diagram given below.
 
-_Activity Diagram for a typical `edit` command_
+_Activity Diagram for a typical `edit` command_  
 ![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### **Delete Command**
@@ -328,13 +337,48 @@ Step 8: Delete the `Event`(s) according the `List<Index>`.
 
 Other alternative path of execution can be traced in the activity diagram below.
 
+_Activity Diagram for a typical `delete` command_  
 ![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
-Activity Diagram for a typical `delete` command
+
 
 ### **Find Command**
 
+[FindCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/FindCommand.java
+[FindCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/FindCommandParser.java
+
+For _Find_ command, the noteworthy classes are:
+- [`FindCommandParser.java`][FindCommandParser.java] - For parsing the arguments to [`FindCommand.java`][FindCommand.java].
+- [`FindCommand.java`][FindCommand.java] - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+
+Given below is an example usage scenario of how the _Find_ command executes.
+
+-- user input --  
+Step 1. User executes find command with correct and valid arguments.
+
+-- `SchedulerParser` --  
+Step 2. Returns new `FindCommandParser`.
+
+-- `FindCommandParser` --  
+Step 3. Verify that at least one of the argument prefixes is present.  
+Step 4. Verify that provided arguments are valid.  
+Step 5. Creates a `FindEventDescriptor`  
+Step 6. Returns new `FindCommand.java` using `FindEventDescriptor`.
+
+-- `FindCommand` --  
+Step 7. Determine if `Name`, `Date` or both are present from `FindEventDescriptor`.  
+Step 8. Create one of the following predicates, depending on the arguments provided: 
+`EventMatchesKeywordsAndDatePredicate`, `EventContainsKeywordsPredicate` or`EventMatchesDatePredicate`.  
+Step 9. Updates the `ObservableList` using the predicate.
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `find` command_  
 ![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
-Activity Diagram for a typical `find` command
 
 ### **Next Command**
 
@@ -348,8 +392,8 @@ To keep track of the next upcoming event, we have opted to keep `Event`s sorted 
    (possibly as a result of `add`, `edit`, `delete`, or even a sorting action).
 3. When a change is detected, we would sort the `Event`s via `FXCollections#sort`.
 
-![SortSequenceDiagram.png](images/SortSequenceDiagram.png)
 Sequence Diagram for how `UniqueEventList` maintains a chronological order of `Event`
+![SortSequenceDiagram.png](images/SortSequenceDiagram.png)
 
 For _Next_ command, the noteworthy classes are:
 - `ShowNextCommandParser.java` - Parse the arguments for `ShowNextCommand`
@@ -378,18 +422,43 @@ Step 7. Updates `EventListPanel` with filtered `Event`(s).
 
 Other alternative path of execution can be traced in the activity diagram below.
 
+_Activity Diagram for a typical `next` command_  
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
-Activity Diagram for a typical `next` command
+
 
 [ListChangeListener]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.html
 [`ListChangeListener.Change`]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.Change.html
 
 ### **Undo Command**
 
-![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
-Activity Diagram for a typical `undo` command
+[UndoCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/UndoCommand.java
 
-### **List Command**
+For _Undo_ command, the noteworthy classes are:
+- [`UndoCommand.java`][UndoCommand.java] - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- CommandException for attempting to execute undo when recent command is empty
+
+Given below is an example usage scenario of how the _Undo_ command executes.
+
+-- user input --  
+Step 1. User executes a valid `add` command.
+
+-- `AddCommand` --  
+Step 2. Adds the `add` command as recent command.  
+Step 3. Adds the added `Event` as recent event.
+
+-- user input --  
+Step 4. User executes `undo` command.
+
+-- `UndoCommand` --  
+Step 5. Verify that recent command is not empty.  
+Step 6. Undo the recent command (deletes the recent event).
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `undo` command_  
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
 
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
@@ -403,6 +472,7 @@ Activity Diagram for a typical `undo` command
 
 
 ## **Glossary**
+
 --------------------------------------------------------------------------------------------------------------------
 * **Clashing Events**: One or more events where any duration of the event overlaps with the another event
 * **CLI**: Command Line Interface
