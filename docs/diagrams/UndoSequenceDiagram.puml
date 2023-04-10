@@ -3,42 +3,42 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedInternBuddy" as VersionedInternBuddy MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> InternBuddyParser : parseCommand(undo)
+activate InternBuddyParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+InternBuddyParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> InternBuddyParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+InternBuddyParser --> LogicManager : u
+deactivate InternBuddyParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoInternBuddy()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedInternBuddy : undo()
+activate VersionedInternBuddy
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedInternBuddy -> VersionedInternBuddy :resetData(ReadOnlyInternBuddy)
+VersionedInternBuddy --> Model :
+deactivate VersionedInternBuddy
 
 Model --> UndoCommand
 deactivate Model

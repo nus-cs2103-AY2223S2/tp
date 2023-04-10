@@ -5,46 +5,48 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyInternBuddy" as ReadOnlyInternBuddy
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nModel" as ModelInterface
+Class InternBuddy
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class UniqueInternshipList
+Class Internship
+Class Status
+Class Date
+Class CompanyName
+Class Role
+class Comment
 Class Tag
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelInterface
 
-AddressBook .up.|> ReadOnlyAddressBook
+InternBuddy .up.|> ReadOnlyInternBuddy
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up.|> ModelInterface
+ModelInterface .right.> ReadOnlyUserPrefs
+ModelInterface .left.> ReadOnlyInternBuddy
+ModelManager -left-> "1" InternBuddy
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+InternBuddy *--> "1" UniqueInternshipList
+UniqueInternshipList --> "~* all" Internship
+Internship *--> CompanyName
+Internship *--> Role
+Internship *--> Date
+Internship *--> Status
+Internship *--> Comment
+Internship *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+CompanyName -[hidden]right-> Role
+Role -[hidden]right-> Status
+Status -[hidden]right-> Date
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Internship
 @enduml
