@@ -841,7 +841,7 @@ Tag a specified module.
 <ul>
     <li>
     <code>tag EG2310 /tags fun, hard</code><br/>
-    Tag the module "EG2310" with the tags "fun and "hard"
+    Tag the module "EG2310" with the tags "fun" and "hard"
     </li>
 </ul>
 </details>
