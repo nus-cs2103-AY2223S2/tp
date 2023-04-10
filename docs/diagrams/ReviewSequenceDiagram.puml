@@ -5,7 +5,7 @@ Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
-Participant "currReview:Review" as review REVIEW_COLOR
+Participant "currReview:Review" as review MODEL_COLOR
 
 
 user -[USER_COLOR]> ui : "review 1"
@@ -14,13 +14,13 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("review 1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : reviewDeck(1, [])
+logic -[LOGIC_COLOR]> model : reviewDeck(1, tag[])
 activate model MODEL_COLOR
 
 create review
 model -[MODEL_COLOR]-> review
-activate review REVIEW_COLOR
-review -[REVIEW_COLOR]-> model
+activate review MODEL_COLOR
+review -[MODEL_COLOR]-> model
 deactivate review
 
 model -[MODEL_COLOR]-> logic
@@ -37,8 +37,8 @@ logic -[LOGIC_COLOR]> model : getReviewStatsList()
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> review : getReviewStatsList()
-activate review REVIEW_COLOR
-review -[REVIEW_COLOR]-> model : review stats
+activate review MODEL_COLOR
+review -[MODEL_COLOR]-> model : review stats
 deactivate review
 
 model -[MODEL_COLOR]-> logic : review stats
@@ -56,8 +56,8 @@ logic -[LOGIC_COLOR]> model : getReviewCardList()
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> review : getFilteredReviewCardList()
-activate review REVIEW_COLOR
-review -[REVIEW_COLOR]-> model : current card
+activate review MODEL_COLOR
+review -[MODEL_COLOR]-> model : current card
 deactivate review
 
 model -[MODEL_COLOR]-> logic : current card
