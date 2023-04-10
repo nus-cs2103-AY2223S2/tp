@@ -461,16 +461,23 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
+## **Appendix: Effort**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+All of our team members put in an equal amount of effort into this project, with each team member implementing at least one feature.
+The difficulty and number of features implemented were divided based on each of our coding level hence all members contributed equally in terms of effort.
 
-2. _{ more test cases …​ }_
+Some challenges faced:
+* Refactoring the initial code to work with students 
+* Bugs appearing when editing start time and end time, where the end time must be after the start time.
 
-### Appendix: Instructions for manual testing
+Our team worked together to overcome these challenges by having regular meetings and coordinating on messaging applications.
 
-### Appendix: Effort
+## **Appendix: Planned enhancement**
 
-### Appendix: Planned enhancement
+* We plan to add a reminder feature to remind tutors about their upcoming lessons
+* We plan to enhance the learn feature such that it can be colour coded on the gui based on the importance of the lesson
+* We plan to enhance the mark feature so that it can display all the dates that a student has attended
+* We plan to add a payment feature to track the students that have paid and the amount of money they owe
+
+
