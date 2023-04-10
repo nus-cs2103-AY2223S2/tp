@@ -11,7 +11,6 @@ import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
-import seedu.address.model.navigation.NavigationContext.NavLayer;
 
 /**
  * Represents a navigation observer that responds to on module edited and on
@@ -29,7 +28,7 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
     public void onLectureEdited(ModuleCode moduleCode, ReadOnlyLecture originalLecture, ReadOnlyLecture editedLecture) {
         NavigationContext navContext = this.model.getCurrentNavContext();
 
-        if (isLectureContextAffectedByLectureEdit(navContext, originalLecture)) {
+        if (isAffectedByLectureEdit(navContext, originalLecture)) {
 
             this.model.navigateBack();
 
@@ -44,28 +43,25 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
         }
     }
 
-    private boolean isLectureContextAffectedByLectureEdit(NavigationContext navContext,
+    private boolean isAffectedByLectureEdit(NavigationContext navContext,
             ReadOnlyLecture originalLecture) {
-        return originalLecture != null && navContext.getLayer() == NavLayer.LECTURE
-                && navContext.getLectureName().equals(originalLecture.getName());
+        return originalLecture != null && originalLecture.getName().equals(navContext.getLectureName());
     }
 
     @Override
     public void onModuleEdited(ReadOnlyModule originalModule, ReadOnlyModule editedModule) {
         NavigationContext navContext = this.model.getCurrentNavContext();
 
-        boolean isAffected = isLectureContextAffectedByModuleEdit(navContext, originalModule)
-                || isModuleContextAffectedByModuleEdit(navContext, originalModule);
-
-        if (isAffected) {
+        if (isAffectedByModuleEdit(navContext, originalModule)) {
             LectureName lectureName = navContext.getLectureName();
             this.model.navigateToRoot();
 
             boolean isModuleDeleted = editedModule == null;
+            boolean isLectureContext = lectureName != null;
 
             if (isModuleDeleted) {
                 this.model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-            } else if (lectureName != null) {
+            } else if (isLectureContext) {
                 this.model.navigateTo(editedModule.getCode(), lectureName);
             } else {
                 this.model.navigateTo(editedModule.getCode());
@@ -73,13 +69,7 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
         }
     }
 
-    private boolean isLectureContextAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
-        return originalModule != null && navContext.getLayer() == NavLayer.LECTURE
-                && navContext.getModuleCode().equals(originalModule.getCode());
-    }
-
-    private boolean isModuleContextAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
-        return originalModule != null && navContext.getLayer() == NavLayer.MODULE
-                && navContext.getModuleCode().equals(originalModule.getCode());
+    private boolean isAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
+        return originalModule != null && originalModule.getCode().equals(navContext.getModuleCode());
     }
 }

@@ -793,7 +793,7 @@ Marks video(s) as **watched** in lecture of its specified module.
 
 Marks video(s) as **unwatched** in a lecture of its specified module.
 
-- [<span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>](#video-name-format): The names of videos
+- [<span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>](#video-name-format): The names of videos
   - Must belong to existing videos in the lecture specified in `lecture_name`
   - Must not contain duplicates
   - For `mark`, must not already be marked
@@ -831,10 +831,9 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Tag a specified module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the module
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the module
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the module (if any) will be ignored
 
@@ -858,12 +857,11 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Tag a specified lecture.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the lecture
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the lecture
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the lecture (if any) will be ignored
 
@@ -883,14 +881,13 @@ Tag a specified lecture.
 
 Tag a specified video.
 
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
   - Must belong to an existing video in the lecture specified in `lecture_name`
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture that contains the video specified in `video_name`
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the video
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the video
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the video (if any) will be ignored
 
@@ -918,9 +915,9 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Remove specified tags from a module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the module
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be removed from the module
   - Must belong to existing tags in the module specified by `module_code`
   - Repeated tags (if any) will be ignored
 
@@ -944,11 +941,11 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Remove specified tags from a lecture.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-  - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the lecture
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be removed from the lecture
   - Must belong to existing tags in the lecture specified in `lecture_name`
   - Repeated tags (if any) will be ignored
 
@@ -968,13 +965,13 @@ Remove specified tags from a lecture.
 
 Remove specified tags from a video.
 
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
   - Must belong to an existing video in the lecture specified in `lecture_name`
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture that contains the video specified in `video_name`
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the video
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be removed from the video
   - Must belong to existing tags in the video specified in `video_name`
   - Repeated tags (if any) will be ignored
 
@@ -1038,7 +1035,7 @@ Import data from a specified file path to the current tracker.
 - <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
   - If specified, `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]` must also be specified
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from `file_path`
+- [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format) : The modules to import from `file_path`
   - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current tracker
   - Must belong to existing modules in the file specified in `file_path`
   - Repeated modules (if any) will be ignored
