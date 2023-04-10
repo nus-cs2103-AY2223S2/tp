@@ -224,7 +224,7 @@ Format: ```learn [INDEX] [l/LESSON]```
 Example:
 
 * ```learn 1 l/Rational number```
-![learn.png](images/learnExample.PNG)
+![learn.png](images/learnExample.png)
   * The command adds the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh learn Rational Number`.
 
 #### [Back to top](#table-of-content) 
@@ -239,7 +239,7 @@ Format: ```unlearn [INDEX] [l/LESSON]```
 Examples:
 
 * ```unlearn 1 l/Rational number```
-  ![unlearn.png](images/unlearnExample.PNG)
+  ![unlearn.png](images/unlearnExample.png)
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
 #### [Back to top](#table-of-content) 
