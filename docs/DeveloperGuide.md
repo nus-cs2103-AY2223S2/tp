@@ -536,7 +536,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC01 - Add tutorial lessons
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 tutorial Teaching Assistant (TA)
 <br>
@@ -574,7 +574,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC04 - Add students to event
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -626,7 +626,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC05 - Delete Event
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -676,7 +676,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC06 - Remove Student from an Event
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -723,7 +723,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC07 - Request for Help
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -772,7 +772,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC08 - Sort Students
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -818,7 +818,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC09 - Filter Students
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -866,7 +866,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC10 - Show event notes
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -891,7 +891,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC11 - Add notes to an event
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -931,7 +931,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC12 - Edit notes in an event
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
@@ -958,7 +958,7 @@ System: Software System (TrAcker)
 <br>
 Use case: UC13 - Delete notes from an event
 <br>
-Person: An undergraduate student in NUS enrolled in CS2040 as a student
+Person: An undergraduate student in NUS
 <br>
 Actor: CS2040 Teaching Assistant (TA)
 <br>
