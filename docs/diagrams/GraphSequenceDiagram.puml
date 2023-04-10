@@ -1,0 +1,99 @@
+@startuml
+!include style.puml
+
+box UI #CCFF99
+participant ":MainWindow" as MainWindow #4D9900
+participant "scene:Scene" as Scene #4D9900
+participant "stage:Stage" as Stage #4D9900
+participant "pane:Pane" as Pane #4D9900
+participant "<<class>> \n Stage" as StaticStage #4D9900
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FitBookParser" as FitBookParser LOGIC_COLOR
+participant ":GraphCommandParser" as GraphCommandParser LOGIC_COLOR
+participant "u:GraphCommand" as GraphCommand LOGIC_COLOR
+end box
+
+box FitBookModel MODEL_COLOR_T1
+participant ":FitBookModel" as FitBookModel MODEL_COLOR
+end box
+
+[-> MainWindow : execute("graph 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("graph 1")
+activate LogicManager
+
+LogicManager -> FitBookParser : parseCommand("graph 1")
+activate FitBookParser
+
+create GraphCommandParser
+FitBookParser -> GraphCommandParser : parse("graph 1")
+activate GraphCommandParser
+
+GraphCommandParser --> FitBookParser : u
+deactivate GraphCommandParser
+
+FitBookParser -> GraphCommandParser : parse("graph 1")
+activate GraphCommandParser
+
+create GraphCommand
+GraphCommandParser ->GraphCommand
+activate GraphCommand
+
+GraphCommand --> GraphCommandParser : u
+deactivate GraphCommand
+
+GraphCommandParser --> FitBookParser : u
+destroy GraphCommandParser
+
+FitBookParser --> LogicManager : u
+deactivate FitBookParser
+
+LogicManager -> GraphCommand : execute()
+activate GraphCommand
+
+GraphCommand -> FitBookModel : getFilteredClientList()
+activate FitBookModel
+
+FitBookModel --> GraphCommand
+deactivate FitBookModel
+
+GraphCommand --> LogicManager : result
+deactivate GraphCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : setSettingsGraph()
+MainWindow -> MainWindow : updateSeries(client)
+
+create Pane
+MainWindow -> Pane : new Pane()
+activate Pane
+Pane --> MainWindow
+deactivate Pane
+
+
+create Scene
+MainWindow -> Scene : new Scene()
+activate Scene
+Scene --> MainWindow
+deactivate Scene
+
+create Stage
+MainWindow -> Stage : new Stage()
+activate Stage
+Stage --> MainWindow
+deactivate Stage
+
+MainWindow -> StaticStage : show()
+activate StaticStage
+StaticStage --> MainWindow
+deactivate StaticStage
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

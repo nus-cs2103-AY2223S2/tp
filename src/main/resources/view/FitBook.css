@@ -1,0 +1,441 @@
+/*Font*/
+@font-face {
+    font-family: 'Inter';
+    font-weight: bold;
+    src: url('../font/Inter-VariableFont_slnt,wght.ttf');
+}
+
+@font-face {
+    font-family: 'La Belle Aurore';
+    font-weight: bold;
+    src: url('../font/LaBelleAurore-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Aclonica';
+    font-weight: bold;
+    src: url('../font/Aclonica-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Lakki Reddy';
+    font-weight: bold;
+    src: url('../font/LakkiReddy-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Leckerli One';
+    font-weight: bold;
+    src: url('../font/LeckerliOne-Regular.ttf');
+}
+
+.Title {
+    -fx-font-family: 'Leckerli One';
+    -fx-font-size: 25pt;
+    -fx-text-fill: black;
+    -fx-text-weight: bold;
+}
+
+.subTitle {
+    -fx-font-family: 'Leckerli One';
+    -fx-font-size: 15pt;
+    -fx-text-fill: black;
+    -fx-text-weight: bold;
+}
+
+/*background color of the FitBook*/
+#mainContainer {
+    -fx-background-color: derive(#F88017, 90%);
+}
+
+
+
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Leckerli One";
+}
+
+.tab-pane {
+    -fx-padding: 0 0 0 1;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 1;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-background-radius: 10;
+}
+
+.table-view {
+    -fx-base: #F88017;
+    -fx-control-inner-background: #F88017;
+    -fx-background-color: #F88017;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(#F88017, 20%)
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Inter";
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: #F88017;
+}
+
+/*List views*/
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: derive(#F88017, 20%);
+}
+
+.list-view .virtual-flow {
+    -fx-background-color: derive(#F88017, 20%);
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: derive(#F88017, 20%);
+    -fx-background-radius: 10 10 10 10;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: derive(#F88017, 40%);
+    -fx-background-radius:10;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: derive(#F88017, 60%);
+    -fx-background-radius:10;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #F88017;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #F88017;
+    -fx-border-width: 1;
+}
+
+.list-cell:filled:selected .label {
+    -fx-text-fill: white;
+}
+
+.list-cell .label {
+    -fx-text-fill: black;
+}
+
+.cell_big_label {
+    -fx-font-family: "Aclonica";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
+.cell_small_label {
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-text-fill: #010504;
+}
+
+.stack-pane {
+     -fx-background-color: derive(#F88017, 90%);
+}
+
+
+.pane-with-border {
+     -fx-background-color: transparent;
+     -fx-border-color: transparent;
+     -fx-border-top-width: 0px;
+}
+
+
+/*result display*/
+.result-display {
+    -fx-background-color: derive(#F88017, 90%);
+    -fx-font-family: "Inter";
+    -fx-font-size: 12pt;
+    -fx-background-radius: 10;
+    -fx-text-fill: black;
+    -fx-background-insets: 0;
+    -fx-border-color: derive(#F88017, 50%);
+    -fx-border-insets: 0;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+}
+
+.result-display .label {
+    /*-fx-text-fill: black !important;*/
+    -fx-background-radius: 10;
+    -fx-background-color: transparent;
+}
+
+/*status bar*/
+.status-bar {
+    -fx-background-color: derive(#F88017, 30%);
+}
+
+.status-bar .label {
+    -fx-font-family: "Inter";
+    -fx-text-fill: white;
+    -fx-padding: 2px;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: derive(#F88017, 30%);
+    -fx-border-color: derive(#F88017, 30%);
+    -fx-border-width: 1px;
+}
+
+.status-bar-with-border .label {
+    -fx-text-fill: white;
+}
+
+.grid-pane {
+    -fx-background-color: derive(#F88017, 30%);
+    -fx-border-color: derive(#F88017, 30%);
+    -fx-border-width: 1px;
+}
+
+.grid-pane .stack-pane {
+    -fx-background-color: derive(#F88017, 30%);
+}
+
+/*Menu bar*/
+.menu-bar {
+    -fx-background-color: derive(#F88017, 25%);
+}
+
+.menu-bar .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Aclonica";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-opacity: 1;
+}
+
+.menu-button:showing, .menu-button:hover {
+    -fx-background-color: derive(#F88017, 60%);
+}
+
+.context-menu {
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: derive(#F88017, 30%);
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+
+.menu-item:showing, .menu-item:hover {
+    -fx-background-color: #FFEFD5;
+    -fx-text-fill: black;
+}
+
+.menu-item:showing .label, .menu-item:hover .label {
+    -fx-text-fill: black;
+}
+
+
+.menu-item:focused {
+    -fx-background-color: derive(#F88017, 60%);
+    -fx-background-radius: 2;
+}
+
+.menu-item:focused .label{
+    -fx-text-fill: white;
+    -fx-background-color: derive(#F88017, 60%);
+}
+
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #F88017;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #F88017;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: black;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #F88017;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #F88017;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: #F88017;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(#F88017, 30%);
+}
+
+.dialog-pane {
+    -fx-background-color: #F88017;
+}
+
+.dialog-pane > *.button-bar > *.container {
+    -fx-background-color: #F88017;
+}
+
+.dialog-pane > *.label.content {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: derive(#F88017, 25%);
+    -fx-text-fill: black;
+}
+
+.dialog-pane:header *.header-panel {
+    -fx-background-color: derive(#F88017, 25%);
+}
+
+.dialog-pane:header *.header-panel *.label {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: derive(#F88017, 70%);
+    -fx-text-fill: black;
+}
+
+/*scroll bar*/
+.scroll-bar {
+    -fx-background-color: derive(#F88017, 70%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(#F88017, 30%);
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-border-width: 2;
+    -fx-border-color: derive(#F88017, 50%);
+    -fx-border-insets: 0;
+    -fx-border-radius: 10;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandTextField {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-border-color: derive(#F88017, 50%);
+    -fx-border-insets: 0;
+    -fx-border-bottom: solid;
+    -fx-border-top: none;
+    -fx-border-left: none;
+    -fx-border-right: none;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-radius: 10;
+    -fx-font-family: "Inter";
+    -fx-font-size: 12pt;
+    -fx-text-fill: black;
+}
+
+#filterField, #clientListPanel, #clientWebpage {
+    -fx-effect: innershadow(gaussian, #F88017, 10, 0, 0, 0);
+    -fx-background-color: #F88017;
+}
+
+
+
+/*tag*/
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 4 1 4;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-font-family: "Aclonica";
+}
+
+#appointments .label {
+    -fx-text-fill: white;
+    -fx-background-color: #FF0000;
+    -fx-padding: 1 4 1 4;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-font-family: "Aclonica";
+}
+

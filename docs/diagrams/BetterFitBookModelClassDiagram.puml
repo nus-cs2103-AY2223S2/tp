@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+FitBook *--> "1" UniqueClientList
+FitBook *--> "1" UniqueTagList
+FitBook *--> "1" UniqueAppointmentList
+FitBook *--> "1" UniqueRoutineList
+
+UniqueRoutineList --> "*" Routine
+UniqueAppointmentList --> "*" Appointment
+UniqueTagList --> "*" Tag
+UniqueClientList -----> Client
+
+Client --> "*" Tag
+Client --> "*" Appointment
+Client --> "*" Routine
+
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+Client *--> Address
+Client *--> Calorie
+Client *--> Goal
+Client *--> Weight
+Client *--> Gender
+Client *--> WeightHistory
+@enduml

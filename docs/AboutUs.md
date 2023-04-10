@@ -5,55 +5,57 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email:
+
+Tan Jun Da - `jundatan@hotmail.com`
+
+Darius Ng - `darius-ng@live.com`
+
+Kalaris Ng - `kalarisng@u.nus.edu`
+
+JiaHui Liao - `e0775484@u.nus.edu`
+
 
 ## Project team
 
-### John Doe
+### Tan Jun Da
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jundatan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jundatan)]
+[[portfolio](team/jundatan.md)]
 
-* Role: Project Advisor
+* Role: Integration
+* Responsibilities: Integration checking, scheduling and tracking, Dev OPs
 
-### Jane Doe
+### Darius Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dfordarius.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/dfordarius)]
+[[portfolio](team/dfordarius.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Code quality, Dev ops, Documentation checking
 
-### Johnny Doe
+### JiaHui Liao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/oliviajhl.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/oliviajhl)]
+[[portfolio](team/oliviajhl.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Tester and UI
+* Responsibilities: Testing, Deals with UI, Dev Ops
 
-### Jean Doe
+### Kalaris Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kalarisng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kalarisng)]
+[[portfolio](team/kalarisng.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team lead
+* Responsibilities: Team lead, Deliverables and deadlines, Dev Ops
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

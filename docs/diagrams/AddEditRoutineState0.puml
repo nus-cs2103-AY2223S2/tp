@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class FitBookParser
+Class AddRoutineCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+}
+
+package FitBookModel{
+Class HiddenFitBookModel #FFFFFF
+}
+
+package Storage{
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic
+LogicManager -right->"1" FitBookParser
+FitBookParser ..> AddRoutineCommand : creates >
+
+AddRoutineCommand -up-|> Command
+LogicManager .left.> Command : executes >
+
+LogicManager --> FitBookModel : adds the new routine >
+LogicManager --> Storage : stores the new routine >
+Storage --[hidden] FitBookModel
+Command .[hidden]up.> Storage
+Command .right.> FitBookModel
+
+Logic ..> CommandResult
+LogicManager .down.> CommandResult
+Command .up.> CommandResult : produces >
+@enduml
