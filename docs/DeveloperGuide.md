@@ -68,6 +68,7 @@ diagrams.
 </div>
 
 <sub>[return to table of contents](#table-of-contents)</sub>
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -235,6 +236,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -674,6 +676,7 @@ what doctor is in charge of him/her.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -817,6 +820,7 @@ otherwise)
 
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -946,6 +950,7 @@ testers are expected to do more *exploratory* testing.
 
    
 <sub>[return to table of contents](#table-of-contents)</sub>
+<div style="page-break-after: always;"></div>
 
 ### Appendix: Planned Enhancements
 
@@ -970,5 +975,10 @@ patients. In the future, we will ensure tha the scroll bar remains in position e
 generated in the result display box. In the future, we will inform the user of the missing prefix in the result display
 box.
 
+7. Currently, users are only able to use the undo/redo functions for actions that modify data, except commands relating to data archiving and theme changes.
+In the future, we plan to extend the capabilities of the undo/redo functions to encompass all commands in the future.
+
+8. Currently, the backup file message is too generic and doesn't provide any indication.
+In the future, a more specific and informative backup file will be provided to guide the user clearly.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
