@@ -1,4 +1,7 @@
-# Yuanyuan's Project Portfolio Page
+---
+layout: page
+title: Tang Yuanyuan's Project Portfolio Page
+---
 
 ### Project: Wingman
 
@@ -32,9 +35,7 @@ Given below are my contributions to the project.
       out its uuid which is time-consuming.
 
 
-* **Code
-  contributed
-  **: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tangyuantyy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=BoAi01&tabRepo=AY2223S2-CS2103T-W11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tangyuantyy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=BoAi01&tabRepo=AY2223S2-CS2103T-W11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 
 * **Project management**:
@@ -55,11 +56,14 @@ Given below are my contributions to the project.
     * User Guide:
         * Added UI display picture ([#133](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/133))
         * Updated Table of Contents ([#133](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/133))
-
+        * Labelled UI application window ([#250](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/250),
+          [#263](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/263))
+        
     * Developer Guide:
         * Added User stories and use cases related to crew ([#25](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/25))
         * Added implementation details of the Scrollable panel
           feature. ([#106](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/106))
+        * Added activity diagrams ([#259](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/259))
 
 
 * **Community**:
