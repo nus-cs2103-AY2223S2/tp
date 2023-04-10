@@ -237,15 +237,16 @@ The following sequence diagram shows how the add operation works:
 #### Implementation
 The weight data graph will be displayed in a pop-up window in the Ui component. It contains a LineChart of `Date` date against `Number` weight, and is populated 
 with data from XYChart.Series. The data is obtained from the logic component, which provides only past 30 days of weight data in the WeightHistory class.
-.
+
+
 The following details explain how it works:
 
 * The `WeightHistory` class stores the list of weights and dateTime.
-* The GraphPopup class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
+* The GraphPopup.Scene class sets up the LineChart with x-axis as a `Date` representing date, and y-axis as a `Double` representing the weight measurement on that date.
 * Ensure the XYChart.Series that populates the graph with data is always updated with the most recent data.
 * The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window.
 
-Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by hvaing the MainWindow class call handle statistics 
+Weight over date and time pop-up windows will display the past 30 days graph automatically. It does so by having the MainWindow class call handle statistics 
 on startup and after execution of commands.
 
 Sequence Diagram for Graph feature.
@@ -299,21 +300,22 @@ The following details explain how it works:
       * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
       Otherwise, an error message is returned.
 
+Sequence Diagram for Edit Appointment feature.
 
    * Example Usage Scenario
 
      Below is an example usage scenario of how the appointment list mechanism behaves at each step:
        * The user launches the application for the first time.
-       * The user executes the Edit index app/ command to edit an appointment. The execution of the Edit index app/ command also
+       * The user executes the `Edit` command to edit an appointment. The execution of the `Edit` command also
        checks whether this appointment is valid in the appointment list. If it is, the appointment is added to the appointment list. Otherwise, an error is displayed.
 
 
   * Design Considerations
 
     One important design consideration is how to handle expired appointment dates and times. The current choice is to
-    automatically remove them after reopening the app and to display a gray card for the expired appointment date and time.
-      * pros: Users can easily distinguish between expired and non-expired appointment dates and times.
-      * cons: expired date time cannot be updated immediately unless the user reopen the application.
+    automatically remove them after switching tabs.
+      * pros: This allows users to focus only on upcoming appointment dates and times, which can help them stay organized and avoid confusion.
+      * cons: Expired date and time information cannot be removed immediately unless the user switches tabs within the application, which could potentially lead to confusion appointments.
 
 ### Find feature
 
@@ -1041,11 +1043,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 * 1c. User request have all missing fields.
-  * 1c1. FitBook shows an error for missing fields.
+  * 1c1. FitBook shows an error message.
 
     Use case ends.
 
-> **Use case: UC16 - Edit routine or exercise in routine**
+> **Use case: UC16 - Add Exercise **
+
+**MSS**
+
+1. User request to add an Exercise to a specific Routine.
+2. FitBook adds the Exercise to the Routine in the routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing exercise name field.
+    * 1a1. FitBook shows an error for missing exercise name.
+
+      Use case ends.
+
+* 1b. User request have missing Routine Index.
+    * 1b1. FitBook shows an error for missing Routine Index.
+
+      Use case ends.
+
+* 1c. The given routine index is invalid.
+    * 1c1. FitBook shows an error for missing fields.
+
+      Use case ends.
+
+> **Use case: UC17 - Edit routine or exercise in routine**
 
 **MSS**
 
@@ -1077,7 +1105,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC17 - View selected client's summary information**
+> **Use case: UC18 - View selected client's summary information**
 
 **MSS**
 
@@ -1093,7 +1121,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC18 - Add weight**
+> **Use case: UC19 - Add weight**
 
 **MSS**
 
@@ -1119,7 +1147,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-> **Use case: UC19 - Plot weight history graph**
+> **Use case: UC20 - Plot weight history graph**
 
 **MSS**
 
@@ -1211,6 +1239,15 @@ testers are expected to do more *exploratory* testing.
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
 
+### Export/ExportRoutine
+1. Exports the client details/Routine details into a csv file.
+
+   A. Prerequisites: Ensure that previously exported csv file (if any) is not opened in the background.
+
+   B. Test case: `export` or `exportRoutine` <br>
+   Expected: FitBook displays successful export message.
+
+
 ### Adding a Routine
 1. Adding a Routine while all routines are being shown
 
@@ -1233,7 +1270,7 @@ testers are expected to do more *exploratory* testing.
    C. Test case: `addExercise 0 `<br>
    Expected: No exercise is added. Error details shown in the status message.
 
-   D. Other incorrect delete commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
+   D. Other incorrect addExercise commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
    Expected: Similar to previous.
 
 ### Finding a Routine
@@ -1246,6 +1283,34 @@ testers are expected to do more *exploratory* testing.
 
    C. Test case: `findRoutine`<br>
    Expected: Error details shown in the status message.
+
+### View Summary 
+1. View a Clients Summary Details
+
+   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list.
+
+   B. Test case: `view 2`<br>
+   Expected: Displays the summary of Client at index `2` in the Summary Panel of the UI.
+
+   C. Test case: `view`<br>
+   Expected: Error details shown in the status message
+
+   D. Other incorrect view commands to try:`view x `, (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Graph 
+1. Plot a graph of clients Weight History.
+
+   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list. 
+
+   B. Test case: `graph 2`<br>
+   Expected: Displays the graph pop up of the weight history of Client at index `2`.
+
+   C. Test case: `graph`<br>
+   Expected: Error details shown in the status message
+
+   D. Other incorrect view commands to try:`graph x `, (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
 ### Exit
 

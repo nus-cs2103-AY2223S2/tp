@@ -148,28 +148,32 @@ The Command Box is where you can type in your commands. To execute the command, 
 
 ### Prefixes for Client Commands
 
-| Prefix   | Compulsory field for adding client | Multiple allowed? | Prefix Meaning                                   | Characters restrictions                                     |
-|----------|------------------------------------|-------------------|--------------------------------------------------|-------------------------------------------------------------|
-| `n/`     | Yes                                | No                | Name of Client                                   | AlphaNumeric and spaces                                     |
-| `p/`     | Yes                                | No                | Phone number                                     | At least 3 digits                                           |
-| `e/`     | Yes                                | No                | Email                                            | local-part@domain                                           |
-| `a/`     | Yes                                | No                | Address                                          | Any characters except blank                                 |
-| `w/`     | Yes                                | No                | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place |
-| `g/`     | Yes                                | No                | Gender                                           | M or F (not case sensitive)                                 |
-| `c/`     | No                                 | No                | Recommended Calories                             | At least 4 digits long                                      |
-| `gl/`    | No                                 | No                | Goal for Client                                  | Any characters except blank                                 |
-| `r/`     | No                                 | Yes               | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion             |
-| `t/`     | No                                 | Yes               | Tag                                              | AlphaNumeric                                                |
-| `app/`   | No                                 | Yes               | Appointment                                      | dd-mm-yyyy HH:mm format that is after current date time     |
-| `d/`     | NA                                 | No                | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before current date time    |
+| Prefix   | Compulsory field for adding client | Multiple Input  | Prefix Meaning                                   | Characters restrictions                                     |
+|----------|------------------------------------|-----------------|--------------------------------------------------|-------------------------------------------------------------|
+| `n/`     | Yes                                | Only Last Taken | Name of Client                                   | AlphaNumeric and spaces                                     |
+| `p/`     | Yes                                | Only Last Taken | Phone number                                     | At least 3 digits                                           |
+| `e/`     | Yes                                | Only Last Taken | Email                                            | local-part@domain                                           |
+| `a/`     | Yes                                | Only Last Taken | Address                                          | Any characters except blank                                 |
+| `w/`     | Yes                                | Only Last Taken | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place |
+| `g/`     | Yes                                | Only Last Taken | Gender                                           | M or F (not case sensitive)                                 |
+| `c/`     | No                                 | Only Last Taken | Recommended Calories                             | At least 4 digits long                                      |
+| `gl/`    | No                                 | Only Last Taken | Goal for Client                                  | Any characters except blank                                 |
+| `r/`     | No                                 | All Taken       | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion             |
+| `t/`     | No                                 | All Taken       | Tag                                              | AlphaNumeric                                                |
+| `app/`   | No                                 | All Taken       | Appointment                                      | dd-mm-yyyy HH:mm format that is after current date time     |
+| `d/`     | NA                                 | NA              | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before current date time    |
+
 
 ### Prefixes for Routine Commands
 
-| Prefix   | Compulsory field for adding routine | Multiple allowed? | Prefix Meaning | Characters restrictions |
-|----------|-------------------------------------|-------------------|----------------|-------------------------|
-| `r/`     | Yes                                 | No                | Routine Name   | AlphaNumeric and spaces |
-| `ex/`    | No                                  | Yes               | Exercise Name  | AlphaNumeric and spaces |
-| `exno/`  | NA                                  | No                | Exercise index | Numeric                 |
+| Prefix   | Compulsory field for adding routine | Multiple Input  | Prefix Meaning | Characters restrictions |
+|----------|-------------------------------------|-----------------|----------------|-------------------------|
+| `r/`     | Yes                                 | Only Last Taken | Routine Name   | AlphaNumeric and spaces |
+| `ex/`    | No                                  | All Taken       | Exercise Name  | AlphaNumeric and spaces |
+| `exno/`  | NA                                  | NA              | Exercise index | Numeric                 |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For `Multiple Input Column`, `Only Last Taken` means that for example `add n/John Doe n/Richard Yang...` there are 2 name prefixes, the last name prefix which is `Richard Yang` will be stored as the name of the client to be added.
+While `All Taken` means for example `add ... t/friends t/VIP ...` both tags will be added to the client.  </div>
 
 ---
 
