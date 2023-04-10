@@ -24,6 +24,8 @@ This developer guide aims to provide instructions and guidelines for developers 
 effectively use and contribute to this project by explaining design considerations for certain key features. Moreover,
 new developers can use this guide as an entry point for navigating this extensive code base.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
@@ -36,7 +38,7 @@ new developers can use this guide as an entry point for navigating this extensiv
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## Design
@@ -135,8 +137,7 @@ Each of the three types of readings has their own `ObservableList` which is then
 A possible improvement to the way that readings are currently stored is to use a `HashMap` instead of three separate `ObservableList`s.
 This could allow the user to supply their own types of readings (which would be the key of the `HashMap`) and the corresponding values.
 Combining this with the ability to choose which chart to display for each tank would allow for a lot of flexibility in terms of how the user can view their tank readings.
-However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.
-<div style="page-break-after: always;"></div>
+However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.<div style="page-break-after: always;"></div>
 
 ### Logic component
 
