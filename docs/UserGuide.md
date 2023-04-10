@@ -154,7 +154,7 @@ Format: `add nric/NRIC name/NAME [s/STATUS]`
 
 <!-- EXAMPLE OF TIP -->
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
-- The default condition is set to `GRAY`. <br/>
+- The default status is set to `GRAY`. <br/>
 - The default ward is set to `Waiting Room`. <br/>
 - No discharge date is added by default.
 </div>
