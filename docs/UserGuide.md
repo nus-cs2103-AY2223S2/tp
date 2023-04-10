@@ -311,7 +311,7 @@ Format: `clear`
 
 ### Import data from CSV : `import`
 
-Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
+Opens a file chooser to select and import a CSV file containing relevant data. 
 
 Format: `import [combine|reset]`
 
@@ -320,6 +320,7 @@ Format: `import [combine|reset]`
 * If neither keyword is entered, the behaviour will be the same as `combine`.
 
 **Note: Your CSV file must have the following headers in this order: `Name, Phone, Email, Address, Income, Tags`**
+**Note: Each row corresponds to a single person**
 
 ![CSV headers example](https://user-images.githubusercontent.com/55232476/230785869-dd530813-1753-4d59-b7bf-18fa12a20894.png)
 
