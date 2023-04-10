@@ -30,14 +30,15 @@ Given below are my contributions to the project.
         * Added new pictures for UI, UI components, bookmark details and commands `find` and `view` [#256](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/256/files)
         * Added Glossary table, GUI components table and Prefix table [#169](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/169/files), [#200](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/200/files)
         * Added About User Guide
-        * update FAQ [#184](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/184/files)
+        * Update FAQ [#184](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/184/files)
       
     * Developer Guide:
         * Added implementation details of the `view` and `goto` features. [#135](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/135/files)
-        * update delete sequence diagram
+        * Update delete sequence diagram
         * Add diagrams for `goto` feature [#135](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/135/files)
         * Update Appendix A Manual Testing [#278](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/278/files)
         * Add Intended Audience, About MyLib, Using the Guide portion [#178](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/178/files)
+        * Update page breaks for pdf conversion [#337](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/337)
 
 * **Contributions to team-based tasks**
     * Created release for V1.3
