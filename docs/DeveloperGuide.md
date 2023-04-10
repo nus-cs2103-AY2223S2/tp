@@ -510,11 +510,9 @@ The user stories are not limited to those in this list. More can be added in the
 Future enhancements are planned to improve Reroll.
 
 1. Currently, fields such as weight, cost and challenge rating accepts negative values. Parser will be updated to detect such invalid values and print an error message.
-2. Originally, our team believed that a case-sensitive naming system is justified in a TTRPG. However after
-   responses from testers, we decided to implement names to be case-insensitive instead.
-3. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work,
+2. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work,
    causing confusion among the testers.
-4. Entities with very long name does not wrap in the GUI. Changes to GUI to remedy this is expected.
+3. Entities with very long name does not wrap in the GUI. Changes to GUI to remedy this is expected.
 
 --------------------------------------
 ## **Appendix: Instructions for manual testing**
