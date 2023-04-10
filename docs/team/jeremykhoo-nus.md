@@ -1,4 +1,7 @@
-# JeremyKhoo's Project Portfolio Page
+---
+layout: page
+title: Jeremy Khoo's Project Portfolio Page
+---
 
 ### Project: QuickContacts
 QuickContacts is a contacts and schedule management system that enables you to track your contacts and manage your schedule with ease! QuickContacts is CLI-focused and designed for efficiency. It is written in Java, and has about 10 kLoC.
