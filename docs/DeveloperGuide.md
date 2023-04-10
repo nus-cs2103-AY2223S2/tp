@@ -1026,16 +1026,14 @@ The following is a description of the code execution flow:
 **Target user profile**:
 
 - NUS students
-- has a need to keep track of a significant number of modules, lectures, and lecture videos
-- has a need to categorize and organize modules, lectures, and videos with tags
-- falling behind on lecture materials
-- feeling lost regarding lecture content
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is afraid of losing current data
-- wants to track productivity level
-- is reasonably comfortable using CLI apps
+- Fast typists
+- Prefers typing to mouse interactions
+- Prefers desktop apps over other types
+- Is reasonably comfortable with using CLI apps
+- Is attending modules with recorded lectures
+- Is having difficulty keeping track of which lecture videos he/she has watched
+  - Possibly falling behind on lecture materials
+  - Possibly feeling overwhelmed by large number of lectures per week
 
 **Value proposition**: fast and stress-free way to organise and track module progress and lecture material
 
