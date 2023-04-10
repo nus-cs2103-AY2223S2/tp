@@ -17,14 +17,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the E-Lister.
  */
 public class AddCommand extends Command {
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("add", "a"));
     //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_USAGE = commandWords + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = commandWords + ": Adds a person to the E-Lister. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -42,7 +42,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the E-Lister";
 
     private final Person toAdd;
 

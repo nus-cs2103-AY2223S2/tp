@@ -3,42 +3,42 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ElisterParser" as ElisterParser LOGIC_COLOR
 participant "s:ShortcutCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedElister" as VersionedElister MODEL_COLOR
 end box
 [-> LogicManager : execute("shortcut edit e")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("shortcut edit e")
-activate AddressBookParser
+LogicManager -> ElisterParser : parseCommand("shortcut edit e")
+activate ElisterParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+ElisterParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> ElisterParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+ElisterParser --> LogicManager : s
+deactivate ElisterParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoElister()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedElister : undo()
+activate VersionedElister
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedElister -> VersionedElister :resetData(ReadOnlyElister)
+VersionedElister --> Model :
+deactivate VersionedElister
 
 Model --> UndoCommand
 deactivate Model

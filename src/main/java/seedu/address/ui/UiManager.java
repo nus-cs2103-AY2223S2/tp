@@ -21,7 +21,7 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/elister.png";
 
     private Logic logic;
     private Model model;
@@ -41,6 +41,7 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        model.setPrimaryStage(primaryStage);
 
         try {
             mainWindow = new MainWindow(primaryStage, logic, model);

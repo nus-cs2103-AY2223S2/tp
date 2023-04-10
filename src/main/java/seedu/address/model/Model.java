@@ -6,11 +6,12 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 
 /**
  * The API of the Model component.
@@ -40,51 +41,51 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' E-Lister file path.
      */
-    Path getAddressBookFilePath();
+    Path getElisterFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' E-Lister file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setElisterFilePath(Path elisterFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces E-Lister data with the data in {@code elister}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setElister(ReadOnlyElister elister);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Elister */
+    ReadOnlyElister getElister();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the E-Lister.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the E-Lister.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the E-Lister.
      */
     void addPerson(Person person);
 
     /**
-     * Adds all Persons from a given address book.
-     * @param newAddressBook Address Book containing persons to be added.
+     * Adds all Persons from a given E-Lister.
+     * @param newElister E-Lister containing persons to be added.
      * @return The feedback from this operation.
      */
-    String addPersonsFromAddressBook(ReadOnlyAddressBook newAddressBook);
+    String addPersonsFromElister(ReadOnlyElister newElister);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the E-Lister.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the E-Lister.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -163,13 +164,13 @@ public interface Model {
 
     /**
      * Adds the given tag to the person.
-     * {@code person} must already exist in the address book
+     * {@code person} must already exist in the E-Lister
      */
     void addTag(Person person, Tag tag);
 
     /**
      * Deletes the tag with the given name from the person
-     * specified by input index according to the address book list.
+     * specified by input index according to the E-Lister list.
      *
      * @param person The person to delete tag from.
      * @param tag The tag to delete.
@@ -193,4 +194,14 @@ public interface Model {
 
     /** Returns the {@code History}*/
     InputHistory getInputHistory();
+
+    /**
+     * Returns the primary Stage.
+     */
+    Stage getPrimaryStage();
+
+    /**
+     * Sets the primary Stage.
+     */
+    void setPrimaryStage(Stage primaryStage);
 }

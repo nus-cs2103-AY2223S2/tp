@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         filtersDisplay = new FiltersDisplay();
         filtersDisplayPlaceholder.getChildren().add(filtersDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getElisterFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Elister;
+import seedu.address.model.ReadOnlyElister;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to CSV format.
+ * An Immutable Elister that is serializable to CSV format.
  */
-class CsvSerializableAddressBook {
+class CsvSerializableElister {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -23,47 +23,47 @@ class CsvSerializableAddressBook {
     private final List<CsvAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code CsvSerializableAddressBook} with the given persons.
+     * Constructs a {@code CsvSerializableElister} with the given persons.
      */
-    public CsvSerializableAddressBook(List<List<String>> listOfTokens) throws DataConversionException {
+    public CsvSerializableElister(List<List<String>> listOfTokens) throws DataConversionException {
         for (List<String> tokens: listOfTokens) {
             persons.add(new CsvAdaptedPerson(tokens));
         }
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Csv use.
+     * Converts a given {@code ReadOnlyElister} into this class for Csv use.
      *
-     * @param source future changes to this will not affect the created {@code CsvSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code CsvSerializableElister}.
      */
-    public CsvSerializableAddressBook(ReadOnlyAddressBook source) {
+    public CsvSerializableElister(ReadOnlyElister source) {
         persons.addAll(source.getPersonList().stream().map(CsvAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
      * Converts a given {@code ObservableList} into this class for Csv use.
      *
-     * @param source future changes to this will not affect the created {@code CsvSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code CsvSerializableElister}.
      */
-    public CsvSerializableAddressBook(ObservableList<Person> source) {
+    public CsvSerializableElister(ObservableList<Person> source) {
         persons.addAll(source.stream().map(CsvAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this E-Lister into the model's {@code Elister} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Elister toModelType() throws IllegalValueException {
+        Elister elister = new Elister();
         for (CsvAdaptedPerson csvAdaptedPerson : persons) {
             Person person = csvAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (elister.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            elister.addPerson(person);
         }
-        return addressBook;
+        return elister;
     }
 
     @Override

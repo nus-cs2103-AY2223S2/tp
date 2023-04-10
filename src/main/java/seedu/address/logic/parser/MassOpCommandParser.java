@@ -24,7 +24,7 @@ public class MassOpCommandParser implements Parser<MassOpCommand> {
         //trim the white spaces
         args = args.trim();
         try {
-            AddressBookParser.parseCommandWithIndex(args, Index.fromZeroBased(0));
+            ElisterParser.parseCommandWithIndex(args, Index.fromZeroBased(0));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MassOpCommand.MESSAGE_USAGE), pe);
         }

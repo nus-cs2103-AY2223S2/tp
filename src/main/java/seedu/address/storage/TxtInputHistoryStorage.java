@@ -27,7 +27,7 @@ public class TxtInputHistoryStorage implements InputHistoryStorage {
 
     @Override
     public Path getHistoryStoragePath() {
-        return this.filePath;
+        return filePath;
     }
 
     @Override
