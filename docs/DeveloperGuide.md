@@ -425,25 +425,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​  | I want to …​                                                          | So that I can…​                                        |
 |----------|----------|-----------------------------------------------------------------------|--------------------------------------------------------|
 | `* * *`  | new user | see usage instructions                                                | refer to instructions when I forget how to use the App |
-| `Epic`   | user     | **manage PowerCards**                                                 ||
+| `Epic`   | user     | **manage cards**                                                      ||
 | `* * *`  | user     | create a new card with a question and answer pair                     ||
 | `* *`    | user     | search for cards using keywords in the questions                      ||
 | `* *`    | user     | rewrite the question or the answer in the card                        ||
 | `Epic`   | user     | **group cards into decks of the same topic**                          ||
-| `* * *`  | user     | set the name of a masterDeck                                          ||
+| `* * *`  | user     | set the name of a deck                                                ||
 | `* * *`  | user     | list all decks I have created                                         ||
-| `* * *`  | user     | list all the cards in a masterDeck                                    ||
-| `* * *`  | user     | add cards in a masterDeck                                             ||
-| `* * *`  | user     | remove cards in a masterDeck                                          ||
-| `* *`    | user     | rename a masterDeck                                                   ||
-| `* *`    | user     | delete a masterDeck                                                   ||
-| `* *`    | user     | add the description of each masterDeck                                | I can check later what this masterDeck is about.       |
+| `* * *`  | user     | list all the cards in a deck                                          ||
+| `* * *`  | user     | add cards in a deck                                                   ||
+| `* * *`  | user     | remove cards in a deck                                                ||
+| `* *`    | user     | rename a deck                                                         ||
+| `* *`    | user     | delete a deck                                                         ||
+| `* *`    | user     | add the description of each deck                                      | I can check later what this deck is about.             |
 | `Epic`   | user     | **review decks of cards**                                             ||
-| `* * *`  | user     | review a single masterDeck of cards                                   | I can test my knowledge of the topic                   |
+| `* * *`  | user     | review a single deck of cards                                         | I can test my knowledge of the topic                   |
 | `* * *`  | user     | mark a card to be correct / wrong during review                       ||
-| `* *`    | user     | see how many cards I have left to review in one masterDeck            ||
+| `* *`    | user     | see how many cards I have left to review in one deck                  ||
 | `Epic`   | user     | **keep track of how effective my learning has been**                  ||
-| `* *`    | user     | record the number of questions I got right                            | I can see my progress                                  |
 | `* *`    | user     | see which are the cards I struggle with / succeed at                  ||
 | `*`      | user     | see which topics (decks) I am stronger / weaker in                    ||
 | `*`      | user     | revise cards that I got wrong for                                     | I can see what I’m weak at                             |
@@ -463,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `Powercards` application and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: UC1 - Add a deck**
+## Use case: UC1 - Add a deck
 
 **MSS:**
 
@@ -472,16 +471,50 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-**Use case: UC2 - Select a deck**
+## Use case: UC2 - Delete a deck
 
 **MSS:**
-1. User chooses a deck to add a card to.
+
+1. User requests to delete an existing deck with a specified name.
+2. System deletes the existing deck with the given name.
+
+   Use case ends.
+
+## Use case: UC3 - Edit a deck name
+
+**MSS:**
+
+1. User requests to edit an existing deck to have a new name.
+2. System edits the existing deck to have the new name.
+
+   Use case ends.
+
+## Use case: UC4 - Select a deck
+
+**MSS:**
+1. User selects a deck manage cards within.
 2. System enters the chosen deck and shows cards in that deck.
 
    Use case ends.
 
 
-**Use case: UC - Add a card**
+## Use case: UC5 - Find deck(s) with keyword(s)
+
+**MSS:**
+1. User requests to find decks with names containing keyword(s).
+2. System shows deck(s) containing any of the given keyword(s).
+
+   Use case ends.
+
+## Use case: UC6 - Show all decks
+
+**MSS:**
+1. User requests to see all decks after running `findDecks` command.
+2. System shows all decks.
+
+   Use case ends.
+
+## Use case: UC7 - Add a card
 
 **MSS:**
 1. User <u>selects a deck (UC2)</u> to add card to.
@@ -492,7 +525,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
    
    Use case ends.
 
-**Use case: UC - Delete a card**
+## Use case: UC8 - Delete a card
 
 **MSS:**
 
@@ -502,53 +535,53 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
   Use case ends.
 
-**Extensions:**
+## Use case: UC9 - Edit a card
 
-* 2a. The list is empty.  
-       
-  Use case ends.
+**MSS:**
+1. User <u>selects a deck (UC2)</u> to edit a card within.
+2. User enters the card field(s) they wish to edit - question, answer or tag details.
+3. System updates the card with the new given fields.
 
-* 3a1. System shows an error message.  
+   Steps 3-4 are repeated for as many times as required until the User finishes editing more cards to the deck.
 
-  Use case resumes at step 2.
+   Use case ends.
 
+## Use case: UC10 - Find card(s) by keyword(s)
 
-**Use case: UC - Find a card**
+**MSS:**
+1. User requests to find cards with questions containing keyword(s).
+2. System shows card(s) containing any of the given keyword(s).
+
+   Use case ends.
+
+## Use case: UC11 - Show all cards
+
+**MSS:**
+1. User requests to see all cards in selected deck after running `findCards` command.
+2. System shows all cards in selected deck.
+
+   Use case ends.
+
+## Use case: UC12 - Review a deck
 
 **MSS:**
 
-1. User requests to find cards containing a certain string in the question.
-2. System shows a list of cards matching the query.
+2. User enters review mode for a particular deck. 
+3. Application shows the question of the first card under review.
+4. User attempts to answer the question in the card.
+5. User flips the card to reveal the answer.
+6. User self-grades question as easy/medium/difficult.  
+7. User proceeds on to the next card.
+
+   Repeat step 2-6 until all cards in deck have been exhausted.
 
    Use case ends.
 
 **Extensions:**
-
-* 2a. There are no cards the match the query.    
-  
-  Use case ends.
-
-**Use case: UC - Review  a deck**
-
-**MSS:**
-
-1. User requests to review a particular deck
-2. Application shows a random, non-repeating card in the deck
-3. User attempts to answer the question in the card.
-4. Application reveals the answer to the card.
-5. User self-grades question as easy/medium/difficult.  
-   Repeat step 2-5 until all cards in deck have been exhausted.
-
-   Use case ends.
-
-**Extensions:**
-
-* 1a. There are no decks with the name requested by the user.  
-  Use case ends.
 
 * *a. User decides to end the review early.  
   * *a1. User requests to end the review session.  
-  * *a2. PowerCards ends the session and brings the user back to the area before the review started.  
+  * *a2. PowerCards ends the session and brings the user back to the Main mode before the review started.  
     Use case ends.
 
 ### Non-Functional Requirements
@@ -558,7 +591,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 3. A card should load when prompted without any noticeable lag
 4. Every command should provide a response within 2 seconds
 5. The PowerCards program is not expected to determine the correctness of the user’s response
-6. A card should be easily added/deleted in less than 3 commands after opening the program
+6. A card should be easily added/deleted within 3 commands after opening the program
 7. The data stored by PowerCards should be forward compatible such that old data can still be loaded in newer versions of the program
 
 <div style="page-break-after: always;"></div>
