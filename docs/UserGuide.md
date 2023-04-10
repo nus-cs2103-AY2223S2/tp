@@ -5,7 +5,7 @@ title: User Guide
 
 Ultron is a **desktop app for compiling job and internship openings, optimized for use through keyboard typing and minimizing mouse clicking**.
 
-The application interface provides you with both a summary list and a detailed side panel display on the right, with a text input box at the top for user commands. 
+The application interface provides you with both a summary list and a detailed side panel display on the right, with a text input box at the top for user commands.
 ## might make more sense to shift down, currently dupe with quick start
 
 If you are familiar with the Ultron interface and can type fast, it can help you organise your internship openings in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
@@ -17,21 +17,21 @@ If you are familiar with the Ultron interface and can type fast, it can help you
 - [Table of Contents](#table-of-contents)
 - [Navigation](#navigation)
 - [Quick Start](#quick-start)
-  - [Java Instructions](#java-instructions)
+    - [Java Instructions](#java-instructions)
 - [Features](#features)
-  - [Adding an opening : `add`](#adding-an-opening--add)
-  - [Listing all openings : `list`](#listing-all-openings--list)
-  - [Editing an opening : `edit`](#editing-an-opening--edit)
-  - [Editing an opening's remarks : `remark`](#editing-an-openings-remarks--remark)
-  - [Showing full details of opening: `show`](#showing-full-details-of-opening--show)
-  - [Listing upcoming dates : `upcoming`](#listing-upcoming-dates--upcoming)
-  - [Filtering openings by company or position: `find`](#filtering-openings-by-company-or-position--find)
-  - [Filtering openings by status: `status`](#filtering-openings-by-status--status)
-  - [Deleting an opening : `delete`](#deleting-an-opening--delete)
-  - [Deleting all openings : `clear`](#deleting-all-openings--clear)
-  - [Accessing help window : `help`](#accessing-help-window--help)
-  - [Exiting the program : `exit`](#exiting-the-program--exit)
-  - [Saving the data](#saving-the-data)
+    - [Adding an opening : `add`](#adding-an-opening--add)
+    - [Listing all openings : `list`](#listing-all-openings--list)
+    - [Editing an opening : `edit`](#editing-an-opening--edit)
+    - [Editing an opening's remarks : `remark`](#editing-an-openings-remarks--remark)
+    - [Showing full details of opening: `show`](#showing-full-details-of-opening--show)
+    - [Listing upcoming dates : `upcoming`](#listing-upcoming-dates--upcoming)
+    - [Filtering openings by company or position: `find`](#filtering-openings-by-company-or-position--find)
+    - [Filtering openings by status: `status`](#filtering-openings-by-status--status)
+    - [Deleting an opening : `delete`](#deleting-an-opening--delete)
+    - [Deleting all openings : `clear`](#deleting-all-openings--clear)
+    - [Accessing help window : `help`](#accessing-help-window--help)
+    - [Exiting the program : `exit`](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -57,7 +57,7 @@ All sections of the User Guide(UG) is organized neatly into the Table of Content
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ultron.jar` command to run the application.<br>
    You should see something similar to the image below in a few seconds. Note how the app contains some sample data.<br>
 
- ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
 5. The app provides you with both a summary list of openings in the left panel and a more detailed information of an opening in the right panel, with a text input box at the top for user commands.
 
@@ -65,12 +65,12 @@ All sections of the User Guide(UG) is organized neatly into the Table of Content
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all openings.
-   - `add c/Google p/Software Engineer e/google@gmail.com s/applied` : Adds an opening to Ultron, representing having applied at Google for a Software Engineer position.
-   - `delete 3` : Deletes the 3rd opening shown in the current list.
-   - `show 1` : Displays on the right panel, more details of the 1st opening in the current list
-   - `clear` : Deletes all openings.
-   - `exit` : Exits the app.
+    - `list` : Lists all openings.
+    - `add c/Google p/Software Engineer e/google@gmail.com s/applied` : Adds an opening to Ultron, representing having applied at Google for a Software Engineer position.
+    - `delete 3` : Deletes the 3rd opening shown in the current list.
+    - `show 1` : Displays on the right panel, more details of the 1st opening in the current list
+    - `clear` : Deletes all openings.
+    - `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
 
@@ -84,18 +84,34 @@ For Windows users:
 
 
 3. Example response : `java version "11.0.17"`
-   1. If the first number in the number list is `11`, it indicates that you are using Java version `11` and you are done!
-   2. If the number is not `11`, you can update Java by first uninstalling Java, following the instructions [here](https://explainjava.com/uninstall-java-windows/).
-   3. You can then download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
-   4. Finally, you can type `java -version` in your Command Prompt again to ensure you have Java version `11`.
+    1. If the first number in the number list is `11`, it indicates that you are using Java version `11` and you are done!
+    2. If the number is not `11`, you can update Java by first uninstalling Java, following the instructions [here](https://explainjava.com/uninstall-java-windows/).
+    3. You can then download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
+    4. Finally, you can type `java -version` in your Command Prompt again to ensure you have Java version `11`.
 
 
 4. Example response : `java is not recognized...`.
-   1. This means Java is not downloaded, so you need to download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
-   4. Finally, you can type `java -version` in your Command Prompt again to ensure you have Java version `11`.
+    1. This means Java is not downloaded, so you need to download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
+    2. Then, you can type `java -version` in your Command Prompt again to ensure you have Java version `11`.
 
 For macOS users:
-1. To be added.
+1. Open the **Terminal**.
+
+
+2. Type in the `java -version` command to confirm the status of your Java version.
+
+
+3. Example response : `java version "11.0.17"`
+    1. If the first number in the number list is `11`, it indicates that you are using Java version `11` and you are done!
+    2. If the number is not `11`, you can update Java by first uninstalling Java, following the instructions [here](https://www.java.com/en/download/help/mac_uninstall_java.html)
+    3. You can then download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+    4. Finally, you can type `java -version` in your **Terminal** again to ensure you have Java version `11`.
+
+
+4. Example response : `Java command not found...`.
+    1. This means Java is not downloaded, so you need to download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+    2. Then, you can type `java -version` in your **Terminal** again to ensure you have Java version `11`.
+
 
 After ensuring you have Java version `11`, you can return to [Quick Start](#quick-start).
 
@@ -185,7 +201,8 @@ Examples:
 
 ### Editing an opening's remarks : `remark`
 
-Edits the remark field of the opening at the specified INDEX to REMARK.
+What happens when there is a change of information? Ultron gives you the flexibility to edit the remarks
+so that you can keep track of real time data without the need for any unnecessary additions.
 
 Format: `remark INDEX r/REMARK`
 
@@ -200,7 +217,9 @@ Format: `remark INDEX r/REMARK`
 
 ### Showing full details of opening: `show`
 
-Displays the full details of the opening at the specified INDEX.
+Ultron provides you with this simple but effective feature of viewing everything you want to know about
+the opening. If you favour using a mouse, you can simply click on the left panel instead to display
+full details of a specific opening.
 
 Format: `show INDEX`
 
@@ -225,7 +244,9 @@ Examples:
 
 ### Filtering openings by company or position: `find`
 
-Finds openings whose COMPANY or POSITION contain any of the given keywords.
+Want to find only companies that you have already applied for? Ultron's `find` command gives you the
+capability to filter Ultron by company or position so you do not have to scroll through the entire
+list to find the opening you desire.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -245,7 +266,8 @@ Examples:
 
 ### Filtering openings by status: `status`
 
-Finds openings whose STATUS is the given KEYWORD.
+Want to find out which companies are at a specific stage of application? Use `status` to quickly scan through
+Ultron to find the status you desire.
 
 Format: `status KEYWORD`
 
@@ -262,7 +284,8 @@ Examples:
 
 ### Deleting an opening : `delete`
 
-Deletes an opening from the list.
+Accidentally made errors which are too inconvenient to change? Ultron makes it easy for you to delete
+the opening with just one command word.
 
 Format: `delete INDEX`
 
@@ -278,7 +301,8 @@ Examples:
 
 ### Deleting all openings : `clear`
 
-Deletes all openings from the list.
+Want to start from scratch? Just use clear and you will be presented with a clean Ultron ready for
+use!
 
 Format: `clear`
 
