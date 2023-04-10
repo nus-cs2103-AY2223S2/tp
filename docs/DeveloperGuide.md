@@ -779,7 +779,9 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exit` <br>
        Expected: Exists the program. Window is closed.
 
-## Appendix: Effort
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
 
 ### Challenges
 
@@ -803,7 +805,9 @@ As such, we saw this as a valuable opportunity to conduct extensive testing of o
 - Drew clear and correct different styles of diagram for DG.
 - Made a concrete OOP structure through discussions. 
 
-## Appendix: Planned Enhancement
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancement**
 
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
 **1. Making the command box scrollable**
