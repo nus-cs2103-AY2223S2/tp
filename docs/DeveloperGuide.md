@@ -671,10 +671,12 @@ person.
 <div style="page-break-after: always;"></div>
 
 Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
+
 ![Add Activity Diagram](images/AddActivityDiagram.png)
 
-Refer to [here]() for activity diagram on creating attributes for the person.
+Refer to [here](#creating-attributes-for-the-person) for activity diagram on creating attributes for the person.
 
+<div style="page-break-after: always;"></div>
 
 ##### Design Considerations
 
@@ -713,6 +715,8 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 * `s+/` for adding a new skill
 * `s-/` for deleting an existing skill
 
+<div style="page-break-after: always;"></div>
+
 ##### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
@@ -737,9 +741,8 @@ One notable thing about EditPersonDescriptor are its sets to handle : skillsAdde
 were implemented for modules as well. Parser handles all entries and get them assigned to EditPersonDescriptor.
 
 Before EditCommand executes, it will look into these sets to check if command is valid to run, illustrated by the
-activity diagram below:
+activity diagram [here](#editcommand-checking-for-valid-set-operations)
 
-![EditCommandCheck](images/EditCommandCheckActivity.png)
 
 If skillsRemoved or modulesRemoved are not empty, it will look through existing skills and modules of protagonist to
 ensure all of them are present (using containsAll method for Set). If any one of them does not exist in protagonist,
@@ -750,7 +753,7 @@ for every element then throwing the exception with specific skill/module that ca
 if (editPersonDescriptor.getSkillsRemoved().isPresent()) {
     Set<Skill> original = personToEdit.getSkills();
     Set<Skill> edited = editPersonDescriptor.getSkillsRemoved().get();
-    if (!original.containsAll(edited)) { // Can be improved by specifying which skill is not present
+    if (!original.containsAll(edited)) {
         throw new CommandException(MESSAGE_SKILL_DOES_NOT_EXIST);
     }
 }
@@ -758,11 +761,12 @@ if (editPersonDescriptor.getSkillsRemoved().isPresent()) {
 if (editPersonDescriptor.getModulesRemoved().isPresent()) {
     Set<Module> original = personToEdit.getModules();
     Set<Module> edited = editPersonDescriptor.getModulesRemoved().get();
-    if (!original.containsAll(edited)) { // Can be improved by specifying which module is not present
+    if (!original.containsAll(edited)) {
         throw new CommandException(MESSAGE_MOD_DOES_NOT_EXIST);
     }
 }
 ```
+
 As EditCommand executes, it creates a new EditedPerson. Other attributes are simply updated, but modules and skills are
 sets to be updated following a sequence of activity below:
 
@@ -1451,4 +1455,11 @@ testers are expected to do more *exploratory* testing.
 #### Creating attributes for the person
 <img src="images/createAttributes.png" width="170">
 
+<div style="page-break-after: always;"></div>
+
+#### EditCommand checking for valid set operations
+
+![EditCommandCheck](images/EditCommandCheckActivity.png)
+
+<div style="page-break-after: always;"></div>
 
