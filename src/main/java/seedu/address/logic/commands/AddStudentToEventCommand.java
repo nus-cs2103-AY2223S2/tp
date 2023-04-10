@@ -16,7 +16,7 @@ public class AddStudentToEventCommand extends Command {
             + "event type or the event type that you have entered "
             + "cannot be recognized!\n";
     public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger "
-            + "than the size of the student list within the event";
+            + "than the size of the student list";
     public static final String MESSAGE_STUDENT_INDEX_INVALID = "The student index "
             + "needs to be a single non-zero integer!";
     public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be "
