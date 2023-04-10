@@ -144,7 +144,7 @@ In case you are unsure of what you see in front of you now, we have come up with
 introduce you to the user interface. Do have a look at Figure 2 shown below. 
 
 <p align="center">
-  <img height="500" width="700" src="images/User_Interface.png">
+  <img height="400" width="650" src="images/User_Interface.png">
 </p>
 
 <div align="center">Figure 2: Annotations about the user interface</div>   
@@ -464,7 +464,7 @@ to display the pop-up window at any other point in time. However, this will be a
 features [coming soon](#coming-soon) if you are interested. 
 
 <p align="center">
-   <img height="250" width="350" src="images/reminder.png">
+   <img height="250" width="400" src="images/reminder.png">
 </p>
 
 <div align="center">Figure 9 : Reminder window.</div>
