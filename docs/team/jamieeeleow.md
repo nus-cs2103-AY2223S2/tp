@@ -32,7 +32,9 @@ coNtactUS is written in Java. Given below are my contributions to the project.
 
 <br>  
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div>  
+
+<br>  
   
 * **Feature Enhancement**: Modify Deadline and TimeSlot attributes to store LocalDateTime rather than a String.
 [#53](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/53) [#56](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/56)
@@ -42,11 +44,8 @@ coNtactUS is written in Java. Given below are my contributions to the project.
   making it necessary for deadlines and timeslots to be comparable.
   * Highlights: This enhancement affects existing commands, specifically the command of adding and editing
   modules. It required an in-depth analysis of how the LocalDateTime will affect the user input and how the commands
-  are being parsed. The implementation was challenging as it required changes to existing commands.   
-
+  are being parsed. The implementation was challenging as it required changes to existing commands.  
 <br>  
-
-
 * **Feature Enhancement**: Improve help command. [#69](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/69)
   * What it does: shows user how to make use of the features available in the module tracker.  
   * Justification: A user might not be able to remember every single command available in the module tracker and 
@@ -79,10 +78,8 @@ My code contributions can be accessed via: [RepoSense link](https://nus-cs2103-a
   * Contributed to glossary and other details in the user guide.  
   * Wrote the user guide based on HTML code.
   * Uploaded images to be used in the user guide as well as aligned and labeled them.
-  * Format the user guide for a neater document upon conversion to PDF version.   
-
+  * Format the user guide for a neater document upon conversion to PDF version.  
 <br>  
-
 * **Developer Guide**
   * Contributed to the user stories in the guide.
   * Contributed to the manual testing instructions provided in the guide.
