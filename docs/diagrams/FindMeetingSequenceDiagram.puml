@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindMeetingCommandParser" as FindMeetingCommandParser LOGIC_COLOR
 
-participant "e:FindMeetingCommand" as FindMeetingCommand LOGIC_COLOR
+participant "c:FindMeetingCommand" as FindMeetingCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("meeting find 22/01/2023")
+[-> LogicManager : execute("meetingFind 22/05/2023")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("meeting find 22/01/2023")
+LogicManager -> AddressBookParser : parseCommand("meetingFind 22/05/2023")
 activate AddressBookParser
 
 create FindMeetingCommandParser
@@ -38,22 +38,22 @@ create FindMeetingCommand
 FindMeetingCommandParser -> FindMeetingCommand
 activate FindMeetingCommand
 
-FindMeetingCommand --> FindMeetingCommandParser : e
+FindMeetingCommand --> FindMeetingCommandParser : c
 deactivate FindMeetingCommand
 
-FindMeetingCommandParser --> AddressBookParser : e
+FindMeetingCommandParser --> AddressBookParser : c
 deactivate FindMeetingCommandParser
 FindMeetingCommandParser -[hidden]-> AddressBookParser
 destroy FindMeetingCommandParser
 
-AddressBookParser --> LogicManager : e
+AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
 
-LogicManager -> FindMeetingCommand : execute()
+LogicManager -> FindMeetingCommand : execute(model)
 activate FindMeetingCommand
 
 
-FindMeetingCommand -> Model : updateFilteredPositionList()
+FindMeetingCommand -> Model : updateFilteredMeetingList()
 deactivate Model
 
 create CommandResult
