@@ -9,6 +9,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Introduction**
 
 ### 1.1 About sprINT 
@@ -255,6 +257,7 @@ the execution of the command.
 and its details to the user, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.</div>
 
+<div style="page-break-after: always;"></div>
 
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
@@ -1460,6 +1463,8 @@ A more specific error may be beneficial in bringing a more positive user experie
 **Potential Enhancement and Suggested Implementation:** <br>
 In the future, we plan to have the command box display the error message: “The application index provided is invalid.” instead.
 
+<div style="page-break-after: always;"></div>
+
 #### 7. Undo command description appears truncated in Help Window
 
 Some users may see a truncated undo command in the Help Window as seen in the screenshot below, possibly due to different screen sizes 
@@ -1480,7 +1485,7 @@ When a user uses the find command and only 1 application is listed, the message 
 **Potential Enhancement and Suggested Implementation:** <br>
 In the future, we will rectify the grammatical error.
 
-#### 9. Duplicate application entries
+#### 9. Limitation of duplicate application entries detection
 
 Currently, sprINT detects duplicate entries when the following fields - `Role`, `Company Name`,
  `Company Email`, `Tags` (if any) as well as `Application Task` (if any) - are the same. This means that 
@@ -1490,3 +1495,13 @@ an application with the same role, company name and company email can be added, 
 In the future, we plan to enhance sprINT to detect duplicate entries based on just `Role`, `Company Name` and 
 `Company Email`. Users will be told that the application already exists when they attempt to add an application that 
 matches an existing entry defined by these 3 criteria.
+
+#### 10. Overzealous input validation for tags and role, company name and task description fields
+
+Currently, sprINT only allows alphanumeric values for `Tags`, `Role`, `Company Name` and `Task Description`. 
+Special characters like `/`, `-`, `&` etc. are not accepted. While this will not affect most use cases, we understand 
+that there might be a small number of instances where special characters are contained in these fields. 
+
+**Potential Enhancement and Suggested Implementation:** <br>
+In the future, we plan to allow these 4 fields to accept input containing special characters too to account for 
+a greater range of use cases and for greater user convenience. 
