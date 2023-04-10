@@ -152,10 +152,15 @@ Adds the patient (NRIC, name and status).
 
 Format: `add nric/NRIC name/NAME [s/STATUS]`
 
-<!-- EXAMPLE OF TIP -->
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
-- The default status is set to `GRAY`. <br/>
-- The default ward is set to `Waiting Room`. <br/>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The first and last letters in NRIC must be capitalised.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `add`:**<br>
+- The default status is set to `GRAY`.
+- The default ward is set to `Waiting Room`.
 - No discharge date is added by default.
 </div>
 
@@ -286,6 +291,11 @@ Format: `addward w/WARD [c/CAPACITY]`
 
 <!-- EXAMPLE OF TIP -->
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about `add`:**
 The default capacity is set to 10.
 </div>
 
