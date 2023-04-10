@@ -19,10 +19,6 @@ public class ScheduleWeek {
 
     private ArrayList<ArrayList<Integer>> timetable;
 
-    public ArrayList<ArrayList<Integer>> getTimetable() {
-        return timetable;
-    }
-
     /**
      * Constructor for ScheduleWeek where cells will be filled with empty cells when first loaded
      */
@@ -43,6 +39,9 @@ public class ScheduleWeek {
 
     }
 
+    public ArrayList<ArrayList<Integer>> getTimetable() {
+        return timetable;
+    }
 
     public void setInternalList(ArrayList<ArrayList<Integer>> timetable, DayOfWeek startDay) {
         internalList.clear();

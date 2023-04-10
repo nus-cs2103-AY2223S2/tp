@@ -184,13 +184,13 @@ public class ModelManagerTest {
         validRecurringEventSet.add(SampleEventUtil.HALF_DAY_RECURRING_EVENT);
 
         // Names are abbreviations for type of Person with respect to involved Groups and Events
-        Person SingleMemberNoEvents = new PersonBuilder().withName("SMNE").withPhone(VALID_PHONE_BOB)
+        Person singleMemberNoEvents = new PersonBuilder().withName("SMNE").withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_OWE_MONEY, VALID_TAG_BORROWED_TEXTBOOK)
                 .withGroups(VALID_GROUP_CS2103)
                 .build();
 
-        Person SingleMemberWithMixedEvents = new PersonBuilder().withName("SMWME").withPhone(VALID_PHONE_BOB)
+        Person singleMemberWithMixedEvents = new PersonBuilder().withName("SMWME").withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_OWE_MONEY, VALID_TAG_BORROWED_TEXTBOOK)
                 .withGroups(VALID_GROUP_CS0000)
@@ -198,42 +198,42 @@ public class ModelManagerTest {
                 .withRecurringEventList(validRecurringEventSet)
                 .build();
 
-        Person FirstMemberWithIsolatedEventsOnly = new PersonBuilder().withName("FMIEO").withPhone(VALID_PHONE_BOB)
+        Person firstMemberWithIsolatedEventsOnly = new PersonBuilder().withName("FMIEO").withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_OWE_MONEY, VALID_TAG_BORROWED_TEXTBOOK)
                 .withGroups(VALID_GROUP_CS0000)
                 .withIsolatedEventList(validIsolatedEventSet)
                 .build();
 
-        Group CS0000 = new Group(VALID_GROUP_CS0000);
-        Group CS2103 = new Group(VALID_GROUP_CS2103);
-
-
-        Person SecondMemberWithRecurringEventsOnly = new PersonBuilder().withName("SMREO").withPhone(VALID_PHONE_BOB)
+        Person secondMemberWithRecurringEventsOnly = new PersonBuilder().withName("SMREO").withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_OWE_MONEY, VALID_TAG_BORROWED_TEXTBOOK)
                 .withGroups(VALID_GROUP_CS0000)
                 .withRecurringEventList(validRecurringEventSet)
                 .build();
+
+        Group cs0000 = new Group(VALID_GROUP_CS0000);
+        Group cs2103 = new Group(VALID_GROUP_CS2103);
+
 
         // Force start date to be the nearest Monday after a week from now
         LocalDate startDate = LocalDate.now().plusWeeks(1);
         startDate = startDate.plusDays(7 + 1 - startDate.getDayOfWeek().getValue());
         ScheduleWeek expectedSchedule = new ScheduleWeek();
-        int fullyOccupiedDay = Integer.parseInt("1".repeat(24),2);
-        int halfOccupiedDay = Integer.parseInt("1".repeat(12),2);
+        int fullyOccupiedDay = Integer.parseInt("1".repeat(24), 2);
+        int halfOccupiedDay = Integer.parseInt("1".repeat(12), 2);
 
         // First Test Case - Occupied Monday and Tuesday, combination of Schedules of 2 Persons in same Group
         AddressBook addressBook = new AddressBookBuilder()
-                .withGroup(CS0000)
-                .withGroup(CS2103)
-                .withPerson(FirstMemberWithIsolatedEventsOnly)
-                .withPerson(SecondMemberWithRecurringEventsOnly)
+                .withGroup(cs0000)
+                .withGroup(cs2103)
+                .withPerson(firstMemberWithIsolatedEventsOnly)
+                .withPerson(secondMemberWithRecurringEventsOnly)
                 .build();
 
         TimeMask occupiedMondayAndTuesday = new TimeMask(new int[]{halfOccupiedDay, fullyOccupiedDay, 0, 0, 0, 0, 0});
         modelManager.setAddressBook(addressBook);
-        modelManager.updateFilteredTimeSlotList(CS0000, startDate);
+        modelManager.updateFilteredTimeSlotList(cs0000, startDate);
         expectedSchedule.setInternalList(
                 TimeMask.getTimeSlotIndexes(occupiedMondayAndTuesday),
                 DayOfWeek.MONDAY);
@@ -241,10 +241,10 @@ public class ModelManagerTest {
 
         // Second Test Case - Fully unoccupied Timetable
         addressBook = new AddressBookBuilder()
-                .withGroup(CS0000)
-                .withGroup(CS2103)
-                .withPerson(SingleMemberNoEvents)
-                .withPerson(SingleMemberWithMixedEvents)
+                .withGroup(cs0000)
+                .withGroup(cs2103)
+                .withPerson(singleMemberNoEvents)
+                .withPerson(singleMemberWithMixedEvents)
                 .build();
 
         // The IsolatedEvents used here are forced to occur during a Tuesday
@@ -252,14 +252,14 @@ public class ModelManagerTest {
                 TimeMask.getTimeSlotIndexes(new TimeMask()),
                 DayOfWeek.MONDAY);
         modelManager.setAddressBook(addressBook);
-        modelManager.updateFilteredTimeSlotList(CS2103, startDate);
+        modelManager.updateFilteredTimeSlotList(cs2103, startDate);
         assertEquals(modelManager.getAddressBook().getSchedule(), expectedSchedule);
 
         // Third Test Case - Occupied Tuesday by a single member in a Group
         expectedSchedule.setInternalList(
                 TimeMask.getTimeSlotIndexes(new TimeMask(new int[]{halfOccupiedDay, fullyOccupiedDay, 0, 0, 0, 0, 0})),
                 DayOfWeek.MONDAY);
-        modelManager.updateFilteredTimeSlotList(CS0000, startDate);
+        modelManager.updateFilteredTimeSlotList(cs0000, startDate);
         assertEquals(modelManager.getAddressBook().getSchedule(), expectedSchedule);
 
         expectedSchedule.setInternalList(TimeMask.getTimeSlotIndexes(new TimeMask()), DayOfWeek.MONDAY);

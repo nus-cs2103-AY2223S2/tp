@@ -13,10 +13,7 @@ import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.LockSupport;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
