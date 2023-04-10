@@ -345,7 +345,7 @@ The `Summary` object
 
 <img src="images/developerGuide/StatsCommandClassDiagram.png" width="500" />
 
-The `StatsCommand` keeps a Summary object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunctions` with appropriate arguments and passes them to the summary to be described.
+The `StatsCommand` keeps a `Summary` object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunctions` with appropriate arguments and passes them to the `Summary` to be described.
 <img src="images/developerGuide/StatsSequenceDiagram.png" width="500" />
  
 ### Storage
