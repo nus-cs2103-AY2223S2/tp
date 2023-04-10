@@ -577,17 +577,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The list is empty.
-
-  Use case ends.
-
-* 1b.  The specified index is invalid.
-   *  1b1. CookHub shows an error message.
+* 1a. The specified index is invalid.
+   *  1a1. CookHub shows an error message.
 
       Use case ends.
 
-* 1c. User did not provide any index.
-  * 1c1. CookHub shows an error message.
+* 1b. User did not provide any index.
+  * 1b1. CookHub shows an error message.
 
     Use case ends.
 
