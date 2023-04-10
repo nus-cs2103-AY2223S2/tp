@@ -302,7 +302,7 @@ The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#p
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Components of Scheduled Meet Up Panel**<br>
-The panel contains all the information of every scheduled meet up with your contacts as shown below.
+The panel contains all the information of every scheduled meet ups with your contacts as shown below.
 <br>
 
 <img src="images/UG_ui_pictures/ScheduledMeetUpPanelLabelled.png" style="width:40%;margin:1% 1% 1% 30%">
@@ -1186,7 +1186,7 @@ What you should see:<br>
 
 #### Unorganise a meet up `unorganise`
 
-If you wish to remove a scheduled meet ups from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
+If you wish to remove a scheduled meet up from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
 
 <div markdown="block" class="alert alert-info">
 
