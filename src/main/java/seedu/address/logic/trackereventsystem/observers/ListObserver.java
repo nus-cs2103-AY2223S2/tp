@@ -107,7 +107,7 @@ public class ListObserver implements
             }
 
             ReadOnlyLecture editedLecture = editedModule.getLecture(curLecture.getName());
-            model.updateFilteredVideoList(new VideoPredicate(editedLecture), editedModule.getCode(), editedLecture);
+            model.updateFilteredVideoList(new VideoPredicate(curLecture), editedModule.getCode(), editedLecture);
         }
     }
 
