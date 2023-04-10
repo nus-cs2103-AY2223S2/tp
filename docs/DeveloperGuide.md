@@ -1115,7 +1115,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 ### 6.4 Non-Functional Requirements
 
-1. Performance: The system shall respond to user input within 2 seconds, even under peak load conditions. 
+1. Performance: The system shall respond to user input within 0.1 seconds. 
 2. Performance: The system should be able to hold up to 1000 users without a noticeable sluggishness in performance.
 3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux). For MacOS users specifically, **OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)** is required.
 4. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
@@ -1244,11 +1244,12 @@ testers are expected to do more *exploratory* testing.
 1. Marking a task that has not been assigned to any persons as completed
 
    1. Prerequisites: List all tasks using the `listt` command. At least one task in the list. First task
-      has not been assigned to any person, which can be verified by checking that there are no persons tagged. First task is currently not marked as
-      completed (red cross appears next to task title).
+      has not been assigned to any person, which can be verified by using `findt TITLE` (where `TITLE` is
+      the title of the first task) which should display an empty list. First task is currently not marked as
+      completed (red cross appears below task).
    2. Test case: `mark 1`<br>
       Expected: Details of the task that is marked shown in the feedback message. A green tick will appear
-      next to the task title.
+      under the task.
    3. Test case: `mark 0`<br>
       Expected: No tasks are marked. Error details shown in feedback message.
    4. Other incorrect mark commands to try: `mark`, `mark x` (where x is larger than the list size).
@@ -1257,7 +1258,7 @@ testers are expected to do more *exploratory* testing.
 2. Marking a task that has been assigned to one or more persons as completed
 
    1. Prerequisites: Find persons assigned to a task using the `findt TITLE` (where `TITLE` is the title of 
-      a task). At least one person in the list. Task is not marked as completed (red cross appears next to task title).
+      a task). At least one person in the list. Task is not marked as completed (red cross appears below task).
    2. Test case: `mark 1`<br>
       Expected: Details of the task that is marked shown in the feedback message. A green tick will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
@@ -1267,11 +1268,12 @@ testers are expected to do more *exploratory* testing.
 1. Unmarking a task that has not been assigned to any persons as not completed yet
 
    1. Prerequisites: List all tasks using the `listt` command. At least one task in the list. First task
-      has not been assigned to any person, which can be verified by checking that there are no persons tagged. First task is currently marked as
-      completed (green tick appears next to task title).
+      has not been assigned to any person, which can be verified by using `findt TITLE` (where `TITLE` is
+      the title of the first task) which should display an empty list. First task is currently marked as
+      completed (green tick appears below task).
    2. Test case: `ummark 1`<br>
       Expected: Details of the task that is unmarked shown in the feedback message. A red cross will appear
-      next to the task title.
+      under the task.
    3. Test case: `unmark 0`<br>
       Expected: No tasks are unmarked. Error details shown in feedback message.
    4. Other incorrect unmark commands to try: `unmark`, `unmark x` (where x is larger than the list size).
