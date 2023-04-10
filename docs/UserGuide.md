@@ -205,51 +205,51 @@ Step-by-step example of converting and importing an Excel spreadsheet:
 
 1. Ensure that Excel sheet passes conditions 4 to 6 above. It should look something like this:
 
-  <div style="text-align: center;">
-    <img src="images/demoExcel.png">
-    <p style="font-style: italic;"><br>Excel sheet containing contact information in the correct format</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/demoExcel.png">
+     <p style="font-style: italic;"><br>Excel sheet containing contact information in the correct format</p>
+     <br>
+   </div>
 
-2. Click on "Save As" and save the Excel sheet as a CSV file. Take note where the saved file is located in your computer.
+1. Click on "Save As" and save the Excel sheet as a CSV file. Take note where the saved file is located in your computer.
 
-  <div style="text-align: center;">
-    <img src="images/demoSaveAsCsv.png">
-    <p style="font-style: italic;"><br>Saving Excel sheet as a CSV file</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/demoSaveAsCsv.png">
+     <p style="font-style: italic;"><br>Saving Excel sheet as a CSV file</p>
+     <br>
+   </div>
 
-3. Find the new CSV file in your computer and copy its path.
+1. Find the new CSV file in your computer and copy its path.
 
-  <div style="text-align: center;">
-    <img src="images/demoCopyPath.png">
-    <p style="font-style: italic;"><br>Copying the path to the new CSV file</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/demoCopyPath.png">
+     <p style="font-style: italic;"><br>Copying the path to the new CSV file</p>
+     <br>
+   </div>
 
-4. Open AIMS. Into the command box input `importcsv` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
+1. Open AIMS. Into the command box input `importcsv` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
 
-  <div style="text-align: center;">
-    <img src="images/demoImportcsvCommand.png">
-    <p style="font-style: italic;"><br>Entering ImportCsv Command into AIMS</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/demoImportcsvCommand.png">
+     <p style="font-style: italic;"><br>Entering ImportCsv Command into AIMS</p>
+     <br>
+   </div>
 
-5. Make changes based on any error messages received. For example, if there is an issue with phone numbers, you have to make sure that the Excel file you want to import has no empty entries or invalid characters (i.e. spaces, alphabets, any other non-numeric characters)
+1. Make changes based on any error messages received. For example, if there is an issue with phone numbers, you have to make sure that the Excel file you want to import has no empty entries or invalid characters (i.e. spaces, alphabets, any other non-numeric characters)
 
-  <div style="text-align: center;">
-    <img src="images/demoImportcsvError.png">
-    <p style="font-style: italic;"><br>Responding to error messages</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/demoImportcsvError.png">
+     <p style="font-style: italic;"><br>Responding to error messages</p>
+     <br>
+   </div>
 
-6. You should see the following screen if you are successful!
+1. You should see the following screen if you are successful!
 
-  <div style="text-align: center;">
-    <img src="images/demoImportcsvSuccess.png">
-    <p style="font-style: italic;"><br>Success message!</p>
-    <br>
-  </div>
+   <div style="text-align: center;">
+     <img src="images/demoImportcsvSuccess.png">
+     <p style="font-style: italic;"><br>Success message!</p>
+     <br>
+   </div>
 
 [Back to Top ↑](#table-of-contents)
 
