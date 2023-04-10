@@ -29,7 +29,7 @@ My code contributions can be found [here](https://nus-cs2103-ay2223s2.github.io/
     * Suppose there was a past input that was of the wrong format, the user would be able to navigate to it and make edits before entering instead of typing everything out again
 
 * **Enhancements to existing features**:
-  * Made displayed indexing error messages more specific. [#131](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/131) [#133](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/133)
+  * Made displayed indexing error messages more specific. [#131](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/131) [#133](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/133) [#216](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/216)
   * Addressed integer overflow bug in displayed error messages, but enhancement was not merged after discovering it violated feature freeze. [#194](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/194)
 
 **Project Management**
