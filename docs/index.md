@@ -1,10 +1,10 @@
 ---
 layout: page
-title: SudoHR Level-3
+title: SudoHR
 ---
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-T17-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T17-2/tp/actions)
-[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T17-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103-T17-2/tp)
+[![codecov](https://codecov.io/gh/AY2223S2-CS2103-T17-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103-T17-2/tp)
 
 ![Ui](images/Ui.png)
 
