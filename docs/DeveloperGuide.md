@@ -391,6 +391,8 @@ The below sequence diagram shows how the various components interact with each o
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
