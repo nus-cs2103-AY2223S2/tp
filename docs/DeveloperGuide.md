@@ -103,7 +103,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png"/>
+<img src="images/LogicClassDiagram.png" width="600" height="600">
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FitBookParser` class to parse the user command.
