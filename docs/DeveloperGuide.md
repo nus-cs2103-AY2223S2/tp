@@ -427,13 +427,13 @@ Step 1. The user launches the application for the first time. The `FitBookExerci
 Step 2. The user executes `deleteRoutine 1` command to delete the corresponding index specified in the Routine list of the `FitBookExerciseRoutine`. The `deleteRoutine`
 command calls `DeleteRoutineCommandParser`, causing the command to be parsed and checked for any errors before executing the command
 which thereafter calls `DeleteRoutineCommand#execute()` which calls `FitBookModel#deleteRoutine()` to delete the routine in `FitBookExerciseRoutine`.
-
+<div style="page-break-after: always;"></div>
 Step 2.5. These commands will therefore go through updates for the FitBookModel and also update the FitBookExerciseRoutineStorages.
-![DeleteRoutineState1](images/DeleteRoutineState1.png)
+<img src="images/DeleteRoutineState1.png" height = "300">
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `DeleteRoutineCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
 
 </div>
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the deleteRoutine operation works:
 
 ![DeleteRoutineSeqDiagram](images/DeleteRoutineSeqDiagram.png)
@@ -441,7 +441,7 @@ The following sequence diagram shows how the deleteRoutine operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRoutineCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -464,7 +464,7 @@ The proposed export mechanism is facilitated by `FitBook`. It implements the fol
 * `FitBook#getFilteredClientList` — Retrieves the client list.
 
 This operation is exposed in the `FitBookModel` interface as `FitBookModel#getFilteredClientList()`
-
+<div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the deleteRoutine mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClients` accordingly
@@ -502,7 +502,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
     * Pros: The file I/O operations are abstracted away in a separate utility class, which improves modularity and readability.
     * Cons: This implementation may be more complex and harder to understand for someone unfamiliar with the code.
-
+<div style="page-break-after: always;"></div>
 ### Add/Edit Routine feature
 #### Implementation
 The proposed add routine mechanism is facilitated by `FitBook`. It extends `FitBook` with a Routine storage, stored in a `exerciseroutine.json` file. Additionally, it implements the following operations:
