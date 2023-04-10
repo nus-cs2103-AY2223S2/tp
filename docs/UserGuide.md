@@ -98,10 +98,10 @@ and Mycelium will start as an empty application with no projects and clients.
 | Term                                     | Definition                                                                                                                                                                                                                                       |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Fuzzy search                             | A feature which allows for searching via partial matches                                                                                                                                                                                         |
-| Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                           |
+| Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                            |
 | HotKey                                   | A convenient combination of key presses meant to invoke some app functionality                                                                                                                                                                   |
-| Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.         |
-| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
+| Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.          |
+| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse, and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -208,7 +208,7 @@ The range of valid years is from -9999 to 9999.
 data. For example, any attempts to create a project named *Mycelium -pn
 Desktop* would fail. In the command `p -pn Mycelium -pn Desktop -e
 spiderman@gmail.com`, *Desktop* is interpreted as another argument and
-overrides *Mycelium*. So we end up with a project named *Desktop*.
+overrides *Mycelium*, so we end up with a project named *Desktop*.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -484,7 +484,7 @@ argument, if specified, will be used to partially update the project.
     * A new client email.
     * **Default:** *Existing email*
 * `-s status`
-    * A new project status. Should be set, to one of `not_started`,
+    * A new project status. Should be set to one of `not_started`,
       `in_progress`, or `done`.
     * **Default:** *Existing status*
 * `-src source`
@@ -511,7 +511,7 @@ project](#creating-a-project-p) for more details on what each argument means.
 
 **Example**
 
-Suppose you have a project named *Mycelium Desktop*, and wish to update
+Suppose you have a project named *Mycelium Desktop* and wish to update
 
 1. its name to *Mycelium Mobile*; and
 1. its status to `in_progress`.
@@ -538,7 +538,7 @@ blocked.
 
 <div markdown="span" class="alert alert-info">
 :information_source: The target project should already exist in Mycelium.
-Otherwise, an error will be displayed and no changes are made to the data.
+Otherwise, an error will be displayed, and no changes are made to the data.
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -612,12 +612,12 @@ This shortcut allows you toggle the command box between **search mode** and
 
 In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted teal and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
+In **search mode**, the command box is highlighted teal, and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
 Your existing input while in **command mode** will be cached when you switch to
 **search mode**. It is then restored when you switch back to **command mode**.
 Similarly, your existing input while in **search mode** will be cached when
-switching to **command mode**, and restored when switching back to **search
+switching to **command mode** and restored when switching back to **search
 mode**.
 
 <div markdown="span" class="alert alert-danger">
@@ -726,7 +726,7 @@ full name or email.
 ### Fuzzy search Gotchas
 
 In general, fuzzy search in Mycelium should feel familiar to most developers,
-since it is similar to, for example, finding files in IDEs, or the well known
+since it is similar to, for example, finding files in IDEs, or the well-known
 [fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
 might wish to note:
 
