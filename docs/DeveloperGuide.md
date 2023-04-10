@@ -14,14 +14,13 @@ toc: true
 
 ### Purpose
 
-RIZZipe is a command-based recipe database that was designed with versatile tagging and searching features in mind so 
-you can always find the recipe you need! Make use of RIZZipe’s many features to achieve your culinary rizz.
+RIZZipe is a command-based recipe database designed with versatile tagging and searching features in mind, enabling you to always find the perfect recipe with ease. Explore RIZZipe's diverse features and elevate your culinary experience and rizz!
 
 This developer guide aims to detail the architecture and software design decisions behind RIZZipe, and is intended for
 developers, designers, and software testers of RIZZipe. As RIZZipe is built on Java 8 and JavaFX 11, some 
 technical knowledge of Java and JavaFX is recommended when reading this developer guide. 
 
-You may peruse the libraries we used, and their documentation, at these links:
+You may peruse the libraries we used and their documentation at the following links:
 * **[Java 8](https://docs.oracle.com/javase/8/docs/)** - Java Language
 * **[JavaFX 11](https://openjfx.io/openjfx-docs/)** - Framework for developing Graphical User Interfaces (GUI) in Java
 * **[Jackson](https://github.com/FasterXML/jackson-docs)** - Library to provide serialization and deserialization of data from JavaScript Object Notation (JSON) format files
@@ -29,29 +28,27 @@ You may peruse the libraries we used, and their documentation, at these links:
 
 ### Who this guide is for
 
-This guide is intended for software developers who wish to work on ***RIZZ***ipe, be it to add new features or to patch
+This guide is intended for software developers who wish to work on ***RIZZ***ipe, whether to add new features or to patch
 existing bugs. The source code may be found **[here](https://github.com/AY2223S2-CS2103T-T13-2/tp)**.
 
 Developers are free to propose changes under any of the following categories, provided the justification is stated within your Pull Request **description**:
 - Bug Fixes
 - New Features
-- Adding of new Libraries/Dependencies as well as new Features
+- Adding of new Libraries/Dependencies or new Features
 
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tip**: To get started, you may [fork](https://github.com/AY2223S2-CS2103T-T13-2/tp/fork) this repository and create
-a feature [branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) within your fork. After which, submit a [pull request](https://github.com/AY2223S2-CS2103T-T13-2/tp/compare) to us!
+a feature [branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) within your fork. Afterward, submit a [pull request](https://github.com/AY2223S2-CS2103T-T13-2/tp/compare) to us!
 
 </div>
 
 ### How to Use
 This developer guide is broken down into 4 main sections:
-1. **[Design](#design)**, which aims to detail the overall design and architecture of RIZZipe,
-2. **[Feature Implementation](#feature-implementation)**, which aims to detail the implementation of some
-notable features of RIZZipe,
-3. **[Requirements](#appendix-requirements)**, which aims to detail the software requirements of RIZZipe, and
-4. **[Instructions for manual testing](#appendix-instructions-for-manual-testing)**, which aims to detail steps that
-software testers can take in order to test RIZZipe.
+1. **[Design](#design)**, which provides details on the overall design and architecture of RIZZipe,
+2. **[Feature Implementation](#feature-implementation)**, which covers the implementation of some notable features of RIZZipe, 
+3. **[Requirements](#appendix-requirements)**, which outlines the software requirements of RIZZipe, and
+4. **[Instructions for manual testing](#appendix-instructions-for-manual-testing)**, which details steps that software testers can take to test RIZZipe.
 
 Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) below.
 
@@ -74,7 +71,7 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 
 ### Architecture
 
-Given below is a quick overview of the main components of the app, and how they interact with each other.
+Below is a quick overview of the main components of the app and how they interact with each other.
 
 To better illustrate and explain the high-level design of the App, we have also included the _**Architecture Diagram**_ below.
 
@@ -91,10 +88,9 @@ The `Main` part of the app has 2 classes called `Main` and `MainApp`. Its respon
 
 * On shutdown: Shuts down all the components and invokes cleanup methods wherever necessary.
 
-The `Commons` package represents a collection of classes used by multiple other components, and it stores information 
-like GUI settings and user-visible error messages.
+The `Commons` package represents a collection of classes used by multiple other components, storing information such as GUI settings and user-visible error messages.
 
-The rest of the App consists of four components, each as their own package of related files, with these main responsibilities:
+The rest of the App is comprised of four components, each in their own package of related files, with the following main responsibilities:
 
 * `UI`: The user interface of the app.
 * `Logic`: The command executor.
@@ -270,17 +266,15 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Overview
 
-The `AddRecipeForm` allows users to input the recipe they wish to add over a Graphical User Interface form 
-instead of the command box. The following sequence diagram illustrates how the different components interact 
-with one another in the execution of an `addf` command.  
+The `AddRecipeForm` allows users to add new recipes directly through a Graphical User Interface (GUI) form instead of typing in the command box. The following sequence diagram illustrates how the different components interact with one another in the execution of an `addf` command. 
 
 <img class="diagram" src="images/AddFormSequenceDiagram.png" width="1128"/>  
 
 #### Implementation
 
-The `AddRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
+The `AddRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details, and `Buttons` for saving and closing the form.  
 
-The `RecipeForm` class has a constructor that takes a null `Recipe` object, a `StringBuilder` object reference that is created in `AddFormCommand`, and the `title` of the form.
+The `RecipeForm` class has a constructor that takes a null `Recipe` object, a `StringBuilder` object reference created in `AddFormCommand`, and the `title` of the form.
 The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
 
 After the user modifies and saves the form, the
@@ -782,11 +776,11 @@ testers are expected to do more *exploratory* testing.
 **Status**: Accepted _(All expected behaviour is displayed)_
 1. Download the jar file and copy into an empty folder.
 2. Double-click the jar file.
-   <br>**Expected:** Shows the GUI with a set of sample recipes. The window size may not be optimum.
+   <br>**Expected:** Shows the GUI with a set of sample recipes. The window size may not be optimal.
 
 #### Test case 1.2: Saving window preferences
 **Status**: Accepted _(All expected behaviour is displayed)_
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Resize the window to an optimal size. Move the window to a different location. Close the window.
 2. Re-launch the app by double-clicking the jar file.
    <br>**Expected:** The most recent window size and location is retained.
 
