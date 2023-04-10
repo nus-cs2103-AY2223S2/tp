@@ -283,7 +283,7 @@ You can access the help page by these 3 methods:
 
 ### Viewing all job listings: `view`
 
-Lists out all the jobs that are currently in the listing book.
+You can list out all the jobs that are currently in the listing book.
 
 ✏️ **Format:** `view`
 
@@ -305,7 +305,7 @@ Listed all listings
 
 ### Adding a job listing: `add`
 
-Adds a listing to the listing book.
+You can add a listing to the listing book.
 
 ✏️ **Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT] [p/PLATFORM]...`
 
@@ -354,7 +354,7 @@ This listing already exists in the listing book
 
 ### Editing a job listing: `edit`
 
-Edits the details of a job listing.
+You can edit the details of a job listing.
 
 ✏️ **Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`
 
@@ -426,7 +426,7 @@ A listing with the given title already exists!
 
 ### Deleting a job listing: `delete`
 
-Deletes a job listing from the listing book.
+You can delete a job listing from the listing book.
 
 ✏️ **Format:** `delete INDEX`
 
@@ -470,7 +470,7 @@ The listing index provided exceeded the number of listings shown!
 ---
 ### Adding an applicant to listing: `add_app`
 
-Adds an applicant to a specified listing.
+You can add an applicant to a specified listing.
 
 ✏️ **Format:** `add_app INDEX a/APPLICANT`
 
@@ -508,7 +508,7 @@ Example: add_app 1 a/John Doe
 
 ### Editing an applicant of a listing: `edit_app`
 
-Edits the name of an applicant in a specified listing.
+You can edit the name of an applicant in a specified listing.
 
 ✏️ **Format:** `edit_app INDEX id/APPLICANT a/APPLICANT`
 
@@ -560,7 +560,7 @@ Example: edit_app 1 id/John Doe#2103 a/Sam
 
 ### Deleting an applicant from a listing: `del_app`
 
-Deletes an applicant from a specified listing.
+You can delete an applicant from a specified listing.
 
 ✏️ **Format:** `del_app INDEX id/APPLICANT`
 
@@ -619,7 +619,7 @@ Example: del_app 1 id/John Doe#2103
 
 ### Adding a platform: `add_plat`
 
-Adds a new platform to the specified job listing.
+You can add a new platform to the specified job listing.
 
 ✏️ **Format:** `add_plat INDEX p/PLATFORM`
 
@@ -672,7 +672,7 @@ Example: add_plat 1 p/LinkedIn
 --- 
 ### Delete a platform from a listing: `del_plat`
 
-Deletes a platform from a specified job listing.
+You can delete a platform from a specified job listing.
 
 ✏️ **Format:** `del_plat INDEX p/PLATFORM`
 
@@ -720,7 +720,7 @@ Example: del_plat 1 p/LinkedIn
 
 ### Locating job listings by title: `find`
 
-Finds job listings whose titles contain any of the given keywords.
+You can find job listings whose titles contain any of the given keywords.
 
 ✏️ **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
