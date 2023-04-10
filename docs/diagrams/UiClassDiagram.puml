@@ -9,15 +9,28 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
+Class CategoryCard
+Class ExpenseCard
+Class ExpenseListPanel
+Class RecurringExpenseCard
+Class RecurringExpenseListPanel
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class CategoryListPanel
+Class SuggestionCard
+Class SuggestionListPanel
+Class StatisticsPanel
 Class StatusBarFooter
+Class ResultDetails
+Class ResultHeader
 Class CommandBox
 }
 
 package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package AnalyticModel <<Rectangle>> {
 Class HiddenModel #FFFFFF
 }
 
@@ -26,35 +39,48 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
+UiManager -> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
+MainWindow *-right> "1" StatisticsPanel
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" ExpenseListPanel
+MainWindow *-down-> "1" CategoryListPanel
+MainWindow *-down-> "1" RecurringExpenseListPanel
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" ResultHeader
+MainWindow *-down-> "1" ResultDetails
+MainWindow *-down-> "1" SuggestionListPanel
+MainWindow -down-> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+CategoryListPanel -down-> "*" CategoryCard
+ExpenseListPanel -down-> "*" ExpenseCard
+RecurringExpenseListPanel -down-> "*" RecurringExpenseCard
+SuggestionListPanel -down-> "*" SuggestionCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+CategoryListPanel --|> UiPart
+CategoryCard --|> UiPart
+ExpenseListPanel --|> UiPart
+ExpenseCard --|> UiPart
+RecurringExpenseListPanel --|> UiPart
+RecurringExpenseCard --|> UiPart
+SuggestionListPanel --|> UiPart
+SuggestionCard --|> UiPart
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
+UiManager -up-> Logic
+MainWindow -up-> Logic
+StatisticsPanel -up-> AnalyticModel
+AnalyticModel -right-> Model
 
-PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+ResultHeader -[hidden]left- ResultDisplay
 
 MainWindow -[hidden]-|> UiPart
 @enduml

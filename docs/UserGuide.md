@@ -177,6 +177,7 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
 | [List categories](#listing-categories-lcat)               | [Find an expense by keyword](#search-for-an-expense-by-keyword-find) | [List recurring expenses](#listing-recurring-expenses-lrec)        | [Exit FastTrack](#exiting-fasttrack-exit)           |
 | [View category summary](#viewing-category-summary-sumcat) | [List expenses](#listing-expenses-list)                              |                                                                    | [View help](#viewing-help-help)                     |
 
+
 ### Other Notable Features
 
 | [**Expense Statistics Feature**](#expense-statistics-feature)                       |
