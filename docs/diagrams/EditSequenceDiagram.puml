@@ -61,28 +61,11 @@ deactivate TaskBookParser
 LogicManager -> EditCommand : execute()
 activate EditCommand
 
-alt old task is SimpleTask
 
-    EditCommand -> SimpleTask
-    activate SimpleTask
 
-    SimpleTask --> EditCommand : t (new task)
-    deactivate SimpleTask
+ref over  EditCommand, SimpleTask, Deadline, Event : create edited task
 
-else old task is Deadline
-    EditCommand -> Deadline
-    activate Deadline
 
-    Deadline --> EditCommand : l (new task)
-    deactivate Deadline
-
-else old task is Event
-    EditCommand -> Event
-    activate Event
-
-    Event --> EditCommand : v (new task)
-    deactivate Event
-end
 
 EditCommand -> Model : setTask()
 activate Model

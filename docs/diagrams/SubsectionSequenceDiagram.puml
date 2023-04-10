@@ -53,28 +53,8 @@ deactivate TaskBookParser
 LogicManager -> AddSubtaskCommand : execute()
 activate AddSubtaskCommand
 
-alt old task is SimpleTask
+ref over  AddSubtaskCommand, SimpleTask, Deadline, Event : create task with new subsection
 
-    AddSubtaskCommand -> SimpleTask
-    activate SimpleTask
-
-    SimpleTask --> AddSubtaskCommand : t (new task)
-    deactivate SimpleTask
-
-else old task is Deadline
-    AddSubtaskCommand -> Deadline
-    activate Deadline
-
-    Deadline --> AddSubtaskCommand : l (new task)
-    deactivate Deadline
-
-else old task is Event
-    AddSubtaskCommand -> Event
-    activate Event
-
-    Event --> AddSubtaskCommand : v (new task)
-    deactivate Event
-end
 
 AddSubtaskCommand -> Model : setTask()
 activate Model

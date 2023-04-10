@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
+participant "l:Deadline" as Deadline LOGIC_COLOR
+participant "v:Event" as Event LOGIC_COLOR
+
+mainframe "sd create edited task"
+
+
+
+    alt old task is SimpleTask
+
+        EditCommand -> SimpleTask
+        activate SimpleTask
+
+        SimpleTask --> EditCommand : t (new task)
+        deactivate SimpleTask
+
+    else old task is Deadline
+        EditCommand -> Deadline
+        activate Deadline
+
+        Deadline --> EditCommand : l (new task)
+        deactivate Deadline
+
+    else old task is Event
+        EditCommand -> Event
+        activate Event
+
+        Event --> EditCommand : v (new task)
+        deactivate Event
+    end
+
+
+
+@enduml
