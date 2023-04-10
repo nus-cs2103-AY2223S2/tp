@@ -266,6 +266,6 @@ public class EditModeParser {
             } else {
                 throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
             }
-        } 
+        }
     }
 }
