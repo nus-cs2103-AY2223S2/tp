@@ -19,10 +19,10 @@ Class DeckElement
 Class StatusBarFooter
 Class CommandBox
 Class ReviewStatsPanel
-Class ReviewStatsPane
+Class ReviewStatsElement
 Class NavGuide
-Class ReviewCard
-Class UnflippedReviewCard
+Class ReviewElement
+Class UnflippedReviewElement
 }
 
 package Model <<Rectangle>> {
@@ -41,16 +41,16 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down-->  "1" CommandBox
 MainWindow *-down--> "1" ResultDisplay
 MainWindow *-down-> "0..1" ReviewStatsPanel
-MainWindow *-down--> "0..1" CardListPanel
+MainWindow *-down---> "0..1" CardListPanel
 MainWindow *-down--> "1" StatusBarFooter
 MainWindow *-down-> "1" DeckListPanel
 MainWindow *-down-> "0..1" DeckName
 
 CardListPanel -down--> "*" CardElement
 DeckListPanel -down--> "*" DeckElement
-DeckListPanel -down-> "0..1" ReviewCard
-DeckListPanel -down-> "0..1" UnflippedReviewCard
-ReviewStatsPanel -down--> "3" ReviewStatsPane
+DeckListPanel -down----> "0..1" ReviewElement
+DeckListPanel -down----> "0..1" UnflippedReviewElement
+ReviewStatsPanel -down--> "3" ReviewStatsElement
 ReviewStatsPanel -down--> "1" NavGuide
 MainWindow --> "0..1" HelpWindow
 
@@ -58,19 +58,20 @@ MainWindow ---|> UiPart
 
 CardElement ..> Model
 DeckElement ..> Model
-ReviewCard ..> Model
-UnflippedReviewCard ..> Model
+ReviewElement ..> Model
+UnflippedReviewElement ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 
 HelpWindow -[hidden]left- CommandBox
-DeckElement -[hidden]left- UnflippedReviewCard
-ReviewCard-[hidden]left- UnflippedReviewCard
-DeckElement -[hidden]left- ReviewCard
+DeckElement -[hidden]left- UnflippedReviewElement
+ReviewCard-[hidden]left- UnflippedReviewElement
+DeckElement -[hidden]left- ReviewElement
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 StatusBarFooter -[hidden]left- UiPart
+ReviewStatsPanel -[hidden]right- CardListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml
