@@ -29,8 +29,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: 
-  * `filter` command
-  * `gender`, `dateofbirth` fields
+  * `find` command
+  * `gender`, `dateofbirth`, `email` fields
   * Developer Guide
 
 ### Sean Chin Jun Kai
