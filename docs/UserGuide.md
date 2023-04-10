@@ -842,7 +842,7 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 * At least one of the optional fields must be keyed in.<br>
 
-* For `ORDER_ITEM`:
+* For `ORDER_ITEM` and `CUSTOMER_NAME`:
   * Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
   * Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
   * Only full words will match (e.g. `Chocolate` will not match with `Choco`).
@@ -857,8 +857,8 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
     * `N` or `n` for `Not delivered`.
     * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
-* For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
-  * Search is case-insensitive for `CUSTOMER_NAME` but case-sensitive for `CUSTOMER_ADDRESS`
+* For `CUSTOMER_ADDRESS`:
+  * Search is case-sensitive.
   (e.g. The search for orders with customer address `smith` will match with `smith` but not with `Smith`).
   * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
   * Only full words will match.
