@@ -689,7 +689,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
 ### Delete a patient
 
@@ -706,15 +705,13 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Save data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. MedInfo will clear the current data if the data files are corrupted or modified invalidly.
 
-2. _{ more test cases …​ }_
 
 
 ---

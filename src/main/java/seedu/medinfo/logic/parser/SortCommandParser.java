@@ -59,14 +59,28 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if more than one of the prefixes contains  {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean manyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() > 1;
     }
 
+    /**
+     * Checks if a given argument is empty
+     * @param trimmedArgs if the argument is empty
+     */
     private void checkArgsEmpty(String trimmedArgs) throws ParseException {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
