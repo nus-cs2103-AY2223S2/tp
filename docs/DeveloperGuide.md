@@ -188,7 +188,7 @@ they should make sense on their own without depending on other components)
 The `Model` component 
 * Is implemented by a person model manager in OfficeConnectModel.
 * Stores the address book data for persons i.e., all `Person` objects (which are contained in a `UniquePersonList` object). 
-* Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list,
+* Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate filtered list,
 which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. 
 the UI can be bound to this list so that the UI automatically updates when the data in the list changes. 
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a`ReadOnlyUserPref` 
