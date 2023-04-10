@@ -181,7 +181,7 @@ This section describes some noteworthy details on how certain features are imple
 
 This subsection describes implementation details related to `UI`, such as page navigation and design.
 
-#### Navigating through pages
+#### Navigating Through Pages
 
 ![Navigation Guide](images/navigation.png)
 
@@ -206,7 +206,7 @@ At the end of the `showGroupPane` method call, the Left Pane, previously populat
 
 This sequence of interactions is similar across each page navigation.
 
-#### Design considerations
+#### Design Considerations
 
 - **Attendance Page Design**
 
@@ -327,7 +327,7 @@ In addition to the above diagram, the following object diagram illustrate a more
 ![ObjectDependencyObjectDiagram](images/ObjectDependencyObjectDiagram.png)
 
 
-### Undo feature
+### Undo Feature
 `undo` allows restoring up to 5 previous states, but can be modified to restore more/less states.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**  Allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
@@ -342,7 +342,7 @@ If new commands are to be added, it's interaction with `undo` must be kept in mi
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design considerations:
+#### Design Considerations:
 
 **Aspect: How undo executes:**
 
@@ -356,7 +356,7 @@ If new commands are to be added, it's interaction with `undo` must be kept in mi
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
-### Unique list of items
+### Unique List of Items
 Represented by the `UniqueList<T>` class, where `T` is the type of the item to be contained.
 
 `UniqueList` is an abstract class that was created to accommodate the storing of different types of items which require list operations. This class provides a generalized solution that can be applied to various scenarios where a list of unique items is needed.
@@ -382,15 +382,15 @@ The `ListableItem` interface would require that its classes also support the han
 Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.
 This serves to store/load data to/from a plaintext json file.
 
-##### During loading of data
+##### During Loading of Data
 Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` containing the saved data, through interactions with `Storage`.
 ![LoadingStorageSequenceDiagram](images/LoadingStorageSequenceDiagram.png)
 
-##### During saving of data
+##### During Saving of Data
 Saving of data is done every time a command is executed. The sequence diagram below illustrates how a `Roster` is saved into storage.
 ![SavingStorageSequenceDiagram](images/SavingStorageSequenceDiagram.png)
 
-#### Design considerations:
+#### Design Considerations:
 
 * **Alternative 1 (current choice):** Save the `Roster` every time a command is executed.
   * Pros: Easy to implement.
@@ -412,26 +412,6 @@ Saving of data is done every time a command is executed. The sequence diagram be
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Appendix: Effort
-
-### Page Navigation
-As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
-
-Additionally, navigating a page also meant traversing the object hierarchy.
-There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
-
-In short, page information as well as pointers to the objects selected by the user needed to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
-
-Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
-
-### Storage
-As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
-
-The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
-
-On top of creating the respective `json` serializing classes for each different type of object, each type of object would also have slightly different fields to keep track of, which added further complexity to serializing these objects.
-
 
 ## **Appendix: Requirements**
 
@@ -750,7 +730,7 @@ These commands should be tested on the Course Page.
 1. Selecting a course while on the Course Page.
 
     1. Test case: `select 1`<br>
-       Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the 
+       Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the
        corresponding Group Page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
@@ -820,7 +800,7 @@ These commands should be tested on the Group Page.
 
 1. Editing a group which exists in the group list.
 
-    1. Test case: `edit group 1 T02`<br> 
+    1. Test case: `edit group 1 T02`<br>
        Expected: First group is edited to the new group name. Details of the edited group shown in the log box.
 
     1. Test case: `edit group 0 T02`<br>
@@ -903,7 +883,7 @@ These commands should be tested on the Students Page.
 
     1. Test case: `add student n/John p/98765432 e/johnd@example.com sid/A1234567X`, where another student with student ID A1234567X already exists in the student list<br>
        Expected: No student is added. Error details shown in the log box.
-   
+
 3. Adding a student whose name already exists in the list.
    1. Test case: `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`, where John Doe with a different student ID exists in the student list.
    Expected: New student is added into the list. Duplicate names are allowed as long as the student ID is different. Details of the added student shown in the log box.
@@ -930,7 +910,7 @@ These commands should be tested on the Students Page.
 
 1. Editing a student which exists in the course list.
 
-    1. Test case: `edit student 1 n/John p/98765432 e/John@gmail.com sid/A2345678X` where at least one of the fields 
+    1. Test case: `edit student 1 n/John p/98765432 e/John@gmail.com sid/A2345678X` where at least one of the fields
    `n/<NAME>`, `p/<PHONE_NUMBER>`, `e/<EMAIL>` or `sid/<STUDENT_NUMBER>` must be provided<br>
        Expected: First student is edited to have the new field details provided. Details of the edited student shown in the log box.
 
@@ -1030,7 +1010,7 @@ with respective student IDs `A1234567X`, `A123`, `A98765432X`.
       Expected: Displays error message on the log box.
    4. Test case: `remark 1` where the first student already has a remark. <br>
       Expected: Deletes the remark from the first student listed in the student list.
-   
+
 #### Uploading a student's photo
 1. Uploads a student's photo to be displayed in the student roster.
     1. Test case: `upload <LOCAL_FILE_PATH>`, where file path can be either relative or absolute file path <br>
@@ -1067,7 +1047,7 @@ These commands should be tested on the Session Page.
 
     1. Test case: `add session Tutorial1`<br>
        Expected: No session is added. Error details shown in the log box.
-   
+
 #### Deleting a session
 
 1. Deleting a session while all sessions are being shown from the Session Page. At least 1 session exists in the list.
@@ -1114,7 +1094,7 @@ These commands should be tested on the Session Page.
 
    2. Test case: `select x` (where x is larger than the list size)<br>
       Expected: No session is selected. Error details shown in the log box.
-   
+
 2. Selecting a session while the session list is empty in the Session Page.
     1. Refer to step 1.2 above under `Selecting a session`
 
@@ -1150,15 +1130,15 @@ These commands should be tested on the Attendance Page.
 
    2. Other incorrect `mark` commands to try: `mark`, `mark x` (where x is larger than the student list size, `mark -1` <br>
       Expected: No student is marked as present. Error details shown in the log box.
-   
+
 2. Marking selected students as present, with 6 students in the list.
-    1. Test case: `mark 1, 4, 6`<br> 
+    1. Test case: `mark 1, 4, 6`<br>
         Expected: First, fourth and sixth students are marked as present. Details of the students marked as present shown in the log box.
     2. Test case: `mark 2, 3, 5, 7` (where there is no student in the seventh index) <br>
         Expected: No student is marked as present. Error details shown in the log box.
     3. Other incorrect `mark` commands to try: `mark`, `mark 0` <br>
        Expected: No student is marked as present. Error details shown in the log box.
-   
+
 #### Marking selected student(s) as absent
 1. Marking selected student as absent, with at least one student in the list.
 
@@ -1235,7 +1215,7 @@ These commands should be tested on the Task Page.
     1. Test case: `edit task 0 CA4`<br>
        Expected: No task is edited. Error details shown in the log box.
 
-    1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4` 
+    1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4`
        (where x is larger than the list size) <br>
        Expected: Similar to previous step 1.2 under `Editing a task`.
 
@@ -1309,44 +1289,62 @@ These commands should be tested on the Grades Page.
 ---
 
 ## Appendix: Effort
-Estimating the effort required for a project can be a challenging task. To help evaluators estimate the effort 
+Estimating the effort required for a project can be a challenging task. To help evaluators estimate the effort
 required for our project. we have provided the following information.
 
 ### Difficulty Level
-Our project involved designing and implementing a comprehensive solution for managing the student roster. This required 
-a thorough understanding of the domain and the ability to design object types that accurately represented the various 
+Our project involved designing and implementing a comprehensive solution for managing the student roster. This required
+a thorough understanding of the domain and the ability to design object types that accurately represented the various
 entities and relationships involved.
 
 ### Challenges Faced
-One of the main challenges we faced was establishing dependencies between the various object types in a way that 
-ensured consistency and minimized data duplication. This required careful consideration of the various use cases and 
+#### Multiple Object Types
+One of the main challenges we faced was establishing dependencies between the various object types in a way that
+ensured consistency and minimized data duplication. This required careful consideration of the various use cases and
 edge cases that could arise during the management of the student roster. Detailed implementation is described under [Implementation](#student-roster-object-types).
+
+#### Page Navigation
+As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
+
+Additionally, navigating a page also meant traversing the object hierarchy.
+There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
+
+In short, page information as well as pointers to the objects selected by the user needed to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
+
+Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
+
+#### Storage
+As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
+
+The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
+
+On top of creating the respective `json` serializing classes for each different type of object, each type of object would also have slightly different fields to keep track of, which added further complexity to serializing these objects.
 
 
 ### Effort Required
 The effort required for our project can be broken down into the following components:
-- Design: 20% 
-- Implementation: 60% 
-- Testing: 15% 
+- Design: 20%
+- Implementation: 60%
+- Testing: 15%
 - Documentation: 5%
 
-The majority of the effort (60%) was spent on the implementation of the various object types and their dependencies. 
-This involved a significant amount of programming and debugging, as well as ongoing refinement of the design as new 
+The majority of the effort (60%) was spent on the implementation of the various object types and their dependencies.
+This involved a significant amount of programming and debugging, as well as ongoing refinement of the design as new
 use cases were identified.
 
 ### Achievements
-Our project has resulted in a comprehensive and user-friendly solution for managing the student roster. The object 
-types we have designed accurately represent the various entities and relationships involved, and the established 
+Our project has resulted in a comprehensive and user-friendly solution for managing the student roster. The object
+types we have designed accurately represent the various entities and relationships involved, and the established
 dependencies ensure consistency and reduce the risk of data duplication and inconsistencies.
 
 ### Reuse
-We did not reuse any external libraries or code in our project. All of the object types and their dependencies were 
+We did not reuse any external libraries or code in our project. All of the object types and their dependencies were
 designed and implemented from scratch.
 
 ### Comparison to AB3
-While AB3 deals with only one entity type, our project was more challenging because it deals with multiple entity 
-types and requires the establishment of dependencies between them. This required a more complex design and 
+While AB3 deals with only one entity type, our project was more challenging because it deals with multiple entity
+types and requires the establishment of dependencies between them. This required a more complex design and
 implementation effort than would be required for a project dealing with a single entity type.
 
-Overall, our project required a significant amount of effort, but we are confident that the resulting solution is 
+Overall, our project required a significant amount of effort, but we are confident that the resulting solution is
 robust, scalable, and user-friendly.
