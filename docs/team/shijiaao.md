@@ -11,18 +11,20 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add students into an event.
   * What it does: allows the user to add a student into an event (links a student with an event).
-  * * Justification: This is a core functionality of the product as our target audience (student TAs) need to add students to their events (representing their classes) so that the students can be tracked on various indicators.
-  * This feature was challenging to test
-  * This feature was challenging to implement as many additional helper methods needed to be added into the existing code base. There were design aspects to consider as well.
+  * Justification: This is a core functionality of the product as our target audience (student TAs) need to add students to their events (representing their classes) so that the students can be tracked on various indicators.
+  * The implementation of this feature was challenging to design as there was a surprising amount of effort that needed to go into thinking about the abstraction barrier and what kind of information should be exposed at which class/point of the code.
+  * This feature was challenging to implement as many additional helper methods needed to be added into various points in the existing code base.
+  * This feature was challenging to test as the pointers to Person objects work in unexpected ways.
 
 * **New Feature**: Added the ability to delete students from an event.
   * What it does: allows the user to delete a student from an event.
   * Justification: This is a core functionality of the product as our target audience (student TAs) need to be able to delete students from their events (representing their classes) in case the student has been erroneously added or if the student is somehow not in the event anymore. 
-  * This feature was challenging to implement as many additional helper methods needed to be added into the existing code base. There were design aspects to consider as well.
+  * This feature was challenging to implement while adhering to good code quality as it was difficult not to repeat code due to all the event types requiring similar implementations. 
+  * Highlights: Reduced the amount of duplicated/similar code with polymorphism in the lower-level classes.
 
 * **Tests**: Added tests to the classes and methods that I wrote, including new methods in existing classes.
   * Full account of test methods are in the RepoSense Link in the `Code contributed` section.
-  * Reached a minimum of 77.78% and a maximum of 100% coverage on the classes I added.
+  * Reached a minimum of 77.78% and a maximum of 100% coverage on the classes I added. (change)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=shijiaao&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
@@ -47,4 +49,3 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#49](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/49), [\#116](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/116)
     * Contributed to forum discussions (examples: [\#292](https://github.com/nus-cs2103-AY2223S2/forum/issues/292))
-    * Some helper methods I added was adopted by several other class mates ([1](), [2]())
