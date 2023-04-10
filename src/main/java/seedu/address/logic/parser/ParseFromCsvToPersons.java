@@ -28,6 +28,9 @@ import seedu.address.model.tag.Tag;
  */
 public class ParseFromCsvToPersons {
 
+    public static final String MESSAGE_MISSING_FIELDS = "CSV file given must contain all fields (Name, Phone, Email, "
+            + "Address, Rank, Unit, Company, Platoon, Tags) for each entry. The first row has to contain the headers "
+            + "for each column";
     private static final String[] necessaryFields = {"name", "phone", "email", "address", "rank", "unit", "company",
         "platoon", "tags"};
     private Csv csv;
@@ -69,14 +72,17 @@ public class ParseFromCsvToPersons {
     }
 
     private Person getPersonFromRow(int rowNumber) throws ParseException {
+        // compulsory fields
         Name name = ParserUtil.parseName(csv.getEntry(rowNumber, "name"));
         Rank rank = ParserUtil.parseRank(csv.getEntry(rowNumber, "rank"));
-        Unit unit = ParserUtil.parseUnit(csv.getEntry(rowNumber, "unit"));
-        Company company = ParserUtil.parseCompany(csv.getEntry(rowNumber, "company"));
-        Platoon platoon = ParserUtil.parsePlatoon(csv.getEntry(rowNumber, "platoon"));
         Phone phone = ParserUtil.parsePhone(csv.getEntry(rowNumber, "phone"));
         Email email = ParserUtil.parseEmail(csv.getEntry(rowNumber, "email"));
         Address address = ParserUtil.parseAddress(csv.getEntry(rowNumber, "address"));
+
+        // optional fields
+        Unit unit = ParserUtil.parseUnit(returnNaIfBlank(csv.getEntry(rowNumber, "unit")));
+        Company company = ParserUtil.parseCompany(returnNaIfBlank(csv.getEntry(rowNumber, "company")));
+        Platoon platoon = ParserUtil.parsePlatoon(returnNaIfBlank(csv.getEntry(rowNumber, "platoon")));
 
         Set<Tag> tags = getTagsFromRow(rowNumber);
 
@@ -88,9 +94,7 @@ public class ParseFromCsvToPersons {
 
         if (!Arrays.stream(necessaryFields).allMatch(f -> Arrays.stream(headers)
                 .anyMatch(h -> h.equalsIgnoreCase(f)))) {
-            throw new ParseException("CSV file given must contain all fields (Name, Phone, Email, Address, Rank, "
-                    + "Unit, Company, Platoon, Tags) for each entry. The first row has to contain the headers "
-                    + "for each column");
+            throw new ParseException(MESSAGE_MISSING_FIELDS);
         }
 
         int tagsIndex = csv.getColumnIndex("tags");
@@ -101,17 +105,22 @@ public class ParseFromCsvToPersons {
         }
     }
 
-
-    private Set<Tag> getTagsFromRow(int rowIndex) {
+    private Set<Tag> getTagsFromRow(int rowIndex) throws ParseException {
         Set<Tag> tags = new HashSet<Tag>();
         for (int i = csv.getColumnIndex("tags"); i < csv.getNumOfCols(); i++) {
             String tagValue = csv.getEntry(rowIndex, i);
             if (!tagValue.equals("")) {
-                Tag tag = new Tag(tagValue);
+                Tag tag = ParserUtil.parseTag(tagValue);
                 tags.add(tag);
             }
         }
         return tags;
     }
 
+    private String returnNaIfBlank(String string) {
+        if (string.isBlank()) {
+            return "N/A";
+        }
+        return string;
+    }
 }

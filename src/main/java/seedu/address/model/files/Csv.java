@@ -45,7 +45,9 @@ public class Csv {
             numOfRows = 0;
         } else {
             isEmpty = false;
-            headers = Arrays.asList(csvNestedArray.get(0));
+            String[] headerArr = csvNestedArray.get(0);
+            headerArr[0] = headerArr[0].replace("\uFEFF", "");
+            headers = Arrays.asList(headerArr);
             numOfCols = headers.size();
             numOfRows = csvNestedArray.size();
         }
