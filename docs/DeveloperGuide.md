@@ -1053,47 +1053,47 @@ The following is a description of the code execution flow:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                                |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                                       |
-| `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                               |
-| `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                         |
-| `* * *`  | user             | add a module                                                                       | track my watch progress by modules and organise my lectures                                                                    |
-| `* * *`  | user             | edit details of existing modules                                                   | add new details and correct mistakes                                                                                           |
-| `* * *`  | user             | edit details of existing lectures                                                  | add new details and correct mistakes                                                                                           |
-| `* * *`  | user             | edit details of existing videos                                                    | add new details and correct mistakes                                                                                           |
-| `* * *`  | user             | delete specific modules                                                            | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)                  |
-| `* * *`  | user             | delete specific lectures                                                           | remove lectures that were added by accident                                                                                    |
-| `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                                      |
-| `* * *`  | user             | mark videos that I have watched                                                    | keep track of which videos I have watched                                                                                      |
-| `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                            |
-| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                              |
-| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                                   |
-| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                                    |
-| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                          |
-| `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                                 | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                                | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                                | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | remove tags from modules                                                           | remove tags that are no longer relevant or added by accident                                                                   | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                                   | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                                   | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                               |
-| `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                         |
-| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                                  |
-| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                                 |
-| `* *`    | user             | export my progress data                                                            | backup my data or transfer it to a new device                                                                                  | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                           | <!-- TODO: Verify by lennoxtr -->
-| `* *`    | forgetful user   | be reminded of where to find the guide                                             | relearn how to use the app                                                                                                     |
-| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | not type the same lengthy arguments each time I type a command                                                                 |
-| `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove multiple modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) |
-| `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                            |
-| `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                              |
-| `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                               |
-| `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                                 |
-| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                                  |
-| `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                          |
-| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                               |
-| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                            |
+| Implemented | Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                                |
+| ------------ | -------- | ---------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| :white_check_mark: | `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                                       |
+| :white_check_mark: | `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                               |
+| :white_check_mark: | `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                         |
+| :white_check_mark: | `* * *`  | user             | add a module                                                                       | track my watch progress by modules and organise my lectures                                                                    |
+| :white_check_mark: | `* * *`  | user             | edit details of existing modules                                                   | add new details and correct mistakes                                                                                           |
+| :white_check_mark: | `* * *`  | user             | edit details of existing lectures                                                  | add new details and correct mistakes                                                                                           |
+| :white_check_mark: | `* * *`  | user             | edit details of existing videos                                                    | add new details and correct mistakes                                                                                           |
+| :white_check_mark: | `* * *`  | user             | delete specific modules                                                            | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)                  |
+| :white_check_mark: | `* * *`  | user             | delete specific lectures                                                           | remove lectures that were added by accident                                                                                    |
+| :white_check_mark: | `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                                      |
+| :white_check_mark: | `* * *`  | user             | mark videos that I have watched                                                    | keep track of which videos I have watched                                                                                      |
+| :white_check_mark: | `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                            |
+| :white_check_mark: | `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                              |
+| :white_check_mark: | `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                                   |
+| :white_check_mark: | `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                                    |
+| :white_check_mark: | `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                          |
+| :white_check_mark: | `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                                 | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                                | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                                | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | remove tags from modules                                                           | remove tags that are no longer relevant or added by accident                                                                   | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                                   | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                                   | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                               |
+| :white_check_mark: | `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                         |
+| :white_check_mark: | `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                                  |
+| :white_check_mark: | `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                                 |
+| :white_check_mark: | `* *`    | user             | export my progress data                                                            | backup my data or transfer it to a new device                                                                                  | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                           | <!-- TODO: Verify by lennoxtr -->
+| :white_check_mark: | `* *`    | forgetful user   | be reminded of where to find the guide                                             | relearn how to use the app                                                                                                     |
+| :white_check_mark: | `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | not type the same lengthy arguments each time I type a command                                                                 |
+| :white_check_mark: | `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove multiple modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) |
+| :white_check_mark: | `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                            |
+| :white_check_mark: | `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                              |
+| :white_check_mark: | `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                               |
+| :white_check_mark: | `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                                 |
+| :white_check_mark: | `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                                  |
+| :white_check_mark: | `*`      | unmotivated user | feel rewarded for making progress in watching lecture videos                       | be motivated to keep up or catch up with the syllabus                                                                          |
+| :x: | `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                               |
+| :x: | `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                            |
 
 ### Use cases
 
@@ -1556,7 +1556,6 @@ with module, lecture and keyword supplied.
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
-
 
 #### Delete a Lecture
 
@@ -2583,6 +2582,7 @@ Some incorrect commands to try from root context:
 | 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `delete CS2040S, ST2334 /r`| Same as previous |
 
 Some incorrect commands to try from root context:
+
 - `delete` (incorrect command format)
 - `delete mod23` (invalid module code format)
 - `delete CS2040S, CS2040S` (duplicate module code)
@@ -2599,6 +2599,7 @@ Some incorrect commands to try from root context:
 | 1. `nav CS2040S`<br/>2. `nav Week 2`<br/>3. `delete Week 1, Week 2 /mod CS2040S` | **Message:** Same as previous<br/>**List Updates:** Show list of remaining lectures of CS2040S, where entries for "Week 1" and "Week 2" are removed<br/>**Context**: `/mod CS2040S` |
 
 Some incorrect commands to try from root context:
+
 - `delete Week #1 /mod CS2040S` (invalid lecture name format)
 - `delete Week 1 /mod mod23` (invalid module code format)
 - `delete Week 1, Week 1 /mod CS2040S` (duplicate lecture names)
@@ -2615,6 +2616,7 @@ Some incorrect commands to try from root context:
 | 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `delete Vid 1, Vid 2 /mod CS2040S /lec Week 1` | **Message:**<br/>`2 Videos deleted from Module CS2040S > Lecture Week 1`<br/>**List Updates:** Entry for "Vid 1" and "Vid 2" are removed <br/>**Context**: `/mod CS2040S /lec Week 1`|
 
 Some incorrect commands to try from root context:
+
 - `delete Vid 1 /lec Week 1` (invalid command format)
 - `delete V!d 1 /mod CS2040S /lec Week 1` (invalid video name format)
 - `delete Vid 1 /mod CS2040S /lec Week #1` (invalid lecture name format)
@@ -2635,6 +2637,7 @@ Some incorrect commands to try from root context:
 | 1. `nav CS2040S`<br/>2. `nav Week 6`<br/>3. `add Vid 2`<br/>4. `mark Vid, Vid2`| **Message:** `Successfully marked 2 Videos in Lecture Week 6 Module CS2040S: Vid, Vid 2`<br/>**List Updates:** Watch progress of entries "Vid" and "Vid 2" are updated to show `Watched` |
 
 Some incorrect commands to try from root context:
+
 - `mark` (invalid command format)
 - `mark V!d /mod CS2040S /lec Week 6` (invalid video name format)
 - `mark Vid /mod CS2040S /lec Week #6` (invalid lecture name format)
@@ -2656,6 +2659,7 @@ Some incorrect commands to try from root context:
 | 1. `nav CS2040S`<br/>2. `nav Week 1`<br/>3. `unmark Vid 1, Vid 2`<br/>4. `unmark Vid 1, Vid 2` | Same as previous |
 
 Some incorrect commands to try from root context:
+
 - `unmark` (invalid command format)
 - `unmark V!d 1 /mod CS2040S /lec Week 1` (invalid video name format)
 - `unmark Vid 1 /mod CS2040S /lec Week #1` (invalid lecture name format)
