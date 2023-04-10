@@ -20,10 +20,7 @@ Given below are my contributions to the project.
   * Edit feature of project
     * Allow existing projects in project list to be edited
     * Allow optional fields of project to be nullable
-    * Relevant tests implemented
-    
-  <div style="page-break-after: always;"></div>
-
+    * Relevant tests implemented <div style="page-break-after: always;"></div>
   * Edit feature of client
     * Allow existing clients in client list to be edited
     * Allow optional fields of client to be nullable
