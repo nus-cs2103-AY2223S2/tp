@@ -25,6 +25,8 @@ public class TaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS = "[TASK PAGE]\nViewing: tasks of group %s";
+
     private final Index targetIndex;
 
     /**
