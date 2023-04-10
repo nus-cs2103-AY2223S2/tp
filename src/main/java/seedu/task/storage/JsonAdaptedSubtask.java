@@ -20,9 +20,9 @@ import seedu.task.model.task.Subtask;
 public class JsonAdaptedSubtask {
 
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedSubtask.class);
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedSubtask.class);
     private final String name;
     private final String description;
 

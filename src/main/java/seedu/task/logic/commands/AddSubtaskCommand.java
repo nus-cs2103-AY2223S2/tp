@@ -32,7 +32,6 @@ import seedu.task.model.task.exceptions.DuplicateTaskException;
  */
 public class AddSubtaskCommand extends Command {
 
-    private static final Logger logger = LogsCenter.getLogger(AddSubtaskCommand.class);
 
     public static final String COMMAND_WORD = "subsection";
 
@@ -48,6 +47,7 @@ public class AddSubtaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New subsection added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This subsection already exists in the task";
 
+    private static final Logger logger = LogsCenter.getLogger(AddSubtaskCommand.class);
     private final Subtask subtask;
     private final Index index;
 
