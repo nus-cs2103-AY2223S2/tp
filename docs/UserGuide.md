@@ -816,6 +816,8 @@ Parameters:
 Example:
 * `task delete 1` deletes the first task listed in the [tasks panel](#about-the-interface)
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a task: `task edit`
 
 You can edit the details of an existing task with the `task edit` command.
