@@ -23,6 +23,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Kept track of deadlines.
+  * Managed releases `v1.4` and `v1.4.demo` on GitHub.
 
 * **Enhancements to existing features**:
   * Refactor most of AB3's person related stuff into FriendlyLink's elderly and volunteer version. (Pull requests [\#81](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/81))
@@ -35,7 +36,8 @@ Given below are my contributions to the project.
         * Added documentation for the features `list` and `find`.
         * Changed documentation of `edit` feature to `edit_elderly` and `edit_volunteer` features.
     * Developer Guide:
-        * Added implementation details of the `find` feature.
+        * Added implementation details of the `find` feature with 2 types of UML diagrams.
+        * Added instructions for manual testing in appendix.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#89](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/89), [\#126](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/126)
