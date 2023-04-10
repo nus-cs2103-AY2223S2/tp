@@ -270,6 +270,7 @@ The following diagram shows the structure of the implementation of Statuses, as 
 ![](images/StatusDiagram.png)
 
 #### Lead Status feature
+By: Jing Jie
 
 The Lead Status feature aims to provide information about the contact based on when the status was last set.
 It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
@@ -742,8 +743,13 @@ features to add and delete.
 
 ### Challenges Faced
 
-Find and Searching Features: There was a medium challenge faced when implementing the different searching features as 
-there was several abstraction layers for the basic find feature already implemented.
+**Find and Searching Features**: There was a medium challenge faced when implementing the different searching features as one had to work within the several abstraction layers for the already implemented basic `find` feature to further extend it. Additionally, there were added difficulty learning to manipulate the different data types such as `Set<>`, `Person` and `Transaction`. Learning to manipulate using higher order functions and streams to manipulate the data in the correct data type and return the correct data type.   
+
+**Statuses**: Restricting the domain of possible statuses to a fixed number, while implementing timestamps, meant that 
+statuses are more complex than simple descriptive `String`s that are implemented in other attributes, such as Tasks and 
+Company, for example. A validation regex cannot be used directly for the names of each status, since each status has 
+as timestamp component, thus the use of enums and mappings to each name was required, increasing the complexity of 
+the implementation of statuses.
 
 ## **Appendix: Planned Enhancements**
 
@@ -763,3 +769,11 @@ there was several abstraction layers for the basic find feature already implemen
 4. The user should be able to edit the tasks in the tasklist. Currently, the user is only able to add a task and clear 
    all tasks. Being able to edit tasks will allow the user to edit the information of the tasks if the information was 
    keyed in wrongly or there are updates to the task.
+5. Each transaction and contacts are intended to share a tight relationship. Enforcing references from transactions to 
+    contacts and vice versa can be encapsulated in a PersonTransactionRelation class, and manipulation of both the list of
+    persons and transactions can be handled by the relation. This allows the implementation of more complex commands that
+    involve both classes:
+   - deleting a Person should delete all of their Transactions
+   - maintaining a count of the number of Past Transactions with each Person within the Person
+   - merging commands such as `list` and `listtxn` into a single command to show both lists.
+   - manipulating both ListPanels in the UI for Persons and Transactions for these merged commands
