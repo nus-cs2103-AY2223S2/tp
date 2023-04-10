@@ -685,6 +685,21 @@ ___
 * **Format:** `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT`
   \
   &nbsp;
+* <span id="patient-constraints">**Parameter constraint:**</span>
+
+| Parameters        | Constraints                                                                                                                                    | Example                                                                                                              |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| TRADE_NAME        | Trade names should only contain alphanumeric characters and spaces, it should not be blank and less than 50 characters                         | Panadol                                                                                                              |
+| ACTIVE_INGREDIENT | Active ingredient should only contain alphanumeric characters, spaces and dashes, and it should not be blank but less than 200 characters long | Paracetamol                                                                                                          |
+| DIRECTIONS        | Direction should be in sentence form, it should not be blank and less than 1500 characters long                                                | Adults and children over 12 years: 1-2 caplets taken every 4 to 6 hours. Not recommended for children under 12 years |
+| PURPOSE           | Purposes should be in sentence form, it cannot be blank and should be less than 1500 characters long                                           | relieve pain / relieve fever / relieve headache                                                                      |
+| SIDE_EFFECTS      | Side effects should be in sentence form, it cannot be blank and should be less than 1500 characters long                                       | skin rash / swelling of the lips, tongue, throat or face / nausea / unexplained bruising or bleeding                 |
+| STORAGE_COUNT     | Storage Count should only contain positive integers, it should be at least 1 digit long but no more than 3 digits and be less than 500         | 50                                                                                                                   |
+
+
+
+
+
 * **Example:**
     * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like:`d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules every 4-6 hours -pur treat fever, headache, toothache, rheumatic -se dizziness, fatigue -sc 200`
       <p align="center">

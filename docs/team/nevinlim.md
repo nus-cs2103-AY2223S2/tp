@@ -45,7 +45,8 @@
 
 ### <ins>Contributions to the DG: </ins>
 * Contributions to Documentation Guide:
-  * added UML Sequence diagram for execute("p delete 1") in CareFlowLogic component
+  * added UML Sequence diagram for execute("p delete 1") in CareFlowLogic component.
+  * Did some adjustments on the `DrugFindCommand`Sequence diagram in the CareFlowLogic component. 
 
 ### <ins>Contributions to team-based tasks</ins>
 * Helped fix several bugs
