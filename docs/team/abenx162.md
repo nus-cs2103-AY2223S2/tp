@@ -1,4 +1,8 @@
-## Ben Xuan's Project Portfolio Page
+---
+layout: page
+title: Ben Xuan's Project Portfolio Page
+---
+
 
 ### Project: ExecutivePro
 ExecutivePro (EP) is a desktop app for Human Resource managers to manage their employee information, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EP can get your employee management tasks done faster than traditional GUI apps.

@@ -1,7 +1,7 @@
 [![Java CI](https://github.com/AY2223S2-CS2103T-W09-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103T-W09-4/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W09-4/tp/branch/master/graph/badge.svg?token=U0HOMMQY33)](https://codecov.io/gh/AY2223S2-CS2103T-W09-4/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UserGuide/Ui.png)
 
 
 * This is **our team Project  for Software Engineering (SE) students of CS2103T-W09-4**.<br>

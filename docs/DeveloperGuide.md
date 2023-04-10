@@ -94,6 +94,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+--------------------------------------------------------------------------------------------------------------------
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -110,6 +111,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Logic component
 
@@ -140,6 +143,8 @@ How the parsing works:
 * When called upon to parse a user command, the `ExecutiveProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ExecutiveProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -159,6 +164,7 @@ The `Model` component,
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Storage component
 
@@ -180,6 +186,9 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Add Feature : `add`
 
 #### Implementation
@@ -205,6 +214,9 @@ a message indicating duplicate person will be shown.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
 
+--------------------------------------------------------------------------------------------------------------------
+
+
 ### BatchAdd feature: `batchadd`
 
 This feature is created for users to add multiple entries at once.
@@ -216,9 +228,6 @@ In the case of this application, there are two main reasons why HR managers woul
 Moving on to the implementation, some things to note.
 
 - As of now, our feature only accommodates adding from a CSV file.
-- Fields does not allow for commas inside.
-
-These are possible things to work on for future iterations.
 
 #### Implementation:
 
@@ -252,7 +261,7 @@ Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, u
 
 <h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
-##### Aspect: How Batchadd is run
+##### Aspect: How BatchAdd is run
 
 - Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
     - Pros: Makes use of the Error Handling that the `AddCommand` has.
@@ -261,7 +270,7 @@ Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, u
     - Pros: If Add Fails, BatchAdd can still work.
     - Cons: Implementation Heavy.
 
-##### Aspect: How Batchadd `.csv` file is processed
+##### Aspect: How BatchAdd `.csv` file is processed
 
 - Alternative 1 (Current Choice): Use the positioning of columns to import data (i.e Have a fixed row position for each command).
     - Pros: No need for header rows
@@ -270,6 +279,62 @@ Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, u
     - Pros: No need to follow a specific ordering.
     - Cons: Name of headers need to be the exact name used.
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+### BatchExport feature: `batchexport`
+
+This feature is created for users to export database into a csv file.
+In the case of this application, there are two main reasons why HR managers would use this.
+
+1. When HR managers want to merge their respective employee database, they can export to .csv file and combine the data before batch adding into our database.
+2. HR managers are able to export the database to .csv file to print out records of employees in batches.
+
+Moving on to the implementation, some things to note.
+
+- As of now, our feature only accommodates exporting to a CSV file.
+
+#### Implementation:
+
+UML Diagram:
+![BatchExport]()
+
+**Steps:**
+
+Step 1. User launches the application.
+
+Step 2. User executes `batchexport file.csv` command. In the `LogicManager` class, the `ExecutiveProParser` 
+method is called.
+This will return a new `BatchExportCommandParser` object and `parse` function is then called.
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
+
+Step 3. The `parse` function returns a `BatchExportCommand` which is then executed. In this `execute` function, 
+the Model object is used to retrieve the current ExecutiveProDb employee database.
+
+Step 4. For each Employee in the database, the relevant fields (e.g. name, phone, department, payroll, etc.) are retrieved and written to the CSV file using a CSVPrinter.
+
+Step 5. If the export is successful, a CommandResult with a success message is returned.
+
+<h4 id="batch-export-feature-design-considerations">Design Considerations</h4>
+
+##### Aspect: How BatchExport is run
+
+  - Alternative 1 (Current Choice): Rely on the existing data retrieval mechanisms in the Model and Employee classes.
+    - Pros: Leverages existing code and ensures consistency with other features. 
+    - Cons: BatchExport might fail if data retrieval from Model or Employee fails.
+  
+  - Alternative 2: Own implementation of BatchExport without relying on Model and Employee classes.
+    - Pros: If data retrieval from Model or Employee fails, BatchExport can still work.
+    - Cons: Heavy implementation and may result in duplicated code.
+
+
+##### Aspect: How BatchExport `.csv` file is processed
+
+- Alternative 1 (Current Choice): Use a third-party library (e.g. Apache Commons CSV) to handle CSV file generation.
+    - Pros: Simplifies implementation and handles edge cases for generating CSV.
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Edit Feature : `edit`
 
@@ -293,6 +358,8 @@ Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employe
 a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Leave Feature : `leave`
 
@@ -318,6 +385,8 @@ a message indicating no such employee will be shown. A `CommandException` will b
 Step 5. An equivalent `EditCommand` is created to update the leave count of the employee. The `execute` method of the `EditCommand` will be called.
 
 Step 6. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Delete Feature : `delete`
 
@@ -346,6 +415,8 @@ from the database.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to remove the employee.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### List Feature: `list`
 This command displays the details of all employees in order of their employee ID.
 
@@ -369,6 +440,8 @@ Step 4. Every `Employee` now satisfies the `Predicate`, so the `FilteredList` up
 
 Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of all employees to the user.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Change Theme Feature: `theme`
 This command changes the appearance of ExecutivePro's GUI to the specified theme.
 `theme light` displays black text on a light background, while `theme dark` displays white text on a dark background.
@@ -389,6 +462,8 @@ Step 3. `MainWindow` gets the theme "light" from the `CommandResult`,  then call
 Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by the current `Scene`, empties the list, and adds in the desired stylesheets matching the theme "light".
 
 Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Set Picture Feature: `setpicture`
 This command allows the user to select an image file from their computer,
@@ -419,6 +494,7 @@ Step 5. An `EditCommand` that will set the specified employee's `picturePath` to
 Step 6. The `UI` component listens to this change in the model, and updates the GUI to display the employee's new picture.
 Note that if the employee's `picturePath` is set to the empty String, the picture displayed will be a default silhouette image.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Find Feature: `find`
 This command displays all employees whose full names partially or fully match the keyword inputed by the user.
@@ -443,9 +519,12 @@ Step 4. The `FilteredList` now only contains those employees which satisfy the `
 
 Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of matching employees to the user.
 
+
 #### Future Considerations
 
 Add functionality to find employees based on other details such as Department, Roles etc.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Filter Feature: `filter`
 This command displays all employees who satisfy the criteria inputted by the user.
@@ -497,8 +576,8 @@ As such, we plan to implement a check that requires at least `1` day specified f
 We plan to take into account case sensitivity in addition to the current check of phone number and email.
 6. Currently, there are no error messages for invalid Date Of Birth, such as using future dates.
 We plan to implement checks for date validity and return an error message: `Invalid Date Of Birth`
-7. Currently, BatchExport with invalid path is not handled. We plan to check for file path validity and
-return an error message: `Invalid file path`
+7. Currently, BatchExport with invalid path or invalid file type is not handled. We plan to check for file path 
+validity and file type validity, returning an error message: `Invalid file path` and `Invalid file type` respectively.
 8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
@@ -537,6 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | HR manager | set pictures for current employees           | identify employees                                       |
 | `* *`    | HR manager | change the theme of application              | use the application with my preferred mode               |
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Use cases
 
@@ -710,6 +790,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
 
 
 ### Non-Functional Requirements
@@ -728,6 +809,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. The application should offer 2 different themes (light and dark theme to accommodate the user's preference)
 5. The application should not create unnecessary files after certain command(batchexport)
 
+--------------------------------------------------------------------------------------------------------------------
 
 
 ### Glossary
@@ -766,6 +848,27 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+   
+### Adding an employee
+1. Adding an employee with all fields specified:
+    1. Test case: `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/311, Clementi Ave 2, #02-25 l/19 dob/2000-04-21 doj/2022-01-04 t/SoftwareEngineer`
+
+       Expected: A new employee, with the name "John Doe" will appear at the bottom of the list on the left panel.
+
+2. Adding an employee with optional fields missing:
+    1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000 15`
+
+       Expected: A new employee, with the name "Jane Doe" will appear at the bottom of the list on the left panel.
+
+3. Adding an employee with compulsory fields missing:
+    1. Test case: `add n/Janet Doe p/12345678 pr/1000 15`
+
+       Expected: An error message `Invalid commant format!` appears.
+
+4. Adding an employee with invalid fields:
+    1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000`
+
+       Expected: An error message appears, stating that invalid field has been inputted.
 
 
 ### Deleting an employee
@@ -782,27 +885,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-### Adding an employee
-1. Adding an employee with all fields specified:
-   1. Test case: `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/311, Clementi Ave 2, #02-25 l/19 dob/2000-04-21 doj/2022-01-04 t/SoftwareEngineer`
-
-      Expected: A new employee, with the name "John Doe" will appear at the bottom of the list on the left panel.
-   
-2. Adding an employee with optional fields missing:
-   1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000 15` 
-
-      Expected: A new employee, with the name "Jane Doe" will appear at the bottom of the list on the left panel.
-
-3. Adding an employee with compulsory fields missing:
-   1. Test case: `add n/Janet Doe p/12345678 pr/1000 15`
-
-      Expected: An error message `Invalid commant format!` appears.
-
-4. Adding an employee with invalid fields:
-   1. Test case: `add n/Jane Doe p/98765432 d/Marketing pr/1000`
-
-      Expected: An error message appears, stating that invalid field has been inputted.
 
 ### Saving/Exporting data
 

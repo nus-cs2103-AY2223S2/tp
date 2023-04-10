@@ -1,4 +1,7 @@
-# Panav's Project Portfolio Page
+---
+layout: page
+title: Panav's Project Portfolio Page
+---
 
 ## Overview
 
