@@ -323,7 +323,7 @@ diagrams to depict the processes at each layer in greater detail.
 <img src="images/WingmanDeleteCrewActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
 
-This activity diagram represents the path a user will take when trying to link/unlink a
+These activity diagrams represent the paths a user will take when trying to link/unlink a
 resource entity, XYZ
 to a flight, as well as deleting a `Crew` entity. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
 entity.
