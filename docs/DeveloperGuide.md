@@ -314,7 +314,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 
 ![FindTaskActivityDiagram](images/FindActivityDiagram.png)
 
-#### 3.4.2 Design Considerations
+#### 3.3.2 Design Considerations
 
 **Aspect: Updating GUI**
 
@@ -340,6 +340,8 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
 
 ![FindTaskSequenceDiagram.png](images%2FFindTaskSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.4.2 Design Considerations
 
 **Aspect: Form of query**
@@ -348,8 +350,6 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
     * Pros: More intuitive as users do not have to keep track of the list index of the tasks.
       Able to query for tasks that are already logged in OfficeConnect using the title of the task.
     * Cons: Length of commands are dependent on length of title. Users have to remember the name of the tasks.
-
-<div style="page-break-after: always;"></div>
 
 * **Alternative 2:** Query using `INDEX`
     * Pros: Shorter command to type out.
