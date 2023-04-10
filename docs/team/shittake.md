@@ -27,20 +27,20 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Updated the GUI color scheme for performance levels of users (Pull request [\#92](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/92))
   * Allowed sorting of avatars together with student names (Pull request [\#187](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/187))
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull request [\#263](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/263))
+  * Wrote additional tests for existing features to increase coverage (Pull request [\#263](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/263))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for the features `sort` and `filter`
   * Developer Guide:
+    * Drew class diagram for comparators and the `sort` command [\#310](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/310)
     * Added implementation details of the `filter` feature [\#132](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/132)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
+  * Participated in team discussions on our overview of the final product and suggested the sort and filter features
+  * Discussed on ways to avoid cyclic dependencies in students and their respective lab/tutorial/consultation groups
+  * Gave feedback on ways to improve code quality and to pass Java Continuous Integration tests
+  
 * **Tools**:
   * Integrate colors into table cells for visuals [\#92](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/92)
 
