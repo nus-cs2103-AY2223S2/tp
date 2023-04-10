@@ -467,23 +467,7 @@ Examples:
 * `leid n/Software Engineering`
 * `leid n/Sales`
 
-### 4.2.10 List department headcount: `ldhc`
 
-List all employees present in the given department on a given date. The department window will display only the given
-department and the leave window will display only the given date.
-
-Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
-* If the date is not specified, employees present on the current date of inputting
-the command will be shown for the given department.
-* The given date must not be before the current date of inputting the command and must be within one year
-of the current date of inputting the command.
-
-Examples:
-* `ldhc n/Human Resources`
-* `ldhc n/Sales d/2023-06-03`
-
-
-![result for 'ldhc n/Sales d/2023-06-03'](images/UiListDepartmentHeadcountCommand.png)
 
 ## 4.3. Leave Commands
 
@@ -589,6 +573,26 @@ Format: `llbe eid/EMPLOYEE_ID`
 
 Examples:
 * `llbe eid/1`
+
+
+### 4.3.7 List department headcount: `ldhc`
+
+List all employees present in the given department on a given date. The department window will display only the given
+department and the leave window will display only the given date.
+
+Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
+* If the date is not specified, employees present on the current date of inputting
+  the command will be shown for the given department.
+* The given date must not be before the current date of inputting the command and must be within one year
+  of the current date of inputting the command.
+
+Examples:
+* `ldhc n/Human Resources`
+* `ldhc n/Sales d/2023-06-03`
+
+
+![result for 'ldhc n/Sales d/2023-06-03'](images/UiListDepartmentHeadcountCommand.png)
+
 
 ## 4.4. General Commands
 
