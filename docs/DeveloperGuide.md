@@ -352,7 +352,7 @@ Step 1. The user launches the application for the first time. The `VersionedELis
 Step 2. The user executes `mass tag good` command to tag all the people in the address book with a new Tag `good`. The `mass` command creates `tag` command in a loop and each `tag` command calls `Model#addTag()`, causing the modified state of the address book after the `mass tag good` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state. The end result is that
 every person in the addressbook list is `tag` with good.
 
-![MassOpSequenceDiagram](images/MassOpCommandSequenceDiagram.png)
+![MassOpSequenceDiagram](images/MassOpSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
