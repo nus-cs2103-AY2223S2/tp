@@ -9,7 +9,10 @@ ModCheck is a desktop app to allow students to easily check the module coordinat
 assistants in the modules they are taking. 
 
 Given below are my contributions to the project.
+
 ________________________________________________________________________________________________________________________
+
+
 #### Features added
 
 ##### Undo/Redo feature
@@ -35,7 +38,7 @@ ________________________________________________________________________________
   disturbing their current contacts. 
 
 * **Highlights**: The challenge of the `load` feature lay in figuring out how to use JavaFX's FileChooser, while 
-  maintaining the integrity of the [architecture](..%2FDeveloperGuide.md). The FileChooser object requires a 
+  maintaining the integrity of the architecture. The FileChooser object requires a 
   Stage object as input, which exists in the Ui component, but the command is only parsed in the Logic 
   component, which does not have access to the Stage object. 
   
@@ -43,7 +46,12 @@ ________________________________________________________________________________
   allowed the FileChooser to be shown during execution of the command, yet still minimising coupling between Ui and 
   Logic components (compared to the alternative of passing the Stage object as a parameter into Logic). 
 
+
+
 ________________________________________________________________________________________________________________________
+
+
+
 * **Documentation**:
     * User Guide:
         * Added descriptions of `undo`, `redo` and `load` to the user guide.
@@ -74,5 +82,9 @@ ________________________________________________________________________________
     * https://github.com/AY2223S2-CS2103-F10-3/tp/issues/90
     * https://github.com/AY2223S2-CS2103-F10-3/tp/issues/61
     * https://github.com/AY2223S2-CS2103-F10-3/tp/issues/60
+
+
 ________________________________________________________________________________________________________________________
-* **Link to RepoSnese Report**: https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=joellow88&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
+
+
+* **Link to RepoSense Report**: [Reposense report](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=joellow88&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
