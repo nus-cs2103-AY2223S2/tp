@@ -16,13 +16,13 @@ public class HelpConsultationCommand extends HelpCommand {
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
     public static final String ADD_CONSULTATION = "Add:                         "
-            + "mkdir Consultation/CONSULTATION_NAME";
+            + "mkdir Consultation/CONSULTATION_NAME [-date dd/MM/yyyy HH:mm]";
 
     public static final String DELETE_CONSULTATION = "Delete:                     "
             + "delete Consultation/INDEX";
 
     public static final String EDIT_CONSULTATION = "Edit:                         "
-            + "editEvent EVENT_INDEX Consultation/NEW_NAME -date NEW_DATE";
+            + "editEvent EVENT_INDEX Consultation/NEW_NAME [-date dd/MM/yyyy HH:mm]";
 
     public static final String ADD_STUDENT = "Add Student:            "
             + "addStudent STUDENT_INDEX_IN_LIST Consultation/CONSULTATION_INDEX_IN_CONSULTATION_LIST";

@@ -23,7 +23,7 @@ public class HelpOrganisationCommand extends HelpCommand {
     public static final String CD_EVENT = "Go to Events tab: "
             + "            cd_event\n";
 
-    public static final String FILTER = "Filter event student list:     filter EVENT_TYPE METRIC THRESHOLD\n";
+    public static final String FILTER = "Filter event student list:     filter METRIC THRESHOLD\n";
 
     public static final String SORT = "Sort event student list:     sort-student EVENT_TYPE METRIC ORDER\n";
 

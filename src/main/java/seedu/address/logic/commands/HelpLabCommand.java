@@ -16,13 +16,13 @@ public class HelpLabCommand extends HelpCommand {
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
     public static final String ADD_LAB = "Add:                         "
-            + "vim Lab/LAB_NAME";
+            + "vim Lab/LAB_NAME [-date dd/MM/yyyy HH:mm]";
 
     public static final String DELETE_LAB = "Delete:                     "
             + "delete Lab/INDEX";
 
     public static final String EDIT_LAB = "Edit:                         "
-            + "editEvent EVENT_INDEX Lab/NEW_NAME -date NEW_DATE";
+            + "editEvent EVENT_INDEX Lab/NEW_NAME [-date dd/MM/yyyy HH:mm]";
 
     public static final String ADD_STUDENT = "Add Student:            "
             + "addStudent STUDENT_INDEX_IN_LIST Lab/LAB_INDEX_IN_LAB_LIST";

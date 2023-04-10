@@ -16,13 +16,13 @@ public class HelpTutorialCommand extends HelpCommand {
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
     public static final String ADD_TUTORIAL = "Add:                         "
-            + "touch Tutorial/TUTORIAL_NAME";
+            + "touch Tutorial/TUTORIAL_NAME [-date dd/MM/yyyy HH:mm]";
 
     public static final String DELETE_TUTORIAL = "Delete:                     "
             + "delete Tutorial/INDEX";
 
     public static final String EDIT_TUTORIAL = "Edit:                         "
-            + "editEvent EVENT_INDEX Tutorial/NEW_NAME -date NEW_DATE";
+            + "editEvent EVENT_INDEX Tutorial/NEW_NAME [-date dd/MM/yyyy HH:mm]";
 
     public static final String ADD_STUDENT = "Add Student:            "
             + "addStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_INDEX_IN_TUTORIAL_LIST";
