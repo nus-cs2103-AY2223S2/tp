@@ -14,7 +14,7 @@ stop
 else if () then ([invalid arguments])
     :Response Box
     shows invalid
-    index message;
+    arguments message;
 stop
 else ([else])
 endif

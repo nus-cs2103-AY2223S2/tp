@@ -304,6 +304,37 @@ Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
+For _Find_ command, the noteworthy classes are:
+- `FindCommandParser.java` - For parsing the arguments to `FindCommand.java`.
+- `FindCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+
+Given below is an example usage scenario of how the _Find_ command executes.
+
+-- user input --  
+Step 1. User executes find command with correct and valid arguments.
+
+-- `SchedulerParser` --  
+Step 2. Returns new `FindCommandParser`.
+
+-- `FindCommandParser` --  
+Step 3. Verify that at least one of the argument prefixes are present.  
+Step 4. Verify that provided arguments are valid.  
+Step 5. Creates a `FindEventDescriptor`  
+Step 6. Returns new `FindCommand` using `FindEventDescriptor`.
+
+-- `FindCommand` --  
+Step 7. Determine if `Name`, `Date` or both are present from `FindEventDescriptor`.  
+Step 8. Create one of the following predicates, depending on the arguments provided: 
+`EventMatchesKeywordsAndDatePredicate`, `EventContainsKeywordsPredicate` or `EventMatchesDatePredicate`.  
+Step 9. Updates the `ObservableList` using the predicate.
+
+The execution can be seen in the activity diagram given below.
+
 ![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
 Activity Diagram for a typical `find` command
 
