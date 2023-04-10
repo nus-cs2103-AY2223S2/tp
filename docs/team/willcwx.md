@@ -5,7 +5,7 @@ title: William's Project Portfolio Page
 
 ### Project: Team Builder
 
-Team Builder is a desktop personal contacts book application used by the user to form a team for any event. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Team Builder is a desktop personal contacts book application used by the user to form a team for any event. The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
 
 Given below are my contributions to the project.
 
@@ -20,7 +20,6 @@ Given below are my contributions to the project.
     * Able to undo: `add, edit, delete, clear`
 
   * Credits:
-    * iP undo implementation (bugs)
     * Momento Design Pattern
 
 * **Redo functionality**:
@@ -35,6 +34,8 @@ Given below are my contributions to the project.
   * Credits:
     * Momento Design Pattern
 
+* **Testing**:
+  * Created tests for all new features implemented above.
 
 {::comment}
 
@@ -46,18 +47,12 @@ Given below are my contributions to the project.
 {:/comment}
 
 * **Code contributed**:
-  > [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=WillCWX&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByNone&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=WillCWX&tabRepo=AY2223S2-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-  * 1870 lines
-  * 22 commits
+  * [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=WillCWX&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByNone&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=WillCWX&tabRepo=AY2223S2-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+  * ~2697 lines
 
 * **Project management**:
-  * Managed releases.
-  * Created issues: [\#26](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/26), [\#51](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/51), [\#54](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/54), [\#55](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/55), [\#56](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/56)
-  * In charge of Testing and Integration.
-  * `to be added soon`
-
-* **Enhancements to existing features**:
-  * `to be added soon`
+  * Created issues: [\#26](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/26), [\#51](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/51), [\#54](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/54), [\#55](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/55), [\#56](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/56), [\#103](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/103), [\#104](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/104), [\#105](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/105)
+  * Created Demo v1.3 and v1.2
 
 * **Documentation**:
   * README:
@@ -73,9 +68,16 @@ Given below are my contributions to the project.
 
   * User Guide:
     * Removed all references to AB-3 for TeamBuilder
-
+    * Added the sections `Undoing a command` and `Redoing an undo command` 
+    * Created and implemented a narrative style from `About this guide` to `Deleting a contact` and also in `Undoing a command` and `Redoing an undo command`.
+      * Added multiple photos, some css stylings
+      * Added multiple `information`,`caution` and `tip` divisions for better style
+    
   * Developer Guide:
-    * `to be added soon`
+    * Created the entire implementation detail for `Undo/Redo feature`
+      * Mutiple UML models used, including class diagrams, sequence diagrams and an activity diagram.
+    * Added to the manual testing appendix
+    * Fixed links that were previously pointing to seedu
 
 * **Tools**:
   * Integrated an existing plugin fully (CodeCov) on team fork
@@ -94,5 +96,3 @@ Given below are my contributions to the project.
 _{you can add/remove categories in the list above}_
 
 {:/comment}
-
-`more to be added soon`
