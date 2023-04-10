@@ -283,6 +283,7 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
     </p>
+
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`g help`** and hit `Enter` will open the help window.<br/>
    <details>
    <summary>Click here for  Some example commands you can try</summary>
