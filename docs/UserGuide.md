@@ -460,6 +460,12 @@ Example:
 ![RedoCommandExample](images/RedoCommandExample.png)
 
 <br>
+<div markdown="span" class="alert alert-warning">
+**:exclamation: Caution:**
+Once the user exits the app, all temporarily saved states of the tracker will be deleted!
+Ensure that the current state of the DengueHotspotTracker (after undoing or redoing) is the state you want to save,
+before exiting the app!
+</div>
 
 ### Changing the overview type: `overview`
 
