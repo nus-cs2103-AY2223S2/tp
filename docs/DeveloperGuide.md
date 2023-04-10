@@ -555,7 +555,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`    | SoC Student who knows Vim | refresh the task list                                            | go to the original task after sorting or filter         |
 | `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands  | use a short keyword instead of the full command for recurring tasks |
 | `* *` | SoC Student who knows Vim | mark a task as "in progress" | keep a mental note and come back to the task at a later time if I only halfway done with the task |
-| `* *` | SoC Student who knows Vim | edit a task’s title, deadline, labels and/or priority level | change the details if added wrongly |
+| `* *` | SoC Student who knows Vim | edit a task’s title, deadline and/or labels | change the details if added wrongly |
 | `* *` | SoC Student who knows Vim | undo an action | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner |
 | `* *` | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way |
 | `* *` | SoC Student who knows Vim | group the tasks together by their status | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
