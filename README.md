@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-F12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-F12-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-F12-4/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/AY2223S2-CS2103T-F12-4/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/InitialScreenWithRightPanelUG.png)
 
 Ultron is a **desktop app for managing internships, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Ultron can streamline your internship management.
 
