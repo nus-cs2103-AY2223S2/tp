@@ -37,7 +37,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      */
     {
         patients = new UniquePatientList();
-        wards = UniqueWardList.NewUniqueWardList();
+        wards = UniqueWardList.newUniqueWardList();
     }
 
     public MedInfo() {

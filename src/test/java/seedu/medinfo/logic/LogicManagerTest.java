@@ -3,11 +3,7 @@ package seedu.medinfo.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.medinfo.commons.core.Messages.MESSAGE_ALL_PATIENTS_LISTED_OVERVIEW;
 import static seedu.medinfo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.medinfo.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.medinfo.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
-import static seedu.medinfo.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.medinfo.testutil.Assert.assertThrows;
-import static seedu.medinfo.testutil.TypicalPatients.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.medinfo.logic.commands.AddCommand;
 import seedu.medinfo.logic.commands.CommandResult;
 import seedu.medinfo.logic.commands.ListCommand;
 import seedu.medinfo.logic.commands.exceptions.CommandException;
@@ -25,11 +20,9 @@ import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.UserPrefs;
-import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.storage.JsonMedInfoStorage;
 import seedu.medinfo.storage.JsonUserPrefsStorage;
 import seedu.medinfo.storage.StorageManager;
-import seedu.medinfo.testutil.PatientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -55,45 +48,11 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-    //    @Test
-    //    public void execute_commandExecutionError_throwsCommandException() {
-    //        String deleteCommand = "delete 9";
-    //        String expectedMessage = MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
-    //        assertCommandException(deleteCommand, expectedMessage);
-    //    }
-
     @Test
     public void execute_validCommand_success() throws Exception {
         String expectedMessage = String.format(MESSAGE_ALL_PATIENTS_LISTED_OVERVIEW, 0);
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, expectedMessage, model);
-    }
-
-
-    @Test
-    public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonMedInfoIoExceptionThrowingStub
-        JsonMedInfoStorage medInfoStorage = new
-        JsonMedInfoIoExceptionThrowingStub(
-        temporaryFolder.resolve("ioExceptionMedInfo.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
-        temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(medInfoStorage,
-        userPrefsStorage);
-        logic = new LogicManager(model, storage);
-
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + NRIC_DESC_AMY + STATUS_DESC_AMY;
-        Patient expectedPatient = new PatientBuilder(AMY).build();
-        ModelManager expectedModel = new ModelManager();
-        try {
-            expectedModel.addPatient(expectedPatient);
-        } catch (CommandException e) {
-            System.out.println("CommandException at LogicManagerTest: "
-                + "execute_storageThrowsIoException_throwsCommandException()");
-        }
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test

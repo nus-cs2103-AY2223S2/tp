@@ -16,14 +16,4 @@ public class ClearCommandTest {
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
-    //    @Test
-    //    public void execute_nonEmptyMedInfo_success() {
-    //        Model model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
-    //        Model expectedModel = new ModelManager(getTypicalMedInfo(), new UserPrefs());
-    //        expectedModel.setMedInfo(new MedInfo());
-    //
-    //        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
-    //    }
-
 }

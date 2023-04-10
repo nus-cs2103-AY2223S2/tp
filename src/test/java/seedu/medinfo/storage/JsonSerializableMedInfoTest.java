@@ -17,15 +17,6 @@ public class JsonSerializableMedInfoTest {
     private static final Path INVALID_PATIENT_FILE = TEST_DATA_FOLDER.resolve("invalidPatientMedInfo.json");
     private static final Path DUPLICATE_PATIENT_FILE = TEST_DATA_FOLDER.resolve("duplicatePatientMedInfo.json");
 
-    //    @Test
-    //    public void toModelType_typicalPatientsFile_success() throws Exception {
-    //        JsonSerializableMedInfo dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
-    //                JsonSerializableMedInfo.class).get();
-    //        MedInfo medInfoFromFile = dataFromFile.toModelType();
-    //        MedInfo typicalPatientsMedInfo = TypicalPatients.getTypicalMedInfo();
-    //        assertEquals(medInfoFromFile, typicalPatientsMedInfo);
-    //    }
-
     @Test
     public void toModelType_invalidPatientFile_throwsIllegalValueException() throws Exception {
         JsonSerializableMedInfo dataFromFile = JsonUtil.readJsonFile(INVALID_PATIENT_FILE,

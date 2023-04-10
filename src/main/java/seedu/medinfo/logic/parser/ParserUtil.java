@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.medinfo.commons.core.index.Index;
 import seedu.medinfo.commons.util.StringUtil;
 import seedu.medinfo.logic.commands.SortCommand;
-import seedu.medinfo.logic.commands.SortCommand.Field;
 import seedu.medinfo.logic.commands.SortCommand.Order;
 import seedu.medinfo.logic.parser.exceptions.ParseException;
 import seedu.medinfo.model.patient.Discharge;

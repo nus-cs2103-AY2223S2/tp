@@ -52,14 +52,14 @@ public class Status {
      */
     public String getDesc() {
         switch(value) {
-            case "GREEN":
-                return "STABLE";
-            case "YELLOW":
-                return "SERIOUS";
-            case "RED":
-                return "CRITICAL";
-            default:
-                return "UNKNOWN";
+        case "GREEN":
+            return "STABLE";
+        case "YELLOW":
+            return "SERIOUS";
+        case "RED":
+            return "CRITICAL";
+        default:
+            return "UNKNOWN";
         }
     }
 
@@ -70,14 +70,14 @@ public class Status {
      */
     public Integer getValue() {
         switch ((value)) {
-            case "GREEN":
-                return 1;
-            case "YELLOW":
-                return 2;
-            case "RED":
-                return 3;
-            default:
-                return 0;
+        case "GREEN":
+            return 1;
+        case "YELLOW":
+            return 2;
+        case "RED":
+            return 3;
+        default:
+            return 0;
         }
     }
 
