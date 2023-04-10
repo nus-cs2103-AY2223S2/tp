@@ -335,7 +335,7 @@ Clears all client entries from the FitBook.
 
 Format: `clear`
 
-#### Exporting Client details : `export`
+#### Exporting client details : `export`
 
 {% include information.html content="
 
@@ -434,7 +434,7 @@ Examples:
 Example: (Adding Routine without any exercises)
 ![AddRoutine](images/AddRoutineUG.png)
 
-#### Listing all Routines in FitBook : `listRoutines`
+#### Listing all routines in FitBook : `listRoutines`
 
 {% include information.html content="
 
@@ -471,7 +471,7 @@ Examples:
 * `editRoutine 2 exno/1 ex/3x10sets dumbbells` edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
 * `editRoutine 3 r/Cardio exno/1 ex/3x10 sets dumbbells` will throw an error as it attempts to change both the routine name and the exercises in the routine.
 
-#### Locating Routines by name: `findRoutine`
+#### Locating routines by name: `findRoutine`
 
 {% include information.html content="
 
@@ -490,17 +490,6 @@ Examples:
 
 Example:
 ![FindRoutine](images/FindRoutineUG.png)
-
-#### Clearing all Routine entries : `clearRoutines`
-
-{% include information.html content="
-
-Clears all routine entries in FitBook under the `Exercise` Tab.
-
-" %}
-
-
-Format: `clearRoutines`
 
 #### Deleting a routine : `deleteRoutine`
 
@@ -523,18 +512,18 @@ Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
 * `findRoutine Cardio` followed by `deleteRoutine 1` deletes the 1st Routine in the results of the `findRoutine` command.
 
-#### Adding an Exercise : `addExercise`
+#### Adding an exercise : `addExercise`
 
 {% include information.html content="
 
-Adds an exercise to a current routine in FitBook.
+Adds an exercise to an existing routine in FitBook.
 
 " %}
 
 
 Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 
-* Adds an exercise `EXERCISE_NAME` to the Routine in FitBook at the specified `ROUTINE_INDEX`.
+* Adds an exercise `EXERCISE_NAME` to the routine in FitBook at the specified `ROUTINE_INDEX`.
 * The `ROUTINE_INDEX` refers to the index number shown in the displayed exercise routine list in the exercise panel.
 * The `ROUTINE_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The index must not contain signs +1, +2, +3, …​
@@ -543,7 +532,7 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first routine in the exercise routine list in FitBook.
 
-#### Deleting an Exercise : `deleteExercise`
+#### Deleting an exercise : `deleteExercise`
 
 {% include information.html content="
 
@@ -565,7 +554,18 @@ Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
 * `findRoutine Cardio` followed `deleteExercise 1 1` deletes the exercise specified at index `1` from the Routine specified at index `1` in the results of the `findRoutineCardio` command.
 
-#### Exporting Routine details : `exportRoutines`
+#### Clearing all routine entries : `clearRoutines`
+
+{% include information.html content="
+
+Clears all routine entries in FitBook under the `Exercise` Tab.
+
+" %}
+
+
+Format: `clearRoutines`
+
+#### Exporting routine details : `exportRoutines`
 
 {% include information.html content="
 
@@ -577,8 +577,8 @@ Exports the routine details locally into a csv file.
 Format: `exportRoutines`
 
 * The exported client data includes: <br>
-    * Name of Routine
-    * Exercises in the Routine
+    * Name of routine
+    * Exercises in the routine
 
 * Example generated CSV file when opened using Microsoft Excel:
 
