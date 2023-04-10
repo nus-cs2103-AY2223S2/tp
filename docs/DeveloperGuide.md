@@ -346,7 +346,7 @@ The implementation of this feature requires `EditCommand`, `EditCommandParser`, 
 
 Below is an activity diagram that shows what happens when a user executes the `edit` command.
 
-![DeleteActivityDiagram](images/EditActivityDiagram.png)
+![EditActivityDiagram](images/EditActivityDiagram.png)
 
 ### Filtering contacts
 **Purpose:** Allow user to filter contacts based on criteria given.
