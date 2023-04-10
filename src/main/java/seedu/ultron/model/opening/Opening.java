@@ -125,7 +125,7 @@ public class Opening {
                 .append(" | Status: ")
                 .append(getStatus());
 
-        if (getRemark() != null) {
+        if (getRemark() != null & getRemark().toString() != "") {
             builder.append(" | Remark: ")
                     .append(getRemark());
         }
