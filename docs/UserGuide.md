@@ -291,7 +291,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…
 
 **:exclamation: Caution:**<br>
 * In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name).
-* If the user wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
+* If the user wishes to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
 </div>
 
 <div markdown="block" class="alert alert-info">
