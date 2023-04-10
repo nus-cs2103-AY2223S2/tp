@@ -64,7 +64,8 @@ Given below are my contributions to the project.
 * Added test cases for `Gender` classes. [#93](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/93)
 * Added test cases to allow for `email` as an optional field which requires for `null` checking when email field is empty. [#119](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/119)
 * Added test cases for `DateOfBirth` classes. [#125](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/125)
-
+* Added test cases for invalid `DateOfBirth` inputs. [#223](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/223)
+* Fix issue of `DateOfBirth`s concerning `February` dates. [#224](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/224)
 
 ### **Documentation**:
 
@@ -77,11 +78,11 @@ Developer Guide:
 * Added implementation details and design considerations for the `find` command and its respective prefixes. [#95](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/95)
 * Added sequence diagram for `find` command. [#95](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/95)
 * Added test cases implementation for the `find` command. [#109](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/109)
-
+* Updated images to reflect changes and included appendix. [#238](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/238)
 
 ### **Review contributions**:
 * Organised and coordinated team meetings.
-* Took video demo for `v1.3`.
+* Took video demo for `v1.2`, `v1.4`.
 * Reviewed and approved PRs for merging.
 * PRs reviewed (with non-trivial comments): [#83](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/83), [#85](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/85), [#86](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/86)
 
