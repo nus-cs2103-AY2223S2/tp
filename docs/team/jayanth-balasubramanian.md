@@ -1,4 +1,9 @@
-# Project: MediMeet
+---
+layout: page
+title: Jayanth Balasubramanian's Project Portfolio Page
+---
+
+## Project: MediMeet
 
 **MediMeet** is a desktop application that enables doctors to effectively manage patient details and appointments. It saves costs by reducing the need for personal assistants or appointment managers.
 Given below are my contributions to the project.
