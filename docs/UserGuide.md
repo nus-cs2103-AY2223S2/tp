@@ -390,7 +390,10 @@ For more information see: [Selecting doctors or patients through commands](#sele
 #### Listing all doctors
 
 `list-doc`
+- Possible use cases: Retrieval of all doctors in Docedex after commands involving selection.
+- What it does: Lists all doctors in Docedex.
 
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -538,6 +541,10 @@ For more information see: [Selecting doctors or patients through commands](#sele
 #### Listing all patients
 
 `list-ptn`
+- Possible use cases: Retrieval of all patients in Docedex after commands involving selection.
+- What it does: Lists all patients in Docedex.
+
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
