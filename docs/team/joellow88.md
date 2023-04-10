@@ -3,9 +3,9 @@ layout: page
 title: Joel Low's Project Portfolio Page
 ---
 
-### Project: MODcheck
+### Project: ModCheck
 
-MODcheck is a desktop app to allow students to easily check the module coordinators, professors and teaching 
+ModCheck is a desktop app to allow students to easily check the module coordinators, professors and teaching 
 assistants in the modules they are taking. 
 
 Given below are my contributions to the project.

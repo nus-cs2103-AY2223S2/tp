@@ -785,6 +785,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
       Use case ends.
 
+
+#### Use case: Undo commands
+
+**MSS**
+
+1. Student makes a request to undo a command.
+2. ModCheck undoes the most recent command.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no command to be undone.
+    * 3a1. ModCheck shows an error message.
+  
+  Use case ends.
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -885,6 +903,8 @@ testers are expected to do more *exploratory* testing.
     so that `Reset Password` feature can be realistically done to allow Students to reset their password safely.
 2. `Reset password feature` to be included in the future to allow Students to reset their password in case they forgot their password.
 3. Hashing of password will be done in the future as current requirements require the data to be readable by human.
+4. `Load` command will include an option to **override** instead of **ignore**, this is to allow the user to update 
+   contacts if they know that the data file to be loaded is more recent.
 
 ## **Appendix: Known Limitations**
 
