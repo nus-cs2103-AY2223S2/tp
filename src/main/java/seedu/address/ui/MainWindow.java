@@ -229,7 +229,12 @@ public class MainWindow extends UiPart<Stage> {
 
         /* Checks user's answer */
         Optional<ButtonType> answer = alert.showAndWait();
-        answer.filter(response -> response == buttonYes).ifPresent(unused -> logic.factoryReset());
+        answer.filter(response -> response == buttonYes).ifPresent(unused -> {
+            logic.factoryReset();
+            rightFilterText.getChildren().clear();
+            leftFilterText.getChildren().clear();
+            resultDisplay.setFeedbackToUser("Successfully cleared data!");
+        });
     }
 
     /**
@@ -271,6 +276,9 @@ public class MainWindow extends UiPart<Stage> {
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);
+
+        rightFilterText.getChildren().clear();
+        leftFilterText.getChildren().clear();
     }
 
     /**
