@@ -307,6 +307,16 @@ The find appointment command utilises a `Predicate<Appointment>` in order to fil
 
 We chose to use a single command instead of two different commands like `find` and `find_details` since the functionality of the two types of appointment finding commands is very similar, and unlikely to change in the future.
 
+### Today (`today`) command
+
+**Overview**
+
+The today command updates the appointment list to show appointments that occur today.
+
+**Implementation**
+
+The command is equivalent to running the `find_appt` command with the start time being `00:00` of the current date, and the end time being `23:59` of the current date. For more implementation details, refer to the [`find_appt` command](#find-appointment--findappt--command).
+
 ### Delete patient (`delete_patient`) command
 
 **Overview**
