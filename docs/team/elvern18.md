@@ -57,7 +57,10 @@ Given below are my contributions to the project.
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/83
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/97
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/156
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/157
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/160
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/161
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/170
 
 * **Contributions beyond the project task**:
     * Bugs reported in other team's products
