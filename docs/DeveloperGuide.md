@@ -1041,10 +1041,10 @@ The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the ret
 The `AddInterviewDateCommand` provides enhancement to the existing `AddCommand` by separating the process of adding the interview date for an application from the initial process of
 adding a new internship application. This prevents the `AddCommand` from getting cluttered with large amount of arguments that may become difficult for the user to remember.
 
-**Aspect: Where to save the contact details:**
+**Aspect: Where to save the interview date details:**
 
 * **Alternative 1 (current choice):** Separating it into a separate `InterviewDate` class.
-    * Pros: Flexibility to add more details to the contact if needed in the future.
+    * Pros: Flexibility to add more details to the interview date if needed in the future.
     * Cons: More time required to implement.
 
 * **Alternative 2:** Adding interview date as an attribute in the `InternshipApplication` class.
