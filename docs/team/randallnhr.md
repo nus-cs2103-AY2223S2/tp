@@ -15,30 +15,41 @@ The following [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=
 
 #### **Enhancements implemented:**
 * Implemented commands for `Category`
-  * `addcat` - allows users of FastTrack to add a new `Category` into FastTrack.
-  * `delcat` - allows users to delete an existing `Category` in FastTrack. 
-    * Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
-  * `lcat` - allows users to list all added `Category`, used to determine index for edit and delete category commands.
-* Implemented `delcat` command and parser. (PR)
-  * What it does: This feature allows users to delete an existing `Category` in FastTrack. Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
-  * Justification: This allows users to delete unnecessary categories. 
-* Implemented `lcat` command and parser. (PR)
-  * What it does: This feature allows users to list all added `Category`.
-  * Justification: Gives users the ability to see all `Category` added in a glance, it is also used in conjuction to `delcat` and `edcat` commands as index of the `Category` is needed.
-* Implemented `Budget` class and linked it to the UI to update statistics. (PR)
+  * `addcat` - allows users of FastTrack to add a new `Category` into FastTrack. (PR [#68](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/68))
+    * Allow users to add category without summary (PR [#118](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/118))
+  * `delcat` - allows users to delete an existing `Category` in FastTrack. (PR [#68](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/68)) 
+    * Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`. (PR [#109](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/109))
+  * `lcat` - allows users to list all added `Category`, used to determine index for edit and delete category commands. (PR [#68](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/68))
+  * `sumcat` - allows users to view category summary. (PR [#119](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/119))
+* Implemented `CLEAR` command. (PR [#120](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/120))
+  * What it does: Wipes the storage of FastTrack to a clean slate. This is useful when the user first opens FastTrack and wants to delete the sample data.
+* Implemented `Budget` class and linked it to the UI to update statistics. (PR [#138](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/138))
   * What it does: Allows users to add a monthly budget into FastTrack. This is used in conjunction with the Statistics feature to allow users to have an easy way to see how much of the budget has been utilised.
 * Implemented commands for `RecurringExpenseManager`
-  * `addrec` - allows users to add `RecurringExpenseManager` objects into FastTrack
-  * `delrec` - allows users to delete a `RecurringExpenseManager` object.
-* Implemented `CLEAR` command to allow users to clear all existing data at ease. 
+  * `addrec` - allows users to add `RecurringExpenseManager` objects into FastTrack. (PR [#140](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/140))
+  * `delrec` - allows users to delete a `RecurringExpenseManager` object. (PR [#140](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/140))
 
 #### **Contributions to the UG:**
-* Added comm
+* Added command summary for:
+  * Expense commands
+  * Category commands
+  * General commands
 
-#### **Contributions to the DG:** to be added soon
+#### **Contributions to the DG:**
+* Added several use cases. (PR [#37](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/37))
+* Added purpose of the guide, how to use this guide and acknowledgement. (PR [#209](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/209))
+* Added Recurring Expense implementation. (PR [#222](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/222))
+* Added Budget implementation and linked to Statistics implementation. (PR [#222](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/222))
+* Added writeup for category features: (PR [#222](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/222))
+  * Adding a category
+  * Deleting a category
+* Created sequence diagrams for `set` and Recurring Expense feature. (PR [#235](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/235))
+* Created PlantUML diagrams for high level architecture and class diagrams. (PR [#249](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/249))
+#### **Contributions to team-based tasks:**
+* Organised weekly meetings to discuss project structure and direction. 
+* Took part actively in debugging other teammate's issues.
 
-#### **Contributions to team-based tasks:** to be added soon
+#### **Review/Mentoring Contributions:**
+* Reviewed several [PRs](https://github.com/AY2223S2-CS2103T-W09-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me) made by teammates.
 
-#### **Review/Mentoring Contributions:** to be added soon
-
-#### **Contributions beyond team project:** to be added soon
+#### **Contributions beyond team project:**
