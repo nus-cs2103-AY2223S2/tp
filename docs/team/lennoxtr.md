@@ -23,7 +23,7 @@ You can refer to my individual code contribution at this [link](https://nus-cs21
 
 #### Tag/ Untag Feature
 
-**Originally**, the user could only apply tags to a newly added person, as well as removing tags by editing that person. As AB3 is adapted to a lecture content tracker, the old tagging system is no longer suitable. Students may label modules, lectures, or videos according to their own needs as they study. They may also want to have a separate tag and untag command for fear of making unwanted change to the module, lecture, or video 
+**Originally**, the user could only apply tags to a newly added person, as well as removing tags by editing that person. As AB3 is adapted to a lecture content tracker, the old tagging system is no longer suitable. Students may label modules, lectures, or videos according to their own needs as they study.
 
 **Enahancements** made were modification to the tagging feature of AB3 to allow the user to add and remove multiple tags at the same time from modules, lectures, and video, while making sure that each tag is only applied once. Tagging and untagging can be done after the module/ lecture/ video is added to the tracker so that user can use the tag to categorize and organize the studying content effectively.
 
@@ -35,7 +35,7 @@ I implemented the exporting and importing features of Le Tracker:
 
 - `**Importing modules**, so that students may revise specific concepts from the modules they previously took. Student can also use the feature to track productivity level during a semester. 
 
-To implement said features, an `Archive` class was adapted from AB3's JSONStorage to read and write module data.
+To implement said features, an `Archive` class was adapted from AB3's JSONStorage.
 
 #### Documentation
 
