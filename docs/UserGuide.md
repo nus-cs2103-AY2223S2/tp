@@ -297,7 +297,7 @@ Format: `deletet INDEX`
 
 * Deletes the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
-* The INDEX must be a positive integer 1, 2, 3, ...
+* The INDEX **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 - `listt` followed by `deletet 2` deletes the 2nd task in the task list.
