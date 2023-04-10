@@ -24,7 +24,10 @@ This guide is intended primarily for developers who want to work on the MyLib co
 
 This guide contains certain visuals to aid in conveying information more effectively
 
-Visual: :bulb: GMFD: `:bulb:` Meaning: Useful supplementary information for the developer
+|        Symbol         |      GMFD syntax       |                   Meaning                   |
+|:---------------------:|:----------------------:|:-------------------------------------------:|
+|        :bulb:         |        `:bulb:`        |    Useful advice that devleopers can use    |
+| :information_source:  | `:information_source:` | Supplementary information for the developer |
 
 --------------------------------------------------------------------------------------------------------------------
 ## **About Us**
@@ -42,7 +45,6 @@ This Developer Guide provides in-depth documentation on how MyLib is designed an
 
 You can use this guide to maintain and evolve MyLib.
 
-<div style="page-break-after: always;"></div>
 
 ## **Design**
 

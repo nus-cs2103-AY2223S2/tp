@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     * Justification: This feature allows users to see more clearly each field of the bookmark as well as longer fields like url which is not present in bookmark on left panel since it may be quite long
 
 * **Enhancements**:
-    * Revamp GUI and add click support for some commands [#80](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/80), [#99](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/99/files), [#153](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/153/files), [#160](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/160/files)
+    * Revamp GUI and add on-click support for some commands [#80](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/80), [#99](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/99/files), [#153](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/153/files), [#160](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/160/files)
 
 * Add Test cases for Code Coverage [#253](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/253/files)
 
@@ -39,3 +39,6 @@ Given below are my contributions to the project.
         * Update Appendix A Manual Testing [#278](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/278/files)
         * Add Intended Audience, About MyLib, Using the Guide portion [#178](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/178/files)
 
+* **Contributions to team-based tasks**
+    * Created release for V1.3
+    * Maintain issue tracker for tasks
