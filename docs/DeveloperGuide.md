@@ -111,6 +111,62 @@ feature of AB3. Since Calidr uses the same overall architecture as AB3, such an 
 
 <br>
 
+### Edit task feature
+
+The `EditTaskCommand` class represents a command that edits an **existing** task. It takes in the index of the task in
+the task list to be edited and an `EditTaskDescriptor` object.
+
+The following class diagram shows the classes that help achieve this functionality.
+
+<img src="./images/EditTaskClassDiagram.png" width="100%">
+
+
+The `EditTaskCommandParser` class parses the fields entered by the user in the correct format, and returns a
+`EditTaskCommand` to be executed. The `EditTaskDescriptor` class is a helper class that stores the new details of the
+task to be updated. The `EditTaskCommand::execute`method updates the task in the model with the new details and returns
+a `CommandResult`.
+
+The relevant information is used to create a new `Todo` or `Event` object with the updated fields. The newly created
+object replaces the task to be edited in the `TaskList`. Finally, an output is displayed with the status of the edit
+operation and the updated task details.
+
+#### Design considerations:
+
+**Aspect: How edit command executes**
+
+* **Alternative 1 (current choice):** Overwrite all existing task fields if any of them is modified.
+    * Pros: Easy to implement.
+    * Cons: Might be inefficient in terms of resource usage and possibly cause delays
+
+* **Alternative 2:** Only update the task fields that were changed.
+    * Pros: Will use less resources and time, thus improving system performance.
+    * Cons: Requires more complex implementation logic to track and update the modified fields.
+
+<br>
+
+### Mark Task Feature
+
+The `MarkTaskCommand` class represents a command that marks an **existing** task as done. It takes in the index of the
+task in the task list to be marked and returns a `CommandResult`.
+
+The following class diagram shows the classes that help achieve this functionality.
+
+<img src="./images/MarkTaskClassDiagram.png" width="100%"/>
+
+The `MarkTaskCommandParser` parses the required index to find the `Task` to be deleted, and returns
+a `MarkTaskCommand`, that is executed.
+
+The execution of an `MarkTaskCommand` makes use of the following functions provided by the `Model`:
+
+- `Model#getFilteredTaskList` - to access the list of tasks, to find the task to be marked
+- `Model#markTask` - to mark the `Task` int the `TaskList` as done
+
+The following sequence diagram illustrates how the _**Mark Task**_ feature works.
+
+<img src="./images/MarkTaskSequenceDiagram.png" width="100%"/>
+
+<br>
+
 ### Delete Task Feature
 
 This feature enables the user to delete a task from the list of tasks. It is implemented in a way that mirrors the
@@ -136,44 +192,6 @@ The following sequence diagram shows how the _**Delete Task**_ feature works.
 
 The _**Delete Task**_ feature is implemented in this way so as to make it similar to the analogous _**Delete Person**_
 feature of AB3. Since Calidr uses the same overall architecture as AB3, such an implementation was chosen.
-
-<br>
-
-### Edit task feature
-
-<img src="./images/EditTaskClassDiagram.png" width="100%">
-
-The `EditTaskCommand` class represents a command that edits an **existing** task. It takes in the index of the task in
-the task list to be edited and an `EditTaskDescriptor` object. The `EditTaskDescriptor` class is a helper class that
-stores the new details of the task to be updated. The `execute` method updates the task in the model with the new
-details and returns a `CommandResult`.
-
-#### Sequence diagram here
-
-`EditTaskCommand` is facilitated by `EditTaskCommandParser` which parses and provides the fields entered by the user in
-the required format.
-
-Internally, the `EditTaskDescriptor` is casted to either a `EditTodoDescriptor` or `EditEventDescriptor` based on the
-type of task to be edited. The relevant information is used to create a new `Todo` or `Event` object with the updated
-fields.
-
-The newly created object replaces the task to be edited in the `TaskList`. Finally, an output is displayed with the
-status of the edit operation and the updated task details.
-
-<!--
-To provide an example of how this feature works, consider the following usage scenario. -->
-
-#### Design considerations:
-
-**Aspect: How edit command executes**
-
-* **Alternative 1 (current choice):** Overwrite all existing task fields if any of them is modified.
-    * Pros: Easy to implement.
-    * Cons: Might be inefficient in terms of resource usage and possibly cause delays
-
-* **Alternative 2:** Only update the task fields that were changed.
-    * Pros: Will use less resources and time, thus improving system performance.
-    * Cons: Requires more complex implementation logic to track and update the modified fields.
 
 <br>
 

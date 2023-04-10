@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CalidrParser" as CalidrParser LOGIC_COLOR
+participant ":MarkTaskCommandParser" as MarkTaskCommandParser LOGIC_COLOR
+participant ":MarkTaskCommand" as MarkTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR_T2
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> CalidrParser : parseCommand()
+activate CalidrParser
+
+create MarkTaskCommandParser
+CalidrParser -> MarkTaskCommandParser
+activate MarkTaskCommandParser
+MarkTaskCommandParser --> CalidrParser
+deactivate MarkTaskCommandParser
+
+CalidrParser -> MarkTaskCommandParser : parse()
+activate MarkTaskCommandParser
+
+create MarkTaskCommand
+MarkTaskCommandParser -> MarkTaskCommand
+activate MarkTaskCommand
+MarkTaskCommand --> MarkTaskCommandParser
+deactivate MarkTaskCommand
+
+MarkTaskCommandParser --> CalidrParser : MarkTaskCommand
+deactivate MarkTaskCommandParser
+
+CalidrParser --> LogicManager : MarkTaskCommand
+deactivate CalidrParser
+
+LogicManager -> MarkTaskCommand : execute()
+activate MarkTaskCommand
+
+MarkTaskCommand -> Model : getFilteredTaskList()
+activate Model
+Model --> MarkTaskCommand
+deactivate Model
+
+MarkTaskCommand -> Model : markTask()
+activate Model
+deactivate Model
+
+MarkTaskCommand --> LogicManager : CommandResult
+deactivate MarkTaskCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
