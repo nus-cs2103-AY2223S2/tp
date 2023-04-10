@@ -10,7 +10,7 @@ refrigerator!
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to increase/decrease the quantity of a food item.
+* **New Feature**: Added the ability to increase and decrease the quantity of a food item.
 
     - What it does: It allows the user to increase or decrease the quantity of a food item by a specific quantity. If no
 quantity is specified, it will increase/decrease the quantity of the specified food item by 1.
@@ -50,7 +50,6 @@ ensuring that the value to decrease by was not greater than the current `Quantit
         * Added documentation for the features `inc` and `dec` [[PR#175]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/175)
         * Added table of contents and command summary [[PR#186]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/186)
         * Fixed UG issues from PE-D [[PR#280]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/280)
-        * 
         * Finalised formatting issues and structure of UG
 
       * Developer Guide:
@@ -88,5 +87,6 @@ ensuring that the value to decrease by was not greater than the current `Quantit
 [[PR#295]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/295) [[PR#296]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/296)
 [[PR#298]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/298) [[PR#301]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/301)
 [[PR#302]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/302) [[PR#303]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/303) 
-[[PR#304]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/304)
+[[PR#304]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/304) [[PR#310]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/310)
+[[PR#312]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/312) [[PR#313]](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/313)
 
