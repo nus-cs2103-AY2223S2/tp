@@ -350,7 +350,9 @@ Format: `sortClientEmail INDEX`
 
 * Sorts your list of clients based on their email
 * The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
+* Values for Index:
+    * **Descending**: 0
+    * **Ascending**: Any number that is not 0
 
 Examples:
 
@@ -363,7 +365,9 @@ Format: `sortClientName INDEX`
 
 * Sorts your list of clients based on their name
 * The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
+* Values for Index:
+  * **Descending**: 0
+  * **Ascending**: Any number that is not 0
 
 Examples:
 
@@ -376,7 +380,9 @@ Format: `sortClientPhone INDEX`
 
 * Sorts your list of clients based on their phone number
 * The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
+* Values for Index:
+    * **Descending**: 0
+    * **Ascending**: Any number that is not 0
 
 Examples:
 
