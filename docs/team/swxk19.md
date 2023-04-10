@@ -22,15 +22,15 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 7. Additional classes for Storage to support storing different object types
 8. Contributed to remodelling of test files
 
-### Contributions to UG&nbsp;
-1. Participated in drafting [UG (v1.1)](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit?usp=share_link)
-
 ### Contributions to DG&nbsp;
 1. `undo` implementation in Implementations section
 2. `Storage` implementation in Implementations section
 3. `UniqueList` implementation in Implementations section
 4. Page Navigation effort in Appendix: Effort section
 5. Storage effort in Appendix: Effort section
+
+### Contributions to UG&nbsp;
+1. Participated in drafting [UG (v1.1)](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit?usp=share_link)
 
 ### Contributions to Team-Based Tasks&nbsp;
 1. Participated in drafting [UI mockup (v1.1)](https://docs.google.com/presentation/d/1zS7pX0cm-4faiwjN71NLIgvmkHgRCETdZZtLpKHsn38/edit?usp=share_link)

@@ -7,12 +7,6 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -294,7 +288,6 @@ Both are free to use, and can be downloaded from [Google Fonts](https://fonts.go
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Logic Implementation
 ### Student Roster Object Types
 In our implementation, we have defined several object types that accurately represent the student roster, including
 `Course`, `Group`, `Session`, `Task`, and `Student`. These object types are interdependent and have been designed to
@@ -324,6 +317,7 @@ In addition to the above diagram, the following object diagram illustrate a more
 
 ![ObjectDependencyObjectDiagram](images/ObjectDependencyObjectDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Undo feature
 `undo` allows restoring up to 5 previous states, but can be modified to restore more/less states.
@@ -353,6 +347,7 @@ If new commands are to be added, it's interaction with `undo` must be kept in mi
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Unique list of items
 Represented by the `UniqueList<T>` class, where `T` is the type of the item to be contained.
@@ -375,6 +370,8 @@ The extra work of creating child classes of `UniqueList` can be tedious.
 A possible improvement would be allowing `UniqueList` to be an instantiable class, and at the same time create an interface `ListableItem` to represent objects to be contained in `UniqueList`.
 
 The `ListableItem` interface would require that its classes also support the handling of list operations that were previously handled by a child class of `UniqueList`. This would then allow `UniqueList` to be generalisable to any `ListableItem` object, without the need of creating child classes of `UniqueList`.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Serialized Objects for `Storage`
 Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.

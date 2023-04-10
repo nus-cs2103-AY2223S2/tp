@@ -5,7 +5,7 @@ tutor multiple classes, by managing their students’ particulars<strong> in an 
 
 Given below are my contributions to the project:
 
-- ###Code contributed:
+- ### Code contributed:
   [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=afiqzu&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=afiqzu&zR=AY2223S2-CS2103T-T15-4%2Ftp%5Bmaster%5D&zACS=324.8333333333333&zS=2023-02-17&zFS=afiqzu&zU=2023-04-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 - ### Enhancements implemented
