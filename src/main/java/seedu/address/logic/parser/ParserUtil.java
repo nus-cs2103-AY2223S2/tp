@@ -227,6 +227,7 @@ public class ParserUtil {
         }
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
+
     /**
      * Parses a {@code String} into a {@code LocalDate}
      *
