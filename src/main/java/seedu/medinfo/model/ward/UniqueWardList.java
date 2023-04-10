@@ -38,14 +38,23 @@ public class UniqueWardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
+    private static final WardName WAITING_ROOM = new WardName("Waiting Room");
     /**
-     * Initializes wardlist with default Waiting Room ward with capacity of 30
-     * inside.
+     * Initializes empty wardlist.
      */
     public UniqueWardList() {
-        WardName waitingRoomName = new WardName("Waiting Room");
-        Ward waitingRoom = new Ward(waitingRoomName);
-        add(waitingRoom);
+
+    }
+
+    /**
+     * Initializes NEW wardlist with default Waiting Room ward with capacity of 10
+     * inside.
+     */
+    public UniqueWardList NewUniqueWardList() {
+        Ward WaitingRoom = new Ward(WAITING_ROOM);
+        UniqueWardList NewUniqueWardList = new UniqueWardList();
+        NewUniqueWardList.add(WaitingRoom);
+        return NewUniqueWardList;
     }
 
     /**
