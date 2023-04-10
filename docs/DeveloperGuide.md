@@ -50,10 +50,14 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 :bulb: **Tip:** Tips are useful suggestions that you can follow.
 
+[Back to Top ↑](#table-of-contents)
+
 ## **Acknowledgements**
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 - Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Opencsv](https://opencsv.sourceforge.net).
+
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -61,7 +65,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -73,7 +77,7 @@ Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
 </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Architecture
 
@@ -117,7 +121,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### UI component
 
@@ -136,7 +140,7 @@ The `UI` component,
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Logic component
 
@@ -172,7 +176,7 @@ How the parsing works:
 - When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Model component
 
@@ -195,7 +199,7 @@ The `Model` component,
 
 </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Storage component
 
@@ -209,13 +213,13 @@ The `Storage` component,
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -364,7 +368,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 *{more aspects and alternatives to be added}*
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Filter feature
 
@@ -391,7 +395,7 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Copy feature
 
@@ -412,7 +416,7 @@ The following sequence diagram shows how the copy operation works:
 
 In the scenario where the user's system's clipboard is not accessible, the requested information will be displayed in the UI for the user to manually copy it.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### New army-specific fields
 
@@ -425,7 +429,7 @@ The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 - We made the `unit`, `company` and `platoon` fields optional as military personnel might not always be assigned to a unit, company, and/or platoon.
   - If the user omitted the `unit`, `company` and/or `platoon` fields when creating a new contact, they will be automatically set to `"N/A"`.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -437,7 +441,7 @@ The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 - [Configuration guide](Configuration.md)
 - [DevOps guide](DevOps.md)
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -449,7 +453,7 @@ The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 
 **Value proposition**: Contains dedicated fields in a contact card that manages military-specific information (e.g., rank, company, unit, etc.)
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### User stories
 
@@ -497,7 +501,7 @@ Priority:
 | 3        | artistic user             | edit the theme of the app/font of the UI                                                | I can personalize the look of the app to be more aesthetically pleasing to me                                  |
 | 3        | person with bad eyesight  | increase the font size/UI size of the whole app                                         | I can see text better                                                                                          |
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Use cases
 
@@ -565,7 +569,7 @@ Priority:
   - 2a1. FAILS prompts the admin clerk to decide which CSV column refer to which FAILS contact field (e.g., the CSV might have a column called "mobile_number" whereas FAILS has a field called "phone").
   - Use case resumes at step 3.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Non-Functional Requirements
 
@@ -580,7 +584,7 @@ Priority:
 1. FAILS must not lose critical data on military personnel even during a computer crash.
 1. FAILS must be accessible to military personnel with disabilities.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Glossary
 
@@ -588,7 +592,7 @@ Priority:
 - **Private contact detail**: A contact detail that is not meant to be shared with others
 - **Non-technical person**: Someone who is able to execute basic tasks using the computer's point-and-click interface and has the ability to use simple GUI applications.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -613,7 +617,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Adding a person
 1. Adding a person while all existing persons are being shown
@@ -639,7 +643,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `add n/Zachary Tan r/CPL`<br>
    Expected: Error details shown in the message box, indicating that the command entered is invalid.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Editing a person
 1. Editing a person while all persons are being shown
@@ -662,7 +666,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `edit 2 t/`<br>
       Expected: All existing tags of the second person in the list will be removed, with the other information left unchanged.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Deleting a person
 
@@ -675,7 +679,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Toggling the favorite status of a person
 
@@ -688,7 +692,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `favorite 0`<br>
       Expected: No person is toggled as favorite. Error details shown in the message box.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Saving data
 
@@ -697,11 +701,11 @@ testers are expected to do more *exploratory* testing.
    2. Test case: Delete the `aims.json` file in the `./data` folder and launch AIMS again.<br>
       Expected: AIMS loads a default list of persons upon launch and a new data file `aims.json` will be created and saved in the `./data` folder after exiting AIMS.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ## **Appendix: Effort**
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ## **Appendix: Planned Enhancements**
 
@@ -739,4 +743,4 @@ Even though AIMS does give a correct result that there are 0 persons with the ph
 We plan to include the same input validation that we used in the `add` feature for the `filter` feature. This will ensure that the user is informed when they are filtering using an invalid value.
 
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
