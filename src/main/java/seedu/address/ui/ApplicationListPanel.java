@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.application.InternshipApplication;
-import seedu.address.ui.control.ControlBox;
+import seedu.address.ui.popups.ControlBox;
 
 /**
  * Panel containing the list of applications.

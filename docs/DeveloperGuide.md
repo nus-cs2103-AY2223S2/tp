@@ -2,9 +2,65 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
-
+## **Table of Contents**
+  - [Acknowledgements](#acknowledgements)
+  - [Setting up, getting started](#setting-up-getting-started)
+  - [Design](#design)
+    - [Architecture](#architecture)
+    - [UI Component](#ui-component)
+    - [Logic Component](#logic-component)
+    - [Model Component](#model-component)
+    - [Storage Component](#storage-component)
+    - [Common classes](#common-classes)
+  - [Implementation of features](#implementation)
+    - [Add](#add-feature)
+    - [Edit](#edit-feature)
+    - [Add contact](#add-contact-feature)
+    - [Edit contact](#edit-contact-feature)
+    - [Delete contact](#delete-contact-feature)
+    - [List](#list-feature)
+    - [Add documents](#add-documents-feature)
+    - [Edit documents](#edit-documents-feature)
+    - [Delete documents](#delete-documents-feature)
+    - [Edit status](#edit-status-feature)
+    - [Archive](#archive-feature)
+    - [Unarchive](#unarchive-feature)
+    - [List archived applications](#list-archived-applications-feature)
+    - [Find](#find-feature)
+    - [Sort](#sort-feature)
+    - [Clear](#clear-feature)
+    - [Clear by](#clear-by-feature)
+    - [Delete](#delete-feature)
+    - [Revert](#revert-feature)
+    - [Revert all](#revert-all-feature)
+    - [Exit](#exit-feature)
+    - [Add interview date](#add-interview-date-feature)
+      - [Side features](#side-features)
+        - [Task related features](#task-related-features)
+          - [Find task](#find-task-feature)
+          - [List task](#list-task-feature)
+        - [Todo related features](#todo-related-features)
+          - [Add todo](#add-todo-feature)
+          - [Clear todo](#clear-todo-feature)
+          - [Delete todo](#delete-todo-feature)
+          - [Edit deadline](#edit-deadline-feature)
+          - [Edit content](#edit-content-feature)
+          - [List todo](#list-todo-feature)
+        - [Note related features](#note-related-features)
+          - [Add note](#add-note-feature)
+          - [Clear note](#clear-note-feature)
+          - [Delete note](#delete-note-feature)
+          - [List note](#list-note-feature)
+  - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+  - [Appendix: Requirements](#appendix-requirements)
+    - [Product Scope](#product-scope)
+    - [User stories](#user-stories)
+    - [Use cases](#use-cases)
+    - [Non functional requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+  - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    - [Launch and Shutdown](#launch-and-shutdown)
+  - [Appendix: Planned Enhancement](#appendix-planned-enhancement)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -12,11 +68,15 @@ title: Developer Guide
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * Code and documentations reused and adapted from [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
 
+[Go back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Go back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,6 +128,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Go back to Table of Contents](#table-of-contents)
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -90,6 +152,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `InternshipApplication` object residing in the `Model`.
 * listens on each other in the `Ui` component, as `CommandBox` calls functions in `MainWindow` to `execute()` `Logic`.
 * keeps a reference to other `Ui` component, as `MainWindow` keeps references of `MixedPanel`, `NoteListPanel`, `InternshipListPanel` and `TodoListPanel` to implement the switching between each panel.
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Logic component
 
@@ -120,6 +184,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Go back to Table of Contents](#table-of-contents)
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -139,6 +205,7 @@ The `Model` component,
 
 </div>
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Storage component
 
@@ -151,15 +218,21 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Go back to Table of Contents](#table-of-contents)
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+[Go back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Add feature
 
@@ -182,6 +255,30 @@ Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
 
+[Go back to Table of Contents](#table-of-contents)
+
+### Edit feature
+
+### How edit feature is implemented
+
+The `edit` command allows users to edit an internship application of the tracker. The edit mechanism is facilitated by `EditCommand` class. It extends `Command`but overrides the `Command#execute` to edit an internship application of the tracker.
+
+The sequence diagram below shows how the `EditCommand` object is created:
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+Step 1. Parsing
+
+The `EditCommandParser` checks that the user input is in the expected format, if not an exception will be thrown.
+
+Step 2. Execution
+
+The `EditCommand#execute` calls `Model#setApplication`, causing an update to the internship list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Add contact feature
 
@@ -238,6 +335,8 @@ adding a new internship application. This prevents the `AddCommand` from getting
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
 
+[Go back to Table of Contents](#table-of-contents)
+
 
 ### Edit contact feature
 
@@ -281,6 +380,7 @@ The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the retu
 The `EditContactCommand` follows the design intuition behind the `AddContactCommand` by separating the process of editing contact details of the company from the process of
 editing other attributes of an existing internship application.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Delete contact feature
 
@@ -324,6 +424,21 @@ The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the retu
 The `DeleteContactCommand` follows the design intuition behind the `AddContactCommand` by separating the process of deleting contact details of the company from the process of
 deleting other attributes of an existing internship application.
 
+[Go back to Table of Contents](#table-of-contents)
+
+### List feature
+
+#### How is the feature implemented
+
+The `list` command lists all ongoing internship applications, i.e. excluding archived applications. Once the list command is executed,
+it updates the `predicate` of `FilteredInternshipList` in `model` to show only currently ongoing applications. All commands to be executed following this command
+will follow the index of the latest list displayed in the internship application panel.
+
+The execution process of `list_archived` is demonstrated by the activity diagram below.
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Add documents feature
 
@@ -366,6 +481,7 @@ The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the retu
 
 The `AddDocumentsCommand` provides enhancement to the existing `AddCommand`, in a similar fashion to the `AddContactCommand`.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Edit documents feature
 
@@ -378,6 +494,7 @@ The execution process of the `edit_docs` command can be demonstrated by the acti
 
 > [Edit Contact Feature](#edit-contact-feature)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Delete documents feature
 
@@ -390,6 +507,7 @@ The execution process of the `delete_docs` command can be demonstrated by the ac
 
 > [Delete Contact Feature](#delete-contact-feature)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Edit status feature
 
@@ -433,6 +551,7 @@ The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the retu
 The `EditStatusCommand` follows the design intuition behind the `EditContactCommand` by separating the process of editing status of the internship application from the process of
 editing other attributes of an existing internship application.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Archive feature
 
@@ -476,6 +595,7 @@ The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the retu
 The `ArchiveCommand` allows an internship application to be archived in an easier way, as otherwise the user would have to remember a specific prefix
 if it is implemented as part of the `EditCommand`.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Unarchive feature
 
@@ -499,6 +619,7 @@ The execution process of `list_archived` is demonstrated by the activity diagram
 
 ![ListArchivedActivityDiagram](images/ListArchivedActivityDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Find feature
 
@@ -513,7 +634,7 @@ The `find` command allows user to find all `InternshipApplication` whose
 
 #### How is the feature implemented
 
-The sequence diagram below describes the interaction between classes when find command entered.
+The sequence diagram below describes the interaction between classes when find command is entered.
 ![FindSequenceDiagram](./images/FindSequenceDiagram.png)
 
 Step 1. Parsing
@@ -540,7 +661,7 @@ Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command 
 is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` 
-displaying the returned message for 2.5 seconds.
+displaying the returned message for 5 seconds.
 
 
 #### Why is it implemented this way
@@ -566,6 +687,51 @@ by using its prefix, i.e. in this form `find s/PENDING`.
   * Pros: Easy parser to implement
   * Cons: Longer command which takes longer time to type
 
+[Go back to Table of Contents](#table-of-contents)
+
+### Sort feature
+
+The `sort` command allows user to sort all `InternshipApplication` by the order below:
+1. `CompanyName` (alphabetical order)
+2. `JobTitle` (alphabetical order)
+3. `Internship status` (the default order of status)
+4. `InterviewDate` (ascending order of the interview date, `InternshipApplication` having null values are placed at the end).
+
+>**NOTE:**
+> The alphabetical order for comparing `CompanyName` and `JobTitle` is case-insensitive. To illustrate, the 
+> `InternshipApplication` with `CompanyName` "amazon" should appear before that with `CompanyName` "Google".
+
+#### How is the feature implemented
+
+The sequence diagram below describes the interaction between classes when sort command is entered.
+![SortSequenceDiagram](./images/SortSequenceDiagram.png)
+
+Step 1. Parsing
+
+If the command word matches the word "sort", `SortCommandParser#parse()` will be called to parse
+the argument of sort. Depending on the argument of sort, the corresponding comparator will be created. The sort command
+is then created with appropriate comparator.
+
+Step 2. Execution
+
+The SortCommand#execute method is then invoked. The `Model#updateSortedFilteredInternshipList()` is invoked by passing in the comparator. 
+The underlying `SortedList` is the updated and sorted by using the Comparator being passed.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command
+is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog`
+displaying the returned message for 5 seconds.
+
+
+#### Why is it implemented this way
+
+It is designed and implemented in this way to make the sort command more extensible to further enhancement to be made.
+For example, developer may want to provide more sorting order using the sort command. By the
+use of inheritance, one can easily enhance the `sort` command by passing appropriate implementation of `Comparator` object
+to sort the underlying list of `InternshipApplication`'s by polymorphism.
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Clear feature
 This section elaborated the `clear` feature by its functionality and the path of execution together with the `ClearCommand` implementation. Uml diagram is used to aid this description.
@@ -596,6 +762,7 @@ The result model is saved. A `CommandResult` with execution result message is re
 
 The `ClearFeature` is an enhanced extension for the `DeleteFeature`. It provides an execution for a series operations of the `DeleteCommands` at once. Furthermore, it is made reversible by adding the entries into a cacheList immediately after clearing them.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Clear By feature
 This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
@@ -659,6 +826,7 @@ Based on utility, the 3 fixed fields in an internship application are taken as t
 For the ease of implementation and avoid ambiguity, constructor `ClearByCommand::new` is overloaded, taking different fields. The usage of enum `ParamType` to specify the operating attribute type generalized the `ClearByCommand#execute`.
 The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Delete feature
 This section elaborated the `delete` feature by its functionality and the path of execution together with the `DeleteCommand` implementation. Uml diagram is used to aid this description.
@@ -696,6 +864,7 @@ The result model is saved. A `CommandResult` with execution result message is re
 
 The `DeleteCommand` is a common, must-have feature which helps to clean-up unwanted internship applications to enhance user experience. The cacheList provides an extra protection to the data to buffer the effect of this destructive operation.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Revert feature
 This section elaborated the `revert` feature by its functionality and the path of execution together with the `RevertCommand` implementation. Uml diagram is used to aid this description.
@@ -744,7 +913,8 @@ a temporary data-storing data structure that acts as a buffer for the current se
 * **Alternative 2:** We can also make it in such format `revert INDEX`, e.g. revert 3 (reverts 3 most recent deleted internship applications).
     * Pros: More powerful feature.
     * Cons: More complicate to implement.
-  
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Revert All feature
 This section elaborated the `revert_all` feature by its functionality and the path of execution together with the `RevertAllCommand` implementation. Uml diagram is used to aid this description.
@@ -775,6 +945,7 @@ The result model is saved. A `CommandResult` with execution result message is re
 
 The `RevertAllFeature` is an enhanced extension for the `RevertFeature`. It provides an execution for the series operations of the `RevertFeatures` at once.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Exit feature
 This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagram is used to aid this description.
@@ -806,6 +977,7 @@ A `CommandResult` with execution result message is returned until the `MainWindo
 The `ExitFeature` is a general, must-have feature. All the windows are cleaned-up upon exit to prevent illegal running of InternEase processes and the trigger of null-pointer exceptions.
 The `ExitFeature` also acts as the termination point for cacheList usage in the current session.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Add Interview Date feature 
 
@@ -818,7 +990,7 @@ The constructor of the class `AddInterviewDateCommand` requires 2 arguments, a v
 
 The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
 
-Given below is an explanation on the `add_contact` command's behaviours.
+Given below is an explanation on the `add_date` command's behaviours.
 
 Step 1. Parsing
 
@@ -834,7 +1006,7 @@ immutable, a new `InternshipApplication` object is created with the interview da
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 >**NOTE:**
 > Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
@@ -854,6 +1026,8 @@ adding a new internship application. This prevents the `AddCommand` from getting
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
 
+[Go back to Table of Contents](#table-of-contents)
+
 ### Side Features
 **All the side features share similar execution paths as their respective main features execution logic, only minor changes are applied.**
 
@@ -865,7 +1039,8 @@ For example, the main differences in these features are on the specific function
   - All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.<br/>
   - All commands here need to go through the `TaskParser` after being processed in the `InternEaseParser`.<br/>
   - For GUI settings, `Todo` uses `TodoListPanel`, `Note` uses `NoteListPanel`, while `Task` uses `MixedPanel`.<br/>
-  
+
+[Go back to Table of Contents](#table-of-contents)
   
 ### Task related features
 ### Find Task feature
@@ -882,6 +1057,7 @@ The execution process of `find_task` is demonstrated by the sequence diagram bel
 The `FindFeature` on `InternshipTodo` and `Note` are put together as `FindTaskFeature` because they have the same characteristic as a `Task`. It will enable the planning of internship
 application to be more effective.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### List Task feature
 #### How is the feature implemented
@@ -896,6 +1072,7 @@ The execution process of `list_task` is demonstrated by the activity diagram bel
 
 By implementing the listing of both `TodoList` and `NoteList` together, user can have a quick overview of current available `Todo Tasks` and long-lasting reminders -- `Notes`.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Todo related features
 ### Add Todo feature
@@ -907,6 +1084,7 @@ The execution of `AddTodoCommand` is similar to `AddCommand`, the main differenc
 The execution process of `add_todo` is demonstrated by the activity diagram below.<br/>
 ![AddTodoActivityDiagram](images/AddTodoActivityDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Clear Todo feature
 #### How is the feature implemented
@@ -917,6 +1095,7 @@ The execution of `ClearTodoCommand` is similar to `ClearCommand`. However, cache
 The execution process of `clear_todo` is demonstrated by the activity diagram below.<br/>
 ![ClearTodoActivityDiagram](images/ClearTodoActivityDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Delete Todo feature
 #### How is the feature implemented
@@ -927,6 +1106,7 @@ The execution of `DeleteTodoCommand` is similar to `DeleteCommand`. However, cac
 The execution process of `delete_todo` is demonstrated by the activity diagram below.<br/>
 ![DeleteTodoActivityDiagram](images/DeleteTodoActivityDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Edit Deadline feature
 #### How is the feature implemented
@@ -937,6 +1117,7 @@ The execution of `EditDeadlineCommand` is similar to `EditStatusCommand`, but it
 The execution process of `edit_deadline` is demonstrated by the sequence diagram below.<br/>
 ![EditDeadlineSequenceDiagram](images/EditDeadlineSequenceDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Edit Content feature
 #### How is the feature implemented
@@ -947,6 +1128,7 @@ The execution of `EditNoteContentCommand` is similar to `EditStatusCommand`, but
 The execution process of `edit_content` is demonstrated by the sequence diagram below.<br/>
 ![EditNoteContentSequenceDiagram](images/EditNoteContentSequenceDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### List Todo feature
 #### How is the feature implemented
@@ -957,6 +1139,7 @@ The execution of `ListTodoCommand` is similar to `ListCommand`.
 The execution process of `list_todo` is demonstrated by the activity diagram below.<br/>
 ![ListTodoActivityDiagram](images/ListTodoActivityDiagram.png)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Note related features
 
@@ -973,6 +1156,7 @@ The execution of `AddNoteCommand` is similar to `AddCommand`, the main differenc
 The execution process of `add_note` can be demonstrated by the activity diagram of `add_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
 > [Add Todo Feature](#add-todo-feature)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Clear Note feature
 #### How is the feature implemented
@@ -983,6 +1167,7 @@ The execution of `ClearNoteCommand` is similar to `ClearCommand`. However, cache
 The execution process of `clear_note` can be demonstrated by the activity diagram of `clear_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
 > [Clear Todo Feature](#clear-todo-feature)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Delete Note feature
 #### How is the feature implemented
@@ -993,6 +1178,7 @@ The execution of `DeleteNoteCommand` is similar to `DeleteCommand`. However, cac
 The execution process of `delete_note` can be demonstrated by the activity diagram of `delete_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
 > [Delete Todo Feature](#delete-todo-feature)
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### List Note feature
 #### How is the feature implemented
@@ -1003,6 +1189,7 @@ The execution of `ListNoteCommand` is similar to `ListCommand`.
 The execution process of `list_note` can be demonstrated by the activity diagram of `list_todo` by replacing `todo` related phrases or methods to `note` related phrases or methods.
 > [List Todo Feature](#list-todo-feature)
 
+[Go back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1013,6 +1200,8 @@ The execution process of `list_note` can be demonstrated by the activity diagram
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[Go back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1031,6 +1220,7 @@ The execution process of `list_note` can be demonstrated by the activity diagram
 
 **Value proposition**: manage internship applications faster and more efficiently than a typical mouse/GUI driven app
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### User stories
 
@@ -1048,6 +1238,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | internship applicant                       | delete all my applications                                                     | start fresh                                                                               |
 | `* * *` | internship applicant                       | update the status of my application as it progresses                           | identify which stage of the application I am in                                           |
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Use cases
 
@@ -1259,18 +1450,19 @@ Similar to `UC04 Delete contact details of the company for an internship applica
       Steps 3b1 to 3b2 are repeated until a valid command is provided.
       Use case resumes at step 4.
 
-**Use case: UC11 Find an application by its field**
+**Use case: UC11 Sort internship applications**
 
 **MSS**
 
-1.  User enters keyword of field for the application.
-2.  InternEase shows a list of application whose company name or description fulfill the matching keyword.
+1. User specifies the order, either company name, job title, status or interview date for the list of internship 
+applications to be sorted.
+2. InternEase shows the sorted list of application ordered by the attribute specified.
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-    * 1a1. InternEase shows an alert message that there is no internship application in the list.
+* 1a. User specifies more than one attribute.
+    * 1a1. InternEase notices user that the command format is invalid.
 
       Use case ends.
 
@@ -1414,70 +1606,137 @@ Similar to `UC17 Archive an internship application` except that the internship a
 
 Similar to `UC15 List` except that only archived internship applications are shown.
 
+**Use case: UC20 Find an application by its company name and job title**
+
+**MSS**
+
+1.  User specifies keyword for matching company name and job title for the internship application.
+2.  InternEase shows a list of application whose company name or job title fulfill the matching keyword.
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. InternEase notices user that there is no internship application in the list.
+
+      Use case ends.
+    
+**Use case: UC21 Find an application by its status**
+
+Similar to `UC20 Find an application by its company name and job title` except it's now finding by status.
+
+**Use case: UC22 Find an application by the range of interview date**
+
+Similar to `UC20 Find an application by its company name and job title` except user specifies a range of date when the interview date falls within.
+
 ### Side features
 
-**Use case: UC20 Add a todo task entry**
+**Use case: UC23 Add a todo task entry**
 
 Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
-**Use case: UC21 List todo**
+**Use case: UC24 List todo**
 
 Similar to `UC15 List` except todo tasks are listed instead of internship applications.
 
-**Use case: UC22 Edit the note content of a todo task**
+**Use case: UC25 Edit the note content of a todo task**
 
 Similar to `UC13 Edit the status of an internship application` except the note content of a todo task is edited.
 
-**Use case: UC23 Edit the deadline of a todo task**
+**Use case: UC26 Edit the deadline of a todo task**
 
 Similar to `UC13 Edit the status of an internship application` except the deadline of a todo task is edited.
 
-**Use case: UC24 Delete a todo task entry**
+**Use case: UC27 Delete a todo task entry**
 
 Similar to `UC10 Delete an internship application entry` except the specified todo task is deleted.
  
-**Use case: UC25 Clear all todo task entries**
+**Use case: UC28 Clear all todo task entries**
 
 Similar to `UC12 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
 
-**Use case: UC26 Add a note**
+**Use case: UC29 Add a note**
 
 Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
-**Use case: UC27 List note**
+**Use case: UC30 List note**
 
 Similar to `UC15 List` except note entries are listed instead of internship applications.
 
-**Use case: UC28 Delete a note entry**
+**Use case: UC31 Delete a note entry**
 
 Similar to `UC10 Delete an internship application entry` except the specified note entry is deleted.
 
-**Use case: UC29 Clear all note entries**
+**Use case: UC32 Clear all note entries**
 
 Similar to `UC12 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
 
-**Use case: UC30 List task**
+**Use case: UC33 List task**
 
 Similar to `UC15 List` except todo task entries and note entries are listed instead of internship applications.
 
-**Use case: UC31 Find a task by its field**
+**Use case: UC34 Find a task by its field**
 
-Similar to `UC11 Find an application by its field` except todo task entries and note entries which match the specified keyword are filtered out and listed.
+Similar to `UC20 Find an application by its company name and job title` except todo task entries and note entries which match the specified keyword are filtered out and listed.
+
+**Use case: UC35 Edit an internship application**
+
+**MSS**
+
+1.  User requests to view the list of internship applications.
+2.  InternEase shows the internship application list with their indexes specified.
+3.  User requests to edit the details of specific internship application in the list by specifying its index.
+4.  InternEase edits the details of the internship application and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no internship application in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new internship application index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The provided details is invalid.
+    * 3b1. InternEase shows an error message  and gives a specific suggestion on the format of valid details.
+    * 3b2. User enters new details.
+        
+      Steps 3b1 to 3b2 are repeated until valid details is provided. Use case resumes at step 4.
+  
+* 3c. The command format is invalid.
+    * 3c1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3c2. User enters a new command.
+
+      Steps 3c1 to 3c2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 internship applications without a noticeable increase in sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
-4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application.
-5. InternEase is unable to remind user through platform outside of the application.
+4. InternEase doesn't support storing the actual file for the resume and cover letter. User can only include links to their resume and cover letter used for a particular application.
+5. InternEase is unable to remind user through any platform outside of the application.
 
+[Go back to Table of Contents](#table-of-contents)
 
 ### Glossary
 
 * **CLI**: Command line interface
 * **GUI**: Graphical User interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **InternshipTodo**: Internships that are planned to apply
+* **Note**: Act as long-lasting reminders for future internship applications and interviews
+
+[Go back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1489,6 +1748,8 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
+[Go back to Table of Contents](#table-of-contents)
 
 ### Launch and shutdown
 
@@ -1516,7 +1777,14 @@ testers are expected to do more *exploratory* testing.
     2. All prior activities will be saved.
     3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
 
+[Go back to Table of Contents](#table-of-contents)
+
 ## **Appendix: Planned Enhancement**
 
 1. The current display duration may not suit everyone and the dialog content looks messy on showing all particulars. The display duration could be customized (can be decided by user) and the dialog content could be enhanced to show important particulars only in further enhancement.
 2. All commands are executable on any panel (e.g., command `delete_note 2` can delete the 2nd note even though the panel is showing the todo list only). We plan to have some enhancement on it by implementing some custom restrictions (can be decided by user) to limit the command executions according to the displaying GUI.
+3. The current method of displaying the details of an internship application by clicking the card on the left panel to display it on the right panel is less ideal to users who prefer to perform operations solely via CLI. We plan to enhance their user experience by including a `view` command in future iterations, allowing them to
+    show the details of an internship application on the right panel by including an `INDEX` when typing in the command.
+4. The current method for managing documents used for an internship application only supports `HTTP` and `HTTPS` links to those documents. We plan to enhance this feature by allowing users to upload the files directly to our app, so that they can view the file immediately without an Internet connection.
+
+[Go back to Table of Contents](#table-of-contents)

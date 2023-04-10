@@ -32,9 +32,9 @@ Given below are my contributions to the project.
         * Added use cases for `add` command in [#143](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/143)
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): To be added soon
-    * Contributed to forum discussions (examples: To be added soon)
-    * Reported bugs and suggestions for other teams in the class (examples: To be added soon)
+    * PRs reviewed (with non-trivial review comments): [262](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/262)
+    * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/360))
+    * Reported bugs and suggestions for other teams in the class: [CS2103-W17-4](https://github.com/zm-l/ped/issues)
 
 * **Tools**:
     * Java 11 and Java FX

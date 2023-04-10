@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.TaskType;
+import seedu.address.ui.popups.PopupAddInternship;
+import seedu.address.ui.popups.PopupEditInternship;
 import seedu.address.ui.task.note.NoteListPanel;
 import seedu.address.ui.task.todo.TodoListPanel;
 
@@ -40,6 +43,8 @@ public class MainWindow extends UiPart<Stage> {
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
     private ReminderWindow reminderWindow;
+    private PopupAddInternship popupAddInternship;
+    private ArrayList<PopupEditInternship> popupEditInternships = new ArrayList<>();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -195,6 +200,10 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         reminderWindow.hide();
         primaryStage.hide();
+        popupAddInternship.hide();
+        for (PopupEditInternship e : popupEditInternships) {
+            e.hide();
+        }
     }
 
     /**
@@ -231,6 +240,20 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MixedPanel getMixedPanel() {
         return mixedPanel;
+    }
+
+    /**
+     * Set add internship popup
+     */
+    public void setPopupAddInternship(PopupAddInternship popupAddInternship) {
+        this.popupAddInternship = popupAddInternship;
+    }
+
+    /**
+     * Add edit internship popup into the array
+     */
+    public void setPopupEditInternships(PopupEditInternship popupEditInternship) {
+        this.popupEditInternships.add(popupEditInternship);
     }
 
     /**

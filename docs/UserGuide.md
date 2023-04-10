@@ -17,7 +17,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
-    - [Add an internship application : `add`](#add-an-internship-application--add)
+    - [Manage  an internship application](#add-an-internship-application--add)
+        - [Add an internship application : `add`](#add-an-internship-application--add)
+        - [Edit an internship application : `edit`](#edit-an-internship-application--edit)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
@@ -35,7 +37,6 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Archive an application : `archive`](#archive-an-internship-application--archive)
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
-    - [Edit an internship application : `edit`](#edit-an-internship-application--edit)
     - [Displaying reminders : `remind`](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
@@ -105,6 +106,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 6. Refer to the [Features](#features) below for details of each command.
 
+[↑ Back to Top of Section](#quick-start) <br/>
+[↑ Back to Features Menu](#features-menu)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -114,19 +118,23 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/LinkedIn`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/COMPANY_NAME [l/LOCATION]` can be used as `n/LinkedIn l/Clementi` or as `n/LinkedIn`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[r/REVIEW]…​` can be used as ` ` (i.e. 0 times), `r/Close to MRT`, `r/Close to MRT t/Kind, inclusive bosses and colleagues` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/COMPANY_NAME j/JOB_TITLE`, `j/JOB_TITLE n/COMPANY_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `l/Clementi l/Changi`, only `l/Changi` will be taken.
+
+* Note that the following are reserved keyword in InternEase, and including these characters in the company name, job title,
+  review, and other fields may lead to unspecified behaviour:
+    * `n/`, `j/`, `r/`, `p/`, `q/`, `l/`, `s/`, `note/`, `rate/`, `reflect/`, `e/`, `by/`, `c/`, `d/`, `rs/`, `cl/`, `before/`, `after/`, `from/`, `to/`, 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -135,7 +143,13 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
   > InternEase has 4 window interfaces which include the internship application list, the todo list, the note list and the task list. 
   > All the commands can be used in any interface. If the command for a different interface is executed in current interface, the current interface will switch to the respective interface and display the result of the command.
 
+GUI Breakdown:
+![GuiOverview](images/ui/GuiOverview.png)
+
 </div>
+
+[↑ Back to Top of Section](#features) <br/>
+[↑ Back to Features Menu](#features-menu)
 
 ## Main features: Tracking applied internships
 
@@ -144,6 +158,8 @@ Shows user the link to user guide.
 
 Format: `help`
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Add an internship application : `add`
 
 Adds an internship application to the tracker
@@ -151,10 +167,18 @@ Adds an internship application to the tracker
 Format: `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
 - `SALARY` should be in the form of amount followed by a space and then the currency in upper case.
 
-
 Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer s/2000 SGD` adds an application for the Software Engineer role at LinkedIn with salary 2000 SGD.
+
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/add-internship-button.png" alt="Add Internship" height = "25"/> button to add a new internship application.
+2. A popup window similar to the image below will appear. <br/>
+<img align="center" src = "images/ui/popups/add-internship-popup.png" alt="Add Internship Popup">
+3. Fields that are marked with red asterisk are compulsory fields while others are optional fields.
+4. You can fill in the fields accordingly and press the `Add` button to execute the `add` command.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Edit an internship application : `edit`
 
@@ -172,6 +196,14 @@ Examples:
 * `edit 1 q/Singapore citizen q/Pursuing CS degree` updates the qualification of the internship with first index to `Singapore citizen` and `Pursuing CS degree`.
 * `edit 2 n/LinkedIn j/Data Engineer` updates the second internship company name to `LinkedIn` and job title to `Data Engineer`.
 
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/edit-internship-button.png" alt="Edit Internship" height = "25"/> button to edit an internship application.
+2. A popup window similar to the image below will appear. <br/>
+<img align="center" src = "images/ui/popups/edit-internship-popup.png" alt="Edit Internship Popup">
+3. You can fill in the fields accordingly and press the `Edit` button to execute the `edit` command.
+
+[↑ Back to Features Menu](#features-menu)
+
 ### Add an interview date : `add_date`
 
 Adds an interview date and time to an internship application.
@@ -186,6 +218,8 @@ Format: `add_date INDEX d/DATE_TIME`
 Examples:
 * `add_date 1 d/2023-05-02 11:30 AM` adds the date and time 2023-05-02 11:30 AM to the first application in the list of applications.
 * `add_date 2 d/2023-07-03 12:30 PM` adds the date and time 2023-07-03 12:30 PM to the second application in the list of applications.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Add contact details : `add_contact`
 
@@ -203,6 +237,8 @@ Format: `add_contact INDEX p/PHONE_NUMBER e/EMAIL`
 Examples:
 * `add_contact 1 p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the 1st application in the list of applications.
 * `add_contact 2 p/65432100 e/someemail@gmail.com` adds the contact number `65432100` and the email `someemail@gmail.com` to the 2nd application in the list of applications.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Edit contact details : `edit_contact`
 
@@ -222,6 +258,8 @@ Examples:
 * `edit_contact 2 e/someemail@gmail.com` updates the email of the company to `someemail@gmail.com` for the 2nd application in the list of applications.
 * `edit_contact 3 p/12345678` updates the contact number of the company to `12345678` for the 3rd application in the list of applications.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Delete contact details : `delete_contact`
 
 Deletes the contact details of a company previously added to a specified application.
@@ -234,6 +272,8 @@ Format: `delete_contact INDEX`
 
 Examples:
 * `delete_contact 1` deletes the contact number and email of the company for the 1st application in the list of applications.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Edit application status : `edit_status`
 
@@ -253,6 +293,8 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Add documents : `add_docs`
 
 Adds documents including a resume link and a cover letter link to a specified application.
@@ -270,6 +312,8 @@ Examples:
   and cover letter link `https://www.example.com/coverletter` to the 1st application in the list of applications.
 * `add_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter` adds the resume link `https://www.goodresume.com/myresume`
   and cover letter link `https://www.goodcoverletter.com/mycoverletter` to the 2nd application in the list of applications.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Edit documents : `edit_docs`
 
@@ -289,6 +333,8 @@ Examples:
 * `edit_docs 2 rs/https://www.example.com/resume` updates the resume link to `https://www.example.com/resume` for the 2nd application in the list of applications.
 * `edit_docs 3 cl/https://www.example.com/coverletter` updates the cover letter link to `https://www.example.com/coverletter` for the 3rd application in the list of applications.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Delete documents : `delete_docs`
 
 Deletes the documents previously added to a specified application.
@@ -300,6 +346,11 @@ Format: `delete_docs INDEX`
 
 Examples:
 * `delete_docs 1` deletes the documents for the 1st application in the list of applications.
+
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/delete-internship-button.png" alt="Delete Internship" height = "25"/> button to delete an internship application.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Archive an internship application : `archive`
 
@@ -313,6 +364,11 @@ Format: `archive INDEX`
 Examples:
 * `archive 1` archives the 1st application in the list of applications.
 
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/archive-internship-button.png" alt="Archive Internship" height = "25"/> button to archive an internship application that is not archived.
+
+[↑ Back to Features Menu](#features-menu)
+
 ### Unarchive an internship application : `unarchive`
 
 Unarchives a specified application that was previously archived so that it would be shown in the list of ongoing applications.
@@ -324,6 +380,11 @@ Format: `unarchive INDEX`
 
 Examples:
 * `unarchive 1` unarchives the 1st application in the list of applications.
+
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/archive-internship-button.png" alt="Archive Internship" height = "25"/> button to unarchive an internship application that is archived.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Display a list of archived internship applications : `list_archived`
 
@@ -337,6 +398,8 @@ Examples:
 * If there are no archived internship applications at the moment,
   "No archived applications at the moment" will be shown.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Delete an application of internship : `delete`
 
 Deletes the specified internship application from the list of internships applied
@@ -349,6 +412,11 @@ Format: `delete INDEX`
 
 Examples:
 * `delete 2` Deletes the 2nd internship application in the list of applications.
+
+GUI alternative:
+1. Click the <img align="center" src = "images/ui/buttons/delete-internship-button.png" alt="Delete Internship" height = "25"/> button to delete an internship application.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Clear internship application entries with keyword : `clear_by`
 
@@ -365,6 +433,8 @@ Examples:
 * `clear_by j/Software engineer` Clears all application with JOB_TITLE as Software Engineer.
 * `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Display a list of ongoing internship applications : `list`
 
 Displays a list of applied internships which are ongoing
@@ -377,6 +447,7 @@ Examples:
 * If there are no ongoing internship applications at the moment,
   "No applications at the moment" will be shown.
 
+[↑ Back to Features Menu](#features-menu)
 
 ### Sort all internship applications : `sort`
 
@@ -392,6 +463,7 @@ Example:
 * `sort d/` sorts all applications with their interview date in ascending order, those without interview date available
   yet will be placed at the end of the list.
 
+[↑ Back to Features Menu](#features-menu)
 
 ### Find internship applications by the company name, job title, status, or interview date : `find`
 
@@ -416,6 +488,8 @@ Examples:
 * `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
 2023-12-02 12:30 PM (inclusive).
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Displaying the internship application with the most imminent interview : `remind`
 
 Displays the details of an internship application with the earliest date in a pop up window, with reference to the 
@@ -423,11 +497,15 @@ current date and time.
   
 Format: `remind`
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Clearing all internship application entries : `clear`
 
 Clears all internship application entries from the internship tracker.
 
 Format: `clear`
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Revert a recently deleted internship application : `revert`
 
@@ -441,6 +519,8 @@ Examples:
    
 **This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Revert all recently deleted or cleared internship applications : `revert_all`
 
 Reverts all recent delete command or clear command and restores the affected data back to the end of the current internship applications list.
@@ -449,11 +529,15 @@ Format: `revert_all`
 
 **This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+[↑ Back to Features Menu](#features-menu)
 
 ## Side features: Planning to apply internships
 
@@ -468,6 +552,8 @@ Examples:
 * `list_task` shows all the todos and notes that the user has written all together in one window.
 * If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown in the result dialog.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Search for a task (todo and notes) : `find_task`
 
 Searches the recorded lists of todos and notes by keyword (company name in todos and note content in notes)
@@ -480,6 +566,8 @@ The keyword refers to the company name in todos or the note content in notes tha
 Examples:
 `find_task test week` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` that contain `test` or `week`.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Display a list of todo internship applications : `list_todo`
 
 Displays a list of todo applications (todo internship application)
@@ -490,6 +578,8 @@ Examples:
 
 * `list_todo` shows all the todo applications that the user has recorded.
 * If there are no todo applications for at the moment, `No todo at the moment` will be shown.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Add a todo application : `add_todo`
 
@@ -502,6 +592,8 @@ Format: `add_todo n/COMPANY_NAME j/JOB_TITLE by/DEADLINE`
 Examples:
 * `add_todo n/Facebook j/Product Manager by/2023-06-07` adds a todo application for the Product Manager role at Facebook. The internship should be applied by 7 June 2023.
 * `add_todo n/LinkedIn j/Software Engineer by/2023-10-04` adds a todo application for the Software Engineer role at LinkedIn.The internship should be applied by 4 October 2023.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Edit todo application deadline : `edit_deadline`
 
@@ -516,6 +608,8 @@ Format: `edit_deadline INDEX by/DEADLINE`
 
 Examples:
 * `edit_deadline 2 by/2023-07-06` Changes the deadline of the 2nd todo application in the todo list to `2023-07-06` (6 July 2023).
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Edit todo note content : `edit_content`
 
@@ -532,6 +626,8 @@ Format: `edit_content INDEX c/NOTE_CONTENT`
 Examples:
 * `edit_content 2 c/Venue changed` Changes the note content of the 2nd todo application in the todo list to `Venue changed`.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Delete a todo application : `delete_todo`
 
 Deletes the specified todo application from the todo list
@@ -546,6 +642,8 @@ Format: `delete_todo INDEX`
 Examples:
 * `delete_todo 2` Deletes the 2nd todo application in the todo list.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Clear all todo application entries : `clear_todo`
 
 Clears all todo application entries from the todo applications list
@@ -553,6 +651,8 @@ Clears all todo application entries from the todo applications list
 Format: `clear_todo`
 
 **Note that this action is irreversible**
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Display list of short note : `list_note`
 
@@ -564,6 +664,8 @@ Examples:
 * `list_note` shows all the notes that the user has written.
 * If there are no internships applied for at the moment, `No note at the moment` will be shown.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Add a note: `add_note`
 
 Adds a note to the note list.
@@ -573,6 +675,8 @@ Format: `add_note c/NOTE_CONTENT`
 
 Examples:
 * `add_note c/Focus on software engineering jobs!` adds a note with content `Focus on software engineering jobs!` into the note list.
+
+[↑ Back to Features Menu](#features-menu)
 
 ### Delete a note : `delete_note`
 
@@ -588,6 +692,8 @@ Format: `delete_note INDEX`
 Examples:
 * `delete_note 2` Deletes the 2nd note in the list of notes.
 
+[↑ Back to Features Menu](#features-menu)
+
 ### Clear all notes  : `clear_note`
 
 Clears all notes from the note.
@@ -595,6 +701,8 @@ Clears all notes from the note.
 Format: `clear_note`
 
 **Note that this action is irreversible**
+
+[↑ Back to Features Menu](#features-menu)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -605,6 +713,8 @@ Format: `clear_note`
 
 **Q**: How do I update the statistics at bottom right corner?<br>
 **A**: It's automatically update after you execute every command / action via either CLI or GUI.
+
+[↑ Back to Features Menu](#features-menu)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -648,3 +758,6 @@ Action | Format, Examples
 **Revert All**   | `revert_all`
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
 **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
+
+[↑ Back to Top of Section](#command-summary) <br/>
+[↑ Back to Features Menu](#features-menu)

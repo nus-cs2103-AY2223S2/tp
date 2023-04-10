@@ -1,4 +1,4 @@
-package seedu.address.ui.control;
+package seedu.address.ui.popups;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;

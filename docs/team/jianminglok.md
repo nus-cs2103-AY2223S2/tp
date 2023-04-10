@@ -19,7 +19,7 @@ Given below are my contributions to the project.
       * Credits: Some parts of the code was reused and adapted from the [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
     * Manage the documents of an internship application
       * What it does: Users are able to add links to documents consisting of a resume and a cover letter to an internship application, and edit and remove them afterwards.
-      * Justification: This features allows users to note the specific version of their resume and cover letter submitted for a particular application, allowing them to quickly refer to it before an interview.
+      * Justification: This features allows users to retrieve the specific version of their resume and cover letter submitted for a particular application for reference before an interview.
       * Highlights: A URL validation feature had to be implemented to ensure that the links to the documents provided by the user are valid.
     * Edit the status of an internship application
       * What it does: Users are able to update the status of their application to one of the following: `PENDING`, `RECEIVED`, `ACCEPTED`, `DECLINED`, `REJECTED`.
