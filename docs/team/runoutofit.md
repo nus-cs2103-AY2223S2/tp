@@ -21,6 +21,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=runoutofit&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+* **Enhancements implemented**: Refactored `delete_appt` to use index instead of `AppointmentID`, a feature i originally implemented but was ultimately scrapped as it was not intuitive.
+
 * **Project management**:
     * update project notes documents.
 
