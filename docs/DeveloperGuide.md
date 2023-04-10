@@ -175,22 +175,127 @@ Classes used by multiple components are in the `ezschedule.commons` package.
 ## **Implementation**
 
 --------------------------------------------------------------------------------------------------------------------
+EZ-Schedule mainly follows the Command design pattern. Elaboration on how the application parses commands is given in the
+_Architecture_ section above.
+
 This section describes some noteworthy details on how certain features are implemented.
 
 ### **Add Command**
 
-![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)  
-Activity Diagram for a typical `add` command
+For _Add_ command, the noteworthy classes are:
+- `AddCommandParser.java` - For parsing the arguments to `AddCommand.java`.
+- `AddCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+- ParseException for invalid time
+- CommandException for identical events
+- CommandException for events with clashing time
+
+Given below is an example usage scenario of how the _Add_ command executes.
+
+-- user input --  
+Step 1. User executes add command with correct and valid arguments.  
+
+-- `SchedulerParser` --  
+Step 2. Returns new `AddCommandParser`.  
+
+-- `AddCommandParser` --   
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.  
+Step 5. Verify that the given event start time is before end time.  
+Step 6. Returns new `AddCommand`.  
+
+-- `AddCommand` --   
+Step 7. Verify that the same event has not already been added.  
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.  
+Step 9. Event is added.  
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `add` command_
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
 ### **Recur Command**
 
+For _Recur_ command, the noteworthy classes are:
+- `RecurCommandParser.java` - For parsing the arguments to `RecurCommand.java`.
+- `RecurCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- ParseException for index out of range
+- CommandException for end dates in the past
+- CommandException for recur factor exceeding max allowable
+
+Given below is an example usage scenario of how the _Recur_ command executes.
+
+-- user input --   
+Step 1. User executes Recur command with correct and valid arguments.  
+
+-- `SchedulerParser` --  
+Step 2. Returns new `RecurCommandParser`.  
+
+-- `RecurCommandParser` --  
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.  
+Step 5. Returns new `RecurCommand`.  
+
+-- `RecurCommand` --  
+Step 6. Verify that the given index exist in Ez-Schedule.  
+Step 7. Verify that the given recurring end time is not in the past.  
+Step 8. For the given recur factor, verify that it is valid.  
+Step 9. Check all dates for event to be recurred on for any event clash.  
+Step 10. Add event into Ez-Schedule on all dates to be recurred.  
+
+The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
+
+_Activity Diagram for a typical `recur` command_
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
-Activity Diagram for a typical `recur` command
+
+_Activity: Check for time clash for all recurring dates._
+![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
 ### **Edit Command**
 
-![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)  
-Activity Diagram for a typical `edit` command
+For _Edit_ command, the noteworthy classes are:
+- `EditCommandParser.java` - For parsing the arguments to `EditCommand.java`.
+- `EditCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+- CommandException for index out of range
+- CommandException for identical events
+- CommandException for events with clashing time
+
+Given below is an example usage scenario of how the _Edit_ command executes.
+
+-- user input --  
+Step 1. User executes edit command with correct and valid arguments.
+
+-- `SchedulerParser` --  
+Step 2. Returns new `EditCommandParser`.
+
+-- `EditCommandParser` --   
+Step 3. Verify that at least one of the argument prefixes is present.  
+Step 4. Verify that provided arguments are valid.     
+Step 5. Returns new `EditCommand`.
+
+-- `EditCommand` --   
+Step 6. Verify that the given index exist in Ez-Schedule.  
+Step 7. Verify that the same event has not already been added.  
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.  
+Step 9. Event is edited.
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `edit` command_
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### **Delete Command**
 
@@ -213,10 +318,6 @@ Activity Diagram for a typical `next` command
 Activity Diagram for a typical `undo` command
 
 ### **List Command**
-
-### **Help Command**
-
-### **Exit Command**
 
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
