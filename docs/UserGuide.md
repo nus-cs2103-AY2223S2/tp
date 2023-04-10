@@ -309,7 +309,7 @@ Throughout this user guide, you may come across different formatting styles and 
 # **3. Overview of Features**
 
 If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually
-manage patient information and medicine inventory. That is why we have created CareFlow specifically designed to assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
+manage patient information and medicine inventory. That is why we have designed CareFlow to assist you with these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
 
 ## 3.1 Patient Information Management
 
