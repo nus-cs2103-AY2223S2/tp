@@ -147,7 +147,7 @@ class JsonAdaptedPerson {
         for (JsonAdaptedCca cca : ccas) {
             personCcas.add(cca.toModelType());
         }
-        if(majors.size() > 2) {
+        if (majors.size() > 2) {
             throw new IllegalValueException("Greater than three majors");
         }
 
