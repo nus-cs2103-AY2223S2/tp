@@ -6,6 +6,38 @@ title: User Guide
 <img class="ui-img" src="images/ug-images/vimification.png" alt="Logo" title="Vimification Logo">
 
 ## Table of Contents
+- [Introduction](#introduction)
+- [Purpose of this User Guide](#purpose-of-this-user-guide)
+- [Quick Start](#quick-start)
+  - [Installation](#installation)
+  - [For Windows](#for-windows)
+  - [For Mac](#for-mac)
+  - [Navigating Vimification](#navigating-vimification)
+  - [Exiting Vimification](#exiting-vimification)
+  - [Trying out the commands](#trying-out-the-commands)
+- [Using the commands](#using-the-commands)
+- [General information on a task's attributes](#general-information-on-a-tasks-attributes)
+- [Information on commands' parameters](#information-on-commands-parameters)
+- [Features and commands](#features-and-commands)
+  - [Viewing help](#viewing-help)
+  - [Adding task](#adding-task)
+  - [Inserting parameters to a task](#inserting-parameters-to-a-task)
+  - [Deleting task](#deleting-task)
+  - [Deleting parameters of a task](#deleting-parameters-of-a-task)
+  - [Editing task](#editing-task)
+  - [Filtering task](#filtering-task)
+  - [Sorting task](#sorting-task)
+  - [Undoing the previous command](#undoing-the-previous-command)
+  - [Using macro](#using-macro)
+  - [Defining new macro](#defining-new-macro)
+  - [Deleting a macro](#deleting-a-macro)
+  - [View all macros defined in the application](#view-all-macros-defined-in-the-application)
+  - [Exiting the application](#exiting-the-application)
+  - [Saving the task list data](#saving-the-task-list-data)
+  - [Editing existing task list data](#editing-existing-task-list-data)
+  - [Editing existing macro data](#editing-existing-macro-data)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 ## Introduction
 
@@ -157,10 +189,10 @@ In Vimification, a task can has the following attributes:
 
 | Attribute | Its meaning & purpose                                | Flag | The range of values it accepts |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------ |
-| Title     | Name or general description of a task.               | `-t` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*.  |
-| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of `yyyy-MM-dd`, `yyyy-MM-dd HH:mm`, `EEE` or `EEE HH:mm`^.   |
-| Labels    | The labels that the task has.                        | `-l` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*.  |
-| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, or 2. See below for more details.   |
+| Title     | Name or general description of a task.               | `-t` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*. |
+| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of `yyyy-MM-dd`, `yyyy-MM-dd HH:mm`, `EEE` or `EEE HH:mm`^. |
+| Labels    | The labels that the task has.                        | `-l` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*. |
+| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, or 2. See below for more details. |
 | Priority  | How important/urgent a task is.                      | `-p` | 0, 1, 2 or 3. See below for more details. |
 
 ^`EEE` format accepts the first 3 letters of a day of week (`Mon`, `Tue`, etc.), case insensitive.
@@ -502,12 +534,12 @@ If your changes to the data file makes its format invalid, Vimification will dis
 | Action               | Format                                                       |
 | -------------------- | ------------------------------------------------------------ |
 | View help            | `:help`                                                      |
-| Add task             | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>]...` |
-| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label>]...`            |
-| Delete task          | `:d <task_index>`                                            |
-| Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                       |
-| Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...` |
-| Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`     |
+| Add task             | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>]...`                                                   |
+| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label>]...`                                                              |
+| Delete task          | `:d <task_index>`                                                                                              |
+| Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                                                                         |
+| Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...`   |
+| Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...` |
 | Sort                 | `:s [-s] [-d] [-p]`                  |
 | Define macro         | `:macro -a <macro> <command_string>` |
 | Delete macro         | `:macro -d <macro>`                  |
