@@ -32,7 +32,9 @@ public class EditCommand extends Command {
             + "date-time of the patient identified by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_STATUS + "STATUS " + PREFIX_WARD + "WARD " + PREFIX_DISCHARGE + "DISCHARGE]\n"
+            + "[" + PREFIX_STATUS + "STATUS] " 
+            + "[" + PREFIX_WARD + "WARD] " 
+            + "[" + PREFIX_DISCHARGE + "DISCHARGE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STATUS + "GREEN " + PREFIX_WARD + "A1 " + PREFIX_DISCHARGE + "14/07/2023 1600 ";
 
