@@ -44,6 +44,7 @@ a feature [branch](https://www.atlassian.com/git/tutorials/comparing-workflows/f
 </div>
 
 ### How to Use
+
 This developer guide is broken down into 4 main sections:
 1. **[Design](#design)**, which provides details on the overall design and architecture of RIZZipe,
 2. **[Feature Implementation](#feature-implementation)**, which covers the implementation of some notable features of RIZZipe, 
@@ -53,6 +54,7 @@ This developer guide is broken down into 4 main sections:
 Any unfamiliar RIZZipe-specific terms can be found in the [glossary](#glossary) below.
 
 ### Acknowledgements
+
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
 
@@ -365,7 +367,9 @@ Pre-filling of recipe data into the text fields is implemented through the follo
 
 The following activity diagram summarizes the process when a user edits a recipe using the recipe form:
 
-<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="650"/>  
+<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="1128"/>  
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">
 
