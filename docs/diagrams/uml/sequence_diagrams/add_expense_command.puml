@@ -1,4 +1,5 @@
 @startuml  AddExpenseSequenceDiagram
+!include ../../style.puml
 
 hide footbox
 skinparam MinClassWidth 50
@@ -7,33 +8,27 @@ skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
-box Model #F97181
-participant "newExpense: Expense" as Expense order 2
-participant "dataModel: Model" as Model order 3
-participant "expenseTracker: ExpenseTracker" as ExpenseTracker order 4
-participant "expenses: ExpenseList" as ExpenseList order 5
+box Model MODEL_COLOR_T1
+participant "newExpense: Expense" as Expense order 2 MODEL_COLOR
+participant "dataModel: Model" as Model order 3 MODEL_COLOR
+participant "expenseTracker: ExpenseTracker" as ExpenseTracker order 4 MODEL_COLOR
+participant "expenses: ExpenseList" as ExpenseList order 5 MODEL_COLOR
 end box
-skinparam Sequence {
-    MessageAlign center
-    BoxFontSize 15
-    BoxPadding 0
-    BoxFontColor #FFFFFF
-    ReferenceBackgroundColor #FFFFFF
-}
 
-box Logic #C8C8FA
-participant ":AddExpenseCommand" as Command  order 1
+box Logic LOGIC_COLOR_T1
+participant ":AddExpenseCommand" as Command LOGIC_COLOR
+participant ":CommandResult" as Result LOGIC_COLOR
 end box
 
 [->Command: execute(dataModel)
-activate Command #LightBlue
+activate Command
 Command -> Expense: getCategory()
 activate Expense
 Expense --> Command: newCategory
 deactivate Expense
 Command -> Model : getCategoryInstance(newCategory)
 ref over Model, ExpenseTracker
-    : get existing category
+    get existing category
 end ref
 Model --> Command: existingCategory
 alt existingCategory != null
@@ -41,8 +36,8 @@ alt existingCategory != null
     activate Expense
     Expense -> Model
     ref over Model
-        : sets category to
-        : link to existing one.
+        sets category to
+        link to existing one.
     end ref
     Model --> Expense
     Expense --> Command
@@ -55,8 +50,8 @@ else else
 
     ExpenseTracker -> ExpenseList
     ref over ExpenseList
-        : add newCategory to
-        : ObervableList<Expense>
+        add newCategory to
+        ObservableList<Expense>
     end ref
     ExpenseList --> ExpenseTracker
     ExpenseTracker --> Model
@@ -85,11 +80,11 @@ activate Model
 deactivate Model
 Model --> Command
 deactivate Model
-create ":CommandResult" as CommandResult order 1
-Command -> CommandResult
-activate CommandResult #SpringGreen
-CommandResult --> Command
-deactivate CommandResult
+create Result
+Command -> Result
+activate Result
+Result --> Command
+deactivate Result
 [<-- Command: result
 destroy Command
 
