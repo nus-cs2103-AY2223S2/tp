@@ -23,6 +23,8 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**: Refactored `delete_appt` to use index instead of `AppointmentID`, a feature i originally implemented but was ultimately scrapped as it was not intuitive.
 
+<div style="page-break-after: always;"></div>
+
 * **Project management**:
     * update project notes documents.
 
