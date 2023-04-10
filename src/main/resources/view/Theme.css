@@ -199,40 +199,40 @@
 }
 
 /* styles the individual stats in the list view */
-#reviewStatsPane {
+#reviewStatsElement {
     -fx-background-radius: 15;
     -fx-border-radius: 15;
     -fx-background-color: transparent;
 }
 
-#reviewStatsPane #title {
+#reviewStatsElement #title {
     -fx-text-fill: black;
     -fx-underline: true;
 }
 
-#reviewStatsPane #description {
+#reviewStatsElement #description {
     -fx-text-fill: black;
     -fx-font-size: 20px;
 }
 
-#ReviewCardPane {
+#ReviewElementPane {
     -fx-background-color: #524cd1;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-#ReviewCardPane .label{
+#ReviewElementPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: white;
     -fx-padding: 5;
 }
 
-#ReviewCardPane #question {
+#ReviewElementPane #question {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI Semibold";
 }
 
-#ReviewCardPane #id {
+#ReviewElementPane #id {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI Semibold";

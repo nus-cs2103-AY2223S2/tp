@@ -779,28 +779,24 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exit` <br>
        Expected: Exists the program. Window is closed.
 
-###\# Saving data
+## Appendix: Effort
 
-1. Dealing with missing/corrupted data files
+### User-friendly UI
+The original AB3 program's list view of persons is not practical for a flashcard application where users need to manage/review decks and cards. In addition, our PowerCards application requires two interfaces for the user: one for managing cards and decks and another for review sessions.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+To address these issues, we implemented a dual panel layout that allows users to view useful information side by side, helping them keep track of their progress and execute commands efficiently. In main mode (deck selected or unselected), the left panel is dedicated to decks while the right panel is dedicated to cards, enabling users to manage both easily.
+
 
 ## Appendix: Effort
 
 ### Challenges
 
-#### User-friendly UI
-The original AB3 program displays a list of persons in a single panel, which is not practical for a flashcard application where the user needs to manage both decks and cards. In addition, our application requires 2 interfaces for the user, one when the user is managing their cards and decks, and another when they are in a review session.
-To address this, we used a dual panel layout that provides users with useful information side by side, making it easier for them to keep track of their progress and execute commands.
+During review mode, the left panel displays review statistics while the right panel shows the current card being reviewed.
 
-When in main mode (deck selected or unselected), we designed the left dedicated to decks and another on the right dedicated to cards. This design allows the user to easily manage their decks and cards when in main mode.
-<br>
-When in review mode, the left panel shows review statistics while the right panel displays the current card being reviewed. 
-<br>
 
-In terms of colour scheme, we felt that the dark theme of AB3 was uninspiring and designed and implemented our own light theme to give this app a nice, warm and welcoming feel. 
+Regarding the color scheme, we felt that AB3's dark theme was uninspiring, so we designed and implemented our own light theme. This new theme gives the app a warm, welcoming feel that enhances the user's experience.
 
-#### Extensive testing
+### Extensive testing
 Our application has a total of 26 unique commands, as compared to 8 unique commands in AB3. With the increased number of commands, along with the increased number of classes to support these commands, means that code coverage is likely to decrease and more testing had to be done.
 * `MAIN_SELECTED_MODE` has a total of 11 accessible commands. 
 * `MAIN_UNSELECTED_MODE` has a total of 11 accessible commands.

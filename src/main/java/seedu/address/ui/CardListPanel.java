@@ -45,7 +45,7 @@ public class CardListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ReviewCard} using a {@code CardElement}.
+     * Custom {@code ListCell} that displays the graphics of a {@code ReviewElement} using a {@code CardElement}.
      */
     static class ReviewCardListViewCell extends ListCell<Card> {
         @Override
@@ -56,7 +56,7 @@ public class CardListPanel extends UiPart<Region> {
                 setText(null);
 
             } else {
-                setGraphic(new ReviewCard(card).getRoot());
+                setGraphic(new ReviewElement(card).getRoot());
                 setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 80 10 80; "
                         + "-fx-background-color:#e6eaeb ");
             }

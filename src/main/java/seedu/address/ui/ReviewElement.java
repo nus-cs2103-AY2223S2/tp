@@ -11,9 +11,9 @@ import seedu.address.model.tag.Tag;
 /**
  * A UI component that displays information of a flipped {@code Card} under review.
  */
-public class ReviewCard extends UiPart<Region> {
+public class ReviewElement extends UiPart<Region> {
     private static final String EMPTY_STRING = "";
-    private static final String FXML = "ReviewCard.fxml";
+    private static final String FXML = "ReviewElement.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -37,7 +37,7 @@ public class ReviewCard extends UiPart<Region> {
     /**
      * Creates a {@code CardCode} with the given {@code Card} and index to display.
      */
-    public ReviewCard(Card card) {
+    public ReviewElement(Card card) {
         super(FXML);
         this.card = card;
 
