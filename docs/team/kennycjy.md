@@ -26,6 +26,11 @@ Given below are my contributions to the project.
         * Updated the developer guide for areas pertaining to `Tag` and `Untag`
         * Updated the developer guide for testing to allow new developers to understand the types of testing we did and the rationale behind choosing such types.
 
+* **Testing**:
+  * Testing for `Tag` and `Untag` commands as the command was implemented.
+  * More tests were carried out and changed as the command evolved to take on more executions.
+
+
 * **Community**:
   * [PRs Authored](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+author%3Akennycjy)
   * [PRs reviewed](https://github.com/AY2223S2-CS2103T-W14-2/tp/pulls?q=is%3Apr+commenter%3Akennycjy+-author%3Akennycjy)
