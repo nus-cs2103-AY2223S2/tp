@@ -19,15 +19,11 @@ Careflow can get your patient and drugs management tasks done faster than tradit
         * What it does: Added `JsonSerializableDrug` and `JsonSerializablePatient` classes to allow storage of patient and drug model in Json format.
         * Credits: adapted from existing AddressBook code.
 
-<br/>
-
 * **Minor enhancement**:
     * Recolour the Dark Theme  (Pull request [\#103](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/103))
       * Recolour the DarkTheme to suit the theme of clinic management by adapting a blue color theme.
       * Credits: adapted the css files from existing AddressBook code.
     * Set up UI for drug tab. (Pull request [\#10](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/10))
-
-<br/>
 
 * **New Features**:
   * Restructure the UI 
@@ -40,17 +36,11 @@ Careflow can get your patient and drugs management tasks done faster than tradit
   * Added View Command (Pull request [\#183](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/183))
     * Implement new command to view the patient/drug detail at the patient/drug display section by inputting their index. 
     
-<br/>    
-    
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cshuwen&breakdown=true)
-
-<br/>
 
 * **Enhancements to existing features**:
     * Wrote additional tests for Logic Manager and all patient commands files to increase coverage by 27.7% (Pull request [\#144](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/144),  [\#136](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/136))
     * Bug fixing received from PE-D (Pull request [\#294](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/294), [\#284](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/284), [\#274](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/274))
-
-<br/>
 
 * **Documentation**:
     * User Guide:
@@ -64,8 +54,6 @@ Careflow can get your patient and drugs management tasks done faster than tradit
       * Added implementation details, sequence diagram and class diagram, architecture diagram for the Architecture section. (Pull requests [\#166](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/166), [\#163](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/163))
       * Added user stories of DG. (Pull request [\#35](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/35))
       * Added Non-functional requirements of DG. (Pull request [\#35](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/35))
-
-<br/>
 
 * **Community**:
     * PRs reviewed for teammate (with non-trivial review comments): [\#62](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/62), [\#66](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/66), [\#101](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/101), [\#102](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/102),  [\#117](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/117)
