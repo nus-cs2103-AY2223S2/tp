@@ -8,7 +8,6 @@ import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.person.Person;
 import seedu.address.model.time.TimeMask;
 
 /**
@@ -90,66 +89,20 @@ public class RecurringEventList {
         return recurringEvent;
     }
 
-    /**
-     * This function cross-check with the isolated event list to check for any conflicts
-     * @param recurringEvent is the event to be added
-     * @param isolatedEventList is the event list to be checked with
-     * @throws EventConflictException if there is a conflicted event
-     */
-    public static void listConflictedEventWithIsolated(
-            RecurringEvent recurringEvent, IsolatedEventList isolatedEventList) throws EventConflictException {
 
-        int index = 1;
-        for (IsolatedEvent ie : isolatedEventList.getIsolatedEvents()) {
-            LocalDateTime startPeriod = ie.getStartDate();
-            LocalDateTime endPeriod = ie.getEndDate();
-
-            long count = recurringEvent.numberOfDaysBetween(startPeriod, endPeriod, recurringEvent.getDayOfWeek());
-
-            if (count == -1) {
-                continue;
-            }
-
-            LocalDateTime recurringEventDate = startPeriod.plusDays(count);
-
-            LocalDateTime dummyEventStartDate =
-                    LocalDateTime.of(recurringEventDate.toLocalDate(), recurringEvent.getStartTime());
-
-            LocalDateTime dummyEventEndDate =
-                    LocalDateTime.of(recurringEventDate.toLocalDate(), recurringEvent.getEndTime());
-
-            boolean isEventBefore = false;
-            boolean isEventAfter = false;
-
-            if (!dummyEventStartDate.isAfter(startPeriod) && !dummyEventEndDate.isAfter(startPeriod)) {
-                isEventBefore = true;
-            }
-
-            if (!dummyEventStartDate.isBefore(endPeriod) && !dummyEventEndDate.isBefore(endPeriod)) {
-                isEventAfter = true;
-            }
-
-            if (!(isEventBefore || isEventAfter)) {
-                throw new EventConflictException("Isolated Event List:\n" + index + " " + ie);
-            }
-
-        }
-    }
 
     /**
      * Checks if the newly edited recurring event clashes with any preexisting recurring events
-     * @param person that the recurring event below
      * @param newlyEditedRecurringEvent the new event to replace the original event
      * @param original recurring event to be replaced
      * @throws EventConflictException
      */
-    public static void checkForClashesInRecurringEvent(Person person, RecurringEvent newlyEditedRecurringEvent,
+    public void checkForClashesInRecurringEvent(RecurringEvent newlyEditedRecurringEvent,
                                                        RecurringEvent original) throws EventConflictException {
-        RecurringEventList recurringEventList = person.getRecurringEventList();
 
-        for (int i = 0; i < recurringEventList.getSize(); i++) {
+        for (int i = 0; i < this.getSize(); i++) {
 
-            RecurringEvent curRecurringEvent = recurringEventList.getRecurringEvent(i);
+            RecurringEvent curRecurringEvent = this.getRecurringEvent(i);
 
             if (curRecurringEvent.equals(original)) {
                 continue;

@@ -14,15 +14,26 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `wheregottime.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/releases).
+2. Download the latest `wheregottime.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to an **empty** folder that you want to use as the _home folder_ for your WhereGotTime. (e.g.: A new folder in your `Desktop`)
+3. Copy the file to an **empty** folder that you want to use as the _home folder_ for your WhereGotTime. (e.g.: A new folder in your `Desktop`)
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wheregottime.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. 
+   1. On Windows, you can click the `wheregottime.jar` file to run the application:
+   ![WindowsFileExplorerFolder](images/windowsTutorial/WindowsFileExplorerFolder.png)
+   2. Alternatively, open a command terminal:
+      1. On Windows: Click the file path bar and type `cmd` and press the `Enter` button to start the command prompt:
+      ![WindowsFileExplorerCMD](images/windowsTutorial/WindowsFileExplorerCMD.png)
+      A window similar to the one below should appear:
+      ![WindowsCMD](images/windowsTutorial/WindowsCMD.png)
+      Run the command `java -jar wheregottime.jar` to start the application:
+      ![WindowsJARCommand](images/windowsTutorial/WindowsJARCommand.png)
+      2. **INSERT MACOS TUTORIAL HERE**
+         
+5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all contacts.
@@ -35,7 +46,7 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -352,6 +363,18 @@ Format: `free GROUP_INDEX [f/START_DATE]`
   not provided, then the current date will be used.
 * `START_DATE` must be of the format: `dd/MM/yyyy`
 * Note that if there are any changes to a person's event(s), the time table will only be updated upon entering the `free` command.
+
+Example:
+
+![Free time](images/FreeTime.png)
+1) Let's say you want to find a free time slot within the group 'CS2103'.
+2) Type the command `free` followed by the group index. In this case, the group index is 2.
+3) Hit enter.
+
+![Free time](images/FreeTime2.png)
+1) The free time slots will be generated and shown below.
+2) The free time slots are shown from the current day that the command is entered.
+3) However, if you would like to change the start date, you can indicate the `START_DATE` but it is optional.
 
 ## Data-related commands
 ### Importing data : `import`

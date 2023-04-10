@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +24,7 @@ import seedu.address.model.person.Person;
  */
 public class EditIsolatedEventCommand extends Command {
     public static final String COMMAND_WORD = "ie_edit";
-    public static final String MESSAGE_SUCCESS = "Isolated event edited to: %1$s";
+    public static final String MESSAGE_SUCCESS = "Isolated event edited to: %1$s for %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
 
@@ -77,15 +78,21 @@ public class EditIsolatedEventCommand extends Command {
 
         IsolatedEvent originalEvent = personToEdit.getIsolatedEventList().getIsolatedEvent(eventIndex.getZeroBased());
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
+        IsolatedEventList isolatedEventList = personToEdit.getIsolatedEventList();
 
-        editedIsolatedEvent.checkDateTime();
-        personToEdit.getIsolatedEventList().checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
-        IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
+        try {
+            editedIsolatedEvent.checkDateTime();
+            isolatedEventList.checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
+            editedIsolatedEvent.checkConflictsRecurringEventList(
+                    personToEdit.getRecurringEventList());
+        } catch (EventConflictException e) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, e.getMessage()));
+        }
 
+        isolatedEventList.edit(originalEvent, editedIsolatedEvent);
+        model.setPerson(personToEdit, personToEdit);
 
-        model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " for " + personToEdit.getName()
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent, personToEdit.getName())
                 + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
     }
 

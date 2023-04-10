@@ -72,8 +72,8 @@ public class DeleteIsolatedEventCommand extends Command {
         if (event == null) {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_ISOLATED_EVENT);
         }
-
-        model.deleteIsolatedEvent(personToEdit, event);
+        isolatedEventList.deleteIsolatedEvent(event);
+        model.setPerson(personToEdit, personToEdit);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, event) + " to "
                 + personToEdit.getName());
