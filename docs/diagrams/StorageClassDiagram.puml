@@ -11,33 +11,33 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as Storage1
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "DegreeProgression Storage" #F4F6F6{
+Class "<<interface>>\nDegreeProgressionStorage" as DegreeProgressionStorage
+Class JsonDegreeProgressionStorage
+Class JsonSerializableDegreeProgression
+Class JsonAdaptedModule
 Class JsonAdaptedTag
 }
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> Storage1
 
-StorageManager .up.|> Storage
+StorageManager .up.|> Storage1
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" DegreeProgressionStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage1 -left-|> UserPrefsStorage
+Storage1 -right-|> DegreeProgressionStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonDegreeProgressionStorage .up.|> DegreeProgressionStorage
+JsonDegreeProgressionStorage ..> JsonSerializableDegreeProgression
+JsonSerializableDegreeProgression --> "*" JsonAdaptedModule
+JsonAdaptedModule --> "*" JsonAdaptedTag
 
 @enduml

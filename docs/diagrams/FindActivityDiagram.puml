@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid single module inputted])
+    :Update filteredModuleList and display
+    the filtered module on GUI;
+
+else ([else])
+    if () then ([valid prefix(es) with detail(s) inputted])
+        :Update filteredModuleList and display
+        the filtered modules on GUI;
+    else ([else])
+        :Throw ParseException due to
+        invalid formatting or missing details;
+    endif
+endif
+
+stop
+@enduml

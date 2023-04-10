@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes delete command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([all keyword inputted])
+    :Delete all modules in UniqueModuleList;
+
+else ([else])
+    if () then ([no modules inputted])
+    :Show incorrect format
+    error message;
+
+    else ([else])
+        :Delete valid modules inputted in UniqueModuleList;
+        :Show success message that shows the modules deleted and modules not found
+        from the inputted modules;
+    endif
+endif
+stop
+@enduml

@@ -1,0 +1,13 @@
+{
+  "modules": [ {
+    "code": "VA2023",
+    "credit": "4",
+    "semYear": "Y4S2",
+    "grade": "C+"
+  }, {
+    "code": "ComSci2022",
+    "credit": "948",
+    "semYear": "Y4S2",
+    "grade": "c"
+  } ]
+}

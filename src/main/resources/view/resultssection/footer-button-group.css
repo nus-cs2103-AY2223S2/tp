@@ -1,0 +1,8 @@
+.footer-button-group {
+    -fx-padding: 20 0 0 0;
+    -fx-spacing: 10;
+}
+
+.footer-buttons-deco {
+    -fx-fill: white;
+}

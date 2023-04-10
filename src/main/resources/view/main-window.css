@@ -1,0 +1,13 @@
+#main-window {
+    -fx-padding: 20;
+
+    -fx-font-family: 'Lexend Deca Medium', sans-serif;
+    -fx-font-size: 12;
+    -fx-font-weight: 700;
+
+    -fx-background-color: -black;
+}
+
+#body {
+    -fx-padding: 20 10;
+}

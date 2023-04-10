@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.control.*?>
+
+<Label fx:id="userDialogText" wrapText="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="user-dialog-text">
+    <stylesheets>
+        <URL value="@user-dialog.css" />
+    </stylesheets>
+</Label>

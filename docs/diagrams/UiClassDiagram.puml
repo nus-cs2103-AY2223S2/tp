@@ -6,15 +6,22 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
-Class CommandBox
+
+Class ProgressSection
+Class DoughnutChart
+
+Class ResultsSection
+Class ModuleListSection
+Class ModuleSearchSection
+Class ModuleList
+Class ModuleGroup
+Class ModuleCard
+
+Class CliSection
+Class CliScreen
+Class CliInput
 }
 
 package Model <<Rectangle>> {
@@ -30,31 +37,27 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow *-down->  "1" CliSection
+MainWindow *-down-> "1" ResultsSection
+ResultsSection *-down-> "1" ProgressSection
+ResultsSection *-down-> "1" ModuleListSection
+ResultsSection *-down-> "1" ModuleSearchSection
 
-PersonListPanel -down-> "*" PersonCard
+ProgressSection *-down-> "1" DoughnutChart
 
-MainWindow -left-|> UiPart
+ModuleListSection *-down-> "1" ModuleList
+ModuleSearchSection *-down-> "1" ModuleList
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+CliSection *-down-> "1" CliScreen
+CliSection *-down-> "1" CliInput
 
-PersonCard ..> Model
+ModuleList *-down-> "*" ModuleGroup
+ModuleGroup *-down-> "1..*" ModuleCard
+
+
+ModuleList ..> Model
+DoughnutChart ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
-
-MainWindow -[hidden]-|> UiPart
 @enduml

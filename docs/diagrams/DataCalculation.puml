@@ -1,0 +1,33 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+
+start
+:DegreeProgressionData.generate(UniqueModuleList) is executed;
+
+if () then ([module is multi-tagged])
+    :Adds to stack;
+
+else ([module is single-tagged])
+    :Compute single-tagged modules <$rake>;
+endif
+
+if () then ([stack is not empty])
+    :Compute multi-tagged modules <$rake>;
+else ([else])
+endif
+
+:Expand the UE total based on duplicated MCs;
+:Calculates the CAP;
+:Calculates the meaningful credits;
+:Calculates the overall percentage;
+stop
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+
+start
+
+repeat
+    :Pop a multi-tagged module;
+    if () then ([module is completed and gradeable])
+        :Calculates total MCs to be mapped by module;
+        :Calculates duplicate MCs caused by module;
+        :Counts the module under the requirement;
+        if () then ([module exercises SU option])
+        else ([else])
+            :Counts the module into CAP;
+        endif
+    else ([module is planned])
+        :Counts the module as planned;
+    endif
+repeat while () is ([stack not empty])
+-> stack is empty;
+
+stop
+@enduml
