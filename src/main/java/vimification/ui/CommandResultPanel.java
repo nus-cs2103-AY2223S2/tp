@@ -12,6 +12,7 @@ import vimification.internal.command.CommandResult;
  * after the user inputs a command.
  */
 public class CommandResultPanel extends UiPart<HBox> {
+
     private static final String FXML = "CommandResultPanel.fxml";
     private MainScreen mainScreen;
 
@@ -37,7 +38,6 @@ public class CommandResultPanel extends UiPart<HBox> {
      */
     public void display(CommandResult result) {
         resultField.setText(result.getFeedbackToUser());
-        System.out.println("CommandResultPanel.resultField: " + resultField.getText());
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
         pause.setOnFinished(e -> resultField.setText(""));
         pause.play();

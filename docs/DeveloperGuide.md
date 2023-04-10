@@ -23,6 +23,13 @@ If you're interested in contributing to the Vimification project, this Developer
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [Implementation](#implementation)
+  - [ApplicativeParser\<T\>](#applicativeparsert)
+  - [Command parser](#command-parser)
+  - [Command implementation](#command-implementation)
+  - [Atomic data modification](#atomic-data-modification)
+  - [Undo feature](#undo-feature)
+  - [Macro feature](#macro-feature)
+  - [Syncing view with internal logic](#syncing-view-with-internal-logic)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -31,6 +38,9 @@ If you're interested in contributing to the Vimification project, this Developer
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a task](#deleting-a-task)
+  - [Saving data](#saving-data)
 
 ---
 
@@ -642,6 +652,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 - 1e. The status is invalid.
+
+  - 1e1. Vimification shows an error message.
+
+- 1e. The status is invalid.
   - 1e1. Vimification shows an error message.
 
 **Use case 2: Delete a task**
@@ -700,15 +714,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1d. The attribute does not exist.
 
-  - 1d1. Vimification shows an error message.
+<<<<<<< HEAD
 
-  Use case ends.
+- 1d1. Vimification shows an error message.
+
+Use case ends.
+
+- 1e. The attribute (only for label) does not exist.
+
+  - 1e1. Vimification shows an error message.
+
+# Use case ends.
+
+    - 1d1. Vimification shows an error message.
+
+Use case ends.
 
 - 1e. The attribute (only for label) does not exist.
 
   - 1e1. Vimification shows an error message.
 
 Use case ends.
+
+> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
 
 **Use case 4: Inserting an attribute (deadline and/or label) to a task**
 
@@ -802,15 +830,23 @@ Use case ends.
 
   Use case ends.
 
-**Use case 6: Filter for tasks based on certain conditions**
+# <<<<<<< HEAD
+
+> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
+> > > > > > > **Use case 6: Filter for tasks based on certain conditions**
 
 **MSS**
 
 1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search.
+    <<<<<<< HEAD
 2.  Vimification converts the conditions into a predicate.
-3.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
+3.  # Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
+4.  Vimification converts the conditions into a predicate.
+5.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
 
-    Use case ends.
+    > > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
+
+        Use case ends.
 
 **Extensions**
 
@@ -874,7 +910,10 @@ Use case ends.
 
     Use case ends.
 
-**Use case 8: Adds a macro command**
+# <<<<<<< HEAD
+
+> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
+> > > > > > > **Use case 8: Adds a macro command**
 
 **MSS**
 
@@ -921,7 +960,10 @@ Use case ends.
 
     Use case ends.
 
-**Use case 10: Refresh the task list**
+# <<<<<<< HEAD
+
+> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
+> > > > > > > **Use case 10: Refresh the task list**
 
 **MSS**
 
@@ -965,7 +1007,13 @@ Use case ends.
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **GUI**: Graphical User Interface
-- **UML** Unified Modeling Language
+  <<<<<<< HEAD
+- # **UML** Unified Modeling Language
+- **UML**: Unified Modeling Language
+
+---
+
+> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
 
 ---
 

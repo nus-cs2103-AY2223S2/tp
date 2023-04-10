@@ -17,7 +17,7 @@ public class UiManager implements Ui {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
-    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/vimification.png";
 
     private Logic logic;
@@ -34,9 +34,7 @@ public class UiManager implements Ui {
      */
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting UI...");
-
-        // Set the application icon.
+        LOGGER.info("Starting UI...");
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
@@ -54,9 +52,8 @@ public class UiManager implements Ui {
             scene.getRoot().requestFocus();
             primaryStage.setScene(scene); // Setting the stage to show our screen
             primaryStage.show();
-
-        } catch (Throwable e) {
-            logger.severe(StringUtil.getDetails(e));
+        } catch (Throwable ex) {
+            LOGGER.severe(StringUtil.getDetails(ex));
         }
     }
 

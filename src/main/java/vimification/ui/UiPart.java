@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import vimification.MainApp;
+import vimification.common.core.LogsCenter;
+import vimification.common.util.StringUtil;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc. It
@@ -17,6 +20,8 @@ public abstract class UiPart<T extends Node> {
 
     /** Resource folder where FXML files are stored. */
     public static final String FXML_FILE_FOLDER = "/view/";
+
+    private static final Logger LOGGER = LogsCenter.getLogger(UiPart.class);
 
     private final FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -75,8 +80,8 @@ public abstract class UiPart<T extends Node> {
         fxmlLoader.setRoot(root);
         try {
             fxmlLoader.load();
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException ex) {
+            LOGGER.info(StringUtil.getDetails(ex));
         }
     }
 
