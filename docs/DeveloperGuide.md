@@ -1342,7 +1342,7 @@ testers are expected to do more *exploratory* testing.
   * Appointment has to sort accordingly from earliest to latest. Required to use a comparator class to compare the different dates and delete the overdue dates.
 * View command for Summary panel.
   * Putting all the different client's attributes into a single card and automatically update. Learn from AB3, use ObservableList to make the changes to automatically update.
-
+<div style="page-break-after: always;"></div>
 ### Achievements
 
 * Displaying out all the different tabs and panels for UI
