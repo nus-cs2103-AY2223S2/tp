@@ -28,16 +28,20 @@ slots within a group of NUS friends, and keep track of personal and friends' tim
   
 
 * **Contributions to the UG**:
-  * Added documentation for the features `Creating an event`, `Deleting an event`and `Editing an event`.
+  * Added documentation for the `event_create_recur` feature
+  * Added documentation for the `re_edit` feature
+  * Added documentation for the `re_delete` feature
   * Added details for `Command summary`.
 
 
 * **Contributions to the DG**:
   * Updated user stories for adding and editing events
-  
+  * Added details for implementation of `event_create_recur` feature
+  * Added details in manual testing for `Creating an Isolated event` and `Creating Recurring event`
+
 
 * **Contributions to team-based tasks**:
-
+  * Contributed to the demo video
 
 * **Contributions beyond the project team**:
   * Left detailed bug reports for other teams: [Bugs](https://github.com/Alvozyn/ped/issues)
