@@ -965,7 +965,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. FitBook displays that there are no matches.
 
       Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC13 - Export Client List**
 
 **MSS**
@@ -997,7 +997,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. FitBook shows an error message.
 
       Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC15 - Add routine**
 
 **MSS**
@@ -1049,7 +1049,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. FitBook shows an error for missing fields.
 
       Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC17 - Edit routine or exercise in routine**
 
 **MSS**
@@ -1097,7 +1097,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. FitBook shows an error for missing client index number.
 
       Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC19 - Add weight**
 
 **MSS**
@@ -1139,7 +1139,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. FitBook shows an error for invalid client.
 
       Use case ends.
-
+<div style="page-break-after: always;"></div>
 ---
 ### Non-Functional Requirements
 
@@ -1163,7 +1163,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Ui**: User interface of the program where the user interacts with
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 >## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
