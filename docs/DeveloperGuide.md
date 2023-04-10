@@ -493,7 +493,7 @@ objects which is then used elsewhere in the codebase.
 `HourBlock` is an object which represents an hour of time.
 
 #### **TimeBlock**
-`TimeBlock` is an object which can represent any (non-negative) hour of time.
+`TimeBlock` is an object which can represent any positive hour of time.
 
 #### **TimePeriod**
 `TimePeriod` is the parent class of both `HourBlock` and `TimeBlock`. Hence, we often use `TimePeriod` when passing arguments around.
