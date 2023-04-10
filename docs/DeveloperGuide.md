@@ -39,7 +39,7 @@ title: Developer Guide
     - [Deleting a person](#deleting-a-person)
     - [Finding a person](#finding-a-person)
     - [Saving and Loading data](#saving-and-loading-data)
-- [Appendix: Planned Enhancements](#appendix--planned-enhancements)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
