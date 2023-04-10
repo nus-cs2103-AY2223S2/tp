@@ -330,7 +330,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
   * Cons: Could lead to frustration or confusion if users don't understand why they're seeing old results instead of new ones.
 
 ### 3.4 Finding a Task's Assignees
-Syntax: `findt TASKNAME` 
+Syntax: `findt TITLE` 
 
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
 
@@ -479,7 +479,7 @@ information, the user can choose to view the comprehensive User Guide instead.
 
 ### 3.8 Unassigning a Task from a Person
 
-Syntax: `unassign pi/PERSON_INDEX ti/TASK_INDEX`  
+Syntax: `unassign pi/INDEX ti/INDEX`  
 Purpose: Allows users to unassign a task from a person in OfficeConnect.
 
 
@@ -1355,38 +1355,20 @@ testers are expected to do more *exploratory* testing.
   1. There are assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons with assignments.
      2. Test case: `viewassignedall` <br>
-        Expected: All assigned tasks and persons are displayed. "Displayed all assigned tasks and persons" shown in feedback message.
+        Expected: All assigned tasks and persons are displayed. "Listed all assigned person(s) and task(s)" shown in feedback message.
      3. Test case: `viewassignedp` <br>
-        Expected: All assigned persons are displayed. "Displayed all assigned persons" shown in feedback message.
+        Expected: All assigned persons are displayed. "Listed all assigned person(s)" shown in feedback message.
      4. Test case: `viewassignedt` <br>
-        Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in feedback message.
+        Expected: All assigned tasks are displayed. "Listed all assigned task(s)" shown in feedback message.
 
-  2. There are no assigned tasks and persons in OfficeConnect.
-     1. Prerequisites: There are no tasks and persons with assignments.
-     2. Test case: `viewassignedall` <br>
-        Expected: No tasks or persons are displayed. "There are no assigned tasks or persons" shown in feedback message.
-     3. Test case: `viewassignedp` <br>
-        Expected: No persons are displayed. "There are no assigned persons" shown in feedback message.
-     4. Test case: `viewassignedt` <br>
-        Expected: No tasks are displayed. "There are no assigned tasks" shown in feedback message.
-
-  3. There are unassigned tasks and persons in OfficeConnect.
+  2. There are unassigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons without assignments.
      2. Test case: `viewunassignedall` <br>
-        Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in feedback message.
+        Expected: All unassigned tasks and persons are displayed. "Listed all unassigned person(s) and task(s)" shown in feedback message.
      3. Test case: `viewunassignedp` <br>
-        Expected: All unassigned persons are displayed. "Displayed all unassigned persons" shown in feedback message.
+        Expected: All unassigned persons are displayed. "Listed all unassigned person(s)" shown in feedback message.
      4. Test case: `viewunassignedt` <br>
-        Expected: All unassigned tasks are displayed. "Displayed all unassigned tasks" shown in feedback message.
-
-  4. There are no unassigned tasks and persons in OfficeConnect.
-     1. Prerequisites: There are no tasks and persons without assignments.
-     2. Test case: `viewunassignedall` <br>
-        Expected: No tasks or persons are displayed. "There are no unassigned tasks or persons" shown in feedback message.
-     3. Test case: `viewunassignedp` <br>
-        Expected: No persons are displayed. "There are no unassigned persons" shown in feedback message.
-     4. Test case: `viewunassignedt` <br>
-        Expected: No tasks are displayed. "There are no unassigned tasks" shown in feedback message.
+        Expected: All unassigned tasks are displayed. "Listed all unassigned task(s)" shown in feedback message.
 
 
 ### 7.12 Viewing Task and Person details
