@@ -1213,18 +1213,27 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) \\
       Expected: Similar to previous.
+   
 2. Deleting multiple students while all students are being shown
+
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   
    2. Test case: `delete 1 2`  \\
       Expected: First and second entries are deleted from the list. Details of the deleted students shown in the status message.
+   
    3. Test case: `delete 0 1`  \\
       Expected: No students are deleted. Error details shown in the status message. Status bar remains the same.
+
 3. Deleting one / multiple student(s) while on a filtered list
+
    1. Prerequisites: Filter the students using the `find` or `filter` command such that there are at least **2** students in the filtered list.
+   
    2. Test case: `delete 1`  \\
       Expected: First entry is deleted from the list. Details of the deleted student shown in the status message.
+   
    3. Test case: `delete 1 2`  \\
       Expected: First and second entries deleted from the list. Details of the deleted students shown in the status message.
+   
    4. Test case: `delete 0 1`  \\
       Expected: No students are deleted. Error details shown in the status message. Status bar remains the same.
 
@@ -1235,16 +1244,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List any existing students using the `list` command.
 
-   2. Test case: `add n/Shaun`  \\
+   2. Test case: `add n/Shaun` \\
       Expected: New student is added to the bottom of the student list. Details shown only include the name.
    
-   3. Test case: `add n/Shaun n/Benny`  \\
+   3. Test case: `add n/Shaun n/Benny` \\
       Expected: New student is added to the bottom of the student list. Details shown only includes the last parameter specified, `Benny`.
 
    4. Test case: `add n/Shaun xxx/PARAMETER...` (where xxx is any of the valid prefixes, PARAMETER is any valid input for the respective prefix and ... indicates any number of optional prefixes etc.) \\
       Expected: Similar to previous, details included in the entry are the valid inputs specified.
 
-   5. Test case: `add p/999`  \\
+   5. Test case: `add p/999` \\
       Expected: No student is added to the list. The error message shown details `Invalid command format!` followed by the `add` command format and example.
 
    6. Test case: `add` \\
@@ -1274,22 +1283,22 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `edit 1 xxx/PARAMETER...` (where xxx is a valid prefix and PARAMETER is a valid input for the respective prefix and ... indicates any number of additional xxx/PARAMETER) \\
       Expected: Same as before except updated/added detail(s) are the specified inputs.
    
-   5. Test case: `edit` \\ 
+   5. Test case: `edit` \
       Expected: No student in the list is edited. The error message shown details `Invalid command format!` followed by the `edit` command format and example.
-
+   
    6. Test case: `edit 1 i/` \\
       Expected: Same as previous.
 
-   8. Test case: `edit 1` \\
+   7. Test case: `edit 1` \\
       Expected: No student in the list is edited. The error message shown states `The person index provided is invalid`.
 
-   9. Test case: `edit xxx` (where xxx is any invalid index such as 0, -1, an index greater than the length of the list) \\
+   8. Test case: `edit xxx` (where xxx is any invalid index such as 0, -1, an index greater than the length of the list) \\
       Expected: Same as previous.
    
-   10. Test case: `edit 1 n/???` \\
-       Expected: No student in the list is edited. The error message shown details the requirements for a valid name parameter input.
+   9. Test case: `edit 1 n/???` \\
+      Expected: No student in the list is edited. The error message shown details the requirements for a valid name parameter input.
    
-   11. Test case: `edit 1 xxx/INVALID_PARAMETER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
+   10. Test case: `edit 1 xxx/INVALID_PARAMETER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
        Expected: Similar to previous, except error message is specific to the first prefix with an invalid parameter.
 
 ### Find student entries
@@ -1299,74 +1308,58 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all students using the `list` command.
    
    2. Test case: `find` \\
-   
       Expected: All students will be listed.
       
    3. Test case: `find xxx/` (where xxx is any parameters other than t/ and m/) \\
-   
       Expected: All students will be listed.
       
    4. Test case: `find x/` (where xxx is parameters t/ or m/) \\
-   
       Expected: No students will be listed.
       
    5. Test case: `find yyy` (where yyy is anything) \\
-   
       Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
       
    6. Test case: `find xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
-   
       Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
       
    7. Test case: `find x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
-   
       Expected: Entries in the x field with data that fully matches with yyy will be shown.
       
    8. Test case: `find xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
-   
       Expected: Entries that matches with all fields of aaa will be shown.
       
    9. Test case: `find INVALID_PREFIX/KEYWORD` \\
-   
       Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
 
 ### Filter student entries
 
 1. Filtering students while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command.
-  
-   2. Test case: `filter` \\
-  
-      Expected: No students will be listed.
-     
-   3. Test case: `filter xxx/` (where xxx is any parameters other than t/ and m/) \\
-  
-      Expected: All students will be listed.
-     
-   4. Test case: `filter x/` (where xxx is parameters t/ or m/) \\
-  
-      Expected: No students will be listed.
-     
-   5. Test case: `filter yyy` (where yyy is anything) \\
-  
-      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
-     
-   6. Test case: `filter xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
-  
-      Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
-     
-   7. Test case: `filter x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
-  
-      Expected: Entries in the x field with data that fully matches with yyy will be shown.
-     
-   8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple `aaa/xxx`) \\
-  
-      Expected: Entries that match with at least one fields of aaa will be shown.
-     
-   9. Test case: `filter INVALID_PREFIX/KEYWORD` \\
-  
-      Expected: Error message shows `Invalid command format!` followed by the `filter` command format and example.
+  1. Prerequisites: List all students using the `list` command.
+
+  2. Test case: `filter` \\
+     Expected: No students will be listed.
+
+  3. Test case: `filter xxx/` (where xxx is any parameters other than t/ and m/) \\
+     Expected: All students will be listed.
+
+  4. Test case: `filter x/` (where xxx is parameters t/ or m/) \\
+     Expected: No students will be listed.
+
+  5. Test case: `filter yyy` (where yyy is anything) \\
+     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+
+  6. Test case: `filter xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+     Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+
+  7. Test case: `filter x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+     Expected: Entries in the x field with data that fully matches with yyy will be shown.
+
+  8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+     Expected: Entries that matches with at least one fields of aaa will be shown.
+
+  9. Test case: `filter INVALID_PREFIX/KEYWORD` \\
+     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
      
 ### Showing a student entry
 
@@ -1392,17 +1385,24 @@ testers are expected to do more *exploratory* testing.
 ### Editing a student's remarks
 
 1. Editing a student's remarks while all students are being shown
+
    1. Prerequisites: List all students using the `list` command. At least 1 student in the list.
-   2. Test case: `remark 1` followed by entering `This is a test remark`, then `CTRL` + `S` to save \
-      Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". Upon pressing `CTRL` + `S`, pop up window closes and remarks for first entry edited to become "This is a test remark".
-   3. Test case: `remark 0` \
-      Expected: No pop-up box appears. The error message shown states `The person index provided is invalid`.
-   4. Prerequisites: Student at index 1 has some remarks written.
-   5. Test case: `remark 1` followed by removing all existing remarks, then `CTRL` + `S` to save \
-      Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". The remarks for the first entry is displayed in the text box. After pressing `CTRL` + `S` after removing all existing remarks, pop up window closes and remarks for first entry is deleted.
-   6. Test case: `remark 1 This is a test remark` \
-      Expected: No pop up window appears. Status message displays details of first entry, with the remark changed to `This is a test remark`.
-   7. Other incorrect remark commands to try: `remark`, `remark x`, `remark -1`. \
+   
+      1. Test case: `remark 1` followed by entering `This is a test remark`, then `CTRL` + `S` to save \
+         Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". Upon pressing `CTRL` + `S`, pop up window closes and remarks for first entry edited to become "This is a test remark".
+   
+      2. Test case: `remark 0` \
+         Expected: No pop-up box appears. The error message shown states `The person index provided is invalid`.
+   
+   2. Prerequisites: Student at index 1 has some remarks written.
+   
+      1. Test case: `remark 1` followed by removing all existing remarks, then `CTRL` + `S` to save \
+         Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". The remarks for the first entry is displayed in the text box. After pressing `CTRL` + `S` after removing all existing remarks, pop up window closes and remarks for first entry is deleted.
+   
+      2. Test case: `remark 1 This is a test remark` \
+         Expected: No pop up window appears. Status message displays details of first entry, with the remark changed to `This is a test remark`.
+   
+   3. Other incorrect remark commands to try: `remark`, `remark x`, `remark -1`. \
       Expected: Pop up window does not appear. No remarks are edited. Error details shown in the status message. Status bar remains the same.
 
 [↑ Back to top](#table-of-contents)
