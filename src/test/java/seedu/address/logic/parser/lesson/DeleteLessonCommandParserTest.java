@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,10 +21,10 @@ public class DeleteLessonCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        List<String> inputNames = new ArrayList<>(Arrays.asList("Alice", "Bob"));
+        List<String> inputNames = new ArrayList<>(List.of("Alice"));
         NamePredicate namePredicate = new NamePredicate(inputNames);
         Index targetIndex = Index.fromOneBased(1);
-        String userInput = " " + PREFIX_NAME + "Alice " + PREFIX_NAME + "Bob " + PREFIX_INDEX + "1";
+        String userInput = " " + PREFIX_NAME + "Alice " + PREFIX_INDEX + "1";
         DeleteLessonCommand expectedCommand = new DeleteLessonCommand(inputNames, namePredicate, targetIndex);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneDate;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneDone;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneLesson;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
@@ -76,11 +79,13 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_LESSON).isPresent()) {
+            checkMaxOneLesson(argMultimap);
             String lessonSubject = argMultimap.getValue(PREFIX_LESSON).get();
             lessonPredicate = new LessonSubjectPredicate(lessonSubject);
         }
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
+            checkMaxOneDone(argMultimap);
             String done = argMultimap.getValue(PREFIX_DONE).get();
             if (!done.equals("done") && !done.equals("not done")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -91,6 +96,7 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
 
         // If date is present, create a predicate to filter by status
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            checkMaxOneDate(argMultimap);
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
             LessonBelongsToDatePredicate datePredicate = new LessonBelongsToDatePredicate(targetDate);

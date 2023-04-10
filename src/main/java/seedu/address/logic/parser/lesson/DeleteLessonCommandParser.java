@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNullIndex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,9 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteLessonCommand.MESSAGE_USAGE));
         }
+
+        checkUniqueNotNullIndex(argMultimap);
+        checkUniqueNotNUllName(argMultimap);
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         // for all the names, trim the name and only take the first word
