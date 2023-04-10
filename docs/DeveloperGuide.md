@@ -315,7 +315,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: initialising the components in the correct sequence, and connecting them up with each other.
-* At shut down: Shutting down the components and invoking cleanup methods where necessary.
+* At shut down: shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -344,7 +344,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
+<img src="images/ComponentManagers1.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>

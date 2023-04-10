@@ -25,6 +25,6 @@ LogicManager .[LOGIC_COLOR]left.|> Logic1
 ModelManager .[MODEL_COLOR]left.|> Model1
 StorageManager .[STORAGE_COLOR]left.|> Storage1
 
-LogicManager -[LOGIC_COLOR]right-> Model
-LogicManager -[LOGIC_COLOR]-> Storage
+LogicManager -[LOGIC_COLOR]right-> Model1
+LogicManager -[LOGIC_COLOR]-> Storage1
 @enduml
