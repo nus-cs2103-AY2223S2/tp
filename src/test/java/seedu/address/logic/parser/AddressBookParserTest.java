@@ -15,27 +15,34 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CreateSessionCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkAttendanceCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.StudentAddCommand;
+import seedu.address.logic.commands.StudentRemoveCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnmarkAttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagContainsGroupsPredicate;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
-
-
-
+import seedu.address.testutil.SessionBuilder;
 
 
 public class AddressBookParserTest {
@@ -48,6 +55,56 @@ public class AddressBookParserTest {
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
+
+    @Test
+    public void parseCommand_createSession() throws Exception {
+        Session session = SessionBuilder.generateDefaultSession();
+        String createSessionCommand = "create-session "
+                + "n/Hall "
+                + "s/10-03-2022 10:00 to 10-03-2022 11:00 "
+                + "l/Leon Lim Sports Hall Of Champions";
+        CreateSessionCommand command = (CreateSessionCommand) parser.parseCommand(createSessionCommand);
+        assertEquals(new CreateSessionCommand(session), command);
+    }
+
+    @Test
+    public void parseCommand_deleteSession() throws Exception {
+        String deleteSessionCommand = "delete-session 1";
+        DeleteSessionCommand command = (DeleteSessionCommand) parser.parseCommand(deleteSessionCommand);
+        assertEquals(new DeleteSessionCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_studentAdd() throws Exception {
+        SessionName name = new SessionName("Hall");
+        String studentAddCommand = "student-add 1 n/hall";
+        StudentAddCommand command = (StudentAddCommand) parser.parseCommand(studentAddCommand);
+        assertEquals(new StudentAddCommand(INDEX_FIRST_PERSON, name),
+                command);
+    }
+
+    @Test
+    public void parseCommand_studentRemove() throws Exception {
+        SessionName name = new SessionName("Hall");
+        String studentRemoveCommand = "student-remove 1 n/hall";
+        StudentRemoveCommand command = (StudentRemoveCommand) parser.parseCommand(studentRemoveCommand);
+        assertEquals(new StudentRemoveCommand(INDEX_FIRST_PERSON, name),
+                command);
+    }
+
+    @Test
+    public void parseCommand_mark_unmark() throws Exception {
+        Name name = new Name("Bob");
+        String markAttendanceCommand = "mark 1 n/bob";
+        String unmarkAttendanceCommand = "unmark 1 n/bob";
+        MarkAttendanceCommand markCommand = (MarkAttendanceCommand) parser.parseCommand(markAttendanceCommand);
+        UnmarkAttendanceCommand unmarkCommand = (UnmarkAttendanceCommand) parser.parseCommand(unmarkAttendanceCommand);
+        assertEquals(new UnmarkAttendanceCommand(INDEX_FIRST_PERSON, name),
+                unmarkCommand);
+        assertEquals(new MarkAttendanceCommand(INDEX_FIRST_PERSON, name),
+                markCommand);
+    }
+
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -78,19 +135,20 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_find_show() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+
+        ShowCommand showCommand = (ShowCommand) parser.parseCommand(
+                ShowCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new ShowCommand(new TagContainsGroupsPredicate(keywords)), showCommand);
     }
 
     @Test
     public void parseCommand_show() throws Exception {
-        List<String> groups = Arrays.asList("foo", "bar", "baz");
-        ShowCommand command = (ShowCommand) parser.parseCommand(
-                ShowCommand.COMMAND_WORD + " " + groups.stream().collect(Collectors.joining(" ")));
-        assertEquals(new ShowCommand(new TagContainsGroupsPredicate(groups)), command);
+
     }
 
     @Test

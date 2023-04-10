@@ -61,7 +61,6 @@ public class StudentAddCommand extends Command {
                     model.getAddressBook().getSessionList()
             ));
         }
-
         //Find session
         Session sessionToBeAddedTo = model.getSessionFromName(sessionName);
 
@@ -73,9 +72,16 @@ public class StudentAddCommand extends Command {
                             sessionName
                     ));
         }
-
         model.addPersonToSession(studentToAdd, sessionToBeAddedTo);
         model.commitAddressBook();
         return new CommandResult(String.format(SESSION_ADD_PERSON_SUCCESS, studentToAdd.getName(), sessionToBeAddedTo));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StudentAddCommand // instanceof handles nulls
+                && index.equals(((StudentAddCommand) other).index)
+                && sessionName.equals(((StudentAddCommand) other).sessionName)); // state check
     }
 }
