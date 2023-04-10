@@ -154,6 +154,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In the sequence diagrams, all the dotted lines representing the return values from the function calls may look like solid lines due to the resolution of the images.
+</div>
+
 ### \[Implemented] Add person feature
 
 #### Current Implementation
