@@ -6,6 +6,11 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+Tutee Managing System (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
@@ -328,12 +333,24 @@ All of the fields are required to be filled in order for the command to make a c
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                            | So that I can…​                                         |
-|----------|--------------------------------------------|-----------------------------------------|---------------------------------------------------------|
-| `* * *`  | tutor user managing students               | add students                            | add students that I am tutoring                         |
-| `* * *`  | tutor user  managing students              | delete students                         | remove students that I no longer tutor                  |
-| `* * *`  | tutor user managing students               | list students                           | display all students that are tutored by me             |
-| `* * *`  | user                                       | save my work locally                    | come back to view or edit it in the future              |
+| Priority | As a …​               | I want to …​                                                                | So that I can…​                                                                                           |
+|----------|-----------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `* * *`  | tutor                 | add students                                                                | add students that I am tutoring                                                                           |
+| `* * *`  | tutor                 | delete students                                                             | remove students that I no longer tutor                                                                    |
+| `* * *`  | tutor                 | list students                                                               | display all students that are tutored by me                                                               |
+| `* * *`  | tutor                 | save my work locally                                                        | come back to view or edit it in the future                                                                |
+| `* *  `  | tutor                 | edit students                                                               | change my student's information easily                                                                    |
+| `* *  `  | tutor                 | find students by name                                                       | quickly locate my student by name                                                                         |
+| `* *  `  | tutor                 | filter students by their fields                                             | quickly locate students that fit the criteria that I want to look for (e.g. filter s/math sch/saturday    |
+| `* *  `  | first time tutor user | clear managing system                                                       | clear the samples student information and input my own students                                           |
+| `* *  `  | tutor                 | add a student with the same personal information and with new edited fields | quickly add the same student with different a different subject and schedule                              |
+| `* *  `  | new tutor user        | look at the user guide                                                      | look at the commands that are available to use                                                            |
+| `* *  `  | tutor                 | keep track of my students learning progress                                 | plan my lessons better for each individual student                                                        |
+| `* *  `  | tutor                 | mark my students attendance                                                 | keep track of the number of lessons I have given to each student for uses such as payment                 |
+| `* *  `  | tutor                 | undo the mark of my students attendance                                     | undo the attendance of a student on a particular date                                                     |
+| `* *  `  | tutor                 | find the students that were taught on a given date                          | quickly find out which student I taught on a date to calculate information such as payment of the student |
+| `* *  `  | tutor                 | write a remark for my student                                               | keep track of the individual remarks of each of my student                                                |
+| `*   `   | tutor                 | be reminded of my next lesson and the time                                  | remember to go for all of my lessons on time                                                              |
 
 *{More to be added}*
 
@@ -450,4 +467,10 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Appendix: Instructions for manual testing
+
+### Appendix: Effort
+
+### Appendix: Planned enhancement
