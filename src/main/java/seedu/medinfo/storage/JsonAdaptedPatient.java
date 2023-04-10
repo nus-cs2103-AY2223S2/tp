@@ -102,8 +102,6 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(Discharge.MESSAGE_CONSTRAINTS);
         }
         final Discharge modelDischarge = new Discharge(discharge);
-
-
         return new Patient(modelNric, modelName, modelStatus, modelWard, modelDischarge);
     }
 

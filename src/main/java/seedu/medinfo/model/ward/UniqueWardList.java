@@ -34,11 +34,11 @@ import seedu.medinfo.model.ward.exceptions.WardNotFoundException;
  */
 public class UniqueWardList implements Iterable<Ward> {
 
+    private static final WardName WAITING_ROOM = new WardName("Waiting Room");
     private final ObservableList<Ward> internalList = FXCollections.observableArrayList();
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
-    private static final WardName WAITING_ROOM = new WardName("Waiting Room");
     /**
      * Initializes empty wardlist.
      */
@@ -47,14 +47,14 @@ public class UniqueWardList implements Iterable<Ward> {
     }
 
     /**
-     * Initializes NEW wardlist with default Waiting Room ward with capacity of 10
+     * Initializes new wardlist with default Waiting Room ward with capacity of 10
      * inside.
      */
-    public UniqueWardList NewUniqueWardList() {
-        Ward WaitingRoom = new Ward(WAITING_ROOM);
-        UniqueWardList NewUniqueWardList = new UniqueWardList();
-        NewUniqueWardList.add(WaitingRoom);
-        return NewUniqueWardList;
+    public UniqueWardList newUniqueWardList() {
+        Ward waitingRoom = new Ward(WAITING_ROOM);
+        UniqueWardList newUniqueWardList = new UniqueWardList();
+        newUniqueWardList.add(waitingRoom);
+        return newUniqueWardList;
     }
 
     /**

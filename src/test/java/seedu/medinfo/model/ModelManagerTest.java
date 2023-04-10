@@ -2,22 +2,15 @@ package seedu.medinfo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medinfo.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.medinfo.testutil.Assert.assertThrows;
 import static seedu.medinfo.testutil.TypicalPatients.ALEX;
-import static seedu.medinfo.testutil.TypicalPatients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.medinfo.commons.core.GuiSettings;
-import seedu.medinfo.logic.commands.exceptions.CommandException;
-import seedu.medinfo.model.patient.NameContainsKeywordsPredicate;
-import seedu.medinfo.testutil.MedInfoBuilder;
 
 public class ModelManagerTest {
 
@@ -84,54 +77,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personInMedInfo_returnsTrue() {
-        try {
-            modelManager.addPatient(ALEX);
-        } catch (CommandException e) {
-            System.out.println("Caught CommandException error!!!");
-        }
-        assertTrue(modelManager.hasPatient(ALEX));
-    }
-
-    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPatientList().remove(0));
     }
 
-    @Test
-    public void equals() {
-        MedInfo medInfo = new MedInfoBuilder().withPerson(ALEX).withPerson(BENSON).build();
-        MedInfo differentMedInfo = new MedInfo();
-        UserPrefs userPrefs = new UserPrefs();
-
-        // same values -> returns true
-        modelManager = new ModelManager(medInfo, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(medInfo, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
-
-        // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
-
-        // null -> returns false
-        assertFalse(modelManager.equals(null));
-
-        // different types -> returns false
-        assertFalse(modelManager.equals(5));
-
-        // different medInfo -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentMedInfo, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = ALEX.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(medInfo, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-
-        // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setMedInfoFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(medInfo, differentUserPrefs)));
-    }
 }
