@@ -13,7 +13,7 @@ If you're eager to get started with TeachMeSenpai, head over to [Setting up, get
 ## **Table of Contents**
 {:.no_toc}
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
