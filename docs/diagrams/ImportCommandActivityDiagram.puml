@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes command;
+
+if () then ([command is valid])
+    if () then ([file exists])
+        :Read data in file;
+        if () then ([person in list])
+            :Combine data to create new Person;
+            :Replace person in list with new person;
+        else ([else])
+            :Create new person based on data;
+            :Insert new person into list;
+        endif
+    else ([else])
+    endif
+
+else([else])
+endif
+stop
+@enduml

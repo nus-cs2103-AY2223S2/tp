@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T09-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,18 +36,19 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components and an extra `Importer` component.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Importer`**](#importer-component): Imports data from export files.
 
 
 **How the architecture components interact with each other**
@@ -61,6 +62,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
+**NOTE**: The `Importer` class works separately and is described in further detail below.
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -69,13 +72,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +89,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +117,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -134,7 +137,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -142,6 +145,16 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+### Importer Component
+**API**: [`Importer.java`](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Importer.java)
+
+<img src="images/ImporterClassDiagram.png" width="150" />
+
+The `Importer` component,
+* is used to import data from export files
+* is only used by the specific command `ImportCommand` in order to read the data from the given export file.
+
 
 ### Common classes
 
@@ -402,7 +415,7 @@ The following activity diagram summarises what happens when a user executes an `
 
 <img src="images/AddIsolatedEventCommandActivityDiagram.png" width="300" />
 
-### Sequence diagram
+#### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call.
 
@@ -444,12 +457,12 @@ person's IsolatedEventList.
 ### \[Developed\] Editing Isolated Event
 This feature allows the user to edit a specific isolated event in the person's isolated event list.
 
-### Activity Diagram
+#### Activity Diagram
 The following activity diagram summarises what happens when a user executes an `ie_edit` command:
 
 <img src="images/EditIsolatedEventCommandActivityDiagram.png" width="300" />
 
-### Sequence diagram
+#### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call.
 
@@ -502,7 +515,7 @@ The recurring event list is fix to span over 7 days from Monday to Sunday, while
 Since there is only 7 days in the recurring event list, it would be guaranteed that the TimeMask will only have a maximum of 7 days. Therefore, updating the 
 TimeMask while adding a recurring event is possible and convenient for finding free time slots.
 
-### Sequence diagram
+#### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call.
 
@@ -549,7 +562,7 @@ Time slot finding feature requires a few pre-processing steps to function with e
 Instead of traversing through the IsolatedEvents and RecurringEvents of each Person in the Group, it would be a better to have some an auxiliary table to reduce computation. 
 The current implementation uses the idea of a bitmask to determine which intervals are occupied. A TimeMask is simply an array of 7 numbers, each reflecting the occupancy of each time slot (1 hour each) throughout a day. Thus, it reflects the occupancies of each time slot in a week. The ordering of the days follow that of Java’s DayOfWeek API where Monday has the lowest value of 1. The first number in the array then represents Monday, the second represents Tuesday and so on. Each Person’s RecurringEventList will then maintain a TimeMask that gets updated whenever a RecurringEvent is added for that Person. 
 
-### Activity Diagram
+#### Activity Diagram
 The following activity diagram summarises what happens when a user executes a `free` command:
 
 <img src="images/FindTimeCommandActivityDiagram.png" width="300" />
@@ -562,7 +575,7 @@ When the FindTimeCommand executes with a Group and Date as its parameters,
 3. The parent TimeMask is then converted to a list of unoccupied time slots, and it is updated in the AddressBook's ScheduleWeek, that acts as an internal list that UI observes.
 4. The UI detects the changes and then displays the updated timetable.
 
-### Sequence Diagram
+#### Sequence Diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
 API call for FindTimeCommand.
 
@@ -581,7 +594,7 @@ Given below is an example usage scenario and how the command mechanism behaves a
    respective field requested.
 6. Execution of `FindTimeCommand` results in a CommandResult created and returned to the LogicManager.
 
-### Design Consideration
+#### Design Consideration
 
 **Aspect: Algorithm and data structure for finding of free time slot**
 * **Alternative 1: List of occupied intervals (start date time and end date time)**
@@ -689,6 +702,67 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
     * As import does not import `Group` and `Tag`. Exporting all details of a `Person` is not required.
     * Different users may have different `Tag` or `Group` for their contact. Hence `Group` and `Tag` is not exported/imported.
 
+### \[Developed\] Import
+
+The export feature allows users to import a person's details to a json file. Groups and tags are not imported.
+
+This is implemented using the `ImportCommand`, `JsonImporter`.
+
+The `ImportCommand` uses a `JsonImporter` to import data from the file `data/export.json`
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an export command:
+
+<img src="images/ImportCommandActivityDiagram.png" width="500" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call when a `Person` is being updated:
+
+<img src="images/ImportCommandSequenceDiagramSetPerson.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the import `COMMAND_WORD`, the `AddressBookParser` creates a `ImportCommand`.
+4. The `ImportCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `ImportCommand` instance which obtains the data from the file (as a `ReadonlyAddressBook`) via the `Importer` API call
+6. A `Person` is then created via the `createImportPerson()` call
+7. The `Person` is set in the `Model`
+8. Execution of `ImportCommand` results in a `CommandResult` created and returned back to the `LogicManager`, completing the execution.
+
+In the event that a new person is added due to the import:
+<img src="images/ImportCommandSequenceDiagramAddPerson.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the import `COMMAND_WORD`, the `AddressBookParser` creates a `ImportCommand`.
+4. The `ImportCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `ImportCommand` instance which obtains the data from the file (as a `ReadonlyAddressBook`) via the `Importer` API call
+6. A new `Person` is then created via the `createNewImportPerson()` call
+7. The `Person` is added to the `Model`
+8. Execution of `ImportCommand` results in a `CommandResult` created and returned back to the `LogicManager`, completing the execution.
+
+#### Design consideration
+
+**Aspect: Importing multiple persons**
+* **Alternative 1:** Import multiple `Person` in one user command.
+    * Pros:
+        * Users can import multiple persons at once instead of importing each person one at a time.
+    * Cons:
+        * More bug-prone as unable to verify the source of import files, import files could possibly be corrupted.
+
+* **[Current implementation] Alternative 2:** Only allow one person to be imported in one user command.
+    * Pros:
+        * Easy to implement.
+        * Less bug-prone as import files are less likely to be from external sources.
+    * Cons:
+        * Users have to export one person at a time.
+
+* **Justification**
+    * Importing is meant to be paired with exports. Ensuring that files that are imported are likley to be valid exports will reduce issues and bugs during importing.
+    * Import command can be easily modified to accept larger export files in future iterations.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -768,12 +842,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1229,15 +1297,15 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Planned Enhancements**
 
-### 1. Group name case-sensitive
+### Group name case-sensitive
 * Feature flaw: Users can add groups containing the same letters/numbers but different capitalisation. For example 'CS2103' and 'cs2103' are two different groups
 * Future plan: As we are planning to integrate with NUSMODS in the future. All groups would follow the same naming convention as NUS modules where they are capitalised. So we plan to make all group names capitalised in the future.
 
-### 2. Data file editable
+### Data file editable
 * Feature flaw: Users are able to edit the addressbook.json in the data folder. This can cause unwanted errors. We have handled json files with invalid parameters but it wipes out all existing content in the file if its invalid.
 * Future plan: We plan to encrypt the json file using methods such as XOR encryption which makes the json file non-human readable. This prevents users from intentionally editing certain parameters.
 
-### 3. Event names
+### Event names
 * Feature flaw: Exporting a person includes the exact names for all events. This is undesirable for users as they may only want to share which date and time they are unavaliable and not share what event they have.
 * Future plan: We plan to only export date and time of an event while the event name would be a fixed name. (e.g Events).
 

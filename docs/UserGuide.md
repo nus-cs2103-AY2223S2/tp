@@ -22,13 +22,15 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
    1. On Windows, you can click the `wheregottime.jar` file to run the application:
    ![WindowsFileExplorerFolder](images/windowsTutorial/WindowsFileExplorerFolder.png)
    2. Alternatively, open a command terminal:
-      1. On Windows: Click the file path bar and type `cmd` and press the `Enter` button to start the command prompt:
+      1. On **Windows**: Click the file path bar and type `cmd` and press the `Enter` button to start the command prompt:
       ![WindowsFileExplorerCMD](images/windowsTutorial/WindowsFileExplorerCMD.png)
       A window similar to the one below should appear:
       ![WindowsCMD](images/windowsTutorial/WindowsCMD.png)
       Run the command `java -jar wheregottime.jar` to start the application:
       ![WindowsJARCommand](images/windowsTutorial/WindowsJARCommand.png)
-      2. On Macs: Control-click on the _home folder_ and click on `New Terminal at Folder`
+      
+      2. On **Macs**: Control-click on the _home folder_ and click on `New Terminal at Folder` </br>
+      **Note: Do not double click on the jar file as the app may not work as intended.**
       ![MacFinder](images/macsTutorial/MacsFinder.png)
       A window similar to the one below should appear:
       ![MacsCMD](images/macsTutorial/MacsCMD.png)
@@ -252,6 +254,7 @@ Create events and add it to a specific person in WGT. WGT supports two types of 
 2. Recurring events: weekly events such as tutorials and lectures 
 
 Note that only **hourly** events can be created.
+**Note** You will not be able to create an isolated event or recurring event if there is existing event happening in the same time period. 
 For example, `17:00` is a valid timing and `17:30` is an invalid timing
 
 #### 1) Isolated event: `event_create`
@@ -322,6 +325,9 @@ Examples:
 
 ### Editing an event:
 Edit the attributes of either an isolated event or a weekly recurring event
+
+**Note** You will not be able to edit an isolated event or recurring event time period if there is existing event happening in the particular time period.
+
 #### 1) Edit an isolated event: `ie_edit`
 
 Edit an existing isolated event from person's isolated event list in WGT.

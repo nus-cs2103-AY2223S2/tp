@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "i:ImportCommand" as ImportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Importer #pink
+participant ":Importer" as Importer #purple
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("import")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("import")
+activate AddressBookParser
+
+create ImportCommand
+AddressBookParser -> ImportCommand : ImportCommand()
+activate ImportCommand
+
+ImportCommand --> AddressBookParser
+deactivate ImportCommand
+
+AddressBookParser --> LogicManager : i
+deactivate AddressBookParser
+
+LogicManager -> ImportCommand : execute()
+activate ImportCommand
+
+ImportCommand -> Importer : readData()
+activate Importer
+
+Importer --> ImportCommand : ReadOnlyAddressBook
+deactivate Importer
+
+ImportCommand -> ImportCommand : createNewImportPerson()
+
+ImportCommand -> Model : addPerson()
+activate Model
+
+Model --> ImportCommand
+deactivate Model
+
+create CommandResult
+ImportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ImportCommand
+deactivate CommandResult
+
+ImportCommand --> LogicManager
+deactivate ImportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
