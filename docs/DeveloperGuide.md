@@ -14,16 +14,16 @@ title: Developer Guide
 - [**Implementation**](#implementation)
   - [Add remark feature](#add-remark-feature)
   - [Show opening details feature](#show-opening-details-feature)
-  - [Upcoming keydates feature](#upcoming-keydates-feature)
-      - [Design considerations:](#design-considerations)
-  - [Status filtering feature](#status-filtering-feature)
     - [Design considerations:](#design-considerations)
+  - [Upcoming keydates feature](#upcoming-keydates-feature)
+    - [Design considerations:](#design-considerations-1)
+  - [Status filtering feature](#status-filtering-feature)
+    - [Design considerations](#design-considerations-2)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
   - [Adding an opening](#adding-an-opening)
@@ -44,6 +44,7 @@ title: Developer Guide
   - [**Enhancement 2: Keydates should accept time**](#enhancement-2-keydates-should-accept-time)
   - [**Enhancement 3: Position should allow for special characters**](#enhancement-3-position-should-allow-for-special-characters)
   - [**Enhancement 4: Addition of keydates should be accumulative**](#enhancement-4-addition-of-keydates-should-be-accumulative)
+- [**Glossary**](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -369,8 +370,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`    | user | see the total number of accepted applications              | celebrate my success                                |
 | `*` | user | see all the outcomes of my application                     | properly assess my options                          |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is `Ultron` and the **Actor** is the `user`, unless specified otherwise)
@@ -453,23 +452,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Ultron shows the user a list of openings that contain keydates, sorted by keydates in ascending order
    Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+1a. No opening contains relevant keydates
+    1a1. Ultron informs the user that no openings contain keydates
+    Use case ends
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The app should be fast and respond within 100ms when users input commands.
 3. The app should start up and load the list from a saved file within 1 second of opening.
-
-*{More to be added}*
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Opening**: Item representing an internship opening
-* **Keydate**: Item representing a event tied to a particular date or deadline
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
@@ -752,3 +745,11 @@ A large part of the project was spent on refactoring the codebase and ensuring p
 1. The current keydates field can be changed using the `edit` command. This change overwrites the current keydates of the opening being edited. This means that users have to re-enter every single past keydate when adding a new one to maintain the history. For example, a user might already have a keydate `OA@2023-11-11` and wants to add `Interview@2023-11-13`, the user will have to enter the command `edit 1 d/OA@2023-11-11 d/Interview@2023-11-13`.
 
 2. We propose to allow edit to still overwrite the keydates, but we add new commands `addkeydate` and `deletekeydate`. These two commands will take in an index and keydates as parameters to add new keydates or delete existing keydates for the indexed opening. Example usages would be `addkeydate 1 Interview@2023-11-13` and `deletekeydate 1 OA@2023-11-11`. It will also be able to take in multiple keydates and function accordingly (all input keydates for `deletekeydate` must be valid, ie if one of them do not exist, command fails).
+
+## **Glossary**
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Opening**: Item representing an internship opening
+* **Keydate**: Item representing a event tied to a particular date or deadline
+
+--------------------------------------------------------------------------------------------------------------------
