@@ -1276,6 +1276,22 @@ testers are expected to do more *exploratory* testing.
    6. Other incorrect show commands to try: `show xxx` (where xxx is an invalid number/characters such as -1, or a number greater than the list size) \\
       Expected: Same as previous.
 
+### Editing a student's remarks
+
+1. Editing a student's remarks while all students are being shown
+   1. Prerequisites: List all students using the `list` command. At least 1 student in the list.
+   2. Test case: `remark 1` followed by entering `This is a test remark`, then `CTRL` + `S` to save \
+      Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". Upon pressing `CTRL` + `S`, pop up window closes and remarks for first entry edited to become "This is a test remark".
+   3. Test case: `remark 0` \
+      Expected: No pop-up box appears. The error message shown states `The person index provided is invalid`.
+   4. Prerequisites: Student at index 1 has some remarks written.
+   5. Test case: `remark 1` followed by removing all existing remarks, then `CTRL` + `S` to save \
+      Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". The remarks for the first entry is displayed in the text box. After pressing `CTRL` + `S` after removing all existing remarks, pop up window closes and remarks for first entry is deleted.
+   6. Test case: `remark 1 This is a test remark` \
+      Expected: No pop up window appears. Status message displays details of first entry, with the remark changed to `This is a test remark`.
+   7. Other incorrect remark commands to try: `remark`, `remark x`, `remark -1`. \
+      Expected: Pop up window does not appear. No remarks are edited. Error details shown in the status message. Status bar remains the same.
+
 [↑ Back to top](#table-of-contents)
 
 ### Saving data
