@@ -439,10 +439,10 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
             logger.info("Duplicate plate number " + plateNumber);
             throw new DuplicatePlateNumberException(plateNumber);
         }
+        Customer customer = this.getCustomer(ownerId);
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         Vehicle toAdd = new Vehicle(this.idGenerator.generateVehicleId(), ownerId, plateNumber, color, brand, type);
-        Customer customer = this.getCustomer(ownerId);
         customer.addVehicle(toAdd.getId());
         updateVehicleMappings(toAdd, false);
         updateCustomerMappings(customer, false);
