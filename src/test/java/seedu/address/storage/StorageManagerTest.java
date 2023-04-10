@@ -24,9 +24,9 @@ class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonRerollStorage addressBookStorage = new JsonRerollStorage(getTempFilePath("reroll"));
+        JsonRerollStorage rerollStorage = new JsonRerollStorage(getTempFilePath("reroll"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(rerollStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,7 +48,7 @@ class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void rerollReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.

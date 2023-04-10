@@ -20,7 +20,7 @@ import seedu.address.model.ReadOnlyReroll;
 import seedu.address.model.Reroll;
 
 class JsonRerollStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonRerollStorageTest");
 
     @TempDir
     public Path testFolder;
