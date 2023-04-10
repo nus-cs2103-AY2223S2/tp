@@ -2,7 +2,6 @@
 layout: page
 title: Khang Tran's Project Portfolio Page
 ---
-
 #### Table of Contents
 - [Project: Le Tracker](#project-le-tracker)
 - [Summary of Contributions](#summary-of-contributions)
