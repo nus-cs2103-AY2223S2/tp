@@ -2,57 +2,62 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-- [**Acknowledgements**](#--acknowledgements--)
-- [**Setting up, getting started**](#--setting-up--getting-started--)
-- [**Design**](#--design--)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-- [**Implementation**](#--implementation--)
-    * [Quick Access Buttons on Each Student Card](#quick-access-buttons-on-each-student-card)
-        + [Motivation for Quick Access Buttons](#motivation-for-quick-access-buttons)
-        + [Implementation of Quick Access Buttons](#implementation-of-quick-access-buttons)
-        + [Alternatives considered for Quick Access Buttons](#alternatives-considered-for-quick-access-buttons)
-    * [Create Lesson feature](#create-lesson-feature)
-    * [School and GradeLevel Fields](#school-and-gradelevel-fields)
-        + [v1.2 Implementation of School and GradeLevel Fields](#v12-implementation-of-school-and-gradelevel-fields)
-        + [New Implementation of School and GradeLevel Fields in v1.3](#new-implementation-of-school-and-gradelevel-fields-in-v13)
-    * [\[Proposed\] Undo/redo feature](#--proposed---undo-redo-feature)
-        + [Proposed Implementation](#proposed-implementation)
-        + [Design considerations:](#design-considerations-)
-    * [\[Proposed\] Data archiving](#--proposed---data-archiving)
-- [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
-- [**Appendix: Requirements**](#--appendix--requirements--)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
+TutorPro is a **desktop app designed to help private tutors manage their student information effectively**. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimized for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+  * [Quick Access Buttons on Each Student Card](#quick-access-buttons-on-each-student-card)
+    + [Motivation for Quick Access Buttons](#motivation-for-quick-access-buttons)
+    + [Implementation of Quick Access Buttons](#implementation-of-quick-access-buttons)
+    + [Alternatives considered for Quick Access Buttons](#alternatives-considered-for-quick-access-buttons)
+  * [Create Lesson feature](#create-lesson-feature)
+  * [School and GradeLevel Fields](#school-and-gradelevel-fields)
+    + [v1.2 Implementation of School and GradeLevel Fields](#v12-implementation-of-school-and-gradelevel-fields)
+    + [New Implementation of School and GradeLevel Fields in v1.3](#new-implementation-of-school-and-gradelevel-fields-in-v13)
+  * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+    + [Proposed Implementation](#proposed-implementation)
+    + [Design considerations:](#design-considerations)
+  * [\[Proposed\] Data archiving](#proposed-data-archiving)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
 - [Use cases](#use-cases)
-    * [Add a new student](#add-a-new-student)
-    * [Delete a student](#delete-a-student)
-    * [Update a student's particulars](#update-a-student-s-particulars)
-    * [View a student's profile](#view-a-student-s-profile)
-    * [Assign homework for a student](#assign-homework-for-a-student)
-    * [View a Student's Homework](#view-a-student-s-homework)
-    * [Mark a Homework as DONE](#mark-a-homework-as-done)
-    * [Mark a Homework as NOT DONE](#mark-a-homework-as-not-done)
-    * [View a particular Student's Lessons](#view-a-particular-student-s-lessons)
-    * [View all Students' Lesson history](#view-all-students--lesson-history)
-    * [Add Lesson](#add-lesson)
-    * [Add Exam](#add-exam)
-    * [View a particular Student's Exams](#view-a-particular-student-s-exams)
-    * [View all Students' Exams](#view-all-students--exams)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-- [**Appendix: Instructions for manual testing**](#--appendix--instructions-for-manual-testing--)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a person](#deleting-a-person)
-    * [Saving data](#saving-data)
+  * [Add a new student](#add-a-new-student)
+  * [Delete a student](#delete-a-student)
+  * [Update a student's particulars](#update-a-students-particulars)
+  * [View a student's profile](#view-a-students-profile)
+  * [Assign homework for a student](#assign-homework-for-a-student)
+  * [View a Student's Homework](#view-a-students-homework)
+  * [Mark a Homework as DONE](#mark-a-homework-as-done)
+  * [Mark a Homework as NOT DONE](#mark-a-homework-as-not-done)
+  * [View a particular Student's Lessons](#view-a-particular-students-lessons)
+  * [View all Students' Lesson history](#view-all-students-lesson-history)
+  * [Add Lesson](#add-lesson)
+  * [Add Exam](#add-exam)
+  * [View a particular Student's Exams](#view-a-particular-students-exams)
+  * [View all Students' Exams](#view-all-students-exams)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Deleting a student](#deleting-a-student)
+  * [Saving data](#saving-data)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -72,7 +77,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W13-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams'](https://github.com/AY2223S2-CS2103T-W13-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -122,7 +127,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `studentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -131,7 +136,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `student` object residing in the `Model`.
 
 ### Logic component
 
@@ -143,9 +148,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -200,7 +205,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Quick Access Buttons on Each Student Card
 
 #### Motivation for Quick Access Buttons
-When a `tutor` wants to view a `student's` profile, homework, lessons, or exams, they need to use the commandbax. However, the current ResultDisplay is purely text-based, making it difficult and time-consuming for `tutors` to access and digest the relevant information.
+When a `tutor` wants to view a `student's` profile, homework, lessons, or exams, they need to use the commandBox. However, the current ResultDisplay is purely text-based, making it difficult and time-consuming for `tutors` to access and digest the relevant information.
 
 To address this issue, we propose the implementation of Quick Access Buttons on each `Student Card`. These buttons will provide tutors with easy and quick access to the relevant `student` information. By simply clicking on the appropriate button, tutors can view the `student's` profile, homework, lessons, or exams in a more informative and visually appealing way, complete with multiple diagrams or charts.
 
@@ -343,7 +348,7 @@ Step4. `CreateLessonCommand` is executed by LogicManager, creating a new Lesson 
 
 Step5. The Student calls the `addLesson` method in the UniqueLessonList, adding the Lesson to his list of Lessons.
 
-Step6. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+Step6. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the Logic component for to execute("new-lesson name/John lesson/Math lesson start/2023-05-01 1200 end/2023-05-01 1400") API call.
 
@@ -359,7 +364,7 @@ The following activity diagram summarizes what happens when a user executes a Cr
 #### v1.2 Implementation of School and GradeLevel Fields
 
 As of v1.2, School and GradeLevel fields are parsed via the `AddCommandParser` class. `AddCommandParser#parse` method 
-checks whether the prefixes for school and/or gradelevel are present, and if present, then adds it to 
+checks whether the prefixes for school and/or gradeLevel are present, and if present, then adds it to 
 the new student as `Tags`. They are then treated throughout the program the same as other `Tags`.
 
 It has been implemented this way for its ease of implementation, and because it shows the School and GradeLevel 
@@ -392,11 +397,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -404,7 +409,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -449,7 +454,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -487,6 +492,7 @@ Our users:
 
 **Value proposition**: Manage students' academic progress faster and more conveniently than a typical mouse/GUI driven app
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### User stories
 
@@ -495,23 +501,25 @@ Priorities:
 - Medium (nice to have) - `* *` 
 - Low (unlikely to have) - `*`
 
-| Category                                                                   | Priority | As a …​ | I want to …​                                                                                          | So that I can…​                                                                                                                                                                                 |
-|:---------------------------------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Track Student Homework                                                     | `* * *`  | tutor   | Mark homework as completed/uncompleted/half-completed.                                                | I can track what needs to be done in order to give reminders to student.                                                                                                                        |
-|                                                                            | `* * *`  | tutor   | Assign tutor homework deadlines.                                                                      | I can track what homework I have assigned to the tutee and when it needs to be done by to follow the lesson plan                                                                                |
-|                                                                            | `* * *`  | tutor   | Assign school homework deadlines                                                                      | I can track what homework the school has assigned my students, to help them finish and when.                                                                                                    |
-|                                                                            | `* * *`  | tutor   | View completed and uncompleted homework                                                               | I can separately track pending homework.                                                                                                                                                        |
-| Store and access students’ personal info (addresses, personal particulars) | `* *`    | tutor   | Click open a “view profile” button beside a Student to look at his/her home address and phone number. | I can have easy access to the students’ information.                                                                                                                                            |
-|                                                                            | `* *`    | tutor   | Update my students' personal information as needed                                                    | I can keep my records accurate and up-to-date                                                                                                                                                   |
-|                                                                            | `* * *`  | tutor   | Click a button with a student’s name to view his/her upcoming school exams/assignments                | Change my lesson plans accordingly to prepare the student for such tasks. For example, change all sessions of a week to Chemistry lessons to prepare the student for an upcoming Chemistry exam |
-| Lesson Plan Management                                                     | `* * *`  | tutor   | Create lesson plans for future classes                                                                | I can always plan ahead of my lessons                                                                                                                                                           |
-|                                                                            | `* *`    | tutor   | View my students’ lesson history                                                                      | I can recap past lessons with my student.                                                                                                                                                       |
-|                                                                            | `* *`    | tutor   | View the date and time of a past lesson                                                               | I can see how many lessons I’ve had over a period of time                                                                                                                                       |
-| Track Student Exams                                                        | `* *`    | tutor   | Assign and view school exam dates to my students                                                      | I can keep track of how long my student has to prepare for an exam.                                                                                                                             |
-|                                                                            | `* *`    | tutor   | View all my students' exams at a glance                                                               | I can provide extra instruction to students that have exams coming up.                                                                                                                          |
+| Category                                                          | Priority | As a …​ | I want to …​                                                                                          | So that I can…​                                                                                                                                                                                 |
+|:------------------------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Track Student Homework                                            | `* * *`  | tutor   | Mark homework as completed/uncompleted/half-completed.                                                | I can track what needs to be done in order to give reminders to student.                                                                                                                        |
+|                                                                   | `* * *`  | tutor   | Assign tutor homework deadlines.                                                                      | I can track what homework I have assigned to the student and when it needs to be done by to follow the lesson plan                                                                              |
+|                                                                   | `* * *`  | tutor   | Assign school homework deadlines                                                                      | I can track what homework the school has assigned my students, to help them finish and when.                                                                                                    |
+|                                                                   | `* * *`  | tutor   | View completed and uncompleted homework                                                               | I can separately track pending homework.                                                                                                                                                        |
+| Store and access students’ info (addresses, personal particulars) | `* *`    | tutor   | Click open a “view profile” button beside a Student to look at his/her home address and phone number. | I can have easy access to the students’ information.                                                                                                                                            |
+|                                                                   | `* *`    | tutor   | Update my students' personal information as needed                                                    | I can keep my records accurate and up-to-date                                                                                                                                                   |
+|                                                                   | `* * *`  | tutor   | Click a button with a student’s name to view his/her upcoming school exams/assignments                | Change my lesson plans accordingly to prepare the student for such tasks. For example, change all sessions of a week to Chemistry lessons to prepare the student for an upcoming Chemistry exam |
+| Lesson Plan Management                                            | `* * *`  | tutor   | Create lesson plans for future classes                                                                | I can always plan ahead of my lessons                                                                                                                                                           |
+|                                                                   | `* *`    | tutor   | View my students’ lesson history                                                                      | I can recap past lessons with my student.                                                                                                                                                       |
+|                                                                   | `* *`    | tutor   | View the date and time of a past lesson                                                               | I can see how many lessons I’ve had over a period of time                                                                                                                                       |
+| Track Student Exams                                               | `* *`    | tutor   | Assign and view school exam dates to my students                                                      | I can keep track of how long my student has to prepare for an exam.                                                                                                                             |
+|                                                                   | `* *`    | tutor   | View all my students' exams at a glance                                                               | I can provide extra instruction to students that have exams coming up.                                                                                                                          |
 
 
 *{As at v1.2, more to be added}*
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Use cases
 
@@ -546,10 +554,10 @@ Priorities:
 
 **MSS**
 
-1.  User requests to list persons
-2.  TutorPro shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TutorPro shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TutorPro deletes the student
     
     Use case ends.
 
@@ -561,7 +569,7 @@ Priorities:
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorPro shows an error message.
       
     
     Use case resumes at step 2.
@@ -587,8 +595,8 @@ Priorities:
 
 **MSS**
 
-1.  User requests to list persons
-2.  TutorPro shows a list of persons
+1.  User requests to list students
+2.  TutorPro shows a list of students
 3.  User clicks on **Profile** button of a particular student
 4.  TutorPro displays the profile of that student.
 
@@ -604,8 +612,8 @@ Priorities:
 
 **MSS**
 
-1.  User requests to list persons
-2.  TutorPro shows a list of persons
+1.  User requests to list students
+2.  TutorPro shows a list of students
 3.  User enters assign-homework command with student name and homework title.
 4.  TutorPro assigns the homework to that particular student.
 
@@ -658,7 +666,7 @@ Priorities:
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorPro shows an error message.
 
     Use case resumes at step 3.
 
@@ -669,7 +677,7 @@ Priorities:
 
 1. User clicks on **Homeworks** button of a student.
 2. TutorPro shows that student's homeworks.
-3. User enters unmark-homework with student name, and homework index.
+3. User enters unmark-homework command with student name, and homework index.
 4. TutorPro updates the status of that homework as NOT DONE.
 
    Use case ends.
@@ -682,7 +690,7 @@ Priorities:
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorPro shows an error message.
 
   Use case resumes at step 3.
 
@@ -722,7 +730,7 @@ Priorities:
 **MSS**
 
 1. User enters new-lesson command with student name, lesson title and start and end times.
-2. TutorPro adds the lesson to that student's Lesson list..
+2. TutorPro adds the lesson to that student's Lesson list.
 
    Use case ends.
 
@@ -748,7 +756,7 @@ Priorities:
 **MSS**
 
 1. User enters new-exam command with student name, exam title and start and end times.
-2. TutorPro adds the exam to that student's exam list..
+2. TutorPro adds the exam to that student's exam list.
 
    Use case ends.
 
@@ -802,21 +810,22 @@ Priorities:
 
       Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Commands should be easy to remember(close to English words) and not cryptic for non-tech users to remember.
 5.  Commands shouldn't be verbose.
 6.  Results should be easy to read for non-tech users (e.g. shouldn't look like long, cluttered log files).
 
-*{More to be added}*
+--------------------------------------------------------------------------------------------------------------------
 
-### Glossary
-* **Student**: A person who is taking lessons from the Tutor.
-* **Tutor**: A person who is teaching the Student. Here, the Tutor is also the user of the application.
+## Glossary
+* **Student**: A student who is taking lessons from the Tutor.
+* **Tutor**: A student who is teaching the Student. Here, the Tutor is also the user of the application.
 * **Lesson**: A meeting between the Tutor and the Student.
 * **Exam**: A test taken by the Student.
 * **Homework**: A task given to the Student by the Tutor.
@@ -840,33 +849,33 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -874,4 +883,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
