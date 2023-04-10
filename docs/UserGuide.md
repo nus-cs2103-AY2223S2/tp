@@ -484,7 +484,6 @@ Example:
 **:information_source: Notes on Command Recommendation**<br>
 
 * When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
-* You can see the warning in the terminal used to open this application.
 
 </div>
 
