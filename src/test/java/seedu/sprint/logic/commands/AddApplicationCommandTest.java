@@ -109,7 +109,7 @@ public class AddApplicationCommandTest {
         }
 
         @Override
-        public void setInternshipBookFilePath(Path addressBookFilePath) {
+        public void setInternshipBookFilePath(Path internshipBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
