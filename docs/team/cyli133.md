@@ -29,7 +29,7 @@ your teaching assistant tasks done faster than traditional GUI apps.
     - **Allowed multiple ClassLists to be supported** ([PR #94](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/94))
         - Implemented the create class list command.
         - Modified the default storage loader to correct load demo data into the class list.
-        - Allowed users to list students in particular class using the `list` command.
+        - Allowed users to list students in particular class using the `classlist` command.
         - Implemented helper functions to be used for adding/deleting students from a specified class.
         - Tweaked the UI to load students from specified class.
 - **Bug Fixes**
