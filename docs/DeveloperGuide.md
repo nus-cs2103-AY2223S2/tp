@@ -14,7 +14,7 @@ Tutee Managing System (TMS) is a **desktop application designed for private tuto
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Tutee Managing System (TMS) is adapted from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
