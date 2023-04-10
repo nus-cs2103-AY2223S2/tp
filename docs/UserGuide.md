@@ -416,12 +416,12 @@ Menu Item Card consists of the following components:
 Duplicate data are not allowed. Hence, adding of duplicate data or editing of an existing data such that it matches
 with another existing data in the data list will not be successful. Here's how we check for duplicates:
 
-| Any two    | are considered to be duplicates if                                          |
-|------------|-----------------------------------------------------------------------------|
-| Suppliers  | they have the same phone numbers                                            |
-| Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
-| Tasks      | they have the same task names (case-sensitive) and deadlines.               |
-| Menu items | they have the same item names (with matching cases).                        |
+| Any two    | are considered to be duplicates if                                            |
+|------------|-------------------------------------------------------------------------------|
+| Suppliers  | they have the same phone numbers                                              |
+| Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases).   |
+| Tasks      | they have the same task names (with matching cases) and deadlines.            |
+| Menu items | they have the same item names (with matching cases).                          |
 
 <div style="page-break-after: always;"></div>
 
