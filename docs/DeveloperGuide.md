@@ -343,7 +343,7 @@ The following sequence diagram shows how the find operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 #### Design considerations
 
 **Aspect: How find executes more than once:**
@@ -375,12 +375,12 @@ The proposed Add Exercise mechanism is facilitated by `FitBook`. It implements t
 * `FitBook#addExercise()` — Adds an exercise to the specified routine in 'FitBookExerciseRoutine'.
 
 This operation is exposed in the `FitBookModel` interface as `FitBookModel#addExercise()`
-
+<div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the addExercise mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBookExerciseRoutine()` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedRoutine` accordingly
 
-![AddExerciseState0](images/AddExerciseState0.png)
+<img src="images/AddExerciseState0.png" height = "400">
 
 Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exercise `push-up` to the exercise list of the routine specified at index `2`
 The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
