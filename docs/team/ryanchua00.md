@@ -13,8 +13,8 @@ Line Interface** (CLI) while still having the benefits of a Graphical User Inter
 
 Given below are my contributions to the project.
 
-* **New Fish Sort command**: Added a sorting function for user to sort fish.
-  * What it does: allows the user to sort fish by a given attribute.
+* **New Feature**: Added a sorting function for user to sort existing fish in the panel.
+  * What it does: allows the user to sort fish by a given attribute and tank.
   * Justification: This feature improves the product significantly because a user can sort his fishes to his own preference,
     and change the ordering of the fishes.
   * Highlights: This enhancement builds upon existing FilteredList functionality through integrating a SortedList.
