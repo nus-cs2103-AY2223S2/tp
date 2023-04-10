@@ -474,9 +474,9 @@ The exit command exits the application.
 **MSS**
 
 1.  User requests to list Patients
-2.  AddressBook shows a list of Patients
+2.  MediMeet shows a list of Patients
 3.  User requests to delete a specific Patient in the list
-4.  AddressBook deletes the Patient
+4.  MediMeet deletes the Patient
 
     Use case ends.
 
@@ -488,7 +488,7 @@ The exit command exits the application.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MediMeet shows an error message.
 
       Use case resumes at step 2.
 
@@ -649,6 +649,20 @@ Use case resumes at step 4.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Availability**: The date/time the user is open to taking appointments for
 
+--------------------------------------------------------------------------------------------------------------------
+
+### Known feature flaws
+1. `view` command popup: 
+   * The popup window showing patient information is too small, and needs to be resized manually. Refer: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/109
+     * **Proposed solution** : Set minimum size for view command window
+   * view popup cannot be closed via the CLI: refer https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/109 for more details.
+     * **Proposed solution** : Add a shortcut to close the popup window. 
+   * The popup does not provide a label for each field currently (for example, the user's email is not labelled as "Email:"). Refer: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/114
+     * **Proposed solution** : Add labels to the fields in the view command popup
+2. The length of the patient's fields are not limited. If the user inputs an arbitrarily long input for any of the fields, the display of the application will be messed up. Refer: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/134 for more details.
+   * **Proposed solution** : limit the length of each field to reasonable numbers. For example, addresses and emails can be limited to 300 characters, and phone numbers can be limited to 20 characters.
+3. Calendar related bugs:
+   * The popup displayed when a date is clicked does not disappear when the user clicks outside the calendar.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
