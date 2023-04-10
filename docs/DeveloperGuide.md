@@ -312,7 +312,7 @@ Example JSON:
   "tagged" : [ "owesMoney", "friends" ]
 } ]
 ```
-The JSON is generated using the Jackson library, through the use of the JsonUtil utility class. The JSON can be pasted in again proceeding the import command to import the information in the export command
+The JSON is generated using the Jackson library, through the use of the `JsonUtil` utility class. The JSON can be pasted in again proceeding the import command to import the information in the export command
 
 #### Design Considerations
 
@@ -329,10 +329,10 @@ Here we only describe the `ExportCommand`. Import is the same, besides step 5. w
 Control flow is as follows.
 
 1. The user queries the `UI` to export using a [export command](#command-summary).
-2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
-3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `ExportCommandParser` object.
+3. `ExportCommandParser` creates a `ExportCommand` object.
 4. `ExportCommand` is returned to `LogicManager`.
-5. `LogicManager` executes <u>`ExportCommand`.
+5. `LogicManager` executes `ExportCommand`.
 6. `ExportCommand` queries `ModelManager` for JSON string.
 7. `ExportCommand` returns JSON string to `LogicManager` and `ModelManager`.
 8. `UI` outputs the JSON string.
