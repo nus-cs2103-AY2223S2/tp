@@ -204,7 +204,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 
 Commands are what you will work with in SudoHR, let's learn what a command is made of:
 
-![CommandFormat](images/commandFormat.png)
+![CommandFormat](images/CommandFormat.png)
 
 It consists of:
 1. Command - The name of the command
