@@ -372,22 +372,24 @@ If your changes to the data files make their format invalid, MediMeet will disca
 
 ## Command summary
 
-| Action                      | Format, Examples                                                                                                                                                                      |
-|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add patient**             | `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., * `add_patient n/Brenda Song p/98765432 e/brendas@example.com a/Red Road, Blk 123, #01-01` |
-| **Add appointment**         | `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​` <br> e.g., `add_appt n/Alex Yeoh ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu`                                             |                                                                                                       |
-| **Clear**                   | `clear`                                                                                                                                                                               |
-| **Delete patient**          | `delete_patient INDEX`<br> e.g., `delete 3`                                                                                                                                           |
-| **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                                         |
-| **Edit patient**            | `edit_patient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit_patient 2 n/James Lee e/jameslee@example.com`                                           |
-| **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [doc/DOCTOR]` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                                  |
-| **Find patient**            | `find_patient KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient James Jake`                                                                                                            |
-| **Find in patient details** | `find_patient_details KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient_details 22224444`                                                                                              |
-| **Find appointment**        | `find_appt TIMESLOT [TIMESLOT]`<br> e.g., `find_appt 01012023 00:00 01012023 01:00`                                                                                                   |
-| **List patient**            | `list_patient`                                                                                                                                                                        |
-| **List appointments**       | `list_appt`                                                                                                                                                                           |
-| **Help**                    | `help`                                                                                                                                                                                |
-| **Add patient notes**       | `remark_patient INDEX [r/REMARK]` <br> e.g., `remark_patient 3 r/Immunocompromised`                                                                                                   |
+| Action                      | Format, Examples                                                                                                                                                    |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add patient**             | `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_patient n/Brenda Song p/98765432 e/brendas@example.com a/Red Road, Blk 123, #01-01` |
+| **Add appointment**         | `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​` <br> e.g., `add_appt n/Alex Yeoh ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu`           |                                                                                                       |
+| **Add patient notes**       | `remark_patient INDEX [r/REMARK]` <br> e.g., `remark_patient 3 r/Immunocompromised`                                                                                 |
+| **Clear**                   | `clear`                                                                                                                                                             |
+| **Delete patient**          | `delete_patient INDEX`<br> e.g., `delete_patient 3`                                                                                                                 |
+| **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                       |
+| **Edit patient**            | `edit_patient INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit_patient 2 e/jameslee@example.com`                                              |
+| **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [doc/DOCTOR]` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                             |
+| **Find patient**            | `find_patient KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient James Jake`                                                                                          |
+| **Find in patient details** | `find_patient_details KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient_details 22224444`                                                                            |
+| **Find appointment**        | `find_appt TIMESLOT [TIMESLOT]`<br> e.g., `find_appt 01012023 00:00 01012023 01:00`                                                                                 |
+| **List patient**            | `list_patient`                                                                                                                                                      |
+| **List appointments**       | `list_appt`                                                                                                                                                         |
+| **Today**                   | `today`                                                                                                                                                              |
+| **Help**                    | `help`                                                                                                                                                              |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
