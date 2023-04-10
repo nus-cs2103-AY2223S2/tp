@@ -20,8 +20,8 @@ Given below are my contributions to the project.
   * Justification: As a user, we want to change our order status, so that we can track how far our order has progressed.
 
 * **Project management**:
-* Utilized milestones to track our progress for our project
-  * What it does: Set clear goals of what we should be achieving by certain dates.
+  * Utilized milestones to track our progress for our project
+    * What it does: Set clear goals of what we should be achieving by certain dates.
 
 * **Documentation**:
     * User Guide:
