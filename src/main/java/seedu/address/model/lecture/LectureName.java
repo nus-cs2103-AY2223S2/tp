@@ -8,6 +8,7 @@ import seedu.address.model.Name;
  */
 public class LectureName extends Name {
 
+    /** Message that specifies the constraints. */
     public static final String MESSAGE_CONSTRAINTS =
             "Lecture names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -15,6 +16,7 @@ public class LectureName extends Name {
      * Constructs a {@code LectureName}.
      *
      * @param name A valid name.
+     * @throws IllegalArgumentException Indicates that {@code name} is an invalid lecture name.
      */
     public LectureName(String name) {
         super(name, MESSAGE_CONSTRAINTS);

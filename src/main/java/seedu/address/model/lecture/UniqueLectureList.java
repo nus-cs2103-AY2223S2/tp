@@ -10,7 +10,7 @@ import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 /**
  * A list of sorted lectures that enforces uniqueness between its elements and does not allow nulls.<p>
  *
- * A lecture is sorted by using the {@code Lecture#compareTo(Lecture)} method.
+ * A lecture is sorted by using the {@code Lecture#compareTo(Lecture)} method.<p>
  *
  * A lecture is considered unique by comparing using {@code Lecture#isSameLecture(Lecture)}. As such, adding and
  * updating of lectures uses {@code Lecture#isSameLecture(Lecture)} for equality so as to ensure that the lecture being
@@ -57,11 +57,10 @@ public class UniqueLectureList extends SortedUniqueDataList<Lecture> {
 
     /**
      * Replaces the lecture {@code target} in the list with {@code editedLecture}.<p>
-     * {@code target} must exist in the list.<p>
-     * {@code editedLecture} must not have the same name as another existing lecture in the list.
      *
-     * @param target The lecture to be replaced.
-     * @param editedLecture The lecture that will replace.
+     * @param target The lecture to be replaced. It must exist in the list.
+     * @param editedLecture The lecture that will replace. It must not have the same name as another existing
+     *                      lecture in the list.
      * @throws LectureNotFoundException Indicates that {@code target} does not exist in the list.
      * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
      *                                   lecture in the list.
@@ -80,10 +79,9 @@ public class UniqueLectureList extends SortedUniqueDataList<Lecture> {
     }
 
     /**
-     * Replaces the contents of this list with {@code lectures}.<p>
-     * {@code lectures} must not contain duplicate lectures.
+     * Replaces the contents of this list with {@code lectures}.
      *
-     * @param lectures The list containing the lectures that will replace.
+     * @param lectures The list containing the lectures that will replace. It must not contain duplicate lectures.
      */
     public void setLectures(List<Lecture> lectures) {
         super.setAllData(lectures);

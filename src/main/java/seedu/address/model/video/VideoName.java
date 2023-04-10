@@ -8,6 +8,7 @@ import seedu.address.model.Name;
  */
 public class VideoName extends Name {
 
+    /** Message that specifies the constraints. */
     public static final String MESSAGE_CONSTRAINTS =
             "Video names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -15,6 +16,7 @@ public class VideoName extends Name {
      * Constructs a {@code VideoName}.
      *
      * @param name A valid name.
+     * @throws IllegalArgumentException Indicates that {@code name} is an invalid video name.
      */
     public VideoName(String name) {
         super(name, MESSAGE_CONSTRAINTS);

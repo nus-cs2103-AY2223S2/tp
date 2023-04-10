@@ -16,7 +16,7 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * Wraps all data at the tracker level.<p>
- * Duplicate modules are not allowed (by .isSameModule comparison)
+ * Duplicate modules are not allowed (by {@code Module#isSameModule(ReadOnlyModule)} comparison)
  */
 public class Tracker implements ReadOnlyTracker {
     private final UniqueModuleList modules;
@@ -41,10 +41,9 @@ public class Tracker implements ReadOnlyTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the module list with {@code modules}.<p>
-     * {@code modules} must not contain duplicate modules.
+     * Replaces the contents of the module list with {@code modules}.
      *
-     * @param modules The modules that will replace the contents of the module list.
+     * @param modules The modules that will replace the contents of the module list. It must not contain duplicates.
      */
     public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
@@ -73,6 +72,7 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     //// module-level operations
+
     @Override
     public ObservableList<? extends ReadOnlyModule> getModuleList() {
         return modules.asUnmodifiableObservableList();
@@ -102,10 +102,9 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     /**
-     * Adds a module to the tracker.<p>
-     * The module must not already exist in the tracker.
+     * Adds a module to the tracker.
      *
-     * @param module The module to be added.
+     * @param module The module to be added. It must not already exist in the tracker.
      * @throws DuplicateModuleException Indicates that {@code module} already exist in the tracker.
      */
     public void addModule(Module module) {
@@ -113,12 +112,11 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     /**
-     * Replaces the given module {@code target} in the list with {@code editedModule}.<p>
-     * {@code target} must exist in the tracker.<p>
-     * The module of {@code editedModule} must not be the same as another existing module in the tracker.
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
      *
-     * @param target The module to be replaced.
-     * @param editedModule The module that will replace.
+     * @param target The module to be replaced. It must exist in the tracker.
+     * @param editedModule The module that will replace. It must not be the same as another existing module in
+     *                     the tracker.
      * @throws ModuleNotFoundException Indicates that {@code target} does not exist in the tracker.
      * @throws DuplicateModuleException Indicates that {@code editedModule} is the same as another existing
      *                                  module in the tracker.
@@ -130,10 +128,9 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     /**
-     * Removes the given module {@code key} from this {@code Tracker}.<p>
-     * {@code key} must exist in the tracker.
+     * Removes the given module {@code key} from this {@code Tracker}.
      *
-     * @param key The module to remove from this tracker.
+     * @param key The module to remove from this tracker. It must exist in the tracker.
      * @throws ModuleNotFoundException Indicates that the module does not exist in the tracker.
      */
     public void removeModule(ReadOnlyModule key) {

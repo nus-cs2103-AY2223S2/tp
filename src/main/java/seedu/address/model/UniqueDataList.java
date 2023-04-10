@@ -63,10 +63,9 @@ public class UniqueDataList<T> implements Iterable<T> {
     }
 
     /**
-     * Adds the specified data {@code toAdd} to the list.<p>
-     * {@code toAdd} must not already exist in the list.
+     * Adds the specified data {@code toAdd} to the list.
      *
-     * @param toAdd The data to add.
+     * @param toAdd The data to add. It must not already exist in the list.
      * @throws DuplicateDataException Indicates that {@code toAdd} already exist in the list.
      */
     public void add(T toAdd) {
@@ -78,12 +77,10 @@ public class UniqueDataList<T> implements Iterable<T> {
     }
 
     /**
-     * Replaces the data {@code target} in the list with {@code editedData}.<p>
-     * {@code target} must exist in the list.<p>
-     * {@code editedData} must not be the same as another existing data in the list.
+     * Replaces the data {@code target} in the list with {@code editedData}.
      *
-     * @param target The data to be replaced.
-     * @param editedData The data that will replace.
+     * @param target The data to be replaced. It must exist in the list.
+     * @param editedData The data that will replace. It must not be the same as another existing data in the list.
      * @throws DataNotFoundException Indicates that {@code target} does not exist in the list.
      * @throws DuplicateDataException Indicates that {@code editedData} is the same as another existing data
      *                                in the list.
@@ -104,10 +101,9 @@ public class UniqueDataList<T> implements Iterable<T> {
     }
 
     /**
-     * Removes the data equivalent to {@code toRemove} from the list.<p>
-     * The data must exist in the list.
+     * Removes the data equivalent to {@code toRemove} from the list.
      *
-     * @param toRemove The data whose equivalent is to be removed from the list.
+     * @param toRemove The data whose equivalent is to be removed from the list. It must exist in the list.
      * @throws DataNotFoundException Indicates that the data does not exist in the list.
      */
     public void remove(T toRemove) {
