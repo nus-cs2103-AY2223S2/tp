@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ListingBookParser" as ListingBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "t:TitleContainsKeywordsPredicate" as TitleContainsKeywordsPredicate LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find chicken rice")
+activate LogicManager
+
+LogicManager -> ListingBookParser : parseCommand("find chicken rice")
+activate ListingBookParser
+
+create FindCommandParser
+ListingBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> ListingBookParser
+deactivate FindCommandParser
+
+ListingBookParser -> FindCommandParser : parse("chicken rice")
+activate FindCommandParser
+
+create TitleContainsKeywordsPredicate
+FindCommandParser -> TitleContainsKeywordsPredicate
+activate TitleContainsKeywordsPredicate
+
+TitleContainsKeywordsPredicate --> FindCommandParser : t
+deactivate TitleContainsKeywordsPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : t
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+
+FindCommandParser --> ListingBookParser : f
+deactivate FindCommandParser
+destroy FindCommandParser
+
+ListingBookParser --> LogicManager : f
+deactivate ListingBookParser
+
+LogicManager -> FindCommand: execute()
+activate FindCommand
+
+
+FindCommand -> Model : updateFilteredListingBook(t)
+activate Model
+
+Model -> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+destroy FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
