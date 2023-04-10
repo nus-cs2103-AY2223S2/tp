@@ -45,6 +45,7 @@ Given below are my contributions to the project.
 - **Project management**:
   * Release [v1.4](https://github.com/AY2223S2-CS2103-F10-1/tp/releases/tag/v1.4)
 
+
 - **Enhancements to existing features**: Find a person and his/her assigned tasks
   * What it does: With this new feature, users can now find out what tasks are allocated to a person.
   * Justification: The original find feature only updates the GUI with the person found. However, this is insufficient
@@ -52,6 +53,7 @@ Given below are my contributions to the project.
     quickly locate the relevant information without the need for extensive searching.
   * Highlights: Find can filter out out individuals whose name contains the given input. From there, users can then
     specify the index to pinpoint the exact person to be reviewed.
+
 
 - **Documentation**:
   * User Guide:
@@ -63,6 +65,7 @@ Given below are my contributions to the project.
     * Added sequence and activity diagram for find task and find respectively.
   * Others:
     * Contributed to group's collaborative docs, where reflections and discussion notes were written down
+
 
 - **Community**:
   * PRs reviewed: #64, #93, #94, #114, #120, #121, #129, #137, #146
