@@ -223,7 +223,7 @@ parsing date strings from a JSON file in the dd/MM/uuuu format and comparing dat
 
 #### Messages 
 
-This class is in the `mycelium.mycelium.commons.core` package. This class contains all the user visible 
+This class is in the `mycelium.mycelium.commons.core` package. This class contains some user visible 
 messages.
 
 --------------------------------------------------------------------------------------------------------------------
