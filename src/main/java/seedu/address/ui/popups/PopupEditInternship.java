@@ -147,19 +147,19 @@ public class PopupEditInternship extends UiPart<Stage> {
      * Populate the text field and child of javaFX node with initial internship values.
      */
     private void populateNode() {
-        if (internship.getCompanyName().fullName != null) {
+        if (internship.getCompanyName() != null && internship.getCompanyName().fullName != null) {
             companyName.setText(internship.getCompanyName().fullName);
         }
-        if (internship.getJobTitle().fullName != null) {
+        if (internship.getJobTitle() != null && internship.getJobTitle().fullName != null) {
             jobTitle.setText(internship.getJobTitle().fullName);
         }
-        if (internship.getLocation().value != null) {
+        if (internship.getLocation() != null && internship.getLocation().value != null) {
             place.setText(internship.getLocation().value);
         }
-        if (internship.getSalary().value != null) {
+        if (internship.getSalary() != null && internship.getSalary().value != null) {
             salary.setText(internship.getSalary().value);
         }
-        if (internship.getRating().value != null) {
+        if (internship.getRating() != null && internship.getRating().value != null) {
             rating.setText(internship.getRating().value);
         }
 
