@@ -2,37 +2,37 @@
 layout: page
 title: User Guide
 ---
-## <a id="contactus"></a>About coNtactUS
+## <a id="contactus"></a>**About coNtactUS**
 
-Are you a NUS computing student who is struggling to keep track of your school modules? Are you feeling overwhelmed by
-the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to keep your
-module resources and notes well-organised? Fret not! With coNtactUS, you can take the first step towards solving all of
-your problems.
+Are you a ***NUS computing student*** who is struggling to keep track of your school modules? Are you feeling
+overwhelmed by the constant influx of weekly lectures, tutorials, deadlines and assignments? Are you finding it hard to
+keep your module resources and notes well-organised? Fret not! With **coNtactUS**, you can take the first step towards
+solving all of your problems.
 
-coNtactUS is a desktop application created by NUS computing students, specially for NUS computing students, just like
-you. It is a module tracker that lets you store information related to your modules like:
+**coNtactUS** is a **desktop application** created by ***NUS computing students***, specially for ***NUS computing
+students***, just like you. It is a **module tracker** that lets you store information related to your modules like:
 
-1) Lecture and tutorial timeslots
-2) Lecture and tutorial venues
-3) Deadlines
-4) Module official resources
-5) Module notes
-6) Contact details of Professors and Teaching assistants
+1) Lecture and tutorial timeslots <br>
+2) Lecture and tutorial venues <br>
+3) Deadlines <br>
+4) Module official resources <br>
+5) Module notes <br>
+6) Contact details of Professors and Teaching Assistants (TAs)
 
 and more....
 
-in a centralised location that is easily accessible by you, so you will not forget them ever again.
+in a **centralised location** that is easily accessible by you, so you will not forget them ever again.
 
-What is even better is that coNtactUS is optimised for use via typing instead of clicking, which allows you to store and
-retrieve information faster than ever before. Now, you can become the most productive version of yourself,
+What is even better is that **coNtactUS** is **optimised for use via typing** instead of clicking, which allows you to
+store and retrieve information faster than ever before. Now, you can **become the most productive version of yourself**,
 bringing you one step closer to achieving your goals.
 
-So, what are you waiting for? Read on to find out more about how to use coNtactUs in this user guide!
+So, what are you waiting for? Read on to find out more about how to use **coNtactUS** in this user guide!
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="ug"></a>About this user guide
+## <a id="ug"></a>**About this user guide**
 
 If this is the first time you are using coNtactUS, this user guide provides an excellent starting point for you to
 familiarise yourself with the features of coNtactUS. It also shows you how to set up coNtactUS effortlessly
@@ -48,7 +48,7 @@ another section by clicking the respective header.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a id="how"></a>How to use this user guide
+## <a id="how"></a>**How to use this user guide**
 
 A [table of contents](#a-idtable-a-table-of-contents) is provided in this user guide, containing hyperlinks to each
 section of the user guide. You can simply click on a hyperlink to quickly navigate to the relevant section that you are
@@ -67,7 +67,7 @@ that you should pay attention to. </div>
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="table"></a>Table of Contents
+## <a id="table"></a>**Table of Contents**
 
 * [**About coNtactUS**](#a-idcontactus-a-about-contactus)
 * [**About this User Guide**](#a-idug-a-about-this-user-guide)
@@ -93,8 +93,8 @@ that you should pay attention to. </div>
 * [**Further information about commands**](#a-idfurther-info-a-further-information-about-commands)
 * [**More examples of valid and invalid input values**](#a-idinput-a-more-examples-of-valid-and-invalid-input-values)
 * [**Data storage**](#a-iddata-a-data-storage)
-  * [**Saving the data**](#a-idsaving-a-saving-the-data)
-  * [**Editing the data file**](#a-idedit-data-a-editing-the-data-file--for-advanced-users-)
+  * [Saving the data](#a-idsaving-a-saving-the-data)
+  * [Editing the data file](#a-idedit-data-a-editing-the-data-file--for-advanced-users-)
 * [**Current product limitations**](#a-idlimitation-a-current-product-limitations--important-)
 * [**Coming soon**](#a-idcoming-a-coming-soon)
 * [**Glossary**](#a-idglossary-a-glossary)
@@ -106,7 +106,7 @@ that you should pay attention to. </div>
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="start"></a> Getting started
+## <a id="start"></a>**Getting started**
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure about how to do so, you may refer
 to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
@@ -139,7 +139,7 @@ for your reference. </div>
 
 <div style="page-break-after: always;"></div>
 
-## <a id="ui"></a> Familiarising yourself with the user interface
+## <a id="ui"></a>**Familiarising yourself with the user interface**
 
 In case you are unsure of what you see in front of you now, we have come up with annotations to
 introduce you to the user interface. Do have a look at Figure 2 shown below.
@@ -156,7 +156,7 @@ introduce you to the user interface. Do have a look at Figure 2 shown below.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="module"></a>Familiarising yourself with a module
+## <a id="module"></a>**Familiarising yourself with a module**
 
 To start adding a module, we should first learn about what a module is. In coNtactUS, each module has 8 information
 fields.
@@ -176,7 +176,7 @@ This is all you need to know for the time being. Now let's take a closer look at
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="commands"></a>Familiarising yourself with the commands
+## <a id="commands"></a>**Familiarising yourself with the commands**
 
 
 Here is a brief introduction of the available commands for you to use. To see detailed information about each
@@ -207,7 +207,7 @@ list. Only use it if you are sure! </div>
 -------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="features"></a>Features
+## <a id="features"></a>**Features**
 
 This section introduces you to detailed information about how to use each command.
 
@@ -440,7 +440,7 @@ By using the `exit` command, you can close and exit the application.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="addfeat"></a>Additional Features
+## <a id="addfeat"></a>**Additional Features**
 
 ### <a id="reminder"></a>Reminder for modules
 
@@ -474,7 +474,7 @@ features [coming soon](#a-idcoming-a-coming-soon) if you are interested.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="format"></a>Format Restrictions
+## <a id="format"></a>**Format Restrictions**
 
 When keying in input values for certain fields when you [add](#a-idadd-a-adding-a-module--add) or
 [edit](#a-idedit-a-editing-a-module--edit) a module, there are certain format restrictions that you have to take note of.
@@ -519,7 +519,7 @@ coNtactUS, read on for the next section.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="further-info"></a> Further information about commands
+## <a id="further-info"></a>**Further information about commands**
 <div markdown="block" class="alert alert-info">
 
 * You can have multiple values for ```t/DESCRIPTION``` field, but other fields will
@@ -554,7 +554,7 @@ program.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="input"></a> More examples of valid and invalid input values 
+## <a id="input"></a>**More examples of valid and invalid input values**
 
 You can refer to this section for more examples of valid and invalid input values.
 
@@ -685,7 +685,7 @@ know what information are considered valid and what are not.<br>
 ------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>   
 
-## <a id="data"></a>Data Storage 
+## <a id="data"></a>**Data Storage**
 
 If you are interested to read about how coNtactUS stores data on your computer, read this section to find out more.
 
@@ -709,10 +709,10 @@ data file at the next run.
  --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="limitation"></a>Current product limitations (Important) 
+## <a id="limitation"></a>**Current product limitations (Important)**
 
-Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/teacher`, `e/timeslot`, 
-`a/venue` values. 
+Note that currently, coNtactUS does not enforce any additional checks for conflicting `s/TEACHER`, `e/TIMESLOT`, 
+`a/VENUE` values. 
 
 * For example, you will be allowed to create two module listings as follows.
 
@@ -734,9 +734,9 @@ conflict checks. After all, `Bob` may be referring to two different persons.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## <a id="coming"></a>Coming soon 
+## <a id="coming"></a>**Coming soon**
 
-coNtactUS is a continual work in progress, with newer and better features always being built by the development team. 
+**coNtactUS** is a continual work in progress, with newer and better features always being built by the development team. 
 Here are some new features you can look forward to in the near future: 
 
 * Currently, the reminder pop-up window only appears when coNtactUS is launched. You may want to 
@@ -746,7 +746,7 @@ for you to do so, so you can see the reminders at any time you wish.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>   
 
  --------------------------------------------------------------------------------------------------------------------
-## <a id="glossary"></a>Glossary 
+## <a id="glossary"></a>**Glossary**
 
 If you have any confusion about the technical terms used in this user guide, you may 
 refer to the glossary below.  
@@ -771,7 +771,7 @@ information to follow. Example includes ```a/``` as prefix for the ```VENUE``` a
 
 <div style="page-break-after: always;"></div>
 
-## <a id="faq"></a>FAQ 
+## <a id="faq"></a>**FAQ**
 
 **Q**: How do I transfer my data to another computer? <br>
 **A**: Download `coNtactUS.jar` in the other computer and overwrite the empty data file it creates with the data file
@@ -782,7 +782,7 @@ at the location `[JAR file location]/data/moduletracker.json` on your current co
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>  
 
 --------------------------------------------------------------------------------------------------------------------
-## <a id="command-summary"></a>Command summary 
+## <a id="command-summary"></a>**Command summary**
 
 | Action     | Format                                                                                                                |
 |------------|-----------------------------------------------------------------------------------------------------------------------|

@@ -9,10 +9,11 @@ title: Chew Ting Yi's Project Portfolio Page
 
 Welcome to **Chew Ting Yi's** personal Project Portfolio Page!
 
-coNtactUS is a module tracker created specially for NUS computing students, by NUS computing students. It is optimised
-for use via typing instead of clicking, which has been shown to be faster. This helps NUS computing students to be more
-efficient in their work. Developed by a team of NUS computing students who are familiar with the problems that computing
-students face on a daily basis, coNtactUS is here to make module tracking an effortless process.
+**coNtactUS** is a **module tracker** created specially for ***NUS computing students***, by ***NUS computing
+students***. It is optimised for use via typing instead of clicking, which has been shown to be faster. This helps
+***NUS computing students*** to be **more efficient in their work**. Developed by a team of ***NUS computing students***
+who are familiar with the problems that the students face on a daily basis, **coNtactUS** is here to **make module
+tracking an effortless process**.
 
 ### My contribution to the project
 
@@ -63,25 +64,42 @@ Given below are my contributions to the project.
 #### Project management
 * Help brainstormed name and colour scheme of the project.
 * Contributed to the releases `v1.1` - `v1.4` on GitHub.
+* Creation of project milestones.
+* Creation and assignment of project issues to team members.
+* Setting priority and assigning appropriate tags to issues.
+* Strategised further feature developments for planned enhancements with the team.
 
 #### Documentation
 
 * User Guide:
+  * Added instructions on how to use the user guide.
   * Created a table-of-content with valid hyperlinks.
   * Added a Valid and Invalid Data section.
   * Added more FAQs.
   * Added documentation for all the commands of Contact nUS, with appropriate examples.
+  * Added screenshots on the User Interface, with annotations.
   * Added glossary and command summary.
 
 * Developer Guide:
-  * Adapted the UML diagrams of [AddressBook3]() to fit Contact nUS.
+  * Adapted the UML diagrams of
+  [`AddressBook3`](https://github.com/nus-cs2103-AY2223S2/tp/blob/master/docs/DeveloperGuide.md) to fit `coNtactUS`,
+  with appropriate description for the diagrams.
   * Added MSS, Glossary and a few user stories.
   * Added new test cases for manual testing.
   * Established Appendix: Effort, Acknowledgements, Planned Enhancements.
+  * Converted to PDF format.
 
-#### Community contribution outside current project:
+* Directed product demo video.
+
+#### Contribution to team-based tasks
+
+* Below are some, but not all, of my non-code-related contributions to the team:
+  * Reviewed PRs from team members with non-trivial comments. Example:
+  [#78](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/78),
+  [#152](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/152),
+  [#156](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/156)
+
+#### Community contribution outside current project
 
 * Reported bugs and suggestions for [other teams](https://github.com/tingyic/ped/issues) in the class
 
-* **Tools**:
-  * Coming soon!
