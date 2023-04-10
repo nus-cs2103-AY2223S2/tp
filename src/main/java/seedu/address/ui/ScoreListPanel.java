@@ -262,7 +262,7 @@ public class ScoreListPanel extends UiPart<Region> {
 
     private void newChart(Student student) {
         name.setText("Score history for " + student.getName().fullName);
-        nameChart.setText("Recent 5 scores for " + student.getName().fullName + " (at most 5)");
+        nameChart.setText("Recent scores for " + student.getName().fullName + " (at most 5)");
         if (student.getName().fullName.length() >= 30) {
             name.setText("Score history for " + student.getName().fullName.substring(0, 29) + "...");
             nameChart.setText("Recent scores for " + student.getName().fullName.substring(0, 29) + "..."
