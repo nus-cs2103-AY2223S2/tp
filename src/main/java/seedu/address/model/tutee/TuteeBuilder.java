@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
@@ -166,10 +167,11 @@ public class TuteeBuilder {
 
     /**
      * Build the new {@link Tutee} instance. If any one of the fields is missing, a
-     * {@link NullPointerException} will be thrown
+     * {@link NullPointerException} will be thrown. If the start time and end time fields
+     * are invalid, then an {@link IllegalValueException} will be thrown.
      * @return A new tutee instance with the given fields
      */
-    public Tutee build() {
+    public Tutee build() throws IllegalValueException {
         // Use reflection to make sure that all the fields within the builder have been set
         // to some non null value
         for (Field field : this.getClass().getDeclaredFields()) {
@@ -180,7 +182,11 @@ public class TuteeBuilder {
             } catch (Exception e) {
                 throw new RuntimeException("Failed to validate fields in TuteeBuilder", e);
             }
-        } 
+        }
+
+        if (!endTime.getTimeValue().isAfter(startTime.getTimeValue())) {
+            throw new IllegalValueException("Start time cannot be set to a value later than or equal to end time");
+        }
 
         return new Tutee(name, phone, email, address, attendance, remark, subject, schedule, startTime, endTime, tags, lessons);
     }

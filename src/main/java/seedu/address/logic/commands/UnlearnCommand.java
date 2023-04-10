@@ -2,18 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.TuteeBuilder;
-import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Lesson;
 
 /**
@@ -60,6 +58,8 @@ public class UnlearnCommand extends Command {
                 "%s have not learned %s!",
                 tuteeToEducate.getName(),
                 lesson));
+        } catch (IllegalValueException e) {
+            throw new RuntimeException("Start time and end time aren't edited here, this should never throw");
         }
     }
 }

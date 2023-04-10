@@ -20,6 +20,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -90,7 +91,12 @@ public class EditCommand extends Command {
         }
 
         Tutee tuteeToEdit = lastShownList.get(index.getZeroBased());
-        Tutee editedTutee = createEditedPerson(tuteeToEdit, editPersonDescriptor);
+        Tutee editedTutee;
+        try {
+            editedTutee = createEditedPerson(tuteeToEdit, editPersonDescriptor);
+        } catch (IllegalValueException e) {
+            throw new CommandException("Invalid values for start and end time: end time must be after start time", e);
+        }
 
         if (!tuteeToEdit.isSamePerson(editedTutee) && model.hasTutee(editedTutee)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -105,7 +111,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Tutee} with the details of {@code tuteeToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
+    static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) throws IllegalValueException {
         assert tuteeToEdit != null;
 
         TuteeBuilder builder = new TuteeBuilder(tuteeToEdit);
@@ -120,6 +126,7 @@ public class EditCommand extends Command {
         editPersonDescriptor.getTags().ifPresent(builder::withTags);
 
         return builder.build();
+
     }
 
     @Override

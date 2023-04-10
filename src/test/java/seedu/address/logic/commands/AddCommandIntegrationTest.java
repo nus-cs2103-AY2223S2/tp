@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalTuteeManagingSyste
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,7 +27,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newPerson_success() throws IllegalValueException {
         Tutee validTutee = new TuteeBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTuteeManagingSystem(), new UserPrefs());
