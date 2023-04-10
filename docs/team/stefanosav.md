@@ -34,6 +34,8 @@ Given below are my contributions to the project.
       * Justification: Originally, each person could only be identified by their name. This was not practical for the 
       nature of a medical information management application, so by adding the NRIC field, we allow users to easily 
       identify the persons registered in MediConnect.
+    <div style="page-break-after: always;"></div>
+
     * Update find command [(Pull Request #52)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/52)
       * What was changed: The find command was changed to find and display the person with the given NRIC number.
       * Justification: The original find command was using the person's name to display their details. This was not 
