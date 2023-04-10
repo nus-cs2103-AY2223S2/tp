@@ -9,28 +9,19 @@ Duke Driver - a delivery tasking and planning application used by delivery drive
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+* **New Feature**: Added Statistics function
+    * What it does: Shows a list of summary statistics of delivery jobs
+    * Justification: This feature is implemented to allow users to view different statistics about the jobs that they have added
+    * Highlights: None
 
-* **New Feature**: to be added soon
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zuohui&breakdown=true)
 
-* **Project management**:
-    * to be added soon
-
-* **Enhancements to existing features**:
-    * to be added soon
-
 * **Documentation**:
     * User Guide:
-        * to be added soon
+        * Added documentation for the usage of statistics features (PR #130)
     * Developer Guide:
-        * to be added soon
+        * Added implementation details and diagrams for statistics component (PR #190)
 
-* **Community**:
-    * to be added soon
-
-* **Tools**:
-    * to be added soon
 
 
