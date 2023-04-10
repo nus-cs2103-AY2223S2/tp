@@ -288,7 +288,7 @@ Adds a listing to the listing book.
 - `add t/NodeFlair SWE Intern d/Fullstack Experience`
 
 🎯 **Expected Output:**
-You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+You should see a confirmation message showing the job title, description, applicants (if any) and platforms (if any). An example is shown below:
 
 ```ignorelang
 Added new listing:
@@ -353,7 +353,7 @@ Edits the details of a job listing.
 
 🎯 **Expected Output:**
 
-You will see a confirmation message showing the edited job title, description and applicants (if any).
+You will see a confirmation message showing the edited job title, description, applicants (if any) and platforms (if any).
 An example is shown below:
 
 ```ignorelang
@@ -451,7 +451,7 @@ Adds an applicant to a specified listing.
 - `add_app 1 a/Tom`
 
 🎯 **Expected Output:**
-You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+You should see a confirmation message showing the added applicant and the job title. An example is shown below:
 
 ```ignorelang
 Applicant Tom added to the listing Computer Science Intern
@@ -492,8 +492,7 @@ Edits the name of an applicant in a specified listing.
 
 🎯 **Expected Output:**
 
-You will see a confirmation message showing the edited job title, description and applicants (if any).
-An example is shown below:
+You will see a confirmation message showing the edited applicant and the job title.
 
 ```ignorelang
 Applicant: Tom#1334 has been edited to Johnson in Computer Science Intern
@@ -545,7 +544,7 @@ Deletes an applicant from a specified listing.
 
 🎯 **Expected Output:**
 
-A confirmation message will show, along with the details of the listing. An example message is shown below:
+A confirmation message will show, along with the details of the deleted applicant. An example message is shown below:
 
 ```ignorelang
 Applicant: Tom has been deleted from Computer Science Intern!
