@@ -2066,8 +2066,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 2a. A file with the name already exists within the folder.
     * 2a1. EduMate replaces the file in the folder.
-
-  Use case ends.
+  
+    Use case ends.
 
 **Use case: UC29 - Load from a backup file**
 
@@ -2111,18 +2111,18 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User presses the UP button.
-2. EduMate shows a previous command in the command box.
+2. EduMate shows the previous command in the command box.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The user has already typed in the command box.
-    * 2a1. EduMate does not show a previous command.
+    * 2a1. EduMate does not show the previous command.
 
   Use case ends.
 * 2b. There are no more previous commands.
-    * 2b1. EduMate does not show a previous command.
+    * 2b1. EduMate does not show the previous command.
 
   Use case ends.
 
@@ -2131,7 +2131,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User presses the DOWN button.
-2. EduMate shows a next command in the command box.
+2. EduMate shows the next command in the command box.
 
    Use case ends.
 
@@ -2174,7 +2174,7 @@ testers are expected to do more *exploratory* testing.
 
     * 1a. Download the jar file and copy into an empty folder
 
-    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
 ### **Add a new person**
 
