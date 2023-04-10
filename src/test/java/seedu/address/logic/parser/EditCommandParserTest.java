@@ -36,6 +36,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditByIndexCommand;
 import seedu.address.logic.commands.EditByNameCommand;
@@ -69,6 +70,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
+
     @Test
     public void parse_invalidPreamble_failure() {
         // invalid arguments being parsed as preamble
@@ -76,7 +78,11 @@ public class EditCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", EditCommand.MESSAGE_NOT_EDITED);
+
+        assertParseFailure(parser, "1 i/ string n/testname", Messages.MESSAGE_INVALID_TAG);
     }
+
+
     @Test
     public void parse_namePreamble_success() {
         assertParseSuccess(parser, VALID_NAME_AMY + NAME_DESC_BOB,

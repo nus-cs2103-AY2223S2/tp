@@ -6,12 +6,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteByNameCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMultipleIndexCommand;
 import seedu.address.logic.commands.DeleteSingleIndexCommand;
 import seedu.address.logic.commands.EditByIndexCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -24,6 +30,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UiInputRequiredException;
+import seedu.address.model.person.NameContainsAllKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -47,10 +54,27 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteSingleIndexCommand() throws Exception {
         DeleteSingleIndexCommand command = (DeleteSingleIndexCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteSingleIndexCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteMultipleIndexCommand() throws Exception {
+        DeleteMultipleIndexCommand command = (DeleteMultipleIndexCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + ","
+                        + INDEX_SECOND_PERSON.getOneBased() + "," + INDEX_THIRD_PERSON.getOneBased());
+
+        assertEquals(new DeleteMultipleIndexCommand(List.of(INDEX_FIRST_PERSON,
+                INDEX_SECOND_PERSON, INDEX_THIRD_PERSON)), command);
+    }
+    @Test
+    public void parseCommand_deleteByNameCommand() throws Exception {
+        DeleteByNameCommand command = (DeleteByNameCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + "John Doe");
+
+        assertEquals(new DeleteByNameCommand(new NameContainsAllKeywordsPredicate(List.of("John", "Doe"))), command);
     }
 
     @Test
