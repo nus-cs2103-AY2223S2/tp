@@ -126,7 +126,7 @@ Here are some symbols used throughout the user guide to inform you of additional
   e.g. `[t/TAG]…​` can be used as <code>&nbsp;</code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 - You can give parameters in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
@@ -156,7 +156,7 @@ Format: `help`
 
 Lets you add a person to AIMS.
 
-Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-info">
 
@@ -256,7 +256,7 @@ Format: `list`
 
 Copies the information of a person to your clipboard.
 
-Format: `copy INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `copy INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 - Copies the required information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed person list.
@@ -517,21 +517,21 @@ the data of your previous AIMS home folder.
 
 ## **Command Summary**
 
-| Action              | Format, Examples                                                                                                                                                                                                                           |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**            | `help`                                                                                                                                                                                                                                     |
-| **Add**             | `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add r/3SG n/James Ho u/9 SIR c/Charlie pl/1 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **ImportCsv**       | `importcsv PATH_TO_CSV_FILE` <br> e.g., `importcsv C:\Users\myUsername\files\convertedExcel.csv`                                                                                                                                           |
-| **List**            | `list`                                                                                                                                                                                                                                     |
-| **Copy**            | `copy INDEX [r/] [n/] [u/] [c/] [pl/] [p/] [e/] [a/] [t/]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                                                                     |
-| **Edit**            | `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
-| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                 |
-| **Filter**          | `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g., `filter n/john e/example.com`                                                                                       |
-| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                        |
-| **Clear**           | `clear`                                                                                                                                                                                                                                    |
-| **Undo**            | `undo`                                                                                                                                                                                                                                     |
-| **Command history** | `↑` / `↓`                                                                                                                                                                                                                                  |
-| **Favorite**        | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                                    |
-| **Exit**            | `exit`                                                                                                                                                                                                                                     |
+| Action              | Format, Examples                                                                                                                                                                                                                    |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**            | `help`                                                                                                                                                                                                                              |
+| **Add**             | `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add r/3SG n/James Ho u/9 SIR c/Charlie pl/1 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **ImportCsv**       | `importcsv PATH_TO_CSV_FILE` <br> e.g., `importcsv C:\Users\myUsername\files\convertedExcel.csv`                                                                                                                                    |
+| **List**            | `list`                                                                                                                                                                                                                              |
+| **Copy**            | `copy INDEX [r/] [n/] [u/] [c/] [pl/] [p/] [e/] [a/] [t/]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                                                              |
+| **Edit**            | `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
+| **Filter**          | `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g., `filter n/john e/example.com`                                                                                       |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
+| **Clear**           | `clear`                                                                                                                                                                                                                             |
+| **Undo**            | `undo`                                                                                                                                                                                                                              |
+| **Command history** | `↑` / `↓`                                                                                                                                                                                                                           |
+| **Favorite**        | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                             |
+| **Exit**            | `exit`                                                                                                                                                                                                                              |
 
 [Back to Top ↑](#table-of-contents)
