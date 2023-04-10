@@ -88,7 +88,7 @@ Is it hard for private tutor such as yourself to keep track of the students' inf
 
 </div>
 
-#<<[Back to top]>>(#table-of-content)  
+#<< [Back to top](#table-of-content) >>
 
 ### Viewing help <a name="help"></a>
 
