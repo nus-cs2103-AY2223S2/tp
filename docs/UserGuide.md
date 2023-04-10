@@ -333,7 +333,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 ```del-doc INDEX```
 - To view parameter information click [here](#parameter-information)
 - What it does: Deletes the specified doctor from the address book.
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-danger">
 **WARNING**: This command is destructive. Doctor's removed will need to be added back.
 </div>
 
@@ -475,10 +475,10 @@ For more information see: [Selecting doctors or patients through commands](#sele
     - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
     - `edit-ptn 2 n/Daenerys Targaryen st/Inpatient t/` Edits the name and status of the 2nd patient to be `Daenerys Targaryen` and `Inpatient` respectively. Adding t/ also clears all existing tags.
 
-<div markdown="span" class="alert alert-heading">
+<div markdown="span" class="alert alert-info">
 Edit patient command, also calls select patient to display the recently updated information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient has not been assigned to any doctor). 
-
+<br/>
 For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
@@ -487,7 +487,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 #### Deleting a patient
 - Command format: `del-ptn INDEX`
 - What it does: Deletes the specified patient from the address book.
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-danger">
 **WARNING**: This command is destructive. Patients removed will need to be added back.
 </div>
 - Note to user:
@@ -565,7 +565,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 #### Clearing all data
 - Command format: `clear`
 - What it does: This command will clear all data in Docedex.
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-danger">
 **WARNING**
   - This command will clear all data in Docedex. This includes all doctors and patients.
   - This command **cannot be undone**.

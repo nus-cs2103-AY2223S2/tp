@@ -509,6 +509,8 @@ The following sequence diagram illustrates how the assign patient operation work
 
 ![](images/AssignPatientSequenceDiagram.png)
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Unassign Patient Feature
 
 #### What it does
@@ -534,6 +536,8 @@ Step 3. If the indexes provided are valid and patient is assigned to doctor, the
 The following sequence diagram illustrates how the unassign patient operation works:
 
 ![](images/UnassignPatientSequenceDiagram.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Find Doctor Feature
 
@@ -561,6 +565,11 @@ The following sequence diagram illustrates how the find doctor operation works:
 
 ![](images/FindDoctorSequenceDiagram.png)
 
+*args: Refers to a valid sequence of arguments provided by the user. Example: "n/John Doe p/98765432 e/johnd@example.com
+s/Cardiology y/5 t/surgeon"
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Find Patient Feature
 
 #### What it does
@@ -586,6 +595,11 @@ Step 3. The model's list of filtered patients is updated.
 The following sequence diagram illustrates how the find patient operation works:
 
 ![](images/FindPatientSequenceDiagram.png)
+
+*args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com
+h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### GUI Features
 
@@ -781,7 +795,7 @@ line `"At least one parameter other than INDEX should be provided\n"`.
 
 ## **Appendix B: Product scope**
 
-**Target user profile**
+**Target user profile:**
 We hope to target admin staff within a clinic who have to settle triaging of patients.<br>
 Here are some characteristics of our target user profile: <br>
 
@@ -1040,6 +1054,11 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 ## **Appendix G: Effort**
+
+| Feature       | AB3 | Docedex                                |
+|---------------|-----|----------------------------------------|
+| Effort        | 10  |
+| Lines of Code | 10  |
 
 The Docedex project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of doctors and patients. One of the major changes was the addition of two new models, Doctor and Patient, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
 
