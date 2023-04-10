@@ -36,8 +36,8 @@ public class PlaneFlightLinkCommandFactory<T extends Command>
             "%s /fl flight-index /pl plane-index";
 
     private final PlaneFlightCommandFactory<T> linkFunction;
-
     private final String commandWord;
+
 
     /**
      * Creates a new link command factory with the model registered.

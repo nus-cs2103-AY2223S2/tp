@@ -29,6 +29,7 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
+StorageManager -up-> "5" ItemStorage
 
 Storage -left-|> UserPrefsStorage
 

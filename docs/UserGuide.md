@@ -137,7 +137,7 @@ Upon successfully switching to a mode, Wingman will display the current mode's n
 corner of the window. The window also displays a list for each resource, to aid you in keeping track of links between
 resources.
 
-<img src="images/ug/UG-mode.jpg" width="2032">
+<img src="images/ug/UG-mode.jpg" width="2032" alt="Screenshot of Wingman's main page">
 
 ### Command Formatting
 
@@ -208,7 +208,7 @@ for each attribute as shown in the following examples.
 If the command is valid, upon pressing enter, your application window will be updated as shown below.
 The response box describes the addition that was made and the new entity should be displayed in the left list.
 
-<img src="images/ug/UG-add.jpg" width="2032">
+<img src="images/ug/UG-add.jpg" width="2032" alt="Screenshot of Wingman executing the add plane command">
 
 ###### Crew mode: `add /n {name} /r {rank}`
 
@@ -345,7 +345,7 @@ Required input value:
 
 The index number of a resource entity is the number next to its entry in the displayed list.
 
-<img src="images/ug/UG-index.jpg" width="2032">
+<img src="images/ug/UG-index.jpg" width="2032" alt="Location panel depicting indexed locations">
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> Remember that indexing starts from 1. You may directly refer to the display list for the index of an item. 
@@ -386,7 +386,7 @@ the current resource mode to a specified location entity in Wingman's database.
 For example, if you are currently in the `crew` mode, then this command will link a `crew` to a specified location. If
 the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
 
-<img src="images/ug/UG-linklocation.jpg" width="2032">
+<img src="images/ug/UG-linklocation.jpg" width="2032" alt="Screenshot depicting execution of a link command">
 
 We detail the format for different modes below.
 
@@ -476,7 +476,7 @@ For example, if you are currently in the `crew` mode, then this command will unl
 entity in the database. If the command is valid, Wingman will return a response confirming the link that has been
 undone, as shown below:
 
-<img src="images/ug/UG-unlinklocation.jpg" width="2032">
+<img src="images/ug/UG-unlinklocation.jpg" width="2032" alt="Screenshot depicting execution of an unlink command">
 
 We will detail for command format for different resources below.
 
@@ -568,7 +568,7 @@ For example, if you are currently in the `crew` mode, then this command will lin
 database. If the command is valid, Wingman will return a response confirming the link that has been made, as shown
 below:
 
-<img src="images/ug/UG-linkflight.jpg" width="2032">
+<img src="images/ug/UG-linkflight.jpg" width="2032" alt="Screenshot depicting the execution of a link command">
 
 Next, we will detail the commands for each mode.
 
@@ -647,7 +647,7 @@ Linked A380 to SQ230.
 
 If the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
 
-<img src="images/ug/UG-linkflight.jpg" width="2032">
+<img src="images/ug/UG-linkflight.jpg" width="2032" alt="Screenshot depicting execution of a link command">
 
 [Back to contents](#table-of-contents)
 
@@ -665,7 +665,7 @@ the
 database. If the command is valid, Wingman will return a response confirming the link that has been undone, as shown
 below:
 
-<img src="images/ug/UG-unlinkflight.jpg" width="2032">
+<img src="images/ug/UG-unlinkflight.jpg" width="2032" alt="Screenshot depicting execution of an unlink command">
 
 We will detail the command format for each mode below.
 

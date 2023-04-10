@@ -40,7 +40,6 @@ public class ModelManager implements Model {
     private final ItemManager<Pilot> pilotManager;
     private final FilteredList<Pilot> filteredPilots;
     private final ObservableList<Pilot> pilotList;
-    // TODO: migrate this to the ui layer -> this probably should be there.
 
     // location manager
     private final ItemManager<Location> locationManager;
