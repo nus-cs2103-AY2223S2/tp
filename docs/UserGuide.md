@@ -883,6 +883,8 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command with single fields**
@@ -922,6 +924,8 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 Finds tasks with information that matches with any of the given parameters.
 
 Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
@@ -1016,6 +1020,8 @@ Syntax: `find_item ITEM_NAME`
   * `Vanilla Cupcake`
 
 </div><br>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.4 Delete
 
@@ -1132,6 +1138,8 @@ Deleting a menu item does not invalidate the orders with the same order item nam
   * `delete_m 1` deletes the **first** menu item with an item name that contains `cupcake` from the visible menu
 
 </div><br>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.5 Sort
 
