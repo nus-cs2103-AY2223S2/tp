@@ -9,6 +9,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.jobs.ImportDeliveryJobCommandParser;
 import seedu.address.model.Model;
@@ -81,5 +82,12 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
         extension = fileName.substring(i + 1, fileName.length());
         return extension;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ImportDeliveryJobCommand // instanceof handles nulls
+                && toAdd.equals(((ImportDeliveryJobCommand) other).toAdd));
+        }
 }
 
