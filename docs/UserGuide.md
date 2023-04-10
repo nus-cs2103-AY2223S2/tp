@@ -71,8 +71,9 @@ java -jar mycelium.jar
 ```
 
 If you see a window like the one shown below, then you have successfully
-installed and launched Mycelium! Notice that some mock data has been populated
-to help you get a feel for the application. Feel free to delete them later.
+installed and launched Mycelium! Notice that the app has been populated with
+some mock data to help you get a feel for the application. Feel free to delete
+the entries later.
 
 <img src="images/OnStartupScreenshot.png" />
 
@@ -94,12 +95,13 @@ and Mycelium will start as an empty application with no projects and clients.
 
 ## Glossary
 
-
-| Term                                     | Definition                                                                                                                                                                                                                                        |
-|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Term                                     | Definition                                                                                                                                                                                                                                       |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Fuzzy search                             | A feature which allows for searching via partial matches                                                                                                                                                                                         |
 | Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                            |
-| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse, and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
+| HotKey                                   | A convenient combination of key presses meant to invoke some app functionality                                                                                                                                                                   |
 | Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.          |
+| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse, and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,7 +156,7 @@ The Clients tab lists all the clients you have created. Each client block contai
 The Statistics panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
 
 The top portion is composed of two tabs. One lists the projects that are due within this week or the next (Week starts from Sunday).
-For example, if the current date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will appear on the **Due soon project list**.
+For example, if the current date is 11/04/2023 (a Tuesday), all projects with deadlines from 09/04/2023 to 22/04/2023 inclusive will appear on the **Due soon project list**.
 
 The other tab lists projects that are overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
 will not appear in **Overdue project list**, but projects with deadlines on 10/04/2023 will appear in the **Overdue
@@ -213,7 +215,7 @@ overrides *Mycelium*, so we end up with a project named *Desktop*.
 
 ## Managing Clients
 
-This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in Mycelium.
+This user guide section outlines how to _create_, _delete_, and _update_ client contacts using command in Mycelium.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -769,14 +771,17 @@ Action | Format | Example
 ### FAQs
 
 **Q:** Does Mycelium require an internet connection to run?
+<br>
 **A:** No, Mycelium is intended to work fully offline.
 
 **Q:** How can I sync my local data to the cloud?
+<br>
 **A:** Mycelium does not provide such a feature, but you may look into using
 network-attached storage, Git, or other services to back up the `mycelium.json`
 file.
 
 **Q:** What operating systems can I run Mycelium on?
+<br>
 **A:** Mycelium has been developed and tested on Windows, Mac, and Linux (X11)
 operating systems only.
 

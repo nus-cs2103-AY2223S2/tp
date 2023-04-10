@@ -56,7 +56,6 @@ This guide has been divided into five main parts.
 * [Design](#design) discusses the high-level architecture of Mycelium
 * [User Interface](#user-interface) discusses GUI concerns
 * [Command Handling](#command-handling) discusses the parsing and executing of commands
-* [Storage](#storage) briefly explains Mycelium's approach to persisting data
 * [Keyboard Interaction](#keyboard-interaction) discusses hotkeys and fuzzy search
 
 We strive to write each section in a relatively self-contained manner, but some
@@ -541,9 +540,10 @@ address book, which automatically reverts it to its pre-fuzzy state.
 #### `CommandBox` state
 
 The section on the [changing Command Box modes](#changing-modes) introduced the
-role of this class in managing state between `SearchMode` and `CommandMode`. We
-can now contextualize the differences between these two modes in relation to
-fuzzy searching. This is illustrated in the activity diagram below.
+role of the `CommandBox` class in managing state between `SearchMode` and
+`CommandMode`. We can now contextualize the differences between these two modes
+in relation to fuzzy searching. This is illustrated in the activity diagram
+below.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
@@ -728,9 +728,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
-  
+
     Use case resumes at step 1.
-  
+
 **Use case: Edit a client**
 
 **MSS**
@@ -750,7 +750,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. Some client details are invalid.
    * 1b1. Mycelium shows an error message.
-  
+
    Use case resumes at step 1.
 
 **Use case: Find a project**
@@ -1007,7 +1007,7 @@ with.
   unreadable or contains invalid values, the JSON file will be ignored, and the
   application will start as an empty application with no projects and clients.
 * Possible checksum algorithms are MD5, SHA-1, SHA-256, SHA-512.
-   
+
 **2. Long strings are cut off**
 
 We are considering two alternatives: limiting the number of characters for a
@@ -1020,7 +1020,7 @@ field or wrapping text to fix the issue
   width of the screen size is used by a panel such as entity panel, around 68
   characters can fit in the full screen size. To make up for the field name
   such as 'Name: ', we put 60 as the maximum capacity for number of characters
-  for a field. 
+  for a field.
 * Second solution: Wrap the text around using `TextFlow` and `Text` in JavaFX,
   even if the word needs to be broken. For this approach, the number of
   characters that can be fit onto a line will still be needed. Basically, a
@@ -1033,15 +1033,15 @@ field or wrapping text to fix the issue
 **3. Pie chart for project status spins even when no statuses change**
 
 We plan to add a check to prevent pie chart from refreshing when no changes to
-status of any project were made     
+status of any project were made
 
 * The current hashmap of project status along with the count of the
   corresponding status will be stored. If there are any new changes to the list
   of projects, a new hashmap will be generated. This new hashmap will then be
   compared with the current one. If there are any changes in the status count,
-  the pie chart will be refreshed. Else, the current pie chart will be kept. 
+  the pie chart will be refreshed. Else, the current pie chart will be kept.
 * This will make sure that only changes related to project status will trigger
-  the refreshing of pie chart. 
+  the refreshing of pie chart.
 
 **4. Case sensitivity of emails**
 
@@ -1163,7 +1163,7 @@ shell](https://www.gnu.org/software/bash/manual/bash.html#Shell-Syntax),
 requiring that arguments with whitespace be wrapped in quotation marks. The
 ambiguity here clearly arises from the existence of whitespace. Following
 Bash's command syntax thus solves the problem entirely. Since Mycelium is
-targeted at developers, this syntax should also feel right at home. 
+targeted at developers, this syntax should also feel right at home.
 
 With the new syntax, the command above can be very clearly parsed:
 
@@ -1185,7 +1185,7 @@ To which Mycelium would respond with an invalid email error message.
 Consider the following command:
 
 ```
-p -pn foo -ad qwerty -dd 14/03/2023
+p -pn foo -e foobar@baz.com -ad qwerty -dd 14/03/2023
 ```
 
 The *accepted date* is invalid while the deadline is valid. Mycelium currently
@@ -1193,10 +1193,45 @@ responds with the message "The date entered is invalid" and does not specify
 which one. This can be easily remedied by adding an overload for the method
 which parses dates. In brief, the new overload will
 
-1. Expect to receive the argument's name as a string
+1. Expect to receive the argument's name, e.g. "project deadline", as a string
 1. If it fails to parse the argument data, an exception explicitly referencing
    the argument's name is thrown
 1. This message is displayed to the user
+
+**10. Unable to unset an optional field**
+
+Assume the following scenario:
+
+1. We create a project with a deadline 14/03/2024
+1. Later, our client informs us that there is no deadline, and we can take as
+   long as we like
+1. We would like to remove the deadline from the project in Mycelium
+
+Currently, we would have two options.
+
+1. Delete the project, then create a new one with the same fields but without a
+   deadline
+1. Use 31/12/9999 to represent "no deadline"
+
+Neither of these solutions are ideal. Thus, we would like to propose an
+enhancement to the `uc` and `up` commands which allow us to unset optional
+attributes of clients and projects. The command below demonstrates how we can
+unset the deadline of project *foo*:
+
+```
+up -pn foo -dd
+```
+
+The `-dd` argument flag has no data following it, expressing the user's
+intention to unset the deadline field. This enhancment would not be difficult,
+as internally, these attributes are already typed as `Optional`s. At a high
+level, the new parser for the `uc` and `up` commands would work like this:
+
+1. Parse arguments as per usual
+1. For the arguments which received no data, check if they are indeed optional
+   fields
+1. If they are *not* optional, throw an error and inform the user
+1. Otherwise, proceed to set the fields to `Optional.empty()`
 
 ## Appendix: Effort
 
@@ -1218,7 +1253,7 @@ shortcuts. This was a challenge as we had to learn how to use the JavaFX `KeyEve
 implement the shortcuts in a way that was extensible for new shortcuts. This led us to come up
 with the `UiEvent` class as a single place to add new shortcuts.
 
-By supporting 2 types of entities, we would need to have commands related to each entity.
+By supporting two types of entities, we would need to have commands related to each entity.
 We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
 project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
 we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
@@ -1226,19 +1261,19 @@ onto the response of a command execution.
 
 Another challenge was to enable easy and intuitive searching of projects and clients.
 We were inspired by the command-line fuzzy finder `fzf` which ranks the options according
-to how well it matches the query as the user searches. When the command box is in its 
+to how well it matches the query as the user searches. When the command box is in its
 default command mode, it only executes commands when the input is submitted; when the command box is in search mode,
-it will read the input as the user types and rank the projects and clients based on how well 
-it matches said input. This was quite challenging as the behaviour of the command box of AB3 
+it will read the input as the user types and rank the projects and clients based on how well
+it matches said input. This was quite challenging as the behaviour of the command box of AB3
 had to be drastically modified to support different modes. This was done with the addition
 of the `Mode` class which is a component attached to the command box that
-dictates the command box behaviour when the user input is changed or submitted. 
+dictates the command box behaviour when the user input is changed or submitted.
 
 We decided to utilise a keyboard shortcut to allow the user to toggle between command mode
 and search mode easily. This was done by leveraging off the existing `UiEvent`
 class that we have implemented earlier.
 
-We wanted the user to be able to get an overview of their projects. 
+We wanted the user to be able to get an overview of their projects.
 To do this, we created another panel to display
 
 * a pie chart to show the proportions of projects in each status, and
@@ -1251,7 +1286,7 @@ remained keyboard-centric.
 
 Overall, the team project was moderately challenging. Navigating the codebase was difficult
 at first as there were many levels of abstractions and many classes to understand.
-We got our hands dirty by trying to understand and starting with the easier features 
+We got our hands dirty by trying to understand and starting with the easier features
 such as:
 
 * Implementing the basic CRUD functionality of projects and clients,
@@ -1259,7 +1294,7 @@ such as:
 * Tweaking the parser to support the new commands.
 
 The process of adding small features allowed to get a better understanding of the codebase
-and gave us confidence in adding more advanced features. 
+and gave us confidence in adding more advanced features.
 By splitting up the work and specialising in different parts of the codebase, each of us
 gain a stake in the project and were more motivated constantly improve the project.
 We also reviewed each other's code, helped each other out when we encountered problems, and

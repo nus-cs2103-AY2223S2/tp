@@ -19,9 +19,9 @@ Below are my contributions to the project:
 
   * navigate the UI with `Ctrl-J`, `Ctrl-K`, `Ctrl-L`, `Ctrl-S`
   * toggling the command box between search mode and command mode to quickly find projects and clients with `Ctrl-F`
-  
+
   I also added hooks to the command response through the `UiAction` interface. This enables commands to perform actions to the UI such as automatically switching between the project tab and the client tab depending on which tab is relevant to the command executed.
-  
+
   I added the `Mode` class for the command box, enabling the command box to be stateful and change its behaviour depending on its `Mode`.
 
 * **Testing**: I am responsible for testing the `UiAction`, `UiEvent`, `UiEventsManager`, and `Mode` classes and its relevant dependencies.
@@ -29,16 +29,16 @@ Below are my contributions to the project:
 * **Project management**: I helped enforce the proper use of labels and milestones, ensured that the team is on task with issues.
 
 * **Documentation**:
-  * **Contributions to UG**: 
+  * **Contributions to UG**:
     I am responsible for writing up the following sections of the User Guide
 
-    * [HotKeys](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#hotkeys) 
+    * [HotKeys](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#hotkeys)
 
     I also assisted in writing up the following sections of the User Guide
 
     * [Ui Overview](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#ui-overview)
 
-  * **Contributions to DG**: 
+  * **Contributions to DG**:
     I am responsible for writing up the following sections of the Developer Guide
 
     * [Hotkeys with UiEvents](https://ay2223s2-cs2103t-w14-1.github.io/tp/DeveloperGuide.html#hotkeys-with-uievents)
