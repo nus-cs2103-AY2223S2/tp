@@ -31,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -56,7 +56,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -65,7 +65,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+![ComponentManagers](images/ComponentManagers.png)
 
 The sections below give more details of each component.
 
@@ -92,7 +92,7 @@ The `UI` component
 
 Here is a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `DengueHotspotTrackerParser` class to parse the user command.
@@ -106,7 +106,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `DengueHotspotTrackerParser` class will do one of the following:
@@ -121,7 +121,7 @@ How the parsing works:
 
 Here is a (partial) class diagram of the `Model` component:
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component
 
@@ -161,17 +161,18 @@ Overall, we have this flow:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
-
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component can be divided into two main components, one for `temporary` storage, and one for permanent storage of the file.
-The permanent storage component
+The permanent storage component:
+
 * can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
 * inherits from both `DengueHotspotStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,
-only up to 10 states of the `DengueHotspotTracker`. This component supports
+only up to 10 states of the `DengueHotspotTracker`. This component supports:
+
 * undoing and redoing up to a maximum of 10 steps.
 * multiple undo and redo operations at once.
 
@@ -215,7 +216,7 @@ Step 5. Additionally `StorageManager#saveDengueHotspotTracker()` is called every
 
 The following sequence diagram will illustrate how `addPerson` operation works:
 
-[!AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
 ### Edit feature
 
@@ -252,19 +253,18 @@ The following activity diagram summarises what happens when a user executes a mu
 **Aspect: How multi-index delete indicates successful execution**
 
 * **Alternative 1 (current choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
-    * Pros: Short and succinct, without taking up too much space on the GUI.
-    * Cons: Does not show exactly which cases were deleted.
+  * Pros: Short and succinct, without taking up too much space on the GUI.
+  * Cons: Does not show exactly which cases were deleted.
 
 * **Alternative 2:** Display a message indicating successful deletion for each individual deleted case, along with the details of the deleted case.
-    * Pros: Shows exactly which cases were deleted for easy validation.
-    * Cons: Unnecessarily lengthy; may take up too much space if many cases were deleted at once.
+  * Pros: Shows exactly which cases were deleted for easy validation.
+  * Cons: Unnecessarily lengthy; may take up too much space if many cases were deleted at once.
 
 ### Delete-by-date feature
 
 #### Implementation
 
 The delete-by-date mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
-
 
 Given below is an example usage scenario and how the delete-by-date mechanism behaves at each step.
 
@@ -287,19 +287,19 @@ The following activity diagram summarises what happens when a user executes a de
 **Aspect: What attributes the `delete` command can delete by**
 
 * **Alternative 1 (current choice):** Allow users to `delete` only by date.
-    * Pros: Provides a convenient shortcut for the most probable use case out of all batch-delete use cases,
-      rather than clogging up the app with features that will likely go unused.
-    * Cons: The user may be confused at the difference in affordances between `delete` and the other commands
-      that similarly allow for prefixes to target a particular attribute, such as `edit` and `find`.
+  * Pros: Provides a convenient shortcut for the most probable use case out of all batch-delete use cases,
+    rather than clogging up the app with features that will likely go unused.
+  * Cons: The user may be confused at the difference in affordances between `delete` and the other commands
+    that similarly allow for prefixes to target a particular attribute, such as `edit` and `find`.
 
 * **Alternative 2:** Allow users to `delete` by all attributes, e.g. delete by name, age, postal, etc.,
-  similar to the `edit` and `find` commands.
-    * Pros: `delete` command would better match the functionality allowed by the other commands that
-      similarly allow for prefixes to target a particular attribute, such as `edit` and `find`.
-    * Cons: Deleting by name, age, etc. are use cases that are much rarer than deleting by date.
-      If necessary, they can be accomplished by `find`ing by the relevant attribute before `clear`ing.
-      Allowing deletion by date provides a handy shortcut for the most probable use case, keeping the app
-      free of less important features.
+similar to the `edit` and `find` commands.
+  * Pros: `delete` command would better match the functionality allowed by the other commands that
+    similarly allow for prefixes to target a particular attribute, such as `edit` and `find`.
+  * Cons: Deleting by name, age, etc. are use cases that are much rarer than deleting by date.
+    If necessary, they can be accomplished by `find`ing by the relevant attribute before `clear`ing.
+    Allowing deletion by date provides a handy shortcut for the most probable use case, keeping the app
+    free of less important features.
 
 ### Delete-by-date-range feature
 
@@ -442,10 +442,10 @@ The undo/redo mechanism is facilitated by `TemporaryMemory`. It extends `Special
 
 `TemporaryMemory`, therefore, is a specialised memory stack, where each item is an iteration of the Dengue Hotspot Tracker file. It holds as attributes a `Deque` for the primary memory stack and an auxiliary storage `Stack`, which temporarily stores popped items (undone operations).
 
-* `TemporaryMemory#saveNewLatest(ReadOnlyDengueHotspotTracker latest)` — Saves the current Dengue Hotspot Tracker state in its history, pushing it into the primary memory stack represented by a `Deque`.
-* `TemporaryMemory#undo()` — Restores the previous Dengue Hotspot Tracker state from its history. This pops an item from the primary memory stack represented by a `Deque` and pushes it into the auxiliary storage stack implemented with a `Stack`.
-* `TemporaryMemory#redo()` — Restores a previously undone Dengue Hotspot Tracker state from its history. This pushes an item from the auxiliary `Stack` back into the primary memory stack.
-* `TemporaryMemory#loadCurrent()` — Peeks into the top element of the stack and loads it.
+* `TemporaryMemory#saveNewLatest(ReadOnlyDengueHotspotTracker latest)` — Saves the current Dengue Hotspot Tracker state in its history, pushing it into the primary memory stack represented by a `Deque`.
+* `TemporaryMemory#undo()` — Restores the previous Dengue Hotspot Tracker state from its history. This pops an item from the primary memory stack represented by a `Deque` and pushes it into the auxiliary storage stack implemented with a `Stack`.
+* `TemporaryMemory#redo()` — Restores a previously undone Dengue Hotspot Tracker state from its history. This pushes an item from the auxiliary `Stack` back into the primary memory stack.
+* `TemporaryMemory#loadCurrent()` — Peeks into the top element of the stack and loads it.
   These operations are exposed in the `Model` interface as `Model#saveChanges()`, `Model#undo()`, `Model#redo()` and `Model#updateFromMemoryStack()`.
   Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -496,17 +496,16 @@ The following activity and sequence diagrams shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
+The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
 
 Step 7. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#saveChanges()`. Thus `Model#undo()` or `Model#redo()` will ignore this command. Thus, the `TemporaryMemory` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 #### Design considerations
 
@@ -928,10 +927,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The filepath is invalid
-    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+  * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
 
 * 1a. The filepath contains an empty file or a file in an incorrect format
-    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+  * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
 
 #### Use case: Export/checkout data
 
@@ -946,10 +945,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The filepath is invalid
-    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
+  * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
 * 1a. The file at given filepath is used by another application
-    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
+  * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -983,53 +982,69 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
 ### Deleting cases
 
 1. Deleting a single case while all cases are being shown
-    1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
-    1. Test case: `delete 1`<br>
+   1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
+   
+   2. Test case: `delete 1`<br>
        Expected: First case is deleted from the list. Details of the deleted contact shown in the status message.
-    1. Test case: `delete 0`<br>
+   
+   3. Test case: `delete 0`<br>
        Expected: No case is deleted. Error details shown in the status message.
-    1. Other incorrect single-index delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   
+   4. Other incorrect single-index delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+   
 2. Deleting multiple cases while all cases are being shown
-   2. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
-   2. Test case: `delete 1 2`<br>
+   
+   3. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
+   
+   4. Test case: `delete 1 2`<br>
       Expected: First and second cases are deleted from the list. Number of cases deleted shown in the status message.
-   2. Test case: `delete 0 1` <br>
+   
+   5. Test case: `delete 0 1` <br>
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
 
 ### Exporting/Importing data
 
 1. Testing import CSV
+   
    1. Remove `denguehotspottracker.csv` file in the /data folder.
-   1. Run `DengueHotSpotTracker` to obtain an initialized list of cases.
-   1. Enter Command: `export sampledata.csv` to export existing list of cases.<br>
+   
+   2. Run `DengueHotSpotTracker` to obtain an initialized list of cases.
+   
+   3. Enter Command: `export sampledata.csv` to export existing list of cases.<br>
       Expected: Successfully exported data to sampledata.csv
-   1. Enter Command: `clear` to clear existing list of cases.
-   1. Enter Command: `import sampledata.csv` to import sampledata.csv.<br>
+   
+   4. Enter Command: `clear` to clear existing list of cases.
+   
+   5. Enter Command: `import sampledata.csv` to import sampledata.csv.<br>
       Expected: Successfully imported data from sampledata.csv
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
+   
    1. Ensure that `DengueHotspotTracker` is currently not running.
-   1. Open `data/denguehotspottracker.csv` file with your favourite text editor.
-   1. Remove any of the quotation marks.
-   1.Run `DengueHotspotTracker`. Since the data file is not in the correct format, `DengueHotspotTracker` should start without any data.
+   
+   2. Open `data/denguehotspottracker.csv` file with your favourite text editor.
+   
+   3. Remove any of the quotation marks.
+   
+   4. Run `DengueHotspotTracker`. Since the data file is not in the correct format, `DengueHotspotTracker` should start without any data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1084,7 +1099,7 @@ Although both the `find` and `delete` commands can filter the case list by date 
 the `find` command merely states the number of cases found, while the `delete` command further clarifies the date or date range
 within which the cases were found:
 
-<img src="images/FindDateRangeSuccess.png" width="425"/> <img src="images/DeleteDateRangeSuccess.png" width="425"/>
+![FindDateRangeSuccess](images/FindDateRangeSuccess.png)
 
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
