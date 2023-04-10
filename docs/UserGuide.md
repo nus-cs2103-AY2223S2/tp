@@ -287,6 +287,7 @@ Added new listing:
 Job Title: Chicken Rice Uncle
 Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
+Platforms: JobStreet
 ```
 
 ❌ **Possible Errors:**
