@@ -177,9 +177,11 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
   for the day specified
 
 After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
-The following sequence diagram illustrates the description for adding meeting:
+The following sequence diagrams illustrates the description for adding meeting:
 
-![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
+![AddMeetingSequenceDiagram](images/AddMeetingParseSequenceDiagram.PNG)
+
+![AddMeetingExecuteSequenceDiagram](images/AddMeetingExecuteSequenceDiagram.PNG)
 
 #### 2.2 Design Consideration
 
