@@ -1527,6 +1527,6 @@ testers are expected to do more *exploratory* testing.
 
 #### FindCommand combining predicates
 
-<img src="images/createCombinedPredicate.png" width="300">
+<img src="images/createCombinedPredicate.png" width="300"></img>
 
 
