@@ -38,4 +38,14 @@ public class SetBudgetCommand implements Command {
                 || (other instanceof SetBudgetCommand // instanceof handles nulls
                 && budget.equals(((SetBudgetCommand) other).budget));
     }
+
+    @Override
+    public String toString() {
+        return "SetBudgetCommand{budget=" + budget + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return budget.hashCode();
+    }
 }
