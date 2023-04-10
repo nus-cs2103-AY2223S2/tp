@@ -137,6 +137,8 @@ currently stored persons or tasks.
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 2. Features
 
 <div markdown="block" class="alert alert-info"></div>
@@ -393,6 +395,8 @@ Allows for toggling between light mode and dark mode based on user preference.
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -409,7 +413,8 @@ the data of your previous Pied Piper home folder.
 
 ---
 
-# 4. How do I check my Java version?<br>
+# 4. How do I check my Java version?
+
 For windows:
 1. Open your system's command line by searching `cmd` in the windows search bar.
 2. Enter the command `java -version`.
@@ -425,6 +430,8 @@ For mac:
 [↑ Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 5. Command summary
 
