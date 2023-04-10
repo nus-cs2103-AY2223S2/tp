@@ -38,7 +38,7 @@ If you're interested in contributing to the Vimification project, this Developer
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-<<<<<<< HEAD
+  * [Launch and shutdown](#launch-and-shutdown)
   * [Adding](#adding)
   * [Inserting](#inserting)
   * [Deleting](#deleting)
@@ -46,12 +46,8 @@ If you're interested in contributing to the Vimification project, this Developer
   * [Sorting](#sorting)
   * [Refresh](#refresh)
   * [Help](#help)
-=======
-  - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a task](#deleting-a-task)
-  - [Saving data](#saving-data)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
->>>>>>> master
+
 
 ---
 
