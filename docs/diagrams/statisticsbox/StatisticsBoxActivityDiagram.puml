@@ -22,10 +22,10 @@ activate FilteredProjectList
 FilteredProjectList --> StatisticBox
 deactivate FilteredProjectList
 StatisticBox -> StatisticBox : setPieChart()
-StatisticBox -> StatisticBox : setProjectData() 
+StatisticBox -> StatisticBox : setProjectData()
 StatisticBox --> MainWindow : statisticBox
 deactivate StatisticBox
-MainWindow -->[ 
+MainWindow -->[
 deactivate MainWindow
 
 @enduml

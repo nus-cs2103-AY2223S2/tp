@@ -1240,7 +1240,7 @@ implement the shortcuts in a way that was extensible for new shortcuts. This led
 with the `UiEvent` class as a single place to add new shortcuts.
 
 By supporting two types of entities, we would need to have commands related to each entity.
-We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
+We wanted Mycelium to have the intuitive behaviour of automatically switching between the
 project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
 we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
 onto the response of a command execution.
@@ -1264,7 +1264,7 @@ To do this, we created another panel to display
 
 * a pie chart to show the proportions of projects in each status, and
 * a table to show which projects are overdue and which projects are due soon.
- 
+
 This was a challenge as it was adding complexity to the UI and required us to learn
 how to use the `PieChart` class. With another panel, we now also need an additional
 keyboard shortcut to switch focus between the 2 main panels to ensure Mycelium
