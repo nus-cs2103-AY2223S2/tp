@@ -135,10 +135,11 @@ Examples:
 Removes a student from the managing system.
 
 Format: ```delete INDEX```
+* Deletes the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 
 Examples:
 
-* ```delete 1```
+* ```delete 1``` deletes the first student in the system
 
 #### [Back to top](#table-of-content) 
 ### Listing students <a name="list"></a>
