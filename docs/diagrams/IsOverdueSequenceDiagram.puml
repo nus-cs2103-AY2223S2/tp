@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+
+participant ":Project" as Project MODEL_COLOR
+participant "projectDeadline:Deadline" as Deadline MODEL_COLOR
+
+[-> Project : isOverdue()
+activate Project
+
+alt deadline not present
+    [<-- Project : false
+else
+    Project -[MODEL_COLOR]> Deadline : compareTo(current time)
+    activate Deadline
+    alt deadline is later than current time
+        Deadline -[MODEL_COLOR]-> Project : true
+    else
+        Deadline -[MODEL_COLOR]-> Project : false
+        deactivate Deadline
+    end
+end
+[<-- Project
+deactivate Project
+
+@enduml
