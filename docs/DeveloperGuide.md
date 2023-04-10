@@ -97,30 +97,44 @@ On start, the `UIManager` will display the `MainWindow` that is made up of parts
 
 Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). However, we also have separated windows for completed and unscheduled jobs (`UnscheduleWindow` and `CompleteWindow`). Timetable Window helps users to stay organized and structure their plans for the week.
 
-`Timetable Window`:
+1. `Timetable Window`:
 
 ![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
 
 * displays the corresponding job list with the correct date and slot 
 * returns command execution result.
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
-* `TimetableDetailPanel` gets the sorted job list by date and slot using `Logic` component: `Logic#getDayofWeekJob()` - and fills in the timetable. 
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+* `TimetableWindow` gets the sorted job list by date and slot using `Logic` component and fills in the timetable. 
 
-`Unschedule Window`:
+Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `TimetableWindow` is being instantiated by calling `TimetableWindow#fillInnerParts()` to initialize the UI, and fill in the job list/detail for the corresponding parts. 
+
+![Sequence Diagram of initialization the Timetable Window](images/UiSequenceDiagramTimetableWindow.png)
+
+
+2. `Unschedule Window`:
 
 ![Structure of the Unscheduled Window](images/UiClassDiagramUnscheduleWindow.png)
 
 * displays the list of unscheduled jobs
 * gets the unscheduled job list using `Logic` component: `Logic#getUnscheduledDeliveryJobList()`
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 
-`Complete Window`:
+Upon calling `MainWindow#handleUnscheduledTimetable()`, the diagram below shows how `UnscheduleWindow` is being instantiated by calling `UnscheduleWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+
+![Sequence Diagram of initialization the Unschedule Window](images/UiSequenceDiagramUnscheduledTimetableWindow.png)
+
+
+3. `Complete Window`:
 
 ![Structure of the Completed Window](images/UiClassDiagramCompleteWindow.png)
 
 * displays the list of completed jobs
 * gets the completed job list using `Logic` component: `Logic#getCompletedDeliveryJobList()`
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+
+Upon calling `MainWindow#handleCompletedTimetable()`, the diagram below shows how `CompleteWindow` is being instantiated by calling `CompleteWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+
+![Sequence Diagram of initialization the Complete Window](images/UiSequenceDiagramCompleteWindow.png)
 
 
 #### Create Job Window
@@ -744,7 +758,7 @@ _**MSS**_
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Customer/Client**: Those who placed orders and created work for delivery men.
 * **GUI**: Graphical User Interface
-* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to plantuml.com.
+* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to [PlantUML](https://plantuml.com/).
 * **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
@@ -831,6 +845,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to `1.ii`
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
+
    1. Other incorrect approach to try:  
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  

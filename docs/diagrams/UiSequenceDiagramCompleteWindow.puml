@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box UI
+participant ":MainWindow" as MainWindow UI_COLOR_T1
+participant ":CompleteWindow" as CompleteWindow UI_COLOR_T3
+participant ":UnscheduledDeliveryJobListPanel" UI_COLOR_T2
+participant ":UnscheduledDeliveryJobListPanel" as UnscheduledDeliveryJobListPanel UI_COLOR_T2
+participant ":DeliveryJobCard" as DeliveryJobCard UI_COLOR
+end box
+
+box Logic LOGIC_COLOR
+participant ":Logic" as Logic LOGIC_COLOR_T1
+participant "filteredDeliveryJobList:FilteredList" as FilteredList LOGIC_COLOR_T2
+end box
+
+
+[-> MainWindow : handleCompletedTimetable()
+activate MainWindow
+MainWindow -> CompleteWindow : fillInnerParts()
+activate CompleteWindow
+
+CompleteWindow -> Logic : getCompletedDeliveryJobList()
+activate Logic
+Logic --> CompleteWindow
+
+CompleteWindow -> FilteredList : addListener()
+activate FilteredList
+FilteredList --> CompleteWindow
+deactivate FilteredList
+
+create UnscheduledDeliveryJobListPanel
+CompleteWindow -> UnscheduledDeliveryJobListPanel
+activate UnscheduledDeliveryJobListPanel
+
+create DeliveryJobCard
+UnscheduledDeliveryJobListPanel -> DeliveryJobCard
+activate DeliveryJobCard
+DeliveryJobCard --> UnscheduledDeliveryJobListPanel
+deactivate DeliveryJobCard
+DeliveryJobCard -[hidden]-> UnscheduledDeliveryJobListPanel
+destroy DeliveryJobCard
+
+UnscheduledDeliveryJobListPanel --> CompleteWindow
+deactivate UnscheduledDeliveryJobListPanel
+UnscheduledDeliveryJobListPanel -[hidden]-> CompleteWindow
+destroy UnscheduledDeliveryJobListPanel
+
+CompleteWindow --> MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+
+
+
+@enduml

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
+Duke Driver is a desktop app assisting delivery men with managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your tasks more efficiently, according to your requirements.
 
 **Table of Content** 
 * Table of Contents
