@@ -28,9 +28,11 @@ My code contributions can be visualised through [RepoSense](https://nus-cs2103-a
 Here are my contributions to the project.
 
 **Features:**
-- Functional code: Implement patient and doctor models
+- Functional and test code: Implement patient and doctor models
   - What it does: Creates the patient and doctor models which extend AB3 person class
   - Justification: Each command relies on the doctor / patient model to be implemented first.
+- Functional and test code: Implement patient and doctor attributes
+  - What it does: Creates the different attributes for doctors and patients, as well as the constraints for each attribute.
 - New Feature: `edit-doc / edit-ptn` - Edits a doctor / patient in Docedex
   - What it does: Allows the user to make changes to the doctor / patient
   - Justification: User may need to change the doctor's details or modify the patient's status according to the hospital's workflow.
@@ -41,29 +43,43 @@ Here are my contributions to the project.
 - New Feature: Loads mock data into file if data folder is not found
   - What it does: Loads Docedex with seeded data.
   - Justification: New users who first start the application are probably still adjusting to the application. Seeded data allows users to have something to perform commands on. This helps the users orientate themselves quickly to the application.
+  - Update: Seeded data was removed after discussion with team
 
 #### Contributions to the UG
 Here are my contributions to the UG.
 - Adding a command summary for quick reference by the users.
 - Added descriptions for editing a doctor and editing a patient
+- Added definitions to terminology used throughout the UG
+- Made parameter descriptions more specific after PED
 
 #### Contributions to the DG
 Here are my contributions to the DG
 - Sections
-  - (to be added)
+  - Architecture: Model
+  - Implementations: EditDoctorCommand
+  - Planned Enhancements: DoctorPatient Association class
+  - Planned Enhancements: Validation for FindCommand
+  - Appendix F: Glossary
+  - Appendix G: Effort
 - UML diagrams
-  - (to be added)
+  - Edit Doctor Sequence Diagram
+  - Edit Doctor Activity Diagram
+  - Updated Model Diagram
+  - Proposed New Model Diagram (DoctorPatient class)
 
 #### Contributions to team-based tasks
 Here are my contributions to team-based tasks
 - Brainstorming of user stories and use cases
 - Envisioning product design (ie. problem statement, target audience)
 - Project management: Created, assigned and closed issues for milestones 1.2, 1.2b, 1.3
+- PR reviews
 
 #### Review/mentoring contributions
-Here are the PRs that I have reviewed (with non-trivial comments).
+Here are some selected PRs that I have reviewed (with non-trivial comments).
 - [#80](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/80)
 - [#253](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/253#pullrequestreview-1375393252)
+- [#273](https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/273)
 
 Here are some ways through which I have aided my team members
-- (to be added)
+- Discussed design considerations actively with the team and gave constructive reviews wherever necessary.
+- Helped the team understand the healthcare landscape and how to position Docedex as a great productivity tool in clinics.

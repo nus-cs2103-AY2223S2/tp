@@ -3,12 +3,11 @@ layout: page
 title: Developer Guide
 ---
 
-## Table Of Contents
-
+## **Table Of Contents**
 {: .no_toc}
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -105,7 +104,7 @@ The `UI` component uses the JavaFX UI framework. The layout of these UI parts ar
 `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
 [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/##view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component does the following
 
@@ -117,6 +116,7 @@ The `UI` component does the following
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Main Window
+{: .no_toc}
 
 The `MainWindow` houses all the components that make up the visual display of Docedex. Its primary
 function is to listen to user input through the `CommandBox`, initiate the execution of the command,
@@ -143,6 +143,7 @@ You may refer to their implementations here
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Contact Display
+{: .no_toc}
 
 The `ContactDisplay` houses all the components that provide visual feedback after the manipulation
 of doctors and patients within Docedex.
@@ -192,8 +193,7 @@ accomplished the following:
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -232,8 +232,7 @@ How the parsing works:
 
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/UpdatedModelClassDiagram.png" width="450" alt="UpdatedModelClassDiagram"/>
 
@@ -256,8 +255,7 @@ The `Model` component,
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![Structure of the Storage](images/StorageClassDiagram.png)
 
@@ -274,7 +272,6 @@ Notes about the `Storage` component
   job is to save/load objects that belong to the `Model`)
 
 #### Notes about storing assignments between doctors and patients
-
 {: .no_toc}
 
 In our `Model`, the `Doctor` contains a list of `Patient` that they are assigned to,
@@ -309,7 +306,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ### Add Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a doctor to the bottom of the list of currently existing doctors. Users are able to add any valid doctor to the
@@ -319,7 +315,6 @@ thrown to alert user.
 Example Use: `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the add doctor command, an `AddDoctorCommand` class is created. The `AddDoctorCommand` class extends the
@@ -345,7 +340,6 @@ s/Cardiology y/5 t/surgeon"
 ### Add Patient Feature
 
 #### What it does
-
 {: .no_toc}
 
 Adds a patient to the bottom of the list of currently existing patients. Users are able to add any valid patient to the
@@ -356,7 +350,6 @@ Example
 Use: `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the add patient command, an `AddPatientCommand` class is created. The `AddPatientCommand` class extends
@@ -384,7 +377,6 @@ h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/
 ### Edit Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be
@@ -394,7 +386,6 @@ the doctor's index.
 Example Use: `edit-doc 2 n/Gabriel Tan p/12345678 s/Cardiology`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the edit doctor command, an `EditDoctorCommand` class is created. The `EditDoctorCommand` class extends
@@ -429,7 +420,6 @@ The following sequence diagram illustrates how the edit doctor operation works:
 ### Delete Doctor Feature
 
 #### What it does
-
 {: .no_toc}
 
 Deletes a doctor at the specified **one-based index** of list of currently existing/found doctors. Users are able to
@@ -439,7 +429,6 @@ command will not be allowed and an error will be thrown to alert user.
 Example Use: `del-doc 1`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the delete doctor command, a `DeleteDoctorCommand` class is created. The `DeleteDoctorCommand` class
@@ -463,7 +452,6 @@ The following sequence diagram illustrates how the delete doctor operation works
 ### Delete Patient Feature
 
 #### What it does
-
 {: .no_toc}
 
 Deletes a patient at the specified **one-based index** of list of currently existing/found patient. Users are able to
@@ -473,7 +461,6 @@ command will not be allowed and an error will be thrown to alert user.
 Example Use: `del-ptn 1`
 
 #### Implementation
-
 {: .no_toc}
 
 Upon entry of the delete doctor command, a `DeletePatientCommand` class is created. The `DeletePatientCommand` class
@@ -497,7 +484,6 @@ The following sequence diagram illustrates how the delete patient operation work
 ### GUI Features
 
 #### Enlarged Info Card feature
-
 {: .no_toc}
 
 As triage staff manage the contacts of doctors and patients, they may wish to pull up
@@ -507,7 +493,6 @@ Docedex has been reserved to show the personal information of the selected docto
 ![](images/NewUi.png)
 
 ##### Brief introduction to the components involved
-
 {: .no_toc}
 
 Let's call the card which displays this information **info cards**. However, the information
@@ -523,7 +508,6 @@ on whether the user has selected a doctor or patient to view.
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Exploring the user journey
-
 {: .no_toc}
 
 To explore how this is implemented, we will focus on the user clicking on a `DoctorListViewCell`
@@ -539,7 +523,6 @@ causes the display of information related to the doctor card through the `Enlarg
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### More details on implementation
-
 {: .no_toc}
 
 Before diving into the details, here are a few key points to note:
@@ -568,7 +551,6 @@ the `EnlargedPatientInfoCard` being populated with the appropriate data and disp
 [Scroll back to Table of Contents](#table-of-contents)
 
 ##### Alternatives considered
-
 {: .no_toc}
 
 In the past, we had a different implementation of this feature, where the `DoctorListViewCell`
@@ -599,9 +581,9 @@ Here are some useful links on the following!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix A: Planned Enhancements
+## **Appendix A: Planned Enhancements**
 
-### User Interface
+### Feedback To User
 
 #### Problem 1: Selection of doctor or patient cards is not cleared upon certain commands
 
@@ -660,6 +642,8 @@ line `"At least one parameter other than INDEX should be provided\n"`.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+### Code quality + Input validation
+
 #### Problem 4: Use of association classes instead of lists to capture doctor-patient relationship on assignment
 
 <div markdown="span" class="alert alert-danger">
@@ -689,6 +673,16 @@ To be added
 <div markdown="span" class="alert alert-danger">
 To be added
 </div>
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+#### Problem 8: Better error/exception handling for invalid command inputs
+- **Scenario**: User enters an invalid variation of a command
+- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
+- **Potential issue**: User has to guess which parameter/section of the command is invalid.
+- **Why did it happen**: Implementation of feature freeze prior to resolution
+
+**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -762,6 +756,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 | UC6 - Assign Doctor to Patient | UC12 - Assign Patient to Doctor |
 
 #### Use case: UC1 - Add Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -786,6 +781,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC2 - Delete Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -809,6 +805,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC3 - Edit Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -837,6 +834,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC4 - Find Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -855,6 +853,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC5 - List Doctor
+{: .no_toc}
 
 **MSS**
 
@@ -873,6 +872,7 @@ the use case. Such associated pairs of use cases are listed in the table below.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Use case: UC6 - Assign Doctor To Patient
+{: .no_toc}
 
 **MSS**
 
@@ -954,6 +954,7 @@ Testers are encouraged to do more *exploratory* testing.
 </div>
 
 #### Launch and shutdown
+{: .no_toc}
 
 1. Initial launch
 
@@ -973,6 +974,7 @@ Testers are encouraged to do more *exploratory* testing.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Deleting a doctor
+{: .no_toc}
 
 1. Deleting a doctor while all doctors are being shown
 
@@ -993,6 +995,7 @@ Testers are encouraged to do more *exploratory* testing.
 [Scroll back to Table of Contents](#table-of-contents)
 
 #### Saving data
+{: .no_toc}
 
 1. Dealing with missing/corrupted data files
 
