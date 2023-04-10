@@ -32,9 +32,10 @@ Contributions to the project:
   * Justification: Convenient, reliable data storage and access, improves productivity.
   * Highlights: Streamlined data management and user control over their data.
 
----
-
 <br>
+<br>
+
+---
 
 * **New Feature**: View Assigned and Unassigned Elements
   * What it does: Filter and view assigned and unassigned persons, tasks, and persons to tasks in the address book.
