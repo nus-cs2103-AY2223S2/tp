@@ -21,7 +21,7 @@ Given below are my contributions to the project.
     -Highlights: This feature required modification to the existing codebase to add the "VIEW LESSONS" button and implement the functionality to display the lessons associated with a student.
     -Credits: N/A
     
-* **Code contributed**:
+* **Code contributed**: [Reposense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fahim-tazz&breakdown=true)
 
 * **Project management**:
 
