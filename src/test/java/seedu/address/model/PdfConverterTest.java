@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static seedu.address.testutil.TypicalMockStudents.getTypicalMockStudents;
 
 import java.awt.Color;
@@ -16,12 +18,12 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.student.Student;
 
 public class PdfConverterTest {
-
-    private List<Student> typicalStudentList = getTypicalMockStudents();
     private static String stringSample = "THIS_IS_A_SAMPLE_STRING:)";
+    private List<Student> typicalStudentList = getTypicalMockStudents();
     private final float horizontalWrap = 432;
     private final float xInit = 90;
     private final float yInit = 702;

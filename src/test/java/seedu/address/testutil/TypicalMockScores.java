@@ -1,18 +1,18 @@
 package seedu.address.testutil;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.score.*;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCORE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCORE_LABEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCORE_VALUE;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.score.Date;
+import seedu.address.model.score.Label;
+import seedu.address.model.score.Score;
+import seedu.address.model.score.ScoreValue;
+import seedu.address.model.score.UniqueScoreList;
 
 /**
  * A utility class containing a list of {@code Score} objects to be used in tests.
