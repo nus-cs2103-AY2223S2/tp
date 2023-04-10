@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Shows all the available backups to the user
+ * Shows all the available backups to the user.
  */
 public class ViewBackupsCommand extends Command {
 

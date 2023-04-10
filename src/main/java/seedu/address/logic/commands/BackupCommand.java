@@ -19,7 +19,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 
 /**
- * Backs up the data to a specified index
+ * Backs up the data to a specified index.
  */
 public class BackupCommand extends Command {
 

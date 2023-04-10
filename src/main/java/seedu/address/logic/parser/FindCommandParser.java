@@ -21,13 +21,13 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
 
     public FindCommand parse(String args) throws ParseException {
@@ -106,10 +106,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Checks if argument is empty before splitting argument
+     * Checks if argument is empty before splitting argument.
      *
-     * @param arg argument passed by user
-     * @return argument split into an array of strings
+     * @param arg argument passed by user.
+     * @return argument split into an array of strings.
      * @throws ParseException
      */
     private static String[] getKeywords(String arg) throws ParseException {
