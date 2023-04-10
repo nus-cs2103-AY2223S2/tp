@@ -40,6 +40,7 @@ project created by the SE-EDU initiative.
 [AddressBook-Level4](https://github.com/se-edu/addressbook-level4) project by the SE-EDU initiative.
 * The class diagram of the Model component is adapted from a past CS2103T project 
 [PleaseHireUs](https://ay2223s1-cs2103t-w17-4.github.io/tp/), ([DG](https://ay2223s1-cs2103t-w17-4.github.io/tp/DeveloperGuide.html)). 
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
