@@ -57,18 +57,80 @@ public class DeleteAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> persons = model.getFilteredPersonList();
-        List<Appointment> appointments = model.getAddressBook().getAppointmentList();
-        Patient appointmentPatient = null;
-        boolean found = false;
-        for (Person p : persons) {
-            if (p.getNric().equals(nric)) {
-                found = true;
+
+        checkIfPersonFound(persons);
+        Patient appointmentPatient = checkIfValidPatient(persons);
+
+        int patientAppmtInd = getPatientAppmtInd(appointmentPatient);
+        Appointment appointmentToDeletePatient = appointmentPatient.deletePatientAppointment(patientAppmtInd);
+
+        Nric appointmentToDeleteDrNric = appointmentToDeletePatient.getDrNric();
+        Doctor appointmentToDeleteDr = retrieveDrOfAppmtToDelete(persons, appointmentToDeleteDrNric);
+
+        deleteAppmtForDr(appointmentToDeletePatient, appointmentToDeleteDr);
+
+        Patient editedPatient = createEditedPatient(appointmentPatient);
+        Doctor editedDoctor = createEditedDoctor(appointmentToDeleteDr);
+
+        updateModel(model, appointmentPatient, appointmentToDeletePatient, appointmentToDeleteDr, editedPatient, editedDoctor);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentToDeletePatient));
+    }
+
+    private static void updateModel(Model model, Patient appointmentPatient, Appointment appointmentToDeletePatient, Doctor appointmentToDeleteDr, Patient editedPatient, Doctor editedDoctor) {
+        model.setPatient(appointmentPatient, editedPatient);
+        model.setDoctor(appointmentToDeleteDr, editedDoctor);
+
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.deleteAppointment(appointmentToDeletePatient);
+    }
+
+    private static Doctor createEditedDoctor(Doctor appointmentToDeleteDr) {
+        Doctor editedDoctor = new Doctor(appointmentToDeleteDr.getName(), appointmentToDeleteDr.getPhone(),
+                appointmentToDeleteDr.getEmail(), appointmentToDeleteDr.getNric(), appointmentToDeleteDr.getAddress(),
+                appointmentToDeleteDr.getTags(),
+                appointmentToDeleteDr.getPatientAppointments(), appointmentToDeleteDr.getRole());
+        return editedDoctor;
+    }
+
+    private static Patient createEditedPatient(Patient appointmentPatient) {
+        Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
+                appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
+                appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
+                appointmentPatient.getPatientAppointments(), appointmentPatient.getRole());
+        return editedPatient;
+    }
+
+    private static void deleteAppmtForDr(Appointment appointmentToDeletePatient, Doctor appointmentToDeleteDr) {
+        Appointment toDeleteDrAppmt = null;
+        for (Appointment a : appointmentToDeleteDr.getPatientAppointments()) {
+            if (a.isSameAppointment(appointmentToDeletePatient)) {
+                toDeleteDrAppmt = a;
             }
         }
+        appointmentToDeleteDr.deletePatientAppointment(toDeleteDrAppmt);
+    }
 
-        if (found == false) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+    private static Doctor retrieveDrOfAppmtToDelete(List<Person> persons, Nric appointmentToDeleteDrNric) {
+        Doctor appointmentToDeleteDr = null;
+        for (Person pp : persons) {
+            if (pp.getNric().equals(appointmentToDeleteDrNric)) {
+                appointmentToDeleteDr = (Doctor) pp;
+            }
         }
+        return appointmentToDeleteDr;
+    }
+
+    private int getPatientAppmtInd(Patient appointmentPatient) throws CommandException {
+        int patientApptSize = appointmentPatient.getAppointmentSize();
+        int ind = index.getZeroBased();
+        if (patientApptSize <= 0 || ind >= patientApptSize) {
+            throw new CommandException(MESSAGE_INVALID_INDEX);
+        }
+        return ind;
+    }
+
+    private Patient checkIfValidPatient(List<Person> persons) throws CommandException {
+        Patient appointmentPatient = null;
 
         for (Person p : persons) {
             if (p.getNric().equals(nric)) {
@@ -79,49 +141,20 @@ public class DeleteAppointmentCommand extends Command {
                 break;
             }
         }
+        return appointmentPatient;
+    }
 
-        int patientApptSize = appointmentPatient.getAppointmentSize();
-        int ind = index.getZeroBased();
-        if (patientApptSize <= 0 || ind >= patientApptSize) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
-        }
-
-        Appointment appointmentToDeletePatient = appointmentPatient.deletePatientAppointment(ind);
-        Nric appointmentToDeleteDrNric = appointmentToDeletePatient.getDrNric();
-        Doctor appointmentToDeleteDr = null;
-        for (Person pp : persons) {
-            if (pp.getNric().equals(appointmentToDeleteDrNric)) {
-                appointmentToDeleteDr = (Doctor) pp;
+    private void checkIfPersonFound(List<Person> persons) throws CommandException {
+        boolean isFound = false;
+        for (Person p : persons) {
+            if (p.getNric().equals(nric)) {
+                isFound = true;
             }
         }
 
-        Appointment toDeleteDrAppmt = null;
-        for (Appointment a : appointmentToDeleteDr.getPatientAppointments()) {
-            if (a.isSameAppointment(appointmentToDeletePatient)) {
-                toDeleteDrAppmt = a;
-            }
+        if (isFound == false) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
-        appointmentToDeleteDr.deletePatientAppointment(toDeleteDrAppmt);
-
-        Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
-                appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
-                appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
-                appointmentPatient.getPatientAppointments(), appointmentPatient.getRole());
-
-        Doctor editedDoctor = new Doctor(appointmentToDeleteDr.getName(), appointmentToDeleteDr.getPhone(),
-                appointmentToDeleteDr.getEmail(), appointmentToDeleteDr.getNric(), appointmentToDeleteDr.getAddress(),
-                appointmentToDeleteDr.getTags(),
-                appointmentToDeleteDr.getPatientAppointments(), appointmentToDeleteDr.getRole());
-        model.setPatient(appointmentPatient, editedPatient);
-        model.setDoctor(appointmentToDeleteDr, editedDoctor);
-
-        model.updatePersonView(appointmentPatient);
-
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.deleteAppointment(appointmentToDeletePatient);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentToDeletePatient));
-
-
     }
 
     @Override
