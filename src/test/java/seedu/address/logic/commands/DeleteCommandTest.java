@@ -50,8 +50,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_employeeIdNotInList_throwsCommandException() {
-        EmployeeId nonExistentEmployeeId = new EmployeeId(Integer.
-                toString(model.getExecutiveProDb().getEmployeeList().size() + 1));
+        EmployeeId nonExistentEmployeeId = new EmployeeId(
+                Integer.toString(model.getExecutiveProDb().getEmployeeList().size() + 1));
         DeleteCommand deleteCommand = new DeleteCommand(nonExistentEmployeeId);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
