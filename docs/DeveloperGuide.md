@@ -994,6 +994,7 @@ Below, are the details of the planned enhancements:
 
   Specifically, there were cases where a resource's availability did not
   change when it should have.
+
 - **Feature tweak:** When linking a resource to a `Flight`, we should be checking
   the resource's availability and determining if the `Link` can be
   made or not. This is another aspect of input validation as described
