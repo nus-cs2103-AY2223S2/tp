@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="cardPane" spacing="3.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+                <Label fx:id="id" minWidth="-Infinity" styleClass="cell_big_label" text="\$id" />
+                <Label fx:id="company" minWidth="-Infinity" style="-fx-font-weight:bold" styleClass="cell_big_label" text="\$company" wrapText="true">
+               <padding>
+                  <Insets left="5.0" right="2.0" />
+               </padding>
+            </Label>
+                <Label fx:id="position" minWidth="-Infinity" styleClass="cell_big_label" text="\$position" wrapText="true">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+         <FlowPane fx:id="tags">
+         <VBox.margin>
+            <Insets left="22.0" />
+         </VBox.margin>
+      </FlowPane>
+         <Label fx:id="status" styleClass="cell_small_label" text="\$status">
+         <VBox.margin>
+            <Insets left="22.0" />
+         </VBox.margin>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

@@ -1,14 +1,36 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S2-CS2103T-W11-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W11-2/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/ug/home_page.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+# The Intern's Ship
+
+Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
+**managing your internship applications** fuss-free. Despite being optimised for use via the keyboard,
+you will still be able to enjoy the benefits of having a visual display.
+
+With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
+all in one place.
+
+### Notable Features
+* Finding a particular internship application in TinS using keywords: `find`
+* Finding a particular event in TinS using keywords: `event find`
+* Calendar View: `calendar`
+* Finding all clashing events: `clash`
+
+# Links
+
+- [About Us](https://ay2223s2-cs2103t-w11-2.github.io/tp/AboutUs.html)
+- [Developer Guide](https://ay2223s2-cs2103t-w11-2.github.io/tp/DeveloperGuide.html)
+- [User Guide](https://ay2223s2-cs2103t-w11-2.github.io/tp/UserGuide.html)
+
+# Acknowledgements
+
+* The Intern's Ship is written in Java 11.
+* The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5),
+  [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX)
+* The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
+* The Intern's Ship - User Guide references the following projects:
+  [addressbook-level4](https://github.com/se-edu/addressbook-level4),
+  [InternBuddy](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/docs/UserGuide.md) (for Markdown Formatting of
+  the Information, Tip and Warning Box)

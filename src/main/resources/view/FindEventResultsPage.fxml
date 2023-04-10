@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="pageContainer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <VBox spacing="10.0">
+            <children>
+                <VBox>
+                    <children>
+                        <Label fx:id="pageTitle" styleClass="info-panel-h1" text="Title" VBox.vgrow="ALWAYS">
+                            <minWidth>
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Separator fx:id="separator" halignment="LEFT" prefWidth="200.0" />
+                        <Label fx:id="pageSubtitle" styleClass="info-panel-h2" text="Welcome message" wrapText="true" />
+                    </children>
+                </VBox>
+                <FlowPane fx:id="resultBox" hgap="5.0" vgap="5.0" />
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+        </VBox>
+    </content>
+</ScrollPane>

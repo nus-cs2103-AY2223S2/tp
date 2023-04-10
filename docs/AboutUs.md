@@ -9,51 +9,62 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shan Hng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shanhng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/shanhng)]
+[[portfolio](team/shanhng.md)]
 
-* Role: Project Advisor
+* Role: UI Developer
+* Responsibilities: 
+  * Implementation of Features `calendar`
+  * Created UI components
+  * Managing Developer Guide related edits
 
-### Jane Doe
+### Branson Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bransonlj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/bransonlj)]
+[[portfolio](team/bransonlj.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer 
+* Responsibilities:
+  * Implementation of Features `stats` and `edit`
+  * Fixing feature bugs and add test cases 
 
-### Johnny Doe
+### Anshumaan Tyagi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/anshumaantgi.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/anshumaantgi)] [[portfolio](team/anshumaantgi.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities:
+  * Implementation of Features `event add` and `event delete`
+  * Fixing feature bugs and add test cases 
 
-### James Doe
+### Karen Lam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/karen-lam.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Karen-Lam)]
+[[portfolio](team/karen-lam.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Implementation of Features `list`, `clash` and saving of data
+  * Managing User Guide related edits
+
+### Sarthak Saxena
+
+<img src="images/sarthak181.png" width="200px">
+
+[[github](http://github.com/sarthak181)]
+[[portfolio](team/sarthak181.md)]
+
+* Role: Developer
+* Responsibilities: 
+  * Implementation of Features `find` and `event find`
+  * Managing Developer Guide related edits and add test cases 

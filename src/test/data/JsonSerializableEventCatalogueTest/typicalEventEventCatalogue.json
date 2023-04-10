@@ -1,0 +1,63 @@
+{
+  "events" : [ {
+    "name" : "Interview",
+    "start" : "4/4/2023 1500",
+    "end" : "4/4/2023 1800",
+    "description" : "This is the first Event for ML1.",
+    "internship" : {
+      "positionName" : "Machine Learning",
+      "companyName" : "Tiktok",
+      "statusId" : "0",
+      "messageDescription" : "Registration Deadline: 20 Mar 2023",
+      "tagged" : [ "IMPORTANT" ]
+    }
+  }, {
+    "name" : "HR Meeting",
+    "start" : "5/4/2023 1200",
+    "end" : "5/4/2023 1400",
+    "description" : "This is the first Event for ML2.",
+    "internship" : {
+      "positionName" : "Machine Learning",
+      "companyName" : "GovTech",
+      "statusId" : "1",
+      "messageDescription" : "The is a dummy internship. Interview date on DDMMYYYY.",
+      "tagged" : [ "PRIORITY" ]
+    }
+  }, {
+    "name" : "HR Meeting",
+    "start" : "5/4/2023 1500",
+    "end" : "5/4/2023 1800",
+    "description" : "This is the second Event for ML1.",
+    "internship" : {
+      "positionName" : "Machine Learning",
+      "companyName" : "Tiktok",
+      "statusId" : "0",
+      "messageDescription" : "Registration Deadline: 20 Mar 2023",
+      "tagged" : [ "IMPORTANT" ]
+    }
+  }, {
+    "name" : "Take Home Project",
+    "start" : "6/4/2023 1500",
+    "end" : "6/4/2023 1500",
+    "description" : "This is the first Deadline for ML1.",
+    "internship" : {
+      "positionName" : "Machine Learning",
+      "companyName" : "Tiktok",
+      "statusId" : "0",
+      "messageDescription" : "Registration Deadline: 20 Mar 2023",
+      "tagged" : [ "IMPORTANT" ]
+    }
+  }, {
+    "name" : "Take Home Project",
+    "start" : "6/4/2023 1500",
+    "end" : "6/4/2023 1500",
+    "description" : "This is the first Deadline for ML2.",
+    "internship" : {
+      "positionName" : "Machine Learning",
+      "companyName" : "GovTech",
+      "statusId" : "1",
+      "messageDescription" : "The is a dummy internship. Interview date on DDMMYYYY.",
+      "tagged" : [ "PRIORITY" ]
+    }
+  } ]
+}
