@@ -633,7 +633,7 @@ A date represents a point in time, such as birthdate or starting or ending days 
 When a person's available dates have passed, it will not be removed from FriendlyLink.
 </div>
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can enter a person's available date for record keeping purposes, even if the date has already passed
 </div>
 
@@ -728,14 +728,13 @@ The following features are planned for v1.5
 -------------------------------------------
 
 ## Glossary
+These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [Terminology](#terminology) and the [Fields](#fields) section.
 
 ### Non-Technical
 
-These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [Terminology](#terminology) and the [Fields](#fields) section.
-
 | Term                  | Meaning                                                                                                              |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------|
-| Availability Date     | The availability date of a person.                                                                                   |
+| Availability Date     | The availability of a person.                                                                                        |
 | Birth Date            | The birth date of a person.                                                                                          |
 | Command               | An instruction given by you to FriendlyLink to perform a specific task.                                              |
 | Date                  | The date of an event.                                                                                                |
