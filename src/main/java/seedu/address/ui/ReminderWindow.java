@@ -52,27 +52,27 @@ public class ReminderWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing the reminder.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the reminder window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the reminder window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the reminder window.
      */
     public void focus() {
         getRoot().requestFocus();
