@@ -456,7 +456,7 @@ which is **IRREVERSIBLE**.
 
 ---
 
-## String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE)
+## **FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Follow these steps to transfer your data to another computer:
