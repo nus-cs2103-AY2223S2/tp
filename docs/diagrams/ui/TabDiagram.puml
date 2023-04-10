@@ -1,0 +1,40 @@
+@startuml
+!include ../style.puml
+participant ":MainWindow" as MainWindow UI_COLOR_T2
+participant "ep:EntityPanel" as EntityPanel UI_COLOR
+participant "pl:EntityList<Project>" as ProjectList MODEL_COLOR
+participant "cl:EntityList<Client>" as ClientList MODEL_COLOR
+participant "pt:EntityTab" as ProjectTab LOGIC_COLOR
+participant "ct:EntityTab" as ClientTab LOGIC_COLOR
+
+[-> MainWindow : fillInnerParts()
+activate MainWindow
+create EntityPanel
+MainWindow -> EntityPanel : EntityPanel()
+activate EntityPanel
+create ProjectList
+EntityPanel -> ProjectList : EntityList<Project>()
+activate ProjectList
+ProjectList --> EntityPanel : pl
+deactivate ProjectList
+create ClientList
+EntityPanel -> ClientList : EntityList<Client>()
+activate ClientList
+ClientList --> EntityPanel : cl
+deactivate ClientList
+create ProjectTab
+EntityPanel -> ProjectTab : EntityTab<Project>()
+activate ProjectTab
+ProjectTab --> EntityPanel : pt
+deactivate ProjectTab
+create ClientTab
+EntityPanel -> ClientTab : EntityTab<Client>()
+activate ClientTab
+ClientTab --> EntityPanel : ct
+deactivate ClientTab
+
+EntityPanel --> MainWindow : ep
+deactivate EntityPanel
+MainWindow -->[
+deactivate MainWindow
+@enduml
