@@ -313,7 +313,7 @@ The panel contains all the information of every scheduled meet up with your cont
 ### Command Response Box
 
 The Command Response Box is where EduMate will provide some feedback on the outcome
-of each command you execute (e.g success, invalid format etc).
+of each command you execute (e.g. success, invalid format etc).
 
 The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box)
 , and it is also scrollable for longer command feedback messages.
@@ -403,7 +403,7 @@ can then edit over later!
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
-E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
+E.g. `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
@@ -412,7 +412,7 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
-E.g `tag g/SoC g/Sailing`
+E.g. `tag g/SoC g/Sailing`
 
 </div>
 
@@ -624,7 +624,7 @@ As you may have already see above, when adding a contact with some fields presen
 missing information. <br>
 
 <br>
-Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Zen Qing results in `@zenqing0000`).
+Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g. Zen Qing results in `@zenqing0000`).
 This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
 </div>
@@ -931,7 +931,7 @@ What you should see:<br>
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tips on usage**<br>
-* The search is case-insensitive. e.g hans will match Hans
+* The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
@@ -997,7 +997,7 @@ We will now teach you how to effectively use the `sort` command.
 
 ##### Scenario (Continuation from previous scenario):
 
-Suppose you want to arrange contacts such from those that take the most number of common modules as you to the least. 
+Suppose you want to arrange contacts such from those that take the most number of common modules with you to the least. 
 
 If there is a tie in the number of common modules shared with you, you decide to just rank the name lexicographically.
 
@@ -1015,7 +1015,7 @@ What you should see:<br>
 
 The command `sort m/d n/a` would mean that EduMate would first sort contacts by decreasing number of common modules with you, and tie-break by its lexicographical ordering.
 
-Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules as you.
+Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules with you.
 
 ##### More Examples of Usage:
 
@@ -1299,18 +1299,18 @@ suggest new features, and it is easily extensible!
 
 ### Prefixes
 
-| Prefix | Representation  |
-|--------|-----------------|
-| `n/`   | Name            |
-| `s/`   | Station         | 
-| `p/`   | Telegram Handle | 
-| `e/`   | Email           | 
-| `g/`   | Group           | 
-| `m/`   | Module          | 
-| `d/`   | Day             |
-| `l/`   | Location        |
-| `T/`   | Time Period     |
-| ` `    | Empty           | 
+| Prefix         | Representation  |
+|----------------|-----------------|
+| `n/`           | Name            |
+| `s/`           | Station         | 
+| `p/`           | Telegram Handle | 
+| `e/`           | Email           | 
+| `g/`           | Group           | 
+| `m/`           | Module          | 
+| `d/`           | Day             |
+| `l/`           | Location        |
+| `T/`           | Time Period     |
+| <code> </code> | Empty           | 
 
 ### Command Summary
 

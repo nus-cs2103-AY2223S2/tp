@@ -126,7 +126,7 @@ title: Developer Guide
 ---
 
 ## **Software Overview**
-EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If the user can quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
 
 ---
 
@@ -627,7 +627,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
 2. If needed, a command-specific parser (like `AddCommandParser`) will be called to parse the arguments of the user input.
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddCommand`) which is executed by the `LogicManager`.
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -1077,8 +1077,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <br>
 
 How the parsing works:
-* When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g. `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser` etc.) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g. during testing).
 
 #### **Argument Multimap**
 
@@ -1343,10 +1343,10 @@ All UI tests using `TestFX` extend from `GuiUnitTest` and handles are created fo
 ---
 
 ## **Measuring Coverage of Integration Tests**
-We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests.
+We have used `Jacoco` and `Codecov` to monitor the code coverage of integration tests.
 
 ### **Create Code Coverage Report**
-Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecev` for setting up on CI/CD.
+Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecov` for setting up on CI/CD.
 
 ### **Read Code Coverage Report**
 For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
@@ -1505,21 +1505,21 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 2.
 
-**Use case: UC02 - Get a help message using a command**
+**Use case: UC02 - Display a help window using a command**
 
 **MSS**
 
 1. User requests for help.
-2. EduMate shows a help message containing usages for commands.
+2. EduMate shows a help window containing usages for commands.
 
    Use case ends.
 
-**Use case: UC03 - Get a help message using a button**
+**Use case: UC03 - Display a help window using a button**
 
 **MSS**
 
 1. User clicks the help button.
-2. EduMate shows a help message containing usages for commands.
+2. EduMate shows a help window containing usages for commands.
 
    Use case ends.
 
@@ -1599,8 +1599,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The name is invalid or missing.
     * 1a1. EduMate shows an error message.
 
-* 1f. The person with the given name already exists in the contact list.
-    * 1f1. EduMate shows an error message.
+* 1b. The person with the given name already exists in the contact list.
+    * 1b1. EduMate shows an error message.
 
 * 2a. The email field is missing.
     * 2a1. EduMate assigns an email based on the name.
@@ -1716,7 +1716,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. The module code exists in the person's contact.
     * 3a1. EduMate does not add any tags.
-    * 3b2. EduMate does not show the module in the feedback message.
+    * 3a2. EduMate does not show the module in the feedback message.
 
   Use case resumes at step 5.
 
@@ -1756,7 +1756,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 6.
 * 4c. The module and lesson exist in the contact's module set.
-    * 4c1. EduMate throws an error message.
+    * 4c1. EduMate shows an error message.
 
 **Use case: UC15 - Untag a module from a contact**
 
@@ -1865,6 +1865,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. No contacts satisfy the criteria.
     * 3a1. EduMate shows no contacts.
+
   Use case ends.
 
 **Use case: UC19 - Sort contacts based on index**
@@ -2065,8 +2066,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 2a. A file with the name already exists within the folder.
     * 2a1. EduMate replaces the file in the folder.
-
-  Use case ends.
+  
+    Use case ends.
 
 **Use case: UC29 - Load from a backup file**
 
@@ -2110,18 +2111,18 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User presses the UP button.
-2. EduMate shows a previous command in the command box.
+2. EduMate shows the previous command in the command box.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The user has already typed in the command box.
-    * 2a1. EduMate does not show a previous command.
+    * 2a1. EduMate does not show the previous command.
 
   Use case ends.
 * 2b. There are no more previous commands.
-    * 2b1. EduMate does not show a previous command.
+    * 2b1. EduMate does not show the previous command.
 
   Use case ends.
 
@@ -2130,7 +2131,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User presses the DOWN button.
-2. EduMate shows a next command in the command box.
+2. EduMate shows the next command in the command box.
 
    Use case ends.
 
@@ -2173,7 +2174,7 @@ testers are expected to do more *exploratory* testing.
 
     * 1a. Download the jar file and copy into an empty folder
 
-    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
 ### **Add a new person**
 
@@ -2261,7 +2262,7 @@ Context: None needed.
 
 Command executed: `delete`
 
-Expected Output in the Command Output Box: Invalid command format!
+Expected Output in the Command Response Box: Invalid command format!
 `delete`: Deletes the person identified by the index number used in the displayed person list.
 
 #### **_Scenario 4_**
@@ -2476,8 +2477,7 @@ Expected Output in Scheduled Meet Up Panel: `MeetUp` of index 2 disappears, only
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
-* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MRT**: Also known as the Mass Rapid Transit, Singapore high-speed railway system
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub
 

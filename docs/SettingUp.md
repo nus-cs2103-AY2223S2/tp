@@ -6,9 +6,9 @@ title: Setting up and getting started
 * Table of Contents
 1. [Setting up the project in your computer](#setting-up-the-project-in-your-computer)
 2. [Before writing code](#before-writing-code)
-   1. [Configure the coding style](#1-configure-the-coding-style)
-   2. [Set up CI](#2-set-up-ci)
-   3. [Learn the design](#3-learn-the-design)
+   * [Configure the coding style](#1-configure-the-coding-style)
+   * [Set up CI](#2-set-up-ci)
+   * [Learn the design](#3-learn-the-design)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Follow the steps in the following guide precisely. Things will not work out if y
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
-1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to ensure Intellij is configured to use **JDK 11**.
+1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure Intellij is configured to use **JDK 11**.
 2. **Import the project as a Gradle project**: Follow the guide [_[se-edu/guides] IDEA: Importing a Gradle project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html) to import the project into IDEA.<br>
   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 3. **Verify the setup**:
@@ -47,8 +47,6 @@ If you plan to use Intellij IDEA (highly recommended):
 
    This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up required.
 
-### 3. **Set Up PlantUML**
-
-### 4. **Learn the design**
+### 3. **Learn the design**
 
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [EduMate’s architecture](DeveloperGuide.md#architecture).
