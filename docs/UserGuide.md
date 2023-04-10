@@ -155,23 +155,23 @@ Item | Description
 ## Command summary
 Please refer to the list of [commands](#commands) for a full explanation.
 
-| Action                                                             | Format, Examples                                                                                                                                                                                                       |
-|--------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **![Add](#adding-a-case-add)**                                     | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                        |
-| **![Edit](#editing-a-case-edit)**                                  | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                             |
-| **![Delete](#deleting-cases-delete)**                              | `delete INDEX...` or <code>delete d/DATE</code> or <code>delete [sd/START_DATE] [ed/END_DATE] (at least 1)</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                           |
-| **![Clear](#clearing-all-entries-clear)**                          | `clear`                                                                                                                                                                                                                |
-| **![List](#listing-all-cases-list)**                               | `list`                                                                                                                                                                                                                 |
-| **![Find](#finding-cases-by-prefix-find)**                         | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... [a/AGE] [d/DATE] (at least 1, a/ and d/ tags can be replaced by sa/,ea/ or sd/,ed/ tags)</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **![Sort](#sorting-cases-sort)**                                   | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                         |
-| **![Undo](#undoingredoing-an-action-undo-or-redo)**                | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                     |
-| **![Redo](#undoingredoing-an-action-undo-or-redo)**                | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                     |
-| **![Overview](#changing-the-overview-type-overview)**              | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                |
-| **![Checkout](#checking-out-the-overview-to-a-csv-file-checkout)** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                 |
-| **![Import](#importing-data-from-a-csv-file-import)**              | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                   |
-| **![Export](#exporting-data-to-a-csv-file-export)**                | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                   |
-| **![Help](#viewing-help-help)**                                    | `help`                                                                                                                                                                                                                 |
-| **![Exit](#exiting-the-program-exit)**                             | `exit`                                                                                                                                                                                                                 |
+| Action                                                             | Format, Examples                                                                                                                                                                                                                                                                      |
+|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **![Add](#adding-a-case-add)**                                     | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                                                                                       |
+| **![Edit](#editing-a-case-edit)**                                  | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                                                                                            |
+| **![Delete](#deleting-cases-delete)**                              | `delete INDEX...`<br>or `delete d/DATE`<br>or `delete [sd/START_DATE] [ed/END_DATE]` (at least one of the two must be included)<br>e.g. `delete 3`, `delete d/2023-03-10`                                                                                                             |
+| **![Clear](#clearing-all-entries-clear)**                          | `clear`                                                                                                                                                                                                                                                                               |
+| **![List](#listing-all-cases-list)**                               | `list`                                                                                                                                                                                                                                                                                |
+| **![Find](#finding-cases-by-prefix-find)**                         | <code>find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...</code><br>(`[a/AGE]` can be replaced with `[sa/START_AGE] [ea/END_AGE]`)<br>(`[d/DATE]` can be replaced with `[sd/START_DATE] [ed/END_DATE]`)<br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **![Sort](#sorting-cases-sort)**                                   | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                                                                                        |
+| **![Undo](#undoingredoing-an-action-undo-or-redo)**                | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                                                                                    |
+| **![Redo](#undoingredoing-an-action-undo-or-redo)**                | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                                                                                    |
+| **![Overview](#changing-the-overview-type-overview)**              | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                                                                               |
+| **![Checkout](#checking-out-the-overview-to-a-csv-file-checkout)** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                                                                                |
+| **![Import](#importing-data-from-a-csv-file-import)**              | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                                                                                  |
+| **![Export](#exporting-data-to-a-csv-file-export)**                | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                                  |
+| **![Help](#viewing-help-help)**                                    | `help`                                                                                                                                                                                                                                                                                |
+| **![Exit](#exiting-the-program-exit)**                             | `exit`                                                                                                                                                                                                                                                                                |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -382,7 +382,19 @@ You may wish to use `list` **after** any of these commands in order to return to
 
 Finds cases which match the given prefixes.
 
-Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \`<br><code>{ [d/DATE] | [sd/START_DATE] [ed/END_DATE] }</code>
+Format: `find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:**<br>
+
+The tags for age (`a/AGE`) and date (`d/DATE`) can be replaced with ranges instead to find cases which fall within that range. Use:
+* `[sa/START_AGE] [ea/END_AGE]` for a range of ages
+* `[sd/START_DATE] [ed/END_DATE]` for a range of dates
+
+Be careful not to use both the 'specific' tag and 'range' tags for the same property in one command! e.g. `find a/25 sa/20` will not be accepted.
+
+</div>
 
 * The search is case-insensitive for all prefixes.
   * e.g. `n/hans` will match `Hans` or `hAns`
