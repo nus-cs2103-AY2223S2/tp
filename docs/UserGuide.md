@@ -19,6 +19,7 @@ The purpose of this user guide document is to provide staff with a clear underst
 💡**Tip**:
 <br/> Messages in this format include information that may be useful to the user.
 
+<div style="page-break-after: always;"></div>
 
 # Table of Contents:
 
@@ -46,6 +47,8 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Setup
 
@@ -87,11 +90,14 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
 
+<div style="page-break-after: always;"></div>
+
 ## GUI Information
 
 ![DefinedGUI](images/DefinedGUI.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Prefixes
 
@@ -111,6 +117,8 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 | Backup description   | b/     |
 
 <sub>[return to table of contents](#table-of-contents)</sub>
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -139,7 +147,7 @@ executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considere
 not need to be in lower case.
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ### Adding a patient record: `add`
 
@@ -165,6 +173,8 @@ Examples:
 
 Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a patient record: `edit`
 
 In a situation when you want to update a patient's phone number or other particulars this feature can allow you to do so.
@@ -186,6 +196,8 @@ Examples:
 
 Above is the execution result of the input `edit 7 i/G0000000A`.
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing a patient detailed particulars: `view`
 
 In a situation when you want to obtain in depth information of a particular patient which is not available in the patient records list, you can use this feature to do so.
@@ -203,6 +215,8 @@ Examples:
 
 Above is the execution result of the input `view i/S1234567H`.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a patient record: `delete`
 
 In a situation when you want to delete a patient from the patient records list due to death and the specified retention period is over, you can use this feature to do so.
@@ -216,6 +230,8 @@ command, `undo` command will not undo all deletes made, but only **one** at a ti
 Examples:
 
 * `delete i/S1234567A` deletes the patient with NRIC S1234567A from patient records system.
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering patients by attribute: `find`
 
@@ -253,6 +269,8 @@ Examples (The following results are based of the sample data provided):
 
 Above is the execution result of the input `find ad/Alex`.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all patients: `list`
 
 You can use this feature to get a list of all patients in the records.
@@ -270,6 +288,7 @@ that you have loaded.
 
 Above is the execution result of the input `list`.
 
+<div style="page-break-after: always;"></div>
 
 ### Backing up patient records: `backup`
 
@@ -297,6 +316,8 @@ Examples:
 
 Above is the execution result of the input `backup 1`.
 
+<div style="page-break-after: always;"></div>
+
 ### Loading data: `load`
 
 In the event of a data loss, you can load the backup data from a specified slot represented by an index.
@@ -310,6 +331,7 @@ Example:
 
 * `load 3` loads the data from the 3rd slot.
 
+<div style="page-break-after: always;"></div>
 
 ### Viewing backup data: `viewbackups`
 
@@ -323,6 +345,8 @@ Format: `viewbackups`
 ![Viewbackups](images/command_result/Viewbackups.png)
 
 Above is the execution result of the input `viewbackups`.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting backup data: `deletebackup`
 
@@ -338,6 +362,8 @@ Example:
 
 * `deletebackup 3` deletes the data from the 3rd slot.
 
+<div style="page-break-after: always;"></div>
+
 ### Clearing all data: `clear`
 
 Purges all data from the database.
@@ -351,6 +377,8 @@ Format: `clear`
 ![Clear](images/command_result/Clear.png)
 
 Above is the execution result of the input `clear`.
+
+<div style="page-break-after: always;"></div>
 
 ### Undoing previous command: `undo`
 
@@ -370,6 +398,8 @@ Changing the name of a patient above `edit 6 n/John Balakrishnan` (Previously Ro
 
 And above is the execution of `undo`
 
+<div style="page-break-after: always;"></div>
+
 ### Redoing previous undo: `redo`
 
 In the event that you accidentally removed the changes you made, you can use this feature to revert the patient records to the state before the previous undo was executed.
@@ -383,6 +413,7 @@ Format: `redo`
 ![Redo](images/command_result/Redo.png)
 Following the above example for `undo`, `redo` would subsequently change the name of the patient again.
 
+<div style="page-break-after: always;"></div>
 
 ### Switching to light mode: `light`
 
@@ -394,12 +425,13 @@ Format: `light`
 
 Above is the execution result of the input `light`.
 
+<div style="page-break-after: always;"></div>
+
 ### Switching to dark mode: `dark`
 
 Switches the GUI to dark mode.
 
 Format: `dark`
-
 
 💡**Tip**:
 <br/>The default GUI is light mode. Use these commands and see which is your preferred GUI!
@@ -407,6 +439,8 @@ Format: `dark`
 ![Dark](images/command_result/Dark.png)
 
 Above is the execution result of the input `dark`.
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -422,6 +456,8 @@ Above is the view of help window after the input `help`.
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer? <br>
@@ -432,6 +468,8 @@ Above is the view of help window after the input `help`.
 
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
