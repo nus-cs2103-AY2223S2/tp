@@ -359,7 +359,7 @@ Format: `mark INDEX`
 Examples:
 - `mark 2` marks task 2 as completed.
 
-#### 3.3.7 Unmarking a Task: `unmark`
+#### 3.3.7 Unmarking a Task as not Completed: `unmark`
 
 Unmarks a task in OfficeConnect
 
@@ -384,7 +384,7 @@ Format: `assign ti/INDEX pi/INDEX`
 Examples:
 - `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
-#### 3.4.2 Remove a Task assignment from a Person: `unassign`
+#### 3.4.2 Removing a Task Assignment from a Person: `unassign`
 
 Removes the assignment of an existing task from an existing person in OfficeConnect.
 
@@ -401,39 +401,39 @@ Examples:
 
 ### 3.5 Filter Commands
 
-#### 3.5.1 List all Persons and Tasks: `listall`
+#### 3.5.1 Listing all Persons and Tasks: `listall`
 
 Displays a list of all persons and a list of all tasks in OfficeConnect.
 
 Format: `listall`
 
-#### 3.5.2 View Assigned Persons: `viewassignedp`
+#### 3.5.2 Viewing Assigned Persons: `viewassignedp`
 
 Displays a list of all persons who have been assigned to a task.
 
 Format: `viewassignedp`
 
-#### 3.5.3 View Assigned Tasks: `viewassignedt`
+#### 3.5.3 Viewing Assigned Tasks: `viewassignedt`
 
 Displays a list of all tasks that have been assigned to a person.
 
 Format: `viewassignedt`
 
-#### 3.5.4 View Unassigned Persons: `viewunassignedp`
+#### 3.5.4 Viewing Unassigned Persons: `viewunassignedp`
 
 Displays a list of all persons who have not been assigned to any task.
 
 Format: `viewunassignedp`
 
 
-#### 3.5.5 View Unassigned Tasks: `viewunassignedt`
+#### 3.5.5 Viewing Unassigned Tasks: `viewunassignedt`
 
 Displays a list of all tasks that have not been assigned to any person.
 
 Format: `viewunassignedt`
 
 
-#### 3.5.6 View Assigned Person and Task: `viewassignedall`
+#### 3.5.6 Viewing Assigned Persons and Tasks: `viewassignedall`
 
 Displays a list of all persons who have been assigned to one or more tasks and a list of all tasks that have been 
 assigned to one or more persons.
@@ -442,14 +442,14 @@ Format: `viewassignedall`
 
 <div style="page-break-after: always;"></div>
 
-#### 3.5.7 View Unassigned: `viewunassignedall`
+#### 3.5.7 Viewing Unassigned Persons and Tasks: `viewunassignedall`
 
 Displays a list of all persons who have not been assigned to any task and a list of all tasks that have not been 
 assigned to any person.
 
 Format: `viewunassignedall`
 
-#### 3.5.8 Filter Persons: `filterp`
+#### 3.5.8 Filtering Persons: `filterp`
 
 Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input.
 
