@@ -9,6 +9,7 @@ import taa.model.Model;
 /**
  * Lists all persons in the class list to the user.
  */
+//Credits: with reference to the original AB3 implementations
 public class ListByClassCommand extends Command {
 
     public static final String COMMAND_WORD = "classlist";
@@ -24,7 +25,6 @@ public class ListByClassCommand extends Command {
     public ListByClassCommand(ClassIdMatchesPredicate predicate) {
         this.predicate = predicate;
     }
-
 
     @Override
     public CommandResult execute(Model model) {
