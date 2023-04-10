@@ -2,6 +2,13 @@
 layout: page
 title: Developer Guide
 ---
+
+Introducing **MediConnect** - the hospital management application designed to  **streamline patient management,
+doctor coordination, and hospital billing.** As a centralised platform, **MediConnect** offers healthcare
+professionals and administrative staff an efficient solution to manage administrative matters in local clinics.
+The app simplifies the organization and maintenance of patient and doctor data, appointments and billing records. <br>
+**MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).<br>
+
 * Table of Contents
 {:toc}
 
@@ -9,8 +16,12 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* Based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used:
+  * [Jackson](https://github.com/FasterXML/jackson)
+  * [JavaFX](https://openjfx.io/index.html)
+  * [JUnit5](https://github.com/junit-team/junit5)
+  * [PlantUML](https://plantuml.com/sitemap)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -23,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +47,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +80,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,18 +97,17 @@ The `UI` component,
 
 ### Logic component
 
-
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command. 
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDoctorCommand`) which is executed by the `LogicManager`. 
+3. The command can communicate with the `Model` when it is executed (e.g. to add a doctor).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete ic/S9876543K")` API call.
 
@@ -111,11 +121,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddDoctorCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDoctorCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddDoctorCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -133,10 +143,27 @@ The `Model` component,
 
 </div>
 
+#### Person
+
+* The `Person` object under the `Model` component, stores information of a generic person
+* A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
+* Note that only the `Nric` uniquely identifies each `Person`
+
+#### Appointment
+
+* The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
+* Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
+  * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
+
+#### Prescription
+
+* The `Prescription` object is stored within the `Prescription` package, under the `Model` component.
+* Stores the required information of a prescription, including `Cost`, and `Medication`
+    * Note that `Prescription` can only be created for an existing `Patient` in `MediConnect`
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -163,16 +190,35 @@ It allows the user to add new a person (Patient/Doctor) to the `list` using `add
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user launches the application. The list of existing patients and doctors is shown.
+Step 1. The user launches the application. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+All existing patients and doctors are shown as an indexed list.
 
 Step 2. The user inputs the appropriate command (either addPatient or addDoctor), followed by the required input fields as shown below: <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician`
+`addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician`
 
-Step 3. The `addDoctor` command will check whether all the required fields are correct and if the person does not already exist in the doctors' list.
+Step 3. The `addDoctorCommandParser` checks whether all the required fields are present and correct. If all fields are correct it creates a new `addDoctorCommand`.
 
-Step 4. call Model...
+Step 4. The `addDoctorCommand` checks if the person does not already exist in the list.
 
-Step 5. create new Doctor object and add to list...
+Step 5. The `addDoctorCommand` calls `Model#addDoctor()`, which adds the doctor to the `UniquePersonList` in `ModelManager`.
+
+Step 6. `MediConnect` will store the updated list in Storage and display the new doctor in the Ui.
+
+The following sequence diagram shows how the addDoctor mechanism works:
+
+![addDoctorSequenceDiagram](images/AddDoctorSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspects**
+
+Command Format:
+1. Option 1 (Current Choice): Have separate commands for adding patients and doctors.
+   * Pros: Easier implementation, Clearly defined use
+   * Cons: Increasing number of commands might lead to confusion
+2. Option 2: Have one `addCommand` and let the user specify the person's role.
+   * Pros: Easy to remember
+   * Cons: Harder to implement, The command would be too long
 
 ### Deleting a Person
 
@@ -180,17 +226,17 @@ The delete mechanism is facilitated by `MediConnect`. It extends `MediConnect` w
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial list state, with a sample list of names.
 
 ![deleteState0](images/deleteState0.png)
 
-Step 2. The user executes addDoctor n/David Tan …​ to add a new doctor. The add command also calls Model#commitAddressBook(), causing another modified address book state to be saved into the addressBookStateList.
+Step 2. The user executes addDoctor n/David …​ to add a new doctor. The NRIC of the doctor is also included.
 
 ![deleteState1](images/deleteState1.png)
 
 Step 3. The user now wants to delete the person, and decides to carry out the delete operation by executing the `delete` command.
 
-Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command removes the person with the corresponding `NRIC` from the current list.
 
 ![deleteState2](images/deleteState2.png)
 
@@ -203,25 +249,88 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
 
-### Adding an appointment
+### Display feature
 
-The add appointment mechanism is facilitated by `MediConnect`.
+The display feature is to allow the user to view all detailed particulars of a `Patient` or `Doctor`. Note that the `Person` has to exist in `MediConnect`.  This feature is intended to complement the `Edit`, `Appointment` and `Prescription` features, allowing users to access all of the `Person`'s information when updating records.
+
+Given below is an example usage scenario and how the display mechanism behaves at each step.
+
+Scenario: Mary Smith is a patient (already registered in the system) who has just arrived at the clinic for her appointment. She is required to register her visit before consulting the doctor.
+
+Step 1. The healthcare administrative staff wishes to verify that Mary has an appointment scheduled at this time. The staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X`. As seen from Mary's appointment list, an appointment is indeed scheduled for today, and the staff proceeds to register her visit.
+
+The sequence diagram below shows how the DisplayCommand works:
+![DisplaySequenceDiagram](images/DisplaySequenceDiagram.png)
+
+* When the user inputs `display ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the person's `Nric` through `ParserUtil`
+    * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person`
+    * `CommandException` is thrown
+        * if `Patient` or `Doctor` retrieved by `Nric` does not exist
+
+### Appointment feature
+
+`Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
+* Patient's `Nric` of the `Patient` scheduled for an appointment
+* `Booking` consisting the date of the appointment
+* Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
+
+#### Adding an appointment
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Scenario: Mary Smith is an outpatient (already registered in the system) due for her medical check-up with Dr. Paul West (already registered in the system) in 2 weeks, on 01-02-2023 10:00. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
-Step 2. The user executes `appointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to add an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `appointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `appointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `appointment ic/S1234567X d/01-02-2023 10:00 dric/S7654321R` command to add an appointment for Mary Smith at the specified date, with Dr Paul West. This adds an `Appointment` to Mary, an`Appointment` to Dr. Paul, and an `Appointment` to the `HospitalAppointmentList`. The successful execution of the command confirms that both Mary Smith does not have any prior booking on this date and that Dr. Paul West is not scheduled to meet any other patients on the same date.
 
-### \[Proposed\] Deleting an appointment
+The sequence diagram below shows how the AppointmentCommand works:
+![AppointmentSequenceDiagram](images/AppointmentSequenceDiagram.png)
 
-The delete appointment mechanism is facilitated by `MediConnect`.
+* When the user inputs `appointment ic/[NRIC] d/[DATE] dric/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the patient's `Nric`, `Booking`, and doctor's `Nric` inputs through `ParserUtil`
+  * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates an `AppointmentCommand` with the new `Appointment` created. The `LogicManager` then executes the `AppointmentCommand`, upon which the `Appointment` is added to the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#bookAppointment()`.
+  * `CommandException` is thrown
+    * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
+    * if `Appointment` already exists in `Model`
+* Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
+
+
+#### Deleting an appointment
+
+The sequence diagram below shows how the `DeleteAppointmentCommand` is parsed:
+{add a sequence diagram}
 
 Given below is an example usage scenario and how the delete appointment mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Scenario: Mary Smith already has a medical check-up scheduled with Dr. Paul West (already registered in the system) on 01-02-2023 10:00. However, she realizes that she cannot make it and wishes to cancel the appointment. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
-Step 2. The user executes `deleteAppointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to delete an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `deleteAppointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deleteAppointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X` to view all her existing appointment bookings. This displays Mary's list of appointments, and the appointment that needs to be cancelled is located at index 1.
+
+Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete the appointment at index 1 of Mary's list of appointments. This removes the `Appointment` from Mary's and Dr. Paul's appointment list, and from `HospitalAppointmentList`.
+
+The sequence diagram below shows how the DeleteAppointmentCommand works:
+![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+
+* When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
+    * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates a `DeleteAppointmentCommand`. The `LogicManager` then executes the `DeleteAppointmentCommand`, upon which the `Appointment` to be deleted is retrieved and removed from the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#deleteAppointment()`.
+    * `CommandException` is thrown
+        * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
+        * if `INDEX` is invalid
+* Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
+
+#### Design considerations:
+
+**Aspect: Command format:**
+
+* **Alternative 1 (current choice):** Delete appointment specified by the `INDEX`.
+    * Pros: User can input a shorter command.
+    * Cons: Can be tedious to find the appointment to delete if the appointment list gets very long.
+
+* **Alternative 2:** Delete appointment specified by the `Booking` and doctor's `Nric`.
+    * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
+    * Cons: More tedious to implement and less convenient for the user to input command.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -301,13 +410,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -327,11 +429,12 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * Hospital administrative staff, Doctors
-* has a need to manage a significant number of patient/doctor data
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* A person that:
+  * needs to manage a significant number of patient/doctor data
+  * prefers desktop apps over other types
+  * can type fast
+  * prefers typing to mouse interactions
+  * is reasonably comfortable using CLI apps
 
 **Value proposition**: manage patient/doctor details faster than a typical mouse/GUI driven app
 
@@ -340,37 +443,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                                                                                                                | So that …​                                                                              |
-| -------- |--------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *`  | healthcare provider | access a dashboard to keep track of my patients' information, medical history, and appointment schedules                    | I can provide better care.                                                              |
-|          | healthcare provider | view bed availability in real-time                                                                                          | I can make informed decisions about patient admission and discharge.                    |
-| `* * *`  | healthcare provider      | update patient information and medical history after each appointment                                                       | I have a complete and accurate record of the patient's health.                          |
-|          | healthcare provider      | generate and send prescription orders to the pharmacy directly from the application                                         | I can streamline the process for my patients.                                           |
-|          | healthcare provider      | access real-time data on the patient's vital signs and monitor the patient's health remotely                                | I can quickly respond to changes in the patient's health.                               |
-|          | healthcare provider      | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       | 
-|          | healthcare provider      | view and manage patient waiting times                                                                                       | I can minimize wait times and improve patient satisfaction.                             |
-| `* * *`  | healthcare provider      | access a directory of specialist doctors and referral information                                                           | I can quickly and easily connect my patients with the right care.                       |
-|          | healthcare provider      | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
-|          | healthcare provider      | access a library of patient education materials and resources                                                               | I can provide better information and support to my patients.                            |
-|          | healthcare provider      | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
-|          | healthcare provider      | access and view patient insurance information and make necessary updates                                                    | I can accurately bill patients and manage healthcare costs.                             |
-|          | healthcare provider      | send appointment confirmations and reminders to patients                                                                    | they can arrive prepared for their appointments.                                        |
-|          | healthcare administrator | access analytics and metrics on patient engagement, appointment booking, and resource utilization                           | I can make data-driven decisions to improve the hospital's operations.                  |
-|          | healthcare administrator | access real-time data on hospital utilization and resource allocation                                                       | I can optimize the hospital's operations and improve patient outcomes.                  |
-| `* * *`  | healthcare administrator | access patients' records on the go/at home any time when it's necessary to provide admin support anytime.                   |                                                                                         |
-|          | healthcare administrator | manage the hospital staff and workload better using the app                                                                 | there are sufficient people during each shift.                                          |
-|          | healthcare administrator | quickly retrieve patient's bill through the application                                                                     | I can send invoices to the patients more efficiently.                                   |
-|          | healthcare administrator | receive reminders for appointments and medication                                                                           | I don't forget to inform any patients.                                                  |
-|          | healthcare administrator | provide feedback and rate my experience with the application                                                                | I can improve the application to better suit my needs.                                  |
-|          | healthcare administrator | access patient's test results and medical records through the application                                                   | I can provide doctors with the patient's health history.                                |
-|          | healthcare administrator | create an account                                                                                                           | I can login and handle patient's and doctor's information.                              |
-|          | healthcare administrator | communicate with the rest of the healthcare team and provide updates on patient's health status                             | I can provide better healthcare to the patients.                                        |
-|          | healthcare administrator | schedule and reschedule appointments through the application                                                                | I can accomodate to the patients and doctors availability.                              |
-|          | healthcare administrator | provide emergency contact information through the application                                                               | I can quickly find the patient's designated emergency contacts in case of an emergency. |
-|          | healthcare administrator | view and manage patient's bills and medication through the application                                                      | I can keep track of patient bills and medical records.                                  |
-|          | tech illiterate healthcare administrator | navigate through the app easily without help.                                                                               |                                                                                         |
-
-*{More to be added}*
+| Priority  | As a …​                                     | I want to …​                                                                                                             | So that …​                                                                           |
+|-----------|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`   | healthcare provider                         | access a dashboard to keep track of my patients' information, medical history, and appointment schedules                    | I can provide better care.                                                              |
+|           | healthcare provider                         | view bed availability in real-time                                                                                          | I can make informed decisions about patient admission and discharge.                    |
+| `* * *`   | healthcare provider                         | update patient information and medical history after each appointment                                                       | I have a complete and accurate record of the patient's health.                          |
+|           | healthcare provider                         | generate and send prescription orders to the pharmacy directly from the application                                         | I can streamline the process for my patients.                                           |
+|           | healthcare provider                         | access real-time data on the patient's vital signs and monitor the patient's health remotely                                | I can quickly respond to changes in the patient's health.                               |
+|           | healthcare provider                         | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       | 
+|           | healthcare provider                         | view and manage patient waiting times                                                                                       | I can minimize wait times and improve patient satisfaction.                             |
+| `* * *`   | healthcare provider                         | access a directory of specialist doctors and referral information                                                           | I can quickly and easily connect my patients with the right care.                       |
+|           | healthcare provider                         | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
+|           | healthcare provider                         | access a library of patient education materials and resources                                                               | I can provide better information and support to my patients.                            |
+|           | healthcare provider                         | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
+|           | healthcare provider                         | access and view patient insurance information and make necessary updates                                                    | I can accurately bill patients and manage healthcare costs.                             |
+|           | healthcare provider                         | send appointment confirmations and reminders to patients                                                                    | they can arrive prepared for their appointments.                                        |
+|           | healthcare administrator                    | access analytics and metrics on patient engagement, appointment booking, and resource utilization                           | I can make data-driven decisions to improve the hospital's operations.                  |
+|           | healthcare administrator                    | access real-time data on hospital utilization and resource allocation                                                       | I can optimize the hospital's operations and improve patient outcomes.                  |
+| `* * *`   | healthcare administrator                    | access patients' records on the go/at home any time when it's necessary to provide admin support anytime.                   |                                                                                         |
+|           | healthcare administrator                    | manage the hospital staff and workload better using the app                                                                 | there are sufficient people during each shift.                                          |
+|           | healthcare administrator                    | quickly retrieve patient's bill through the application                                                                     | I can send invoices to the patients more efficiently.                                   |
+|           | healthcare administrator                    | receive reminders for appointments and medication                                                                           | I don't forget to inform any patients.                                                  |
+|           | healthcare administrator                    | provide feedback and rate my experience with the application                                                                | I can improve the application to better suit my needs.                                  |
+|           | healthcare administrator                    | access patient's test results and medical records through the application                                                   | I can provide doctors with the patient's health history.                                |
+|           | healthcare administrator                    | create an account                                                                                                           | I can login and handle patient's and doctor's information.                              |
+|           | healthcare administrator                    | communicate with the rest of the healthcare team and provide updates on patient's health status                             | I can provide better healthcare to the patients.                                        |
+|           | healthcare administrator                    | schedule and reschedule appointments through the application                                                                | I can accomodate to the patients and doctors availability.                              |
+|           | healthcare administrator                    | provide emergency contact information through the application                                                               | I can quickly find the patient's designated emergency contacts in case of an emergency. |
+|           | healthcare administrator                    | view and manage patient's bills and medication through the application                                                      | I can keep track of patient bills and medical records.                                  |
+|           | tech illiterate healthcare administrator    | navigate through the app easily without help.                                                                               |                                                                                         |
 
 ### Use cases
 
@@ -382,10 +483,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to add patient’s information..
+1. User chooses to add patient’s information.
 2. MC requests for details of the information.
 3. User enters the requested details.
-4. MC displays the new patient information..
+4. MC displays the new patient information.
 
     Use case ends.
 
@@ -398,6 +499,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a2. User enters new data.
 
     Steps 3a1-3a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+  
+* 3b. MC detects that the patient already exists in the list.
+
+  * 3b1. MC informs user that the patient already exists.
+
+  * 3b2. User enters new data.
+
+    Steps 3b1-3b2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
 
@@ -407,10 +518,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User chooses to add doctor’s information..
+1. User chooses to add doctor’s information.
 2. MC requests for details of the information.
 3. User enters the requested details.
-4. MC displays the new doctor’s information..
+4. MC displays the new doctor’s information.
 
     Use case ends.
 
@@ -426,16 +537,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+* 3b. MC detects that the doctor already exists in the list.
+
+  * 3b1. MC informs user that the doctor already exists.
+
+  * 3b2. User enters new data.
+
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
 **Use case: UC03 - Retrieve patient’s information**
 
 **Actor: Doctor**
 
 **MSS**
 
-1. User chooses to retrieve patient’s information..
+1. User chooses to retrieve patient’s information.
 2. MC retrieves the patient’s information
-3. MC displays the patient information that was retrieved..
-   Use case ends.
+3. MC displays the patient information that was retrieved.
+
+    Use case ends.
 
 **Extensions**
 
@@ -462,17 +584,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User choose to delete patient information.
-2. MC request for the patient's nric number.
+2. MC request for the patient's NRIC number.
 3. User enters the requested details
-4. MC displays the confirmation of the deleted patient.
+4. MC displays the confirmation of the deleted patient..
+
    Use case ends.
 
 **Extensions**
-* 3a. MC cannot find the patient's nric in the list
+* 3a. MC cannot find the patient's NRIC in the list
 
   * 3a1. MC informs the user that the patient cannot be found
 
-  * 3a2. User enters the corrected nric.
+  * 3a2. User enters the corrected NRIC.
 
     Steps 3a1-3a2 are repeated until the data entered are correct.
 
@@ -488,18 +611,128 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
-* 3c. User does not enter a nric number or enters an invalid nric format number after the `ic/` field.
+* 3c. User does not enter a NRIC number or enters an invalid NRIC format number after the `ic/` field.
 
   * 3c1. MC informs the user that NRIC must follow a specific format.
 
-  * User enters the correct nric format number.
+  * User enters the correct NRIC format number.
 
     Steps 3c1-3c2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
 
+**Use case: UC05 - List all patients**
 
-*{More to be added}*
+**Actor: Hospital administrator**
+
+**MSS**
+
+1. User chooses to retrieve a list of all patients.
+2. MC retrieves the list of all patients.
+3. MC displays the list of patients' names and NRIC numbers that was retrieved.
+
+   Use case ends.
+
+**Use case: UC06 - List all doctors**
+
+**Actor: Hospital administrator**
+
+**MSS**
+
+1. User chooses to retrieve a list of all doctors.
+2. MC retrieves the list of all doctors.
+3. MC displays the list of doctors' names and NRIC numbers that was retrieved.
+
+   Use case ends.
+
+**Use case: UC07 - Book patient's appointment**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User chooses to book patient’s appointment.
+2. MC requests for details of the information.
+3. User enters the requested details.
+4. MC displays the updated appointment information for the patient and the doctor.
+
+    Use case ends.
+
+**Extensions**
+* 3a. MC detects that the patient already has an appointment scheduled for that appointment slot.
+
+  * 3a1. MC informs the user that the appointment has been booked
+
+  * 3a2. User enters another appointment slot.
+
+    Steps 3a1-3a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3b. MC detects that the doctor has already scheduled an appointment with another patient at this particular time slot.
+
+  * 3b1. MC informs the user that the appointment has been booked
+
+  * 3b2. User enters another appointment slot.
+
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3c. MC detects that the patient's nric does not exist.
+
+  * 3c1. MC informs the user that the patient's nric is invalid
+
+  * 3c2. User enters another patient nric
+
+    Steps 3c1-3c2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3d. MC detects that the doctor's nric does not exist.
+
+    * 3d1. MC informs the user that the doctor's nric is invalid
+
+    * 3d2. User enters another doctor nric
+
+      Steps 3d1-3d2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+**Use case: UC08 - Cancel patient's appointment**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User chooses to cancel patient’s appointment.
+2. MC requests for details of the information.
+3. User enters the requested details.
+4. MC displays the updated appointment information for the patient and the doctor.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. MC detects that an invalid index is entered.
+
+    * 3a1. MC informs the user that the specified index is invalid
+
+    * 3a2. User enters another index.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+* 3b. MC detects that the patient's nric does not exist.
+
+    * 3b1. MC informs the user that the patient's nric is invalid
+
+    * 3b2. User enters another patient nric
+
+      Steps 3b1-3b2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
 
 ### Non-Functional Requirements
 
@@ -509,7 +742,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. The system should be usable by a novice who is tech illiterate
 5. **Any other noteworthy points:** Confidential information is hidden, requires access rights
 
-*{More to be added}*
 
 ### Glossary
 
@@ -535,33 +767,51 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
 
+1. Adding a patient to the existing list.
+   1. Test case: `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` <br>
+      Expected: A patient Ben Smith with NRIC number S1234567A is added to the list of patients. The details of the added patient are shown in the status message.
+   2. Test case: `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` (duplicate patient)<br>
+      Expected: No patient is added to the list. Error details are shown in the status message.
+   3. Test case: `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A` (missing address field)<br>
+      Expected: No patient is added to the list. Error details are shown in the status message.
+   4. Test case: `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S123 a/1 Ben Street, block 13, #01-01` (Wrong NRIC format)<br>
+      Expected: No patient is added to the list. Error details are shown in the status message.
+
+2. Adding a doctor to the existing list.
+    1. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` <br>
+       Expected: A doctor Sarah Tan with NRIC number T7654321P is added to the list of doctors. The details of the added doctor are shown in the status message.
+    2. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` (duplicate doctor)<br>
+       Expected: No doctor is added to the list. Error details are shown in the status message.
+    3. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P t/Pediatrician` (missing address field)<br>
+       Expected: No doctor is added to the list. Error details are shown in the status message.
+    4. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T765 a/Sarah Rd t/Pediatrician` (Wrong NRIC format)<br>
+       Expected: No doctor is added to the list. Error details are shown in the status message.
+   
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete ic/S1234567A`<br>
+   2. Test case: `delete ic/S1234567A`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete ic/0`<br>
+   3. Test case: `delete ic/0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -569,8 +819,7 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-
-
+    
 ## **Appendix: Planned Enhancements**
 
 Given below are the current known feature flaws and the plans the team have for them in the future versions.
@@ -582,6 +831,6 @@ Given below are the current known feature flaws and the plans the team have for 
 5. Currently, MediConnect does not set the person's date of birth as a compulsory field. We plan to make the date of birth a compulsory field in the next version.
 6. Currently, MediConnect does not check for case sensitivity and reads upper case and lower case items as separate items. We plan to allow MediConnect to ignore case sensitivity in the next version. For example, if Paracetmol and paracetamol can be prescribed to the same patient.
 7. Currently, MediConnect does not limit the number of digits in a phone number. We plan to limit the maximum number of phone digits to 15 in the next version.
-8. Currently, MediConnect only take note of the patient's current prescription but does not store a recorded history of the patient's past prescription.
-We plan to have a prescription history in the next version.
+8. Currently, MediConnect only take note of the patient's current prescription but does not store a recorded history of the patient's past prescription. We plan to have a prescription history in the next version.
+
 
