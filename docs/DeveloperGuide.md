@@ -595,3 +595,16 @@ For example, the user is allowed to enter these 2 commands and create 2 Persons 
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
 For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.
+
+## **Appendix:** Planned Features
+
+### Ability to set up a checklist of event's requirements
+
+In this version of application, users are not able to set up a checklist of event's requirements.
+
+For future enhancements, users should be able to set up a checklist of event's requirements. This is to ensure that every need for the event is being accounted for. 
+Additionally, users are able to check-off and uncheck the requirements of the event to indicate whether the requirements have been satisfied or not. 
+
+A possible way to implement this is to let every event object contains a `requirementList` attribute, users can add in the requirements to the list by modifying the existing `addevent` and `editevent` command to accept the requirements. 
+Two new commands, `mark EVENT_INDEX r/REQUIREMENT_INDEX` and `unmark EVENT_INDEX r/REQUIREMENT_INDEX`, may be required to implement the checking-off and unchecking of a requirement, specified by the `REQUIREMENT_INDEX`, of an event, specified by the `EVENT_INDEX`.
+The UI will also display the list of requirements of each event and their statuses (checked or unchecked).  
