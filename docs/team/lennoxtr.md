@@ -42,7 +42,7 @@ To implement said features, an `Archive` class was adapted from AB3's JSONStorag
 - **User Guide**
   - Update UG's documentation for the `tag`, `untag` commands 
 - **Developer Guide**
-  - Update DG's "Implementation" section for the `tag`, `untag`, `export`, `import` commands
+  - Update DG's "Implementation" section for `tag`, `untag`, `export`, `import` commands
   - Update DG's user stories, use cases, and manual testing instructions for the `tag`, `untag`, `export`, `import` commands
 
 #### Team-Based Tasks
