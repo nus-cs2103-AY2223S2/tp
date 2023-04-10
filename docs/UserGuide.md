@@ -571,6 +571,28 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 [Back to top](#table-of-contents)
 
+-------------------------------------------
+
+## Icons
+
+The following icons are found in our application:
+
+| **Icons**                                                        | **Meaning**            |
+|------------------------------------------------------------------|------------------------|
+| <img src="images/userGuide/icons/calendar.png" width="20"/>      | Available dates        |
+| <img src="images/userGuide/icons/region.png" width="20"/>        | Region                 |
+| <img src="images/userGuide/icons/home-address.png" width="20"/>  | Address                |
+| <img src="images/userGuide/icons/nric.png" width="20"/>          | NRIC                   |
+| <img src="images/userGuide/icons/age.png" width="20"/>           | Age                    |
+| <img src="images/userGuide/icons/phone.png" width="20"/>         | Phone number           |
+| <img src="images/userGuide/icons/email.png" width="20"/>         | Email                  |
+| <img src="images/userGuide/icons/tags.png" width="20"/>          | Tags                   |
+| <img src="images/userGuide/icons/medical-tags.png" width="20"/>  | Medical Qualifications |
+
+For more information about what they represent, refer to the [Fields](#fields) section.
+
+[Back to top](#table-of-contents)
+
 -------------------------------------------------
 
 ## Fields
@@ -722,28 +744,6 @@ The following features are planned for v1.5
 | **Summarise Data**    | `stats`                                                                                                                                                                                          |
 | **Help**              | `help`                                                                                                                                                                                           |
 | **Exit Program**      | `exit`                                                                                                                                                                                           |
-
-[Back to top](#table-of-contents)
-
--------------------------------------------
-
-## Icons
-
-The following icons are found in our application:
-
-| **Icons**                                                        | **Meaning**            |
-|------------------------------------------------------------------|------------------------|
-| <img src="images/userGuide/icons/calendar.png" width="20"/>      | Available dates        |
-| <img src="images/userGuide/icons/region.png" width="20"/>        | Region                 |
-| <img src="images/userGuide/icons/home-address.png" width="20"/>  | Address                |
-| <img src="images/userGuide/icons/nric.png" width="20"/>          | NRIC                   |
-| <img src="images/userGuide/icons/age.png" width="20"/>           | Age                    |
-| <img src="images/userGuide/icons/phone.png" width="20"/>         | Phone number           |
-| <img src="images/userGuide/icons/email.png" width="20"/>         | Email                  |
-| <img src="images/userGuide/icons/tags.png" width="20"/>          | Tags                   |
-| <img src="images/userGuide/icons/medical-tags.png" width="20"/>  | Medical Qualifications |
-
-For more information about what they represent, refer to the [Fields](#fields) section.
 
 [Back to top](#table-of-contents)
 
