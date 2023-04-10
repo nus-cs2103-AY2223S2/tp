@@ -387,7 +387,7 @@ The view command creates a pop up window message displaying the patient card to 
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: MediMeet enables doctors to effectively manage patient details and appointments, and saves costs by reducing the need for Patiental assistants or appointment managers.
+**Value proposition**: MediMeet enables individual doctors or small clinics to effectively manage patient details and appointments, and saves costs by reducing the need for Patiental assistants or appointment managers.
 
 ### User stories
 
@@ -395,37 +395,37 @@ The view command creates a pop up window message displaying the patient card to 
 
 | Priority | As a …​ | I want to …​                                                      | So that I can…​                                                       |
 |----------|---------|-------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | doctor  | view details about my patients                                    | I can see everything I need to know about them at a glance            |
-| `* * *`  | doctor  | add a new patient to the addressbook                              | I can have new patients                                               |
-| `* * *`  | doctor  | edit patients' details                                            | I can update patient details                                          |
-| `* * *`  | doctor  | find a particular patient's details                               | I can easily locate patients                                          |
-| `* * *`  | doctor  | keep records of a patient                                         | I can check their medical history                                     |
-| `* * *`  | doctor  | quickly add notes about a patient                                 | I can keep an accurate and up-to-date record of their medical history |
-| `* * *`  | doctor  | add patient appointments                                          | I can schedule and keep track of all my patient visits                |
-| `* * *`  | doctor  | view upcoming appointment                                         | I can see when my next appointment will be                            |
-| `* * *`  | doctor  | view the number of patients I have to see in a day                | I can gauge my workload                                               |
-| `* * *`  | doctor  | navigate the ui using keyboard commands                           | I work faster and more efficiently                                    |
-| `* * *`  | doctor  | mark appointments as done                                         | I can remove it from my calendar                                      |
-| `* * *`  | doctor  | access help guide                                                 | I can be assisted when I have trouble using MediMeet                  |
-| `* * *`  | doctor  | delete appointments                                               | I can remove patients who cancelled appointments                      |
-| `* * *`  | doctor  | save data to memory                                               | I can store the data after closing the application                    |
-| `* * *`  | doctor  | retrieve data from memory                                         | I can have my saved data after restarting the application             |
-| `* * *`  | doctor  | delete a patient from the address book                            | I can remove data for former patients                                 |
-| `* *`    | doctor  | automate appointment assignment                                   | I don't have to manually add appointments                             |
-| `* *`    | doctor  | access different templates for emailing different users           | I can quickly send standard emails to various users                   |
-| `* *`    | doctor  | send mass emails                                                  | I don't have to send them indivually if I can't make it that day      |
-| `* *`    | doctor  | set my availability                                               | I can block off time for tasks or meetings                            |
-| `* *`    | doctor  | view my appointments and patient information on any device        | I can access these details from anywhere                              |
-| `* *`    | doctor  | add sample data                                                   | I can test out MediMeet                                               |
-| `* *`    | doctor  | purge all data                                                    | I can remove sample or confidential data                              |
-| `* *`    | doctor  | filter my appointments by date, patient name, or appointment type | I can find the data I need quickly                                    |
-| `* *`    | doctor  | add billing info                                                  | I can manage patient financials centrally                             |
-| `* *`    | doctor  | add appointments to calendar                                      | I can view my schedule at a glance                                    |
-| `*`      | doctor  | share patient details with other doctors                          | other doctors can access the necessary details                        |
-| `*`      | doctor  | login to the system                                               | I can prevent malicious actors from accessing my data                 |
-| `*`      | doctor  | reset my password                                                 | I still have access to my account if I forget my password             |
-| `*`      | doctor  | delete my account                                                 | I can remove all my data when it is no longer needed                  |
-| `*`      | doctor  | can change my password if needed                                  | I can ensure the security of my account                               |
+| `* * *`  | user    | view details about my patients                                    | I can see everything I need to know about them at a glance            |
+| `* * *`  | user    | add a new patient to the addressbook                              | I can have new patients                                               |
+| `* * *`  | user    | edit patients' details                                            | I can update patient details                                          |
+| `* * *`  | user    | find a particular patient's details                               | I can easily locate patients                                          |
+| `* * *`  | user    | keep records of a patient                                         | I can check their medical history                                     |
+| `* * *`  | user    | quickly add notes about a patient                                 | I can keep an accurate and up-to-date record of their medical history |
+| `* * *`  | user    | add patient appointments                                          | I can schedule and keep track of all my patient visits                |
+| `* * *`  | user    | view upcoming appointment                                         | I can see when my next appointment will be                            |
+| `* * *`  | user    | view the number of patients I have to see in a day                | I can gauge my workload                                               |
+| `* * *`  | user    | navigate the ui using keyboard commands                           | I work faster and more efficiently                                    |
+| `* * *`  | user    | mark appointments as done                                         | I can remove it from my calendar                                      |
+| `* * *`  | user    | access help guide                                                 | I can be assisted when I have trouble using MediMeet                  |
+| `* * *`  | user    | delete appointments                                               | I can remove patients who cancelled appointments                      |
+| `* * *`  | user    | save data to memory                                               | I can store the data after closing the application                    |
+| `* * *`  | user    | retrieve data from memory                                         | I can have my saved data after restarting the application             |
+| `* * *`  | user    | delete a patient from the address book                            | I can remove data for former patients                                 |
+| `* *`    | user    | automate appointment assignment                                   | I don't have to manually add appointments                             |
+| `* *`    | user    | access different templates for emailing different users           | I can quickly send standard emails to various users                   |
+| `* *`    | user    | send mass emails                                                  | I don't have to send them indivually if I can't make it that day      |
+| `* *`    | user    | set my availability                                               | I can block off time for tasks or meetings                            |
+| `* *`    | user    | view my appointments and patient information on any device        | I can access these details from anywhere                              |
+| `* *`    | user    | add sample data                                                   | I can test out MediMeet                                               |
+| `* *`    | user    | purge all data                                                    | I can remove sample or confidential data                              |
+| `* *`    | user    | filter my appointments by date, patient name, or appointment type | I can find the data I need quickly                                    |
+| `* *`    | user    | add billing info                                                  | I can manage patient financials centrally                             |
+| `* *`    | user    | add appointments to calendar                                      | I can view my schedule at a glance                                    |
+| `*`      | user    | share patient details with other doctors                          | other doctors can access the necessary details                        |
+| `*`      | user    | login to the system                                               | I can prevent malicious actors from accessing my data                 |
+| `*`      | user    | reset my password                                                 | I still have access to my account if I forget my password             |
+| `*`      | user    | delete my account                                                 | I can remove all my data when it is no longer needed                  |
+| `*`      | user    | can change my password if needed                                  | I can ensure the security of my account                               |
 
 
 
