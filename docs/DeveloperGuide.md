@@ -1122,6 +1122,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    than 2 hours for a new user.
 5. Accessibility: The system shall be operable even without an internet connection.
 
+<div style="page-break-after: always;"></div>
 ### 6.5 Glossary
 
 #### *A*
@@ -1141,8 +1142,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - A person.
   - ##### PI
     - View a person's details.
-  - ##### Private contact detail: 
-    - A contact detail that is not meant to be shared with others
 
 #### *P*
   - ##### Quickstart: 
