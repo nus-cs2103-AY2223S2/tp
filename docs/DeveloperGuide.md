@@ -458,6 +458,6 @@ Given below are some of the planned enhancements to ExpressLibrary current featu
 
 3. Currently, ExpressLibrary assumes that there is only one copy of each book in the library which is obviously quite unrealistic. We plan to solve this by creating a BookInstance class in the future to account for different copies of the same book in the library.
 
-4. Email addresses are only validated based on regex (specifically RFC5322 standard) and not whether it is actually a valid email. We plan to use internationlised domain names in a future update in order to truly validate an email address.
+4. Email addresses are only validated based on regex (specifically RFC5322 standard) and not whether it is actually a valid email. We plan to use internationalised domain names in a future update in order to truly validate an email address.
 
 --------------------------------------------------------------------------------------------------------------------
