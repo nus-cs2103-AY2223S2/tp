@@ -39,7 +39,7 @@ public class AddOrderCommand extends Command {
             + PREFIX_PHONE + "CUSTOMER'S PHONE NUMBER "
             + PREFIX_ADDRESS + "CUSTOMER'S ADDRESS\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ORDERNAME + "CHOCOLATE COOKIES "
+            + PREFIX_ORDERNAME + "Chocolate Cookies "
             + PREFIX_ORDERQUANTITY + "5 "
             + PREFIX_DEADLINE + "01/01/2024 "
             + PREFIX_STATUS + "N "

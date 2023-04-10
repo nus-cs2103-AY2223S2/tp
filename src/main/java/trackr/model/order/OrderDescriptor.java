@@ -109,6 +109,8 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
         return Optional.ofNullable(orderItem);
     }
 
+
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

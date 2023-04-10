@@ -24,64 +24,68 @@ You can click on any of the links below to navigate to the respective sections f
 
 <!-- TOC -->
 
-* [1 Quick start](#1-quick-start)
-  * [1.1 Prerequisites](#11-prerequisites)
-    * [1.1.1 Java](#111-java)
-    * [1.1.2 Glossary](#112-glossary)
-  * [1.2 Installation](#12-installation)
-  * [1.3 Utilisation](#13-utilisation)
-  * [1.4 Navigating the User Interface](#14-navigating-the-user-interface)
-    * [1.4.1 Home Page](#141-home-page)
-    * [1.4.2 Data Tab](#142-data-tab)
-* [2 Commands](#2-commands)
-  * [2.0 Checking for duplicates](#20-checking-for-duplicates)
-  * [2.1 Add](#21-add)
-    * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-add_supplier)
-    * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-add_order)
-    * [2.1.3 Adding a task: `add_task`](#213-adding-a-task-add_task)
-    * [2.1.4 Adding a menu item: `add_item`](#214-adding-a-menu-item-add_item)
-  * [2.2 Edit](#22-edit)
-    * [2.2.1 Editing a supplier: `edit_supplier`](#221-editing-a-supplier-edit_supplier)
-    * [2.2.2 Editing an order: `edit_order`](#222-editing-an-order-edit_order)
-    * [2.2.3 Editing a task: `edit_task`](#223-editing-a-task-edit_task)
-    * [2.2.4 Editing a menu item: `edit_item`](#224-editing-a-menu-item-edit_item)
-  * [2.3 Find](#23-find)
-    * [2.3.1 Finding a supplier: `find_supplier`](#231-finding-a-supplier-find_supplier)
-    * [2.3.2 Finding an order: `find_order`](#232-finding-an-order-find_order)
-    * [2.3.3 Finding a task: `find_task`](#233-finding-a-task-find_task)
-    * [2.3.4 Finding a menu item: `find_item`](#234-finding-a-menu-item-find_item)
-  * [2.4 Delete](#24-delete)
-    * [2.4.1 Deleting a supplier: `delete_supplier`](#241-deleting-a-supplier-delete_supplier)
-    * [2.4.2 Deleting an order: `delete_order`](#242-deleting-an-order-delete_order)
-    * [2.4.3 Deleting a task: `delete_task`](#243-deleting-a-task-delete_task)
-    * [2.4.4 Deleting a menu item: `delete_item`](#244-deleting-a-menu-item-delete_item)
-  * [2.5 Sort](#25-sort)
-    * [2.5.1 Sorting a task: `sort_task`](#251-sorting-a-task-sort_task)
-    * [2.5.2 Sorting a order: `sort_order`](#252-sorting-a-order-sort_order)
-  * [2.6 List](#26-list)
-    * [2.6.1 Listing all suppliers: `list_supplier`](#261-listing-all-suppliers-list_supplier)
-    * [2.6.2 Listing all orders: `list_order`](#262-listing-all-orders-list_order)
-    * [2.6.3 Listing all tasks: `list_task`](#263-listing-all-tasks-list_task)
-    * [2.6.4 Listing all menu items: `list_menu`](#264-listing-all-menu-items-list_menu)
-  * [2.7 Clear](#27-clear)
-    * [2.7.1 Clear all supplier entries: `clear_supplier`](#271-clear-all-supplier-entries-clear_supplier)
-    * [2.7.2 Clear all order entries: `clear_order`](#272-clear-all-order-entries-clear_order)
-    * [2.7.3 Clear all task entries: `clear_task`](#273-clear-all-task-entries-clear_task)
-    * [2.7.4 Clear all menu item entries: `clear_menu`](#274-clear-all-menu-item-entries-clear_menu)
-  * [2.8 Switch](#28-switch)
-    * [2.8.1 Switching tabs: `tab`](#281-switching-tabs-tab)
-  * [2.9 Others](#29-others)
-    * [2.9.1 Viewing help: `help`](#291-viewing-help-help)
-    * [2.9.2 Uploading a csv file](#292-uploading-a-csv-file)
-    * [2.9.3 Exiting the program: `exit`](#293-exiting-the-program-exit)
-* [3 Data](#3-data)
-  * [3.1 Saving of data](#31-saving-of-data)
-  * [3.2 Editing the data file](#32-editing-the-data-file)
-* [4 Upcoming features `[coming soon]`](#4-upcoming-features-coming-soon)
-* [5 FAQ](#5-faq)
-* [6 Summary](#6-summary)
-* [6.1 Prefix Summary](#61-prefix-summary)
-  * [6.2 Command Summary](#62-command-summary)
+- [Overview](#overview)
+- [About This Guide](#about-this-guide)
+- [Table of Contents](#table-of-contents)
+- [1 Quick start](#1-quick-start)
+  - [1.1 Prerequisites](#11-prerequisites)
+    - [1.1.1 Java](#111-java)
+    - [1.1.2 Glossary](#112-glossary)
+  - [1.2 Installation](#12-installation)
+  - [1.3 Utilisation](#13-utilisation)
+  - [1.4 Navigating the User Interface](#14-navigating-the-user-interface)
+    - [1.4.1 Home Page](#141-home-page)
+    - [1.4.2 Data Tab](#142-data-tab)
+- [2 Commands](#2-commands)
+  - [2.0 Checking for duplicates](#20-checking-for-duplicates)
+  - [2.1 Add](#21-add)
+    - [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-add_supplier)
+    - [2.1.2 Adding an order: `add_order`](#212-adding-an-order-add_order)
+    - [2.1.3 Adding a task: `add_task`](#213-adding-a-task-add_task)
+    - [2.1.4 Adding a menu item: `add_item`](#214-adding-a-menu-item-add_item)
+  - [2.2 Edit](#22-edit)
+    - [2.2.1 Editing a supplier: `edit_supplier`](#221-editing-a-supplier-edit_supplier)
+    - [2.2.2 Editing an order: `edit_order`](#222-editing-an-order-edit_order)
+    - [2.2.3 Editing a task: `edit_task`](#223-editing-a-task-edit_task)
+    - [2.2.4 Editing a menu item: `edit_item`](#224-editing-a-menu-item-edit_item)
+  - [2.3 Find](#23-find)
+    - [2.3.1 Finding a supplier: `find_supplier`](#231-finding-a-supplier-find_supplier)
+    - [2.3.2 Finding an order: `find_order`](#232-finding-an-order-find_order)
+- [(e.g. The search for orders with customer address `smith` will match with `smith` but not with `Smith`).](#eg-the-search-for-orders-with-customer-address-smith-will-match-with-smith-but-not-with-smith)
+    - [2.3.3 Finding a task: `find_task`](#233-finding-a-task-find_task)
+    - [2.3.4 Finding a menu item: `find_item`](#234-finding-a-menu-item-find_item)
+  - [2.4 Delete](#24-delete)
+    - [2.4.1 Deleting a supplier: `delete_supplier`](#241-deleting-a-supplier-delete_supplier)
+    - [2.4.2 Deleting an order: `delete_order`](#242-deleting-an-order-delete_order)
+    - [2.4.3 Deleting a task: `delete_task`](#243-deleting-a-task-delete_task)
+    - [2.4.4 Deleting a menu item: `delete_item`](#244-deleting-a-menu-item-delete_item)
+  - [2.5 Sort](#25-sort)
+    - [2.5.1 Sorting a task: `sort_task`](#251-sorting-a-task-sort_task)
+    - [2.5.2 Sorting a order: `sort_order`](#252-sorting-a-order-sort_order)
+  - [2.6 List](#26-list)
+    - [2.6.1 Listing all suppliers: `list_supplier`](#261-listing-all-suppliers-list_supplier)
+    - [2.6.2 Listing all orders: `list_order`](#262-listing-all-orders-list_order)
+    - [2.6.3 Listing all tasks: `list_task`](#263-listing-all-tasks-list_task)
+    - [2.6.4 Listing all menu items: `list_menu`](#264-listing-all-menu-items-list_menu)
+  - [2.7 Clear](#27-clear)
+    - [2.7.1 Clear all supplier entries: `clear_supplier`](#271-clear-all-supplier-entries-clear_supplier)
+    - [2.7.2 Clear all order entries: `clear_order`](#272-clear-all-order-entries-clear_order)
+    - [2.7.3 Clear all task entries: `clear_task`](#273-clear-all-task-entries-clear_task)
+    - [2.7.4 Clear all menu item entries: `clear_menu`](#274-clear-all-menu-item-entries-clear_menu)
+  - [2.8 Switch](#28-switch)
+    - [2.8.1 Switching tabs: `tab`](#281-switching-tabs-tab)
+  - [2.9 Others](#29-others)
+    - [2.9.1 Viewing help: `help`](#291-viewing-help-help)
+    - [2.9.2 Uploading a csv file](#292-uploading-a-csv-file)
+    - [2.9.3 Exiting the program: `exit`](#293-exiting-the-program-exit)
+- [3 Data](#3-data)
+  - [3.1 Saving of data](#31-saving-of-data)
+  - [3.2 Editing the data file](#32-editing-the-data-file)
+- [4 Upcoming features `[coming soon]`](#4-upcoming-features-coming-soon)
+- [5 FAQ](#5-faq)
+- [6 Summary](#6-summary)
+- [6.1 Prefix Summary](#61-prefix-summary)
+  - [6.2 Command Summary](#62-command-summary)
 
 <!-- TOC -->
 
@@ -414,7 +418,7 @@ Duplicate data are not allowed. Hence, adding of duplicate data or editing of an
 with another existing data in the data list will not be successful. Here's how we check for duplicates:
 
 | Any two    | are considered to be duplicates if                                          |
-|------------|-----------------------------------------------------------------------------| 
+| ---------- | --------------------------------------------------------------------------- |
 | Suppliers  | they have the same phone numbers                                            |
 | Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
 | Tasks      | they have the same task names (case-insensitive) and deadlines.             |
@@ -854,7 +858,7 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
     * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
 * For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
-  * Search is case-insensitive for `CUSTOMER_NAME` but case-sensitive for `CUSTOMER_ADDRESS` 
+  * Search is case-insensitive for `CUSTOMER_NAME` but case-sensitive for `CUSTOMER_ADDRESS`
   (e.g. The search for orders with customer address `smith` will match with `smith` but not with `Smith`).
   * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
   * Only full words will match.
@@ -1613,7 +1617,7 @@ Here are the respective formats for each of the data types:
 # 6.1 Prefix Summary
 
 | Parameter                                  | Prefix | Rules                                                                                                                                                                                                                                         |
-|--------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name (Task, Supplier, Customer, Menu Item) | n/     | - Should only contains alphanumeric characters and spaces                                                                                                                                                                                     |
 | Phone Number (Supplier, Customer)          | p/     | - Should only contain digits<br/> - Should have least 3 digits                                                                                                                                                                                |
 | Email                                      | e/     | - Should only be of the form `local@domain` and only accept alphanumeric characters<br/>- `local` allows for special characters `+`, `_`, `.` and `-` as well.<br/>- `domain` must be at least 2 letters long.<br/> - `.com` is not required. |
@@ -1631,7 +1635,7 @@ Here are the respective formats for each of the data types:
 ## 6.2 Command Summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**    | `add_supplier` / `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/12345678 t/meat` <br> <br> `add_order` / `add_o` <br> e.g., `add_o n/John Doe l/John Street d/12/12/2023 q/10 on/Cupcakes` <br> <br> `add_task` / `add_t` <br> e.g., `add_t d/Buy a card d/23/12/2024 s/D` <br> <br> `add_item` / `add_i` <br> e.g., `add_i n/Chocolate Cake pr/30 c/10` |
 | **Edit**   | `edit_supplier` / `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` / `edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task` / `edit_t` <br> e.g., `edit_t 1 s/D` <br> <br> `edit_item` / `edit_i` <br/>e.g., `edit_i n/Chocolate Chip Cookie`                                                                                                       |
 | **Delete** | `delete_supplier` / `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` / `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` / `delete_t` <br> e.g., `delete_t 4` <br> <br> `delete_item` / `delete_i` <br> e.g., `delete_i 2`                                                                                                                                                  |
