@@ -7,6 +7,7 @@ import static trackr.commons.util.AppUtil.checkArgument;
  * Represents a Person's address.
  * Guarantees: immutable; is valid as declared in {@link #isValidPersonAddress(String)}
  */
+//@@author liumc-sg-reused
 public class PersonAddress {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";

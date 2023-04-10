@@ -15,6 +15,7 @@ import trackr.model.person.Supplier;
 /**
  * A utility class to help with building EditSupplierDescriptor objects.
  */
+//@@author arkarsg-reused
 public class PersonDescriptorBuilder {
 
     private PersonDescriptor descriptor;
@@ -27,6 +28,7 @@ public class PersonDescriptorBuilder {
         this.descriptor = new PersonDescriptor(descriptor);
     }
 
+    //@@author liumc-sg-reused
     /**
      * Returns an {@code EditSupplierDescriptor} with fields containing {@code supplier}'s details
      */
@@ -38,7 +40,9 @@ public class PersonDescriptorBuilder {
         descriptor.setAddress(person.getPersonAddress());
         descriptor.setTags(person.getPersonTags());
     }
+    //@@author
 
+    //@@author arkarsg-reused
     /**
      * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
      */

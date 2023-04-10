@@ -8,6 +8,7 @@ import trackr.model.person.PersonPhone;
 /**
  * A utility class to help with building Customer objects.
  */
+//@@author chongweiguan-reused
 public class CustomerBuilder {
 
     public static final String DEFAULT_CUSTOMER_NAME = "John Smith";

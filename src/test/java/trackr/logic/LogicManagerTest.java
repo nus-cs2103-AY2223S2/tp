@@ -50,6 +50,7 @@ public class LogicManagerTest {
     private Model model = new ModelManager();
     private Logic logic;
 
+    //@@author liumc-sg-reused
     @BeforeEach
     public void setUp() {
         JsonTrackrStorage trackrStorage =
@@ -58,6 +59,7 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(trackrStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
+    //@@author
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
@@ -71,6 +73,7 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_SUPPLIER_DISPLAYED_INDEX);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void execute_validCommand_success() throws Exception {
         String listSupplierCommand = ListSupplierCommand.COMMAND_WORD;
@@ -98,6 +101,7 @@ public class LogicManagerTest {
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addSupplierCommand, CommandException.class, expectedMessage, expectedModel);
     }
+    //@@author
 
     @Test
     public void getFilteredSupplierList_modifyList_throwsUnsupportedOperationException() {
@@ -156,12 +160,14 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getTrackrFilePath());
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void getGuiSettings() {
         GuiSettings expected = new GuiSettings(0, 0, 0, 0);
         logic.setGuiSettings(expected);
         assertEquals(expected, logic.getGuiSettings());
     }
+    //@@author
 
     @Test
     public void setGuiSettings() {

@@ -30,6 +30,7 @@ public class SupplierTest {
         assertThrows(UnsupportedOperationException.class, () -> supplier.getPersonTags().remove(0));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void isSameSupplier() {
         // same object -> returns true
@@ -46,6 +47,7 @@ public class SupplierTest {
         editedBob = new SupplierBuilder(BOB).withPhone(VALID_PHONE_AMY).build();
         assertFalse(BOB.isSameItem(editedBob));
     }
+    //@@author
 
     @Test
     public void equals() {

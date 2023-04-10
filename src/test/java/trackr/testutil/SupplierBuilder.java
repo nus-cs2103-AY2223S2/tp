@@ -14,6 +14,7 @@ import trackr.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Supplier objects.
  */
+//@@author liumc-sg-reused
 public class SupplierBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";

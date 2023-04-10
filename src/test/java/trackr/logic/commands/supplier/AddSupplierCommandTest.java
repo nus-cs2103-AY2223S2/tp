@@ -21,6 +21,7 @@ import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 import trackr.testutil.TestUtil.ModelStub;
 
+//@@author arkarsg-reused
 public class AddSupplierCommandTest {
 
     @Test
@@ -96,6 +97,7 @@ public class AddSupplierCommandTest {
     /**
      * A Model stub that always accept the Supplier being added.
      */
+    //@@author liumc-sg-reused
     private class ModelStubAcceptingSupplierAdded extends ModelStub {
         final ArrayList<Supplier> suppliersAdded = new ArrayList<>();
 

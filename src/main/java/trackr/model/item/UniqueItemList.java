@@ -24,6 +24,8 @@ import trackr.model.item.exceptions.ItemNotFoundException;
  *
  * @see Item#isSameItem(Item)
  */
+
+//@@author liumc-sg-reused
 public class UniqueItemList<T extends Item> implements Iterable<T> {
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =

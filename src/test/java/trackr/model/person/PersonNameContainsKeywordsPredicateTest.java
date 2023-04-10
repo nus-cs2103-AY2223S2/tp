@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.SupplierBuilder;
 
-public class PersonPersonNameContainsKeywordsPredicateTest {
+//@@author liumc-sg-reused
+public class PersonNameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {

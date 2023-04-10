@@ -29,6 +29,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         resetData(userPrefs);
     }
 
+    //@@author liumc-sg-reused
     /**
      * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}.
      */
@@ -37,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setTrackrFilePath(newUserPrefs.getTrackrFilePath());
     }
+    //@@author
 
     public GuiSettings getGuiSettings() {
         return guiSettings;
@@ -47,6 +49,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    //@@author liumc-sg-reused
     public Path getTrackrFilePath() {
         return trackrFilePath;
     }
@@ -56,6 +59,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.trackrFilePath = trackrFilePath;
     }
 
+    //@@author
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -32,6 +32,7 @@ public class TaskStatusTest {
         assertEquals(expectedStatus, new TaskStatus());
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void isValidTaskStatus() {
         // null task status
@@ -54,6 +55,7 @@ public class TaskStatusTest {
         assertTrue(TaskStatus.isValidStatus("n", TaskStatus.STATUSES)); // small letter
         assertTrue(TaskStatus.isValidStatus("d", TaskStatus.STATUSES)); // small letter
     }
+    //@@author
 
     @Test
     public void toStringTest() {

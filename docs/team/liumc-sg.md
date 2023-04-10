@@ -11,6 +11,10 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=liumc-sg&breakdown=true)
 
+* All _reused_ code are adapted from the [AB3](https://github.com/nus-cs2103-AY2223S2/tp) code base (both functional and test code).
+  * The code could be refractored out to be a more standard format for repetitive use in our project (i.e. Modifying `UniquePersonList` to `UniqueItemList`).
+  * The code could be adapted to fit the different models that we have. (i.e. Modifying `Person` to be suitable for `Task`)
+
 * **Contributions to code base**:
   * Enabled assertions in gradle. [\#156](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/156)
   * Updated link in help command. [\#80](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/80)

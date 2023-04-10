@@ -21,10 +21,12 @@ public abstract class ListItemCommand<T extends Item> extends Command {
      *
      * @param modelEnum A representation of the name of the list to list out.
      */
+    //@@author liumc-sg-reused
     public ListItemCommand(ModelEnum modelEnum) {
         requireNonNull(modelEnum);
         this.modelEnum = modelEnum;
     }
+    //@@author
 
     /**
      * Updates the filtered item list with all the existing items.
@@ -32,10 +34,12 @@ public abstract class ListItemCommand<T extends Item> extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return Success message of the list operation for display.
      */
+    //@@author liumc-sg-reused
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, modelEnum);
         return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum.toString().toLowerCase()));
     }
+    //@@author
 }

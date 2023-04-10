@@ -108,6 +108,7 @@ public abstract class EditItemCommand<T extends Item> extends Command {
      * @param itemDescriptor Details to edit the item with.
      * @return An edited {@code Item}.
      */
+    //@@author liumc-sg-reused
     protected abstract T createEditedItem(T itemToEdit, ItemDescriptor<? super T> itemDescriptor);
 
     @Override

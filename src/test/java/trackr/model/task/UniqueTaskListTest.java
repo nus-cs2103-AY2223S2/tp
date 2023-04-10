@@ -19,6 +19,7 @@ import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.item.exceptions.ItemNotFoundException;
 import trackr.testutil.TaskBuilder;
 
+//@@author hmuumyatmoe-reused
 public class UniqueTaskListTest {
 
     private final UniqueTaskList uniqueTaskList = new UniqueTaskList();
@@ -181,6 +182,7 @@ public class UniqueTaskListTest {
                 -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void equals() {
         uniqueTaskList.add(SORT_INVENTORY_N);

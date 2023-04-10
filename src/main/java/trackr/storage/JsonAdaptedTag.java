@@ -40,6 +40,7 @@ class JsonAdaptedTag {
         return new Tag(tagName);
     }
 
+    //@@author liumc-sg-reused
     @JsonValue
     public String getTagName() {
         return tagName;

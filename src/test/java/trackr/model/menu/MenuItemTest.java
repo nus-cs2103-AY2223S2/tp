@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.MenuItemBuilder;
 
+//@@author liumc-sg-reused
 public class MenuItemTest {
 
     @Test
@@ -75,6 +76,7 @@ public class MenuItemTest {
         assertNotEquals(CHOCOLATE_COOKIE_M, editedChocolateCookie);
     }
 
+    //@@author liumc-sg
     @Test
     public void hashCode_success() {
         ItemName itemName = new ItemName("Test");

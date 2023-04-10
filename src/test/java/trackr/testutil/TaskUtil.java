@@ -12,6 +12,7 @@ import trackr.model.task.TaskDescriptor;
 /**
  * A utility class for Task.
  */
+//@@author hmuumyatmoe-reused
 public class TaskUtil {
 
     /**
@@ -51,6 +52,7 @@ public class TaskUtil {
         return sb.toString();
     }
 
+    //@@author liumc-sg-reused
     // Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
     public static String getTaskPredicateDetails(TaskContainsKeywordsPredicate predicate) {
         StringBuilder sb = new StringBuilder();

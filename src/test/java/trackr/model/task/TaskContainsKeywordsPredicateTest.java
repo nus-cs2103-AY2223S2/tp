@@ -13,7 +13,7 @@ import trackr.testutil.TaskBuilder;
 import trackr.testutil.TaskPredicateBuilder;
 
 public class TaskContainsKeywordsPredicateTest {
-
+    //@@author liumc-sg-reused
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
@@ -80,6 +80,7 @@ public class TaskContainsKeywordsPredicateTest {
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
+    //@@author liumc-sg
     @Test
     public void test_null_returnsFalse() {
         TaskContainsKeywordsPredicate predicate =
