@@ -276,6 +276,7 @@ in year 2023 is the same as `01012023`.
 * `a` represents `AM` or `PM` for 12-hour time format
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -316,6 +317,8 @@ QuickContacts, you will **never** have to copy and paste commands ever again.
 
 All you have to do is to hit the `UP` and `DOWN` arrow keys on your keyboard to go to the previous and next command
 respectively. It is as simple as that!
+
+<div style="page-break-after: always;"></div>
 
 ## Person-Related Commands
 
@@ -459,6 +462,8 @@ Duplicate values will still be ignored, but you can be assured the value is adde
 
 Format: `import JSON [f/]`
 
+<div style="page-break-after: always;"></div>
+
 ## Meeting-Related Commands
 
 In this subsection, you may find all the commands that are related to meetings.
@@ -543,6 +548,8 @@ Format: `findm`
 * No parameters are required.
 * If arguments are given, will instead behave like as stated [here](#finding-meetings-by-attendee-name--findm)
 
+<div style="page-break-after: always;"></div>
+
 ### Export Meetings : `exportm`
 
 Exports the meetings at the specified `INDEX`es and between `start` and `end` dates.
@@ -584,31 +591,6 @@ Example:
     ],
     "location": "NUS",
     "description": "Weekly catchup"
-  },
-  {
-    "title": "Study session with Benson and Carl",
-    "dateTime": "02/03/2023 15:00",
-    "attendees": [
-      {
-        "name": "Benson Meier",
-        "phone": "98765432",
-        "email": "johnd@example.com",
-        "address": "311, Clementi Ave 2, #02-25",
-        "tagged": [
-          "owesMoney",
-          "friends"
-        ]
-      },
-      {
-        "name": "Carl Kurz",
-        "phone": "95352563",
-        "email": "heinz@example.com",
-        "address": "wall street",
-        "tagged": []
-      }
-    ],
-    "location": "Central Library",
-    "description": "Study for finals"
   },
   {
     "title": "Zoom meeting for agenda planning",
@@ -681,6 +663,8 @@ Shows meetings that are not marked as done and those that are in the future i.e 
 
 Format: `pending`
 
+<div style="page-break-after: always;"></div>
+
 ## General Features
 
 ### Theme toggling
@@ -732,6 +716,8 @@ Format: `exit`
 the data of your previous QuickContacts home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
