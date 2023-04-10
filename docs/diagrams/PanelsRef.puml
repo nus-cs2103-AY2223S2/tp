@@ -12,19 +12,22 @@ package Panels <<rectangle>> {
 Class "{abstract}\nUiPart" as UiPart
 Class MixedPanel #CF2765
 Class ApplicationListPanel #CF2765
-Class StatsInformationListPanel
-Class StatsInformationCard
+Class StatsInformationListPanel #CF2765
+Class StatsInformationCard #CF2765
+Class ViewContentPanel #CF2765
 Class MainWindow
 }
 
 MainWindow *-down-> "1" ApplicationListPanel
 MainWindow *-down-> "1" StatsInformationListPanel
 MainWindow *-down-> "1" MixedPanel
+MainWindow *-down-> "1" ViewContentPanel
 
 MixedPanel --|> UiPart
 ApplicationListPanel --|> UiPart
 StatsInformationListPanel --|> UiPart
 StatsInformationCard --|> UiPart
+ViewContentPanel --|> UiPart
 
 StatsInformationListPanel -down-> StatsInformationCard
 
