@@ -614,13 +614,13 @@ testers are expected to do more *exploratory* testing.
 ```json
 {
   "readingLevels" : [ {
-    "tankName" : "freshwater tank",
-    "commaSeperatedValuesAmmonia" : "0.2,0.3,0.0",
-    "commaSeperatedDatesAmmonia" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
-    "commaSeperatedValuesPH" : "7.1,6.8,7.0",
-    "commaSeperatedDatesPH" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
-    "commaSeperatedValuesTemp" : "26.0,25.0,26.2",
-    "commaSeperatedDatesTemp" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02"
+   "tankName" : "freshwater tank",
+   "commaSeperatedValuesAmmonia" : "0.2,0.3,0.0",
+   "commaSeperatedDatesAmmonia":"03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
+   "commaSeperatedValuesPH": "7.1,6.8,7.0",
+   "commaSeperatedDatesPH" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
+   "commaSeperatedValuesTemp" : "26.0,25.0,26.2",
+   "commaSeperatedDatesTemp":"03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02"
   }, {
     "tankName" : "saltwater tank",
     "commaSeperatedValuesAmmonia" : "",
