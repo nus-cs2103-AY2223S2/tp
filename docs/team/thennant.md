@@ -38,6 +38,8 @@ Given below are my contributions to the project.
     * Fix feature flaws (Pull request [#123](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/123), [#125](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/125)).
     * Reviewed and merged PRs (Pull request [#121](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/121)).
 
+<div style="page-break-after: always;"></div>
+
 * **Community**:
     * Reported bugs and suggestions for other teams in the class during the PE-Dry run
 
