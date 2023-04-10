@@ -20,8 +20,8 @@ Given below are my contributions to the project.
 Please refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=xyluschen&breakdown=true)
 
 * **Project management**
-  * Authored **21** issues on the project repository.
-  * Reviewed and merged **29** pull requests.
+  * Authored **27** issues on the project repository.
+  * Reviewed and merged **39** pull requests.
   * Verified and filtered all **43** issue reports received from external parties during the PE-Dry Run.
 
 * **New Feature**
