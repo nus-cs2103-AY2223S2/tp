@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+'https://plantuml.com/sequence-diagram
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":WingmanParser" as parser LOGIC_COLOR
+Participant ":CommandGroup" as gp LOGIC_COLOR
+Participant ":CommandFactory" as factory LOGIC_COLOR
+Participant ":Command" as command LOGIC_COLOR
+activate logic LOGIC_COLOR
+logic -[LOGIC_COLOR]> parser : parse(mode, input)
+activate parser LOGIC_COLOR
+parser -[LOGIC_COLOR]> parser : parseFactory(input)
+activate parser LOGIC_COLOR_T1
+alt prefix matches
+parser -[LOGIC_COLOR]> factory : createCommand(input)
+activate factory LOGIC_COLOR
+create command
+factory -[LOGIC_COLOR]> command : command
+activate command LOGIC_COLOR
+command -[LOGIC_COLOR]> factory : command
+deactivate command
+factory -[LOGIC_COLOR]> parser : command
+deactivate factory
+end
+parser -[LOGIC_COLOR]> parser : command
+deactivate parser
+alt command is empty
+parser -[LOGIC_COLOR]> parser : parseGroup(mode, input)
+alt mode matches
+activate parser LOGIC_COLOR_T1
+parser -[LOGIC_COLOR]> gp : parse(input)
+activate gp LOGIC_COLOR
+alt prefix matches
+gp -[LOGIC_COLOR]> factory : createCommand(input)
+activate factory LOGIC_COLOR
+create command
+factory -[LOGIC_COLOR]> command : command
+activate command LOGIC_COLOR
+command -[LOGIC_COLOR]> factory : command
+deactivate command
+factory -[LOGIC_COLOR]> gp : command
+deactivate factory
+end
+gp -[LOGIC_COLOR]> parser : command
+deactivate gp
+end
+parser -[LOGIC_COLOR]> parser : command
+deactivate parser
+end
+parser -[LOGIC_COLOR]> logic : command
+deactivate parser
+logic -[LOGIC_COLOR]> command : execute(model)
+activate command LOGIC_COLOR
+command -[LOGIC_COLOR]> logic : result
+deactivate command
+@enduml

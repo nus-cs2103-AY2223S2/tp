@@ -73,28 +73,10 @@ public class LogicManager implements Logic {
      */
     private void save() throws CommandException {
         try {
-            switch (getOperationMode()) {
-            case PILOT:
-                storage.savePilotManager(model.getPilotManager());
-                storage.saveLocationManager(model.getLocationManager());
-                break;
-            case LOCATION:
-                storage.saveLocationManager(model.getLocationManager());
-                break;
-            case PLANE:
-                storage.savePlaneManager(model.getPlaneManager());
-                storage.saveLocationManager(model.getLocationManager());
-                break;
-            case FLIGHT:
-                storage.saveFlightManager(model.getFlightManager());
-                break;
-            case CREW:
-                storage.saveCrewManager(model.getCrewManager());
-                storage.saveLocationManager(model.getLocationManager());
-                break;
-            default:
-                throw new CommandException("Unknown operation mode");
-            }
+            storage.savePilotManager(model.getPilotManager());
+            storage.savePlaneManager(model.getPlaneManager());
+            storage.saveCrewManager(model.getCrewManager());
+            storage.saveLocationManager(model.getLocationManager());
             storage.saveFlightManager(model.getFlightManager());
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
