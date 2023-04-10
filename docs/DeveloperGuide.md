@@ -307,7 +307,7 @@ The command execution flow is as given below
 
 The class diagram below shows the relation of predicates to ```FindCommandParser``` and ```FindCommand```.
 
-<img src="images/developerGuide/FindCommandClassDiagram.png" width="900" />
+<img src="images/developerGuide/FindCommandClassDiagram.png" width="700" />
 
 Design decisions:
 - Name, address, email, phone, tags and medical qualification attributes allow substring searching.
@@ -721,9 +721,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. FL feedbacks that entered data is in a wrong format.
 
       Use case ends.
-      
 
-**Use case: UC10- Listing persons**
+**Use case: UC10- Listing everything**
 
 **MSS**
 
@@ -733,8 +732,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: UC11- Listing paired persons**
 
-**Use case: UC11- View person statistics**
+**MSS**
+
+1. User enters the command to list all paired persons.
+2. FL shows all the paired elderly, paired volunteers and all pairs.
+3. User sees all paired persons and all pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+**Use case: UC12- Listing unpaired persons**
+
+**MSS**
+
+1. User enters the command to list all unpaired persons.
+2. FL shows all the unpaired elderly, unpaired volunteers and all pairs.
+3. User sees all unpaired persons and all pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+
+**Use case: UC13- View person statistics**
 
 **MSS**
 
@@ -745,7 +774,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 
-**Use case: UC12- Look up Help Page**
+**Use case: UC14- Look up Help Page**
 
 **MSS**
 
@@ -755,7 +784,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC13- Exit the app**
+**Use case: UC15- Exit the app**
 
 **MSS**
 
