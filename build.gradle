@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 mainClassName = 'seedu.address.Main'
@@ -18,7 +19,6 @@ repositories {
 
 checkstyle {
     toolVersion = '10.2'
-    ignoreFailures = true
 }
 
 test {

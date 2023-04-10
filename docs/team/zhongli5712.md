@@ -3,33 +3,41 @@ layout: page
 title: Truong Minh Duong Project Portfolio Page
 ---
 
-### Project: tuition center admin managing system (TCAMS)
+### Project: Tutee managing system (TMS)
 
-Tuition center admin managing system (TCAMS) is a desktop application designed for admins working at tuition center managing courses, tutors and students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). TCAMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+Tutee managing system (TMS) is a desktop application designed for admins working at tuition center managing courses, tutors and students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
-<!-- * **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}* -->
+* **New Feature**: Added the ability to add/remove new lesson learned.
+  * What it does: allows the user to add a lesson to one student, and remove one currently exists.
+  * Justification: This feature improves the product significantly because a user can keeping track of lesson taught easily.
+  * Highlights: This enhancement create a new field to the tutee.
+  <!--* Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}* -->
 
-* **New Feature**: add, delete tutor feature (to be added)
 
-* **Code contributed**: [link](https://github.com/AY2223S2-CS2103T-W10-4/tp)
+* **Code contributed**: [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zhongli5712&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * to be added
+  * Set up milestones, issues.
+  * Wrap up milestones.
 
 * **Enhancements to existing features**:
-  * to be added
+  * Change icon and product name of UI.
 
 * **Documentation**:
   * Readme.md
+  * UserGuide.md
+    * Fixed wording, font size and structure.
+    * Write clickable table of content.
+    * Added documentation for the `learn/unlearn` feature.
+  * DeveloperGuide.md
+    * Added implementation detail of the `learn/unlearn` feature.
+    * Added user stories, glossary, NFRS, use cases.
+  * AboutUs.md
 
 * **Community**:
-  * to be added
+  * Reported bugs for other teams during PE-Dry run
 
 * **Tools**:
   * to be added

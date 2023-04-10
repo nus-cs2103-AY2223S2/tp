@@ -22,6 +22,7 @@ import java.util.List;
  * Filters and lists all tutees in address book whose field matches
  * any of the argument keywords. Keyword matching is case insensitive.
  */
+// Solution adapted from https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/commands/FilterCommand.java
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
