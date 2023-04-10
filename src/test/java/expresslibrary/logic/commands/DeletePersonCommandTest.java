@@ -25,9 +25,6 @@ import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
 import expresslibrary.model.person.Person;
 
-
-
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
@@ -59,14 +56,14 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_deletePersonWithBorrowedBooks_throwsCommandException() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         Set<Book> borrowedBooks = new HashSet<>(personToDelete.getBooks());
         borrowedBooks.add(new Book(new Title("Book 3"), new Author("Author 3"), new Isbn("1234567890")));
         Person personWithBorrowedBooks = new Person(personToDelete.getName(), personToDelete.getPhone(),
                 personToDelete.getEmail(), borrowedBooks, personToDelete.getTags());
         model.setPerson(personToDelete, personWithBorrowedBooks);
 
-        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST_PERSON, false);
+        DeletePersonCommand deletePersonCommand = new DeletePersonCommand(INDEX_FIRST, false);
         assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_DELETE_PERSON);
     }
 
