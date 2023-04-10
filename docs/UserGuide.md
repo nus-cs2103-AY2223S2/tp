@@ -379,7 +379,7 @@ If your changes to the data files make their format invalid, MediMeet will disca
 | **Clear**                   | `clear`                                                                                                                                                             |
 | **Delete patient**          | `delete_patient INDEX`<br> e.g., `delete_patient 3`                                                                                                                 |
 | **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                       |
-| **Edit patient**            | `edit_patient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit_patient 2 n/James Lee e/jameslee@example.com`                         |
+| **Edit patient**            | `edit_patient INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit_patient 2 e/jameslee@example.com`                                              |
 | **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [doc/DOCTOR]` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                             |
 | **Find patient**            | `find_patient KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient James Jake`                                                                                          |
 | **Find in patient details** | `find_patient_details KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient_details 22224444`                                                                            |
