@@ -326,7 +326,7 @@ The proposed find mechanism is facilitated by `FitBook`. It implements the follo
 
 * `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the given predicate.
 
-These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
+This operation is exposed in the  `FitBookModel` interface as `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`.
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
@@ -493,7 +493,7 @@ The following sequence diagram shows how the find operation works:
 
 ![ExportSeqDiagram](images/ExportSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ExportCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -651,12 +651,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -717,7 +711,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`      | intermediate user | edit previous data                         | I can change my client's data                                                                  |
 | `* * *`      | intermediate user | add time to a client's appointment         | I can easily view my appointments for the week                                                 |
 | `*`          | intermediate user | search client's using their information    | I can find my contacts easily                                                                  |
-| `*`          | intermediate user | search clients by gender or exercise level | I can find my client easily                                                                    |
+| `*`          | intermediate user | search clients by gender                   | I can find my client easily                                                                    |
 | `* *`        | intermediate user | show a graph of my client's weight history | I can see the trend of my client's weight to determine what to improve                         |
 | `* *`        | intermediate user | edit after using a find feature            | I can easily edit the client in the filtered list without changing back to the unfiltered list |
 | `* *`        | intermediate user | export my clients' details                 | I can view my clients data on a file like excel                                                |
@@ -740,10 +734,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  FitBook shows a list of clients
-3.  User requests to delete a specific client in the list
-4.  FitBook deletes the client
+1.  User requests to list clients.
+2.  FitBook shows a list of clients.
+3.  User requests to delete a specific client in the list.
+4.  FitBook deletes the client.
 
     Use case ends.
 
@@ -763,7 +757,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a client
+1. User requests to add a client.
 2. FitBook adds the client into the list.
 3. FitBook displays that the client has been added.
 
@@ -917,10 +911,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list routines
-2.  FitBook shows a list of routines
-3.  User requests to delete a specific routine in the list
-4.  FitBook deletes the routine
+1.  User requests to list routines.
+2.  FitBook shows a list of routines.
+3.  User requests to delete a specific routine in the list.
+4.  FitBook deletes the routine.
 
     Use case ends.
 
@@ -940,10 +934,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list routines
-2.  FitBook shows a list of routines
-3.  User requests to delete an exercise from a specific routine in the list
-4.  FitBook deletes the exercise from the specific routine in the list
+1.  User requests to list routines.
+2.  FitBook shows a list of routines.
+3.  User requests to delete an exercise from a specific routine in the list.
+4.  FitBook deletes the exercise from the specific routine in the list.
 
     Use case ends.
 
@@ -992,7 +986,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The Client csv file is opened in the background
+* 1a. The Client csv file is opened in the background.
     * 1a1. FitBook shows an error message.
 
       Use case ends.
@@ -1008,7 +1002,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The Routine csv file is opened in the background
+* 1a. The Routine csv file is opened in the background.
     * 1a1. FitBook shows an error message.
 
       Use case ends.
@@ -1083,7 +1077,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 * 2b. User request have all missing field.
-    * 2b1. FitBook shows an error for missing fields
+    * 2b1. FitBook shows an error for missing fields.
 
       Use case ends.
 
@@ -1191,7 +1185,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   A. Download the jar file and copy into an empty folder
+   A. Download the jar file and copy into an empty folder.
 
    B. Double-click the jar file.<br>
        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
@@ -1203,8 +1197,21 @@ testers are expected to do more *exploratory* testing.
    B. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a client
+### Finding a client
+1. Finds a Client by predicates
 
+   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list.
+
+   B. Test case: `find n/alex`<br>
+   Expected: Displays all clients with 'alex' in their name.
+
+   C. Test case: `find n/`<br>
+   Expected: Displays an error, with error details shown in the status message.
+
+   D. Other incorrect find commands to try: `find alex`, `find n/alex p/`<br>
+   Expected: Similar to previous.
+
+### Deleting a client
 1. Deleting a client while all clients are being shown
 
    A. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
@@ -1247,10 +1254,10 @@ testers are expected to do more *exploratory* testing.
    A. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
 
    B. Test case: `addRoutine r/Cardio2 ex/push-ups`<br>
-   Expected: Adds a routine with exercise push-ups to the current list of routines
+   Expected: Adds a routine with exercise push-ups to the current list of routines.
 
    C. Test case: `addRoutine r/Cardio3`<br>
-   Expected: Adds a routine with **no** exercises to the current list of routines
+   Expected: Adds a routine with **no** exercises to the current list of routines.
 
 ### Adding an Exercise
 1. Deleting an exercise while all routines are being shown
@@ -1286,7 +1293,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Displays the summary of Client at index `2` in the Summary Panel of the UI.
 
    C. Test case: `view`<br>
-   Expected: Error details shown in the status message
+   Expected: Error details shown in the status message.
 
    D. Other incorrect view commands to try:`view x `, (where x is larger than the list size)<br>
    Expected: Similar to previous.
@@ -1306,7 +1313,6 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to previous.
 
 ### Exit
-
 1. Exits from the application
 
    A. Prerequisites: Launch the application.
@@ -1314,7 +1320,6 @@ testers are expected to do more *exploratory* testing.
       Expected: It exits the application.
 
 ### Saving data
-
 1. Dealing with missing/corrupted data files
 
    A. Prerequisites: Delete the "fitbook.json" file from data folder.
