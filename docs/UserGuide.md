@@ -33,29 +33,29 @@ Welcome to the CareFlow user guide! This guide is designed to help you make the 
 
 To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
 
-1. Section [1. About this user guide](#1-about-this-user-guide)
+- Section [1. About this user guide](#1-about-this-user-guide)
     - If you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
 
-2. Section [2. Quick Start](#2-quick-start)
+- Section [2. Quick Start](#2-quick-start)
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
-3. Section [3. Overview of Features](#3-overview-of-features)
+- Section [3. Overview of Features](#3-overview-of-features)
     - If you want to get a better understanding of CareFlow's main features, head to Section 3, "Overview of
       features". This section provides a explanation of three main feature of CareFlow and how to use them.
 
-4. Section [4. Commands](#4-commands)
+- Section [4. Commands](#4-commands)
     - If you're looking for information on specific command, check out Section 4, "Commands". Here you'll find a detailed explanation of each command and how to use it.
 
-5. Section [5. Data Storage](#5-data-storage)
+- Section [5. Data Storage](#5-data-storage)
     - If you're looking for information on CareFlow's data storage mechanism, check out Section 5, "Data Storage".
 
-6. Section [6. FAQ](#6-faq)
+- Section [6. FAQ](#6-faq)
     - If you have any questions about using CareFlow or running into any issues, take a look at Section 6, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
 
-7. Section [7. Command Summary](#7-command-summary)
+- Section [7. Command Summary](#7-command-summary)
     - If you want a quick reference for all the commands available in CareFlow, head to Section 7, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
-8. Section [8. Glossary](#8-glossary)
+- Section [8. Glossary](#8-glossary)
     - If you come across a term you're not familiar with, the glossary in section 8 is a useful resource. It
       provides clear definitions and explanations for all the terminology used in the user guide.
 
