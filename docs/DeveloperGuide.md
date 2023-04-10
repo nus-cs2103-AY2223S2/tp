@@ -248,7 +248,7 @@ The following activity diagram summarizes what happens from Step 4 when a TA exe
     * Pros: Do not have to maintain a student list (can get messy with lots of students)
     * Cons: More troublesome to key in 1 student to multiple Events compared to Alternative 1.
 
-### Delete Operation for Students within Event
+### Delete Students from Events feature
 
 #### Current Implementation
 

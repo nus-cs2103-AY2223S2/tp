@@ -13,6 +13,9 @@ class DeleteStudentFromEventParserTest {
     public static final String VALID_COMMAND_CONSULTATION = "1 Consultation/1";
     public static final String INVALID_EVENT_FIELD_COMMAND = "1 Leb/1";
     public static final String TOO_MANY_EVENT_FIELDS_COMMAND = "1 Lab/1 Tutorial/1";
+    public static final String DUPLICATED_TUTORIAL_FIELDS_COMMAND = "1 Tutorial/2 Tutorial/1";
+    public static final String DUPLICATED_LAB_FIELDS_COMMAND = "1 Lab/1 Lab/2";
+    public static final String DUPLICATED_CONSULTATION_FIELDS_COMMAND = "1 Consultation/1 Consultation/2";
     public static final String INVALID_STUDENT_INDEX_COMMAND = "1 1 1 Tutorial/1";
     public static final String INVALID_EVENT_INDEX_COMMAND = "1 Tutorial/1 1 1";
     public static final String EMPTY_EVENT_COMMAND = "1";
@@ -63,5 +66,23 @@ class DeleteStudentFromEventParserTest {
     void parse_emptyEvent_throwsParseException() {
         assertThrows(ParseException.class, () ->
                 new DeleteStudentFromEventParser().parse(EMPTY_EVENT_COMMAND));
+    }
+
+    @Test
+    void parse_duplicatedTutorialField_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(DUPLICATED_TUTORIAL_FIELDS_COMMAND));
+    }
+
+    @Test
+    void parse_duplicatedLabField_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(DUPLICATED_LAB_FIELDS_COMMAND));
+    }
+
+    @Test
+    void parse_duplicatedConsultationField_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                new DeleteStudentFromEventParser().parse(DUPLICATED_CONSULTATION_FIELDS_COMMAND));
     }
 }
