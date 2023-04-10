@@ -28,6 +28,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 4. Double-click the file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
     <p align="center">
         <img src="images/Ui.png" width="450" />
     </p>
@@ -76,6 +77,8 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 | Field            | Prefix | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Address**      | a/     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -87,6 +90,8 @@ _With MediConnect, managing your healthcare practice has never been easier._
 | **NRIC**         | ic/    | 1. Should be 9 characters long. <br> 2. The first character must be one of [S,T,F,G,M], followed by 7 numerical digits and ending with [A-Z].                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **Phone Number** | p/     | 1. Should only contain numbers. <br> 2. Should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Tag**          | t/     | Should be alphanumeric.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a person: `add a patient`, `add a doctor`
 
@@ -104,9 +109,12 @@ Examples:
 * `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` adds the patient `Ben Smith` to the list.
 * `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` adds the doctor `Sarah Tan` to the list.
 
-    <p align="center">
-        <img src="images/AddPatient.png" width="450" />
-    </p>
+
+<p align="center">
+    <img src="images/AddPatient.png" width="450" />
+</p>
+
+<div style="page-break-after: always;"></div>
 ### Deleting a person by NRIC : `delete`
 
 Deletes the specified person from MediConnect.
@@ -120,6 +128,8 @@ Format: `delete ic/NRIC`
 
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a person : `edit`
 
@@ -139,6 +149,8 @@ Examples:
         <img src="images/Edit.png" width="450" />
     </p>
 
+<div style="page-break-after: always;"></div>
+
 ### Display patient's information : `display`
 Displays personal particulars, appointments and prescription for patients.
 
@@ -156,9 +168,11 @@ Restrictions:
 Examples:
 * `display ic/S1234567A` displays the information for the patient with NRIC number `S1234567A`.
 
-    <p align="center">
-        <img src="images/Display.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Display.png" width="450" />
+</p>
+<div style="page-break-after: always;"></div>
+
 ### Finding a person (patient or doctor) by NRIC : `find`
 
 Finds and displays information about the specified person.
@@ -173,9 +187,12 @@ Format: `find ic/NRIC`
 Examples:
 * `find ic/S1234567A` returns the details for the person with NRIC number S1234567A.
 
-    <p align="center">
-        <img src="images/Find.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Find.png" width="450" />
+</p>
+
+<div style="page-break-after: always;"></div>
+
 ### Book appointment : `appointment`
 
 Schedules an appointment for a patient with a specific doctor.
@@ -200,9 +217,12 @@ Restrictions:
 Examples:
 * `appointment ic/S1234567A d/18-04-2023 10:00 dric/S3523567R` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S3523567R` on `18-04-2023 10:00`.
 
-    <p align="center">
-        <img src="images/Appointment.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Appointment.png" width="450" />
+</p>
+
+<div style="page-break-after: always;"></div>
+
 ### Delete appointment : `deleteAppointment`
 
 Deletes an appointment specified by the index of the patient’s appointment list.
@@ -223,6 +243,8 @@ Restrictions:
 Examples:
 * `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`."
 
+<div style="page-break-after: always;"></div>
+
 ### Prescribing patient’s medication : `prescribe`
 
 * Prescribes medication to a patient, noting the medication's name and cost.
@@ -234,9 +256,12 @@ Examples:
 *  `prescribe m/paracetamol ic/S1234567A c/0.7` prescribes paracetamol at a cost of $0.7 to the patient with NRIC number S1234567A.
 *  `prescribe m/Cough Syrup ic/S1234567A c/10.7` prescribes Cough Syrup at a cost of $10.7 to the patient with NRIC number S1234567A.
 
-    <p align="center">
-        <img src="images/Prescribe.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Prescribe.png" width="450" />
+</p>
+
+<div style="page-break-after: always;"></div>
+
 ### Removing patient’s medication : `unprescribe`
 
 Removes a chosen medication from a patient.
@@ -256,24 +281,30 @@ Format: `bill ic/NRIC`
 Examples:
 * `bill ic/S1234567A` calculates the cost of all medication for patient with NRIC S1234567A.
 
-    <p align="center">
-        <img src="images/Bill.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Bill.png" width="450" />
+</p>
+
+<div style="page-break-after: always;"></div>
+
 ### Retrieve persons information : `list`
 
 Shows a list of all persons in MediConnect.
 
 Format: `list`
 
-
 ### Retrieve doctors information : `listDoctors`
 
 Shows a list of all doctors in MediConnect.
 
 Format: `listDoctors`
-    <p align="center">
-        <img src="images/ListDoctors.png" width="450" />
-    </p>
+
+<p align="center">
+    <img src="images/ListDoctors.png" width="450" />
+</p>
+
+<div style="page-break-after: always;"></div>
+
 ### Retrieve patients information : `listPatients`
 
 Shows a list of all patients in MediConnect.
@@ -294,6 +325,7 @@ Format: `clear`
 Example:
 * `clear` permanently deletes all data stored in the system.
 
+<div style="page-break-after: always;"></div>
 
 ### Requesting help : `help`
 
@@ -321,6 +353,8 @@ Examples:
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 

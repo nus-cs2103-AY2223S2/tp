@@ -8,9 +8,8 @@ title: Stefanos Avraam's Project Portfolio Page
 Overview:
 MediConnect is a desktop application used for managing patients and doctors' information.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about 10 kLoC.
-
-Given below are my contributions to the project.
+It is written in Java, and has about 10 kLoC. <br>
+Given below are my contributions to the project:
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=stefanosav&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -34,6 +33,8 @@ Given below are my contributions to the project.
       * Justification: Originally, each person could only be identified by their name. This was not practical for the
       nature of a medical information management application, so by adding the NRIC field, we allow users to easily
       identify the persons registered in MediConnect.
+    <div style="page-break-after: always;"></div>
+
     * Update find command [(Pull Request #52)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/52)
       * What was changed: The find command was changed to find and display the person with the given NRIC number.
       * Justification: The original find command was using the person's name to display their details. This was not

@@ -18,10 +18,12 @@ The app simplifies the organization and maintenance of patient and doctor data, 
 
 * Based on the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used:
+  * [PlantUML](https://plantuml.com/sitemap) 
   * [Jackson](https://github.com/FasterXML/jackson)
   * [JavaFX](https://openjfx.io/index.html)
   * [JUnit5](https://github.com/junit-team/junit5)
-  * [PlantUML](https://plantuml.com/sitemap)
+  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -370,7 +372,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 Step 2. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<img src="images/UndoRedoState1.png" width="446" height="200" />
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 

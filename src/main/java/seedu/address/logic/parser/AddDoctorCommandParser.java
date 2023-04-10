@@ -2,7 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -35,7 +39,7 @@ public class AddDoctorCommandParser implements Parser<AddDoctorCommand> {
     public AddDoctorCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NRIC,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BOOKING, PREFIX_COST, PREFIX_DR_NRIC, PREFIX_MEDICATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_NRIC, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -52,10 +56,8 @@ public class AddDoctorCommandParser implements Parser<AddDoctorCommand> {
 
         Doctor doctor = new Doctor(name, phone, email, nric, address, tagList, new ArrayList<>(), role);
 
-
         return new AddDoctorCommand(doctor);
     }
-
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
