@@ -26,11 +26,13 @@ https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jerrrren&breakdown=tr
 * **Contributions to the UG:**
 Contributed add leave, delete leave, add leave in range and list employee in leave commands for UG
 
-
 * **Contributions to the DG:**
 Contributed add leave, delete leave, add leave in range and list employee in leave commands for UG.
 Contributed to explanation of leave class in UG
+Contributed to Leave and employee Use cases in UG
+Created UML diagrams for leave classes
 
 * **Contributions to team-based tasks**
 - Updated UG user stories
+- Contributed to Leave and employee Use cases in UG
 - Reviewed PR #205, #202, #92
