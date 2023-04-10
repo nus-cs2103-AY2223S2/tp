@@ -1,9 +1,9 @@
-# GoodMatch
-
 ---
 layout: page
 title: User Guide
 ---
+
+# GoodMatch
 
 ## **Overview**
 
@@ -14,7 +14,6 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 ## Table of Contents
 
 - [GoodMatch](#goodmatch)
-  - [title: User Guide](#title-user-guide)
   - [**Overview**](#overview)
   - [Table of Contents](#table-of-contents)
   - [User Guide Information](#user-guide-information)
