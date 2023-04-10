@@ -825,7 +825,7 @@ cases.
 
 * Prerequisite: there is no client with email *spiderman@gmail.com*
 * Command: `c -cn spider man -e spiderman@gmail.com`
-* The output box should display a message confirming that the new client has
+* The output box should display a message confirming that the new client has been
   added
 * The client should be appended to the bottom of the Clients tab
 
@@ -1274,8 +1274,7 @@ remained keyboard-centric.
 
 Overall, the team project was moderately challenging. Navigating the codebase was difficult
 at first as there were many levels of abstractions and many classes to understand.
-We got our hands dirty by trying to understand and starting with the easier features
-such as:
+We got our hands dirty and started with the easier features such as:
 
 * Implementing the basic CRUD functionality of projects and clients,
 * Adding tabs to the application, and
