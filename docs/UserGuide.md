@@ -111,7 +111,7 @@ If the data folder is still missing, simply create a `data` folder by creating a
 folder where the jar file is located.
 
 Now that the application is running, you can follow the steps in the user guide to perform various tasks
-such as adding employees using the batchadd command and exporting the database using the `batchexport` command.
+such as adding employees using the `batchadd` command and exporting the database using the `batchexport` command.
 
 </div>
 
@@ -299,9 +299,10 @@ and it should look something like the below image.
 <div markdown="span" class="alert alert-warning">
 :warning: Caution:
 If you open the exported `.csv file` in `Excel`
-and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format.
-This could lead to issues when importing the file using the batchadd command.
-To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).\
+and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
+This could lead to issues when importing the file using the batchadd command. 
+To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -313,7 +314,7 @@ To ensure the correct date format, please refer to the instructions [here](#u-op
 ### Listing all employees : `list`
 
 After searching for employees using the `find` command, you might realise that the left Panel no longer shows all the employees.
-In order to get the full list back, simply use the list command and it will show a list of all employees and
+In order to get the full list back, simply use the list command, and it will show a list of all employees and
 their details in the ExecutivePro database.
 
 Format: `list`

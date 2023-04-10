@@ -19,6 +19,7 @@ import seedu.address.model.employee.Employee;
 
 /**
  * Exports the database into a csv file with the employees.
+ * This class inherits from the {@code Command} class.
  */
 public class BatchExportCommand extends Command {
     public static final String COMMAND_WORD = "batchexport";
@@ -31,7 +32,10 @@ public class BatchExportCommand extends Command {
     private final Path filePath;
 
     /**
-     * @param fileName of the input
+     * Constructs a {@code BatchExportCommand} with the specified file name.
+     * The CSV file will be saved in the "data" folder with the provided file name.
+     *
+     * @param fileName the name of the exported CSV file
      */
     public BatchExportCommand(String fileName) {
         requireAllNonNull(fileName);
@@ -39,6 +43,13 @@ public class BatchExportCommand extends Command {
         this.filePath = Paths.get("data", this.fileName);
     }
 
+    /**
+     * Executes the batch export command and exports the employee database to a CSV file.
+     *
+     * @param model the {@code Model} object which represents the current model
+     * @return a {@code CommandResult} object containing the result of the execution
+     * @throws CommandException if there is an error while exporting data
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
@@ -50,6 +61,13 @@ public class BatchExportCommand extends Command {
         return new CommandResult(String.format(MESSAGE_WORKS, fileName));
     }
 
+    /**
+     * Exports the employee database to a CSV file.
+     *
+     * @param model the {@code Model} object representing the current model
+     * @param filePath the path of the exported CSV file
+     * @throws IOException if there is an error while writing the CSV file
+     */
     private void exportToCsv(Model model, Path filePath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()));
              CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT

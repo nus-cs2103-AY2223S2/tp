@@ -21,8 +21,10 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
 
+
 /**
- * Adds multiple employees to the database.
+ * Adds multiple employees to the database using a CSV file.
+ * This class inherits from the {@code Command} class.
  */
 public class BatchAddCommand extends Command {
     public static final String COMMAND_WORD = "batchadd";
@@ -43,7 +45,10 @@ public class BatchAddCommand extends Command {
     private Path filePath;
 
     /**
-     * Creates an BatchAddCommand to add multiple {@code Employee}
+     * Constructs a {@code BatchAddCommand} to add multiple {@code Employee} objects
+     * from the specified CSV file.
+     *
+     * @param fileName the name of the CSV file containing employee data
      */
     public BatchAddCommand(String fileName) {
         requireAllNonNull(fileName);
@@ -51,10 +56,22 @@ public class BatchAddCommand extends Command {
         this.filePath = Paths.get("data", this.fileName);
     }
 
+    /**
+     * Sets the file path for the CSV file.
+     *
+     * @param filePath the path of the CSV file
+     */
     public void setFilePath(Path filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Retrieves the employee data from the CSV file and returns a list of {@code AddCommand}
+     * objects representing the data.
+     *
+     * @return a list of {@code AddCommand} objects representing the employee data from the CSV file
+     * @throws CommandException if the CSV file is not found or if there is an error reading the file
+     */
     public List<AddCommand> getInfo() throws CommandException {
         Path file = this.filePath;
         String line = "";
@@ -99,6 +116,15 @@ public class BatchAddCommand extends Command {
         return addCommandList;
     }
 
+    /**
+     * Executes the batch add command by adding multiple employees to the database
+     * using the data from the CSV file.
+     *
+     * @param model the {@code Model} object which represents the current model
+     * @return a {@code CommandResult} object containing the result of the execution
+     * @throws CommandException if there is an error while adding the employees or if the CSV file does not contain
+     *      any data
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int currEmployeeId = EmployeeId.getCount();

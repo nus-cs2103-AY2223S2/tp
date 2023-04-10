@@ -262,18 +262,18 @@ Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, u
 
 <h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
-##### Aspect: How BatchAdd is run
+##### Aspect: How BatchAddCommand is run
 
 - Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
     - Pros: Makes use of the Error Handling that the `AddCommand` has.
-    - Cons: `BatchAdd` will fail if Add fails.
-- Alternative 2: Own implementation of `BatchAdd` without relying on `AddCommand`.
+    - Cons: `batchadd` will fail if `AddCommand` fails.
+- Alternative 2: Own implementation of `batchadd` without relying on `AddCommand`.
     - Pros: If Add Fails, BatchAdd can still work.
     - Cons: Implementation Heavy.
 
-##### Aspect: How BatchAdd `.csv` file is processed
+##### Aspect: How BatchAddCommand `.csv` file is processed
 
-- Alternative 1 (Current Choice): Use the positioning of columns to import data (i.e Have a fixed row position for each command).
+- Alternative 1 (Current Choice): Use the positioning of columns to import data (i.e. Have a fixed row position for each command).
     - Pros: No need for header rows
     - Cons: If the user orders it wrongly, it will not work.
 - Alternative 2: Use the Header row to determine the data used.
@@ -319,7 +319,7 @@ Step 5. If the export is successful, a CommandResult with a success message is r
 
 <h4 id="batch-export-feature-design-considerations">Design Considerations</h4>
 
-##### Aspect: How BatchExport is run
+##### Aspect: How BatchExportCommand is run
 
   - Alternative 1 (Current Choice): Rely on the existing data retrieval mechanisms in the Model and Employee classes.
     - Pros: Leverages existing code and ensures consistency with other features.
@@ -583,6 +583,8 @@ validity and file type validity, returning an error message: `Invalid file path`
 8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
+9. Update mention of Address Book when `clear` command is input by users to ExecutivePro for better clarity and catered to current project documentation.
+
 
 
 --------------------------------------------------------------------------------------------------------------------

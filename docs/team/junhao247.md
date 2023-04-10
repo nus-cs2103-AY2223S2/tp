@@ -13,7 +13,7 @@ ExecutivePro is a project adapted from AddressBook - Level 3.
 
 Given below are my contributions to the project.
 
-#### Code Contributed
+#### <u> Code Contributed </u>
 
 * [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=junhao247&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -37,7 +37,9 @@ Given below are my contributions to the project.
     * Why: Users get to export the database into a file in order to print out the current records for employees.
     * Constraints: This implementation was difficult because I had to ensure that the formats remain the same
       and is not affected by external files.
-    * Wrote test cases for `BatchAddCommand` and `BatchExportCommand`.
+    
+  * Wrote test cases for `BatchAddCommand` and `BatchExportCommand`.
+  * Wrote javadocs for `AddCommand`, `BatchAddCommand`, `BatchExportCommand` and `ClearCommand`.
 
 
 #### <u> Contributions to the UG </u>
