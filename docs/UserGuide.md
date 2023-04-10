@@ -709,11 +709,12 @@ Try clearing all filters with [List command](#6-listing-all-personsresetting-fil
 
 **A:** We are currently working to add as many courses as possible. Meanwhile, you would have to assign any other courses to the person and remember it.
 
+<br>
 <div style="page-break-after: always;"></div>
 
 **Q: How can I change the profile picture for my contacts?**
 
-**A:** As of right now, profile pictures cannot be edited. They are randomly picked from a pool of 50 avatar icons. However, we will be rolling out future updates that will allow you to change the profile pictures. 
+**A:** As of right now, profile pictures cannot be edited. They are randomly picked from a pool of 50 avatar icons when a person is added. However, we will be rolling out future updates that will allow you to change the profile pictures. 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
