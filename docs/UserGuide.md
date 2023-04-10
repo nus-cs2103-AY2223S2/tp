@@ -708,6 +708,8 @@ Using `fish sort by/n tk/1` will result in the following fishes from tank 1 bein
   * 2 - 'Marlin'
   * 3 - 'Nemo'
 
+(continued next page)
+
 ![AddReadingDemo](images/UiSortNameDemo.png)
 
 ### Viewing a fish: `fish view`
@@ -892,6 +894,11 @@ Example:
 
 ![UiFeedingReminder](images/UiTankFeed1.png)
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+
 ## Storage
 ### Saving the data
 
@@ -948,6 +955,8 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action     | Format, Examples                                                                                                        |
@@ -960,8 +969,6 @@ Format: `help`
 | **Help**   | `help`                                                                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## Command prefix summary
 
