@@ -46,14 +46,12 @@ loop size of filteredPersons
     AgeAnalyst -> DataBin : addPerson()
     activate DataBin
 
-    DataBin --> AgeAnalyst
     deactivate DataBin
 end
 
 AgeAnalyst --> AgeOverview
 deactivate AgeAnalyst
 
-AgeOverview --> ModelManager
 deactivate AgeOverview
 
 ModelManager --> LogicManager : ao
@@ -88,7 +86,4 @@ AgeOverview --> OverviewDisplay : content
 deactivate AgeOverview
 
 OverviewDisplay -> OverviewDisplay : setOverviewContent(content)
-
-OverviewDisplay -->[
-deactivate OverviewDisplay
 @enduml

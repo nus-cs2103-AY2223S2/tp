@@ -3,7 +3,7 @@ layout: page
 title: Samuel Murugasu's Project Portfolio Page
 ---
 
-### Project: DengueHotspotTracker
+### Project: DengueHotspotTracker (DHT)
 
 DengueHotspotTracker (DHT) is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
