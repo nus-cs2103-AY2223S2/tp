@@ -167,28 +167,35 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
    </details>
    <p></p>
 
-3. Named arguments can be specified in **any order** as long as it is after all unnamed arguments (if any).
+3. An ellipsis (i.e. `...`) indicates that **multiple** values can be provided.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]</code>, the <code>/tag</code> argument can take multiple values. The command can be used as <code>tag CS2040S /tags Heavy, Hard, Math, Analysis</code>.
+   </details>
+   <p></p>
+
+4. Named arguments can be specified in **any order** as long as it is after all unnamed arguments (if any).
    <details>
    <summary>Example</summary>
    For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, the command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
    </details>
    <p></p>
 
-4. If a named argument is expected only once in the command but the user specified it multiple times, only the **last occurrence** of the argument will be taken.
+5. If a named argument is expected only once in the command but the user specified it multiple times, only the **last occurrence** of the argument will be taken.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} [/name {module_name}]</code>, if used as <code>add CS2040 /name Data Structures and Algorithms /name DSAG</code>, <code>DSAG</code> will be taken as the value of the <code>/name</code> argument.
    </details>
    <p></p>
 
-5. Extraneous arguments will be **ignored**.
+6. Extraneous arguments will be **ignored**.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} /name {module_name}</code>, if used as <code>add CS2040 /name DSAG /foo bar</code>, the <code>/foo</code> argument is ignored.
    </details>
    <p></p>
 
-6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a **named argument** if the following 2 conditions are met:
+7. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a **named argument** if the following 2 conditions are met:
    - There is a whitespace before `/{argument_name}`
    - `/{argument_name}` is followed by a whitespace or it is the end of the command
 
@@ -335,7 +342,7 @@ Navigate to the root context from any context.
 
 Navigates from the root context to a module context.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to navigate to
   - Must belong to an existing module in Le Tracker
 
 #### Navigate from Module Context to Lecture Context
@@ -344,7 +351,7 @@ Navigates from the root context to a module context.
 
 Navigates from a module context to a lecture context.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module of the current working context
 
 #### Navigate Directly
@@ -353,9 +360,9 @@ Navigates from a module context to a lecture context.
 
 Navigates directly to the specified module or lecture context.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module specified in `module_code`
 
 #### Navigate Backwards
@@ -791,9 +798,9 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
   - Must not contain duplicates
   - For `mark`, must not already be marked
   - For `unmark` for 1 video, must not already be unmarked
-- [<span style="color:#e46c0a">`module_code`</span>](#module-code): The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of the module
   - Must belong to an existing module in Le Tracker
-- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name): The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format): The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
 
 <details open>

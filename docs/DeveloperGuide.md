@@ -608,12 +608,13 @@ The following is a description of the code execution flow
    Note: ModuleCode, LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
 
 3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
-  - `DeleteModuleCommand`: single module to be deleted
-  - `DeleteMultipleModulesCommand`: more than one module to be deleted
-  - `DeleteLectureCommand`: single lecture to be deleted
-  - `DeleteMultipleLecturesCommand`: more than one lecture to be deleted
-  - `DeleteVideoCommand`: single video to be deleted
-  - `DeleteMultipleVideosCommand`: more than one video to be deleted
+
+- `DeleteModuleCommand`: single module to be deleted
+- `DeleteMultipleModulesCommand`: more than one module to be deleted
+- `DeleteLectureCommand`: single lecture to be deleted
+- `DeleteMultipleLecturesCommand`: more than one lecture to be deleted
+- `DeleteVideoCommand`: single video to be deleted
+- `DeleteMultipleVideosCommand`: more than one video to be deleted
 
 4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
 Possible exceptions that could be thrown are:
@@ -697,7 +698,6 @@ The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCo
 As a comparison to the diagram above, the following diagram shows the Sequence Diagram of executing a `MarkMultipleAsUnwatchedCommand`:
 
 ![MarkAsUnwatched](images/mark/MarkAsMultipleAsUnwatchedExecutionSequenceDiagram.png)
-
 
 The following is a description of the code execution flow:
 
@@ -1506,25 +1506,24 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to delete a module
-2. User requests to delete the specific module by specifying the module code
-3. Le Tracker deletes the module
+1. User requests to delete the specific module by specifying the module code
+2. Le Tracker deletes the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The given module code does not follow the module code format.
+- 1a. The given module code does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-  2b. Module of module code does not exist in Le Tracker.
+  1b. Module of module code does not exist in Le Tracker.
 
-  - 2b1. Le Tracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 #### Delete multiple Modules
 
@@ -1532,29 +1531,31 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to delete multiple modules
-2. User requests to delete specific modules by specifying their respective module codes
-3. Le Tracker deletes the specified modules
+1. User requests to delete specific modules by specifying their respective module codes
+2. Le Tracker deletes the specified modules
+
+  Use case ends.
 
 **Extensions**
 
-- 2a. At least one of module codes supplied does not follow the module code format.
+- 1a. At least one of module codes supplied does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Module codes supplied contains duplicates.
+- 1b. Module codes supplied contains duplicates.
 
-  - 2b1. Le Tracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2c. At least one Module of module codes do not exist in Le Tracker.
+- 1c. At least one module of module codes do not exist in Le Tracker.
 
-  - 2c1. Le Tracker shows an error message.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
+
 
 #### Delete a Lecture
 
@@ -1562,37 +1563,36 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to delete a lecture
-2. User requests to delete a specific lecture by specifying a module code and lecture name
-3. Le Tracker deletes the lecture
+1. User requests to delete a specific lecture by specifying a module code and lecture name
+2. Le Tracker deletes the lecture
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The supplied module code does not follow the module code format.
+- 1a. The supplied module code does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. The supplied lecture name does not follow the lecture name format.
+- 1b. The supplied lecture name does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2c. The Module of module code that is supposed to contain the lecture of lecture name does not exist.
+- 1c. The module of module code that is supposed to contain the lecture of lecture name does not exist.
 
-  - 2c1. Le Tracker shows an error message.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2d. The lecture of lecture name does not exist in module of module code.
+- 1d. The lecture of lecture name does not exist in module of module code.
 
-  - 2d1. Le Tracker shows an error message.
+  - 1d1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 #### Delete multiple Lectures
 
@@ -1600,41 +1600,42 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to delete multiple lectures under the same module
-2. User specifies multiple lecture names to be deleted and a module code
-3. Le Tracker deletes the specified lectures of lecture names from the specified module of module code.
-
-**Extensions**
-
-- 2a. The module code specified does not follow the module code format.
-
-  - 2a1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2b. At least one of the lecture names supplied does not follow the lecture name format.
-
-  - 2b1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. Lecture names supplied contains duplicates.
-
-  - 2c1. Le Tracker shows an error message.
+1. User specifies multiple lecture names to be deleted and a module code
+2. Le Tracker deletes the specified lectures of lecture names from the specified module of module code
 
     Use case ends.
 
-- 2d. The Module of module code does not exist in Le Tracker.
+**Extensions**
 
-  - 2d1. Le Tracker shows an error message.
+- 1a. The module code specified does not follow the module code format.
 
-    Use case resumes at step 1.
+  - 1a1. Le Tracker shows an error message.
 
-- 2e. At least one Lecture of the supplied lecture names does not exist in the Module of module code.
+    Use case ends.
 
-  - 2e1. Le Tracker shows an error message.
+- 1b. At least one of the lecture names supplied does not follow the lecture name format.
 
-    Use case resumes at step 1.
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1c. Lecture names supplied contains duplicates.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. The module of module code does not exist in Le Tracker.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1e. At least one lecture of the supplied lecture names does not exist in the module of module code.
+
+  - 1e1. Le Tracker shows an error message.
+
+    Use case ends.
 
 #### Delete a Video
 
@@ -1642,49 +1643,48 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to delete a specific video in a lecture of a module
-2. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture.
-3. Le Tracker deletes the video from the lecture of the module
+1. User requests to delete a specific video by citing its video name, lecture name of the lecture that contains it, and the module code of the module that contains the lecture
+2. Le Tracker deletes the video from the lecture of the module
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Module code supplied does not follow the module code format.
+- 1a. Module code supplied does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Lecture name supplied does not follow the lecture name format.
+- 1b. Lecture name supplied does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2c. Video name supplied does not follow the video name format.
+- 1c. Video name supplied does not follow the video name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2d. There is no such module of module code in Le Tracker.
+- 1d. There is no such module of module code in Le Tracker.
 
-  - 2d1. Le Tracker shows an error message.
+  - 1d1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2e. There is no such lecture in the module.
+- 1e. There is no such lecture of lecture name in the module.
 
-  - 2e1. Le Tracker shows an error message.
+  - 1e1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2f. There is no such video in the lecture.
+- 1f. There is no such video of video name in the lecture.
 
-  - 2f1. Le Tracker shows an error message.
+  - 1f1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 #### Delete multiple Videos
 
@@ -1692,53 +1692,54 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to delete multiple videos under the same lecture of the same module
-2. User requests to delte the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture.
-3. Le Tracker deletes the specified videos from the lecture of the module.
+1. User requests to delete the specific videos by supplying their video names, the lecture name of the lecture containing them and the module code of the module containing the lecture
+2. Le Tracker deletes the specified videos from the lecture of the module
+
+  Use case ends.
 
 **Extensions**
 
-- 2a. Module code supplied does not follow the module code format.
+- 1a. Module code supplied does not follow the module code format.
 
-  - 2a1. Le Tracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Lecture name supplied does not follow the lecture name format.
+- 1b. Lecture name supplied does not follow the lecture name format.
 
-  - 2b1. Le Tracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2c. At least one of the video names supplied does not follow the video name format.
+- 1c. At least one of the video names supplied does not follow the video name format.
 
-  - 2c1. Le Tracker shows an error message.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2d. The video names supplied contains duplicates.
+- 1d. The video names supplied contains duplicates.
 
-  - 2d1. Le Tracker shows an error message.
+  - 1d1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2e. There is no such module of module code in Le Tracker.
+- 1e. There is no such module of module code in Le Tracker.
 
-  - 2e1. Le Tracker shows an error message.
+  - 1e1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2f. There is no such lecture in the module.
+- 1f. There is no such lecture of lecture name in the module.
 
-  - 2f1. Le Tracker shows an error message.
+  - 1f1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2g. At least one of the videos do not exist in the lecture.
+- 1g. At least one of the videos of video names supplied do not exist in the lecture.
 
-  - 2g1. Le Tracker shows an error message.
+  - 1g1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 #### Mark/Unmark a video
 
@@ -1746,61 +1747,60 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to mark/unmark a video
-2. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched.
-3. Le Tracker marks/unmarks the video as watched/unwatched
+1. User specifies the module code, lecture name and video name to mark/unmark the video as watched/unwatched
+2. Le Tracker marks/unmarks the video as watched/unwatched
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Invalid module code that does not follow module code format is supplied.
+- 1a. Invalid module code that does not follow module code format is supplied.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1c. Invalid video name that does not follow video name format is supplied.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. Module of module code does not exist in Le Tracker.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1e. Lecture of lecture name does not exist in module of module code.
+
+  - 1e1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1f. Video name does not exist in lecture of lecture name in module of module code.
+
+  - 1f1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 2a. Video to mark is already marked as watched.
 
   - 2a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Invalid lecture name that does not follow lecture name format is supplied.
+- 2b. Video to unmark is already unmarked.
 
   - 2b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
-
-- 2c. Invalid video name that does not follow video name format is supplied.
-
-  - 2c1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. Module of module code that is supposed to contain the lecture of lecture name does not exist.
-
-  - 2d1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. Lecture of lecture name that is supposed to contain the video of video name does not exist in module of module code.
-
-  - 2e1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2f. Video name does not exist in lecture of lecture name in module of module code.
-
-  - 2f1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 3a. Video to mark is already marked as watched.
-
-  - 3a1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 3b. Video to unmark is already unmarked.
-
-  - 3b1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
+    Use case ends.
 
 #### Mark/Unmark multiple videos
 
@@ -1808,59 +1808,60 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User wants to mark/unmark a few videos under the same module lecture as watched/unwatched.
-2. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched.
-3. Le Tracker marks/unmarks the videos as watched/unwatched.
+1. User specifies the module code, lecture name and multiple video names to mark/unmark as watched/unwatched
+2. Le Tracker marks/unmarks the videos as watched/unwatched
 
-  Use case ends
+  Use case ends.
 
 **Extensions**
 
-- 2a. Invalid module code that does not follow module code format is supplied.
+- 1a. Invalid module code that does not follow module code format is supplied.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. Invalid lecture name that does not follow lecture name format is supplied.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1c. At least one of video names supplied does not follow video name format.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. The video names supplied contain duplicates.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1e. Module of module code does not exist in Le Tracker.
+
+  - 1e1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1f. Lecture of lecture name does not exist in module of module code.
+
+  - 1f1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
+
+  - 1g1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 2a. At least one of the videos to mark is already marked as watched.
 
   - 2a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
-
-- 2b. Invalid lecture name that does not follow lecture name format is supplied.
-
-  - 2b1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2c. At least one of video names supplied does not follow video name format.
-
-  - 2c1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2d. The video names contain duplicates.
-
-  - 2d1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2e. Module of module code that is supposed to contain the lecture of lecture name does not exist.
-
-  - 2e1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2f. Lecture of lecture name that is supposed to contain the videos of the multiple video name does not exist in module of module code.
-
-  - 2f1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
-
-- 2g. At least one of the videos of video names do not exist in lecture of lecture name in module of module code.
-
-  - 2g1. Le Tracker shows an error message.
-
-- 3a. At least one of the videos to mark is already marked as watched.
-
-  - 3a1. Le Tracker shows an error message.
-
-    Use case resumes at step 1.
+    Use case ends.
 
 #### Tag a module
 
@@ -2498,9 +2499,9 @@ Some incorrect commands to try from root context:
 
 | Test Case                                                                                                 | Expected Result                                                                                                                                                                                                                                                              |
 | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`                      | **Message:**<br/>`New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`<br/>**List updates:** None                                                                                                                |
+| `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`                      | **Message:**<br/>`New video added to lecture Week 1 of module CS2040S: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`<br/>**List updates:** None                                                                                                                |
 | 1. `nav CS2040S`<br/>2. `add Vid 3 /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`           | Same as previous                                                                                                                                                                                                                                                             |
-| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add Vid 3 /lec Week 1 /timestamp 01:04:20 /tags Analysis, BigO` | **Message:**<br/>`New video added to module CS2040S of lecture Week 1: Vid 3; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** New entry for "Vid 3" with timestamp "01:04:20", tags "Analysis" and "BigO", and video marked as "not watched" |
+| 1. `nav /mod CS2040S /lec Week 1`<br/>2. `add Vid 3 /lec Week 1 /timestamp 01:04:20 /tags Analysis, BigO` | **Message:**<br/>`New video added to lecture Week 1 of module CS2040S : Vid 3; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** New entry for "Vid 3" with timestamp "01:04:20", tags "Analysis" and "BigO", and video marked as "not watched" |
 
 Some incorrect commands to try from root context:
 
@@ -2537,6 +2538,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO` | **Message:**<br/>`Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]`<br/>**List updates:** None                                                             |
 
 Some incorrect commands to try from root context:
+
 - `edit /mod CS2040S` (incorrect format)
 - `edit Week 1 /mod CS2040S /name Week 2` (duplicate lecture)
 - `edit Week! /mod CS2040S` (invalid lecture name)
@@ -2554,6 +2556,7 @@ Some incorrect commands to try from root context:
 | 1. `nav /mod CS2040S /lec Week 1`<br/>2. `edit Vid 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO` | **Message:**<br/>`Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]`<br/>**List updates:** Entry for "Vid 1" updated to "Vid 01", with timestamp "01:04:20", tags "Analysis" and "BigO", and video marked as "not watched". |
 
 Some incorrect commands to try from root context:
+
 - `edit /mod CS2040S /lec Week 1` (incorrect format)
 - `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 2` (duplicate video)
 - `edit V!d 1 /mod CS2040S /lec Week 1` (invalid video name)
@@ -2739,6 +2742,7 @@ Here are some examples of poorly formatted messages that the team has identified
 1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
 Output:
+
 ```
 New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]
 ```
@@ -2746,6 +2750,7 @@ New module added: CS2103T; Name: Software Engineering; Tags: [4MCs][Coding]
 2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
 Output:
+
 ```
 New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]
 ```
@@ -2753,13 +2758,15 @@ New lecture added to module CS2040S: Week 7; Tags: [Census][AVLTree]
 3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
 Output:
+
 ```
-`New video added to module CS2040S of lecture Week 1: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+`New video added to lecture Week 1 of module CS2040S: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
 ```
 
 4. The following is a sample command for editing a module and it's output message upon success:\
 Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
 Output:
+
 ```
 Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; Tags: [Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 2; Tags: [Sorting]; Videos: Vid; Watched; Timestamp: 00:00:00Week 3; Tags: [Arrays][LinkedList]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 4; Tags: [Stacks][Queues]; Videos: Vid; Watched; Timestamp: 00:00:00Week 5; Tags: [Hashing]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]Week 6; Tags: [BloomFilter]; Videos: Vid; Not Watched; Timestamp: 00:24:20
 ```
@@ -2767,6 +2774,7 @@ Edited module: CS2040; Name: DSAG; Tags: [4MCs][Analytical]; Lectures: Week 1; T
 5. The following is a sample command for editing a lecture and it's output message upon success:\
 Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
 Output:
+
 ```
 Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watched; Timestamp: 00:00:00; Tags: [Algo]Vid 2; Watched; Timestamp: 00:00:00; Tags: [Analysis]
 ```
@@ -2774,6 +2782,7 @@ Edited lecture of module CS2040S: W1; Tags: [BigO][Intro]; Videos: Vid 1; Watche
 6. The following is a sample command for editing a video and it's output message upon success:\
 Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
 Output:
+
 ```
 Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp: 01:04:20; Tags: [BigO][Analysis]
 ```
@@ -2787,6 +2796,7 @@ Given the above 6 examples, their respective redesigned output will be as such:
 1. The following is a sample command for adding a module and it's output message upon success:\
 Command: `add CS2103T /name Software Engineering /tags Coding, 4MCs`\
 Output:
+
 ```
 New module added
 Code: CS2103T
@@ -2797,6 +2807,7 @@ Tags: [4MCs] [Coding]
 2. The following is a sample command for adding a lecture and it's output message upon success:\
 Command: `add Week 7 /mod CS2040S /tags AVLTree, Census`\
 Output:
+
 ```
 New lecture added to module "CS2040S"
 Name: Week 7
@@ -2806,6 +2817,7 @@ Tags: [Census] [AVLTree]
 3. The following is a sample command for adding a video and it's output message upon success:\
 Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Analysis, BigO`\
 Output:
+
 ```
 New video added to lecture "Week 1" of module "CS2040S"
 Name: Vid 3
@@ -2817,6 +2829,7 @@ Tags: [BigO] [Analysis]
 4. The following is a sample command for editing a module and it's output message upon success:\
 Command: `edit CS2040S /code CS2040 /name DSAG /tags Analytical, 4MCs`\
 Output:
+
 ```
 Edited module "CS2040S":
 Updated Code: CS2040
@@ -2827,6 +2840,7 @@ Updated Tags: [4MCs] [Analytical]
 5. The following is a sample command for editing a lecture and it's output message upon success:\
 Command: `edit Week 1 /mod CS2040S /name W1 /tags Intro, BigO`\
 Output:
+
 ```
 Edited lecture "Week 1" of module "CS2040S":
 Updated Name: W1
@@ -2836,6 +2850,7 @@ Updated Tags: [BigO] [Intro]
 6. The following is a sample command for editing a video and it's output message upon success:\
 Command: `edit Vid 1 /mod CS2040S /lec Week 1 /name Vid 01 /timestamp 01:04:20 /unwatch /tags Analysis, BigO`\
 Output:
+
 ```
 Edited video "Vid 1" of lecture "Week 1" of module "CS2040S":
 Updated Name: Vid 01
@@ -2845,6 +2860,7 @@ Updated Tags: [BigO] [Analysis]
 ```
 
 ### Feature flaw #2: No length limit for module code, module name, lecture name, video name, and tag
+
 **Description**
 
 There is currently **no limit** on the length of a module code and module name that can be assigned to a module. This is the same for the name of a lecture and the name of a video. This allows users to assign ridiculously long values to these fields, causing the UI to be truncated. This may also potentially slow down the application, and increase the size of the data file.
@@ -2858,8 +2874,36 @@ The following is an example of a lecture with a very long name, causing the name
 For the commands that allow a user to assign values to the mentioned fields (`add`, `edit`, `tag`, `untag`, etc.), the arguments should have their length limited to some value (e.g. 30 characters).
 
 The checking and limiting of length can be done while parsing the arguments and should produce an error message if the maximum length is exceeded:
-```
+
+```text
 The following {field} should not exceed the length limit of 30 characters: {value}
 ```
 
-### Feature flaw #3:
+### Feature flaw #3
+
+### Feature flaw #4: Limited Find function capability
+
+**Description**
+
+When user finds a module, there is only matches for module code/name that **starts with** the keyword specified by user.
+This reduces the flexibility of the find function as they might be users who do not remember what a module starts with, which may create an unpleasant experience for them.
+
+<img src="images/FindNoResult.png" width="350"/>
+
+**Proposed Solution**
+
+Instead of matching contents that **starts with** a keyword, relax it to **contain** the keyword.
+E.g. `find 2040` will match `CS2040` because `CS2040` contains `2040`.
+
+### Feature flaw #5: Over buffering command history
+
+**Description**
+
+Commands executed by users are saved in a stack. However, no limit is set to the number of past commands that a user can see.
+This can lead to having too much memory being allocated for it and having no boundary.
+
+**Proposed Solution**
+
+Set a limit to the number of commands viewable in command history.
+Perhaps allowing user to see the last 5 or 10 or 15 commands only, the oldest command will be deleted forever if the limit
+is exceeded.
