@@ -2923,3 +2923,22 @@ Tags should only contain alphanumeric characters, and they should not be blank.
 The following tags provided are invalid:
 - T@g
 ```
+
+### Feature flaw #6: Unmark Command does not alert user of already unmarked videos
+
+**Description**
+
+`mark` and `unmark` are similar commands that would mark a video as watched or unwatched respectively. Since these 2 commands are similar, they should have a similar functionality and error messages.
+
+However, the current implementation is flawed as follows:
+  - `mark` one or multiple videos: if any video is already marked as watched, an **error** message is shown to the user
+  - `unmark` one video: if the video is already marked as unwatched, an **error** message is shown to the user
+  - `unmark` multiple videos: if any video is already marked as unwatched, a **success** message is shown
+
+As listed above, calling `unmark` on multiple videos has a different result as compared to its counterparts.
+
+**Proposed Solution**
+
+Set `unmark` for multiple videos to catch when any of the videos specified have already been marked as unwatched, and alert thte user with a similar error message to its counterparts.
+
+This implementation would allow for users to better realise what their commands are doing, especially if they are in a different context that does not allow them to visualise the effect of their commands.
