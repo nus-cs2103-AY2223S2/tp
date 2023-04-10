@@ -934,12 +934,10 @@ Below is the main success scenario of student-related commands.
 ##### List students in a particular class
 1. User requests to list all students in a class.
 2. TAA shows a list of students and number of students listed.
-
-**Extensions**
-
-* 2a. The classlist name searched does not exist
-    * 2a1. TAA shows an error message. Use case ends.
-
+**Note**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** If the classlist name searched does not exist, TAA will show "0 students listed!"
+</div>
    Use case ends.
 
 ##### List students
