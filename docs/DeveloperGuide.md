@@ -2,6 +2,8 @@
 layout: page
 title: Developer Guide
 ---
+
+<!-- omit from toc -->
 ## Table of Contents
 
 - [**Legend**](#legend)
@@ -42,9 +44,15 @@ title: Developer Guide
   - [Saving data](#saving-data)
 - [**Appendix: Effort**](#appendix-effort)
 - [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
+  - [Feature Flaw 1: Tags are case-sensitive](#feature-flaw-1-tags-are-case-sensitive)
+  - [Feature Flaw 2: Error message for invalid `add` command is not specific](#feature-flaw-2-error-message-for-invalid-add-command-is-not-specific)
+  - [Feature Flaw 3: Lack of input validation in `filter` feature](#feature-flaw-3-lack-of-input-validation-in-filter-feature)
+  - [Feature Flaw 4: Slashes can be used in the `unit`, `platoon`, and `company` fields](#feature-flaw-4-slashes-can-be-used-in-the-unit-platoon-and-company-fields)
+  - [Feature Flaw 5: Error message from importing CSV file with invalid fields does not show row number of problematic fields](#feature-flaw-5-error-message-from-importing-csv-file-with-invalid-fields-does-not-show-row-number-of-problematic-fields)
 
 ---
-## Legend
+
+## **Legend**
 
 Here are some symbols used throughout the user guide to inform you of additional details.
 
@@ -501,11 +509,11 @@ Priority:
 | 3        | busy user                 | generate a nicely formatted text template that contains all of the person's information | I do not need to re-type the same headers / tables whenever I send a new email                                 |
 | 3        | seasoned user             | save commonly used contacts as favourites                                               | I can quickly look up commonly used contacts                                                                   |
 | 3        | seasoned user             | hide unavailable personnel (using filters)                                              | I can see only those people that are currently available                                                       |
-| 3        | seasoned user             | be shown daily tips on how to use some advanced features of FAILS                       | I can continuously learn how to save even more time (and become an advanced user)                              |
+| 3        | seasoned user             | be shown daily tips on how to use some advanced features of AIMS                       | I can continuously learn how to save even more time (and become an advanced user)                              |
 | 3        | seasoned user             | see a count of the number of people in the current list                                 | I can quickly calculate the number of people in each subset of the military                                    |
-| 3        | advanced user             | export all FAILS data to a FAILS data file                                              | I don't lose my data when I change computers / departments                                                     |
-| 3        | advanced user             | import all FAILS data from a FAILS data file                                            | I don't lose my data when I change computers / departments                                                     |
-| 3        | advanced user             | delete all the data on the FAILS                                                        | I can ensure that the sensitive data will not remain on the old computer when I change computers / departments |
+| 3        | advanced user             | export all AIMS data to a AIMS data file                                              | I don't lose my data when I change computers / departments                                                     |
+| 3        | advanced user             | import all AIMS data from a AIMS data file                                            | I don't lose my data when I change computers / departments                                                     |
+| 3        | advanced user             | delete all the data on the AIMS                                                        | I can ensure that the sensitive data will not remain on the old computer when I change computers / departments |
 | 3        | advanced user             | automatically see the ORD date of a recruit                                             | I can inform them of the administrative processes that must completed before they ORD                          |
 | 3        | advanced user             | mark that a person is on leave from `start_date` to `end_date`                          | I can tell if the soldier is available or not (and when he will be available)                                  |
 | 3        | advanced user             | make simultaneous edits to multiple contacts at once (e.g., update rank)                | I can save time by rectifying mass mistakes / save time by updating multiple people's information quickly      |
@@ -522,7 +530,7 @@ Priority:
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Fast Army Internal Lookup System (FAILS)`, unless specified otherwise)
+(For all use cases below, the **System** is the `Army Information Management System (AIMS)`, unless specified otherwise)
 
 **Use case: UC2 - Create a new military personnel**
 
@@ -531,14 +539,14 @@ Priority:
 **MSS**
 
 1. Admin clerk creates a new military personnel contact by entering the command.
-1. FAILS creates and displays the newly created military personnel contact to the admin clerk.
+1. AIMS creates and displays the newly created military personnel contact to the admin clerk.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. FAILS detects an error in the command (e.g. missing information, incorrect syntax).
-  - 1a1. FAILS displays an error message to the admin clerk.
+- 1a. AIMS detects an error in the command (e.g. missing information, incorrect syntax).
+  - 1a1. AIMS displays an error message to the admin clerk.
   - 1a2. Admin clerk re-enters the information to create the military personnel contact.
   - Steps 1a1-1a2 are repeated until the information provided is acceptable.
   - Use case resumes at step 2.
@@ -553,7 +561,7 @@ Priority:
 
 1. Admin clerk <ins>searches for a person named "Lawrence Tay" (UC5)</ins>.
 1. Admin clerk <ins>edits the *rank* information of "Lawrence Tay" (UC6)</ins>.
-1. FAILS displays the updated *rank* information of "Lawrence Tay".
+1. AIMS displays the updated *rank* information of "Lawrence Tay".
 
    Use case ends.
 
@@ -572,34 +580,34 @@ Priority:
 **MSS**
 
 1. Admin clerk chooses to import a CSV file containing the personal information of military personnel from her computer.
-1. FAILS imports the CSV file.
-1. FAILS prompts the admin clerk whether the information in the CSV file should *replace* or be *added* to the existing list of contacts.
+1. AIMS imports the CSV file.
+1. AIMS prompts the admin clerk whether the information in the CSV file should *replace* or be *added* to the existing list of contacts.
 1. Admin clerk chooses one of the options.
-1. If the option was to *replace*, FAILS will delete all existing all contacts. Otherwise, FAILS does nothing in this step.
-1. FAILS adds the CSV contacts to the existing list of contacts.
+1. If the option was to *replace*, AIMS will delete all existing all contacts. Otherwise, AIMS does nothing in this step.
+1. AIMS adds the CSV contacts to the existing list of contacts.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. FAILS is unable to automatically match the CSV column names to FAILS contact fields.
-  - 2a1. FAILS prompts the admin clerk to decide which CSV column refer to which FAILS contact field (e.g., the CSV might have a column called "mobile_number" whereas FAILS has a field called "phone").
+- 2a. AIMS is unable to automatically match the CSV column names to AIMS contact fields.
+  - 2a1. AIMS prompts the admin clerk to decide which CSV column refer to which AIMS contact field (e.g., the CSV might have a column called "mobile_number" whereas AIMS has a field called "phone").
   - Use case resumes at step 3.
 
 [Back to Top ↑](#table-of-contents)
 
 ### Non-Functional Requirements
 
-1. FAILS must store the personal data of military personnel securely.
-1. FAILS must only allow the authorised admin clerk access to the military personnel data (in compliance with PDPA).
-1. FAILS must not leak the personal data of military personnel even during a computer crash.
-1. FAILS must not connect to the Internet.
-1. FAILS must be able to handle at least 1000 military personnel contacts.
-1. FAILS should be easy to use even for non-technical persons like an admin clerk.
-1. FAILS should be efficient enough that it performs well even on lower-tier hardware (e.g., like those found in everyday office computers that admin clerks use).
-1. FAILS should respond within 1 second for any command the user inputs.
-1. FAILS must not lose critical data on military personnel even during a computer crash.
-1. FAILS must be accessible to military personnel with disabilities.
+1. AIMS must store the personal data of military personnel securely.
+1. AIMS must only allow the authorised admin clerk access to the military personnel data (in compliance with PDPA).
+1. AIMS must not leak the personal data of military personnel even during a computer crash.
+1. AIMS must not connect to the Internet.
+1. AIMS must be able to handle at least 1000 military personnel contacts.
+1. AIMS should be easy to use even for non-technical persons like an admin clerk.
+1. AIMS should be efficient enough that it performs well even on lower-tier hardware (e.g., like those found in everyday office computers that admin clerks use).
+1. AIMS should respond within 1 second for any command the user inputs.
+1. AIMS must not lose critical data on military personnel even during a computer crash.
+1. AIMS must be accessible to military personnel with disabilities.
 
 [Back to Top ↑](#table-of-contents)
 
@@ -637,8 +645,10 @@ testers are expected to do more *exploratory* testing.
 [Back to Top ↑](#table-of-contents)
 
 ### Adding a person
+
 1. Adding a person while all existing persons are being shown
    1. Prerequisites: The existing list contains a person with the following information:
+
    ``` text
     Rank: REC
     Name: Alex Yeoh
@@ -650,21 +660,23 @@ testers are expected to do more *exploratory* testing.
     Address: Blk 30 Geylang Street 29, #06-40
     Tags: [friends]
    ```
-   
+
    2. Test case: `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10`<br>
    Expected: A person with the specified information will be added and displayed in the main list of the GUI.
-   
+
    3. Test case: `add n/Alex Yeoh r/CPL c/Bravo u/1 SIR p/89043761 e/alexyeoh@example.com a/Blk 21 Buona Vista Rd, #11-01`<br>
    Expected: Error details shown in the message box, indicating that duplicate emails or phones are not allowed.
-   
+
    4. Test case: `add n/Zachary Tan r/CPL`<br>
    Expected: Error details shown in the message box, indicating that the command entered is invalid.
 
 [Back to Top ↑](#table-of-contents)
 
 ### Editing a person
+
 1. Editing a person while all persons are being shown
    1. Prerequisites: The second person in the existing list contains the following information:
+
    ``` text
     Rank: CPL
     Name: Bernice Yu
@@ -676,7 +688,7 @@ testers are expected to do more *exploratory* testing.
     Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
     Tags: [colleagues][friends]
    ```
-   
+
    2. Test case: `edit 2 n/Sally Wee e/sallywee@gmail.com`<br>
       Expected: The name and email of the second person in the list will be changed to `Sally Wee` and `sallywee@gmail.com` respectively, with the other information left unchanged.
 
@@ -727,6 +739,7 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Planned Enhancements**
 
 ### Feature Flaw 1: Tags are case-sensitive
+
 **Brief description:** When using the `add` or `edit` feature in AIMS, tags that are provided with the same names but in different cases (e.g. 1 in lowercase and 1 in uppercase), are treated as different tags which should not be the case.
 
 **Example:** `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10 t/friends t/Friends` <br>
@@ -736,8 +749,8 @@ testers are expected to do more *exploratory* testing.
 
 **Proposed Enhancement:** We plan on improving the validation by making sure that tags are case-insensitive so that when 2 tags of same name and different cases are provided, an error message will be displayed to the user: `Duplicate tags are provided!`.
 
-
 ### Feature Flaw 2: Error message for invalid `add` command is not specific
+
 **Brief description:** Our [`add`](./UserGuide.md#adding-a-person--add) command requires the user to provide several compulsory fields (rank, name, phone, email, address) in order to add a person to AIMS. However, in the case where the user happens to miss out on any fields, a generic invalid command format error message is displayed to them, not specifying which field is missing. As a result, this can cause inconvenience for the user as they may need to carefully look through the provided example to identify which field(s) is/are needed.
 
 **Example:**
@@ -750,10 +763,10 @@ Instead of just showing a valid example, we plan to change the error message suc
 
 ### Feature Flaw 3: Lack of input validation in `filter` feature
 
-**Brief description:** The `filter` feature allow users to search invalid values. For instance, for the phone number field, we have an input validation in the `add` feature which checks that the provided phone number is **valid** with only numbers and at least 3 digits long. However, the user can search for a phone number `abcd` using the `filter` command which is illogical and does not align with our implementation of the `add` feature. 
+**Brief description:** The `filter` feature allow users to search invalid values. For instance, for the phone number field, we have an input validation in the `add` feature which checks that the provided phone number is **valid** with only numbers and at least 3 digits long. However, the user can search for a phone number `abcd` using the `filter` command which is illogical and does not align with our implementation of the `add` feature.
 
 **Example:** `filter p/abcd`<br>
-Even though AIMS does give a correct result that there are 0 persons with the phone number `abcd` but this will always be the case since AIMS will never allow a person with phone number `abcd` to be added, so we should include the input validation in `filter` as well. 
+Even though AIMS does give a correct result that there are 0 persons with the phone number `abcd` but this will always be the case since AIMS will never allow a person with phone number `abcd` to be added, so we should include the input validation in `filter` as well.
 ![featureflaw3](./images/featureflaw3.png)
 
 **Proposed enhancement:**

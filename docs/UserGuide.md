@@ -3,18 +3,15 @@ layout: page
 title: User Guide
 ---
 
-Army Information Management System (AIMS) is a **desktop app for managing the personal information of military
-personnel, optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical
-User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
-GUI apps.
-
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
-
 <!-- omit from toc -->
 ## **Table of Contents**
 
+- [**Introduction**](#introduction)
+  - [What is AIMS?](#what-is-aims)
+  - [Our Target](#our-target)
+  - [User Guide](#user-guide)
 - [**Legend**](#legend)
-- [**Quick start**](#quick-start)
+- [**Quick Start**](#quick-start)
 - [**Overview of AIMS GUI**](#overview-of-aims-gui)
 - [**Features**](#features)
   - [Viewing help : `help`](#viewing-help--help)
@@ -34,9 +31,29 @@ This user guide shows you how to get started using AIMS and how to make use of t
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
 - [**FAQ**](#faq)
-- [**Command summary**](#command-summary)
+- [**Command Summary**](#command-summary)
 
 ---
+
+## **Introduction**
+
+### What is AIMS?
+
+Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
+
+### Our Target
+
+AIMS was designed to achieve **3 main targets:**
+
+1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#toggling-the-favorite-status-of-a-person--favorite) sidebar).
+2. Ensure that your **data is properly and efficiently checked and validated** before storing.
+3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
+
+### User Guide
+
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS. Mastering the use of AIMS will vastly improve your experience tackling the administrative flow of managing contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
+
+For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
 ## **Legend**
 
@@ -50,7 +67,9 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 [Back to Top ↑](#table-of-contents)
 
-## **Quick start**
+---
+
+## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
@@ -61,6 +80,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
   <div style="text-align: center;">
     <img src="images/Ui.png">
     <p style="font-style: italic;"><br>Default state of the app on startup</p>
@@ -87,6 +107,8 @@ Here are some symbols used throughout the user guide to inform you of additional
 | Location of data file | This shows you the location of the AIMS data file should you ever need to migrate to another device                      |
 
 [Back to Top ↑](#table-of-contents)
+
+---
 
 ## **Features**
 
@@ -143,6 +165,7 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 </div>
 
 Examples:
+
 - `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`<br>
   Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
   <div style="text-align: center;">
@@ -155,7 +178,7 @@ Examples:
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
-Lets you add all persons in a valid CSV file to AIMS.
+Lets you adds all persons from a given valid CSV (Comma-Separated Values) file to AIMS. Excel and Google spreadsheets can be easily converted into CSV files for quick importing.
 
 Format: `importcsv PATH_TO_CSV_FILE`
 
@@ -164,34 +187,60 @@ The given CSV file must fulfill the following conditions:
 1. File given must end with '.csv'.
 2. Each row in the CSV File must have the same number of rows
 3. The first row of the CSV file must be reserved for headers.
-4. Each field, namely `rank, name, unit, phone, email, address, tags`, must appear as a header in this exact form (but
+4. Each field, namely `rank, name, unit, company, platoon, phone, email, address, tags`, must appear as a header in this exact form (but
    in any order, except tag which has to be the last header).
-5. Each person cannot have blank entries for any of the fields (except tag)
+5. Each person cannot have blank entries for any of the fields (except for unit, company, platoon, tags)
 6. If a person has more than one tag, they are to be listed horizontally. (Additional tags cannot have a header)
 
-Examples:
+Step-by-step example of converting and importing an Excel spreadsheet:
 
-- A Google Sheet that would be valid once it is converted to a CSV file.
-<div style="text-align: center;">
-  <img src="images/demoSheets.png">
-  <p style="font-style: italic;"><br>Google sheet containing contact information in the correct format</p>
-  <br>
-</div>
+1. Ensure that Excel sheet passes conditions 4 to 6 above. It should look something like this:
 
-- A valid CSV file:
-<div style="text-align: center;">
-  <img src="images/demoCsv.png">
-  <p style="font-style: italic;"><br>CSV file containing contact information exported from the Google Sheet above</p>
-  <br>
-</div>
+  <div style="text-align: center;">
+    <img src="images/demoExcel.png">
+    <p style="font-style: italic;"><br>Excel sheet containing contact information in the correct format</p>
+    <br>
+  </div>
 
-- `importcsv C:\file\6coy_platoon_four_data.csv`<br>
-All persons in the valid CSV file from the above example will be added into AIMS.
-<div style="text-align: center;">
-  <img src="images/importcsvSuccess.png">
-  <p style="font-style: italic;"><br>Success screen upon successful import of CSV file into AIMS</p>
-  <br>
-</div>
+2. Click on "Save As" and save the Excel sheet as a CSV file. Take note where the saved file is located in your computer.
+
+  <div style="text-align: center;">
+    <img src="images/demoSaveAsCsv.png">
+    <p style="font-style: italic;"><br>Saving Excel sheet as a CSV file</p>
+    <br>
+  </div>
+
+3. Find the new CSV file in your computer and copy its path.
+
+  <div style="text-align: center;">
+    <img src="images/demoCopyPath.png">
+    <p style="font-style: italic;"><br>Copying the path to the new CSV file</p>
+    <br>
+  </div>
+
+4. Open AIMS. Into the command box input `importcsv` followed by pasting the path to the CSV file. Remove any inverted commas at the front and end of the path that might be added by copy and pasting.
+
+  <div style="text-align: center;">
+    <img src="images/demoImportcsvCommand.png">
+    <p style="font-style: italic;"><br>Entering ImportCsv Command into AIMS</p>
+    <br>
+  </div>
+
+5. Make changes based on any error messages received. For example, if there is an issue with phone numbers, you have to make sure that the Excel file you want to import has no empty entries or invalid characters (i.e. spaces, alphabets, any other non-numeric characters)
+
+  <div style="text-align: center;">
+    <img src="images/demoImportcsvError.png">
+    <p style="font-style: italic;"><br>Responding to error messages</p>
+    <br>
+  </div>
+
+6. You should see the following screen if you are successful!
+
+  <div style="text-align: center;">
+    <img src="images/demoImportcsvSuccess.png">
+    <p style="font-style: italic;"><br>Success message!</p>
+    <br>
+  </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -252,7 +301,7 @@ If your clipboard is accessible, a success message will be displayed.
     Email: berniceyu@example.com
     Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
     Tags: [colleagues][friends]
-     ```
+    ```
 
 - `copy 2` <br>
 If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
@@ -298,6 +347,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
 
 Example:
+
 - `find live delta` <br>
 3 persons will be found:
   - `Charlotte Oliveiro` (name matches `live`)
@@ -325,8 +375,9 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 - At **least** one of the optional fields must be provided.
 
 Example:
+
 - `filter a/street r/sg` <br>
-2 persons named `Davlid Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
+2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
   <div style="text-align: center;">
     <img src="images/filterDavidLeeResult.png">
     <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
@@ -416,7 +467,7 @@ Format: `favorite INDEX`
 
 Example:
 
-- `favorite 3`<br> 
+- `favorite 3`<br>
 The third person in the existing main list will be added to and pinned in the favorites list.<br>
   <div style="text-align: center;">
     <img src="images/favorite3.png">
@@ -464,7 +515,7 @@ the data of your previous AIMS home folder.
 
 ---
 
-## **Command summary**
+## **Command Summary**
 
 | Action              | Format, Examples                                                                                                                                                                                                                           |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
