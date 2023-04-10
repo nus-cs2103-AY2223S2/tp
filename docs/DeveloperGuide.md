@@ -692,6 +692,16 @@ To be added
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+#### Problem 8: Better error/exception handling for invalid command inputs
+- **Scenario**: User enters an invalid variation of a command
+- **What you see**: Error message that does not indicate which parameter/section of the command is invalid.
+- **Potential issue**: User has to guess which parameter/section of the command is invalid.
+- **Why did it happen**: Implementation of feature freeze prior to resolution
+
+**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ## **Appendix B: Product scope**
 
 **Target user profile**
