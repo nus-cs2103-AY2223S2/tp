@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":TagEasyCommand" as TagEasyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":MasterDeck" as MasterDeck MODEL_COLOR
+participant ": Review" as Review MODEL_COLOR
+end box
+
+[-> TagEasyCommand : execute()
+activate TagEasyCommand
+TagEasyCommand -> Model : tagCurrentCardInReview(EASY)
+activate Model
+
+Model -> Review : tagCurrentCard(EASY)
+activate Review
+Model <-- Review
+deactivate Review
+
+Model -> Review : getCurrCard()
+activate Review
+Model <-- Review : currCard
+deactivate Review
+
+Model -> MasterDeck : tagCard(currCard, EASY)
+activate MasterDeck
+Model <-- MasterDeck
+deactivate MasterDeck
+
+TagEasyCommand <-- Model
+deactivate Model
+
+create CommandResult
+TagEasyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagEasyCommand
+deactivate CommandResult
+
+<-- TagEasyCommand : result
+
+
+
+
+
+
+@enduml

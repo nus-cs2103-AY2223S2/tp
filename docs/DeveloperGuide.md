@@ -236,7 +236,9 @@ To enforce this, the `LogicManager` class checks the current mode of the user an
 
 ### Implementation of `MAIN_UNSELECTED_MODE` Features
 
-Commands in the `MAIN_UNSELECTED_MODE` that are implemented for when a **deck is not selected** behave similarly as the example below:
+`MAIN_UNSELECT_MODE` is the mode of the application when the users have **not** selected a deck, and they are not reviewing any decks.
+
+Most commands in the `MAIN_UNSELECTED_MODE` behaves similarly as the example of `addDeck` command below:
 
 #### addDeck Feature
 
@@ -246,7 +248,7 @@ Step 1. The user executes `addDeck Math` command to add a new deck. The `addDeck
 
 Step 2. A new deck is now added on the list and able to execute further functionalities.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**  
 
@@ -263,9 +265,9 @@ The following sequence diagram shows how the addDeck operation works:
 
 ![AddDeckSequenceDiagram](images/AddDeckSequenceDiagram.png)
 
-
-
 ### Implementation of `MAIN_SELECTED_MODE` Features
+
+'MAIN_SELECTED_MODE' is the mode of the application when the users have selected a deck, and they are not reviewing any decks.
 
 Commands in the `MAIN_SELECTED_MODE` behave similarly as the example of `deleteCard` below:
 
@@ -344,6 +346,23 @@ Step 3. The user moves on to the next card by executing `]` in the command line 
 The following activity diagram summarizes what happens when a user executes `NextCard` command:
 
 ![NextCardActivityDiagram](images/NextCardReviewActivityDiagram.png)
+
+### Tag Cards During The Review Feature
+
+Users are allowed to tag the cards in the review session with 3 different difficulty tags (e.g., Easy, Medium and Hard).
+The tags will be saved and displayed on each card even after they end the review.
+
+There are three commands that allows card to be tagged during a review. They are `TagEasyCommand`, `TagMediumCommand` and `TagHardCommand`.
+
+Below is the sequence diagram that shows how `TagEasyCommand` behaves when it is executed. The remaining two commands behave similarly.
+
+![TagCardSequenceDiagram](images/TagCardSequenceDiagram.png)
+
+Take note:
+- The `Review` holds a separate `UniqueCardList` storing all the cards in the review. These cards are independent of the cards stored in the `UniqueCardList` inside `MasterDeck`.
+- Hence, tagging the card in one list will not modify the same card in the other list.
+- Consequently, both cards must be tagged independently in `MasterDeck` and `Review`.
+- Tagging the card in `Review` is sufficient for changes to appear in UI. 
 
 --------------------------------------------------------------------------------------------------------------------
 
