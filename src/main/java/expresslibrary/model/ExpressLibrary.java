@@ -149,6 +149,7 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
      */
     public void setBook(Book target, Book editedBook) {
         requireNonNull(editedBook);
+        assert editedBook != null : "Book cannot be null";
 
         books.setBook(target, editedBook);
     }
