@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECHNICIAN_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
