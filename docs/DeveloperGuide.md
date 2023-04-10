@@ -31,6 +31,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Undo feature](#undo-feature)
   - [Autocomplete feature](#autocomplete-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
@@ -215,14 +216,14 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a <code>Applicant</code> list in the <code>ListingBook</code>, which <code>Listing</code> references. This allows <code>ListingBook</code> to only require one <code>Applicant</code> object per unique applicant, instead of each <code>Listing</code> needing their own <code>Applicant</code> objects. Same goes for <code>Platform</code> objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note** : An alternative (arguably, a more OOP) model is given below. It has a <code>Applicant</code> list in the <code>ListingBook</code>, which <code>Listing</code> references. This allows <code>ListingBook</code> to only require one <code>Applicant</code> object per unique applicant, instead of each <code>Listing</code> needing their own <code>Applicant</code> objects. Same goes for <code>Platform</code> objects.<br>
+</div>
 
 <p>
   <img class="diagram" src="images/BetterModelClassDiagram.png" />
   <em>A better class diagram for the <code>Model</code> component</em>
 </p>
 
-</div>
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
@@ -548,6 +549,7 @@ The following sequence diagram shows how the autocomplete operation works:
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
 ---
 
 
