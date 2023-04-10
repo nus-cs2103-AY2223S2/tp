@@ -374,11 +374,11 @@ Format: `list`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip:**
-As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in DHT.
+As `list` removes all active filters, one of its most common uses is to reset the displayed list to show all the cases in DHT.
 You might like to use `list` in conjunction with the following commands:
-* [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
-* [`overview`](#changing-the-overview-type-overview), which shows an overview of the cases in the current list view
-* [`find`](#finding-cases-by-prefixes-find) to show all the cases that is considered when it is called
+* [`delete`](#deleting-cases-delete)
+* [`overview`](#changing-the-overview-type-overview)
+* [`find`](#finding-cases-by-prefixes-find)
 
 You may wish to use `list` **before** any of these commands in order to process the *full* list of data within DHT.
 
