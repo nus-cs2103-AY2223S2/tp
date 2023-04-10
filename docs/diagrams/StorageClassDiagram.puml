@@ -25,6 +25,10 @@ Class JsonElisterStorage
 Class JsonSerializableElister
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class CsvElisterStorage
+Class CsvSerializableElister
+Class CsvAdaptedPerson
+Class CsvAdaptedTag
 }
 
 }
@@ -48,5 +52,9 @@ JsonElisterStorage .up.|> ElisterStorage
 JsonElisterStorage ..> JsonSerializableElister
 JsonSerializableElister --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+CsvElisterStorage .up.|> ElisterStorage
+CsvElisterStorage ..> CsvSerializableElister
+CsvSerializableElister --> "*" CsvAdaptedPerson
+CsvAdaptedPerson --> "*" CsvAdaptedTag
 
 @enduml

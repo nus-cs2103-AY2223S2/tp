@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ElisterParser" as ElisterParser LOGIC_COLOR
+participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":CsvElisterStorage" as CsvElisterStorage STORAGE_COLOR
+participant ":CsvSerializableElister" as CsvSerializableElister STORAGE_COLOR
+end box
+
+box Commons COMMONS_COLOR_T1
+participant "<<class>> FileUtil" as FileUtil COMMONS_COLOR
+participant "<<class>> CsvUtil" as CsvUtil COMMONS_COLOR
+end box
+
+[-> LogicManager : execute("export")
+activate LogicManager
+
+LogicManager -> ElisterParser : parseCommand("export")
+activate ElisterParser
+
+create ExportCommand
+ElisterParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> ElisterParser
+deactivate ExportCommand
+
+ElisterParser --> LogicManager : e
+deactivate ElisterParser
+
+LogicManager -> ExportCommand : execute(m)
+activate ExportCommand
+
+create CsvElisterStorage
+ExportCommand -> CsvElisterStorage
+activate CsvElisterStorage
+
+CsvElisterStorage --> ExportCommand
+deactivate CsvElisterStorage
+
+ExportCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> ExportCommand : list
+deactivate Model
+
+ExportCommand -> CsvElisterStorage : saveElister(list)
+activate CsvElisterStorage
+
+create CsvSerializableElister
+CsvElisterStorage -> CsvSerializableElister
+activate CsvSerializableElister
+
+CsvSerializableElister --> CsvElisterStorage
+deactivate CsvSerializableElister
+
+CsvElisterStorage -> CsvSerializableElister : toString()
+activate CsvSerializableElister
+
+CsvSerializableElister --> CsvElisterStorage : str
+deactivate CsvSerializableElister
+
+CsvElisterStorage -> FileUtil : createIfMissing(filePath)
+activate FileUtil
+
+FileUtil --> CsvElisterStorage
+deactivate FileUtil
+
+CsvElisterStorage -> CsvUtil : saveCsvFile(filePath, str)
+activate CsvUtil
+
+CsvUtil --> CsvElisterStorage
+deactivate CsvUtil
+
+CsvElisterStorage --> ExportCommand
+deactivate CsvElisterStorage
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+
+ExportCommand -[hidden]-> LogicManager : result
+destroy ExportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

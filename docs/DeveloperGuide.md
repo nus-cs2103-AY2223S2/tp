@@ -251,7 +251,7 @@ The feature implementation involves in almost all high-level components which ar
 
 ### Design Consideration:
 1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a separate `.txt` file to store the commands, it would be much more convenient and fewer methods invoking among high-level components because:
-    * The expected behavior is that it displays exactly the commands that the user inputted before, so if we use `.txt` file, we only need to check the command is successfully executed before write the whole `String` command into the `txt` file. 
+    * The expected behavior is that it displays exactly the commands that the user inputted before, so if we use `.txt` file, we only need to check the command is successfully executed before write the whole `String` command into the `txt` file.
     * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
 ```
    historyStringOptional = storage.readHistoryString();
@@ -293,15 +293,15 @@ This is a useful feature which allows users to export all contact details in a C
 
 #### Implementation
 
-The implementation for `import` and `export` are found in `ImportCommand` and `ExportCommand` respectively. Once the `execute(Model model)` method is invoked, a `JFileChooser` is displayed to the user. This file chooser has a `FileNameExtensionFilter` applied to it, where the file description is "CSV Files" and the allowed file extensions is an array containing only the String "csv".
+The implementation for `import` and `export` are found in `ImportCommand` and `ExportCommand` respectively. Once the `execute(Model model)` method is invoked, a `FileChooser` is displayed to the user. This file chooser has a `FileChooser.ExtensionFilter` applied to it, where the file description is "CSV Files" and the allowed file extension is "*.csv".
 
-Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, a prompt is displayed to inform the user and the `JFileChooser` reappears to allow the user to select a new file. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
+Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, an `Alert` is displayed to inform the user. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
 
-Beyond the UI level, the commands operate using the `CsvElisterStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableElister` classes in order to convert between E-Lister data and CSV-friendly format. This interaction is illustrated in the following sequence diagrams.
-
-##### Import
+Beyond the UI level, the commands operate using the `CsvElisterStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableElister` classes in order to convert between E-Lister data and a CSV-friendly format. The `CsvSerializableElister` class helps to convert each `Person` instance in the list to it's corresponding CSV String and vice-versa. Using the `export` command for example, this interaction is illustrated in the following sequence diagram:
 
 ##### Export
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
 ### Design Considerations
 
@@ -535,3 +535,4 @@ increasingly difficult to scroll. We plan to add a command `wipelog` to clear th
 it is no longer required. We plan to add a command to delete such shortcuts: `delete_shortcut SHORTCUT`. To avoid making
 commands inaccessible, shortcuts will only be deletable when more than one alias exists for the
 command in question; an error message shall be raised otherwise.
+6. Fix the filters display to work properly after some commands like "undo". For example, after 2 input "filter t/abc t/cde" and "filter t/mnb", the Ui display the applying filters are "t/mnb", but after a "redo" the Ui display no filters that are being applied while it supposes to show "t/abc" and "t/cde" to user.
