@@ -75,11 +75,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that can be summarised into 4 parts, `Card`, `Deck`, `ReviewStats` and `Utility` components.`Card` displays all card related information, `Deck` components displays  all deck related information, `ReviewStats` displays the stats recorded during a Review session, and `Utility` are UI components that display other important non PowerCards related information. Components with suffix `Panel`  act as containers for `element` classes that act as individual objects created by `Model`. 
+
+Some components are mutually exclusive. During a review session, only the `ReviewStats` components will be displayed and `Deck` components hidden. During the review, only one of `FlippedReviewElement` or `UnflippedReviewElement` will be displayed at a time.
+
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI. Due to the large number of components, we have left out the UiPart section as it is redundant to link them all to it.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -314,10 +318,6 @@ Below are the current implementation we chose for `MasterDeck` and the possible 
 MasterDeck stores 2 independent lists, a `UniqueCardList` storing all existing unique cards and a `UniqueDeckList` storing all existing unique decks.
 
 Each `Card` instance references an existing instance of `Deck`. This reference denotes that the card belongs to a specific deck.
-
-Below is an object diagram representing an example instance of `MasterDeck` under the current implementation.
-
-![MasterDeck Object Diagram](images/MasterDeckObjectDiagram.png)
 
 Why we chose this design:
 - Ease of implementation: The deck behaves similarly to a tag whose purpose is to group the cards together. This allows us to take reference from the source code of the `Tag` class from the AddressBook3 (AB3). 
@@ -768,7 +768,9 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exit` <br>
        Expected: Exists the program. Window is closed.
 
-## Appendix: Effort
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
 
 ### Challenges
 
@@ -792,7 +794,9 @@ As such, we saw this as a valuable opportunity to conduct extensive testing of o
 - Drew clear and correct different styles of diagram for DG.
 - Made a concrete OOP structure through discussions. 
 
-## Appendix: Planned Enhancement
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancement**
 
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
 **1. Making the command box scrollable**
