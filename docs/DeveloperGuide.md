@@ -358,7 +358,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | staff member | view the current occupancy of a ward               | see the number of patients currently admitted to a ward, and to know if a ward is full      |
 | `* *`    | staff member | confirm a deletion of a patient                    | avoid accidentally deleting a patient, which cannot be undone                               |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -648,7 +647,6 @@ Use case resumes at step 2.
 
       Use case resumes at step 2.
 
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -657,7 +655,6 @@ Use case resumes at step 2.
 4.  Should mask the NRIC of patients when listing (e.g. XXXXX264G).
 5.  The product is not required to validate the medical records.
 
-
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -665,7 +662,6 @@ Use case resumes at step 2.
 - **Use case**: It describes an interaction between the user and the system for a specific functionality of the system.
 - **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
 - **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
-
 
 ---
 
