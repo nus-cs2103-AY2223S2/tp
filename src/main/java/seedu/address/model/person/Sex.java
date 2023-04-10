@@ -13,7 +13,7 @@ public class Sex {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[MF]";
+    public static final String VALIDATION_REGEX = "[MFmf]";
 
     public final String value;
 
@@ -26,7 +26,7 @@ public class Sex {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
         if (isDefaultSex(sex)) {
-            value = "Insert student sex Here!";
+            value = "Insert student sex here!";
             return;
         }
         value = sex;
@@ -36,7 +36,6 @@ public class Sex {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidSex(String test) {
-        test = test.toUpperCase();
         if (isDefaultSex(test)) {
             return true;
         }
@@ -50,7 +49,7 @@ public class Sex {
      * @return Boolean value true if the string given is the default string by the system.
      */
     public static boolean isDefaultSex(String test) {
-        return test.equals("INSERT STUDENT SEX HERE!");
+        return test.equals("Insert student sex here!");
     }
 
     @Override

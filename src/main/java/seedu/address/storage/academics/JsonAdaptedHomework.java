@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.student.Assignment;
@@ -20,7 +21,12 @@ public class JsonAdaptedHomework extends JsonAdaptedAssignment {
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given {@code assignmentName}.
      */
-    public JsonAdaptedHomework(String assignmentName, String deadline, int weightage, int score, boolean isDone) {
+    @JsonCreator
+    public JsonAdaptedHomework(@JsonProperty("assignmentName") String assignmentName,
+                               @JsonProperty("deadline")String deadline,
+                               @JsonProperty("weightage") int weightage,
+                               @JsonProperty("score")int score,
+                               @JsonProperty("isDone")boolean isDone) {
         super(assignmentName, deadline, weightage, score);
         this.isDone = isDone;
     }
@@ -43,15 +49,6 @@ public class JsonAdaptedHomework extends JsonAdaptedAssignment {
         this.isDone = source.getIsDone();
     }
 
-
-    /**
-     * Returns the score of the assignment.
-     * @return score of the assignment.
-     */
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Assignment} object.
      *
@@ -61,11 +58,12 @@ public class JsonAdaptedHomework extends JsonAdaptedAssignment {
         if (!Assignment.isValidAssignmentName(super.getAssignmentName())) {
             throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);
         }
-        if (!super.getDeadline().equals("No Deadline")) {
+        if (!super.getDeadline().equals("no deadline")) {
             LocalDate deadline = LocalDate.parse(super.getDeadline(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             return new Homework(super.getAssignmentName(), deadline, super.getWeightage(),
                     super.getScore(), this.isDone);
         } else {
+
             return new Homework(super.getAssignmentName(), null, super.getWeightage(),
                     super.getScore(), this.isDone);
         }

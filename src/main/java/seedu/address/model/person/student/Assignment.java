@@ -9,7 +9,7 @@ import java.util.Objects;
 public abstract class Assignment {
 
     public static final String MESSAGE_CONSTRAINTS = "Assignment name should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     protected final String assignmentName;
     protected LocalDate deadline;
     protected final int weightage;

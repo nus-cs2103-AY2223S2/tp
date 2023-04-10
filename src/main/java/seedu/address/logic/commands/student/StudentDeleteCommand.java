@@ -1,35 +1,39 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a student identified using his or her class and index number from PowerConnect.
  */
 public class StudentDeleteCommand extends StudentCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
-            + ": Deletes the student identified by their index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: student 1A delete " + PREFIX_INDEXNUMBER + "25";
+            + ": Deletes the student identified by their class and index number used.\n"
+            + "Parameters: "
+            + PREFIX_INDEXNUMBER + "INDEX NUMBER\n"
+            + "Example: student 1A delete "
+            + PREFIX_INDEXNUMBER + "25";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS =
+            "Deleted Student: %1$s; Class: %2$s; Index Number: %3$s;";
+
+    private static Logger logger = Logger.getLogger(StudentDeleteCommand.COMMAND_WORD);
 
     private final IndexNumber targetIndex;
     private final Class studentClass;
@@ -38,6 +42,7 @@ public class StudentDeleteCommand extends StudentCommand {
      * Creates a StudentDeleteCommand to delete the specified {@code Student}
      */
     public StudentDeleteCommand(IndexNumber targetIndex, Class studentClass) {
+        requireAllNonNull(targetIndex, studentClass);
         this.targetIndex = targetIndex;
         this.studentClass = studentClass;
     }
@@ -45,45 +50,35 @@ public class StudentDeleteCommand extends StudentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> students = model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
-        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
-            if (model.getPcClass().getClassList().get(i).getClassName().equals(studentClass.getClassName())) {
-                students = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
-                break;
-            }
+
+        //@@author diatbbin-reused
+        //Reused from https://github.com/4ndrelim/tp/blob/master/src/main
+        // /java/seedu/sudohr/logic/commands/department/DeleteDepartmentCommand.java
+        //with modifications
+        Student studentToDelete = model.getStudent(targetIndex, studentClass);
+        if (studentToDelete == null) {
+            logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student does not exists]");
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
-        for (Student student : students) {
-            if (student.getIndexNumber().equals(targetIndex)
-                    && student.getStudentClass().equals(studentClass)) {
-                model.deleteStudent(student);
-                ObservableList<Parent> parents = model.getFilteredParentList();
-                setParent(parents, student, model);
-                return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, student));
-            }
-        }
+        model.deleteStudent(studentToDelete);
+        logger.log(Level.INFO, "----------------[STUDENT DELETE][Student deleted successfully]");
 
-        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-    }
+        Parent parentToUnbind = model.getParent(studentToDelete.getParentName(), studentToDelete.getParentNumber());
 
-    /**
-     * A method that unbinds the Student's Parent / NOK to the Student
-     *
-     * @param parents List of existing Parents / NOK.
-     * @param student Student that needs the binding of Parent/NOK to.
-     * @param model {@code Model} which the command should operate on.
-     */
-    public void setParent(ObservableList<Parent> parents, Student student, Model model) {
-        Phone parentNumber = student.getParentNumber();
-        Name parentName = student.getParentName();
-        for (Parent p : parents) {
-            if ((p.getPhone().equals(parentNumber)) && (p.getName().equals(parentName))) {
-                Parent newParent = p;
-                newParent.removeStudent(student); //bind student to parent
-                model.setParent(p, newParent); //update parent in parents
-                return;
-            }
+        if (parentToUnbind == null) {
+            logger.log(Level.WARNING, "----------------[STUDENT DELETE][Student's parent does not exists]");
+            throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
         }
+        //@@author
+
+        model.deleteStudent(studentToDelete);
+        Parent updatedParent = parentToUnbind;
+        updatedParent.removeStudent(studentToDelete); //unbind student from parent
+        model.setParent(parentToUnbind, updatedParent); //update parent in parentList
+
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete.getName(),
+                studentToDelete.getStudentClass(), studentToDelete.getIndexNumber()));
     }
 
     @Override

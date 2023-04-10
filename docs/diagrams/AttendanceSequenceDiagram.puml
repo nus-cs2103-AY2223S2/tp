@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudentCommandParser" as StudentCommandParser LOGIC_COLOR
+participant ":StudentAttendanceCommand" as StudentAttendanceCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":Attendance" as Attendance MODEL_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+
+end box
+
+[-> LogicManager : execute("student 1A attendance in/25 att/T")
+activate LogicManager
+
+LogicManager -> StudentCommandParser : parse("student 1A attendance in/25 att/T")
+activate StudentCommandParser
+StudentCommandParser -> StudentCommandParser : attCommand("1A", attendanceInfo)
+activate StudentCommandParser
+StudentCommandParser -> ParserUtil : parseStudentClass("1A")
+activate ParserUtil
+ParserUtil --> StudentCommandParser : Class
+deactivate ParserUtil
+StudentCommandParser -> ParserUtil : parseIndexNumber("25")
+activate ParserUtil
+ParserUtil --> StudentCommandParser : IndexNumber
+deactivate ParserUtil
+StudentCommandParser -> ParserUtil : parseAttendance("T")
+activate ParserUtil
+create Attendance
+ParserUtil --> Attendance : Attendance("T")
+activate Attendance
+deactivate ParserUtil
+Attendance --> StudentCommandParser : Attendance
+deactivate Attendance
+
+create StudentAttendanceCommand
+StudentCommandParser --> StudentAttendanceCommand : StudentAttendanceCommand(Class, IndexNumber, Attendance)
+activate StudentAttendanceCommand
+
+
+'StudentCommandParser -> StudentAttendanceCommand : parse("student 1A grade in/25 test/CA1 score/75")
+'activate StudentCommandParser
+'
+'StudentCommandParser -> : parseTest("in/25 test/CA1 score/75", 75")
+'StudentCommandParser <--
+'StudentCommandParser ->
+'StudentCommandParser <-- : commandResult
+
+@enduml

@@ -58,40 +58,65 @@ public class StudentCommentCommand extends StudentCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Student> lastShownList =
-                model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
-        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
-            if (model.getPcClass().getClassList().get(i).getClassName().equals(studentClass.getClassName())) {
-                lastShownList = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
-                break;
-            }
-        }
-        Student studentToEdit = null;
+        List<Student> lastShownList = getClassList(model);
 
+        Student studentToEdit = getStudentToEdit(lastShownList);
+
+        if (studentToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_CLASS);
+        }
+        Student editedStudent = createEditedStudent(studentToEdit);
+
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
+        return new CommandResult(generateSuccessMessage(editedStudent));
+    }
+
+    /**
+     * Returns the student to edit
+     * @param lastShownList
+     * @return The student to be edited
+     * @throws CommandException
+     */
+    public Student getStudentToEdit(List<Student> lastShownList) throws CommandException {
         for (int i = 0; i < lastShownList.size(); i++) {
             Student curr = lastShownList.get(i);
             if (i == lastShownList.size() - 1 && !curr.getIndexNumber().equals(index)) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
             if (curr.getIndexNumber().equals(index) && curr.getStudentClass().equals(studentClass)) {
-                studentToEdit = curr;
-                break;
+                return curr;
             }
         }
-        if (studentToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_CLASS);
-        }
-        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
+        return null;
+    }
+    /**
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * @param studentToEdit
+     * @return The edited student with the new comment.
+     */
+    public Student createEditedStudent(Student studentToEdit) {
+        return new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                 studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
                 studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                 studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                 studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
                 studentToEdit.getHomework(), studentToEdit.getTest(), studentToEdit.getTags(), comment);
+    }
 
-        model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
-        return new CommandResult(generateSuccessMessage(editedStudent));
+    /**
+     * Returns the class list of the model
+     * @param model
+     * @return class list of model
+     */
+    public List<Student> getClassList(Model model) {
+        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
+            if (model.getPcClass().getClassList().get(i).getClassName().equals(studentClass.getClassName())) {
+                return model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
+            }
+        }
+        return model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
     }
     /**
      * Generates a command execution success message based on whether

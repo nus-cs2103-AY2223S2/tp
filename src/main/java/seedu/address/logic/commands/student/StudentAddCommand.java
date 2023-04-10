@@ -106,11 +106,6 @@ public class StudentAddCommand extends StudentCommand {
         if (model.hasStudent(toAdd)) {
             throw new DuplicateStudentException();
         }
-        /*
-        if (!model.canInitialize(toAdd.getParentNumber(), toAdd.getParentName())) {
-            throw new DuplicatePhoneException();
-        }
-         */
         ObservableList<Parent> parents = model.getFilteredParentList();
         setParent(parents, toAdd, model);
         model.addStudent(toAdd, toAdd.getStudentClass());

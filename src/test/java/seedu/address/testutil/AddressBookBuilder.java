@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PowerConnect;
 import seedu.address.model.person.Person;
 
 /**
@@ -10,25 +10,25 @@ import seedu.address.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private PowerConnect powerConnect;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        powerConnect = new PowerConnect();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public AddressBookBuilder(PowerConnect powerConnect) {
+        this.powerConnect = powerConnect;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public AddressBookBuilder withPerson(Person person) {
-        addressBook.addPerson(person);
+        powerConnect.addPerson(person);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public PowerConnect build() {
+        return powerConnect;
     }
 }

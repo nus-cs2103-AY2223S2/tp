@@ -104,28 +104,18 @@ public class StudentCard extends UiPart<Region> {
         parentPhoneNumber.setText(student.getParentNumber().value);
         rls.setText(student.getRls().toString());
         age.setText(student.getAge().value);
-        //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);
         comment.setText(student.getComment().value);
+        updateTest();
+        updateHomework();
+        updateImage();
+    }
+
+    /**
+     * Updates the homework of the student
+     */
+    public void updateHomework() {
         AtomicInteger rowCounter = new AtomicInteger();
-        student.getTest().stream()
-                .sorted(Comparator.comparing(test -> test.getName()))
-                .forEach(test -> {
-                    tests.add(new Label("Name: "), 0, rowCounter.get());
-                    tests.add(new Label(test.getName()), 1, rowCounter.get());
-                    tests.add(new Label(" Score: "), 2, rowCounter.get());
-                    tests.add(new Label(Integer.toString(test.getScore())), 3, rowCounter.get());
-                    tests.add(new Label(" Weightage: "), 4, rowCounter.get());
-                    tests.add(new Label(Integer.toString(test.getWeightage())), 5, rowCounter.get());
-                    tests.add(new Label(" Deadline: "), 6, rowCounter.get());
-                    if (test.getDeadline() != null) {
-                        tests.add(new Label(test.getDeadline().toString()), 7, rowCounter.get());
-                    } else {
-                        tests.add(new Label("No Deadline"), 7, rowCounter.get());
-                    }
-                    rowCounter.getAndIncrement();
-                });
-        rowCounter.set(0);
         student.getHomework().stream()
                 .sorted(Comparator.comparing(hw -> hw.getName()))
                 .forEach(hw -> {
@@ -144,12 +134,31 @@ public class StudentCard extends UiPart<Region> {
                     homework.add(new Label(" Is Done: "), 8, rowCounter.get());
                     homework.add(new Label(Boolean.toString(hw.getIsDone())), 9, rowCounter.get());
                     rowCounter.getAndIncrement();
-
                 });
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        updateImage();
+    }
+
+    /**
+     * Updates the test of the student.
+     */
+    public void updateTest() {
+        AtomicInteger rowCounter = new AtomicInteger();
+        student.getTest().stream()
+                .sorted(Comparator.comparing(test -> test.getName()))
+                .forEach(test -> {
+                    tests.add(new Label("Name: "), 0, rowCounter.get());
+                    tests.add(new Label(test.getName()), 1, rowCounter.get());
+                    tests.add(new Label(" Score: "), 2, rowCounter.get());
+                    tests.add(new Label(Integer.toString(test.getScore())), 3, rowCounter.get());
+                    tests.add(new Label(" Weightage: "), 4, rowCounter.get());
+                    tests.add(new Label(Integer.toString(test.getWeightage())), 5, rowCounter.get());
+                    tests.add(new Label(" Deadline: "), 6, rowCounter.get());
+                    if (test.getDeadline() != null) {
+                        tests.add(new Label(test.getDeadline().toString()), 7, rowCounter.get());
+                    } else {
+                        tests.add(new Label("No Deadline"), 7, rowCounter.get());
+                    }
+                    rowCounter.getAndIncrement();
+                });
     }
 
     /**

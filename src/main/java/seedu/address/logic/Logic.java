@@ -53,11 +53,6 @@ public interface Logic {
     Path getPcClassFilePath();
 
     /**
-     * Returns the user prefs' parents file path.
-     */
-    Path getParentsFilePath();
-
-    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();

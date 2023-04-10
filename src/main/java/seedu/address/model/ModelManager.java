@@ -13,12 +13,16 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.PcClass;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPcClass;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Parents;
 import seedu.address.model.person.parent.ReadOnlyParents;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
 
 /**
  * Represents the in-memory model of the PowerConnect data.
@@ -26,13 +30,13 @@ import seedu.address.model.person.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Parents parents;
+    private Parents parents;
     private final PcClass pcClass;
     private final UserPrefs userPrefs;
 
     private FilteredList<Student> filteredStudents;
 
-    private final FilteredList<Parent> filteredParents;
+    private FilteredList<Parent> filteredParents;
 
     /**
      * Initializes a ModelManager with the given PowerConnect and userPrefs.
@@ -50,6 +54,18 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
         filteredParents = new FilteredList<>(this.parents.getParentList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
+     */
+    public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyPcClass, userPrefs);
+        logger.fine("Initializing with classes: " + readOnlyPcClass
+                + " and user prefs " + userPrefs);
+        this.pcClass = new PcClass(readOnlyPcClass);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
     }
 
     /**
@@ -104,46 +120,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the user prefs' parent file path.
-     */
-    @Override
-    public Path getParentFilePath() {
-        return userPrefs.getParentsFilePath();
-    }
-
-    /**
-     * Sets the user prefs' address book file path.
-     *
-     * @param pcClassFilePath
-     */
-    @Override
-    public void setPcClassFilePath(Path pcClassFilePath) {
-        requireNonNull(pcClassFilePath);
-        userPrefs.setPcClassFilePath(pcClassFilePath);
-    }
-
-    /**
-     * Sets the user prefs' parent file path.
-     *
-     * @param parentFilePath
-     */
-    @Override
-    public void setParentFilePath(Path parentFilePath) {
-        requireNonNull(parentFilePath);
-        userPrefs.setParentsFilePath(parentFilePath);
-    }
-
-    /**
-     * Replaces pcclass data with the data in {@code pcclass}.
-     *
-     * @param readOnlyPcClass
-     */
-    @Override
-    public void setPcClass(ReadOnlyPcClass readOnlyPcClass) {
-        this.pcClass.resetData(readOnlyPcClass);
-    }
-
-    /**
      * Replaces parent data with the data in {@code parent}.
      *
      * @param readOnlyParents
@@ -183,6 +159,32 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns student with the same index number and Class as {@code student} exists in the PCClass.
+     *
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return stuent with the same index number and Class as {@code student} exists in the PCClass.
+     */
+    @Override
+    public Student getStudent(IndexNumber indexNumber, Class studentClass) {
+        requireAllNonNull(indexNumber, studentClass);
+        UniqueStudentList students = Class.getAllStudents();
+
+        for (Student student : students) {
+            IndexNumber currStudentIndexNumber = student.getIndexNumber();
+            Class currStudentClass = student.getStudentClass();
+
+            boolean isSameIndexNumber = currStudentIndexNumber.equals(indexNumber);
+            boolean isSameStudentClass = currStudentClass.equals(studentClass);
+
+            if (isSameIndexNumber && isSameStudentClass) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns true if a parent with the same identity as {@code parent} exists in the address book.
      *
      * @param parent must not be null.
@@ -192,6 +194,31 @@ public class ModelManager implements Model {
     public boolean hasParent(Parent parent) {
         requireNonNull(parent);
         return parents.getParentList().contains(parent);
+    }
+
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     *
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     */
+    @Override
+    public Parent getParent(Name name, Phone phone) {
+        requireAllNonNull(name, phone);
+        ObservableList<Parent> parentList = parents.getParentList();
+        for (Parent parent : parentList) {
+            Name currParentName = parent.getName();
+            Phone currParentPhoneNumber = parent.getPhone();
+
+            boolean isSameName = currParentName.equals(name);
+            boolean isSamePhoneNumber = currParentPhoneNumber.equals(phone);
+
+            if (isSameName && isSamePhoneNumber) {
+                return parent;
+            }
+        }
+        return null;
     }
 
     /**
@@ -258,6 +285,8 @@ public class ModelManager implements Model {
         Class cEdit = Class.of(editedStudent.getStudentClass().getClassName());
         cEdit.addStudent(editedStudent);
     }
+
+
 
     /**
      * Replaces the given parent {@code target} with {@code editedParent}.

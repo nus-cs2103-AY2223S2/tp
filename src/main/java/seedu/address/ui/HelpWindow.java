@@ -27,10 +27,6 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label helpMessage;
-    //@FXML
-    //private WebView webView;
-
-    //private WebEngine webEngine =  webView.getEngine();
 
     /**
      * Creates a new HelpWindow.

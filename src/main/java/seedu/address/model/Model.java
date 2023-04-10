@@ -6,18 +6,18 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPcClass;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.ReadOnlyParents;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
     Predicate<Parent> PREDICATE_SHOW_ALL_PARENTS = unused -> true;
 
@@ -47,26 +47,6 @@ public interface Model {
     Path getPcClassFilePath();
 
     /**
-     * Returns the user prefs' parent file path.
-     */
-    Path getParentFilePath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setPcClassFilePath(Path pcClassFilePath);
-
-    /**
-     * Sets the user prefs' parent file path.
-     */
-    void setParentFilePath(Path parentFilePath);
-
-    /**
-     * Replaces pcclass data with the data in {@code pcclass}.
-     */
-    void setPcClass(ReadOnlyPcClass readOnlyPcClass);
-
-    /**
      * Replaces parent data with the data in {@code parent}.
      */
     void setParents(ReadOnlyParents readOnlyParents);
@@ -85,11 +65,27 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a parent with the same identity as {@code parent} exists in the address book.
+     * Returns student with the same index number and class as {@code student} exists in the PCClass.
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return student with the same index number and class as {@code student} exists in the PCClass.
+     */
+    Student getStudent(IndexNumber indexNumber, Class studentClass);
+
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
      * @param parent must not be null.
-     * @return true if a parent with the same identity as {@code parent} exists in the address book.
+     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
      */
     boolean hasParent(Parent parent);
+
+    /**
+     * Returns true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
+     */
+    Parent getParent(Name name, Phone phone);
 
     /**
      * Deletes the given student.

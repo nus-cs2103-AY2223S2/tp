@@ -10,7 +10,7 @@ import java.time.LocalDate;
  * Represents the Attendance of a Student object.
  */
 public class Attendance {
-    public static final String MESSAGE_CONSTRAINTS = "Attendance must be a date in the format of dd/mm/yyyy";
+    public static final String MESSAGE_CONSTRAINTS = "Attendance must be a date in the format of dd/mm/yyyy or T/F";
 
     public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4}";
     public static final String VALIDATION_REGEX2 = "[TF]";
@@ -54,8 +54,15 @@ public class Attendance {
         if (test.equals("Insert student attendance here!")) {
             return true;
         }
-
-        return test.matches(VALIDATION_REGEX) || test.matches(VALIDATION_REGEX2);
+        if (test.matches(VALIDATION_REGEX)) {
+            try {
+                LocalDate.parse(test, java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return test.matches(VALIDATION_REGEX2);
     }
 
     /**

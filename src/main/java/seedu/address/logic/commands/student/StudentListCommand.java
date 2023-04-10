@@ -13,7 +13,6 @@ import seedu.address.model.person.student.ClassContainsKeywordsPredicate;
  */
 public class StudentListCommand extends StudentCommand {
     public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_FORMAT = "student <CLASS_NAME> list";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
             + ": Lists all the students in the specified class \n"

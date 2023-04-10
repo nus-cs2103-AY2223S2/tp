@@ -198,19 +198,6 @@ public class Class {
     }
 
     /**
-     * Get the list of all parents in all classes.
-     *
-     * @return The list of all parents in all classes.
-     */
-    public static UniqueParentList getAllParents() {
-        UniqueParentList allParents = new UniqueParentList();
-        for (Class c : classes) {
-            allParents.setParents(c.getParents());
-        }
-        return allParents;
-    }
-
-    /**
      * Remove the class from the list of classes.
      * @param c The class to be removed.
      */
@@ -246,26 +233,6 @@ public class Class {
     }
 
     /**
-     * Check if the class has a student.
-     *
-     * @param student The student to be checked.
-     * @return True if the class has the student.
-     */
-    public boolean hasStudent(Student student) {
-        return students.contains(student);
-    }
-
-    /**
-     * Check if the class has a parent.
-     *
-     * @param parent The parent to be checked.
-     * @return True if the class has the parent.
-     */
-    public boolean hasParent(Parent parent) {
-        return parents.contains(parent);
-    }
-
-    /**
      * Add a student to the class.
      * @param student The student to be added.
      */
@@ -289,15 +256,6 @@ public class Class {
      */
     public void removeStudent(Student student) {
         students.remove(student);
-    }
-
-    /**
-     * Remove a parent from the class.
-     *
-     * @param parent The parent to be removed.
-     */
-    public void removeParent(Parent parent) {
-        parents.remove(parent);
     }
 
     /**
@@ -344,28 +302,6 @@ public class Class {
      */
     public void setParents(List<Parent> parents) {
         this.parents.setParents(parents);
-    }
-
-    /**
-     * Update a student in the class.
-     *
-     * @param target The student to be updated.
-     * @param editedStudent The student to be updated to.
-     */
-    public void updateStudent(Student target, Student editedStudent) {
-        requireNonNull(editedStudent);
-        students.setStudent(target, editedStudent);
-    }
-
-    /**
-     * Update a parent in the class.
-     *
-     * @param target The parent to be updated.
-     * @param editedParent The parent to be updated to.
-     */
-    public void updateParent(Parent target, Parent editedParent) {
-        requireNonNull(editedParent);
-        parents.setParent(target, editedParent);
     }
 
     @Override

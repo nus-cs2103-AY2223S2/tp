@@ -60,8 +60,8 @@ public class JsonPcClassStorage implements PcClassStorage {
     }
 
     @Override
-    public void savePC(ReadOnlyPcClass teaPet) throws IOException {
-        savePC(teaPet, filePath);
+    public void savePC(ReadOnlyPcClass powerConnect) throws IOException {
+        savePC(powerConnect, filePath);
     }
 
     /**
