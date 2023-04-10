@@ -2,19 +2,12 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
 import java.util.function.Predicate;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import vimification.model.UiTaskList;
 import vimification.model.task.Task;
-
-
 
 /**
  * Panel containing the list of tasks.
