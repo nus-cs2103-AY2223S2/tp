@@ -330,41 +330,35 @@ entity.
 **How is this feature implemented?**
 
 In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and
-users can add new objects
-into the database via `add` command.
+users can add new objects into the database via `add` command.
 
 This feature is enabled by the following classes:
-
 * `AddCommand` - the command that can be executed and adds a new entity
   into the system
 * `AddCommandFactory` - The factory class that creates `AddCommand`
   object, which can be executed to complete the task
 
 When a user enters the command
-
 ```
 add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
 ```
 
-Initially, when the input is received, it is processed by the UI layer, which
-calls the logic.execute(input) function
-and transfers the control to the logic layer. The execute(input) function in the
-logic layer then utilizes the
-WingmanParser to break down the input into tokens, determine the command's mode,
-such as Crew, Flight, Location, Pilot,
-or Plane, and identify the command's nature.
+Initially, when the input is received, it is processed by the `Ui` layer, which
+calls the `logic.execute(input)` function and transfers the control to the logic layer. 
+The `execute(input)` function in the logic layer then utilizes the
+`WingmanParser` to break down the input into tokens, determine the command's mode,
+such as Crew, Flight, Location, Pilot, or Plane, and identify the command's nature.
 
 The WingmanParser's primary goal is to recognize the command type based on the
-input and return the corresponding
-command object. For instance, the AddXYZCommand object is returned with the {XYZ
-identifier} after analyzing the input's
+input and return the corresponding command object. For instance, the `AddXYZCommand` 
+object is returned with the {XYZ identifier} after analyzing the input's
 tokens.
 
-To execute the DeleteXYZCommand, the appropriate XYZManager is employed.
-Firstly, the getItem(id) function is used to
-retrieve the corresponding XYZ that needs to be deleted. Next, the addXYZ(id)
-function is called, which removes the
-desired XYZ from the Wingman app using the item.removeItem(id) method.
+To execute the `DeleteXYZCommand`, the appropriate `XYZManager` is employed.
+Firstly, the `getItem(id)` function is used to
+retrieve the corresponding `XYZ` that needs to be deleted. Next, the `addXYZ(id)`
+function is called, which removes the desired `XYZ` from the Wingman 
+app using the `item.removeItem(id)` method.
 
 Finally, the CommandResult message, indicating a successful deletion, is
 returned to the user. GUI will display the
@@ -442,7 +436,7 @@ The WingmanParser separates the input into tokens, determines what mode the
 command is from, and then returns the
 desired command type. In this case, the input allows the WingmanParser to
 recognize it is a `DeleteXYZCommand` and as a
-result, returns a new `DeleteXYZCommand` with the {XYZ identifier}.
+result, returns a new `DeleteXYZCommand` with the `{XYZ identifier}`.
 
 The `DeleteXYZCommand` is executed using the corresponding `XYZManager`.
 Firstly, the `XYZManager` uses `getItem(id)`
