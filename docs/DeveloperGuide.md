@@ -405,7 +405,7 @@ To undo a command, the following steps are executed:
 
 Refer to the diagram below for a visualization of this workflow:
 
-<!-- insert diagram here -->
+<img src="images/UndoSequenceDiagram.png" width="800" />
 
 Recall that, we modify the data by copying the old task and replacing it with a modified version. We can store this old task before replacing it, and restore it back when we undo the command.
 
@@ -440,7 +440,7 @@ Consider the following scenario: the user already defined a macro `"cs2103t"`, a
 
 Refer to the diagram below for a visualization of this workflow:
 
-<!-- insert diagram here -->
+<img src="images/MacroSequenceDiagram.png" width="800" />
 
 **Design considerations**
 
