@@ -40,7 +40,7 @@ public class AssignmentList {
             ArrayList<String> subStorageStrs, ParseException.Consumer<String> moreAsngNameTests) throws ParseException {
         final HashSet<String> studentAssignment = new HashSet<>(); // checks if a student has the same assignment.
         for (String sub : subStorageStrs) {
-            final String[] words = sub.split(",");
+            final String[] words = sub.split(Submission.STR_SEP);
             if (words.length != 4) {
                 throw new ParseException("Submission storage string \"" + sub + "\" must have 4 fields in order: assign"
                         + "ment name, is graded, is late, and marks.");
@@ -229,6 +229,16 @@ public class AssignmentList {
         assignments.forEach(a -> a.addStudent(s));
     }
 
+    /** Updates all students' submissions object so that it matches the student's submission storage strings */
+    public void addStudentSubmissions(Student s) {
+        for (String submissionString : s.getSubmissionStorageStrings()) {
+            final Assignment assignment = assignmentMap.get(Submission.getAsgnName(submissionString));
+            if (assignment != null) {
+                assignment.addStudentSubmission(s, submissionString);
+            }
+        }
+    }
+
     /**
      * On startup, this will populate the assignment list and submissions from the submission storage string data held
      * by each student. This is also called when we edit a student.
@@ -257,13 +267,7 @@ public class AssignmentList {
         }
 
         // Step 2: populate each assignment with each student submission.
-        for (Student stu : sl) {
-            for (String submissionString : stu.getSubmissionStorageStrings()) {
-                final String assignmentName = Submission.getAsgnName(submissionString);
-                Assignment toAdd = assignmentMap.get(assignmentName);
-                toAdd.addStudentSubmission(stu, submissionString);
-            }
-        }
+        sl.forEach(this::addStudentSubmissions);
     }
 
     /**
@@ -274,6 +278,14 @@ public class AssignmentList {
         return this.assignmentMap.containsKey(name);
     }
 
+    /** @return The name of the latest assignment or null if no assignment is in list */
+    public String getLatestAsgnName() {
+        if (assignments.isEmpty()) {
+            return null;
+        }
+        final Assignment assignment = assignments.get(assignments.size() - 1);
+        return assignment == null ? null : assignment.getName();
+    }
 
     public Assignment[] getAssignments() {
         return assignments.toArray(new Assignment[0]);
