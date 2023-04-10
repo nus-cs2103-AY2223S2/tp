@@ -9,21 +9,31 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
-Class ResultDisplay
-Class CardListPanel
-Class CardElement
-Class DeckName
-Class DeckListPanel
-Class DeckElement
-Class StatusBarFooter
-Class CommandBox
-Class ReviewStatsPanel
-Class ReviewStatsElement
-Class NavGuide
-Class ReviewElement
-Class UnflippedReviewElement
+package "Utility" as Utility<<Rectangle>> {
+    Class HelpWindow
+    Class ResultDisplay
+    Class StatusBarFooter
+    Class CommandBox
 }
+    package "Deck" as Deck<<Rectangle>> {
+        Class DeckListPanel
+        Class DeckElement
+    }
+
+    package "Card" as Card<<Rectangle>> {
+    Class CardListPanel
+    Class CardElement
+    Class DeckName
+    Class ReviewElement
+    Class UnflippedReviewElement
+    }
+
+    package "ReviewPanel" as ReviewPanel<<Rectangle>> {
+        Class ReviewStatsPanel
+        Class ReviewStatsElement
+        Class NavGuide
+    }
+
 
 package Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
@@ -41,20 +51,20 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down-->  "1" CommandBox
 MainWindow *-down--> "1" ResultDisplay
 MainWindow *-down-> "0..1" ReviewStatsPanel
-MainWindow *-down---> "0..1" CardListPanel
+MainWindow *-down---> "1" CardListPanel
 MainWindow *-down--> "1" StatusBarFooter
-MainWindow *-down-> "1" DeckListPanel
-MainWindow *-down-> "0..1" DeckName
+MainWindow *-down----> "0..1" DeckListPanel
 
 CardListPanel -down--> "*" CardElement
+CardListPanel -down--> "1" DeckName
+CardListPanel -down--> "0..1" ReviewElement
+CardListPanel -down--> "0..1" UnflippedReviewElement
 DeckListPanel -down--> "*" DeckElement
-DeckListPanel -down----> "0..1" ReviewElement
-DeckListPanel -down----> "0..1" UnflippedReviewElement
-ReviewStatsPanel -down--> "3" ReviewStatsElement
-ReviewStatsPanel -down--> "1" NavGuide
+ReviewStatsPanel -down-> "3" ReviewStatsElement
+ReviewStatsPanel -down-> "1" NavGuide
 MainWindow --> "0..1" HelpWindow
 
-MainWindow ---|> UiPart
+MainWindow -|> UiPart
 
 CardElement ..> Model
 DeckElement ..> Model
@@ -66,11 +76,13 @@ MainWindow -left-> Logic
 
 HelpWindow -[hidden]left- CommandBox
 DeckElement -[hidden]left- UnflippedReviewElement
-ReviewCard-[hidden]left- UnflippedReviewElement
 DeckElement -[hidden]left- ReviewElement
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
-StatusBarFooter -[hidden]left- UiPart
+UiPart -[hidden]left- CommandBox
+UiPart -[hidden]left- ResultDisplay
+UiPart -[hidden]left- HelpWindow
+UiPart -[hidden]left- StatusBarFooter
 ReviewStatsPanel -[hidden]right- CardListPanel
 
 MainWindow -[hidden]-|> UiPart
