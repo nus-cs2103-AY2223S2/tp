@@ -5,7 +5,6 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_D
 import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
@@ -19,7 +18,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Un-bookmarks an existing customer in the address book.
@@ -80,12 +78,11 @@ public class UnmarkCustomerCommand extends Command {
         Phone phone = customerToUnmark.getPhone();
         Email email = customerToUnmark.getEmail();
         Address address = customerToUnmark.getAddress();
-        Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
         Note note = customerToUnmark.getNote();
         Marked marked = new Marked(false);
 
-        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
+        return new Customer(customerType, name, phone, email, address, points, marked, note);
     }
 
     @Override

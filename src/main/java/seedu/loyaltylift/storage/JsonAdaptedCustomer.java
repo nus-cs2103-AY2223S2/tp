@@ -1,11 +1,5 @@
 package seedu.loyaltylift.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +13,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Customer}.
@@ -33,8 +26,6 @@ class JsonAdaptedCustomer {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
     private final Integer points;
     private final Integer cumulativePoints;
     private final Boolean marked;
@@ -47,7 +38,6 @@ class JsonAdaptedCustomer {
     public JsonAdaptedCustomer(@JsonProperty("customerType") String customerType, @JsonProperty("name") String name,
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("points") Integer points,
                                @JsonProperty("cumulativePoints") Integer cumulativePoints,
                                @JsonProperty("marked") Boolean marked,
@@ -61,9 +51,6 @@ class JsonAdaptedCustomer {
         this.cumulativePoints = cumulativePoints;
         this.marked = marked;
         this.note = note;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
     }
 
     /**
@@ -75,9 +62,6 @@ class JsonAdaptedCustomer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         points = source.getPoints().value;
         cumulativePoints = source.getPoints().cumulative;
         marked = source.getMarked().value;
@@ -99,11 +83,6 @@ class JsonAdaptedCustomer {
             modelCustomerType = CustomerType.valueOf(customerType); // should not be stored as friendly user string
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(CustomerType.MESSAGE_FAIL_CONVERSION);
-        }
-
-        final List<Tag> customerTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            customerTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -138,7 +117,6 @@ class JsonAdaptedCustomer {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(customerTags);
 
         if (points == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName()));
@@ -164,7 +142,7 @@ class JsonAdaptedCustomer {
         }
         final Note modelNote = new Note(note);
 
-        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags,
+        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress,
                 modelPoints, modelMarked, modelNote);
     }
 
