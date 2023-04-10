@@ -259,7 +259,7 @@ Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​`
 
 Example:
 *  `add_appt n/Alex Yeoh ts/04032023 10:00,04032023 11:00 d/Regular checkup doc/Xiao Lu` : adds an appointment on `March 4, 2023` from `10:00` to `11:00` hrs for `Alex Yeoh` with doctor `Xiao Lu` for a `Regular checkup`.
-    
+
     ![Adding an appointment](images/addApptCommandSuccess.png)
 
 ### Listing all appointments : `list_appt`

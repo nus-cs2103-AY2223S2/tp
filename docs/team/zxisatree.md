@@ -6,7 +6,7 @@ title: Chia Zi Xuan's Project Portfolio Page
 ### Project: MediMeet
 
 **MediMeet** is a patient appointment management system for individual practitioners and small clinics. With MediMeet, you can efficiently manage patient information and appointment information in one place, saving you both time and money.
-**MediMeet** combines the visual appeal of a GUI (graphical user interface) with the speed and convenience of a command-line interface. Our easy-to-use commands make it easy to add, edit patient information, appointments and so much more! 
+**MediMeet** combines the visual appeal of a GUI (graphical user interface) with the speed and convenience of a command-line interface. Our easy-to-use commands make it easy to add, edit patient information, appointments and so much more!
 
 Given below are my contributions to the project.
 
@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * **What it does**: Finds a patient by searching for the given keywords in patient's details, including their phone number, email, address, remarks and tags, instead of just their names.
   * **Justification**: The normal `find_patient` command is not useful when users do not remember a patient's name, but remember something related to them that they added as a remark for that patient. This feature allows users to do more thorough searches for patients. This feature also enables users to search and filter by tag.
   * **Highlights**: Implementing this feature required comprehensive understanding of how `Predicate`s are used and how the `Model` updates a filtered list given a predicate.
-  
+
 * **New Feature**: `find_appt` - Added a command to find appointments based on all their timeslot.
   * **What it does**: Finds an appointment based on the timeslot. There are two variations of this command. If only one time is provided, appointments that occur during that time will be found. If two times are provided, all appointments that occur anytime during that time period will be found.
   * **Justification**: Users can find what appointments they have at a given time and get details regarding the appointment at a particular time. Users can also see their schedule for a particular period of time in the day.
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * Developer Guide:
 	* Updated model and storage UML diagrams
-	* Added implementation details of `edit_patient`, `edit_appt`, `find_patient`, `find_patient_details` and `find_appt` 
+	* Added implementation details of `edit_patient`, `edit_appt`, `find_patient`, `find_patient_details` and `find_appt`
 
 * **Contributions to team based tasks**:
   * PRs reviewed (with non-trivial review comments): Reviewed 12 PRs (e.g. pull request [#18](https://github.com/AY2223S2-CS2103T-W12-4/tp/pull/18))
