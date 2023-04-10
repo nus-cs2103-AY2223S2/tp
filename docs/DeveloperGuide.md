@@ -2356,6 +2356,7 @@ Maintainability:
 
 ### Glossary
 
+- **Argument**: A key value pair, of the format `/{key} {value}`, specified in the user's input (e.g. `/mod CS2040S`). It is commonly referred to by the `/{key}` portion (e.g. `/mod`)
 - **Context**: A *module code* or *module code - lecture name* pair that represents a location in the module-lecture-video hierarchy
 - **Current Working Context**: A specified context that allows the navigation system to inject `/mod` or `/lec` prefixes into the user's command
 - **Lecture**: A lecture of a module
@@ -2752,7 +2753,7 @@ Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags An
 Output:
 
 ```
-`New video added to lecture Week 1 of module CS2040S: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+New video added to lecture Week 1 of module CS2040S: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]
 ```
 
 4. The following is a sample command for editing a module and it's output message upon success:\
@@ -2781,7 +2782,7 @@ Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp
 
 **Proposed Solution:**
 
-We plan on changing the output message to be more user friendly and to make better use of the vertical space of result display window.
+We plan on changing the output message to be more user friendly and to make better use of the vertical space of the result display window.
 
 Given the above 6 examples, their respective redesigned output will be as such:
 
@@ -2871,9 +2872,7 @@ The checking and limiting of length can be done while parsing the arguments and 
 The following {field} should not exceed the length limit of 30 characters: {value}
 ```
 
-### Feature flaw #3
-
-### Feature flaw #4: Limited Find function capability
+### Feature flaw #3: Limited Find function capability
 
 **Description**
 
@@ -2887,7 +2886,7 @@ This reduces the flexibility of the find function as they might be users who do 
 Instead of matching contents that **starts with** a keyword, relax it to **contain** the keyword.
 E.g. `find 2040` will match `CS2040` because `CS2040` contains `2040`.
 
-### Feature flaw #5: Over buffering command history
+### Feature flaw #4: Over buffering command history
 
 **Description**
 
@@ -2899,3 +2898,28 @@ This can lead to having too much memory being allocated for it and having no bou
 Set a limit to the number of commands viewable in command history.
 Perhaps allowing user to see the last 5 or 10 or 15 commands only, the oldest command will be deleted forever if the limit
 is exceeded.
+
+### Feature flaw #5: Tag constraint message does not capture the full constraint
+
+**Description**
+
+A tag should only contain alphanumeric characters and spaces, and it should not be blank. However, when an invalid tag is entered as an argument, the error message fails to mention that the tag should not be blank.
+
+For example, if an invalid tag `T@g` is provided, the error message is as follows:
+
+```
+Tag(s) T@g should be alphanumeric
+```
+
+**Proposed Solution**
+
+We would like to propose that the error message be more specific. We would also like to improve the formatting (referring to [Feature Flaw #1](#feature-flaw-1-some-messages-are-poorly-formatted)):
+
+The proposed error message is as follows:
+
+```
+Tags should only contain alphanumeric characters, and they should not be blank.
+
+The following tags provided are invalid:
+- T@g
+```
