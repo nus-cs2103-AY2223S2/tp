@@ -9,6 +9,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import trackr.model.person.Customer;
 
+//@@author chongweiguan-reused
 /**
  * Represents a typical customer
  */
@@ -24,5 +25,6 @@ public class TypicalCustomer {
             .withCustomerAddress(VALID_ADDRESS_BOB).build();
 
     private TypicalCustomer() {} // prevents instantiation
+    //@@author
 
 }

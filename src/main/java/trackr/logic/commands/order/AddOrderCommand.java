@@ -22,6 +22,7 @@ import trackr.model.ModelEnum;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 
+//@@author chongweiguan-reused
 /**
  * Adds an order to the order list.
  */
@@ -87,4 +88,5 @@ public class AddOrderCommand extends Command {
                 || (other instanceof AddOrderCommand
                 && toAdd.equals(((AddOrderCommand) other).toAdd));
     }
+    //@@author
 }

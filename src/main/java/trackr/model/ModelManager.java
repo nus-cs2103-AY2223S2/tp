@@ -337,6 +337,7 @@ public class ModelManager implements Model {
 
     //=========== OrderList ===================================================================================
 
+    //@@author chongweiguan-reused
     @Override
     public ReadOnlyOrderList getOrderList() {
         return orderList;
@@ -362,6 +363,7 @@ public class ModelManager implements Model {
         requireNonNull(comparator);
         orderList.sortItems(comparator);
     }
+    //@@author
 
     //========================================================================================================
 

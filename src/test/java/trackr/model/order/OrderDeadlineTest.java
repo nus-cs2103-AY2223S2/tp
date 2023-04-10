@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 public class OrderDeadlineTest {
+    //@@author chongweiguan-reused
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new OrderDeadline(null));
@@ -30,6 +31,7 @@ public class OrderDeadlineTest {
     public void constructor_notDate_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("Not a Date"));
     }
+    //@@author
 
     @Test
     public void isValidOrderDeadline() {
@@ -59,6 +61,7 @@ public class OrderDeadlineTest {
         assertTrue(OrderDeadline.isValidDeadline(pastDate)); // past date
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void toStringTest() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -88,5 +91,6 @@ public class OrderDeadlineTest {
         assertFalse(orderDeadline.equals(differentDeadline)); //different deadlines
         assertFalse(orderDeadline.equals(1)); //different type
     }
+    //@@author
 
 }

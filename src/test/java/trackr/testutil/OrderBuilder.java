@@ -138,6 +138,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * builds the order
      */
@@ -145,5 +146,6 @@ public class OrderBuilder {
         Customer c = new Customer(customerName, customerPhone, customerAddress);
         return new Order(orderItem, orderDeadline, orderStatus, orderQuantity, c, timeAdded);
     }
+    //@@author
 
 }

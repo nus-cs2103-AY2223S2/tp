@@ -340,4 +340,5 @@ public class OrderNameContainsKeywordPredicateTest {
         predicate = new OrderPredicateBuilder().build();
         assertFalse(predicate.isAnyFieldPresent());
     }
+    //@@author
 }
