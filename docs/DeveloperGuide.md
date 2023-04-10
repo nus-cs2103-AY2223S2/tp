@@ -49,6 +49,10 @@ below. Here is what each of them means.
 :warning: This indicates a warning or caution.
 </div>
 
+Finally, note that in some sequence diagrams, the lifeline for a class extends
+past its destroy marker (X). This is due to a limitation in PlantUML. We will
+point this out where it occurs in the guide.
+
 ### Content overview
 
 This guide has been divided into five main parts.
@@ -138,7 +142,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `dp -pn Mycelium` Command](images/logic/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `DeleteProjectCommandParser`
+should end at the destroy marker (X).
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -362,6 +368,11 @@ sequence diagrams show what happens when the `SwitchTabKey` event handler is inv
 ![SwitchTabKey sequence diagram](images/uievent/SwitchTabKey/SwitchTabKey.png)
 ![SwitchTabKeyExecute sequence diagram](images/uievent/SwitchTabKey/SwitchTabKeyExecute.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `SwitchTabKey` should end at
+the destroy marker (X).
+</div>
+
 Note that not all event handlers are built the same. An example of a more
 complicated event handler will be `FindKey` which we will elaborate more
 in the next section.
@@ -390,11 +401,21 @@ is invoked.
 ![FindKey sequence diagram](images/uievent/FindKey/ToggleMode.png)
 ![FindKeyExecute sequence diagram](images/uievent/FindKey/ToggleModeExecute.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `FindKey` should end at
+the destroy marker (X).
+</div>
+
 Depending on the current `Mode` of the command box, triggering the `FindKey` event handler
 creates the other `Mode` and calls `MainWindow#setCommandBoxMode(Mode)` which sets `Mode`
 of the command box by calling `CommandBox#setMode(Mode)`.
 
 ![CommandBoxSetMode sequence diagram](images/commandbox/CommandBoxSetMode.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `Mode` should end at the
+destroy marker (X).
+</div>
 
 When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
 on its outgoing `Mode` to perform the necessary clean-up which includes
