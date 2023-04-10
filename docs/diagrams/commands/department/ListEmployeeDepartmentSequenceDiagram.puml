@@ -61,7 +61,7 @@ destroy ListEmployeeDepartmentCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> ListEmployeeDepartmentCommand : execute()
+LogicManager -> ListEmployeeDepartmentCommand : execute(model)
 activate ListEmployeeDepartmentCommand
 
 ListEmployeeDepartmentCommand -> DepartmentContainsEmployeePredicate : getId()

@@ -53,6 +53,7 @@ deactivate AddDepartmentCommand
 
 AddDepartmentCommandParser --> SudoHrParser
 deactivate AddDepartmentCommandParser
+
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddDepartmentCommandParser -[hidden]-> SudoHrParser
 destroy AddDepartmentCommandParser
@@ -60,7 +61,7 @@ destroy AddDepartmentCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> AddDepartmentCommand : execute()
+LogicManager -> AddDepartmentCommand : execute(model)
 activate AddDepartmentCommand
 
 AddDepartmentCommand -> Model : hasDepartment(toAdd)
