@@ -494,7 +494,7 @@ Examples:
 
 ### 4.3.2. Adding a range of leaves for an employee: `aelr`
 
-Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start and end date. 
+Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start date till an end date inclusive. 
 The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their 
 information will be displayed on the leave section.
 
