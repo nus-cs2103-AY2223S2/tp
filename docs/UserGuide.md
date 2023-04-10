@@ -33,6 +33,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
   - [Sorting job listings: `sort`](#sorting-job-listings-sort)
   - [Undo latest command: `undo`](#undo-latest-command-undo)
+  - 
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -784,6 +785,30 @@ GoodMatch data are saved as a JSON file `[JAR file location]/data/listingbook.js
 If your changes to the data file makes its format invalid, GoodMatch will discard all data and start with an empty data file at the next run.
 
 </div>
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+### Exit the application: `exit`
+
+This command exits the application for you! 
+
+✏️ **Format:** `exit`
+
+Please refer to the screenshots below to see the various ways you can exit the application.
+
+<p>
+  <img class="diagram" src="images/ExitExample1.png" />
+  <em>Exit the application with the `exit` command</em>
+</p>
+
+<p>
+  <img class="diagram" src="images/ExitExample2.png" />
+  <em>Exit the application by clicking on the File menu and then the Exit button</em>
+</p>
+
+ℹ️ **Notes:**
+- This command also closes all GoodMatch windows for you. 
+- For example, if you have the main window and the help window opened, both windows will be closed.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
