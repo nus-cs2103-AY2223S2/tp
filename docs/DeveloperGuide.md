@@ -185,8 +185,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -677,8 +675,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. MC displays the list of patients' names and NRIC numbers that was retrieved.
 
    Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC06 - List all doctors**
 
