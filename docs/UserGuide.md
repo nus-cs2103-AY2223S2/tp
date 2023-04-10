@@ -260,6 +260,7 @@ Formats:
 3. `filter e/EMAIL_ADDRESS`
 4. `filter d/DESCRIPTION`
 5. `filter t/TAG`
+6. `filter m/MODULE`
 
 Examples:
 
@@ -271,13 +272,10 @@ Examples:
 * Only full words will be matched e.g. Han will not match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
   ![filterByName](images/filter/filterByNameResult.png)
-  <br/><br/>
 * `filter p/91031282` returns `1 contacts listed!`
   ![filterByPhoneNumber](images/filter/filterByPhoneNumberResult.png)
-  <br></br>
 * `filter e/royb@example.com` returns `1 contacts listed!`
   ![filterByEmail](images/filter/filterByEmailResult.png)
-  <br></br>
 * `filter d/helpful` returns `1 contacts listed!`
 * `filter d/helpful Newgate` returns `2 contacts listed!`
 * The search is case-sensitive. e.g Helpful will match Helpful and not helpful
@@ -286,10 +284,11 @@ Examples:
 * Only full words will be matched.
 * Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Helpful roommate will return Helpful, Helpful friend, lazy roomate
   ![filterByDescription](images/filter/filterByDescriptionResult.png)
-  <br></br>
 * `filter t/family` returns `1 contacts listed`
 * `filter t/family t/friends t/classmates` returns `3 contacts listed!`
-* ![filterByTags](images/filter/filterByTagsResult.png)
+  ![filterByTags](images/filter/filterByTagsResult.png)
+* `filter m/CS2103` returns `1 contacts listed`
+  ![filterByModule](images/filter/filterByModule.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
