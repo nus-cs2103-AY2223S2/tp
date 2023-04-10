@@ -23,10 +23,11 @@ Given below are my contributions to the project:
   - Designed the overall style of Vimification using CSS.
   - Integrated UI with backend.
   - Implemented the ability to shift focus seamlessly from one UI component to another.
+  - Implemented focus-shifting functionality of Vimificaiton between sub-components.
 
 - **UI-Commands**
 
-  - Implement a sub-type of commands called UiCommands.
+  - Implement a sub-type of commands called UiCommands to execute Commands that modifies the Ui.
 
 - **Testing**
 
@@ -40,7 +41,8 @@ Given below are my contributions to the project:
 - **Contribution to the DG**
 
   - Created the UI architecture diagram.
-  - Wrote all the `Design` and `Implementation` related to UI.
+  - Created some architecture diagram.
+  - Wrote all the design and implementation details related to UI.
   - Polished the DG.
 
 - **Contribution to team-based tasks**
@@ -50,6 +52,7 @@ Given below are my contributions to the project:
   - Helped lay out clear direction and the overall direction of the end-product.
   - Helped review PRs from other members.
   - Helped list down the tasks needed for the team.
+  - Helped other teammates with their implementation.
 
 - **Review/mentoring contributions**
 
