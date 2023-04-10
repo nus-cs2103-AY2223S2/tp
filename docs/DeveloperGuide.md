@@ -886,6 +886,8 @@ Given below is the activity diagram to illustrate what happens when the user cal
 
 Refer to [here](#findcommand-combining-predicates) for activity diagram on combining predicates.
 
+<br>
+
 ##### Design Considerations
 
 We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
@@ -981,6 +983,7 @@ the Info Panel gets updated to the users. Refer to [Info Panel](#info-panel) for
 
 
 [Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -1098,8 +1101,6 @@ for more information about this package.
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ### **Potential Enhancement**
 
