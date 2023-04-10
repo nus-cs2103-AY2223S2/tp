@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+participant ":Mainapp" as Main #097969
+
+box Model MODEL_COLOR_T1
+participant "dataModel:Model" as dataModel MODEL_COLOR
+participant "expenseTracker:ExpenseTracker" as ExpenseTracker MODEL_COLOR
+participant ":RecurringExpenseManager" as Manager MODEL_COLOR
+end box
+
+
+create dataModel
+Main -> dataModel
+activate dataModel
+
+create ExpenseTracker
+dataModel -> ExpenseTracker
+activate ExpenseTracker
+
+ExpenseTracker -> ExpenseTracker : resetData()
+activate ExpenseTracker
+ExpenseTracker -> ExpenseTracker : generateRetroactiveExpenses()
+loop for each RecurringExpenseManager
+    activate ExpenseTracker
+    ExpenseTracker -> Manager : getExpenses()
+    activate Manager
+    Manager --> ExpenseTracker : list of recurring expenses
+    deactivate Manager
+    ref over ExpenseTracker
+        add expenses in the list
+        to FastTrack
+    end ref
+end
+ExpenseTracker --> ExpenseTracker
+deactivate ExpenseTracker
+
+ExpenseTracker --> ExpenseTracker
+deactivate ExpenseTracker
+ExpenseTracker --> dataModel
+deactivate ExpenseTracker
+
+Main <-- dataModel
+deactivate dataModel
+
+@enduml

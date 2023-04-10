@@ -20,4 +20,9 @@ public class TypicalCategories {
     public static final ObservableList<Category> TYPICAL_CATEGORIES = FXCollections.observableArrayList(
             MISCCAT, FOOD, TECH, SCHOOL
     );
+    public static final Category FITNESS = new UserDefinedCategory("fitness", "for fitness related expenses");
+    public static final Category ENTERTAINMENT = new UserDefinedCategory("entertainment",
+            "for entertainment expenses");
+    public static final Category HOUSING = new UserDefinedCategory("housing", "housing payments");
+    public static final Category UTILITIES = new UserDefinedCategory("utilities", "utility bills");
 }
