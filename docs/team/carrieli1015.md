@@ -67,7 +67,7 @@ Given below are my contributions to the project.
     * Created illustrations. Including the avatars, student list icons, task list icons, and import/export window icons.
 
 * **Review/mentoring contributions**:
-  * Reviewed other teammates' pull requests.
+  * Reviewed other teammates' pull requests. (Pull requests [#119](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/119) [#76](https://github.com/AY2223S2-CS2103-W17-1/tp/pull/76))
 
 * **Community**:
     * Shared idea and gave suggestions to another group.
