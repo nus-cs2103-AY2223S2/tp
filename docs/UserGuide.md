@@ -431,7 +431,7 @@ ___
 <div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate patient 
 information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as <span style="border-style: solid;"> &nbsp;NAME </span> &nbsp;,  <span style="border-style: solid;"> &nbsp;NRIC </span>&nbsp; , <span style="border-style: solid;"> &nbsp;PHONE </span>&nbsp; , etc).
 </div>
-<div markdown="block" class="alert alert-success">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as <span style="border-style: solid;"> &nbsp;DATE_OF_BIRTH </span> &nbsp;and <span style="border-style: solid;"> &nbsp;EMAIL </span> &nbsp;are prone to error, so be careful with those when you enter patient information.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table <a href="#patient-constraints" style="color:#0000FF;">above</a> to make sure that all parameters comply with the constraints. Parameters such as <span style="border-style: solid;"> &nbsp;DATE_OF_BIRTH </span> &nbsp;and <span style="border-style: solid;"> &nbsp;EMAIL </span> &nbsp;are prone to error, so be careful with those when you enter patient information.
 </div>
 
 <br/>
@@ -663,7 +663,8 @@ Use this with command with caution!
     </p>
 <br/>
 
-<div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> &nbsp;p list hellothere </span>&nbsp; or <span style="border-style: solid;"> &nbsp;p list 1234 </span>&nbsp; will not cause errors in the system</div>
+<div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> &nbsp;p list hellothere </span> &nbsp; or <span style="border-style: solid;"> &nbsp;p list 1234 </span> &nbsp; will not cause errors in the system
+</div>
 
 [↑ Go to Patient Commands](#42-patient-commands)
 <br/>
