@@ -14,7 +14,7 @@ FastTrack is a desktop application to help you keep track of daily expenses, opt
 Enhancements implemented:
 - Helped with implementation of `Category` class.
     
-    - Defined the `Category` class with its fields. (Pull request [#30](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues?q=is%3Aissue+is%3Aclosed+assignee%3Agitsac))
+    - Defined the `Category` class with its fields. (Pull request [#30](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/30))
     - Edited storage system to accommodate `Category` class. (Pull request [#29](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/29))
 
 
@@ -48,6 +48,7 @@ Contributions to team-based tasks:
 - Participated in weekly (sometimes biweekly) meetings to discuss project structure and direction.
 - Took part actively in debugging other teammate's issues.
 - Fixed several bugs reported from PE Dry Run ([#167](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/167), [#170](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/170), [#179](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/179)).
+- Helped to regulate pull requests from team-mates and merged them only when they passed CI and internal test cases.
 
 Review/Mentoring Contributions:
 - Reviewed multiple PRs made by teammates ([#101](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/101), [#90](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/90), [#72](https://github.com/AY2223S2-CS2103T-W09-2/tp/pull/72)).
