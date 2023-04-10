@@ -3,9 +3,18 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.parseDateTime;
+import static seedu.address.logic.parser.ParserUtil.parseDayOfWeek;
+import static seedu.address.logic.parser.ParserUtil.parseEventName;
+import static seedu.address.logic.parser.ParserUtil.parsePeriod;
+import static seedu.address.logic.parser.ParserUtil.parseTime;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,6 +22,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -45,6 +55,13 @@ public class ParserUtilTest {
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void checkDateExists_throwsParseException() {
+        LocalDateTime date = LocalDateTime.of(2024, 04, 30, 18, 00);
+        assertThrows(ParseException.class, Messages.MESSAGE_NONEXISTENT_DATE, ()
+                -> ParserUtil.checkDateExist(date, String.valueOf(31)));
     }
 
     @Test
@@ -192,5 +209,101 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDate_invalidTimeFormat_throwError() {
+        assertThrows(ParseException.class, () -> parseTime("17"));
+    }
+
+    @Test
+    public void parseDate_validTime_returnLocalTime() throws ParseException {
+        LocalTime expected = LocalTime.parse("14:00");
+        assertEquals(expected, parseTime("14:00"));
+    }
+
+    @Test
+    public void invalidDateTime_leapYear_throwError() {
+        assertThrows(ParseException.class, () -> parseDateTime("29/02/2025 12:00"));
+    }
+
+    @Test
+    public void checkLeapYear_returnTrue() {
+        assertEquals(true, ParserUtil.isLeapYear(2024));
+    }
+
+    @Test
+    public void checkLeapYear_returnFalse() {
+        assertEquals(false, ParserUtil.isLeapYear(2100));
+    }
+
+    @Test
+    public void validDateTime_leapYear() throws ParseException {
+        LocalDateTime expectedDateTime = LocalDateTime.of(2024, 02, 29, 12, 00);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime("29/02/2024 12:00"));
+    }
+
+    @Test
+    public void isLeapYear() throws ParseException {
+        assertEquals(true, ParserUtil.isLeapYear(2000));
+    }
+
+    @Test
+    public void parseDate_invalidDay_throwError() {
+        assertThrows(ParseException.class, () -> parseDayOfWeek("INVALID"));
+    }
+
+    @Test
+    public void parseDate_validDay_returnDayOfWeek() throws ParseException {
+        DayOfWeek expected = DayOfWeek.MONDAY;
+        assertEquals(expected, parseDayOfWeek("MONDAY"));
+    }
+
+    @Test
+    public void parseDate_invalidPeriod_throwError() {
+        LocalTime startTime = LocalTime.parse("16:00");
+        LocalTime endTime = LocalTime.parse("12:00");
+        assertThrows(ParseException.class, () -> parsePeriod(startTime, endTime));
+    }
+
+    @Test
+    public void parseDate_validPeriod_throwError() throws ParseException {
+        LocalTime startTime = LocalTime.parse("12:00");
+        LocalTime endTime = LocalTime.parse("16:00");
+        assertEquals(true, parsePeriod(startTime, endTime));
+    }
+
+    @Test
+    public void parseDate_emptyDate_throwError() {
+        assertThrows(ParseException.class, () -> parseDateTime(""));
+    }
+
+    @Test
+    public void parseDate_invalidDateFormat_throwError() {
+        assertThrows(ParseException.class, () -> parseDateTime("09-03-2023 1400"));
+    }
+
+    @Test
+    public void parseDate_validDate_returnLocalDateTime() throws ParseException {
+        DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime expected = LocalDateTime.parse("09/03/2023 14:00", newFormatter);
+
+        assertEquals(expected, parseDateTime("09/03/2023 14:00"));
+    }
+
+    @Test
+    public void parseEventName_emptyEventName_throwError() {
+        assertThrows(ParseException.class, () -> parseEventName(""));
+    }
+
+    @Test
+    public void parseEventName_validEventName_returnTrimmed() throws ParseException {
+        assertEquals("biking", parseEventName("biking     "));
+
+    }
+
+    @Test
+    public void parseDate_notHourlyTime() {
+        assertThrows(ParseException.class, () -> parseDateTime("09-03-2023 1400"));
     }
 }

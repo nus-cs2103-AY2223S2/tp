@@ -2,7 +2,13 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -26,6 +32,9 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Group> groups;
+    private Set<IsolatedEvent> isolatedEvents;
+    private Set<RecurringEvent> recurringEvents;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +45,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        groups = new HashSet<>();
+        isolatedEvents = new TreeSet<>();
+        recurringEvents = new TreeSet<>();
     }
 
     /**
@@ -47,6 +59,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        groups = new HashSet<>(personToCopy.getGroups());
+        isolatedEvents = new TreeSet<>(personToCopy.getIsolatedEventList().getSet());
+        recurringEvents = new TreeSet<>(personToCopy.getRecurringEventList().getSet());
     }
 
     /**
@@ -62,6 +77,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withGroups(String ... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
         return this;
     }
 
@@ -89,8 +112,34 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code IsolatedEventList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIsolatedEventList(Set<IsolatedEvent> isolatedEvents) {
+        this.isolatedEvents = isolatedEvents;
+        return this;
+    }
+
+    /**
+     * Sets the {@code RecurringEventList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRecurringEventList(Set<RecurringEvent> recurringEvents) {
+        this.recurringEvents = recurringEvents;
+        return this;
+    }
+
+    /**
+     * Builds a person with the data entered into the {@code PersonBuilder}
+     * @return A {@code Person} that has the details stored in the {@code PersonBuilder}.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        IsolatedEventList isolatedEventList = new IsolatedEventList();
+        RecurringEventList recurringEventList = new RecurringEventList();
+
+        isolatedEventList.addAll(isolatedEvents);
+        recurringEventList.addAll(recurringEvents);
+
+        return new Person(name, phone, email, address, tags, groups, isolatedEventList, recurringEventList);
     }
 
 }

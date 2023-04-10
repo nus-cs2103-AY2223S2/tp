@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditIsolatedEventCommandParser" as EditIsolatedEventCommandParser LOGIC_COLOR
+participant "ie:EditIsolatedEventCommand" as EditIsolatedEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("ie_edit 1 1 ie/biking")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("ie_edit 1 1 ie/biking")
+activate AddressBookParser
+
+create EditIsolatedEventCommandParser
+AddressBookParser -> EditIsolatedEventCommandParser : parse(1 1 ie/biking)
+activate EditIsolatedEventCommandParser
+
+create EditIsolatedEventCommand
+EditIsolatedEventCommandParser -> EditIsolatedEventCommand
+activate EditIsolatedEventCommand
+
+EditIsolatedEventCommand --> EditIsolatedEventCommandParser
+deactivate EditIsolatedEventCommand
+
+EditIsolatedEventCommandParser --> AddressBookParser : ie
+deactivate EditIsolatedEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditIsolatedEventCommandParser -[hidden]-> AddressBookParser
+destroy EditIsolatedEventCommandParser
+
+AddressBookParser --> LogicManager : ie
+deactivate AddressBookParser
+
+LogicManager -> EditIsolatedEventCommand : execute()
+activate EditIsolatedEventCommand
+
+EditIsolatedEventCommand -> Model : setIsolatedEvent(personToEdit,\n originalEvent, editedIsolatedEvent)
+activate Model
+
+Model --> EditIsolatedEventCommand
+deactivate Model
+
+create CommandResult
+EditIsolatedEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditIsolatedEventCommand
+deactivate CommandResult
+
+EditIsolatedEventCommand --> LogicManager : result
+deactivate EditIsolatedEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -20,24 +20,37 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedGroup
+Class JsonAdaptedRecurringEvent
+Class JsonAdaptedIsolatedEvent
 }
+
+package "ExportStorage" #F4F6F6{
+Class "<<interface>>\nExportStorage" as ExportStorage
+Class JsonExportStorage
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
+StorageManager ..|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager --> "1" ExportStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
+Storage --|> ExportStorage
 
+JsonExportStorage ..|> ExportStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedGroup
+JsonAdaptedPerson --> "*" JsonAdaptedIsolatedEvent
+JsonAdaptedPerson --> "*" JsonAdaptedRecurringEvent
 
 @enduml

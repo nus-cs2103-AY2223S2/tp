@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindTimeCommandParser" as FindTimeCommandParser LOGIC_COLOR
+participant ":FindTimeCommand" as FindTimeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("free 1 f/04/04/2023")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("free 1 f/04/04/2023")
+activate AddressBookParser
+
+create FindTimeCommandParser
+AddressBookParser -> FindTimeCommandParser : parse("free 1 f/04/04/2023")
+activate FindTimeCommandParser
+
+create FindTimeCommand
+FindTimeCommandParser -> FindTimeCommand : index, date
+activate FindTimeCommand
+
+FindTimeCommand --> FindTimeCommandParser
+deactivate FindTimeCommand
+
+FindTimeCommandParser --> AddressBookParser
+deactivate FindTimeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTimeCommandParser -[hidden]-> AddressBookParser
+destroy FindTimeCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> FindTimeCommand : execute()
+activate FindTimeCommand
+
+FindTimeCommand -> Model : getFilteredGroupList()
+activate Model
+
+Model --> FindTimeCommand : lastShownGroups
+deactivate Model
+
+FindTimeCommand -> Model : get(index)
+activate Model
+
+Model --> FindTimeCommand : targetGroup
+deactivate Model
+
+FindTimeCommand -> Model : updateFilteredTimeSlotList\n(targetGroup,startDate)
+activate Model
+
+Model --> FindTimeCommand
+deactivate Model
+
+create CommandResult
+FindTimeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTimeCommand
+deactivate CommandResult
+
+FindTimeCommand --> LogicManager : result
+deactivate FindTimeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

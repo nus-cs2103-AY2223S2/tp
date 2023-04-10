@@ -1,0 +1,19 @@
+@startuml
+
+start
+:User executes command;
+
+if() then ([valid arguments])
+    if() then ([valid index])
+        :Edit isolated event in person's isolated event list;
+
+    else([else])
+        endif
+
+else([else])
+    endif
+
+stop
+
+@enduml
+
