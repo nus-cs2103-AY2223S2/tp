@@ -57,6 +57,7 @@ public class AddCommand extends Command {
         }
 
         model.addOpening(toAdd);
+        model.setSelectedIndex(null);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

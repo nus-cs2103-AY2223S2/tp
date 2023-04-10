@@ -26,7 +26,9 @@ public class RemarkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "r/REMARK\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/3 rounds of interviews.";
+
+            + "r/Need to prepare for Interview.";
+
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Opening: %1$s";
@@ -62,7 +64,7 @@ public class RemarkCommand extends Command {
 
         model.setOpening(openingToEdit, editedOpening);
         model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
-
+        model.setSelectedIndex(null);
         return new CommandResult(generateSuccessMessage(editedOpening));
     }
 

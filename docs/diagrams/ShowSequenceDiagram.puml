@@ -48,6 +48,9 @@ deactivate Model
 ShowCommand --> LogicManager : commandResult
 deactivate ShowCommand
 
+ShowCommand -[hidden]-> LogicManager
+destroy ShowCommand
+
 LogicManager --> MainWindow : commandResult
 deactivate LogicManager
 

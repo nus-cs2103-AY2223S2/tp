@@ -127,6 +127,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        // resetShow();
     }
 
     /**
@@ -187,6 +189,13 @@ public class MainWindow extends UiPart<Stage> {
     };
 
     /**
+     * Resets index.
+     */
+    public void resetShow() {
+        logic.resetIndex();
+    };
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.ultron.logic.Logic#execute(String)
@@ -205,6 +214,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             handleShow();
+            // resetShow();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
