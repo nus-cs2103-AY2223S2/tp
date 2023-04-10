@@ -8,6 +8,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+<img src="images/MyLibLogo.png">
+
 ## **Software Overview**
 
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
@@ -31,11 +33,12 @@ This guide contains certain visuals to aid in conveying information more effecti
 | :information_source:  | `:information_source:` | Supplementary information for the developer |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **About Us**
 Please refer to the [About Us](AboutUs.md) page for information about the developers.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -48,6 +51,7 @@ This Developer Guide provides in-depth documentation on how MyLib is designed an
 
 You can use this guide to maintain and evolve MyLib.
 
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -59,7 +63,6 @@ This section gives you a high-level overview of how the application is structure
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -187,7 +190,7 @@ The `Model` component,
 The Storage Component reads data from, and writes data to, the hard disk.
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/library/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="525" />
 
 The `Storage` component,
 * can save both Library data and user preference data in json format, and read them back into corresponding objects.
