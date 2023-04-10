@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* ControlsFX [https://github.com/controlsfx/controlsfx](https://github.com/controlsfx/controlsfx)
-* AddressBook 3
+* Libraries: [JavaFX](https://openjfx.io/), [ControlsFX](https://github.com/controlsfx/controlsfx)
+* Forked from [AddressBook 3](https://github.com/nus-cs2103-AY2223S2/tp)
 
 --------------------------------------------------------------------------------------------------------------------
 
