@@ -56,7 +56,7 @@ Representation of important dates or deadlines of key events such as an Online A
 1. Ensure you have Java version `11` or above installed in your Computer. Instructions to check or download Java version `11` can be found [here](#java-instructions).
 
 
-2. Download the latest `ultron.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
+2. Download the latest `ultron.jar` [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Ultron.
@@ -90,7 +90,7 @@ For Windows users:
 2. Type in the `java -version` command to confirm the status of your Java version.
 
 
-3. Example response : `java version "11.0.17"`
+3. Example response : `java version "11.0.17"` or `openjdk version "11.0.18"`
     1. If the first number in the number list is `11`, it indicates that you are using Java version `11` and you are done!
     2. If the number is not `11`, you can update Java by first uninstalling Java, following the instructions [here](https://explainjava.com/uninstall-java-windows/).
     3. You can then download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://explainjava.com/install-java-windows/).
@@ -115,7 +115,7 @@ For macOS users:
     4. Finally, you can type `java -version` in your **Terminal** again to ensure you have Java version `11`.
 
 
-4. Example response : `Java command not found...`.
+4. Example response : `java: command not found`.
     1. This means Java is not downloaded, so you need to download Java version `11` from this [source](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html), following the instructions [here](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
     2. Then, you can type `java -version` in your **Terminal** again to ensure you have Java version `11`.
 
@@ -129,6 +129,9 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
+- All commands consists of a command word e.g `add`. Some commands require fields which start with 
+- their corresponding prefixes e.g. `r/` for remarks. Indexes are required for some commands to specify the exact opening of interest. e.g. `delete 1` deletes the first opening. 
 
 - Internship applications are represented as openings, By using clean and optimized representation of important dates or deadlines as *keydates*,
 
@@ -153,7 +156,7 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 
 </div>
 
-### Adding an opening : `add`
+### 1. Adding an opening : `add`
 
 Having too many internships offers and being unable to keep track of all of them?
 Ultron provides you with a platform to remember all your openings so you don't have to!
@@ -175,7 +178,7 @@ Examples:
 
 ![Add](images/Add.png)
 
-### Listing all openings : `list`
+### 2. Listing all openings : `list`
 
 Ultron gives you the option to view all your recorded openings in one window. Just type 'list'
 and the full list of openings will be displayed starting with the earliest added opening. This is especially useful if you want to return to the full list of openings after filtering the list using commands like `find` [here](#filtering-openings-by-company-or-position--find) and `upcoming` [here](#listing-upcoming-dates--upcoming).
@@ -186,7 +189,8 @@ Format: `list`
 
 ![List](images/List.png)
 
-### Editing an opening : `edit`
+### 3. Editing an opening : `edit`
+
 
 Accidentally typed the wrong company name? Don't worry, Ultron allows you to edit a previously
 added opening without having to delete and start over. Just type in 'edit' followed by the index
@@ -208,7 +212,7 @@ Examples:
 
 ![Edit](images/Edit.png)
 
-### Editing an opening's remarks : `remark`
+### 4. Editing an opening's remarks : `remark`
 
 What happens when there is a change of information? Ultron gives you the flexibility to edit the remarks of any opening
 so that you can keep track of real time data without the need for any unnecessary additions.
@@ -224,7 +228,7 @@ Format: `remark INDEX r/REMARK`
 
 ![Remark](images/Remark.png)
 
-### Showing full details of opening: `show`
+### 5. Showing full details of opening: `show`
 
 Ultron stays organised by only showing key details on the left panel. This feature allows you to view full details of any opening on the right panel, by using the index of the opening. Ultron even has added functionality to allow you to simply click on the opening of interest on the left panel, achieving the same result.
 
@@ -234,7 +238,7 @@ Format: `show INDEX`
 - The index refers to the index number shown in the displayed opening list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
-### Listing upcoming dates : `upcoming`
+### 6. Listing upcoming dates : `upcoming`
 
 Lists openings which has events today or within the next `DAYS` days, 
 
@@ -251,7 +255,7 @@ Examples:
 
 ![Upcoming](images/Upcoming.png)
 
-### Filtering openings by company or position: `find`
+### 7. Filtering openings by company or position: `find`
 
 Want to find only companies that you have already applied for? Ultron's `find` command gives you the
 capability to filter Ultron by company or position so you do not have to scroll through the entire
@@ -273,7 +277,7 @@ Examples:
 
 ![Find](images/Find.png)
 
-### Filtering openings by status: `status`
+### 8. Filtering openings by status: `status`
 
 Want to find out which companies are at a specific stage of application? Use `status` to quickly scan through
 Ultron to find the status you desire.
@@ -287,11 +291,11 @@ Format: `status KEYWORD`
 
 Examples:
 
-- `status Interviewing` returns openings with status Interviewing
+- `status Interviewing` returns openings with status Interviewing. 
 
 ![Status](images/Status.png)
 
-### Deleting an opening : `delete`
+### 9. Deleting an opening : `delete`
 
 Accidentally made errors which are too inconvenient to change? Ultron makes it easy for you to delete
 the opening with just one command word.
@@ -308,29 +312,28 @@ Examples:
 
 ![Delete](images/Delete.png)
 
-### Deleting all openings : `clear`
+### 10. Deleting all openings : `clear`
 
 Want to start from scratch? Just use clear and you will be presented with a clean Ultron ready for
 use!
 
 Format: `clear`
 
-- This command allows you to delete all openings from the list in a single command
-- Useful when you want to start a fresh new list!
+- This command allows you to delete all openings from the list in a single command. Useful when you want to start a fresh new list!
 
-### Accessing help window : `help`
+### 11. Accessing help window : `help`
 
 Displays the help window.
 
 Format: `help`
 
-### Exiting the program : `exit`
+### 12. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 13. Saving the data
 
 Ultron data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -340,9 +343,25 @@ Ultron data are saved in the hard disk automatically after any command that chan
 
 **A**: Remarks will only be displayed when `show` command is used.
 
+---
 **Q**: How do I transfer my data to another Computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the JSON file 'data/ultron.json'.
+**A**: 
+Make sure the other system is compatible with `java 11`. Install ultron.jar in to the system and navigate to the `data` folder. 
+Afterwards, copy the `ultron.json` file from the old system and replace it with
+the `ultron.json` file in the new system. 
+
+
+---
+**Q**: What if I want to delete all openings from a specific company?
+
+**A**: Filter the list by the company of interest using the find command. e.g `find Google`.
+Then you can delete each opening one by one based on the filtered list by using the `delete` command. 
+---
+**Q**: I cannot open my ultron.jar file as it is from an unidentified developer. How do I solve that? 
+
+**A**: Your system might have security settings in place to block access to potentially malicious files. 
+For macOS users, you might want to refer [here](https://www.macworld.com/article/672947/how-to-open-a-mac-app-from-an-unidentified-developer.html) for troubleshooting. 
 
 ---
 
