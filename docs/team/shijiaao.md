@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Contributed code from release `v1.2` to `v1.4`.
-    * Published releases and managed release deadlines for `v1.3.trial` - `v1.3` (2 releases) on GitHub. [\#136](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/136), 
+    * Published releases and managed release deadlines for `v1.3.trial` - `v1.3` (2 releases) on GitHub. [\#136](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/136)
     * Fixed important bugs pertaining to the JAR file on the releases I published. [\#140](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/140), [\#191](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/191)
     * Converted UG and DG to PDF and submitted them for the final project submission.
   
