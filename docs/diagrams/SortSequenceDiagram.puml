@@ -48,7 +48,7 @@ deactivate ModTrekParser
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-SortCommand -> Model : sortMap("/m")
+SortCommand -> Model : sortModuleGroup(module)
 activate Model
 
 Model --> SortCommand

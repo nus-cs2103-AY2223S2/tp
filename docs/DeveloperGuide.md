@@ -413,15 +413,15 @@ The following activity diagram shows what happens when a user executes a `delete
 ### **Sort modules feature** <a name="sort-modules-feature"></a>
 
 #### About this feature
-The sort feature allows users to categorise their modules in MODTrek via the command `sort <flag>`.
+The sort feature allows users to categorise their modules in MODTrek via the command `sort <CATEGORY>`.
 The flag parameter indicates which category to sort by.
 
 The available categories are:
-- Semester Year (Default)
-- Module Code Prefix
-- Grade
-- Tags
-- Credits
+- /y : Semester Year (Default)
+- /m : Module Code Prefix
+- /g : Grade
+- /t : Tags
+- /c : Credits
 
 #### How it is implemented
 When the user inputs the `sort` command with the flag as parameter, the input will be parsed and the flag will be retrieved
@@ -431,15 +431,13 @@ flag. Once sorted, the GUI is able to display the sorted modules.
 #### Parsing user input
 1. The user input `sort` command
 2. The `ModTrekParser` processes the input and creates a new `SortCommandParser`
-3. The `SortCommandParser` calls the `ArgumentMultimap#preamble()` to retrieve the flag. 
-If the flag is missing, a `ParseException` will be thrown.
+3. The `SortCommandParser` validates whether <CATEGORY> is present in the input and is one of the 5 available categories. If <CATEGORY> is absent or invalid, a ParseException would be thrown.
 4. The `SortCommandParser` will check if the flag is valid. If it is invalid, a `ParseException` will be thrown.
 5. The `SortCommandParser` then creates a `SortCommand` determined by the flag.
 
 #### Command execution
 1. The `LogicManager` executes the `SortCommand`.
-2. The `SortCommand` calls `Model#sortMap(CliSyntax flag)` to update the internal state of the map in the model to
-sort by the corresponding category.
+2. The `SortCommand` calls `model::sortModuleGroups(Sort sort)` to return a TreeMap sorted by the corresponding category.
 
 #### Displaying of result
 1. The `SortCommand` creates a `CommandResult` with a success message and boolean to indicate which of the GUI screen
