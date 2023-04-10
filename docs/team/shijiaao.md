@@ -11,13 +11,13 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add students into an event.
   * What it does: allows the user to add a student into an event (links a student with an event).
-  * Justification: This is a core functionality of the product as our target audience (student TAs) need to add students to their events (representing their classes) so that the students can be tracked on various indicators.
+  * Justification: This is a core functionality of the product as our target audience (student TAs) need to add students to their events (representing the classes they taught) so that the students can be tracked on performance indicators.
   * The implementation of this feature was challenging to design as there was a surprising amount of effort that needed to go into thinking about the abstraction barrier and what kind of information should be exposed at which class/point of the code.
   * This feature was challenging to implement as many additional helper methods needed to be added into various points in the existing code base.
 
 * **New Feature**: Added the ability to delete students from an event.
   * What it does: allows the user to delete a student from an event.
-  * Justification: This is a core functionality of the product as our target audience (student TAs) need to be able to delete students from their events (representing their classes) in case the student has been erroneously added or if the student is somehow not in the event anymore. 
+  * Justification: This is a core functionality of the product as our target audience (student TAs) need to be able to delete students from their events (representing the classes they taught) in case the student has been erroneously added or if the student is somehow not in the event anymore. 
   * This feature was challenging to implement while adhering to good code quality as it was difficult not to repeat code due to all the event types requiring similar implementations. 
   * Highlights: Reduced the amount of duplicated/similar code with polymorphism in the lower-level classes.
 
