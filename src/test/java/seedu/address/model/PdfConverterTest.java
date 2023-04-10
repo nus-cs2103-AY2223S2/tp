@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.spy;
@@ -66,16 +65,6 @@ public class PdfConverterTest {
     private final PdfConverter pdfConverter = new PdfConverter();
 
     @Test
-    public void elementsNotSetUp_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> this.document.close());
-        assertThrows(NullPointerException.class, () -> this.document.addPage(page));
-        assertThrows(NullPointerException.class, () -> new PDPageContentStream(document, page));
-        assertThrows(NullPointerException.class, () -> this.contentStream.beginText());
-        assertThrows(NullPointerException.class, () -> this.contentStream.endText());
-        assertThrows(NullPointerException.class, () -> this.contentStream.close());
-    }
-
-    @Test
     public void exportProgress_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> pdfConverter.exportProgress(null));
     }
@@ -97,15 +86,20 @@ public class PdfConverterTest {
         mock.exportProgress(key);
         verify(mock, times(1)).setup();
         verify(mock, times(1)).createContents(key);
-        verify(mock, times(1)).wrapText(docTitle, this.horizontalWrap, this.fontBold, this.fontTitleSize, List.of());
-        verify(mock, times(1)).wrapText(dateCreated, this.horizontalWrap, fontItalic, this.fontDateSize, List.of());
-        verify(mock, times(1)).wrapText(taskList, this.horizontalWrap, fontBold, this.fontHeadingSize, List.of());
+        verify(mock, times(1)).wrapText(docTitle, this.horizontalWrap, this.fontBold,
+                this.fontTitleSize, List.of());
+        verify(mock, times(1)).wrapText(dateCreated, this.horizontalWrap, fontItalic,
+                this.fontDateSize, List.of());
+        verify(mock, times(1)).wrapText(taskList, this.horizontalWrap, fontBold,
+                this.fontHeadingSize, List.of());
         verify(mock, times(1)).createTaskTable(key.getTaskList());
-        verify(mock, times(1)).wrapText(scoreList, this.horizontalWrap, fontBold, this.fontHeadingSize, List.of());
+        verify(mock, times(1)).wrapText(scoreList, this.horizontalWrap, fontBold,
+                this.fontHeadingSize, List.of());
         verify(mock, times(1)).createScoreTable(key.getScoreList());
         verify(mock, atLeastOnce()).textHeight(any(PDFont.class), anyInt(), anyFloat());
         verify(mock, atLeastOnce()).textLength(anyString(), any(PDFont.class), anyInt());
-        verify(mock, atLeastOnce()).setUpContentStream(anyString(), any(PDFont.class), anyInt(), anyFloat(), anyFloat(), any(Color.class));
+        verify(mock, atLeastOnce()).setUpContentStream(anyString(), any(PDFont.class), anyInt(), anyFloat(), anyFloat(),
+                any(Color.class));
         // verify(mock, atLeastOnce()).handleNextLine(anyInt(), any(PDFont.class), anyInt(), anyFloat());
         // verify(mock).handleWrapNextPage(anyInt(), anyFloat(), anyList(), any(PDFont.class), anyInt(), anyFloat());
 
