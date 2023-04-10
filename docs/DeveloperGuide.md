@@ -170,12 +170,12 @@ This operation is similar to that of adding a person. Adding an event involves c
 
 #### Current Implementation
 
-Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`.
+Sorting a list of events is a feature that uses the commands listed below.
 The events can be sorted based on their:
-- names in ascending ASCII order (using `sortevent a`)
-- names in descending ASCII order (using `sortevent b`)
-- start date times in ascending order (using `sortevent c`)
-- end date times in ascending order (using `sortevent d`)
+- names in ascending ASCII order (using `sortevent a` command)
+- names in descending ASCII order (using `sortevent b` command)
+- start date times in ascending order (using `sortevent c` command)
+- end date times in ascending order (using `sortevent d` command)
 
 The following sequence diagram shows how the sort events operation works.
 
