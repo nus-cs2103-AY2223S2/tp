@@ -552,4 +552,21 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-## Planned Enhancement
+## Planned Enhancements
+
+### Ease of adding/removing persons to/from teams
+Currently, to add a person to a team, one has to use the `edit` command to add a team tag to the contact. There are significant drawbacks to this:
+1. User has to type out the entire team name in the team tag.
+2. User has to input all the teams that the person is already in, else the edit command will remove those tags from the person.
+
+#### Suggested implementation:
+Create two new commands, `add_to_team` and `remove_from_team`, both of which will have the following format:
+
+```add_to_team <PERSON_INDEX> <TEAM_INDEX> [<TEAM_INDEX> ...]```
+
+```remove_from_team <PERSON_INDEX> <TEAM_INDEX> [<TEAM_INDEX> ...]```
+
+- `<PERSON_INDEX>` is the index of the person shown on the person list of the Ui. If there is no person at the given index, the command will throw an error. This field is required.
+- `<TEAM_INDEX>` is the index of a team shown on the team list of the Ui. If there is no team at the given index, the command will throw an error. This field is required.
+- `[<TEAM_INDEX> ...]` is/are additional teams that the user wants to add/remove a person to/from. For example, user can input `remove_from_team 1 1 2 3`, and this will remove the person at index 1 from the teams at index 1, 2, and 3. The additional team(s) are optional.
+
