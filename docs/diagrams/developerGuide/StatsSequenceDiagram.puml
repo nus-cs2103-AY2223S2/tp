@@ -1,0 +1,50 @@
+@startuml
+!include ../style.puml
+
+box Stats LOGIC_COLOR_T1
+participant ":StatsCommand" as StatsCommand LOGIC_COLOR
+participant ":Summary" as Summary LOGIC_COLOR
+participant "function:XYZAggregateFunction" as XYZAggregateFunction LOGIC_COLOR
+
+[-> StatsCommand : execute(model)
+activate StatsCommand
+
+loop For each AggregateFunction
+
+    create XYZAggregateFunction
+    StatsCommand -> XYZAggregateFunction : XYZAggregateFunction(...args)
+    activate XYZAggregateFunction
+    XYZAggregateFunction --> StatsCommand
+    deactivate XYZAggregateFunction
+
+    StatsCommand -> Summary : describe(function)
+    activate Summary
+
+    Summary -> XYZAggregateFunction : getDescription()
+    activate XYZAggregateFunction
+    XYZAggregateFunction --> Summary
+    deactivate XYZAggregateFunction
+
+    Summary -> XYZAggregateFunction : getResult()
+    activate XYZAggregateFunction
+    XYZAggregateFunction --> Summary
+    deactivate XYZAggregateFunction
+    destroy XYZAggregateFunction
+
+    Summary --> StatsCommand
+    deactivate Summary
+
+end
+
+StatsCommand -> Summary : toString()
+activate Summary
+Summary --> StatsCommand
+deactivate Summary
+
+StatsCommand -->[ : commandResult
+
+destroy Summary
+destroy StatsCommand
+
+end box
+@enduml
