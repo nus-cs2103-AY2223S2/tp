@@ -1144,14 +1144,17 @@ Currently, all the labels except for remarks are truncated. When the texts are t
 
 ### General
 #### Feature Flaw
-Currently, the user will experience noticeable performance issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
-We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future to fulfil our non-functional requirements.
+Currently, the user will experience noticeable performance issues starting from around ten entries, with the lag becoming more significant the more entries there are.
+We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient, as well as optimise the commands to be more efficient 
+to tackle this issue in the future.
 
 [↑ Back to top](#table-of-contents)
 
 ### Error handling
 #### Feature flaw
-Currently, the error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
+Currently, the error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message 
+such as "A telegram handle should be in the form @abc_hi." in addition to the current message.
+There the requirements for a telegram handle can be detailed so users can reference the error message and improve their input.
 
 [↑ Back to top](#table-of-contents)
 
