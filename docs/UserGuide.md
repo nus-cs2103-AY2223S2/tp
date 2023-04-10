@@ -973,6 +973,8 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3.4 Finding a menu item: `find_item`
 
 Find tasks with information that matches with any of the given parameters.
@@ -1111,6 +1113,8 @@ Syntax: `delete_task INDEX`
   * `delete_t 1` deletes the **first** task with a task name that contains `flour` from the visible task list
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.4.4 Deleting a menu item: `delete_item`
 
@@ -1348,7 +1352,7 @@ Syntax: `list_menu`
 * `list_m price`<br>
   Shows all menu items.
 
-</div><br>
+</div>
 
 ## 2.7 Clear
 
@@ -1451,6 +1455,8 @@ Clearing all menu items does not invalidate the orders.
   Clears all menu item data from menu.
 
 </div><br>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.8 Switch
 
@@ -1620,6 +1626,8 @@ Here are the respective formats for each of the data types:
   }
   ```
 
+<div style="page-break-after: always;"></div>
+
 # 4 Upcoming features `[coming soon]`
 
 * Highlight overdue orders.
@@ -1643,6 +1651,8 @@ Here are the respective formats for each of the data types:
 **A**: No, you can use Trackr without any internet access.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # 6 Summary
 
