@@ -15,7 +15,6 @@ import seedu.medinfo.commons.util.ConfigUtil;
 import seedu.medinfo.commons.util.StringUtil;
 import seedu.medinfo.logic.Logic;
 import seedu.medinfo.logic.LogicManager;
-import seedu.medinfo.logic.commands.Command;
 import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.Model;
@@ -24,8 +23,12 @@ import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.ReadOnlyUserPrefs;
 import seedu.medinfo.model.UserPrefs;
 import seedu.medinfo.model.util.SampleDataUtil;
-import seedu.medinfo.storage.*;
 import seedu.medinfo.storage.JsonMedInfoStorage;
+import seedu.medinfo.storage.JsonUserPrefsStorage;
+import seedu.medinfo.storage.MedInfoStorage;
+import seedu.medinfo.storage.Storage;
+import seedu.medinfo.storage.StorageManager;
+import seedu.medinfo.storage.UserPrefsStorage;
 import seedu.medinfo.ui.Ui;
 import seedu.medinfo.ui.UiManager;
 
@@ -72,15 +75,15 @@ public class MainApp extends Application {
      * or an empty medinfo book will be used instead if errors occur when reading {@code storage}'s medinfo book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMedInfo> addressBookOptional;
+        Optional<ReadOnlyMedInfo> medInfoOptional;
         ReadOnlyMedInfo initialData;
         try {
-            addressBookOptional = storage.readMedInfo();
-            if (!addressBookOptional.isPresent()) {
+            medInfoOptional = storage.readMedInfo();
+            if (!medInfoOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MedInfo");
             }
             Optional<ReadOnlyMedInfo> sampleData = Optional.ofNullable(SampleDataUtil.getSampleMedInfo());
-            initialData = addressBookOptional.orElseGet(() -> {
+            initialData = medInfoOptional.orElseGet(() -> {
                 try {
                     return SampleDataUtil.getSampleMedInfo();
                 } catch (CommandException e) {
@@ -178,7 +181,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping MedInfo ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

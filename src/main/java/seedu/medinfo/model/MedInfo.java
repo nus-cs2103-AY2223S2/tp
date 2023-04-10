@@ -34,7 +34,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * Note that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
-     */ 
+     */
     {
         patients = new UniquePatientList();
         wards = new UniqueWardList();
@@ -74,7 +74,17 @@ public class MedInfo implements ReadOnlyMedInfo {
      * {@code wards} must not contain duplicate wards.
      */
     public void setWards(List<Ward> wards) {
-        this.wards.setWards(wards);
+        List<Ward> wardsCopy = new ArrayList<>();
+        for (Ward ward : wards) {
+            Ward toCopy = new Ward(ward.getName(), ward.getCapacity());
+            wardsCopy.add(toCopy);
+        }
+        this.wards.setWards(wardsCopy);
+
+        for (Patient patient : patients) {
+            Ward target = this.wards.getWard(patient.getWardNameString());
+            target.addPatient(patient);
+        }
     }
 
     /**
@@ -110,15 +120,14 @@ public class MedInfo implements ReadOnlyMedInfo {
      * Adds a patient to the medinfo book.
      * The patient must not already exist in the medinfo book.
      */
-    public void addPatient(Patient p) throws CommandException {
+    public void addPatient(Patient p) throws CommandException, WardNotFoundException {
         if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
             throw new WardNotFoundException(p.getWardNameString());
         }
-        patients.add(p);
         try {
             wards.addPatient(p);
+            patients.add(p);
         } catch (WardFullException e) {
-            patients.remove(p);
             throw new CommandException(e.toString(), e);
         }
     }
@@ -130,13 +139,12 @@ public class MedInfo implements ReadOnlyMedInfo {
      * The patient identity of {@code editedPatient} must not be the same as another
      * existing patient in the medinfo book.
      */
-    public void setPatient(Patient target, Patient editedPatient) throws CommandException{
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException {
         requireAllNonNull(target, editedPatient);
-        patients.setPatient(target, editedPatient);
         try {
             wards.setPatient(target, editedPatient);
+            patients.setPatient(target, editedPatient);
         } catch (WardFullException e) {
-            patients.setPatient(target, target);
             throw new CommandException(e.toString(), e);
         }
     }

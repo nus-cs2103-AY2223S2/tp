@@ -1,7 +1,6 @@
 package seedu.medinfo.model.ward;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class Ward {
 
     /**
      * Ward factory constructor with string for comparisons
-     * 
+     *
      * @param name
      * @return placeholder Ward
      */
@@ -59,7 +58,7 @@ public class Ward {
 
     /**
      * Edit capacity of this ward
-     * 
+     *
      * @param capacity
      * @return Ward with edited capacity
      */
@@ -122,24 +121,6 @@ public class Ward {
     }
 
     //// patient-level operations
-
-    /**
-     * Returns true if a patient with the same identity as {@code patient} exists in
-     * the ward.
-     */
-    public boolean hasPatient(Patient patient) {
-        requireNonNull(patient);
-        return patients.contains(patient);
-    }
-
-    /**
-     * Returns true if a patient with the same NRIC as {@code patient} exists in
-     * the ward.
-     */
-    public boolean hasPatientNric(Patient patient) {
-        requireNonNull(patient);
-        return patients.containsNric(patient);
-    }
 
     /**
      * Adds a patient to the ward.

@@ -2,8 +2,8 @@ package seedu.medinfo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.medinfo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_CAPACITY;
+import static seedu.medinfo.logic.parser.CliSyntax.PREFIX_WARD;
 
 import seedu.medinfo.commons.core.index.Index;
 import seedu.medinfo.logic.commands.EditWardCommand;

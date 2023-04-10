@@ -1,6 +1,5 @@
 package seedu.medinfo.model.util;
 
-import seedu.medinfo.commons.exceptions.DataConversionException;
 import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.ReadOnlyMedInfo;

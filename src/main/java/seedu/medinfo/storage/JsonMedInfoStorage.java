@@ -12,7 +12,6 @@ import seedu.medinfo.commons.exceptions.DataConversionException;
 import seedu.medinfo.commons.exceptions.IllegalValueException;
 import seedu.medinfo.commons.util.FileUtil;
 import seedu.medinfo.commons.util.JsonUtil;
-import seedu.medinfo.logic.commands.Command;
 import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 
@@ -62,8 +61,8 @@ public class JsonMedInfoStorage implements MedInfoStorage {
     }
 
     @Override
-    public void saveMedInfo(ReadOnlyMedInfo addressBook) throws IOException {
-        saveMedInfo(addressBook, filePath);
+    public void saveMedInfo(ReadOnlyMedInfo medInfo) throws IOException {
+        saveMedInfo(medInfo, filePath);
     }
 
     /**
@@ -71,12 +70,12 @@ public class JsonMedInfoStorage implements MedInfoStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveMedInfo(ReadOnlyMedInfo addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMedInfo(ReadOnlyMedInfo medInfo, Path filePath) throws IOException {
+        requireNonNull(medInfo);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMedInfo(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMedInfo(medInfo), filePath);
     }
 
 }

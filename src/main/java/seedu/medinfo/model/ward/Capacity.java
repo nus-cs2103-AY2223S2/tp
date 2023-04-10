@@ -8,7 +8,7 @@ public class Capacity {
     private static final int MAX_CAPACITY = 1000;
 
     public static final String MESSAGE_CONSTRAINTS = "Capacity should be a"
-            + " positive integer (at least " + Integer.valueOf(MIN_CAPACITY) + " and less than "
+            + " positive integer (at least " + Integer.valueOf(MIN_CAPACITY) + " and less than or equal to "
             + Integer.valueOf(MAX_CAPACITY) + ")"
             + " and it should not be blank";
 

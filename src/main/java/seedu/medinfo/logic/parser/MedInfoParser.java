@@ -1,15 +1,14 @@
 package seedu.medinfo.logic.parser;
 
+import static seedu.medinfo.commons.core.Messages.MESSAGE_ABORT_DELETE;
 import static seedu.medinfo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.medinfo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.medinfo.commons.core.Messages.MESSAGE_ABORT_DELETE;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javafx.scene.control.Alert;
-
 import javafx.scene.control.ButtonType;
 import seedu.medinfo.logic.commands.AddCommand;
 import seedu.medinfo.logic.commands.AddWardCommand;

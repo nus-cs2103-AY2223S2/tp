@@ -38,14 +38,23 @@ public class UniqueWardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
+    private static final WardName WAITING_ROOM = new WardName("Waiting Room");
     /**
-     * Initializes wardlist with default Waiting Room ward with capacity of 30
-     * inside.
+     * Initializes empty wardlist.
      */
     public UniqueWardList() {
-        WardName waitingRoomName = new WardName("Waiting Room");
-        Ward waitingRoom = new Ward(waitingRoomName);
-        add(waitingRoom);
+
+    }
+
+    /**
+     * Initializes NEW wardlist with default Waiting Room ward with capacity of 10
+     * inside.
+     */
+    public UniqueWardList NewUniqueWardList() {
+        Ward WaitingRoom = new Ward(WAITING_ROOM);
+        UniqueWardList NewUniqueWardList = new UniqueWardList();
+        NewUniqueWardList.add(WaitingRoom);
+        return NewUniqueWardList;
     }
 
     /**
@@ -107,7 +116,7 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Adds patient p to their assigned ward.
-     * 
+     *
      * @param p
      */
     public void addPatient(Patient p) throws CommandException, WardFullException {
@@ -154,7 +163,7 @@ public class UniqueWardList implements Iterable<Ward> {
      * {@code editedPatient}.
      * {@code target} must exist in the ward.
      */
-    public void setPatient(Patient target, Patient editedPatient) throws CommandException, WardFullException{
+    public void setPatient(Patient target, Patient editedPatient) throws CommandException, WardFullException {
         String targetName = target.getWardNameString();
         String editedName = editedPatient.getWardNameString();
         int targetIndex = internalList.indexOf(wardWithName(targetName));
@@ -171,7 +180,7 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Moves patient from one ward to another
-     * 
+     *
      * @param target The target patient
      * @param from   The patient's current ward index in internalList.
      * @param to     The patient's next ward index in internalList.

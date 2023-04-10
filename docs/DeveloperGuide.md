@@ -49,6 +49,7 @@ You can use this guide to maintain, upgrade, and evolve **MedInfo**.
   * [**Launch and shutdown**](#launch-and-shutdown)
   * [**Delete a patient**](#delete-a-patient)
   * [**Save data**](#save-data)
+* [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 
 ---
@@ -141,7 +142,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `MedInfoParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -159,7 +160,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- When called upon to parse a user command, the `MedInfoParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MedInfoParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -185,12 +186,12 @@ The `Model` component,
 The `Storage` component,
 
 - can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- inherits from both `MedInfoStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.medinfo.commons` package.
 
 ---
 
@@ -290,88 +291,6 @@ In MedInfo, a user can list all patients using the `list` command.
 The following activity diagram summarizes what happens when a user enters a `find` command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th patient in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -479,14 +398,14 @@ Use case resumes at step 2.
 - 2c. If the input field is invalid.
 
   - 2c1. the user is informed of this, and correct format for the command is displayed.
-  
+
   Use case resumes at step 2.
 
 
 - 2d. If the entered ward is not present in the system.
-    
+
   - 2d1. the user is informed that the ward does not exist in the system.
-  
+
   Use case resumes at step 2.
 
 
@@ -528,7 +447,7 @@ Use case resumes at step 2.
 
 1.  User requests to list filtered patients
 2.  MedInfo shows a list of filtered patients
-3.  User requests to edit a specific patient in the list by index number 
+3.  User requests to edit a specific patient in the list by index number
     1. The following can be edited:
        - Status
        - Ward
@@ -563,13 +482,13 @@ Use case resumes at step 2.
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
-  
+
 - 3b. The Ward entered is invalid.
 
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
-  
+
 - 3b. The Discharge Date entered is invalid.
 
     - 3b1. MedInfo shows an error message.
@@ -611,7 +530,7 @@ Use case resumes at step 2.
   - 1c1. MedInfo does not list any patients.
 
     Use case ends.
-  
+
 - 1d. The requested patient's Ward does not exist in the system.
 
 - 1d1. MedInfo does not list any patients.
@@ -721,12 +640,12 @@ Use case resumes at step 2.
     Use case ends.
 - 3a. The requested sorting order is invalid
   - 3a1. MedInfo shows an error message.
-  
+
     Use case resumes at step 2.
 
 - 3b. The requested sorting field is invalid
     - 3b1. MedInfo shows an error message.
-  
+
       Use case resumes at step 2.
 
 
@@ -804,3 +723,79 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+
+---
+
+## **Appendix: Planned Enhancements**
+
+Given below are a few enhancements we hope to bring into future iterations of MedInfo:
+
+### Date-time validation:
+Currently, MedInfo allows the user to input dates in the past (e.g.`01/01/1000 1000`). While there may be reason to
+input past date-times, such as if the user forgot to enter dates previously, MedInfo is meant to be a **current**
+patient tracking system. As such, inputting dates from the past would not make sense as the patients would have been
+discharged already (and hence have no reason to be recorded in MedInfo).
+
+Possible Implementation:
+- This could be implemented by adding a method in `Discharge.java` to check if a given date is a valid future
+discharge date (by comparing to the current date)
+- The method created above would then be called within `parseDischarge()` in `ParserUtil.java` to ensure that a
+valid future discharge date-time was entered
+
+### Strict NRIC validation:
+Currently, MedInfo checks whether a valid NRIC has been entered based on a validaton regex within
+`Nric.java` (`^[STFG]\d{7}[A-Z]$`). This regex restricts the NRIC to be a capital letter (either
+S/F/T/G) followed by 7 numbers and a capital letter. True valid NRICs make use of stronger validation
+logic, involving check digits. Such validation would need to be added before using MedInfo in a
+real-life scenario. However, due to the constraints it would place on testing during development,
+it shall be implemented in the future instead.
+
+### UI component behaviour on window resizing
+On resizing, the status bar maintains its centered location as from the full-size window. As a result,
+the information in it gets truncated. As this information is critical, future enhancements should address this, and
+other UI components that get cut off on window resizing.
+
+Possible implementations:
+- adjusting padding
+- setting position constraint
+- setting a higher minimum window width
+
+### Multiple parameter search
+Currently, MedInfo only allows finding patients by **onw** of four parameters:
+1. name (`name/`)
+2. NRIC (`nric/`)
+3. status (`s/`)
+4. ward name (`w/`)
+
+The `find` command does not allow multiple parameters to be used at once. For example, attempting to find critical
+patients in ward 'ER1' with the command `find s/red w/ER1` would result in an error. However, as a hospital
+staff, finding patients matching multiple criteria is a valid use-case. Hence, this is planned as a future enhancement.
+
+### Find by ward
+Currently, the `find` command in MedInfo finds patients by wards as it does patients by name, i.e. by displaying
+all patients that match any of the keywords supplied. As a result, the logic is slightly flawed. Consider the
+scenario of trying to find patients in a ward named 'Class A', when the other wards in the system include 'Class B'
+and 'Class C'. Entering `find w/Class A` would also display patients in the other 2 wards due to the common keyword
+'Class'. This should be addressed in future iterations of MedInfo by making the `find` command match ward name
+exactly.
+
+
+### Handling long names
+Currently, long names are truncated (with `...`) once they go past the maximum displayable length. This makes it
+impossible to get long patient names after entry into the system. This would need to be addressed in the future.
+
+Possible implementation:
+- limit name input to 40 characters: While simple to implement (change validation regex in `Name.java` to
+`[\\p{Alnum}][\\p{Alnum} ]{0,39}`, it is not recommended, as it does not handle the case of patients with names
+longer than 40 characters
+- text wrapping to display the whole name within the patient card in the UI
+
+### Expand `help` command
+Currently, entering the `help` command in MedInfo opens a small dialog box with a link to MedInfo's website. While
+the user can read the user guide from the website to learn how to use the commands, perhaps a quick command summary
+could be added to this window for returning users who do not wish to open the website but just need a quick refresher
+on the commands.
+
+Possible implementation:
+- add command summary in text to help window display

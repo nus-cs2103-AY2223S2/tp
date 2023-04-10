@@ -8,8 +8,8 @@ import static seedu.medinfo.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
 public class Nric {
-    public static final String MESSAGE_CONSTRAINTS = "NRIC should not be blank. It should only begin with either the letter "
-            + "S, T, F or G, followed by 7 numbers, then ending with a capital letter.";
+    public static final String MESSAGE_CONSTRAINTS = "NRIC should not be blank. It should only begin with either "
+        + "the letter S, T, F or G, followed by 7 numbers, then ending with a capital letter.";
 
     /**
      * The National Registry Identification Number (NRIC) of Singapore
