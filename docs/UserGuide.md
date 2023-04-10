@@ -81,7 +81,7 @@ For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]â
 * For more information on each specific field, refer to the [Fields](#fields) section.
 
 **Preamble**
-* They need to be specified right after the command word and before any other [Fields](#field)
+* They need to be specified right after the command word and before any other [Fields](#fields)
 
 </div>
 
@@ -155,7 +155,7 @@ Format: `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [re/REGION] [r/RISK_LEVEL] [p/
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 
-An elderly can have any number of [tags](#tags) and available dates.
+An elderly can have any number of [tags](#tags) and [available dates](#available-dates).
 
 </div>
 
@@ -459,7 +459,7 @@ Examples:
 
 ### Command Recommendation
 
-FriendlyLink provides command recommendations for registered [commands](#command-summary) and field's prefixes.
+FriendlyLink provides command recommendations for registered [commands](#command-summary) and [prefixes](#prefixes).
 Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting
 with our application. 
 
@@ -562,7 +562,7 @@ Indexes are natural numbers (numbers used for counting) that are used for number
 
 ---------------------
 
-## Prefix
+## Prefixes
 
 | Prefix | Label                 |
 |--------|-----------------------|
