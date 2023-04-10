@@ -2,7 +2,6 @@ package trackr.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,20 +15,20 @@ public class ObservableTabIndexTest {
         ObservableTabIndex.updateToTab(1);
         int initialInteger = 1;
         int dupInteger = 1;
-        int sumInteger = initialInteger + dupInteger;
+        int integerToObserve = initialInteger + dupInteger;
 
         SimpleIntegerProperty initialObservable = (SimpleIntegerProperty) ObservableTabIndex.valueProperty();
         SimpleIntegerProperty dupObservable = (SimpleIntegerProperty) ObservableTabIndex.valueProperty();
-        NumberBinding sumObservable = initialObservable.add(dupObservable);
+        NumberBinding observableToObserve = initialObservable.add(dupObservable);
 
-        assertEquals(sumInteger, 2);
-        assertEquals(sumObservable.getValue(), 2);
- 
+        assertEquals(integerToObserve, 2);
+        assertEquals(observableToObserve.getValue(), 2);
+
         initialInteger = 2;
         dupInteger = 2;
         ObservableTabIndex.updateToTab(2);
-        assertFalse(sumInteger == 4);
-        assertEquals(sumObservable.getValue(), 4);
 
-   } 
+        assertFalse(integerToObserve == 4);
+        assertEquals(observableToObserve.getValue(), 4);
+    }
 }
