@@ -345,9 +345,26 @@ The delete appointment command allows the user to delete an existing appointment
 
 We originally wanted to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs. However, we chose to use indexes in a similar fashion to patients so that users would not need to confuse themselves with two different types of commands.
 
-### Remark patient (`remark_patient`) command
+### Add patient notes (`remark_patient`) command
+
+**Overview**
+
+Adds a note to an existing patient in the patient list.
 
 **Implementation**
+
+The add patient notes command adds a remark or note as a field to an existing patient in the patient list. This is done following the same flow as the `edit_patient` command, i.e, the command edits an existing remark field for the patient.
+
+**Design considerations**
+
+We debated on whether we wanted to make the `Remark` field editable but decided against it in the end. 
+
+These were the **factors** informing our decision:
+* If we decided to make the field editable, appending any remark to the previous remark would have been easy, but removing any part of the previous remark would be quite difficult without making the command format unnecessarily complex.
+* If we decided to make the field editable, we would possibly need to add another UI element just to handle remarks in order to create the existing UI uncluttered.
+* On the other hand, editing remarks would make it easier for doctors to maintain patient records.
+
+In the end, we settled on not making the `Remark` field editable for ease of implementation.
 
 ### Help (`help`) command
 
