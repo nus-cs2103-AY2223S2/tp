@@ -11,6 +11,7 @@ public class AttendanceTest {
     private static final String INVALID_ATTENDANCE_STORAGE_STRING = "0;0;0;0;0;0;0;0;0;0;0;0;0;0;0";
     private static final String BASIC_ATTENDANCE_STRING = "1;1;0;0;0;0;0;0;0;0;0;0";
     private static final String BASIC_PP_STRING = "120;240;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
+
     @Test
     void isValidParticipationPoints() {
         assertTrue(Attendance.isValidParticipationPoints("0"));
@@ -74,6 +75,7 @@ public class AttendanceTest {
         atd.unmarkAttendance(1);
         assertFalse(atd.isMarkedWeek(1));
     }
+
     @Test
     void getAveragePP() {
         Attendance atd = new Attendance(BASIC_ATTENDANCE_STRING, BASIC_PP_STRING);
@@ -91,6 +93,7 @@ public class AttendanceTest {
         Attendance atd = new Attendance(BASIC_ATTENDANCE_STRING, BASIC_PP_STRING);
         assertEquals(atd.partPointsStorageStr(), BASIC_PP_STRING);
     }
+
     @Test
     void listAtdString() {
         Attendance atd = new Attendance(BASIC_ATTENDANCE_STRING, BASIC_PP_STRING);
@@ -111,15 +114,15 @@ public class AttendanceTest {
 
     @Test
     void isValidAttendanceStorageString() {
-        assertTrue(Attendance.isValidAttendanceStorageString(BASIC_ATTENDANCE_STRING));
-        assertTrue(Attendance.isValidAttendanceStorageString(Attendance.ORIGINAL_ATD));
-        assertFalse(Attendance.isValidAttendanceStorageString(INVALID_ATTENDANCE_STORAGE_STRING));
+        assertTrue(Attendance.isValidAtdStr(BASIC_ATTENDANCE_STRING));
+        assertTrue(Attendance.isValidAtdStr(Attendance.ORIGINAL_ATD));
+        assertFalse(Attendance.isValidAtdStr(INVALID_ATTENDANCE_STORAGE_STRING));
     }
 
     @Test
     void isValidPpStorageString() {
-        assertTrue(Attendance.isValidPpStorageString(BASIC_PP_STRING));
-        assertTrue(Attendance.isValidPpStorageString(Attendance.ORIGINAL_PP));
-        assertFalse(Attendance.isValidPpStorageString(INVALID_PP_STORAGE_STRING));
+        assertTrue(Attendance.isAcceptablePpStr(BASIC_PP_STRING));
+        assertTrue(Attendance.isAcceptablePpStr(Attendance.ORIGINAL_PP));
+        assertFalse(Attendance.isAcceptablePpStr(INVALID_PP_STORAGE_STRING));
     }
 }

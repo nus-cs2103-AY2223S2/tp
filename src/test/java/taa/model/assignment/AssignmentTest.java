@@ -90,11 +90,17 @@ class AssignmentTest {
     void testIsValidAssignmentName() {
         assertTrue(Assignment.isValidAssignmentName("Lab 1"));
         assertFalse(Assignment.isValidAssignmentName("Lab_1"));
+        assertFalse(Assignment.isValidAssignmentName(""));
+        assertFalse(Assignment.isValidAssignmentName("    "));
     }
 
     @Test
     void testIsValidAssignmentMarks() {
-        assertTrue(Assignment.isValidAssignmentMarks(100));
-        assertFalse(Assignment.isValidAssignmentMarks(-1));
+        assertTrue(Assignment.isValidAssignmentMarks("0"));
+        assertTrue(Assignment.isValidAssignmentMarks("1"));
+        assertTrue(Assignment.isValidAssignmentMarks("100"));
+        assertFalse(Assignment.isValidAssignmentMarks("-1"));
+        assertFalse(Assignment.isValidAssignmentMarks("0.5"));
+        assertFalse(Assignment.isValidAssignmentMarks(""));
     }
 }

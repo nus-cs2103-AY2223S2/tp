@@ -5,33 +5,27 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import taa.model.assignment.AssignmentList;
 import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
 
 /**
- * Adds another layer on top of the students in the application, allow them to be organized in classes
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Adds another layer on top of the students in the application, allow them to be organized in classes Duplicates are
+ * not allowed (by .isSamePerson comparison)
  */
 //Credits: Solution below are adapted from original AB3 codes, with significant modifications.
 public class ClassList implements ReadOnlyStudentList {
 
-    private static int lastId;
-
-    private UniqueStudentList students;
-    private AssignmentList assignments;
-    private String className = "DEFAULT";
-    private int classId;
+    private final UniqueStudentList students;
+    private final String className;
     private int studentCount;
 
     /**
      * Creates a class list instance with the given class name.
+     *
      * @param name the name of the class.
      */
     public ClassList(String name) {
-        assignments = AssignmentList.INSTANCE;
         students = new UniqueStudentList();
-        this.classId = ++lastId;
         this.className = name;
     }
 
@@ -39,16 +33,14 @@ public class ClassList implements ReadOnlyStudentList {
      * Creates a class list instance with a default name.
      */
     public ClassList() {
-        assignments = AssignmentList.INSTANCE;
-        students = new UniqueStudentList();
-        this.classId = ++lastId;
+        this("DEFAULT");
     }
 
     /**
      * Creates an ClassList using the Persons in the {@code toBeCopied}
      */
     public ClassList(ReadOnlyStudentList toBeCopied) {
-        this("DEFAULT");
+        this();
         resetData(toBeCopied);
     }
 
@@ -70,8 +62,8 @@ public class ClassList implements ReadOnlyStudentList {
 
 
     /**
-     * Replaces the contents of the student list with {@code students}.
-     * {@code students} must not contain duplicate students.
+     * Replaces the contents of the student list with {@code students}. {@code students} must not contain duplicate
+     * students.
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
@@ -96,8 +88,7 @@ public class ClassList implements ReadOnlyStudentList {
     }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a student to the address book. The student must not already exist in the address book.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -106,6 +97,7 @@ public class ClassList implements ReadOnlyStudentList {
 
     /**
      * Updates the student list to propagate change to the rest of the model.
+     *
      * @param target The student to be refreshed.
      */
     public void updateStudent(Student target) {
@@ -121,10 +113,9 @@ public class ClassList implements ReadOnlyStudentList {
     }
 
     /**
-     * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
-     * The student identity of {@code editedStudent} must not be the same as another
-     * existing student in the address book.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}. {@code target} must exist in
+     * the address book. The student identity of {@code editedStudent} must not be the same as another existing student
+     * in the address book.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -133,8 +124,7 @@ public class ClassList implements ReadOnlyStudentList {
     }
 
     /**
-     * Removes {@code key} from this {@code ClassList}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ClassList}. {@code key} must exist in the address book.
      */
     public void removeStudent(Student key) {
         students.remove(key);
@@ -142,14 +132,13 @@ public class ClassList implements ReadOnlyStudentList {
     }
 
     @Override
-    public String toString() {
-        return "class name: " + this.className + " " + students.asUnmodifiableObservableList().size() + " person(s)";
-
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
     @Override
-    public ObservableList<Student> getStudentList() {
-        return students.asUnmodifiableObservableList();
+    public int hashCode() {
+        return students.hashCode();
     }
 
     //Credits: Solution below is adapted from ChatGPT3.5 codes.
@@ -161,7 +150,8 @@ public class ClassList implements ReadOnlyStudentList {
     }
 
     @Override
-    public int hashCode() {
-        return students.hashCode();
+    public String toString() {
+        return "class name: " + this.className + " " + students.asUnmodifiableObservableList().size() + " person(s)";
+
     }
 }

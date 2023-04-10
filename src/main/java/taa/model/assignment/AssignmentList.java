@@ -101,10 +101,11 @@ public class AssignmentList {
     }
 
     /**
-     * Checks whether the submission strings are valid for CSV import.
+     * Checks whether the submission strings are valid for CSV import. Missing assignments will have default submissions
+     * added.
      *
-     * @param submissionStrs The submission strings of a student parsed from CSV file. Missing submissions will be added
-     *                       into.
+     * @param submissionStrs The submission strings of a student parsed from CSV file. Missing assignments will have
+     *                       default submissions added into this list.
      * @throws ParseException if error exists in string
      */
     public void testValidCsvSubmissions(ArrayList<String> submissionStrs) throws ParseException {
@@ -258,7 +259,7 @@ public class AssignmentList {
         // Step 2: populate each assignment with each student submission.
         for (Student stu : sl) {
             for (String submissionString : stu.getSubmissionStorageStrings()) {
-                String assignmentName = submissionString.split(Submission.STR_SEP)[0];
+                final String assignmentName = Submission.getAsgnName(submissionString);
                 Assignment toAdd = assignmentMap.get(assignmentName);
                 toAdd.addStudentSubmission(stu, submissionString);
             }
