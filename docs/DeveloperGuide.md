@@ -785,7 +785,9 @@ testers are expected to do more *exploratory* testing.
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-### Appendix: Effort
+## Appendix: Effort
+
+### Challenges
 
 #### User-friendly UI
 The original AB3 program displays a list of persons in a single panel, which is not practical for a flashcard application where the user needs to manage both decks and cards. In addition, our application requires 2 interfaces for the user, one when the user is managing their cards and decks, and another when they are in a review session.
@@ -805,6 +807,12 @@ Our application has a total of 26 unique commands, as compared to 8 unique comma
 * `REVIEW_MODE` has a total of 9 accessible commands.
 
 As such, we saw this as a valuable opportunity to conduct extensive testing of our application. We achieved this by writing unit and integration tests for our commands, parsers, and model objects. Through this process, we were able to maintain a coverage level of **~70%**, only slightly less than the original **~72%** coverage in AB3. Additionally, we increased the number of test cases from **248** in AB3 to **356** in PowerCards.
+
+### Achievements
+- Successfully built a simple and efficient CLI flashcard application.
+- Improved a lot from AB3 with a number of new features and a better UI.
+- Drew clear and correct different styles of diagram for DG.
+- Made a concrete OOP structure through discussions. 
 
 ## Appendix: Planned Enhancement
 
