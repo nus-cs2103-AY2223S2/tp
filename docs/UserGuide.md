@@ -242,7 +242,7 @@ Note:
   by `meetingFind` to get the `MEETING_INDEX`
 
 
-![result for meetingRemove 3 1](images/Removemeeting.png)
+![result for meetingRemove 3 1](images/RemoveMeeting.png)
 
 ### Updating a meeting : `meetingUpdate`
 
