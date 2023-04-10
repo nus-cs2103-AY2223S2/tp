@@ -258,6 +258,7 @@ public class ParserUtil {
 
     //========================Parse those related to order==================================
 
+    //@@author chongweiguan-reused
     /**
      * Parses a {@code String orderName} into a {@code OrderName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -321,6 +322,7 @@ public class ParserUtil {
         }
         return new OrderQuantity(trimmedOrderQuantity);
     }
+    //@@author
 
     /**
      * Parses a {@code String CustomerName} into a {@code CustomerName}.

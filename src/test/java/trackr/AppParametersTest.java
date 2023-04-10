@@ -39,6 +39,7 @@ public class AppParametersTest {
         assertEquals(expected, AppParameters.parse(parametersStub));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void equals() {
         AppParameters appParameters = new AppParameters();
@@ -52,6 +53,7 @@ public class AppParametersTest {
         assertFalse(appParameters.equals(differentAppParameters)); //different config path
         assertFalse(appParameters.equals("N")); //different types
     }
+    //@@author
 
     private static class ParametersStub extends Application.Parameters {
         private Map<String, String> namedParameters = new HashMap<>();

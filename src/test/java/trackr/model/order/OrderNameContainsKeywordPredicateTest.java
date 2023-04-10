@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import trackr.testutil.OrderBuilder;
 import trackr.testutil.OrderPredicateBuilder;
 
+//@@author chongweiguan-reused
 public class OrderNameContainsKeywordPredicateTest {
     @Test
     public void equals() {
@@ -339,4 +340,5 @@ public class OrderNameContainsKeywordPredicateTest {
         predicate = new OrderPredicateBuilder().build();
         assertFalse(predicate.isAnyFieldPresent());
     }
+    //@@author
 }

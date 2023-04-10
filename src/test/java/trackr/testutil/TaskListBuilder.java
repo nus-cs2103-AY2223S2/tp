@@ -8,6 +8,7 @@ import trackr.model.task.Task;
  * Example usage: <br>
  *     {@code TaskList tb = new TaskListBuilder().withTask("Buy X", "Buy Y").build();}
  */
+//@@author liumc-sg-reused
 public class TaskListBuilder {
 
     private TaskList taskList;

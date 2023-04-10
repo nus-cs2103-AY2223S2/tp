@@ -28,75 +28,72 @@ You can click on the respective links below to read up on the relevant sections.
 # Table of Contents
 
 <!-- TOC -->
-- [Overview](#overview)
-- [About This Guide](#about-this-guide)
-- [Table of Contents](#table-of-contents)
-- [1 Introduction](#1-introduction)
-  - [1.1 Setting up, getting started](#11-setting-up-getting-started)
-  - [1.2 About Us](#12-about-us)
-  - [1.3 Acknowledgements](#13-acknowledgements)
-- [2 Design](#2-design)
-  - [2.1 Architecture](#21-architecture)
-    - [2.1.1 Main components of the architecture](#211-main-components-of-the-architecture)
-    - [2.1.2 How the architecture components interact with each other](#212-how-the-architecture-components-interact-with-each-other)
-  - [2.2 UI component](#22-ui-component)
-  - [2.3 Logic component](#23-logic-component)
-  - [2.4 Model component](#24-model-component)
-    - [2.4.1 Item](#241-item)
-    - [2.4.2 Supplier \& Customer](#242-supplier--customer)
-    - [2.4.3 Task](#243-task)
-    - [2.4.4 Menu](#244-menu)
-    - [2.4.5 Order](#245-order)
-  - [2.5 Storage component](#25-storage-component)
-  - [2.6 Common classes](#26-common-classes)
-- [3 Implementation](#3-implementation)
-  - [3.1 AddXYZCommand](#31-addxyzcommand)
-  - [3.2 DeleteXYZCommand](#32-deletexyzcommand)
-  - [3.3 EditXYZCommand](#33-editxyzcommand)
-  - [3.4 FindXYZCommand](#34-findxyzcommand)
-  - [3.5 ListXYZCommand](#35-listxyzcommand)
-  - [3.6 SortXYZCommand](#36-sortxyzcommand)
-  - [3.7 ClearXYZCommand](#37-clearxyzcommand)
-  - [3.8 TabCommand](#38-tabcommand)
-  - [3.9 HelpCommand](#39-helpcommand)
-  - [3.10 ExitCommand](#310-exitcommand)
-- [4 Appendix](#4-appendix)
-  - [4.1 Documentation, logging, testing, configuration, dev-ops](#41-documentation-logging-testing-configuration-dev-ops)
-  - [4.2 Product scope](#42-product-scope)
-  - [4.3 User stories](#43-user-stories)
-  - [4.4 Use cases](#44-use-cases)
-  - [4.5 Non-Functional Requirements](#45-non-functional-requirements)
-  - [4.6 Glossary](#46-glossary)
-  - [4.7 Planned Enhancements](#47-planned-enhancements)
-  - [4.7 Instructions for manual testing](#47-instructions-for-manual-testing)
-    - [Launch and shutdown](#launch-and-shutdown)
-    - [Adding a supplier](#adding-a-supplier)
-    - [Adding a task](#adding-a-task)
-    - [Adding an order](#adding-an-order)
-    - [Adding a menu item](#adding-a-menu-item)
-    - [Editing supplier](#editing-supplier)
-    - [Editing task](#editing-task)
-    - [Editing order](#editing-order)
-    - [Editing menu item](#editing-menu-item)
-    - [Find supplier](#find-supplier)
-    - [Find task](#find-task)
-    - [Find order](#find-order)
-    - [Find menu item](#find-menu-item)
-    - [Delete supplier](#delete-supplier)
-    - [Delete task](#delete-task)
-    - [Delete order](#delete-order)
-    - [Delete menu item](#delete-menu-item)
-    - [Sort task](#sort-task)
-    - [Sort order](#sort-order)
-    - [List all suppliers](#list-all-suppliers)
-    - [List all tasks](#list-all-tasks)
-    - [List all orders](#list-all-orders)
-    - [List all menu items](#list-all-menu-items)
-    - [Clear all suppliers](#clear-all-suppliers)
-    - [Clear all tasks](#clear-all-tasks)
-    - [Clear all orders](#clear-all-orders)
-    - [Clear all menu items](#clear-all-menu-items)
-    - [Switch tabs](#switch-tabs)
+* [1 Introduction](#1-introduction)
+  * [1.1 Setting up, getting started](#11-setting-up-getting-started)
+  * [1.2 About Us](#12-about-us)
+  * [1.3 Acknowledgements](#13-acknowledgements)
+* [2 Design](#2-design)
+  * [2.1 Architecture](#21-architecture)
+    * [2.1.1 Main components of the architecture](#211-main-components-of-the-architecture)
+    * [2.1.2 How the architecture components interact with each other](#212-how-the-architecture-components-interact-with-each-other)
+  * [2.2 UI component](#22-ui-component)
+  * [2.3 Logic component](#23-logic-component)
+  * [2.4 Model component](#24-model-component)
+    * [2.4.1 Item](#241-item)
+    * [2.4.2 Supplier & Customer](#242-supplier--customer)
+    * [2.4.3 Task](#243-task)
+    * [2.4.4 Menu](#244-menu)
+    * [2.4.5 Order](#245-order)
+  * [2.5 Storage component](#25-storage-component)
+  * [2.6 Common classes](#26-common-classes)
+* [3 Implementation](#3-implementation)
+  * [3.1 AddXYZCommand](#31-addxyzcommand)
+  * [3.2 DeleteXYZCommand](#32-deletexyzcommand)
+  * [3.3 EditXYZCommand](#33-editxyzcommand)
+  * [3.4 FindXYZCommand](#34-findxyzcommand)
+  * [3.5 ListXYZCommand](#35-listxyzcommand)
+  * [3.6 SortXYZCommand](#36-sortxyzcommand)
+  * [3.7 ClearXYZCommand](#37-clearxyzcommand)
+  * [3.8 TabCommand](#38-tabcommand)
+  * [3.9 HelpCommand](#39-helpcommand)
+  * [3.10 ExitCommand](#310-exitcommand)
+* [4 Appendix](#4-appendix)
+  * [4.1 Documentation, logging, testing, configuration, dev-ops](#41-documentation-logging-testing-configuration-dev-ops)
+  * [4.2 Product scope](#42-product-scope)
+  * [4.3 User stories](#43-user-stories)
+  * [4.4 Use cases](#44-use-cases)
+  * [4.5 Non-Functional Requirements](#45-non-functional-requirements)
+  * [4.6 Glossary](#46-glossary)
+  * [4.7 Planned Enhancements](#47-planned-enhancements)
+  * [4.7 Instructions for manual testing](#47-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Adding a supplier](#adding-a-supplier)
+    * [Adding a task](#adding-a-task)
+    * [Adding an order](#adding-an-order)
+    * [Adding a menu item](#adding-a-menu-item)
+    * [Editing supplier](#editing-supplier)
+    * [Editing task](#editing-task)
+    * [Editing order](#editing-order)
+    * [Editing menu item](#editing-menu-item)
+    * [Find supplier](#find-supplier)
+    * [Find task](#find-task)
+    * [Find order](#find-order)
+    * [Find menu item](#find-menu-item)
+    * [Delete supplier](#delete-supplier)
+    * [Delete task](#delete-task)
+    * [Delete order](#delete-order)
+    * [Delete menu item](#delete-menu-item)
+    * [Sort task](#sort-task)
+    * [Sort order](#sort-order)
+    * [List all suppliers](#list-all-suppliers)
+    * [List all tasks](#list-all-tasks)
+    * [List all orders](#list-all-orders)
+    * [List all menu items](#list-all-menu-items)
+    * [Clear all suppliers](#clear-all-suppliers)
+    * [Clear all tasks](#clear-all-tasks)
+    * [Clear all orders](#clear-all-orders)
+    * [Clear all menu items](#clear-all-menu-items)
+    * [Switch tabs](#switch-tabs)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -463,7 +460,8 @@ The user is required to key in at least one keyword to be edited.
 
 The parser for `edit` command parses and extracts out the arguments corresponding to each particular field.
 
-The following activity diagram summarizes what happens when the user executes the `edit` command.
+The following activity diagram summarizes what happens when the user executes the `edit` command. 
+(The rake symbol used in the Figure 17: Edit Command Activity Diagram has been implemented with reference to [this forum](https://forum.plantuml.net/195/is-there-any-support-for-subactivity-or-the-rake-symbol).)
 
 <p align="center">
   <img src="images/EditCommandActivityDiagram.svg" width="500" />
@@ -955,7 +953,8 @@ Our application:
 ## 4.7 Planned Enhancements
 
 **1.** Ensure all the commands follow the standard format so that it is easier for the user to remember.<br>
-Currently, some commands do not follow this format, such as `find_supplier` where it is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
+Currently, some commands do not follow the standard format which requires a prefix in front of each parameter. 
+For instance, `find_supplier` is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
 The format is shown below.
   <div style="background-color:silver; font-weight:bold">
    <span style="color:darkblue">&lt;command&gt;</span>
@@ -966,19 +965,36 @@ The format is shown below.
   </div>
   <br>
 
-**2.** Provide better error messages for commands.<br>
-Currently, some commands do not show a comprehensive error message to display what the user has done.<br>
-For example some command return a success message of `Edited task: task`. We suggest a more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
+**2.** Provide better success messages for edit commands.<br>
+Currently, the edit commands shows ambiguous success or error messages to the user.<br>
+For example editing a task return the success message, `Edited task: task`. 
+We suggest a clearer and more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
 Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
+
+Proposed implementation: 
+Currently, all the EditXYZCommand extends from the EditItemCommand and uses the success message format (`Edited %s: %1$s`) defined in EditItemCommand class.
+When an edit command is executed successfully, we generate the success message by replacing `%s` with the item type and `%1$s` with the string representation of the edited item object.
+We plan to change the format of the success message (by replacing `%1$s` to `%s`) to print out the entire string of <TASK DATA> instead of only printing out the first word which is the item name.
 
 **3.** Fix error messages for commands.<br>
 Currently, some commands have an issue with their error message.<br>
-For example, if there is a duplicate from this command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`, the error message should be `This Order already exists in the order list`. However, this error message is shown now `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`.
+For example, if there is a duplicate from this command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`, 
+the error message should be `This Order already exists in the order list`. 
+However, currently, this error message is shown instead: `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`.
 
-**4.** Improve validity checks.<br>
-Currently, there is no comprehensive validity check for some of our parameters, which might result in bugs shown within the application.<br>
-For example, profit and cost should be limited within `1000` or else there might be an issue with the calculation if the user keys in an obsessive number for them.
-For example, name should contain at least a few alphabets `Vanilla Cake 2002` and not be solely numeric `1234`.
+**4.** Improve validity checks for menu item's `PRICE` and `COST`.<br>
+Currently, there is no comprehensive validity check for these two parameters, which might result in bugs shown within the application.<br>
+Both `ItemSellingPrice` class (which represents the `PRICE` and `ItemCost` class (representing the `COST`) extends from the `ItemPrice` class (as seen in this [Class Diagram](#244-menu)).
+Thus, both `PRICE` and `COST` are checked with the same `ItemPrice::isValidPrice(String)` method.
+We plan to improve on this feature flaw by modifying this `isValidPrice(String)` method to check and limit the price and cost entered to be `1000` or less, 
+so as to prevent a situation where an issue with the calculation occurs when excessively large numbers are keyed in.
+
+**5.** Improve validity check for order's and task's `DEADLINE`.<br>
+Currently, the validity check for deadlines is not strict enough.
+For example, users are able to enter deadlines that are far away in the past like `01/01/1800`.
+Therefore, we plan to improve on this by only allowing users to key in deadlines that falls within the past 10 years.
+Since both `OrderDeadline` and `TaskDeadline` extends the common class `Deadline` and `Deadline::isValidDeadline` is used to check the validity of both parameters,
+we plan to simply tweak the implementation of `Deadline::isValidDeadline` for stricter checks on deadlines entered.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -70,6 +70,7 @@ public class TestUtil {
         return model.getFilteredSupplierList().get(index.getZeroBased());
     }
 
+    //@@author chongweiguan-reused
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -99,12 +100,14 @@ public class TestUtil {
         public Path getTrackrFilePath() {
             throw new AssertionError("This method should not be called.");
         }
+        //@@author
 
         @Override
         public void setTrackrFilePath(Path trackrFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author liumc-sg-reused
         @Override
         public <T extends Item> void setItemList(ModelEnum modelEnum) {
             throw new AssertionError("This method should not be called.");
@@ -144,11 +147,14 @@ public class TestUtil {
         public void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum) {
             throw new AssertionError("This method should not be called.");
         }
+        //@@author
 
+        //@@author chongweiguan-reused
         @Override
         public ReadOnlySupplierList getSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
+        //@@author
 
         @Override
         public ObservableList<Supplier> getFilteredSupplierList() {
@@ -164,6 +170,7 @@ public class TestUtil {
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
+        //@author
 
         @Override
         public void sortFilteredTaskList(Comparator<Task> comparator) {
@@ -180,15 +187,18 @@ public class TestUtil {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ReadOnlyOrderList getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
+        //@@author
 
         @Override
         public ObservableList<Order> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
+        //@author
 
         @Override
         public void sortFilteredOrderList(Comparator<Order> comparator) {

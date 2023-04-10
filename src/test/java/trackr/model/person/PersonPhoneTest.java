@@ -7,6 +7,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author liumc-sg-reused
 public class PersonPhoneTest {
 
     @Test
@@ -52,6 +53,7 @@ public class PersonPhoneTest {
         assertFalse(personPhone.equals(1)); //different type
     }
 
+    //@@author liumc-sg
     @Test
     public void hashCode_success() {
         String phone = "123";

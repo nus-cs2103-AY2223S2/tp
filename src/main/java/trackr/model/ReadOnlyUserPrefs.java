@@ -11,6 +11,7 @@ public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
 
+    //@@author
     Path getTrackrFilePath();
 
 }

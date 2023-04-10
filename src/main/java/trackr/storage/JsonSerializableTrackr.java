@@ -83,6 +83,7 @@ class JsonSerializableTrackr {
                 .collect(Collectors.toList()));
     }
 
+    //@@author liumc-sg-reused
     /**
      * Converts this trackr into the model's {@code SupplierList} object.
      *
@@ -117,6 +118,7 @@ class JsonSerializableTrackr {
         return taskList;
     }
 
+    //@@author changgittyhub-reused
     /**
      * Converts this trackr into the model's {@code Menu} object.
      *
@@ -134,6 +136,7 @@ class JsonSerializableTrackr {
         return menu;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Converts this trackr into the model's {@code OrderList} object.
      *
@@ -150,5 +153,5 @@ class JsonSerializableTrackr {
         }
         return orderList;
     }
-
+    //@@author
 }

@@ -30,6 +30,7 @@ import trackr.testutil.TaskPredicateBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
+//@@author liumc-sg-reused
 public class FindTaskCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
