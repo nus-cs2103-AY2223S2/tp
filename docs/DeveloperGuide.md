@@ -1121,7 +1121,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.4 Non-Functional Requirements
 
 1. Performance: The system shall respond to user input within 0.1 seconds. 
-2. Performance: The system should be able to hold up to 1000 users without a noticeable sluggishness in performance.
+2. Performance: The system should be able to hold up to 1000 entries without a noticeable sluggishness in performance.
 3. Compatibility: The system shall be compatible to operating systems with java 11 runtime (e.g. Windows, MacOS, Linux). For MacOS users specifically, **OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)** is required.
 4. Usability: The system shall have a user interface that is intuitive and easy to use, with a learning curve of no more
    than 2 hours for a new user.
