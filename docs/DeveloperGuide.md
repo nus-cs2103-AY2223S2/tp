@@ -539,7 +539,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | edit status of a task to in progress                             | keep track of tasks that I have begin doing               |
 | `* * *`  | SoC Student who knows Vim | edit status of a task to completed                               | keep track of tasks that I have completed                 |
 | `* *`    | SoC Student who knows Vim | edit a task’s title, deadline and/or  label                      | change the details if added wrongly                       |
-| `* * *`  | SoC Student who knows Vim | delete a task                                                    | remove tasks that I no longer want to track               |
+| `* * *`  | SoC Student who knows Vim | delete a task                                                    | remove the tasks that I no longer want them to exist in my task planner |
 | `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                     | delete the details if no longer needed                    |
 | `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords | find all task with the same keyword                       |
 | `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level            | view tasks with higher priority to complete them first    |
