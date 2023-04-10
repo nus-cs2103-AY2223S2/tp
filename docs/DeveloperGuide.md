@@ -110,7 +110,7 @@ title: Developer Guide
      * [Organise and confirm meetings](#organise-and-confirm-meetings)
      * [Cancel scheduled meetings](#cancel-scheduled-meetings)
    * [Glossary](#glossary)
-   * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+   * [More Information on Documentation, Logging, Testing, Configuration and Dev-ops](#more-information-on-documentation-logging-testing-configuration-and-dev-ops)
 
 # **1. Introduction**
 
