@@ -282,16 +282,16 @@ For demonstration purposes, the following is the Activity Diagram when a `Entity
 
 
 For more information about interacting with the tabs using hotkeys, please refer to the
-[Hotkeys with UiEvents](#hotkeys-with-uievents) section.
+[Hotkeys with UiEvent](#hotkeys-with-uievents) section.
 
 
 ## Keyboard Interaction
 
-### Hotkeys with UiEvents
+### Hotkeys with UiEvent
 
-UiEvents is an abstraction of keyboard events that can trigger changes in
+`UiEvent` is an abstraction of keyboard events that can trigger changes in
 user interface or perform some action. These keyboard events are handled by
-UiEvent handlers that are bundled together within the `UiEventManager` class.
+`UiEvent` handlers that are bundled together within the `UiEventManager` class.
 
 <div markdown="span" class="alert alert-info">
 :information_source: We will occasionally refer to each of these event handlers as a `Key`
@@ -801,7 +801,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
 
-*{More to be added}*
 
 ## Glossary
 
