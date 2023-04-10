@@ -8,8 +8,7 @@ title: Jishnu's Project Portfolio Page
 Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
 Given below are my contributions to the project.
 
-#### Code contributed:
-[Link to code dashboard](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jishnu28&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+#### [Code contributed](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jishnu28&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 #### Enhancements implemented:
 1. Implemented the **flight class** to model the flight resource
