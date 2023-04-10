@@ -134,6 +134,8 @@ The `Model` component
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
+</div>
+
 Here are some more details on how `Overview` is designed:
 
 <img src="images/OverviewClassDiagram.png" width="450" />
@@ -150,8 +152,6 @@ Overall, we have this flow:
 1. Doing so will create a new `XYZAnalyst` object with the given `Person` list as the input.
 1. Upon instantiation of `XYZAnalyst`, the input list is sorted into `DataBin` objects.
 1. The summary of the data can then be obtained.
-
-</div>
 
 ### Storage component
 
@@ -410,7 +410,7 @@ Step 1. The user launches the application and executes the `sort n/` command to 
 
 Step 2. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `sort` command word, passes the argument `n/` to the `SortCommandParser`.
 
-Step 3. `SortCommandParser#parse()` is called. Detecting the `n/` argument, it constructs a `SortCommand` with a `PersonNameComparator` and sort type `“NAME”` as arguments. (The equivalents for sorting by age `a/` and date `d/` are the `PersonAgeComparator` and `PersonDateComparator` respectively.)
+Step 3. `SortCommandParser#parse()` is called. Detecting the `n/` argument, it constructs a `SortCommand` with a `PersonNameComparator` and sort type `"NAME"` as arguments. (The equivalents for sorting by age `a/` and date `d/` are the `PersonAgeComparator` and `PersonDateComparator` respectively.)
 
 Step 4. `SortCommand#execute()` will sort a copy of the filtered list `toSort`. `Model#sort(toSort)` will then update the new sorted list in the Model.
 
@@ -529,19 +529,62 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-Step 1. placeholder
+The overview feature's functionality can be split into two portions:
+* Changing the overview type
+* Automatically updating the overview
+
+The former is an active command call, and is facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `OverviewCommandParser#parse()`, `OverviewCommand#execute()`, and `Model#setOverview()` methods.
+
+The latter is passive behaviour, and is largely facilitated by the `Model#getOverview()` and `OverviewDisplay#updateOverviewDisplay()`methods, called after every successful command.
+
+Both of these `Model` methods are implemented in `ModelManager`. These access implementations of the `Overview` and `Analyst` interfaces and the `DataBin` class, where most of the functionality resides.
+
+Unlike other commands, the GUI display of the overview is maintained by the `OverviewDisplay` class, which represents the overview panel (on the right hand side of the window) and holds many `DataBinCard` instances, similar to how `PersonListPanel` carries `PersonCard` instances.
+
+Given below is an example usage scenario for the active functionality and how the overview mechanism behaves at each step.
+
+It would be helpful to note that `DengueHotspotTrackerParser#parseCommand()` is called from `LogicManager#execute()`, which is in turn called from `MainWindow#executeCommand()` when the user inputs a command via the CLI. However, for the sake of brevity, we will only focus on the path and parts of interest.
+
+Step 1. The user executes the `overview a/` command to change the overview to split the data based on age group.
+
+Step 2. `LogicManager#execute()` sends this input to `DengueHotspotTrackerParser#parseCommand()`, which parses the full command.
+
+Step 3. `DengueHotspotTrackerParser#parseCommand()` detects the `overview` command word and passes the argument `a/` to the `OverviewCommandParser`.
+
+Step 4. `OverviewCommandParser#parse()` is called. Detecting the `a/` argument, it constructs an `OverviewCommand` with a new empty `AgeOverview` and overview type `"AGE"` as arguments.
+
+Step 5. `OverviewCommand#execute()` calls `ModelManager#setOverview()` and changes the `Overview` stored in `ModelManager` to the empty `AgeOverview` instance.
+
+The following sequence diagram shows how the active overview operation works:
+
+<>
+
+We continue with this example to show the passive functionality.
+
+Step 6. Next, `LogicManager#getOverview()` calls `ModelManager#getOverview()`.
+
+Step 7. `Overview#update()` updates the new empty `AgeOverview` (or whichever `Overview` instance is present) with the current filtered list of `Person` instances in `ModelManager`.
+
+Step 8. `AgeOverview` creates a new `AgeAnalyst` instance with this list. This begins the construction of a list of new empty `DataBin` instances, and the list of `Person` instances is iterated through to fill up the matching `DataBin` via `DataBin#addPerson()`.
+
+Step 9. This `AgeOverview` is then passed back to `MainWindow`, and `OverviewDisplay#updateOverviewDisplay()` updates the GUI's display with the appropriate title, subtitle, and contents from the `AgeOverview`.
+
+Once again, the following sequence diagram shows how the passive overview operation works:
+
+<>
+
 
 #### Design considerations
 
-**Aspect: xxx**
+**Aspect: How to store the overview bins**
 
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+* **Alternative 1:** As an `ObservableList` in `Model`.
+    * Pros: Streamlines updating the GUI since it complements JavaFX's `ListView`. Theoretically much faster.
+    * Cons: Updating bins is not as trivial as updating a list of `Person` objects, especially when many changes happen at once, due to the layers of computation; this will either require further (otherwise unnecessary) abstraction and multiple layers of `Observable` structures, or 'refreshing' all the entries in the `ObservableList` after every command, which negates any speed/elegance benefit. Also requires more housekeeping when the overview type changes, since the object reference will likely be changed as well.
 
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+* **Alternative 2 (current choice):** As an object that contains a normal `List`.
+    * Pros: Far simpler and safer to implement. Easier to update entries and titles as they can be stored in the same non-final `Overview` instance.
+    * Cons: Inefficient and not very elegant - the entire list must be rebuilt after every command, all the way down to the `DataBin` layer.
 
 ### Import/export/checkout features
 
