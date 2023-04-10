@@ -6,8 +6,9 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
-participant ":cr:CommandResult" as CommandResult LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 participant ":EditInternshipDescriptor" as Descriptor LOGIC_COLOR
+participant "<<class>> \n EditCommand" as ClassEditCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -52,13 +53,22 @@ deactivate InternBuddyParser
 
 LogicManager -> EditCommand : execute()
 activate EditCommand
-EditCommand -> Descriptor
-activate Descriptor
-Descriptor --> EditCommand : edited
-deactivate Descriptor
-Descriptor -[hidden]-> EditCommand
-destroy Descriptor
+EditCommand -> ClassEditCommand : createEditedInternship(toEdit, editInternshipDescriptor)
+activate ClassEditCommand
+ClassEditCommand -->EditCommand :edited
+deactivate ClassEditCommand
+'EditCommand -> Descriptor
+'activate Descriptor
+'Descriptor --> EditCommand : edited
+'deactivate Descriptor
+'Descriptor -[hidden]-> EditCommand
+'destroy Descriptor
 EditCommand -> Model : setInternship(toEdit, edited)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+EditCommand -> Model : updateSelectedInternship(edited)
 activate Model
 
 Model --> EditCommand
@@ -74,7 +84,8 @@ deactivate CommandResult
 EditCommand --> LogicManager : cr
 deactivate EditCommand
 
-[<--LogicManager
+[<--LogicManager : cr
 destroy EditCommand
+destroy Descriptor
 deactivate LogicManager
 @enduml
