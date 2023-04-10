@@ -752,6 +752,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
+**Use case: UC09 - Prescribing medication to a Patient**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User wants to prescribe a patient medication.
+2. MC requests for relevant details required to perform the operation.
+3. User enters the relevant details.
+4. MC prescribes the patient medication.
+5. MC shows the User the result.
+    Use case ends.
+
+**Extensions**
+
+* 3a. User enters the wrong information, but is a valid command accepted by MC
+
+  * 3a1. MC prescribes the incorrect patient medication.
+  
+  * 3a2. MC shows the User the result.
+  
+  * 3a3. User notices the wrong result.
+  
+  * 3a4. User removes the wrong medication (UC10).
+
+    Use case restarts from step 3.
+
+**Use case: UC10 - Removing prescribed medication from Patient**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+1. User wants to remove a prescribed medication from a patient.
+2. MC requests for relevant details required to perform the operation.
+3. User enters the relevant details.
+4. MC removes the prescribed medication from a patient.
+5. MC shows the User the result.
+   Use case ends.
+
+**Use case: UC11 - Calculate the bill for a Patient**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+1. User wants to know the bill of a Patient.
+2. MC requests for relevant details required to perform the operation.
+3. User enters the relevant details.
+4. MC shows the user the Bill.
+   Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. Users cannot view information of unassigned patients
