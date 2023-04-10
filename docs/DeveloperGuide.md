@@ -708,12 +708,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Save data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
+    1. MedInfo will display sample data if data files cannot be found in the data directory.
 
-   1. MedInfo will clear the current data if the data files are corrupted or modified invalidly.
+2. Dealing with corrupted data files
+    1. MedInfo will clear the current data if the data files are corrupted or modified invalidly.
 
-
-
+    
 ---
 
 ## **Appendix: Planned Enhancements**
