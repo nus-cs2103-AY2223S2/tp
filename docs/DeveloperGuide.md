@@ -542,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                     | delete the details if no longer needed                    |
 | `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords | find all task with the same keyword                       |
 | `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level            | view tasks with higher priority to complete them first    |
-| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specific label                       | view all the tasks in the specified categories            |
+| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specified list of labels                       | view all the tasks in the specified categories            |
 | `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                      | view tasks to are not completed                           |
 | `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time   | view all tasks that need to be done before a certain date and time|
 | `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time    | find all tasks that need to be done after a certain date and time|
