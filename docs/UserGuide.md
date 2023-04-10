@@ -319,7 +319,7 @@ First make sure that Bob is shown in the right panel using the View command. In 
 do so.
 
 >**Why is this step necessary?:** Editing only works on the person shown in the info panel. Make sure you are viewing
-> the correct person with the [View command](#2-viewing-a-person) (or with a click) before you enter
+> the correct person with the [View command](#3-viewing-a-personchanging-tabs--view) (or with a click) before you enter
 > the [Edit command](#4-editing-a-person--edit).
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
@@ -340,7 +340,7 @@ As the name suggests, [Edit command](#4-editing-a-person--edit) is capable of ed
 _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update your database as you progress your studies!
 
 **Related:** [Adding a person: `add`](#2-adding-a-person--add),
-[Viewing a person: `view`](#2-viewing-a-person),
+[Viewing a person: `view`](#3-viewing-a-personchanging-tabs--view),
 [Editing a person: `edit`](#4-editing-a-person--edit)
 
 <br>
