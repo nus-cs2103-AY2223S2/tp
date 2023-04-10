@@ -46,6 +46,9 @@ ________________________________________________________________________________
   allowed the FileChooser to be shown during execution of the command, yet still minimising coupling between Ui and 
   Logic components (compared to the alternative of passing the Stage object as a parameter into Logic). 
 
+#### Enhancement to existing features
+* **Filter by module**: The filter command implemented in V1.2 did not have support for filtering by module tags. In 
+  V1.3, the filter command was updated to include filtering by module using the prefix `m/`.
 
 
 ________________________________________________________________________________________________________________________
