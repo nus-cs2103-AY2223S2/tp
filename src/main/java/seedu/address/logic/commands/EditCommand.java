@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.model.Model;
@@ -38,7 +39,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Entity> entities;
+        List<Entity> entities;
         switch (toEditClassification) {
         case "c":
         case "char":
@@ -55,7 +56,7 @@ public class EditCommand extends Command {
         default:
             throw new CommandException("Invalid Classification!");
         }
-        for (Entity entity :entities) {
+        for (Entity entity : entities) {
             if (entity.getName().fullName.equals(toEditName)) {
                 model.setCurrentSelectedEntity(entity);
                 return new CommandResult(MESSAGE_SUCCESS, false, false, UiSwitchMode.VIEW);
