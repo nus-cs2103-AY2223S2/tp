@@ -190,16 +190,41 @@ public class ParserUtil {
      *
      * @param dateTime String of meeting start or end
      * @return meeting dateTime parsed to LocalDateTime
+     * @throws ParseException if the input format is wrong
      */
-    public static LocalDateTime parseDateTime(String dateTime) {
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        //dd-mm-yyyy
         String[] dateTimes = dateTime.split(" ");
+        if (dateTimes.length != 2) {
+            throw new ParseException("Please input a date and time!");
+        }
         String[] date = dateTimes[0].split("-");
+        if (date.length != 3) {
+            throw new ParseException("Date format is DD-MM-YYYY");
+        }
         String[] time = dateTimes[1].split(":");
+        if (time.length != 2) {
+            throw new ParseException("Time format is HH:MM");
+        }
+        try {
+            int day = Integer.parseInt(date[0]);
+            int month = Integer.parseInt(date[1]);
+            int year = Integer.parseInt(date[2]);
+            int startHour = Integer.parseInt(time[0]);
+            int startMinute = Integer.parseInt(time[1]);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException("Please input numbers for date and time!");
+        }
         int day = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
         int year = Integer.parseInt(date[2]);
         int startHour = Integer.parseInt(time[0]);
         int startMinute = Integer.parseInt(time[1]);
+        try {
+            LocalDateTime ldt = LocalDateTime.of(year, month, day, startHour, startMinute);
+        } catch (DateTimeException e) {
+            throw new ParseException(e.getMessage());
+        }
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
     /**
