@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("meetingFind 22/05/2023")
+[-> LogicManager : execute("meetingFind 22-05-2023")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("meetingFind 22/05/2023")
+LogicManager -> AddressBookParser : parseCommand("meetingFind 22-05-2023")
 activate AddressBookParser
 
 create FindMeetingCommandParser
@@ -27,7 +27,7 @@ activate FindMeetingCommandParser
 FindMeetingCommandParser --> AddressBookParser
 deactivate FindMeetingCommandParser
 
-AddressBookParser -> FindMeetingCommandParser : parse(meetingFind 22/05/2023)
+AddressBookParser -> FindMeetingCommandParser : parse(meetingFind 22-05-2023)
 activate FindMeetingCommandParser
 
 
