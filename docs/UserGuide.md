@@ -940,7 +940,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 
 ## 5.2 Editing the data file
 
-* All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
+* All CareFlow data is saved as a JSON <sup>[3](#3)</sup> file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
@@ -1047,6 +1047,11 @@ of it like texting your computer to get it to do things.
 <span id="2">2. Graphical User Interface (GUI) </span>
 <br/>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
+<br/>
+
+<span id="3">3. JavaScript Object Notation (JSON) </span>
+<br/>
+A type of computer file format used to store and exchange data between different software programs.
 <br/>
 
 [🠉 Back to top](#top)
