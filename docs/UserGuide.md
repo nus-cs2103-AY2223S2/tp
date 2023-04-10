@@ -62,8 +62,10 @@ AutoM8 is a desktop application for auto repair shops that combines the efficien
 
 **:information_source: Notes command GUI behaviors:**<br>
 
+* The numbers displayed beside the entity is referring to the entity's id. (e.g. 1. Alex Yeoh, Alex has the Customer id of 1)
 * Using entity specific commands (e.g. commandX, where command is a specific operation such as add, edit, etc and X is a specific entity such as customer, vehicle etc) will help you navigate to the respective tabs (e.g. A successful `addvehicle` command will navigate you to the Vehicles tab)
 * While clicking on individual items in the items list may cause the UI to show that it is highlighted, the current entity shown in the right panel (Details panel) will not reflect what you have selected*. Please use the respective `view` commands in order to view details of a specific entity.
+* Entering incorrectly formatted commands will throw an error message with information on command usage, which explains the correct way to use and format the command for your convenience.
 
 </div>
 
@@ -136,7 +138,7 @@ Format: `addappointment c/CUSTOMER_ID d/DATE t/TIME`
 Example: `addappointment c/5 d/2023-03-05 t/14:00`
 
 #### Assigning a technician to an appointment: `addappointmenttech`
-Adds an existing technician to an exiting appointment.
+Adds an existing technician to an existing appointment.
 
 Format: `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID`
 
@@ -168,8 +170,9 @@ Examples:
 #### Sorting displayed lists: `sort`
 Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param.
 
-Format: `sort(vehicles/customers/parts/appointments/services) by/OBJECT_PARAMS [r/]`
-OBJECT_PARAMS are dependent on which object* and adding `r/` means to reverse the sort direction
+Format: `sort(vehicles/customers/parts/appointments/services) by/ENTITY_PARAMS [r/]`
+ENTITY_PARAMS are dependent on which entity* and adding `r/` means to reverse the sort direction.\
+To see params are available for each entity for sorting, enter `sort(vehicles/customers/parts/appointments/services)` and it will show you the command usage with the params you can sort that entity by.
 
 Examples:
 * `sortcustomers by/id r/`
@@ -250,17 +253,21 @@ Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all the
 
 Removes part from service and transfers it back into global part List.
 
-Format: `removeservicepart n/PART_NAME s/SERVICE_ID q/PART_QTY`
+Format: `removeservicepart s/SERVICE_ID n/PART_NAME q/PART_QTY`
 
-Example: `removeservicepart n/wheels s/2 q/2`
+Example: `removeservicepart s/2 n/Wheels q/2`
 
 #### Unassign technician from service: `removeservicetech`
+
+Removes an existing technician from an existing service.
 
 Format: `removeservicetech t/TECHNICIAN_ID s/SERVICE_ID`
 
 Example: `removeservicetech t/1 s/2`
 
 #### Unassign technician from appointment: `removeappointmenttech`
+
+Removes an existing technician from an existing appointment.
 
 Format: `removeappointment t/TECHNCIAN_ID a/APPOINTMENT_ID`
 
@@ -361,20 +368,20 @@ TO BE UPDATED
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Customer**                                                      | `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addcustomer n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`     |
 | **Add Technician**                                                    | `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addtechnician n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Vehicle**                                                       | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                                  |
+| **Add Vehicle**                                                       | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `addvehicle p/SBA1234A b/Toyota c/1 cl/red t/car`                                                           |
 | **Add Vehicle Part**                                                  | `addpart n/NAME q/Quantity` <br> e.g., `addpart n/Cylinder Head q/50`                                                                                                           |
 | **Add Service**                                                       | `addservice v/VEHICLE_ID d/DESCRIPTION [s/STATUS] [l/SERVICE_LENGTH (days)]`<br> e.g., `addservice v/10 d/standard s/in progress l/5`                                           |
 | **Add Part to Service**                                               | `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY` <br> e.g., `addservicepart s/2 n/Cylinder Head q/20`                                                                       |
 | **Add Technician to Service**                                         | `addservicetech s/SERVICE_ID t/TECHNICIAN_ID` <br> e.g., `addservicetech s/1 t/3`                                                                                               |
 | **Add Customer Appointment**                                          | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`addappointment c/5 d/2023-03-05 t/14:00`                                                                                 |
 | **Add Technician to Appointment**                                     | `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID` <br> e.g., `addappointmenttech a/1 t/2`                                                                                   |
-| **List all Vehicles/Customers/Parts/Appointments**                    | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`, `list`                                                                                                |
+| **List all Vehicles/Customers/Parts/Appointments**                    | `list(vehicles/customers/parts/appointments)`<br> e.g., `listcustomers`, `list`                                                                                                 |
 | **Sort Displayed List**                                               | `sort by/ENTITY_PARAM d/DIRECTION`<br> e.g., `listvehicles` then `sort by/brand d/asc`                                                                                          |
 | **View specific Vehicle/Customer/Service/Appointment/Technician**     | `view(vehicle/customer/service/appointment/technician) ID`<br> e.g., `viewappointment 56`                                                                                       |
 | **Find Vehicle/Customer/Service/Appointment/Technician**              | `find KEYWORD [MORE SPACE SEPERATED KEYWORDS]`<br> e.g., `find toyota car`                                                                                                      |
 | **Edit a specific Vehicle/Customer/Service/Appointment/Technician**   | `edit(vehicle/customer/service/appointment/technician) i/ID [?/PARAM] …​`<br> e.g., `edit customer i/1 p/91234567 e/johndoe@example.com`                                        |
 | **Delete a specific Vehicle/Customer/Service/Appointment/Technician** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                                   |
-| **Unassign Technician from Service/Appointent**                       | `remove(service/appointment)tech t/TECHCICIAN_ID (a//s/)APPOINTMENT/SERVICE_ID`<br> e.g., `removeservicetech s/1 t/2`                                                           | ` 
+| **Unassign Technician from Service/Appointment**                      | `remove(service/appointment)tech t/TECHCICIAN_ID (a//s/)APPOINTMENT/SERVICE_ID`<br> e.g., `removeservicetech s/1 t/2`                                                           | ` 
 | **Remove Part from Service**                                          | `removeservicepart s/SERVICE_ID n/PART_NAME q/PART_QUANTITY`<br> e.g., `removeservicepart s/1 n/wheels q/2`                                                                     |
 | **Get total number appointment on a specified date**                  | `totalAppointment d/DATE` <br> e.g., `totalappointment d/2023-02-03`                                                                                                            |
 | **Undo**                                                              | `undo`                                                                                                                                                                          |
