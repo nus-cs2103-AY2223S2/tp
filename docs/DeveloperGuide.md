@@ -574,7 +574,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file. 
+   
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -607,11 +609,11 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites : User is in the Main Mode and a deck is not selected. 
    
    2. Test case: `addDeck Math`<br>
-      Expected: A new deck `Math` is created and displayed on the list of decks. If there is already a deck called `Math` in the MasterDeck, (case-insensitive)
+      Expected: A new deck `Math` is created and displayed on the list of decks. If there is already a deck called `Math` (case-sensitive) in the MasterDeck, 
                 it throws an error message and does not add the deck into the list.
    
    3. Test case: `addDeck `<br>
-      Expected: No new deck is added to MasterDeck. Error details shown in the status message that deck name cannot be blank.
+      Expected: No new deck is added to MasterDeck. Error details shown in the status message states that deck name cannot be blank.
    
 #### Editing a deck
 
@@ -620,8 +622,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
    
     2. Test case: `editDeck 1 Chemistry`<br>
-       Expected: Edits the name of a deck at the index of 1 on the deck list to be `Chemistry`.
-   
+       Expected: Edits the name of the deck at the index of 1 on the deck list to be `Chemistry`. If there is already a deck called `Chemistry` (case-sensitive) in the MasterDeck, it throws an error message and does not edit the deck.
+
     3. Test case: `editDeck 0 Chemistry`<br>
        Expected: No deck name is edited. Error details shown in the status message.
    
@@ -650,11 +652,11 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
    
     2. Test case: `findDecks science` <br>
-       Expected: Decks that include `science` are shown (case-insensitive).
-   
+       Expected: Decks with names that include `science` are shown (case-insensitive).
+       
     3. Test case: `findDecks science programming` <br>
-       Expected: Decks that include `science` or `programming` are shown (case-insenstive).
-   
+       Expected: Decks with names that include `science` or `programming` are shown (case-insenstive).
+
     4. Test case: `findDecks ` <br>
        Expected: Does not show any specific decks. Error details shown in the status message.
 
@@ -671,8 +673,7 @@ testers are expected to do more *exploratory* testing.
 
 #### Unselecting a Deck
 
-1. Unselecting a deck when a deck is not selected
-
+1. Unselecting a deck when a deck is selected
    1. Prerequisites: User is in the Main Mode and a deck is selected.
    
    2. Test case: `unselectDeck` <br>
@@ -685,8 +686,8 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: User is in the Main Mode and a deck is selected.
    
    2. Test case: `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` <br>
-      Expected: Adds a card to the deck with question `What is gravity?`, answer `A force of attraction between objects due to their mass`, and tag `Easy`. Details of shown in the status message.
-   
+      Expected: Adds a card to the deck with question `What is gravity?`, answer `A force of attraction between objects due to their mass`, and tag `Easy`. Details of added card shown in the status message.
+
    3. Test case: `addCard q\What is gravity?`<br>
       Expected: No card added to the deck. Error details shown in the status message.
    
@@ -732,11 +733,11 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: User is in the Main Mode and a deck is selected. 
    
    2. Test case: `findCards recursion` <br>
-      Expected: Cards that include `recursion` are shown (case-insensitive) 
-   
+      Expected: Cards with questions that include `recursion` are shown (case-insensitive) 
+      
    3. Test case: `findCards recursion loop` <br>
-      Expected: Cards that include `recursion` and `loop` are shown (case-insensitive)
-   
+      Expected: Cards with questions that include `recursion` and `loop` are shown (case-insensitive)
+
    4. Test case: `findCards` <br>
       Expected: No card is shown. Error details shown in the status message.
 
@@ -758,32 +759,30 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `endReview`<br>
-       Expected: User returns to MAIN_SELECTED or MAIN_UNSELECTED mode depending on which mode the user was on previously before entering REVIEW mode.
+       Expected: User returns to Main Mode with a deck selected/unselected depending on what the state of the application was before entering Review Mode.
 
 #### Flipping a Card
 
-1. Flip the current card in review
+1. Flipping the current card in review
 
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `p` (`P` is also a valid command)<br>
        Expected: The card either reveals or hide the answer.
 
-#### Go to previous card
+#### Going to previous card
 1. Go to previous card in review
-
-    1. Prerequisites: User is in Review Mode and current card is not the first card in the review deck.
+    1. Prerequisites: User is in Review Mode.
 
     2. Test case: `[`<br>
-       Expected: Right panel displays the previous card.
+       Expected: Right panel displays the previous card. If  the current card is the first card in the review deck (i.e. no previous card exists), error details shown in the status message.
 
-#### Go to next card
+#### Going to next card
 1. Go to next card in review
-
-    1. Prerequisites: User is in Review Mode and current card is not the last card in the review deck.
+    1. Prerequisites: User is in Review Mode.
 
     2. Test case: `]`<br>
-       Expected: Right panel displays the next card.
+       Expected: Right panel displays the next card. If  the current card is the last card in the review deck (i.e. no next card exists), error details shown in the status message.
 
 #### Tagging a card as easy
 1. Tag a card as easy during review
@@ -791,7 +790,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `l` (`L` is also a valid command)<br>
-       Expected: Tag the card as easy. 
+       Expected: Current card is tagged as easy. 
 
 #### Tagging a card as medium
 1. Tag a card as medium during review
@@ -799,7 +798,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `;`<br>
-       Expected: Tag the card as medium.
+       Expected: Current card is tagged as medium.
 
 #### Tagging a card as hard
 1. Tag a card as hard during review
@@ -807,7 +806,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `'`<br>
-       Expected: Tag the card as hard.
+       Expected: Current card is tagged as hard.
 
 ### Other Testing Commands
 
@@ -818,14 +817,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
    
     2. Test case: `review 1` <br>
-       Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
-   
+       Expected: Starts a review on the deck at the index of 1 on the deck list. If there is no cards in that deck, it throws an error message and does not start a review.
+
     3. Test case: `review 0` <br>
        Expected: Review Mode is not started. Error details shown in the status message.
    
     4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the number of decks) <br>
        Expected: Similar to previous.
-
+    
 #### Setting the limit of cards
 
 1. Setting the limit of cards per review
@@ -839,8 +838,8 @@ testers are expected to do more *exploratory* testing.
        Expected: Resets the limit per review.
    
     4. Test case: `setLimit 0` <br>
-       Expected: Does not set up the limit per review. Error details shown in the status message.
-   
+       Expected: Does not set the limit per review. Error details shown in the status message.
+
     5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
        Expected: Similar to previous.
 
@@ -849,14 +848,14 @@ testers are expected to do more *exploratory* testing.
 1. Opening the help window to display the UG link
 
     1. Test case: `help` <br>
-       Expected: A pop-up window is shown containing a link to UG with a copy button.
+       Expected: A pop-up window is containing a link to UG with a copy button is shown.
 
 #### Exiting the program
 
 1. Exiting the program
 
     1. Test case: `exit` <br>
-       Expected: Exists the program. Window is closed.
+       Expected: Exits the program. Window is closed.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -924,3 +923,7 @@ In order to counter known feature flaws from testing, the following are enhancem
 ### Figure 4.2 Planned Enhancement: GUI with minimum width
 - ![GUI with min width](images/gui_min_width.png)
 
+**5. Support finding keywords in deck name or card question even if there is punctuation or symbol appended**
+- Currently the `findDecks` and `findCards` commands are not able to find keywords in a deck or card if the word has no whitespace separating it from a punctuation. For example, `findCards loop` does not return a card with question `what is a loop?`.
+- The find commands should support this feature as the punctuation does not change the existence of the keyword.
+- Hence, we intend to support this feature in the future.
