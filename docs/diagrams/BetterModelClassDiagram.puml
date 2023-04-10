@@ -20,7 +20,7 @@ Person *-up-> "*" CCA
 Person *-up-> "0..2" Major
 Person *-up-> "*" Remark
 
-Person *--> "1" Name
+Person *--> Name
 Person *--> "0..1" Phone
 Person *--> "0..1" Email
 Person *--> "0..1" Address
