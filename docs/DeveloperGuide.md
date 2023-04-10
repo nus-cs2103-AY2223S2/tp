@@ -416,7 +416,7 @@ Step 1. The user launches the application and executes the `sort n/` command to 
 
 Step 2. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `sort` command word, passes the argument `n/` to the `SortCommandParser`.
 
-Step 3. `SortCommandParser#parse()` is called. Detecting the `n/` argument, it constructs a `SortCommand` with a `PersonNameComparator` and sort type `"NAME"` as arguments. (The equivalents for sorting by age `a/` and date `d/` are the `PersonAgeComparator` and `PersonDateComparator` respectively.)
+Step 3. `SortCommandParser#parse()` is called. Detecting the `n/` argument, it constructs a `SortCommand` with a `PersonNameComparator` and sort type `"NAME"` as arguments. (The equivalents for sorting by age `a/`, postal `p/`, and date `d/` are the `PersonAgeComparator`, `PersonPostalComparator` and `PersonDateComparator` respectively.)
 
 Step 4. `SortCommand#execute()` will sort a copy of the filtered list `toSort`. `Model#sort(toSort)` will then update the new sorted list in the Model.
 
