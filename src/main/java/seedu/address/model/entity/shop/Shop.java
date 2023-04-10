@@ -40,6 +40,8 @@ import seedu.address.model.entity.shop.exception.NoNextStateException;
 import seedu.address.model.entity.shop.exception.NoPrevStateException;
 import seedu.address.model.entity.shop.exception.PartNotFoundException;
 import seedu.address.model.entity.shop.exception.ServiceNotFoundException;
+import seedu.address.model.entity.shop.exception.TechnicianAlreadyAssignedException;
+import seedu.address.model.entity.shop.exception.TechnicianNotAssignedException;
 import seedu.address.model.entity.shop.exception.TechnicianNotFoundException;
 import seedu.address.model.entity.shop.exception.VehicleNotFoundException;
 import seedu.address.model.mapping.AppointmentDataMap;
@@ -530,11 +532,15 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      * @param serviceId id of the service
      * @throws TechnicianNotFoundException if the technician is not found
      * @throws ServiceNotFoundException    if the service is not found
+     * @throws TechnicianAlreadyAssignedException if the technician is already assigned to the service
      */
     public void addTechnicianToService(int techId, int serviceId)
-            throws TechnicianNotFoundException, ServiceNotFoundException {
+            throws TechnicianNotFoundException, ServiceNotFoundException, TechnicianAlreadyAssignedException {
         Technician technician = this.getTechnician(techId);
         Service service = this.getService(serviceId);
+        if (service.getAssignedToIdsSet().contains(techId)) {
+            throw new TechnicianAlreadyAssignedException(techId);
+        }
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         technician.addServiceId(serviceId);
@@ -552,11 +558,15 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      * @param appointmentId id of the appointment
      * @throws TechnicianNotFoundException  if the technician is not found
      * @throws AppointmentNotFoundException if the appointment is not found
+     * @throws TechnicianAlreadyAssignedException if the technician is already assigned to the appointment
      */
     public void addTechnicianToAppointment(int techId, int appointmentId)
-            throws TechnicianNotFoundException, AppointmentNotFoundException {
+            throws TechnicianNotFoundException, AppointmentNotFoundException, TechnicianAlreadyAssignedException {
         Technician technician = this.getTechnician(techId);
         Appointment appointment = this.getAppointment(appointmentId);
+        if (appointment.getStaffIds().contains(techId)) {
+            throw new TechnicianAlreadyAssignedException(techId);
+        }
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         technician.addAppointmentId(appointmentId);
@@ -917,11 +927,15 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      * @param serviceId id of the service
      * @throws TechnicianNotFoundException if the technician is not found
      * @throws ServiceNotFoundException    if the service is not found
+     * @throws TechnicianNotAssignedException if the technician is not assigned to the service
      */
     public void removeTechnicianFromService(int techId, int serviceId)
-            throws TechnicianNotFoundException, ServiceNotFoundException {
+            throws TechnicianNotFoundException, ServiceNotFoundException, TechnicianNotAssignedException {
         Service service = this.getService(serviceId);
         Technician technician = this.getTechnician(techId);
+        if (!service.getAssignedToIdsSet().contains(techId)) {
+            throw new TechnicianNotAssignedException(techId);
+        }
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         technician.removeServiceIds(x -> x == service.getId());
@@ -938,11 +952,15 @@ public class Shop implements ReadOnlyShop, DeepCopy<Shop> {
      * @param appointmentId id of the appointment
      * @throws TechnicianNotFoundException  if the technician is not found
      * @throws AppointmentNotFoundException if the appointment is not found
+     * @throws TechnicianNotAssignedException if the technician is not assigned to the appointment
      */
     public void removeTechnicianFromAppointment(int techId, int appointmentId)
-            throws TechnicianNotFoundException, AppointmentNotFoundException {
+            throws TechnicianNotFoundException, AppointmentNotFoundException, TechnicianNotAssignedException {
         Appointment appointment = this.getAppointment(appointmentId);
         Technician technician = this.getTechnician(techId);
+        if (!appointment.getStaffIds().contains(techId)) {
+            throw new TechnicianNotAssignedException(techId);
+        }
         this.undoStack.push(this.copy());
         this.redoStack.clear();
         technician.removeAppointmentIds(x -> x == appointment.getId());
