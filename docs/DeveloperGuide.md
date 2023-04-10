@@ -67,6 +67,7 @@ It is responsible for
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 [**`Commons`**](#27-common-classes) represents a collection of classes used by multiple other components.
+<div style="page-break-after: always;"></div>
 
 The rest of the App consists of four components.
 
@@ -89,6 +90,7 @@ the person model manager implements the Model interface and is used to keep trac
 
 Each of the other three main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the 
 same name as the Component. The components implement their functionality using a concrete `{Component Name}Manager` class.
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. The components work together as illustrated 
