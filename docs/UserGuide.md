@@ -444,16 +444,15 @@ The `find` and `filter` commands allow you to match keywords or partial keywords
 The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`
 
 > Format: \\
-> `find PREFIX... KEYWORDS...`
+> `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
 
 <h4 style="color:Orange">Filter</h4>
 
 `filter` will also show you those who match with **at least one** of the criteria.
 
 > Format: \\
-> `filter PREFIX... KEYWORDS...`
+> `filter [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
 
-* `PREFIX` refers to the type of details such as name, address, email and so on.
 * Input the parameter like so:
   * Name: `n/`
   * Address: `a/`
@@ -465,11 +464,11 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
   * Tags: `t/`
   * Modules: `m/`
 
-For more details and examples on prefixes, please refer to the [Prefix Summary](#prefix-summary)!
+Please refer to the [Prefix Summary](#prefix-summary) for more details!
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:** 
 
-* Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
+* Using `find` without specifying any fields has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
 * Using `filter` without any `PREFIX`s will result in an empty list!
 </div>
 
