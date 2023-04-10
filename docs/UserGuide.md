@@ -49,7 +49,7 @@ Otherwise, refer to the following steps to get started.
 
 1. The application should look like this. To begin, type in any command in the command box 
 and press Enter to execute it.
-![Ui](images/Ui.png)
+![Ui](images/UiAnnotated.png)
 
 <div markdown="block" class="alert alert-info">
 

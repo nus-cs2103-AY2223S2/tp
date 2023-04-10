@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-W12-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W12-3/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UiAnnotated.png)
 
 # FAid
 FAid is an app adapted from AddressBook 3 to help Financial Advisors manage their clients and meetings.
