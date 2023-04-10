@@ -117,9 +117,9 @@ Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `Timeta
 
 * displays the list of unscheduled jobs
 * gets the unscheduled job list using `Logic` component: `Logic#getUnscheduledDeliveryJobList()`
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 
-Upon calling `MainWindow#handleUnscheduled()`, the diagram below shows how `UnscheduleWindow` is being instantiated by calling `UnscheduleWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+Upon calling `MainWindow#handleUnscheduledTimetable()`, the diagram below shows how `UnscheduleWindow` is being instantiated by calling `UnscheduleWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
 
 ![Sequence Diagram of initialization the Unschedule Window](images/UiSequenceDiagramUnscheduledTimetableWindow.png)
 
@@ -130,9 +130,9 @@ Upon calling `MainWindow#handleUnscheduled()`, the diagram below shows how `Unsc
 
 * displays the list of completed jobs
 * gets the completed job list using `Logic` component: `Logic#getCompletedDeliveryJobList()`
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 
-Upon calling `MainWindow#handleCompleted()`, the diagram below shows how `CompleteWindow` is being instantiated by calling `CompleteWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+Upon calling `MainWindow#handleCompletedTimetable()`, the diagram below shows how `CompleteWindow` is being instantiated by calling `CompleteWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
 
 ![Sequence Diagram of initialization the Complete Window](images/UiSequenceDiagramCompleteWindow.png)
 
