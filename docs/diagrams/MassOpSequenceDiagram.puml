@@ -32,7 +32,7 @@ activate MassOpCommandParser
 MassOpCommandParser --> ElisterParser
 deactivate
 
-ElisterParser --> MassOpCommandParser: parse("tag gay")
+ElisterParser -> MassOpCommandParser: parse("tag gay")
 activate MassOpCommandParser
 
 create Index
@@ -51,6 +51,8 @@ activate TagCommandParser
 
 TagCommandParser --> classAddressBookParser
 deactivate TagCommandParser
+
+classAddressBookParser --> MassOpCommandParser
 deactivate classAddressBookParser
 
 create MassOpCommand
@@ -93,7 +95,7 @@ classAddressBookParser -> TagCommandParser
 activate TagCommandParser
 
 create TagCommand
-TagCommandParser --> TagCommand
+TagCommandParser -> TagCommand
 activate TagCommand
 
 TagCommand --> TagCommandParser
@@ -109,13 +111,17 @@ MassOpCommand -> TagCommand : execute(model)
 activate TagCommand
 TagCommand -> Model : addTag()
 activate Model
+
+Model --> TagCommand
 deactivate Model
+
+TagCommand --> MassOpCommand
 deactivate TagCommand
 
 end
 
 create CommandResult
-MassOpCommand --> CommandResult
+MassOpCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> MassOpCommand
