@@ -38,7 +38,6 @@ title: User Guide
   - [Saving the task list data](#saving-the-task-list-data)
   - [Editing existing task list data](#editing-existing-task-list-data)
   - [Editing existing macro data](#editing-existing-macro-data)
-- [FAQ](#faq)
 - [Command summary](#command-summary)
 
 ## Introduction
@@ -553,13 +552,6 @@ Existing macro data is saved at a JSON file `[JAR file location]/.vimification/m
 If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
 
 </div>
-
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
-
-## FAQ
-
-**Q**: How do I transfer my data to another computer?
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
