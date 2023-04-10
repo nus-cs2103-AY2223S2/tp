@@ -313,7 +313,7 @@ The panel contains all the information of every scheduled meet up with your cont
 ### Command Response Box
 
 The Command Response Box is where EduMate will provide some feedback on the outcome
-of each command you execute (e.g success, invalid format etc).
+of each command you execute (e.g. success, invalid format etc).
 
 The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box)
 , and it is also scrollable for longer command feedback messages.
@@ -931,7 +931,7 @@ What you should see:<br>
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tips on usage**<br>
-* The search is case-insensitive. e.g hans will match Hans
+* The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
