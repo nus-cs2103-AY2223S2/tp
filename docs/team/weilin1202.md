@@ -25,6 +25,7 @@ Given below are my contributions to the project.
 * **Contributions to the Developer Guide**
   * Added implementation details and sequence diagram of the `listevcontact` feature ([\#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68))
   * Added implementation details and activity diagram of the `add` feature ([\#133](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/133))
+  * Added the proposed implementation of planned feature for `Ability to set up a checklist of event's requirements` ([\#133](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/133))
   
 * **Contributions to the User Guide**
   * Added documentation for the features `listevcontact` ([\#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56))
