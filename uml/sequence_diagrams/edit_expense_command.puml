@@ -41,9 +41,9 @@ Command -> Model
 ref over Model
     : Look for matching category in
     : lastShownCategoryList and
-    : retrieve the category list 
+    : retrieve the category list
 end ref
-ref over Model 
+ref over Model
     : Obtain the expense from lastShownExpenseList
     : using the parsed index
     : Create new expense with the new values
@@ -72,7 +72,7 @@ deactivate Model
 Model --> Command
 deactivate Model
 create ":CommandResult" as CommandResult order 1
-Command -> CommandResult 
+Command -> CommandResult
 activate CommandResult #SpringGreen
 CommandResult --> Command
 deactivate CommandResult

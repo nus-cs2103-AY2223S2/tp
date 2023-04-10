@@ -11,11 +11,11 @@ participant ":CommandResult" as CommandResult order 2
 
 [-> FindCommand : execute(model)
 activate FindCommand #LightBlue
-FindCommand -> Model : updateFilteredPersonList(predicate) 
-activate Model 
+FindCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
 deactivate Model
 create CommandResult
-FindCommand -> CommandResult 
+FindCommand -> CommandResult
 
 activate CommandResult #SpringGreen
 CommandResult --> FindCommand
