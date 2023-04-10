@@ -793,14 +793,14 @@ Preconditions: Person is already in FL.
 ### Non-Functional Requirements
 
 1. FriendlyLink should work on Microsoft Windows, macOS, and Linux that has `Java 11` is installed.
-1. FriendlyLink Should be able to hold up to 100 person (elderly and volunteer) without incurring a delay larger than 3 second for any command.
+1. FriendlyLink should be able to hold up to 100 person (elderly and volunteer) without incurring a delay larger than 3 second for any command.
 1. A user with above average typing speed (40wpm) for regular English text (i.e. not code, not system admin commands) should be able to perform at least 75% of use cases faster using commands instead of using the mouse.
 1. FriendlyLink will perform minimal checks on correctness of details entered into FriendlyLink.
 1. FriendlyLink will not be responsible for the privacy and security of the data stored in FriendlyLink.
 1. FriendlyLink will not recover from corrupted data files.
 1. FriendlyLink will only be available in English.
 1. FriendlyLink does not require internet connection to work.
-1. FriendlyLink is meant for VWOs in Singapore to contain information of and pair elderly and volunteers.
+1. FriendlyLink is meant for VWOs in Singapore to contain information of pairs, elderly and volunteers.
 
 --------------------------------------------------------------------------------------------------------------------
 
