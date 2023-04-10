@@ -716,15 +716,15 @@ The code below is a direct quote from the default data file.
 The parameters in the braces indicate which parameter in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
 
 
-- `name`: Represents the student's name. If empty, input`""`. (NAME)
-- `phone`: Represents the student's phone number. If empty, input`""`. (PHONE)
-- `email`: Represents the student's email. If empty, input`""`. (EMAIL)
-- `address`: Represents the student's address. If empty, input`""`. (ADDRESS)
-- `remark`: Represents the remark or notes for a student and can contain the newline character `\n`. If empty, input`""`. (REMARK)
-- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION)
-- `telegram`: Represents the telegram handle of a student. If empty, input`""`. (TELEGRAM)
-- `modules`: Represents an array of modules the student takes. If empty, input`[ ]`. (MODULE)
-- `tagged`: Represents an array of tags the student is labelled with. If empty, input`[ ]`. (TAG)
+- `name`: Represents the student's name. Cannot be empty. (NAME)
+- `phone`: Represents the student's phone number. If the student entry lacks a phone value, omit the "phone" row. (PHONE)
+- `email`: Represents the student's email. If the student entry lacks an email value, omit the "email" row. (EMAIL)
+- `address`: Represents the student's address. If the student entry lacks an address value, omit the entire "address" row. (ADDRESS)
+- `remark`: Represents the remark or notes for a student. If the student entry lacks a remark, input`""` or omit the "remark" row. (REMARK)
+- `education`: Represents the education level of a student. If the student entry lacks an education value, omit the "education" row. (EDUCATION)
+- `telegram`: Represents the telegram handle of a student. If the student entry lacks a telegram value, omit the "telegram" row. (TELEGRAM)
+- `modules`: Represents an array of modules the student takes. If the student entry lacks module values, input `[]`. (MODULE)
+- `tagged`: Represents an array of tags the student is labelled with. If the student entry lacks tags, input `[]`. (TAG)
 
 After making the desired changes, simply save the data file, and re-launch TeachMeSenpai again.
 
