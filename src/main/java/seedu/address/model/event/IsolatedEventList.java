@@ -20,7 +20,7 @@ public class IsolatedEventList {
     }
 
     /**
-     * Gets the total number of event in the isolatedEcent
+     * Gets the total number of event in the isolatedEvent
      * @return the size of the isolatedEvents
      */
     public int getSize() {
