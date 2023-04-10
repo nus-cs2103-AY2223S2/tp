@@ -5,7 +5,7 @@ title: Rishi Chousalkar's Project Portfolio Page
 
 ### Project: Artistic Addressbook
 
-Artistic AddressBook (ArB) is a desktop app for artists, meant to help with efficiently managing clients and project information.
+Artistic AddressBook (ArB) is a desktop app for freelance artists, meant to help with efficiently managing client and project information.
 
 Given below are my contributions to the project.
 
@@ -35,5 +35,8 @@ Given below are my contributions to the project.
     * Improved formatting of prefixes
     * Included aliases and short forms for each command
     * Corrected documentation for some features
+    * Added to the FAQ section
   * Contributions to the [Developer Guide](https://ay2223s2-cs2103t-t14-1.github.io/tp/DeveloperGuide.html)
-    * [TBAS]
+    * Updated the Ui Class Diagram to match new Ui
+    * Added details about the implementation of the deleting features, adding UML diagrams to aid in understanding
+    * Added information to the Appendix: Effort section
