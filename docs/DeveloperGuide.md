@@ -357,7 +357,7 @@ The add patient notes command adds a remark or note as a field to an existing pa
 
 **Design considerations**
 
-We debated on whether we wanted to make the `Remark` field editable but decided against it in the end. 
+We debated on whether we wanted to make the `Remark` field editable but decided against it in the end.
 
 These were the **factors** informing our decision:
 * If we decided to make the field editable, appending any remark to the previous remark would have been easy, but removing any part of the previous remark would be quite difficult without making the command format unnecessarily complex.
@@ -679,11 +679,11 @@ Use case resumes at step 4.
 --------------------------------------------------------------------------------------------------------------------
 
 ### Known feature flaws
-1. `view` command popup: 
+1. `view` command popup:
    * The popup window showing patient information is too small, and needs to be resized manually. Refer: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/109
      * **Proposed solution** : Set minimum size for view command window
    * view popup cannot be closed via the CLI: refer https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/109 for more details.
-     * **Proposed solution** : Add a shortcut to close the popup window. 
+     * **Proposed solution** : Add a shortcut to close the popup window.
    * The popup does not provide a label for each field currently (for example, the user's email is not labelled as "Email:"). Refer: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/114
      * **Proposed solution** : Add labels to the fields in the view command popup
 2. The length of the patient's fields are not limited. If the user inputs an arbitrarily long input for any of the fields, the display of the application will be messed up. Refer: https://github.com/AY2223S2-CS2103T-W12-4/tp/issues/134 for more details.
