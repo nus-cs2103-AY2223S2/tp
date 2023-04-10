@@ -47,14 +47,11 @@ public class UniqueWardList implements Iterable<Ward> {
     }
 
     /**
-     * Initializes new wardlist with default Waiting Room ward with capacity of 10
-     * inside.
-     *
-     * @return New UniqueWardList with default Waiting Room.
+     * Initializes default Waiting Room ward with capacity of 10 inside.
      */
-    public void NewUniqueWardList() {
-        Ward WaitingRoom = new Ward(WAITING_ROOM);
-        internalList.add(WaitingRoom);
+    public void newUniqueWardList() {
+        Ward waitingRoom = new Ward(WAITING_ROOM);
+        internalList.add(waitingRoom);
     }
 
     /**
