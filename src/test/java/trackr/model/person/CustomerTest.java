@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.CustomerBuilder;
 
+//@@author chongweiguan-reused
 public class CustomerTest {
 
     @Test
@@ -33,6 +34,7 @@ public class CustomerTest {
         assertFalse(AMY.isSameItem(editedAmy));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void equals() {
         Customer aliceCopy = new CustomerBuilder(AMY).build();

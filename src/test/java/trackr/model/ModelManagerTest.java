@@ -157,6 +157,7 @@ public class ModelManagerTest {
 
     // ------------------------- Order -------------------------
 
+    //@@author chongweiguan-reused
     @Test
     public void hasOrder_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.ORDER));
@@ -177,6 +178,7 @@ public class ModelManagerTest {
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
     }
+    //@@author
 
     @Test
     public void equals() {

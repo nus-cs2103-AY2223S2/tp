@@ -162,6 +162,7 @@ public interface Model {
 
     // ================================================= Order =================================================
 
+    //@@author chongweiguan-reused
     /**
      * Returns the OrderList
      */
@@ -171,6 +172,7 @@ public interface Model {
      * Returns an unmodifiable view of the filtered order list
      */
     ObservableList<Order> getFilteredOrderList();
+    //@@author
 
     // ===================================================== Menu Item ========================================
 

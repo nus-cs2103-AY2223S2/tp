@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import trackr.commons.util.StringUtil;
 import trackr.model.item.Item;
 
+//@@author chongweiguan-reused
 /**
  * Tests that a {@code Order}'s {@code OrderName} matches any of the keywords given.
  */
@@ -43,6 +44,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
     public Optional<List<String>> getOrderNameKeywords() {
         return Optional.ofNullable(orderNameKeywords);
     }
+
     public void setCustomerNameKeywords(List<String> customerNameKeywords) {
         this.customerNameKeywords = customerNameKeywords;
     }
@@ -50,6 +52,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
     public Optional<List<String>> getCustomerNameKeywords() {
         return Optional.ofNullable(customerNameKeywords);
     }
+
     /**
      * Returns true if any of the fields in the {@code Order} object are present or not.
      *
@@ -66,6 +69,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         }
 
         Order order = (Order) item;
+
 
         boolean isOrderNameMatch;
         boolean isOrderDeadlineMatch;
@@ -145,4 +149,5 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
                 && getOrderStatus().equals(predicate.getOrderStatus())
                 && getOrderDeadline().equals(predicate.getOrderDeadline());
     }
+    //@@author
 }

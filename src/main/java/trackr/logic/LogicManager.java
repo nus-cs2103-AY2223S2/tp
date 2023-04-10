@@ -101,6 +101,7 @@ public class LogicManager implements Logic {
         return model.getFilteredMenu();
     }
 
+    //@@author chongweiguan-reused
     @Override
     public ReadOnlyOrderList getOrderList() {
         return model.getOrderList();
@@ -110,6 +111,7 @@ public class LogicManager implements Logic {
     public ObservableList<Order> getFilteredOrderList() {
         return model.getFilteredOrderList();
     }
+    //@@author
 
     @Override
     public ItemProfit getTotalProfits() {

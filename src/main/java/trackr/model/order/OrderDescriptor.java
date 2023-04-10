@@ -9,6 +9,7 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 /**
  * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the order.
  */
@@ -110,8 +111,6 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
         return Optional.ofNullable(orderItem);
     }
 
-
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -135,5 +134,5 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
                 && getCustomerPhone().equals(orderDescriptor.getCustomerPhone())
                 && getCustomerName().equals(orderDescriptor.getCustomerName());
     }
-
+    //@@author
 }

@@ -5,10 +5,10 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 /**
  * A utility class to help with building Customer objects.
  */
-//@@author chongweiguan-reused
 public class CustomerBuilder {
 
     public static final String DEFAULT_CUSTOMER_NAME = "John Smith";
@@ -64,5 +64,6 @@ public class CustomerBuilder {
     public Customer build() {
         return new Customer(customerName, customerPhone, customerAddress);
     }
+    //@@author
 
 }

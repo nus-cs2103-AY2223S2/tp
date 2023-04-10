@@ -18,7 +18,7 @@ import java.util.List;
 import trackr.model.OrderList;
 import trackr.model.order.Order;
 
-
+//@@author chongweiguan-reused
 /**
  * A utility class containing a list of {@code Order} objects to be used in tests.
  */
@@ -74,5 +74,6 @@ public class TypicalOrders {
     public static List<Order> getTypicalOrders() {
         return new ArrayList<>(Arrays.asList(CHOCOLATE_COOKIES_O, CUPCAKE_O, CARGO_PANTS_O, NIKE_CAP_O));
     }
+    //@@author
 
 }

@@ -21,6 +21,7 @@ import trackr.model.person.Customer;
  */
 public class Order extends Item {
 
+    //@@author chongweiguan-reused
     private static final MenuItem INVALID_MENU_ITEM =
             new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
 
@@ -108,10 +109,10 @@ public class Order extends Item {
         return orderQuantity;
     }
 
-
     public Customer getCustomer() {
         return customer;
     }
+    //@@author
 
     public LocalDateTime getTimeAdded() {
         return timeAdded;
@@ -199,6 +200,7 @@ public class Order extends Item {
         return orderDeadline.compare(otherOrder.getOrderDeadline());
     }
 
+    //@@author chongweiguan-reused
     /**
      * Returns true if both orders have the same name, deadline, quantity and customer
      * This defines a weaker notion of equality between two orders.
@@ -266,4 +268,5 @@ public class Order extends Item {
                 .append(getCustomer());
         return builder.toString();
     }
+    //@@author
 }
