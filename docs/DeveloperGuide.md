@@ -8,6 +8,7 @@ title: Developer Guide
 
 * Table of Contents 
 {:toc}
+<div style="page-break-after: always;"></div>
 
 ## About
 
@@ -23,6 +24,8 @@ This developer guide aims to provide instructions and guidelines for developers 
 effectively use and contribute to this project by explaining design considerations for certain key features. Moreover,
 new developers can use this guide as an entry point for navigating this extensive code base.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
@@ -35,7 +38,8 @@ new developers can use this guide as an entry point for navigating this extensiv
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- 
+<div style="page-break-after: always;"></div>
 
 ## Design
 
@@ -51,6 +55,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -67,7 +72,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `fish delete 1`.
@@ -78,12 +82,14 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -93,7 +99,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainContent`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from a generic abstract `UiPart` class (not shown above) which captures the commonalities between classes that represent parts of the visible GUI.
 
-![Breakdown of MainWindow](images/UiMainWindowLabelled.png)
+<img src="images/UiMainWindowLabelled.png" width="600" />
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -103,7 +109,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Fish`, `Tank`, and `Task` objects residing in the `Model`.
-* does not depend on the `Storage` component, as it does not read or save data to files directly.
+* does not depend on the `Storage` component, as it does not read or save data to files.
 
 #### Displaying Panels
 All information about the fish, tanks, and tasks are displayed in their respective panels. 
@@ -133,6 +139,7 @@ A possible improvement to the way that readings are currently stored is to use a
 This could allow the user to supply their own types of readings (which would be the key of the `HashMap`) and the corresponding values.
 Combining this with the ability to choose which chart to display for each tank would allow for a lot of flexibility in terms of how the user can view their tank readings.
 However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -147,6 +154,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a fish).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("fish delete 1")` API call.
 
@@ -154,6 +162,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FishDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -163,6 +172,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `FishAddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `FishAddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `FishAddCommandParser`, `TaskDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * The 3 main types of `XYZCommandParser` are divided into command parsers for `Fish`, `Tank` and `Task`.
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -177,19 +187,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * the `Task` and `Tank` model is implemented similarly to the `Fish` part of the model.
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Fish` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Fish` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="500" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -201,6 +212,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Feature Implementations
 
@@ -220,9 +232,10 @@ if the various lists.
 
 #### Design considerations:
 * Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
-  * Pros: user can update Reminders without opening the app
+  * Pros: user can update Reminders with commands like other features
   * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
 command, the reminders likely do not need to be updated.
+<div style="page-break-after: always;"></div>
 
 ### FishSortCommand feature
 
@@ -273,6 +286,7 @@ Step 6. `FishSortCommand#execute()` then finally returns and triggers a GUI chan
 * **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
     * Pros: More customization and control over sorting.
     * Cons: Requires a duplicate list to be made each time.
+<div style="page-break-after: always;"></div>
 
 ### TaskAddCommand feature
 #### Motivation
@@ -285,6 +299,7 @@ You are able to specify paramters like:
 * Description
 * Tank Index (to relate task to a tank)
 * Priority Level (Low / Medium / High)
+<div style="page-break-after: always;"></div>
 
 #### How `TaskAddCommand` is executed
 When the command `task add <description>` is invoked it first goes through the main parser `AddressBookParser`, after
@@ -304,8 +319,7 @@ Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the followin
     * Pros: Easy to implement
     * Cons: Not well abstracted. Difficult to implement other task commands in the future like marking / deleting of
     tasks. Will also result in an extremely long parser of all types of commands which may be difficult to maintain.
-
-
+<div style="page-break-after: always;"></div>
 
 ### TankFeedCommand feature
 #### Motivation
@@ -346,91 +360,6 @@ will be created and replace the `Fish`'s `lastFedDateTime` field.
     * Pros: Straightforward behaviour of function, since `TankFeedCommand` sets the `LastFedDateTime` to the current date-time.
     * Cons: Not flexible, may not be useful for future implementations which requires variable settings of date-time.
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th fish in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new fish. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the fish was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the fish being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Documentation, logging, testing, configuration, dev-ops
@@ -442,6 +371,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Requirements
 
@@ -483,8 +413,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | fish keeper | know ammonia levels in fish tanks | adjust the amount at the end of every week |
 | `*` | fish keeper | know nitrate levels in fish tanks | adjust the amount at the end of every week |
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -546,16 +474,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-    *{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 fish, tanks and tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user with average experience of CLI should be able to use the system.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -566,6 +490,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Task**: A weekly task of the user regarding fish-keeping to be added to *Fish Ahoy!*
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 
 ## Appendix: Instructions for manual testing
 
@@ -573,7 +499,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -598,10 +523,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all fish using the `list fishes` command. Multiple fish in the list.
 
    1. Test case: `fish delete 1`<br>
-      Expected: First fish is deleted from the list. Details of the deleted fish shown in the status message.
+      Expected: First fish deleted from the list. Details of deleted fish shown in status message.
 
    1. Test case: `fish delete 0`<br>
-      Expected: No fish is deleted. Error details shown in the status message. Fish panels remains the same.
+      Expected: No fish deleted. Error details shown in status message. Fish panels remains the same.
 
    1. Other incorrect delete commands to try: `fish delete`, `fish delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -637,6 +562,7 @@ testers are expected to do more *exploratory* testing.
 Expected: <br>
 ![expectedReadingFromSample](images/expectedReadingFromSample.png)
 
+
 :exclamation: Warning: If you want to test with more of your own values, you should ensure all 3 types of
 readings come as a set e.g. if any readings were to be made, it would be all 3 and they are made at the same time
 as the app ensures this
@@ -649,6 +575,7 @@ as the app ensures this
    so new ones will be created, containing our sample data.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Planned Enhancements
 
