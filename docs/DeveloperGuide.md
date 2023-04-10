@@ -72,6 +72,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -123,6 +125,7 @@ How the parsing works:
 * When called upon to parse a user command, the `MasterDeckParser` class parse the command differently based on the current mode (`MAIN_UNSELECTED`, `MAIN_SELECTED`, `REVIEW`) of the application and creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCardCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCardCommand`) which the `MasterDeckParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCardCommandParser`, `DeleteCardCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
 ### Model component
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -154,6 +157,7 @@ The `Review`
   * The UI can be bound to this list so that the UI automatically updates when the `Card` in the list changes.
   * The list is always filtered to contain one `Card` at any time.
 
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -269,6 +273,8 @@ The following sequence diagram shows how the addDeck operation works:
 
 ![AddDeckSequenceDiagram](images/AddDeckSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Implementation of `MAIN_SELECTED_MODE` Features
 
 'MAIN_SELECTED_MODE' is the mode of the application when the users have selected a deck, and they are not reviewing any decks.
@@ -292,6 +298,7 @@ The following activity diagram summarizes the action taken when `deleteCard` is 
 
 ![DeleteCardActivityDiagram](images/DeleteCardActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 ### Implementation of `REVIEW_MODE` Features
 A user can enter into the `REVIEW_MODE` to test their knowledge on a deck of cards and optionally filter that deck by the tags of the cards.
 
@@ -368,6 +375,7 @@ Take note:
 - Consequently, both cards must be tagged independently in `MasterDeck` and `Review`.
 - Tagging the card in `Review` is sufficient for changes to appear in UI. 
 
+<div style="page-break-after: always;"></div>
 ### Implementation of UI
 
 The UI consists of the `DeckPanel` on the left and the `CardPanel` on the right, along with `CommandBox` and `ResultDisplay`on the bottom. `CommandBox` and `ResultDisplay` are in fixed positions and do not get shifted around or removed in any use case. 
@@ -551,15 +559,12 @@ For all use cases below, the **System** is the `Powercards` application and the 
 5. The PowerCards program is not expected to determine the correctness of the user’s response
 6. A card should be easily added/deleted in less than 3 commands after opening the program
 7. The data stored by PowerCards should be forward compatible such that old data can still be loaded in newer versions of the program
-8. The maximum character limit of a card text should be [TO BE DETERMINED]
-*{More to be added}*
 
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Deck**: A group of flashcards (cards) of a specific topic
-*{More to be added}*
    
 
 --------------------------------------------------------------------------------------------------------------------
@@ -867,9 +872,7 @@ testers are expected to do more *exploratory* testing.
 <div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
-
 ### Challenges
-
 #### User-friendly UI
 The original AB3 program's list view of persons is not practical for a flashcard application where users need to manage/review decks and cards. In addition, our PowerCards application requires two interfaces for the user: one for managing cards and decks and another for review sessions.
 To address these issues, we implemented a dual panel layout that allows users to view useful information side by side, helping them keep track of their progress and execute commands efficiently. In main mode (deck selected or unselected), the left panel is dedicated to decks while the right panel is dedicated to cards, enabling users to manage both easily.
