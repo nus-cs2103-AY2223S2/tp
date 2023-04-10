@@ -36,7 +36,9 @@ Listed below are my contributions to the project.
           * `add_date`, `remind`
           * `list`
     * Developer Guide:
+        * Added table of contents
         * Added use cases for `add_date` in [#150](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/150)
+        * Added implementation details for `remind` 
 
 * **Community**:
     * Reported bugs and suggestions for other teams in the class : [Team CS2103T-F12-2](https://github.com/benjamin-wee/ped/issues)

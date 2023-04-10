@@ -33,6 +33,7 @@ title: Developer Guide
     - [Delete](#delete-feature)
     - [Revert](#revert-feature)
     - [Revert all](#revert-all-feature)
+    - [Remind](#remind-feature)
     - [Exit](#exit-feature)
     - [Add interview date](#add-interview-date-feature)
       - [Side features](#side-features)
@@ -946,6 +947,33 @@ The result model is saved. A `CommandResult` with execution result message is re
 The `RevertAllFeature` is an enhanced extension for the `RevertFeature`. It provides an execution for the series operations of the `RevertFeatures` at once.
 
 [Go back to Table of Contents](#table-of-contents)
+
+### Remind feature
+This section elaborated the `remind` by its functionality and the path of execution together with the RemindCommand implementation.
+
+#### How Remind Feature is implemented
+The `remind` feature enables users to view the details of the application with the most imminent interview date.
+
+Given below is a step-wise explanation on `remind` mechanism's behaviour.
+
+Step 1. Parsing 
+
+The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `remind`.
+
+Step 2. Execution
+
+`RemindCommand#Execute` is called with a model instance. It directly returns a command result with `showReminder` set to `True`.
+
+Step 3. Result 
+
+A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ResultDialog` displays the execution message for 5 seconds. `MainWindow#handleReminder` handles the remind operation by showing or focusing on the reminder window.
+
+>**NOTE:** <br/>
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
+
+#### Why is it implemented this way
+
+The `RemindFeature` is a good to have feature. Existing reminder window is cleaned-up upon executing commands to prevent multiple windows from clogging up the screen.
 
 ### Exit feature
 This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagram is used to aid this description.
