@@ -785,6 +785,16 @@ file.
 **A:** Mycelium has been developed and tested on Windows, Mac, and Linux (X11)
 operating systems only.
 
+**Q:** For the HotKeys keyboard shortcuts, should I use the 'command' key
+instead of the 'control' key on Mac keyboards?
+<br>
+**A:** For all types of keyboards, the 'control' key should be used for 
+these shortcuts.
+
+**Q:** Can I customise the HotKeys keyboard shortcuts?
+<br>
+**A:** Mycelium does not provide that functionality yet.
+
 ### Troubleshooting
 
 **1. Double-clicking the JAR file does not launch app**
