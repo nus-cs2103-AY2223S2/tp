@@ -805,7 +805,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `deletescore x 0`
       Expected: No score is deleted from the score list of the checked student. Error details shown in the status message.
 
-   4. Test case: Other incorrect delete commands to try:`deletescore`, `deletescore x`, `deletescore x y`, `...` (where y is larger than the checked student's score list size)<br>
+   4. Test case: Other incorrect delete commands to try: `deletescore`, `deletescore x`, `deletescore x y`, `...` (where y is larger than the checked student's score list size)<br>
       Expected: Similar to previous.
 
 2. Deleting a score which is not one of the recent five scores for a student in the student list when the student is being checked
@@ -823,7 +823,7 @@ testers are expected to do more *exploratory* testing.
 1. Checking a student for his/her task list and score list
    
    1. Test case: `check x 1`<br>
-   Expected: The first student in the student list will be checked. Student's task list and score list will then be displaied on the right side of the windows.
+   Expected: The first student in the student list will be checked. Student's task list and score list will then be displayed on the right side of the windows.
    
    2. Test case: `check x 0`<br>
    Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
@@ -831,7 +831,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `check x -10`<br>
    Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
    
-   4. Test case: Other incorrect check commands to try:`check`, `check x`, `check x y`, `...` (where y is larger than the checked student's task list size)<br>
+   4. Test case: Other incorrect check commands to try: `check`, `check x`, `check x y`, `...` (where y is larger than the checked student's task list size)<br>
    Expected: Similar to previous.
    
 2. Check a student for his/her task list and score list after filter
@@ -854,7 +854,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `filter x primary secondary`<br>
    Expected: All students that has `primary` or `secondary` or both tag will be filtered out.
    
-   3. Test case: Other incorrect check commands to try:`filter`, `filter x`, `...`
+   3. Test case: Other incorrect check commands to try: `filter`, `filter x`, `...`
    Expected: The student list will not be filtered. Error details shown in the status message.
 
 ### Switching between score text panel and score chart panel
@@ -868,6 +868,31 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: Click on either the "text" or "chart" tab under score list<br>
    Expected: The panel will be switched.
+
+### Exporting a student's progress
+
+1. Exporting a student's progress using CLI
+
+    1. Test case: `exportp x` (where x is the index of the student being checked) <br>
+       Expected: The student's progress will be exported into a PDF file in the default directory:
+        `<JAR file location>/data`.
+
+    2. Test case: `exportp x p/<CUSTOM_DIRECTORY>` (where x is the index of the student being checked) <br>
+        Expected: The student's progress will be exported into a PDF file in the `<CUSTOM_DIRECTORY>`. 
+
+   3. Test case: Other incorrect check commands to try: `exportp`, `...` <br>
+     Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
+
+2. Exporting a student's progress through mouse click
+
+    1. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Click the "Save" button to save the file.<br>
+       Expected: The student's progress will be exported in the selected folder using the default file name `<STUDENT_NAME>'s Progress Report.pdf`.
+
+   2. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change the file name. Click the "Save" button to save the file.<br>
+      Expected: The student's progress will be exported in the selected folder using the specified file name.
+
+   3. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change to an invalid file name. Click the "Save" button to save the file.<br>
+      Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
 
 ### Saving data
 The data will be automatically saved by MATHUTORING.
@@ -972,3 +997,19 @@ part of the displayed score table.<br>
 
 * To solve this issue, at least two more commands can be created which are `addtag` and `deletetag`.
 * With these new commands, the user will no longer be required to input the existing tags when adding a new tag.
+
+#### 7. Inconsistency in score color in Score Chart and PDF file
+
+There is an inconsistency for score color between score chart and PDF:
+* Score chart:
+  * Green color is used to indicate score values that are greater than or equal to 80.
+  * Yellow color is used to indicate score values that are greater than or equal to 50.
+  * Red color is used to indicate score values that are smaller than 50.
+* PDF:
+  * Green color is used to indicate score values of 100.
+  * Yellow color is used to indicate score values that are smaller than 80.
+  * Red color is used to indicate score values that are smaller than 50.
+
+**Solution proposed:**
+
+* To solve this issue, the criteria for the score color in the PDF file can be changed to follow the criteria of score color in the score chart.
