@@ -160,6 +160,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add patient (`add_patient`) command
+
+**Overview**
+
+Adds a patient to the patient list.
+
+**Implementation**
+
+Steps executed in adding a patient:
+
+1. The user executes `add_patient n/John…` to add a new patient.
+
+2. `AddPatientCommand` checks if the fields are valid and if the patient already exists.
+
+3. `AddPatientCommand` calls `Model#addPatient()`, which adds the patient to the `UniquePatientList`.
+
+4. The application will then save the patient into the `UniquePatientList` and display the patient added.
+
+The sequence diagram below shows how `AddPatientCommand` is parsed:
+
+![Sequence diagram for add patient parser](images/AddPatientParserSequenceDiagram.png)
+
+The sequence diagram below shows how `AddPatientCommand` works:
+
+![Sequence diagram for add patient](images/AddPatientSequenceDiagram.png)
+
+Design considerations:
+
+Instead of having separate commands for adding patients and appointments, we could have a single add command and use it
+to add both patients and appointments as well as any other things we could add to the application in future. However, we
+went with the separate command implementation since:
+* The adding of separate commands was easier to implement.
+* We currently only support adding patients and appointments, for which it would be overkill to implement the other choice.
+* Having a general add command would add too many prefixes to the command, which would be troublesome for both the user and the developer to handle.
+
+Drawbacks of the current implementation:
+* Remembering the different commands for addition might be troublesome for the user.
+
 ### Edit patient (`edit_patient`) command
 
 **Overview**
@@ -173,6 +211,39 @@ The edit command edits a patient in the patient list by first finding the patien
 **Design considerations**
 
 One way to reduce the amount of overhead in each edit command is to store only the relevant changes for each edit command in `EditPatientDescriptor`. This would remove the need to make a copy of every field of the original patient which would save some time. However, this would require `EditCommand#execute()` to have to check for each field's presence, through something like an `Optional`. This would also involve making `Patient` mutable, which would make it difficult to ensure that the patient list stays valid after various commands.
+
+### Add appointment (`add_appt`) command
+
+**Overview**
+
+Adds an appointment to the appointment list. Adding an appointment updates the calendar as well.
+
+**Implementation**
+
+Steps executed in adding a patient:
+
+1. The user executes `add_appt n/John…` to add a new appointment.
+
+2. `AddAppointmentCommand` checks if the fields are valid, if the patient is already exists and if the appointment already exists.
+
+3. `AddAppointmentCommand` calls `Model#addAppointment()`, which adds the appointment to the `UniqueAppointmentList`.
+
+4. The application will then save the appointment into the `UniqueAppointmentList` and display the appointment added and update the calendar.
+
+The sequence diagram below shows how `AddAppointmentCommand` is parsed:
+
+![Sequence diagram for add patient parser](images/AddAppointmentParserSequenceDiagram.png)
+
+The sequence diagram below shows how `AddAppointmentCommand` works:
+
+![Sequence diagram for add patient](images/AddAppointmentSequenceDiagram.png)
+
+Design considerations:
+
+Similar to add patient, instead of having separate commands for adding patients and appointments, we could have a single add command and use it
+to add both patients and appointments as well as any other things we could add to the application in future.
+
+More details have already been discussed in the `add_patient` section.
 
 ### Edit appointment (`edit_appt`) command
 
@@ -255,6 +326,10 @@ The delete appointment command allows the user to delete an existing appointment
 **Design considerations**
 
 We originally wanted to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs. However, we chose to use indexes in a similar fashion to patients so that users would not need to confuse themselves with two different types of commands.
+
+### Remark patient (`remark_patient`) command
+
+**Implementation**
 
 ### Help (`help`) command
 
@@ -482,8 +557,6 @@ Use case resumes at step 4.
   * 1a2. User provides a valid search request.
   * Steps 1a1-1a2 are repeated until a valid search request is provided.
   * Use case resumes from step 2.
-
-![AddRemark](images/RemarkSequenceDiagram.png)
 
 **Use case: UC8 - Add patient appointment**
 
