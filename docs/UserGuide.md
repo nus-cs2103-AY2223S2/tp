@@ -31,6 +31,7 @@ Artistic AddressBook (ArB) is a **desktop application for freelance artists, mea
 1. Open a command terminal ([Windows](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/), [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Terminal%20for%20me-,Open%20Terminal,%2C%20then%20double%2Dclick%20Terminal), [Linux](https://www.makeuseof.com/how-to-open-terminal-in-linux/#:~:text=Use%20Keyboard%20Shortcuts%20to%20Open%20the%20Linux%20Terminal&text=If%20you%20are%20a%20fan,to%20fire%20up%20the%20terminal)).<br>
    Use the [`cd` command](https://www.ibm.com/docs/en/aix/7.1?topic=c-cd-command) to navigate to the folder you placed the jar file in. If you followed the previous example, you can type `cd Desktop/ArB` into the command terminal.<br>
    Then use the `java -jar arb.jar` command to run the application.<br>
+   <div style="page-break-after: always;"></div>
    A window similar to the below should appear in a few seconds. The application will contain some sample data if being opened for the first time.<br>
    ![Ui](images/Ui.png)<br><br>
    Below is the same window annotated to show what each part is for.<br>
@@ -160,6 +161,7 @@ The available client-related commands are:
 * [Finding clients](#finding-clients)
 * [Sorting clients](#sorting-clients)
 
+<div style="page-break-after: always;"></div>
 
 ### Listing all clients
 #### Format: `list-client`
@@ -243,6 +245,8 @@ Short form: `cc`
 
 Deletes all clients in the client list.
 
+<div style="page-break-after: always;"></div>
+
 Note:
 * A client list needs to be shown for this command to be executed successfully.
 
@@ -280,6 +284,8 @@ Short form: `sc`
 
 Sorts the **currently visible** clients by name in ascending order.
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 Original List
@@ -307,6 +313,8 @@ The available project-related commands are:
 * [Sorting projects](#sorting-projects)
 * [Linking a project to a client](#linking-a-project-to-a-client)
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all projects
 #### Format: `list-project`
 
@@ -316,6 +324,8 @@ Lists out all projects and shows the project list. A summary of how many OVERDUE
 Note that an OVERDUE project is also considered as a NOT DONE project.
 
 ![ListProjectExample](images/ListProjectExample.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a project
 #### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
@@ -391,6 +401,10 @@ Note:
 Example:
 * `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
 * `dp 3` deletes the third project in the currently visible project list (if there is one).
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command cannot be undone. A deleted project cannot be restored.
+</div>
 
 ### Marking a project as done
 #### Format: `mark <index>`
@@ -478,6 +492,8 @@ Sorts all **currently visible** projects in ascending order by the specified opt
 Note:
 * Option matching is case-insensitive. E.g. `option/NAME` and `option/Name` is treated the same as `option/name`.
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 Original List:
@@ -493,16 +509,22 @@ Run `sort-project option/name`
 
 This is only applicable if ArB has entered link mode, as instructed in the commands for [adding a project](#adding-a-project) or [editing a project](#editing-a-project).
 
+<div style="page-break-after: always;"></div>
+
 ArB will display a list of clients that match the
 keywords you provided in your command.<br>
 For example, if `add-project name/oil painting client/alice` was entered, you might see something similar to the window below.
 
 ![LinkingExample](images/LinkingExample.png)
 
+<div style="page-break-after: always;"></div>
+
 To choose a client in the displayed list to link to the project, you can enter an index.<br>
 Following from the previous example, if `1` was entered, the project `oil painting` will be linked to the client `Alice Zheng`, as shown in the image below.
 
 ![LinkSuccessful](images/LinkSuccessful.png)
+
+<div style="page-break-after: always;"></div>
 
 Entering `0` will cancel the linking operation, but the previously added or edited project will remain.<br>
 Following from the previous example, if `0` was entered, the project `oil painting` will still be created, but it will not be linked to any client, as shown in the image below.
@@ -515,6 +537,8 @@ Examples:
 
 [<small>Back to top</small>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## Tag commands
 
 ### Listing all tags
@@ -525,6 +549,8 @@ Short form: `lt`
 Lists all tags that exist in the ArB and shows the tag list. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
 
 ![ListTagExample](images/ListTagExample.png)
+
+<div style="page-break-after: always;"></div>
 
 ## General commands
 
@@ -558,6 +584,8 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## **FAQ**
 
