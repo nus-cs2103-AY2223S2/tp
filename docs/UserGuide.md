@@ -139,6 +139,9 @@ New food added: Coca Cola (expires on: 01-01-2099)
 
 ![AddFood](images/UG/AddFood.png)
 
+<div style="page-break-after: always;"></div>
+
+
 ### List all food items: `list`
 
 Shows a list of all food items in WIFE.

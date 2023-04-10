@@ -179,6 +179,8 @@ The `UI` component,
 -   Listens for changes to `Model` data so that the UI can be updated with the modified data.
 -   Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 -   Depends on some classes in the `Model` component, as it displays `Food` object residing in the `Model`.
+- 
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -230,6 +232,8 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/wife/storage/Storage.java)
@@ -247,6 +251,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.wife.commons` package.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
