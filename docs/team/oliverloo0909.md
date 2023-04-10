@@ -56,7 +56,7 @@ Check out my contributions on [RepoSense](https://nus-cs2103-ay2223s2.github.io/
 - Routinely examined and incorporated pull requests submitted by other team members.
 
 ### Documentation:
-* About Us: [\#12](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/20) [\#157](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/157)
+* About Us: [\#12](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/12) [\#157](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/157)
 * User Guide: [\#91](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/91) [\#98](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/98)
 * Developer Guide: [\#52](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/52)
 
