@@ -97,5 +97,11 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
+    /**
+     * Returns the student who is currently being checked.
+     *
+     * @return The student that currently being checked.
+     */
     Student findSelectedStudent();
+
 }

@@ -12,7 +12,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskStatus;
 
 /**
- * An UI component that displays information of a {@code Task}.
+ * A UI component that displays information of a {@code Task}.
  */
 public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
