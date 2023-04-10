@@ -457,7 +457,7 @@ Format: `'`
 
 ### 3.7.1. Viewing Help : `help`
 
-If you are unsure about how to use PowerCard, you can always execute this command.
+If you are unsure about how to use PowerCards, you can always execute this command.
 This command creates a pop-up with a link to this User Guide, where you can access clear and concise instructions for each command and features of the app.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
@@ -498,7 +498,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 **A**: **Yes**, PowerCards automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
-**A**: If you have run PowerCard at least once, there will be a folder named `data` inside the folder you store the application. The save data can be found as `masterdeck.json` in the `data` folder.
+**A**: If you have run PowerCards at least once, there will be a folder named `data` inside the folder you store the application. The save data can be found as `masterdeck.json` in the `data` folder.
 
 **Q**: Can I rename my saved data file?<br>
 **A**: **No**, PowerCards currently only supports the use of `masterdeck.json` as the name of the saved data file.

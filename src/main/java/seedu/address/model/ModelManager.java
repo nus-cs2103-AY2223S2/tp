@@ -43,7 +43,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyMasterDeck masterDeck, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(masterDeck, userPrefs);
 
-        logger.fine("Initializing with PowerCard: " + masterDeck + " and user prefs " + userPrefs);
+        logger.fine("Initializing with PowerCards: " + masterDeck + " and user prefs " + userPrefs);
 
         this.masterDeck = new MasterDeck(masterDeck);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -103,7 +103,7 @@ public class ModelManager implements Model {
         return masterDeck;
     }
 
-    /* ==================================== PowerCard Operations ==================================== */
+    /* ==================================== PowerCards Operations ==================================== */
 
     @Override
     public boolean hasCard(Card card) {

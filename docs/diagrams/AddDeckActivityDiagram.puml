@@ -5,10 +5,10 @@ start
 :User inputs 'addDeck DECK_NAME';
 
 if () then ([Deck name already exists])
-    :PowerCard throws
+    :PowerCards throws
     DuplicateDeckException;
 else ([else])
-    :PowerCard creates and
+    :PowerCards creates and
     displays new deck;
 
 endif
