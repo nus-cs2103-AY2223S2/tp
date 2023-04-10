@@ -7,6 +7,7 @@ participant ":CookHubParser" as CookHubParser LOGIC_COLOR
 participant ":StarCommandParser" as StarCommandParser LOGIC_COLOR
 participant "s:StarCommand" as StarCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -28,6 +29,12 @@ deactivate StarCommandParser
 
 CookHubParser -> StarCommandParser : parse("1")
 activate StarCommandParser
+
+StarCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil --> StarCommandParser : index
+deactivate ParserUtil
 
 create StarCommand
 StarCommandParser -> StarCommand

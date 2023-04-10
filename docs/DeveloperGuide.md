@@ -42,7 +42,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W09-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -55,7 +55,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -88,7 +88,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -96,7 +96,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 `RecipeListPanel`,
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -107,7 +107,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -135,14 +135,14 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, `EditCommandParser`, `FindCommandParser`, `CookHubParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* Stores the address book data i.e., all `Recipe` objects (which are contained in a `UniqueRecipeList` 
+* Stores the recipe book data i.e., all `Recipe` objects (which are contained in a `UniqueRecipeList` 
   object).
 * Stores the currently 'selected' `Recipe` objects (e.g., results of a search query) as a separate _filtered_ 
   list which is exposed to outsiders as an unmodifiable `ObservableList<Recipe>` that can be 'observed' e.g. 
@@ -152,7 +152,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](images/StorageClassDiagram.png)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/recipe/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -164,7 +164,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.recipebook.commons` package.
+Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -175,7 +175,8 @@ This section describes some noteworthy details on how certain features are imple
 ### Add feature
 
 #### What is it?
-The `add` command is a fundamental feature of CookHub and it allows users to easily manage add recipes to their recipe book.
+The `add` command is a fundamental feature of CookHub. It allows users to easily manage add recipes to 
+their recipe book.
 By typing this command with the correct command flags, users can add their own recipes, which contain the title, description, steps, ingredients, and tags.
 
 #### Usage
@@ -206,7 +207,7 @@ application command from the user.
    (i.e. title, description, steps, ingredients) by calling on `ParserUtil`.
 7. `ParserUtil` creates the recipe components and returns it back to `AddCommandParser`.
 8. `AddCommandParser` creates a `Recipe` instance with the recipe components as the parameters.
-9. The newly created `Recipe` instance will then be used to create an `AddCommand`. This command instances
+9. The newly created `Recipe` instance will then be used to create an `AddCommand`. This command instance
    is returned to `LogicManager`.
 10. The `LogicManager` then calls the `execute()` method of the `AddCommand`. 
 11. `AddCommand` then calls the `addRecipe(recipe)` of `Model`.
@@ -221,8 +222,7 @@ The sequence diagram for the `add` command is as shown below:
 #### What is it? 
 The `find` command helps users search recipes according to which component of the recipe they are looking for.
 
-Users can find the application by using the command flags. The command flags specifies signifies which component
-of a recipe you are searching through.
+Users can find the application by using the command flags. The command flags specifies which component of a recipe you are searching through.
 
 
 #### Usage 
@@ -235,7 +235,7 @@ The meaning of each prefix is as shown below:
 - the flag `r/` searches through the entire recipe and its components
 - the flag `t/` searches only through the recipe's title
 - the flag `s/` searches only through the recipe's steps
-- the flag `i/` seaches only through the recipe's ingredient names
+- the flag `i/` searches only through the recipe's ingredient names
 - the flag `tag/` searches only through the recipe's tags
 
 #### Implementation
@@ -281,7 +281,7 @@ The `only` command format is as shown below:
 5. The `CookHubParser` then passes the string input to the `OnlyCommandParser` via the `parse()` method.
 6. The `OnlyCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
 7. An instance of `RecipeIngredientsSubsetPredicate` is created.
-8. An instance of`OnlyCommand()` with `RecipeIngredientsSubsetPredicate` as the parameter
+8. An instance of`OnlyCommand()` with `RecipeIngredientsSubsetPredicate` as the parameter is created.
 9. This `OnlyCommand` is returned to `LogicManager`.
 10. The `LogicManager` then calls the `execute()` method of the `OnlyCommand`. 
 11. The current recipe book is updated by calling `updateFilteredRecipeList(predicate)` on `Model`.
@@ -304,7 +304,7 @@ The `sort` command format is as shown below:
 `sort ORDER`
 
 - *ORDER* can only be `asc` or `desc`.
-- `asc` is used for ascending order, and `desc` is used for descending order
+- `asc` is used for ascending order, and `desc` is used for descending order.
 - The price of a recipe is determined by cost of all ingredients required.
 
 #### Implementation
@@ -314,8 +314,8 @@ is implemented.
 
 The explanation for the diagram in text form is as follows:
 
-If the order is asc, the recipe is sorted in ascending order of price and the sorted list is displayed 
-by the UI. If the order is desc, the recipe is sorted in descending order of price and the sorted list is displayed
+If the order is `asc`, the recipe is sorted in ascending order of price and the sorted list is displayed 
+by the UI. If the order is `desc`, the recipe is sorted in descending order of price and the sorted list is displayed
 by the UI. Otherwise, a ParseException containing a message informing users that the sort order can only be `asc` or `desc`
 will be displayed by the UI.
 
@@ -332,9 +332,8 @@ The `groceries` command format is as shown below:
 
 `groceries RECIPE_NUMBER, ...`
 
-- *ORDER* can only be `asc` or `desc`.
 - If two or more recipes share ingredients, their quantities will be automatically added together.
-- The `indices` have to be separated by a comma (`,`).
+- The `RECIPE_NUMBER`s have to be separated by a comma (`,`).
 
 #### Implementation
 
@@ -400,10 +399,10 @@ The `star` command helps users add a certain recipe to the favorites.
 #### Usage
 The `star` command format is as shown below:
 
-`star INDEX`
+`star RECIPE_NUMBER`
 
-- *INDEX* is the index of the recipe in the current recipe list.
-- *INDEX* can be positive integers only
+- The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
+- The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
 #### Implementation
 
@@ -450,13 +449,6 @@ The `favorites` command format is as shown below:
 
 The sequence diagram for the `favorites` command is as shown below:
 ![FavoritesCommandSequenceDiagram](images/FavoritesSequenceDiagram.png)
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-- Currently, we are not doing data archiving, however that will be in consideration for your future iteration v1.3
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -931,7 +923,7 @@ In the near future, we hope to be able to enhance our application as stated belo
 ## **Appendix: Effort**
 Our team has put in substantial effort into developing this application. Knowing **who** our product is 
 targeted towards and determining **how** our product will meet their needs and solve their challenges are of 
-utmost importance to us. As such, we have developed an extensive list of 31 [user stories](#user-stories) to 
+utmost importance to us. As such, we have developed an extensive list of 30 [user stories](#user-stories) to 
 generate the features we want to include in our application.
 
 From then on, we had to prepare the codebase. An initial challenge we faced was understanding and refactoring the codebase which was complex and 
