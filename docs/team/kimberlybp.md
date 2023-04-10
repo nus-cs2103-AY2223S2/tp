@@ -12,9 +12,8 @@ Given below are my contributions to the project.
   * What it does: Displays the entire list of `Customers`, `Vehicles`, `Services`, `Appointments`, `Technicians` and `Parts` in the app along with their IDs and information overview in the list cards.
   * Justification: This feature provides users with a simple and efficient way to view all available elements in the app. It reduces the time and effort required to navigate the app and search for specific elements.
   * Highlights: The ListXCommands feature enhances the app's usability and accessibility by allowing users to view all available elements in one place.
-  
+
 * **New Feature Enhancements**: Added GUI integrations/behaviours for all features in the app
-  * What it does: The added GUI integrations/behaviors enable users to interact with all features of the app using a graphical user interface, which can include list panels, tabs, detail panels, and other visual elements. 
   * Justification: The addition of GUI integrations/behaviors is an obvious need for users to use/interact with all the functions we implemented for the AutoM8 application. By incorporating graphical user interface elements that align with the underlying command logic, we can provide users with a more intuitive and user-friendly experience, allowing them to easily access and utilize all features of the app.
   * Highlights: The new and enhanced GUI integrations/behaviors allow for a more seamless and efficient user experience, with all features accessible through a unified interface.
 
