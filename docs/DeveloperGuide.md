@@ -571,8 +571,26 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `create tn/Team B t/Python t/ReactNative`<br>
        Expected: No team is created (no team description in command). Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `create`, `create td/Team for upcoming hackathon t/Python t/ReactNative`, `...`<br>
+    1. Other incorrect create commands to try: `create`, `create td/Team for upcoming hackathon t/Python t/ReactNative`, `...`<br>
        Expected: Similar to previous.
+
+### Show teams
+
+1. Show all members under certain teams
+
+    1. Prerequisites: Create two teams with command `create`. Multiple persons in the list. Add person one in team one with command `edit`. Add person two in team one and team two. Add person three in team two.
+
+    1. Test case: `show Name_of_Team_One`<br>
+       Expected: Person one and person two are listed in the person panel on the left. Other people are filtered out.
+
+    1. Test case: `show Name_of_Team_Two`<br>
+       Expected: Person two and person three are listed in the person panel on the left. Other people are filtered out.
+
+    1. Test case: `show Name_of_Team_One Name_of_Team_Two`<br>
+       Expected: Person one, two, three are listed in the person panel on the left. Other people are filtered out.
+
+    1. Other incorrect show commands to try: `show`, `show Name_of_Not_Created_Team`, `...`<br>
+       Expected: Error details shown in the status message.
 
 ### Sorting persons
 
@@ -584,7 +602,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `sort tcount`<br>
        Expected: No sorting occurs (no order in command). Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `sort`, `sort desc`, `...`<br>
+    1. Other incorrect sort commands to try: `sort`, `sort desc`, `...`<br>
        Expected: Similar to previous.
 
 ## Planned Enhancements
