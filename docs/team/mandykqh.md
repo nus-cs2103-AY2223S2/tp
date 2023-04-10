@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=mandykqh&breakdown=true)
 
 * **Project management**:
-  * Contributed to the deliverables for `v1.1` - `v1.4` 
+  * Contributed to the deliverables for `v1.1` - `v1.4`
   * Convened weekly meetings to update team members on the current progress
   * Sought help from team members when in doubt
   * Met all the internal deadlines set by the team
@@ -42,7 +42,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Updated documentation for the commands `appointment`, `deleteAppointment`, and `display`
   * Developer Guide:
-    * Added documentation for user stories 
+    * Added documentation for user stories
     * Updated implementation details for the commands `appointment`, `deleteAppointment`, and `display`
 
 * **Contributions to team-based tasks**:

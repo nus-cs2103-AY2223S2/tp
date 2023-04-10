@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * Planned the team's distribution of work during team meetings
 
 * **Enhancements to existing features**:
-    * Updated the delete command 
+    * Updated the delete command
       * What was changed: The command allowed the user to delete by name in v1.2. This was later change to allow the user to delete by nric in v1.3.
       * Justification: Originally, the delete command deleted the person by index number in the list. This was fine by it can be difficult to search for the person
         if the list becomes very long. The team then decided to delete the person by name in v1.2 initially. In v1.3, the team then decided that we should
