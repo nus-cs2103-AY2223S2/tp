@@ -538,9 +538,11 @@ Events have 4 components to them
 - EndDateTime
 - Recurrence
 
-Events will automatically update to their next earliest occurrence for recurring events and will be automatically grayed out once the event has been passed.
+Events will automatically update to their next earliest occurrence for recurring events.
 
-In the case where an event is supposed to be greyed out (i.e. the time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
+One-time events will be automatically grayed out once the event has been passed.
+
+In the case where a one-time event is supposed to be greyed out (i.e. the time is 2359 and the event is set to end at 2358 on the same day), then inputting any command will update the event to grey.
 
 </div>
 
