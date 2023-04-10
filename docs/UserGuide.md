@@ -297,10 +297,10 @@ Platforms: JobStreet
 If the above format is not followed, an error message will be displayed.
 
 ```ignorelang
-Invalid Command Format!
+Invalid command format!
 add: Adds a listing to the listing book.
 Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORMS]...
-Example: add t/Cool job title d/Informative job description a/John a/Sam
+Example: add t/Cool job title d/Informative job description a/John a/Sam p/LinkedIn
 ```
 
 If a listing with the same title exists, the following error message will be displayed.
