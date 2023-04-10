@@ -62,6 +62,7 @@ More is discussed in our
 Planned Enhancements section.
 </div>
 
+
 * **Project Management**:
     * Recorded meeting minutes during weekly group meetings
     * Managed releases `v1.3` - `v1.3.1` on GitHub
