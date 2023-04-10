@@ -9,9 +9,9 @@ Tuition center admin managing system (TCAMS) is a desktop application designed f
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to filter fields,
+* **New Feature**: Added the ability to filter fields.
   * What it does: allows the user to filter and display tutees by specifying fields and their prefix. (name, phone, email, address, subject, schedule, start time, end time, tags)
-  * Justification: This feature improves the product significantly because a user is able to quickly locate and display tutees and their relevant information when a certain field is given.
+  * Justification: This feature improves the product significantly because a user is able to quickly locate and display tutees and their relevant information when certain field(s) are given.
   * Highlights: The implementation of `FilterCommand` was adapted from `EditCommand` as it required users to specify a prefix of the field together with an input. It takes in a predicate, `FieldContainsKeywordPredicate` which was also adapted from `NameContainsKeywordPredicate` that `FindCommand` uses except that it is enhanced so that it tests every field instead of just the name of the tutee.
   * Credits: Solution adapted from [filter-command](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/commands/FilterCommand.java). I read the code to understand the approach before implementing it myself with the fields customized for the Tutee Managing System.
 
@@ -32,4 +32,3 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reported bugs for other teams during PE-Dry run
-
