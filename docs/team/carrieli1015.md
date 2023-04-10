@@ -9,18 +9,18 @@ MATHUTORING is a desktop application used for private Math tuition teachers to m
 
 Given below are my contributions to the project.
 
-* **New Feature**:
+* **New Features**:
   1. Switch command<br>
       * What it does: Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
       * Justification: This feature is convenient for the user to switch between score text panel and score chart panel.
       * Highlights: Since the switch support both CLI and mouse click. It is important to make the behaviour consistence, so the application need to remember the panel status and switch based on it.
   2. Check command<br>
       * What it does: For the user to check a specific student's task/s and score/s information.
-      * Justification: This feature is important as it indicate which student the user want to check and display the selected student's information.
+      * Justification: This feature is important as it indicates which student the user want to check and display the selected student's information.
       * Highlights: The check result is normally continue to display. The panel will reset to no student being checked when the currently checked student is being deleted/edited, or the entire student list is cleared, or a new student list is being imported in.
   3. Filter command<br>
       * What it does: To filter out student/s from the existing list. Filter key is the tag/s. 
-      * Justification: This feature help the user to quickly filter out a group of students based on their given tags. 
+      * Justification: This feature help the user to quickly filter out a group of students based on their given tag/s. 
       * Highlights: To allow more flexibility, when filter by tag, it is fully case-insensitive.
   4. Score list chart<br>
       * What it does: Created the score list chart to track the student's performance. 
