@@ -433,9 +433,11 @@ Want to tweak the look of ExecutivePro?
 This feature allows you to choose one of two appearances for ExecutivePro to suit your needs.
 
 The `light` theme (black text on light background) improves readability in well-lit surroundings.
+
 ![](images/UserGuide/ThemeCommandLight.png)
 
 The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
+
 ![](images/UserGuide/ThemeCommandDark.png)
 
 Format: `theme THEME_NAME`
@@ -447,7 +449,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">
 
 :warning:
-**Note:** Themes are not kept upon closing ExecutivePro
+**Note:** Themes are not kept upon closing ExecutivePro.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -455,6 +457,8 @@ Examples:
 
 This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
 
+:warning: **Note:**
+The selected image file must be in either the `.png`, `.jpg`, or `.jpeg` file formats.
 
 Format: `setpicture EMPLOYEE_ID`
 
@@ -463,16 +467,29 @@ Format: `setpicture EMPLOYEE_ID`
 * The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-To set the picture for the employee with EMPLOYEE_ID 2, enter `setpicture 2` into the command bar.
+To set the picture for the employee with EMPLOYEE_ID 1, enter `setpicture 1` into the command bar.
 A file selector should appear, as shown below:
+
 ![](images/UserGuide/SetPictureCommand1.png)
 
 Search through your computer for the picture you want to set.
-Select it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+Click on the image in your file explorer to select it,
+then open it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+
 ![](images/UserGuide/SetPictureCommand2.png)
 
 Click on the specified employee on the left, and your ExecutivePro should display their photo on the right like this.
+
 ![](images/UserGuide/SetPictureCommand3.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-warning">
+
+:warning:
+**Note:** If a file not originally in one of the valid file formats is renamed to a valid file format,
+the file may not be properly displayed (e.g. renaming a `example.txt` file to a `example.png`). We encourage you to use an image converter to convert your image to the valid file format,
+before uploading it to ExecutivePro.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
