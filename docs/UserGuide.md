@@ -157,7 +157,7 @@ Here is a quick summary of each GUI component within Docedex.
 | **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
 
 
-### Notes about the GUI (Please Read!)
+### Notes about the GUI
 
 #### Selecting doctors or patients through commands
 
