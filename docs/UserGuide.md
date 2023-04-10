@@ -501,7 +501,7 @@ Format: `list`
 
 #### 4.3.2 Finding applications : `find`
 
-Finds internship applications with information containing any of the given keywords.
+Finds internship applications with information containing any of the given keywords **amongst all existing applications**.
 
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
@@ -519,12 +519,12 @@ Examples:
 
 #### 4.3.3 Sorting applications : `sort`
 
-Sorts internship applications in the order you desire.
+Sorts internship applications in the order you desire. Please refer to the scenarios below to understand 
+how `sort` behaves with different parameters. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 While you can't undo a sort command, if you wish to go back to the default view, you can just use the `list` command.
 </div>
-
 
 Format: `sort SEQUENCE ORDER`
 
@@ -536,19 +536,27 @@ The following table details the parameters to be used with the `sort` command:
 | Order     | Yes        | Must be either `alphabetical` or `deadline`.|
 
 Additional things to note: 
-* `a` and `d` for `SEQEUENCE` refer to **ascending** and **descending** respectively.
-* Currently, there are two orders you can choose for `ORDER`: `alphabetical` and `deadline`
-1. Choosing `alphabetical` will sort applications by their roles in alphabetical order. Should
-   there be multiple application entries with the same role, their company names will be used as a tiebreaker.
-   In the event that there is still a tie (i.e., two applications with same role, same company), then they will be ranked in the order of when they are created;
-   more recently created application entries will be shown higher up in the list.
-2. Choosing `deadline` will display applications with tasks (and therefore, deadlines) only. (Therefore, if you have no applications with no deadlines,
-   an empty list will be displayed.) The applications will be sorted by their task's deadline. Should there be two applications with
-   the same deadline, the application entry that is more recently created will show up higher in the list.
+* `a` and `d` for `SEQUENCE` refer to **ascending** and **descending** respectively.
+* Currently, there are two `ORDER`s you can choose from: `alphabetical` and `deadline`.
+
+**Scenario 1: Sorting current list of applications by role name**
+
+Choosing `alphabetical` will sort applications **currently displayed in the Application List Panel** by their roles in alphabetical order according to the specified sequence. Should
+there be multiple application entries with the same role, their company names will be used as a tiebreaker.
+In the event that there is still a tie (i.e., two applications with same role, same company), then they will be ranked in the order of when they are created;
+more recently created application entries will be shown higher up in the list.
+
+**Scenario 2: Sorting all applications by task deadline**
+
+Choosing `deadline` will retrieve and display **all existing applications with tasks** (and therefore, deadlines). 
+If there are no applications that have tasks associated with them, an empty list will be displayed.
+
+The applications will be sorted by their task's deadline according to the specified sequence. Should there be two applications with
+the same deadline, the application entry that is more recently created will show up higher in the list.
 
 Examples:
-* `sort a deadline` will show only applications with task deadlines. Those with earlier deadlines will be higher up in the list.
-* `sort d alphabetical` will show all applications in descending alphabetical order. (Z to A)
+* `sort a deadline` will fetch and display **all applications with task deadlines**. Those with earlier deadlines will be higher up in the list.
+* `sort d alphabetical` will rearrange **applications currently displayed in the Application List Panel** in descending alphabetical order. (Z to A)
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 

@@ -1425,7 +1425,7 @@ the boundaries of the ApplicationCard. Refer to the following illustrations.
 When a user enters a role name that exceeds a certain length, the last part of the label is truncated and cannot be
 viewed by the user.
 
-![LongRoleName.png](images/LongRoleName.png)
+![LongAndMultipleTags.png](images/LongAndMultipleTags.png)
 
 When a user adds a large number of tags to a single application, or when each tag is excessively lengthy, the display
 of the tags is truncated and cannot be viewed by the user.
@@ -1448,7 +1448,7 @@ are allowed and certain compulsory characters such as `@`.
 
 **Potential Enhancement and Suggested Implementation:** <br>
 We intend to implement our Company Email input validation according to the standard local-part@domain
-![convention](https://en.wikipedia.org/wiki/Email_address). As such, user's may refer to the link for a more comprehensive
+[convention](https://en.wikipedia.org/wiki/Email_address). As such, user's may refer to the link for a more comprehensive
 and explicit explanation of the expected email format.
 
 #### 6. Integer overflow, zero or negative index error message for commands that take in an index (`edit-app`, `edit-task`, `delete-app`, `delete-task`) not specific enough
