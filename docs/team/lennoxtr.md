@@ -2,6 +2,7 @@
 layout: page
 title: Khang Tran's Project Portfolio Page
 ---
+
 #### Table of Contents
 - [Project: Le Tracker](#project-le-tracker)
 - [Summary of Contributions](#summary-of-contributions)
@@ -30,19 +31,19 @@ You can refer to my individual code contribution at this [link](https://nus-cs21
 
 I implemented the exporting and importing features of Le Tracker:
 
-- **Exporting modules**, so that users don't have to worry about losing the data. Users may also want to export modules to a file, which serves as an archive, so that they can keep track of the productivity level and learning process after the semester ends.
+- **Exporting modules**, so that users don't have to worry about losing the data. sers may also want to export modules to a file, which serves as an archive, so that they can keep track of the productivity level and learning process after the semester ends.
 
-- `**Importing modules**, so that users may revise specific concepts from the modules they took. User can also use the feature to track productivity level during a semester. 
+- `**Importing modules**, so that users may revise specific concepts from the modules they previously took. User can also use the feature to track productivity level during a semester. 
 
 To implement said features, an `Archive` class was adapted from AB3's JSONStorage.
 
 #### Documentation
 
 - **User Guide**
-  - Update UG's documentation for the `tag`, `untag` commands 
+  - Update the UG documentation for the `tag`, `untag` commands 
 - **Developer Guide**
-  - Update DG's "Implementation" for `tag`, `untag`, `export`, `import` commands
-  - Update DG's user stories, use cases, and manual testing instructions for the `tag`, `untag`, `export`, `import` commands
+  - Update the DG "Implementation" section for the `tag`, `untag`, `export`, `import` commands
+  - Update the DG user stories, use cases, and manual testing instructions for the `tag`, `untag`, `export`, `import` commands
 
 #### Team-Based Tasks
 
