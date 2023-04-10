@@ -1,8 +1,5 @@
 package seedu.address.model.application;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.InternshipBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_DEUTSCHE_BANK;
@@ -10,6 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_NETWO
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.LINKEDIN;
 import static seedu.address.testutil.TypicalInternships.META;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.InternshipBuilder;
 
 public class InternshipApplicationTest {
     @Test
