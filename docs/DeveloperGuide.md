@@ -223,8 +223,6 @@ For example, consider a parser that tries to parse the string `"foo"`:
 
 The parsing result can be further transformed, using some methods such as `ApplicativeParser#map()` or `ApplicativeParser#flatMap()`.
 
-<!-- insert sequence diagram -->
-
 **Concrete implementation**
 
 The current signature of the wrapped function is:
@@ -235,7 +233,22 @@ private Function<StringView, Optional<Pair<StringView, T>>> runner;
 
 Where `T` is the type of the parsing result.
 
-For example, consider an `ApplicativeParser<Integer>` that tries to parse an integer - given the input sequence `"10"`, the returned container will contain the remaining sequence `""` and the parsing result `10`.
+For example, suppose we have an `ApplicativeParser` that parses an integer:
+
+```java
+ApplicativeParser<String> wordParser = ApplicativeParser.nonWhitespaces1();
+ApplicativeParser<Integer> intParser = wordParser.flatMap(word -> {
+    try {
+        return ApplicativeParser.of(Integer.parseInt(word));
+    } catch (NumberFormatException ex) {
+        return ApplicativeParser.fail();
+    }
+});
+```
+
+Given the input sequence `"10"`, the returned container will contain the remaining sequence `""` and the parsing result `10`.
+
+<img src="images/ApplicativeParserSequenceDiagram.png" width="600" />
 
 The input sequence used (internally) by `ApplicativeParser` is `StringView`, a thin wrapper class representing a slice on a `String`:
 
@@ -265,8 +278,6 @@ public interface CommandParser<T extends Command> { /* implementation details */
 
 Where `T` is the type of the command object returned by the parser.
 
-<!-- insert diagram here -->
-
 **Implementation overview**
 
 `ApplicativeParser` combinators will be combined to create powerful parsers that can recognize different commands.
@@ -288,8 +299,6 @@ Currently, there are 3 kinds of commands in the application:
 - `LogicCommand`: responsible for modifying the internal data.
 - `MacroCommand`: responsible for handling macro-related features.
 - `UiCommand`: responsible for changing the GUI.
-
-<!-- insert diagram here -->
 
 Each kind has a single interface, with a single abstract method:
 
