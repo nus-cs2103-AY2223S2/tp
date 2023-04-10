@@ -734,6 +734,10 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Effort**
 
+- While adding new features, we realized that we needed to rethink some of the existing features. For example, when adding the `filter` feature, we needed to re-think the `find` feature as well since `find` originally only supports full word match (as opposed to partial word match) and only searches for name. To ensure consistency with `filter`, we augmented `find` to support partial word match and enabled it to search through all fields.
+- Navigating the multiple levels of abstraction for AB3 was a challenge as well. Many of us were used to all logic being co-located in the same class or file, but AB3 employed various software engineering best practices such as separation of concerns, abstraction of details, etc. that took some time to understand and modify.
+- Effort in implementing the `importcsv` command was reduced by reusing a library called Opencsv. Our work on adapting Opencsv to our product is contained in class Csv.java.
+
 [Back to Top ↑](#table-of-contents)
 
 ## **Appendix: Planned Enhancements**
