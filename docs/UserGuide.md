@@ -339,9 +339,9 @@ Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` <br>
-Edits the phone number and email address of the 1st person in the existing list to be `91234567`and `johndoe@example.com` respectively.
+Edits the phone number and email address of the 1st person in the existing main list to be `91234567`and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` <br>
-Edits the name of the 2nd person in the existing list to be `Betsy Crower` and clears all existing tags.
+Edits the name of the 2nd person in the existing main list to be `Betsy Crower` and clears all existing tags.
 
 ### Searching for persons by any field : `find`
 
