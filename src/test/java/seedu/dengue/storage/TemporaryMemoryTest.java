@@ -105,7 +105,7 @@ public class TemporaryMemoryTest {
     public void saveMultipleThenUndoFewerTimes_randomNumberOfRandomFiles_loadsCorrectFile()
             throws CommandException {
         Random random = new Random();
-        int numFiles = random.nextInt(10) + 3;
+        int numFiles = random.nextInt(10) + 5;
         for (int i = 0; i < numFiles; i++) {
             this.memory.saveNewLatest(inputs.get(i));
         }
