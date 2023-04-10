@@ -411,6 +411,8 @@ You can use the command syntax to create the criteria, just like the image below
 **Step 2 (Results displayed) :**
 All the employees who satisfy the criteria will be listed.
 ![](images/UserGuide/filterResults.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting an employee : `delete`
 
@@ -438,6 +440,7 @@ The `light` theme (black text on light background) improves readability in well-
 
 The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
 ![](images/UserGuide/ThemeCommandDark.png)
+
 Format: `theme THEME_NAME`
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
@@ -507,7 +510,9 @@ ExecutivePro data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. Advanced users are welcome to update data directly by editing that data file.
+ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. 
+Advanced users are discouraged from updating data directly by editing that data file due to possible 
+inconsistent behaviour.
 
 <div markdown="span" class="alert alert-warning">
 
