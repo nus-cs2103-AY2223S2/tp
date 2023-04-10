@@ -33,29 +33,29 @@ Welcome to the CareFlow user guide! This guide is designed to help you make the 
 
 To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
 
-- Section [1. About this user guide](#1-about-this-user-guide)
+1. Section [1. About this user guide](#1-about-this-user-guide)
     - If you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
 
-- Section [2. Quick Start](#2-quick-start)
+2. Section [2. Quick Start](#2-quick-start)
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
-- Section [3. Overview of features](#3-overview-of-features)
+3. Section [3. Overview of features](#3-overview-of-features)
     - If you want to get a better understanding of CareFlow's main features, head to Section 3, "Overview of
       features". This section provides a explanation of three main feature of CareFlow and how to use them.
 
-- Section [4. Commands](#4-commands)
+4. Section [4. Commands](#4-commands)
     - If you're looking for information on specific command, check out Section 4, "Commands". Here you'll find a detailed explanation of each command and how to use it.
 
-- Section [5. Data Storage](#5-data-storage)
+5. Section [5. Data Storage](#5-data-storage)
     - If you're looking for information on CareFlow's data storage mechanism, check out Section 5, "Data Storage".
 
-- Section [6. FAQ](#6-faq)
+6. Section [6. FAQ](#6-faq)
     - If you have any questions about using CareFlow or running into any issues, take a look at Section 6, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
 
-- Section [7. Command Summary](#7-command-summary)
+7. Section [7. Command Summary](#7-command-summary)
     - If you want a quick reference for all the commands available in CareFlow, head to Section 7, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
-- Section [8. Glossary](#8-glossary)
+8. Section [8. Glossary](#8-glossary)
     - If you come across a term you're not familiar with, the glossary in section 8 is a useful resource. It
       provides clear definitions and explanations for all the terminology used in the user guide.
 
@@ -262,27 +262,29 @@ Throughout this user guide, you may come across different formatting styles and 
          - For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
    </li>
    </ul>
+
    </details>
-   
 6. Type the `java -jar careflow.jar` command into your command terminal and hit <span style="background-color: #6E7373">Enter</span> to run the application. An application similar to the one shown below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
-    <img src="images/UGscreenshots/ug_desc_diagram_001.png" style="zoom:100%">
-  </p>
-  <p align="center">
-    <i>Figure 12. Dark mode user interface with Patient tab opened. </i>
-    </p>
-  <p align="center">
-    <img src="images/UGscreenshots/ug_desc_diagram_002.png" style="zoom:100%">
-  </p>
-  <p align="center">
-    <i>Figure 13. Dark mode user interface with Drug tab opened. </i>
-    </p>
-  <p align="center">
-    <img src="images/UGscreenshots/ug_desc_diagram_003.png" style="zoom:100%">
-    </p>
-  <p align="center">
-    <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
-    </p>
+     <img src="images/UGscreenshots/ug_desc_diagram_001.png" style="zoom:100%">
+   </p>
+   <p align="center">
+     <i>Figure 12. Dark mode user interface with Patient tab opened. </i>
+   </p>
+
+   <p align="center">
+     <img src="images/UGscreenshots/ug_desc_diagram_002.png" style="zoom:100%">
+   </p>
+   <p align="center">
+     <i>Figure 13. Dark mode user interface with Drug tab opened. </i>
+   </p>
+
+   <p align="center">
+     <img src="images/UGscreenshots/ug_desc_diagram_003.png" style="zoom:100%">
+   </p>
+   <p align="center">
+     <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
+   </p>
 
 7. You can now start typing some command into the command box at the bottom and hit <span style="background-color: #6E7373">Enter</span> to execute it. e.g. type in **`g help`** and hit <span style="background-color: #6E7373">Enter</span> will open the help window.<br/>
    <details>
@@ -471,7 +473,7 @@ information in any order that you wish. But do make sure that you have entered a
     * You can scroll through the list of patient, and John Doe should not be present.
 
     <br/>
-
+  
 [↑ Go to Patient Commands](#42-patient-commands)
 <br/>
 
@@ -659,7 +661,7 @@ Use this with command with caution!
     <p align="center">
           <img src="images/UIscreenshots/patientSS/patientList.png" style="zoom:100%">
     </p>
-    <br/>
+<br/>
 
 <div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> &nbsp;p list hellothere </span> &nbsp; or <span style="border-style: solid;"> &nbsp;p list 1234 </span> &nbsp; will not cause errors in the system
 </div>
@@ -777,7 +779,7 @@ ___
 
 <h3>Update storage count of a drug entry</h3>
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry
-  by specifying the trade name.
+by specifying the trade name.
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
@@ -863,7 +865,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:100%">
       </p>
-      <br />
+<br />
 
 [↑ Go to Drug Commands](#43-drug-commands)
 <br/>
@@ -915,7 +917,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
       <p align="center">
             <img src="images/UIscreenshots/drugSS/dview.png" style="zoom:80%">
       </p>
-      <br/>
+<br/>
 
 [↑ Go to Drug Commands](#43-drug-commands)
 <br/>
@@ -938,7 +940,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 
 ## 5.2 Editing the data file
 
-* All CareFlow data is saved as a JSON <sup>[3](#3)</sup> file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
+* All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
@@ -990,7 +992,7 @@ The following are the general commands that are available in Careflow for you to
 | **Exit** | `g exit`        | Saves all data and safely exits.                 |
 
 <p align="center">
-  <i>Table 3. Summary of general commands.</i>
+  <i>Table 4. Summary of general commands.</i>
 </p>
 
 ## 7.2 Patient Commands
@@ -1009,7 +1011,7 @@ The following commands are patient-related commands that are available in Carefl
 | **List patient**            | `p list`                                                                                                                                                                                                                                                                                         | Lists all the patients that have been recorded in CareFlow.                                      |
 
 <p align="center">
-  <i>Table 4. Summary of patient commands.</i>
+  <i>Table 5. Summary of patient commands.</i>
 </p>
 
 ## 7.3 Drug Commands
@@ -1028,7 +1030,7 @@ The following commands are drug-related commands that are available in Careflow 
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                       | Removes all drug records stored in CareFlow                              |
 
 <p align="center">
-  <i>Table 5. Summary of drug commands.</i>
+  <i>Table 6. Summary of drug commands.</i>
 </p>
 
 [🠉 Back to top](#top)
@@ -1045,11 +1047,6 @@ of it like texting your computer to get it to do things.
 <span id="2">2. Graphical User Interface (GUI) </span>
 <br/>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
-<br/>
-
-<span id="3">3. JavaScript Object Notation (JSON) </span>
-<br/>
-A type of computer file format used to store and exchange data between different software programs. It's easy for both people and computers to understand and work with.
 <br/>
 
 [🠉 Back to top](#top)
