@@ -564,9 +564,9 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+### Main Mode
 
-### Selecting a deck
+#### Selecting a deck
 
 1. Selecting a deck on the deck list
 
@@ -578,7 +578,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect `selectDeck` commands to try: `selectDeck`, `selectDeck x`, `...` (where x is larger than the list size) <br>
        Expected: Similar to previous.
 
-### Adding a deck
+#### Adding a deck
 
 1. Adding a new deck of unique name to the MasterDeck
 
@@ -589,7 +589,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `addDeck `<br>
       Expected: No new deck is added to MasterDeck. Error details shown in the status message that deck name cannot be blank.
    
-### Editing a deck
+#### Editing a deck
 
 1. Editing the name of an existing deck
     1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
@@ -600,7 +600,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect `editDeck` commands to try: `editDeck`, `editDeck x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Deleting a deck
+#### Deleting a deck
 
 1. Deleting a deck on MasterDeck
     1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
@@ -608,79 +608,122 @@ testers are expected to do more *exploratory* testing.
        Expected: First deck is deleted from the list. Details of the deleted deck shown in the status message.
    3. Test case: `deleteDeck 0` <br>
       Expected: No deck is deleted. Error details shown in the status message.
-   4. Other incorrect delete commands to try: `deleteDeck`, `deleteDeck x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deleteDeck`, `deleteDeck x`, `...` (where x is larger than the number of decks)<br>
       Expected: Similar to previous.
 
-### Finding a deck
+#### Finding a deck
 
 1. Finding a deck in MasterDeck
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
     2. Test case: `findDecks science` <br>
-       Expected: Decks that include keywords of `science` will be shown (case-insensitive).
+       Expected: Decks that include `science` are shown (case-insensitive).
     3. Test case: `findDecks science programming` <br>
-       Expected: Decks that include keywords of `science` or `programming` will be shown (case-insenstive).
+       Expected: Decks that include `science` or `programming` are shown (case-insenstive).
     4. Test case: `findDecks ` <br>
        Expected: Does not show any specific decks. Error details shown in the status message.
 
-### Showing all decks
+#### Showing all decks
 
 1. Showing all decks in MasterDeck
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
     2. Test case: `showDecks` <br>
-       Expected: All existing decks in MasterDeck will be shown. 
+       Expected: All existing decks in MasterDeck will be shown.
 
-### Starting review
+#### Unselecting a Deck
+
+1. Unselecting a deck when a deck is not selected
+   1. Prerequisites: User is in the Main Mode and a deck is selected.
+   2. Test case: `unselectDeck` <br>
+      Expected: Current deck is unselected.
+
+#### Adding a card
+
+1. Adding a card to the selected deck
+   1. Prerequisites: User is in the Main Mode and a deck is selected.
+   2. Test case: `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` <br>
+      Expected: Adds a card to the deck with question `What is gravity?`, answer `A force of attraction between objects due to their mass`, and tag `Easy`. Details of shown in the status message.
+   3. Test case: `addCard q\What is gravity?`<br>
+      Expected: No card added to the deck. Error details shown in the status message.
+   4. Test case: `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Doable` <br>
+      Expected: No card added to the deck. Error details shown in the status message.
+   5. Other incorrect `addCard` commands to try: `addCard q\ a\A force of attraction between objects due to their mass`, `...`
+      (where either question or answer is blank or missing in the command)
+
+#### Deleting a card
+
+1. Deleting a card at the given index in the selected deck
+   1. Prerequisites: User is in the Main Mode and a deck is selected. The deck is not empty.
+   2. Test case: `deleteCard 1`<br>
+      Expected: First card is deleted from the deck. Details of the deleted card shown in the status message.
+   3. Test case: `deleteCard 0`<br>
+      Expected: No card is deleted. Error details shown in the status message.
+   4. Other incorrect `deleteCard` commands to try: `deleteCard`, `deleteCard x`, `...` (where x is larger than the number of cards)<br>
+      Expected: Similar to previous.
+
+#### Editing a card
+
+1. Editing a card at the given index in the selected deck
+    1. Prerequisites: User is in the Main Mode and a deck is selected. The deck is not empty.
+    2. Test case: `editCard 1 q\What is photosynthesis?` <br>
+       Expected: Edits the question of the first card in the deck. Details of the edited card shown in the status message.
+    3. Test case: `editCard 0 q\What is photosynthesis?` <br>
+       Expected: No card is edited. Error details shown in the status message.
+    4. Other incorrect `editCard` commands to try: `editCard`, `editCard x`, `...` (where x is larger than the number of cards)
+
+#### Finding a card
+
+1. Finding cards in the selected deck with keywords
+   1. Prerequisites: User is in the Main Mode and a deck is selected. 
+   2. Test case: `findCards recursion` <br>
+      Expected: Cards that include `recursion` are shown (case-insensitive) 
+   3. Test case: `findCards recursion loop` <br>
+      Expected: Cards that include `recursion` and `loop` are shown (case-insensitive)
+   4. Test case: `findCards` <br>
+      Expected: No card is shown. Error details shown in the status message.
+
+#### Showing all cards in the deck
+
+1. Showing all cards in the selected deck
+   1. Prerequisites: User is in the Main Mode and a deck is selected.
+   2. Test case: `showCards` <br>
+      Expected: Cards in the deck are shown.
+
+#### Starting review
 
 1. Starting review on a deck
-   1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
-   2. Test case: `review 1` <br>
-      Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
-   3. Test case: `review 0` <br>
-      Expected: Review Mode is not started. Error details shown in the status message.
-   4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the list size) <br>
-      Expected: Similar to previous.
+    1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
+    2. Test case: `review 1` <br>
+       Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
+    3. Test case: `review 0` <br>
+       Expected: Review Mode is not started. Error details shown in the status message.
+    4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the number of decks) <br>
+       Expected: Similar to previous.
 
-### Setting the limit of cards
+#### Setting the limit of cards
 
 1. Setting the limit of cards per review
-   1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
-   2. Test case: `setLimit 10` <br>
-      Expected: Sets the limit per review of 10 cards. 
-   3. Test case: `setLimit none` <br>
-      Expected: Resets the limit per review.
-   4. Test case: `setLimit 0` <br>
-      Expected: Does not set up the limit per review. Error details shown in the status message.
-   5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
-      Expected: Similar to previous.
+    1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
+    2. Test case: `setLimit 10` <br>
+       Expected: Sets the limit per review of 10 cards.
+    3. Test case: `setLimit none` <br>
+       Expected: Resets the limit per review.
+    4. Test case: `setLimit 0` <br>
+       Expected: Does not set up the limit per review. Error details shown in the status message.
+    5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
+       Expected: Similar to previous.
 
-### Opening help window
+#### Opening help window
 
 1. Opening the help window to display the UG link
-   1. Test case: `help` <br>
-      Expected: A pop-up window is shown containing a link to UG with a copy button.
+    1. Test case: `help` <br>
+       Expected: A pop-up window is shown containing a link to UG with a copy button.
 
-### Exiting the program
+#### Exiting the program
 
 1. Exiting the program
-   1. Test case: `exit` <br>
-      Expected: Exists the program. Window is closed.
+    1. Test case: `exit` <br>
+       Expected: Exists the program. Window is closed.
 
-### Deleting a card
-
-1. Deleting a card while all cards are being shown
-
-   1. Prerequisites: List all cards using the `list` command. Multiple cards in the list.
-
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No card is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
 
 ### Saving data
 
