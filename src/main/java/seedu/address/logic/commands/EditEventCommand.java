@@ -35,6 +35,7 @@ public class EditEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
             + "by the index number (1-based) used in the displayed event list.  \n"
             + "Parameters: editEvent EVENT_INDEX EVENT_TYPE/EVENT_NAME [-date dd/MM/yyyy HH:mm] \n"
+            + "Restrictions: Name has a maximum of 20 characters, and dates cannot clash \n"
             + "Example: " + COMMAND_WORD + " 1 Tutorial/newName -date 10/10/2024 18:00";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
