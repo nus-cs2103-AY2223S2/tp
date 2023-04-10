@@ -92,6 +92,14 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
         }
+
+        if (source.isDoctor()) {
+            Doctor sourceDoctor = (Doctor) source;
+
+            patientAppointments.addAll(sourceDoctor.getPatientAppointments().stream()
+                    .map(JsonAdaptedAppointment::new)
+                    .collect(Collectors.toList()));
+        }
         role = source.getRole().role;
 
     }

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -187,5 +188,18 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
         return filteredPersons.get(0);
+    }
+
+    /**
+     * Returns person if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param nric
+     * @return person
+     */
+    public Person retrievePersonByNric(Nric nric) {
+        requireNonNull(nric);
+        Optional<Person> optionalPerson = internalList.stream()
+                .filter(person -> person.getNric().equals(nric))
+                .findFirst();
+        return optionalPerson.get();
     }
 }

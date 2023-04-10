@@ -112,6 +112,13 @@ public class Patient extends Person {
     }
 
     /**
+     * Deletes an appointment for the Patient.
+     */
+    public void deletePatientAppointment(Appointment appointment) {
+        patientAppointments.remove(appointment);
+    }
+
+    /**
      * Get the patient's appointments as a String in list form.
      * @return list of patient's appointment bookings in String
      */
