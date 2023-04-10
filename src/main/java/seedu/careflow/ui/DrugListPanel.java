@@ -95,7 +95,11 @@ public class DrugListPanel extends UiPart<Region> {
     private void setClickEventListener() {
         drugListView.setOnMouseClicked(event -> {
             Drug selectedDrug = drugListView.getSelectionModel().getSelectedItem();
-            updateDisplay(selectedDrug);
+            if (selectedDrug != null) {
+                updateDisplay(selectedDrug);
+            } else {
+                updateNullDisplay();
+            }
         });
     }
 
