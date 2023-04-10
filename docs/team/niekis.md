@@ -37,4 +37,4 @@ Given below are my contributions to the project.
   * Reported bugs for [CS2103-W15-3](https://github.com/AY2223S2-CS2103t-W15-3/tp) and gave suggested improvements [here](https://github.com/niekis/ped/issues).
 
 - **Tools**:
-  - * Integrated a third party library (OpenCsv) to the project [\#79](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/79)
+  * Integrated a third party library (OpenCsv) to the project [\#79](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/79)
