@@ -980,8 +980,6 @@ Provides teachers with the ability to manage students administration and academi
     + 2a1. System displays an error message to the user indicating that the `parent/NOK` currently has students attached to him/her and hence **CANNOT** be removed from the system. <br>
       Use case ends.<br><br>
 
-*{More to be added}* 
-
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -1004,8 +1002,6 @@ Provides teachers with the ability to manage students administration and academi
 10. PowerConnect should be able to run on a 32-bit system with 8GB of RAM.
 11. PowerConnect should be able to display all success messages within 1 second.
 
-*{More to be added}* <br></br>
-
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -1027,8 +1023,6 @@ Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
 Examples of OS: Windows, Linux, Unix, OS-X etc <br><br>
 **Parameters**: The actual information of a student/parent. <br>
 For example, Tan Ah Kow, 91234567 etc. <br><br>
-
-*{More to be added}*
 
 [Back to Table of Contents](#table-of-contents)
 
