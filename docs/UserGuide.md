@@ -29,9 +29,9 @@ _With MediConnect, managing your healthcare practice has never been easier._
 4. Double-click the file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    
-    <p align="center">
-        <img src="images/Ui.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Ui.png" width="300" />
+</p>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -145,9 +145,9 @@ Format `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…
 
 Examples:
 * `edit 9 n/John Smith` will edit the name of the 9th person listed to "John Smith".
-    <p align="center">
-        <img src="images/Edit.png" width="450" />
-    </p>
+<p align="center">
+    <img src="images/Edit.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -310,9 +310,10 @@ Format: `listDoctors`
 Shows a list of all patients in MediConnect.
 
 Format: `listPatients`
-    <p align="center">
-        <img src="images/ListPatients.png" width="450" />
-    </p>
+
+<p align="center">
+    <img src="images/ListPatients.png" width="450" />
+</p>
 ### Clearing all entries : `clear`
 
 Deletes all patients' and doctors' data from the system.
@@ -336,9 +337,9 @@ Format: `help`
 Examples:
 * `help` opens a mini window with a url link of this user guide which can be copied by the user.
 
-    <p align="center">
-        <img src="images/helpMessage.png"/>
-    </p>
+<p align="center">
+    <img src="images/helpMessage.png"/>
+</p>
 ### Exiting the program : `exit`
 
 Closes the `MediConnect` application.
