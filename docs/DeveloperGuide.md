@@ -869,30 +869,58 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Click on either the "text" or "chart" tab under score list<br>
    Expected: The panel will be switched.
 
+### Exporting out student(s) data
+
+1. Exporting student data using CLI
+   1. Test case (Windows): `export p/data`
+   Expected: `data` directory stored in the home folder containing the `data.json` file.
+
+   2. Test case (Mac): `export p/data`
+   Expected: `data` directory stored in the home folder containing the `data.json` file.
+
+2. Exporting student data using GUI
+
+   1. Test case: Click on the `File` Menu on the top left, followed by `Export`. Subsequently select a folder directory to export on then after click the export button.
+   Expected: `data.json` should appear in the folder you have selected.
+
+### Importing in student(s) data
+
+1. Importing student data using CLI
+   1. Test case (Windows): `import p/data\data.json`
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
+   2. Test case (Mac): `import p/data/data.json`
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
+2. Importing student data using GUI
+
+   1. Test case: Click on the `File` Menu on the top left, followed by `Import`. Subsequently select the `data.json` from the file explorer **OR** drag and drop the file used to import in then after click the import button.
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
 ### Exporting a student's progress
 
 1. Exporting a student's progress using CLI
 
     1. Test case: `exportp x` (where x is the index of the student being checked) <br>
        Expected: The student's progress will be exported into a PDF file in the default directory:
-        `<JAR file location>/data`.
+       `<JAR file location>/data`.
 
     2. Test case: `exportp x p/<CUSTOM_DIRECTORY>` (where x is the index of the student being checked) <br>
-        Expected: The student's progress will be exported into a PDF file in the `<CUSTOM_DIRECTORY>`. 
+       Expected: The student's progress will be exported into a PDF file in the `<CUSTOM_DIRECTORY>`.
 
-   3. Test case: Other incorrect check commands to try: `exportp`, `...` <br>
-     Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
+    3. Test case: Other incorrect check commands to try: `exportp`, `...` <br>
+       Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
 
 2. Exporting a student's progress through mouse click
 
     1. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Click the "Save" button to save the file.<br>
        Expected: The student's progress will be exported in the selected folder using the default file name `<STUDENT_NAME>'s Progress Report.pdf`.
 
-   2. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change the file name. Click the "Save" button to save the file.<br>
-      Expected: The student's progress will be exported in the selected folder using the specified file name.
+    2. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change the file name. Click the "Save" button to save the file.<br>
+       Expected: The student's progress will be exported in the selected folder using the specified file name.
 
-   3. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change to an invalid file name. Click the "Save" button to save the file.<br>
-      Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
+    3. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change to an invalid file name. Click the "Save" button to save the file.<br>
+       Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
 
 ### Saving data
 The data will be automatically saved by MATHUTORING.
@@ -902,6 +930,8 @@ The data will be automatically saved by MATHUTORING.
 ## **Appendix: Effort**
 
 ### Difficulty level
+
+This is the first time our team has worked on a Brownfield project where the AB3 codebase was the largest we have encountered in our careers. At the beginning, everyone was overwhelmed by the sudden increase in the number of classes compared to our previous projects, including our most recent project (referred to as "IP"). It took us quite a while to slowly digest the purpose of each class. Additionally, for most of us, this is one of the first projects where we have had to collaborate with team members using version control tools such as Github or SourceTree.
 
 ### Challenges faced
 
@@ -913,10 +943,24 @@ we had to take some time to learn from how AB3 works, such as how the user input
 specific structures when designing the GUI.
 * We also had to spend time searching CSS format in order to tweak the GUI to meet our requirements.
 * Thinking how to design the structure of our application based on existing AB3 structure to make it follow Object-oriented programming.
+* Making use of a new library to export PDF files.
 
 ### Effort required
 
+As a result, the development of this application required a significant amount of effort due to the challenges mentioned above where we have to:
+
+* Debugging and looking up on both Java and JavaFX documentations.
+* Researching on the usage of the new library (PDFBox).
+* Reading on guides such as tweaking the GUI to fulfil our requirements and an overall better user experience (Drag-and-Drop/CSS).
+
 ### Achievements
+
+We were able to produce a complete application that fulfills our user requirements as well as overcame the challenges we have faced. With MATHUTORING, private Math tuition teachers can:
+
+* Manage student contact details and track their performance with task and score records.
+* View score charts and statistics to easily evaluate student progress.
+* Generate PDF reports containing a student's tasks and scores for easy sharing.
+* Export and import data to easily transfer to a new device.
 
 --------------------------------------------------------------------------------------------------------------------
 
