@@ -17,6 +17,17 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=yaojiax)
 
+
+* **New Features**:
+    * Implemented undo and redo feature
+    * Please refer to issue [#91](https://github.com/AY2223S2-CS2103T-T13-3/tp/issues/91) or PR [#143](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/143)
+    * **About:** This features allow for easy reversal of commands that may have been inputted incorrectly and also the ability to reverse these reversals.
+    * **Benefits:** As our commands are inherently long due to the tasks and app distinction and the many possible fields that needs to be filled up, it makes sense to provide a feature for users to quickly revert to their previous 
+  state. However, because this command might be used too loosely as it is very short, we provided a redo function too to supplement
+  the user in case they input the undo as a mistake.
+  * **Challenges:** This feature required the creation of a CommandHistory class, which required some changes to be made to all the existing command's code. Additionally, it required the creation of a VersionedInternshipBook which extends 
+from the InternshipBooks, which can keep track of all the history. This requires that commands where undo needs to be supported be committed into the VersionedInternshipBook. Thus, I need to know clearly what the old code does and integrate into the new classes.
+
 * **Project management**:
   * Merged 12 PRs [#50](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/50), [#51](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/51), [#58](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/58)
     , [#68](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/68)
@@ -27,10 +38,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
 
     **Implemented edit-app feature**
-  * See issue [#42](https://github.com/AY2223S2-CS2103T-T13-3/tp/issues/42) or PR [#71](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/71) 
-
-  **Implemented undo and redo feature**
-  * See issue [#91](https://github.com/AY2223S2-CS2103T-T13-3/tp/issues/91) or PR [#174](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/174)
+  * See issue [#42](https://github.com/AY2223S2-CS2103T-T13-3/tp/issues/42) or PR [#71](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/71)
   
 * **Documentation**:
   * User Guide:
