@@ -663,10 +663,10 @@ as the app ensures this
    . We can automatically convert feeding intervals such that hours is less than 24 in future iterations
 
 
-3. Alphanumeric fields may be truncated if they are too long as we do not limit their length. They
-may also become truncated if the user's app window size is too small. A side effect of this can be for example,
-fish with long names, which are supposed to be distinct, will appear as the same after truncation.
-We will limit the length of such parameters in future enhancements to avoid this. 
+3. Alphanumeric fields may be truncated if they are too long as we do not limit their length. They 
+   may also become truncated if the user's app window size is too small. A side effect of this can be for example, 
+   fish with long names, which are supposed to be distinct, will appear as the same after truncation. 
+   We will limit the length of such parameters in future enhancements to avoid this. 
     
 
 4. Logging messages on the terminal are not optimized for Fish Ahoy! We plan to improve this by simple changes from 
@@ -675,5 +675,9 @@ We will limit the length of such parameters in future enhancements to avoid this
    information. For instance, Tank readings could display the current list of values, so the user can understand the graph.
    
 
-5. Make the offline version of the User Guide more user-friendly by adding a css file for style.
+5. Make the offline version of the User Guide more user-friendly by adding a css file for style. 
    Also fix links so that they work for navigation.
+
+6. Current command semantic is not flexible. For example, when adding a fish, 5 values have to be filled by the user. We 
+   can improve this by making certain fields optional, such as Last Fed Date (assumes last fed date is the date time of 
+   addition). 
