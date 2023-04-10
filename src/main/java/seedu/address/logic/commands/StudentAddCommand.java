@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class StudentAddCommand extends Command {
      * @param sessionName Name of the session to add the student to.
      */
     public StudentAddCommand(Index index, SessionName sessionName) {
+        requireAllNonNull(index, sessionName);
         this.index = index;
         this.sessionName = sessionName;
     }
