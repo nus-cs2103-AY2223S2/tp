@@ -554,10 +554,37 @@ testers are expected to do more *exploratory* testing.
 
 ## Planned Enhancements
 
-### Ease of adding/removing persons to/from teams
+### Adding and removing tags from persons
+Currently, to add a Tag to a contact, one has to use the `edit` command to add a tag to the contact. There are main drawback is that the user has to input all the tags the person already has, as the `edit` command will remove all tags and only assign tags given in the command.
+
+Similarly, to remove a Tag, the user has to use the `edit` command and type all the tags the person has and omit the ones that the user wishes to remove.
+
+This is rather tedious for the user and negatively affects user experience.
+
+#### Enhancement:
+Allow users to add and remove tags specifically, users only need to input the tags they wish to add/remove.
+
+#### Suggested implementation:
+Create two commands, `add-tag` and `remove_tag` with the following input format:
+
+```add_tag <PERSON_INDEX> t/<TAG_NAME> [t/<TAG_NAME> ...]```
+
+```remove_tag <PERSON_INDEX> t/<TAG_NAME> [t/<TAG_NAME> ...]```
+
+- `<PERSON_INDEX>` is the index of the person shown on the person list of the Ui. If there is no person at the given index, the command will throw an error. This field is required.
+- `<TAG_NAME>` is the name of the tag the user wishes to add to a person. If the command is `remove_tag` and the tag is not found in the contact, an error will be thrown. This field is required.
+- `[t/<TAG_NAME> ...]` is/are additional tags users wish to add/remove from the person at the same time. If the comamnd is `remove_tag` and the tag(s) are not found in the contact, and error will be thrown. This field is optional.
+
+
+### Adding/removing persons to/from teams
 Currently, to add a person to a team, one has to use the `edit` command to add a team tag to the contact. There are significant drawbacks to this:
 1. User has to type out the entire team name in the team tag.
 2. User has to input all the teams that the person is already in, else the edit command will remove those tags from the person.
+
+This negatively impacts user experience as the process of adding and removing persons from teams becomes time-consuming and prone to typos.
+
+#### Enhancement:
+Instead of using the team names, users will be able to add and remove persons using the team index on the team list.
 
 #### Suggested implementation:
 Create two new commands, `add_to_team` and `remove_from_team`, both of which will have the following format:
@@ -570,3 +597,18 @@ Create two new commands, `add_to_team` and `remove_from_team`, both of which wil
 - `<TEAM_INDEX>` is the index of a team shown on the team list of the Ui. If there is no team at the given index, the command will throw an error. This field is required.
 - `[<TEAM_INDEX> ...]` is/are additional teams that the user wants to add/remove a person to/from. For example, user can input `remove_from_team 1 1 2 3`, and this will remove the person at index 1 from the teams at index 1, 2, and 3. The additional team(s) are optional.
 
+### Long Fields support
+
+#### Person fields and team fields
+Fields that are too long and are cut off by the Ui are to be truncated and indicated with ellipses.
+
+- _E.g._ if a person name is "Salvador Felipe Jacinto Dalí y Domenech" and cannot be displayed fully, the Ui should replace it with "Salvador Felipe Jac...", with the ellipses ending at the cut-off.
+
+- Users should also be able to view the full length of the field by hovering their mouse over that particular field.
+- Same goes for tags, if the tags of a contact/team takes up more than two rows, the remained will be hidden, and an indicator will appear to show how many tags are hidden
+- _E.g._ A contact with 230 tags may only have 14 tags shown on the Ui, and at the end of the displayed tag a text `"... +216"` will indicate that they have 216 more tags that are hidden.
+
+#### Tags (Skill tags, team tags, person tags)
+Tags that are longer than 20 characters to be truncated on the Ui. Users can then hover their mouse over it to see the full tag.
+
+- _E.g._ The Tag "Grandmaster in Witchcraft and Wizardry" will appear as "Grandmaster in Witch..." on the Ui.
