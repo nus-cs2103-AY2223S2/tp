@@ -11,8 +11,6 @@ title: FastTrack User Guide
 
 # **Table of Contents**
 
-{:toc}
-
 1. [Introduction to FastTrack](#introduction-to-fasttrack)
 2. [Why You Should Use FastTrack](#why-you-should-use-fasttrack)
 3. [Purpose of this guide](#purpose-of-this-guide)
