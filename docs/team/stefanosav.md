@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Stefanos Avraam's Project Portfolio Page
- ---
+---
 
 ### Project: MediConnect
 
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
     * User Guide contributions:
       * Update 'Adding a person' section to include 'addPatient' and 'addDoctor' commands [(Pull Request #43)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/43)
       * Update 'Locating persons' section to reflect the `find` by NRIC command [(Pull Request #55)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/55)
-      * Contributed in the sections related to the appointment commands and update the Ui screenshots for v1.3 [(Pull Request #65)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/65)
+      * Contributed in the sections related to the appointment commands and update the Ui screenshots [(Pull Request #65)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/65)
       * Add description for `listDoctors` and `listPatients` commands [(Pull Request #67)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/67)
       * Overall corrections and enhancements of the User Guide [(Pull Request #55)](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/55)
   
