@@ -143,7 +143,7 @@ The `Model` component,
 * stores the `Command` object that was last executed, as well as its corresponding command string input, for purposes of accessing previous states (i.e like in the case of `undo` command)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-Detailed implementation of `Course` can be found under [Implementation section](#logic-implementation).
+Detailed implementation of `Course` can be found under [Implementation section](#implementation).
 
 
 
