@@ -140,6 +140,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/logic/Logic.java)
