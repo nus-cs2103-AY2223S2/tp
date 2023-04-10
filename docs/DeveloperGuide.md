@@ -899,11 +899,16 @@ The format is shown below.
   </div>
   <br>
 
-**2.** Provide better error messages for commands.<br>
-Currently, some commands shows ambiguous success or error messages to the user.<br>
-For example some command return a success message of `Edited task: task`. 
+**2.** Provide better success messages for edit commands.<br>
+Currently, the edit commands shows ambiguous success or error messages to the user.<br>
+For example editing a task return the success message, `Edited task: task`. 
 We suggest a clearer and more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
 Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
+
+Proposed implementation: 
+Currently, all the EditXYZCommand extends from the EditItemCommand and uses the success message format (`Edited %s: %1$s`) defined in EditItemCommand class.
+When an edit command is executed successfully, we generate the success message by replacing `%s` with the item type and `%1$s` with the string representation of the edited item object.
+We plan to change the format of the success message (by replacing `%1$s` to `%s`) to print out the entire string of <TASK DATA> instead of only printing out the first word which is the item name.
 
 **3.** Fix error messages for commands.<br>
 Currently, some commands have an issue with their error message.<br>
@@ -911,14 +916,19 @@ For example, if there is a duplicate from this command `add_order on/Chocolate C
 the error message should be `This Order already exists in the order list`. 
 However, currently, this error message is shown instead: `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`.
 
-**4.** Improve validity checks.<br>
-Currently, there is no comprehensive validity check for most of our parameters, which might result in bugs shown within the application.<br>
-For example, profit and cost should be limited within `1000` or else there might be an issue with the calculation if the user keys in an obsessive number for them.
-For example, name should contain at least a few alphabets `Vanilla Cake 2002` and not be solely numeric `1234`.
+**4.** Improve validity checks for menu item's `PRICE` and `COST`.<br>
+Currently, there is no comprehensive validity check for these two parameters, which might result in bugs shown within the application.<br>
+Both `ItemSellingPrice` class (which represents the `PRICE` and `ItemCost` class (representing the `COST`) extends from the `ItemPrice` class (as seen in this [Class Diagram](#244-menu)).
+Thus, both `PRICE` and `COST` are checked with the same `ItemPrice::isValidPrice(String)` method.
+We plan to improve on this feature flaw by modifying this `isValidPrice(String)` method to check and limit the price and cost entered to be `1000` or less, 
+so as to prevent a situation where an issue with the calculation occurs when excessively large numbers are keyed in.
 
-Some validity checks are not strict enough and allows for inputs that may be considered to be wrong or weird in a real-world scenario.
-For instance, for deadlines (for tasks and orders), users can input dates far away in the past (e.g. `01/01/1800`), so we intend to limit the deadlines allowed to be within the past 10 years as any dates beyond that are likely to be a mistake in the input.
-Also, for phone numbers, users are able to input unconventional phone numbers with a large number of digits (e.g. `9111111111111111`), so we plan to limit the number of digits to the more commonly seen 8 digits in the future.
+**5.** Improve validity check for order's and task's `DEADLINE`.<br>
+Currently, the validity check for deadlines is not strict enough.
+For example, users are able to enter deadlines that are far away in the past like `01/01/1800`.
+Therefore, we plan to improve on this by only allowing users to key in deadlines that falls within the past 10 years.
+Since both `OrderDeadline` and `TaskDeadline` extends the common class `Deadline` and `Deadline::isValidDeadline` is used to check the validity of both parameters,
+we plan to simply tweak the implementation of `Deadline::isValidDeadline` for stricter checks on deadlines entered.
 
 --------------------------------------------------------------------------------------------------------------------
 
