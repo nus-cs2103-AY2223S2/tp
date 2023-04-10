@@ -24,6 +24,7 @@ public class AddGroupCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New group added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the course";
+    public static final String MESSAGE_WRONG_PAGE = "Wrong page. Navigate to group page to add group";
 
     private final Group groupToAdd;
 
@@ -42,7 +43,7 @@ public class AddGroupCommand extends AddCommand {
         CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
-            throw new CommandException("Wrong page. Navigate to group page to add group");
+            throw new CommandException(MESSAGE_WRONG_PAGE);
         }
 
         Course targetCourse = currentSelection.getSelectedCourse();

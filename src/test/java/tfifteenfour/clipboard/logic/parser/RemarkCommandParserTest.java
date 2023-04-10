@@ -9,7 +9,7 @@
 // import org.junit.jupiter.api.Test;
 
 // import tfifteenfour.clipboard.commons.core.index.Index;
-// import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
+// import tfifteenfour.clipboard.logic.commands.RemarkCommand;
 // import tfifteenfour.clipboard.model.student.Remark;
 
 // class RemarkCommandParserTest {

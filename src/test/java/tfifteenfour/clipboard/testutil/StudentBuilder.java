@@ -10,7 +10,6 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Student objects.
@@ -62,14 +61,6 @@ public class StudentBuilder {
      */
     public StudentBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
-     */
-    public StudentBuilder withModules(String ... modules) {
-        this.modules = SampleDataUtil.getModuleSet(modules);
         return this;
     }
 

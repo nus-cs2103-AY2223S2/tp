@@ -25,6 +25,7 @@ public class AddSessionCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New session added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the course";
+    public static final String MESSAGE_WRONG_PAGE = "Wrong page. Navigate to session page to add session";
 
     private final Session sessionToAdd;
 
@@ -49,7 +50,7 @@ public class AddSessionCommand extends AddCommand {
         CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
-            throw new CommandException("Wrong page. Navigate to session page to add session");
+            throw new CommandException(MESSAGE_WRONG_PAGE);
         }
 
         Group targetGroup = currentSelection.getSelectedGroup();
@@ -62,4 +63,10 @@ public class AddSessionCommand extends AddCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, sessionToAdd), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddSessionCommand // instanceof handles nulls
+                && sessionToAdd.equals(((AddSessionCommand) other).sessionToAdd));
+    }
 }

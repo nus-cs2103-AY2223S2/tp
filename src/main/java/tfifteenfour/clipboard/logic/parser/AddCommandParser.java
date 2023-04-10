@@ -4,9 +4,7 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMA
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_REMARK;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
@@ -33,6 +31,8 @@ import tfifteenfour.clipboard.model.task.Task;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+
+    public static final String MESSAGE_INVALID_TYPE_FOR_ADD_COMMAND = "Invalid type for add command";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -66,7 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Student student = parseStudentInfo(args);
             return new AddStudentCommand(student);
         default:
-            throw new ParseException("Invalid type for add command");
+            throw new ParseException(MESSAGE_INVALID_TYPE_FOR_ADD_COMMAND);
         }
     }
 
@@ -115,7 +115,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private Student parseStudentInfo(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_STUDENTID, PREFIX_REMARK, PREFIX_TAG);
+                        PREFIX_STUDENTID);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_PHONE, PREFIX_EMAIL)
                 || !CommandTargetType.isValidAddType(argMultimap.getPreamble())) {

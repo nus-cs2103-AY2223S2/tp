@@ -35,6 +35,7 @@ public class Task {
 
     /**
      * Constructs a {@code Task} with the given session name.
+     *
      * @param taskName The name of the session.
      */
     public Task(String taskName) {
@@ -45,7 +46,18 @@ public class Task {
     }
 
     /**
+     * Checks if the given string is a valid session name.
+     *
+     * @param test The string to be tested.
+     * @return True if the given string is a valid task name, false otherwise.
+     */
+    public static boolean isValidTaskName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
      * Creates a copy of this instance. Used for saving states for undo command.
+     *
      * @return a copy of this instance.
      */
     public Task copy() {
@@ -68,6 +80,7 @@ public class Task {
 
     /**
      * Returns the name of the task.
+     *
      * @return The name of the task.
      */
     public String getTaskName() {
@@ -76,14 +89,20 @@ public class Task {
 
     /**
      * Returns the grade list for each student in the current group for the current task.
+     *
      * @return A map that stores the grade list in the current group for the current task.
      */
     public Map<Student, Integer> getGrades() {
         return this.gradeList;
     }
 
+    public void setGrades(Map<Student, Integer> gradeList) {
+        this.gradeList = new HashMap<>(gradeList);
+    }
+
     /**
      * Checks if the given Task object is the same as this Task object.
+     *
      * @param otherTask The Task object to be compared with this Task object.
      * @return True if the given Task object is the same as this Task object, false otherwise.
      */
@@ -94,15 +113,6 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getTaskName().equals(getTaskName());
-    }
-
-    /**
-     * Checks if the given string is a valid session name.
-     * @param test The string to be tested.
-     * @return True if the given string is a valid task name, false otherwise.
-     */
-    public static boolean isValidTaskName(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -120,12 +130,9 @@ public class Task {
         gradeList = newGradeList;
     }
 
-    public void setGrades(Map<Student, Integer> gradeList) {
-        this.gradeList = new HashMap<>(gradeList);
-    }
-
     /**
      * Replaces a student in current tasks page with a new student.
+     *
      * @param oldStudent Student to be replaced.
      * @param newStudent New student to replace with.
      */
@@ -141,6 +148,7 @@ public class Task {
 
     /**
      * Assigns a grade to the student for the current task.
+     *
      * @param student The student to assign the mark to.
      * @throws StudentNotInPageException If the given student is not present in the page.
      */
@@ -165,6 +173,15 @@ public class Task {
 
     public boolean getSelectionStatus() {
         return isSelected;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Task)) {
+            return false;
+        }
+        Task otherTask = (Task) o;
+        return isSameTask(otherTask);
     }
 
     @Override

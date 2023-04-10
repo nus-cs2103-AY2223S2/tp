@@ -33,7 +33,7 @@ public class CircularBuffer<T> {
      * @param item the item to add
      */
     public void add(T item) {
-        if (buffer.length < maxSize) {
+        if (this.size < maxSize) {
             buffer[tail] = item;
             tail = (tail + 1) % maxSize;
         } else {

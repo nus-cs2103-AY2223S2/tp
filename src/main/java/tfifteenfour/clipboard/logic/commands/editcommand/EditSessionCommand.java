@@ -67,4 +67,16 @@ public class EditSessionCommand extends EditCommand {
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, sessionToEdit, newSession), willModifyState);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof EditSessionCommand)) {
+            return false;
+        }
+        EditSessionCommand other = (EditSessionCommand) obj;
+        return index.equals(other.index) && newSession.equals(other.newSession);
+    }
+
 }

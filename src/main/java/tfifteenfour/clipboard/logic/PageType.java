@@ -10,5 +10,6 @@ public enum PageType {
     SESSION_PAGE,
     SESSION_STUDENT_PAGE,
     TASK_PAGE,
-    TASK_STUDENT_PAGE;
+    TASK_STUDENT_PAGE,
+    INVALID_PAGE;
 }

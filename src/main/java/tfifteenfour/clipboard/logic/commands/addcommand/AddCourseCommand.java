@@ -25,6 +25,8 @@ public class AddCourseCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New course added: %1$s";
     public static final String MESSAGE_DUPLICATE_COURSE = "This course already exists";
+    public static final String MESSAGE_WRONG_PAGE = "Wrong page. Navigate to course page to add course";
+
 
     private final Course courseToAdd;
 
@@ -43,7 +45,7 @@ public class AddCourseCommand extends AddCommand {
         CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
-            throw new CommandException("Wrong page. Navigate to course page to add course");
+            throw new CommandException(MESSAGE_WRONG_PAGE);
         }
 
         if (model.getRoster().hasCourse(courseToAdd)) {

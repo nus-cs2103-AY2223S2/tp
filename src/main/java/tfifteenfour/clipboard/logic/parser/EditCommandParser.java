@@ -38,7 +38,7 @@ import tfifteenfour.clipboard.model.task.Task;
  */
 public class EditCommandParser implements Parser<EditCommand> {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    private static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to edit a %1$s";
+    public static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to edit a %1$s";
 
     private final CurrentSelection currentSelection;
 

@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.studentcommands;
+package tfifteenfour.clipboard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,6 @@ import java.util.List;
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
-import tfifteenfour.clipboard.logic.commands.Command;
-import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;

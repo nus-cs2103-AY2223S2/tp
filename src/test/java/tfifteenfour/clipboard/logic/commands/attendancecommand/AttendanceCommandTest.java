@@ -30,7 +30,6 @@ public class AttendanceCommandTest {
     @BeforeEach
     public void setUp() {
         this.model = new TypicalModel().getTypicalModel();
-        this.model.getCurrentSelection().setCurrentPage(PageType.SESSION_STUDENT_PAGE);
         selectedCourse = model.getCurrentSelection().getSelectedCourse();
         selectedGroup = model.getCurrentSelection().getSelectedGroup();
         selectedSession = model.getCurrentSelection().getSelectedSession();
