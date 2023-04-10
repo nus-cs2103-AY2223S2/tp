@@ -721,10 +721,10 @@ For future enhancements, Person names should be more flexible in catering for na
 ### Phone number checks can be done
 
 The current version of this application has no prior knowledge of how phone numbers work in real-life.
-For example, the user is currently able to aff the following command.
+For example, the user is currently able to add the following command.
 * `add n/John Doe p/1234566789900000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`.
 * `add n/John Doe p/00000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`
-For future enhancements, checks can be made to ensure that the numbers are formatted with accordance phone numbers found in Singapore for example.
+For future enhancements, checks can be made to ensure that the numbers are formatted with accordance to phone numbers found in Singapore as an example.
 
 ### Events that have ended can be displayed differently
 
