@@ -984,6 +984,8 @@ testers are expected to do more *exploratory* testing.
 * The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
 
+<div style="page-break-after: always;"></div>
+
 #### Scenario 2
 {: .no_toc}  
 **Context:** There exists at least one `Event` whose `Name` partially matches the word 'Ten'
