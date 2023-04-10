@@ -1,41 +1,23 @@
 @startuml
 'https://plantuml.com/class-diagram
+!include style.puml
 
-package Logic{
-    package commands{
-        abstract class "{abstract}\nCommand" {
-            {abstract} execute(model: Model): CommandResult
-        }
-        class EditTaskCommand {
-            EditTaskCommand(i: Index, e: EditTaskDescriptor)
-        }
+package logic {
 
-        class EditTodoDescriptor
-        class EditTaskDescriptor
-        class EditEventDescriptor
+    package commands {
+        Class "{abstract}\nCommand" as Command #9AEA54
+        Class EditTaskCommand #61B417 extends Command
 
-        "{abstract}\nCommand" <|-- EditTaskCommand
-
-        EditTaskCommand +-- EditTodoDescriptor
+        Class EditTaskDescriptor #61B417
         EditTaskCommand +-- EditTaskDescriptor
-        EditTaskCommand +-- EditEventDescriptor
-
-        EditTodoDescriptor ..> EditTaskDescriptor
-        EditEventDescriptor ..> EditTaskDescriptor
     }
 
     package parser {
-      class Parser<EditTaskCommand> <<interface>> {
-        parse(input: string): EditTaskCommand
-      }
+    Class "<<interface>>\nParser" as Parser #18F2D8
+    Class EditTaskCommandParser #15B4A1 implements Parser
 
-      class EditTaskCommandParser {
 
-      }
 
-      Parser <|.. EditTaskCommandParser
-    }
 }
-hide circle
 
 @enduml
