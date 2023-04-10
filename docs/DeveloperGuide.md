@@ -327,7 +327,7 @@ The sections below give more details of each component.
 
 ### Commons Component
 
-A collection of classes used by multiple other components located in the `codoc.commons` package.
+A collection of classes used by multiple other components located in the [`codoc.commons`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/codoc/commons) package.
 
 [Scroll back to top](#table-of-contents)
 
@@ -339,7 +339,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts such as `InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `CourseListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 **The `UI` component:**
 
@@ -535,7 +535,7 @@ information.
 
 ### **Info Panel**
 
-Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
+Info Panel is controlled by classes under [`codoc.ui.infopanel`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/codoc/ui/infopanel) package. It is initialized by the primary component `InfoTab`
 which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
 
 Info Panel consists of the following components:
@@ -582,7 +582,7 @@ creates a new `InfoTab` at the end of every execution by referring to the `prota
 
 #### **DetailedInfo**
 
-Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
+This is the parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
 `DetailedSkill`.
 
 <br>
@@ -614,9 +614,6 @@ by a person that is created as a ListView, similar to the [PersonListPanel](#per
 Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
 by a person that is created as a ListView.
 
-The implementation are very similar to its counterpart, hence refer to the [DetailedModule](#detailedmodule) for more
-information.
-
 <br>
 
 ### **Theme**
@@ -640,9 +637,6 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 [StatusBarFooter](#statusbarfooter)).
 
 <br>
-
-{More to be added}
-
 
 [Scroll back to UI Implementation](#ui-implementation)
 
