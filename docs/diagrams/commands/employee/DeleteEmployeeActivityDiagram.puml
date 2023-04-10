@@ -1,15 +1,16 @@
-
 @startuml
 !pragma useVerticalIf on
 start
-:User enters deldep command;
+:User enters del command;
 if () then ([else])
   :Error: Invalid command format;
+
 ([Command format is valid])elseif () then ([else])
-  :Error: Department does not exist in SudoHr;
- else ([Department exists
- in SudoHr])
-  :deldep command successfully executes.;
+  :Error: Employee to delete from SudoHR is not found;
+
+else ([Employee exists in SudoHR])
+  :del command successfully executes;
+
 endif
 stop
 
