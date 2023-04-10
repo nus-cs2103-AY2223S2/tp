@@ -45,9 +45,7 @@ The following callouts can be found throughout our user guide:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. </div>
 <div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Do pay attention to the information here carefully. </div> 
 
-## How to use FriendlyLink
-
-### Interpreting our Command Format
+## Interpreting our Command Format
 
 In general, the following command format is adopted in FriendlyLink.
 
@@ -56,11 +54,11 @@ In general, the following command format is adopted in FriendlyLink.
 | Name       | Meaning                                                                                                       | Examples                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command    | An instruction given by you to FriendlyLink to perform a specific task.                                       | `add_elderly`                                                                                                                                                                                 | 
-| Prefix     | Characters appearing before a slash in a command. Prefixes label the information that they represent.         | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.                                                                    |
 | Field      | Information following a slash in a command, providing information to the relevant prefix                      | `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`. |
+| Prefix     | Characters appearing before a slash in a command. Prefixes label the information that they represent.         | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.                                                                    |
 | Preamble   | Preamble is a special piece of information specified for certain commands that are entered without prefixes.  | `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.          |
 
-<div markdown="block" class="alert alert-info">:information_source: **Notes on Command Format**
+<div markdown="span" class="alert alert-info">:information_source: **Notes on Command Format**
 
 * Words that are `CAPITALISED` are placeholders that should be replaced by you.
 * Items in `[square brackets]` are optional.
@@ -83,7 +81,7 @@ For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]�
 * For more information on each specific field, refer to the [Fields](#fields) section.
 
 **Preamble**
-* They need to be specified right after the [command](#command) word and before any other [Fields](#field)
+* They need to be specified right after the command word and before any other [Fields](#field)
 
 </div>
 
@@ -461,7 +459,7 @@ Examples:
 
 ### Command Recommendation
 
-FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
+FriendlyLink provides command recommendations for registered [commands](#command-summary) and field's prefixes.
 Autocompletion and command recommendation are crucial features that help to improve the user experience when interacting
 with our application. 
 
@@ -554,6 +552,36 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 -------------------------------------------
 
+## Preamble
+
+### NRIC
+NRIC is a unique identifier given to all Singaporeans.
+* NRIC is case-insensitive.
+* The structure of the NRIC should be `@XXXXXXX#`, where:
+    * `@` is a letter that can be "S", "T", "F", "G", "M"
+    * `XXXXXXX` is a 7-digit serial number
+    * `#` is a letter from A to Z
+* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC).
+
+### Index
+Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
+* An index must be a positive integer e.g. 1, 2, 3, …​.
+
+## Prefix
+
+| Prefix | Label                 |
+|--------|-----------------------|
+| `a/`   | Address               | 
+| `bd/`  | BirthDate             | 
+| `dr/`  | Available Date Range  | 
+| `e/`   | Email                 | 
+| `mt/`  | Medical Qualification | 
+| `n/`   | Name                  | 
+| `p/`   | Phone                 | 
+| `r/`   | Risk                  | 
+| `re/`  | Region                | 
+| `t/`   | Tags                  | 
+
 ## Fields
 This section describes the format and specifications of each field.
 
@@ -572,19 +600,6 @@ The name of a person.
 ### Address
 The home address of a person.
 * Addresses can take any values.
-
-### NRIC
-NRIC is a unique identifier given to all Singaporeans.
-* NRIC is case-insensitive.
-* The structure of the NRIC should be `@XXXXXXX#`, where:
-    * `@` is a letter that can be "S", "T", "F", "G", "M"
-    * `XXXXXXX` is a 7-digit serial number
-    * `#` is a letter from A to Z
-* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC).
-
-### Index
-Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
-* An index must be a positive integer e.g. 1, 2, 3, …​.
 
 ### Phone number
 The phone number of a person.
@@ -607,7 +622,7 @@ The `domain` must:
 * have each domain label start and end with alphanumeric characters
 * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-### Date
+### Dates
 A date represents a point in time, such as birthdate or starting or ending days when someone is available for meet ups.
 * Date must be in the format `YYYY-MM-DD`
 
@@ -619,13 +634,25 @@ When a person's available dates have passed, it will not be removed from Friendl
 You can enter a person's available date for record keeping purposes, even if the date has already passed
 </div>
 
-### BirthDate
+#### BirthDate
 The birthdate of a person, in the same format as other [dates](#date)
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Although a birthdate is required for personal information input, it is not displayed on personal information cards; only the age is displayed.
 
 If you wish to view the specific birthdate of a particular person, you can refer to the [file where the corresponding data is stored](#editing-the-data-file).
+</div>
+
+#### Available Dates
+
+The availability of a person, in the same format as other [dates](#date).
+* The start date of the available period must come before its end date.
+* A person with no specified available dates is considered as available all the time.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+FriendlyLink does not check and merge overlapping available date ranges,
+such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensure maximum efficiency for the software,
+please ensure your input available date ranges are non-overlapping.
 </div>
 
 ### Region
@@ -643,18 +670,6 @@ The susceptibility level of an elderly to injury or sickness.
     * Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
     * The `SKILL_NAME` should not include any spaces.
 * Specified for volunteers only.
-
-### Available Dates
-
-The availability of a person, in the same format as other [dates](#date).
-* The start date of the available period must come before its end date.
-* A person with no specified available dates is considered as available all the time.
-
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-FriendlyLink does not check and merge overlapping available date ranges,
-such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensure maximum efficiency for the software,
-please ensure your input available date ranges are non-overlapping.
-</div>
 
 ### Tags
 Tags provide details about an item and make it easy to locate related items that have the same tag.
@@ -737,7 +752,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | Term                  | Meaning                                                                                                              |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------|
 | Availability Date     | The availability of a person.                                                                                        |
-| Birth Date            | The birth date of a person.                                                                                          |
+| BirthDate             | The birth date of a person.                                                                                          |
 | Command               | An instruction given by you to FriendlyLink to perform a specific task.                                              |
 | Date                  | The date of an event.                                                                                                |
 | Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink.                    |
