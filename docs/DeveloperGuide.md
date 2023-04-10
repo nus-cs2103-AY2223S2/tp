@@ -77,7 +77,8 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part(Map.Entry<..>)/Technician`. And `Y` can be `Customer/Appointment/Service/Vehicle/Technician`
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Part(Map.Entry<..>)/Technician` and `Y` can be `Customer/Appointment/Service/Vehicle/Technician`.
+</div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `XListPanel` (`X` is a placeholder for a specific model list panel  e.g., `CustomerListPanel`, `VehicleListPanel`), `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -136,7 +137,8 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-> <b>Note:</b> Here `X` can be `Customer/Appointment/Service/Vehicle/Part(Map.Entry<..>)/Technician`. And `Y` can be `Customer/Appointment/Service/Vehicle/Technician`
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Here `X` can be `Customer/Appointment/Service/Vehicle/Part(Map.Entry<..>)/Technician` and `Y` can be `Customer/Appointment/Service/Vehicle/Technician`.
+</div>
 
 The `Model` component,
 
