@@ -5,6 +5,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
@@ -28,6 +29,10 @@ public class TimeMask {
         weeklyOccupancy = new int[]{0, 0, 0, 0, 0, 0, 0};
     }
 
+    public TimeMask(int[] weeklyOccupancy) {
+        this.weeklyOccupancy = weeklyOccupancy;
+    }
+
     public int getDayMask(DayOfWeek dayOfWeek) {
         return weeklyOccupancy[getZeroBasedDayIndex(dayOfWeek)];
     }
@@ -43,7 +48,6 @@ public class TimeMask {
      */
     public void mergeMask(TimeMask other) {
         if (other == null) {
-            // TODO: refactor
             throw new RuntimeException("Empty time mask!");
         }
         for (int i = 0; i < WINDOW_RANGE; i++) {
@@ -131,7 +135,6 @@ public class TimeMask {
         checkValidDayIndex(dayIndex);
         checkValidHourIndexes(startHourIndex, endHourIndex);
 
-        // TODO: Check, requires JDK 11
         int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1), 2);
         int mask = ~(startBits << startHourIndex);
 
@@ -186,7 +189,6 @@ public class TimeMask {
     private void checkValidHourIndexes(int ...hourIndexes) {
         for (int hour : hourIndexes) {
             if (hour < 0 || hour > 24) {
-                // TODO: refactor
                 throw new RuntimeException("Invalid hour index!");
             }
         }

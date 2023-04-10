@@ -97,4 +97,16 @@ class RecurringEventListTest {
                 recurringEventList.listBetweenOccurrence(startPeriod, endPeriod));
     }
 
+    @Test
+    void testInsert() {
+        recurringEventList.insert(new RecurringEventStub("Biking", DayOfWeek.MONDAY,
+                TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
+
+        recurringEventList.insert(new RecurringEventStub("Skiing", DayOfWeek.SATURDAY,
+                NINE_O_CLOCK_VALID.toLocalTime(), TWELVE_O_CLOCK_VALID.toLocalTime()));
+
+
+
+    }
+
 }

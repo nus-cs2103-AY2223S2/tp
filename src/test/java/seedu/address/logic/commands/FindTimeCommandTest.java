@@ -42,4 +42,6 @@ public class FindTimeCommandTest {
         expectedModel.updateFilteredTimeSlotList(group, date);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
+
+
 }

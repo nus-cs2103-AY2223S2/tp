@@ -40,4 +40,14 @@ public class FindTimeCommandParserTest {
         CommandResult commandResult = userFindTimeCommand.execute(model);
         assertEquals(expectedCommandResult, commandResult);
     }
+
+    @Test
+    public void parse_optionalFieldsPresent_success() throws ParseException, CommandException {
+        FindTimeCommand expectedFindTimeCommand =
+                new FindTimeCommand(INDEX_FIRST_GROUP, LocalDate.now());
+        FindTimeCommand userFindTimeCommand = parser.parse("1 f/01/01/2023");
+        CommandResult expectedCommandResult = expectedFindTimeCommand.execute(expectedModel);
+        CommandResult commandResult = userFindTimeCommand.execute(model);
+        assertEquals(expectedCommandResult, commandResult);
+    }
 }

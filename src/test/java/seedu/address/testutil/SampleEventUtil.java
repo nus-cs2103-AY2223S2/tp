@@ -12,6 +12,11 @@ import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.LockSupport;
 
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
@@ -55,4 +60,23 @@ public class SampleEventUtil {
     public static final RecurringEvent JOGGING_RECURRING_EVENT = new RecurringEvent("jogging",
             DayOfWeek.MONDAY, FOUR_O_CLOCK_VALID.toLocalTime(), SIX_O_CLOCK_VALID.toLocalTime());
 
+    public static final RecurringEvent HALF_DAY_RECURRING_EVENT = new RecurringEvent("Half Day Event",
+            DayOfWeek.MONDAY, LocalTime.MIN, LocalTime.NOON);
+
+    public static IsolatedEvent getNearFutureIsolatedEvent() {
+        LocalDate nearDate = LocalDate.now().plusWeeks(1);
+        // Force date to be a Tuesday
+        nearDate = nearDate.plusDays(7 + 2 - nearDate.getDayOfWeek().getValue());
+
+        return new IsolatedEvent("Near Event", nearDate.atTime(0, 0),
+                nearDate.plusDays(1).atTime(0, 0));
+    }
+
+    public static IsolatedEvent getFarFutureIsolatedEvent() {
+        LocalDate farDate = LocalDate.now().plusWeeks(4);
+        // Force date to be a Tuesday
+        farDate = farDate.plusDays(7 + 2 - farDate.getDayOfWeek().getValue());
+        return new IsolatedEvent("Near Event", farDate.atTime(0, 0),
+                farDate.atTime(23, 0));
+    }
 }

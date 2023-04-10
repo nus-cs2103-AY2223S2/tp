@@ -1,6 +1,7 @@
 package seedu.address.model.time;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Represents the status of each timeslots of the day.
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 public class ScheduleDay {
 
     private String day;
+    private ArrayList<Status> timeList;
     private Status time0;
     private Status time1;
     private Status time2;
@@ -39,6 +41,7 @@ public class ScheduleDay {
      */
     public ScheduleDay(String day, ArrayList<Status> time) {
         this.day = day;
+        this.timeList = time;
         this.time0 = time.get(0);
         this.time1 = time.get(1);
         this.time2 = time.get(2);

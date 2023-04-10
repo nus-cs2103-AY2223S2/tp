@@ -106,9 +106,7 @@ public class Person {
      * @param event
      */
     public void addRecurringEvent(RecurringEvent event) {
-        // TODO: Should standardise Add/Delete in EventList or in Person
         recurringEventList.insert(event);
-        getRecurringMask().modifyOccupancy(event, true);
     }
 
     public RecurringEventList getRecurringEventList() {
