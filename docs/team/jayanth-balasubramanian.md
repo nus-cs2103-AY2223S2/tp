@@ -13,7 +13,7 @@ Given below are my contributions to the project.
    * **What it does**: model to store appointment details such as date, time, patient name and appointment description.
    * **Justification**: This feature is necessary to store appointment details entered by the user. It was implemented in a similar fashion to AB3's `Person` and `PersonList`.
    * **Highlights**: This feature was a significant undertaking, as it involved creating a new model component, and updating the existing `Model` and `ModelManager` classes to support the new component, coming to 400+ lines of code.
-   ![AppointmentModel](../images/Jayanth-AppointmentModel.png)
+   ![AppointmentModel](../images/Jayanth-AppointmentModel.png) <br />
 2. `AppointmentCard` and `AppointmentListPanel`: UI for displaying appointment details.
    * **What it does**: displays appointment details as a list in the UI.
    * **Justification**: This feature is necessary to display appointment details to the user. It was implemented in a similar fashion to AB3's `PersonCard` and `PersonListPanel`.
@@ -33,8 +33,7 @@ Given below are my contributions to the project.
 * User Guide:
   * Made the language more user-friendly.
   * Added section on how to best use the guide, and a description of each section of the guide with links for easy navigation.
-  ![](../images/Jayanth-UGHowTo.png) <br>
-  ![](../images/Jayanth-UGhowTo2.png)
+  ![](../images/Jayanth-UGHowTo.png) <br />
   * Added tip on how the user can check their default Java version.
   * Added information on aliases for commands.
   * Added a glossary for technical terms for less technical users.
@@ -46,7 +45,7 @@ Given below are my contributions to the project.
   * Updated UI related UML diagrams.
   ![](../images/UiClassDiagram.png)
   * Added section detailing known feature flaws and proposals for fixing them in the future.
-  ![](../images/Jayanth-DGfeatureFlaws.png) <br>
+  ![](../images/Jayanth-DGfeatureFlaws.png) <br />
 ### Contributions to team-based tasks:
 * Refactored AB3 codebase, changing class names and attributes to suit MediMeet.
 * This was a massive undertaking that involved changing 81 files, with 1300+ lines of code changed.
