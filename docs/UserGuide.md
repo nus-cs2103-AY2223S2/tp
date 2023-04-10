@@ -57,6 +57,10 @@ We hope that this user guide will help you adopt, learn and ultimately master AI
 
 For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
+[Back to Top ↑](#table-of-contents)
+
+---
+
 ## **Legend**
 
 Here are some symbols used throughout the user guide to inform you of additional details.
@@ -264,7 +268,7 @@ Copies the information of a person to your clipboard.
 Format: `copy INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 - Copies the required information of the person at the specified `INDEX` to the user's clipboard.
-- The index refers to the index number shown in the displayed person list.
+- The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - To only copy certain fields, you just need to type its prefix. (e.g. To only copy the name of a person, type `copy INDEX n/`)
 - If no fields are specified, all information will be copied.
@@ -324,8 +328,9 @@ Lets you edit an existing person in AIMS.
 
 Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
+- Edits the person at the specified `INDEX`. 
+- The index refers to the index number shown in the displayed main list.
+- The index **must be a positive integer** 1, 2, 3, …​
 - At **least** one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed. (i.e. adding of tags is not cumulative)
@@ -347,7 +352,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - The search is case-insensitive. (e.g `hans` will match `Hans`)
 - Keywords cannot contain spaces. Instead, spaces are used to separate keywords.
 - The order of the keywords does not matter. (e.g. `Hans Bo` will match `Bo Hans`)
-- All fields (rank, name, unit, company, platoon, phone, email, address, tags) are searched.
+- All fields (`rank`, `name`, `unit`, `company`, `platoon`, `phone`, `email`, `address`, `tags`) are searched.
 - Only part of a field is needed for a successful match. (e.g. `tani` will match `Botanic Gardens`)
 - Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
 
@@ -398,15 +403,15 @@ Lets you delete a specified person from AIMS.
 Format: `delete INDEX`
 
 - Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
+- The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
 - `list` followed by `delete 2` <br>
-The 2nd existing person in AIMS will be deleted.
+The 2nd existing person in the main list will be deleted.
 - `find Betsy` followed by `delete 1` <br>
-The 1st person in the resulting list of the `find` command will be deleted.
+The 1st person in the main list of the `find` command will be deleted.
 
 [Back to Top ↑](#table-of-contents)
 
@@ -460,9 +465,9 @@ Format: `favorite INDEX`
 - Toggles favorite status for the person at the specified `INDEX`.
 - If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
 - If the command is run on a person who is already in the favorite list, he will be removed from the favorite list.
-- The index refers to the index number shown in the displayed person list.
+- The index refers to the index number shown in the displayed main list.
 - The index **must be a positive integer** 1, 2, 3, …​
-- The favorites list on the sidebar is sorted according to the index number of the persons that is shown after running the list command.
+- The favorites list on the sidebar is sorted according to the index number of the persons that is shown after running the `list` command.
 
 <div markdown="span" class="alert alert-primary">
 
