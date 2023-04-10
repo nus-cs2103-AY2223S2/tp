@@ -45,8 +45,14 @@ public class UploadCsvCommand extends Command {
     public CommandResult execute(Model model) throws CommandException, ParseException {
         TrackrParser trackrParser = new TrackrParser();
         for (int i = 0; i < commands.size(); i++) {
-            Command command = trackrParser.parseCommand(commands.get(i));
-            command.execute(model);
+            try {
+                Command command = trackrParser.parseCommand(commands.get(i));
+                command.execute(model);
+
+            } catch (CommandException e) {
+                // do nothing, continue adding other items from csv file
+                noAction();
+            }
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
@@ -56,5 +62,9 @@ public class UploadCsvCommand extends Command {
         return other == this
                 || other instanceof UploadCsvCommand
                 && commands.equals(((UploadCsvCommand) other).commands);
+    }
+
+    private void noAction() {
+        return;
     }
 }
