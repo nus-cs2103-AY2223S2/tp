@@ -45,7 +45,7 @@ destroy AddEmployeeToLeaveFromToCommandParser
 SudoHrParser --> LogicManager : a
 deactivate SudoHrParser
 
-LogicManager -> AddEmployeeToLeaveFromToCommand : execute()
+LogicManager -> AddEmployeeToLeaveFromToCommand : execute(model)
 activate AddEmployeeToLeaveFromToCommand
 
 loop 4 times
@@ -55,19 +55,6 @@ activate Model
 Model --> AddEmployeeToLeaveFromToCommand
 deactivate Model
 end
-
-AddEmployeeToLeaveFromToCommand -> Model : updateFilteredEmployeeList
-activate Model
-
-Model --> AddEmployeeToLeaveFromToCommand
-deactivate Model
-
-AddEmployeeToLeaveFromToCommand -> Model : updateFilteredLeaveList
-activate Model
-
-
-Model --> AddEmployeeToLeaveFromToCommand
-deactivate Model
 
 create CommandResult
 AddEmployeeToLeaveFromToCommand -> CommandResult
