@@ -30,13 +30,12 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Contributed code from release `v1.2` to `v1.4`.
-    * Published releases `v1.3.trial` - `v1.3` (2 releases) on GitHub. [\#136](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/136), 
+    * Published releases and managed release deadlines for `v1.3.trial` - `v1.3` (2 releases) on GitHub. [\#136](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/136), 
     * Fixed important bugs pertaining to the JAR file on the releases I published. [\#140](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/140), [\#191](https://github.com/AY2223S2-CS2103-F11-1/tp/pull/191)
   
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
     * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-    * Updated the AddressBookParser class with my own commands and added tests for them as well.
+    * Updated the AddressBookParser class with my own commands (`addStudent` and `deleteStudent`) and added tests for them as well.
 
 * **Documentation**:
     * [User Guide](https://ay2223s2-cs2103-f11-1.github.io/tp/UserGuide.html#add-student-to-event):
