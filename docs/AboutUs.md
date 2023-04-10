@@ -17,6 +17,8 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 [[github](https://github.com/jednghk)]
 [[portfolio](team/jednghk.md)]
 
+* Role: Developer
+
 ### Ryo Hilmawan
 
 <img src="images/cloudhill.png" width="200px">
