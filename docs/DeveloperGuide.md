@@ -136,7 +136,7 @@ The `Model` component
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br> An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
+**:information_source: Note:** <br> An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects. <br>
 
 ![!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
@@ -954,8 +954,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 dengue cases without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -971,7 +969,7 @@ Given below are instructions to test the app manually.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** These instructions only provide a starting point for testers to work on;
+**:information_source: Note:** These instructions only provide a starting point for testers to work on
 testers are expected to do more *exploratory* testing.
 </div> 
 
@@ -987,7 +985,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
 
@@ -996,20 +994,20 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a single case while all cases are being shown
    1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
    
-   2. Test case: `delete 1`<br>
+   2. Test case: `delete 1` <br>
        Expected: First case is deleted from the list. Details of the deleted contact shown in the status message.
    
-   3. Test case: `delete 0`<br>
+   3. Test case: `delete 0` <br>
        Expected: No case is deleted. Error details shown in the status message.
    
-   4. Other incorrect single-index delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect single-index delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) <br>
        Expected: Similar to previous.
    
 2. Deleting multiple cases while all cases are being shown
    
    3. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
    
-   4. Test case: `delete 1 2`<br>
+   4. Test case: `delete 1 2` <br>
       Expected: First and second cases are deleted from the list. Number of cases deleted shown in the status message.
    
    5. Test case: `delete 0 1` <br>
@@ -1023,12 +1021,12 @@ testers are expected to do more *exploratory* testing.
    
    2. Run `DengueHotSpotTracker` to obtain an initialized list of cases.
    
-   3. Enter Command: `export sampledata.csv` to export existing list of cases.<br>
+   3. Enter Command: `export sampledata.csv` to export existing list of cases. <br>
       Expected: Successfully exported data to sampledata.csv
    
    4. Enter Command: `clear` to clear existing list of cases.
    
-   5. Enter Command: `import sampledata.csv` to import sampledata.csv.<br>
+   5. Enter Command: `import sampledata.csv` to import sampledata.csv. <br>
       Expected: Successfully imported data from sampledata.csv
 
 ### Saving data
