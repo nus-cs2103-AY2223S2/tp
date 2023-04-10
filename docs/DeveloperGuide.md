@@ -11,15 +11,36 @@ If you're interested in contributing to the Vimification project, this Developer
 
 ---
 
-## **Table of Contents**
-
+## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
 - [Implementation](#implementation)
+  - [ApplicativeParser\<T\>](#applicativeparsert)
+  - [Command parser](#command-parser)
+  - [Command implementation](#command-implementation)
+  - [Atomic data modification](#atomic-data-modification)
+  - [Undo feature](#undo-feature)
+  - [Macro feature](#macro-feature)
+  - [Syncing view with internal logic](#syncing-view-with-internal-logic)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testingq](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a task](#deleting-a-task)
+  - [Saving data](#saving-data)
+
 
 ---
 
