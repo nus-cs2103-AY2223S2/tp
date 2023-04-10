@@ -20,6 +20,7 @@ Given below are my contributions to the project.
 * Updated and fixed test cases. [\#288](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/288) [\#140](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/140)
 * Updated and fixed `find_order` related bug [\#291](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/291)
 * Updated and fixed `Menu` related bugs  [\#235](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/235) [\#188](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/188)
+* Contributed to the demo video.
 
 * **New Feature**: Implemented a `Calculate Menu Item Profit` feature to get profit from item cost and item selling price.
   * What it does:
@@ -43,8 +44,8 @@ Given below are my contributions to the project.
     * Fix documentation bugs for UG features to match real-life functionality.[\#168](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/168)
 
   * Developer Guide:
-    * Added use cases [\#31](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/31) [\#90](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/90)
-    * Added UML Class Diagram and updated documentation for Order and Menu [\#142](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/142) 
+    * Added and update use cases [\#31](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/31) [\#90](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/90) [\#292](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/292)
+    * Added and updated UML Class Diagram and documentation for Order and Menu [\#142](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/142) 
     * Added documentation and activity diagram for "Add" functionality features [\#168](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/168)
     * Introduced a "Why we implemented this way" portion for features [\#176](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/176)
   * Update Javadocs [\#287](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/287)
