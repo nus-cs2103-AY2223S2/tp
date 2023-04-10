@@ -41,10 +41,7 @@ check it out [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=a
     * [#178 Update RecurCommand](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/178)
   * Test code
     * [#193 Add RecurCommand tests](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/193)
-      * `RecurCommandTest`
-      * `RecurCommandParserTest`
     * [#205 Add RecurFactor tests](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/205)
-      * `RecurFactorTest`
 
 * **Documentation**:
   * User Guide:
@@ -54,20 +51,12 @@ check it out [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=a
     * v1.3
       * [#105 Branch ug](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/105)
       * [#165 Improve Recur parameter description in UG](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/165)
-        * Updated command description for `Recurcommand`
   * Developer Guide:
     * v1.1
       * [#31 Branch user story dg](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/31)
-        * Updated the user stories
-        * Updated the use cases
     * v1.4
       * [#225 Update DG](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/225)
-        * Added implementation description for `AddCommand`
-        * Added implementation description for `RecurCommand`
-        * Added implementation description for `EditCommand`
       * [#216 Update user stories and use cases](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/216)
-        * Updated the user stories
-        * Updated the use cases
 
 ### Review/mentoring contributions
 [pr-reviewed-v1.1]: https://github.com/AY2223S2-CS2103-W17-3/tp/pulls?q=is%3Apr+is%3Amerged+reviewed-by%3Aanthonynmh+milestone%3Av1.1
