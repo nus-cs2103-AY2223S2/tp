@@ -30,7 +30,7 @@ public class DeleteMacroCommand extends MacroCommand {
     @Override
     public CommandResult execute(MacroMap macroMap) {
         macroMap.remove(macro);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, macro));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, macro), false);
     }
 
     @Override

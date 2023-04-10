@@ -33,7 +33,7 @@ public class AddMacroCommand extends MacroCommand {
     @Override
     public CommandResult execute(MacroMap macroMap) {
         macroMap.put(macro, commandString);
-        return new CommandResult(SUCCESS_MESSAGE);
+        return new CommandResult(SUCCESS_MESSAGE, false);
     }
 
     @Override

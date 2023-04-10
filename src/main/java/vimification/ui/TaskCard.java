@@ -39,7 +39,6 @@ public class TaskCard extends UiPart<HBox> {
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         id.setText(displayedIndex + ". ");
-
         title.setText(task.getTitle());
 
         if (task.getDeadline() != null) {

@@ -16,21 +16,29 @@ If you're interested in contributing to the Vimification project, this Developer
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-  * [Architecture](#architecture)
-  * [UI component](#ui-component)
-  * [Logic component](#logic-component)
-  * [Model component](#model-component)
-  * [Storage component](#storage-component)
-  * [Common classes](#common-classes)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
 - [Implementation](#implementation)
+  - [ApplicativeParser\<T\>](#applicativeparsert)
+  - [Command parser](#command-parser)
+  - [Command implementation](#command-implementation)
+  - [Atomic data modification](#atomic-data-modification)
+  - [Undo feature](#undo-feature)
+  - [Macro feature](#macro-feature)
+  - [Syncing view with internal logic](#syncing-view-with-internal-logic)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-  * [Product scope](#product-scope)
-  * [User stories](#user-stories)
-  * [Use cases](#use-cases)
-  * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+<<<<<<< HEAD
   * [Adding](#adding)
   * [Inserting](#inserting)
   * [Deleting](#deleting)
@@ -38,6 +46,12 @@ If you're interested in contributing to the Vimification project, this Developer
   * [Sorting](#sorting)
   * [Refresh](#refresh)
   * [Help](#help)
+=======
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a task](#deleting-a-task)
+  - [Saving data](#saving-data)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+>>>>>>> master
 
 ---
 
@@ -605,13 +619,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1. Vimification shows an error message.
 
     Use case ends.
- 
+
 - 1d. The priority level is invalid.
 
   - 1d1. Vimification shows an error message.
 
     Use case ends.
-    
+
 - 1e. The status is invalid.
    - 1e1. Vimification shows an error message.
 
@@ -638,14 +652,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. Vimification shows an error message.
 
   Use case ends.
-  
+
 **Use case 3: Delete an attribute (deadline and/or label) of a task**
 
 **MSS**
 
-1.  User indicates which task he is referring to by specifying the index of the task. 
-2.  User input the attribute's flag. 
-3.  If user is deleting a label, user input the name of the label to be deleted. 
+1.  User indicates which task he is referring to by specifying the index of the task.
+2.  User input the attribute's flag.
+3.  If user is deleting a label, user input the name of the label to be deleted.
 4.  Vimification uses this index to remove the deadline of the chosen task from the current list of tasks.
 
     Use case ends.
@@ -673,22 +687,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1d. The attribute does not exist.
 
     - 1d1. Vimification shows an error message.
-   
+
   Use case ends.
-  
-  
+
+
  - 1e. The attribute (only for label) does not exist.
 
     - 1e1. Vimification shows an error message.
-   
+
   Use case ends.
- 
+
 
 **Use case 4: Inserting an attribute (deadline and/or label) to a task**
 
 **MSS**
 
-1.  User indicates which task he is referring to by specifying the index of the task. 
+1.  User indicates which task he is referring to by specifying the index of the task.
 2.  User input the attribute's flag and the attribute to be inserted.
 3.  Vimification uses this index to insert the deadline to the chosen task.
 
@@ -719,7 +733,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1d1. Vimification shows an error message.
 
   Use case ends.
-  
+
 - 1e. The attribute is empty.
 
     - 1e1. Vimification shows an error message.
@@ -776,13 +790,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1f1. Vimification shows an error message.
 
   Use case ends.
-  
-  
+
+
 **Use case 6: Filter for tasks based on certain conditions**
 
 **MSS**
 
-1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search. 
+1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search.
 3.  Vimification converts the conditions into a predicate.
 4.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
 
@@ -850,8 +864,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1 Vimification shows an error message.
 
     Use case ends.
-    
-    
+
+
 **Use case 8: Adds a macro command**
 
 **MSS**
@@ -881,7 +895,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1 Vimification shows an error message.
 
     Use case ends.
-    
+
 **Use case 9: Use a macro command**
 
 **MSS**
@@ -899,12 +913,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-    
+
 **Use case 10: Refresh the task list**
 
 **MSS**
 
-1.  User input the command word. 
+1.  User input the command word.
 2.  Vimification displays the original list, without any filtering or sorting, to the user.
 
     Use case ends.
@@ -916,12 +930,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1 Vimification shows an error message.
 
     Use case ends.
-    
+
 **Use case 11: Undo an action**
 
 **MSS**
 
-1.  User input the command word. 
+1.  User input the command word.
 2.  Vimification displays the previous state of the task list to the user.
 
     Use case ends.
@@ -945,7 +959,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **GUI**: Graphical User Interface
-- **UML** Unified Modeling Language
+- **UML**: Unified Modeling Language
+
 ---
 
 
@@ -1055,7 +1070,7 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message will be displayed since there is no existing "graded" label
    3. Test case: `:d 0 -l "cs2103t"` or `:d 2 -l "cs2103t"`<br>
       Excepted: An error message will be displayed since there is not task at index 0 or 2.
-2. Deleting the deadline to a task. 
+3. Deleting the deadline to a task. 
    Prerequisites: there is only one task in the list with an existing deadline
    1. Test case: `:d 1 -d`<br>
       Expected: Task at index 1 now has its deadline removed. 
@@ -1073,11 +1088,11 @@ testers are expected to do more *exploratory* testing.
       Expected: All the task with "unknown" as the priority will be displayed
    2. Test case: `:f -p 1`<br>
       Expected: All the task with "very urgent" as the priority will be displayed
-   1. Test case: `:f -p 2`<br>
+   3. Test case: `:f -p 2`<br>
       Expected: All the task with "urgent" as the priority will be displayed
-   1. Test case: `:f -p 3`<br>
+   4. Test case: `:f -p 3`<br>
       Expected: All the task with "not urgent" as the priority will be displayed
-   1. Test case: `:f -p -1` or `:f -p 4` or `:f -p `<br>
+   5. Test case: `:f -p -1` or `:f -p 4` or `:f -p `<br>
       Expected: An error message will be displayed since priority cannot be empty and can only be 0, 1, 2 or 3.
 3. Filtering the task by status
    1. Test case: `:f -s 0`<br>
@@ -1127,9 +1142,34 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `:refresh 123` <br>
 	Excepted: An error message will be displayed.
 
+
 ### Help
 1. View the help manual
    1. Test case: `:help`<br>
       Expected: A help manual will be displayed.
    2. Test case: `:help 123` <br>
 	Excepted: An error message will be displayed.
+
+
+## **Appendix: Planned Enhancements**
+
+1. The current error message is not very informative nor precise. We plan to fix this feature flaw by adding more details to the error message. For example, the error message will show the user the correct format of the command. This will allow the user to easily identify the problem and fix it.
+
+2. We plan to add new commands like the "clear all" and "clear completed" commands. These commands will allow the user to clear all the tasks or clear all the completed tasks in a single command, instead of having to delete each task one by one.
+
+3. We plan to add an "overdue" status to the tasks. This will allow the user to see all the tasks that are overdue in a single tab. Each time when the app is open on a new day, the "overdue" status will be updated accordingly by comparing the current date with the deadline of each task.
+
+4. We plan to have a multiple tabs instead of the current single tab. Each of these tabs corresponds to the different status of the tasks. For example, one tab will show all the tasks that are overdue, another tab will show all the tasks that are ongoing and another tab will show all the tasks that are completed.
+
+5. We plan to add a "reminder" feature to the app. This will allow the user to set a reminder for a task. The reminder will be displayed to the user when the app is open on the day that the reminder is set for.
+
+6. We plan to add scheduled tasks to the app. This means the task will have a start time and an end time. The user can set a task to be scheduled for a certain time period. For example, the user can set a task to be scheduled from 2pm to 4pm on 1st January 2016. The status of the task will be changed to "ongoing" when the current time is between the start time and the end time. The status of the task will be changed to "completed" when the current time is after the end time.
+
+7. We plan to add a feature that allows users to search for free time slots. This will allow the user to find a time slot that is free for a certain period of time. For example, the user can search for a time slot that is free for 2 hours and the app will then produce time slots that are free for 2 hours within next 7 days.
+
+8. We plan to add recurring tasks. This will allow the user to set a task to recur on a certain day of the week. For example, the user can set a task to recur every Monday. The task will be added to the task list every Monday. User can also set a task to recur at a fixed interval. For example, the user can set a task to recur every 2 days. The task will be added to the task list every 2 days.
+
+9. We plan to devise simpler and more intuitive command formats for the user. This will allow the user to use the app more efficiently by reducing the amount of typing required to execute a command. With more intuitive command formats, the user will also be able to remember the command formats more easily.
+
+10. Currently, the "insert" and "edit" commands seem to be very similar. We plan to devise a way to better structure & streamline these two commands so that the user can easily differentiate between them. With due consideration, we might even be able to merge these two commands into one command. Hopefully with this, the user will be able to remember the command formats more easily as they will be more intuitive.
+

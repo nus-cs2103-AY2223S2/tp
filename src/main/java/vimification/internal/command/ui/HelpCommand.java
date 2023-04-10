@@ -1,7 +1,6 @@
 package vimification.internal.command.ui;
 
 import vimification.internal.command.CommandResult;
-import vimification.ui.HelpManualPanel;
 import vimification.ui.MainScreen;
 
 /**
@@ -22,7 +21,7 @@ public class HelpCommand extends UiCommand {
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         mainScreen.loadRightComponent(mainScreen.getHelpManualPanel());
-        return new CommandResult(SUCCESS_MESSAGE);
+        return new CommandResult(SUCCESS_MESSAGE, false);
     }
 
     @Override

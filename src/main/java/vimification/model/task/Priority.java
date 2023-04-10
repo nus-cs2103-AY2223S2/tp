@@ -7,7 +7,7 @@ import java.util.Optional;
  */
 public enum Priority {
 
-    UNKNOWN, VERY_URGENT, URGENT, NOT_URGENT;
+    VERY_URGENT, URGENT, NOT_URGENT, UNKNOWN;
 
     /**
      * Possible helper function used by the parser. Help parser processes Integer input (as an
