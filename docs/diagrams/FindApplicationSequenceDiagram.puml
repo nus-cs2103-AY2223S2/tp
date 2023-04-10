@@ -62,7 +62,7 @@ deactivate InternshipBookParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : FindApplication(app)
+FindCommand -> Model : updateFilteredApplicationList(predicate)
 activate Model
 
 Model --> FindCommand
