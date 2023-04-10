@@ -108,6 +108,8 @@ This section explains some common components you may find in a command.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## 3.2. Main Mode
 
 Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
@@ -124,6 +126,8 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 | **Question**      | The question that you assign to the card.                                                                                                  |
 | **Answer**        | The corresponding answer to the question.                                                                                                  |
 | **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation. Each card can only be tagged with **at most** 1 difficulty. |
+
+<div style="page-break-after: always;"></div>
 
 ## 3.3. Main Mode - Before Selecting a Deck
 
@@ -232,6 +236,8 @@ Format: `clear`
   ![clear confirm](./images/ClearConfirm.png)
 
 - Selecting `Yes` will clear all data.  
+
+<div style="page-break-after: always;"></div>
 
 ## 3.4. Main Mode - After Selecting a Deck
 
@@ -545,6 +551,8 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 | Help           | `help`                                                               |
 | Exit           | `exit`                                                               |
 
+<div style="page-break-after: always;"></div>
+
 ## 5.2. Main Mode - after selecting a Deck
 
 | Action         | Format, Examples                                                                                                                                 |
@@ -560,6 +568,8 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 | Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`                                                                                                  |
 | Help           | `help`                                                                                                                                           |
 | Exit           | `exit`                                                                                                                                           |
+
+<div style="page-break-after: always;"></div>
 
 ## 5.3. Review mode
 
