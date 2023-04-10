@@ -20,12 +20,22 @@ Package Person {
     Package Doctor {
         Class "UniqueDoctorList" as UniqueDoctorList
         Class "Doctor" as Doctor
+
     }
     Package Patient {
         Class "UniquePatientList" as UniquePatientList
         Class "Patient" as Patient
     }
+    Package DoctorPatient {
+        Class "UniqueAssignmentList" as UniqueAssignmentList
+        Class "DoctorPatient" as DoctorPatient
+    }
+    UniqueDoctorList -down---> "~* all" Doctor.Doctor
+    UniquePatientList -down----> "~* all" Patient.Patient
+    UniqueAssignmentList -down----> "~* all" DoctorPatient.DoctorPatient
 
+    DoctorPatient.DoctorPatient ---> "1" Doctor.Doctor
+    DoctorPatient.DoctorPatient ---> "1" Patient.Patient
     Doctor.Doctor -down-|>Person
     Patient.Patient -down-|> Person
 }
@@ -34,9 +44,7 @@ Package Person {
 
     AddressBook *-down--> UniqueDoctorList
     AddressBook *-down--> UniquePatientList
-
-    UniqueDoctorList -down---> "~* all" Person.Doctor.Doctor
-    UniquePatientList -down----> "~* all" Person.Patient.Patient
+    AddressBook *-down--> UniqueAssignmentList
 
     AddressBook .up.|> ReadOnlyAddressBook
     ModelManager .up.|> Model

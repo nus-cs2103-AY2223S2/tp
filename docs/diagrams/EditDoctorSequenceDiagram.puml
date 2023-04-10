@@ -56,9 +56,12 @@ deactivate AddressBookParser
 LogicManager -> EditDoctorCommand : execute()
 activate EditDoctorCommand
 
-EditDoctorCommand -> Model : editDoctor(1)
+EditDoctorCommand -> Model : setDoctor()
 activate Model
 
+Model --> EditDoctorCommand
+
+EditDoctorCommand -> Model : updateFilteredDoctorList()
 Model --> EditDoctorCommand
 deactivate Model
 
