@@ -133,6 +133,8 @@ public class LogicManager implements Logic {
     @Override
     public void factoryReset() {
         model.setMasterDeck(new MasterDeck());
+        model.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
+        model.updateFilteredDeckList(Model.PREDICATE_SHOW_ALL_DECKS);
         try {
             storage.saveMasterDeck(model.getMasterDeck());
         } catch (IOException ioe) {
