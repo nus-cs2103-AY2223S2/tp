@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * Justification: This feature is vital for PowerCards, as it is used by the user to manage their decks.
     * Highlights: Implementing this feature required thorough understanding of how commands are executed in the program. It also required knowledge on how the `Model`, `LogicManager`, and `Storage` class works.
 
-* **New Feature**: Find and show Decks. (PR [#156](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/156), [#207](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/207))
+* **New Feature**: Tag cards during review. (PR [#156](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/156), [#207](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/207))
     * What it does: Allows users to tag cards during review.
     * Justification: This feature is vital for PowerCards, as it is used by the user to tag cards based on difficulty level.
     * Highlights: Implementing this feature required thorough understanding of how commands are executed in the program. It also required knowledge on how the `Model`, `LogicManager`, and `Storage` class works.
