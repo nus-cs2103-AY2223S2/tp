@@ -9,29 +9,34 @@ TutorPro is a desktop app designed to help private tutors manage their student i
 
 Given below are my contributions to the project.
 
-* **New Feature**: Adds the ability to add a exam for a particular student.
-    - What it does: Allows user to add a lesson to a particular student, including details such as the description of 
-      the 
-      lesson, it's start time, and it's end time.
+* **New Feature**: Adds the ability to track exams for a particular student.
+    - What it does: Allows user to add, manipulate, and delete exams of a particular student, including details such as 
+      the name of the exam, its start time, its end time, weightage, and grade.
     - Justification: This feature enables tutors to effectively track of upcoming and completed exams.
     - Highlights: This feature required additional classes for parsing and data storage that needed to be 
       implemented in order to function with the existing project structure. 
-    - Credits: @nbqian for providing the basic skeleton for similar student attributes
+  (see [exam parsers](https://github.com/AY2223S2-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/logic/parser/exam) and 
+  [exam commands](https://github.com/AY2223S2-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/logic/commands/exam).) 
+    - Credits: @nbqian for providing the basic skeleton for similar student attributes (see lesson-related classes)
     
 
-* **Code contributed**:
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=szejiancheng&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-
-* **Enhancements to existing features**:
-
+  * Managed releases `v1.2`-`v1.4` on Github
+  * Bug reporting for all versions (4 releases)
+  
 * **Documentation**:
     * User Guide:
+      * Authored exam-related commands in user guide
     * Developer Guide:
-    * UML diagrams
+      * Brainstormed user stories and use-cases during conceptualization phase. 
+    * UML diagrams:
+      * contributed to tweaking of existing UML diagrams using PlantUML
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): )
-    * Reported bugs and suggestions for other teams in the class ()
+  * PRs reviewed : 7
+  * PRs authored : 23
 
-* **Tools**:
+* **Others**:
+  * Created professional demo video with voiceover for product presentation using Davinci Resolve
