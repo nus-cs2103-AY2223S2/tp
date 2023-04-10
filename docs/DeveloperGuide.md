@@ -361,18 +361,6 @@ When the user starts a review, the left `DeckPanel` is replaced with a `ReviewSt
 
 The flip command (`p`) will toggle between the corresponding `FlippedReviewElement` and `UnflippedReviewElement` of the single displayed `CardElement`.
 
-### Implementation of UI
-
-The UI consists of the `DeckPanel` on the left and the `CardPanel` on the right, along with `CommandBox` and `ResultDisplay`on the bottom. `CommandBox` and `ResultDisplay` are in fixed positions and do not get shifted around or removed in any use case. 
-
-`DeckPanel` and `CardPanel` display modifiable `DeckElement` and `CardElement` objects that are stored as `Javafx ObservableList<>` elements. When these objects are added, deleted, or edited by the user, the changes are reflected immediately in the UI.
-
-Initially, when the user launches Powercards, `DeckPanel` will display all `DeckElement` objects and `CardPanel` displays all `CardElement` objects. They can be modified through commands such as `findDecks`,`findCards`, `editCard`, etc.
-
-When the user starts a review, the left `DeckPanel` is replaced with a `ReviewStatsPanel` to display the relevant information generated during the review. The `CardElement` objects on the right `CardPanel` are replaced with a single `CardElement` object from the selected deck to review. 
-
-The flip command (`p`) will toggle between the corresponding `FlippedReviewElement` and `UnflippedReviewElement` of the single displayed `CardElement`.
-
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -889,16 +877,17 @@ As such, we saw this as a valuable opportunity to conduct extensive testing of o
 
 ## **Appendix: Planned Enhancement**
 
-In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
+In order to counter known feature flaws from testing, the following are enhancements to be implemented in the future.
+
 **1. Making the command box scrollable**
 - Currently, the command box is not scrollable - when the user types into the command box, the content does not wrap.
 - Users are likely to type long questions and answers hence it would be more convenient if the command box was scrollable.
 - We plan to make content in the command box wrap and the command box itself scrollable.
 
-### Figure 1.1 Current: Non Scrollable Command Box
+Current: Non-Scrollable Command Box
 ![Current Non Scrollable Command Box](images/current_command_box.png)
 
-### Figure 1.2 Planned Enhancement: Scrollable Command Box
+Planned Enhancement: Scrollable Command Box
 ![Scrollable Command Box](images/scrollable_command_box_enhancement.png)
 
 **2. Review by untagged cards**
@@ -917,13 +906,14 @@ In order to counter known feature flaws from testing, the following are enhancem
 **4. Setting minimum width for components**
 - Currently, the size of the GUI panels can be shrunk by the user to a large extent as seen in figure 4 below such that the app is messy and essentially unusable.
 - Hence, we intend to fix it by setting a minimum width for each component.
-### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
+
+Current: Unusable GUI when shrunk by a large extent
 - ![Unusable GUI](images/unusable_gui.png)
 
-### Figure 4.2 Planned Enhancement: GUI with minimum width
+Planned Enhancement: GUI with minimum width
 - ![GUI with min width](images/gui_min_width.png)
 
 **5. Support finding keywords in deck name or card question even if there is punctuation or symbol appended**
-- Currently the `findDecks` and `findCards` commands are not able to find keywords in a deck or card if the word has no whitespace separating it from a punctuation. For example, `findCards loop` does not return a card with question `what is a loop?`.
+- Currently, the `findDecks` and `findCards` commands are not able to find keywords in a deck or card if the word has no whitespace separating it from a punctuation. For example, `findCards loop` does not return a card with question `what is a loop?`.
 - The find commands should support this feature as the punctuation does not change the existence of the keyword.
 - Hence, we intend to support this feature in the future.
