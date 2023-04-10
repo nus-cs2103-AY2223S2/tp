@@ -33,7 +33,7 @@ TMS is a **desktop application designed for private tutors managing students, op
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Tutee Managing System.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TMS.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -42,7 +42,7 @@ TMS is a **desktop application designed for private tutors managing students, op
 
    * `list` : Lists all students.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Math sch/monday st/09:30 et/11:30` : Adds a student named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Math sch/monday st/09:30 et/11:30` : Adds a student named `John Doe` to the TMS.
 
    * `delete 3` : Deletes the 3rd student shown in the current list.
 
@@ -95,9 +95,9 @@ Adds a student to the managing system.
 
 Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
 
-*Subject supported: {`Math`, `Physics`, `English`}  
-*Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
-*The added student must have a unqique name, phone number and email address  
+  * Subject supported: {`Math`, `Physics`, `English`}  
+  * Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
+  * The added student must have a unqique name, phone number and email address  
 
 Examples:
 
