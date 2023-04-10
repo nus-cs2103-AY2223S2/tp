@@ -142,11 +142,14 @@ A job listing is the basic building block of GoodMatch. It helps managers to kee
 What the job listing is called. It serves as an identifier for a job listing.<br> Some constraints that a job title include:
 - It is **compulsory** in a job listing.
 - Two job listings with the same title cannot exist in GoodMatch at the same time (**no duplicates**).
-- Titles must only contain alphanumeric characters.
+- Titles must contain at least one alphanumeric character.
+- Titles should not exceed 100 characters.
 
 #### Description
 A simple description of what the job entails.
 - It is **compulsory** in a job listing.
+- Descriptions must contain at least one alphanumeric character.
+- Descriptions should not exceed 500 characters.
 
 #### Applicant List
 A list of people who applied for the job.
