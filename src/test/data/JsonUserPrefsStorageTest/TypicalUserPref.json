@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "expenseTrackerFilePath" : "fastTrack.json"
+  "expenseTrackerFilePath" : "data/fastTrack.json"
 }

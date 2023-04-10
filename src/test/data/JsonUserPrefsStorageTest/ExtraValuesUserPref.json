@@ -9,5 +9,6 @@
       "z" : 99
     }
   },
-  "expenseTrackerFilePath" : "fastTrack.json"
+  "expenseTrackerFilePath" : "data/fastTrack.json"
 }
+
