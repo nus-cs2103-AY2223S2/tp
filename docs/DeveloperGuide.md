@@ -48,7 +48,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
-<div style="page-break-after: always;"></div>
+
 
 ### 2.1 Architecture
 
@@ -57,7 +57,7 @@ to learn how to create and edit diagrams.
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
-<div style="page-break-after: always;"></div>
+
 
 #### 2.1.1 Main components of the architecture
 
@@ -97,7 +97,6 @@ in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
 
-<div style="page-break-after: always;"></div>
 ### 2.2 UI component
 
 The **API** of this component is specified in
