@@ -779,6 +779,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exit` <br>
        Expected: Exists the program. Window is closed.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Appendix: Effort
 
 ### Challenges
