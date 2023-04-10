@@ -40,6 +40,14 @@ public class UniqueOrderListTest {
         assertTrue(uniqueOrderList.contains(CHOCOLATE_COOKIES_O));
     }
 
+    @Test
+    public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueOrderList.add(CHOCOLATE_COOKIES_O);
+        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES_O)
+                    .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
+        assertTrue(uniqueOrderList.contains(editedOrder));
+    }
+
     //@@author chongweiguan-reused
     @Test
     public void add_nullOrder_throwsNullPointerException() {

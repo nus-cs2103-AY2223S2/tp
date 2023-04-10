@@ -113,6 +113,7 @@ public class SampleDataUtil {
         return sampleM;
     }
 
+    //@@author arkarsg-reused
     public static Order[] getSampleOrders() {
         Customer amy = new Customer(new PersonName("Amy"),
                 new PersonPhone("12345678"),
@@ -151,6 +152,7 @@ public class SampleDataUtil {
                     charlie)
         };
     }
+    //@@author
 
     public static ReadOnlyOrderList getSampleOrderList() {
         OrderList sampleOl = new OrderList();

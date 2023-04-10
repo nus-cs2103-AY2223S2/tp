@@ -62,6 +62,7 @@ public class AddOrderCommand extends Command {
         this.toAdd = order;
     }
 
+    //@@author arkarsg
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -81,6 +82,7 @@ public class AddOrderCommand extends Command {
         model.addItem(validOrder, modelEnum);
         return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, validOrder));
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {
