@@ -88,7 +88,7 @@ Of the two repository model managers, one is used to keep track of tasks (i.e. `
 to keep track of the assignment of tasks to persons (i.e `AssignTask` objects). Meanwhile, 
 the person model manager implements the Model interface and is used to keep track of persons stored in OfficeConnect.
 
-Each of the other three main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the 
+Each of the other three main components (excluding OfficeConnectModel), defines its API in an `interface` with the 
 same name as the Component. The components implement their functionality using a concrete `{Component Name}Manager` class.
 <div style="page-break-after: always;"></div>
 
