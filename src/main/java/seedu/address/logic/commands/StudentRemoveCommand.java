@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class StudentRemoveCommand extends Command {
      * Represents a command to remove a student from a session.
      */
     public StudentRemoveCommand(Index index, SessionName sessionName) {
+        requireAllNonNull(index, sessionName);
         this.index = index;
         this.sessionName = sessionName;
     }
@@ -54,24 +56,32 @@ public class StudentRemoveCommand extends Command {
 
         Person studentToRemove = lastShownList.get(index.getZeroBased());
 
+        checkSessionExists(model);
+
+        //Find session
+        Session session = model.getSessionFromName(sessionName);
+
+        checkStudentExists(session, studentToRemove);
+
+        model.removePersonFromSession(studentToRemove, session);
+        model.commitAddressBook();
+        return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));
+    }
+
+    private void checkStudentExists(Session session, Person studentToRemove) throws CommandException {
+        if (!session.contains(studentToRemove
+                .getName().formattedName)) {
+            throw new CommandException(STUDENT_NOT_FOUND_FAILURE);
+        }
+    }
+
+    private void checkSessionExists(Model model) throws CommandException {
         if (!model.hasSessionName(sessionName)) {
             throw new CommandException(String.format(
                     SESSION_NOT_FOUND_FAILURE,
                     sessionName
             ));
         }
-
-        //Find session
-        Session session = model.getSessionFromName(sessionName);
-
-        if (!session.contains(studentToRemove
-                .getName().formattedName)) {
-            throw new CommandException(STUDENT_NOT_FOUND_FAILURE);
-        }
-
-        model.removePersonFromSession(studentToRemove, session);
-        model.commitAddressBook();
-        return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));
     }
 
     @Override

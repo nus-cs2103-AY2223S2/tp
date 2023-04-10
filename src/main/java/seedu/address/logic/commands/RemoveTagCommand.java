@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class RemoveTagCommand extends Command {
      * @param tagsToRemove details to edit the person with
      */
     public RemoveTagCommand(Index index, Set<Tag> tagsToRemove) {
+        requireAllNonNull(index, tagsToRemove);
         this.index = index;
         this.tagsToRemove = tagsToRemove;
     }

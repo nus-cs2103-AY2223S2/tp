@@ -16,9 +16,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-
-
-
+import seedu.address.model.session.Session;
 
 
 /**
@@ -75,6 +73,19 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalAddressBookWithSessions() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        Session session = SessionBuilder.generateDefaultSession();
+        ab.addSession(session);
         return ab;
     }
 
