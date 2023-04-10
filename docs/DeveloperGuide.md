@@ -578,7 +578,7 @@ The feature utilises the following classes:
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
-![DeleteCommandClassDiagram](images/delete/deleteCommandClassDiagram.png)
+![DeleteCommandClassDiagram](images/delete/DeleteCommandClassDiagram.png)
 
 The following diagram shows the Sequence Diagram of parsing a `delete` command into a `DeleteMultipleModulesCommand`:
 
