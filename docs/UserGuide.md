@@ -1,26 +1,19 @@
 ---
 layout: page
-title: AIMS User Guide
+title: User Guide
 ---
 
 <!-- omit from toc -->
 ## **Table of Contents**
 
-<<<<<<< HEAD
 - [Introduction](#introduction)
   - [What is AIMS?](#what-is-aims)
   - [Our Target](#our-target)
   - [User Guide](#user-guide)
-- [Legend](#legend)
-- [Quick start](#quick-start)
-- [Overview of AIMS GUI](#overview-of-aims-gui)
-- [Features](#features)
-=======
 - [**Legend**](#legend)
 - [**Quick start**](#quick-start)
 - [**Overview of AIMS GUI**](#overview-of-aims-gui)
 - [**Features**](#features)
->>>>>>> master
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
   - [Importing multiple persons from a CSV file : `importcsv`](#importing-multiple-persons-from-a-csv-file--importcsv)
