@@ -724,6 +724,55 @@ testers are expected to do more *exploratory* testing.
    7. Test case: Other incorrect delete commands to try:`markinprogress`, `marklate x`, `markcomplete x y`, `...` (where y is larger than the checked student's task list size)<br>
       Expected: Similar to previous.
 
+### Adding a score for a student
+
+1. Adding a score which is one of the recent five scores for a student in the student list when the student is being checked.
+
+   1. Prerequisites: Check a student using `check` command.
+
+   2. Test case: `addscore x l/Math Miderm Paper v/96 d/2022-12-07` (where x is the index of the student being checked)<br>
+      Expected: The score is added to the score list of the student and is being placed by date. 
+      If it is a recent score, it will be shown at the front, otherwise, in the middle based on the date.
+      Score chart and score table statistic summary will be updated accordingly.
+      Student's name and details of the added score shown in the status message.
+      The displayed score list of the checked student is updated with the added score.
+
+2. Adding a score which is not one of the recent five scores for a student in the student list when the student is being checked.
+
+    1. Prerequisites: Check a student using `check` command.
+
+    2. Test case: `addscore x l/Math Miderm Paper v/96 d/2022-12-07` (where x is the index of the student being checked)<br>
+       Expected: The score is added to the score list of the student and is being placed by date.
+       Since it is not a recent five scores, it will be shown in the middle or at back based on the date.
+       Score chart and score table statistic summary will remain the same.
+       Student's name and details of the added score shown in the status message.
+       The displayed score list of the checked student is updated with the added score.
+
+3. Adding a score for a student in the student list when the student is not being checked.
+
+    1. Prerequisites: Student with index x is not being checked.
+
+    2. Test case: `addscore x l/Math Miderm Paper v/96 d/2022-12-07` (where x is the index of student not being checked)<br>
+       Expected: The score in added to the score list of the student and is being placed by date.
+       Student's name and details of the added score shown in the status message.
+       The displayed score list is not updated since the student is not being checked.
+
+### Deleting a score for a student
+
+1. Deleting a task for a student in the student list when the student is being checked
+
+    2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+
+    3. Test case: `deletetask x 1`<br>
+       Expected: The first task is deleted from the task list of the checked student. Student's name and details of the deleted task shown in the status message.
+       The deleted task is removed from the displayed task list of the checked student.
+
+    4. Test case: `deletetask x 0`
+       Expected: No task is deleted from the task list of the checked student. Error details shown in the status message.
+
+    5. Test case: Other incorrect delete commands to try:`deletetask`, `deletetask x`, `deletetask x y`, `...` (where y is larger than the checked student's task list size)<br>
+       Expected: Similar to previous.
+
 ### Saving data
 
 --------------------------------------------------------------------------------------------------------------------
