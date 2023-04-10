@@ -5,7 +5,7 @@ toc: true
 ---
 
 * Table of Contents
-  {% toc %}
+{:toc}
 
 ---
 
