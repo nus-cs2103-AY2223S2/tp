@@ -2,27 +2,11 @@
 layout: page
 title: User Guide
 ---
-# Table of contents:
-{:toc}
 
-- [Introduction](#1-introduction)
-    1. [What is SudoHR?](#11-what-is-sudohr)
-    1. [Features](#13-features)
-- [Quick start](#2-quick-start)
-- [Quick Reference Guide](#3-quick-reference-guide)
-    1. [Layout](#31-layout)
-    2. [Key Definitions](#32-key-definitions)
-    3. [Command format](#33-command-format)
-- [Commands](#4-commands)
-    4. [Employee commands](#41-employee-commands)
-    5. [Department commands](#42-department-commands)
-    6. [Leave commands](#43-leave-commands)
-    7. [General commands](#44-general-commands)
-    8. [Data storage](#45-data-storage)
-    9. [Command summary](#46-command-summary)
-- [FAQs](#5-faq)
+* Table of Contents
+  {:toc}
+
 ---
-
 
 # 1. Introduction
 
