@@ -306,7 +306,7 @@ Examples:
 
 * Autocomplete only works for command words and prefixes that expect a corresponding input data. You may refer to the
 [Prefix](#prefix) section for more details on prefixes.<br>
-* If input matches a command, Autocomplete will autocomplete the [prefixes](#prefix) for the command. If command requires no prefix, autocomplete will not do anything else.
+* If input matches a command, Autocomplete will autocomplete the [prefixes](#prefix) for the command. If the command does not require any prefix, autocomplete will not do anything.
 </div>
 
 <div markdown="block" class="alert alert-primary">
