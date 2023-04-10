@@ -18,7 +18,6 @@ Given below are my contributions to the project.
     * Responsible for implementing the Plane model in Wingman along with all the basic functions related. This includes:
       adding and deleting a Plane, linking or unlinking a Plane to or from a Flight, and handling the storage and the
       parsing of a Plane.
-
     * **What it does:** Allows for a Plane to be properly managed in the Wingman app.
     * **Justification:** It includes all the necessary commands which a manager would need to manage the planes in their
       fleet eg. they can add a new plane, and delete planes which are out of service.
@@ -38,14 +37,6 @@ Given below are my contributions to the project.
     * Edited the previously used prefixes for commands, such that they would be streamlined across all commands.
     * **Justification:** Makes Wingman more consistent and hence, easier for users to learn and use.
 
-<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
-<strong>Note:</strong> The following code contribution points were removed from the Wingman app as it became a source of
-bugs. Briefly, we didn't have time to properly validate the input which is required for these features to run smoothly.
-More is discussed in our 
-<a href="https://ay2223s2-cs2103t-w11-1.github.io/tp/DeveloperGuide.html#2-deleting-xyz">Developer Guide</a> under the 
-Planned Enhancements section.
-</div>
-
 4. Added an `isAvailable` attribute for Crew, Pilot, and Plane
    ([#100](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/100))
     * **What it does:** Allows for Crew, Pilot, and Plane to be marked as available or unavailble, depending on whether
@@ -62,6 +53,14 @@ Planned Enhancements section.
     * **What it does:** Check the availability of a Crew, Pilot, or Plane.
     * **Justification:** With the`check` command, airline manager's no longer have to look through the list of resources
       , making it easier for them to check a specific resource's availability.
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+<strong>Note:</strong> Point 4 and 5 were removed from the Wingman app as it became a source of bugs. 
+Briefly, we didn't have time to properly validate the input which is required for these features to run smoothly.
+More is discussed in our 
+<a href="https://ay2223s2-cs2103t-w11-1.github.io/tp/DeveloperGuide.html">Developer Guide</a> under the 
+Planned Enhancements section.
+</div>
 
 
 * **Project Management**:
