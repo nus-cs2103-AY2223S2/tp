@@ -9,7 +9,7 @@ PowerCards enable university students to input a pool of information (question-a
 
 Given below are my contributions to the project.
 
-* **New Feature**: Design the overall UI on Figma - Main and Review mode screens and PowerCards Logo (PR [#187](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/187))
+* **New Feature**: Design and implement styling of the overall UI on Figma - Main and Review mode screens and PowerCards Logo (PR [#162](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/162) [#181](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/181) [#183](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/183) [#187](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/187))
 ![old_ui_mockup](../images/old_ui_mockup.png)
 *Initial prototype design of PowerCards UI.*
 
@@ -32,6 +32,7 @@ Given below are my contributions to the project.
     * User Guide:
         * Contributed to the Review Mode, Main Mode (after Deck selected), and Command Summary sections of the UG (PR [#242](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/242))
     * Developer Guide:
+        * Contributed to the Review Mode Implementation details [#351](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/351) [#356](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/356)
         * Added Planned Enhancement section (PR: [#311](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/311))
 
 * **Community**:
