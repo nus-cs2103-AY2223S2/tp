@@ -5,9 +5,9 @@ title: Developer Guide
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
-  <details>
+  <!-- <details>
   <summary>Design</summary>
-
+   -->
    - [Architecture](#architecture)
    - [UI component](#ui-component)
    - [Logic component](#logic-component)
@@ -15,30 +15,30 @@ title: Developer Guide
    - [Event component](#event-component)
    - [Contact component](#contact-component)
    - [Storage component](#storage-component)
-
-  </details>
+<!-- 
+  </details> -->
 - [Implementation](#implementation)
-  <details>
-  <summary>Features</summary>
-
+  <!-- <details>
+  <summary>Features</summary> 
+  -->
    - [New Contact feature](#new-contact-feature)
    - [Mark feature](#mark-feature)
    - [Unmark feature](#unmark-feature)
    - [Reminder feature](#reminder-feature)
    - [Linkcontact feature](#linkcontact-feature)
-
-  </details>
+<!-- 
+  </details> -->
 - [Appendix: Requirements](#appendix-requirements)
-  <details>
-  <summary>more</summary>
-
+  <!-- <details>
+  <summary>more</summary> 
+  -->
    * [Product scope](#product-scope)
    * [User stories](#user-stories)
    * [Use cases](#use-cases)
    * [Non-Functional Requirements](#non-functional-requirements)
    * [Glossary](#glossary)
-
-  </details>
+<!-- 
+  </details> -->
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
@@ -857,7 +857,18 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Planned Enhancements
 1. The current `newevent` and `edit` commands allows an event's start time to be after its end time. We plan to only allow an event to be added or successfully edited if its start time is before or the same as its end time, with an error message `Start time must be before end time.` being shown otherwise.
+
 2. The current `linkcontact` command does not recognise an inputted phone number if there are extra spaces around it. For example, `linkcontact 1      12345678` is not allowed. We plan to allow the extra spaces by ignoring extra spaces when splitting the input arguments.
+
+3. Upon using the current `linkcontact` command on a contact that is already linked to a specified event, the application returns a `Successfully linked` message in the message display box. We plan to change the display message to `Contact already linked` instead for contacts that are already linked.
+
+4. The current UI does not wrap text displayed into a new line, instead a scroll bar is used to scroll and view textual informations that are too long. We plan to add a text wrapping feature to provide better readability to users so that scrolling is not needed.
+
+5. The current `edit` command is for editing events only, there is no way to edit the contact object details. We plan to implement an `edit` function for the contact objects.
+
+6. The current contact book does not allow deleting of contacts. We plan to implement a `delete` method for deleting contacts.
+
+
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
 </div>
