@@ -15,7 +15,7 @@ public class TypicalScores {
         .withDate("2023-03-09").build();
     public static final Score SCORE_2 = new ScoreBuilder().withLabel("MA2100 Final Exam")
         .withValue("40")
-        .withDate("2023-03-09").build();
+        .withDate("2023-02-01").build();
     public static final Score SCORE_3 = new ScoreBuilder().withLabel("ST2334 Final Exam")
         .withValue("0")
         .withDate("2023-03-09").build();
