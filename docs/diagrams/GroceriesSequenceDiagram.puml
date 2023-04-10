@@ -28,14 +28,10 @@ ParserUtil --> GroceriesCommandParser : indices
 
 deactivate ParserUtil
 
-GroceriesCommandParser --> CookHubParser
-deactivate GroceriesCommandParser
-
-CookHubParser -> GroceriesCommandParser : new GroceriesCommand(indices)
-activate GroceriesCommandParser
 
 create GroceriesCommand
-GroceriesCommandParser -> GroceriesCommand
+
+GroceriesCommandParser -> GroceriesCommand : new GroceriesCommandParser(indices)
 activate GroceriesCommand
 
 GroceriesCommand --> GroceriesCommandParser : d
