@@ -1,48 +1,142 @@
 ---
-layout: page title: Developer Guide
+layout: page 
+title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+### About this application
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities,
+optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
-## **Teaching Assistant Assistant**
+TAA provides a one-stop solution that meets the following teaching needs of a TA in just one single application:
+1. You can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
+2. You can even view grade statistics without the use of a dedicated data analysis application!
+3. You can schedule alarms that help you manage your time during class. Gone are the days of you unknowingly spending
+   too much time on a single question during tutorial or forgetting to mark students' attendance at the end of class.
+4. You can save the troubles of manually importing and exporting data into and out of the TAA application, thanks to our
+   CSV parser!
 
-<img src="images/TAA_logo.jpg">
+![TAA logo](./images/TAA_logo.jpg)
 
-Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a
-Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-TAA can get your teaching assistant tasks done faster than traditional GUI apps.
+Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
 
-<img src="https://user-images.githubusercontent.com/59087730/222305199-8590f0f0-7e6d-4801-bcb9-cbb2a48fa28e.png" width="580"/>
+### Objectives of this guide
+This guide is written to provide comprehensive technical guidance for developers to develop and maintain TAA effectively and efficiently.
 
---------------------------------------------------------------------------------------------------------------------
+This guide includes descriptions and explanations on the architecture and design of the TAA application, complemented with UML diagrams where necessary.
 
-## **Acknowledgements**
+With this guide, any developers who wish to extend on, or modify this project to their liking should be able to do so with ease and confidence.
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+
+### Using the guide
+#### Navigation
+To use the guide, you may wish to take a look at the table of contents at the start of the page.
+You can click on the relevant sections you wish to visit, and the hyperlink will bring you straight to the relevant section.
+
+Alternatively, you may wish to use the built-in search function in your browser (<Button>Ctrl</Button> + <Button>F</Button>) to look for specific keywords relevant to your query.
+
+#### Formatting
+Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
+
+##### Callouts
+
+Callouts are identified by a coloured box containing some text.
+
+**Note**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** Contains important information on how the application is designed to be used.
+</div>
+
+**Information**
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Provides information that is not essential, but may be useful in certain edge cases.
+</div>
+
+**Tip**
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** Provides recommendations on how you can modify/extend the app more effectively.
+</div>
+
+**Warning**
+<div markdown="span" class="alert alert-danger">
+:warning: **Warning:** Describes actions that may cause the application to function unexpectedly.
+</div>
+
+##### Syntax highlighting
+Text contained within a `grey background` are used to denote either of the following:
+- commands that can be entered into the command bar
+- file names
+- command line commands, to be run in the [terminal](#glossary) of the host machine
+
+##### Keys
+Keys such as <Button>A</Button> <Button>B</Button> <Button>C</Button> are used to denote keys on the keyboard that can be pressed to perform certain things.
+
+They can also be used to denote keys that should be held together, at the same time. For example, <Button>Ctrl</Button> + <Button>F</Button> indicates that the user can press both the Ctrl and F keys together to perform a given action.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md) to get the project set up in your local machine.
+
+Figure 1 below gives an overview of the major components in the application's graphical user interface (GUI).
+
+![Labelled GUI](./images/Ui_labelled.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 1
+</strong>:
+Labelled components of the TAA GUI
+</em></figcaption>
+
+<br />
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Each Class List consists of 0 or more Student Cards.
+</div>
+
+The purposes of each component are described in Table 1 below.
+<br />
+
+<div style="text-align:center"><strong>
+Table 1
+</strong>:
+Purposes of each GUI component
+</div>
+
+|     Component      |                                      Purpose                                       |
+|:------------------:|:----------------------------------------------------------------------------------:|
+|    Command Box     |                         To accept commands from the user.                          |
+|     Output Box     |             To display the result of the commands issued by the user.              |
+| Class List Display |        To display the list of students in the currently active class list.         |
+|    Student Card    | To display the relevant information for a single Student in the active class list. |
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Many operations were designed to interact with the students that are currently visible in the active class list.
+This is intended to make it easier for users to use the application, as it is unlikely for the user to refer to something that they cannot see.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The following sections are mostly filled with UML diagrams to give a high-level overview of how each section is designed.
 
-<div markdown="span" class="alert alert-primary">
+After reading this section, you should have a clearer understanding of the major components in the application, along with how they interact with each other.
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T14-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
+<figcaption style="text-align:center"><em><strong>
+Figure 2
+</strong>:
+Architecture Diagram of TAA
+</em></figcaption>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -73,6 +167,11 @@ The *Sequence Diagram* below shows how the components interact with each other f
 the command `delete_student 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="654" />
+<figcaption style="text-align:center"><em><strong>
+Figure 3
+</strong>:
+Architecture Sequence Diagram of TAA
+</em></figcaption>
 
 Each of the four main components (also shown in the diagram above):
 
@@ -86,6 +185,11 @@ through its interface rather than the concrete class (reason: to prevent outside
 implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+<figcaption style="text-align:center"><em><strong>
+Figure 4
+</strong>:
+Sequence Diagram of the Component Managers in TAA
+</em></figcaption>
 
 The sections below give more details of each component.
 
@@ -95,6 +199,11 @@ The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 5
+</strong>:
+Structure of the UI component
+</em></figcaption>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -111,7 +220,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
@@ -120,6 +229,11 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+<figcaption style="text-align:center"><em><strong>
+Figure 6
+</strong>:
+Class Diagram of the Logic Component in TAA
+</em></figcaption>
 
 How the `Logic` component works:
 
@@ -134,28 +248,39 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 7
+</strong>:
+Interactions Inside the Logic Component for the `delete 1` Command
+</em></figcaption>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+<figcaption style="text-align:center"><em><strong>
+Figure 8
+</strong>:
+Sequence Diagram of the Parser Classes in TAA
+</em></figcaption>
 
 How the parsing works:
-
-* When called upon to parse a user command, the `TaaParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder
-  for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user
-  command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
-  a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
-  interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `TaaParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `TaaParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteStudentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/model/Model.java)
-
 <img src="images/ModelClassDiagram.png" width="450" />
+<figcaption style="text-align:center"><em><strong>
+Figure 9
+</strong>:
+Class Diagram of the Model Component in TAA
+</em></figcaption>
+
 
 
 The `Model` component,
@@ -175,10 +300,13 @@ The `Model` component,
 API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-4/tp/blob/master/src/main/java/taa/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+<figcaption style="text-align:center"><em><strong>
+Figure 10
+</strong>:
+Class Diagram of the Storage Component in TAA
+</em></figcaption>
 
 The `Storage` component,
-
-* can save both student data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `JsonTaaStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the
   functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
@@ -194,8 +322,267 @@ Classes used by multiple components are in the `taa.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Data archiving
+### Add Student Feature
+#### Implementation
+The ability to add students is one of the core features of the application.
+This feature allows users to add students to their defined classes/class lists, which will be essential for other features to work in tandem.
 
+This feature is facilitated through the command `add_student`, with a mandatory `STUDENT_NAME` and one or more `CLASS_NAME`s.
+After the application creates a new Student object with the specified `STUDENT_NAME`, it will proceed to add this student under all the `CLASS_NAME`s provided.
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** After creating the Student, if a class list with the specified `CLASS_NAME` does not exist, the new class list will be created along with the student.
+</div>
+
+The sequence diagram shown in Figure 11 below gives an overview of the methods called during command execution.
+
+![Add Student Sequence Diagram](images/AddStudentSequenceDiagram.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 11
+</strong>:
+Sequence Diagram for adding a Student
+</em></figcaption>
+<br />
+
+Alternatively, you may wish to refer to the activity diagram in Figure 12 below which captures some subtleties regarding the note above which are missed by the sequence diagram above.
+
+
+<image style="display:flex; margin-left:auto; margin-right:auto" src="images/AddStudentActivityDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 12
+</strong>:
+Activity Diagram for adding a Student
+</em></figcaption>
+<br />
+
+#### Design Considerations
+**Aspect: Dealing with non-existent Class Lists**
+
+One issue with the behaviour of this command stems from the undecided behaviour when a specified `CLASS_NAME` does not exist as a Class List yet.
+
+Among the two options described below, our team decided to choose the former as we felt that it would be pointlessly troublesome for a user to deliberately create a Class List just to add a new student.
+
+1. **Alternative 1 (Chosen):** Create the Class List automatically
+    - Pros: Convenient for users as they do not have to manually create the Class Lists before using this command.
+    - Cons: Users may accidentally add a Student into a stray Class List as a result of a typo.
+2. **Alternative 2:** Reject the operation and prompt user to create the specified Class List before proceeding
+    - Pros: Users will be assured that the Students they are adding will be added to a Class List that they have manually created before.
+    - Cons: Can be tiring when the user has to manually create multiple class lists just to add Students.
+
+### Mark Attendance
+
+#### Implementation
+Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand` and `Model`
+
+* `MarkAttendanceParser`-- Parse the input of users
+* `MarkAttednanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for marking attendance of a student
+
+<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 13
+</strong>:
+Sequence Diagram for Marking Attendance
+</em></figcaption>
+<br />
+
+#### Design Considerations
+
+**Aspect: How TAA execute the command**
+
+1. **Alternative 1 (Chosen):** MarkAttendanceCommand will edit the student's attendance.
+    * Pros: More efficient in terms of space and time, and easier to implement.
+    * Cons: No immutability for student
+
+2. **Alternative 2:** MarkAttendanceCommand create new student to replace student to be edited.
+    * Pros: Student is immutable
+    * Cons: Less efficient in terms of space and time.
+
+### Unmark Attendance
+
+#### Implementation
+Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
+
+* `UnarkAttendanceParser`-- Parse the input of users
+* `UnarkAttednanceCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for unmarking attendance of a student
+
+<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 14
+</strong>:
+Sequence Diagram for Unmarking Attendance
+</em></figcaption>
+<br />
+
+#### Design Considerations
+
+**Aspect: How TAA should search for users**
+
+1. **Alternative 1 (Chosen):** UnarkAttendanceCommand will take in student index.
+    * Pros: Easy to type, and index can be found easily by just looking.
+    * Cons: Might need some scrolling to find student's index if there is many students.
+
+2. **Alternative 2:** UnarkAttendanceCommand will take in student name.
+    * Pros: More typing for the user.
+    * Cons: No need to scroll and find student's index.
+
+### Insert Participation
+
+#### Implementation
+Insert Participation command is facilitated by `InsertParticipationParser`, `InsertParticipationCommand` and `Model`
+
+* `InsertParticipationParser`-- Parse the input of users
+* `InsertParticipationCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the student list.
+
+Below is the sequence diagram for inserting participation of a student
+
+<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
+<figcaption style="text-align:center"><em><strong>
+Figure 15
+</strong>:
+Sequence Diagram for Inserting Participation
+</em></figcaption>
+
+#### Design Considerations
+**Aspect: How to handle case where user attempt to add participation points for week without attendance**
+
+1. **Alternative 1 (Chosen):** TAA will output error message telling user to mark attendance first.
+    * Pros: Reduce confusion and errors in case user accidentally add participation for wrong week when attendance is not marked
+    * Cons: Lesser flexibility (user cannot choose to insert participation points before marking attendance)
+
+2. **Alternative 2:** TAA allows participation points to be added regardless of the attendance for the week.
+    * Pros: More flexibility
+    * Cons: Might cause possible confusion for user as the user might add points for wrong week and not realise
+
+### Add Assignment
+
+#### Implementation
+AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
+
+* `AddAssignmentCommandParser`-- Parse the input of users
+* `AddAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for adding an assignment.
+
+<img src="images/AddAssignmentSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 16
+</strong>:
+Sequence Diagram for Adding Assignment
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How TAA adds an assignment to the classlist**
+
+1. **Alternative 1 (Chosen):** Assignment will be added for all students in the classlist.
+    * Pros: Easier to implement, less likely for bugs.
+    * Cons: Less robust
+
+2. **Alternative 2:** Assignment will be added for select students in the classlist.
+    * Pros: More extensive
+    * Cons: More likely for bugs, harder to implement.
+
+### Delete Assignment
+
+#### Implementation
+DeleteAssignment command is facilitated by `DeleteAssignmentCommandParser`, `DeleteAssignmentCommand` and `Model`
+
+* `DeleteAssignmentCommandParser`-- Parse the input of users
+* `DeleteAssignmentCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for deleting an assignment.
+
+<img src="images/DeleteAssignmentSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 17
+</strong>:
+Sequence Diagram for Deleting Assignment
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How the DeleteAssignmentCommand is parsed**
+
+1. **Alternative 1 (Chosen):** Use the assignment name to refer to the assignment.
+* Pros: More intuitive.
+    * Cons: TA may have to keep track of many assignment names, or type more than usual as opposed to just typing the index.
+
+2. **Alternative 2:** Use assignment id to refer to an assignment.
+    * Pros: TA will have to type less, less assignment names to keep track
+    * Cons: Unintuitive and confusing.
+
+### Grade Assignment
+
+#### Implementation
+Grade command is facilitated by `GradeCommandParser`, `GradeCommand` and `Model`
+
+* `GradeCommandParser`-- Parse the input of users
+* `GradeCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for grading a student submission.
+
+<img src="images/GradeSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 18
+</strong>:
+Sequence Diagram for grading a student submission
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How to indicate a late student submission**
+
+1. **Alternative 1 (Chosen):** Use an optional late/ prefix to indicate a late submission.
+    * Pros: More intuitive, shorter code, does not require a whole new command just to mark a submission as late.
+    * Cons: None
+
+2. **Alternative 2:** Create a new command to indicate a late submission.
+    * Pros: None
+    * Cons: More code, less intuitive and more commands to remember.
+
+### Ungrade Assignment
+
+#### Implementation
+Ungrade command is facilitated by `UngradeCommandParser`, `UngradeCommand` and `Model`
+
+* `UngradeCommandParser`-- Parse the input of users
+* `UngradeCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for ungrading a student submission.
+
+<img src="images/UngradeSequenceDiagram.png" />
+<figcaption style="text-align:center"><em><strong>
+Figure 19
+</strong>:
+Sequence Diagram for ungrading a student submission
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: How to handle ungrading a submission that was not graded / already ungraded**
+
+1. **Alternative 1 (Chosen):** Always set the marks to 0 and the late submission status to false.
+    * Pros: Less code, also makes sense as the overall effect will be the same.
+    * Cons: Less intuitive for the user.
+
+2. **Alternative 2:** Throw an error message saying that the assignment has not been graded before / was already ungraded.
+    * Pros: More intuitive for the user.
+    * Cons: More code.
+
+### Data archiving
+
+#### Implementation
 TAA application data only contains a list of students and a list of assignments. It is automatically stored in JSON
 format at each successful command execution. It is handled by `JsonTaaStorage`.
 
@@ -221,208 +608,6 @@ objects and JSON objects.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-## **Mark Attendance**
-
-Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand` and `Model`
-
-* `MarkAttendanceParser`-- Parse the input of users
-* `MarkAttednanceCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the student list.
-
-Below is the sequence diagram for marking attendance of a student
-
-<img src="images/MarkAttendanceSequenceDiagram.png" width="574" />
-
-**Design Considerations**
-
-Aspect: How TAA execute the command.
-
-1. Alternative 1 (Chosen): MarkAttendanceCommand will edit the student's attendance.
-
-* Pros: More efficient in terms of space and time, and easier to implement.
-
-* Cons: No immutability for student
-
-2. Alternative 2: MarkAttendanceCommand create new student to replace student to be edited.
-
-* Pros: Student is immutable
-
-* Cons: Less efficient in terms of space and time.
-
-## **Unmark Attendance**
-
-Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
-
-* `UnarkAttendanceParser`-- Parse the input of users
-* `UnarkAttednanceCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the student list.
-
-Below is the sequence diagram for unmarking attendance of a student
-
-<img src="images/UnmarkAttendanceSequenceDiagram.png" width="574" />
-
-**Design Considerations**
-
-Aspect: How TAA should search for users.
-
-1. Alternative 1 (Chosen): UnarkAttendanceCommand will take in student index.
-
-* Pros: Easy to type, and index can be found easily by just looking.
-
-* Cons: Might need some scrolling to find student's index if there is many students.
-
-2. Alternative 2: UnarkAttendanceCommand will take in student name.
-
-* Pros: More typing for the user.
-
-* Cons: No need to scroll and find student's index.
-
-## **Insert Participation**
-
-Insert Participation command is facilitated by `InsertParticipationParser`, `InsertParticipationCommand` and `Model`
-
-* `InsertParticipationParser`-- Parse the input of users
-* `InsertParticipationCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the student list.
-
-Below is the sequence diagram for inserting participation of a student
-
-<img src="images/InsertParticipationSequenceDiagram.png" width="574" />
-
-Aspect: How to handle case where user attempt to add participation points for week without attendance.
-
-1. Alternative 1 (Chosen): TAA will output error message telling user to mark attendance first.
-
-* Pros: Reduce confusion and errors in case user accidentally add participation for wrong week when attendance is not
-  marked
-
-* Cons: Lesser flexibility (user cannot choose to insert participation points before marking attendance)
-
-2. Alternative 2: TAA allows participation points to be added regardless of the attendance for the week.
-
-* Pros: More flexibility
-
-* Cons: Might cause possible confusion for user as the user might add points for wrong week and not realise
-*
-
-## **Add Assignment**
-
-AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
-
-* `AddAssignmentCommandParser`-- Parse the input of users
-* `AddAssignmentCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
-
-Below is the sequence diagram for adding an assignment.
-
-<img src="images/AddAssignmentSequenceDiagram.png" />
-
-**Design Considerations**
-
-Aspect: How TAA adds an assignment to the classlist.
-
-1. Alternative 1 (Chosen): Assignment will be added for all students in the classlist.
-
-* Pros: Easier to implement, less likely for bugs.
-
-* Cons: Less robust
-
-2. Alternative 2: Assignment will be added for select students in the classlist.
-
-* Pros: More extensive
-
-* Cons: More likely for bugs, harder to implement.
-
-## **Delete Assignment**
-
-DeleteAssignment command is facilitated by `DeleteAssignmentCommandParser`, `DeleteAssignmentCommand` and `Model`
-
-* `DeleteAssignmentCommandParser`-- Parse the input of users
-* `DeleteAssignmentCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
-
-Below is the sequence diagram for deleting an assignment.
-
-<img src="images/DeleteAssignmentSequenceDiagram.png" />
-
-**Design Considerations**
-
-Aspect: How the DeleteAssignmentCommand is parsed.
-
-1. Alternative 1 (Chosen): Use the assignment name to refer to the assignment.
-
-* Pros: More intuitive.
-
-* Cons: TA may have to keep track of many assignment names, or type more than usual as opposed to just typing the index.
-
-2. Alternative 2: Use assignment id to refer to an assignment.
-
-* Pros: TA will have to type less, less assignment names to keep track
-
-* Cons: Unintuitive and confusing.
-
-## **Grade Assignment**
-
-Grade command is facilitated by `GradeCommandParser`, `GradeCommand` and `Model`
-
-* `GradeCommandParser`-- Parse the input of users
-* `GradeCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
-
-Below is the sequence diagram for grading a student submission.
-
-<img src="images/GradeSequenceDiagram.png" />
-
-**Design Considerations**
-
-Aspect: How to indicate a late student submission.
-
-1. Alternative 1 (Chosen): Use an optional late/ prefix to indicate a late submission.
-
-* Pros: More intuitive, shorter code, does not require a whole new command just to mark a submission as late.
-
-* Cons: None
-
-2. Alternative 2: Create a new command to indicate a late submission.
-
-* Pros: None
-
-* Cons: More code, less intuitive and more commands to remember.
-
-## **Ungrade Assignment**
-
-Ungrade command is facilitated by `UngradeCommandParser`, `UngradeCommand` and `Model`
-
-* `UngradeCommandParser`-- Parse the input of users
-* `UngradeCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
-
-Below is the sequence diagram for ungrading a student submission.
-
-<img src="images/UngradeSequenceDiagram.png" />
-
-**Design Considerations**
-
-Aspect: How to handle ungrading a submission that was not graded / already ungraded.
-
-1. Alternative 1 (Chosen): Always set the marks to 0 and the late submission status to false.
-
-* Pros: Less code, also makes sense as the overall effect will be the same.
-
-* Cons: Less intuitive for the user.
-
-2. Alternative 2: Throw an error message saying that the assignment has not been graded before / was already ungraded.
-
-* Pros: More intuitive for the user.
-
-* Cons: More code.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -433,7 +618,7 @@ Aspect: How to handle ungrading a submission that was not graded / already ungra
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
@@ -456,29 +641,28 @@ Aspect: How to handle ungrading a submission that was not graded / already ungra
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …         | I want to …                                             | So that I can…                                                                                               |
-|----------|----------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `* * *`  | TA             | manage my classes in a separate, distinct system        | avoid being confused with the various command names that may overlap with that of non-class-related commands |
-| `* * *`  | TA             | group students by class                                 | track participation/assignment statuses by students' own classes                                             |
-| `* * *`  | TA             | add students to a class list                            | expand the class list if needed (e.g. new student joins)                                                     |
-| `* * *`  | TA             | delete students from a class list                       | remove students who are no longer part of the class (e.g. dropped class)                                     |
-| `* * *`  | TA             | allocate assignments to students by class               | track the statuses of assignments assigned to each class                                                     |
-| `* * *`  | careless TA    | remove assignments allocated to a class                 | remove incorrect assignment entries                                                                          |
-| `* * *`  | responsible TA | track students' participation statuses                  | award participation marks to students fairly and accurately                                                  |
-| `* * *`  | forgetful TA   | track valid reasons for a student's absence             | record attendance for those with valid reasons                                                               |
-| `* * *`  | forgetful TA   | track student assignment submissions/scores/deadlines   | grade assignments easily                                                                                     |
-| `* * *`  | stressed TA    | manage time for different tasks during class conducting | complete all tasks during each lesson on time                                                                |
-| `* * *`  | user           | have CSV files storing my data                          | make backups to guard against data loss                                                                      |
-| `* * *`  | user           | load in CSV files to restore data                       | avoid having to do manual data entry when using the app from scratch                                         |
-| `* * *`  | user           | exit the app gracefully                                 | avoid data corruption                                                                                        |
-| `* *`    | TA             | assign individual assignment grades to students         | track the specific grade each student has obtained for each assignment                                       |
-| `* *`    | forgetful TA   | track questions asked by students                       | answer them on time                                                                                          |
-| `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson             | complete the lessons on time without missing out on any content                                              |
-| `* *`    | forgetful TA   | be reminded to take attendance before class ends        | award attendance marks correctly                                                                             |
-| `* *`    | TA             | group students quickly and fairly                       | reduce time wasted due to group formation                                                                    |
-| `* *`    | TA             | search students by keywords                             | lessen the mental load required to find a student                                                            |
-| `* *`    | TA             | list all students in a class                            | see an overview of the students in a class at a glance                                                       |
-| `*`      | head TA        | manage all other TAs                                    | track whether each TA has done their job correctly                                                           |
+| Priority | As a …         | I want to …                                                              | So that I can…                                                                                               |
+|----------|----------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `* * *`  | TA             | group students by class                                                  | track participation/assignment statuses by students' own classes                                             |
+| `* * *`  | TA             | add students to a class list                                             | expand the class list if needed (e.g. new student joins)                                                     |
+| `* * *`  | TA             | delete students from a class list                                        | remove students who are no longer part of the class (e.g. dropped class)                                     |
+| `* * *`  | TA             | allocate assignments to students by class                                | track the statuses of assignments assigned to each class                                                     |
+| `* * *`  | careless TA    | remove assignments allocated to a class                                  | remove incorrect assignment entries                                                                          |
+| `* * *`  | responsible TA | track students' participation statuses                                   | award participation marks to students fairly and accurately                                                  |
+| `* * *`  | forgetful TA   | track student assignment submissions/scores                              | grade assignments easily                                                                                     |
+| `* * *`  | stressed TA    | have an alarm to manage time for different tasks during class conducting | complete all tasks during each lesson on time                                                                |
+| `* * *`  | user           | have CSV files storing my data                                           | make backups to guard against data loss                                                                      |
+| `* * *`  | user           | load in CSV files to restore data                                        | avoid having to do manual data entry when using the app from scratch                                         |
+| `* * *`  | user           | exit the app gracefully                                                  | avoid data corruption                                                                                        |
+| `* *`  | forgetful TA   | track valid reasons for a student's absence                              | record attendance for those with valid reasons                                                               |
+| `* *`    | TA             | assign individual assignment grades to students                          | track the specific grade each student has obtained for each assignment                                       |
+| `* *`    | forgetful TA   | track questions asked by students                                        | answer them on time                                                                                          |
+| `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson                              | complete the lessons on time without missing out on any content                                              |
+| `* *`    | forgetful TA   | be reminded to take attendance before class ends                         | award attendance marks correctly                                                                             |
+| `* *`    | TA             | group students quickly and fairly                                        | reduce time wasted due to group formation                                                                    |
+| `* *`    | TA             | search students by keywords                                              | lessen the mental load required to find a student                                                            |
+| `* *`    | TA             | list all students in a class                                             | see an overview of the students in a class at a glance                                                       |
+| `*`      | head TA        | manage all other TAs                                                     | track whether each TA has done their job correctly                                                           |
 
 *{More to be added}*
 
@@ -486,31 +670,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAA` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: mark attendance of a student**
+#### Attendance-related Commands
 
-**Use case: unmark attendance of a student**
+##### Mark Attendance
 
-**Use case: insert participation points of a student**
-
-**Use case: delete a student**
-
-**Use case: Add Assignment**
-
-**Use case: Delete Assignment**
-
-**Use case: Grade Student Submission of an Assignment**
-
-**Use case: Ungrade Student Submission of an Assignment**
-
-**Use case: Add Class List**
-
-**Use case: List Student**
-
-**Use case: Search Student**
-
-## **Mark Attendance**
-
-Below is the main success scenario of Mark
+Below is the main success scenario of marking a student's attendance.
 
 **MSS**
 
@@ -532,9 +696,9 @@ Below is the main success scenario of Mark
 
       Use case ends.
 
-## **Unmark Attendance**
+##### Unmark Attendance
 
-Below is the main success scenario of Unmark
+Below is the main success scenario of Unmark Attendance
 
 **MSS**
 
@@ -551,7 +715,7 @@ Below is the main success scenario of Unmark
 
       Use case ends.
 
-## **Insert Participation**
+##### Insert Participation
 
 Below is the main success scenario of Insert Participation
 
@@ -575,7 +739,9 @@ Below is the main success scenario of Insert Participation
 
       Use case ends.
 
-## **Add Assignment**
+#### Assignment-related Commands
+
+##### Add Assignment
 
 Below is the main success scenario of adding an Assignment.
 
@@ -602,7 +768,7 @@ Below is the main success scenario of adding an Assignment.
 
 AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
 
-## **Delete Assignment**
+##### Delete Assignment
 
 Below is the main success scenario of deleting an Assignment
 
@@ -623,7 +789,7 @@ Below is the main success scenario of deleting an Assignment
 
     * 1b1. TAA shows an error message
 
-## **Grade Assignment**
+##### Grade Assignment
 
 Below is the main success scenario of grading a student submission.
 
@@ -655,7 +821,7 @@ Below is the main success scenario of grading a student submission.
 
     * 1d1. TAA shows an error message.
 
-## **Ungrade Assignment**
+##### Ungrade Assignment
 
 Below is the main success scenario of ungrading a student submission.
 
@@ -680,11 +846,11 @@ Below is the main success scenario of ungrading a student submission.
 
     * 1c1. TAA shows an error message.
 
-## **Students-Related Commands**
+#### Student-related Commands
 
-Below is the main success scenario of students-related commands.
+Below is the main success scenario of student-related commands.
 
-**Adding a student**
+##### Add a student
 
 1. User requests to add a user with a specific name into one or more classes.
 2. TAA adds the student into the specified classes.
@@ -703,14 +869,15 @@ Below is the main success scenario of students-related commands.
 
       Use case resumes from step 2.
 
-**list student**
-
+##### List students
 1. User requests to list all students in a class.
 2. TAA shows a list of students and number of students listed.
 
    Use case ends.
 
-**search student**
+##### Search student
+1.  User requests to search for a particular student
+2.  TAA shows the information of the student searched
 
 1. User requests to search for a particular student
 2. TAA shows the information of the student searched
@@ -723,24 +890,24 @@ Below is the main success scenario of students-related commands.
 
   Use case ends.
 
-**add classlist**
-
-1. User requests to add a new class list with a specific name.
-2. TAA adds the new class list with the name specified. Use case ends.
+##### Add Class List
+1.  User requests to add a new class list with a specific name.
+2.  TAA adds the new class list with the name specified.
+    Use case ends.
 
 **Extensions**
 
 * 2a. Class list with the same name already exists.
     * 2a1. TAA shows an error message. Use case ends.
 
-## **Alarm-Related Commands**
+#### Alarm-Related Commands
 
 Below is the main success scenarios of adding, deleting and listing alarms.
 
-**add alarm**
-
-1. User requests to add an alarm with specified time and comment.
-2. TAA adds the new alarm with the time and comment specified. Use case ends.
+##### Add Alarm
+1.  User requests to add an alarm with specified time and comment.
+2.  TAA adds the new alarm with the time and comment specified.
+    Use case ends.
 
 **Extensions**
 
@@ -751,10 +918,10 @@ Below is the sequence diagram for adding an alarm.
 
 <img src="images/AddAlarmSequenceDiagram.PNG" />
 
-**delete alarm**
-
-1. User requests to delete a scheduled alarm with specified index.
-2. TAA deletes the alarm with the specified index, the alarm will no longer ring. Use case ends.
+##### Delete alarm
+1.  User requests to delete a scheduled alarm with specified index.
+2.  TAA deletes the alarm with the specified index, the alarm will no longer ring.
+    Use case ends.
 
 **Extensions**
 
@@ -767,9 +934,8 @@ Below is the sequence diagram for deleting an alarm.
 
 <img src="images/DeleteAlarmSequenceDiagram.PNG" />
 
-**list alarm**
-
-1. User requests to list all scheduled alarms.
+##### List alarms
+1.  User requests to list all scheduled alarms.
 2. TAA shows all scheduled alarms on the command window.
 
 **Extensions**
@@ -783,19 +949,17 @@ Below is the sequence diagram for listing the alarms.
 
 ### Non-functional requirements
 
-* All aspects of the system should work on Mac, Windows, and Linux operating systems.
-* The system should be easy to use by anyone who can type fast.
+* All aspects of the system should work on any [mainstream operating system](#glossary) that has a proper installation of Java 11.
+* The system should be able to hold up to 500 students without noticeable sluggishness in performance for typical usage.
+* The system should respond within 3 seconds.
+* A person who can type fast (>70 wpm) should be able to accomplish most of the tasks faster using keyboard commands instead of using mouse interactions.
 * The system should not crash or corrupt files under any input text.
-* The system should respond within 1 second.
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* The system should not crash when given a corrupted input file.
+* The system should be fully offline (i.e. does not access the Internet at all).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -926,8 +1090,7 @@ Philza Minercaft,,,,
       user.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Appendix A: Planned Enhancements**
+## **Appendix C: Planned Enhancements**
 
 ### 1. Allow multiple students with the same name to be added
 
@@ -955,4 +1118,15 @@ Therefore, we plan to further extend the checks performed on the student name pr
 and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to
 be the same student. Consequently, such operations will not be allowed to execute, and an error message "A student with
 a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+
+## **Glossary**
+
+|      Term      |         Explanation         |
+|:--------------:|:---------------------------:|
+| Mainstream OS  | Windows, Linux, Unix, OS-X  |
 

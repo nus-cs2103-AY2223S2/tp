@@ -53,8 +53,11 @@ Given below are my contributions to the project.
   - **Developer Guide**
     - Added value proposition and initial set of user stories ([PR #32](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/32), [PR #35](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/35))
     - Added use case for `add_student` command ([PR #119](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/119))
+    - Added Introduction section ([PR #234](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/234))
+    - Modified AB-3 UML diagrams to fit TAA context ([PR #234](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/234))
+    - Added implementation details and design considerations for `add_student` command ([PR #234](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/234))
 
 - **Team-based Tasks**
   - Enabled assertions in project Gradle file ([PR #106](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/106))
-  - Created releases for [v1.2](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.2), [v1.2.1](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.2), [v1.3](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.3)
+  - Created releases for [v1.2](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.2), [v1.2.1](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.2), [v1.3](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.3), [v1.4](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases/tag/v1.4)
   - Created and closed milestones [v1.1](https://github.com/AY2223S2-CS2103T-T14-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T14-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T14-4/tp/milestone/3), [v1.3](https://github.com/AY2223S2-CS2103T-T14-4/tp/milestone/4), [v1.4](https://github.com/AY2223S2-CS2103T-T14-4/tp/milestone/5)

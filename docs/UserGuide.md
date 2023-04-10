@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 * Table of Contents {:toc}
@@ -757,6 +758,11 @@ Format: `export [-force] FILE_PATH`
 * If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
 * Option -force overwrites existing file.
 * Nothing is saved to disk if file access denied.
+
+## **Acknowledgements**
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JFreeChart](https://github.com/jfree/jfreechart)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
