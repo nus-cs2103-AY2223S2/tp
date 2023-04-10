@@ -13,30 +13,65 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ## Table of Contents
 
-- [User Guide Information](#user-guide-information)
-  - [Purpose of this guide](#purpose-of-this-guide)
-  - [How to use this guide](#how-to-use-this-guide)
-  - [Legends](#legends)
-- [Quick Start](#quick-start)
-- [Introduction to GoodMatch](#introduction-to-goodmatch)
-- [Features](#features)
-  - [Viewing help: `help`](#viewing-help--help)
-  - [Viewing all job listings: `view`](#viewing-all-job-listings--view)
-  - [Adding a job listing: `add`](#adding-a-job-listing--add)
-  - [Editing a job listing: `edit`](#editing-a-job-listing--edit)
-  - [Deleting a job listing: `delete`](#deleting-a-job-listing--delete)
-  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing--addapp)
-  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing--editapp)
-  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing--delapp)
-  - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
-  - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-  - [Locating job listings by title: `find`](#locating-job-listings-by-title--find)
-  - [Sorting job listings: `sort`](#sorting-job-listings--sort)
-  - [Undo latest command: `undo`](#undo-latest-command--undo)
-  - [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
-  - [Tagging a job listing `[coming in v2.0]`](#tagging-a-job-listing-coming-soon)
-- [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [GoodMatch](#goodmatch)
+  - [**Overview**](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [User Guide Information](#user-guide-information)
+    - [Purpose of this guide](#purpose-of-this-guide)
+    - [How to use this guide](#how-to-use-this-guide)
+    - [Legends](#legends)
+  - [**Quick Start**](#quick-start)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents-)
+  - [Introduction to GoodMatch](#introduction-to-goodmatch)
+    - [Summary](#summary)
+    - [Listing](#listing)
+      - [Title](#title)
+      - [Description](#description)
+      - [Applicants List](#applicants-list)
+      - [Platforms released](#platforms-released)
+    - [Applicant](#applicant)
+      - [IDs](#ids)
+    - [Platform](#platform)
+    - [Commands](#commands)
+  - [**Features**](#features)
+    - [Viewing help: `help`](#viewing-help-help)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--1)
+    - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--2)
+    - [Adding a job listing: `add`](#adding-a-job-listing-add)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--3)
+    - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--4)
+    - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--5)
+    - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--6)
+    - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--7)
+    - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--8)
+    - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--9)
+    - [Delete a platform from a listing: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--10)
+    - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--11)
+    - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--12)
+    - [Undo latest command: `undo`](#undo-latest-command-undo)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--13)
+    - [Saving the data](#saving-the-data)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--14)
+    - [Editing the data file](#editing-the-data-file)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--15)
+    - [Filtering job listings \[coming soon!\]](#filtering-job-listings-coming-soon)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--16)
+    - [Tagging a job listing \[coming soon\]](#tagging-a-job-listing-coming-soon)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--17)
+  - [**FAQ**](#faq)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--18)
+  - [**Command summary**](#command-summary)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--19)
 
 ---
 
@@ -138,7 +173,7 @@ In a job listing, each applicant will have a unique 4-digit ID, generated automa
 
 
 ### Platform
-A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are Linkedin, Indeed, etc.
+A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are LinkedIn, Indeed, etc.
 - A platform must have a name.
 - A platform's name must contain only alphanumeric characters.
 - Platforms in the same listing cannot have identical names (**no duplicates**).
@@ -553,14 +588,14 @@ Adds a new platform to the specified job listing.
 - The command only adds one platform at a time. Should there be more than one platform per command then only the latest platform will be taken into consideration. If the lastest platform provided is invalid, an error will occur even if the rest of the provided platforms are valid.
 
 📚 **Examples:**
-- `add_plat 1 p/linkedin`
-- `add_plat 3 p/indeed`
-- `add_plat 2 p/glints p/jobstreet` (only "jobstreet" will be added)
+- `add_plat 1 p/LinkedIn`
+- `add_plat 3 p/Indeed`
+- `add_plat 2 p/Glints p/jobstreet` (only "jobstreet" will be added)
 
 🎯 **Expected Output:**
 A confirmation message showing the platform as well as the title of the listing that it is added to will be shown. An example of the message is shown below:
 ```ignorelang
-Platform linkedin added to listing Computer Science Intern
+Platform LinkedIn added to listing Computer Science Intern
 ```
 
 ❌ **Possible Errors:**
@@ -606,13 +641,13 @@ Deletes a platform from a specified job listing.
 
 📚 **Examples:**
 
-- `del_plat 1 p/linkedin`
-- `del_plat 2 p/linkedin p/glints` - Only "glints" will be deleted
+- `del_plat 1 p/LinkedIn`
+- `del_plat 2 p/LinkedIn p/Glints` - Only "Glints" will be deleted
 
 🎯 **Expected Output:**
 A confirmation message showing the deleted platform and the listing it was deleted from will be displayed, such as the one shown below:
 ```ignorelang
-Platform: glints has been deleted from Computer Science Intern!
+Platform: Glints has been deleted from Computer Science Intern!
 ```
 
 ❌ **Possible Errors:**
@@ -624,7 +659,7 @@ The listing index provided exceeded the number of listings shown!
 
 If the platform provided does not exist in the specified listing, an error message such as the one below will show:
 ```ignorelang
-Platform linkedin cannot be found in Computer Science Intern.
+Platform LinkedIn cannot be found in Computer Science Intern.
 ```
 
 If there are other deviations from the expected command format, an error message will be displayed along with the expected usage of the command:
@@ -815,13 +850,13 @@ Add tags to a job listing for easy reference.
 | **help**     | `help`                                                                                                                                                  |
 | **view**     | `view`                                                                                                                                                  |
 | **add**      | `add t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORM]...` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom a/Adele p/JobStreet` |
-| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/`               |
+| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/LinkedIn`               |
 | **delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                     |
 | **add_app**  | `add_app INDEX a/APPLICANT`<br> e.g.,`add_app 1 a/Tom`                                                                                                  |
 | **edit_app** | `edit_app INDEX id/APPLICANT a/APPLICANT`<br> e.g.,`edit_app 1 id/Tom a/Johnson`, `edit_app 2 id/Tom#1334 a/Johnson `                                   |
 | **del_app**  | `del_app INDEX id/APPLICANT`<br> e.g.,`del_app 1 id/Tom`, `del_app 2 id/Tom#1334`                                                                       |
-| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/linkedin`                                                                                            |
-| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/glints`                                                                                             |  
+| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/LinkedIn`                                                                                            |
+| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/Glints`                                                                                             |  
 | **find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                                          |
 | **sort**     | `sort f/[FIELD]`<br> e.g., `sort f/title`, `sort f/description`, `sort f/applicants`                                                                    |
 | **undo**     | `undo`                                                                              |
