@@ -218,7 +218,7 @@ public abstract class Event {
     /**
      * Checks if student is already present in the event.
      *
-     * @param student the student whom presence is to be checked.
+     * @param student the student whose presence is to be checked.
      * @return boolean of whether event has student.
      */
     public boolean hasStudent(Person student) {
