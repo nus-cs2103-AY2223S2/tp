@@ -90,6 +90,8 @@ public class TypicalInternships {
     public static final InternshipApplication AMAZON = new InternshipBuilder().withCompanyName("Amazon")
             .withJobTitle("Cloud Engineer")
             .withContact(new Contact(new Phone("66666666"), new Email("example@amazon.com"))).build();
+    public static final InternshipApplication LINKEDIN = new InternshipBuilder().withCompanyName("LINKEDIN")
+            .withJobTitle("Cloud Engineer").build();
 
     private TypicalInternships() {} // prevents instantiation
 
