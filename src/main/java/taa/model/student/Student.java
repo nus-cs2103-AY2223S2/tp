@@ -12,9 +12,7 @@ import taa.model.assignment.Submission;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.tag.Tag;
 
-/**
- * Represents a Student in TAA. Guarantees: details are present and not null, field values are validated, immutable.
- */
+/** Represents a Student in TAA. Guarantees: details are present and not null, field values are validated, immutable.*/
 public class Student {
 
     // Identity fields
@@ -28,9 +26,7 @@ public class Student {
 
     private final int hashcode;
 
-    /**
-     * Every field must be present and not null.
-     */
+    /** Every field must be present and not null.*/
     public Student(Name name, String atd, String pp, ArrayList<String> submissionStrArr, Set<Tag> classTags) {
         CollectionUtil.requireAllNonNull(name, classTags);
         this.name = name;
@@ -44,16 +40,12 @@ public class Student {
         return name;
     }
 
-    /**
-     * @return number of week student attended class
-     */
+    /** @return number of week student attended class*/
     public int getNumWeeksPresent() {
         return this.atd.getNumWeeksPresent();
     }
 
-    /**
-     * @return the average participation points of student in all classes attended so far
-     */
+    /** @return the average participation points of student in all classes attended so far*/
     public float getPartPoints() {
         return this.atd.getAveragePP();
     }
@@ -63,7 +55,7 @@ public class Student {
     }
 
     /**
-     * Returns an immutable class tag set, which throws {@code UnsupportedOperationException} if modification is
+     * @return an immutable class tag set, which throws {@code UnsupportedOperationException} if modification is
      * attempted.
      */
     public Set<Tag> getClassTags() {
@@ -87,9 +79,7 @@ public class Student {
         }
     }
 
-    /**
-     * Removes a submission attributed to this student.
-     */
+    /** Removes a submission attributed to this student.*/
     public void deleteSubmission(Submission submission) {
         this.submissions.deleteSubmission(submission);
         submissionStringArr.remove(submission.toStorageString());
@@ -105,9 +95,7 @@ public class Student {
         submissionStringArr.set(idx, submission.toStorageString());
     }
 
-    /**
-     * Returns the latest submission by this student. If there are no submissions, null is returned.
-     */
+    /** @return the latest submission by this student. If there are no submissions, null is returned.*/
     public Submission getLatestSubmission() {
         return this.submissions.getLatestSubmission();
     }
@@ -124,9 +112,7 @@ public class Student {
         return ans.toString();
     }
 
-    /**
-     * Returns true if both persons have the same name. This defines a weaker notion of equality between two persons.
-     */
+    /** @return true if both persons have the same name. This defines a weaker notion of equality between two persons.*/
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
@@ -137,8 +123,7 @@ public class Student {
     }
 
     /**
-     * Returns the grade obtained by the student, if it exists. Otherwise, an Optional.empty() is returned.
-     *
+     * @return the grade obtained by the student, if it exists. Otherwise, an Optional.empty() is returned.
      * @throws AssignmentNotFoundException if the assignment does not exist.
      */
     public Optional<Integer> getGradesForAssignment(String assignmentName)
@@ -152,7 +137,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields. This defines a stronger notion of equality
+     * @return true if both persons have the same identity and data fields. This defines a stronger notion of equality
      * between two persons.
      */
     @Override

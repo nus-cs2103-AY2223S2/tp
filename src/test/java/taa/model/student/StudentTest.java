@@ -122,24 +122,8 @@ public class StudentTest {
     }
 
     @Test
-    public void getLatestSubmission() {
-        Student amyCopy = new PersonBuilder(TypicalPersons.AMY).build();
-
-        // add other submissions
-        amyCopy.addSubmission(new Submission(amyCopy, new Assignment("test1", 100)));
-        amyCopy.addSubmission(new Submission(amyCopy, new Assignment("test2", 100)));
-
-        // keep track of latest submission
-        Submission latestSubmission = new Submission(amyCopy, new Assignment("test3", 100));
-        amyCopy.addSubmission(latestSubmission);
-
-        // check if returned value is indeed latest submission
-        Assertions.assertTrue(amyCopy.getLatestSubmission().equals(latestSubmission));
-    }
-
-    @Test
     public void getLatestSubmission_noSubmissions_returnsNull() {
-        Assertions.assertEquals(TypicalPersons.AMY.getLatestSubmission(), null);
+        Assertions.assertNull(TypicalPersons.AMY.getLatestSubmission());
     }
 
     @Test

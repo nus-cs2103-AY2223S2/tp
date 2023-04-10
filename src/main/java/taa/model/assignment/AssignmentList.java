@@ -278,6 +278,14 @@ public class AssignmentList {
         return this.assignmentMap.containsKey(name);
     }
 
+    /** @return The name of the latest assignment or null if no assignment is in list */
+    public String getLatestAsgnName() {
+        if(assignments.isEmpty()) {
+            return null;
+        }
+        final Assignment assignment = assignments.get(assignments.size() - 1);
+        return assignment == null ? null : assignment.getName();
+    }
 
     public Assignment[] getAssignments() {
         return assignments.toArray(new Assignment[0]);
