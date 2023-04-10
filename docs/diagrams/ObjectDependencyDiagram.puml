@@ -1,4 +1,9 @@
 @startuml
+!include style.puml
+skinparam arrowColor MODEL_COLOR
+'skinparam objectBackgroundColor MODEL_COLOR
+
+
 object Course
 object Group
 object Student
