@@ -670,4 +670,4 @@ This list is also available on the app, which can be accessed with the `help` fu
 
 [//]: # (## 10. Glossary)
 
-[//]: # (To be added before Week 13)
+
