@@ -4,12 +4,14 @@ import static fasttrack.testutil.TypicalCategories.FOOD;
 import static fasttrack.testutil.TypicalCategories.TECH;
 import static fasttrack.testutil.TypicalExpenses.APPLE;
 import static fasttrack.testutil.TypicalExpenses.CHERRY;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
@@ -19,7 +21,6 @@ import fasttrack.model.expense.Expense;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.ListView;
 
 
@@ -33,9 +34,13 @@ public class CategoryListPanelTest {
     public void setUp() {
         categories = FXCollections.observableArrayList(FOOD, TECH);
         expenses = FXCollections.observableArrayList(APPLE, CHERRY);
-        // Initialise fake JavaFX environment
-        new JFXPanel();
     }
+
+    @BeforeAll
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
+    }
+
 
     @Test
     public void categoryListView_validCategories_countEqual() {
