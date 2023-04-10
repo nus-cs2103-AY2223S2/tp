@@ -542,6 +542,13 @@ The application provides users with two different methods of entering or editing
 
 Similar to [`edit`](#edit-feature), this feature makes use of the `EditPersonDescriptor` to create a new `Person` object with the updated remarks. Then, the previous `Person` object is replaced.
 
+Here is a sequence diagram showing the interactions between components when `remark 1` is run (Assuming the existing command is "Absent", and is to be replaced with "Submitted lab 10").:
+
+![remark_sequence](images/RemarkSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 #### Feature Details
 1. The remark feature is facilitated by a pop-up text box brought up by using the command `remark INDEX`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
