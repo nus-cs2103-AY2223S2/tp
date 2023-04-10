@@ -6,12 +6,14 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
 * Our application is based on the [AB3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/)
 * Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
-* Our application's color scheme takes inspiration from the color scheme of Apple's iMessage.
+* Our application's white and blue color scheme takes inspiration from the color scheme of Apple's iMessage.
+* Our application's three modes design: `MAIN_UNSELECTED_MODE`, `MAIN_SELECTED_MODE`, `REVIEW_MODE` was inspired by a similar design of the past project [FlashNotes](https://ay2021s1-cs2103t-t15-2.github.io/tp/) ([UG](https://ay2021s1-cs2103t-t15-2.github.io/tp/UserGuide.html), [DG](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html)), although our implementation is entirely new. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,6 +22,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -164,9 +167,10 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.powercards.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -364,7 +368,20 @@ Take note:
 - Consequently, both cards must be tagged independently in `MasterDeck` and `Review`.
 - Tagging the card in `Review` is sufficient for changes to appear in UI. 
 
+### Implementation of UI
+
+The UI consists of the `DeckPanel` on the left and the `CardPanel` on the right, along with `CommandBox` and `ResultDisplay`on the bottom. `CommandBox` and `ResultDisplay` are in fixed positions and do not get shifted around or removed in any use case. 
+
+`DeckPanel` and `CardPanel` display modifiable `DeckElement` and `CardElement` objects that are stored as `Javafx ObservableList<>` elements. When these objects are added, deleted, or edited by the user, the changes are reflected immediately in the UI.
+
+Initially, when the user launches Powercards, `DeckPanel` will display all `DeckElement` objects and `CardPanel` displays all `CardElement` objects. They can be modified through commands such as `findDecks`,`findCards`, `editCard`, etc.
+
+When the user starts a review, the left `DeckPanel` is replaced with a `ReviewStatsPanel` to display the relevant information generated during the review. The `CardElement` objects on the right `CardPanel` are replaced with a single `CardElement` object from the selected deck to review. 
+
+The flip command (`p`) will toggle between the corresponding `FlippedReviewElement` and `UnflippedReviewElement` of the single displayed `CardElement`.
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -375,6 +392,7 @@ Take note:
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -545,6 +563,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
    
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -561,7 +580,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file. 
+   
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -577,10 +598,13 @@ testers are expected to do more *exploratory* testing.
 1. Selecting a deck on the deck list
 
     1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+   
     2. Test case: `selectDeck 1` <br>
        Expected: First deck on the list is selected and cards in the deck are displayed.
+   
     3. Test case: `selectDeck 0` <br>
        Expected: No deck is selected. Error details shown in the status message.
+   
     4. Other incorrect `selectDeck` commands to try: `selectDeck`, `selectDeck x`, `...` (where x is larger than the list size) <br>
        Expected: Similar to previous.
 
@@ -589,49 +613,65 @@ testers are expected to do more *exploratory* testing.
 1. Adding a new deck of unique name to the MasterDeck
 
    1. Prerequisites : User is in the Main Mode and a deck is not selected. 
+   
    2. Test case: `addDeck Math`<br>
-      Expected: A new deck `Math` is created and displayed on the list of decks. If there is already a deck called `Math` in the MasterDeck, (case-insensitive)
+      Expected: A new deck `Math` is created and displayed on the list of decks. If there is already a deck called `Math` (case-sensitive) in the MasterDeck, 
                 it throws an error message and does not add the deck into the list.
+   
    3. Test case: `addDeck `<br>
-      Expected: No new deck is added to MasterDeck. Error details shown in the status message that deck name cannot be blank.
+      Expected: No new deck is added to MasterDeck. Error details shown in the status message states that deck name cannot be blank.
    
 #### Editing a deck
 
 1. Editing the name of an existing deck
+
     1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+   
     2. Test case: `editDeck 1 Chemistry`<br>
-       Expected: Edits the name of a deck at the index of 1 on the deck list to be `Chemistry`.
+       Expected: Edits the name of the deck at the index of 1 on the deck list to be `Chemistry`. If there is already a deck called `Chemistry` (case-sensitive) in the MasterDeck, it throws an error message and does not edit the deck.
+
     3. Test case: `editDeck 0 Chemistry`<br>
        Expected: No deck name is edited. Error details shown in the status message.
+   
     4. Other incorrect `editDeck` commands to try: `editDeck`, `editDeck x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 #### Deleting a deck
 
 1. Deleting a deck on MasterDeck
+
     1. Prerequisites: User is in the Main Mode and a deck is not selected. MasterDeck is not empty.
+   
     2. Test case: `deleteDeck 1` <br>
        Expected: First deck is deleted from the list. Details of the deleted deck shown in the status message.
-   3. Test case: `deleteDeck 0` <br>
-      Expected: No deck is deleted. Error details shown in the status message.
-   4. Other incorrect delete commands to try: `deleteDeck`, `deleteDeck x`, `...` (where x is larger than the number of decks)<br>
-      Expected: Similar to previous.
+   
+    3. Test case: `deleteDeck 0` <br>
+       Expected: No deck is deleted. Error details shown in the status message.
+   
+    4. Other incorrect delete commands to try: `deleteDeck`, `deleteDeck x`, `...` (where x is larger than the number of decks)<br>
+       Expected: Similar to previous.
 
 #### Finding a deck
 
 1. Finding a deck in MasterDeck
+
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
+   
     2. Test case: `findDecks science` <br>
-       Expected: Decks that include `science` are shown (case-insensitive).
+       Expected: Decks with names that include `science` are shown (case-insensitive).
+       
     3. Test case: `findDecks science programming` <br>
-       Expected: Decks that include `science` or `programming` are shown (case-insenstive).
+       Expected: Decks with names that include `science` or `programming` are shown (case-insenstive).
+
     4. Test case: `findDecks ` <br>
        Expected: Does not show any specific decks. Error details shown in the status message.
 
 #### Showing all decks
 
 1. Showing all decks in MasterDeck
+
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
+   
     2. Test case: `showDecks` <br>
        Expected: All existing decks in MasterDeck are shown.
 
@@ -639,60 +679,80 @@ testers are expected to do more *exploratory* testing.
 
 #### Unselecting a Deck
 
-1. Unselecting a deck when a deck is not selected
+1. Unselecting a deck when a deck is selected
    1. Prerequisites: User is in the Main Mode and a deck is selected.
+   
    2. Test case: `unselectDeck` <br>
       Expected: Current deck is unselected.
 
 #### Adding a card
 
 1. Adding a card to the selected deck
+
    1. Prerequisites: User is in the Main Mode and a deck is selected.
+   
    2. Test case: `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` <br>
-      Expected: Adds a card to the deck with question `What is gravity?`, answer `A force of attraction between objects due to their mass`, and tag `Easy`. Details of shown in the status message.
+      Expected: Adds a card to the deck with question `What is gravity?`, answer `A force of attraction between objects due to their mass`, and tag `Easy`. Details of added card shown in the status message.
+
    3. Test case: `addCard q\What is gravity?`<br>
       Expected: No card added to the deck. Error details shown in the status message.
+   
    4. Test case: `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Doable` <br>
       Expected: No card added to the deck. Error details shown in the status message.
+   
    5. Other incorrect `addCard` commands to try: `addCard q\ a\A force of attraction between objects due to their mass`, `...`
       (where either question or answer is blank or missing in the command)
 
 #### Deleting a card
 
 1. Deleting a card at the given index in the selected deck
+
    1. Prerequisites: User is in the Main Mode and a deck is selected. The deck is not empty.
+   
    2. Test case: `deleteCard 1`<br>
       Expected: First card is deleted from the deck. Details of the deleted card shown in the status message.
+   
    3. Test case: `deleteCard 0`<br>
       Expected: No card is deleted. Error details shown in the status message.
+   
    4. Other incorrect `deleteCard` commands to try: `deleteCard`, `deleteCard x`, `...` (where x is larger than the number of cards)<br>
       Expected: Similar to previous.
 
 #### Editing a card
 
 1. Editing a card at the given index in the selected deck
+
     1. Prerequisites: User is in the Main Mode and a deck is selected. The deck is not empty.
+   
     2. Test case: `editCard 1 q\What is photosynthesis?` <br>
        Expected: Edits the question of the first card in the deck. Details of the edited card shown in the status message.
+   
     3. Test case: `editCard 0 q\What is photosynthesis?` <br>
        Expected: No card is edited. Error details shown in the status message.
+   
     4. Other incorrect `editCard` commands to try: `editCard`, `editCard x`, `...` (where x is larger than the number of cards)
 
 #### Finding a card
 
 1. Finding cards in the selected deck with keywords
+
    1. Prerequisites: User is in the Main Mode and a deck is selected. 
+   
    2. Test case: `findCards recursion` <br>
-      Expected: Cards that include `recursion` are shown (case-insensitive) 
+      Expected: Cards with questions that include `recursion` are shown (case-insensitive) 
+      
    3. Test case: `findCards recursion loop` <br>
-      Expected: Cards that include `recursion` and `loop` are shown (case-insensitive)
+      Expected: Cards with questions that include `recursion` and `loop` are shown (case-insensitive)
+
    4. Test case: `findCards` <br>
       Expected: No card is shown. Error details shown in the status message.
 
 #### Showing all cards in the deck
 
 1. Showing all cards in the selected deck
+
    1. Prerequisites: User is in the Main Mode and a deck is selected.
+   
    2. Test case: `showCards` <br>
       Expected: Cards in the deck are shown.
 
@@ -701,93 +761,110 @@ testers are expected to do more *exploratory* testing.
 #### Ending a Review
 
 1. Ending the current review
+
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `endReview`<br>
-       Expected: User returns to MAIN_SELECTED or MAIN_UNSELECTED mode depending on which mode the user was on previously before entering REVIEW mode.
+       Expected: User returns to Main Mode with a deck selected/unselected depending on what the state of the application was before entering Review Mode.
 
 #### Flipping a Card
 
-1. Flip the current card in review
+1. Flipping the current card in review
+
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `p` (`P` is also a valid command)<br>
        Expected: The card either reveals or hide the answer.
 
-#### Go to previous card
+#### Going to previous card
 1. Go to previous card in review
-    1. Prerequisites: User is in Review Mode and current card is not the first card in the review deck.
+    1. Prerequisites: User is in Review Mode.
 
     2. Test case: `[`<br>
-       Expected: Right panel displays the previous card.
+       Expected: Right panel displays the previous card. If  the current card is the first card in the review deck (i.e. no previous card exists), error details shown in the status message.
 
-#### Go to next card
+#### Going to next card
 1. Go to next card in review
-    1. Prerequisites: User is in Review Mode and current card is not the last card in the review deck.
+    1. Prerequisites: User is in Review Mode.
 
     2. Test case: `]`<br>
-       Expected: Right panel displays the next card.
+       Expected: Right panel displays the next card. If  the current card is the last card in the review deck (i.e. no next card exists), error details shown in the status message.
 
 #### Tagging a card as easy
 1. Tag a card as easy during review
+
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `l` (`L` is also a valid command)<br>
-       Expected: Tag the card as easy. 
+       Expected: Current card is tagged as easy. 
 
 #### Tagging a card as medium
 1. Tag a card as medium during review
+
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `;`<br>
-       Expected: Tag the card as medium.
+       Expected: Current card is tagged as medium.
 
 #### Tagging a card as hard
 1. Tag a card as hard during review
+
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `'`<br>
-       Expected: Tag the card as hard.
+       Expected: Current card is tagged as hard.
 
 ### Other Testing Commands
 
 #### Starting review
 
 1. Starting review on a deck
+
     1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
+   
     2. Test case: `review 1` <br>
-       Expected: Starts reviewing the first deck. Shows a card in the deck without its answer.
+       Expected: Starts a review on the deck at the index of 1 on the deck list. If there is no cards in that deck, it throws an error message and does not start a review.
+
     3. Test case: `review 0` <br>
        Expected: Review Mode is not started. Error details shown in the status message.
+   
     4. Other incorrect `review` commands to try: `review`, `review x`, `...` (where x is larger than the number of decks) <br>
        Expected: Similar to previous.
-
+    
 #### Setting the limit of cards
 
 1. Setting the limit of cards per review
+
     1. Prerequisites: User is in the Main Mode. MasterDeck is not empty.
+   
     2. Test case: `setLimit 10` <br>
        Expected: Sets the limit per review of 10 cards.
+   
     3. Test case: `setLimit none` <br>
        Expected: Resets the limit per review.
+   
     4. Test case: `setLimit 0` <br>
-       Expected: Does not set up the limit per review. Error details shown in the status message.
+       Expected: Does not set the limit per review. Error details shown in the status message.
+
     5. Other incorrect `setLimit` commands to try: `setLimit`, `setLimit x`, `...` (where x is larger than 2147483647) <br>
        Expected: Similar to previous.
 
 #### Opening help window
 
 1. Opening the help window to display the UG link
+
     1. Test case: `help` <br>
-       Expected: A pop-up window is shown containing a link to UG with a copy button.
+       Expected: A pop-up window is containing a link to UG with a copy button is shown.
 
 #### Exiting the program
 
 1. Exiting the program
+
     1. Test case: `exit` <br>
-       Expected: Exists the program. Window is closed.
+       Expected: Exits the program. Window is closed.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
@@ -814,19 +891,21 @@ As such, we saw this as a valuable opportunity to conduct extensive testing of o
 - Made a concrete OOP structure through discussions. 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancement**
 
-In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
+In order to counter known feature flaws from testing, the following are enhancements to be implemented in the future.
+
 **1. Making the command box scrollable**
 - Currently, the command box is not scrollable - when the user types into the command box, the content does not wrap.
 - Users are likely to type long questions and answers hence it would be more convenient if the command box was scrollable.
 - We plan to make content in the command box wrap and the command box itself scrollable.
 
-### Figure 1.1 Current: Non Scrollable Command Box
+Current: Non-Scrollable Command Box
 ![Current Non Scrollable Command Box](images/current_command_box.png)
 
-### Figure 1.2 Planned Enhancement: Scrollable Command Box
+Planned Enhancement: Scrollable Command Box
 ![Scrollable Command Box](images/scrollable_command_box_enhancement.png)
 
 **2. Review by untagged cards**
@@ -845,9 +924,14 @@ In order to counter known feature flaws from testing, the following are enhancem
 **4. Setting minimum width for components**
 - Currently, the size of the GUI panels can be shrunk by the user to a large extent as seen in figure 4 below such that the app is messy and essentially unusable.
 - Hence, we intend to fix it by setting a minimum width for each component.
-### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
+
+Current: Unusable GUI when shrunk by a large extent
 - ![Unusable GUI](images/unusable_gui.png)
 
-### Figure 4.2 Planned Enhancement: GUI with minimum width
+Planned Enhancement: GUI with minimum width
 - ![GUI with min width](images/gui_min_width.png)
 
+**5. Support finding keywords in deck name or card question even if there is punctuation or symbol appended**
+- Currently, the `findDecks` and `findCards` commands are not able to find keywords in a deck or card if the word has no whitespace separating it from a punctuation. For example, `findCards loop` does not return a card with question `what is a loop?`.
+- The find commands should support this feature as the punctuation does not change the existence of the keyword.
+- Hence, we intend to support this feature in the future.

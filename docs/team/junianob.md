@@ -9,38 +9,35 @@ PowerCards enable university students to input a pool of information (question-a
 
 Given below are my contributions to the project.
 
-* **New Feature**: (To be added)
-    * What it does: (To be added)
-    * Justification: (To be added)
-    * Highlights: (To be added)
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Created and styled initial UI components [#98](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/98)
+    * What it does: Changed the layout and styling of the default AB3 with new components so that the app can function according to how we intended it to.
+    * Justification: With the ability to create new UI components, our team can have more flexibility to design a much more fleshed out app.
+    * Highlights: Studying the fxml files and Theme.css to find out how they link to the UI components to allow us to change them according to our needs
+* **New Feature**: Added stats UI [#191](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/191)
+  * What it does: Displays the deck statistics when a user starts a review (deck title, cards left, score etc)
+  * Justification: With these statistics, reviewing a deck is now more clear and the user would know how to navigate the review and know the details of the deck being reviewed.
+  * Highlights: Reworking existing UI features for a consistent style.
 
-* **New Feature**: (To be added)
-
-* **Code contributed**: (To be added)
+* **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=junianob&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * (To be added)
+    * Work together with teammates to meet targets set
+    * Seeked and offered help to ensure everyone is up to date on the project
+    * Fixed a host of UI related bugs
 
 * **Enhancements to existing features**:
-    * (To be added)
-    * (To be added)
+    * Completely refactored UI components [#240](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/240)
+    * Added indicators for current selected objects (card, deck, review) for improved clarity.
+    * Removed traces of AB3 
 
 * **Documentation**:
     * User Guide:
-        * (To be added)
-        * (To be added)
+        * Reviewed User Guide for bugs and QoL improvements.
     * Developer Guide:
-        * A(To be added)
+        * Updated UIClassDiagram [#389](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/389)
+        * Added details for UI implementation.
+        * Reviewed Developer Guide for bugs and QoL improvements.
 
 * **Community**:
-    * (To be added)
-    * (To be added)
-    * (To be added)
-    * (To be added)
-
-* **Tools**:
-    * (To be added)
-    * (To be added)
-
-* _{you can add/remove categories in the list above}_
+  * Fixed a wide variety of bugs during the Mock PE.
+  * Caught many high severity bugs for assigned team and provided suggestions on how to fix them
