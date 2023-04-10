@@ -138,6 +138,9 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code persons} of the {@code Task} that we are building.
+     */
     public TaskBuilder withPerson(List<Person> persons) {
         this.persons = persons;
         return this;
