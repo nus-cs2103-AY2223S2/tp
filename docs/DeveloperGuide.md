@@ -33,7 +33,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-The General Architecture of FriendlyLink follows that of [Book3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
+The General Architecture of FriendlyLink follows that of [AddressBook3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
