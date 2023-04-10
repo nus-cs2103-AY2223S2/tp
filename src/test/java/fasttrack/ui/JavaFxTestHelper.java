@@ -21,4 +21,9 @@ public class JavaFxTestHelper {
             isInitialized = true;
         }
     }
+
+    public static void setUpHeadlessMode() {
+        System.setProperty("java.awt.headless", "true");
+    }
+
 }

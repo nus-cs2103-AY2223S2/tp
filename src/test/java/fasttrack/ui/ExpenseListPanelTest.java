@@ -4,6 +4,7 @@ import static fasttrack.testutil.TypicalExpenses.APPLE;
 import static fasttrack.testutil.TypicalExpenses.BANANA;
 import static fasttrack.testutil.TypicalExpenses.CHERRY;
 import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
+import static fasttrack.ui.JavaFxTestHelper.setUpHeadlessMode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -34,6 +35,7 @@ class ExpenseListPanelTest {
 
     @BeforeAll
     static void initJfx() throws InterruptedException {
+        setUpHeadlessMode();
         initJavaFxHelper();
     }
 
