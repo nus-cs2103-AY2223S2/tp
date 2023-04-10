@@ -17,13 +17,13 @@ import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
 
 /**
- * Update Patient's ward identified using it's displayed index from the patientist book.
+ * Transfers the person indicated by the index to the specified ward.
  */
 
 public class UpdateWardCommand extends Command {
     public static final String COMMAND_WORD = "trfward";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves the patient."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves the person."
             + "Parameters: "
             + "Index " + PREFIX_WARD + "WARD "
             + "Example: " + COMMAND_WORD + " "
@@ -31,7 +31,7 @@ public class UpdateWardCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Patient %1$s has been transferred from ward %2$s to ward %3$s";
     public static final String MESSAGE_WARD_NOT_FOUND = "Ward not found: %1$s";
-    public static final String MESSAGE_WARD_INCORRECT = "New ward of patient is incorrect";
+    public static final String MESSAGE_WARD_INCORRECT = "New ward of person is incorrect";
     public static final String MESSAGE_STAFF_DETECTED = "Staff %1$s has been transferred from ward %2$s to ward %3$s";
     public static final String MESSAGE_NOT_SHOWING_PERSON_LIST = "Transfer Ward Command does not work on wards.";
 
