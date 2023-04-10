@@ -587,7 +587,7 @@ Grade command is facilitated by `AddAlarmCommandParser`, `AddAlarmCommand` and `
 
 * `AddAlarmCommandParser`-- Parse the input of users
 * `AddAlarmCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
+* `Model` -- Updates the alarm list.
 
 Below is the sequence diagram for adding an alarm.
 
@@ -617,13 +617,13 @@ Sequence Diagram for adding an alarm
 Grade command is facilitated by `ListAlarmCommand` and `Model`
 
 * `ListAlarmCommand` -- Execute the command given the parsed user input
-* `Model` -- Updates the assignment list.
+* `Model` -- List out the alarm
 
 Below is the sequence diagram for listing the alarms.
 
 <img src="images/ListAlarmsSequenceDiagram.PNG" />
 <figcaption style="text-align:center"><em><strong>
-Figure 19
+Figure 20
 </strong>:
 Sequence Diagram for listing the alarms
 </em></figcaption>
