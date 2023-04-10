@@ -836,7 +836,7 @@ cases.
 
 * Prerequisite: there is no client with email *spiderman@gmail.com*
 * Command: `c -cn spider man -e spiderman@gmail.com`
-* The output box should display a message confirming that the new client has
+* The output box should display a message confirming that the new client has been
   added
 * The client should be appended to the bottom of the Clients tab
 
@@ -1292,7 +1292,7 @@ such as:
 * Adding tabs to the application, and
 * Tweaking the parser to support the new commands.
 
-The process of adding small features allowed to get a better understanding of the codebase
+The process of adding small features allowed us to get a better understanding of the codebase
 and gave us confidence in adding more advanced features.
 By splitting up the work and specialising in different parts of the codebase, each of us
 gain a stake in the project and were more motivated constantly improve the project.

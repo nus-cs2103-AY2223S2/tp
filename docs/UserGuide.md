@@ -149,7 +149,7 @@ The Clients tab lists all the clients you have created. Each client block contai
 - Email
 - Year of birth
 - Source, e.g. Fiverr
-- Phone number
+- Mobile number
 
 ### Statistics Panel
 
