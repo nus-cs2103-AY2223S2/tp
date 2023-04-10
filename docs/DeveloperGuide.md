@@ -110,7 +110,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Employee` object residing in the `Model`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -153,12 +153,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the ExecutivePro data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the ExecutivePro data i.e., all `Employee` objects (which are contained in a `UniqueEmployeeList` object).
+* stores the currently 'selected' `Employee` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExecutivePro`, which `Person` references. This allows `ExecutivePro` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExecutivePro`, which `Employee` references. This allows `ExecutivePro` to only require one `Tag` object per unique tag, instead of each `Employee` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -173,7 +173,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both ExecutivePro data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `ExecutiveProStorage` and `UserPrefsStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -191,10 +191,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Feature : `add`
 
+This feature allows the user to add new employees to the ExecutivePro database.
+
 #### Implementation
-This section explains the implementation of the `add` feature.
-The command takes in one parameter which is the employee name, executing the command leads to the addition of an
-employee into the ExecutivePro database.
+This command takes in several compulsory parameters:<br>
+`NAME`, `PHONE_NUMBER`, `DEPARTMENT`, and `PAYROLL`
+
+
+together with several optional parameters:<br>
+`EMAIL`, `ADDRESS`, `LEAVE_COUNT`, `DATE_OF_BIRTH`, `DATE_OF_JOINING`, and any number of `TAG`s.
+
+Executing the command adds the specified employee into the ExecutivePro database, with the provided details.
 
 Below is a sequence diagram and the explanation of `add` command.
 
@@ -210,7 +217,7 @@ Step 3. The `execute` method of `AddCommand` will be called, it returns a `Comma
 
 Step 4. This adds the `employee` from the list to the model. The `employeeId` will be set and if there
 currently exists an `employee` object with the same field data, a `CommandException` will be thrown and
-a message indicating duplicate person will be shown.
+a message indicating duplicate employee will be shown.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
 
@@ -234,6 +241,10 @@ Moving on to the implementation, some things to note.
 _Pre-requisites: User has a CSV file filled with whatever information they want to `batchadd`
 and has stored it in the `/data` folder of the repository._
 
+This command takes in one parameter, the filename of the CSV file.
+
+Executing the command imports the CSV file with the specified filename that is inside the `/data` folder.
+
 Below is a sequence diagram and the explanation of `batchadd` command.
 
 ![BatchAdd](images/BatchAddSequenceDiagram.png)
@@ -256,9 +267,9 @@ into a `List<AddCommand>`.
 Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
 Step 4. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
-If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
+If there is any duplicate Employee found, the function call will be aborted and the database will be reverted to its original state.
 
-Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, updates the database to contain the new persons added.
+Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, updates the database to contain the new employees added.
 
 <h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
@@ -296,6 +307,10 @@ Moving on to the implementation, some things to note.
 - As of now, our feature only accommodates exporting to a CSV file.
 
 #### Implementation:
+
+This command takes in one parameter, which is the desired output filename.
+
+Executing the command exports the ExecutivePro database as a CSV file with the specified filename.
 
 Below is a sequence diagram and the explanation of `batchexport` command.
 
@@ -339,36 +354,50 @@ Step 5. If the export is successful, a CommandResult with a success message is r
 --------------------------------------------------------------------------------------------------------------------
 
 ### Edit Feature : `edit`
+This feature is created for users to edit an employee's details.
+In the case of this application, HR managers would use this when they need to edit any of the details of an employee in the database.
 
 #### Implementation
 This section explains the implementation of the `edit` feature.
 The command takes in a first parameter which is the unique employee ID, then one or more other employee details that the user wants to edit.
-Executing the command edits the details of the employee into the ExecutivePro database.
+Executing the command edits the details of the employee in the ExecutivePro database.
 
 Below is a sequence diagram and the explanation of `edit` command.
 
 ![EditCommand](images/EditSequenceDiagram.png)
 
-Step 1. A user wants to change the name of the employee with ID of 1 to Jane. User will enter the command `edit 1 n/John`.
+Step 1. A user wants to change the name of the employee with ID of `1` to `John`. User will enter the command `edit 1 n/John`.
 
-Step 2. `LogicManager#execute` method is called on the user input. This prompts the `EditCommandParser`
-to parse the user input. This creates a `EditCommand` object containing a `EditEmployeeDescriptor` object that contains the new details.
+Step 2. `LogicManager#execute` method is called on the user input. This prompts the `EditCommandParser` to parse the user input. This creates a `EditCommand` object containing a `EditEmployeeDescriptor` object that contains the new details. If there are no specified fields to edit or any of the fields are not in the correct format, a `ParseException` will be thrown and a message indicating the proper command format is shown.
 
 Step 3. The `execute` method of `EditCommand` will be called, it returns a `CommandResult`object.
 
-Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
-a message indicating no such employee will be shown. If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
+Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and a message indicating no such employee will be shown. 
 
-Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
+Step 5: If an employee with the given ID exists, a new `employee` object is created with the updated details, and it replaces the old employee using `Model#setEmployee()`.
 
+Step 6. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
+
+<h4 id="edit-feature-design-considerations">Design Considerations</h4>
+
+##### Aspect: How EditCommand is run
+
+- Alternative 1 (Current Choice): Create a new `employee` with the updated details to replace the current one in the `Model`.
+    - Pros: Less likely to run into concurrency issues if multiple threads are used in the future, able to utilise a read-only version of the Employee List for data control.
+    - Cons: Implementation Heavy.
+- Alternative 2: Edits the employee field in the employee list using setters.
+    - Pros: Easier to implement.
+    - Cons: Employee list is not hashable if it is not immutable. Breaking abstraction barrier by directly assessing each employee.
 --------------------------------------------------------------------------------------------------------------------
 
 ### Leave Feature : `leave`
+This feature is created for users to help an employee take leave.
+In the case of this application, HR managers would use this when they receive a leave request and need to update the current leave number of an employee instead of having to use the `edit` command.
 
 #### Implementation
 This section explains the implementation of the `leave` feature.
 The command takes in a first parameter which is the unique employee ID, then one integer which is the number of days of leave to take.
-Executing the command reduces the number of days of leave of the employee into the ExecutivePro database (if employee has enough leave).
+Executing the command reduces the number of days of leave of the employee into the ExecutivePro database if employee has enough leave.
 
 Below is a sequence diagram and the explanation of `leave` command.
 
@@ -377,26 +406,40 @@ Below is a sequence diagram and the explanation of `leave` command.
 Step 1. A user wants to help the employee with ID of 1 to take 3 days of leave. User will enter the command `leave 1 l/3`.
 
 Step 2. `LogicManager#execute` method is called on the user input. This prompts the `LeaveCommandParser`
-to parse the user input. This creates a `LeaveCommand` object with the `EmployeeId` and number of days of leave.
+to parse the user input. This creates a `LeaveCommand` object with the `EmployeeId` and number of days of leave. If the leave field is not specified or not in the correct format, a `ParseException` will be thrown.
 
-Step 3. The `execute` method of `LeaveCommand` will be called. A `CommandException` will be thrown if days of leave is not in range 0-365 (inclusive) and a message indicating the error is shown.
+Step 3. The `execute` method of `LeaveCommand` will be called, it returns a `CommandResult`object. A `CommandException` will be thrown if days of leave is not in range 0-365 (inclusive) and a message indicating the proper command format is shown.
 
-Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and
-a message indicating no such employee will be shown. A `CommandException` will be thrown if employee does not have enough leave.
+Step 4. The `Model#getFilteredEmployeeList()` method is used to find the employee to be edited. If there is no employee with the given ID, a `CommandException` will be thrown and a message indicating no such employee will be shown. A `CommandException` will be thrown if employee does not have enough leave and a message indicating not enough leave will be shown.
 
-Step 5. An equivalent `EditCommand` is created to update the leave count of the employee. The `execute` method of the `EditCommand` will be called.
+Step 5. An equivalent `EditCommand` that sets the leave count to the new value is created. The `execute` method of the `EditCommand` will be called.
 
 Step 6. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
+
+<h4 id="leave-feature-design-considerations">Design Considerations</h4>
+
+##### Aspect: How LeaveCommand is run
+
+- Alternative 1 (Current Choice): Make use of the execution of the `EditCommand`.
+    - Pros: Makes use of the Error Handling that the `EditCommand` has.
+    - Cons: `leave` will fail if `EditCommand` fails.
+- Alternative 2: Own implementation of `leave` without relying on `EditCommand`.
+    - Pros: If `edit` Fails, `leave` can still work.
+    - Cons: Implementation Heavy.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Delete Feature : `delete`
 
+This feature allows the user to delete an employee from the ExecutivePro database,
+for example if an employee quits the company, or if an employee has been wrongly added.
+
 #### Implementation
 
-This section explains the implementation of the `delete` feature.
-The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee
-with that specific employee ID
+This command takes in one parameter which is the employee ID.
+
+Executing this command leads to the removal of the employee with that specific employee ID.
+
 Below is a sequence diagram and the explanation of `delete` command.
 
 ![DeleteCommand](images/DeleteSequenceDiagram.png)
@@ -412,7 +455,7 @@ Step 3. The `execute` method of `DeleteCommand` will be called, it returns a `Co
 
 Step 4. This finds the `employee` with an Employee ID of 1. If there is no employee with the Employee ID 1, a
 `CommandException` will be thrown and a message indicating invalid Employee ID will be returned. However,
-if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted
+if there is an employee with the given employee ID, then using `model#deleteEmployee()`, the employee will be deleted
 from the database.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to remove the employee.
@@ -420,12 +463,15 @@ Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage t
 --------------------------------------------------------------------------------------------------------------------
 
 ### List Feature: `list`
-This command displays the details of all employees in order of their employee ID.
+This command displays the details of all employees in the ExecutivePro database, in order of their employee ID.
 
 #### Implementation
 
+This command takes in no parameters.
+
 The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
 When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
+Executing this command sets the `Predicate` such that all employees are displayed.
 
 Below is a sequence diagram and the explanation of the `list` command.
 
@@ -450,8 +496,12 @@ This command changes the appearance of ExecutivePro's GUI to the specified theme
 
 #### Implementation
 
+This command takes in one parameter which is the theme name, either `light` or `dark`.
+
 The appearance of ExecutivePro's GUI is determined by the CSS stylesheets used by its JavaFX `Scene`.
-The `theme` command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme, as shown below.
+Executing this command changes the GUI theme by swapping out these CSS stylesheets for the appropriate stylesheets matching the specified theme.
+
+Below is a sequence diagram and the explanation of `delete` command.
 
 ![ThemeCommand](images/ThemeSequenceDiagram.png)
 
@@ -475,9 +525,12 @@ Note: ExecutivePro currently only accepts images in the `.jpg`, `.jpeg`, or `.pn
 
 #### Implementation
 
+This command takes in one parameter which is the employee ID.
+
 `Employee` objects have a `picturePath` field that represents the file path where the employee's profile picture is stored on the user's computer.
-The `setpicture` feature makes use of the [`edit` feature](#edit-feature--edit) to set the `picturePath` of an `Employee` to the file path of the selected image,
-as shown below:
+Executing this command makes use of the [`edit` feature](#edit-feature--edit) to set the `picturePath` of an `Employee` to the file path of the selected image.
+
+Below is a sequence diagram and the explanation of `setpicture` command.
 
 ![SetPictureCommand](images/SetPictureSequenceDiagram.png)
 
@@ -499,9 +552,12 @@ Note that if the employee's `picturePath` is set to the empty String, the pictur
 --------------------------------------------------------------------------------------------------------------------
 
 ### Find Feature: `find`
-This command displays all employees whose full names partially or fully match the keyword inputed by the user.
+This command displays all employees whose full names partially or fully match the keyword inputted by the user.
 
 #### Implementation
+
+This command takes in an optional asterisk (`*`) parameter, to indicate whether employees must match _all_ or _any_ of the keywords,
+followed by one or more keywords to search for.
 
 The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
 When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
@@ -533,6 +589,10 @@ This command displays all employees who satisfy the criteria inputted by the use
 
 
 #### Implementation
+This command takes in three parameters:
+- a filter parameter (`pr` for payroll or `l` for remaining leaves)
+- a boolean operator (`>`, `<`, or `=`)
+- and a non-negative integer comparison amount.
 
 The list of employees to be displayed is stored in the `Model` as a `FilteredList`, which is based on the full source list of all employees.
 When a `Predicate` is set for the `FilteredList`, the `FilteredList` will contain only the employees in the source list that satisfy the `Predicate`.
@@ -766,15 +826,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. There is no employee matching the given EmployeeId
-    * 1a1. ExecutivePro returns an error message.
+    * 1a1. ExecutivePro returns an error message. 
+
+        Use case ends
 * 1b. The remaining number of leaves inputted is invalid
     * 1b1. ExecutivePro returns an error message
+
+        Use case ends
 * 1c. The employee does not have enough leaves remaining
     * 1c1. ExecutivePro returns an error message
 
         Use case ends
 
-**Use case: UC9 - Changing the theme of ExecutivePro**
+**Use case: UC10 - Changing the theme of ExecutivePro**
 
 **MSS**
 1. HR Manager requests to change the theme of the application.
@@ -786,9 +850,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The theme inputted is invalid
     * 1a1. ExecutivePro returns an error message.
 
-      Use case ends
+    Use case ends
 
-**Use case: UC10 - Exiting the ExecutivePro program**
+**Use case: UC11 - Exiting the ExecutivePro program**
 
 **MSS**
 
@@ -797,8 +861,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC11 - Filter employees based on a criteria**
-
+**Use case: UC12 - Filter employees based on a criteria**
 
 **MSS**
 
@@ -812,8 +875,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The criteria is invalid
     * 1a1. ExecutivePro returns an error message.
+
+      Use case ends.
+
 * 2a. There is no employee matching the given keyword
     * 2a1. ExecutivePro displays message indicating that no employee matches the given keyword
+
+      Use case ends.
+
+**Use case: UC13 - Set employee's profile picture**
+
+**MSS**
+
+1.  HR Manager wants to set an employee's profile picture.
+2ExecutivePro adds the profile picture to the employee.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. HR Manager selects an invalid file.
+    * 1a1. ExecutivePro displays error message indicating that the file is invalid.
 
       Use case ends.
 
@@ -827,14 +909,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Performance requirements
 1. Should be able to hold records of up to 1000 employees.
-2. The system should be able to execute all commands within a second.
+2. The system should be able to execute all commands within a second. 
+3. The system should start up and be ready within a second.
 
 #### Usability requirements
 1. A user with above average typing speed (above 40 WPM) for regular English text should be able to accomplish most of the tasks faster using commands than using the mouse.
 2. The application should be easy to use by users with little experience of using a command line application.
 3. The application should be accessible and readily available to new users.
 4. The application should offer 2 different themes (light and dark theme to accommodate the user's preference)
-5. The application should not create unnecessary files after certain command(batchexport)
+5. The application should not create unnecessary files after certain command (eg. batchexport)
 
 --------------------------------------------------------------------------------------------------------------------
 

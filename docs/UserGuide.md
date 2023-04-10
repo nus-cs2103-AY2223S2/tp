@@ -149,7 +149,7 @@ However, this function could fail (and ExecutivePro simply does not add any empl
 and email
 
 
-Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -322,17 +322,15 @@ Format: `list`
 --------------------------------------------------------------------------------------------------------------------
 ### Editing an employee : `edit`
 
-There could be instances where you have to edit the details of an employee. It could be due to a typo or the employee has changed
-their personal particulars. Simply follow the format given below to edit those details.
+There could be instances where you have to edit the details of an employee. It could be due to a typo or that your employee has changed their personal particulars. Simply follow the format given below to edit those details.
 
 Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
 * Edits the details of the employee with the specified `EMPLOYEE_ID`. If such an employee doesn’t exist, an error message will be shown.
-* At least one of the optional fields must be provided.
+* At least one of the optional fields (in brackets above) must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
@@ -340,14 +338,13 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### Taking Leave : `leave`
 
-There are plenty of instances where employees take leave and it is such a tedious task to manage employee leaves.
-However, ExecutivePro allows you to keep track of the remaining leaves for each employee by simply following the format below.
+There are plenty of instances where employees take leave, and it is such a tedious task to manage employee leaves. ExecutivePro allows you to help your employees take leave so you no longer have to manually track remaining leaves for each employee.
 
 Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
 
 * Helps the employee with the specified `EMPLOYEE_ID` take leave. If such an employee doesn’t exist, an error message will be shown.
 * Number of days of leave is specified by `LEAVE_COUNT`. If the employee does not have enough remaining leave, an error message will be shown.
-* Existing leave count will decrease by the number of leave taken.
+* Existing leave count will decrease by the number of days of leave taken.
 
 Examples:
 * `leave 1 l/3` Helps the employee with ID `1` take `3` days of leave.
@@ -396,7 +393,7 @@ Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 * The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
 * The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
-* The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
+* The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
 
 Examples:
 * `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
@@ -411,6 +408,8 @@ You can use the command syntax to create the criteria, just like the image below
 **Step 2 (Results displayed) :**
 All the employees who satisfy the criteria will be listed.
 ![](images/UserGuide/filterResults.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting an employee : `delete`
 
@@ -525,7 +524,9 @@ ExecutivePro data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. Advanced users are welcome to update data directly by editing that data file.
+ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. 
+Advanced users are discouraged from updating data directly by editing that data file due to possible 
+inconsistent behaviour.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -567,18 +568,18 @@ This table describes the requirements and order of the fields.
 
 This table describes the requirements for the input format of the fields.
 
-| Field             | Prefix | Requirement                                                                                                                                                                                                                                                                                                                                                                                    | Example                                  |
-|-------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| `NAME`            | n/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `John Doe`, `Shawn Lee`                  |
-| `PHONE`           | p/     | Contain numbers only from 3 digits long to 15 digits long                                                                                                                                                                                                                                                                                                                                      | `80101126`, `973629831`, `999`           |
-| `DEPARTMENT`      | d/     | Only alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                   | `Sales`, `General Management`            |
-| `PAYROLL`         | pr/    | Two integers (salary and day of payment) separated by a space. Salary has to be an integer between `1` and `100000` (inclusive). Day of payment has to be an integer between `1` and `28` (inclusive). Salary and day limits are set to fit expected usage by a HR department.                                                                                                                 | `1000 15`, `10000 3`                     |
-| `EMAIL`           | e/     | Be in the format of local-part@domain.ending. "local-part" should contain only alphanumeric characters and/or certain special characters (+\_.-), and cannot start or end with any special characters. "domain" should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. "ending" part must be at least 2 characters long (e.g. ".com") | `johnd@example.com`, `shawn@example.edu` |
-| `ADDRESS`         | a/     | Can take any value.                                                                                                                                                                                                                                                                                                                                                                            | `311, Clementi Ave 2, #02-25`            |
-| `LEAVE`           | l/     | Must be an integer between between `0` and `365` (inclusive).                                                                                                                                                                                                                                                                                                                                  | `1`, `10`, `350`                         |
-| `DATE_OF_BIRTH`   | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-01-10`                             |
-| `DATE_OF_JOINING` | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
-| `TAG`             | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
+| Field             | Prefix | Requirement                                                                                                                                                                                                                                                                                                                                                                                                    | Example                                  |
+|-------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
+| `NAME`            | n/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                                  | `John Doe`, `Shawn Lee`                  |
+| `PHONE`           | p/     | Can contain numbers (0-9) only from 3 - 15 digits in length.                                                                                                                                                                                                                                                                                                                                                   | `80101126`, `973629831`, `999`           |
+| `DEPARTMENT`      | d/     | Only alphanumeric characters.                                                                                                                                                                                                                                                                                                                                                                                  | `Sales`, `Engineering`                   |
+| `PAYROLL`         | pr/    | Two integers (salary and day of payment) separated by a space. <br/>Salary has to be an integer between `0` and `100000` (inclusive). <br/>Day of payment has to be an integer between `1` and `28` (inclusive).                                                                                                                                                                                               | `1000 15`, `10000 3`                     |
+| `EMAIL`           | e/     | Be in the format of local-part@domain.ending. <br/> "local-part" should contain only alphanumeric characters and/or certain special characters (+\_.-), and cannot start or end with any special characters. <br/>"domain" should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. <br/>"ending" part must be at least 2 characters long (e.g. ".com") | `johnd@example.com`, `shawn@example.edu` |
+| `ADDRESS`         | a/     | Can take any value.                                                                                                                                                                                                                                                                                                                                                                                            | `311, Clementi Ave 2, #02-25`            |
+| `LEAVE`           | l/     | Must be an integer between between `0` and `365` (inclusive).                                                                                                                                                                                                                                                                                                                                                  | `1`, `10`, `350`                         |
+| `DATE_OF_BIRTH`   | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                                     | `2022-01-10`                             |
+| `DATE_OF_JOINING` | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
+| `TAG`             | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -586,7 +587,7 @@ This table describes the requirements for the input format of the fields.
 ## Command Summary
 
 
-| Action          | Format, Examples                                                                                                                                                                                                                                                                                                |
+| Command         | Format, Examples                                                                                                                                                                                                                                                                                                |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**        | `help`                                                                                                                                                                                                                                                                                                          |
 | **Add**         | `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 d/Marketing pr/4000 15 e/johnd@example.com a/John street, block 123, #01-01 l/19 dob/2000-04-21 doj/2022-01-04 t/friends ` |

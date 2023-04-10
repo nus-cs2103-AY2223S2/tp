@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Payroll {
     public static final int MAX_SALARY = 100000;
     public static final String MESSAGE_INVALID_SALARY =
-            "Salary has to be an integer between 1 and " + MAX_SALARY + " (inclusive).";
+            "Salary has to be an integer between 0 and " + MAX_SALARY + " (inclusive).";
     public static final String MESSAGE_INVALID_DATE_OF_PAYMENT =
             "Day of payment has to be an integer between 1 and 28 (inclusive).";
     public static final String MESSAGE_CONSTRAINTS =
@@ -33,7 +33,8 @@ public class Payroll {
     }
 
     /**
-     * Constructs a {@code Payroll} with the given salary and date of payment string.
+     * Constructs a {@code Payroll} with the given string containing both integers.
+     * @throws IllegalValueException if input is not valid.
      */
     public Payroll(String input) throws IllegalValueException {
         requireAllNonNull(input);
@@ -49,7 +50,7 @@ public class Payroll {
     }
 
     /**
-     * Returns true if a given payroll is valid .
+     * Returns true if a given payroll is valid.
      */
     public static boolean isValidPayroll(String test) {
         if (test == null) {
@@ -77,11 +78,12 @@ public class Payroll {
     }
 
     /**
-     * Gets the employee's date of payment.
+     * Gets the employee's day of payment.
      */
     public int getDayOfPayment() {
         return this.dayOfPayment;
     }
+
     @Override
     public String toString() {
         return this.salary + " " + this.dayOfPayment;
