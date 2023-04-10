@@ -32,7 +32,7 @@ title: Developer Guide
   - [Storage](#storage-implementation)
     - [Saving Data](#saving-data)
     - [Retrieving Data](#retrieving-data)
-- [Viable Enhancement](#viable-enhancement)
+- [Potential Enhancement](#potential-enhancement)
   - [Undo and Redo Feature](#proposed-undo-and-redo-feature)
   - [Data Archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -58,9 +58,9 @@ title: Developer Guide
 ## **Introduction**
 
 ### Intended Audience
-The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
+As future contributors to CoDoc, we hope this Developer Guide is sufficient in documenting and illustrating the underlying architecture of CoDoc. This guide provides
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
-in the deciding the implementation of various features offered by CoDoc.
+in deciding the implementation of various features offered by CoDoc.
 
 You are recommended to read the [Navigating the Developer Guide](#navigating-the-developer-guide) and [Glossary](#glossary)
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
@@ -84,6 +84,7 @@ meaningful connections and engaging in productive work.
 The Developer Guide is divided into the following sections :
 - [Design Architecture](#design-architecture)
 - [Implementation](#implementation)
+- [Potential Enhancement](#potential-enhancement)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
@@ -106,6 +107,8 @@ implemented. In this section, you will be provided with:
 5. An Activity Diagram to show all possible behaviours of the feature where applicable.
 6. An Object Diagram to model relationships between objects of the same components where applicable.
 7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature.
+
+The [Potential Enhancement](#potential-enhancement) section outlines how 
 
 The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
 provides the links to the aforementioned documents. In this section, you will be provided with the links to:
@@ -245,6 +248,12 @@ It    It is a better alternative than creating user interfaces using procedural 
     <td><strong>Use Case</strong></td>
     <td>
       Describes an interaction between the user and the system for a specific functionality of the system.
+    </td>
+  </tr>
+  <tr>
+    <td><div markdown="span" class="alert alert-info"><strong>:information_source: Note</strong></div></td>
+    <td>
+      To inform you of relevant information that might be useful to take note of as a developer.
     </td>
   </tr>
 </table>
@@ -983,7 +992,7 @@ for more information about this package.
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Viable Enhancement**
+### **Potential Enhancement**
 
 #### \[Proposed\] Undo and Redo Feature
 
