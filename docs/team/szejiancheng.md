@@ -9,14 +9,13 @@ TutorPro is a desktop app designed to help private tutors manage their student i
 
 Given below are my contributions to the project.
 
-* **New Feature**: Adds the ability to add a exam for a particular student.
-    - What it does: Allows user to add a lesson to a particular student, including details such as the description of 
-      the 
-      lesson, it's start time, and it's end time.
+* **New Feature**: Adds the ability to track exams for a particular student.
+    - What it does: Allows user to add, manipulate, and delete exams of a particular student, including details such as 
+      the name of the exam, its start time, its end time, weightage, and grade.
     - Justification: This feature enables tutors to effectively track of upcoming and completed exams.
     - Highlights: This feature required additional classes for parsing and data storage that needed to be 
       implemented in order to function with the existing project structure. 
-    - Credits: @nbqian for providing the basic skeleton for similar student attributes
+    - Credits: @nbqian for providing the basic skeleton for similar student attributes (see lesson-related classes)
     
 
 * **Code contributed**:
