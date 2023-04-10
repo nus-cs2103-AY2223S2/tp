@@ -33,8 +33,6 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Locating job listings by title: `find`](#locating-job-listings-by-title--find)
   - [Sorting job listings: `sort`](#sorting-job-listings--sort)
   - [Undo latest command: `undo`](#undo-latest-command--undo)
-  - [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
-  - [Tagging a job listing `[coming in v2.0]`](#tagging-a-job-listing-coming-soon)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -768,32 +766,6 @@ GoodMatch data are saved as a JSON file `[JAR file location]/data/listingbook.js
 If your changes to the data file makes its format invalid, GoodMatch will discard all data and start with an empty data file at the next run.
 
 </div>
-
-###### _< Back to [Table of Contents](#table-of-contents) >_
-
----
-
-### Filtering job listings [coming soon!]
-
-Sort job listings by the field specified by the user and display the sorted list of job listings.
-
-✏️ **Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
-
-ℹ️ **Notes:**
-
-- The possible fields are: `expiry date` , `num_of_applicants` , `...`
-- Fields have to be numerical
-- Metrics can be more than or less than or equal
-
-📚 **Examples:**
-
-- `filter attribute/num_of_applicants by/>= 5`
-
-###### _< Back to [Table of Contents](#table-of-contents) >_
-
-### Tagging a job listing [coming soon]
-
-Add tags to a job listing for easy reference.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
