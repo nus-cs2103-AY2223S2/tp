@@ -23,8 +23,8 @@ technical knowledge of Java and JavaFX is recommended when reading this develope
 You may peruse the libraries we used and their documentation at the following links:
 * **[Java 8](https://docs.oracle.com/javase/8/docs/)** - Java Language
 * **[JavaFX 11](https://openjfx.io/openjfx-docs/)** - Framework for developing Graphical User Interfaces (GUI) in Java
-* **[Jackson](https://github.com/FasterXML/jackson-docs)** - Library to provide serialization and deserialization of data from JavaScript Object Notation (JSON) format files
-* **[JUnit 5](https://junit.org/junit5/docs/current/user-guide/)** - Library for adding unit tests for new features to validate their behavior against a set of developer-defined behaviors
+* **[Jackson](https://github.com/FasterXML/jackson-docs)** - Library for serialization and deserialization of data from JavaScript Object Notation (JSON) format files
+* **[JUnit 5](https://junit.org/junit5/docs/current/user-guide/)** - Library for adding unit tests for code validation
 
 ### Who this guide is for
 
@@ -128,12 +128,14 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
+<div style="page-break-after: always;"></div>
+
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
+* and depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
 <div style="page-break-after: always;"></div>
 
@@ -168,11 +170,12 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img class="diagram" src="images/ParserClasses.png" width="550"/>
 
-<div style="page-break-after: always;"></div>
 How the parsing works:
 * When called upon to parse a user command, the `RecipeBookParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
@@ -182,6 +185,7 @@ How the parsing works:
   interface so that they can be treated similarly where possible e.g, during testing.
 
 <div style="page-break-after: always;"></div>
+
 ### Model component
 
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
@@ -251,8 +255,9 @@ However, this representation is too verbose and space-inefficient. Hence, we opt
 each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters) 
 package. These JSON adapters allow us to express how each class should be serialized.
 
-### Common classes
-Classes used by multiple components are in the `seedu.recipe.commons` package.
+### The `Common` component
+
+This component contains classes which are used by multiple components, and are located in the `seedu.recipe.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -402,6 +407,8 @@ in a collection of property T matches any of the keywords.
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
 
+<div style="page-break-after: always;"></div>
+
 ### Feature: Ingredient Substitutions
 
 #### Overview
@@ -427,6 +434,8 @@ This list is created in the form of a `HashSet` such that any duplicates will no
 
 The display of the results will be in the command result box which is different from the other commands, since the
 results of the `sub` command return ingredients instead of recipes.
+
+<div style="page-break-after: always;"></div>
 
 ### Feature: Import RecipeBook
 
@@ -460,6 +469,8 @@ selecting a JSON file, the recipe list will remain unchanged, and nothing will b
 imported.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Feature: Export RecipeBook
 
@@ -784,11 +795,12 @@ testers are expected to do more *exploratory* testing.
 2. Re-launch the app by double-clicking the jar file.
    <br>**Expected:** The most recent window size and location is retained.
 
-<div style="page-break-after: always;"></div>
 #### Test case 1.3: Shutdown
 **Status**: Accepted _(All expected behaviour is displayed)_
 1. When the app is open, type `exit` into the command bar and press <kbd>Enter</kbd>.
    <br>**Expected:** The app closes.
+
+<div style="page-break-after: always;"></div>
 
 ### 2. Navigation
 
@@ -817,6 +829,7 @@ testers are expected to do more *exploratory* testing.
    <br>**Expected:** The recipe has been edited, with the new recipe details reflecting the edits made for each field.
 
 <div style="page-break-after: always;"></div>
+
 ### 3. Commands
 
 **Description:** Verify that commands in the app are executed properly.
@@ -834,6 +847,8 @@ testers are expected to do more *exploratory* testing.
 4. Scroll to the bottom of the recipe list and click on the newly added recipe.
 5. Press <kbd>P</kbd> to view its details.
  <br>**Expected:** The newly-added recipe is present at the bottom of the recipe list, and contains exactly the fields entered in the form.  
+
+<div style="page-break-after: always;"></div>
 
 ### 4. Working with saved data
 
@@ -857,7 +872,7 @@ testers are expected to do more *exploratory* testing.
 3. Click the <kbd>Save</kbd> button.
    <br>**Expected:** The file picker window closes, and a file with the given filename is created in the given folder.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ---
 
