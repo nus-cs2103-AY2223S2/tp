@@ -276,7 +276,8 @@ As an example, the following sequence diagram shows the sequence for the command
 the NRIC `S1234567I` belongs to an existing **volunteer**:
 <img src="images/developerGuide/EditSequenceDiagram.png" width="1200"/>
 
-:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info"> :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Find by keyword
 
