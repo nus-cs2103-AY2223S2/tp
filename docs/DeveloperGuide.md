@@ -1733,6 +1733,8 @@ Similar to `UC20 Find an application by its company name and job title` except t
 * **CLI**: Command line interface
 * **GUI**: Graphical User interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **InternshipTodo**: Internships that are planned to apply
+* **Note**: Act as long-lasting reminders for future internship applications and interviews
 
 [Go back to Table of Contents](#table-of-contents)
 
