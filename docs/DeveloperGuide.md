@@ -6,13 +6,14 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Software Overview**
 
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+
 
 ## **Intended Audience**
 
@@ -34,6 +35,8 @@ This guide contains certain visuals to aid in conveying information more effecti
 Please refer to the [About Us](AboutUs.md) page for information about the developers.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
@@ -55,6 +58,8 @@ This section gives you a high-level overview of how the application is structure
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -195,11 +200,11 @@ Classes used by multiple components are in the `seedu.library.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-
 
 ### Add Feature
 
@@ -379,16 +384,16 @@ books in the `Library`.
   - Pros: Simple to keep track of and store, easily map rating to star icons in UI.
   - Cons: Might not be granular enough to represent all possible values.
 - **Alternative 2:** Representing it a decimal value from 0 to 5.
-  - Pros: Higher level of granularity
+  - Pros: Higher level of granularity.
   - Cons: Difficult to represent with visual symbols in the UI to accurately reflect difference in ratings.
 
 **Aspect: How should `Rating` be displayed to users?**
 - Alternative 1: Represented as a number for example "Rating: 4".
-  - Pros: Easy to implement in the UI
-  - Cons: Lots of textual information already present in the UI, adding more text makes it less visually appealing
-- Alternative 2(current choice): Representing it with 5 star icons in the BookmarkList Panel
-  - Pros: User can view ratings of books without having to click on the Bookmark Card
-  - Cons: Harder to implement in the UI
+  - Pros: Easy to implement in the UI.
+  - Cons: Lots of textual information already present in the UI, adding more text makes it less visually appealing.
+- Alternative 2(current choice): Representing it with 5-star icons in the BookmarkList Panel.
+  - Pros: User can view ratings of books without having to click on the Bookmark Card.
+  - Cons: Harder to implement in the UI.
 <div style="page-break-after: always;"></div>
 
 ### Progress Field
@@ -1117,5 +1122,5 @@ than 1 0" since the bookmarklist index starts from 1. And keep the current error
 
 In the `parse` method  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
---------------------------------------------------------------------------------------------------------------------
+
 
