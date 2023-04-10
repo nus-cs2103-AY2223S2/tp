@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
@@ -63,6 +62,7 @@ public class FindCommand extends Command {
         displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList, pIdList);
 
         if (personList.isEmpty()) {
+            logger.info("No persons found");
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         } else {
             int numOfPersonFound = model.getFilteredPersonList().size();

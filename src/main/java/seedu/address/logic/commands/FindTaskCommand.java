@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
@@ -62,6 +61,7 @@ public class FindTaskCommand extends Command {
         displayAssignedTasksAndPersons(model, taskModelManager, assignedPersonList, tIdList);
 
         if (taskList.isEmpty()) {
+            logger.info("No tasks found");
             return new CommandResult(MESSAGE_NO_TASK_FOUND);
         } else {
             int numOfTaskFound = taskModelManager.getFilteredListSize();
