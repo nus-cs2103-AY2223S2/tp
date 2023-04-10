@@ -74,6 +74,7 @@ Given below are my contributions to the project.
     * Added test cases for `FindCommand`, `FindCommandParser`, `SubPostal`, `FindPredicate`, `PersonContainsAgePredicate`, `PersonContainsDatePredicate`,
     `PersonContainsNamePredicate`, `PersonContainsPostalPredicate`, `PersonContainsVariantsPredicate`,
     `RangeContainsPersonPredicate` and `Range`.
+      ([#264](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/264)), ([#267](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/267))
 
 * **Documentation:**
   * User Guide
