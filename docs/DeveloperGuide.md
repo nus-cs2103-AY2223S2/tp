@@ -270,6 +270,7 @@ The following diagram shows the structure of the implementation of Statuses, as 
 ![](images/StatusDiagram.png)
 
 #### Lead Status feature
+By: Jing Jie
 
 The Lead Status feature aims to provide information about the contact based on when the status was last set.
 It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
@@ -766,7 +767,13 @@ features to add and delete.
 
 ### Challenges Faced
 
-Find and Searching Features: There was a medium challenge faced when implementing the different searching features as one had to work within the several abstraction layers for the already implemented basic `find` feature to further extend it. Additionally, there were added difficulty learning to manipulate the different data types such as `Set<>`, `Person` and `Transaction`. Learning to manipulate using higher order functions and streams to manipulate the data in the correct data type and return the correct data type. 
+**Find and Searching Features**: There was a medium challenge faced when implementing the different searching features as one had to work within the several abstraction layers for the already implemented basic `find` feature to further extend it. Additionally, there were added difficulty learning to manipulate the different data types such as `Set<>`, `Person` and `Transaction`. Learning to manipulate using higher order functions and streams to manipulate the data in the correct data type and return the correct data type.   
+
+**Statuses**: Restricting the domain of possible statuses to a fixed number, while implementing timestamps, meant that 
+statuses are more complex than simple descriptive `String`s that are implemented in other attributes, such as Tasks and 
+Company, for example. A validation regex cannot be used directly for the names of each status, since each status has 
+as timestamp component, thus the use of enums and mappings to each name was required, increasing the complexity of 
+the implementation of statuses.
 
 ## **Appendix: Planned Enhancements**
 
@@ -774,3 +781,12 @@ Find and Searching Features: There was a medium challenge faced when implementin
 
 1. The user should be able to have autocomplete suggestions on the command line when they press tab so that the user can do faster data entry.
 2. The user should be able to have basic natural language processing and processing in the command line so that the commands are less restrictive, then the user would have a better experience and easier to use on a daily basis. For e.g. `create a new contact named Alex` may be a valid contact name insertion versus using the standard `add n/Name ...` command.
+3. Each transaction and contacts are intended to share a tight relationship. Enforcing references from transactions to 
+    contacts and vice versa can be encapsulated in a PersonTransactionRelation class, and manipulation of both the list of
+    persons and transactions can be handled by the relation. This allows the implementation of more complex commands that
+    involve both classes:
+   - deleting a Person should delete all of their Transactions
+   - maintaining a count of the number of Past Transactions with each Person within the Person
+   - merging commands such as `list` and `listtxn` into a single command to show both lists.
+   - manipulating both ListPanels in the UI for Persons and Transactions for these merged commands
+   
