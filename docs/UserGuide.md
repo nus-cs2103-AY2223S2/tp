@@ -289,7 +289,7 @@ Examples:
 
 #### Editing a volunteer by index: `edit_volunteer`
 
-Edits an existing volunteer based on their [index](#index) in the volunteers list.
+Edits an existing volunteer based on their [index](#interpreting-our-command-format) in the volunteers list.
 
 Format: `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
