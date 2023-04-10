@@ -8,20 +8,20 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-<img src="images/MyLibLogo.png">
+<img src="images/MyLibLogo.png" width="600">
 
 ## **Software Overview**
 
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Intended Audience**
 
 This guide is intended primarily for developers who want to work on the MyLib code base at https://github.com/AY2223S2-CS2103T-T13-4/tp.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Using the Guide**
 
