@@ -52,6 +52,7 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Effort](#appendix-effort)
 - [Appendix: Planned enhancements](#appendix-planned-enhancements)
 
 ---
