@@ -286,8 +286,8 @@ Other examples:
 
 * `edit 2 p/91234567 a/21 Beach Road` Updates the second pet entry's phone number to`91234567`
   and address to `21 Beach Rd`
-* `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag,
-  the edit will override the existing tag
+* `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag, the
+  edit will override the existing tag
 
 #### **Amount indication**
 
@@ -456,7 +456,7 @@ which is **IRREVERSIBLE**.
 
 ---
 
-## String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE)
+## **FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Follow these steps to transfer your data to another computer:
