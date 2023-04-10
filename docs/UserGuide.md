@@ -263,7 +263,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
     - The index refers to the index number shown in the displayed doctor list.
     - Users can edit specific doctors in the clinic by providing at least one of the optional parameters. Specified parameters will be updated to the input values and all other parameter values will remain the same.
     - At least one of the optional parameters must be provided.
-      - When editing tags, you have to include any previous tags that was already included in the doctor, or else these tags will be removed. This also means that you can use `t/` to remove all tags from a doctor using the `edit-doc` command.
+    - When editing tags, you have to include any previous tags that was already included in the doctor, or else these tags will be removed. This also means that you can use `t/` to remove all tags from a doctor using the `edit-doc` command.
 
 - Examples:
     - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
