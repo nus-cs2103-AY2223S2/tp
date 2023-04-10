@@ -282,7 +282,7 @@ The following sequence diagram shows how the `edit` command works:
 
 The following sequence diagram shows how the argument parsing for the `edit` command works:
 
-![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)
+![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)<br>
 
 ### Delete Command
 
