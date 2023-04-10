@@ -14,7 +14,6 @@ import seedu.address.model.session.SessionName;
  * A utility class to help with building Session objects for testing purposes.
  */
 public class SessionBuilder {
-
     /**
      * The default SessionName used in test cases.
      */
@@ -62,6 +61,20 @@ public class SessionBuilder {
     public static final List<NamePayRatePair> DEFAULT_PAY_RATE_MAP =
             new ArrayList<>(Arrays.asList(DEFAULT_PAYRATE_PAIR));
 
+    public static final Session SESSION_ONE = generateDefaultSession();
+
+    public static final Session SESSION_TWO = new Session(
+            "10-03-2022 12:00",
+            "10-03-2022 13:00",
+            new SessionName("Session Two"),
+            new Location("Sports Complex"),
+            1,
+            new ArrayList<NameBooleanPair>(Arrays.asList(
+                    new NameBooleanPair("Alice", true))),
+            new ArrayList<NamePayRatePair>(Arrays.asList(
+                    new NamePayRatePair("Alice", 45)))
+    );
+
     /**
      * Generates a default Session object without attendance and pay rate map.
      *
@@ -85,4 +98,3 @@ public class SessionBuilder {
                 DEFAULT_PAY_RATE_MAP);
     }
 }
-
