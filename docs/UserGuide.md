@@ -778,6 +778,7 @@ Examples:
 | **Edit Event**             | `editevent INDEX {PREFIX/PARAMETER}…​` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                               |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                  |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                               |
+
 [Back To Contents](#table-of-contents)
 
 <hr style="border:2px solid gray">
