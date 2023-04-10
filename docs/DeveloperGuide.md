@@ -632,7 +632,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample patients and appointments. The window size may not be optimum. A sample of the expected result is shown below:
-   ![v1.2_jar](images/v1.4_jar.png)
+   ![v1.4_jar](images/v1.4_jar.png)
 
 1. Saving window preferences
 
@@ -647,15 +647,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a Patient while all Patients are being shown
 
-   1. Prerequisites: List all Patients using the `list` command. Multiple Patients in the list.
+   1. Prerequisites: List all Patients using the `list_patient` command. Multiple Patients in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete_patient 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete_patient 0`<br>
       Expected: No Patient is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete_patient`, `delete_patient x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
