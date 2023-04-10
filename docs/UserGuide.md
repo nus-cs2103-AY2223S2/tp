@@ -69,7 +69,8 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. E.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
+* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command.<br>
+  E.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   E.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -93,12 +94,12 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have any number of events (including 0)
+A person can have any number of events (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` Adds person to the address book.
-* `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1` Adds 1st event to the new person `Pearlyn Yeah` in the address book.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` adds person to the address book.
+* `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1` adds 1st event to the new person `Pearlyn Yeah` in the address book.
 
 ![example usage for add command](images/add.png)
 
@@ -143,8 +144,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find roy john` returns `Roy Balakrishnan`, `John Doe`<br>
+* `find John` returns `john` and `John Doe`.
+* `find roy john` returns `Roy Balakrishnan`, `John Doe`.<br>
 
 ![example usage for find command](images/find.png)
 
@@ -182,8 +183,8 @@ Past events can be added for tracking purposes.
 </div>
 
 Examples:
-* `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30`
-* `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
+* `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30` adds an event called `Dinner` which starts at `01-05-2023 17:30` and ends at `01-05-2023 19:30`.
+* `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00` adds an event called `Wedding Dinner` which starts at `01-05-2023 17:00` and ends at `01-05-2023 21:00`.
 
 ![example usage for addevent command](images/addevent.png)
 
@@ -228,7 +229,7 @@ Format: `sortevent SORT_KEY`
   * `b`: Sorts based on event names in descending ASCII order.
   * `c`: Sorts based on start date times in ascending order.
   * `d`: Sorts based on end date times in ascending order.
-* There must be at least 2 events in the current event list to sort the event list.
+* There must be at least 2 events displayed in the current event list to sort the event list.
 
 Examples:
 * Entering these 2 commands consecutively (`listevent` followed by `sortevent c`) sorts all the events in the address book based on their start date times in ascending order.
@@ -340,15 +341,15 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX] …​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX]…​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
 **Add Event** | `addevent ev/EVENT_NAME from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Event** | `delevent EVENT_INDEX` <br> e.g., `delevent 2`
 **Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g., `editevent 1 ev/Birthday Party from/17-07-2023 12:00`
-**Find Contact** |  `find KEYWORD [MORE_KEYWORDS]`
-**Find Event** | `findevent KEYWORD [MORE_KEYWORDS]`
+**Find Contact** |  `find KEYWORD [KEYWORD]...`<br> e.g., `find roy john`
+**Find Event** | `findevent KEYWORD [KEYWORD]...`<br> e.g., `findevent tour`
 **List All Contacts and Events** | `listall`
 **List Contact** | `list`
 **List Event** | `listevent`
