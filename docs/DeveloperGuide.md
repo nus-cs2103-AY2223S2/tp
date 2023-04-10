@@ -350,7 +350,7 @@ Taking into consideration that users might make a typo as well as the time cost 
     * Harder for users to find the invalid index and correct it.
 * **Alternative 2:** Delete all valid `Person` entries out of the given indexes.
   * Pros:
-    * If command had only minor typos, this might save the user time by not needing to editing their command.
+    * If command only has minor typos, this might save the user time by not needing to editing their command.
   * Cons:
     * The index of the intended entry to delete might be invalid, so after the other entries with valid indexes are deleted, the user needs to run `delete` again anyway to fully delete their desired entries.
     * Reduces the defensiveness of the application, making it more susceptible to bugs and unexpected behaviours.ee
