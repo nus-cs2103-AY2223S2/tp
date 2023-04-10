@@ -12,7 +12,7 @@ title: Developer Guide
     - [Model Component](#model-component)
     - [Storage Component](#storage-component)
     - [Common classes](#common-classes)
-  - [Implementation](#implementation)
+  - [Implementation of features](#implementation)
     - [Add](#add-feature)
     - [Edit](#edit-feature)
     - [Add contact](#add-contact-feature)
