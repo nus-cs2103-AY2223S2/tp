@@ -37,7 +37,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Mathutoring *---> "1" UniqueStudentList
-UniqueStudentList --left-> "~* all" Student
+UniqueStudentList ---> "~* all" Student
 
 Student *--> Name
 Student *--> "2" Phone
