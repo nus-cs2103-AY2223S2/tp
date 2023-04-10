@@ -461,6 +461,7 @@ Format: `theme THEME_NAME`
 
 Examples:
 `theme light` applies the `light` theme to ExecutivePro.
+
 --------------------------------------------------------------------------------------------------------------------
 <div markdown="span" class="alert alert-warning">
 

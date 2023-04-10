@@ -18,6 +18,7 @@ ExecutivePro (EP) is a desktop app for Human Resource managers to manage their e
 * Improved `delete` command such that details of employee will be deleted based on `EmployeeId`
 * Improved `add` command such that certain fields such as address of the employee will be non-compulsory
 * Improved UI of ExecutivePro to make it user-friendly and allows HR Managers to click on each employee and have their details pop out on the right panel
+* Created test cases for `delete command`
 
 
 **Contributions to the UG:**
@@ -43,7 +44,10 @@ ExecutivePro (EP) is a desktop app for Human Resource managers to manage their e
 * Pull Requests reviewed and merged: [#132](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/132),
 [ #124](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/124),[ #116](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/116),[ #69](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/69),
 [ #49](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/49), [ #48](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/48),
-[ #40](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/40), [ #25](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/25),
+[ #40](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/40), [ #25](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/25), [ #274](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/274),
+[ #268](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/268), [ #260](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/260)
+[ #257](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/257), [ #250](https://github.com/AY2223S2-CS2103T-W09-4/tp/pull/250)
+
 
 **Contributions beyond team project:**
 * Caught bugs for CS2103T-T12-4 ([#2](https://github.com/yanlings/ped/issues/2), [#5](https://github.com/yanlings/ped/issues/5), [#4](https://github.com/yanlings/ped/issues/4))
