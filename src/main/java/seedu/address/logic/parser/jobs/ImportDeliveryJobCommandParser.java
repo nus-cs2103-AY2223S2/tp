@@ -37,9 +37,9 @@ public class ImportDeliveryJobCommandParser {
     public static final String MESSAGE_WRONG_DELIMITER = "Wrong delimiter used, please use comma as delimiter.";
     public static final String MESSAGE_MISSING_HEADER = "Missing header in import. " +
             "Header needs to consist in this order of Recipient ID, Sender ID, Delivery date, Delivery slot, Price, " +
-            "Recipient ID, Recipient's Name, Recipient's Phone, Recipient's Email, Recipient's Address, " +
-            "Recipient's Tag, Sender's ID, Sender's Name, Sender's Phone, Sender's Email, Sender's Address," +
-            " Sender's Tag." ;
+            "Recipient ID, Recipient Name, Recipient Phone, Recipient Email, Recipient Address, " +
+            "Recipient Tag, Sender ID, Sender Name, Sender Phone, Sender Email, Sender Address," +
+            " Sender Tag." ;
 
     /**
      * Parses the given CSV File in the context of the ImportCommand
@@ -167,10 +167,11 @@ public class ImportDeliveryJobCommandParser {
             Optional<DeliverySlot> slot = Optional.empty();
             Optional<Earning> earn = Optional.of(new Earning(ear));
             DeliveryJob job = new DeliveryJob(rid, sid, date, slot, earn, "");
+            listOfAddDeliveryJob.add(job);
+        } else {
+            DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
+            listOfAddDeliveryJob.add(job);
         }
-
-        DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
-        listOfAddDeliveryJob.add(job);
     }
 
 }

@@ -230,7 +230,7 @@ Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a fi
 
 * File **must be a CSV file**.
 * There must be a header row as the first row will be skipped when file is parsed.
-* These columns `Recipient`	`Sender` `Delivery date` `Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
+* These columns `Recipient`	`Sender` `Delivery date` `Delivery slot`	`Price`	`Recipient`	`Recipient Name`	`Recipient Phone`	`Recipient Email`	`Recipient Address`	`Recipient Tag`	`Sender	Name`	`Sender Phone`	`Sender Email`	`Sender Address`	`Sender Tag` must exist.
 * The optional details may be filled in with "na". e.g. `Sender's Tag` may be "na".
 * Tags should be input with a spacing between each tag. e.g. "Customer Nearby", to tag as 2 tags: customer and nearby.
 * If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
