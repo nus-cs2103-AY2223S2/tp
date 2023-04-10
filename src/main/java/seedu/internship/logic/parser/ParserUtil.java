@@ -64,7 +64,7 @@ public class ParserUtil {
         return result;
     }
 
-    public static ParseException indexErrorMessageCheck(ParseException pe, String commandFormatMessage) {
+    public static ParseException handleIndexException(ParseException pe, String commandFormatMessage) {
         if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
             return new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
