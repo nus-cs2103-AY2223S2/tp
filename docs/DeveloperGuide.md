@@ -878,8 +878,56 @@ testers are expected to do more *exploratory* testing.
              - Testing for: No fields specified results in command failure
              - Expected: Event does not update. Error details shown in the status message.
 
-### Tagging/Untagging a contact to an event
+### Tagging a contact to an event
+1. Tagging a valid contact to an event
 
+   1. Prerequisites: Non-empty events list with at least 1 existing event.
+   Non-empty address book with a contact named `John`.
+   Navigate to Events tab using `tab 2`.
+
+   2. Test Cases:
+      1. Test case 1: `tagpersonevent et/1 pt/John`
+         - Testing for: Successful command execution
+         - Expected: Attendees field appears with John listed.
+
+2. Tagging an invalid contact to an event
+
+    1. Prerequisites: Non-empty events list with at least 1 existing event.
+       Empty address book.
+       Navigate to Events tab using `tab 2`.
+
+    2. Test Cases:
+        1. Test case 1: `tagpersonevent et/1 pt/John`
+            - Testing for: Name specified results in command failure.
+            - Expected: Since there is no contact with the name `John`, no attendees with be attached to the event.
+              Error details shown in the status message.
+
+### Untagging a contact to an event
+
+1. Untagging a tagged contact
+
+   1. Prerequisites: Non-empty events list with the event at index 1 with only contact `John` tagged to it. Navigate to Events tab using `tab 2`.
+
+   2. Test Cases:
+      - Test case 1: `untagpersonevent et/1 pt/John`
+        - Testing for: Successful command execution
+        - Expected: John is untagged and attendees field disappears on event at index 1.
+
+2. Untagging an untagged contact
+
+    1. Prerequisites: Non-empty events list with the event at index 1 with only contact `John` tagged to it.
+   Non-empty address book with only 2 contacts, `John` and `Mary`.
+   Navigate to Events tab using `tab 2`.
+
+    2. Test Cases:
+        - Test case 1: `untagpersonevent et/1 pt/Mary`
+            - Testing for: Successful command execution
+            - Expected: Although command is successful, since Mary was not tagged to the event to begin with, there will be no changes.
+            Warning message will appear in status to inform user that Mary is already untagged.
+       - Test case 2: `untagpersonevent et/1 pt/Robert`
+           - Testing for: Name specified results in command failure.
+           - Expected: Since there is no contact with the name `Robert`, there will be no changes made.
+             Error details shown in the status message to inform user that the contact does not exist.
 
 ## User-related
 ### Editing data of User
