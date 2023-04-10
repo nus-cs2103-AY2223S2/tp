@@ -10,6 +10,33 @@ title: Developer Guide
 
 <div style="page-break-after: always;"></div>
 
+<h1 align="center">
+    <b>The Intern's Ship - Developer Guide</b>
+</h1>
+
+<p align="center">
+    <img src="images/ship.png" alt="logo" width="90"><br>
+</p>
+
+## **Introduction**
+
+Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
+managing internship applications fuss-free. While being optimised for use via a Command Line Interface (CLI),
+TinS also offers a Graphic User Interface (GUI) for visual display of data.
+
+At its core, TinS is an internship management tool. It comes with features designed to make keeping track of their internship applications an easier and streamlined process. For example, TinS provides standardized fields for entry of an internship (e.g. Position, Company, Descrption, Events and etc.) and a search feature that finds internships based on these fields. Features such as `clash`, absolves user of the need to manually identify clashes between important dates.  
+
+The ultimate goal of TinS is to allow students to conveniently and efficiently manage, coordinate and keep track of your internship applications all in one place. 
+
+
+### Objective of Developer's Guide
+
+The aim of the Developer's Guide is to provide you (a potential developer!) with an overarching view of the application's architecture and inter-dependent functions of each component. You will also read about how notable features are implemented as well as the rationales behind the implementation. Also, it will outline the project requirements, goals, and constraints so to ensure that its developers are working towards the same objectives. 
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
 * The Intern's Ship is written in Java 11.
