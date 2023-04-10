@@ -37,7 +37,7 @@ public class SummaryCommand extends Command {
         if (values[0] == 0) {
             return MESSAGE_NO_INTERVIEW;
         }
-        return String.format(MESSAGE_SUCCESS_FORMAT, values[0], values[1]) + "%";
+        return String.format(MESSAGE_SUCCESS_FORMAT, values[1], values[2]) + "%";
     }
 
     /**
@@ -64,7 +64,7 @@ public class SummaryCommand extends Command {
         }
         float averageTimeTaken = sumTimeTaken / numApplicantsWithInterview;
         float percentageApplicantsGotInterview = (numApplicantsWithInterview / (float) size) * 100;
-        return new float[] {averageTimeTaken, percentageApplicantsGotInterview};
+        return new float[] {numApplicantsWithInterview, averageTimeTaken, percentageApplicantsGotInterview};
     }
 
     @Override
