@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.score.Score;
+import seedu.address.model.score.UniqueScoreList;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
@@ -23,7 +24,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class TypicalMockStudents {
 
     public static final UniqueTaskList typicalTaskList = TypicalMockTasks.getTypicalTasks();
-    public static final List<Score> typicalScoreList = TypicalMockScores.getTypicalScores();
+    public static final UniqueScoreList typicalScoreList = TypicalMockScores.getTypicalScores();
     public static final Student ALICE = mock(Student.class);
     public static final Name ALICE_NAME = spy(new Name("Alice Pauline"));
     public static final Student BENSON = mock(Student.class);
@@ -61,65 +62,76 @@ public class TypicalMockStudents {
         assert(ALICE_NAME.fullName.equals("Alice Pauline"));
         doReturn(ALICE_NAME).when(ALICE).getName();
         doReturn(typicalTaskList).when(ALICE).getTaskList();
+        doReturn(typicalScoreList).when(ALICE).getScoreList();
     }
 
     private static void setBenson() {
         assert(BENSON_NAME.fullName.equals("Benson Meier"));
         doReturn(BENSON_NAME).when(BENSON).getName();
         doReturn(typicalTaskList).when(BENSON).getTaskList();
+        doReturn(typicalScoreList).when(BENSON).getScoreList();
     }
 
     private static void setCarl() {
         assert(CARL_NAME.fullName.equals("Carl Kunz"));
         doReturn(CARL_NAME).when(CARL).getName();
         doReturn(typicalTaskList).when(CARL).getTaskList();
+        doReturn(typicalScoreList).when(CARL).getScoreList();
     }
 
     private static void setDaniel() {
         assert(DANIEL_NAME.fullName.equals("Daniel Meier"));
         doReturn(DANIEL_NAME).when(DANIEL).getName();
         doReturn(typicalTaskList).when(DANIEL).getTaskList();
+        doReturn(typicalScoreList).when(DANIEL).getScoreList();
     }
 
     private static void setElle() {
         assert(ELLE_NAME.fullName.equals("Elle Meyer"));
         doReturn(ELLE_NAME).when(ELLE).getName();
         doReturn(typicalTaskList).when(ELLE).getTaskList();
+        doReturn(typicalScoreList).when(ELLE).getScoreList();
     }
 
     private static void setFiona() {
         assert(FIONA_NAME.fullName.equals("Fiona Kunz"));
         doReturn(FIONA_NAME).when(FIONA).getName();
         doReturn(typicalTaskList).when(FIONA).getTaskList();
+        doReturn(typicalScoreList).when(FIONA).getScoreList();
     }
 
     private static void setGeorge() {
         assert(GEORGE_NAME.fullName.equals("George Best"));
         doReturn(GEORGE_NAME).when(GEORGE).getName();
         doReturn(typicalTaskList).when(GEORGE).getTaskList();
+        doReturn(typicalScoreList).when(GEORGE).getScoreList();
     }
     private static void setHoon() {
         assert(HOON_NAME.fullName.equals("Hoon Meier"));
         doReturn(HOON_NAME).when(HOON).getName();
         doReturn(typicalTaskList).when(HOON).getTaskList();
+        doReturn(typicalScoreList).when(HOON).getScoreList();
     }
 
     private static void setIda() {
         assert(IDA_NAME.fullName.equals("Ida Mueller"));
         doReturn(IDA_NAME).when(IDA).getName();
         doReturn(typicalTaskList).when(IDA).getTaskList();
+        doReturn(typicalScoreList).when(IDA).getScoreList();
     }
 
     private static void setAmy() {
         assert(AMY_NAME.fullName.equals(VALID_NAME_AMY));
         doReturn(AMY_NAME).when(AMY).getName();
         doReturn(typicalTaskList).when(AMY).getTaskList();
+        doReturn(typicalScoreList).when(AMY).getScoreList();
     }
 
     private static void setBob() {
         assert(BOB_NAME.fullName.equals(VALID_NAME_BOB));
         doReturn(BOB_NAME).when(BOB).getName();
         doReturn(typicalTaskList).when(BOB).getTaskList();
+        doReturn(typicalScoreList).when(BOB).getScoreList();
     }
 
     public static List<Student> getTypicalMockStudents() {

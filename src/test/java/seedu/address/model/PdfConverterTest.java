@@ -88,6 +88,7 @@ public class PdfConverterTest {
         PdfConverter mock = spy(PdfConverter.class);
         mock.exportProgress(key);
         verify(mock, times(1)).setup();
+        verify(mock, times(1)).createContents(key);
     }
 
     @Test
