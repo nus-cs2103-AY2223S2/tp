@@ -16,7 +16,8 @@ The following [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=
 #### **Enhancements implemented:**
 * Implemented commands for `Category`
   * `addcat` - allows users of FastTrack to add a new `Category` into FastTrack.
-  * `delcat` - allows users to delete an existing `Category` in FastTrack. Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
+  * `delcat` - allows users to delete an existing `Category` in FastTrack. 
+    * Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
   * `lcat` - allows users to list all added `Category`, used to determine index for edit and delete category commands.
 * Implemented `delcat` command and parser. (PR)
   * What it does: This feature allows users to delete an existing `Category` in FastTrack. Expenses with the deleted category will have its category replaced with the `MiscellaneuosCategory`.
@@ -29,9 +30,10 @@ The following [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=
 * Implemented commands for `RecurringExpenseManager`
   * `addrec` - allows users to add `RecurringExpenseManager` objects into FastTrack
   * `delrec` - allows users to delete a `RecurringExpenseManager` object.
-  * 
+* Implemented `CLEAR` command to allow users to clear all existing data at ease. 
 
-#### **Contributions to the UG:** to be added soon
+#### **Contributions to the UG:**
+* Added comm
 
 #### **Contributions to the DG:** to be added soon
 
