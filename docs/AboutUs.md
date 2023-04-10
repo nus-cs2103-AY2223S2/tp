@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Lin Chieh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/euph00.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/euph00)]
+[[portfolio](team/euph00.md)]
 
-* Role: Project Advisor
+* Role: Team member
+* Responsibilities: In charge of implementation of backend Model components.
 
-### Jane Doe
+### Zheng Ze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pzhengze.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/pzhengze)]
+[[portfolio](team/pzhengze.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team member
+* Responsibilities: In charge of Patient and Ward related commands, Storage, Ui. 
 
-### Johnny Doe
+### Lucas
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lukkesreysandeur.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lukkesreysandeur)]
+[[portfolio](team/lukkesreysandeur.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team member
+* Responsibilities: In charge of Staff class and related commands, User Guide
 
-### Jean Doe
+### Glenn Ong JunJie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glennongjunjie.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/GlennOngJunJie)]
+[[portfolio](team/glennongjunjie.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Member
+* Responsibilities: In charge of implementing commands.
 
-### James Doe
+### Shin Jin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jinnieshin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jinnieshin)]
+[[portfolio](team/jinnieshin.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team member
+* Responsibilities: In charge of updating UI components.

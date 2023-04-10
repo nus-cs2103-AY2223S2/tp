@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane minWidth="350.0" pickOnBounds="false" prefWidth="350.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <GridPane pickOnBounds="false" prefHeight="183.0" prefWidth="300.0">
+            <VBox alignment="CENTER_LEFT" pickOnBounds="false" style="-fx-background-color: transparent;" GridPane.columnIndex="0">
+                <HBox alignment="CENTER_LEFT" minHeight="-Infinity" spacing="5" VBox.vgrow="ALWAYS">
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:  " />
+                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+                    <Label fx:id="priority" minHeight="-Infinity" minWidth="-Infinity" />
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags:  " />
+                        <FlowPane fx:id="tags" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+            <HBox layoutX="25.0" layoutY="53.0" minHeight="-Infinity">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ward: " />
+                  <Label fx:id="ward" styleClass="cell_small_label" text="\$ward" wrapText="true" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+                <HBox minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID No.:  " />
+                        <Label fx:id="idNumber" styleClass="cell_small_label" text="\$idNumber" wrapText="true" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone no.:  " />
+                        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:  " />
+                        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:  " />
+                        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox fx:id="statusBox" minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status:  " />
+                        <VBox fx:id="status" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox fx:id="todosBox" minHeight="-Infinity">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Todo:  " />
+                        <VBox fx:id="todos" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+            <padding>
+               <Insets left="15.0" />
+            </padding>
+            </VBox>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </content>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</ScrollPane>

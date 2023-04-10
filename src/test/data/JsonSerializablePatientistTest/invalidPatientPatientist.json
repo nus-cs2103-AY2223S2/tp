@@ -1,0 +1,16 @@
+{
+  "wards" : [ {
+    "name" : "Block A Ward 1",
+    "patients" : [ {
+      "name" : "Alex Yeoh",
+      "id" : "A12345A",
+      "phone" : "87438807",
+      "email" : "invalid@example!3e",
+      "address" : "Blk 30 Geylang Street 29, #06-40",
+      "priority" : "LOW",
+      "tagged" : [ ],
+      "details" : [ "Doing good" ]
+    }],
+    "staffs" : []
+  }]
+}
