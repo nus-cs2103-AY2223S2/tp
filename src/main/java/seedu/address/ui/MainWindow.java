@@ -240,6 +240,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
         quickstartWindow.hide();
+        logger.info("MainWindow: asserting all windows is closed...");
         assert (!(helpWindow.isShowing() && quickstartWindow.isShowing() && primaryStage.isShowing()));
     }
 
