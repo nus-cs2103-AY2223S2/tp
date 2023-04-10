@@ -100,12 +100,12 @@ The [Implementation](#implementation) section outlines how the features offered 
 implemented. In this section, you will be provided with:
 
 1. A description of the feature.
-2. Some example commands to execute to use the feature.
+2. Some example commands to execute to use the feature where applicable.
 3. A Class Diagram or screenshot to illustrate and explain the implementation of each feature where applicable.
 4. A Sequence Diagram to give an example of the implementation flow of the feature where applicable.
 5. An Activity Diagram to show all possible behaviours of the feature where applicable.
 6. An Object Diagram to model relationships between objects of the same components where applicable.
-7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature.
+7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature where applicable.
 
 The [Potential Enhancement](#potential-enhancement) section shows some features that could be useful for CoDoc's functionality as a contact management app. In this section, you will be provided with:
 
@@ -278,9 +278,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design Architecture**
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:information_source: **Note:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
