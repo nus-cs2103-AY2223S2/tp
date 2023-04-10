@@ -10,7 +10,7 @@ title: Developer Guide
 
 ## **Introducing InternBuddy**
 
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+InternBuddy is a desktop application for [Computing undergraduates](#glossary) to manage their internship applications.
 It is optimized for typing where it allows you to complete internship management tasks much more efficiently
 via the keyboard as compared to using traditional [Graphical User Interface](#glossary) (GUI) applications.
 If you are a fast typist who is seeking a one-stop platform to systematically organise your internship applications,
