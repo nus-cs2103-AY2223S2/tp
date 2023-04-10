@@ -84,7 +84,8 @@ The guide will walk you through the process of creating and managing tasks, sett
 4. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
 <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
-<br><br><p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+<br><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Navigating Vimification
 
