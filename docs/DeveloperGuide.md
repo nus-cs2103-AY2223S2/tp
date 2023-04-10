@@ -1200,9 +1200,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `listp` command. Multiple persons in the list.
    2. Test case: `deletep 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the feedback message.
    3. Test case: `deletep 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+      Expected: No person is deleted. Error details shown in the feedback message.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
@@ -1213,13 +1213,13 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons and tasks using the `listall` command. Multiple tasks and persons
       in the list.
    2. Test case: `assign pi/1 ti/1`<br>
-      Expected: Details of the assigned person and task shown in the status message. The task assigned will
+      Expected: Details of the assigned person and task shown in the feedback message. The task assigned will
       be shown when after using `findp NAME`, where `NAME` is the full name of the first person in the list. <br>
       * Follow-up test case: `listall`, followed by `assign pi/1 ti/1`<br>
-        Expected: Error details shown in status message indicating that the first person has already been 
+        Expected: Error details shown in feedback message indicating that the first person has already been 
         assigned to the first task.
    3. Test case: `assign pi/1`<br>
-      Expected: No tasks or persons are assigned. Error details shown in status message.
+      Expected: No tasks or persons are assigned. Error details shown in feedback message.
    4. Other incorrect assign commands to try: `assign`, `assign 1 1`, `assign pi/x ti/y` (where x or y is
       larger than the number of persons or tasks contained in the list displayed)<br>
       Expected: similar to previous.
@@ -1230,11 +1230,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons and tasks using the `listall` command. Multiple tasks and persons in the list. First person must already be assigned to the first task.
    2. Test case: `unassign pi/1 ti/1`<br>
-      Expected: Details of the unassigned person and task shown in the status message. The task should no longer be assigned when using the `findp NAME` command, where `NAME` is the full name of the first person in the list.
+      Expected: Details of the unassigned person and task shown in the feedback message. The task should no longer be assigned when using the `findp NAME` command, where `NAME` is the full name of the first person in the list.
       * Follow-up test case: `listall`, followed by `unassign pi/1 ti/1`<br>
-        Expected: Error details shown in status message indicating that the first person has not been assigned to the first task.
+        Expected: Error details shown in feedback message indicating that the first person has not been assigned to the first task.
    3. Test case: `unassign pi/1`<br>
-      Expected: No tasks or persons are unassigned. Error details shown in status message.
+      Expected: No tasks or persons are unassigned. Error details shown in feedback message.
    4. Other incorrect `unassign` commands to try: `unassign`, `unassign 1 1`, `unassign pi/x ti/y` (where `x` or `y` is larger than the number of persons or tasks contained in the list displayed).<br>
       Expected: Similar to previous.
 
@@ -1248,10 +1248,10 @@ testers are expected to do more *exploratory* testing.
       the title of the first task) which should display an empty list. First task is currently not marked as
       completed (red cross appears below task).
    2. Test case: `mark 1`<br>
-      Expected: Details of the task that is marked shown in the status message. A green tick will appear
+      Expected: Details of the task that is marked shown in the feedback message. A green tick will appear
       under the task.
    3. Test case: `mark 0`<br>
-      Expected: No tasks are marked. Error details shown in status message.
+      Expected: No tasks are marked. Error details shown in feedback message.
    4. Other incorrect mark commands to try: `mark`, `mark x` (where x is larger than the list size).
       Expected: Similar to previous.
 
@@ -1260,7 +1260,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Find persons assigned to a task using the `findt TITLE` (where `TITLE` is the title of 
       a task). At least one person in the list. Task is not marked as completed (red cross appears below task).
    2. Test case: `mark 1`<br>
-      Expected: Details of the task that is marked shown in the status message. A green tick will appear under the
+      Expected: Details of the task that is marked shown in the feedback message. A green tick will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
 ### 7.6 Unmarking a Task as not completed
@@ -1272,10 +1272,10 @@ testers are expected to do more *exploratory* testing.
       the title of the first task) which should display an empty list. First task is currently marked as
       completed (green tick appears below task).
    2. Test case: `ummark 1`<br>
-      Expected: Details of the task that is unmarked shown in the status message. A red cross will appear
+      Expected: Details of the task that is unmarked shown in the feedback message. A red cross will appear
       under the task.
    3. Test case: `unmark 0`<br>
-      Expected: No tasks are unmarked. Error details shown in status message.
+      Expected: No tasks are unmarked. Error details shown in feedback message.
    4. Other incorrect unmark commands to try: `unmark`, `unmark x` (where x is larger than the list size).
       Expected: Similar to previous.
 
@@ -1284,7 +1284,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Find persons assigned to a task using the `findt TITLE` (where `TITLE` is the title of
       a task). At least one person in the list. Task is marked as completed (red cross appears below task).
    2. Test case: `unmark 1`<br>
-      Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the
+      Expected: Details of the task that is unmarked shown in the feedback message. A red cross will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
 
@@ -1293,20 +1293,20 @@ testers are expected to do more *exploratory* testing.
 1. Adding a task with no deadline
    1. Prerequisites: There are no tasks with the same title present. 
    2. Test case: `addt t/Project X c/Complete slides for Mr X st/false`<br>
-      Expected: Details of the task that is added is shown in the status message. A new task will appear in the displayed task list.
+      Expected: Details of the task that is added is shown in the feedback message. A new task will appear in the displayed task list.
    3. Test case: `addt t/Project X c/Complete slides for Mr X st/hello`<br>
-      Expected: No tasks are added. Error details shown in status message.
+      Expected: No tasks are added. Error details shown in feedback message.
    4. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/INPUT`, where INPUT is anything that is not true/false.
       Expected: Similar to previous.
 
 2. Adding a task with deadline
    1. Prerequisites: There are no tasks with the same title present.
    2. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2024-01-01`<br>
-      Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
+      Expected: Details of the task that is added is shown in the feedback message. A new task will appear in the taskbar of the GUI.
    3. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2024-01-01 02:05:00`<br>
-      Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
+      Expected: Details of the task that is added is shown in the feedback message. A new task will appear in the taskbar of the GUI.
    4. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2024-01-01 02:05:0`<br>
-      Expected: No tasks are added. Error details shown in status message.
+      Expected: No tasks are added. Error details shown in feedback message.
    5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional). Deadlines that are set in the past (before the current date and time) will also throw an error. <br>
       Expected: Similar to previous
 
@@ -1315,9 +1315,9 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a task while all task are being shown
    1. Prerequisites: List all tasks using the `listt` command. At least 1 task in the list.
    2. Test case: `deletet 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+      Expected: First task is deleted from the list. Details of the deleted task shown in the feedback message.
    3. Test case: `deletet 0`<br>
-      Expected: No task is deleted. Error details shown in the status message.
+      Expected: No task is deleted. Error details shown in the feedback message.
    4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the largest index in displayed task list). <br>
       Expected: Similar to previous.
 
@@ -1327,7 +1327,7 @@ testers are expected to do more *exploratory* testing.
 1. Listing all tasks
    1. Prerequisites: None
    2. Test case: `listt`
-      Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in status message.
+      Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in feedback message.
 
 
 ### 7.10 Filtering Persons by tag
@@ -1335,18 +1335,18 @@ testers are expected to do more *exploratory* testing.
 1. There are persons in OfficeConnect with the specified tag.
    1. Prerequisites: Only one tag can be specified. 
    2. Test case: `filterp tag/Logistics` <br>
-      Expected: All persons with the tag are displayed. "Filtered all persons with the tag: [tag]" shown in status message.
+      Expected: All persons with the tag are displayed. "Filtered all persons with the tag: [tag]" shown in feedback message.
    3. Test case: `filterp ` <br>
-      Expected: No changes in displayed person list. Error details shown in status message.
+      Expected: No changes in displayed person list. Error details shown in feedback message.
    4. Other incorrect filter persons commands to try: `filterp tag/`). <br>
       Expected: Similar to previous.
 
 2. There are no persons in OfficeConnect with the specified tag.
    1. Prerequisites: Only one tag can be specified.
    2. Test case: `filterp tag/Logistics` <br>
-      Expected: No persons are displayed. "There are no persons with the tag: [tag]" shown in status message.
+      Expected: No persons are displayed. "There are no persons with the tag: [tag]" shown in feedback message.
    3. Test case: `filterp ` <br>
-      Expected: No changes in displayed person list. Error details shown in status message.
+      Expected: No changes in displayed person list. Error details shown in feedback message.
    4. Other incorrect filter persons commands to try: `filterp tag/`). <br>
       Expected: Similar to previous.
 
@@ -1356,38 +1356,38 @@ testers are expected to do more *exploratory* testing.
   1. There are assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons with assignments.
      2. Test case: `viewassignedall` <br>
-        Expected: All assigned tasks and persons are displayed. "Displayed all assigned tasks and persons" shown in status message.
+        Expected: All assigned tasks and persons are displayed. "Displayed all assigned tasks and persons" shown in feedback message.
      3. Test case: `viewassignedp` <br>
-        Expected: All assigned persons are displayed. "Displayed all assigned persons" shown in status message.
+        Expected: All assigned persons are displayed. "Displayed all assigned persons" shown in feedback message.
      4. Test case: `viewassignedt` <br>
-        Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in status message.
+        Expected: All assigned tasks are displayed. "Displayed all assigned tasks" shown in feedback message.
 
   2. There are no assigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons with assignments.
      2. Test case: `viewassignedall` <br>
-        Expected: No tasks or persons are displayed. "There are no assigned tasks or persons" shown in status message.
+        Expected: No tasks or persons are displayed. "There are no assigned tasks or persons" shown in feedback message.
      3. Test case: `viewassignedp` <br>
-        Expected: No persons are displayed. "There are no assigned persons" shown in status message.
+        Expected: No persons are displayed. "There are no assigned persons" shown in feedback message.
      4. Test case: `viewassignedt` <br>
-        Expected: No tasks are displayed. "There are no assigned tasks" shown in status message.
+        Expected: No tasks are displayed. "There are no assigned tasks" shown in feedback message.
 
   3. There are unassigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are tasks and persons without assignments.
      2. Test case: `viewunassignedall` <br>
-        Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in status message.
+        Expected: All unassigned tasks and persons are displayed. "Displayed all unassigned tasks and persons" shown in feedback message.
      3. Test case: `viewunassignedp` <br>
-        Expected: All unassigned persons are displayed. "Displayed all unassigned persons" shown in status message.
+        Expected: All unassigned persons are displayed. "Displayed all unassigned persons" shown in feedback message.
      4. Test case: `viewunassignedt` <br>
-        Expected: All unassigned tasks are displayed. "Displayed all unassigned tasks" shown in status message.
+        Expected: All unassigned tasks are displayed. "Displayed all unassigned tasks" shown in feedback message.
 
   4. There are no unassigned tasks and persons in OfficeConnect.
      1. Prerequisites: There are no tasks and persons without assignments.
      2. Test case: `viewunassignedall` <br>
-        Expected: No tasks or persons are displayed. "There are no unassigned tasks or persons" shown in status message.
+        Expected: No tasks or persons are displayed. "There are no unassigned tasks or persons" shown in feedback message.
      3. Test case: `viewunassignedp` <br>
-        Expected: No persons are displayed. "There are no unassigned persons" shown in status message.
+        Expected: No persons are displayed. "There are no unassigned persons" shown in feedback message.
      4. Test case: `viewunassignedt` <br>
-        Expected: No tasks are displayed. "There are no unassigned tasks" shown in status message.
+        Expected: No tasks are displayed. "There are no unassigned tasks" shown in feedback message.
 
 
 ### 7.12 Viewing Task and Person details
@@ -1395,68 +1395,68 @@ testers are expected to do more *exploratory* testing.
   1. Task and person details are available in OfficeConnect.
      1. Prerequisites: The specified task and person indices are valid.
      2. Test case: `ti INDEX` (replace INDEX with a valid task index) <br>
-        Expected: Task details are displayed. "Displayed task details for task at index: [INDEX]" shown in status message.
+        Expected: Task details are displayed. "Displayed task details for task at index: [INDEX]" shown in feedback message.
      3. Test case: `pi INDEX` (replace INDEX with a valid person index) <br>
-        Expected: Person details are displayed. "Displayed person details for person at index: [INDEX]" shown in status message.
+        Expected: Person details are displayed. "Displayed person details for person at index: [INDEX]" shown in feedback message.
 
   2. Task or person details are not available in OfficeConnect.
      1. Prerequisites: The specified task or person indices are invalid.
      2. Test case: `ti INDEX` (replace INDEX with an invalid task index) <br>
-        Expected: No task details are displayed. "Task index is invalid" shown in status message.
+        Expected: No task details are displayed. "Task index is invalid" shown in feedback message.
      3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
-        Expected: No person details are displayed. "Person index is invalid" shown in status message.
+        Expected: No person details are displayed. "Person index is invalid" shown in feedback message.
 
 ### 7.13 Edit task 
 
   1. Task to be edited is available in OfficeConnect
      1. Prerequisites: The specified task index is invalid
      2. Test case: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` (replace with valid index and inputs) <br>
-     3. Expected: Task details are displayed. "Task edited: [TITLE]; Status: [STATUS]; Content: [CONTENT]" shown in status message.
+     3. Expected: Task details are displayed. "Task edited: [TITLE]; Status: [STATUS]; Content: [CONTENT]" shown in feedback message.
 
   2. Task to be edited is not available in OfficeConnect
      1. Prerequisites: The specified task index is invalid
      2. Test case: `editt 0`
-     3. Expected: "The task index provided is invalid" shown in status message.
+     3. Expected: "The task index provided is invalid" shown in feedback message.
 
 ### 7.14 Find persons by name
 
   1. There are persons in OfficeConnect with the specified name.
      1. Prerequisites: Only one person can be specified.
      2. Test case: `findp NAME` <br>
-        Expected: All persons whose name contains given input are displayed. "[number] person found" shown in status message.
+        Expected: All persons whose name contains given input are displayed. "[number] person found" shown in feedback message.
      3. Test case: `findp` <br>
-        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in feedback message.
      4. Other incorrect find persons commands to try: `findp !@#`)<br>
-        Expected: No persons are displayed. "No such person found" shown in status message.
+        Expected: No persons are displayed. "No such person found" shown in feedback message.
   
   2. There are no persons in OfficeConnect with the specified name.
      1. Prerequisites: Only one person can be specified.
      2. Test case: `findp NAME` <br>
-        Expected: No persons are displayed. "No such person found" shown in status message.
+        Expected: No persons are displayed. "No such person found" shown in feedback message.
      3. Test case: `findp` <br>
-        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in feedback message.
      4. Other incorrect find persons commands to try: `findp !@#`)<br>
-        Expected: No persons are displayed. "No such person found" shown in status message.
+        Expected: No persons are displayed. "No such person found" shown in feedback message.
 
 ### 7.15 Find tasks by title
 
   1. There are tasks in OfficeConnect with the specified title.
      1. Prerequisites: Only one title can be specified.
      2. Test case: `findt TITLE` <br>
-        Expected: All tasks in which title contains given input are displayed. "[number] task/s found" shown in status message.
+        Expected: All tasks in which title contains given input are displayed. "[number] task/s found" shown in feedback message.
      3. Test case: `findt` <br>
-        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in feedback message.
      4. Other incorrect find tasks commands to try: `findt !@#`)<br>
-        Expected: No tasks are displayed. "No such task found" shown in status message.
+        Expected: No tasks are displayed. "No such task found" shown in feedback message.
   
   2. There are no tasks in OfficeConnect with the specified title.
      1. Prerequisites: Only one title can be specified.
      2. Test case: `findt TITLE` <br>
-        Expected: No tasks are displayed. "No such task found" shown in status message.
+        Expected: No tasks are displayed. "No such task found" shown in feedback message.
      3. Test case: `findt` <br>
-        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in status message.
+        Expected: All persons and tasks in OfficeConnect are displayed. "Listed all persons and tasks" shown in feedback message.
      4.  Other incorrect find tasks commands to try: `findt !@#`)<br>
-         Expected: No tasks are displayed. "No such task found" shown in status message.
+         Expected: No tasks are displayed. "No such task found" shown in feedback message.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 8. Appendix: Effort
