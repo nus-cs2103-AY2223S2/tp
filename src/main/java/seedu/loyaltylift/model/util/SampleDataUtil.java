@@ -104,6 +104,14 @@ public class SampleDataUtil {
     }
 
     /**
+     * Returns a new Status with StatueValue one ahead of the given Status.
+     */
+    public static Status getCancelledStatus(Status status, String date) {
+        LocalDate statusDate = LocalDate.parse(date, StatusUpdate.DATE_FORMATTER);
+        return status.newStatusForCancelledOrder(statusDate);
+    }
+
+    /**
      * Returns a CreatedDate from a given string.
      */
     public static CreatedDate getCreatedDate(String createdDate) {
