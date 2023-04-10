@@ -9,7 +9,7 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class NotifcationManager
-Class UiWindows
+Class XYZWindow
 
 }
 
@@ -21,12 +21,12 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
-UiManager -down-> "1" UiWindows
+UiManager -down-> "1" XYZWindow
 UiManager *-right-> "1" NotifcationManager
 
-UiWindows -left-|> UiPart
+XYZWindow -left-|> UiPart
 
 UiManager -right-> Logic
-UiWindows -left-> Logic
+XYZWindow -left-> Logic
 
 @enduml

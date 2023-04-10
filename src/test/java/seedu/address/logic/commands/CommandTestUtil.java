@@ -17,10 +17,14 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.jobs.EditDeliveryJobCommand;
 import seedu.address.logic.commands.person.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.jobs.DeliveryDate;
+import seedu.address.model.jobs.DeliverySlot;
+import seedu.address.model.jobs.Earning;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -65,6 +69,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditDeliveryJobCommand.EditDeliveryJobDescriptor DESC_JOBA;
+    public static final EditDeliveryJobCommand.EditDeliveryJobDescriptor DESC_JOBB;
+
     public static final String VALID_SENDER = TypicalPersons.ALICE.getPersonId();
     public static final String INVALID_SENDER = "ABC";
 
@@ -93,6 +100,18 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_REGULAR, VALID_TAG_NEW).build();
+        DESC_JOBA = new EditDeliveryJobCommand.EditDeliveryJobDescriptor();
+        DESC_JOBA.setSender(VALID_SENDER);
+        DESC_JOBA.setRecipient(VALID_RECIPIENT);
+        DESC_JOBA.setEarning(new Earning(VALID_EARNING));
+        DESC_JOBA.setDeliveryDate(new DeliveryDate(VALID_DELIVERY_DATE));
+        DESC_JOBA.setDeliverySlot(new DeliverySlot(VALID_DELIVERY_SLOT));
+        DESC_JOBB = new EditDeliveryJobCommand.EditDeliveryJobDescriptor();
+        DESC_JOBB.setSender(VALID_RECIPIENT);
+        DESC_JOBB.setRecipient(VALID_SENDER);
+        DESC_JOBB.setEarning(new Earning(VALID_EARNING));
+        DESC_JOBB.setDeliveryDate(new DeliveryDate(VALID_DELIVERY_DATE));
+        DESC_JOBB.setDeliverySlot(new DeliverySlot(VALID_DELIVERY_SLOT));
     }
 
     /**
