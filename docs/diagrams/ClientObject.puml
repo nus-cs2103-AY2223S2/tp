@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Client Object
+
+package Clients <<rectangle>> {
+    class Client1 as "__c0:Client__"
+}
+
+class Weight1 as "__weight:Weight__"
+class Gender1 as "__gender:Gender__"
+class Name1 as "__name:Name__"
+class Phone1 as "__phone:phone__"
+class Address1 as "__address:Address__"
+class Email1 as "__email:Email__"
+class Calorie1 as "__calorie:Calorie__"
+class SetTag1 as "__tags:Set<Tag>__"
+class SetAppointment1 as "__appointments:Set<Appointment>__"
+class Goal1 as "__goal:Goal__"
+class SetRoutine1 as "__routines:Set<Routine>__"
+class Tag1 as "__:Tag__"
+class Appointment1 as "__:Appointment__"
+class Routine1 as "__:Routine__"
+class Exercise1 as "__:Exercise__"
+class WeightHistory1 as "__weightHistory:WeightHistory__"
+
+Client1 ---- Weight1
+Client1 ----- Gender1
+Client1 --- Name1
+Client1 ---- Phone1
+Client1 ----- Address1
+Client1 ---- Email1
+Client1 --- Calorie1
+Client1 ---- SetTag1
+Client1 ----- SetAppointment1
+Client1 --- Goal1
+Client1 ----- SetRoutine1
+Client1 ---- WeightHistory1
+SetTag1 -- Tag1
+SetAppointment1 -- Appointment1
+SetRoutine1 -- Routine1
+Routine1 -- Exercise1
+
+@enduml

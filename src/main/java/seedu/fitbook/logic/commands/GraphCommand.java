@@ -42,7 +42,6 @@ public class GraphCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        //iterate through the list to plot the graph in UI
         Client clientToView = lastShownList.get(targetIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView),

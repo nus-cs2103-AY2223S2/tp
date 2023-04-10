@@ -176,7 +176,7 @@ public class FitBookModelManager implements FitBookModel {
         filteredClients.setPredicate(predicate);
     }
 
-    //=========== Filtered Client List Accessors =============================================================
+    //=========== Filtered Routine List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Routine} backed by the internal list of

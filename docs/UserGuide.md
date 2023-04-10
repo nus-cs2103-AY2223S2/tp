@@ -97,12 +97,14 @@ Panels are _empty_ when the data for that specific panel is _empty_.
   
 
   ![Schedule Panel](images/schedule.png)
+
 #### Exercise
 * Left panel (`Exercise` tab) displays the list of clients' basic information including weight, average calories, goal, any unique routines and exercises.
 * Right panel (`Exercise` tab) displays the list of routines added.
 
 
   ![Exercise Panel](images/exercise.png)
+
 #### Summary
 * Left panel (`Summary` tab) displays the list of clients' basic information including name and scheduled appointments.
 * Right panel (`Summary` tab) displays all information about the selected client. (Using the view command)
@@ -141,7 +143,7 @@ The Command Box is where you can type in your commands. It is found below the Fe
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export`, `exportRoutine`, `listRoutines`, `clearRoutines` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
@@ -149,28 +151,32 @@ The Command Box is where you can type in your commands. It is found below the Fe
 
 ### Prefixes for Client Commands
 
-| Prefix   | Compulsory field for adding client | Multiple allowed? | Prefix Meaning                                   | Characters restrictions                                          |
-|----------|------------------------------------|-------------------|--------------------------------------------------|------------------------------------------------------------------|
-| `n/`     | Yes                                | No                | Name of Client                                   | Alphabets, numbers and spaces                                    |
-| `p/`     | Yes                                | No                | Phone number                                     | At least 3 digits                                                |
-| `e/`     | Yes                                | No                | Email                                            | local-part@domain                                                |
-| `a/`     | Yes                                | No                | Address                                          | Any characters except blank                                      |
-| `w/`     | Yes                                | No                | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place      |
-| `g/`     | Yes                                | No                | Gender                                           | M or F (not case sensitive)                                      |
-| `c/`     | No                                 | No                | Recommended Calories                             | At least 4 digits long                                           |
-| `gl/`    | No                                 | No                | Goal for Client                                  | Any characters except blank                                      |
-| `r/`     | No                                 | Yes               | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion                  |
-| `t/`     | No                                 | Yes               | Tag                                              | Alphabets and numbers                                            |
-| `app/`   | No                                 | Yes               | Appointment                                      | dd-mm-yyyy HH:mm format that is after the current date and time  |
-| `d/`     | NA                                 | No                | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before the current date and time |
+| Prefix   | Compulsory field for adding client | Multiple Input  | Prefix Meaning                                   | Characters restrictions                                     |
+|----------|------------------------------------|-----------------|--------------------------------------------------|-------------------------------------------------------------|
+| `n/`     | Yes                                | Only Last Taken | Name of Client                                   | AlphaNumeric and spaces                                     |
+| `p/`     | Yes                                | Only Last Taken | Phone number                                     | At least 3 digits                                           |
+| `e/`     | Yes                                | Only Last Taken | Email                                            | local-part@domain                                           |
+| `a/`     | Yes                                | Only Last Taken | Address                                          | Any characters except blank                                 |
+| `w/`     | Yes                                | Only Last Taken | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place |
+| `g/`     | Yes                                | Only Last Taken | Gender                                           | M or F (not case sensitive)                                 |
+| `c/`     | No                                 | Only Last Taken | Recommended Calories                             | At least 4 digits long                                      |
+| `gl/`    | No                                 | Only Last Taken | Goal for Client                                  | Any characters except blank                                 |
+| `r/`     | No                                 | All Taken       | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion             |
+| `t/`     | No                                 | All Taken       | Tag                                              | AlphaNumeric                                                |
+| `app/`   | No                                 | All Taken       | Appointment                                      | dd-mm-yyyy HH:mm format that is after current date time     |
+| `d/`     | NA                                 | NA              | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before current date time    |
+
 
 ### Prefixes for Routine Commands
 
-| Prefix   | Compulsory field for adding routine | Multiple allowed? | Prefix Meaning | Characters restrictions       |
-|----------|-------------------------------------|-------------------|----------------|-------------------------------|
-| `r/`     | Yes                                 | No                | Routine Name   | Alphabets, numbers and spaces |
-| `ex/`    | No                                  | Yes               | Exercise Name  | Alphabets, numbers and spaces |
-| `exno/`  | NA                                  | No                | Exercise index | Numbers                       |
+| Prefix   | Compulsory field for adding routine | Multiple Input  | Prefix Meaning | Characters restrictions |
+|----------|-------------------------------------|-----------------|----------------|-------------------------|
+| `r/`     | Yes                                 | Only Last Taken | Routine Name   | AlphaNumeric and spaces |
+| `ex/`    | No                                  | All Taken       | Exercise Name  | AlphaNumeric and spaces |
+| `exno/`  | NA                                  | NA              | Exercise index | Numeric                 |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For `Multiple Input Column`, `Only Last Taken` means that for example `add n/John Doe n/Richard Yang...` there are 2 name prefixes, the last name prefix which is `Richard Yang` will be stored as the name of the client to be added.
+While `All Taken` means for example `add ... t/friends t/VIP ...` both tags will be added to the client.  </div>
 
 ---
 
@@ -193,6 +199,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Gender` should be either M or F (not case-sensitive). </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Routine` is case sensitive. </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Weight` is specified in kilograms (Kg). </div>
 
 
 Examples:
@@ -227,7 +234,10 @@ Edits an existing client in the FitBook.
 Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
-* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​ 
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing `tags`,`appointments` and `routines`, the existing `tags`,`appointments` and `routines` of the client will be removed i.e adding of `tags`,`appointments` and `routines` are not cumulative.
@@ -268,7 +278,6 @@ Available Prefixes:
 * `gl` filters by Goal
 * `cal` filters by Calorie
 * `app` filters by Appointment
-* `gl` filters by Goal
 
 Examples:
 * `find n/Alex` returns every client with 'Alex' in their name.
@@ -289,6 +298,8 @@ Format: `delete INDEX`
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
@@ -307,6 +318,8 @@ Format: `view INDEX`
 * Views the summary of the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `view 1` views the summary of the first client in the FitBook.
@@ -359,9 +372,11 @@ Format: `addWeight INDEX w/WEIGHT d/DATE`
 
 * Adds weight to the weight history of the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * The new `DATE` must be specified in `dd-MM-yyyy HH:mm` format.
 * `DATE` field must be a date that has passed.
+* `WEIGHT` field is specified in kilograms (Kg).
 
 Examples:
 * `addWeight 1 w/70 d/10-03-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 March 2023, 6pm.
@@ -381,6 +396,8 @@ Format: `graph INDEX`
 * Plots the weight history of the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * The weight history graph will be shown only for weights dated within one month of the current date and time.
 
 Examples:
@@ -427,7 +444,10 @@ Edits an existing routine in the FitBook.
 
 Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
 
-* Edits the routine at the specified `ROUTINE_INDEX`. The index refers to the index number shown in the displayed routine list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the routine at the specified `ROUTINE_INDEX`. The index refers to the index number shown in the displayed routine list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * At least one of the two types should be used. No mixture of the two types is not allowed.
 * This command only allows the editing existing Routine's name or existing Exercise's name.
 
@@ -494,6 +514,8 @@ Format: `deleteRoutine ROUTINE_INDEX`
 * Deletes the routine at the specified `ROUTINE_INDEX`.
 * The index refers to the index number shown in the displayed Routine list in the `Exercise panel`.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
@@ -513,6 +535,8 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 * Adds an exercise `EXERCISE_NAME` to the Routine in FitBook at the specified `ROUTINE_INDEX`.
 * The `ROUTINE_INDEX` refers to the index number shown in the displayed Routine list in the exercise panel.
 * The `ROUTINE_INDEX` **must be a positive integer** 1, 2, 3, …​
+* The index must not contain signs +1, +2, +3, …​
+* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
@@ -532,6 +556,8 @@ Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
 * The `ROUTINE_INDEX` refers to the index number shown in the displayed Routine list in the exercise panel.
 * The `EXERCISE_INDEX` refers to the index number shown in the displayed Routine exercise list in the exercise panel.
 * Both `ROUTINE_INDEX` and `EXERCISE_INDEX` **must be a positive integer and a valid integer according to the list displayed** 1, 2, 3, …​
+* Both `ROUTINE_INDEX` and `EXERCISE_INDEX` must not contain signs +1, +2, +3, …​
+* Both `ROUTINE_INDEX` and `EXERCISE_INDEX` must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 
 Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
