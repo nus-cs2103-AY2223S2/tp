@@ -1228,7 +1228,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Unassigning a task from a person while all tasks and persons are being shown
 
-   1. Prerequisites: List all persons and tasks using the `listall` command. Multiple tasks and persons in the list.
+   1. Prerequisites: List all persons and tasks using the `listall` command. Multiple tasks and persons in the list. First person must already be assigned to the first task.
    2. Test case: `unassign pi/1 ti/1`<br>
       Expected: Details of the unassigned person and task shown in the status message. The task should no longer be assigned when using the `findp NAME` command, where `NAME` is the full name of the first person in the list.
       * Follow-up test case: `listall`, followed by `unassign pi/1 ti/1`<br>
