@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
@@ -18,10 +19,6 @@ import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
-
-
-
-
 
 /**
  * A utility class for Person.
@@ -67,7 +64,7 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get().getValues();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.value).append(" "));
             }
@@ -75,9 +72,9 @@ public class PersonUtil {
         if (descriptor.getModules().isPresent()) {
             Set<NusMod> mods = descriptor.getModules().get().getValues();
             if (mods.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_MODULES).append(" ");
             } else {
-                mods.forEach(s -> sb.append(PREFIX_TAG).append(s.value).append(" "));
+                mods.forEach(s -> sb.append(PREFIX_MODULES).append(s.value).append(" "));
             }
         }
         descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender).append(" "));
@@ -85,6 +82,7 @@ public class PersonUtil {
         descriptor.getRace().ifPresent(race -> sb.append(PREFIX_RACE).append(race.value).append(" "));
         descriptor.getComms().ifPresent(comms ->
                 sb.append(PREFIX_COMMS).append(comms.value).append(" "));
+        descriptor.getFaculty().ifPresent(faculty -> sb.append(PREFIX_FACULTY).append(faculty).append((" ")));
 
         return sb.toString();
     }
