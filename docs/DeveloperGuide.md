@@ -694,7 +694,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC5 - Find details of an employee**
+**Use case: UC5 - Find employee based on keywords**
+
 
 **MSS**
 
@@ -793,6 +794,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ExecutivePro shuts down.
 
     Use case ends.
+
+**Use case: UC11 - Filter employees based on a criteria**
+
+
+**MSS**
+
+1. HR Manager creates the criteria.
+2. HR Manager requests to find details of all employees based on the criteria.
+3. ExecutivePro shows a list of employees satisfying the criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The criteria is invalid
+    * 1a1. ExecutivePro returns an error message.
+* 2a. There is no employee matching the given keyword
+    * 2a1. ExecutivePro displays message indicating that no employee matches the given keyword
+
+      Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
