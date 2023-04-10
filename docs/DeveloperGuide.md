@@ -492,7 +492,7 @@ Step 3. The user executes `add n/Hobbit …​` to add a new bookmark. The `add`
 
 </div>
 
-Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibraryk()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
+Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibrary()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -1120,7 +1120,7 @@ while `edit` with any positive index and missing prefix causes an error message 
 
 **Potential Enhancement and Suggested Implementation:**
 It would be great to streamline this error message by perhaps having a separate error message of "index cannot be less 
-than 1 0" since the bookmarklist index starts from 1. And keep the current error message for indexes more than 0
+than 1 " since the bookmarklist index starts from 1. And keep the current error message for indexes more than 0
 
 In the `parse` method  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
