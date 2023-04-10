@@ -71,7 +71,7 @@ For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]�
 **Prefix**
 * Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`. 
 
-**Fields**
+**Field**
 * Fields after prefixes have leading and trailing whitespaces removed e.g. `n/ Mary` is trimmed to `n/Mary`.
 * Fields can be entered in any order e.g.`n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
 * If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the
@@ -81,7 +81,11 @@ For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]�
 * For more information on each specific field, refer to the [Fields](#fields) section.
 
 **Preamble**
-* They need to be specified right after the command word and before any other [Fields](#fields)
+* They need to be specified right after the command word and before any other fields.
+
+  **Index**
+  * Indexes are used as preamble in some commands. They are natural numbers (numbers used for counting) that are used for numbering persons in a list.
+  * An index must be a positive integer e.g. 1, 2, 3, …​.
 
 </div>
 
@@ -284,7 +288,7 @@ Examples:
 
 Edits an existing volunteer based on their [index](#index) in the volunteers list.
 
-Format: `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
+Format: `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Edits the volunteer at the specified `INDEX` in the displayed volunteer list. 
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
@@ -409,21 +413,21 @@ Finds the information of an existing elderly, volunteer or pairs in FriendlyLink
 
 Finds any elderly or volunteers matching **all** the relevant specified fields, and pairings that they are involved in.
 
-Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
+Format: `find [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * The fields are optional so any combination of them is possible but **at least one** field must be specified.
 * The search is case-insensitive for all fields e.g. `jANe` will match `Jane`.
 * Elderly specific fields will not be searched for in the volunteer list and vice versa.
   * `find r/HIGH` will show all volunteers since volunteers do not contain [risk level](#risk-level) field.
   * `find mt/cpr, basic` will show all elderly since elderly do not contain [medical qualifications](#medical-qualification) field.
-* `[n/NAME]` `[ic/NRIC]` `[p/PHONE_NUMBER]` `[e/EMAIL]` `[a/ADDRESS]` `[t/TAG]` need not be specified in full e.g. `Joh` for the `n/NAME` field will match `John` and `John Doe`.
+* `[n/NAME]` `[ic/NRIC]` `[p/PHONE]` `[e/EMAIL]` `[a/ADDRESS]` `[t/TAG]` need not be specified in full e.g. `Joh` for the `n/John` field will match `John` and `John Doe`.
   * Such fields can contain any value but cannot be empty.
 * `[r/RISK_LEVEL]`, `[bd/BIRTH_DATE]`, `[re/REGION]` and `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` are required to be fully specified.
 * `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` will find any [date range](#available-dates) that contains the specified range.
   * People with no dates will be found because having no dates means that they are available all the time.
-* For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the type e.g. `mt/cpr` or the type and its level separated by comma e.g. `mt/cpr, basic`.
-    * The type need not be specified in full, so it can contain any non-empty value.
-    * Qualification level needs to be fully specified if present.
+* For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the [skill name](#medical-qualification) e.g. `mt/cpr` or the [skill name and level](#medical-qualification) separated by comma e.g. `mt/cpr, basic`.
+    * The [skill name](#medical-qualification) need not be specified in full, so it can contain any non-empty value.
+    * [Qualification level](#medical-qualification) needs to be fully specified if present.
 
 Examples:
 * `find n/john` finds all volunteers or elderly whose name contains `john`.
@@ -552,16 +556,6 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 -------------------------------------------
 
-## Preamble
-
-### Index
-Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
-* An index must be a positive integer e.g. 1, 2, 3, …​.
-
-[Back to top](#table-of-contents)
-
----------------------
-
 ## Prefixes
 
 | Prefix | Label                 |
@@ -634,12 +628,15 @@ The `domain` must:
 A date represents a point in time, such as birthdate or starting or ending days when someone is available for meet ups.
 * Date must be in the format `YYYY-MM-DD`
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-When a person's available dates have passed, it will not be removed from FriendlyLink.
+<div markdown="span" class="alert alert-info">:information_source: **Notes on dates**
+
+* When a person's available dates have passed, it will not be removed from FriendlyLink.
+* You can enter a person's available date for record keeping purposes, even if the date has already passed
+
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can enter a person's available date for record keeping purposes, even if the date has already passed
+
 </div>
 
 #### BirthDate
@@ -710,23 +707,23 @@ The following features are planned for v1.5
 
 ## Command summary
 
-| Action                | Format                                                                                                                                                                                              |
-|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Elderly**       | `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`                                       |
-| **Add Volunteer**     | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`                       |
-| **Pair Up**           | `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`                                                                                                                                                          |
-| **Auto Pair**         | `auto_pair`                                                                                                                                                                                         |
-| **Edit Elderly**      | `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`                        |
-| **Edit Volunteer**    | `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` |
-| **Edit Person**       | `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`    |
-| **Delete Elderly**    | `delete_elderly <NRIC>`                                                                                                                                                                             |
-| **Delete Volunteer**  | `delete_volunteer <NRIC>`                                                                                                                                                                           |
-| **Unpair**            | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`                                                                                                                                                        |
-| **Find People**       | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`     |
-| **Listing people**    | `list <[PAIRED \ UNPAIRED]>`                                                                                                                                                                        |
-| **Summarise Data**    | `stats`                                                                                                                                                                                             |
-| **Help**              | `help`                                                                                                                                                                                              |
-| **Exit Program**      | `exit`                                                                                                                                                                                              |
+| Action                | Format                                                                                                                                                                                           |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Elderly**       | `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`                                    |
+| **Add Volunteer**     | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`                    |
+| **Pair Up**           | `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`                                                                                                                                                       |
+| **Auto Pair**         | `auto_pair`                                                                                                                                                                                      |
+| **Edit Elderly**      | `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`                     |
+| **Edit Volunteer**    | `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`     |
+| **Edit Person**       | `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` |
+| **Delete Elderly**    | `delete_elderly <NRIC>`                                                                                                                                                                          |
+| **Delete Volunteer**  | `delete_volunteer <NRIC>`                                                                                                                                                                        |
+| **Unpair**            | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`                                                                                                                                                     |
+| **Find People**       | `find [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`         |
+| **Listing people**    | `list <[PAIRED \ UNPAIRED]>`                                                                                                                                                                     |
+| **Summarise Data**    | `stats`                                                                                                                                                                                          |
+| **Help**              | `help`                                                                                                                                                                                           |
+| **Exit Program**      | `exit`                                                                                                                                                                                           |
 
 [Back to top](#table-of-contents)
 
@@ -772,7 +769,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | FriendlyLink          | The name of our application.                                                                                         |
 | Field                 | A field is the information following the slash in a command.                                                         |
 | Index                 | An index represents the position of the referred item in a displayed list of persons.                                |
-| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill and a skill level.            |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the skill name and a skill level.               |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                               |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly.                    | 
 | Phone number          | The phone number of a person.                                                                                        |
