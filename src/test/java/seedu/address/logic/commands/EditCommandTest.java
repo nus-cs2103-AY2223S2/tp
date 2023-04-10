@@ -2,16 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_META;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_META;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_META;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUALIFICATION_CAP;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.address.model.application.InternshipStatus.ACCEPTED;
-import static seedu.address.testutil.InternshipBuilder.DEFAULT_PHONE;
 import static seedu.address.testutil.InternshipBuilder.DEFAULT_EMAIL;
+import static seedu.address.testutil.InternshipBuilder.DEFAULT_PHONE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;

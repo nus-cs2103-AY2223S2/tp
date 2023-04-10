@@ -2,7 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COVER_LETTER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESUME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -17,9 +22,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditInternshipDescriptorBuilder;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditDocumentsDescriptorBuilder;
+import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
