@@ -15,7 +15,7 @@ title: User Guide
     7. [Find Student](#find)
     8. [Filter student](#filter)
     9. [Add a lesson](#learn)
-    10. [Remove a lesson](#unlearn)
+    10. [Remove lesson](#unlearn)
     11. [Mark attendence](#mark)
     12. [Unmark attendence](#unmark)
     13. [Query attendence](#query)
@@ -222,7 +222,7 @@ Examples:
 
 You can add a lesson taught to a student.
 
-Format: ```learn <INDEX> [l/LESSON]```
+Format: ```learn <index> [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must be in alphanumeric characters.
 
@@ -237,7 +237,7 @@ Example:
 
 You can remove a lesson taught to a student.
 
-Format: ```unlearn [INDEX] [l/LESSON]```
+Format: ```unlearn <index> [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must match an existing lesson displayed
 
