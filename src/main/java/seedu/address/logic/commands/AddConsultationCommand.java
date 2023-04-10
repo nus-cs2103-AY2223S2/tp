@@ -16,7 +16,7 @@ public class AddConsultationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the address book. "
             + "Parameters: "
-            + PREFIX_CONSULTATION + "CONSULTATION_NAME "
+            + PREFIX_CONSULTATION + "CONSULTATION_NAME " + "[-date dd/MM/yyyy HH:mm] \n"
             + "Restrictions: Name has a maximum of 20 characters \n"
             + "Example: " + COMMAND_WORD + " Consultation/consultEmily -date 10/10/2026 10:00";
 

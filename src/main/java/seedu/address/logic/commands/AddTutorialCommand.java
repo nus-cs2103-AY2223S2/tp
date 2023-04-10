@@ -16,7 +16,7 @@ public class AddTutorialCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the address book. "
             + "Parameters: "
-            + PREFIX_TUTORIAL + "TUTORIAL_NAME "
+            + PREFIX_TUTORIAL + "TUTORIAL_NAME " + "[-date dd/MM/yyyy HH:mm] \n"
             + "Restrictions: Name has a maximum of 20 characters \n"
             + "Example: " + COMMAND_WORD + " Tutorial/Dijkstra -date 10/10/2024 10:00";
 
