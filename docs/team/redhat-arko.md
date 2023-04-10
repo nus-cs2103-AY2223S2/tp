@@ -51,7 +51,15 @@ Given below are my contributions to the project.
       * Add patient (`add_patient`)
       * Add notes to a patient (`remark_patient`)
       * Add appointment (`add_appt`)
+      * Added sequence diagrams for the following:
+        * `AddAppointmentCommand`
+        * `AddAppointmentCommandParser`
+        * `AddPatientCommand`
+        * `AddPatientCommandParser`
 
 * **Contributions to team based tasks**:
-    * PRs reviewed (with non-trivial review comments): 5 (e.g, pull request [#69](https://github.com/AY2223S2-CS2103T-W12-4/tp/pull/69))
+    * PRs reviewed (with non-trivial review comments): 13 (e.g, pull request [#69](https://github.com/AY2223S2-CS2103T-W12-4/tp/pull/69))
     * Set up the pull request to the upstream repository.
+
+* **Contributions beyond the project team**:
+  * Reported 21 bugs in the PE-D, which put me in the top 10% of bug reporters
