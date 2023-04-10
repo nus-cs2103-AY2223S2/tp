@@ -40,58 +40,45 @@ public class TagFoodCommandTest {
     private static final String EXPECTED_ERROR_TAG_NOT_FOUND = "There is no %s Tag!";
     private static final String EXPECTED_ERROR_FOOD_NOT_FOUND = "The food item index provided is invalid";
     private static final String EXPECTED_ERROR_MAXIMUM_TAG = "You have reached the maximum tag limit for %s.";
-
+    private final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
+    private final Tag tagToUse = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
     @Test
     public void execute_tagFood_success() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
-
-        // Creating a copy of first Food of model and adding a dairy tag
-        Food editedFood = new FoodBuilder(model.getFilteredFoodList().get(0))
+        Food foodToTag = new FoodBuilder(model.getFilteredFoodList().get(0))
                 .withTags(VALID_TAG_DAIRY)
                 .build();
-        Tag tag = new TagBuilder()
-                .withTagName(VALID_TAG_DAIRY)
-                .build();
 
-        // Creating an expected model for comparison
         Model expectedModel = new ModelManager(new Wife(model.getWife()), new UserPrefs());
+        expectedModel.createTag(tagToUse);
+        expectedModel.setFood(expectedModel.getFilteredFoodList().get(0), foodToTag);
 
-        // Setting expected model's first Food to the tagged first Food
-        expectedModel.createTag(tag);
-        expectedModel.setFood(expectedModel.getFilteredFoodList().get(0), editedFood);
+        model.createTag(tagToUse);
+        TagFoodCommand tagFoodCommand = new TagFoodCommand(tagToUse.getTagName(), INDEX_FIRST_FOOD);
 
-        // tag food on original model
-        model.createTag(tag);
-        TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_FIRST_FOOD);
+        String expectedMessage = String.format(EXPECTED_SUCCESS_MESSAGE, foodToTag.getName(), tagToUse.getTagName());
 
-        String expectedMessage = String.format(EXPECTED_SUCCESS_MESSAGE, editedFood.getName(), tag.getTagName());
         assertCommandSuccess(tagFoodCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredFoodList().get(0).getTags().contains(tag));
+        assertTrue(model.getFilteredFoodList().get(0).getTags().contains(tagToUse));
     }
 
     @Test
-    public void execute_tagFoodWithoutExistingTagInModel_throwsCommandException() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
-        Tag tag = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
-        TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_FIRST_FOOD);
+    public void execute_tagFoodWithoutExistingTag_throwsCommandException() {
+        TagFoodCommand tagFoodCommand = new TagFoodCommand(tagToUse.getTagName(), INDEX_FIRST_FOOD);
 
-        String expectedMessage = String.format(EXPECTED_ERROR_TAG_NOT_FOUND, tag.getTagName());
+        String expectedMessage = String.format(EXPECTED_ERROR_TAG_NOT_FOUND, tagToUse.getTagName());
         assertCommandFailure(tagFoodCommand, model, expectedMessage);
     }
 
     @Test
     public void execute_foodIndexNotFound_throwsCommandException() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
-        Tag tag = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
-        model.createTag(tag);
-        TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_THIRD_FOOD);
+        model.createTag(tagToUse);
+        TagFoodCommand tagFoodCommand = new TagFoodCommand(tagToUse.getTagName(), INDEX_THIRD_FOOD);
 
         assertCommandFailure(tagFoodCommand, model, EXPECTED_ERROR_FOOD_NOT_FOUND);
     }
 
     @Test
     public void execute_maxTagInFood_throwsCommandException() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
         ArrayList<Tag> testTags = new ArrayList<>();
         ArrayList<String> validTags = new ArrayList<>(Arrays.asList(VALID_TAG_CHOCOLATE,
                 VALID_TAG_DAIRY, VALID_TAG_NEW, VALID_TAG_USED));
@@ -120,35 +107,33 @@ public class TagFoodCommandTest {
 
     @Test
     public void execute_duplicateTagInFood_throwsCommandException() {
-        final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
-        Tag tag = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
-        model.createTag(tag);
+        model.createTag(tagToUse);
 
         Food food = model.getFilteredFoodList().get(0);
         Set<Tag> tagSet = food.getCurrentTags();
-        tagSet.add(tag);
+        tagSet.add(tagToUse);
         model.setFood(food, food.createNewFoodWithNewTags(food, tagSet));
 
-        TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_FIRST_FOOD);
+        TagFoodCommand tagFoodCommand = new TagFoodCommand(tagToUse.getTagName(), INDEX_FIRST_FOOD);
 
-        String expectedMessage = String.format(EXPECTED_ERROR_DUPLICATE_TAG, food.getName(), tag.getTagName());
+        String expectedMessage = String.format(EXPECTED_ERROR_DUPLICATE_TAG, food.getName(), tagToUse.getTagName());
         assertCommandFailure(tagFoodCommand, model, expectedMessage);
     }
 
     @Test
     public void equals() {
         Tag dairyTag = TypicalTag.DAIRY_TAG;
+        Tag dairyTagCopy = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
         Tag chocolateTag = TypicalTag.CHOCOLATE_TAG;
 
         TagFoodCommand tagFoodWithDairyCommand = new TagFoodCommand(dairyTag.getTagName(), INDEX_FIRST_FOOD);
+        TagFoodCommand tagFoodWithDairyCommandCopy = new TagFoodCommand(dairyTagCopy.getTagName(), INDEX_FIRST_FOOD);
         TagFoodCommand tagFoodWithChocolateCommand = new TagFoodCommand(chocolateTag.getTagName(), INDEX_FIRST_FOOD);
 
-        // same object -> returns true
+        // same command object -> returns true
         assertEquals(tagFoodWithDairyCommand, tagFoodWithDairyCommand);
 
         // same tags and same food -> returns true
-        Tag dairyTagCopy = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
-        TagFoodCommand tagFoodWithDairyCommandCopy = new TagFoodCommand(dairyTagCopy.getTagName(), INDEX_FIRST_FOOD);
         assertEquals(tagFoodWithDairyCommand, tagFoodWithDairyCommandCopy);
 
         // different commands -> returns false

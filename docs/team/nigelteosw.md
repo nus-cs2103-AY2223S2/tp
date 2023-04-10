@@ -3,7 +3,7 @@ layout: page
 title: Teo Shao Wei, Nigel's Project Portfolio Page
 ---
 
-### Project: Well Informed Fridge Environment (WIFE) Level 3
+### Project: Well Informed Fridge Environment (WIFE) 
 Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage their 
 items in the fridge. With this, one never has to worry about optimizing storage and organization of food items in their 
 refrigerator!
@@ -18,12 +18,12 @@ Given below are my contributions to the project.
 * **New Feature**: Improved User Interface (UI) for displaying fridge contents
     * What it does:  Enables users to easily view the contents of their fridge and feedback provided.
     * Justification: Our group has updated the GUI to make it more user-friendly. We have achieved this by making the display brighter and reducing sharp edges that can strain the eyes.
-    * Highlights: Implementing these changes was challenging as it required a deep understanding of the interplay between various elements of the UI, such as the fxml files and css. The updated fxml files had to look good together and be consistent with the new design while still functioning correctly. The css had to be updated to fit the new display, ensuring that the overall design was cohesive and visually appealing.
+    * Highlights: Implementing these changes was challenging as the FXML files and CSS files were difficult to work with as they required a deep understanding of the JavaFX framework to work with.. The updated fxml files had to look good together and be consistent with the new design while still functioning correctly. The css had to be updated to fit the new display, ensuring that the overall design was cohesive and visually appealing. 
 
 * **New Feature**: Added the ability to view foods.
     * What it does: allows the user to view their food items in the fridge.
     * Justification: This feature allows users to view their food items in the fridge. This is useful as it allows users to get a better overview of a specific item in the fridge.
-    * Highlights: This feature was challenging to implement
+    * Highlights: This feature was challenging to implement as it required a deep understanding of the JavaFX framework and its ability to parse commands and update the view. It also required a clear understanding of the interaction between the view and the model.
 
 * **Feature Not Implemented in Final Product**: Dynamic panel display feature.
     * What it does: This feature would have allowed users to view different panels, such as the fridge, statistics, and details of a specific food item, in a single display port.
@@ -40,6 +40,8 @@ Given below are my contributions to the project.
         * Added documentation for the features `add` and `view` 
     * Developer Guide:
         * Added documentation for user stories and use cases for the features `add`
+        * Added sequence diagrams for the features `add`, `edit` and `view`
+        * Use cases for the feature `view`
 
 * **Community**:
     * PRs reviewed: [[#39]] [[#62]] [[#83]] [[#132]] [[#139]] [[#148]] [[#181]]

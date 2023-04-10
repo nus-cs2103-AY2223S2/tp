@@ -60,26 +60,6 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    //    @Test
-    //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonWifeIoExceptionThrowingStub
-    //        JsonWifeStorage wifeStorage =
-    //                new JsonWifeIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionWife.json"));
-    //        JsonUserPrefsStorage userPrefsStorage =
-    //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(wifeStorage, userPrefsStorage);
-    //        logic = new LogicManager(model, storage);
-    //
-    //        // Execute add command
-    //        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_MEIJI + UNIT_DESC_MEIJI + QUANTITY_DESC_MEIJI
-    //                + EXPIRY_DATE_DESC_MEIJI;
-    //        Food expectedFood = new FoodBuilder(MEIJI).build();
-    //        ModelManager expectedModel = new ModelManager();
-    //        expectedModel.addFood(expectedFood);
-    //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
-
     @Test
     public void getFilteredFoodList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFoodList().remove(0));

@@ -22,34 +22,29 @@ public class UntagFoodCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             UntagFoodCommand.MESSAGE_USAGE);
     private final UntagFoodCommandParser parser = new UntagFoodCommandParser();
+    private final Tag dairyTag = new TagBuilder(DAIRY_TAG).build();
 
     @Test
-    public void parse_indexThenTag_success() {
-        Tag dairyTag = new TagBuilder(DAIRY_TAG).build();
+    public void parse_validArgs_success() {
         String dairyTagName = dairyTag.getTagName();
         UntagFoodCommand expectedCommand = new UntagFoodCommand(dairyTagName, INDEX_FIRST_FOOD);
 
-        String userInput = String.format("%s %s", VALID_FIRST_INDEX_ID, TAG_DESCRIPTION_DAIRY);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        String mockInput = String.format("%s %s", VALID_FIRST_INDEX_ID, TAG_DESCRIPTION_DAIRY);
+        assertParseSuccess(parser, mockInput, expectedCommand);
     }
 
     @Test
-    public void parse_invalidExtraFlagAfterIndex_failure() {
-        String userInput = String.format("%s %s %s", VALID_FIRST_INDEX_ID, EXPIRY_DATE_DESC_MEIJI,
+    public void parse_invalidArgs_failure() {
+        String mockInput = String.format("%s %s %s", VALID_FIRST_INDEX_ID, EXPIRY_DATE_DESC_MEIJI,
                 TAG_DESCRIPTION_DAIRY);
 
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, mockInput, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
-    public void parse_missingArguments_failure() {
-        // no tag specified
+    public void parse_missingArgs_failure() {
         assertParseFailure(parser, VALID_FIRST_INDEX_ID, MESSAGE_INVALID_FORMAT);
-
-        // no index specified
         assertParseFailure(parser, NAME_DESC_MEIJI, MESSAGE_INVALID_FORMAT);
-
-        // no tag and no index specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
@@ -57,13 +52,13 @@ public class UntagFoodCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // Number preamble
         String invalidIndexMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX);
-        assertParseFailure(parser, "-1 " + TAG_DESCRIPTION_DAIRY, invalidIndexMessage);
+        assertParseFailure(parser, "0 " + TAG_DESCRIPTION_DAIRY, invalidIndexMessage);
 
         // invalid arguments (String) being parsed as preamble
-        assertParseFailure(parser, "some random string  " + VALID_TAG_DAIRY
+        assertParseFailure(parser, "just to test things out " + VALID_TAG_DAIRY
                 + VALID_FIRST_INDEX_ID, MESSAGE_INVALID_FORMAT);
 
-        assertParseFailure(parser, "qty/1 " + TAG_DESCRIPTION_DAIRY
+        assertParseFailure(parser, "u/unit " + TAG_DESCRIPTION_DAIRY
                 + VALID_FIRST_INDEX_ID, MESSAGE_INVALID_FORMAT);
     }
 }

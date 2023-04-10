@@ -9,6 +9,11 @@ Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&g
 
 Given below are my contributions to the project.
 
+-   **New Feature**: Modify create tag to take in multiple tag names.
+
+    -   What it does: allows the user to create multiple tags with 1 command line.
+    -   Justification: This feature improves the product significantly because the user will now be able to create multiple tags with one command line without having to type `createtag` multiple times.
+
 -   **New Feature**: Added the ability to list food list by specified tags.
 
     -   What it does: allows the user to list food by specified tags.
@@ -28,6 +33,8 @@ Given below are my contributions to the project.
 <br/>
 
 -   **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=scorpiussigma&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ScorpiusSigma&tabRepo=AY2223S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+<br/>
 
 -   **Project management**:
 
@@ -79,3 +86,6 @@ Given below are my contributions to the project.
         -   [\#66](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/66)
         -   [\#60](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/60)
         -   [\#41](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/41)
+
+-   **Additional Contribution:**
+    -   Edit Storage workflow to read and write `Tag` on top of `Food`.
