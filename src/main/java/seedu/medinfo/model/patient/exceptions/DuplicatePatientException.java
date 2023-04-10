@@ -1,7 +1,7 @@
 package seedu.medinfo.model.patient.exceptions;
 
 /**
- * Represents that the operation will result in duplicate Patients.
+ * Signals that the operation will result in duplicate Patients.
  * Patients are considered duplicates if they have the same identity.
  */
 public class DuplicatePatientException extends RuntimeException {

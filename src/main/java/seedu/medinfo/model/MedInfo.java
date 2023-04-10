@@ -51,7 +51,7 @@ public class MedInfo implements ReadOnlyMedInfo {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //// List overwrite operations ====================================================================================
 
     /**
      * FOR TESTING
@@ -96,7 +96,7 @@ public class MedInfo implements ReadOnlyMedInfo {
         setWards(newData.getWardList());
     }
 
-    //// patient-level operations
+    //// Patient operations ===========================================================================================
 
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in
@@ -164,7 +164,7 @@ public class MedInfo implements ReadOnlyMedInfo {
         patients.sortPatients(comparator);
     }
 
-    //// ward-level operations
+    //// Ward operations ==============================================================================================
 
     /**
      * Returns true if a ward with the same identity as {@code ward} exists in
@@ -212,7 +212,7 @@ public class MedInfo implements ReadOnlyMedInfo {
         wards.remove(ward);
     }
 
-    //// util methods
+    //// Util methods =================================================================================================
 
     @Override
     public String toString() {

@@ -25,9 +25,9 @@ public class WardNameContainsKeywordsPredicate implements Predicate<Patient> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof WardNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((WardNameContainsKeywordsPredicate) other).keywords)); // state check
+        return other == this
+                || (other instanceof WardNameContainsKeywordsPredicate
+                && keywords.equals(((WardNameContainsKeywordsPredicate) other).keywords));
     }
 
 }
