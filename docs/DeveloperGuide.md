@@ -110,13 +110,13 @@ implemented. In this section, you will be provided with:
 6. An Object Diagram to model relationships between objects of the same components where applicable.
 7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature where applicable.
 
+<div style="page-break-after: always;"></div>
+
 The [Potential Enhancement](#potential-enhancement) section shows some features that could be useful for CoDoc's functionality as a contact management app. In this section, you will be provided with:
 
 1. A description of the proposed implementation
 2. Relevant UML diagrams
 3. Details about the design considerations
-
-<div style="page-break-after: always;"></div>
 
 The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
 provides the links to the aforementioned documents. In this section, you will be provided with the links to:
@@ -363,7 +363,6 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 ### Logic Component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/logic/Logic.java)
-
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
@@ -373,9 +372,7 @@ Here's a (partial) class diagram of the `Logic` component:
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
 <div style="page-break-after: always;"></div>
-
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -421,7 +418,6 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 ### Storage Component
 
 The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/storage/Storage.java)
-
 <img src="images/StorageClassDiagram.png" width="550" />
 
 <div style="page-break-after: always;"></div>
