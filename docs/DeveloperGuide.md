@@ -1604,9 +1604,9 @@ Similar to `UC20 Find an application by its company name and job title` except t
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 internship applications without a noticeable increase in sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
-4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application.
+4. InternEase doesn't support storing the actual file for the resume and cover letter. User can only include links to their resume and cover letter used for a particular application.
 5. InternEase is unable to remind user through any platform outside of the application.
 
 
@@ -1657,3 +1657,6 @@ testers are expected to do more *exploratory* testing.
 
 1. The current display duration may not suit everyone and the dialog content looks messy on showing all particulars. The display duration could be customized (can be decided by user) and the dialog content could be enhanced to show important particulars only in further enhancement.
 2. All commands are executable on any panel (e.g., command `delete_note 2` can delete the 2nd note even though the panel is showing the todo list only). We plan to have some enhancement on it by implementing some custom restrictions (can be decided by user) to limit the command executions according to the displaying GUI.
+3. The current method of displaying the details of an internship application by clicking the card on the left panel to display it on the right panel is less ideal to users who prefer to perform operations solely via CLI. We plan to enhance their user experience by including a `view` command in future iterations, allowing them to
+    show the details of an internship application on the right panel by including an `INDEX` when typing in the command.
+4. The current method for managing documents used for an internship application only supports `HTTP` and `HTTPS` links to those documents. We plan to enhance this feature by allowing users to upload the files directly to our app, so that they can view the file immediately without an Internet connection.
