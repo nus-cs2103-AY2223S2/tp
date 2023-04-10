@@ -100,7 +100,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 #### [Back to top](#table-of-content) 
-### Adding student <a name="add"></a>
+### Add student <a name="add"></a>
 
 Adds a student to the managing system.
 
@@ -108,7 +108,7 @@ Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st
 
   * Subject supported: {`Math`, `Physics`, `English`}  
   * Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
-  * The added student must have a unqique name, phone number and email address and all the fields in the format present  
+  * The added student must have a unique name, phone number and email address and all the fields in the format present  
   * You may add an extra tag to the student by adding t/[tag] at the end of the command.
 
 Examples:
