@@ -27,19 +27,22 @@ Given below are my contributions to the project.
     * Created Progress field when modifying AddressBook to MyLib. [#75](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/75)
     * Updated Test cases for Fixed set of Genres. [#155](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/155)
 
+
 * **Documentation**:
     * User Guide:
         * Added Target Audience
         * Added Key Definitions Section
         * Updated Add and Edit Section to include new Genre requirement and Ratings field. [#167](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/167)
     * Developer Guide:
-      * Updated plantUML diagrams to reflect new Fields and classes. [#140](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/140)
+      * Updated plantUML diagrams to reflect new fields and classes. [#140](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/140)
       * Added Implementation for Rating Field. [#167](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/167)
-      * Added User Stories for Tag, Sort and Delete[#328](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/328)
+      * Added User Stories for Tag, Sort and Delete [#328](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/328)
       * Added to Instructions for Manual testing for Tag related commands [#334](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/334)
       * Added Implementation for Add Feature. [#335](https://github.com/AY2223S2-CS2103T-T13-4/tp/pull/335)
+
+
 * **Contributions to team-based tasks**
-  * Created release for V1.3.1.trial
+  * Created release for V1.3.1.trial and V1.4
   * Maintain issue tracker for tasks
 
 
