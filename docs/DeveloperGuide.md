@@ -2640,73 +2640,108 @@ Some incorrect commands to try from root context:
 
 ### Tag a Module
 
-| Test Case                       |                   Expected Result                    |
-|:--------------------------------|:----------------------------------------------------:|
-| `tag CS2040S /tags fun, cool`   |    CS2040S should be tagged with [`fun`, `cool`]     |
-| `tag CS2040S /tags Heavy`       | There should be no change no current tags of CS2040S |
-| `tag CS2040S /tags cool, cool`  |   CS2040S should only be tagged with [`cool`] once   |
-| `tag CS2040S /tags @@`          |          `Tag(s) @@ should be alphanumeric`          |
-| `tag CS2040S`                   |                   Invalid command                    |
+| Test Case                       | Expected Result                                                                                            |
+|---------------------------------|------------------------------------------------------------------------------------------------------------|
+| `tag CS2040S /tags fun, cool`   | **Message:**<br/> `CS2040S tagged`<br/> **List updates:** CS2040S should be tagged with [`fun`, `cool`]    |
+| `tag CS2040S /tags Heavy`       | **Message:**<br/> `CS2040S tagged`<br/> **List updates:** None                                             |
+| `tag CS2040S /tags cool, cool`  | **Message:**<br/> `CS2040S tagged`<br/> **List updates:** CS2040S should only be tagged with [`cool`] once |
+| `tag CS2040S /tags @@`          | **Message:**<br/> `Tag(s) @@ should be alphanumeric` <br/>                                                 |
+
+Some incorrect commands to try from root context:
+
+- `tag CS2040S` (invalid format)
+- `tag CS2040S /tags @@` (invalid tag)
+- `tag LOL /tags yay` (invalid module name)
 
 ### Tag a Lecture
 
-| Test Case                                                                           |               Expected Result                |
-|:------------------------------------------------------------------------------------|:--------------------------------------------:|
-| 1. `tag Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav CS2040S`                 | Week 1 should be tagged with [`fun`, `cool`] |
-| 1. `nav CS2040S` <br/> 2. `tag Week 1 /tags fun, cool`                              |               Same as previous               |
-| 1. `nav ST2334` <br/> 2. `tag CS2040S /tags fun, cool` <br/> 3. `nav /mod CS2040S`  |               Same as previous               |
+| Test Case                                              | Expected Result                                                                                       |
+|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `tag Week 1 /mod CS2040S /tags fun, cool`              | **Message:**<br/> `Week 1 tagged`<br/> **List updates:** None                                         |
+| 1. `nav CS2040S` <br/> 2. `tag Week 1 /tags fun, cool` | **Message:**<br/> `Week 1 tagged`<br/> **List updates:** Week 1 should be tagged with [`fun`, `cool`] |
+| 1. `nav ST2334` <br/> 2. `tag CS2040S /tags fun, cool` | **Message:**<br/> `Week 1 tagged`<br/> **List updates:** None                                         |
+
+Some incorrect commands to try from root context:
+
+- `tag Week 1 /mod CS2040S` (incorrect format)
+- `tag Lecture N@me /mod CS2040S /tag yay` (invalid lecture name)
+- `tag Week 7 /mod CS2040S /tags T@g` (invalid tag)
 
 ### Tag a Video
 
-| Test Case                                                                                                                               |               Expected Result               |
-|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------:|
-| 1. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should be tagged with [`fun`, `cool`] |
-| 1. `nav CS2040S` <br/> 2. `tag Vid 3 /lec Week 1 /tags fun, cool` <br/> 3. `nav Week 1`                                                 |              Same as previous               |
-| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `tag Vid 3 /tags fun, cool`                                                                  |              Same as previous               |
-| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/> 3. `nav /lec Week 1 /mod CS2040S` |              Same as previous               |
+| Test Case                                                                                               | Expected Result                                                                                      |
+|---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool`                                                    | **Message:**<br/> `Vid 3 tagged`<br/> **List updates:** None                                         |
+| 1. `nav CS2040S` <br/> 2. `tag Vid 3 /lec Week 1 /tags fun, cool` <br/> 3. `nav Week 1`                 | **Message:**<br/> `Week 1 tagged`<br/> **List updates:** Vid 3 should be tagged with [`fun`, `cool`] |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `tag Vid 3 /tags fun, cool`                                  | Same as previous                                                                                     |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `tag Vid 3 /lec Week 1 /mod CS2040S /tags fun, cool` <br/>   | **Message:**<br/> `Vid 3 tagged`<br/> **List updates:** None                                         |
+
+Some incorrect commands to try from root context:
+
+- `tag Vid 3 /lec Week 1 /mod CS2040S` (incorrect format)
+- `tag V@lid Name /lec Week 1 /mod CS2040S /tag yay` (invalid video name)
+- `tag Vid 3 /lec Week 1 /mod CS2040S /tags T@g` (invalid tag)
 
 ### Untag a Module
 
-| Test Case                          |                      Expected Result                      |
-|:-----------------------------------|:---------------------------------------------------------:|
-| `untag CS2040S /tags Heavy, Math`  | CS2040S should no longer be tagged with [`Heavy`, `Math`] |
-| `untag CS2040S /tags Heavy, Hehe`  |        `Tag Hehe of Module CS2040S does not exist`        |
-| `untag CS2040S /tags Heavy, Heavy` |     CS2040S should no longer be tagged with [`Heavy`]     |
-| `untag CS2040S`                    |                      Invalid Command                      |
+| Test Case                          | Expected Result                                                                                                       |
+|------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `untag CS2040S /tags Heavy, Math`  | **Message:**<br/> `CS2040S untagged`<br/> **List updates:** CS2040S should no longer be tagged with [`Heavy`, `Math`] |
+| `untag CS2040S /tags Heavy, Hehe`  | **Message:**<br/> `Tag Hehe of Module CS2040S does not exist` <br/> **List updates:** None                            |
+| `untag CS2040S /tags Heavy, Heavy` | **Message:**<br/> `CS2040S untagged`<br/> **List updates:** CS2040S should no longer be tagged with [`Heavy`]         |
+
+Some incorrect commands to try from root context:
+
+- `untag CS2040S` (invalid format)
+- `untag CS2040S /tags @@` (invalid tag)
+- `untag LOL /tags yay` (invalid module name)
 
 ### Untag a Lecture
 
-| Test Case                                                                                    |                Expected Result                 |
-|:---------------------------------------------------------------------------------------------|:----------------------------------------------:|
-| 1. `untag Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav CS2040S`                            | Week 1 should no long be tagged with [`Intro`] |
-| 1. `nav CS2040S` <br/> 2. `untag Week 1 /tags Intro`                                         |                Same as previous                |
-| 1. `nav ST2334` <br/> 2. `untag Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /mod CS2040S` |                Same as previous                |
+| Test Case                                                        | Expected Result                                                                                              |
+|------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `untag Week 1 /mod CS2040S /tags Intro`                          | **Message:**<br/> `Week 1 untagged`<br/> **List updates:** None                                              |
+| 1. `nav CS2040S` <br/> 2. `untag Week 1 /tags Intro`             | **Message:**<br/> `Week 1 untagged`<br/> **List updates:** Week 1 should no long be tagged with [`Intro`]    |
+| 1. `nav ST2334` <br/> 2. `untag Week 1 /mod CS2040S /tags Intro` | **Message:**<br/> `Week 1 untagged`<br/> **List updates:** None                                              |
+| 1. `nav CS2040S` <br/> 2. `untag Week 2 /tags lol`               | **Message:**<br/> `Tag lol of Lecture Week 2 of Module CS2040S does not exist` <br/> **List updates:** None  |
+
+Some incorrect commands to try from root context:
+
+- `untag Week 1 /mod CS2040S` (incorrect format)
+- `untag Lecture N@me /mod CS2040S /tag yay` (invalid lecture name)
+- `untag Week 7 /mod CS2040S /tags T@g` (invalid tag)
 
 ### Untag a Video
 
-| Test Case                                                                                                                             |                 Expected Result                 |
-|:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------:|
-| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`                                         | Vid 3 should no longer be tagged with [`Intro`] |
-| 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro` <br/> 3. `nav Week 1`                                                 |                Same as previous                 |
-| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                                                                  |                Same as previous                 |
-| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 3. `nav /lec Week 1 /mod CS2040S` |                Same as previous                 |
+| Test Case                                                                                       | Expected Result                                                                                           |
+|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| 1. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro` <br/> 2. `nav /lec Week 1 /mod CS2040S`   | **Message:**<br/> `Vid 3 untagged`<br/> **List updates:** None                                            |
+| 1. `nav CS2040S` <br/> 2. `untag Vid 3 /lec Week 1 /tags Intro`                                 | **Message:**<br/> `Vid 3 untagged`<br/> **List updates:** None                                            |
+| 1. `nav /mod CS2040S /lec Week 1` <br/> 2. `untag Vid 3 /tags Intro`                            | **Message:**<br/> `Vid 3 untagged`<br/> **List updates:** Vid 3 should no longer be tagged with [`Intro`] |
+| 1. `nav /mod ST2334 /lec Topic 1` <br/> 2. `untag Vid 3 /lec Week 1 /mod CS2040S /tags Intro`   | **Message:**<br/> `Vid 3 untagged`<br/> **List updates:** None                                            |
+
+Some incorrect commands to try from root context:
+
+- `untag Vid 3 /lec Week 1 /mod CS2040S` (incorrect format)
+- `untag V@lid Name /lec Week 1 /mod CS2040S /tag yay` (invalid video name)
+- `untag Vid 3 /lec Week 1 /mod CS2040S /tags T@g` (invalid tag)
 
 ### Export All Modules to a File
 
-| Test Case                                                |                                      Expected Result                                       |
-|:---------------------------------------------------------|:------------------------------------------------------------------------------------------:|
-| `export hello.json`                                      |                A hello.json file should appear in {JAR_file_location}/data                 |
-| 1. `export hi.json` <br/> 2. `export hi.json`            | `File already exist. If you want to overwrite this file, insert /overwrite in the command` |
-| 1. `export ha.json` <br/> 2. `export ha.json /overwrite` |                             `All modules archived to ha.json`                              |
-| `export letracker.json /overwrite`                       |               `Cannot export to the current working directory of Le Tracker`               |
+| Test Case                                                | Expected Result                                                                                                                                                               |
+|----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `export hello.json`                                      | **Message:**<br/> `All modules archived to hello.json`<br/> **List updates:** None <br/> **Directory updates:** A `hello.json` file should appear in {JAR_file_location}/data |
+| 1. `export hi.json` <br/> 2. `export hi.json`            | **Message:**<br/> `File already exist. If you want to overwrite this file, insert /overwrite in the command` <br/> **List updates:** None <br/> **Directory updates:** None   |
+| 1. `export ha.json` <br/> 2. `export ha.json /overwrite` | **Message:**<br/> `All modules archived to ha.json` <br/> **List updates:** None <br/> **Directory updates:** None                                                            |
+| `export letracker.json /overwrite`                       | **Message:**<br/> `Cannot export to the current working directory of Le Tracker` <br/> **List updates:** None <br/> **Directory updates:** None                               |
 
 ### Import Modules from a File
 
-| Test Case                                                                             |                                                  Expected Result                                                  |
-|:--------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|
-| 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` |                    `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker                     |
-| 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | `ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` |
-| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  |                           `CS2040S` should be deleted and imported back into Le Tracker                           |
+| Test Case                                                                             | Expected Result                                                                                                                                                 |
+|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` | **Message:**<br/> `Modules imported to Le Tracker` <br/> **List updates:** `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker           |
+| 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | **Message:**<br/>`ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` <br/> **List updates:** None |
+| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  | **Message:**<br/> `Modules imported to Le Tracker` <br/> **List updates:** `CS2040S` should be deleted and imported back into Le Tracker                        |
 
 ### Clear
 
