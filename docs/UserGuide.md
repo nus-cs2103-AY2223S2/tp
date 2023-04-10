@@ -429,8 +429,12 @@ with another existing data in the data list will not be successful. Here's how w
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
-:pencil2: Note<br>
+<div markdown="block" class="alert alert-tip">
+
+:pencil2: **Note**<br>
 Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
+
+</div>
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
@@ -468,7 +472,7 @@ Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
-
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
