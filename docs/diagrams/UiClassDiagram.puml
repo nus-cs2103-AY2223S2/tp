@@ -17,6 +17,7 @@ Class GroupListPanel
 Class GroupCard
 Class StatusBarFooter
 Class CommandBox
+Class WhereGotTimeTable
 }
 
 package Model <<Rectangle>> {
@@ -38,6 +39,7 @@ MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" GroupListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" WhereGotTimeTable
 
 GroupListPanel -down-> "*" GroupCard
 PersonListPanel -down-> "*" PersonCard
@@ -51,14 +53,17 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+WhereGotTimeTable --|> UiPart
 
 GroupCard ..> Model
 PersonCard ..> Model
+WhereGotTimeTable..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 GroupListPanel -[hidden]left- HelpWindow
+WhereGotTimeTable -[hidden]left-GroupListPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
