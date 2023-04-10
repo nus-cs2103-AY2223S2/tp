@@ -1307,3 +1307,4 @@ As compared to AB3, CLIpboard maintains several more types of objects to store. 
 
 The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), different data fields, as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
 
+[Back to Appendix: Effort](#appendix-effort)
