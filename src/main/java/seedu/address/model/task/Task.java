@@ -190,7 +190,7 @@ public class Task implements Relationship<Task> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, content, status);
+        return Objects.hash(id, title, content, status, persons);
     }
 
     @Override
