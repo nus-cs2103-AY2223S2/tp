@@ -24,7 +24,7 @@ import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.testutil.TypicalModel;
 
 public class AssignCommandTest {
-    private static int TEST_GRADE = 50;
+    private static final int TEST_GRADE = 50;
     private Model model;
     private Task selectedTask;
     private CurrentSelection actualSelection;
