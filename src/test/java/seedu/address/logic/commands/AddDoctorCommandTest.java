@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -51,7 +52,7 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addCommand = new AddDoctorCommand(validPerson);
         ModelStub modelStub = new ModelStubWithDoctor(validPerson);
 
-        assertThrows(CommandException.class, AddDoctorCommand.MESSAGE_DUPLICATE_PERSON, ()
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_PERSON, ()
                 -> addCommand.execute(modelStub));
     }
 
