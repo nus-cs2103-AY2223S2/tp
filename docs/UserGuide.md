@@ -122,7 +122,7 @@ currently stored persons or tasks.
 * As a result of the above, the character `/` cannot be used in any parameters.
 
 * Items in square brackets are optional.<br>
-  e.g. `a/{ADDRESS} [r/{ROLE}]` can be used as `a/John street, block 123 r/Member` or as `a/John street, block 123`.
+  e.g. `a/ADDRESS [r/ROLE]` can be used as `a/John street, block 123 r/Member` or as `a/John street, block 123`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `view`) will be ignored.<br>
   e.g. if the command specifies `view 123`, it will be interpreted as `view`.
@@ -259,7 +259,7 @@ Example:
 Edits the details of the task identified by the index number used in the displayed task list. 
 Existing values will be overwritten by the input values. The desired task type must be specified, and the date 
 modifiers must match the format of the task type input. At least one optional field must be supplied.<br>
-Todo tasks should not include a {DATE} field.<br>
+Todo tasks should not include a DATE field.<br>
 The task list can be viewed using the `view` command.
 
 Format: `edittask INDEX type/TASK_TYPE [task/TASK_DESCRIPTION] [c/COMMENT] [DATE]`
