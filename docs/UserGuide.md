@@ -361,6 +361,8 @@ Currently, there are seven command actions of type tank:
 * [Adding a set of readings to a tank `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
 * [Deleting a most recent set of readings of a tank `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a tank: `tank add`
 
 You can add a tank to *Fish Ahoy!* with the `tank add` command.
