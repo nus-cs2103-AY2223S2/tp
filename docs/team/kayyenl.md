@@ -7,7 +7,7 @@ title: Lee Kay Yen's Project Portfolio Page
 
 OfficeConnect is a task management tool designed specifically for managerial role personnel at companies. The target users are individuals who are responsible for assigning tasks and overseeing the work of a team.
 
-The product addresses several challenges faced by managers in the current office environment, such as work overload among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual tasks like typing and sending emails.
+The product addresses several challenges faced by managers in the current office environment, such as work overload among subordinates, or difficulties in coordinating tasks with a large number of employees.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates' workloads, allowing managers to efficiently delegate tasks in an organised manner. The app also automates the process of planning and communicating with subordinates, making it easier for managers to get things done. 
 
