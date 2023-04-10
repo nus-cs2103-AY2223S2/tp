@@ -249,7 +249,7 @@ The feature implementation involves in almost all high-level components which ar
 3. It will then be passed to `Logic` where the users' commands in `String` type are going to be executed and written into the `.txt` file if the commands were succesfully executed.
 4. After the execution, the new `String` from `.txt` file will be read and display the updated history list to the users.
 
-### Design Consideration:
+#### Design Consideration:
 1. Instead of saving the history of commands in the same `.json` file, I personally believe that it would be better in this case to have a separate `.txt` file to store the commands, it would be much more convenient and fewer methods invoking among high-level components because:
     * The expected behavior is that it displays exactly the commands that the user inputted before, so if we use `.txt` file, we only need to check the command is successfully executed before write the whole `String` command into the `txt` file.
     * On the other hand, using `.json` file would require a lot of data conversion which is likely to be more error-prone and the `HistoryDisplay` from the `Ui` must trace through `Logic`, `Model`, `Storage` to read the `.json` file and vice versa since the data conversion happens in `Storage` or `Model`. Below is the code snippet in `LogicManager` where the history is read.
