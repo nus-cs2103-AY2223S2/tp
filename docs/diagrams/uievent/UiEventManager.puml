@@ -8,42 +8,25 @@ Class "{abstract}\nKey" as Key KEY_COLOR_T2
 Class ClearKey KEY_COLOR_T3
 Class EndOfLineKey KEY_COLOR_T3
 Class FindKey KEY_COLOR_T3
-Class HelpKey KEY_COLOR_T3
-Class NextItemKey KEY_COLOR_T3
-Class PrevItemKey KEY_COLOR_T3
-Class QuitKey KEY_COLOR_T3
 Class StartOfLineKey KEY_COLOR_T3
-Class SwitchPanelKey KEY_COLOR_T3
-Class SwitchTabKey KEY_COLOR_T3
 
 Class Logic LOGIC_COLOR_T4
 Class MainWindow UI_COLOR_T4
 
-UiEventManager .down.> ClearKey
-UiEventManager .down.> EndOfLineKey
-UiEventManager .down.> FindKey
-UiEventManager .down.> HelpKey
-UiEventManager .down.> NextItemKey
-UiEventManager .down.> PrevItemKey
-UiEventManager .down.> QuitKey
-UiEventManager .down.> StartOfLineKey
-UiEventManager .down.> SwitchPanelKey
-UiEventManager .down.> SwitchTabKey
+UiEventManager ..> ClearKey
+UiEventManager ..> StartOfLineKey
+UiEventManager ..> EndOfLineKey
+UiEventManager ..> FindKey
 
 ClearKey --|> Key
+StartOfLineKey --|> Key
 EndOfLineKey --|> Key
 FindKey --|> Key
-HelpKey --|> Key
-NextItemKey --|> Key
-PrevItemKey --|> Key
-QuitKey --|> Key
-StartOfLineKey --|> Key
-SwitchPanelKey --|> Key
-SwitchTabKey --|> Key
 
 Key ..> MainWindow
 Key ..> Logic
-MainWindow -r-> Logic
-MainWindow .r.> UiEventManager
+MainWindow --> Logic
+MainWindow ..> UiEventManager
+
 @enduml
 

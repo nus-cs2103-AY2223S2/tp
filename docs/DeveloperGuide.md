@@ -278,7 +278,7 @@ For more information about interacting with the tabs using hotkeys, please refer
 ### Hotkeys with UiEvents
 
 UiEvents is an abstraction of keyboard events that can trigger changes in
-user interface or perform some action. These keyboard events are handled by
+the user interface or perform some action. These keyboard events are handled by
 UiEvent handlers that are bundled together within the `UiEventManager` class.
 
 <div markdown="span" class="alert alert-info">
@@ -290,7 +290,9 @@ The following is the class diagram of the
 
 ![UiEventManager class diagram](images/uievent/UiEventManager.png)
 
-There are currently 10 registered event handlers, namely:
+The diagram above shows 4 keys for conciseness, but there are currently 10
+registered event handlers, namely:
+
 * `HelpKey` Help (F1)
 * `QuitKey` Quit (CTRL+Q)
 * `StartOfLineKey` Start of Line (CTRL+W)
