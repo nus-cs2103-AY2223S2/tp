@@ -33,6 +33,8 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 [MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
 [MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
 [UiClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java
@@ -41,6 +43,7 @@ to learn how to create and edit diagrams.
 [LogicClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java
 [ModelClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/Model.java
 [StorageClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/storage/Storage.java
+
 
 ### **Architecture**
 
@@ -66,6 +69,8 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
+
 ### **How the Architecture Components Interact With Each**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues 
@@ -85,6 +90,8 @@ through its interface rather than the concrete class(reason: to prevent outside 
 implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+
+<div style="page-break-after: always;"></div>
 
 ### **UI Component**
 
@@ -106,6 +113,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### **Logic Component**
 
@@ -131,6 +140,8 @@ The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but 
 the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600" />
@@ -138,6 +149,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `SchedulerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### **Model Component**
 
@@ -156,6 +169,8 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 ### **Storage Component**
 
 **API** : [`Storage.java`][StorageClass]
@@ -171,6 +186,8 @@ The `Storage` component,
 ### **Common Classes**
 
 Classes used by multiple components are in the `ezschedule.commons` package.
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -220,6 +237,8 @@ The execution can be seen in the activity diagram given below.
 _Activity Diagram for a typical `add` command_  
 ![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Recur Command**
 
 [RecurCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/RecurCommand.java
@@ -265,6 +284,8 @@ _Activity Diagram for a typical `recur` command_
 _Activity: Check for time clash for all recurring dates._  
 ![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Edit Command**
 
 [EditCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/EditCommand.java
@@ -306,6 +327,8 @@ The execution can be seen in the activity diagram given below.
 _Activity Diagram for a typical `edit` command_  
 ![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Delete Command**
 
 [DeleteCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/DeleteCommandParser.java
@@ -343,6 +366,7 @@ Other alternative path of execution can be traced in the activity diagram below.
 _Activity Diagram for a typical `delete` command_  
 ![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
 
+<div style="page-break-after: always;"></div>
 
 ### **Find Command**
 
@@ -382,6 +406,8 @@ The execution can be seen in the activity diagram given below.
 
 _Activity Diagram for a typical `find` command_  
 ![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
+
+<div style="page-break-after: always;"></div>
 
 ### **Next Command**
 
@@ -432,9 +458,10 @@ Other alternative path of execution can be traced in the activity diagram below.
 _Activity Diagram for a typical `next` command_  
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
 
-
 [ListChangeListener]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.html
 [`ListChangeListener.Change`]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.Change.html
+
+<div style="page-break-after: always;"></div>
 
 ### **Undo Command**
 
@@ -467,6 +494,7 @@ The execution can be seen in the activity diagram given below.
 _Activity Diagram for a typical `undo` command_  
 ![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
 
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
@@ -489,6 +517,7 @@ _Activity Diagram for a typical `undo` command_
 * **Ongoing Event**: An event that has started, but not ended
 * **Upcoming Event**: An event that has not started
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendices**
 
@@ -531,6 +560,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user           | find an event by date                         | locate details of events without having to go through the entire list   |
 | `* *`    | user           | edit my schedule                              | make changes to events                                                  |
 | `* *`    | busy user      | be able to schedule many events               | schedule as many events as I want                                       |
+
+<div style="page-break-after: always;"></div>
 
 #### **Use Cases**
 
@@ -715,6 +746,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 </details>
 
+<div style="page-break-after: always;"></div>
+
 #### **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -779,6 +812,8 @@ An example is given below.
 If users are interested in knowing more about the events, 
 they can use the `find` command or click on the calendar date box to view the event details.
 
+<div style="page-break-after: always;"></div>
+
 **Increase flexibility in event names**
 
 Currently, event names only support alphanumeric characters and spaces. 
@@ -787,6 +822,8 @@ special characters such as brackets, colons, and dashes.
 
 We plan to increase the number of characters supported in event names. 
 However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
+
+<div style="page-break-after: always;"></div>
 
 ### **Appendix C: Instructions for Manual Testing**
 
@@ -872,6 +909,8 @@ testers are expected to do more *exploratory* testing.
 * The `Event` will be added repeatedly until the specified end date
 * Details of all the `Event` is also added to the Events Panel and the Calendar
 
+<div style="page-break-after: always;"></div>
+
 #### Scenario 2
 {: .no_toc}  
 **Context:** Another `Event` already exist in the recurring time frame specified by the `Event` being added
@@ -944,6 +983,8 @@ testers are expected to do more *exploratory* testing.
 **Result:** 
 * The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
 * The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
+
+<div style="page-break-after: always;"></div>
 
 #### Scenario 2
 {: .no_toc}  
@@ -1049,6 +1090,7 @@ testers are expected to do more *exploratory* testing.
 * The Response Box will display the message "Action undone: delete"
 * The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
 
+<div style="page-break-after: always;"></div>
 
 ### **Appendix D: Effort**
 
