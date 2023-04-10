@@ -6,6 +6,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -21,6 +22,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -168,6 +170,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.powercards.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -372,6 +375,7 @@ The flip command (`p`) will toggle between the corresponding `FlippedReviewEleme
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -382,6 +386,7 @@ The flip command (`p`) will toggle between the corresponding `FlippedReviewEleme
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -552,6 +557,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
    
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -853,6 +859,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Exists the program. Window is closed.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
@@ -879,6 +886,7 @@ As such, we saw this as a valuable opportunity to conduct extensive testing of o
 - Made a concrete OOP structure through discussions. 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancement**
 
