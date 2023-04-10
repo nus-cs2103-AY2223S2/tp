@@ -44,7 +44,6 @@ By using MM, medical professionals can manage patient data more efficiently and 
 - [Command Summary](#command-summary)
 
 ---
-
 ## Quick Start
 
 1. To check if you have Java `11` or above installed on your computer, open a command terminal and type the command `java -version`.
@@ -74,7 +73,6 @@ By using MM, medical professionals can manage patient data more efficiently and 
    * `exit` : Exits the app.
 7. Refer to the [Features](#features) below for details of each command.
 ---
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -125,7 +123,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison 
-   p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
+    p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
 * `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01`
 
 1. The first example contains strictly required information to identify a patient.
