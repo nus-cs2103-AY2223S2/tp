@@ -5,50 +5,70 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+# About coNtactUS
+
 ## **1. Introduction**
 
 ### **1.1 About coNtactUS**
 
-Welcome! <br>
+Welcome!
+coNtactUS is a module tracker made by NUS computing students, for NUS computing students. It provides a centralised
+platform for students to conveniently store and access information about their modules. coNtactUS is optimised for use 
+via typing instead of clicking, allowing NUS computing students to store and retrieve information faster than ever before.
+Overall, coNtactUS helps students to be the most productive and organised versions of themselves. 
 
-coNtactUS is a **university module tracker and timetable/deadline sorting application**, optimized for use via a
-**Command Line Interface (CLI)** while still having the _benefits_ of a **Graphical User Interface (GUI)**. This
-application uses the **AddressBook-Level3** project created by the [SE-EDU initiative](https://se-education.org/)
-as its framework.
+coNtactUS provides support for NUS computing students to keep track of a variety of information related to their modules,
+including but not limited to the following... 
+
+* Lecture and tutorial timeslots
+* Lecture and tutorial venues
+* Deadlines
+* Module official resources
+* Module notes
+* Contact details of Professors and Teaching assistants and more...
 
 ### 1.2 About the developer guide
 
 This developer guide describes the high-level software architecture and how user inputs are parsed into corresponding
 commands in coNtactUS.
 
-If you are a beginner that simply wants to use coNtactUS in your daily university life, look no further and jump
-straight into our first-time user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html).
 
-If you are an advanced user, or developers who want to understand how the software works, or you want to further
-develop coNtactUS for yourself, you may feel free to proceed with the developer guide.
+If you simply want to start using coNtactUS in your daily university life, look no further and jump
+straight into our user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html). 
 
-If at any point you want to understand what some terminologies mean, [glossary](#9-glossary) is your good friend for
-that.
 
-To help you better navigate through our user guide, the [Return to ToC](#toc) at the end of each section
+If who want to understand how the software works, or you want to further
+develop coNtactUS for yourself, you may feel free to proceed with this guide.
+
+
+If you have any difficulties understanding what some terminologies mean at any point, you may refer 
+to the [glossary](#9-glossary) for that.
+
+To help you better navigate through our developer guide, the [Return to ToC](#toc) at the end of each section
 allows you return to the Table of Contents. From there, you can quickly access another section by clicking the
 respective header.
 
 ------------------------------------------------------------------------------------------------------------------------
+
 ## **2. Acknowledgements**
 
-No external sources or libraries were used.
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5)
 
 ------------------------------------------------------------------------------------------------------------------------
 ## **3. Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md) to start developing your own coNtactUS.
+If you want to get started with developing your own coNtactUS, you may refer to the guide 
+[_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **4. Overview of the Design**
 
-## **4. Design**
+### 4.1 The components in the architecture
 
-### 4.1 Architecture
+This section gives you a quick overview of the architecture components of coNtactUS. The diagram shown below gives you
+a high-level description of the overall architecture.
+
 
 <p align="center">
     <img height = "440" src="images/ArchitectureDiagram.png" width="280" /> </p>
@@ -56,61 +76,77 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md) to start dev
 
 The ***Architecture Diagram*** given above explains the high-level design of the module tracker.
 
-Given below is a quick overview of main components and how they interact with each other.
-
-**Main components of the architecture**
-
-**`Main`** has two classes called
-[`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
-It is responsible for,
-* At software launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
-
-The rest of the module tracker consists of four components.
-
-* [**`UI`**](#42-ui-component): The UI of the module tracker.
-* [**`Logic`**](#43-logic-component): The command executor.
-* [**`Model`**](#44-model-component): Holds the data of the module tracker in memory.
-* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
+Architecture of the module tracker.
 
 
-**How the architecture components interact with each other**
+### `Main`
+[`Main`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+works with  [`MainApp`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/MainApp.java)
+and is responsible for: 
+* Initializing the other components in the correct sequence at software launch, and connecting them up with each other.
+* Shutting down the components when the program is closed and invoking cleanup methods where necessary.
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+### `Commons`
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+### `UI`
+[**`UI`**](#ui-component) is responsible for the user interface of the module tracker.
+### `Logic`
+[**`Logic`**](#logic-component) is responsible for executing commands.
+### `Model`
+[**`Model`**](#model-component) holds the data of the module tracker in memory.
+### `Storage`
+[**`Storage`**](#storage-component) reads data from, and writes data to, the hard disk.
+
+
+### 4.2 How the architecture components interact with each other
+
+To illustrate how the components interact with each other, let us take a look at the scenario where 
+the user issues the command `delete 1` to delete the first module from the list.
+
+The *Sequence Diagram* below illustrates this in detail: 
 
 <p align="center">
     <img src="https://ay2223s2-cs2103t-w10-1.github.io/tp/images/ArchitectureSequenceDiagram.png" width="580" />
 </p>
 
-<div align="center">Figure 1: How a `delete 1` function is parsed through the different components. </div>
 
-Each of the four main components (also shown in the diagram above),
+<div align="center">Figure 1: How the different components interact with each other upon the command `delete 1` </div>
 
-* defines its *API* in an `interface` with the same name as the Component.
+### 4.3 Interfaces that are implemented by the architecture components
+
+Each of the four components `UI`, `Logic`, `Model` and `Storage` (also shown in Figure 2 above),
+
+* defines its *API* in an `interface` with the same name as the component.
 * implements its functionality using a concrete `{Component Name}Manager` class
-* (which follows the corresponding API `interface` mentioned in the previous point.)
+which follows the corresponding API `interface` mentioned in the previous point.
+
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
 component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
 to the implementation of a component), as illustrated in the (partial) class diagram below.
 
+
+<br>
+
 <p align="center">
     <img src="images/ComponentManagers.png" width="300" />
 </p>
-
 <div align="center"> The Logic component. </div>
 
-The sections below give more details of each component.
 
-### 4.2 UI component
+Relationship between the Interfaces and their concrete classes
+
+
+## **5. An in-depth look at each architecture component**
+
+### 5.1 The UI component
 
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+The diagram below provides a detailed description of the `UI` component.
 
 <p align="center">
     <img src = "images/UiClassDiagram.png">
@@ -135,12 +171,12 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
 
-### 4.3 Logic component
+### 5.2 The Logic component
 
-**API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in
+[`Logic.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+The diagram below provides a detailed description of the `Logic` component.
 
 <p align="center">
     <img src="images/LogicClassDiagram.png" width="650"/> </p>
@@ -165,9 +201,10 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
+
 <p align="center">
     <img src="images/ParserClasses.png" width="600"/> </p>
-<div align="center"> The structure of the Logic Component, displaying how a Parser works. </div>
+<div align="center"> Classes in the Logic component used for parsing a user command </div>
 
 How the parsing works:
 * When called upon to parse a user command, the `ModuleTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a
@@ -177,9 +214,9 @@ as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
 interface so that they can be treated similarly where possible e.g, during testing.
 
-### 4.4 Model component
-**API** :
-[`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+### 5.3 The Model component
+The **API** of this component is specified in
+[`Model.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <p align="center">
     <img src="images/ModelClassDiagram.png" width="800" /> </p>
@@ -209,10 +246,10 @@ to only require one `Tag` object per unique tag, instead of each `Module` needin
 </div>
 
 
-### 4.5 Storage component
+### 5.4 The Storage component
 
-**API** :
-[`Storage.java`](https://tinyurl.com/3dmsfunt)
+The **API** of this component is specified in
+[`Storage.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <p align="center">
     <img src="images/StorageClassDiagram.png" width="550" /></p>
@@ -227,15 +264,17 @@ the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
-### 4.6 Common classes
+### 5.5 Common classes
 
-Classes used by multiple components are in the `seedu.moduletracker.commons` package.
+Classes used by multiple components are in the 
+[`seedu.moduletracker.commons`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/commons) 
+package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Implementation**
+## **6. Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features of coNtactUS are implemented.
 
 ### 5.1 Sort Feature
 
@@ -834,4 +873,6 @@ Effort required: 8 / 10)
 6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
    * Tariq
 
+
 Back to top hyperlink
+
