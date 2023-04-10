@@ -59,11 +59,12 @@ If you want to get started with developing your own coNtactUS, you may refer to 
 
 ### 4.1 The components in the architecture
 
-This section gives you a quick overview of the architecture components of coNtactUS.
+This section gives you a quick overview of the architecture components of coNtactUS. The diagram shown below gives you
+a high-level description of the overall architecture.
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-Figure 1: Architecture of the module tracker.
+Architecture of the module tracker.
 
 
 ### `Main`
@@ -95,7 +96,7 @@ The *Sequence Diagram* below illustrates this in detail:
 
 <img src="https://ay2223s2-cs2103t-w10-1.github.io/tp/images/ArchitectureSequenceDiagram.png" width="574" />
 
-Figure 2: How the different components interact with each other upon the command `delete 1`
+How the different components interact with each other upon the command `delete 1`
 
 ### 4.3 Interfaces that are implemented by the architecture components
 
@@ -109,13 +110,13 @@ which follows the corresponding API `interface` mentioned in the previous point.
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
 component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
-to the implementation of a component), as illustrated in the (partial) class diagram (Figure 3) below.
+to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <br>
 
 <img src="images/ComponentManagers.png" width="300" />
 
-Figure 3: Relationship between the Interfaces and their concrete classes
+Relationship between the Interfaces and their concrete classes
 
 
 ## **5. An in-depth look at each architecture component**
@@ -123,7 +124,9 @@ Figure 3: Relationship between the Interfaces and their concrete classes
 ### 5.1 The UI component
 
 The **API** of this component is specified in
-[`Ui.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/ui)
+[`Ui.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+The diagram below provides a detailed description of the `UI` component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 The structure of the UI Component
@@ -147,10 +150,10 @@ The `UI` component,
 
 ### 5.2 The Logic component
 
-**API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in
+[`Logic.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+The diagram below provides a detailed description of the `Logic` component.
 
 <img src="images/LogicClassDiagram.png" width="650"/>
 The partial structure of the Logic component 
@@ -175,7 +178,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
-The structure of the Logic Component, displaying how a Parser works
+Classes in the Logic component used for parsing a user command
 
 How the parsing works:
 * When called upon to parse a user command, the `ModuleTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a
@@ -186,8 +189,8 @@ as a `Command` object.
 interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 5.3 The Model component
-**API** :
-[`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in
+[`Model.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="800" />
 The structure of the Model component
@@ -216,8 +219,8 @@ A more OOP model of the Model component
 
 ### 5.4 The Storage component
 
-**API** :
-[`Storage.java`](https://tinyurl.com/3dmsfunt)
+The **API** of this component is specified in
+[`Storage.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 The structure of the Storage component
@@ -230,15 +233,17 @@ the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
-### 4.6 Common classes
+### 5.5 Common classes
 
-Classes used by multiple components are in the `seedu.moduletracker.commons` package.
+Classes used by multiple components are in the 
+[`seedu.moduletracker.commons`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/commons) 
+package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Implementation**
+## **6. Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features of coNtactUS are implemented.
 
 ### 5.1 Sort Feature
 
