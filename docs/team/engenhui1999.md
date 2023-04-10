@@ -61,7 +61,7 @@ Given below are my contributions to the project.
       * [#173](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/173),
       * [#177](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/177),
       * [#246](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/246),
-      * [#248](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/248),
+      * [#248](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/248)
 
     * Bugs fixed:
       * [#231](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/231) UG Bug
