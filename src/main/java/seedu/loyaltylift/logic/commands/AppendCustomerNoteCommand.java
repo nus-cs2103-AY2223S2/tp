@@ -1,12 +1,12 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -58,7 +58,7 @@ public class AppendCustomerNoteCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
@@ -66,8 +66,9 @@ public class AppendCustomerNoteCommand extends Command {
         Customer editedCustomer = createEditedCustomer(customerToEdit, newNote);
 
         model.setCustomer(customerToEdit, editedCustomer);
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(String.format(MESSAGE_APPEND_NOTE_SUCCESS, editedCustomer));
+        model.setCustomerToDisplay(editedCustomer);
+        return new CommandResult(String.format(MESSAGE_APPEND_NOTE_SUCCESS, editedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
     }
 
     /**

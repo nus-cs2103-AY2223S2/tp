@@ -15,6 +15,11 @@ public class BadgeTest {
     }
 
     @Test
+    public void createPointsBadge_nullPoints_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Badge.createPointsBadge(null));
+    }
+
+    @Test
     public void createOrderStatusBadge_nullStatus_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Badge.createOrderStatusBadge(null));
     }

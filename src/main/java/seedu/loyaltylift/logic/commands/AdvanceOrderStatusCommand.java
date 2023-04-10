@@ -1,10 +1,11 @@
 package seedu.loyaltylift.logic.commands;
 
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_ORDER;
 
 import java.util.List;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -42,15 +43,16 @@ public class AdvanceOrderStatusCommand extends Command {
         List<Order> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Order orderToAdvance = lastShownList.get(index.getZeroBased());
         Order advancedOrder = orderToAdvance.advance();
 
         model.setOrder(orderToAdvance, advancedOrder);
-
-        return new CommandResult(generateSuccessMessage(advancedOrder));
+        model.setOrderToDisplay(advancedOrder);
+        return new CommandResult(generateSuccessMessage(advancedOrder),
+                LIST_AND_SHOW_ORDER);
     }
 
     /**

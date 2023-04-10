@@ -2,16 +2,18 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.loyaltylift.logic.commands.MarkCustomerCommand.MESSAGE_CUSTOMER_ALREADY_MARKED;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
@@ -48,12 +50,22 @@ public class MarkCustomerCommandTest {
                 new Marked(true), note);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), markedCustomer);
 
-        assertCommandSuccess(markCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(markCustomerCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_alreadyMarkedUnfilteredList_throwsCommandException() {
+        Index customerAlreadyMarkedIndex = INDEX_SECOND;
+        MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(customerAlreadyMarkedIndex);
+
+        assertCommandFailure(markCustomerCommand, model, MESSAGE_CUSTOMER_ALREADY_MARKED);
     }
 
     @Test
@@ -61,7 +73,8 @@ public class MarkCustomerCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(markCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(markCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MarkCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -80,12 +93,15 @@ public class MarkCustomerCommandTest {
                 new Marked(true), note);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), markedCustomer);
+        expectedModel.sortFilteredCustomerList(Customer.SORT_POINTS);
 
-        assertCommandSuccess(markCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(markCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -98,7 +114,8 @@ public class MarkCustomerCommandTest {
 
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(markCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(markCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MarkCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test

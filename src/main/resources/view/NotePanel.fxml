@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <VBox spacing="5.0" styleClass="base" stylesheets="@NotePanel.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <Text fx:id="note" text="\$note" />
+   <TextFlow>
+      <children>
+         <Text fx:id="note" text="\$note" />
+      </children>
+   </TextFlow>
 </VBox>

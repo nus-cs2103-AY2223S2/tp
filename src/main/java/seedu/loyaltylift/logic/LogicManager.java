@@ -80,6 +80,14 @@ public class LogicManager implements Logic {
         model.updateFilteredCustomerOrderList(customer);
     }
 
+    public Customer getCustomerToDisplay() {
+        return model.getCustomerToDisplay();
+    }
+
+    public Order getOrderToDisplay() {
+        return model.getOrderToDisplay();
+    }
+
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

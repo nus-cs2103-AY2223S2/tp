@@ -11,7 +11,7 @@ public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should be a positive integer";
+            String.format("Quantity should be a positive integer and be less than or equal to 1 million, (1000000)");
     public final Integer value;
 
     /**
@@ -41,7 +41,7 @@ public class Quantity {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Quantity // instanceof handles nulls
-                && value == (((Quantity) other).value)); // state check
+                && value.equals(((Quantity) other).value)); // state check
     }
 
     @Override

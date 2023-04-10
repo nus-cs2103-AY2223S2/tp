@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_ORDERS_ONLY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
@@ -58,21 +59,29 @@ public class FindOrderCommandTest {
 
     @Test
     public void execute_zeroKeywords_noOrderFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindOrderCommand command = new FindOrderCommand(predicate);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0),
+                LIST_ORDERS_ONLY);
+
         expectedModel.updateFilteredOrderList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3);
         OrderNameContainsKeywordsPredicate predicate = preparePredicate("Strawberry Melon");
         FindOrderCommand command = new FindOrderCommand(predicate);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3),
+                LIST_ORDERS_ONLY);
+
         expectedModel.updateFilteredOrderList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         List<Order> expectedList = Arrays.asList(ORDER_A, ORDER_C, ORDER_D);
         expectedList.sort(Order.SORT_NAME);
         assertEquals(expectedList, model.getFilteredOrderList());

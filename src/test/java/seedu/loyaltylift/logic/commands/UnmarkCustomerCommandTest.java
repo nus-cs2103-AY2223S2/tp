@@ -2,16 +2,18 @@ package seedu.loyaltylift.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.loyaltylift.logic.commands.UnmarkCustomerCommand.MESSAGE_CUSTOMER_ALREADY_UNMARKED;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
@@ -28,14 +30,14 @@ import seedu.loyaltylift.model.customer.Points;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code MarkCustomerCommand}.
+ * {@code UnmarkCustomerCommand}.
  */
 public class UnmarkCustomerCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_SECOND.getZeroBased());
         CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
@@ -45,14 +47,24 @@ public class UnmarkCustomerCommandTest {
         Note note = customerToUnmark.getNote();
         Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, points,
                 new Marked(false), note);
-        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST);
+        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_SECOND);
 
-        String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setCustomer(model.getFilteredCustomerList().get(0), unmarkedCustomer);
+        expectedModel.setCustomer(model.getFilteredCustomerList().get(INDEX_SECOND.getZeroBased()), unmarkedCustomer);
 
-        assertCommandSuccess(unmarkCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(unmarkCustomerCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_alreadyUnmarkedUnfilteredList_throwsCommandException() {
+        Index customerAlreadyUnmarkedIndex = INDEX_FIRST;
+        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(customerAlreadyUnmarkedIndex);
+
+        assertCommandFailure(unmarkCustomerCommand, model, MESSAGE_CUSTOMER_ALREADY_UNMARKED);
     }
 
     @Test
@@ -60,14 +72,15 @@ public class UnmarkCustomerCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(unmarkCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(unmarkCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, UnmarkCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         model.sortFilteredCustomerList(Customer.SORT_POINTS);
 
-        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_SECOND.getZeroBased());
         CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
@@ -77,14 +90,16 @@ public class UnmarkCustomerCommandTest {
         Note note = customerToUnmark.getNote();
         Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, points,
                 new Marked(false), note);
-        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST);
+        UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_SECOND);
 
-        String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setCustomer(model.getFilteredCustomerList().get(0), unmarkedCustomer);
+        expectedModel.setCustomer(model.getFilteredCustomerList().get(INDEX_SECOND.getZeroBased()), unmarkedCustomer);
 
-        assertCommandSuccess(unmarkCustomerCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(unmarkCustomerCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -97,7 +112,8 @@ public class UnmarkCustomerCommandTest {
 
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(outOfBoundIndex);
 
-        assertCommandFailure(unmarkCustomerCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+        assertCommandFailure(unmarkCustomerCommand, model,
+                String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, UnmarkCustomerCommand.MESSAGE_USAGE));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_ORDERS_ONLY;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.model.Model;
@@ -32,7 +33,8 @@ public class FindOrderCommand extends Command {
         model.sortFilteredOrderList(Order.SORT_NAME);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
+                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()),
+                LIST_ORDERS_ONLY);
     }
 
     @Override

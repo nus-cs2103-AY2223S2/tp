@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletec 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CustomerListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,11 +82,11 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Customer` and `Order` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,15 +94,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCustomerCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletec 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletec 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCustomerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,28 +110,21 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCustomerCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCustomerCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the LoyaltyLift data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object), as well as all `Order` objects (which are contained in a `UniqueOrderList` object)
+* stores the currently 'selected' `Customer` and `Order` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` and `ObservableList<Order>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -154,46 +147,65 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Bookmark Customer 
+
+The commands `markc` and `unmarkc` are responsible for bookmarking or un-bookmarking a customer respectively. 
+Parsing of the user input is done by the `LogicManager` and `AddressBookParser` (as explained in the section of [Logic component](#logic-component)).
+
+Using `markc` command as an example, the parsing process will create a `MarkCustomerCommand` object.
+The `MarkCustomerCommand` is then executed, and its process is described in the following sequence diagram.
+
+![Sequence diagram for bookmarking a customer](images/MarkCustomerSequenceDiagram.png)
+ 
+1. The list of filtered customers is retrieved from the `Model`, and the index is used to find the customer that needs to be bookmarked.
+2. A new `Customer` object is created with it's `Marked` attribute to reflect that it is bookmarked.
+3. `Model` is called again to replace the original customer to the newly created customer.
+
+The sequence for `unmarkc` command is similar as the above.
+
+### Future Enhancements
+
+Instead of using commands to manipulate the bookmark-ed status of a customer, LoyaltyLift can allow users to use the mouse to select the bookmark icon to swap between bookmarked and not bookmarked.
+As we wanted to ensure that LoyaltyLift is optimised as a CLI application, we prioritised the implementation of `markc` and `unmarkc` over the ability to select on the graphical user interface.
+However, certain users may find it more convenient to select the icon or prefer the flexibility of doing both depending on the situation.
 
 ### Add/Deduct reward points feature
-
-#### Implementation
 
 From `Points` class, a new feature of adding and deducting from the points a customer has, was required.
 A cumulative points system also had to be introduced. Adding points should increase the cumulative points a customer
 has while deducting points should not affect the cumulative points of the customer.
 
 As a result, a new attribute, `cumulative` was introduced to `Points`.
-For the parsing of the `addpoints` command, I had to consider between different design choices.
-The one I ultimately settled on was merely utilising `Integer.valueOf` method to parse the points inputted by the user.
-Also, in the execution of `AddPointsCommand` class, the points to add would exist as an Integer object instead of a
+For the parsing of the `addpoints` command, we had to consider between different design choices.
+The one we ultimately settled on was simply utilising `Integer.valueOf` method to parse the points inputted by the user.
+Also, in the execution of `AddPointsCommand` class, the points to add would exist as an `Integer` object instead of a
 `Points` object. The addition or subtraction of points from the `Points` class would then be as simple as adding the
 points to current points and cumulative points when it is positive, and subtracting from current points when it is 
-negative. This simple design would be sufficient to achieve the intended feature.
-Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to the
+negative. This straightforward design would be sufficient to achieve the intended feature.
+Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to
 `JsonAdaptedCustomer`.
 
-### Alternatives considered
-There were other designs I was considering, listed below.
+#### Alternative approaches
+There were other designs we were considering, listed below.
 
-1. A design choice I had to make was for the `addpoints` command, originally I intended for the command users inputted
-to include a modifier syntax for the user to specify if he or she wishes to add or subtract points.
+1. A design choice we had to make was for the implementation of the `addpoints` command, originally we intended 
+for the command users input to include a modifier syntax for the user to specify if he or she wishes to 
+add or subtract points from the customer.
 For instance, the command could be `addpoints 1 mod/- pt/100` to indicate that the user wants to subtract 100 points
-from the customer in the first index. I wanted to follow this implementation as many commands follow the syntax of
-`[PREFIX]/` for the user to specify their command. However, I subsequently decided that this may be too inconvenient for
-the user, and since it is intuitive for 100 or -100 points to exist, I decided to allow the specification of the
-modifier of points to come after `pt/`
-2. I also considered to have a static inner class, as encapsulation of the information of the addition or subtraction
-of points, and for `AddPointsCommand` to take in a `Points.AddPoints` as an attribute. This would allow an enum
-modifier to exist within the `AddPoints` inner class, allowing future extension of editing reward points by simply
-including new enumeration of modifiers. This would also allow a validity check of the points to be added or deducted.
-However, with the help of my teammate, I later decided that this may not be necessary as checking the validity of the
+from the customer in the first index. We wanted to follow this implementation as many commands follow the syntax of
+`[PREFIX]/` for the user to specify their command. However, we subsequently decided that this may be too inconvenient 
+for the user, and since it is intuitive for 100 or -100 points to exist, we decided to implement the command in the way
+that the modifier of points come after `pt/`
+2. We also considered to have a static inner class of `AddPoints` in `Points`. This is for encapsulation of 
+information for the addition or subtraction of points. Consequently, `AddPointsCommand` would take in 
+`Points.AddPoints` as an attribute. This would allow an enum `modifier` to exist within the `AddPoints` inner class, 
+allowing future extension of editing reward points by simply including a new enumeration of modifier. 
+This would also allow a validity check of the points to be added or deducted.
+However, we later decided that this may not be necessary as checking the validity of the
 resultant `Points` after adding or subtracting is sufficient. Moreover, utilising the `Integer.valueOf` method in
-`AddPointsCommandParser` would make parsing much simpler as compared to evaluating the modifier in front of points.
-This simpler design would also be sufficient as we had no plans to incorporate
+`AddPointsCommandParser` would make parsing much simpler as compared to evaluating the enum modifier that would come 
+before points. This simpler design would also be sufficient as we had no plans to incorporate
 features other than the addition or subtraction of points.
-
-
 
 ### Customer and Order Notes
 
@@ -377,7 +389,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -395,56 +406,57 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* small business owner that has a need to manage a sizeable number of customers and orders
-* increase customer loyalty and retention rate
-* engage with their customers and build long-term relationships with customers by providing incentives
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Small business owners with a need to manage a sizeable number of customers and orders
+* Small business owners who want to improve customer relations and increase customer loyalty
+* Small business owners who prefer desktop apps over using note-taking applications or spreadsheets
+* Small business owners who are proficient in typing
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI applications
 
 **Value proposition**:
-Help small business owners manage customers and their orders to boost customer satisfaction and retention rate, ultimately growing their business.
+* Manage a list of customers and their respective profiles
+* Create and tag orders with statuses to their respective customers
+* Foster lasting relationships with customers by offering rewards for their continued business with small business owners
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | small business owner | create, view, update and delete basic profile information of my customers | - |
-| `* * *`  | small business owner |	view a centralized tab containing all customers |	view all the customers’ information. |
-| `* * *`  | small business owner |	save the addresses of my customers | provide an easier checkout experience to frequent customers |
-| `* * *`  | forgetful small business owner |	bookmark customers for required updates | remind myself to communicate with some customers |
-| `* * *`  | attentive business owner | track reward points given associated to my customers | determine who I should reward as part of the reward system |
-| `* * *`  | small business owner | create, view, update and delete basic profile information of my orders | - |
-| `* * *`  | small business owner | view a centralized tab containing all orders | view all the orders' information |
-| `* * *`  | small business owner |	set an order as paid for | - |
-| `* * *`  | customer-focused small business owner | see which orders have been paid for | ship it out as soon as possible |
-| `* * *`  | customer-focused small business owner | see how long an order has been unprocessed | prevent customers from waiting for too long |
-| `* * *`  | small business owner | view the orders that I have completed | send a feedback form to the customer if necessary |
-| `* * *`  | forgetful small business owner | move an order from "paid" to "shipped" | reference in future if the order has been shipped out |
-| `* * *`  | occupied small business owner | move orders between different statuses (eg. To ship, Pending payment) | see what order I should focus on |
-| `* * *`  | customer-focused small business owner | sort the order list by status of its timeline | be on track with customers' orders |
-| `* * *`  | small business owner | view or search my customers’ previous orders | easily navigate to their previous orders to view relevant information |
-| `* *`  | small business owner | categorize my customers by a few metrics | - |
-| `* *`  | analytical small business owner | view some basic summary of my customer base | understand the demographics of my customers better |
-| `* *`  | attentive small business owner | add customised notes to each customer | track more specific details of each customer |
-| `* *`  | small business owner | include tags in my customer notes | view notes from multiple customers with a similar theme |
-| `* *`  | small business owner | sort customers by their reward points | determine who are my loyal customers |
-| `* *`  | small business owner | spend points for my customers | redeem rewards for them |
-| `* *`  | devoted small business owner | keep a list of rewards and its availability and points | know what rewards I have prepared to give away to loyal customers |
-| `* *`  | small business owner | add enterprise customers | include other companies in my list |
-| `* *`  | small business owner | filter between individual and enterprise customers | - |
-| `* *`  | small business owner | assign individuals to an enterprise | group individuals working in the enterprise |
-| `* *`  | small business owner | view an order timeline for each order | refer to it for future reference |
-| `* *`  | attentive small business owner | view what were my customers’ previous preferences for my product | can easily communicate with the customer about their previous preferences to provide a good service |
-| `* *`  | analytical small business owner | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell |
-| `* *`  | small business owner | tag an order to a specific customer | resolve conflicts regarding a particular order swiftly |
-| `* *`  | small business owner who wants to reduce costs | group orders with delivery addresses close to each other | order delivery can be done more efficiently |
-| `*`  | small business owner | search for customers using a keyword | easily find specific customers |
-| `*`  | small business owner | search for orders using a keyword | easily find specific orders |
-| `*`  | small business owner | save the customers and orders list | - |
+| Priority | As a …​                                        | I can …​                                                                                                    | So that I can…​                                                                                     |
+|----------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `* * *`  | small business owner                           | create, view, update and delete basic profile information of my customers                                   | track and view who are my current customers                                                         |
+| `* * *`  | small business owner                           | create, view, update and delete basic information of my customers' orders                                   | track and view what are my customers' orders                                                        |
+| `* * *`  | small business owner                           | assign an order to a specific customer                                                                      | I can track all the orders under a specific customer                                                |
+| `* * *`  | small business owner                           | advance & revert status of an order (eg. Pending, Paid, Shipped, Completed, Cancelled)                      | track the progress of my customer's order                                                           |
+| `* * *`  | forgetful small business owner                 | bookmark customers                                                                                          | remind myself to communicate with some customers                                                    |
+| `* * *`  | customer-focused small business owner          | track current and cumulated reward points associated to my customers                                        | determine who I should reward as part of the reward system                                          |
+| `* * *`  | customer-focused small business owner          | add or deduct reward points from a customer                                                                 | claim rewards for my customers                                                                      |
+| `* * *`  | small business owner                           | view or search my customers’ previous orders                                                                | easily navigate to their previous orders to view relevant information                               |
+| `* * *`  | small business owner                           | save the customers and orders list after every action                                                       | avoid remembering information of my customers and orders                                            |
+| `* * *`  | small business owner                           | assign a customer as an enterprise or an individual                                                         | include companies in my list of customers                                                           |
+| `* * *`  | attentive business owner                       | set or append note for a customer                                                                           | take note of details such as preferences of my customers                                            |
+| `* * *`  | attentive business owner                       | set or append note for an order                                                                             | take note of details such as special requests of my orders                                          |
+| `* *`    | customer-focused small business owner          | sort customers by their reward points                                                                       | determine who are my loyal customers                                                                |
+| `* *`    | customer-focused small business owner          | sort the order list by status                                                                               | be on track with customers' orders                                                                  |
+| `* *`    | small business owner                           | filter between individual and enterprise customers                                                          | view customers of a specific type when necessary                                                    |
+| `* *`    | small business owner                           | filter order based on status                                                                                | view orders that require specific attention                                                         |
+| `* *`    | small business owner                           | filter customers that are bookmarked                                                                        | identify customers that requires attention                                                          |
+| `* *`    | small business owner                           | view an order progress or history for each order                                                            | refer to it for future reference                                                                    |
+| `* *`    | small business owner                           | search for customers using a keyword                                                                        | easily find specific customers                                                                      |
+| `* *`    | small business owner                           | search for orders using a keyword                                                                           | easily find specific orders                                                                         |
+| `* *`    | small business owner                           | clear my saved data                                                                                         | reset the application's state                                                                       |
+| `* *`    | analytical small business owner                | view basic statistics of my customer base                                                                   | understand the demographics of my customers better                                                  |
+| `* *`    | analytical small business owner                | view an overall history tab to have a high level view of the orders I have completed on any particular date | see what orders are popular or unpopular to decide on goods to sell                                 |
+| `* *`    | customer-focused small business owner          | see how long an order has been unprocessed                                                                  | prevent customers from waiting for too long                                                         |
+| `*`      | attentive business owner                       | create, view and delete multiple notes for a customer                                                       | customise notes for each customer                                                                   |
+| `*`      | attentive business owner                       | create, view and delete multiple notes for an order                                                         | customise notes for each order                                                                      |
+| `*`      | small business owner                           | include tags in my customer notes                                                                           | view notes from multiple customers with a similar theme                                             |
+| `*`      | attentive small business owner                 | view what were my customers’ previous preferences for my product                                            | can easily communicate with the customer about their previous preferences to provide a good service |
+| `*`      | small business owner who wants to reduce costs | group orders with delivery addresses close to each other                                                    | allocate resources efficiently for order deliveries                                                 |
+| `*`      | small business owner                           | assign individuals to an enterprise                                                                         | group individuals working in the enterprise                                                         |
+| `*`      | customer-focused business owner                | set the reward points threshold for each tier                                                               | customise tiers to decide who are my loyal customers                                                |
+| `*`      | customer-focused small business owner          | create, view, update and delete reward prizes with its availability and points                              | know what rewards I have prepared to give away to loyal customers                                   |
+
 
 ### Use cases
 
@@ -501,7 +513,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C4 - Update Customer
+#### Use case: UC C4 - Edit Customer
 
 **MSS**
 
@@ -543,31 +555,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C6 - Assign Individual to Enterprise
-
-**MSS**
-
-1.  User gets <u>list of customers (UC C1)</u>.
-2.  User requests to assign an individual to an enterprise.
-3.  LL assigns the individual to the enterprise and displays the enterprise information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested individual or enterprise does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC C7 - Create Customer Note
+#### Use case: UC C6 - Set/Append Customer Note
 
 **MSS**
 
 1.  User <u>gets list of customers (UC C1)</u>.
 2.  User enters note for a customer.
-3.  LL adds note to the customer and displays the customer information.
+3.  LL adds/appends note to the customer and displays the customer information.
 
     Use case ends.
 
@@ -579,13 +573,13 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC C8 - Append Customer Note
+#### Use case: UC C7 - Set/Add Customer Points
 
 **MSS**
 
 1.  User <u>gets list of customers (UC C1)</u>.
-2.  User enters new note data to append.
-3.  LL updates the note and displays the customer information.
+2.  User enters customer points.
+3.  LL updates the customer's points and displays the customer.
 
     Use case ends.
 
@@ -597,33 +591,15 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-* 2b. Requested note does not exist.
+* 2b. LL detects invalid input data.
 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
 
-#### Use case: UC C9 - Delete Customer Note
+* 3a. Update results in invalid value.
 
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User requests to delete a customer note.
-3.  LL deletes the note and displays the customer information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested customer does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. Requested note does not exist.
-
-    * 2b1. LL shows an error message.
+    * 3a1. LL shows an error message.
 
       Use case resumes from step 1.
 
@@ -647,7 +623,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 **MSS**
 
 1.  User gets <u>list of customers (UC O1)</u>.
-2.  User enters customer id and new data order.
+2.  User enters customer id and new order data.
 3.  LL creates the order and assigns the order to the customer.
 4.  LL displays the order information.
 
@@ -703,7 +679,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O5 - Update Order
+#### Use case: UC O5 - Edit Order
 
 **MSS**
 
@@ -727,12 +703,12 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-#### Use case: UC O6 - Advance Order Status
+#### Use case: UC O6 - Advance/Revert/Cancel Order Status
 
 **MSS**
 
 1.  User <u>gets list of orders (UC O1)</u>.
-2.  User requests to advance an order's status.
+2.  User requests to advance/revert/cancel an order's status.
 3.  LL updates the order's status and displays the order information.
 
     Use case ends.
@@ -745,156 +721,47 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
       Use case resumes from step 1.
 
-* 2b. Requested order is already at last stage.
+* 2b. Order status cannot be advanced/reverted/cancelled.
 
     * 2b1. LL shows an error message.
 
       Use case resumes from step 1.
 
-#### Use case: UC R1 - List Rewards
+#### Use case: UC O7 - Set/Append Order Note
 
 **MSS**
 
-1.  User requests list of rewards.
-2.  LL displays list of rewards.
+1.  User <u>gets list of orders (UC O1)</u>.
+2.  User enters note for an order.
+3.  LL adds/appends note to the order and displays the order information.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Reward list is empty.
-
-  Use case ends.
-
-#### Use case: UC R2 - View Reward
-
-**MSS**
-
-1.  User gets <u>list of rewards (UC R1)</u>.
-2.  User requests to view a reward.
-3.  LL displays the reward information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
+* 2a. Requested order does not exist.
 
     * 2a1. LL shows an error message.
 
       Use case resumes from step 1.
-
-#### Use case: UC R3 - Delete Reward
-
-**MSS**
-
-1.  User gets <u>list of rewards (UC R1)</u>.
-2.  User requests to delete a reward.
-3.  LL deletes the reward.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R4 - Update Reward
-
-**MSS**
-
-1.  User <u>gets list of rewards (UC R1)</u>.
-2.  User enters new data for a reward.
-3.  LL updates the reward and displays the reward information.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested reward does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. LL detects invalid input data.
-
-    * 2b1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R5 - Set/Add Customer Points
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User enters customer points.
-3.  LL updates the customer's points and displays the customer.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. Requested customer does not exist.
-
-    * 2a1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-* 2b. LL detects invalid input data.
-
-    * 2b1. LL shows an error message.
-
-      Use case resumes from step 1.
-
-#### Use case: UC R6 - Give Reward to Customer
-
-**MSS**
-
-1.  User <u>gets list of customers (UC C1)</u>.
-2.  User <u>gets list of rewards (UC R1)</u>.
-3.  User requests to give a reward to a customer.
-4.  LL deducts points from the customer.
-5.  LL adds the reward to the customer and displays the customer information.
-
-    Use case ends.
-
-**Extensions**
-
-* 3a. Requested reward does not exist.
-
-    * 3a1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 3b. Requested customer does not exist.
-
-    * 3b1. LL shows an error message.
-
-      Use case resumes from step 2.
-
-* 4a. Customer does not have enough points.
-
-    * 4a1. LL shows an error message.
-
-      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 customers and orders without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to handle incorrect user input without crashing, and instruct the user on correct input format.
+5. Should have a quick startup time and launch without any noticeable delays.
+6. Should have a response time of 5 seconds or less.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Small business**: product-selling business that has much fewer employees and lower revenue than a regular-sized business.
-* **Enterprise customers**: companies that order a large amount of products, much more than individual customers
+* **CLI**: Command Line Interface, a text-based interface for user interaction
+* **GUI**: Graphical User Interface, a visual interface for user interaction
+* **API**: Application Programming Interface, a set of protocols, tools, and routines for building software applications
+* **Small business**: Product-selling business that has much fewer employees and lower revenue than a regular-sized business
+* **Enterprise customers**: Companies that order a large amount of products, much more than individual customers
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -922,29 +789,648 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a customer
 
-### Deleting a person
+1. Adding an individual customer
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: No customer with the name `Amy Bee` exists in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `addc ct/ind n/Amy Bee p/12345678 e/amy@example.com a/312, Amy Street 1`,
+      Expected: Customer 'Amy Bee' is added to the list. The added customer is displayed in the information panel. Details of the added customer shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Adding an enterprise customer
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Prerequisites: No customer with the name `The Enterprise` exists in the list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `addc ct/ent n/The Enterprise p/12345678 e/the@enterprise.com a/Enterprise Street 1`,
+      Expected: Customer 'The Enterprise' is added to the list. The added customer is displayed in the information panel. Details of the added customer shown in the status message.
+
+1. Adding a customer with invalid parameters
+
+   1. Prerequisites: No customer with the name `Amy Bee` exists in the list.
+
+   1. Test case: `addc ct/invalid n/Amy Bee p/12345678 e/amy@example.com a/312, Amy Street 1`,
+      Expected: No customer is added. Information panel remains the same. Error details shown in the status message.
+
+   1. Test case: `addc ct/ind n/Amy Bee* p/12345678 e/amy@example.com a/312, Amy Street 1`,
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+   1. Test case: `addc ct/ind n/Amy Bee p/invalid e/amy@example.com a/312, Amy Street 1`,
+      Expected: Similar to previous.
 
-### Saving data
+   1. Test case: `addc ct/ind n/Amy Bee p/12345678 e/invalid a/312, Amy Street 1`,
+      Expected: Similar to previous.
 
-1. Dealing with missing/corrupted data files
+   1. Test case: `addc ct/ind n/Amy Bee p/12345678 e/amy@example.com a/`,
+      Expected: Similar to previous.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Listing customers
 
-1. _{ more test cases …​ }_
+1. Listing all customers
+
+   1. Prerequisites: Multiple customers in the list.
+
+   1. Test case: `listc`<br>
+      Expected: All customers are shown in the list. Success message shown in the status message.
+
+1. Listing customers with valid sorting and filter options
+
+   1. Prerequisites: Multiple customers in the list.
+
+   1. Test case: `listc s/points`<br>
+      Expected: All customers are shown in the list sorted by points. Success message shown in the status message.
+
+   1. Test case: `listc f/ind`<br>
+      Expected: Only individual customers are shown in the list. Success message shown in the status message.
+
+   1. Test case: `listc s/points f/filtered`<br>
+      Expected: Only individual customers are shown in the list sorted by points. Success message shown in the status message.
+
+   1. Other valid test cases to try: `listc s/x`, `listc f/y`, `listc s/x f/y`, `...`
+      (where x is a valid sorting option and y is a valid filter option)<br>
+      Expected: List is sorted or filtered according to x and y.
+
+1. Listing customers with invalid sorting or filter options
+
+   1. Prerequisites: Multiple customers in the list.
+
+   1. Test case: `listc s/invalid f/marked`<br>
+      Expected: List remains the same. Error details shown in the status message.
+
+   1. Test case: `listc s/points f/invalid`<br>
+      Expected: List remains the same. Error details shown in the status message.
+
+   1. Other incorrect test cases to try: `listc s/x`, `listc f/y`, `listc s/x f/y`, `...`
+      (where x is an invalid sorting option and y is an invalid filter option)<br>
+      Expected: Similar to previous.
+
+### Finding customers
+
+1. Finding existing customers
+
+   1. Prerequisite: Only the customers 'Amy Bee' and 'Bob Choo' exists in the list.
+
+   1. Test case: `findc Amy`<br>
+      Expected: Only the customer 'Amy Bee' is shown. Success message with number of listed customers (1) shown in the status message.
+
+   1. Test case: `findc Bee Amy`<br>
+      Expected: Only the customer 'Amy Bee' is shown. Success message with number of listed customers (1) shown in the status message.
+
+   1. Test case: `findc Amy Bob`<br>
+      Expected: Both customers 'Amy Bee' and 'Bob Choo' are shown. Success message with number of listed customers (2) shown in the status message.
+
+1. Finding non-existent customers
+
+   1. Prerequisite: Only the customers 'Amy Bee' and 'Bob Choo' exists in the list.
+
+   1. Test case: `findc A`<br>
+      Expected: No customers are shown. Success message with number of listed customers (0) shown in the status message.
+
+1. Finding customers with zero keywords
+
+   1. Prerequisite: Multiple customers in the list
+
+   1. Test case: `findc`<br>
+      Expected: List remains the same. Error details shown in the status message.
+
+### Viewing a customer
+
+1. Viewing a customer with a valid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `viewc 1`<br>
+      Expected: First customer is displayed in the information panel. Details of the viewed customer shown in the status message.
+
+1. Viewing a customer with an invalid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `viewc 0`<br>
+      Expected: Information panel remains the same. Error details shown in the status message.
+
+   1. Other incorrect view commands to try: `viewc`, `viewc x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Editing a customer
+
+1. Editing a customer with valid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list. No customer with the name `Amy Bee` exists in the list.
+
+   1. Test case: `editc 1 p/12345678`
+      Expected: First customer's phone number updated to '12345678'. The updated customer is displayed in the information panel. Details of the updated customer shown in the status message.
+
+   1. Test case: `editc 1 ct/ent n/Amy Bee`
+      Expected: First customer's customer type updated to enterprise and name updated to 'Amy Bee'. The updated customer is displayed in the information panel. Details of the updated customer shown in the status message.
+
+1. Editing a customer with invalid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `editc ct/invalid`,
+      Expected: No customer is edited. Error details shown in the status message.
+
+   1. Test case: `editc n/Amy Bee*`,
+      Expected: Similar to previous.
+
+   1. Test case: `editc p/invalid`,
+      Expected: Similar to previous.
+
+   1. Test case: `editc e/invalid`,
+      Expected: Similar to previous.
+
+   1. Test case: `editc a/`,
+      Expected: Similar to previous.
+
+1. Editing a customer with an invalid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `editc 0`<br>
+      Expected: Information panel remains the same. Error details shown in the status message.
+
+   1. Other incorrect edit commands to try: `editc`, `editc x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Deleting a customer
+
+1. Deleting a customer with a valid index while all customers are being shown
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `deletec 1`<br>
+      Expected: First customer and any orders belonging to the customer is deleted from the list. Details of the deleted customer shown in the status message.
+
+1. Deleting a customer with a valid index while the customer is being displayed
+
+   1. Prerequisites: List and view the first customer using `listc` followed by `viewc 1`. Multiple customers in the list.
+
+   1. Test case: `deletec 1`<br>
+      Expected: First customer and any orders belonging to the customer is deleted from the list. Information panel is cleared. Details of the deleted customer shown in the status message. 
+
+1. Deleting a customer with a valid index while the customer's order is being displayed
+
+   1. Prerequisites: At least one order is in the list. List and view the first order using `listo` followed by `viewo 1`.
+      Find the order's customer using `findc FULL CUSTOMER NAME`.
+
+   1. Test case: `deletec 1`<br>
+      Expected: First customer and any orders belonging to the customer is deleted from the list. Information panel is cleared. Details of the deleted customer shown in the status message.
+
+1. Deleting a customer with an invalid index
+
+   1. Prerequisites: List customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `deletec 0`<br>
+      Expected: No person or order is deleted. Information panel remains the same. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `deletec`, `deletec x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Marking/Unmarking a customer
+
+1. Marking/Unmarking a customer with a valid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `markc 1`<br>
+      Expected: First customer is marked. The marked customer is displayed in the information panel. Details of the marked customer shown in the status message.
+   
+   1. Test case: `unmarkc 1`<br>
+      Expected: First customer is unmarked. The marked customer is displayed in the information panel. Details of the unmarked customer shown in the status message.
+
+1. Marking/Unmarking a customer with an invalid index
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+   
+   1. Test case: `markc 0`<br>
+      Expected: No customer is marked/unmarked. Information panel remains the same. Error details shown in the status message.
+   
+   1. Test case: `unmarkc 0`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect mark/unmark commands to try: `markc`, `markc x`, `unmarkc`, `unmarkc x`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Setting/Appending a customer's note
+
+1. Setting/Appending the note of a customer with valid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list. First customer in the list has a non-empty note.
+
+   1. Test case: `setnotec 1 nt/`<br>
+      Expected: The first customer's note is cleared. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+   1. Test case: `setnotec 1 nt/Example Note`<br>
+      Expected: The first customer's note is set to 'Example Note'. The customer is displayed in the information panel. Details of the customer shown in the status message.
+   
+   1. Test case: `appendnotec 1 nt/Extra Note`<br>
+      Expected: 'Extra Note' is appended to the first customer's existing note. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+1. Setting/Appending the note of a customer with invalid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `setnotec 0 nt/`<br>
+      Expected: No customer's note is affected. Information panel remains the same. Error details shown in the status message.
+
+   1. Test case: `appendnotec 0 nt/`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect note commands to try: `setnotec 1`, `appendnotec 1`, `setnotec x nt/`, `appendnotec x nt/`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+
+### Setting/Adding a customer's points
+
+1. Setting/Adding the points of a customer with valid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `setpoints 1 pt/0`<br>
+      Expected: The first customer's points and cumulative points is set to zero. The customer is displayed in the information panel. Details of the customer shown in the status message.
+  
+   1. Test case: `setpoints 1 pt/100`<br>
+      Expected: The first customer's points and cumulative points is set to 100. The customer is displayed in the information panel. Details of the customer shown in the status message.
+  
+   1. Test case: `addpoints 1 pt/0`<br>
+      Expected: The first customer's points and cumulative points remains the same. The customer is displayed in the information panel. Details of the customer shown in the status message.
+  
+   1. Test case: `addpoints 1 pt/100`<br>
+      Expected: 100 is added to the first customer's points and cumulative points. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+   1. Test case: `addpoints 1 pt/-100`<br>
+      Expected: 100 is subtracted from the first customer's points, while cumulative points remains the same. The customer is displayed in the information panel. Details of the customer shown in the status message.
+
+1. Adding the points of a customer resulting in points being out of range
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+  
+   1. Test Case: `setpoints 1 pt/999999`, followed by `addpoints 1 pt/1`<br>
+      Expected: Points will end up out of range. No customer's points is affected. Information panel remains the same. Error details shown in the status message.
+
+   1. Test Case: `setpoints 1 pt/0`, followed by `addpoints 1 pt/-1`<br>
+      Expected: Points will end up out of range. Similar to previous.
+
+   1. Test Case: `setpoints 1 pt/999999`, followed by `addpoints 1 pt/-999999`, followed by `addpoints 1 pt/1`<br>
+      Expected: Cumulative points will end up out of range. Similar to previous.
+
+1. Setting/Adding the points of a customer with invalid parameters
+
+   1. Prerequisites: List all customers using the `listc` command. Multiple customers in the list.
+
+   1. Test case: `setpoints 1 pt/1000000`<br>
+      Expected: No customer's points is affected. Information panel remains the same. Error details shown in the status message.
+
+   1. Test case: `setpoints 1 pt/-1`<br>
+      Expected: Similar to previous.
+
+   1. Test case: `addpoints 1 pt/1000000`<br>
+      Expected: Similar to previous.
+
+   1. Test case: `setpoints 0 pt/100`<br>
+      Expected: Similar to previous.
+   
+   1. Test case: `addpoints 0 pt/100`<br>
+      Expected: Similar to previous.
+
+   1. Other incorrect points commands to try: `setpoints x pt/100`, `addpoints x pt/100`, `...`
+      (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Adding an order
+
+1. Adding an order
+
+   1. Prerequisites: A customer with the name `Amy Bee` exists as the **first** customer in the customer list, but has no orders
+
+   2. Test case: `addo 1 n/Banana Cake` <br />
+      Expected: Order `Banana Cake` is added to the order list. The order should have a quantity of 1 and address that is the same to `Amy Bee`. The added order is displayed in the information panel. Details of the added order shown in the status message.
+
+   3. Test case: `addo 1 n/Chocolate Roll q/5 a/Gardens By The Bay` <br />
+      Expected: Order `Chocolate Roll` is added to the order list. The order should have a quantity of 5 and address of `Gardens By The Bay`. The added order is displayed in the information panel. Details of the added order shown in the status message.
+
+2. Adding an order with invalid parameters
+
+   1. Prerequisites: Only 1 customer exist in the customer list.
+
+   2. Test case: `addo 0 n/Banana Roll` <br />
+     Expected: No order is added. Information panel remains the same. Error details shown in the status message.
+
+   3. Test case: `addo 2 n/Banana Roll` <br />
+     Expected: Similar to previous.
+
+### Listing orders
+
+1. Listing all orders
+
+   1. Prerequisites: Multiple orders in the orders list.
+
+   2. Test case: `listo`<br />
+     Expected: All orders are shown in the list. Success message shown in the status message.
+
+2. Listing orders with valid sorting and filter option
+
+   1. Prerequisites: Multiple orders in the orders list.
+
+   2. Test case: `listo s/status`<br>
+      Expected: All orders are shown in the list sorted by status. Success message shown in the status message.
+
+   3. Test case: `listo f/pending`<br>
+      Expected: Only orders whose status are 'pending' are shown in the list. Success message shown in the status message.
+
+   4. Test case: `listo s/name f/paid`<br>
+      Expected: Only orders whose status are 'paid' are shown in the list sorted by name. Success message shown in the status message.
+
+   5. Other valid test cases to try: `listo s/x`, `listo f/y`, `listo s/x f/y`, `...`
+      (where x is a valid sorting option and y is a valid filter option)<br>
+      Expected: List is sorted or filtered according to x and y.
+
+3. Listing orders with invalid sorting or filter options
+
+    1. Prerequisites: Multiple orders in the list.
+
+    2. Test case: `listo s/invalid f/pending`<br>
+       Expected: List remains the same. Error details shown in the status message.
+
+    3. Test case: `listo s/status f/invalid`<br>
+       Expected: List remains the same. Error details shown in the status message.
+
+    4. Other incorrect test cases to try: `listo s/x`, `listo f/y`, `listo s/x f/y`, `...`
+       (where x is an invalid sorting option and y is an invalid filter option)<br>
+       Expected: Similar to previous.
+
+### Finding orders
+
+1. Finding existing orders
+
+    1. Prerequisite: Only the orders 'Banana Cake' and 'Chocolate Roll' exists in the order list.
+   
+    2. Test case: `findo Banana`<br>
+       Expected: Only the order 'Banana Cake' is shown. Success message with number of listed orders (1) shown in the status message.
+   
+    3. Test case: `findo Cake Banana`<br>
+       Expected: Only the order 'Banana Cake' is shown. Success message with number of listed orders (1) shown in the status message.
+   
+    4. Test case: `findo Banana Chocolate`<br>
+       Expected: Both orders 'Banana Cake' and 'Chocolate Roll' are shown. Success message with number of listed orders (2) shown in the status message.
+   
+2. Finding non-existent orders
+
+    1. Prerequisite: Only the orders 'Banana Cake' and 'Chocolate Roll' exists in the order list.
+
+    2. Test case: `findo A`<br>
+       Expected: No orders are shown. Success message with number of listed orders (0) shown in the status message.
+
+3. Finding orders with zero keywords
+
+    1. Prerequisite: Multiple orders in the list
+
+    2. Test case: `findo`<br>
+       Expected: List remains the same. Error details shown in the status message.
+
+### Viewing an order
+
+1. Viewing an order with a valid index
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `viewo 1`<br>
+       Expected: First order is displayed in the information panel. Details of the viewed order shown in the status message.
+
+2. Viewing an order with an invalid index
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple customers in the list.
+
+    2. Test case: `viewo 0`<br>
+       Expected: Information panel remains the same. Error details shown in the status message.
+
+    3. Other incorrect view commands to try: `viewo`, `viewo x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing an order
+
+1. Editing an order with valid parameters
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. No order with the name of 'Banana Cake', with quantity of 50 exists.
+
+    2. Test case: `edito 1 a/5th Smith Street`
+       Expected: First order's address updated to '5th Smith Street'. The updated order is displayed in the information panel. Details of the updated order shown in the status message.
+
+    3. Test case: `edito 1 q/50 n/Banana Cake`
+       Expected: First order's quantity updated to 50 and name updated to 'Banana Cake'. The updated order is displayed in the information panel. Details of the updated order shown in the status message.
+
+2. Editing an order with invalid parameters
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `edito q/invalid`,
+       Expected: No order is edited. Error details shown in the status message.
+
+    3. Test case: `edito a/`,
+      Expected: Similar to previous.
+
+### Deleting an order
+
+1. Deleting an order with a valid index while all orders are being shown
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `deleteo 1`<br>
+       Expected: First order is deleted from the list. Details of the deleted order shown in the status message.
+
+2. Deleting an order with a valid index while the order is being displayed
+
+    1. Prerequisites: List and view the first order using `listo` followed by `viewo 1`. Multiple orders in the list.
+
+    2. Test case: `deleteo 1`<br>
+       Expected: First order is deleted from the list. Information panel is cleared. Details of the deleted order shown in the status message.
+
+3. Deleting an order with an invalid index
+
+    1. Prerequisites: List orders using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `deleteo 0`<br>
+       Expected: No order is deleted. Information panel remains the same. Error details shown in the status message.
+
+    3. Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Setting/Appending an order's note
+
+1. Setting/Appending the note of an order with valid parameters
+
+    1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. First order in the list has a non-empty note.
+
+    2. Test case: `setnoteo 1 nt/`<br>
+       Expected: The first order's note is cleared. The order is displayed in the information panel. Details of the order shown in the status message.
+
+    3. Test case: `setnoteo 1 nt/Example Note`<br>
+       Expected: The first order's note is set to 'Example Note'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+    4. Test case: `appendnoteo 1 nt/Extra Note`<br>
+       Expected: 'Extra Note' is appended to the first order's existing note. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Setting/Appending the note of an order with invalid parameters
+
+    1. Prerequisites: List all order using the `listo` command. Multiple orders in the list.
+
+    2. Test case: `setnoteo 0 nt/`<br>
+       Expected: No order's note is affected. Information panel remains the same. Error details shown in the status message.
+
+    3. Test case: `appendnoteo 0 nt/`<br>
+       Expected: Similar to previous.
+
+    4. Other incorrect note commands to try: `setnoteo 1`, `appendnoteo 1`, `setnoteo x nt/`, `appendnoteo x nt/`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+
+### Advancing an order's status
+
+1. Advancing an order
+    
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `advo 1` <br />
+       Expected: The first order's note status is now 'Paid'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Advancing an order that is completed
+
+   1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Completed' status.
+
+   2. Test case: `advo 1` <br />
+      Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+3. Advancing an order that is cancelled
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Cancelled' status.
+
+    2. Test case: `advo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+
+### Reverting an order's status
+
+1. Reverting an order
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Paid' status.
+
+    2. Test case: `revo 1` <br />
+       Expected: The first order's note status is now 'Pending'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Advancing an order that is pending
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `revo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+
+### Cancelling an order
+
+1. Cancelling an order
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `cancelo 1` <br />
+       Expected: The first order's note status is now 'Cancelled'. The order is displayed in the information panel. Details of the order shown in the status message.
+
+2. Cancelling an order that is completed
+
+    1. Prerequisites: list all orders using the `listo` command. At least one order in the list. The first order is in 'Pending' status.
+
+    2. Test case: `cancelo 1` <br />
+       Expected: No order's status is affected. Information panel remains the same. Error details shown in the status message.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+[//]: # (@@author Junyi00)
+
+### Enabling Customers with Duplicate Names to be Created
+
+#### Current Situation / Problem
+
+It is a common occurrence for 2 customers to have the same full name. 
+However, an attempt to create a 2nd customer with the same name will fail as the user will face an error.
+
+The error occurs because LoyaltyLift does not allow 2 customers with the same name to exist. 
+In [`Customer.java`](https://github.com/AY2223S2-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/loyaltylift/model/customer/Customer.java), `Customer::isSameCustomer` is responsible for determining if 2 customers have the same identity, and it returns true if they have the same name.
+
+#### Possible Enhancements
+
+Ideally, a customer can be uniquely identified by a government-issued identification number (e.g. NRIC for Singaporeans). 
+However, this information is most likely unavailable to the small business owner; hence is not a feasible solution.
+
+Therefore, we propose 3 possible tweaks or solutions.
+
+1. **Use phone number to uniquely identify a customer**
+
+   Instead of using the customer's name, their phone number is a better unique identifier. 
+   With this solution, `Customer::isSameCustomer` will return true if 2 customers' phone numbers are equal. 
+   
+   **Pros**: There is a much lower probability of conflicts in the customer's phone number. One of the few possible occurrences is when a customer changes phone number, and another customer obtains that customer's previous phone number.
+
+   **Cons**: However, a customer may not want to be contacted through phone but through email instead. Hence, the business owner will not be able to create a customer in this situation.
+
+2. **Combining multiple attributes to uniquely identify a customer**
+
+   Building upon the idea of using phone number as a unique identifier, we can instead use a combination of attributes as a unique identifier.
+   Combining the customer's name, phone number and home address is possible. 
+   With this combination, `Customer::isSameCustomer` will return true if 2 customers' names, phone numbers and home addresses are all equal.
+
+   **Pros**: More robustly uniquely identify a customer in the absence of government-issued identification number.
+
+   **Cons**: It is more error-prone as a customer's information, such as his phone number and address can change over time. More attributes must be updated compared to just using a single attribute as a unique identifier.
+
+3. **Use a hidden identification number**
+
+   Instead of using the customer's name, a customer can be uniquely identified with a hidden, randomly generated unique identifier.
+   On creating every customer object, LoyaltyLift will allocate a new unique identifier number to the customer.
+   `Customer::isSameCustomer` will return true if 2 customers' hidden unique identifier are the same.
+
+   **Pros**: This tweak removes the dependency on the customer's personal information. Randomly generated unique identifier are quick to generate and have a very low chance of generating the same unique identifier.
+
+   **Cons**: Duplicated customers may be created in the application. Without any dependency, this increases the possibility for a single real customer to exist as 2 customers in LoyaltyLift. If the business owner is not careful or is unaware that the customer already exists in LoyaltyLift, he may accidentally create the same customer again. With a unique identifier such as the phone number or customer's name, the user will face an error when adding a 2nd customer with the same personal information. This indicates that the business owner may be making a mistake because the customer already exists in LoyaltyLift. 
+
+#### Extra Remarks
+
+While the above solutions are mostly feasible, we can also explore the idea of giving the flexibility to the business owner to decide the unique identifier.
+Using a phone number as the default unique identifier, most business owners may be satisfied and only face a few issues. This is because business owners can request that all customers share their phone numbers.
+
+However, future implementations can allow the business owner to configure LoyaltyLift to use an email address or a combination of phone number and email address as the unique identifier instead. 
+More experience users may wish for the freedom to configure this option or some users may require this feature to comply with regulations around sensitive customer data.
+
+[//]: # (@@author CloudHill)
+
+### Allow Customers to have similar Orders
+
+Currently, a customer cannot have two orders with the same product name, quantity, and address on the same day.
+This is because the orders will be considered as duplicates, as defined by `Order::isSameOrder`.
+
+To improve this, we plan to assign a unique ID for each order such that two orders are considered duplicates if they have the same ID.
+
+This ID can initially be randomly generated, but we then allow the user to define their own format as required by their business (e.g. some users may want to incorporate the order's created date into the identifier).
+
+### Setting Tiers
+
+Currently, the number of tiers in LoyaltyLift are hardcoded at three tiers. The names and points required for each tier are also cannot be customized. However, this can be inconvenient as users may have different point schemes.
+
+To support this, we plan to add a `settier` command that allows the user to set each tier's name and required points by index.
+For example, the customer may set the third tier to `Platinum` at 10,000 points by entering `settier 3 Platinum 10000`.
+
+While each tier will have some default color, we can also consider including an option for the user to provide a hex code for their desired color, e.g. `settier 3 Platinum 10000 1affff`.
+
+To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
+
+[//]: # (@@author)

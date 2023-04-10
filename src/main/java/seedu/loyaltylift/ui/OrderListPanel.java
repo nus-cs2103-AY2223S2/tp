@@ -3,10 +3,12 @@ package seedu.loyaltylift.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.loyaltylift.commons.core.LogsCenter;
 import seedu.loyaltylift.model.order.Order;
@@ -33,7 +35,7 @@ public class OrderListPanel extends UiPart<Region> {
         orderListView.setItems(orderList);
         orderListView.setCellFactory(listView -> new OrderListViewCell());
 
-        orderListView.getSelectionModel().selectedItemProperty().addListener(e -> {
+        orderListView.setOnMouseClicked((EventHandler<MouseEvent>) event -> {
             Order order = orderListView.getSelectionModel().getSelectedItem();
             if (order == null) {
                 return;

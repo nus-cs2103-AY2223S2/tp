@@ -1,10 +1,11 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 
 import java.util.List;
 
-import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
@@ -29,7 +30,9 @@ public class UnmarkCustomerCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARK_CUSTOMER_SUCCESS = "Un-bookmarked Customer: %1$s";
+    public static final String MESSAGE_UNMARK_CUSTOMER_SUCCESS = "Un-bookmarked Customer: \n%1$s";
+
+    public static final String MESSAGE_CUSTOMER_ALREADY_UNMARKED = "This customer is already unmarked!";
 
     private final Index index;
 
@@ -46,13 +49,21 @@ public class UnmarkCustomerCommand extends Command {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         Customer customerToUnmark = lastShownList.get(index.getZeroBased());
+
+        if (!customerToUnmark.getMarked().value) {
+            throw new CommandException(MESSAGE_CUSTOMER_ALREADY_UNMARKED);
+        }
+
         Customer unmarkedCustomer = createUnmarkedCustomer(customerToUnmark);
+
         model.setCustomer(customerToUnmark, unmarkedCustomer);
-        return new CommandResult(String.format(MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer));
+        model.setCustomerToDisplay(unmarkedCustomer);
+        return new CommandResult(String.format(MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer),
+                LIST_AND_SHOW_CUSTOMER);
     }
 
     /**

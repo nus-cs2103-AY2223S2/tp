@@ -17,7 +17,7 @@ import seedu.loyaltylift.model.order.Order;
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "loyaltylift")
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customers list contains duplicate customer(s).";

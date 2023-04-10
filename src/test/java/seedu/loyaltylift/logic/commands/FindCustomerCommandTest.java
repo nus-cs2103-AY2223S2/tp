@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW;
+import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_CUSTOMERS_ONLY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalCustomers.CARL;
@@ -56,21 +57,29 @@ public class FindCustomerCommandTest {
 
     @Test
     public void execute_zeroKeywords_noCustomerFound() {
-        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0);
         CustomerNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCustomerCommand command = new FindCustomerCommand(predicate);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 0),
+                LIST_CUSTOMERS_ONLY);
+
         expectedModel.updateFilteredCustomerList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredCustomerList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleCustomersFound() {
-        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
         CustomerNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCustomerCommand command = new FindCustomerCommand(predicate);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3),
+                LIST_CUSTOMERS_ONLY);
+
         expectedModel.updateFilteredCustomerList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredCustomerList());
     }
 
