@@ -39,7 +39,7 @@ Given below are my contributions to the project.
       and is not affected by external files.
     
   * Wrote test cases for `BatchAddCommand` and `BatchExportCommand`.
-  * Wrote javadocs for `AddCommand`, `BatchAddCommand` and `BatchExportCommand`.
+  * Wrote javadocs for `AddCommand`, `BatchAddCommand`, `BatchExportCommand` and `ClearCommand`.
 
 
 #### <u> Contributions to the UG </u>

@@ -14,9 +14,9 @@ public class FilterByPayrollPredicate implements Predicate<Employee> {
     private final boolean isEqualTo;
 
     /**
-     * FilterByPayroll constructor.
-     * @param comparisonAmount
-     * @param possibleOperators
+     * Creates a {@code FilterByPayrollPredicate} object and initialises values.
+     * @param comparisonAmount the amount to be compared to.
+     * @param possibleOperators the type of relation to be checked.
      */
     public FilterByPayrollPredicate(int comparisonAmount, boolean[] possibleOperators) {
         this.comparisonAmount = comparisonAmount;
@@ -26,6 +26,11 @@ public class FilterByPayrollPredicate implements Predicate<Employee> {
         this.isEqualTo = possibleOperators[2];
     }
 
+    /**
+     * Sets up the {@code Predicate} to check that {@code Employee}'s {@code Payroll} satisfies the criteria given.
+     * @param employee the employee to be checked.
+     * @return whether the condition is satisfied.
+     */
     @Override
     public boolean test(Employee employee) {
         if (isGreaterThan) {
@@ -37,6 +42,11 @@ public class FilterByPayrollPredicate implements Predicate<Employee> {
         }
     }
 
+    /**
+     * Checks if two instances of {@code FilterByPayrollPredicate} are equal.
+     * @param other the other instance.
+     * @return a boolean value.
+     */
     @Override
     public boolean equals(Object other) {
 

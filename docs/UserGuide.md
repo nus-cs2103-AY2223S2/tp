@@ -224,7 +224,7 @@ The command could be unsuccessful, and there are a few potential causes of this:
 1. There could be a *duplicate* entry in the file, i.e. two employees sharing the same identity in the file.
 2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly
    and the command will not run.
-3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format, 
+3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format,
 please refer to the instructions [here](#u-opening-csv-files-in-excel--u) to rectify this problem.
 
 
@@ -297,15 +297,16 @@ and it should look something like the below image.
 ![](images/UserGuide/batchexport/exportedFileLocation.png)
 
 <div markdown="span" class="alert alert-warning">
-:warning: Caution: 
+:warning: Caution:
 If you open the exported `.csv file` in `Excel`
 and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
 This could lead to issues when importing the file using the batchadd command. 
 To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:warning: Caution: 
+:warning: Caution:
 **Do take note to only export in `.csv file` and not any other file types.**
 </div>
 
@@ -313,7 +314,7 @@ To ensure the correct date format, please refer to the instructions [here](#u-op
 ### Listing all employees : `list`
 
 After searching for employees using the `find` command, you might realise that the left Panel no longer shows all the employees.
-In order to get the full list back, simply use the list command and it will show a list of all employees and
+In order to get the full list back, simply use the list command, and it will show a list of all employees and
 their details in the ExecutivePro database.
 
 Format: `list`
@@ -356,7 +357,7 @@ Examples:
 
 As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
 through the `find` command. By following the format below, ExecutivePro will show
-a list of all employees in ExecutivePro whose names match the keyword provided.
+a list of all employees in ExecutivePro whose names or departments match the keyword provided.
 
 Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
@@ -371,17 +372,28 @@ Examples:
   or they are in the 'Sales' department
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
+Below are the steps to use this command:
+
+**Step 1 (Inputting the search keywords) :**
+You can use the command syntax to input the search keywords, just like the image below.
+![](images/UserGuide/findInterface.png)
+
+**Step 2 (Results displayed) :**
+All the employees who match the keywords will be listed.
+![](images/UserGuide/findResults.png)
+
 --------------------------------------------------------------------------------------------------------------------
 ### Filtering out employees: `filter`
 
-As your database gets larger, finding employees based on certain conditions become more and more tedious.
-However, ExecutivePro has just the right thing for you! `filter` will list out all the employees
+As your database gets larger, searching through the whole database to find employees who satisfy a certain condition
+becomes extremely tedious.
+However, ExecutivePro has just the right feature for you! The `filter` command will list out all the employees
 satisfying the given condition.
 
 Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 
 
-* The filtering condition can be based on Payroll(`pr`) or the number of leaves remaining for an employee(`l`)
+* The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
 * The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
 * The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
@@ -390,6 +402,15 @@ Examples:
 * `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
 * `filter l = 1` displays list of all employees who have only 1 leave left
 
+Below are the steps to use this command:
+
+**Step 1 (Creating the criteria) :**
+You can use the command syntax to create the criteria, just like the image below.
+![](images/UserGuide/filterInterface.png)
+
+**Step 2 (Results displayed) :**
+All the employees who satisfy the criteria will be listed.
+![](images/UserGuide/filterResults.png)
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting an employee : `delete`
 
@@ -556,7 +577,7 @@ This table describes the requirements for the input format of the fields.
 | **List**        | `list`                                                                                                                                                                                                                                                                                                          |
 | **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                                          |
 | **Leave**       | `leave EMPLOYEE_ID l/LEAVE_COUNT`<br> e.g.,`leave 1 l/3`                                                                                                                                                                                                                                                        |
-| **Find**        | `find [*] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                  |
+| **Find**        | `find [*] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find * James Jake`                                                                                                                                                                                                                                                |
 | **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                       |
 | **Theme**       | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                                                                                                                     |
 | **SetPicture**  | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                                                                                                                               |
