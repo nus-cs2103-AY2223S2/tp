@@ -47,7 +47,6 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## Setup
@@ -77,7 +76,7 @@ Note:
 
 
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   <img src="images/Ui.png" alt="Ui" width="60%">
 
 
 5. Type in a command in the command box to execute it. Some commands to try:
@@ -89,7 +88,6 @@ Note:
 Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
-
 <div style="page-break-after: always;"></div>
 
 ## GUI Information
@@ -117,7 +115,6 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 | Backup description   | b/     |
 
 <sub>[return to table of contents](#table-of-contents)</sub>
-
 <div style="page-break-after: always;"></div>
 
 ## Features
@@ -146,7 +143,6 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 executed in lower case. E.g., `find` is valid, but `FIND` or `FinD` is considered as invalid. Keywords following commands do
 not need to be in lower case.
 </div>
-
 <div style="page-break-after: always;"></div>
 
 ### Adding a patient record: `add`
@@ -169,10 +165,9 @@ Examples:
 * `add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus`
 * `add i/T0012345B n/Betsy Crowe dob/18/12/1998 p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
 
-![Add](images/command_result/Add.png)
+<img src="images/command_result/Add.png" alt="Add" width="60%">
 
 Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
-
 <div style="page-break-after: always;"></div>
 
 ### Editing a patient record: `edit`
@@ -195,7 +190,6 @@ Examples:
 ![Edit](images/command_result/Edit.png)
 
 Above is the execution result of the input `edit 7 i/G0000000A`.
-
 <div style="page-break-after: always;"></div>
 
 ### Viewing a patient detailed particulars: `view`
@@ -214,7 +208,6 @@ Examples:
 ![View](images/command_result/View.png)
 
 Above is the execution result of the input `view i/S1234567H`.
-
 <div style="page-break-after: always;"></div>
 
 ### Deleting a patient record: `delete`
@@ -230,7 +223,6 @@ command, `undo` command will not undo all deletes made, but only **one** at a ti
 Examples:
 
 * `delete i/S1234567A` deletes the patient with NRIC S1234567A from patient records system.
-
 <div style="page-break-after: always;"></div>
 
 ### Filtering patients by attribute: `find`
@@ -265,10 +257,9 @@ Examples (The following results are based of the sample data provided):
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 * `find ad/Shannon` returns all persons with attending doctor `Shannon`.
 
-![Find](images/command_result/Find.png)
+<img src="images/command_result/Find.png" alt="Find" width="60%">
 
 Above is the execution result of the input `find ad/Alex`.
-
 <div style="page-break-after: always;"></div>
 
 ### Listing all patients: `list`
@@ -287,7 +278,6 @@ that you have loaded.
 ![List](images/command_result/List.png)
 
 Above is the execution result of the input `list`.
-
 <div style="page-break-after: always;"></div>
 
 ### Backing up patient records: `backup`
@@ -315,7 +305,6 @@ Examples:
 ![Backup](images/command_result/Backup.png)
 
 Above is the execution result of the input `backup 1`.
-
 <div style="page-break-after: always;"></div>
 
 ### Loading data: `load`
@@ -330,7 +319,6 @@ Format: `load INDEX_NO`
 Example:
 
 * `load 3` loads the data from the 3rd slot.
-
 <div style="page-break-after: always;"></div>
 
 ### Viewing backup data: `viewbackups`
@@ -345,7 +333,6 @@ Format: `viewbackups`
 ![Viewbackups](images/command_result/Viewbackups.png)
 
 Above is the execution result of the input `viewbackups`.
-
 <div style="page-break-after: always;"></div>
 
 ### Deleting backup data: `deletebackup`
@@ -361,7 +348,6 @@ Format: `deletebackup INDEX_NO`
 Example:
 
 * `deletebackup 3` deletes the data from the 3rd slot.
-
 <div style="page-break-after: always;"></div>
 
 ### Clearing all data: `clear`
@@ -377,7 +363,6 @@ Format: `clear`
 ![Clear](images/command_result/Clear.png)
 
 Above is the execution result of the input `clear`.
-
 <div style="page-break-after: always;"></div>
 
 ### Undoing previous command: `undo`
@@ -397,7 +382,6 @@ Changing the name of a patient above `edit 6 n/John Balakrishnan` (Previously Ro
 <br/><br/>![Undo-2](images/command_result/Undo-2.png)
 
 And above is the execution of `undo`
-
 <div style="page-break-after: always;"></div>
 
 ### Redoing previous undo: `redo`
@@ -412,7 +396,6 @@ Format: `redo`
 
 ![Redo](images/command_result/Redo.png)
 Following the above example for `undo`, `redo` would subsequently change the name of the patient again.
-
 <div style="page-break-after: always;"></div>
 
 ### Switching to light mode: `light`
@@ -424,7 +407,6 @@ Format: `light`
 ![Light](images/command_result/Light.png)
 
 Above is the execution result of the input `light`.
-
 <div style="page-break-after: always;"></div>
 
 ### Switching to dark mode: `dark`
@@ -439,7 +421,6 @@ Format: `dark`
 ![Dark](images/command_result/Dark.png)
 
 Above is the execution result of the input `dark`.
-
 <div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
@@ -452,10 +433,8 @@ Format: `help`
 
 Above is the view of help window after the input `help`.
 
-
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
-
 <div style="page-break-after: always;"></div>
 
 ## FAQ
@@ -468,7 +447,6 @@ Above is the view of help window after the input `help`.
 
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents)</sub>
-
 <div style="page-break-after: always;"></div>
 
 ## Command summary
