@@ -753,9 +753,8 @@ _**MSS**_
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;    
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -763,7 +762,6 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
    1. Download the jar file and copy into an empty folder
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
 1. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by double-clicking the jar file.<br>
@@ -802,7 +800,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect format to try:  
       - `not found query`:  `find abc`  
       Expected: 0 persons listed.
-
 1. Deleting a person while all persons are being shown
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
    1. Test case: `delete 1`<br>
@@ -834,10 +831,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to `1.ii`
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
-   
-
    1. Other incorrect approach to try:  
-
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  
       - date: invalid date.  
@@ -878,19 +872,18 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Job to delete is in the list.
    1. Test case: `select a job` > press `del` key<br>
       Expected: Job selected is removed.
+
 ### Notifications
 
 1. Display a notification for a reminder
    1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
    2. Test case: Current time has pass indicated time for Reminder <br> Expected: After adding reminder, notification for that reminder should pop up at the next clock minute.
    3. Test case: Current time has not pass indicated time for Reminder <br> Expected: No notification should show, unless clock minute has pass time indicated for reminder.
-
 2. Snooze reminder notification
     1. Prerequisites: Reminder has been added, current time has pass time indicated in reminder, and notification is showing.
    2. Test case: Clicking on body of notification should open up the Reminder List Window, and dismiss the notification. Notification should not show up again at next clock minute, unless a new reminder
 has been activated. 
    3. Due to the in-built nature of ControlsFX's notification and how reminders are checked at every minute, expect the notification to disappear and appear again every minute.
-
 3. Display a notification for next Scheduled slot
    1. Prerequisites: Assign a job to an appropriate timetable slot.
    2. Test case: Once current time is 20 minutes before the next timetable slot (e.g. 10:40 to 10:59), a notification would pop up for the number of jobs assigned to the next timetable slot.
@@ -902,19 +895,16 @@ has been activated.
     2. Command: `timetable` (Show timetable of current week - LocalDate.now()) or `timetable date date/YYYY-mm-DD`. The date should not be left empty. Alternative, for `timetable` command, user can use GUI mode instead: Menu bar > Timetable > Scheduled jobs.
     3. The output box in the window should show a message confirming that Timetable window is opened for the specific week containing the input date.
     4. The system should open Timetable for the specific week, showing job list in respective day and slot (if there are any jobs for that day - else, the column for the day will be empty).
-
 2. Display list of unscheduled jobs (i.e. jobs with invalid date and slot)
     1. Prerequisites: None.
     2. Command: `timetable_unscheduled` or GUI mode: Menu bar > Timetable > Unscheduled jobs.
     3. The output box in the Main window should show a message confirming that Unscheduled job is opened for the specific week.
     4. The system should open the Unscheduled Window, showing list of unscheduled jobs and total number of unscheduled jobs.
-
 3. Display list of completed jobs 
     1. Prerequisites: None.
     2. Command: `timetable_completed` or GUI mode: Menu bar > Timetable > Completed jobs.
     3. The output box in the Main window should show a message confirming that Completed job is opened for the specific week.
     4. The system should open the Completed Window, showing list of completed jobs and total number of completed jobs.
-
 4. Display timetable for specific week containing a specific date from Timetable Window
     1. Prerequisites: Opened Timetable window using `timetable` command from Main Window. Timetable of current week is shown in current Timetable Window.
     2. Command: `timetable date date/YYYY-mm-DD`. The date should not be left empty. 
@@ -922,6 +912,7 @@ has been activated.
     4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
 
 ### Statistics
+
 1. Display statistics of all jobs from Main Window
     1. Prerequisites: None.
     2. Command: `stats`. Alternative, for `stats` command, user can use GUI mode instead: Menu bar > Statistics > Display Statistics.
