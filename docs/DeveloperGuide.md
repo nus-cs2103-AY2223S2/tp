@@ -1178,7 +1178,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 7.1 Launch and shutdown
+### 7.1 Launch
 
 1. Initial launch
 
