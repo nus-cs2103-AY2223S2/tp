@@ -8,6 +8,9 @@ src/main/resources/docs/
 /out/
 /*.iml
 
+# VSCODE files
+/.vscode/
+
 # Storage/log files
 /data/
 /config.json
@@ -20,3 +23,6 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# Class files
+/bin/

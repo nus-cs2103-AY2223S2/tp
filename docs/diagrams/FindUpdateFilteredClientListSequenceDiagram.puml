@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "f:FindClientCommand" as FindClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager
+activate LogicManager
+LogicManager -> FindClientCommand : execute()
+activate FindClientCommand
+
+FindClientCommand -> Model : updateFilteredClientList(c)
+activate Model
+
+Model --> FindClientCommand
+deactivate Model
+
+create CommandResult
+FindClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindClientCommand
+deactivate CommandResult
+
+FindClientCommand --> LogicManager : result
+deactivate FindClientCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

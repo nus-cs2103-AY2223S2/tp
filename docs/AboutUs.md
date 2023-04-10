@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Zhe Rui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zrei.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zrei)]
+[[portfolio](team/zrei.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Testing
 
-### Johnny Doe
+### Rishi Chousalkar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mmaimer33.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/mmaimer33)]
+[[portfolio](team/mmaimer33.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Member
+* Responsibilities: Documentation
 
-### Jean Doe
+### Warren Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/verydaftpunk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/verydaftpunk)]
+[[portfolio](team/verydaftpunk.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Deliverables and deadlines, scheduling and tracking
+* Responsibilities: 'to be added'
 
-### James Doe
+### John Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/johnchiahk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/johnchiahk)]
+[[portfolio](team/johnchiahk.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: 'to be added'

@@ -33,11 +33,21 @@
 
 !define USER_COLOR #000000
 
+!define COMMON_COLOR #8000ff
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
 
 skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Object {
     FontColor #FFFFFF
     BorderThickness 1
     BorderColor #FFFFFF
@@ -71,5 +81,6 @@ skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
 hide footbox
-hide members
+hide methods
+hide empty attributes
 hide circle

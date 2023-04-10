@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+Class ModelManager
+
+Class UniqueProjectList
+Class Project
+Class Title
+Class Deadline
+Class Price
+Class Status
+Class Tag
+Class Client
+
+AddressBook *--> "1" UniqueProjectList
+UniqueProjectList --> "*" Project : all
+
+ModelManager -->"*" Project : filtered
+ModelManager -->"*" Project : sorted
+
+Project *--> "1" Title
+Project *--> "0..1" Deadline
+Project *--> "0..1" Price
+Project *--> "1" Status
+Project *--> "*" Tag
+Project *--> "0..1\nlinked client" Client
+
+@enduml
