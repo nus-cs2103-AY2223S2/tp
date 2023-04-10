@@ -7,18 +7,11 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_CUSTOMER_TYPE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCustomerCommand object
@@ -33,7 +26,7 @@ public class EditCustomerCommandParser implements Parser<EditCustomerCommand> {
     public EditCustomerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_CUSTOMER_TYPE);
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_CUSTOMER_TYPE);
 
         Index index;
 
@@ -57,7 +50,6 @@ public class EditCustomerCommandParser implements Parser<EditCustomerCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editCustomerDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCustomerDescriptor::setTags);
         if (argMultimap.getValue(PREFIX_CUSTOMER_TYPE).isPresent()) {
             editCustomerDescriptor.setCustomerType(
                     ParserUtil.parseCustomerType(argMultimap.getValue(PREFIX_CUSTOMER_TYPE).get()));
@@ -69,20 +61,4 @@ public class EditCustomerCommandParser implements Parser<EditCustomerCommand> {
 
         return new EditCustomerCommand(index, editCustomerDescriptor);
     }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
-
 }

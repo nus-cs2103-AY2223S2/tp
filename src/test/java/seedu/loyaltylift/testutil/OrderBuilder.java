@@ -98,10 +98,28 @@ public class OrderBuilder {
 
     /**
      * Sets the {@code Status} of the {@code Order} that we are building.
-     * Status will
+     * The status advance to the next logical stage.
      */
     public OrderBuilder withNextStatus(String date) {
         this.status = SampleDataUtil.getNextStatus(status, date);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Order} that we are building.
+     * The status will revert to its previous status.
+     */
+    public OrderBuilder withCancelledStatus(String date) {
+        this.status = SampleDataUtil.getCancelledStatus(status, date);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Order} that we are building.
+     * The status will be 'Cancelled'.
+     */
+    public OrderBuilder withPrevStatus() {
+        this.status = SampleDataUtil.getPrevStatus(status);
         return this;
     }
 

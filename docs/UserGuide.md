@@ -26,13 +26,13 @@ Are you excited yet? Let's get started!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer.
-   * If you have not installed Java, you can download and install Java for your computer from this [official website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
-   * If you already have Java installed, you can refer to this [instruction](https://appuals.com/check-java-version-win-mac/) to verify the version of Java installed.
+1. Ensure your computer has Java `11` or above installed.
+   * If you need to install Java, the [official website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) provides download links for most computer systems.
+   * You can verify your computer's Java installation with this [instruction](https://www.java.com/en/download/help/version_manual.html).
 
 2. Download the latest `loyaltylift.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-3/tp/releases).
 
-3. Copy the file to an empty folder. The folder will be your _home folder_ for LoyaltyLift.
+3. Copy the file to any empty folder; this will be your designated _home folder_ for LoyaltyLift.
 
 4. Double-click on `loyaltylift.jar` to launch LoyaltyLift. <br>
    A similar GUI, as seen below, should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -43,7 +43,7 @@ Are you excited yet? Let's get started!
 
    * `listc` : Lists all customers.
 
-   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to the Address Book.
+   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to LoyaltyLift.
      
    * `viewc 1` : Displays information of the 1st customer in the current customer list on the right panel (Information Panel) 
 
@@ -75,7 +75,7 @@ Before starting your journey with LoyaltyLift, let's take a quick look at the la
 ![Layout of LoyaltyLift](images/loyaltyLiftLayout.png)
 
 It comprises 3 panels, the *Information Panel*, *Command Panel* and *List Panel*. 
-The *List Panel* displays either **customers** or **orders**, which is controlled by *List Tabs*.
+The *List Panel* displays either **customers** or **orders**, controlled by *List Tabs*.
   
 The components are summarised below.
 
@@ -89,14 +89,14 @@ The components are summarised below.
 #### Using the CLI
 {: .no_toc}
 
-The *Command Panel* is where you type your commands and submit them.
+The *Command Panel* is where you type and submit your commands.
 LoyaltyLift then processes your request and performs them if it is successful.
 
 If LoyaltyLift understands your request, it will perform it and display feedback that it has succeeded, as seen below.
 
 ![CLI Success](images/cliSuccess.png)
 
-Otherwise, the input font will turn red instead as seen below. 
+Otherwise, the input font will turn red instead, as seen below. 
 The feedback will assist you in correcting the command as much as possible. 
 
 ![CLI Failure](images/cliFailure.png)
@@ -126,7 +126,7 @@ Enter the following command to insert a new customer _Lyndon Edwards_ along with
     addc n/Lyndon Edwards p/93015612 e/lyndon@example.com a/Loyalty Street 103, block 122, #01-20
 
 The application should already have your customer displayed by this step.
-Nonetheless, you can always type the following commands to list all customers and view the first customer in LoyaltyLift, which corresponds to _Lyndon Edwards_.
+Nonetheless, you can always type the following commands to list all customers and view the first customer in LoyaltyLift, corresponding to _Lyndon Edwards_.
 
     listc
     viewc 1
@@ -272,7 +272,7 @@ Rewarding your customers with points is an effortless process on LoyaltyLift usi
 [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or 
 [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints).
 
-In this scenario, we would like to add points to _Lyndon Edwards_ for his _Banana Cake_ order!
+In this scenario, we want to add points to _Lyndon Edwards_ for his _Banana Cake_ order!
 Here, we assume that _Lyndon Edwards_ is at your first index.
 
 Enter the following command to add points to _Lyndon Edwards_ to reward him points.
@@ -281,12 +281,12 @@ Enter the following command to add points to _Lyndon Edwards_ to reward him poin
 
 ![result after adding points](images/addingPointsResult.png)
 
-You should be able to see that _Lyndon Edwards_ has _800 points_.
+You should see that _Lyndon Edwards_ has _800 points_.
 
 Now that _Lyndon Edwards_ has some points, let's claim a reward on his behalf for being a loyal customer.
 In this scenario, let's say that it costs _500 points_ for a water bottle. 
 Let's use _500 points_ from _Lyndon Edwards_ to reward him with a water bottle!
-You can then easily track his new points again using the [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints) command.
+Using the [`addpoints`](#addingsubtracting-points-for-a-customer--addpoints) command, you can then easily track his new points again.
 
 Enter the following command to subtract points from _Lyndon Edwards_ after claiming a reward for him.
 
@@ -298,7 +298,7 @@ You should see that _Lyndon Edwards_ has _300 points_ remaining. However, do not
 as cumulative points are not subtracted away while claiming rewards.
 
 Lastly, perhaps you feel that this was an error. _Lyndon Edwards_ should have _8000 points_ for being such a loyal customer.
-You can overwrite his previous points, as well as his cumulative points, using the [`setpoints`](#setting-reward-points-for-a-customer--setpoints) command!
+You can overwrite his previous points and cumulative points, using the [`setpoints`](#setting-reward-points-for-a-customer--setpoints) command!
 
     setpoints 1 pt/8000
 
@@ -308,8 +308,8 @@ You should see that _Lyndon Edwards_ now has _8000 points_ and _8000 cumulative 
 Also, you should observe that he is now part of the **Silver** tier as he has above 5000 cumulative points!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The difference between `setpoints` and `addpoints` is that setting points will also set cumulative points to the same amount, 
-if you wish to keep the current cumulative points, use the `addpoints` command instead.
+The difference between `setpoints` and `addpoints` is that setting points will also set cumulative points to the same amount. 
+If you wish to keep the current cumulative points, use the `addpoints` command instead.
 </div>
 
 You should now be able to reward any of your customers with our point system!
@@ -530,7 +530,7 @@ editc CINDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/{ind|env}]
 
 #### Deleting a customer : `deletec`
 
-Delete a customer from the list.
+Deletes a customer from the list.
 
 **Format**
 
@@ -730,9 +730,9 @@ addpoints CINDEX pt/POINTS
 * If the points added will result in points or cumulative points being greater than 999999, 
 the command will not be executed.
 
-| Prefix  | Parameter     | Optional | Description                                                                   |
-|---------|---------------|:--------:|-------------------------------------------------------------------------------|
-| `pt/`   | Points        |          | - A positive integer to add points<br>- A negative integer to subtract points |
+| Prefix  | Parameter     | Optional | Description                                                                                           |
+|---------|---------------|:--------:|-------------------------------------------------------------------------------------------------------|
+| `pt/`   | Points        |          | *Either* <br /> A positive integer to add points<br/>*Or*<br /> A negative integer to subtract points |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Addition will also result in an addition of cumulative points, while subtraction will not affect cumulative points.
@@ -959,7 +959,7 @@ revo OINDEX
 * Edits the order at the specified `OINDEX`.
 * An order's status will be reverted in the following sequence: "Completed", "Shipped", "Paid", "Pending".
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
@@ -1139,8 +1139,23 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 ## FAQ
 
+### Customers
+{: .no_toc}
+
 **Q**: My customer's name includes special characters such as 'Jôse'; how can I add this customer into LoyaltyLift? <br />
-**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name such as `senotec 1 nt/Jôse`.
+**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name, such as `setnotec 1 nt/Jôse`.
+
+**Q**: How do I view a customer's order history in LoyaltyLift? <br />
+**A**: The order history of a customer is available when you view the customer's information in the information panel. To do so, you can first use `findc` command to locate the customer, then `viewc` command to display the customer in the information panel. The order history is found under the **History** section.
+
+**Q**: How can I store specific requests from my customer's for an order? <br />
+**A**: Using the `setnoteo` command, you can add information such as special customer requests for that particular order! Here is an example when your customer requests lesser sugar: `setnoteo 1 nt/less sugar`.
+
+**Q**: The note I have saved for my customer is no longer valid; how do I clear the note for this customer? <br />
+**A**: Assuming the customer is at position 1 in your customer list, you can execute the command `setnotec 1 nt/` to clear the current notes for a customer.
+
+### Orders
+{: .no_toc}
 
 **Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br />
 **A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all the customer's orders needs to be cleared. If this is not ideal, we recommend avoiding deleting any customers.
@@ -1148,14 +1163,17 @@ Customer and order data are saved in the hard disk automatically after any comma
 **Q**: Can my orders have a different address than the customer's address? <br />
 **A**: Yes! When you create an order using `addo`, you can specify the new address with the parameter `a/`. If this is not specified, the customer's address is used instead for your convenience.
 
-**Q**: How can I store specific requests from my customer's for an order? <br />
-**A**: Using the `setnoteo` command, you can add information such as special customer requests for that particular order! Here is an example  when your customer requests for lesser sugar: `setnoteo 1 nt/less sugar`.
+**Q**: I have cancelled or completed an order by accident, how do I undo this action? <br />
+**A**: With the `revo` command, you can quickly revert the order's last status change you have made with `advo` or `cancelo`!
+
+### Rewards
+{: .no_toc}
 
 **Q**: Are the reward tiers of my customers based on the cumulated points or the current points they have? <br />
 **A**: Currently, LoyaltyLift determines the tiers of your customers by the **cumulated points**. However, if you feel that a customer no longer deserves the tier, you can use `setpoints` to replace both his current and cumulated points so that it would be below the threshold of the tier!
 
-**Q**: How do I view a customer's order history in LoyaltyLift? <br />
-**A**: The order history of a customer is available when you view the customer's information in the information panel. To do so, you can first use `findc` command to locate the customer, then `viewc` command to display the customer in the information panel. The order history is found under the **History** section.
+**Q**: Is there a limit to my customers' cumulated points? <br />
+**A**: There is currently a limit of 999999 cumulated points for every customer. Do not fret as we will look into increasing this limit in future releases!  
 
 [🠕 Back To Top](#table-of-contents)
 
@@ -1165,42 +1183,42 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 ### Customer
 
-|                       Action | Format, Examples                                                                                                                                                 |
-|-----------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE e/EMAIL a/ADDRESS</code> <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` |
-|            **List Customer** | `listc` <br>                                                                                                                                                     |
-|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                       |
-|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                               |
-|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]</code> <br> e.g. `editc 1 p/91234567 e/johndoe@example.com`                      |
-|          **Delete Customer** | `deletec CINDEX`<br> e.g., `deletec 3`                                                                                                                           |
-|            **Mark Customer** | `markc CINDEX` <br> e.g., `markc 1`                                                                                                                              |
-|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g., `unmarkc 1`                                                                                                                          |                                                                                                                                      |
-|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                              |
-| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                        |
+|                       Action | Format, Examples                                                                                                                                                |
+|-----------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE e/EMAIL a/ADDRESS</code> <br> e.g. `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` |
+|            **List Customer** | `listc`                                                                                                                                                         |
+|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g. `findc Hans Bo`                                                                                                       |
+|            **View Customer** | `viewc CINDEX` <br> e.g. `viewc 2`                                                                                                                              |
+|            **Edit Customer** | <code>editc CINDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]</code> <br> e.g. `editc 1 p/91234567 e/johndoe@example.com`                     |
+|          **Delete Customer** | `deletec CINDEX`<br> e.g. `deletec 3`                                                                                                                           |
+|            **Mark Customer** | `markc CINDEX` <br> e.g. `markc 1`                                                                                                                              |
+|          **Unmark Customer** | `unmarkc CINDEX` <br> e.g. `unmarkc 1`                                                                                                                          |
+|    **Set Note for Customer** | `setnotec CINDEX nt/NOTE` <br> e.g. `setnotec 2 nt/Very friendly!`                                                                                              |
+| **Append Note for Customer** | `appendnotec CINDEX nt/NOTE` <br> e.g. `appendnotec 2 nt/Very friendly!`                                                                                        |
 
 ### Rewards
 
-|         Action | Format, Examples                                                                        |
-|---------------:|-----------------------------------------------------------------------------------------|
-| **Set Points** | `setpoints CINDEX pt/POINTS` <br> e.g., `setpoints 2 pt/100`                            |
-| **Add Points** | `addpoints CINDEX pt/[+/-]POINTS` <br> e.g., `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
+|         Action | Format, Examples                                                                       |
+|---------------:|----------------------------------------------------------------------------------------|
+| **Set Points** | `setpoints CINDEX pt/POINTS` <br> e.g. `setpoints 2 pt/100`                            |
+| **Add Points** | `addpoints CINDEX pt/[+/-]POINTS` <br> e.g. `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
 
 
 ### Order
 
-|                    Action | Format, Examples                                                                      |
-|--------------------------:|---------------------------------------------------------------------------------------|
-|             **Add Order** | `addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2` |
-|            **List Order** | `listo` <br>                                                                          |
-|            **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                      |
-|            **View Order** | `viewo OINDEX` <br> e.g. `viewo 2`                                                    |
-|            **Edit Order** | `edito OINDEX [n/NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
-|         **Advance Order** | `advo OINDEX`<br> e.g., `advo 1`                                                      |
-|          **Revert Order** | `revo OINDEX`<br> e.g., `revo 2`                                                      |
-|          **Cancel Order** | `cancelo OINDEX`<br> e.g., `cancelo 3`                                                |
-|          **Delete Order** | `deleteo OINDEX`<br> e.g., `deletec 3`                                                |                                                                                                                                     |
-|    **Set Note for Order** | `setnoteo OINDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                   |
-| **Append Note for Order** | `appendnoteo OINDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`             |
+|                    Action | Format, Examples                                                                     |
+|--------------------------:|--------------------------------------------------------------------------------------|
+|             **Add Order** | `addo CINDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g. `addo 1 n/Banana Cake 1 q/2` |
+|            **List Order** | `listo`                                                                              |
+|            **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g. `findo banana muffin`                      |
+|            **View Order** | `viewo OINDEX` <br> e.g. `viewo 2`                                                   |
+|            **Edit Order** | `edito OINDEX [n/NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g. `edito 2 n/Brownies q/10` |
+|         **Advance Order** | `advo OINDEX`<br> e.g. `advo 1`                                                      |
+|          **Revert Order** | `revo OINDEX`<br> e.g. `revo 2`                                                      |
+|          **Cancel Order** | `cancelo OINDEX`<br> e.g. `cancelo 3`                                                |
+|          **Delete Order** | `deleteo OINDEX`<br> e.g. `deletec 3`                                                |
+|    **Set Note for Order** | `setnoteo OINDEX nt/NOTE` <br> e.g. `setnoteo 2 nt/Very friendly!`                   |
+| **Append Note for Order** | `appendnoteo OINDEX nt/NOTE` <br> e.g. `appendnoteo 2 nt/Very friendly!`             |
 
 ### Miscellaneous
 

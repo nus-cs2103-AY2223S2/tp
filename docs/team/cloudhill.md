@@ -43,7 +43,8 @@ Given below are my contributions to the project.
     * Updated the UI section to fit LoyaltyLift [\#168](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/168)
     * Added **Allow Customers to have similar Orders** to planned enhancements [\#168](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/168)
     * Added **Setting tiers** to planned enhancements [\#174](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/174)
+    * Added **Access Orders made by a specific Customer** to planned enhancements [\#203](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/203)
     * Added manual testing instructions for customer commands [\#181](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/181)
 
 * **Community**:
-  * Reviewed 11 PRs, 4 with non-trivial comments: [\#43](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/43), [\#53](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/53), [\#71](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/71), [\#173](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/173)
+  * PRs reviewed (with non-trivial comments): [\#43](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/43), [\#53](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/53), [\#71](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/71), [\#173](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/173)

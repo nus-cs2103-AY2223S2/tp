@@ -1,9 +1,5 @@
 package seedu.loyaltylift.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.model.attribute.Address;
@@ -12,7 +8,6 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * A utility class to help with building EditCustomerDescriptor objects.
@@ -38,7 +33,6 @@ public class EditCustomerDescriptorBuilder {
         descriptor.setPhone(customer.getPhone());
         descriptor.setEmail(customer.getEmail());
         descriptor.setAddress(customer.getAddress());
-        descriptor.setTags(customer.getTags());
         descriptor.setCustomerType(customer.getCustomerType());
     }
 
@@ -79,16 +73,6 @@ public class EditCustomerDescriptorBuilder {
      */
     public EditCustomerDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditCustomerDescriptor}
-     * that we are building.
-     */
-    public EditCustomerDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

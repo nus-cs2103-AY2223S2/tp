@@ -1,15 +1,9 @@
 package seedu.loyaltylift.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,17 +17,14 @@ import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.tag.Tag;
 
 public class ParserUtilTest {
-
     private static final String INVALID_QUANTITY_1 = "0";
     private static final String INVALID_QUANTITY_2 = "1000001";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
     private static final String INVALID_CUSTOMER_TYPE = "person";
     private static final String INVALID_CUSTOMER_POINTS = "-1";
     private static final String INVALID_ADD_POINTS = "1000000";
@@ -45,8 +36,6 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_CUSTOMER_TYPE_IND = "ind";
     private static final String VALID_CUSTOMER_TYPE_ENT = "ent";
     private static final String VALID_CUSTOMER_POINTS = "100";
@@ -198,52 +187,6 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
-    }
-
-    @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-    }
-
-    @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-    }
-
-    @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    }
-
-    @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
     }
 
     @Test
