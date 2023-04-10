@@ -1,0 +1,16 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters ldhc command;
+if () then ([else])
+  :Error: Invalid command format;
+([Command format is valid])elseif () then ([else])
+  :Error: Department does not exist in SudoHR;
+([Department exists in SudoHr]) elseif () then ([else]))
+    : Error: Invalid date;
+else ([Date is not given or given date is valid])
+    :ldhc command successfully executes.;
+endif
+stop
+
+@enduml
