@@ -12,7 +12,10 @@ import java.util.Set;
 
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliverySlot;
+import seedu.address.model.jobs.Earning;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -160,7 +163,10 @@ public class ImportDeliveryJobCommandParser {
         listOfCustomers.add(recipient);
 
         if (ded.equals("na") && des.equals("na")) {
-            DeliveryJob job = new DeliveryJob(rid, sid, ear, "");
+            Optional<DeliveryDate> date = Optional.empty();
+            Optional<DeliverySlot> slot = Optional.empty();
+            Optional<Earning> earn = Optional.of(new Earning(ear));
+            DeliveryJob job = new DeliveryJob(rid, sid, date, slot, earn, "");
         }
 
         DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
