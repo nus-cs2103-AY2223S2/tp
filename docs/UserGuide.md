@@ -71,7 +71,9 @@ By using MM, medical professionals can manage patient data more efficiently and 
      a patient named `John Doe` to the Patient List.
    * `delete 3` : Deletes the 3rd patient shown in the current list.
    * `exit` : Exits the app.
-7. Refer to the [Features](#features) below for details of each command.
+
+* Refer to the [Features](#features) below for details of each command.
+
 ---
 ## Features
 
