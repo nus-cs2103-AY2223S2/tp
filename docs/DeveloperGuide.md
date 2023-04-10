@@ -1350,7 +1350,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Result Display. This is because `Interviewing`
    is not a valid value for the `STATUS` field.
 
-6. `find n/Google n/Meta s/New s/Assessment`
+6. `find n/Google n/Samsung s/Applied s/Assessment`
 
    **Expected**: Only the internship entry with company name `Google` and status `Assessment` is
    filtered out. This is because all other internship entries do not have a matching value with both
@@ -1439,9 +1439,9 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Result Display. This is because `Interviewing`
    is not a valid value for the `STATUS` field.
 
-6. `delete-field n/Google n/Meta s/Assessment s/Applied`
+6. `delete-field n/Google n/Samsung s/Assessment s/Applied`
 
-   **Expected**: Only the internship with company name `Google` and status `Applied` is deleted,
+   **Expected**: Only the internship with company name `Google` and status `Assessment` is deleted,
    because all the other internships do not have a matching field for both `CompanyName` and `Status`.
 
 7. `delete-field s/Assessment s/Interview t/Android`

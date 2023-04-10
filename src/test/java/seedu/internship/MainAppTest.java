@@ -9,7 +9,7 @@ import seedu.internship.commons.core.Version;
 public class MainAppTest {
     @Test
     public void getVersionNumber_correct() {
-        assertEquals(MainApp.VERSION, new Version(1, 3, 3, true));
+        assertEquals(MainApp.VERSION, new Version(1, 4, 1, true));
 
     }
 }
