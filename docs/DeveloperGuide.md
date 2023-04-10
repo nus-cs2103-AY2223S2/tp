@@ -58,8 +58,6 @@ respective header.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **2. Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
@@ -269,7 +267,7 @@ model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module`
 to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
 <p align="center">
-    <img src="images/BetterModelClassDiagram.png" width="650" />
+    <img src="images/BetterModelClassDiagram.png" width="650">
 </p>
 
 <div align="center"> A more OOP model of the Model component. </div>
