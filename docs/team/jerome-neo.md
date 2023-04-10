@@ -30,8 +30,14 @@ Given below are my contributions to the project.
   * Reduce window white space which was present on macOS users. ([#51](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/51))
 
 * **Contributions to the Developer Guide**
+  * User stories
+    * Crafted user stories with the team.
+  * Use cases
+    * Crafted some use cases with the team.
   * Added `findevent` documentation as well as sequence diagrams. ([#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63))
   * Updated storage diagrams as well as class diagrams. ([#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63))
+  * Added proposed enhancements and features. ([#135](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/135))
+  * Added additional information on manual testing and use cases for `findevent`. ([#135](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/135))
 
 * **Contributions to the User Guide**
   * Update documentation for `listevent`. ([#30](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/30))
@@ -41,9 +47,10 @@ Given below are my contributions to the project.
 * **Contributions to team-based tasks**
   * Update team information and images. ([#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10))
   * Added user stories to tp issue tracker.
+  * Worked on the demo video with the team.
 
 * **Review/mentoring contributions**
-  * PRs reviewed (with useful comments): [#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33), [#69](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/69)
+  * PRs reviewed (with useful comments): [#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33), [#69](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/69), [#131](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/131).
 
 * **Contributions beyond the project team**
-  * Reported 10 bugs for: [PE-D Issues link](https://github.com/jerome-neo/ped/issues)
+  * Reported 10 bugs for: [PE-D Issues link](https://github.com/jerome-neo/ped/issues).

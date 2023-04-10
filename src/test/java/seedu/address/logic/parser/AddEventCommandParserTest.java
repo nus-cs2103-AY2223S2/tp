@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EVENT_NAME_DESC_SPORT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATE_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATE_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATE_TIME_DESC_CARNIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.START_DATE_TIME_DESC_CARNIVAL;
 import static seedu.address.logic.commands.CommandTestUtil.START_DATE_TIME_DESC_SPORTS_DAY;
@@ -78,16 +79,24 @@ public class AddEventCommandParserTest {
         assertParseFailure(parser, INVALID_EVENT_NAME_DESC + START_DATE_TIME_DESC_CARNIVAL
                 + END_DATE_TIME_DESC_CARNIVAL, EventName.MESSAGE_CONSTRAINTS);
 
-        // invalid start date time
+        // invalid start date time format
         assertParseFailure(parser, EVENT_NAME_DESC_CARNIVAL + INVALID_START_DATE_TIME_DESC
                 + END_DATE_TIME_DESC_CARNIVAL, DateTime.MESSAGE_CONSTRAINTS);
 
-        // invalid end date time
+        // invalid end date time format
         assertParseFailure(parser, EVENT_NAME_DESC_CARNIVAL + START_DATE_TIME_DESC_CARNIVAL
                 + INVALID_END_DATE_TIME_DESC, DateTime.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_EVENT_NAME_DESC + START_DATE_TIME_DESC_CARNIVAL
                 + INVALID_END_DATE_TIME_DESC, EventName.MESSAGE_CONSTRAINTS);
+    }
+
+
+    @Test
+    public void parse_invalidDateTimeRange_failure() {
+        // start date time is after end date time
+        assertParseFailure(parser, EVENT_NAME_DESC_CARNIVAL + INVALID_START_DATE_TIME_DESC_CARNIVAL
+                + END_DATE_TIME_DESC_CARNIVAL, DateTime.MESSAGE_CONSTRAINTS);
     }
 }
