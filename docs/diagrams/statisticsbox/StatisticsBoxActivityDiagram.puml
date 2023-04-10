@@ -1,0 +1,31 @@
+@startuml
+
+!include ../style.puml
+
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+participant "statisticBox:StatisticBox" as StatisticBox UI_COLOR_T2
+participant ":Logic" as Logic LOGIC_COLOR_T2
+participant "filteredProjectList:FilteredProjectList" as FilteredProjectList MODEL_COLOR
+
+[-> MainWindow : fillInnerPart()
+activate MainWindow
+create StatisticBox
+MainWindow -> StatisticBox
+activate StatisticBox
+StatisticBox -> StatisticBox : loadDataOnBox()
+StatisticBox -> Logic : getFilteredProjectList()
+activate Logic
+Logic --> StatisticBox : filteredProjectList
+deactivate Logic
+StatisticBox -> FilteredProjectList : addListener()
+activate FilteredProjectList
+FilteredProjectList --> StatisticBox
+deactivate FilteredProjectList
+StatisticBox -> StatisticBox : setPieChart()
+StatisticBox -> StatisticBox : setProjectData() 
+StatisticBox --> MainWindow : statisticBox
+deactivate StatisticBox
+MainWindow -->[ 
+deactivate MainWindow
+
+@enduml
