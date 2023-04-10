@@ -436,13 +436,11 @@ Examples:
 #### Listing persons: `list`
 
 Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
-* If `PAIRED` or `UNPAIRED` keyword is not specified, this command helps you to easily see all the elderly, volunteer and pairs in the database, especially if you want to revert to the full list after filtering the list with the `find` command.
-* If `PAIRED` or `UNPAIRED` keyword is specified, it allows you to quickly view the persons who are paired or not paired, therefore helps the decision-making.
 
 Format: `list <[PAIRED \ UNPAIRED]>`
 
-* `<[PAIRED \ UNPAIRED]>` indicates that either "paired" or "unpaired" can be specified after the list command.
-    * If "paired" or "unpaired" is not specified, all persons will be listed.
+* If `PAIRED` or `UNPAIRED` keyword is not specified, this command helps you to easily see all the elderly, volunteer and pairs in the database, especially if you want to revert to the full list after filtering the list with the `find` command.
+* If `PAIRED` or `UNPAIRED` keyword is specified, it allows you to quickly view the persons who are paired or not paired, therefore helps the decision-making.
 * The preamble is case-insensitive e.g. `pAIReD` is equivalent to `paired`.
 * Pair list will always list all pairs when the command executes.
 

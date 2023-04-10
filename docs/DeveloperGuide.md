@@ -984,26 +984,45 @@ Currently, names do not accept `.` and `\\`. This may cause some problems where 
 We should modify the name to accept these special characters.
 
 --------------------------------------------------------------------------------------------------------------------
-## Glossary
 
-| Term                  | Definition                                                                                                                                                  |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     |
-| Date                  | A date representing the timestamp of an event, in the format `YYYY-MM-DD`                                                                                   |
-| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink                                                            |
-| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
-| Elderly               | Elderly are people under the care of your VWO                                                                                                               |
-| Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
-| FriendlyLink          | The name of our application                                                                                                                                 |
-| Field                 | A field is the information following the slash in a command.                                                                                                |
-| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
-| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
-| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
-| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
-| Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
-| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
-| Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
-| Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
-| Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
-| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
-| VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
+## Glossary
+These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [How to use this User Guide](#how-to-use-this-user-guide) and the [Fields](#fields) section.
+
+### Non-Technical
+
+| Term                  | Meaning                                                                                                              |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------|
+| Availability Date     | The availability of a person.                                                                                        |
+| BirthDate             | The birth date of a person.                                                                                          |
+| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                              |
+| Date                  | The date of an event.                                                                                                |
+| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink.                    |
+| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink.                                   |
+| Elderly               | Elderly are people under the care of your VWO.                                                                       |
+| Email                 | The email of a person.                                                                                               |
+| FriendlyLink          | The name of our application.                                                                                         |
+| Field                 | A field is the information following the slash in a command.                                                         |
+| Index                 | An index represents the position of the referred item in a displayed list of persons.                                |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the skill name and a skill level.               |
+| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                               |
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly.                    | 
+| Phone number          | The phone number of a person.                                                                                        |
+| Prefix                | Prefix refers to the characters appearing before a slash in a command. Prefix describe the field that it represents. |
+| Region                | The general portion of area in Singapore.                                                                            |
+| Risk level            | The susceptibility level of an elderly to injury or sickness.                                                        |
+| Tag                   | A generic description for a group of people.                                                                         |
+| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members.                                             |
+| VWO                   | Voluntary Welfare Organisations such as yourself.                                                                    |
+
+### Technical
+
+| Term     | Meaning                                                                                                                                                                                  |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Java     | Java is a programming language that FriendlyLink is written in. It is required to run the application.                                                                                   |
+| JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
+| JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
+| Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |
+
+[Back to top](#table-of-contents)
+
+-------------------------------------------
