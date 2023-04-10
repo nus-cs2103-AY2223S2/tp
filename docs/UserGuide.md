@@ -169,7 +169,7 @@ Here is a quick summary of each GUI component within Docedex.
 
 ### Notes about the GUI
 
-#### Selecting doctors or patients through commands**
+#### Selecting doctors or patients through commands
 
 Certain commands involve the selection of doctors
 and patients immediately after they are entered.
@@ -184,14 +184,14 @@ no patients, and thus the Patient List will be empty.
 
 This behaviour will also exist if the user adds a patient instead too.
 
-<div markdown="block" class="alert alert-error">
+<div markdown="span" class="alert alert-error">
 Some users have mentioned being alarmed by sudden disappearances of
 their Doctor Cards and Patient Cards within their respective lists
 after entering certain commands. The explainer above details why this happens.
 Fret not, as this is part of the functionality of Docedex. Your storage is still secure.
 </div>
 
-#### Unselecting doctors or patients**
+#### Unselecting doctors or patients
 
 Unselecting doctors and patients is currently not supported in Docedex. If you wish to
 look through all the doctors and patients in Docedex, please use the
@@ -255,7 +255,7 @@ This is a tutorial for **first-time** Docedex users.
 Adding doctor command, also calls select doctor to display the recently added information in the Enlarged Contact Card.
 **If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -284,7 +284,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Edit doctor command, also calls select doctor to display the recently updated information in the Enlarged Contact Card.
 **If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -339,7 +339,7 @@ Examples:
 Selecting doctor command displays only the recently queried doctor's information in the Enlarged Contact Card.
 **If no patients appear in the patients list**, it is because none have been assigned to the doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 
@@ -369,7 +369,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Adding patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 **If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -387,7 +387,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Assign patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -405,7 +405,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Unassign (undo assignment) patient command, also calls select patient to display the recently added information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient is assigned to no doctors).
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -434,7 +434,7 @@ For more information see: [Selecting doctors or patients through commands](#sele
 Edit patient command, also calls select patient to display the recently updated information in the Enlarged Contact Card.
 The doctors that appear in the doctors list, are those that the patient has been assigned to (if no doctors are displayed, the patient has not been assigned to any doctor). 
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -487,7 +487,7 @@ Examples:
 Selecting patient command only displays the recently queried patients' information in the Enlarged Contact Card.
 **If no doctors appear in the doctors list**, it is because the patient has not been assigned to any doctor.
 
-For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands--)
+For more information see: [Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
 </div>
 
 [Scroll back to Table of Contents](#table-of-contents)
@@ -579,7 +579,8 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 
 ### Using Docedex
 **Q**: I entered a command and my doctor/patient list was cleared. What happened?<br>
-**A**: Within the [Notes about the GUI](#notes-about-the-gui) section, refer to the
-subsection titled _"Selecting doctors or patients through commands"_ for an explanation of why this occurs.
+**A**: Refer to the subsection titled
+[Selecting doctors or patients through commands](#selecting-doctors-or-patients-through-commands)
+for an explanation of why this occurs.
 
 [Scroll back to Table of Contents](#table-of-contents)
