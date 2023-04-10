@@ -69,7 +69,7 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 
 <br>
 
-2. Download the latest `medimeet.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-4/tp/releases/download/v1.2/medimeet.jar).
+2. Download the latest `medimeet.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MediMeet.
 
@@ -242,7 +242,7 @@ Format: `remark_patient INDEX [r/REMARK]`
 Example:
 * `remark_patient 4 r/Blood test required` Adds a note `Blood test required` to the patient.
   ![Remark command](images/remarkCommand.png)
-* `remark_patient 4` Removes any existing note from the patient.
+* `remark_patient 4` Removes any existing note from the 4th patient in the patient list.
 
 ### Viewing a patient: `view`
 
