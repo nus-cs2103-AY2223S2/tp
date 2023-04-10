@@ -302,19 +302,20 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 
 ## **Architecture**
 
+Given below is a quick overview of main components and how they interact with each other.
+
 <img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
 
-Given below is a quick overview of main components and how they interact with each other.
 
 ### **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initialises the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: initialising the components in the correct sequence, and connecting them up with each other.
+* At shut down: Shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
