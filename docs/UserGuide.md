@@ -8,7 +8,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;">
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -45,9 +45,9 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-
+</div>
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;">
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -78,7 +78,6 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * All `DATETIME` must strictly be in this format: `DD-MM-YYYY HH:mm`.
 
 </div>
-
 ### Contact Features
 
 #### Adding a person: `add`
@@ -327,16 +326,18 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
+</div>
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;">
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder. <br>
 **Q**: My commands are not working properly? <br>
 **A**: Check that your commands are using the correct prefix. Check for extra `/` being used.
+</div>
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;">
 ## Command summary
 
 Action | Format, Examples
@@ -357,7 +358,4 @@ Action | Format, Examples
 **Help** | `help`
 **Sort Event** | `sortevent SORT_KEY` <br> e.g., `sortevent c`
 
-
-
-
-
+</div>
