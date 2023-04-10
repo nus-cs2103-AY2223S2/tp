@@ -273,7 +273,7 @@ The activity diagram of the `deleteStudent` command is extremely similar to that
 
 The following sequence diagram summarizes the interaction of classes when the command `deleteStudent 1 Tutorial/1` is called.
 
-<img src="images/DeleteStudentSequenceDiagram.png" />
+<img src="images/DeleteStudentSequenceDiagramWithoutReturns.png" />
 
 #### Design considerations:
 
