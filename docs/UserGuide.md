@@ -636,7 +636,7 @@ Example:
         ]
       }
     ],
-    "location": "https://us02web.zoom.us/j/99999999999?pwd=ABCdEfGHiJkYkRuYW5WTLmNopQrSt12",
+    "location": "https://us02web.zoom.us/j/999?pwd=ABCdEfGmNopQrSt12",
     "description": "Plan for project work"
   }
 ]
@@ -764,7 +764,7 @@ the data of your previous QuickContacts home folder.
 ## Command summary
 
 | Action                       | Format, Examples                                                                                                                                                                                                     |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Create a contact**         | `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Reset all data**           | `clear`                                                                                                                                                                                                              |
 | **Delete a contact**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                  |
@@ -775,7 +775,7 @@ the data of your previous QuickContacts home folder.
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
-| **List all meetings**        | `findm`                                                                                                                                                                                                              |
+| **List all meetings**        | `findm`<div style="page-break-after: always;"></div>                                                                                                                                                                 |
 | **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                   |
 | **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                 |
 | **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
