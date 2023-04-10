@@ -267,7 +267,7 @@ Following the Favourite Contacts Command, we want users to fully manage their fa
 The Unfavourite Command works by having the User entering a "unfav" command and specify the index of that particular contact that is currently in the Favourite List. The index will be displayed on the UI of the AddressBook.
 The Unfavourited Contact will remove the Star Emoji displayed beside the Contact's name and remove the Contact from the Favourite List.
 
-### Command for Add Event
+### Command for Adding Events
 
 NeoBook implements an Event Calendar Interface for users to track any notable events. There are 2 types of Events that can be added by the Users. Firstly, a One Time event that occurs only once on the specified date and time.
 Secondly, recurring events that occur periodically e.g. Weekly Lectures, Daily Reminders etc. There are multiple recurrences which can be specified by the users: Daily, Weekly, Monthly and Yearly.
@@ -277,7 +277,7 @@ The Add Event Command works by having the User entering the "addevent" command. 
 End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
 If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of NeoBook.
 
-### Command for Edit Event
+### Command for Editing Events
 
 The Edit Event Command allows users to modify any of the specific fields for an existing event in the NeoBook calendar. To use this command, the user will enter "editevent" followed by the index number that corresponds to the event they wish to modify.
 The user can then include multiple field prefix/desired-change arguments in the same command. The field prefixes are as follows: "d" for Description, "s" for Start Date, "e" for End Date, and "r" for Recurrence Type.
@@ -286,7 +286,7 @@ After each field prefix, the user should enter the desired change they would lik
 Once all the desired fields have been updated, the Success Message will prompt to the user that the event has been updated in the Events Calendar UI of NeoBook.
 It is important to note that the index number must be specified in order to edit an event, and at least one field prefix/desired-change argument must be included in the command. If an incorrect index number is entered or if a field prefix is misspelled or not recognized, the command will not work and an error message will be displayed.
 
-### Command for Tagging Person to Event
+### Command for Tagging People to Events
 
 The Tag Person to Event command allows users to tag a contact in their NeoBook to an event. Not only does it tag the person to the event, but any changes to the person will also dynamically change the information of the tagged person to the event. Currently, due to how the storage is set up, there is no way to have the same Person object be linked properly to the event. This is because on startup, NeoBook recreates a new Person object in its addressbook while each event essentially just creates a new Person object that it is tagged to. However, it would not make sense if the user had to manually update the tag if anything within the contact changed. So to dynamically pair the Person object being tagged to the event and the Person object in the Contacts list, NeoBook checks through all events on any EditPersonCommand and to look for any event where the person is tagged to. Then it edits those Person objects to its new edited version.
 
