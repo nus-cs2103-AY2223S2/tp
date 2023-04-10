@@ -248,6 +248,7 @@ Therefore, we use different terms to avoid confusion.
 
   - ![Entire List](images/entireList3.jpg)
 
+<div style="page-break-after: always;"></div>
 
 ### Profile Commands
 
@@ -331,6 +332,7 @@ Format: `delete [index/STUDENT_INDEX]`
 Examples:
 * `delete index/1` Deletes the first profile in the student list.
 
+<div style="page-break-after: always;"></div>
 
 ### Homework Commands
 #### Assign Homework to a Student
@@ -491,6 +493,8 @@ and DEADLINE should all only appear at most once.
 :bulb: **Tip:** A student cannot have multiple homework with the same name,
 even if they have different deadlines.
 
+<div style="page-break-after: always;"></div>
+
 ### Lessons Commands
 
 #### Create a New Lesson Plan for an Upcoming Lesson
@@ -612,6 +616,8 @@ For example, `john` will match `John Doe` and `john doe`. You can refer to the [
 
 :exclamation: **Caution:** LESSON_TITLE, START_TIME, and END_TIME should each appear at most once.
 
+<div style="page-break-after: always;"></div>
+
 ### Exam Commands
 
 #### Add an Exam to be tracked
@@ -726,6 +732,9 @@ You can refer to the [search by name mechanism](#search-by-name-mechanism) for m
 
 :exclamation: **Caution:** STUDENT_NAME should appear exactly once and should not be empty.
 
+
+<div style="page-break-after: always;"></div>
+
 ### Global Commands
 
 #### Get Help for TutorPro
@@ -762,6 +771,7 @@ Format: `exit`
 Example:
 * `exit` Safely closes TutorPro.
 
+<div style="page-break-after: always;"></div>
 
 ## Unique Mechanisms
 
@@ -867,6 +877,8 @@ Alternatively, you can also view with the profile button on the student card.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Summary
 
 ### List of Commands
@@ -895,6 +907,8 @@ Alternatively, you can also view with the profile button on the student card.
 | Get help for TutorPro        | `help`                                                                                                                       | `help`                                                                                                                 |
 | Exit TutorPro                | `exit`                                                                                                                       | `exit`                                                                                                                 |
 
+<div style="page-break-after: always;"></div>
+
 ### List of Prefixes
 
 | Prefix       | Meaning     | Usage                                               | Example                           |
@@ -917,6 +931,9 @@ Alternatively, you can also view with the profile button on the student card.
 | `date/`      | Date        | Date of a lesson/exam                               | `date/2023-03-29`                 |
 | `subject/`   | Subject     | Subject of a lesson                                 | `subject/Mathematics`             |
 | `done/`      | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
+
+
+<div style="page-break-after: always;"></div>
 
 ### Supported date-time formats
 * `MMM dd yyyy HHmm`
