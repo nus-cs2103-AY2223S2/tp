@@ -68,7 +68,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -106,13 +106,14 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return Person.ofUpdateTasks(new Person(name, phone, email, address, tags, id), tasks) ;
+        return Person.ofUpdateTasks(new Person(name, phone, email, address, tags, id), tasks);
     }
+
     /**
      * Sets tasks of person.
      */
     public PersonBuilder withTask(List<Task> tasks) {
-        this.tasks= tasks;
+        this.tasks = tasks;
         return this;
     }
 }
