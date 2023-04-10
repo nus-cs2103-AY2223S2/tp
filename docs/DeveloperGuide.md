@@ -36,7 +36,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+</div> 
 
 ### Architecture
 
@@ -746,6 +746,57 @@ testers are expected to do more *exploratory* testing.
           - Testing for: Index specified results in command failure
           - Expected: List does not update. Error details shown in the status message.
 
+### Favouriting/Unfavouriting a contact
+
+### Selecting a contact
+1. Select a contact while no other contact has been selected
+
+   1. Prerequisites: Non-empty address book with at only 1 contact. Navigate to the `Address book` tab using `tab 1`
+
+   2. Test Cases
+      1. Test case 1: `select 1`
+         - Testing for: Successful command execution 
+         - Expected: Contact at index 1 on the list is highlighted and
+          corresponding details of the contact is displayed on the details panel.
+      2. Test case 2: `select 2`
+          - Testing for: Index specified results in command failure
+          - Expected: No changes to list and details panel. Error details shown in the status message.
+
+
+2. Select a contact while another contact is had already been selected
+
+   1. Prerequisites: Non-empty address book with at least 2 contact. Navigate to the `Address book` tab using `tab 1` and
+   select contact at index 1 using `select 1`.
+   
+   2. Test Cases
+      1. Test case 1: `select 1`
+         - Testing for: Successful command execution 
+         - Expected: Command executes, but no changes because same index selected
+      2. Test case 2: `select 2`
+         - Testing for: Successful command execution
+         - Expected: Contact at index 1 is no longer highlighted, contact at index 2 is highlighted and details on panel changes to that of contact at index 2
+         
+3. Select an invalid index
+
+   1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`.
+   
+   2. Test Cases:
+      1. Test case 1: `select 1`
+         - Testing for: Index specified results in command failure
+         - Expected: No changes to list and details panel. Error details shown in the status message.
+         
+
+## Events-related
+
+### Adding an event
+
+### Deleting an event
+
+### Editing an event
+
+### Tagging/Untagging a contact to an event
+
+
 ## User-related
 ### Editing data of User
 1. Edit data of User specified in Me tab.
@@ -794,6 +845,7 @@ testers are expected to do more *exploratory* testing.
         1. Test case 1: `dark`
             - Testing for: Successful command execution
             - Expected: UI updates to dark mode
+<<<<<<< HEAD
 
 4. Set UI to light mode from light mode
 
@@ -803,6 +855,45 @@ testers are expected to do more *exploratory* testing.
        1. Test case 1: `dark`
            - Testing for: Successful command execution
            - Expected: UI updates to dark mode
+=======
+1. Set UI to dark mode from dark mode
+    1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
+    2. Test Cases
+        1. Test case 1: `dark`
+            - Testing for: Successful command execution
+            - Expected: UI updates to dark mode
+>>>>>>> master
+
+### Moving to another tab in NeoBook
+1. Changing to a different tab
+
+   1. Prerequisites: NeoBook currently on address book tab.
+   
+   2. Test Cases
+      1. Test case 1: `tab 2`
+         - Testing for: Successful command execution
+         - Expected: Switch to Events tab
+      2. Test case 2: `tab 3`
+       - Testing for: Successful command execution
+       - Expected: Switch to Me tab
+       
+2. Changing to same tab
+
+   1. Prerequisites: NeoBook currently on address book tab.
+   
+   2. Test Cases
+      1. Test case 1: `tab 1`
+         - Testing for: Successful command execution
+         - Expected: No changes made because Neobook is already on desired tab. Warning message appears in
+         status to remind user that he/she is already on the tab.
+3. Changing to invalid tab
+
+   1. Prerequisites: Neobook currently on any of the 3 tabs.
+   
+   2. Test Cases
+      1. Test case 1: `tab 4`
+      - Testing for: Index specified results in command failure
+      - Expected: Remains on current tab because invalid index. Error details shown in the status message.
 
 ### Saving data
 
