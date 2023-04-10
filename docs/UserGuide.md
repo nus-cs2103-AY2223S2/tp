@@ -399,7 +399,7 @@ Lists all lectures of a module.
 <ul>
     <li>
     <code>list /mod CS2040S</code><br/>
-    lists lectures belonging to CS2040S
+    lists lectures belonging to module "CS2040S"
     </li>
 </ul>
 </details>
@@ -421,7 +421,7 @@ The code of the module that contains the lecture specified in `lecture_name`
 <ul>
     <li>
     <code>list /mod CS2040 /lec Week 1</code><br/>
-    lists videos in lecture Week 1 belonging to CS2040S
+    lists videos in lecture "Week 1" belonging to module "CS2040S"
     </li>
 </ul>
 </details>
@@ -455,9 +455,9 @@ When in a module or lecture context, the navigation system will inject the `/mod
 <summary>Example</summary>
 <ul>
     <li>
-    Assuming only a module <code>CS2040S</code> has tags <code>["heavy", "math"]</code>,<br/>
+    Assuming only a module "CS2040S" has tags ["heavy", "math"],<br/>
     <code>find heav /byTag</code><br/>
-    will list modules [CS2040S].
+    will list modules ["CS2040S"].
     </li>
 </ul>
 </details>
