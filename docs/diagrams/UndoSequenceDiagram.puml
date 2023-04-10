@@ -14,7 +14,7 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> RecipeBookParser : parseCommand(undo)
+LogicManager -> RecipeBookParser : parseCommand(\nundo)
 activate RecipeBookParser
 
 create UndoCommand
@@ -36,7 +36,7 @@ activate Model
 Model -> VersionedRecipeBook : undo()
 activate VersionedRecipeBook
 
-VersionedRecipeBook -> VersionedRecipeBook :resetData(ReadOnlyRecipeBook)
+VersionedRecipeBook -> VersionedRecipeBook :resetData(\nReadOnlyRecipeBook)
 VersionedRecipeBook --> Model :
 deactivate VersionedRecipeBook
 

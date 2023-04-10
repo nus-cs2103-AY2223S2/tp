@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-T13-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103T-T13-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T13-2/tp/branch/master/graph/badge.svg?token=7VWU83CQOT)](https://codecov.io/gh/AY2223S2-CS2103T-T13-2/tp)
 
-**RIZZ-ipe is a desktop application for managing your delicious recipes.** 
+**RIZZipe is a desktop application for managing your delicious recipes.** 
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 If you are a chef with fast fingers but can't remember all your ***delicious***
