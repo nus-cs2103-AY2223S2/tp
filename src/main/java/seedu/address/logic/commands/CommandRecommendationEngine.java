@@ -33,7 +33,6 @@ import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.StatsCommandParser;
-import seedu.address.ui.CommandBox;
 
 /**
  * A class representing a recommendation engine that recommends a command based on the user input.

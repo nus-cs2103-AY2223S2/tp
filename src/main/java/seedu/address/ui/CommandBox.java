@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
