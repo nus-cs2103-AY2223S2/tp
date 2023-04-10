@@ -54,4 +54,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reviewed 26 PRs, 3 with non-trivial comments:[\#50](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/50), [\#56](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/56), [\#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
-  * Identified [11 bugs](https://github.com/Infrix/ped/issuess) for CS2103T-W10-2 during PE-D
+  * Identified [11 bugs](https://github.com/Infrix/ped/issues) for CS2103T-W10-2 during PE-D
