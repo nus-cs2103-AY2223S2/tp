@@ -1003,3 +1003,25 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
+
+1. The current error message is not very informative nor precise. We plan to fix this feature flaw by adding more details to the error message. For example, the error message will show the user the correct format of the command. This will allow the user to easily identify the problem and fix it.
+
+2. We plan to add new commands like the "clear all" and "clear completed" commands. These commands will allow the user to clear all the tasks or clear all the completed tasks in a single command, instead of having to delete each task one by one.
+
+3. We plan to add an "overdue" status to the tasks. This will allow the user to see all the tasks that are overdue in a single tab. Each time when the app is open on a new day, the "overdue" status will be updated accordingly by comparing the current date with the deadline of each task.
+
+4. We plan to have a multiple tabs instead of the current single tab. Each of these tabs corresponds to the different status of the tasks. For example, one tab will show all the tasks that are overdue, another tab will show all the tasks that are ongoing and another tab will show all the tasks that are completed.
+
+5. We plan to add a "reminder" feature to the app. This will allow the user to set a reminder for a task. The reminder will be displayed to the user when the app is open on the day that the reminder is set for.
+
+6. We plan to add scheduled tasks to the app. This means the task will have a start time and an end time. The user can set a task to be scheduled for a certain time period. For example, the user can set a task to be scheduled from 2pm to 4pm on 1st January 2016. The status of the task will be changed to "ongoing" when the current time is between the start time and the end time. The status of the task will be changed to "completed" when the current time is after the end time.
+
+7. We plan to add a feature that allows users to search for free time slots. This will allow the user to find a time slot that is free for a certain period of time. For example, the user can search for a time slot that is free for 2 hours and the app will then produce time slots that are free for 2 hours within next 7 days.
+
+8. We plan to add recurring tasks. This will allow the user to set a task to recur on a certain day of the week. For example, the user can set a task to recur every Monday. The task will be added to the task list every Monday. User can also set a task to recur at a fixed interval. For example, the user can set a task to recur every 2 days. The task will be added to the task list every 2 days.
+
+9. We plan to devise simpler and more intuitive command formats for the user. This will allow the user to use the app more efficiently by reducing the amount of typing required to execute a command. With more intuitive command formats, the user will also be able to remember the command formats more easily.
+
+10. Currently, the "insert" and "edit" commands seem to be very similar. We plan to devise a way to better structure & streamline these two commands so that the user can easily differentiate between them. With due consideration, we might even be able to merge these two commands into one command. Hopefully with this, the user will be able to remember the command formats more easily as they will be more intuitive.
