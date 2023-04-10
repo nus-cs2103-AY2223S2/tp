@@ -216,6 +216,16 @@ complete and unrecoverable loss of data prior to the corruption.
 
 Classes used by multiple components are in the `mycelium.mycelium.commons` package.
 
+#### DateUtil 
+
+This class is in the `mycelium.mycelium.commons.util` package. This class contains functions for 
+parsing date strings from a JSON file in the dd/MM/uuuu format and comparing dates based on certain criteria. 
+
+#### Messages 
+
+This class is in the `mycelium.mycelium.commons.core` package. This class contains some user visible 
+messages.
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div markdown="span" class="alert alert-info">
