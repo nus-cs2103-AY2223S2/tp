@@ -259,8 +259,6 @@ Examples:
 *  `unprescribe ic/S1234567A m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567A.
 *  `unprescribe m/Cough Syrup ic/S1234567A` removes Cough Syrup prescription from patient with NRIC number S1234567A.
 
-<div style="page-break-after: always;"></div>
-
 ### Bill : `bill`
 
 Calculates the cost of all medication given a Patient's prescription.
@@ -287,6 +285,8 @@ Shows a list of all doctors in MediConnect.
 Format: `listDoctors`
 
 <img src="images/ListDoctors.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ### Retrieve patients information : `listPatients`
 
@@ -335,6 +335,8 @@ Examples:
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
