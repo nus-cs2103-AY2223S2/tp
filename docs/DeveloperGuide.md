@@ -154,6 +154,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Add feature
+
+#### Current Implementation
+
+Adding a person is a feature that uses the command `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`.
+
+The following activity diagram shows how the add operation works when given valid parameters or invalid parameters and with or without the optional event tag parameter.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Every person object has a set of events, denoted by `eventSet`. If event tag parameter `evt/EVENT_INDEX` is present, the event at the displayed list's `EVENT_INDEX`, denoted as `eventToAdd`, will be added to the `eventSet` of the person. Otherwise, the person object will have an empty `eventSet`.
+
+This operation is similar to that of adding an event. Adding a person involves calling `Model#addPerson(Person)`, which in turn calls `AddressBook#addPerson(Person)` to add the Person object to the existing `AddressBook`.
+
+
 ### \[Implemented] Add event feature
 
 #### Current Implementation
@@ -680,3 +695,16 @@ For example, the user is allowed to enter these 2 commands and create 2 Persons 
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
 For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.
+
+## **Appendix:** Planned Features
+
+### Ability to set up a checklist of event's requirements
+
+In this version of application, users are not able to set up a checklist of event's requirements.
+
+For future enhancements, users should be able to set up a checklist of event's requirements. This is to ensure that every need for the event is being accounted for. 
+Additionally, users are able to check-off and uncheck the requirements of the event to indicate whether the requirements have been satisfied or not. 
+
+A possible way to implement this is to let every event object contains a `requirementList` attribute, users can add in the requirements to the list by modifying the existing `addevent` and `editevent` command to accept the requirements. 
+Two new commands, `mark EVENT_INDEX r/REQUIREMENT_INDEX` and `unmark EVENT_INDEX r/REQUIREMENT_INDEX`, may be required to implement the checking-off and unchecking of a requirement, specified by the `REQUIREMENT_INDEX`, of an event, specified by the `EVENT_INDEX`.
+The UI will also display the list of requirements of each event and their statuses (checked or unchecked).  
