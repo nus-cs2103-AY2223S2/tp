@@ -195,22 +195,22 @@ The following exceptions may be thrown during this process, namely:
 
 Given below is an example usage scenario of how the _Add_ command executes.
 
--- user input -- <br>
-Step 1. User executes add command with correct and valid arguments.<br>
+-- user input --  
+Step 1. User executes add command with correct and valid arguments.  
 
--- `SchedulerParser` -- <br>
-Step 2. Returns new `AddCommandParser`.<br>
+-- `SchedulerParser` --  
+Step 2. Returns new `AddCommandParser`.  
 
--- `AddCommandParser` -- <br>
-Step 3. Verify that all argument prefixes are present.<br>
-Step 4. Verify that all argument format is valid.<br>
-Step 5. Verify that the given event start time is before end time.<br>
-Step 6. Returns new `AddCommand`.<br>
+-- `AddCommandParser` --   
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.  
+Step 5. Verify that the given event start time is before end time.  
+Step 6. Returns new `AddCommand`.  
 
--- `AddCommand` -- <br>
-Step 7. Verify that the same event has not already been added.<br>
-Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.<br>
-Step 9. Event is added.<br>
+-- `AddCommand` --   
+Step 7. Verify that the same event has not already been added.  
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.  
+Step 9. Event is added.  
 
 The execution can be seen in the activity diagram given below.
 
@@ -231,23 +231,23 @@ The following exceptions may be thrown during this process, namely:
 
 Given below is an example usage scenario of how the _Recur_ command executes.
 
--- user input -- <br>
-Step 1. User executes Recur command with correct and valid arguments.<br>
+-- user input --   
+Step 1. User executes Recur command with correct and valid arguments.  
 
--- `SchedulerParser` -- <br>
-Step 2. Returns new `RecurCommandParser`.<br>
+-- `SchedulerParser` --  
+Step 2. Returns new `RecurCommandParser`.  
 
--- `RecurCommandParser` -- <br>
-Step 3. Verify that all argument prefixes are present.<br>
-Step 4. Verify that all argument format is valid.<br>
-Step 5. Returns new `RecurCommand`.<br>
+-- `RecurCommandParser` --  
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.  
+Step 5. Returns new `RecurCommand`.  
 
--- `RecurCommand` -- <br>
-Step 6. Verify that the given index exist in Ez-Schedule.<br>
-Step 7. Verify that the given recurring end time is not in the past.<br>
-Step 8. For the given recur factor, verify that it is valid.<br>
-Step 9. Check all dates for event to be recurred on for any event clash.<br>
-Step 10. Add event into Ez-Schedule on all dates to be recurred.<br>
+-- `RecurCommand` --  
+Step 6. Verify that the given index exist in Ez-Schedule.  
+Step 7. Verify that the given recurring end time is not in the past.  
+Step 8. For the given recur factor, verify that it is valid.  
+Step 9. Check all dates for event to be recurred on for any event clash.  
+Step 10. Add event into Ez-Schedule on all dates to be recurred.  
 
 The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
 
