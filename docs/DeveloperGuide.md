@@ -1049,7 +1049,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. FitBook shows an error for missing fields.
 
       Use case ends.
-<div style="page-break-after: always;"></div>
 > **Use case: UC17 - Edit routine or exercise in routine**
 
 **MSS**
@@ -1229,7 +1228,7 @@ testers are expected to do more *exploratory* testing.
 
    D. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
        Expected: Similar to previous.
-
+<div style="page-break-after: always;"></div>
 ### Export/ExportRoutine
 1. Exports the client details/Routine details into a csv file.
 
@@ -1263,7 +1262,7 @@ testers are expected to do more *exploratory* testing.
 
    D. Other incorrect addExercise commands to try: `addExercise`, `addExercise x `, (where x is larger than the list size)<br>
    Expected: Similar to previous.
-
+<div style="page-break-after: always;"></div>
 ### Finding a Routine
 1. Finds a Routine by keywords
 
@@ -1288,7 +1287,7 @@ testers are expected to do more *exploratory* testing.
 
    D. Other incorrect view commands to try:`view x `, (where x is larger than the list size)<br>
    Expected: Similar to previous.
-
+<div style="page-break-after: always;"></div>
 ### Graph 
 1. Plot a graph of clients Weight History.
 
@@ -1319,7 +1318,7 @@ testers are expected to do more *exploratory* testing.
    C. Prerequisites: Modify the "fitbook.json" file from data folder which contains invalid data. This could be done by removing the HH:mm in appointment field.
    D. Test case: Launch the application
       Expected: Application launches successfully but has no data.
-
+<div style="page-break-after: always;"></div>
 >## **Appendix: Effort**
  
 ### Difficulty level
@@ -1353,7 +1352,7 @@ testers are expected to do more *exploratory* testing.
 * Refactored all the code and updated User Guide and Developer Guide.
 * User Friendly application with excellent User Guide.
 * Link between Clients and Exercises are prominent.
-
+<div style="page-break-after: always;"></div>
 >## **Appendix: Planned Enhancements** 
 
 * FitBook lowering the computer's resources.
