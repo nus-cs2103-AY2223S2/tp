@@ -386,6 +386,7 @@ Flipping a card reveals the answer - based on how close your guess was to the an
 
 Your goal would be to eventually have all cards in a deck be tagged as easy!
 
+<div style="page-break-after: always;"></div>
 ### 3.6.1. Starting a Review: `review`
 From the Main Mode, run this command to enter the Review Mode!
 
@@ -407,6 +408,7 @@ Ends the review and returns to the main mode. You can use this when you reach th
 
 Format: `endReview`
 
+<div style="page-break-after: always;"></div>
 ### 3.6.3. Review Command Keys
 
 ![Review Command Keys](images/ReviewCommandKeys.png)
@@ -418,6 +420,7 @@ Notice that the keys are all close to the Enter key so that you can breeze throu
 - The top row of keys are commands to flip cards, or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
 
+<div style="page-break-after: always;"></div>
 ### 3.6.4. Flipping the Card: `p`
 
 Flips the card to reveal or hide the answer. 
@@ -503,7 +506,6 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 # 4. FAQ
 
