@@ -201,7 +201,8 @@ Sample `.csv` file:
 </div>
 
 **Step 2 (Uploading CSV file) :**
-Before we proceed to uploading the CSV file, you would need to have followed the instructions at [start of this section](#u-starting-executivepro-application--u), in order
+Before we proceed to uploading the CSV file, you would need to have followed the instructions 
+at the start of the user guide,  in order
 to upload your csv file in the `data` folder
 
 Once that is done,
@@ -209,6 +210,7 @@ Once that is done,
 1. Go to the folder where you stored the `jar` file.
 2. Move your desired CSV file to the `data` folder.
    ![](images/UserGuide/batchadd/movingFile.png)
+
 
 **Step 3 (Running CSV file) :**
 
@@ -225,7 +227,7 @@ The command could be unsuccessful, and there are a few potential causes of this:
 2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly
    and the command will not run.
 3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format,
-please refer to the instructions [here](#u-opening-csv-files-in-excel--u) to rectify this problem.
+please refer to the instructions under the heading, "Opening .csv files in Excel", to rectify this problem.
 
 
 
@@ -237,7 +239,7 @@ In the upcoming versions, we will expand `batchadd` feature to:
 1. Support different types of files
 2. Include more fields like performance and leaves
 
-#### <u> Opening .csv files in Excel: </u>
+<u> Opening .csv files in Excel: </u>
 
 
 When using the `batchadd` feature, it is crucial to ensure that the dates in the CSV file are in the [correct format](#field-formats).
@@ -300,8 +302,8 @@ and it should look something like the below image.
 If you open the exported `.csv file` in `Excel`
 and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
 This could lead to issues when importing the file using the batchadd command. 
-To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).
-
+To ensure the correct date format, please refer to the instructions in batchadd section, under the heading,
+"opening .csv file in Excel"
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -333,6 +335,18 @@ Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
+
+Below are the steps to use this command:
+
+**Step 1 (Inputting the edit command) :**
+You can use the command syntax to edit an employee's fields, just like the image below.
+![](images/UserGuide/editBefore.png)
+
+**Step 2 (Results displayed) :**
+The employee with the stated employeeId input would have their fields edited accordingly,
+in this example, employee with employeeId 1, would have his phone number edited to 91234567.
+![](images/UserGuide/editAfter.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 ### Taking Leave : `leave`
@@ -436,9 +450,11 @@ Want to tweak the look of ExecutivePro?
 This feature allows you to choose one of two appearances for ExecutivePro to suit your needs.
 
 The `light` theme (black text on light background) improves readability in well-lit surroundings.
+
 ![](images/UserGuide/ThemeCommandLight.png)
 
 The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
+
 ![](images/UserGuide/ThemeCommandDark.png)
 
 Format: `theme THEME_NAME`
@@ -450,7 +466,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">
 
 :warning:
-**Note:** Themes are not kept upon closing ExecutivePro
+**Note:** Themes are not kept upon closing ExecutivePro.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -458,6 +474,8 @@ Examples:
 
 This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
 
+:warning: **Note:**
+The selected image file must be in either the `.png`, `.jpg`, or `.jpeg` file formats.
 
 Format: `setpicture EMPLOYEE_ID`
 
@@ -466,16 +484,29 @@ Format: `setpicture EMPLOYEE_ID`
 * The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-To set the picture for the employee with EMPLOYEE_ID 2, enter `setpicture 2` into the command bar.
+To set the picture for the employee with EMPLOYEE_ID 1, enter `setpicture 1` into the command bar.
 A file selector should appear, as shown below:
+
 ![](images/UserGuide/SetPictureCommand1.png)
 
 Search through your computer for the picture you want to set.
-Select it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+Click on the image in your file explorer to select it,
+then open it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+
 ![](images/UserGuide/SetPictureCommand2.png)
 
 Click on the specified employee on the left, and your ExecutivePro should display their photo on the right like this.
+
 ![](images/UserGuide/SetPictureCommand3.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-warning">
+
+:warning:
+**Note:** If a file not originally in one of the valid file formats is renamed to a valid file format,
+the file may not be properly displayed (e.g. renaming a `example.txt` file to a `example.png`). We encourage you to use an image converter to convert your image to the valid file format,
+before uploading it to ExecutivePro.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
