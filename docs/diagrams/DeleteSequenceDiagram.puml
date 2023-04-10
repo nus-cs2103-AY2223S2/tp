@@ -38,8 +38,7 @@ deactivate DeleteCommand
 
 DeleteCommandParser --> ListingBookParser : d
 deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> ListingBookParser
+
 destroy DeleteCommandParser
 
 ListingBookParser --> LogicManager : d

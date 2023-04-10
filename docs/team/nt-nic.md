@@ -9,38 +9,52 @@ GoodMatch is a desktop application used for managing applicants and job listings
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
+* **New Feature**: Implement command to delete listings
 
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+    * What it does: Allows the user to delete a listing from the listing book.
+    * Justification: This feature enables the user to remove listings that are expired/no longer required. 
+    * Highlights: This ensures that the listing book will not be cluttered with unnecessary information and users can manage their listings more efficiently.
+    * Pull Request [\#59](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/59)
+<br>
+* **New Feature**: Implement command to find listings
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+  * What it does: Allows the user to identify listings based on whether the listings' titles contain certain keywords.
+  * Justification: This feature improves the product significantly because it allows the user to immediately identify specific listings without having to search through all existing listings.
+  * Pull Request: [\#79](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/79)
+<br>
+* **New Feature**: Allow users to view the number of applicants for each listing
+
+  * What it does: Enables the user to conveniently view the total number of applicants per listing instead of having to count them.
+  * Justification: This feature saves the user time when managing applicants.
+  * Pull Request: [\#115](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/115)
+<br>
+* **New Feature**: Implement Platform feature
+
+  * What it does: Enables the user to keep track of which platforms a job listing is listed on. Users can also add or delete platforms from a specified listing.
+  * Justification: This feature helps hiring managers to better manage job listings as they can now conveniently see which platforms a listing has been released on.
+  * Pull Request: [\#120](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/120)
+<br>
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nt-nic&breakdown=true)
-
+<br>
 * **Project management**:
 
-    * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
-
+    * Managed release `v1.3` on GitHub
+<br>
 * **Enhancements to existing features**:
 
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+    * Wrote additional tests for existing features to increase coverage (Pull request [\#185](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/185))
+<br>
 * **Documentation**:
 
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for features `edit`, `delete`, `find` and `sort` [\#108](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/108)
+        * Added documentation for the features `add_plat` and `del_plat` [\#194](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/194)
+        * Fixed bugs in the User Guide [\#194](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/194)
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `find` feature. (Pull request [\209](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/209))
+        * Added sequence diagram for `find` feature. (Pull request [\209](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/209))
+        * Added activity diagram for `find` feature. (Pull request [\209](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/209))
 
-* **Community**:
 
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other classmates ([1](), [2]())
 
