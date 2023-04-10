@@ -9,7 +9,7 @@ You can reach us at any of the following emails:
 * [Afiq Zuhairi Bin Sahri](mailto:afiqzuhairi@gmail.com)
 * [Chong Yijing Isabel](mailto:e0775756@u.nus.edu)
 * [Seow Wen Xuan, Kelvin](mailto:s.wxk19@gmail.com)
-* [Pearl Twe](mailto:e0773656@u.nus.edu.sg)
+* [Pearl Twe](mailto:pearltwe23@gmail.com)
 * [Ting Yi Xin](mailto:yxting1109@gmail.com)
 
 
