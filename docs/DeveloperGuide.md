@@ -279,7 +279,38 @@ This section describes some noteworthy details on how certain features of coNtac
 ### 5.1 Sort Feature
 
 #### 5.1.1 Sort Command Implementation
-Some txt here.
+This section will explain the implementation of the SortCommand. The SortCommand allows users to sort the modules in the
+displayed list by either the module's timeslot, or the module's deadline. The SortCommand will automatically take into
+consideration the current time of your computer. 
+
+For example, if the current day on your computer is Monday, a module with timeslot Tuesday 05:00 - 07:00 will be shown 
+before a module with timeslot Wednesday 06:00 - 08:00. Similarly, if the current day on your computer is Tuesday, 
+then a module with timeslot Wednesday 05:00 - 07:00 will be shown before a module with timeslot Thursday 06:00 - 08:00.
+For sorting by deadline, a module with deadline 250623 will be shown before a module with deadline 260623.
+
+The SortCommand relies on the fact that the `ObservableList<e>` in 
+[`ModelManager.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/ModelManager.java) which is later on displayed to the 
+user interface, is actually a `FilteredList<e>`. In order to accomplish the sorting feature, we wrapped a `SortedList<e>` 
+inside the `FilteredList<e>`. Using the `setComparator()` method for a `SortedList<e>`, we are able to dictate the order 
+in which the modules are sorted. When the program is launched, the 
+comparator that is used does not impose any ordering on the modules. If the user executes the command `sort timeslot`, 
+a comparator that imposes a timeslot ordering is passed to the `SortedList<e>`. `sort deadline` works in the same way. 
+
+Both `FilteredList<e>` and `SortedList<e>` extends `ObservableList<e>`, which is the list that is eventually passed to
+the user interface in [`MainWindow.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java). 
+If you are interested to create a particular ordering of the modules, you may go
+to [`ComparatorUtil.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/commons/util/ComparatorUtil.java) 
+to implement a `Comparator<Module>` of your choice. 
+
+Below is an example usage scenario and how the sort command behaves at each step:
+
+**Step 1:** The user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
+
+**Step 2:** The user writes "sort timeslot" in the terminal. This command will be handled by the **LogicManager** and **ModuleTrackerParser**, which will extract the needed argument.
+
+**Step 3:** The command is executed through the execute method, which updates the list through **Model#updateSortedModuleList**.
+
+**Step 4:** The method passes the Comparator to the **SortedList**, updating the displayed list. 
 
 ### 5.2 Find feature
 
@@ -296,7 +327,7 @@ The predicate passed to the **FindCommand** constructor is from the **NameContai
 
 Below is an example usage scenario and how the find command behaves at each step:
 
-**Step 1:** he user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
+**Step 1:** The user launches the application for the first time. The **ModuleTracker** will be initialized with the initial module tracker state.
 
 **Step 2:** The user writes "find CS3263" in the terminal. This command will be handled by the **LogicManager** and **ModuleTrackerParser**, which will extract the needed argument, most importantly the predicate.
 
