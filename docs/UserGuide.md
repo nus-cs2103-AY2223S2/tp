@@ -8,22 +8,23 @@ title: User Guide
 * [Features](#features)
     1. [Viewing help](#help)
     2. [Add student](#add)
-    3. [Delete student](#delete)
-    4. [List student](#list)
-    5. [Filter student](#filter)
-    6. [Add a lesson](#learn)
-    7. [Remove a lesson](#unlearn)
-    8. [Local save](#save)
-    9. [Local load](#load)
-    10. [Exit program](#exit)
+    3. [Copy student](#copy)
+    4. [Delete student](#delete)
+    5. [List student](#list)
+    6. [Filter student](#filter)
+    7. [Add a lesson](#learn)
+    8. [Remove a lesson](#unlearn)
+    9. [Local save](#save)
+    10. [Local load](#load)
+    11. [Exit program](#exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
 
+
 ## INTRODUCTION <a name="introduction"></a>
 
-It is hard for private tutor such as yourself to keep track of the students' information and their progress. Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
-
+It is hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the Tutee managing system (TMS). TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -37,7 +38,9 @@ It is hard for private tutor such as yourself to keep track of the students' inf
 1. Copy the file to the folder you want to use as the _home folder_ for your Tutee Managing System.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TMS.jar` command to run the application.<br>
+
    A UI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -45,7 +48,8 @@ It is hard for private tutor such as yourself to keep track of the students' inf
 
    * `list` : Lists all students.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Math sch/monday st/09:30 et/11:30` : Adds a student named `John Doe` to the Managing system.
+
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Math sch/monday st/09:30 et/11:30` : Adds a student named `John Doe` to the TMS.
 
    * `delete 3` : Deletes the 3rd student shown in the current list.
 
@@ -96,13 +100,28 @@ Format: `help`
 
 Adds a student to the managing system.
 
-Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
+Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
+
+  * Subject supported: {`Math`, `Physics`, `English`}  
+  * Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
+  * The added student must have a unqique name, phone number and email address  
+
+Examples:
+
+* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
+
+
+## Copy student <a name="copy"></a>
+
+Copies an existing student to the managing system with a different subject or schedule.
+
+Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
 Subject supported: {`Math`, `Physics`, `English`}
 Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
 
 Examples:
 
-* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
+* ```copy 2 s/Math sch/monday st/09:30 et/11:30```
 
 
 ### Deleting student <a name="delete"></a>
@@ -277,3 +296,4 @@ Format: ```exit```
 | **** |                                     |
 | **** |                                     |
 | **Help** | `help`                              |
+
