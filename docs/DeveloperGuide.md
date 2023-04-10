@@ -784,7 +784,7 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 
-### Appendix: Planned Enhancement
+## Appendix: Planned Enhancement
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
 **1. Making the command box scrollable**
 - Currently, the command box is not scrollable - when the user types into the command box, the content does not wrap.
