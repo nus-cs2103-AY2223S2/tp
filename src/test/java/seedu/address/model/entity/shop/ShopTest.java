@@ -12,6 +12,9 @@ import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
+import seedu.address.model.entity.shop.exception.DuplicateEmailException;
+import seedu.address.model.entity.shop.exception.DuplicatePhoneNumberException;
+import seedu.address.model.entity.shop.exception.DuplicatePlateNumberException;
 import seedu.address.model.entity.shop.exception.NoNextStateException;
 import seedu.address.model.entity.shop.exception.NoPrevStateException;
 import seedu.address.model.service.VehicleType;
@@ -51,5 +54,34 @@ class ShopTest {
         assertTrue(shop.getVehicleList().isEmpty());
         assertTrue(shop.getServiceList().isEmpty());
         assertTrue(shop.getAppointmentList().isEmpty());
+    }
+
+    @Test
+    public void testDuplicateEmail() throws Exception {
+        Shop shop = new Shop();
+        shop.addCustomer(new Name("James"), new Phone("8797986"), new Email("test@gmail.com"),
+                new Address("testAddress"), new HashSet<>());
+        assertThrows(DuplicateEmailException.class, () -> shop.addCustomer(new Name("asdfdasf"), new Phone("87234326"),
+                new Email("test@gmail.com"), new Address("testAddress"), new HashSet<>()));
+    }
+
+    @Test
+    public void testDuplicatePhone() throws Exception {
+        Shop shop = new Shop();
+        shop.addCustomer(new Name("James"), new Phone("8797986"), new Email("test@gmail.com"),
+                new Address("testAddress"), new HashSet<>());
+        assertThrows(DuplicatePhoneNumberException.class, () -> shop.addCustomer(new Name("asdfdasf"),
+                new Phone("8797986"),
+                new Email("fasddsf@gmail.com"), new Address("testAddress"), new HashSet<>()));
+    }
+
+    @Test
+    public void testDuplicatePlate() throws Exception {
+        Shop shop = new Shop();
+        shop.addCustomer(new Name("James"), new Phone("8797986"), new Email("test@gmail.com"),
+                new Address("testAddress"), new HashSet<>());
+        shop.addVehicle(1, "testPlate", "blue", "toyota", VehicleType.CAR);
+        assertThrows(DuplicatePlateNumberException.class, () -> shop.addVehicle(1, "TESTPLATE", "blue", "toyota",
+                VehicleType.CAR));
     }
 }
