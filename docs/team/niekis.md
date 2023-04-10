@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * Managed releases `v1.2.1` and `v1.3.0` on GitHub
 
 - **Enhancements to existing features**:
-  * Changed the way duplicate persons are detected (System now disallows two different contacts to have the same email or phone number). Fix and adjusted all existing code and errors to reflect this new change. [\#79](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/79/files)
+  * Changed the way duplicate persons are detected (System now disallows two different contacts to have the same email or phone number). Fix and adjusted all existing code and errors to reflect this new change. [\#79](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/79)
 
 - **Documentation**:
   * User Guide:
@@ -37,4 +37,4 @@ Given below are my contributions to the project.
   * Reported bugs for [CS2103-W15-3](https://github.com/AY2223S2-CS2103t-W15-3/tp) and gave suggested improvements [here](https://github.com/niekis/ped/issues).
 
 - **Tools**:
-  - * Integrated a third party library (OpenCsv) to the project [\#79](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/79/files)
+  - * Integrated a third party library (OpenCsv) to the project [\#79](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/79)
