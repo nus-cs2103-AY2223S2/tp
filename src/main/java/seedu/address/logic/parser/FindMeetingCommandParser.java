@@ -19,15 +19,18 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
      */
     @Override
     public FindMeetingCommand parse(String userInput) throws ParseException {
+        String[] split = userInput.split(" ");
         if (userInput.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_MISSING_ARGUMENTS, FindMeetingCommand.MESSAGE_USAGE)
             );
-        } else if (userInput.contains("-")) {
+        } else if (split.length >1 && split[1].startsWith("-")) {
+            throw new ParseException("Please input a valid person index");
+        }else if (userInput.contains("-")) {
             LocalDate meetingStart = ParserUtil.parseDate(userInput);
             return new FindMeetingCommand(meetingStart);
         }
-        Index person = ParserUtil.parseIndex(userInput);
+        Index person = ParserUtil.parsePersonIndex(userInput);
         return new FindMeetingCommand(person);
     }
 
