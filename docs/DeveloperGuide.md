@@ -468,6 +468,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.<br>
   Use case ends.
+* 3a. Provided index is invalid.
+  * 3a1. ArB shows an error message.<br>
+    Use case resumes at step 3.
 
 **Use case 2 (UC2): Delete a project**
 
@@ -549,7 +552,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.<br>
   Use case ends.
 
-**Use case 7 (UC7): Clear all clients**
+**Use case 7 (UC7): List all tags**
+
+**MSS**
+
+1. User requests to list tags.
+2. ArB shows a list of tags.<br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.<br>
+  Use case ends.
+
+**Use case 8 (UC8): Clear all clients**
 
 **MSS**
 
@@ -564,7 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.<br>
   Use case ends.
 
-**Use case 8 (UC8): Clear all projects**
+**Use case 9 (UC9): Clear all projects**
 
 **MSS**
 
@@ -579,46 +595,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.<br>
   Use case ends.
 
-**Use case 9 (UC9): Add a client**
+**Use case 10 (UC10): Add a client**
 
 **MSS**
 
-1. User requests to list clients.
-2. ArB shows a list of clients.
-3. User requests to add a client to the client list.
-4. ArB adds the client to the client list.
+1. User requests to add a client to the client list, providing ArB with the client's details.
+2. ArB adds the client with the specified details to the client list.<br>
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-  Use case ends.
-* 3a. Provided details are invalid.
-  * 3a1. ArB shows an error message. <br>
-    Use case resumes at step 3.
+* 1a. Provided details are invalid.
+  * 1a1. ArB shows an error message. <br>
+    Use case resumes at step 1.
 
-**Use case 10 (UC10): Add a project**
+**Use case 11 (UC11): Add a project**
 
 **MSS**:
 
-1. User requests to list projects.
-2. ArB shows a list of projects.
-3. User requests to add a project to the project list.
-4. ArB adds the project to the project list.
+1. User requests to add a project to the project list, providing ArB with the project's details.
+2. ArB adds the project to the project list.<br>
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-  Use case ends.
-* 3a. Provided details are invalid.
-    * 3a1. ArB shows an error message. <br>
-      Use case resumes at step 3.
+* 1a. Provided details are invalid.
+  * 1a1. ArB shows an error message.<br>
+    Use case resumes at step 1.
+* 1b. User indicates that they want to link the project to a client.
+  * 1b1. ArB edits project to use new details.
+  * 1b2. ArB <u>links the project to a client (UC18)</u>.<br>
+    Use case ends.
 
-**Use case 11 (UC11): Edit a client**
+**Use case 12 (UC12): Edit a client**
 
 **MSS**:
 1. User selects a client to edit, and provides ArB with the details to edit.
-2. ArB edits client to use new details.
-3. Use case ends.
+2. ArB edits client to use new details.<br>
+   Use case ends.
 
 **Extensions**
 
@@ -629,7 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. ArB shows an error message.<br>
       Use case ends.
 
-**Use case 12 (UC12): Edit a project**
+**Use case 13 (UC13): Edit a project**
 
 **MSS**:
 1. User selects a project to edit, and provides ArB with the details to edit.
@@ -644,8 +658,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. Provided index is invalid.
   * 1b1. ArB shows an error message.<br>
     Use case ends.
+* 1c. User indicates that they want to link the project to a client.
+  * 1c1. ArB edits project to use new details.
+  * 1c2. ArB <u>links the project to a client (UC18)</u>.<br>
+    Use case ends.
 
-**Use case 13 (UC13): Find Clients**
+**Use case 14 (UC14): Find Clients**
 
 **MSS**:
 1. User requests to find clients, providing ArB with the necessary parameters.
@@ -657,7 +675,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. ArB shows an error message.<br>
   Use case ends.
 
-**Use case 14 (UC14): Find Projects**
+**Use case 15 (UC15): Find Projects**
 
 **MSS**:
 1. User requests to find projects, providing ArB with the necessary parameters.
@@ -670,20 +688,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. ArB shows an error message.<br>
   Use case ends.
 
-**Use case 15 (UC15): Sort Clients**
+**Use case 16 (UC16): Sort Clients**
 
 **MSS**:
-1. User requests to sort clients, providing ArB with a necessary parameter.
-2. ArB sorts all clients based on the provided parameter.<br>
-    Use case ends.
+1. User requests to sort clients.
+2. ArB sorts all clients by name.<br>
+   Use case ends.
 
-**Extensions**
-
-* 1a. The parameter provided is invalid.
-    * 1a1. ArB shows an error message.<br>
-      Use case ends.
-
-**Use case 16 (UC16): Sort Projects**
+**Use case 17 (UC17): Sort Projects**
 
 **MSS**:
 1. User requests to sort projects, providing ArB with a necessary parameter.
@@ -693,10 +705,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The parameter provided is invalid.
-    * 1a1. ArB shows an error message.<br>
-      Use case ends.
+  * 1a1. ArB shows an error message.<br>
+    Use case ends.
 
-**Use case 17 (UC17): Link Project To Client**
+**Use case 18 (UC18): Link Project To Client**
 
 **MSS**:
 1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords.
