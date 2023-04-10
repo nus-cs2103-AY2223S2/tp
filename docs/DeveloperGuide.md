@@ -293,15 +293,15 @@ This is a useful feature which allows users to export all contact details in a C
 
 #### Implementation
 
-The implementation for `import` and `export` are found in `ImportCommand` and `ExportCommand` respectively. Once the `execute(Model model)` method is invoked, a `JFileChooser` is displayed to the user. This file chooser has a `FileNameExtensionFilter` applied to it, where the file description is "CSV Files" and the allowed file extensions is an array containing only the String "csv".
+The implementation for `import` and `export` are found in `ImportCommand` and `ExportCommand` respectively. Once the `execute(Model model)` method is invoked, a `FileChooser` is displayed to the user. This file chooser has a `FileChooser.ExtensionFilter` applied to it, where the file description is "CSV Files" and the allowed file extension is "*.csv".
 
-Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, a prompt is displayed to inform the user and the `JFileChooser` reappears to allow the user to select a new file. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
+Only for the `import` command, the system checks that the selected file is a valid CSV file. If it is invalid, an `Alert` is displayed to inform the user. This check is not required for the `export` command since users are allowed to write to a new file that does not yet exist.
 
-Beyond the UI level, the commands operate using the `CsvElisterStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableElister` classes in order to convert between E-Lister data and CSV-friendly format. This interaction is illustrated in the following sequence diagrams.
-
-##### Import
+Beyond the UI level, the commands operate using the `CsvElisterStorage` class. This class interacts between the `CsvUtil` and `CsvSerializableElister` classes in order to convert between E-Lister data and a CSV-friendly format. The `CsvSerializableElister` class helps to convert each `Person` instance in the list to it's corresponding CSV String and vice-versa. Using the `export` command for example, this interaction is illustrated in the following sequence diagram:
 
 ##### Export
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
 ### Design Considerations
 

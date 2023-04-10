@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ElisterParser" as ElisterParser LOGIC_COLOR
-participant ":<<class>> ElisterParser" as classAddressBookParser LOGIC_COLOR
+participant "<<class>> ElisterParser" as classAddressBookParser LOGIC_COLOR
 participant ":MassOPCommandParser" as MassOpCommandParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
 participant ":MassOpCommand" as MassOpCommand LOGIC_COLOR
@@ -17,7 +17,7 @@ participant ":Model" as Model MODEL_COLOR
 end box
 
 box Commons COMMONS_COLOR_T1
-participant ":<<class>> Index" as Index COMMONS_COLOR
+participant "<<class>> Index" as Index COMMONS_COLOR
 
 [-> LogicManager : execute("mass tag gay")
 activate LogicManager
