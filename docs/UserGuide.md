@@ -127,8 +127,11 @@ Before you dive into the features, we would like to give you some pointers about
 
 </div>
 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
+Many of the longer commands in MediMeet have a shorter alias. For example, `add_patient` can be used as `ap` instead. Where applicable, the alias will be shown next to the command.
+</div>
 
-### Adding a patient: `add_patient`
+### Adding a patient: `add_patient` or `ap`
 
 Adds a patient to MediMeet.
 
@@ -150,7 +153,7 @@ Examples:
 * `add_patient n/Brenda Song p/98765432 e/brendas@example.com a/Red Road, Blk 123, #01-01`
 * `add_patient n/Adam Crowe p/94331843 e/adamc@example.com a/Blue Street, Blk 420, #03-05 t/newPatient`
 
-### Listing all patients : `list_patient`
+### Listing all patients : `list_patient` or `lp`
 
 Shows a list of all patients in MediMeet.
 
@@ -176,7 +179,7 @@ Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit_patient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 
-### Locating patients by name: `find_patient`
+### Locating patients by name: `find_patient` or `fp`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -194,7 +197,7 @@ Examples:
 * `find_patient alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating patients by details: `find_patient_details`
+### Locating patients by details: `find_patient_details` or `fpd`
 
 Finds patients whose details contain any of the given keywords.
 
@@ -212,7 +215,7 @@ Examples:
 
     ![result for 'find patient details 87438807'](images/findPatientDetailsResult.png)
 
-### Deleting a patient : `delete_patient`
+### Deleting a patient : `delete_patient` or `dp`
 
 Deletes the specified patient from MediMeet.
 
@@ -226,7 +229,7 @@ Examples:
 * `list_patient` followed by `delete_patient 2` deletes the 2nd patient in the MediMeet.
 * `find_patient Alex` followed by `delete_patient 1` deletes the 1st patient in the results of the `find_patient` command.
 
-### Adding patient notes: `remark_patient`
+### Adding patient notes: `remark_patient` or `rp`
 
 Adds a note to a patient in MediMeet so that the doctor can store and access notes
 about a given patient.
@@ -253,7 +256,7 @@ Example:
 ![View command example](images/viewExample.png)
 
 
-### Adding an appointment: `add_appt`
+### Adding an appointment: `add_appt` or `ap`
 
 Adds an appointment for an existing patient in MediMeet.
 
@@ -267,7 +270,7 @@ Example:
 
     ![Adding an appointment](images/addApptCommandSuccess.png)
 
-### Listing all appointments : `list_appt`
+### Listing all appointments : `list_appt` or `la`
 
 Shows a list of all appointments in MediMeet, which is helpful for adding, deleting or editing appointments.
 
@@ -275,7 +278,7 @@ Format: `list_appt`
 
 ![List all appointments](images/listAppt.png)
 
-### Editing an appointment : `edit_appt`
+### Editing an appointment : `edit_appt` or `ea`
 
 Edits an existing appointment in MediMeet.
 
@@ -290,7 +293,7 @@ Format: `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [doc/DOCTOR]`
 Examples:
 *  `edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup` Edits the timeslot of the 1st appointment to be `01012023 00:00,01012023 01:00` and the description to be `Regular checkup`, respectively.
 
-### Locating appointments: `find_appt`
+### Locating appointments: `find_appt` or `fa`
 
 Finds all appointments whose timeslots cover the specified date and time.
 If a second timeslot is specified, all appointments that occur within the two date and time periods are found.
@@ -303,7 +306,7 @@ Examples:
 *  `find_appt 19032023 00:00 26032023 23:59` Finds all appointments between `find_appt 19032023 00:00` and `26032023 23:59`.
    ![Find appointment](images/findAppt2.png)
 
-### Deleting an appointment: `delete_appt`
+### Deleting an appointment: `delete_appt` or `da`
 
 Deletes an existing appointment in MediMeet.
 
@@ -347,9 +350,6 @@ MediMeet data are saved in two JSON files: `[JAR file location]/data/addressbook
 If your changes to the data files make their format invalid, MediMeet will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
