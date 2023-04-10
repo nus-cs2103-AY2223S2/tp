@@ -238,14 +238,14 @@ Examples:
 *  `list-client` followed by `delete-client 1` deletes the first client in the list (if there is one).
 * `dc 3` deletes the third client in the currently visible client list (if there is one).
 
+<div style="page-break-after: always;"></div>
+
 ### Clearing the client list
 #### Format: `clear-client`
 
 Short form: `cc`
 
 Deletes all clients in the client list.
-
-<div style="page-break-after: always;"></div>
 
 Note:
 * A client list needs to be shown for this command to be executed successfully.
@@ -398,13 +398,13 @@ Note:
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 * A project list needs to be shown for this command to be executed successfully.
 
-Example:
-* `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
-* `dp 3` deletes the third project in the currently visible project list (if there is one).
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command cannot be undone. A deleted project cannot be restored.
 </div>
+
+Example:
+* `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
+* `dp 3` deletes the third project in the currently visible project list (if there is one).
 
 ### Marking a project as done
 #### Format: `mark <index>`
