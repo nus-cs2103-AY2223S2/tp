@@ -34,8 +34,14 @@ Apart from being your all-encompassing address book, NeoBook also has an Events 
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   *  `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
+   * `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
+   
+   * `tab 2` : Navigates to the events tab
+   
+   * `addevent d/Do Work! s/2023-04-10 1200 e/2023-04-10 1400 r/Daily` : Adds an event with a description of "Do work!" on 2023-04-10 from 1200 to 1400 and will recur daily.
 
+   * `tab 1` : Navigates to the contacts tab
+   
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
@@ -91,7 +97,7 @@ Use these tabs to toggle between the NeoBook, Events and your own information!
 
 ____________________________________________________________________________________________________________________
 
-### UI Breakdown For `NeoBook`
+### UI Breakdown For `Address Book`
 
 ![neobook](images/userguide/neobook.png)
 
@@ -134,7 +140,7 @@ ________________________________________________________________________________
 
 <hr style="border:2px solid gray">
 
-## NeoBook Features
+## Address Book Features
 
 ____________________________________________________________________________________________________________________
 
@@ -503,7 +509,7 @@ Use this command to exit the application!
 ____________________________________________________________________________________________________________________
 
 
-### NeoBook Command Summary
+### Address Book Command Summary
 
 | Action     | Format, Examples                                                                                                                              |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -772,6 +778,7 @@ Examples:
 | **Edit Event**             | `editevent INDEX {PREFIX/PARAMETER}…​` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                               |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g., `tagpersonevent et/1 pt/John`                                                                                                                  |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT_INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                               |
+
 [Back To Contents](#table-of-contents)
 
 <hr style="border:2px solid gray">
@@ -914,7 +921,7 @@ Use Dark mode!
 
 ____________________________________________________________________________________________________________________
 
-### User Command Summary
+### UI Command Summary
 
 | Action    | Format, Examples |
 |-----------|------------------|
@@ -968,6 +975,7 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
 
 
 ## Future Plans
+
 1. Making the following fields accept multiple parameters instead of just one. 
    1. Since the groundwork was completed in the Tags and Modules fields, we considered it trivial to implement the rest of these fields to accept multiple parameters.
       - Phone
@@ -977,18 +985,25 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
       - Communication Channels
       - Major
       - Faculty
+
 2. Adding better input validation to Phone, Email and Address fields, such as minimum lengths or certain formats.
+
 3. Adding duplicate names support, which is available in most contact lists.
+
 4. Making the user's events be able to import other contact's events.
    1. Since the User is a form of Contact, it is once again trivial to extend the same functionality to other contacts
+
 5. Making NeoBook accept more symbols and emojis.
    1. Currently, the validation regex for all the fields for contacts do not accept special symbols (and also do not render them properly). In the future, we will attempt to add-in support for this.
+
 6. Switching to the relevant tab when a command is executed.
    1. Using commands for contacts in the events tab and vice versa may not show any visible changes, causing confusion in whether the user did anything.
    2. Certain commands should bring the user to the relevant tab, if they are not currently in said tab (e.g. `list` should navigate to the contacts tab).
+
 7. Enhancing the `select` command to accept parameters beyond just the index of the contact.
    1. User cannot see the indices of contacts further down the list, and needs to scroll.
    2. The `select` command can integrate `find` functionality.
+
 8. Splitting the description field of events into title and description fields, so as not to clutter the UI with long descriptions.
 
 [Back To Contents](#table-of-contents)

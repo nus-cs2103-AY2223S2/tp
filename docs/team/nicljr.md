@@ -3,9 +3,9 @@ layout: page
 title: Nicholas Lim's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: NeoBook
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NeoBook is a desktop application for NUS students to better manage their contacts and the events they have scheduled with them. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
@@ -55,7 +55,5 @@ Given below are my contributions to the project.
     * Added [manual testing for the `delevent` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#deleting-an-event) (PR [#323](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/323)).
 
 * **Community**:
-  * Reviewed PRs
+  * Reviewed PRs [#163](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/163)
 
-* **Tools**:
-  * `To be added soon`
