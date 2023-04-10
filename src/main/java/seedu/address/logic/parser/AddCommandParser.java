@@ -46,11 +46,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DRUG_ALLERGY, PREFIX_TAG, PREFIX_GENDER,
-                    PREFIX_DOCTOR, PREFIX_MEDICINE, PREFIX_DATE_OF_BIRTH);
+                PREFIX_DOCTOR, PREFIX_MEDICINE, PREFIX_DATE_OF_BIRTH);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS,
-            PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_PHONE, PREFIX_DATE_OF_BIRTH)
-            || !argMultimap.getPreamble().isEmpty()) {
+            PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_PHONE, PREFIX_DATE_OF_BIRTH, PREFIX_DOCTOR)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -67,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Medicine> medicineList = ParserUtil.parseMedicines(argMultimap.getAllValues(PREFIX_MEDICINE));
 
         Person person = new Person(nric, name, date, phone, email, address, drugAllergy,
-                gender, doctor, tagList, medicineList);
+            gender, doctor, tagList, medicineList);
 
         return new AddCommand(person);
     }

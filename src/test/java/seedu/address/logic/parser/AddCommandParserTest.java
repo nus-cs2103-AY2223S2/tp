@@ -254,7 +254,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NRIC_DESC_BOB + NAME_DESC_BOB
                 + DATE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DRUG_ALLERGY_DESC_BOB + INVALID_GENDER_DESC_2 + TAG_DESC_HUSBAND
-                + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_FRIEND + DOCTOR_DESC_BOB, Gender.MESSAGE_CONSTRAINTS);
 
         // invalid doctor
         assertParseFailure(parser, NRIC_DESC_BOB + NAME_DESC_BOB
