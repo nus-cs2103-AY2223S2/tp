@@ -780,6 +780,7 @@ specified otherwise)
 
     Use case resumes from step 2.
 
+
 * 1b. The user inputs an invalid client index 
   * 1b1. Advis.io displays a message indicating that the client index is invalid. 
   * 1b2. User inputs another client index with the modified information
@@ -787,6 +788,7 @@ specified otherwise)
     Steps 1b1-1b2 are repeated until the data entered are correct.
 
     Use case resumes from step 2.
+
 
 **Use case: Delete a client**
 
@@ -799,9 +801,9 @@ specified otherwise)
 
 **Extensions**
 
-* 1a. The user inputs an invalid client index 
-  * 1a1. Advis.io displays a message indicating that the client index is invalid. 
-  * 1a2. User inputs another client index. 
+* 1a. The user inputs an invalid client index
+  * 1a1. Advis.io displays a message indicating that the client index is invalid.
+  * 1a2. User inputs another client index.
 
     Steps 1a1-1a2 are repeated until the data entered are correct.
 
@@ -900,10 +902,10 @@ specified otherwise)
 
 **MSS**
 
-1. The user performs an action within Advis.io. 
-2. The user selects the "undo" command within Advis.io. 
-3. Advis.io undoes the last action taken by the user. 
-4. The user selects the "redo" command within Advis.io. 
+1. The user performs an action within Advis.io.
+2. The user selects the "undo" command within Advis.io.
+3. Advis.io undoes the last action taken by the user.
+4. The user selects the "redo" command within Advis.io.
 5. Advis.io redoes the previously undone action.
 
    Use case ends.
@@ -1064,19 +1066,19 @@ testers are expected to do more *exploratory* testing.
    3. Test case : `select 0`<br>
       Expected : Client list remains displayed. Error details shown in the status message.
    4. Other incorrect select commands to try : `select`, `select x` (where x is larger than the list size).
- 
       Expected : Client list remains displayed. Error details shown in the status message.
 
 ### Adding a client
 
 1. Add a client to the client list
    1. Prerequisites: List all clients is currently being displayed in the clients display box.
-   2. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 `    
-      Expected : Name of client added will be displayed in the status message. Client list will be updated to include the added client
+   2. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`
+
+      Expected : Name of client added will be displayed in the status message. Client list will be updated to include the added client.
    3. Test case : `add`
 
       Expected : No client is added. Error details shown in the status message. Client list remains the same.
-   4. Test case : `add n/John Doe p/98765432 e/x a/311, Clementi Ave 2, #02-25 `
+   4. Test case : `add n/John Doe p/98765432 e/x a/311, Clementi Ave 2, #02-25`
    
       Expected : No client is added. Invalid email format will result in email error message to be displayed in the status message.
 
@@ -1092,12 +1094,12 @@ testers are expected to do more *exploratory* testing.
    
        Expected : No client is deleted. Error details shown in the status message. Client list remains the same.
     4. Other incorrect delete commands to try : `delete x` (where x is larger than the list size)
-   
+ 
        Expected : Similar to previous.
 
-### Editing a client                                                                                                                               
+### Editing a client
                                                                                                                                                     
-1. Editing an existing client's personal particulars                                                                                                                               
+1. Editing an existing client's personal particulars
                                                                                                                                                     
     1. Prerequisites: Client list is currently being displayed. At least 1 client in the list. Select the particular client with the command `select x`, where x is the index of the client to edit. The client's details will be displayed on the top right display box.
     2. Test case : `edit 1 p/91234567 e/johndoe@example.com`
@@ -1110,14 +1112,15 @@ testers are expected to do more *exploratory* testing.
    
        Expected : Similar to previous.
 
-### Adding a policy to a client                                                                                                                   
+### Adding a policy to a client 
                                                                                                                                       
-1. Add a policy to a specific client                                                                                                
-   1. Prerequisites: Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box.                                     
-   2. Test case : `addPolicy 1 pn/Fire Insurance pd/01.01.2021 pp/1000 pf/yearly `                                      
+1. Add a policy to a specific client
+   1. Prerequisites: Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box.
+   2. Test case : `addPolicy 1 pn/Fire Insurance pd/01.01.2021 pp/1000 pf/yearly`
+   
       Expected : Name of client at index 1 and name of the policy added will be displayed in the status message. Client's policy list will be updated to include the added policy.
-   3. Test case : `addPolicy`                                                                                                               
-                                                                                                                                            
+   3. Test case : `addPolicy`
+
       Expected : No policy is added. Error details shown in the status message. All client's policy list remains the same.                         
    4. Other incorrect add policy commands to try : `addPolicy 0`, `addPolicy x` (where x is larger than the client list size)
    
@@ -1140,7 +1143,7 @@ testers are expected to do more *exploratory* testing.
 ### Edit a policy from a client
 1. Edit a policy from a specific client
    1. Prerequisites : Select the particular client with the command `select x`, where x is the index of the specific client. The client's policy list will be displayed on the policies display box. Client should have at least 1 policy in the policy list.
-   2. Test case : `editPolicy 1 pi/1 pn/Travel Insurance pp/2000 `
+   2. Test case : `editPolicy 1 pi/1 pn/Travel Insurance pp/2000`
    
       Expected : Name of the client at index 1, and name of the policy at index 1 will be displayed in the status message. Edited policy will be updated accordingly.
    3. Test case : `editPolicy`
@@ -1151,7 +1154,7 @@ testers are expected to do more *exploratory* testing.
       Expected : Similar to previous.
 
 ## **Appendix: Efforts**
-1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity.                                   We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
+1. Overall, we thought the project's difficulty level was Moderate. We implemented a wide range of features with differing degrees of difficulty and complexity. We needed a thorough understanding of the system architecture, as this was necessary in order to extend AB-3 in a way that integrates well with the existing design and features of AB-3.
 
 
 2. Challenges Faced: Because each member worked on many issues and features, the list below is not exhaustive.
@@ -1192,4 +1195,4 @@ testers are expected to do more *exploratory* testing.
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
 6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
 7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
-8. For the sorting commands, which are `sortClientEmail` , `sortClientName`, `sortClientPhone` - we plan to fix a feature flaw such that the index the user can put in is only binary. Currently, the user can put in any integer and the command will still work. Only if the user puts the index as 0, it will be in descending order. We plan to fix this such that the user can only put in 1 or 0. If the user puts in 1, the list will be sorted in ascending order. If the user puts in 0, the list will be sorted in descending order. This will make the command more intuitive for the user. 
+8. For the sorting commands, which are `sortClientEmail` , `sortClientName`, `sortClientPhone` - we plan to fix a feature flaw such that the index the user can put in is only binary. Currently, the user can put in any integer and the command will still work. Only if the user puts the index as 0, it will be in descending order. We plan to fix this such that the user can only put in 1 or 0. If the user puts in 1, the list will be sorted in ascending order. If the user puts in 0, the list will be sorted in descending order. This will make the command more intuitive for the user.
