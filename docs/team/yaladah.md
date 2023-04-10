@@ -2,6 +2,8 @@
 
 I’m a Y2 CS student. I’m from Singapore and I enjoy getting in calls with friends and playing casual games.
 
+Visit my GitHub profile [here](https://github.com/Yaladah).
+
 ## Pied Piper
 
 I took part in developing Pied Piper, a task management app that helps current and future university student
