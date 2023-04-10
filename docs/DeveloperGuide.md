@@ -103,7 +103,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="600" height="600">
+<img src="images/LogicClassDiagram.png"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FitBookParser` class to parse the user command.
@@ -130,7 +130,7 @@ How the parsing works:
 
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
 
-<img src="images/ModelClassDiagram.png"/>
+<img src="images/ModelClassDiagram.png" height = "500">
 
 
 The `FitBookModel` component,
