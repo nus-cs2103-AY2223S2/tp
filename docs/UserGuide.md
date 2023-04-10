@@ -6,7 +6,7 @@ title: User Guide
 
 <h2><div style="color:#f9963f">About FitBook</div></h2>
 
-FitBook is a **desktop application for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
+FitBook is a **desktop application for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FitBook can get your client management tasks done faster than traditional GUI apps.
 
 This User Guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 * Table of Contents
@@ -19,7 +19,6 @@ This User Guide provides brief documentation on how you can install the applicat
 1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook. 
    * To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
    * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
-
 
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
@@ -55,7 +54,6 @@ This User Guide provides brief documentation on how you can install the applicat
 
    * `exit` : Exits the app.
 
-
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -84,7 +82,7 @@ The menu bar is typically located at the top of the user interface and is primar
 #### Help
 * Provides a new tab outside FitBook with the link to the User Guide.
 
-### Result Display
+### Result Panel
 
 Panels are _empty_ when the data for that specific panel is _empty_.
 
@@ -109,7 +107,7 @@ Panels are _empty_ when the data for that specific panel is _empty_.
 
   ![Summary Panel](images/summary.png)
 
-### Feedback Box
+### Result Display
 When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or any other relevant details.
 ### Command Box
 The Command Box is where you can type in your commands. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
@@ -129,7 +127,7 @@ The Command Box is where you can type in your commands. To execute the command, 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -137,7 +135,7 @@ The Command Box is where you can type in your commands. To execute the command, 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `export`, `exportRoutine`, `listRoutines`, `clearRoutines` and `clear`) will be ignored.<br>
@@ -233,7 +231,7 @@ Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GE
 * The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing `tags`,`appointments` and `routines`, the existing `tags`,`appointments` and `routines` of the client will be removed i.e adding of `tags`,`appointments` and `routines` are not cumulative.
+* When editing `tags`,`appointments` and `routines`, the existing `tags`,`appointments` and `routines` of the client will be removed i.e. adding of `tags`,`appointments` and `routines` are not cumulative.
 * You can remove all the client’s tags by typing `t/` without specifying any tags after it. (same for `appointments` with `/app` prefix and `routines` with `/r`)
 * `APPOINTMENT` needs to be later than the current time, or it will get deleted.
 
@@ -421,7 +419,7 @@ Format: `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​`
 
 Examples:
 * `addRoutine r/Cardio`
-* `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
+* `addRoutine r/HIIT ex/3x10sets of Jumping ropes`F
 
 Example: (Adding Routine without any exercises)
 ![AddRoutine](images/AddRoutineUG.png)
