@@ -106,7 +106,7 @@ public class UploadCsvCommandTest {
     }
 
     @Test
-    public void execute_uploadCsv_withDuplicate_addsOtherValidItems_success() throws Exception {
+    public void execute_uploadCsvWithDuplicate_addsOtherValidItemsSuccess() throws Exception {
         model = new ModelStubWithItems();
         model.addItem(CUPCAKE_M, ModelEnum.MENUITEM);
 
