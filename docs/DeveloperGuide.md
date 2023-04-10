@@ -124,7 +124,8 @@ provides the links to the aforementioned documents. In this section, you will be
 
 The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating CoDoc
 and how we intend for users to use CoDoc.
-In this section, you will be provided with
+In this section, you will be provided with:
+
 1. Product Scope.
 2. User Stories.
 3. Use Cases.
@@ -132,6 +133,7 @@ In this section, you will be provided with
 
 The [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
 on how you can perform testing on the features in CoDoc. In this section, you will be provided with:
+
 1. An overview of the command to execute to test the feature.
 2. Sample test cases to be executed.
 3. The expected behaviour of the test command.
