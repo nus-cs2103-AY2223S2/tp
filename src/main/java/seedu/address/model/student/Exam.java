@@ -19,7 +19,6 @@ public class Exam {
     private final Double weightage;
     private final Grade grade;
 
-
     /**
      * Creates a new Exam with the given description, start time, end time, weightage, and grade.
      *

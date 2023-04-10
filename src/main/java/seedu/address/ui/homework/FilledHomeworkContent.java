@@ -19,7 +19,7 @@ public class FilledHomeworkContent extends GeneralHomeworkContent {
     private static final String FXML = "HomeworkContent.fxml";
     private static final String NAME_LABEL = "First Name: %s";
     private static final String LIST_NAME_LABEL = "Homework List: ";
-    private static final String PIE_CHART_TITLE = "Completed/Uncompleted Homework";
+    private static final String PIE_CHART_TITLE = "Completed/Pending Homework";
 
     @FXML
     private Label name;
