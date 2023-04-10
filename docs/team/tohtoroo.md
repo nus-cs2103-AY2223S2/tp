@@ -3,10 +3,10 @@ layout: page
 title: Aeron Toh's Project Portfolio Page
 ---
 
-### Project: Dengue Hotspot Tracker
+### Project: DengueHotspotTracker (DHT)
 
 Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI,
-and it has a GUI created with JavaFX. It is written in Java, and has about 9.5 kLoC.
+and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
 
@@ -72,19 +72,19 @@ Given below are my contributions to the project.
     * Edited `find` to allow for spaces in the name.
     ([#128](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/128))
 
-
-* **Contributions to the UG:**
-    * Added documentation for the prefix `find`, `find`-by-date-range, `find`-by-age-range.
-    ([#151](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/151))
-    * Added more pictures for each of the functions. ([#171](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/171))
-
-
-* **Contributions to the DG:**
-    * Added UML sequence diagram for prefix `find` command.
-    ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104))
-    * Added UML activity diagram for prefix `find` command.
-    ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104))
-
+* **Documentation:**
+  * User Guide
+    * Added documentation for the prefix `find`, `find`-by-date-range and `find`-by-age-range.
+      ([#151](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/151))
+    * Added more pictures for each of the available DHT commands. ([#171](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/171))
+  * Developer Guide
+    * Added UML sequence diagram for`find`-by-prefix command.
+      ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104))
+    * Added UML activity diagram for`find`-by-prefix command.
+      ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104))
+    * Added UML activity diagram for`find`-by-range command.
+      ([#280](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/280))
+    * Added use cases for `find`.
 
 * **Community:**
   * PRs reviewed (with non-trivial review comments):

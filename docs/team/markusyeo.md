@@ -3,9 +3,9 @@ layout: page
 title: Markus Yeo's Project Portfolio Page
 ---
 
-### Project: Dengue Hotspot Tracker
+### Project: DengueHotspotTracker (DHT)
 
-Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 9.5 kLoC.
+Dengue Hotspot Tracker is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
 
