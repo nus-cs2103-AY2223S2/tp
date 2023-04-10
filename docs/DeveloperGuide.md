@@ -245,7 +245,7 @@ Sequence Diagram for Graph feature. The diagram omits some method sequence in th
 
 Step 1: MainWindow requests for a graph pop-up window  by executing the graph command.
 
-Step 2: Logic call the WeightHistory class to generate a list of `Date` date mapped to `Double` weight over 30 days. `handleStatistics` method is called to generate 
+Step 2: Logic call the WeightHistory class to generate a list of `Date` date mapped to `Double` weight over 30 days. `handleStatistics` method is called to generate
 graph. `updateSeries` method is called to ensure the data populating the graph is up-to-date.
 
 * Example Usage Scenario
@@ -282,7 +282,7 @@ The following details explain how it works:
       * When an appointment is edited in the clients list, it is automatically added to the
       list of appointments.
       * The list is automatically sorted in increasing order of the appointment data time.
-      
+
    * Details:
       * When the user enters the edit appointment command, it triggers the creation of an object the *Appointment*
       class.
@@ -769,7 +769,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
        Use case ends.
 
 * 1c. The client added has a routine that is not in FitBook.
-    
+
     * 1c1. FitBook shows an error message to use a valid routine.
 
        Use case ends.
@@ -1274,7 +1274,7 @@ testers are expected to do more *exploratory* testing.
    C. Test case: `findRoutine`<br>
    Expected: Error details shown in the status message.
 
-### View Summary 
+### View Summary
 1. View a Clients Summary Details
 
    A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list.
@@ -1288,10 +1288,10 @@ testers are expected to do more *exploratory* testing.
    D. Other incorrect view commands to try:`view x `, (where x is larger than the list size)<br>
    Expected: Similar to previous.
 <div style="page-break-after: always;"></div>
-### Graph 
+### Graph
 1. Plot a graph of clients Weight History.
 
-   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list. 
+   A. Prerequisites: List all clients using the `listClients` command. Multiple Clients with their respective details displayed in the list.
 
    B. Test case: `graph 2`<br>
    Expected: Displays the graph pop up of the weight history of Client at index `2`.
@@ -1320,7 +1320,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Application launches successfully but has no data.
 <div style="page-break-after: always;"></div>
 >## **Appendix: Effort**
- 
+
 ### Difficulty level
 
 * Programming level: High
@@ -1353,7 +1353,7 @@ testers are expected to do more *exploratory* testing.
 * User Friendly application with excellent User Guide.
 * Link between Clients and Exercises are prominent.
 <div style="page-break-after: always;"></div>
->## **Appendix: Planned Enhancements** 
+>## **Appendix: Planned Enhancements**
 
 * FitBook lowering the computer's resources.
   * FitBook causes some minor lag after some usage. Future enhancement: Hide the other panels as the other panels are still active (stacking on top of each other) which is probably the main cause of using a lot of ram and gpu.
