@@ -83,6 +83,8 @@ Summary](#command-summary) sections to get an overview of the commands which
 are the bread and butter of Mycelium. Alternatively, you may continue reading
 the guide for a guided tour of how Mycelium is intended to be used.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-danger">
 :warning: As you perform commands in Mycelium, you will notice that a
 new data file `mycelium.json` is created in `data/` directory as the default.
