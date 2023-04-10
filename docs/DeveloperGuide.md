@@ -174,7 +174,7 @@ Below shows the activity diagram when the user inputs the add command in the com
 
 ![Activity Diagram for add person command](images/ActivityDiagram_AddPerson.png){:.center}
 
-The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. 
+The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram.
 
 ### Create team feature
 
@@ -191,7 +191,7 @@ Thus, we have made it such that the only mandatory field is the persons name.
 
 #### Implementation
 
-The implementation for the follow fields: Phone, Email, Major, Address have been made optional. The implementation to achieve this is similar across these fields. We use the Phone class as an example. 
+The implementation for the follow fields: Phone, Email, Major, Address have been made optional. The implementation to achieve this is similar across these fields. We use the Phone class as an example.
 
 ```java
 private static final Phone NO_PHONE = new Phone();
@@ -217,7 +217,7 @@ The `undo`/`redo` mechanism is based on the memento design pattern. Within the m
 2. `Memento` - The wrapper of a saved state of an `Originator` that is used to restore the `Originator`.
 3. `Caretaker` - The aggregator of `Memento` that controls the sequence of `Memento`s for `undo`/`redo`.
 
-The pattern can be implemented with the `Originator` and `Memento` as an <<interface>> to allow for better extension and reduce decoupling. 
+The pattern can be implemented with the `Originator` and `Memento` as an <<interface>> to allow for better extension and reduce decoupling.
 
 ![Memento Design Pattern](images/MementoDesignPatternDiagram.png){:.center}
 
@@ -293,7 +293,7 @@ The `redo` command does the opposite — it calls `HistoryUtil#redo()`, whic
 
 </div>
 
-**Step 5.** 
+**Step 5.**
 The user then decides to execute the command `list`. Commands that do not modify the TeamBuilder, such as `list`, will usually not call `Model#Save()`, `HistroyUtil#storePast` , `HistroyUtil#undo`, `HistoryUtil#redo`. Thus, the `Model` remains unchanged.
 
 ![UndoRedoState4](images/NewUndoRedoState4.png){:.center}
@@ -341,17 +341,17 @@ The subsidiary diagram, for SortCommandParser, is as shown below:
 
 #### Implementation
 
-The `filteredPersons` variable in the ModelManager.java is defined by passing in the `getPersonList()` from `addressBook` 
-into a `FilteredList` object. However, `sortedPersons` variable in the ModelManager.java is instead defined by passing 
-in `filteredPersons` into a `SortedList` object. 
+The `filteredPersons` variable in the ModelManager.java is defined by passing in the `getPersonList()` from `addressBook`
+into a `FilteredList` object. However, `sortedPersons` variable in the ModelManager.java is instead defined by passing
+in `filteredPersons` into a `SortedList` object.
 
 This ensures that modifications (deletes/edits) to the persons after a `list` or `sort` command will be consistent.
 
 #### Design considerations:
 
-The `parse` function in SortCommandParser.java is used to trim and process the arguments before instantiating 
-SortCommand object. The `execute` function in SortCommand is used to identify the order and sort by to be used by the 
-comparator and to run the sort with the comparator. This ensures that subsequent additions to sort by, such as sort by 
+The `parse` function in SortCommandParser.java is used to trim and process the arguments before instantiating
+SortCommand object. The `execute` function in SortCommand is used to identify the order and sort by to be used by the
+comparator and to run the sort with the comparator. This ensures that subsequent additions to sort by, such as sort by
 name etc, would only require to edit the `execute` function.
 
 The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added
@@ -359,21 +359,38 @@ to the `SortCommand` to perform an `updateSort()` for the `Model` object, with t
 
 ### Show Team feature
 
+The field for show team is compulsory. The current implementation requires user to input names of the targeted teams.
+
+Below shows the activity diagram when the user inputs the show command in the command box:
+
+![Activity Diagram for show command](images/ActivityDiagram_ShowCommand.png){:.center}
+
+Below shows the activity diagram for the details of parsing show command:
+
+![Activity Diagram for show command parser](images/ActivityDiagram_ShowCommandParser.png){:.center}
+
+Below shows the activity diagram about the predicate processing of show command:
+
+![Activity Diagram for show command parser](images/ActivityDiagram_TeamContainsKeywordsPredicate.png){:.center}
+
 #### Implementation
 
-Show command utilizes the `updateFilterPersonList()` method implemented in ModelManager.java to filter the 
-`filtleredPersons` list variable in ModelManager with the given predicate `TeamContainsKeywordsPredicate`.
+Show command utilizes the `updateFilterPersonList()` method implemented in ModelManager.java to filter the
+`filteredPersons` list variable in ModelManager with the given predicate `TeamContainsKeywordsPredicate`.
 
 The `TeamContainsKeywordsPredicate` object takes in a `List<String>` from `ShowCommandParser`, and make use of the
-`containsWordIgnoreCase()` from `StringUtil` to conduct matching between the user input and the `tagName` of each 
+`containsWordIgnoreCase()` from `StringUtil` to conduct matching between the user input and the `tagName` of each
 the `teams` of each `Person` object.
 
 #### Design considerations:
 
-The `get` command utilizes the `filter()` method from FilterCommand.java. It filters the person list based on tag `teams`
-while the Filter command targets on other features such as `major` and `name`. 
+The `parse` function in ShowCommandParser.java will trim the arguments and create a predicate object with the input
+after the command prefix. This predicate is passed to ShowCommand as a parameter. This ensured that this feature can
+take other predicate in future iterations. Currently, there is only one predicate that search the keywords among team
+names. When there are demands such as searching keywords among team requirements, new predicates can be created and
+ShowCommand can easily adapt to new iterations.
 
-This guarantees that from the users' perspective, `filter` and `get` are separate commands.
+TeamContainsKeywordsPredicate.java is created to facilitate the comparison between keywords and `tagName` of team.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -434,18 +451,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. TeamBuilder creates AddCommand.
 4. TeamBuilder executes AddCommand.
 5. TeamBuilder saves person in model and storage.
-   
+
    Use case ends.
 
 **Extensions**
 - 2a. Inputs for command invalid.
   - 2a1. TeamBuilder displays error caused by invalid field/ missing field.
   - 2a2. TeamBuilder displays valid format for add command.
-    
+
      Use case ends.
 - 4a. User inputs name which already exists in TeamBuilder.
   - 4a1. TeamBuilder displays error message indicating duplicate name.
-  
+
     Use case ends
 
 
@@ -575,8 +592,26 @@ testers can do more *exploratory* testing.
     1. Test case: `create tn/Team B t/Python t/ReactNative`<br>
        Expected: No team is created (no team description in command). Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `create`, `create td/Team for upcoming hackathon t/Python t/ReactNative`, `...`<br>
+    1. Other incorrect create commands to try: `create`, `create td/Team for upcoming hackathon t/Python t/ReactNative`, `...`<br>
        Expected: Similar to previous.
+
+### Show teams
+
+1. Show all members under certain teams
+
+    1. Prerequisites: Create two teams with command `create`. Multiple persons in the list. Add person one in team one with command `edit`. Add person two in team one and team two. Add person three in team two.
+
+    1. Test case: `show Name_of_Team_One`<br>
+       Expected: Person one and person two are listed in the person panel on the left. Other people are filtered out.
+
+    1. Test case: `show Name_of_Team_Two`<br>
+       Expected: Person two and person three are listed in the person panel on the left. Other people are filtered out.
+
+    1. Test case: `show Name_of_Team_One Name_of_Team_Two`<br>
+       Expected: Person one, two, three are listed in the person panel on the left. Other people are filtered out.
+
+    1. Other incorrect show commands to try: `show`, `show Name_of_Not_Created_Team`, `...`<br>
+       Expected: Error details shown in the status message.
 
 ### Sorting persons
 
@@ -588,7 +623,7 @@ testers can do more *exploratory* testing.
     1. Test case: `sort tcount`<br>
        Expected: No sorting occurs (no order in command). Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `sort`, `sort desc`, `...`<br>
+    1. Other incorrect sort commands to try: `sort`, `sort desc`, `...`<br>
        Expected: Similar to previous.
 
 ### Undo/Redo
@@ -598,7 +633,7 @@ testers can do more *exploratory* testing.
    1. Prerequisites: Find some contacts using the `find` command. Some but not all contacts in the list. Then use `clear` resulting in an empty Team Builder.
 
    2. Test case: `undo`<br>
-      Expected: The Team Builder is restored and no longer empty. Some but not all contacts are in the list, as `find` was used. Using `list` then should show the entire contact list still present. 
+      Expected: The Team Builder is restored and no longer empty. Some but not all contacts are in the list, as `find` was used. Using `list` then should show the entire contact list still present.
 
 
 

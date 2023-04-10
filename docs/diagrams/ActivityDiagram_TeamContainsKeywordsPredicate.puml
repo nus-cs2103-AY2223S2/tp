@@ -1,0 +1,14 @@
+@startuml
+start
+title Activity: Filter filteredPersons with TeamContainsKeywordsPredicate
+:TeamContainsKeywordsPredicate takes in a Keyword list;
+:Create a stream with the Keyword list;
+:filteredPersons set TeamContainsKeywordsPredicate as its predicate;
+:Apply the predicate test function to each person stored;
+repeat
+:Create a stream with the Team set from the person;
+:Compare each element in the keyword stream with the name of that of the team stream;
+repeat while () is ([Has untested person]) not ([All person tested])
+:Update filteredPersons;
+stop
+@enduml
