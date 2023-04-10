@@ -20,18 +20,20 @@ such as flight scheduling and management of crew, pilot, plane and location.
 
 - **[How to Use This Guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
-  - **[Layout of Wingman Application Window](#layout-of-wingman-application-window)**
-  - **[Modal Editing: `mode`](#modal-editing)**
-  - **[Command Formatting](#command-formatting)**
+    - **[Layout of Wingman Application Window](#layout-of-wingman-application-window)**
+    - **[Modal Editing: `mode`](#modal-editing)**
+    - **[Command Formatting](#command-formatting)**
 - **[Features](#features)**
-  - **[Shared Commands](#shared-commands)**
-    - **[Adding a resource: `add`](#1-adding-a-resource-add)**
-    - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
-  - **[Mode-Specific Commands](#mode-specific-commands)**
-    - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
-    - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)**
-    - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
-    - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
+    - **[Shared Commands](#shared-commands)**
+        - **[Adding a resource: `add`](#1-adding-a-resource-add)**
+        - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
+    - **[Mode-Specific Commands](#mode-specific-commands)**
+        - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
+        - *
+          *[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)
+          **
+        - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
+        - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command Summary](#command-summary)**
 - **[FAQ](#faq)**
@@ -90,6 +92,7 @@ following sections:
 <div style="page-break-after: always;"></div>
 
 ### Layout of Wingman Application Window
+
 <img src="images/ug/UG-labelled.jpg" width="2032">
 
 The following table describes the sections in detail:
@@ -131,7 +134,7 @@ mode XYZ
 where XYZ can be any of the modes described above (i.e. `crew`, `flight`, `location`, `pilot`, `plane`).
 
 Upon successfully switching to a mode, Wingman will display the current mode's name in the status bar in the bottom left
-corner of the window. The window also displays a list for each resource, to aid you in keeping track of links between 
+corner of the window. The window also displays a list for each resource, to aid you in keeping track of links between
 resources.
 
 <img src="images/ug/UG-mode.jpg" width="2032" alt="Screenshot of Wingman's main page">
@@ -213,10 +216,10 @@ Required prefixes:
 
 - `/n`: the name of the crew.
 - `/r`: the rank of the crew.
-  - `0`: Senior Crew Member,
-  - `1`: Crew Member,
-  - `2`: Junior Crew Member,
-  - `3`: Trainee.
+    - `0`: Senior Crew Member,
+    - `1`: Crew Member,
+    - `2`: Junior Crew Member,
+    - `3`: Trainee.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: Your selection is limited to the designated ranks
@@ -270,17 +273,17 @@ Required prefixes:
 
 - `/n`: the name of the pilot.
 - `/r`: the rank of the pilot. The accepted values for this required input value are as follows
-  - `0`: Training Captain,
-  - `1`: Captain,
-  - `2`: Senior First Officer,
-  - `3`: First Officer,
-  - `4`: Second Officer,
-  - `5`: Cadet.
+    - `0`: Training Captain,
+    - `1`: Captain,
+    - `2`: Senior First Officer,
+    - `3`: First Officer,
+    - `4`: Second Officer,
+    - `5`: Cadet.
 - `/a`: the age of the captain.
 - `/g`: the gender of the pilot. The accepted values for this required input value are as follows
-  - `0`: male
-  - `1`: female
-  - `2`: other
+    - `0`: male
+    - `1`: female
+    - `2`: other
 - `/fh`: the flight hours of the pilot.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
@@ -368,7 +371,8 @@ The commands in this section are only available in the specified modes.
 
 #### **1. Linking a resource to a location: `linklocation`**
 
-Use this command when you wish to link a resource entity to a location. A link means there is some association between the resource to the location.
+Use this command when you wish to link a resource entity to a location. A link means there is some association between
+the resource to the location.
 For example, a crew may work and reside in some locations, then we can
 link the crew to the locations.
 
@@ -376,9 +380,11 @@ link the crew to the locations.
 <strong>Note:</strong> For flexibility, a resource can be linked to multiple locations. This is because planes, crews, and pilots may have multiple associations. 
 </div>
 
-This command is only available in these modes: `crew`, `flight`, `pilot` and `plane`. This commands links an entity of the current resource mode to a specified location entity in Wingman's database.
+This command is only available in these modes: `crew`, `flight`, `pilot` and `plane`. This commands links an entity of
+the current resource mode to a specified location entity in Wingman's database.
 
-For example, if you are currently in the `crew` mode, then this command will link a `crew` to a specified location. If the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
+For example, if you are currently in the `crew` mode, then this command will link a `crew` to a specified location. If
+the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
 
 <img src="images/ug/UG-linklocation.jpg" width="2032" alt="Screenshot depicting execution of a link command">
 
@@ -460,12 +466,15 @@ Linked A380 to Tokyo.
 #### **2. Unlinking a resource from a location: `unlinklocation`**
 
 Use this command when you wish to unlink a resource entity from a location.
-To unlink, the location and the entity should have been linked first, otherwise the program will let you that the command is invalid.
+To unlink, the location and the entity should have been linked first, otherwise the program will let you that the
+command is invalid.
 
 The command has a very similar format to the link command. It is also only
 available in these modes: `crew`, `flight`, `pilot` and `plane`.
 
-For example, if you are currently in the `crew` mode, then this command will unlink a `crew` from the specified location entity in the database. If the command is valid, Wingman will return a response confirming the link that has been undone, as shown below:
+For example, if you are currently in the `crew` mode, then this command will unlink a `crew` from the specified location
+entity in the database. If the command is valid, Wingman will return a response confirming the link that has been
+undone, as shown below:
 
 <img src="images/ug/UG-unlinklocation.jpg" width="2032" alt="Screenshot depicting execution of an unlink command">
 
@@ -548,11 +557,16 @@ After introducing how to link resources to a location, we will next describe how
 
 #### **3. Linking a resource to a flight: `linkflight`**
 
-A flight requires multiple resources, such as crews, pilots, and planes. We have commands that allow users to link them to a flight.
+A flight requires multiple resources, such as crews, pilots, and planes. We have commands that allow users to link them
+to a flight.
 
-To link a resource to a flight, the program needs be switched to the corresponding mode first, e.g., to link a pilot to a flight, the program should be under `pilot` mode. Thus, this command is only available in some modes: `crew`, `pilot` and `plane`.
+To link a resource to a flight, the program needs be switched to the corresponding mode first, e.g., to link a pilot to
+a flight, the program should be under `pilot` mode. Thus, this command is only available in some modes: `crew`, `pilot`
+and `plane`.
 
-For example, if you are currently in the `crew` mode, then this command will link a `crew` to a specified flight in the database. If the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
+For example, if you are currently in the `crew` mode, then this command will link a `crew` to a specified flight in the
+database. If the command is valid, Wingman will return a response confirming the link that has been made, as shown
+below:
 
 <img src="images/ug/UG-linkflight.jpg" width="2032" alt="Screenshot depicting the execution of a link command">
 
@@ -641,12 +655,15 @@ If the command is valid, Wingman will return a response confirming the link that
 
 #### **4. Unlinking a resource from a flight: `unlinkflight`**
 
-Use this command when you wish to unlink a resource entity from a flight. Similar to `linklocation` and `unlinklocation`, this command is only valid if the source and the flight have been linked before with.
+Use this command when you wish to unlink a resource entity from a flight. Similar to `linklocation`
+and `unlinklocation`, this command is only valid if the source and the flight have been linked before with.
 
 Same as linking a resource to a flight, this command is only available in these modes: `crew`, `pilot`, and `plane`.
 
-For example, if you are currently in the `crew` mode, then this command will unlink a `crew` from a specified flight in the
-database. If the command is valid, Wingman will return a response confirming the link that has been undone, as shown below:
+For example, if you are currently in the `crew` mode, then this command will unlink a `crew` from a specified flight in
+the
+database. If the command is valid, Wingman will return a response confirming the link that has been undone, as shown
+below:
 
 <img src="images/ug/UG-unlinkflight.jpg" width="2032" alt="Screenshot depicting execution of an unlink command">
 
@@ -676,7 +693,7 @@ Example:
 Input:
 unlinkflight /fl 1 /csd 1
 
-Output: 
+Output:
 Unlinked Cabin Service Director John Smith from SQ230.
 ```
 
@@ -758,14 +775,14 @@ Unlinked A380 from SQ230.
 
 ## Command Summary
 
-| **Action**      | **Format**                                                               | **Examples**                   |
-|-----------------|--------------------------------------------------------------------------|--------------------------------|
-| Add             | `add /{prefix_A} {value_A} /{prefix_B} {value_B}`                        | `add /n Bob /r 2`              |
-| Delete          | `delete resource-index`                                                  | `delete 1`                     |
-| Link location   | `linklocation /lo location-index /{resource-prefix} {resource-index}`    | `linklocation /lo 1 /cr 1`     |
+| **Action**      | **Format**                                                                | **Examples**                   |
+|-----------------|---------------------------------------------------------------------------|--------------------------------|
+| Add             | `add /{prefix_A} {value_A} /{prefix_B} {value_B}`                         | `add /n Bob /r 2`              |
+| Delete          | `delete resource-index`                                                   | `delete 1`                     |
+| Link location   | `linklocation /lo location-index /{resource-prefix} {resource-index}`     | `linklocation /lo 1 /cr 1`     |
 | Unlink location | `unlinklocation /lo {location-index} /{resource-prefix} {resource-index}` | `unlinklocation /lo 1 /fl 1`   |
-| Link flight     | `linkflight /fl {flight-index} /{resource-prefix} {resource-index}`      | `linkflight /fl 1 /pf 1 /pm 2` |
-| Unlink flight   | `unlinkflight /fl {flight-index} /{resource-prefix} {resource-index}`    | `unlinkflight /fl 1 /pu 1`     |
+| Link flight     | `linkflight /fl {flight-index} /{resource-prefix} {resource-index}`       | `linkflight /fl 1 /pf 1 /pm 2` |
+| Unlink flight   | `unlinkflight /fl {flight-index} /{resource-prefix} {resource-index}`     | `unlinkflight /fl 1 /pu 1`     |
 
 [Back to contents](#table-of-contents)
 
