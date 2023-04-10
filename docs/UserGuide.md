@@ -41,7 +41,7 @@ on your computer.
 Alternatively, you may refer to the user guide to quickly view information regarding a particular feature that you are
 unsure of how to use.
 
-To help you better navigate through our user guide, the [Return to ToC](#a-idtable-a-table-of-contents) at the end of
+To help you better navigate through our user guide, the [Return to ToC](#table) at the end of
 each section allows you return to the Table of Contents. From there, you can quickly access
 another section by clicking the respective header.
 <br>
@@ -50,7 +50,7 @@ another section by clicking the respective header.
 
 ## <a id="how"></a>**How to use this user guide**
 
-A [table of contents](#a-idtable-a-table-of-contents) is provided in this user guide, containing hyperlinks to each
+A [table of contents](#table) is provided in this user guide, containing hyperlinks to each
 section of the user guide. You can simply click on a hyperlink to quickly navigate to the relevant section that you are
 interested in.
 
@@ -69,37 +69,37 @@ that you should pay attention to. </div>
 
 ## <a id="table"></a>**Table of Contents**
 
-* [**About coNtactUS**](#a-idcontactus-a-about-contactus)
-* [**About this User Guide**](#a-idug-a-about-this-user-guide)
-* [**How to use this User Guide**](#a-idhow-a-how-to-use-this-user-guide)
-* [**Table of Contents**](#a-idtable-a-table-of-contents)
-* [**Getting started**](#a-idstart-a-getting-started)
-* [**Familiarising yourself with the user interface**](#a-idui-a-familiarising-yourself-with-the-user-interface)
-* [**Familiarising yourself with a module**](#a-idmodule-a-familiarising-yourself-with-a-module)
-* [**Familiarising yourself with the commands**](#a-idcommands-a-familiarising-yourself-with-the-commands)
-* [**Features**](#a-idfeatures-a-features)
-    * [Listing all modules: `list`](#a-idlist-a-listing-all-modules--list)
-    * [Adding a module: `add`](#a-idadd-a-adding-a-module--add)
-    * [Deleting a module: `delete`](#a-iddelete-a-deleting-a-module--delete)
-    * [Editing a module: `edit`](#a-idedit-a-editing-a-module--edit)
-    * [Finding a module: `find`](#a-idfind-a-finding-a-module--find)
-    * [Sorting a module: `sort`](#a-idsort-a-sorting-the-modules--sort)
-    * [Clearing all modules: `clear`](#a-idclear-a-clearing-all-modules--clear)
-    * [Viewing help: `help`](#a-idhelp-a-viewing-help--help)
-    * [Exiting the module tracker: `exit`](#a-idexit-a-exiting-the-module-tracker--exit)
-* [**Additional Features**](#a-idaddfeat-a-additional-features)
-  * [Reminder for modules](#a-idreminder-a-reminder-for-modules)
-* [**Format Restrictions**](#a-idformat-a-format-restrictions)
-* [**Further information about commands**](#a-idfurther-info-a-further-information-about-commands)
-* [**More examples of valid and invalid input values**](#a-idinput-a-more-examples-of-valid-and-invalid-input-values)
-* [**Data storage**](#a-iddata-a-data-storage)
-  * [Saving the data](#a-idsaving-a-saving-the-data)
-  * [Editing the data file](#a-idedit-data-a-editing-the-data-file--for-advanced-users-)
-* [**Current product limitations**](#a-idlimitation-a-current-product-limitations--important-)
-* [**Coming soon**](#a-idcoming-a-coming-soon)
-* [**Glossary**](#a-idglossary-a-glossary)
-* [**FAQ**](#a-idfaq-a-faq)
-* [**Command summary**](#a-idcommand-summary-a-command-summary)
+* [**About coNtactUS**](#contactus)
+* [**About this User Guide**](#ug)
+* [**How to use this User Guide**](#how)
+* [**Table of Contents**](#table)
+* [**Getting started**](#start)
+* [**Familiarising yourself with the user interface**](#ui)
+* [**Familiarising yourself with a module**](#module)
+* [**Familiarising yourself with the commands**](#commands)
+* [**Features**](#features)
+    * [Listing all modules: `list`](#list)
+    * [Adding a module: `add`](#add)
+    * [Deleting a module: `delete`](#delete)
+    * [Editing a module: `edit`](#edit)
+    * [Finding a module: `find`](#find)
+    * [Sorting a module: `sort`](#sort)
+    * [Clearing all modules: `clear`](#clear)
+    * [Viewing help: `help`](#help)
+    * [Exiting the module tracker: `exit`](#exit)
+* [**Additional Features**](#addfeat)
+  * [Reminder for modules](#reminder)
+* [**Format Restrictions**](#format)
+* [**Further information about commands**](#further-info)
+* [**More examples of valid and invalid input values**](#input)
+* [**Data storage**](#data)
+  * [Saving the data](#saving)
+  * [Editing the data file](#edit-data)
+* [**Current product limitations**](#limitation)
+* [**Coming soon**](#coming)
+* [**Glossary**](#glossary)
+* [**FAQ**](#faq)
+* [**Command summary**](#command-summary)
 
 <br>
 
@@ -121,7 +121,7 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
 [how to run a jar file](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Run-JAR-file-example-windows-linux-ubuntu).
 
 4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon
-launching the application. The [reminder window](#a-idreminder-a-reminder-for-modules) will be further discussed later.
+launching the application. The [reminder window](#reminder) will be further discussed later.
 
   <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application
 for your reference. </div>
@@ -211,15 +211,15 @@ list. Only use it if you are sure! </div>
 
 This section introduces you to detailed information about how to use each command.
 
-* [List modules](#a-idlist-a-listing-all-modules--list)
-* [Add a module](#a-idadd-a-adding-a-module--add)
-* [Delete a module](#a-iddelete-a-deleting-a-module--delete)
-* [Edit a module](#a-idedit-a-editing-a-module--edit)
-* [Find a module](#a-idfind-a-finding-a-module--find)
-* [Sort modules](#a-idsort-a-sorting-the-modules--sort)
-* [Clear modules](#a-idclear-a-clearing-all-modules--clear)
-* [Help command](#a-idhelp-a-viewing-help--help)
-* [Exit command](#a-idexit-a-exiting-the-module-tracker--exit)
+* [List modules](#list)
+* [Add a module](#add)
+* [Delete a module](#delete)
+* [Edit a module](#edit)
+* [Find a module](#find)
+* [Sort modules](#sort)
+* [Clear modules](#clear)
+* [Help command](#help)
+* [Exit command](#exit)
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
@@ -272,7 +272,7 @@ Examples of invalid usages:
 
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
 `d/DEADLINE`.
-Please refer to [format restrictions](#a-idformat-a-format-restrictions) to find out more.
+Please refer to [format restrictions](#format) to find out more.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
@@ -341,7 +341,7 @@ Examples of invalid usages:
 * `edit 1` - There must be at least one field provided to edit.
 
 Note that there are format restrictions for some fields like `n/MODULE_NAME`, `t/DESCRIPTION`, `e/TIMESLOT`, and
-`d/DEADLINE`. Please refer to [format restrictions](#a-idformat-a-format-restrictions) to find out more.
+`d/DEADLINE`. Please refer to [format restrictions](#format) to find out more.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
@@ -461,7 +461,7 @@ to enjoy its benefits!
 
 * Note that as of now, this pop-up window only appears when you launch coNtactUS. There is currently no command for you
 to display the pop-up window at any other point in time. However, this will be a future enhancement. Do take a look at
-features [coming soon](#a-idcoming-a-coming-soon) if you are interested.
+features [coming soon](#coming) if you are interested.
 
 <p align="center">
    <img height="250" width="400" src="images/reminder.png">
@@ -476,8 +476,8 @@ features [coming soon](#a-idcoming-a-coming-soon) if you are interested.
 
 ## <a id="format"></a>**Format Restrictions**
 
-When keying in input values for certain fields when you [add](#a-idadd-a-adding-a-module--add) or
-[edit](#a-idedit-a-editing-a-module--edit) a module, there are certain format restrictions that you have to take note of.
+When keying in input values for certain fields when you [add](#add) or
+[edit](#edit) a module, there are certain format restrictions that you have to take note of.
 
 To recap, there are a total of 8 information fields for each module that you can modify. Note that when you are adding
 a new module to the module tracker, only the `n/MODULENAME` and `t/DESCRIPTION` fields are compulsory. For fields that
