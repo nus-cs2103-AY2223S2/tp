@@ -2,9 +2,11 @@
 layout: page
 title: User Guide
 ---
-# SudoHR User Guide
+
+# SudoHR
 
 ---
+
 # Table of contents:
 
 
