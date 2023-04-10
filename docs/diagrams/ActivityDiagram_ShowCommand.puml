@@ -1,0 +1,25 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+start
+title Activity: User input ShowCommand
+:User enters show command input;
+:ShowCommandParser parses input <$rake>;
+if () then ([Parser returns ShowCommand])
+    :Execute show command;
+    :Set predicate for filteredPersons;
+    :update filteredPersons in ModelManager;
+    :PersonCard of all filtered people displayed in Ui;
+else ([Parser throws exception])])
+    :Display error message;
+endif
+stop
+@enduml

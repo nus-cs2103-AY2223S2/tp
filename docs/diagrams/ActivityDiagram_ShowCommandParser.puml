@@ -1,0 +1,14 @@
+@startuml
+start
+title Activity: ShowCommandParser parses input
+:Trim argument;
+if () then ([Argument is empty])
+    :Display error message;
+else ([else])
+    :Split the argument with spaces;
+    :Create a list using the split argument;
+    :Create a TeamContainsKeywordsPredicate with the list as parameter;
+    :Return a ShowCommand object with the predicate as parameter;
+endif
+stop
+@enduml

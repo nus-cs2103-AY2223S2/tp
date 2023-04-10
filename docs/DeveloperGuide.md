@@ -339,10 +339,24 @@ to the `SortCommand` to perform an `updateSort()` for the `Model` object, with t
 
 ### Show Team feature
 
+The field for show team is compulsory. The current implementation requires user to input names of the targeted teams.
+
+Below shows the activity diagram when the user inputs the show command in the command box:
+
+![Activity Diagram for show command](images/ActivityDiagram_ShowCommand.png){:.center}
+
+Below shows the activity diagram for the details of parsing show command:
+
+![Activity Diagram for show command parser](images/ActivityDiagram_ShowCommandParser.png){:.center}
+
+Below shows the activity diagram about the predicate processing of show command:
+
+![Activity Diagram for show command parser](images/ActivityDiagram_TeamContainsKeywordsPredicate.png){:.center}
+
 #### Implementation
 
 Show command utilizes the `updateFilterPersonList()` method implemented in ModelManager.java to filter the 
-`filtleredPersons` list variable in ModelManager with the given predicate `TeamContainsKeywordsPredicate`.
+`filteredPersons` list variable in ModelManager with the given predicate `TeamContainsKeywordsPredicate`.
 
 The `TeamContainsKeywordsPredicate` object takes in a `List<String>` from `ShowCommandParser`, and make use of the
 `containsWordIgnoreCase()` from `StringUtil` to conduct matching between the user input and the `tagName` of each 
@@ -350,10 +364,13 @@ the `teams` of each `Person` object.
 
 #### Design considerations:
 
-The `get` command utilizes the `filter()` method from FilterCommand.java. It filters the person list based on tag `teams`
-while the Filter command targets on other features such as `major` and `name`. 
+The `parse` function in ShowCommandParser.java will trim the arguments and create a predicate object with the input 
+after the command prefix. This predicate is passed to ShowCommand as a parameter. This ensured that this feature can 
+take other predicate in future iterations. Currently, there is only one predicate that search the keywords among team 
+names. When there are demands such as searching keywords among team requirements, new predicates can be created and 
+ShowCommand can easily adapt to new iterations.
 
-This guarantees that from the users' perspective, `filter` and `get` are separate commands.
+TeamContainsKeywordsPredicate.java is created to facilitate the comparison between keywords and `tagName` of team.
 
 --------------------------------------------------------------------------------------------------------------------
 
