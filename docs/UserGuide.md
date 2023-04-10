@@ -15,8 +15,8 @@ If you are a student cook whose cookbook is stuffed with tons of sticky notes, l
 **CookHub** is a powerful, but lightweight application for your recipe management needs.
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
-**CookHub** mainly uses the [command line interface](#glossary) that is optimised for fast typists who aim to manage their recipes quickly, while still 
-enjoying the benefits of a [Graphical User Interface(GUI)](#glossary).
+**CookHub** mainly uses the [Command Line Interface (CLI)](#glossary) that is optimised for fast typists who 
+aim to manage their recipes quickly, while still enjoying the benefits of a [Graphical User Interface(GUI)](#glossary).
 
 **CookHub** excels in its simplicity and optimisation for the student cook's recipe management needs. 
 It supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
@@ -25,7 +25,7 @@ minimal setup, it is perfect for the contemporary student cook!
 Here is a short overview of the features and capabilities of **CookHub**:
 * Creating recipes with specified titles, ingredients, steps, and tags.
 * [Starring](#glossary) and [unstarring](#glossary) each recipe.
-* Getting all your [favourite](#glossary) recipes. 
+* Getting all your [favorite](#glossary) recipes. 
 * Finding recipes by titles, ingredients, steps, or tags.
 * Sorting or filtering by price.
 * Getting all the combined ingredients for a set of recipes. 
@@ -76,8 +76,9 @@ you are a seasoned user, you will find something useful here to help you out in 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
    To get you familiarised, here are some example commands you can try:
-   * `add t/Watermelon juice d/Quick and easy watermelon juice i/Watermelon, 3, Slices, 0.10 s/Juice the watermelon` : Add a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `Watermelon, 3, Slices, 0.10`, and a step of `Juice the watermelon`
-   * `delete 1 ` : Delete a recipe at index 1
+   * `add t/Watermelon juice d/Quick and easy watermelon juice i/Watermelon, 3, Slices, 0.10 s/Juice the 
+     watermelon` : Adds a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `Watermelon, 3, Slices, 0.10`, and a step of `Juice the watermelon`
+   * `delete 1` : Deletes a recipe at index 1
    * `list` : Lists all recipes
    * `exit`: Exits the app
 
@@ -262,7 +263,7 @@ Format: `delete RECIPE_NUMBER`
 - The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
-- Below shows how you can delete the first recipe in CookHub.
+Below shows how you can delete the first recipe in CookHub.
 <p align="center" width="100%">
     <img src="images/annotated/deleteCommand.svg" width="100%">
 </p>
@@ -293,7 +294,7 @@ Our initial recipe book:
 ---
 #### List recipe : `list`
 
-This command lists out all the recipes that you have added to the recipe book
+This command lists out all the recipes that you have added to the recipe book.
 
 Format: `list`
 
@@ -459,7 +460,8 @@ Our initial recipe book:
 ---
 #### Get list of groceries: `groceries RECIPE_NUMBER, ...`
 
-Given one or more recipes, displays a list of all the groceries the user needs to cook these recipes.
+Given one or more recipes, this command displays a list of all the groceries you need to cook the recipes 
+at the specified *recipe numbers*.
 
 Format: `groceries RECIPE_NUMBER, ...`
 - If two or more recipes share ingredients, their quantities will be automatically added together.
@@ -541,7 +543,7 @@ Format: `star RECIPE_NUMBER`
 - Make sure to refresh the recipe list by either clicking on the recipe in the left panel or calling the *list* command to see the star added to the recipe!
 </div>
 
-Below shows how you can add the first recipe to your favourites.
+Below shows how you can add the first recipe to your favorites.
 <p align="center" width="100%">
     <img src="images/annotated/starCommand.svg" width="100%">
 </p>
@@ -575,7 +577,7 @@ Format: `unstar RECIPE_NUMBER`
 - Make sure to refresh the recipe list by either clicking on the recipe in the left panel or calling the *list* command to see the star removed from the recipe!
 </div>
 
-Below shows you can remove the first recipe from your favourites.
+Below shows you can remove the first recipe from your favorites.
 <p align="center" width="100%">
     <img src="images/annotated/unstarCommand.svg" width="100%">
 </p>
