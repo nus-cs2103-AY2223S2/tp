@@ -43,7 +43,7 @@ Are you excited yet? Let's get started!
 
    * `listc` : Lists all customers.
 
-   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to the Address Book.
+   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to LoyaltyLift.
      
    * `viewc 1` : Displays information of the 1st customer in the current customer list on the right panel (Information Panel) 
 
@@ -530,7 +530,7 @@ editc CINDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/{ind|env}]
 
 #### Deleting a customer : `deletec`
 
-Delete a customer from the list.
+Deletes a customer from the list.
 
 **Format**
 
