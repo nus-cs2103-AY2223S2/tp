@@ -190,14 +190,14 @@ Here is a list of GoodMatch features, click on them to jump to the section! Each
 6.  [`add_app`](#adding-an-applicant-to-listing-add_app)
 7.  [`edit_app`](#editing-an-applicant-of-a-listing-edit_app)
 8.  [`del_app`](#deleting-an-applicant-from-a-listing-del_app)
-15.  [`add_plat`](#adding-a-platform-add_plat)
-16.  [`del_plat`](#delete-a-platform-from-a-listing-del_plat)
-17.  [`find`](#locating-job-listings-by-title-find)
-18.  [`sort`](#sorting-job-listings-sort)
-19.  [`undo`](#undo-latest-command-undo)
-20.  [`exit`](#exit-the-application-exit)
-21.  [Saving data](#saving-the-data)
-22.  [Editing data file](#editing-the-data-file)
+9.  [`add_plat`](#adding-a-platform-add_plat)
+10.  [`del_plat`](#delete-a-platform-from-a-listing-del_plat)
+11.  [`find`](#locating-job-listings-by-title-find)
+12.  [`sort`](#sorting-job-listings-sort)
+13.  [`undo`](#undo-latest-command-undo)
+14.  [`exit`](#exit-the-application-exit)
+15.  [Saving data](#saving-the-data)
+16.  [Editing data file](#editing-the-data-file)
 
 <div markdown="block" class="alert alert-info">
 
