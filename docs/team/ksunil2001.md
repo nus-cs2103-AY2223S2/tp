@@ -12,7 +12,9 @@ Given below are my contributions to the project.
 - **New Feature**
     - Added discharge date-time field to patient
 
+
 - **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ksunil2001&breakdown=true)
+
 
 - **Enhancements to existing features**:
     - Fixed majority of the failing testcases
@@ -22,7 +24,7 @@ Given below are my contributions to the project.
     - Updated json files for test cases
     - Refactored Person to Patient throughout the code
     - Fixed the display of ward name when editing a patient's details
-    - Created a help.txt file to summarise the list of commands and their syntax
+    - Created a help.txt file to summarise the list of commands and their syntax 
 
 
 - **Documentation**:
@@ -38,6 +40,7 @@ Given below are my contributions to the project.
     - Fixed checkstyle issues
     - Updated the product scope, target user profile, value proposition, user stories, use cases and glossary of the Developer Guide
     - Organised features by Patient, Ward and Utility in the User Guide
+
 
 - **Review/mentoring contributions**:
     - This link lists all the PRs I have reviewed: [Reviewed PRs](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aksunil2001)
