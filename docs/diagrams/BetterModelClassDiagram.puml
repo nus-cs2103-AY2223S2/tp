@@ -21,7 +21,8 @@ Person *--> Address
 Person *--> Payroll
 Person *--> DateOfBirth
 Person *--> DateOfJoining
-Person *-> LeaveCount
+Person *--> LeaveCount
 Person *--> Department
+Person *-> PicturePath
 
 @enduml
