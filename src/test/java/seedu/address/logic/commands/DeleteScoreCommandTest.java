@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.DeleteScoreCommand.MESSAGE_DELETE_SCORE_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCORE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SCORE;
@@ -24,10 +25,10 @@ class DeleteScoreCommandTest {
 
     private Model model = new ModelManager(getTypicalMathutoring(), new UserPrefs());
 
-    /*@Test
+    @Test
     public void constructor_nullIndexes_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DeleteScoreCommand(null, null));
-    }*/
+    }
 
     @Test
     void execute_validIndexScoreDelete_success() {
@@ -56,10 +57,10 @@ class DeleteScoreCommandTest {
 
     @Test
     void execute_validStudentIndexInvalidScoreIndexUnfilteredList_failure() {
-        Index outOfBoundTaskIndex = Index.fromOneBased(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT
-                .getZeroBased()).getTaskList().asUnmodifiableObservableList().size() + 1);
+        Index outOfBoundScoreIndex = Index.fromOneBased(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT
+                .getZeroBased()).getScoreList().asUnmodifiableObservableList().size() + 1);
 
-        DeleteScoreCommand deleteScoreCommand = new DeleteScoreCommand(INDEX_FIRST_STUDENT, outOfBoundTaskIndex);
+        DeleteScoreCommand deleteScoreCommand = new DeleteScoreCommand(INDEX_FIRST_STUDENT, outOfBoundScoreIndex);
 
         assertCommandFailure(deleteScoreCommand, model, Messages.MESSAGE_INVALID_SCORE_DISPLAYED_INDEX);
     }

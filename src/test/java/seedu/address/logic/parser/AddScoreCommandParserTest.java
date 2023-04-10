@@ -69,7 +69,7 @@ class AddScoreCommandParserTest {
     public void parse_futureDate_failure() {
         String expectedMessage = String.format(Date.MESSAGE_INVALID_DATE);
 
-        // invalid date format
+        // future date
         assertParseFailure(parser, "1" + SCORE_FULL_DATE_IN_FUTURE, expectedMessage);
     }
 
@@ -77,7 +77,7 @@ class AddScoreCommandParserTest {
     public void parse_missingAllVariables() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScoreCommand.MESSAGE_USAGE);
 
-        // missing score date
+        // missing multiple variables
         assertParseFailure(parser, "1" + SCORE_MISSING_ALL_VARIABLES, expectedMessage);
     }
 }

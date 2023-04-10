@@ -30,5 +30,4 @@ public class FilterCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n friends \n \t owesMoney  \t", expectedFilterCommand);
     }
-
 }
