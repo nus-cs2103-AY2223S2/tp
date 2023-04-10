@@ -2,11 +2,6 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
 import java.util.function.Predicate;
 import javafx.scene.input.KeyEvent;
@@ -63,16 +58,11 @@ public class TaskListPanel extends UiPart<VBox> {
      */
     public void requestFocus() {
         taskListView.requestFocus();
-        System.out.println(taskListView.getSelectionModel().getSelectedItem());
-        Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
-        int selectedTaskIndex = taskListView.getSelectionModel().getSelectedIndex();
-        if (selectedTask == null) {
-            scrollToTaskIndex(1);
+        boolean isNothingSelected = taskListView.getSelectionModel().isEmpty();
+        if (isNothingSelected) {
+            taskListView.getSelectionModel().selectFirst();
             return;
         }
-
-        scrollToTaskIndex(selectedTaskIndex + 1);
-
     }
 
     /**
@@ -91,9 +81,7 @@ public class TaskListPanel extends UiPart<VBox> {
      */
     @FXML
     private void initialize() {
-        // TODO: Implement Visual Mode
-        // taskListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        this.getRoot().setFocusTraversable(true);
+        getRoot().setFocusTraversable(true);
         taskListView.setFocusTraversable(true);
         Platform.runLater(() -> {
             // Hackish way of requesting focus
@@ -118,9 +106,7 @@ public class TaskListPanel extends UiPart<VBox> {
             mainScreen.clearRightComponent();
             break;
         case "l":
-            Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
-            TaskDetailPanel detailTask = new TaskDetailPanel(selectedTask);
-            mainScreen.loadRightComponent(detailTask);
+            loadTaskDetailPanel();
             break;
         case "j":
             System.out.println("You've moved down");
@@ -172,33 +158,26 @@ public class TaskListPanel extends UiPart<VBox> {
     }
 
     /**
-     * Refreshes the TaskDetailPanel.
-     */
-    public void refreshTaskDetailPanel() {
-        Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
-
-        if (selectedTask == null) {
-            mainScreen.clearRightComponent();
-            return;
-        }
-
-        TaskDetailPanel taskDetailPanel = new TaskDetailPanel(selectedTask);
-        mainScreen.loadRightComponent(taskDetailPanel);
-    }
-
-    /**
      * Loads the TaskDetailPanel.
      */
     public void loadTaskDetailPanel() {
+        requestFocus();
+        boolean isTaskListEmpty = taskListView.getItems().isEmpty();
         Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+        boolean isNothingSelected = selectedTask == null;
 
-        if (selectedTask == null) {
+        System.out.println("isNothignSelected " + isNothingSelected);
+
+        if (isTaskListEmpty) {
             mainScreen.clearRightComponent();
             return;
         }
+        if (isNothingSelected) {
+            return;
+        }
+
         TaskDetailPanel taskDetailPanel = new TaskDetailPanel(selectedTask);
         mainScreen.loadRightComponent(taskDetailPanel);
-
     }
 
     public UiTaskList getUiTaskList() {

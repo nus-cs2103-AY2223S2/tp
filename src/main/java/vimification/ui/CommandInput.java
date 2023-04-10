@@ -90,15 +90,18 @@ public class CommandInput extends UiPart<HBox> {
     }
 
     private void refreshRightComponent(CommandResult result) {
+        boolean isRightComponentEmpty = mainScreen.getRightComponent().getChildren().isEmpty();
+        if (isRightComponentEmpty) {
+            return;
+        }
+
         Node rightComponent = mainScreen.getRightComponent().getChildren().get(0);
         boolean isWelcomePanelLoaded = mainScreen.getWelcomePanel().equals(rightComponent);
         boolean isHelpManualPanelLoaded = mainScreen.getHelpManualPanel().equals(rightComponent);
-
-        System.out.println("welcomepanelloaded:" + isWelcomePanelLoaded);
-
         // Only refresh the TaskDetailPanel
         boolean shouldRefreshUi =
                 result.getShouldRefreshUi() && !(isHelpManualPanelLoaded || isWelcomePanelLoaded);
+        System.out.println("shouldRefersh" + shouldRefreshUi);
         if (shouldRefreshUi) {
             mainScreen.getTaskListPanel().loadTaskDetailPanel();
         }
@@ -122,7 +125,6 @@ public class CommandInput extends UiPart<HBox> {
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true);
-
         // When CommandInput loses focus, clear CommandInput from mainScreen.bottomComponent and
         // return the focus back to TaskListPanel
         ChangeListener<Boolean> onLostFocusListener = (arg0, wasFocused, isCommandInputFocused) -> {

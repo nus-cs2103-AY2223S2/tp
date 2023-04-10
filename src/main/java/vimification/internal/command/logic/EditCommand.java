@@ -72,7 +72,7 @@ public class EditCommand extends UndoableLogicCommand {
     @Override
     public CommandResult undo(LogicTaskList taskList) {
         taskList.set(actualIndex, oldTask);
-        return new CommandResult(UNDO_MESSAGE);
+        return new CommandResult(UNDO_MESSAGE, true);
     }
 
     @Override
