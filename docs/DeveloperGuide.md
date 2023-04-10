@@ -172,7 +172,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
   <em>Interactions Inside the Logic Component for the `delete 1` Command</em>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: Note: The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -339,6 +339,9 @@ Refer to the sequence diagram below for a typical `find` command.
   <em>Sequence Diagram for the `find` command</em>
 </p>
 
+<div markdown="span" class="alert alert-info">:information_source: Note: The lifeline for <code>FindCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 
 
 ### Sort feature
@@ -356,6 +359,8 @@ Refer to the activity diagram below for what happens when a user runs a sort com
   <em>Activity Diagram for the `sort` command</em>
 </p>
 
+
+
 Refer to the sequence diagram below for a typical `sort` command using `title` as the sorting field.
 
 <p>
@@ -363,6 +368,9 @@ Refer to the sequence diagram below for a typical `sort` command using `title` a
    src="images/SortSequenceDiagram.png" />
   <em>Sequence Diagram for the `sort` command</em>
 </p>
+
+<div markdown="span" class="alert alert-info">:information_source: Note: The lifeline for <code>SortCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Undo feature
 
@@ -480,6 +488,7 @@ The following sequence diagram shows how the autocomplete operation works:
   <em>Sequence Diagram for the autocomplete feature.</em>
 </p>
 
+
 #### Feature Implementation details
 
 1. commandTextField is the text input field on the GUI for users to type their inputs in.
@@ -507,10 +516,22 @@ The following sequence diagram shows how the autocomplete operation works:
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+---
+
+
+## **Appendix: Planned Enhancements**
+
+### Sort none
+1. Sort none is currently not producing the proper results at times. To counter this, we propose to introduce a new field to sort by: time_added. This way, we can 'turn off' the sorting mode and order listings by chronological order instead to avoid confusion when adding new listings.
+
+### Changing IDs of applicants
+2. To counter the issue of changing IDs of applicants upon every startup, we propose to store the unique IDs together with the Applicant object when it is first created to avoid the confusion caused by changing IDs. The local state should store applicants with their Name and ID instead of just the`Name`.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+
 
 ### Product scope
 
@@ -898,7 +919,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
