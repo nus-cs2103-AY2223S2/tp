@@ -54,7 +54,7 @@ destroy EditCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> EditCommand : execute()
+LogicManager -> EditCommand : execute(model)
 activate EditCommand
 
 EditCommand -> Model: checkEmployeeExists(id)
