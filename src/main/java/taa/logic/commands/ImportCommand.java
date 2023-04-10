@@ -23,11 +23,13 @@ import taa.commons.util.FileUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.ParserUtil;
 import taa.logic.parser.exceptions.ParseException;
+import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.assignment.AssignmentList;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
+import taa.model.student.Submissions;
 import taa.model.student.UniqueStudentList;
 import taa.model.tag.Tag;
 
@@ -117,7 +119,7 @@ public class ImportCommand extends CsvCommand {
         }
         final String submitStr = rec.get(CsvUtil.KW_SUBMISSION);
         if (!submitStr.isBlank()) {
-            Collections.addAll(submissions, submitStr.trim().split(";"));
+            Collections.addAll(submissions, submitStr.trim().split(Submissions.STR_SEP));
         }
         try {
             AssignmentList.INSTANCE.testValidCsvSubmissions(submissions);
@@ -136,7 +138,7 @@ public class ImportCommand extends CsvCommand {
         try {
             // ignore all tokens that are empty strings.
             return ParserUtil.parseTags(
-                    Arrays.stream(tagStr.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
+                    Arrays.stream(tagStr.split(ClassList.STR_SEP)).filter(IS_UNEMPTY).collect(Collectors.toList()));
         } catch (ParseException e) {
             throwEntryFormatError(rec, Tag.MESSAGE_CONSTRAINTS);
         }

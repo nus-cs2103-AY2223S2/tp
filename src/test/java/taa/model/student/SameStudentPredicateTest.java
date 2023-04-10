@@ -1,6 +1,7 @@
 package taa.model.student;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,14 +16,13 @@ class SameStudentPredicateTest {
     void test1() {
         ClassList sampleClass = new ClassList();
         SameStudentPredicate predicate = new SameStudentPredicate(sampleClass);
-        String sampleAttd = "0;0;0;0;0;0;0;0;0;0;0;0";
-        String samplePP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
-        Student sampleStudent = new Student(new Name("John"), sampleAttd, samplePP, new ArrayList<String>(),
-                new HashSet<>());
+        String sampleAttd = Attendance.ORIGINAL_ATD;
+        String samplePP = Attendance.ORIGINAL_PP;
+        Student sampleStudent = new Student(new Name("John"), sampleAttd, samplePP, new ArrayList<>(), new HashSet<>());
         sampleClass.addStudent(sampleStudent);
-        Student sampleStudent2 = new Student(new Name("Flora"), sampleAttd, samplePP, new ArrayList<String>(),
+        Student sampleStudent2 = new Student(new Name("Flora"), sampleAttd, samplePP, new ArrayList<>(),
                 new HashSet<>());
-        assertEquals(true, predicate.test(sampleStudent));
-        assertEquals(false, predicate.test(sampleStudent2));
+        assertTrue(predicate.test(sampleStudent));
+        assertFalse(predicate.test(sampleStudent2));
     }
 }

@@ -40,7 +40,7 @@ public class AssignmentList {
             ArrayList<String> subStorageStrs, ParseException.Consumer<String> moreAsngNameTests) throws ParseException {
         final HashSet<String> studentAssignment = new HashSet<>(); // checks if a student has the same assignment.
         for (String sub : subStorageStrs) {
-            final String[] words = sub.split(",");
+            final String[] words = sub.split(Submission.STR_SEP);
             if (words.length != 4) {
                 throw new ParseException("Submission storage string \"" + sub + "\" must have 4 fields in order: assign"
                         + "ment name, is graded, is late, and marks.");

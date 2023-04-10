@@ -23,7 +23,7 @@ public class Student {
     // Data fields
     private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
-    private final Submissions submissions = new Submissions(new ArrayList<>(), this);
+    private final Submissions submissions = new Submissions(new ArrayList<>());
     private final ArrayList<String> submissionStringArr;
 
     private final int hashcode;
@@ -119,7 +119,7 @@ public class Student {
     public String getSubmissionStorageString() {
         StringBuilder ans = new StringBuilder();
         for (String sub : submissionStringArr) {
-            ans.append(sub).append(';');
+            ans.append(sub).append(Submissions.STR_SEP);
         }
         return ans.toString();
     }

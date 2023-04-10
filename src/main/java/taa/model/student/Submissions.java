@@ -10,15 +10,12 @@ import taa.model.assignment.exceptions.AssignmentNotFoundException;
  * A list of Submissions belonging to a Student.
  */
 public class Submissions {
+    public static final String STR_SEP = ";";
     private final List<Submission> submissions;
-    private final Student student;
 
-    /**
-     * @param submissions A list containing Submissions.
-     */
-    public Submissions(List<Submission> submissions, Student student) {
+    /** @param submissions A list containing Submissions. */
+    public Submissions(List<Submission> submissions) {
         this.submissions = submissions;
-        this.student = student;
     }
 
     /**
