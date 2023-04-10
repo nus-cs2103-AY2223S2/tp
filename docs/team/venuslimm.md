@@ -10,14 +10,14 @@ It provides a centralised platform for them to manage their work, contacts, and 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added an `addevent` command that adds an event. ([#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33))
+* **New Feature**: Added an `addevent` command that adds an event ([#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33))
   * What it does:
     * Allows user to add an event with the given name, start date time, and end date time.
   * Justification:
     * With this feature, the user is able to manage their events on this application by simply adding the events they are involved in or the events they wish to keep track.
     * This allows the user to manage their contacts and events in 1 single application.
 
-* **New Feature**: Added a `sortevent` command that sorts the current list of events displayed. ([#69](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/69))
+* **New Feature**: Added a `sortevent` command that sorts the current list of events displayed ([#69](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/69))
   * What it does:
     * Allows user to sort the current list of events displayed on the application.
   * Justification:
@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=venuslimm&breakdown=true)
 
 * **Enhancements implemented**:
-  * Updated the application's user interface (UI) ([#77](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/77)).
+  * Updated the application's UI ([#77](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/77))
     * Changed the colours of the UI.
     * Increased the size of `Contacts` and `Events` labels.
 
@@ -37,13 +37,13 @@ Given below are my contributions to the project.
   * Released [v1.2.1](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.2.1) on GitHub.
 
 * **Contributions to the Developer Guide**
-  * Model section ([#64](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/64))
+  * Design section: Model component ([#64](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/64))
     * Updated information on Model to include the newly added `Event` objects.
     * Redrew [class diagram for Model](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/ModelClassDiagram.png).
-  * Add event feature section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
+  * Implementation section: Add event feature section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
     * Added information on how `addevent` command works.
     * Drew [sequence diagram for addevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/AddEventSequenceDiagram.png).
-  * Sort events feature section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
+  * Implementation section: Sort events feature section ([#70](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/70))
     * Added information on how `sortevent` command works.
     * Drew [sequence diagram for sortevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/SortEventSequenceDiagram.png).
   * Appendix section: Instructions for manual testing
@@ -57,8 +57,8 @@ Given below are my contributions to the project.
 * **Contributions to the User Guide**
   * Quick start section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73), [#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
     * Updated to match our current application.
-  * Add event section ([#31](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/31))
-  * Sort event section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73))
+  * Adding a new event section ([#31](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/31))
+  * Sorting events section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73))
 
 * **Contributions to team-based tasks**
   * Updated [README.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/README.md) and [index.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/index.md) badges.
