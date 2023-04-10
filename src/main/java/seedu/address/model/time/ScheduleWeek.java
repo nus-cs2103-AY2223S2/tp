@@ -17,6 +17,8 @@ public class ScheduleWeek {
     private static final int DAYS_IN_A_WEEK = 7;
     private static final ObservableList<ScheduleDay> internalList = FXCollections.observableArrayList();
 
+    private ArrayList<ArrayList<Integer>> timetable;
+
     /**
      * Constructor for ScheduleWeek where cells will be filled with empty cells when first loaded
      */
@@ -37,9 +39,13 @@ public class ScheduleWeek {
 
     }
 
+    public ArrayList<ArrayList<Integer>> getTimetable() {
+        return timetable;
+    }
 
     public void setInternalList(ArrayList<ArrayList<Integer>> timetable, DayOfWeek startDay) {
         internalList.clear();
+        this.timetable = timetable;
 
         ArrayList<String> allDays = new ArrayList<>(asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                 "Saturday", "Sunday"));
@@ -72,12 +78,24 @@ public class ScheduleWeek {
             }
         }
 
-        //  System.out.println(timeSlot.toString());
         return timeSlot;
     }
 
     public ObservableList<ScheduleDay> getInternalList() {
         return internalList;
+    }
+
+    /**
+     * Returns true if both ScheduleWeek have the same occupancy slots in the internal list.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof ScheduleWeek)) {
+            return false;
+        }
+
+        ScheduleWeek otherSchedule = (ScheduleWeek) other;
+        return timetable.equals(otherSchedule.getTimetable());
     }
 
 }

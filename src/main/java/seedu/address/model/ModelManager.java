@@ -212,7 +212,6 @@ public class ModelManager implements Model {
     public void updateFilteredTimeSlotList(Group group, LocalDate date) {
         requireAllNonNull(group, date);
 
-        // TODO: Refactor
         List<Person> persons = this.addressBook.getPersonList();
         TimeMask baseMask = new TimeMask();
         for (Person person: persons) {
@@ -226,10 +225,8 @@ public class ModelManager implements Model {
             }
         }
 
-        // TODO: Potential bugs
         ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
         addressBook.getScheduleWeek().setInternalList(timetable, date.getDayOfWeek());
-        // TODO: Consider removing
         logger.info("Timetable generation finished. Rendering expected.");
     }
 
