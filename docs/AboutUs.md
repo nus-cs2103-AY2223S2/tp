@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/glennongjunjie.md)]
 
 * Role: Team Member
-* Responsibilities: ??
+* Responsibilities: In charge of implementing commands.
 
 ### Shin Jin
 
