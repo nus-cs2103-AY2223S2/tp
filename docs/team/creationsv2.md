@@ -12,7 +12,7 @@ HospiSearch is a desktop app for healthcare administrators to manage hospital/cl
 Given below are my contributions to the project.
 
 * **New Feature**: Added `nric` field in patient records. [#45](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/45)
-    * What it does: Allows users to store `nric` of patients and uniquely identify them my `nric`.
+    * What it does: Allows users to store `nric` of patients and uniquely identify them by `nric`.
     * Justification: This feature allows for easy unqiue identification of a patient.
   Previously uniqueness was checked by the `name` field, which is not ideal as two patients may have the same name.
     * Highlights: To prevent incorrect formats, the `nric` field is only able to take in `nric`s with valid
