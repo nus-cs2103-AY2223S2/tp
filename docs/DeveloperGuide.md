@@ -523,6 +523,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. ModCheck shows an error message.
   * Use case ends.
 
+#### Use case: Load contacts
+
+**MSS**
+
+1. Student requests ModCheck to load contacts.
+2. ModCheck shows a FileChooser and requests student to choose a file to load from.
+3. Student selects a file to load.
+4. ModCheck loads the contacts in the file into its database.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. Student requests to load an invalid file.
+  * 3a1. ModCheck shows an error message.
+
+  Use case ends.
+
+* 3b. Student does not choose a file to load.
+    * 3b1. ModCheck shows an error message.
+  
+  Use case ends.
 
 
 #### Use case: View a person's contact details
