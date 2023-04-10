@@ -1340,6 +1340,7 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 3. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.
 4. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.
 5. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
+6. More explicit feedback messages for `tag` and `untag` commands for users.
 
 ## **Project Requirements**
 
