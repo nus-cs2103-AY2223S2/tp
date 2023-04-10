@@ -15,30 +15,30 @@ Given below are my contributions to the project.
 
 https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=FireRadical22&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17
 
-**Enhancements implemented:** 
+**Enhancements implemented:**
 
 * Add meeting feature
 * Remove meeting feature
 * Implemented PolicyTag for v1.3
-* find Policy feature 
+* find Policy feature
 * Implemented methods in ParserUtil to handle parsing for meeting-related commands
 
-**Contributions to the UG:** 
+**Contributions to the UG:**
 
 * Added Add meeting, Remove meeting, Find Policy and Policy Tag for UG
 
-**Contributions to the DG:** 
+**Contributions to the DG:**
 
 * Added Add Meeting, Remove Meeting, Find Policy and Policy Tag for UG
 * Added UML diagrams for Add Meeting, Remove Meeting and Find Policy features
 
-**Contributions to team-based tasks:** 
+**Contributions to team-based tasks:**
 
 * Fixed bug where FAid did not throw errors for invalid dates given, incorrect date formats
 * Fixed bug where date and time before current date and time were accepted
 * Fixed bug where same date and time was allowed for start and end in Add Meeting command
 
-**Review/Mentoring Contributions:** 
+**Review/Mentoring Contributions:**
 
 * Fixed checkstyle issues for team
 * Ensure all unit tests for team passes and address any failed test cases accordingly
