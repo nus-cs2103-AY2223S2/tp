@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,12 +28,12 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_listIsNotSorted_showsSameList() {
+    public void execute_listIsNotSorted_showsSameList() throws CommandException {
         assertCommandSuccess(new SortCommand(1), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listIsSorted_showsEverything() {
+    public void execute_listIsSorted_showsEverything() throws CommandException {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new SortCommand(1), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }

@@ -27,6 +27,8 @@ SportSync is a desktop address book application used for coaching student athlet
 - Justification: This feature enables users to track the attendance of participating athletes in every session.
 - Highlight: Required understanding the right data structures to use, such as a HashMap to store the attendance field.
 
+<div style="page-break-after: always;"></div>
+
 #### Basic UI for Session List Panel [\#76](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/76)
 
 - Implemented the baseline UI for a session list panel.
@@ -41,6 +43,8 @@ SportSync is a desktop address book application used for coaching student athlet
 - Justification: This feature provides greater convenience to users who would like to add or remove a single tag.
 - Highlight: Involved a good understanding of the already-implemented edit-command.
 
+<div style="page-break-after: always;"></div>
+
 ### Code Contributions
 
 Check out my contributions on [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Olive&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=Oliverloo0909&tabRepo=AY2223S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
@@ -51,10 +55,10 @@ Check out my contributions on [RepoSense](https://nus-cs2103-ay2223s2.github.io/
 - Took part in crucial team discussions to determine the project's direction.
 - Routinely examined and incorporated pull requests submitted by other team members.
 
-###**Documentation**:
-* About Us: [\#12](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/20) [\#157](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/157)
+### Documentation:
+* About Us: [\#12](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/12) [\#157](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/157)
 * User Guide: [\#91](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/91) [\#98](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/98)
 * Developer Guide: [\#52](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/52)
 
-###**Community**:
+### Community:
 * PRs reviewed (with non-trivial review comments): [\#29](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/29)
