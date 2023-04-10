@@ -11,6 +11,7 @@ Welcome to PowerCards, a lightweight flashcard application that helps you stream
 ### Value proposition: 
 - Enable users to input a pool of information (question-answer pairs) of their desired topic and utilize the application to practice active recall of this information.
 - The application will present the question to the user which the user can respond to with their guess. 
+- No ads, no login, just study!
 
 # Links
 
