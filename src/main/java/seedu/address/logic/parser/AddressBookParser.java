@@ -80,9 +80,6 @@ public class AddressBookParser {
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
 
-        case PhotoCommand.COMMAND_WORD:
-            return new PhotoCommandParser().parse(arguments);
-
         case PerformanceCommand.COMMAND_WORD:
             return new PerformanceCommandParser().parse(arguments);
 
