@@ -269,7 +269,7 @@ The `FindCommand` finds persons in the address book. See the syntax for `FindCom
 ##### Implementation
 When finding meetings, the control flow is as follows:
 
-1. The user queries the `UI` to find using a [`find`](#command-summary) prefix.
+1. The user queries the `UI` to find using a [`find`](#command-summary) command.
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `FindCommandParser` object.
 3. `FindCommandParser` takes in a list of names and creates a `FindCommand` object.
 4. `FindCommand` is executed, and a `NameContainsKeywordsPredicate` is passed to the `updateFilteredPersonList` method in the `Model` component.
