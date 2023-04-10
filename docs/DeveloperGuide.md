@@ -290,8 +290,12 @@ The `Storage` component,
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
 
+> **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
+> user when he/she directly modifies the data files. The user is expected to 
+> work with the data files only through Wingman.
 
 <div style="page-break-after: always;"></div>
+
 
 ### Overall Sequence
 
