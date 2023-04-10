@@ -305,6 +305,10 @@ The command execution flow is as given below
 6. Based on the filtered elderly and volunteers a predicate to get the related pairs is created and ```updateFilteredPairList``` of ```Model``` is called.
 7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
 
+The class diagram below shows the relation of predicates to ```FindCommandParser``` and ```FindCommand```.
+
+<img src="images/developerGuide/FindCommandClassDiagram.png" width="700" />
+
 Design decisions:
 - Name, address, email, phone, tags and medical qualification attributes allow substring searching.
   - Easier to search with only partial information available.
@@ -345,6 +349,9 @@ The `Summary` object
 * takes in 0 or more `AggregateFunction`s to show their description and results.
 
 <img src="images/developerGuide/StatsCommandClassDiagram.png" width="500" />
+
+The `StatsCommand` keeps a `Summary` object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunctions` with appropriate arguments and passes them to the `Summary` to be described.
+<img src="images/developerGuide/StatsSequenceDiagram.png" width="500" />
  
 ### Storage
 This section specifies how entities such as `Elderly`, `Volunteer` and `Pair` are stored on disk.
@@ -465,11 +472,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01- Pair Volunteer and Elderly**
 
+Preconditions: Elderly and Volunteer is already in FL.
+
 **MSS**
 
-1.  User enters the details of elderly and volunteer to be paired into the application.
-2.  FL adds the pair into the database, and feedbacks the successful addition of the pair.
-3.  User see the pair details appear in the pair list.
+1. User enters the details of elderly and volunteer to be paired into the application.
+2. FL feedbacks the successful addition of the pair, and shows the new pair.
+3. User sees the new pair in FL.
 
     Use case ends.
 
@@ -485,12 +494,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 1c. FL detects missing arguments or an error in the entered data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
+* 1c. FL detects missing arguments or an error in the entered command.
+    * 1c1. FL feedbacks that entered command is incorrect.
 
     Use case ends.
 
-* 1d. FL detects duplicate pair records in the entered data.
+* 1d. FL detects duplicate pair records in the entered command.
     * 1d1. FL feedbacks that it is a duplicate record.
 
     Use case ends.
@@ -499,20 +508,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters the details of elderly to be added into the application.
-2.  FL adds the elderly into the database, and feedbacks the successful addition of the elderly.
-3.  User see the elderly details appear in the elderly list.
+1. User enters the details of elderly to be added into the application.
+2. FL feedbacks the successful addition of the elderly, and shows the new elderly.
+3. User sees the new elderly in FL.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-    * 1a1. FL feedbacks that entered data is in a wrong format.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
     
     Use case ends.
 
-* 1b. FL detects duplicate elderly records in the entered data.
+* 1b. FL detects duplicate elderly records in the entered command.
     * 1b1. FL informs it is a duplicate record.
 
     Use case ends.
@@ -521,70 +530,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters the details of volunteer to be added into the application.
-2.  FL adds the volunteer into the database, and feedbacks the successful addition of the volunteer.
-3.  User see the volunteer details appear in the volunteer list.
+1. User enters the details of volunteer to be added into the application.
+2. FL feedbacks the successful addition of the volunteer and shows the new volunteer.
+3. User sees the new volunteer in FL.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-  * 1a1. FL feedbacks that entered data is in a wrong format.
+* 1a. FL detects missing arguments or an error in the entered command.
+  * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
-* 1b. FL detects duplicate volunteer records in the entered data.
+* 1b. FL detects duplicate volunteer records in the entered command.
   * 1b1. FL informs it is a duplicate record.
 
   Use case ends.
 
 **Use case: UC04- Unpair Volunteer and Elderly**
 
+Preconditions: Volunteer and elderly is already paired in FL.
+
 **MSS**
 
-1.  User enters the pair details (elderly & volunteer) to be deleted into FL.
-2.  FL deletes the pair from the database, and feedbacks the successful unpairing.
-3.  User see the pair details removed from the joint list.
+1. User enters the pair details (elderly & volunteer) to be deleted into FL.
+2. FL feedbacks the successful unpairing and removes the pair from view.
+3. User sees that the pair is removed from FL.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects that the pair is not in the current database.
-    * 1a1. FL informs User that the pair has not been created.
+* 1a. FL detects that the elderly is not in the current database.
+    * 1a1. FL informs User that the elderly has not been created.
 
   Use case ends.
 
-* 1b. FL detects missing arguments or an error in the entered data.
-    * 1b1. FL feedbacks that entered data is in a wrong format.
+* 1b. FL detects that volunteer is not in the current database.
+    * 1b1. FL informs User that the volunteer has not been created.
+
+  Use case ends.
+
+* 1c. FL detects missing arguments or an error in the entered command.
+    * 1c1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
 **Use case: UC05- Delete Volunteer**
 
+Preconditions: Volunteer is already in FL.
+
 **MSS**
 
-1.  User enters the NRIC of the volunteer to be deleted.
-2.  FL deletes the volunteer from the database, and feedbacks the successful deletion of the volunteer.
-3.  User see the volunteer details removed from the volunteer list.
+1. User enters the NRIC of the volunteer to be deleted.
+2. FL feedbacks the successful deletion of the volunteer, and removes the volunteer from view.
+3. User sees that the volunteer is removed from FL.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-    * 1a1. FL feedbacks that entered data is in a wrong format.
-
-  Use case ends.
-
-* 1b. FL detects that the volunteer is not inside the records.
-    * 1b1. FL informs that the volunteer does not exist.
-
-* 1c. FL detects the provided NRIC does not match any volunteer in the database.
-    * 1c1. FL feedbacks that no volunteer matches the provided NRIC.
-
-      Use case ends.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
@@ -592,175 +600,194 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters the NRIC of the elderly to be deleted.
-2.  FL deletes the elderly from the database, and feedbacks the successful deletion of the elderly.
-3.  User see the elderly details removed from the elderly list.
+1. User enters the NRIC of the elderly to be deleted.
+2. FL feedbacks the successful deletion of the elderly and removes the elderly from view.
+3. User sees that the elderly is removed from FL.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects missing arguments or an error in the entered data.
-  * 1a1. FL feedbacks that entered data is in a wrong format.
+* 1a. FL detects missing arguments or an error in the entered command.
+  * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
-
-* 1b. FL detects that the elderly is not inside the records.
-  * 1b1. FL informs that the elderly does not exist.
-
-  Use case ends.
-
-* 1c. FL detects the provided NRIC does not match any elderly in the database.
-    * 1c1. FL feedbacks that no elderly matches the provided NRIC.
-
-      Use case ends.
 
 **Use case: UC07- Edit Elderly**
+
+Preconditions: Elderly is already in FL.
 
 **MSS**
 
 1. User enters the index of the elderly to be edited, together with the details of the fields to be edited.
-2. FL edits the corresponding elderly in the database, and feedbacks the successful edit of the elderly.
-3. User see the updated elderly details appear in the elderly list.
+2. FL feedbacks the successful edit of the elderly and shows the updated elderly.
+3. User sees that the elderly is updated in FL.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. FL detects the provided index is out of bound for the current elderly list.
-  * 1a1. FL feedbacks that the entered index is invalid.
-  
-    Use case ends.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-* 1b. FL detects that no field is specified for edit.
-  * 1b1. FL feedbacks that at least one field must be specified for edit.
-
-    Use case ends.
-
-* 1c. FL detects an error in the new attribute data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
+  Use case ends.
 
 **Use case: UC08- Edit Volunteer**
+
+Preconditions: Volunteer is already in FL.
 
 **MSS**
 
 1. User enters the index of the volunteer to be edited, together with the details of the fields to be edited.
-2. FL edits the corresponding volunteer in the database, and feedbacks the successful edit of the volunteer.
-3. User see the updated volunteer details appear in the elderly list.
+2. FL feedbacks the successful edit of the volunteer and shows the updated volunteer.
+3. User sees that the volunteer is updated in FL.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. FL detects the provided index is out of bound for the current volunteer list.
-    * 1a1. FL feedbacks that the entered index is invalid.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-      Use case ends.
-
-* 1b. FL detects that no field is specified for edit.
-    * 1b1. FL feedbacks that at least one field must be specified for edit.
-
-      Use case ends.
-
-* 1c. FL detects an error in the new attribute data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
+  Use case ends.
 
 **Use case: UC09- Edit Person identified by NRIC**
+
+Preconditions: Person is already in FL.
 
 **MSS**
 
 1. User enters the NRIC of the person to be edited, together with the details of the fields to be edited.
-2. FL edits the corresponding fields of the person (be an elderly or a volunteer), and feedbacks the successful edit of the person.
-3. User see the updated person details appear in the corresponding elderly or volunteer list.
+2. FL feedbacks the successful edit of the person and shows the updated person.
+3. User sees that the person is updated in FL.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. FL detects the provided NRIC does not match any person in the database.
-    * 1a1. FL feedbacks that no person matches the provided NRIC.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-      Use case ends.
+  Use case ends.
 
-* 1b. FL detects that no field is specified for edit.
-    * 1b1. FL feedbacks that at least one field must be specified for edit.
-
-      Use case ends.
-
-* 1c. FL detects an error in the new attribute data.
-    * 1c1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
-
-**Use case: UC09- Find person and related pairs**
+**Use case: UC10- Find person and related pairs**
 
 **MSS**
 
 1. User enters the details of all the fields to be matched.
-2. FL searches for the existing person and pair database, and return lists of matching elderly, volunteer and pairs.
-3. User see the matching persons and pairs appearing in the UI.
+2. FL shows all the matching elderly, volunteer and pairs.
+3. User sees all the relevant persons and pairs in FL.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. FL detects that no field is specified for matching.
-    * 1a1. FL feedbacks that at least one field must be specified for finding records.
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
 
-      Use case ends.
+  Use case ends.
 
-* 1b. FL detects an error in the data to be searched.
-    * 1b1. FL feedbacks that entered data is in a wrong format.
-
-      Use case ends.
-      
-
-**Use case: UC10- Listing persons**
+**Use case: UC11- View all persons and pairs**
 
 **MSS**
 
-1. User types `list` in the input text box.
-2. FL return all the current elderly, volunteers and pairs in the database.
-3. User see all the persons and pairs on the interface.
+1. User enters the command to list all persons and pairs.
+2. FL shows all the current elderly, volunteers and pairs.
+3. User sees all persons and pairs in FL.
 
    Use case ends.
 
+**Extensions**
 
-**Use case: UC11- View person statistics**
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC12- View paired persons**
 
 **MSS**
 
-1. User types `stats` in the input text box.
-2. FL returns the number of elderly, volunteer, pairs and their pairing situations.
-3. User see the summary statistics in the feedback box.
+1. User enters the command to list all paired persons.
+2. FL shows all the paired elderly, paired volunteers and all pairs.
+3. User sees all paired persons and all pairs in FL.
 
    Use case ends.
 
+**Extensions**
 
-**Use case: UC12- Look up Help Page**
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC13- View unpaired persons**
 
 **MSS**
 
-1. User types `help` in the input text box.
-2. FL returns the pop-up whose link directs user to the user guide.
-3. User see the pop-up message.
+1. User enters the command to list all unpaired persons.
+2. FL shows all the unpaired elderly, unpaired volunteers and all pairs.
+3. User sees all unpaired persons and all pairs in FL.
 
    Use case ends.
 
-**Use case: UC13- Exit the app**
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC14- View statistics**
 
 **MSS**
 
-1. User types `exit` in the input text box.
-2. FL saves the current data and exits.
-3. User see the software interface closes.
+1. User enters the command to see statistics.
+2. FL shows the statistics of elderly, volunteer, pairs and their pairing situations.
+3. User sees the summary statistics of persons and pairs in FL.
 
    Use case ends.
 
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC15- Look up Help Page**
+
+**MSS**
+
+1. User enters the command to see more help.
+2. FL provides a link to direct user to the user guide webpage.
+3. User visits the user guide webpage and reads the relevant sections.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC16- Exit the app**
+
+**MSS**
+
+1. User enters the command to exit FriendlyLink.
+2. FL exits.
+3. User sees that FL has exited.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -869,7 +896,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Show summary statistics
 
-1. View the statistics of of the displayed elderly, volunteers and pairs
+1. View the statistics of the displayed elderly, volunteers and pairs
     * Type the following stats command into the text field.<br>
       `stats`
     * Press enter.
@@ -917,7 +944,8 @@ testers are expected to do more *exploratory* testing.
 
 ------------------------------------------------------------
 
-## **Appendix: Planned Enhancements**
+## Appendix: Planned Enhancements
+
 
 When creating software, there are always areas that can be improved upon.
 In the interest of transparency and keeping our users informed, we have identified some aspects
@@ -984,27 +1012,88 @@ We should improve it to also allow users to enter time into the availability fie
 Currently, names do not accept `.` and `\\`. This may cause some problems where a person's legal name contains these special characters.
 We should modify the name to accept these special characters.
 
---------------------------------------------------------------------------------------------------------------------
-## Glossary
+### Enhance warning message for input validation
 
-| Term                  | Definition                                                                                                                                                  |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                                                                     |
-| Date                  | A date representing the timestamp of an event, in the format `YYYY-MM-DD`                                                                                   |
-| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink                                                            |
-| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
-| Elderly               | Elderly are people under the care of your VWO                                                                                                               |
-| Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
-| FriendlyLink          | The name of our application                                                                                                                                 |
-| Field                 | A field is the information following the slash in a command.                                                                                                |
-| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
-| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
-| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
-| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
-| Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
-| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
-| Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
-| Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
-| Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
-| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members                                                                                     |
-| VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
+Currently, when a wrong command or prefix is entered, the input will simply turn red. While this may be intuitive for experienced users,
+it may not provide the best experience for new users. As such, we intend to implement a feature which can convert the current recommendation
+feature to also display the warning. For example, if the user enters `add_person`, this is currently an invalid command,
+so the corresponding error message will be displayed in the same text box (replacing the command recommendation).
+
+-----------------------------------------------------
+
+## Appendix: Efforts
+
+**Adding records**
+
+1. This task is of medium difficulty. We managed to implement a variety of attribute fields, such as available dates as date ranges, medical qualifications as tags, and regions as enums. 
+2. Given the different attribute data types, transferring these fields into formats adaptable for JSON storage become the main challenge.
+3. Furthermore, as we made many of the fields optional, making the tracking and recording of fields with `NULL` values compatible with JSON, given the various data types, becomes another challenge.
+4. Despite these challenges, we successfully added comprehensive and flexible record-keeping capabilities to the system.
+
+**Deleting records**
+
+1. This task is of medium difficulty. We managed to implement logic checks ensuring the logical correctness of deletion. For example, when deleting an elderly record, we also had to delete all of its existing pairs. To ensure the accuracy and correctness, we wrote many unit test cases. 
+2. Through careful testing and debugging, we successfully implemented a reliable and robust deletion feature.
+
+**Pairing feature** 
+
+1. This task is of medium difficulty. The main effort involved taking references of elderly and volunteer information instead of copying it, so that when a person's information is edited, deleted, or searched, the corresponding pairing situation can be displayed.
+
+**Editing records**
+
+1. This task is of medium difficulty. We had to correctly handle all possible correct and incorrect inputs, particularly when we had an 'edit' command that was usable by both elderly and volunteer users.
+2. Through careful unit testing and debugging, we successfully implemented a feature that automatically ignored non-applicable edit fields and update all applicable information.
+
+**Finding records**
+
+1. Finding information was of high difficulty. We had to correctly handle different possible situations, such as when a user entered a wrong field format or a field that was not applicable to the person or when different searching formats were used for enums, date tags, etc. 
+2. Additionally, we had to simultaneously filter elderly, volunteer, and pair cards and display all possible information.
+3. Through extensive testing and refinement, we successfully implemented a powerful and flexible searching feature.
+
+**Command Recommendation**
+
+1. Implementing the command recommendation feature was of high difficulty. The main challenges were showing the correct command recommendations as the user typed each character and throwing warnings at the correct times.
+2. For example, the main challenges include that we had to distinguish between "wrong command" and "incomplete command", as well as detecting existing attributes to avoid repetitive recommendations.
+3. For this feature, we make use of the [Agolia Documentaiton](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions/) 
+4. We successfully achieved this feature, which effectively increased input speed and user satisfaction.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [How to use this User Guide](#how-to-use-this-user-guide) and the [Fields](#fields) section.
+
+### Non-Technical
+
+| Term                  | Meaning                                                                                                              |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------|
+| Availability Date     | The availability of a person.                                                                                        |
+| BirthDate             | The birth date of a person.                                                                                          |
+| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                              |
+| Date                  | The date of an event.                                                                                                |
+| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink.                    |
+| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink.                                   |
+| Elderly               | Elderly are people under the care of your VWO.                                                                       |
+| Email                 | The email of a person.                                                                                               |
+| FriendlyLink          | The name of our application.                                                                                         |
+| Field                 | A field is the information following the slash in a command.                                                         |
+| Index                 | An index represents the position of the referred item in a displayed list of persons.                                |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the skill name and a skill level.               |
+| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                               |
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly.                    | 
+| Phone number          | The phone number of a person.                                                                                        |
+| Prefix                | Prefix refers to the characters appearing before a slash in a command. Prefix describe the field that it represents. |
+| Region                | The general portion of area in Singapore.                                                                            |
+| Risk level            | The susceptibility level of an elderly to injury or sickness.                                                        |
+| Tag                   | A generic description for a group of people.                                                                         |
+| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members.                                             |
+| VWO                   | Voluntary Welfare Organisations such as yourself.                                                                    |
+
+### Technical
+
+| Term     | Meaning                                                                                                                                                                                  |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Java     | Java is a programming language that FriendlyLink is written in. It is required to run the application.                                                                                   |
+| JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
+| JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
+| Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |

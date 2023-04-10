@@ -135,8 +135,6 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
-    // TODO: all volunteer field specified after adding medical qualification attribute
-
     @Test
     public void execute_allElderlyFieldsSpecified_success() {
         String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 0, 0);

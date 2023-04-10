@@ -60,8 +60,6 @@ public class StorageManagerTest {
      * More extensive testing of UserPref saving/reading is done in the storage classes test files.
      */
 
-    // TODO: pairReadSave(), follow implementations below
-
     @Test
     public void elderlyReadSave() throws Exception {
         FriendlyLink original = getTypicalFriendlyLink();
