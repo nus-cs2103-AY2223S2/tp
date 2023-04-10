@@ -23,9 +23,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
@@ -130,15 +131,18 @@ The `Model` component
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
+<div markdown="block" class="alert alert-info">
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**:information_source: Note:**<br> An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
 
-Here are some more details on how `Overview` is designed:
+![!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
-<img src="images/OverviewClassDiagram.png" width="450" />
+<br> Here are some more details on how `Overview` is designed:
 
-How the `Overview` component works:
+![!OverviewClassDiagram](images/OverviewClassDiagram.png)
+
+<br> How the `Overview` component works:
+
 * There are 3 implementations of `Overview`: `AgeOverview`, `PostalOverview` and `VariantOverview`. Only one is active in a `Model` at a time.
 * Each of these implementations has a respective `Analyst` class, which sorts `Person` objects into groups and counts the number in each.
   * The way a `Person` is sorted depends on the type of `Analyst` employed.
@@ -188,37 +192,36 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-Step 1. placeholder
+The add feature is accessed through the `addPerson` operation that allows users to add a new case to the `Person` class of the application.
 
-#### Design considerations
+The `Person` added by the user has four compulsory fields and one optional field.
+* `Name` of the person
+* `Date` of the case
+* `Postal` code of the case
+* `Age` of the person
+* `Variant` of the case (optional)
 
-**Aspect: xxx**
+The `addPerson` operation is facilitated by `AddCommand` which extends from `Command`. 
 
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+Step 1. `DengueHotspotTracker#parseCommand()` checks that the user input matches that the `COMMAND_WORD` of `AddCommand`
 
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+Step 2. `AddPersonParse#parse()` will process the additional inputs and return an `AddCommand`.
+
+Step 3. `AddCommand` is executed and `AddCommand#execute()` triggers the `Model` interface's `Model#addCommand()`.
+
+Step 4. `DengueHotspotTracker#addPerson` will add a person to a `uniquePersonList` via the `uniquePersonList#add()` command.
+
+Step 5. Additionally `StorageManager#saveDengueHotspotTracker()` is called every time after a command to save the event to `data/denguehotspottracker.csv`.
+
+The following sequence diagram will illustrate how `addPerson` operation works:
+
+[!AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
 ### Edit feature
 
 #### Implementation
 
-Step 1. placeholder
-
-#### Design considerations
-
-**Aspect: xxx**
-
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
-
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+The implementation for the `edit` command is largely similar to that of the [`add`](#add-feature) command.
 
 ### Multi-index delete feature
 
@@ -363,6 +366,7 @@ two ages, a start date `sd/` and an end date `ed/` instead of a specific date `d
 occurred from 23rd March 2023 to 25th March 2023 inclusively.
 
 The following activity diagram summarises what happens when a user enters a find-by-range command.
+
 ![RangeFindActivityDiagram](images/RangeFindActivityDiagram.png)
 
 #### Design Considerations
@@ -418,8 +422,10 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** Sorting is performed directly on the **entire** list. Sorting is also **permanent**, i.e. it cannot be undone.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** Sorting is performed directly on the **entire** list. Sorting is also **permanent**, i.e. it cannot be undone.
+
 </div>
 
 ### Undo/redo feature
@@ -455,7 +461,9 @@ Step 3. The user executes `add n/David d/2000 31 January...` to add a new case. 
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#saveChanges()`, so the Dengue Hotspot Tracker state will not be saved into the `TemporaryMemory`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** If a command fails its execution, it will not call `Model#saveChanges()`, so the Dengue Hotspot Tracker state will not be saved into the `TemporaryMemory`.
 
 </div>
 
@@ -463,7 +471,9 @@ Step 4. The user now decides that adding the case was a mistake, and decides to 
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only 1 element in the `Deque`, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `TemporaryMemory#canUndo` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** If there is only 1 element in the `Deque`, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `TemporaryMemory#canUndo` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -471,13 +481,18 @@ than attempting to perform the undo.
 Step 5. The user again decides that adding the case was not a mistake, and decides to redo the action by executing the `redo` command. The `redo` command pops an item from the auxiliary `Stack` in `TemporaryMemory` and pushes it back into the primary stack `Deque`, where it is being read as the current file.
 
 Step 6. The user now wishes to perform an undo ten times. The user executes the `undo 10` command to undo ten steps. However, only two iterations of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`. Because only three `DengueHotspotTracker` states exist, only two undos are possible.
+
 ![UndoRedoState6](images/UndoRedoState6.png)
+
 The following activity and sequence diagrams shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoActivityDiagram.png)
+
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -543,9 +558,101 @@ Step 1. placeholder
     * Pros: placeholder
     * Cons: placeholder
 
-### Import/export/checkout features
+### Import feature
 
-DengueHotspotTracker data is stored in a CSV file format.
+#### Implementation
+
+The import mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
+`ImportCommandParser#parse()`, `ImportCommand#execute()` and
+`CsvDengueHotspotStorage#readDengueHotspotStorage()` methods.
+
+Given below is an example usage scenario and how the import csv mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes the `import sampledata.csv` command to import a list of cases from `sampledata.csv`.
+`DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `import` command word,
+passes the argument `sampledata.csv` to the `importCommandParser`.
+
+Step 3. `ImportCommandParser#parse()` is called. It checks that `sampledata.csv` does not contain any special characters,
+and that it ends with `.csv`. An `ImportCommand` is constructed, taking in the trimmed filepath `sampledata.csv` as an argument.
+
+Step 4. `ImportCommand#execute()` will get the trimmed filepath and retrieve the list of cases to import from `sampledata.csv`.
+
+Step 5. A `CsvDengueHotspotStorage` is created and `CsvDengueHotspotStorage#readDengueHotspotStorage()` is called,
+importing the valid case list if the format is valid.
+
+The following sequence diagram shows how the import command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes an import command:
+
+![ImportActivityDiagram](images/ImportActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: What filenames and directories accepted**
+
+* **Alternative 1 (current choice):** Accept only filenames without special characters and are contained within the
+same directory. This is done by checking the inputted filename ends with .csv and does not contain non-alphanumeric
+characters.
+    * Pros: This makes storage of the files easy and it is easy to validate the filename.
+    * Cons: Less flexibility in where the user can import their files from. It is limited to the same
+      directory.
+      * We also do not currently accept additional directory specifications and files must be imported from the same
+      directory as `dht.jar`.
+
+* **Alternative 2:** Allows a wider range of filename inputs including subdirectories.
+    * Pros: More flexibility as to where the user can import their files from.
+    * Cons: Harder to implement. Refer to planned enhancements.
+
+### Export feature
+
+#### Implementation
+
+The feature is largely similar to the [import](#import-feature) up to step 4.
+
+Step 5. A `CsvDengueHotspotStorage` is created and `CsvDengueHotspotStorage#saveDengueHotspotStorage()` is called,
+saving the csv to `sampledata.csv`.
+
+The following sequence diagram represents the difference in step 5:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes an export command:
+
+![ImportActivityDiagram](images/ExportActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: What filenames and directories accepted**
+
+Same as import command design considerations for what filenames are accepted.
+
+**Aspect: Overwrite checking**
+
+* **Alternative 1 (current choice):** We currently allow the user to overwrite CSV files stored as long as the IO operations are successful.
+    * Cons: This is an issue as a user can accidentally override important CSV files.
+    * Pros: It is easier to implement.
+
+* **Alternative 2:**
+    * Pros: Adds an additional layer of check so that the user does not override previously stored CSV files.
+    * Cons: Harder to implement. Look at future work.
+
+### Checkout feature
+
+This feature is largely similar to the [export](#export-feature) up to step 4.
+
+Step 5: Model calls `Overview#getOverviewContent()` to obtain the list to export to CSV.
+
+![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
+
+The activity diagram is similar to that of the `export` command.
+
+#### Design considerations
+
+The design considerations and future are the same of that as [export](#export-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -773,27 +880,76 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Undo/redo an action
+#### Use case: Undo an action
 
 **MSS**
 
-1. placeholder
+1. User requests to undo one action by executing `undo`. 
+2. DengueHotspotTracker is restored to a state before step 1, performing an undo operation a certain number of times, according to the specified argument.
+3. A list of persons is reflecting the previous state is displayed.
 
 **Extensions**
 
-* 1a. placeholder
-    * 1a1. placeholder
+* 1a. An invalid argument is supplied.
 
-#### Use case: Import/export/checkout data
+    * 1a1. DengueHotspotTracker shows an error message.
+
+    Use case ends.
+
+* 1b. No previous states are detected, and an undo is not possible.
+
+    * 1b1. DengueHotspotTracker shows an error message.
+
+    Use case ends.
+
+* 1c. There is no argument supplied.
+
+    Use case resumes at step 2 with argument set to 1.
+
+* 1d. The argument specified is a positive integer, and at least 1 previous state is detected, but there are not enough previous states available.
+
+    Use case resumes at step 2 with argument set to the maximum number of possible undo operations possible.
+
+* 2a. The DengueHotspotTracker is displaying a filtered list instead of the full list of cases.
+
+    * 2a1. DengueHotspotTracker reverts to showing the complete list.
+
+    Use case resumes at step 3.
+
+#### Use case: Import data
 
 **MSS**
 
-1. placeholder
+1. User requests to import list of cases from filepath
+2. DengueHotspotTracker updates case list with new list of cases
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. placeholder
-    * 1a1. placeholder
+* 1a. The filepath is invalid
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+
+* 1a. The filepath contains an empty file or a file in an incorrect format
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
+
+#### Use case: Export/checkout data
+
+**MSS**
+
+1.  User requests to list cases
+2.  DengueHotspotTracker shows a list of cases
+3.  User requests to export list of cases or checkout overview
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The filepath is invalid
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
+
+* 1a. The file at given filepath is used by another application
+    * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -816,7 +972,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -855,6 +1013,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
 
 ### Exporting/Importing data
+
 1. Testing import CSV
    1. Remove `denguehotspottracker.csv` file in the /data folder.
    1. Run `DengueHotSpotTracker` to obtain an initialized list of cases.
@@ -929,3 +1088,17 @@ within which the cases were found:
 
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
+
+### Do an existence check on the files before export
+
+We will implement a checker that will prompt the user asking if they're sure they want to override the CSV file
+currently at the filename location.
+
+We did not implement this due to the difficulty as well as not having thought about it prior to `v1.3`.
+
+### Check the validity of filenames which include subdirectories
+
+This feature helpful as described under export command's design considerations. However, this is an additional feature
+and we were not able to add it into `v1.4`.
+
+This is a very helpful feature since it prevents accidental mistakes of overwriting preexisting CSV files.
