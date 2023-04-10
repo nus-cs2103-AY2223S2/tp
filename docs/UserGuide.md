@@ -18,11 +18,14 @@ which is why [***RIZZ***ipe](#what-is-rizzipe) is designed and built just for ch
 For **experienced users**, you may refer to the [Command summary](#command-summary) and [Keyboard shortcuts summary](#keyboard-shortcuts-summary) 
 for a summarised table of all the commands and keyboard shortcuts available.
 
+<div style="page-break-after: always;"></div>
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## Overview
 The following subsections detail the functionality of ***RIZZ***ipe and explain the various terminology and colour coding we will be using in this guide.
 
@@ -54,6 +57,8 @@ This is used to display :computer: **keyboard shortcuts** that can help make you
 This is used to display :exclamation: **warnings** for you to heed in order for ***RIZZ***ipe to work as intended!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 * **Command terminal**: A terminal is a text input and output environment. It is a program that acts as a wrapper and allows us to enter commands that the computer processes. Open your terminal by:
     * Searching and opening `Command Prompt` on Windows
@@ -62,12 +67,12 @@ This is used to display :exclamation: **warnings** for you to heed in order for 
 * **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
 * **JSON**: JSON is an open standard file format and data interchange format that uses human-readable text to store and transmit data objects
 
-<div style="page-break-after: always;"></div>
 --- 
+<div style="page-break-after: always;"></div>
+
 ## Quick Start
 
 Let's get you _rizzed_ up in the fastest way possible!
-
 
 1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in your computer.
 2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
@@ -85,6 +90,7 @@ Let's get you _rizzed_ up in the fastest way possible!
 
 ---
 
+<div style="page-break-after: always;"></div>
 ## Commands
 ***RIZZ***ipe is a command-driven application, which means its various features and functionalities can be accessed by executing various commands.
 
@@ -105,7 +111,7 @@ Let's get you _rizzed_ up in the fastest way possible!
   i.e. `n/RECIPE_NAME [d/RECIPE_DURATION]` can be used as `n/Cheese Sandwich d/10 minutes` or `n/Cheese Sandwich`.
 
 * Parameters with `...` behind them can be used multiple times, including 0.
-  i.e. `[t/TAGS]` can be used as ` ` (zero times), `t/HALAL`, `t/HALAL t/BREAKFAST` etc.
+  i.e. `[t/TAGS]...` can be used as `<nothing>` (zero times), `t/HALAL`, `t/HALAL t/BREAKFAST` etc.
 
 * Parameters can be in any order
   i.e. if a command specifies `n/RECIPE_NAME d/RECIPE_DURATION`, `d/RECIPE_DURATION n/RECIPE_NAME` is also acceptable.
@@ -144,7 +150,7 @@ Pay close attention to these attributes, for they are crucial inputs to some of 
 | **Steps**       | `s/`   | **`STEP`** <br> `STEP` consists of 2 or more space-separated words, and can contain these characters: `A-Z a-z 0-9 . , : ; ( ) - and space`                 | No          | `Serve well.`, <br>`Bring 3 quarts water to a boil in a 5-qt. pot.`, <br>`Season with salt; add pasta and cook, stirring occasionally.` |
 | **Tags**        | `t/`   | **`TAG`** <br>  `TAG` can contain these characters: `A-Z a-z 0-9 and space`                                                                                 | No          | `Italian`, <br>`Comfort Food`, <br>`Gluten Free`                                                                                        |
 
-
+<div style="page-break-after: always;"></div>
 #### What is an ingredient?
 Ingredients are at the heart of recipes, and also comprise multiple attributes. The specification for recipe ingredients are listed in the [table](#ingredient-attributes-table) below:
 
@@ -200,7 +206,7 @@ When adding an ingredient, it is only compulsory to include the **ingredient nam
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 ### Adding a recipe through form: `addf`
 Want to add a delicious new recipe but don't want to type the whole long string of inputs at one go? 
 Use our interactive form feature to add your favorite recipe to the recipe book today!
@@ -225,6 +231,7 @@ Format:
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Listing all recipes: `list`
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
@@ -255,7 +262,7 @@ The `list` command can be used to reset the most recently searched list to the f
 :computer: **Keyboard Shortcut**:<br>
 
 To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
-While the recipe to that you want to zoom in to is being selected, simply type <kbd>p</kbd> to view that particular recipe's details! 
+While the recipe to that you want to zoom in to is being selected, simply type <kbd>P</kbd> to view that particular recipe's details! 
 
 </div>
 
@@ -284,26 +291,29 @@ Format:
  
 </div>
 
+
 <div markdown="block" class="alert alert-success">
 :bulb: **Tips**:
 
-* Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
+* Alternatively, you can use the edit popup form to edit recipes (see below).
  
 * Note that the tags specified in the fields above still apply for ingredients, like `-n`.
- 
- ![EditFormWindow](images/EditForm.png)
-
 </div>
 
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-warning">
 
 :computer: **Keyboard shortcut**:<br>
 
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
-While the recipe to that you want to edit is being selected, simply type <kbd>f</kbd> to display the popup form for that particular recipe!
+While the recipe to that you want to edit is being selected, simply press <kbd>F</kbd> to display the popup form for that particular recipe!
+
+<!-- have to do this nonsense bc markdown wouldnt render the whitespace properly -->
+<img style="margin-top:20px" src="images/EditForm.png" width="1100"/>  
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Finding a recipe by name: `find`
 
 Have a certain recipe at the back of your mind that you want to refer to?
@@ -372,6 +382,7 @@ While the recipe you want to delete is being selected, simply hit the <kbd>Delet
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Searching for substitutions for an ingredient: `sub`
 
 Short of a particular condiment or ingredient to complete your favourite recipe? Have no fear, for the `sub` command
@@ -406,6 +417,24 @@ Adding a substitution together with an ingredient is recommended since it will b
 
 </div>
 
+<div style="page-break-after: always;"></div>
+### Asking for assistance: `help`
+
+Unsure or unable to remember our list of commands and how to format your inputs? Fret not, as simply inputting
+`help` will save you from your woes!
+
+Format:
+`help`
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Additional information**:
+
+*  `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
+![HelpCommandUI](images/HelpCommandUI.png)
+
+</div>
+
+<div style="page-break-after: always;"></div>
 ### Clearing the recipe book: `clear`
 
 Want to change things up and start a new recipe book afresh? Simply run the `clear` command to wipe the memory
@@ -424,22 +453,6 @@ Running `clear` will clear your entire recipe book and there's no going back!
 If you wish to save your data elsewhere first and then start afresh, consider using the [Export](#export) feature first!
 </div>
 
-### Asking for assistance: `help`
-
-Unsure or unable to remember our list of commands and how to format your inputs? Fret not, as simply inputting
-`help` will save you from your woes!
-
-Format:
-`help`
-
-<div markdown="block" class="alert alert-info">
-:information_source: **Additional information**:
-
-*  `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!<br/><br/>
-![HelpCommandUI](images/HelpCommandUI.png)
-
-</div>
-
 ### Exiting the program: `exit`
 
 Done with cooking for the day?
@@ -447,6 +460,13 @@ Running `exit` exits the program and closes the window!
 
 Format:
 `exit`
+
+<div markdown="block" class="alert alert-success">
+:bulb: **Tip**:<br>
+
+Wondering if you have to save your data before exiting? Don't worry, **RIZZ**ipe automatically saves your data whenever a 
+command is executed, so any changes to your recipes will be saved immediately!
+</div>
 
 ---
 
@@ -470,6 +490,7 @@ Advanced users are welcome to update data directly by editing that data file loc
 If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Importing data
 
 The keyboard input <kbd>F3</kbd> will open an import window from the main window (as shown in the image below). From there, select the JSON
@@ -488,11 +509,11 @@ file to be imported using the selector.
 :bulb: **Tip**:<br>
 
 Alternatively, you can access the import function from the <kbd>File</kbd> tab in the top left corner of the main window.
-</div>
 
 ![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.png)
+</div>
 
-
+<div style="page-break-after: always;"></div>
 ### Exporting data
 
 The keyboard input <kbd>F4</kbd> will open an export window from the main window (as shown in the image below). From there, input the file name of the
@@ -529,14 +550,15 @@ Alternatively, like the import function, you can access the export function via 
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                             |
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                             |
 
+<div style="page-break-after: always;"></div>
 ## Keyboard shortcuts summary
 
 | Shortcut                                                              | Functionality                                      |
 |-----------------------------------------------------------------------|----------------------------------------------------|
 | **<kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys in Main Window**   | Navigate through different recipes                 |
 | **<kbd>\</kbd> while inputting a long command**                       | Provide line break for increased readability       |
-| **<kbd>p</kbd> while a recipe is selected**                           | Open recipe details of selected recipe             |
-| **<kbd>f</kbd> while a recipe is selected**                           | Open edit recipe form to edit the selected recipe  |
+| **<kbd>P</kbd> while a recipe is selected**                           | Open recipe details of selected recipe             |
+| **<kbd>F</kbd> while a recipe is selected**                           | Open edit recipe form to edit the selected recipe  |
 | **<kbd>Delete</kbd>/<kbd>Backspace</kbd> while a recipe is selected** | Delete the selected recipe (requires confirmation) |
 | **<kbd>F3</kbd> while in Main Window**                                | Import a recipe book                               |
 | **<kbd>F4</kbd> while in Main Window**                                | Export the current recipe book                     |
