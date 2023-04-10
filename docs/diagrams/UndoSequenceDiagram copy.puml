@@ -14,7 +14,7 @@ end box
 
 box Model MODEL_COLOR_T1
 skinparam ParticipantFontColor white
-participant ":Memento" as Memento MODEL_COLOR
+participant "current:Memento" as Memento MODEL_COLOR
 participant ":Originator" as Originator MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
@@ -39,11 +39,20 @@ activate UndoCommand
 UndoCommand -> HistoryUtil : undo()
 activate HistoryUtil
 
-HistoryUtil -> Memento : restore()
+HistoryUtil -> Memento : getUpdatedMemo()
 activate Memento
 
-Memento -> Originator : setState(state)
+Memento -> Originator : save()
 activate Originator
+
+Originator --> Memento
+
+Memento --> HistoryUtil
+
+HistoryUtil -> Memento : restore()
+
+
+Memento -> Originator : setState(state)
 
 Originator --> Memento
 deactivate Originator
