@@ -21,7 +21,6 @@ import trackr.testutil.CustomerBuilder;
 import trackr.testutil.MenuItemBuilder;
 import trackr.testutil.OrderBuilder;
 
-//@@author arkarsg
 public class OrderTest {
 
     @Test
