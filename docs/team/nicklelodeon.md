@@ -5,15 +5,10 @@ title: Nicholas Cheongs' Project Portfolio Page
 ### Project: OfficeConnect
 
 OfficeConnect is a task management tool designed specifically for managerial role personnel at companies. The target
-users are managers who are responsible for assigning tasks and overseeing the work of a team.
-
-The product addresses several challenges faced by managers in the current office environment, including but not limited
-to difficulty in coordinating tasks among a large number of subordinates, possible work overload of any single
-subordinate within a huge team and hassle of manually typing and sending out emails.
+users are managers who are responsible for assigning tasks and overseeing the work of a team. The product addresses several challenges faced by managers in the current office environment, including but not limited to difficulty in coordinating tasks among a large number of subordinates, possible work overload of any single subordinate within a huge team.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates' workloads and
-allowing managers to efficiently delegate tasks in an organised and centralised manner. It also removes the manual
-aspect of sending emails, as mass emails can be automated and sent with just a simple command!
+allowing managers to efficiently delegate tasks in an organised and centralised manner.
 
 Given below are my contributions to the project.
 - **New Feature**: Add task for OfficeConnect.
@@ -40,9 +35,7 @@ Given below are my contributions to the project.
   * Participated actively during group discussions, through providing help and opinions to my group mates when necessary, as well as seeking help from them.
 
 - **Enhancements to existing features**:
-  * Added a command to filter persons according to their tag, as described above. Previously, there was no way for users to search for tags, which meant that they had to scroll through all the persons individually to find out which persons had a specified tag. 
-    This would be especially time-consuming if there were many persons stored in OfficeConnect. Hence, I decided to add a filter function for tag to improve the convenience of tag searching and provide more purpose for the tag label, which will in turn encourage more users
-    to add tags when necessary. With the addition of this command, tags are evolved from a mere cosmetic feature to a powerful filtering feature. 
+  * Added a command to filter persons according to their tag, as described above. Previously, there was no way for users to search for tags, which meant that they had to scroll through all the persons individually to find out which persons had a specified tag. This would be especially time-consuming if there were many persons stored in OfficeConnect. Hence, I decided to add a filter function for tag to improve the convenience of tag searching and provide more purpose for the tag label, which will in turn encourage more users to add tags when necessary. With the addition of this command, tags are evolved from a mere cosmetic feature to a powerful filtering feature. 
 
 - **Documentation**:
 - Developer Guide:
