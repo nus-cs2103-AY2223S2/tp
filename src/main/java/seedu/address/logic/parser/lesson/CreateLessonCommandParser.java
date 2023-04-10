@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneEndTime;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneLesson;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneStartTime;
 import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
 
 import java.time.LocalDateTime;
@@ -43,8 +46,10 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 CreateLessonCommand.MESSAGE_USAGE));
         }
-
         checkUniqueNotNUllName(argMultimap);
+        checkMaxOneStartTime(argMultimap);
+        checkMaxOneEndTime(argMultimap);
+        checkMaxOneLesson(argMultimap);
 
         String lessonName = argMultimap.getValue(PREFIX_LESSON).get();
         if (lessonName.trim().isEmpty()) {

@@ -9,6 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneEndTime;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneExam;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneGrade;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneStartTime;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneWeight;
 import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
 import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNullIndex;
 
@@ -57,6 +62,11 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
                 UpdateExamCommand.MESSAGE_USAGE));
         }
 
+        checkMaxOneExam(argMultimap);
+        checkMaxOneStartTime(argMultimap);
+        checkMaxOneEndTime(argMultimap);
+        checkMaxOneWeight(argMultimap);
+        checkMaxOneGrade(argMultimap);
         checkUniqueNotNUllName(argMultimap);
         checkUniqueNotNullIndex(argMultimap);
 

@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
@@ -15,6 +17,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -342,56 +345,128 @@ public class ParserUtil {
                     Messages.MESSAGE_EMPTY_INDEX));
         }
     }
-
+    /**
+     * Checks if at most one lesson prefix is present.
+     * @param argumentMultimap the argument multimap to check for lesson.
+     * @throws ParseException if more than one lesson prefix is present.
+     */
     public static void checkMaxOneLesson(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_LESSON).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_LESSON));
         }
     }
-
+    /**
+     * Checks if at most one student name prefix is present.
+     * @param argumentMultimap the argument multimap to check for name.
+     * @throws ParseException if more than one name prefix is present.
+     */
     public static void checkMaxOneEmail(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_EMAIL).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_EMAIL));
         }
     }
+    /**
+     * Checks if at most one start time prefix is present.
+     * @param argumentMultimap the argument multimap to check for start time.
+     * @throws ParseException if more than one start time prefix is present.
+     */
     public static void checkMaxOneStartTime(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_STARTTIME).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_STARTTIME));
         }
     }
+    /**
+     * Checks if at most one end time prefix is present.
+     * @param argumentMultimap the argument multimap to check for end time.
+     * @throws ParseException if more than one end time prefix is present.
+     */
     public static void checkMaxOneEndTime(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_ENDTIME).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_ENDTIME));
         }
     }
+    /**
+     * Checks if at most one address prefix is present.
+     * @param argumentMultimap the argument multimap to check for address.
+     * @throws ParseException if more than one address prefix is present.
+     */
     public static void checkMaxOneAddress(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_ADDRESS).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_ADDRESS));
         }
     }
+    /**
+     * Checks if at most one phone prefix is present.
+     * @param argumentMultimap the argument multimap to check for phone.
+     * @throws ParseException if more than one phone prefix is present.
+     */
     public static void checkMaxOnePhone(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_PHONE).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_PHONE));
         }
     }
+    /**
+     * Checks if at most one done prefix is present.
+     * @param argumentMultimap the argument multimap to check for done.
+     * @throws ParseException if more than one done prefix is present.
+     */
     public static void checkMaxOneDone(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_DONE).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_DONE));
         }
     }
+    /**
+     * Checks if at most one date prefix is present.
+     * @param argumentMultimap the argument multimap to check for date.
+     * @throws ParseException if more than one date prefix is present.
+     */
     public static void checkMaxOneDate(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getAllValues(PREFIX_DATE).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 Messages.MESSAGE_ONLY_ONE_DATE));
         }
     }
+    /**
+     * Checks if at most one grade prefix is present.
+     * @param argumentMultimap the argument multimap to check for grade.
+     * @throws ParseException if more than one grade prefix is present.
+     */
+    public static void checkMaxOneGrade(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_GRADE).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_GRADE));
+        }
+    }
+    /**
+     * Checks if at most one weight prefix is present.
+     * @param argumentMultimap the argument multimap to check for weight.
+     * @throws ParseException if more than one weight prefix is present.
+     */
+    public static void checkMaxOneWeight(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_WEIGHT).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_WEIGHTAGE));
+        }
+    }
+    /**
+     * Checks if at most one exam prefix is present.
+     * @param argumentMultimap the argument multimap to check for exam.
+     * @throws ParseException if more than one exam prefix is present.
+     */
+    public static void checkMaxOneExam(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_EXAM).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_EXAM));
+        }
+    }
+
 
     /**
      * Checks if the index is unique and not null.

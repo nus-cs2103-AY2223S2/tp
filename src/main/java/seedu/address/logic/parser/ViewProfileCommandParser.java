@@ -34,7 +34,6 @@ public class ViewProfileCommandParser implements Parser {
 
         Predicate<Student> namePredicate;
         List<String> nameList = new ArrayList<>();
-        boolean defaultPredicateFlag;
 
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -48,7 +47,6 @@ public class ViewProfileCommandParser implements Parser {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             ViewProfileCommand.MESSAGE_USAGE));
                 }
-                int spaceIndex = name.indexOf(" ");
                 nameKeywords.set(i, name);
             }
             nameList = nameKeywords;

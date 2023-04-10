@@ -6,6 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneDate;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneDone;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneExam;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
@@ -55,6 +59,7 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
 
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            checkUniqueNotNUllName(argMultimap);
             List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
             // for all the names, trim the name and only take the first word
             for (int i = 0; i < nameKeywords.size(); i++) {
@@ -75,11 +80,13 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
+            checkMaxOneExam(argMultimap);
             String exam = argMultimap.getValue(PREFIX_EXAM).get();
             examPredicate = new ExamPredicate(exam);
         }
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
+            checkMaxOneDone(argMultimap);
             String done = argMultimap.getValue(PREFIX_DONE).get();
             if (!done.equals("done") && !done.equals("not done")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -90,6 +97,7 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
 
         // If date is present, create a predicate to filter by date
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            checkMaxOneDate(argMultimap);
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
             ExamDatePredicate datePredicate = new ExamDatePredicate(targetDate);
