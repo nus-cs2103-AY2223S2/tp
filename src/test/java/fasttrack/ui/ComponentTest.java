@@ -25,7 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
-public class UiComponentTest {
+public class ComponentTest {
 
     private Category category;
     private int displayedIndex;
