@@ -1200,7 +1200,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `listp` command. Multiple persons in the list.
    2. Test case: `deletep 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the feedback message.
+      Expected: First person is deleted from the list. Details of the deleted person shown in the feedback message.
    3. Test case: `deletep 0`<br>
       Expected: No person is deleted. Error details shown in the feedback message.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
@@ -1312,7 +1312,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.8 Deleting a Task
 
-1. Deleting a task while all task are being shown
+1. Deleting a task while all tasks are being shown.
    1. Prerequisites: List all tasks using the `listt` command. At least 1 task in the list.
    2. Test case: `deletet 1`<br>
       Expected: First task is deleted from the list. Details of the deleted task shown in the feedback message.
@@ -1324,10 +1324,10 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.9 Listing all Tasks
 
-1. Listing all tasks
+1. Listing all tasks.
    1. Prerequisites: None
    2. Test case: `listt`
-      Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in feedback message.
+      <br>Expected: All tasks stored in OfficeConnect are listed. "Listed all tasks" shown in feedback message.
 
 
 ### 7.10 Filtering Persons by Tag
@@ -1394,29 +1394,26 @@ testers are expected to do more *exploratory* testing.
 
   1. Task and person details are available in OfficeConnect.
      1. Prerequisites: The specified task and person indices are valid.
-     2. Test case: `ti INDEX` (replace INDEX with a valid task index) <br>
-        Expected: Task details are displayed. "Displayed task details for task at index: [INDEX]" shown in feedback message.
-     3. Test case: `pi INDEX` (replace INDEX with a valid person index) <br>
-        Expected: Person details are displayed. "Displayed person details for person at index: [INDEX]" shown in feedback message.
+     2. Test case: `ti 2` <br>
+        Expected: Task details are displayed.
+     3. Test case: `pi 2` <br>
+        Expected: Person details are displayed.
 
   2. Task or person details are not available in OfficeConnect.
      1. Prerequisites: The specified task or person indices are invalid.
-     2. Test case: `ti INDEX` (replace INDEX with an invalid task index) <br>
-        Expected: No task details are displayed. "Task index is invalid" shown in feedback message.
-     3. Test case: `pi INDEX` (replace INDEX with an invalid person index) <br>
-        Expected: No person details are displayed. "Person index is invalid" shown in feedback message.
+     2. Test case: `ti 7` <br>
+        Expected: No task details are displayed, error message is displayed instead.
+     3. Test case: `pi 7` <br>
+        Expected: No person details are displayed, error message is displayed instead.
 
 ### 7.13 Edit Task 
 
   1. Task to be edited is available in OfficeConnect
-     1. Prerequisites: The specified task index is invalid
-     2. Test case: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]` (replace with valid index and inputs) <br>
-     3. Expected: Task details are displayed. "Task edited: [TITLE]; Status: [STATUS]; Content: [CONTENT]" shown in feedback message.
-
-  2. Task to be edited is not available in OfficeConnect
-     1. Prerequisites: The specified task index is invalid
-     2. Test case: `editt 0`
-     3. Expected: "The task index provided is invalid" shown in feedback message.
+     1. Prerequisites: There is at least 1 task in the list.
+     2. Test case: `editt 1 t/Project X c/Complete slides st/true dl/2024-12-19`
+     <br>Expected: Task details are displayed. 
+     3. Test case: `editt 0`
+     <br>Expected: "The task index provided is invalid" shown in feedback message.
 
 ### 7.14 Find Persons by Name
 
