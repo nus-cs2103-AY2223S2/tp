@@ -12,10 +12,10 @@ participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":XYZManager" as XYZManager MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("add /n CA")
 activate LogicManager
 
-LogicManager -> WingmanParser : parse(getOperationMode(), "add/name CA")
+LogicManager -> WingmanParser : parse(getOperationMode(), "add /n CA")
 activate WingmanParser
 
 create AddXYZCommand
@@ -30,16 +30,16 @@ deactivate WingmanParser
 LogicManager -> AddXYZCommand : execute()
 activate AddXYZCommand
 
-AddXYZCommand -> ModelManager : addLocation(CA)
+AddXYZCommand -> ModelManager : addLocation(location)
 activate ModelManager
 
-ModelManager -> XYZManager : addItem(CA)
+ModelManager -> XYZManager : addItem(location)
 activate XYZManager
 
-ModelManager --> AddXYZCommand
 XYZManager --> ModelManager
-deactivate ModelManager
 deactivate XYZManager
+ModelManager --> AddXYZCommand
+deactivate ModelManager
 
 AddXYZCommand --> LogicManager : commandResult
 deactivate AddXYZCommand

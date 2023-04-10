@@ -291,7 +291,15 @@ The `Storage` component,
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
 
+<<<<<<< HEAD
+> **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
+> user when he/she directly modifies the data files. The user is expected to 
+> work with the data files only through Wingman.
+
+=======
+>>>>>>> master
 <div style="page-break-after: always;"></div>
+
 
 ### Overall Sequence
 
@@ -426,14 +434,13 @@ refer to all for simplicity.
 
 This feature is enabled by the following classes in particular:
 
-- `DeleteXYZCommand` - The command that deletes a XYZ from the Wingman app
-- `DeleteXYZCommandFactory` - The factory class that creates a {@code
-  DeleteXYZCommand}
+- `DeleteCommand` - The command that deletes an item from the Wingman app
+- `DeleteCommandFactory` - The factory class that creates a `DeleteCommand`
 
 When a user enters the command:
 
 ```
-delete {XYZ identifier}
+delete {item index}
 ```
 
 the input goes through the UI layer where `logic.execute(input)` is called which
