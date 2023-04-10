@@ -411,7 +411,7 @@ Menu Item Card consists of the following components:
 
 * You can find out the constraints for the parameters with their corresponding prefix [here](#61-prefix-summary).
 
-</div><br>
+</div>
 
 ## 2.0 Checking for duplicates
 
@@ -601,7 +601,7 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Price: `20.55`
   * Cost: `25.2`
 
-</div><br>
+</div>
 
 ## 2.2 Edit
 
@@ -785,7 +785,7 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
   * Price: `8.5`
   * Cost: `2.25`
 
-</div><br>
+</div>
 
 ## 2.3 Find
 
@@ -1021,7 +1021,7 @@ Syntax: `find_item ITEM_NAME`
   :x: Example of order item that do not match:
   * `Vanilla Cupcake`
 
-</div><br>
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1143,7 +1143,7 @@ Deleting a menu item does not invalidate the orders with the same order item nam
   * `find_item cupcake` lists all menu items with item names containing `cupcake`
   * `delete_m 1` deletes the **first** menu item with an item name that contains `cupcake` from the visible menu
 
-</div><br>
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1266,7 +1266,7 @@ Syntax: `sort_order [c/CRITERIA]`
   * `find_order s/N` lists all orders with status as `Not Delievered`
   * `sort_o c/Name` sorts all `Not Delivered` orders found according to their `Name`
 
-</div><br>
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1353,6 +1353,8 @@ Syntax: `list_menu`
   Shows all menu items.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.7 Clear
 
@@ -1454,7 +1456,7 @@ Clearing all menu items does not invalidate the orders.
 * `clear_m price`<br>
   Clears all menu item data from menu.
 
-</div><br>
+</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -1484,7 +1486,7 @@ Syntax: `tab t/TAB`
 * `tab t/HOME`<br>
   Navigates you to the home tab
 
-</div><br>
+</div>
 
 ## 2.9 Others
 
