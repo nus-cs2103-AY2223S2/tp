@@ -121,7 +121,7 @@ Examples:
 
 Copies an existing student to the managing system with a different subject or schedule.
 
-Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
+Format: ```copy INDEX s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
  * Copies the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
  * All of the fields must be provided.
 
@@ -174,7 +174,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -215,7 +215,7 @@ Examples:
 
 You can add a lesson taught to a student.
 
-Format: ```learn [INDEX] [l/LESSON]```
+Format: ```learn INDEX [l/LESSON]```
 
 Example:
 
@@ -228,7 +228,7 @@ Example:
 
 You can remove a lesson taught to a student.
 
-Format: ```unlearn [INDEX] [l/LESSON]```
+Format: ```unlearn INDEX [l/LESSON]```
 
 Examples:
 
@@ -240,32 +240,16 @@ Examples:
 ### Marking/Unmarking attendance
 Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
 they were absent. If a date is not specified, the current date is used.\
-If the tutee was already absent or present, the command will have no effect.
+If the tutee was already absent or present for a given date, the corresponding command will have no effect on the attendance for that date.
 
-Format: `mark/unmark <index> [date...]`
+Format: `mark/unmark INDEX [DATES]…`
 
 #### [Back to top](#table-of-content) 
 ### Querying attendance
-Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
+Use this command to check the tutee's attendance. If no date is given, all of the dates that the tutee was present.\
 Otherwise, the command will return if the tutee was present on the given date.
 
-Format: `query <index> [date]`
-
-#### [Back to top](#table-of-content) 
-### Saving locally <a name="save"></a>
-
-Saves the current state of the program on the hard disk upon exit.
-
-Done automatically.
-
-#### [Back to top](#table-of-content) 
-### Loading locally <a name="load"></a>
-
-Loads the saved state of the program (if there is any) on the hard disk.
-
-Creates an empty file if there is none.
-
-Done automatically.
+Format: `query INDEX [DATE]`
 
 #### [Back to top](#table-of-content) 
 ### Clearing all entries : `clear`
@@ -294,24 +278,40 @@ Format: ```exit```
 
 ## Command summary
 
+Commands that take in fields (i.e. `et/` or `sch/`) can all be used with the following parameters:
+- `n/NAME`
+- `p/PHONE`
+- `e/EMAIL`
+- `a/ADDRESS` 
+- `s/SUBJECT` 
+- `sch/SCHEDULE`
+- `st/START TIME`
+- `et/END TIME`
+- `t/TAG`
+
+### Sidenote:
+- `r/REMARK` can only be used with the `edit` command.
+
+The table below lists only some of the fields that can be used with the command.
+To see the full list, refer to the entry for that command in the guide above.
+
 | Action | Format and Examples                 |
 |------|-------------------------------------|
-| **Add Student** |                                     |
-| **Delete Student** | `delete INDEX`<br> e.g., `delete 1` |
-| **Clear** | `clear`                             |
-| **** |                                     |
-| **Edit** |                                     |
-| **Find** |                                     |
-| **Filter** |                                     |
-| **List Students** | `list`                              |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **** |                                     |
-| **Help** | `help`                              |
+| **Add Tutee** |                                     |
+| **Clear** | `clear`|
+| **Copy Tutee** | `copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME` <br> e.g. `copy  1 s/Math`                                   |
+| **Delete Tutee** | `delete INDEX`<br> e.g., `delete 1` |
+| **Edit tutee** |`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit 1 n/John Tan p/12345678`|
+| **Exit** |`exit`|
+| **Find tutee by name** | `find KEYWORD [MORE_KEYWORDS]…` <br> e.g. `find john doe`                                   |
+| **Filter tutees by fields** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `filter a/Clementi` |
+| **Help** |`help`|
+| **List Tutees** | `list`                              |
+| **Add new lesson to tutee** | `learn l/LESSON` <br> e.g. `learn l/Rational Numbers`|
+| **Mark Attendance** | `mark INDEX [DATES]…` <br> e.g. `mark 1 2023-05-03 2023-05-04`|
+| **Query Attendance** | `query INDEX [DATE]` <br> e.g `query 1 2023-05-03`                                    |
+| **Add Remark to Tutee** | `remark INDEX REMARK`|
+| **Remove lesson from tutee** | `unlearn l/LESSON`|
+| **Mark Absence** | `unmark INDEX [DATES]…`|
 
 #### [Back to top](#table-of-content) 
