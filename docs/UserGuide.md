@@ -76,7 +76,7 @@ Note:
 
 
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Ui.png" alt="Ui" width="75%">
+   <img src="images/Ui.png" alt="Ui" width="50%">
 
 
 5. Type in a command in the command box to execute it. Some commands to try:
@@ -165,7 +165,7 @@ Examples:
 * `add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus`
 * `add i/T0012345B n/Betsy Crowe dob/18/12/1998 p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
 
-<img src="images/command_result/Add.png" alt="Add" width="75%">
+<img src="images/command_result/Add.png" alt="Add" width="63%">
 
 Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 <div style="page-break-after: always;"></div>
@@ -257,7 +257,7 @@ Examples (The following results are based of the sample data provided):
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 * `find ad/Shannon` returns all persons with attending doctor `Shannon`.
 
-<img src="images/command_result/Find.png" alt="Find" width="75%">
+<img src="images/command_result/Find.png" alt="Find" width="51%">
 
 Above is the execution result of the input `find ad/Alex`.
 <div style="page-break-after: always;"></div>
@@ -453,7 +453,7 @@ Above is the view of help window after the input `help`.
 
 | Action             | Format, Examples                                                                                                                                                                                                                                                         |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
-| **Add**            | `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus | 
+| **Add**            | `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/male ad/Alex t/Diabetic m/Lantus | 
 | **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                  |  
 | **View**           | `view i/NRIC` <br/> e.g. find i/S1234567H                                                                                                                                                                                                                                |  
 | **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                                                          |  
