@@ -24,13 +24,12 @@ public class WelcomePanel extends UiPart<VBox> {
     public WelcomePanel() {
         super(FXML);
         WebEngine webEngine = webView.getEngine();
-        String manualHtmlPath;
         try {
-            manualHtmlPath = getClass().getResource(FXML_FILE_FOLDER + "WelcomePanel.html").toURI()
-                    .toString();
+            String manualHtmlPath =
+                    getClass().getResource(FXML_FILE_FOLDER + "WelcomePanel.html").toURI()
+                            .toString();
             webEngine.load(manualHtmlPath);
         } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
