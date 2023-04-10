@@ -31,7 +31,7 @@ public class TemporaryMemoryTest {
         this.memory = new TemporaryMemory(this.tracker);
 
         this.inputs = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 20; i++) {
             inputs.add(builder.buildRandom());
         }
 
