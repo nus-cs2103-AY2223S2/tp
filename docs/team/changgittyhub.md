@@ -59,4 +59,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Java 11, JavaFx, Jekyll
-  
