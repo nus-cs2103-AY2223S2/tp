@@ -47,24 +47,11 @@ destroy AddEmployeeToLeaveCommandParser
 SudoHrParser --> LogicManager : a
 deactivate SudoHrParser
 
-LogicManager -> AddEmployeeToLeaveCommand : execute()
+LogicManager -> AddEmployeeToLeaveCommand : execute(model)
 activate AddEmployeeToLeaveCommand
 
 AddEmployeeToLeaveCommand -> Model : addEmployeeToLeave(1,2022-03-04)
 activate Model
-
-Model --> AddEmployeeToLeaveCommand
-deactivate Model
-
-AddEmployeeToLeaveCommand -> Model : updateFilteredEmployeeList
-activate Model
-
-Model --> AddEmployeeToLeaveCommand
-deactivate Model
-
-AddEmployeeToLeaveCommand -> Model : updateFilteredLeaveList
-activate Model
-
 
 Model --> AddEmployeeToLeaveCommand
 deactivate Model
