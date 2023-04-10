@@ -460,6 +460,7 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 * Nric is not unique. Hence, please be aware to check your Nric input before adding to prevent duplicate Nric with other patient's.
 * Age need to be less than or equal to 120 and must be a positive integer.
 * Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
+* Medical condition should not contains any number
 
 
 
