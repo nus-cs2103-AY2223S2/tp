@@ -1240,11 +1240,9 @@ that the features were tested more thoroughly as the team learned new testing ty
 ### **Stubs**
 
 Stubs were used to test features and classes in isolation, so that any bugs in dependencies will not affect the tests
-that are in place. This is most common in the testing of commands as well as parsers, to ensure that any bugs in one or
-the other will not result in failing tests in the other, allowing us to quickly ascertain bugs without having to find 
-out where the bug originated from. 
-
-We replaced the parser with stubs to test the commands and vice versa.
+that are in place. Use of stubs were most common in testing commands and parsers, as they have a lot of dependencies
+that make it difficult to test the entire logic in total. Stubs help to isolate dependencies so that each component's logic
+are tested without being affected by other components.
 
 ### **Integration Testing**
 
@@ -1255,8 +1253,8 @@ testing and dogfooding.
 
 ### **Dogfooding**
 
-Towards the completion of our product, our developers used the product on a regular basis in an attempt to use the 
-product how a normal user might use. This helped ensure that our product would be relatively bug-free for a regular use
+Towards the completion of our product, our developers used the product on a regular basis in an attempt to simulate how 
+a normal user might use the product. This helped ensure that our product would be relatively bug-free for a regular use
 case.
 
 ## **Model**
@@ -1273,7 +1271,7 @@ created specifically for tests, as well as to ensure that correct exceptions are
 invalid inputs.
 
 Our organisation made use of equivalence partitions to tests for the types of commands that can be executed. The rationale
-is that since we have a relavtively large number of variants for each command, we needed to test all possible inputs and 
+is that since we have a relatively large number of variants for each command, we needed to test all possible inputs and 
 partitions.
 
 ## **Testing Parsers**
