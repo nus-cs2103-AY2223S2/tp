@@ -462,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `Powercards` application and the **Actor** is the `user`, unless specified otherwise.
 
-## Use case: UC1 - Add a deck
+#### Use case: UC1 - Add a deck
 
 **MSS:**
 
@@ -471,7 +471,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC2 - Delete a deck
+#### Use case: UC2 - Delete a deck
 
 **MSS:**
 
@@ -480,7 +480,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC3 - Edit a deck name
+#### Use case: UC3 - Edit a deck name
 
 **MSS:**
 
@@ -489,7 +489,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC4 - Select a deck
+#### Use case: UC4 - Select a deck
 
 **MSS:**
 1. User selects a deck manage cards within.
@@ -498,7 +498,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
    Use case ends.
 
 
-## Use case: UC5 - Find deck(s) with keyword(s)
+#### Use case: UC5 - Find deck(s) with keyword(s)
 
 **MSS:**
 1. User requests to find decks with names containing keyword(s).
@@ -506,7 +506,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC6 - Show all decks
+#### Use case: UC6 - Show all decks
 
 **MSS:**
 1. User requests to see all decks after running `findDecks` command.
@@ -514,7 +514,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC7 - Add a card
+#### Use case: UC7 - Add a card
 
 **MSS:**
 1. User <u>selects a deck (UC2)</u> to add card to.
@@ -525,7 +525,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
    
    Use case ends.
 
-## Use case: UC8 - Delete a card
+#### Use case: UC8 - Delete a card
 
 **MSS:**
 
@@ -535,7 +535,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
   Use case ends.
 
-## Use case: UC9 - Edit a card
+#### Use case: UC9 - Edit a card
 
 **MSS:**
 1. User <u>selects a deck (UC2)</u> to edit a card within.
@@ -546,7 +546,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC10 - Find card(s) by keyword(s)
+#### Use case: UC10 - Find card(s) by keyword(s)
 
 **MSS:**
 1. User requests to find cards with questions containing keyword(s).
@@ -554,7 +554,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC11 - Show all cards
+#### Use case: UC11 - Show all cards
 
 **MSS:**
 1. User requests to see all cards in selected deck after running `findCards` command.
@@ -562,7 +562,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 
    Use case ends.
 
-## Use case: UC12 - Review a deck
+#### Use case: UC12 - Review a deck
 
 **MSS:**
 
