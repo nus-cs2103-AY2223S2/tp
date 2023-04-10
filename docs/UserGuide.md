@@ -992,7 +992,7 @@ The following are the general commands that are available in Careflow for you to
 | **Exit** | `g exit`        | Saves all data and safely exits.                 |
 
 <p align="center">
-  <i>Table 4. Summary of general commands.</i>
+  <i>Table 3. Summary of general commands.</i>
 </p>
 
 ## 7.2 Patient Commands
@@ -1011,7 +1011,7 @@ The following commands are patient-related commands that are available in Carefl
 | **List patient**            | `p list`                                                                                                                                                                                                                                                                                         | Lists all the patients that have been recorded in CareFlow.                                      |
 
 <p align="center">
-  <i>Table 5. Summary of patient commands.</i>
+  <i>Table 4. Summary of patient commands.</i>
 </p>
 
 ## 7.3 Drug Commands
@@ -1030,7 +1030,7 @@ The following commands are drug-related commands that are available in Careflow 
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                       | Removes all drug records stored in CareFlow                              |
 
 <p align="center">
-  <i>Table 6. Summary of drug commands.</i>
+  <i>Table 5. Summary of drug commands.</i>
 </p>
 
 [🠉 Back to top](#top)
