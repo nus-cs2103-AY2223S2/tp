@@ -160,71 +160,31 @@ command to list recurring expenses.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Understanding Categories, Expenses, and Recurring Expenses in FastTrack
-
-FastTrack makes it easy for you to keep track of your spending by organizing expenses into categories. 
-A category is like a folder that holds all your expenses that fall under a specific theme. For example, you might have a category called `Groceries` where you record all purchases from Fairprice or NTUC.
-
-To create a category in FastTrack, simply give it a name, such as `Entertainment` or `Transportation`. You can also add a short text summary to give yourself more context about the category. 
-
-FastTrack even has a default `Misc` category for any expenses that you haven't categorized yet, however, this category is not modifiable or accessible. 
-
-See more detailed instructions in [Category Commands](#Category Features).
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Info**<br>
-Note that category names in FastTrack are case-insensitive. For example, a category named `Groceries` will be treated as the exact same category as `groceries`.
-</div>
-
-An expense is a single purchase that you want to track. Each expense has a name, price, category, and date. With FastTrack, you can easily duplicate an expense if you happen to make the same purchase multiple times, such as buying a coffee from CoolSpot every morning on your way to NUS.
-
-Finally, there are recurring expenses. These are expenses that are charged on a regular basis, such as a monthly subscription to Netflix or an annual Heroku subscription. Instead of manually creating an expense every time the payment is due, you can set up a recurring expense in FastTrack. 
-Simply specify the start date, interval (daily, weekly, monthly, yearly), and end date (if applicable), and FastTrack will automatically generate the expenses for you.
-
-See more detailed instructions in [Expense Commands](#Expense Features).
-
-Overall, FastTrack's categories, expenses, and recurring expenses help you stay organized and on top of your spending. Keep reading to find out more about how to use these features in more detail!
-
-
 ## Features
 
 The features of FastTrack can be divided into 4 groups, **Category Features**, **Expense Features**, **General Features** and **Expense Statistics Feature**. With these 4 groups in mind, remembering the different commands becomes extremely convenient, as each group contains mainly 4 types of operations - add, delete, edit and list!
-1. [**Category features**](#category-features)
-    * [Add a category](#adding-a-category-addcat)
-    * [Edit a category](#editing-a-category-edcat)
-    * [Delete a category](#deleting-a-category-delcat)
-    * [List categories](#listing-categories-lcat)
-2. [**Expense features**](#expense-features)
-    * [Add an expense](#adding-an-expense-add)
-    * [Edit an expense](#editing-an-expense-edexp)
-    * [Delete an expense](#deleting-an-expense-delete)
-    * [Find an expense by keyword](#search-for-an-expense-by-keyword-find)
-    * [List expenses](#listing-expenses-list)
-        * [By category](#list-expenses-by-category)
-        * [By timeframe](#list-expenses-by-timeframe)
-    * [Add a recurring expense](#adding-a-recurring-expense-addrec)
-    * [Edit a recurring expense](#editing-a-recurring-expense-edrec)
-    * [Delete a recurring expense](#deleting-a-recurring-expense-delrec)
-    * [List recurring expenses](#listing-recurring-expenses-lrec)
-3. [**General features**](#general-features)
-    * [Set a budget](#setting-a-budget-set)
-    * [Category autocompletion](#category-autocompletion)
-    * [Clear all entries](#clearing-all-entries-clear)
-    * [Exit FastTrack](#exiting-fasttrack-exit)
-    * [View help](#viewing-help-help)
-4. [**Expense Statistics Feature**](#expense-statistics-feature)
-   * [Monthly spending statistic](#monthly-spending-statistic)
-   * [Monthly remaining statistic](#monthly-remaining-statistic)
-   * [Monthly percentage change statistic](#monthly-percentage-change-statistic)
-   * [Weekly spending statistic](#weekly-spending-statistic)
-   * [Weekly remaining statistic](#weekly-remaining-statistic)
-   * [Weekly percentage change statistic](#weekly-percentage-change-statistic)
-   * [Total spent statistic](#total-spent-statistic)
-   * [Budget utilisation percentage statistic](#budget-utilisation-percentage-statistic)
 
+### Commands
+| [**Category**](#category-features)                        | [**One-Time Expenses**](#one-time-expenses)                          | [**Recurring Expenses**](#recurring-expenses)                      | [**General**](#general-features)                    |
+|-----------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|-----------------------------------------------------|
+| [Add a category](#adding-a-category-addcat)               | [Add an expense](#adding-an-expense-add)                             | [Add a recurring expense](#adding-a-recurring-expense-addrec)      | [Set a budget](#setting-a-budget-set)               |
+| [Edit a category](#editing-a-category-edcat)              | [Edit an expense](#editing-an-expense-edexp)                         | [Edit a recurring expense](#editing-a-recurring-expense-edrec)     | [Category autocompletion](#category-autocompletion) |
+| [Delete a category](#deleting-a-category-delcat)          | [Delete an expense](#deleting-an-expense-delete)                     | [Delete a recurring expense](#deleting-a-recurring-expense-delrec) | [Clear all entries](#clearing-all-entries-clear)    |
+| [List categories](#listing-categories-lcat)               | [Find an expense by keyword](#search-for-an-expense-by-keyword-find) | [List recurring expenses](#listing-recurring-expenses-lrec)        | [Exit FastTrack](#exiting-fasttrack-exit)           |
+| [View category summary](#viewing-category-summary-sumcat) | [List expenses](#listing-expenses-list)                              |                                                                    | [View help](#viewing-help-help)                     |
 
-FastTrack offers a variety of commands that you can use to take advantage of its many features. The following tables provide a summary of all the available commands in FastTrack, along with examples on how to use them effectively.
+### Other Notable Features
+| [**Expense Statistics Feature**](#expense-statistics-feature)                       |
+|-------------------------------------------------------------------------------------|
+| [Monthly spending statistic](#monthly-spending-statistic)                           |
+| [Monthly remaining statistic](#monthly-remaining-statistic)                         |
+| [Monthly percentage change statistic](#monthly-percentage-change-statistic)         |
+| [Weekly spending statistic](#weekly-spending-statistic)                             |
+| [Weekly remaining statistic](#weekly-remaining-statistic)                           |
+| [Weekly percentage change statistic](#weekly-percentage-change-statistic)           |
+| [Total spent statistic](#total-spent-statistic)                                     |
+| [Budget utilisation percentage statistic](#budget-utilisation-percentage-statistic) |
+
 
 ## Command Syntax
 
@@ -276,6 +236,15 @@ Before diving further into the guide, here are some things to take note about th
 
 </div>
 
+<div markdown="block" class="alert alert-danger">
+
+**:warning: Warning about Date Formatting:** <br>
+Some commands may include the entry of a `DATE`, like the `add` command or the `addrec` command.  A specific date format, `Day/Month/Year` should be used to format the date provided.
+
+However, if the day is **within 1-31** but **not a valid date**, _e.g. 30th February_, FastTrack will smartly correct your date provided to the last date of the month. <br>i.e, `30/2/2023` will be corrected to `28/2/2023`.
+</div>
+
+
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
@@ -297,12 +266,13 @@ Note that category names in FastTrack are case-insensitive. For example, a categ
 
 ###  Command Summary
 
-| Feature                                            | Command Format                              | Examples                           |
-|----------------------------------------------------|---------------------------------------------|------------------------------------|
-| [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
-| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
-| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
-| [**Edit Category**](#editing-a-category-edcat)     | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+| Feature                                                  | Command Format                              | Examples                           |
+|----------------------------------------------------------|---------------------------------------------|------------------------------------|
+| [**List Categories**](#listing-categories-lcat)          | `lcat`                                      | `lcat`                             |
+| [**Add Category**](#adding-a-category-addcat)            | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
+| [**Delete Category**](#deleting-a-category-delcat)       | `delcat INDEX`                              | `delcat 1`                         |
+| [**Edit Category**](#editing-a-category-edcat)           | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+| [**Category Summary**](#viewing-category-summary-sumcat) | `sumcat INDEX`                              | `sumcat 2`                         |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,6 +367,26 @@ to `INDEX`, otherwise the command will not be executed.
 
 ![FastTrack edcat1](images/demo/category/edcat1.png)
 ![FastTrack edcat2](images/demo/category/edcat2.png)
+
+## **Viewing Category Summary** `sumcat`
+
+Displays the category summary for a category.
+
+Format: `sumcat INDEX`
+
+| Parameter | Description                                                                                      |
+|-----------|--------------------------------------------------------------------------------------------------|
+| `INDEX`   | The index of the category to be edited.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ... |
+
+### Demonstration
+1. Enter the command `lcat` to switch to the **Category Display**
+2. Enter the command `sumcat 2` into the command box.
+3. FastTrack displays the summary of the Entertainment category in the Results Display.
+
+![FastTrack sumcat1](images/demo/category/sumcat1.png)
+_`lcat` lists all available categories._
+![FastTrack sumcat2](images/demo/category/sumcat2.png)
+_`sumcat 2` shows the summary of the Entertainment category._
 
 <p align="right">
     <a href="#top">Back to Top </a>
