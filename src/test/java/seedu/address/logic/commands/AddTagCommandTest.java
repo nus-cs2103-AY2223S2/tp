@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -11,6 +13,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -59,5 +62,37 @@ public class AddTagCommandTest {
         AddTagCommand duplicateAddTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, tags);
         assertCommandFailure(duplicateAddTagCommand, model, String.format(AddTagCommand.STUDENT_ALREADY_ADDED_FAILURE,
                 personToAddTag.getName().formattedName, "[friends]"));
+    }
+
+    @Test
+    public void equals() {
+        Index index = Index.fromOneBased(1);
+        Tag tag = new Tag("friends");
+        Tag diffTag = new Tag("enemies");
+        Set<Tag> tagSet = Set.of(tag);
+        Set<Tag> diffTagSet = Set.of(diffTag);
+
+        AddTagCommand addTagCommand = new AddTagCommand(index, tagSet);
+
+        // same object -> returns true
+        assertTrue(addTagCommand.equals(addTagCommand));
+
+        // different types -> returns false
+        assertFalse(addTagCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addTagCommand.equals(null));
+
+        // different index -> returns false
+        AddTagCommand addTagCommandDifferentIndex = new AddTagCommand(Index.fromOneBased(2), tagSet);
+        assertFalse(addTagCommand.equals(addTagCommandDifferentIndex));
+
+        // different tag -> returns false
+        AddTagCommand addTagCommandDifferentTag = new AddTagCommand(index, diffTagSet);
+        assertFalse(addTagCommand.equals(addTagCommandDifferentTag));
+
+        // same index and tag -> returns true
+        AddTagCommand addTagCommandCopy = new AddTagCommand(index, tagSet);
+        assertTrue(addTagCommand.equals(addTagCommandCopy));
     }
 }

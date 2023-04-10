@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookWithSessions;
@@ -49,7 +51,8 @@ public class StudentAddCommandTest {
 
     @Test
     public void execute_nonExistentSession_throwsCommandException() {
-        StudentAddCommand command = new StudentAddCommand(INDEX_FIRST_PERSON, new SessionName("Nonexistent session"));
+        StudentAddCommand command = new StudentAddCommand(INDEX_FIRST_PERSON,
+                new SessionName("Nonexistent session"));
         assertCommandFailure(command, model,
                 String.format(StudentAddCommand.SESSION_NOT_FOUND_FAILURE,
                         "Nonexistent Session", model.getAddressBook().getSessionList()));
@@ -76,5 +79,31 @@ public class StudentAddCommandTest {
         String expectedMessage = String.format(StudentAddCommand.SESSION_ADD_PERSON_SUCCESS,
                 student.getName(), model.getSessionFromName(sessionName));
         assertEquals(command.execute(model), new CommandResult(expectedMessage));
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns true
+        StudentAddCommand command = new StudentAddCommand(Index.fromOneBased(1), new SessionName("test"));
+        assertTrue(command.equals(command));
+
+        // same values -> returns true
+        StudentAddCommand commandCopy = new StudentAddCommand(Index.fromOneBased(1), new SessionName("test"));
+        assertTrue(command.equals(commandCopy));
+
+        // different types -> returns false
+        assertFalse(command.equals(1));
+
+        // null -> returns false
+        assertFalse(command.equals(null));
+
+        // different index -> returns false
+        StudentAddCommand differentIndexCommand = new StudentAddCommand(Index.fromOneBased(2), new SessionName("test"));
+        assertFalse(command.equals(differentIndexCommand));
+
+        // different session name -> returns false
+        StudentAddCommand differentSessionCommand =
+                new StudentAddCommand(Index.fromOneBased(1), new SessionName("other"));
+        assertFalse(command.equals(differentSessionCommand));
     }
 }

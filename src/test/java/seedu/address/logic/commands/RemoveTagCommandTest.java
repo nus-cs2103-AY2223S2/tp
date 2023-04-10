@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -63,6 +65,43 @@ public class RemoveTagCommandTest {
         CommandResult commandResult = command.execute(model);
         assertEquals(String.format(RemoveTagCommand.REMOVE_TAG_PERSON_SUCCESS,
                 tags, person.getName()), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void equals() {
+        Index index = Index.fromOneBased(1);
+        Set<Tag> tagsToRemove = new HashSet<>();
+        tagsToRemove.add(new Tag("tag1"));
+        tagsToRemove.add(new Tag("tag2"));
+
+        RemoveTagCommand command = new RemoveTagCommand(index, tagsToRemove);
+
+        // same object -> returns true
+        assertTrue(command.equals(command));
+
+        // same values -> returns true
+        Set<Tag> tagsToRemoveCopy = new HashSet<>();
+        tagsToRemoveCopy.add(new Tag("tag1"));
+        tagsToRemoveCopy.add(new Tag("tag2"));
+        RemoveTagCommand commandCopy = new RemoveTagCommand(index, tagsToRemoveCopy);
+        assertTrue(command.equals(commandCopy));
+
+        // different types -> returns false
+        assertFalse(command.equals(1));
+
+        // null -> returns false
+        assertFalse(command.equals(null));
+
+        // different index -> returns false
+        Index differentIndex = Index.fromOneBased(2);
+        RemoveTagCommand commandWithDifferentIndex = new RemoveTagCommand(differentIndex, tagsToRemove);
+        assertFalse(command.equals(commandWithDifferentIndex));
+
+        // different tagsToRemove -> returns false
+        Set<Tag> differentTagsToRemove = new HashSet<>();
+        differentTagsToRemove.add(new Tag("tag1"));
+        RemoveTagCommand commandWithDifferentTagsToRemove = new RemoveTagCommand(index, differentTagsToRemove);
+        assertFalse(command.equals(commandWithDifferentTagsToRemove));
     }
 }
 
