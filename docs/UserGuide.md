@@ -167,7 +167,7 @@ Examples:
 
 <img src="images/command_result/Add.png" alt="Add" width="63%">
 
-Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
+Above is the execution result of the input `add i/S1234567H n/Cedric Pei dob/03/04/2002 p/84655284 a/PGPR g/male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 <div style="page-break-after: always;"></div>
 
 ### Editing a patient record: `edit`
