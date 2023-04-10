@@ -657,14 +657,13 @@ Use this with command with caution!
 * **Format:** `p list`
 \
 &nbsp;
-* <div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> &nbsp;p list hellothere </span>&nbsp; or <span style="border-style: solid;"> &nbsp;p list 1234 </span>&nbsp; will not cause errors in the system</div>
-  &nbsp;
 * **Example:**
     <p align="center">
           <img src="images/UIscreenshots/patientSS/patientList.png" style="zoom:100%">
     </p>
-
 <br/>
+
+<div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> &nbsp;p list hellothere </span>&nbsp; or <span style="border-style: solid;"> &nbsp;p list 1234 </span>&nbsp; will not cause errors in the system</div>
 
 [↑ Go to Patient Commands](#42-patient-commands)
 <br/>
