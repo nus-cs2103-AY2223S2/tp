@@ -205,6 +205,8 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/93125841 t/John's Friend w/55 g/F`
 * `add n/Betsy Crowe app/12-12-2030 12:00 cal/2300 g/F e/betsycrowe@example.com a/Newgate Prison p/93125841 t/Friend`
 
+<div style="page-break-after: always;"></div>
+
 #### Editing a client : `edit`
 
 {% include information.html content="
@@ -235,6 +237,8 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 w/23.0` Edits the weight of the 3rd client to `23.0`.
 *  `edit 4 w/25.0 g/m` Edits the weight and gender of the 4th client to `25.0` and `m`.
+
+<div style="page-break-after: always;"></div>
 
 #### Locating clients by fields: `find`
 
