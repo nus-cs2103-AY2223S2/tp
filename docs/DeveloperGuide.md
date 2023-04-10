@@ -171,7 +171,7 @@ The permanent storage component:
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,
-only up to 10 states of the `DengueHotspotTracker`. This component supports:
+only up to 10 states of the `DengueHotspotTracker` are saved. This component supports:
 
 * undoing and redoing up to a maximum of 10 steps.
 * multiple undo and redo operations at once.
