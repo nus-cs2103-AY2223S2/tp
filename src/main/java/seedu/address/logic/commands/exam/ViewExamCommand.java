@@ -90,13 +90,11 @@ public class ViewExamCommand extends Command {
     }
 
     /**
-     * Overloaded constructor for ViewExamCommand.
+     * Executes the view-exam command and returns the result message.
      *
-     * @param namePredicate Predicate to filter students by name.
-     * @param examDatePredicate Predicate to filter exams by date.
-     * @param examNamePredicate Predicate to filter exams by exam name.
-     * @param donePredicate Predicate to filter exams by whether it is done.
-     * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException if an error occurs during command execution.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
