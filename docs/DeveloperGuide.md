@@ -152,7 +152,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `InternshipApplication` object residing in the `Model`.
 * listens on each other in the `Ui` component, as `CommandBox` calls functions in `MainWindow` to `execute()` `Logic`.
-* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `MixedPanel`, `NoteListPanel`, `InternshipListPanel` and `TodoListPanel` to implement the switching between each panel.
+* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `MixedPanel`, `NoteListPanel`, `ApplicationListPanel` and `TodoListPanel` to implement the switching between each panel.
 
 [Go back to Table of Contents](#table-of-contents)
 
@@ -316,7 +316,7 @@ immutable, a new `InternshipApplication` object is created with the contact deta
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds. 
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds. 
 
 >**NOTE:**
 > Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
@@ -374,7 +374,7 @@ immutable, a new `InternshipApplication` object is created with the edited conta
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 #### Why is it implemented this way
 
@@ -418,7 +418,7 @@ immutable, a new `InternshipApplication` object is created with the contact deta
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 #### Why is it implemented this way
 
@@ -476,7 +476,7 @@ immutable, a new `InternshipApplication` object is created with the document lin
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 #### Why is it implemented this way
 
@@ -545,7 +545,7 @@ immutable, a new `InternshipApplication` object is created with the new status. 
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 #### Why is it implemented this way
 
@@ -589,7 +589,7 @@ immutable, a new archived `InternshipApplication` object is created. The `Model#
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 #### Why is it implemented this way
 
@@ -661,7 +661,7 @@ only those `InternshipApplication`'s with matching `ApplicationStatus` or `Inter
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command 
-is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` 
+is created and returned to `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog` 
 displaying the returned message for 5 seconds.
 
 
@@ -721,7 +721,7 @@ The underlying `SortedList` is the updated and sorted by using the Comparator be
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command
-is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog`
+is created and returned to `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog`
 displaying the returned message for 5 seconds.
 
 
@@ -754,7 +754,7 @@ Step 2. Execution <br/>
 If the application list is currently not empty, `Model#setInternEase` empties the application list by replacing it with a new InternEase instance while `Model#addAllInternshipToCache` adds the entire list into the cacheList.
 
 Step 3. Result <br/>
-The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
 >**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
@@ -815,7 +815,7 @@ Step 2. Execution <br/>
     The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cacheList to support `RevertCommand` in current InternEase session.
     
 Step 3. Result <br/>
-    The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+    The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
 >**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
@@ -856,7 +856,7 @@ Step 2. Execution <br/>
 The `internshipToDelete` is retrieved from the filteredList and deleted from the model by `Model#deleteInternship`. The deleted item is stored in the cacheList to support `RevertCommand` and `RevertAllCommand` in the current InternEase session.
 
 Step 3. Result <br/>
-The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
 >**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
@@ -893,7 +893,7 @@ Step 2. Execution <br/>
 The `most recent cached Internship Application` is retrieved from the cacheList and deleted from it by `Model#getAndRemoveCachedApplication`. The retrieved item is added back to the end of the internship application list by `Model#addApplication`.
 
 Step 3. Result <br/>
-The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
 >**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
@@ -937,7 +937,7 @@ Step 2. Execution <br/>
 If the cacheList is currently not empty, `Model#setEmptyInternshipCacheList` empties the cacheList while `Model#addApplications` adds the entire list to the end of the current internship application list.
 
 Step 3. Result <br/>
-The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
+The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
 >**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
@@ -1036,7 +1036,7 @@ immutable, a new `InternshipApplication` object is created with the interview da
 Step 3. Result
 
 The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
-The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
+The `ApplicationListPanel` is refreshed with a `ResultDialog` displaying the returned message for 5 seconds.
 
 >**NOTE:**
 > Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
@@ -1063,7 +1063,7 @@ adding a new internship application. This prevents the `AddCommand` from getting
 
 For example, the main differences in these features are on the specific functions used to carry out the execution and the specific lists used to store the relevant items. <br/>
   - `Task` is a combination of `Todo` and `Note`.<br/>
-  - `TodoList` or `NoteList` are used instead of `InternshipApplicationList` and other related methods.<br/>
+  - `TodoList` or `NoteList` are used instead of the list of InternshipApplications with their related methods.<br/>
   - Methods with `Todo` or `Note` are used instead of `Application` or `Internship` (e.g., updateFiltered`Todo`List and updateFiltered`Note`List are used instead of updateFiltered`Internship`List).<br/>
   - CacheList is not applicable here.<br/>
   - All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.<br/>

@@ -93,7 +93,7 @@ public class PopupEditInternship extends UiPart<Stage> {
      *     </ul>
      */
     public void show(int index, InternshipApplication internship) {
-        logger.fine("Showing add internship popup");
+        logger.fine("Showing edit internship popup");
         this.index = index;
         this.internship = internship;
         cleanNode();

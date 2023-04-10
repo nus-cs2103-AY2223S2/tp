@@ -18,6 +18,7 @@ import seedu.address.model.application.Review;
 import seedu.address.model.application.Salary;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building InternshipApplication objects.
@@ -25,6 +26,9 @@ import seedu.address.model.documents.Documents;
 public class InternshipBuilder {
     public static final String DEFAULT_COMPANY_NAME = "Company A";
     public static final String DEFAULT_JOB_TITLE = "Position A";
+    public static final String DEFAULT_PHONE = "55555555";
+    public static final String DEFAULT_EMAIL = "meta@example.com";
+    public static final String DEFAULT_INTERVIEW_DATE = "2023-04-01 08:00 PM";
 
     // Identity fields
     private CompanyName companyName;
@@ -57,6 +61,7 @@ public class InternshipBuilder {
         status = InternshipStatus.PENDING;
         isArchived = false;
         interviewDate = null;
+
     }
 
     /**
@@ -86,6 +91,15 @@ public class InternshipBuilder {
      */
     public InternshipBuilder withJobTitle(String jobTitle) {
         this.jobTitle = new JobTitle(jobTitle);
+        return this;
+    }
+
+    /**
+     * Parses the {@code qualifications} into a {@code Set<Qualification>} and set it to the
+     * {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withQualifications(String ... qualifications) {
+        this.qualifications = SampleDataUtil.getQualificationSet(qualifications);
         return this;
     }
 
@@ -126,6 +140,14 @@ public class InternshipBuilder {
      */
     public InternshipBuilder withInterviewDate(InterviewDate interviewDate) {
         this.interviewDate = interviewDate;
+        return this;
+    }
+
+    /**
+     * Sets the {@code ProgrammingLanguage} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withProgrammingLanguage(ProgrammingLanguage language) {
+        this.programmingLanguages.add(language);
         return this;
     }
 

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COVER_LETTER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,6 +24,7 @@ import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditDocumentsDescriptorBuilder;
+import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -32,21 +34,32 @@ public class CommandTestUtil {
     public static final String VALID_COMPANY_NAME_GOOGLE = "Google";
     public static final String VALID_COMPANY_NAME_NETFLIX = "Netflix";
     public static final String VALID_COMPANY_NAME_ORACLE = "Oracle";
+    public static final String VALID_COMPANY_NAME_BANK_OF_AMERICA = "Bank of America";
+    public static final String VALID_COMPANY_NAME_CARL_KURZ = "Carl Kurz";
+    public static final String VALID_COMPANY_NAME_META = "Meta";
+    public static final String VALID_COMPANY_NAME_AMAZON = "Amazon";
+    public static final String VALID_COMPANY_NAME_DEUTSCHE_BANK = "Deutsche Bank";
     public static final String VALID_JOB_TITLE_PRODUCT_MANAGER = "Product Manager";
     public static final String VALID_JOB_TITLE_NETWORK_ENGINEER = "Network Engineer";
     public static final String VALID_JOB_TITLE_DATA_ENGINEER = "Data Engineer";
-    public static final String VALID_PHONE_COMPANY_A = "33333333";
-    public static final String VALID_PHONE_COMPANY_B = "55555555";
-    public static final String VALID_COMPANY_NAME_BANK_OF_AMERICA = "Bank of America";
-    public static final String VALID_COMPANY_NAME_CARL_KURZ = "Carl Kurz";
-    public static final String VALID_COMPANY_NAME_DEUTSCHE_BANK = "Deutsche Bank";
-    public static final String VALID_COMPANY_NAME_META = "Meta";
     public static final String VALID_JOB_TITLE_SOFTWARE_ENGINEER = "Software Engineer";
     public static final String VALID_JOB_TITLE_SOFTWARE_TESTER = "Software Tester";
     public static final String VALID_JOB_TITLE_CLOUD_ENGINEER = "Cloud Engineer";
     public static final String VALID_JOB_TITLE_WEB_DEVELOPER = "Web Developer";
-    public static final String VALID_COMPANY_NAME_AMAZON = "Amazon";
-    public static final String VALID_JOB_TITLE_META = "Software Tester";
+    public static final String VALID_LOCATION_CLEMENTI = "Clementi";
+    public static final String VALID_SALARY_META = "6000 SGD";
+    public static final String VALID_SALARY_GOOGLE = "1000 SGD";
+    public static final String VALID_RATING_META = "4/5";
+    public static final String VALID_RATING_GOOGLE = "5*";
+    public static final String VALID_QUALIFICATION_CS = "CS undergrad";
+    public static final String VALID_QUALIFICATION_CAP = "CAP 4.5+";
+    public static final String VALID_PROGRAMMING_LANGUAGE_C = "C";
+    public static final String VALID_PROGRAMMING_LANGUAGE_PYTHON = "Python";
+    public static final String VALID_REVIEW_ENV = "Nice environment";
+    public static final String VALID_NOTES_CAMPUS = "Recruiter coming campus";
+    public static final String VALID_REFLECTION_RESEARCH = "Research recruiter LinkedIn";
+    public static final String VALID_PHONE_COMPANY_A = "33333333";
+    public static final String VALID_PHONE_COMPANY_B = "55555555";
     public static final String VALID_PHONE_BANK_OF_AMERICA = "33333333";
     public static final String VALID_PHONE_META = "55555555";
     public static final String VALID_PHONE_AMAZON = "66666666";
@@ -64,6 +77,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_ACCEPTED = "ACCEPTED";
 
 
+    public static final String COMPANY_NAME_DESC_META = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_META;
+    public static final String COMPANY_NAME_DESC_GOOGLE = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_GOOGLE;
     public static final String PHONE_DESC_COMPANY_A = " " + PREFIX_PHONE + VALID_PHONE_COMPANY_A;
     public static final String PHONE_DESC_COMPANY_B = " " + PREFIX_PHONE + VALID_PHONE_COMPANY_B;
     public static final String RESUME_DESC_GOOGLE = " " + PREFIX_RESUME + VALID_RESUME_LINK_GOOGLE;
@@ -89,6 +104,9 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditCommand.EditInternshipDescriptor DESC_META;
+    public static final EditCommand.EditInternshipDescriptor DESC_GOOGLE;
+
     public static final EditDocumentsCommand.EditDocumentsDescriptor DESC_DOCUMENTS_GOOGLE;
     public static final EditDocumentsCommand.EditDocumentsDescriptor DESC_DOCUMENTS_NETFLIX;
 
@@ -96,6 +114,30 @@ public class CommandTestUtil {
     public static final EditContactCommand.EditContactDescriptor DESC_META_CONTACT;
 
     static {
+        DESC_META = new EditInternshipDescriptorBuilder()
+                    .withCompanyName(VALID_COMPANY_NAME_META)
+                    .withJobTitle(VALID_JOB_TITLE_SOFTWARE_ENGINEER)
+                    .withLocation(VALID_LOCATION_CLEMENTI)
+                    .withSalary(VALID_SALARY_META)
+                    .withRating(VALID_RATING_META)
+                    .withQualifications(VALID_QUALIFICATION_CS, VALID_QUALIFICATION_CAP)
+                    .withProgrammingLanguages(VALID_PROGRAMMING_LANGUAGE_C, VALID_PROGRAMMING_LANGUAGE_PYTHON)
+                    .withReviews(VALID_REVIEW_ENV)
+                    .withNotes(VALID_NOTES_CAMPUS)
+                    .withReflections(VALID_REFLECTION_RESEARCH)
+                    .build();
+        DESC_GOOGLE = new EditInternshipDescriptorBuilder()
+                    .withCompanyName(VALID_COMPANY_NAME_GOOGLE)
+                    .withJobTitle(VALID_JOB_TITLE_SOFTWARE_TESTER)
+                    .withLocation(VALID_LOCATION_CLEMENTI)
+                    .withSalary(VALID_SALARY_GOOGLE)
+                    .withRating(VALID_RATING_GOOGLE)
+                    .withQualifications(VALID_QUALIFICATION_CS, VALID_QUALIFICATION_CAP)
+                    .withProgrammingLanguages(VALID_PROGRAMMING_LANGUAGE_C, VALID_PROGRAMMING_LANGUAGE_PYTHON)
+                    .withReviews(VALID_REVIEW_ENV)
+                    .withNotes(VALID_NOTES_CAMPUS)
+                    .withReflections(VALID_REFLECTION_RESEARCH)
+                    .build();
         DESC_DOCUMENTS_GOOGLE = new EditDocumentsDescriptorBuilder()
                 .withResumeLink(VALID_RESUME_LINK_GOOGLE)
                 .withCoverLetterLink(VALID_COVER_LETTER_LINK_GOOGLE)
