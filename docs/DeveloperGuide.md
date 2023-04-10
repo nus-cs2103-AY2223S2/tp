@@ -23,6 +23,7 @@ title: Developer Guide
     - **[Service Locator](#service-locator)**
     - **[Functional Programming](#functional-programming)**
 - **[Appendix: Requirements](#appendix--requirements)**
+- **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
 
 <div style="page-break-after: always;"></div>
 
@@ -192,10 +193,10 @@ command:
 
 ```java
 @Override
-public DeleteCommand<T> createCommand(CommandParam param) throws ParseException{
-    int index = param.getUnnamedIntOrThrow(); // Look at here
-    return new DeleteCommand<>(index, getManagerFunction, deleteFunction);
-}
+public DeleteCommand<T> createCommand(CommandParam param)throws ParseException{
+        int index=param.getUnnamedIntOrThrow(); // Look at here
+        return new DeleteCommand<>(index,getManagerFunction,deleteFunction);
+        }
 ```
 
 The `param.getUnnamedIntOrThrow()` will return the positional value as an
@@ -244,17 +245,17 @@ The `Model` component,
   `UniqueList` objects).
 * stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects
   as separate _filtered_ lists (one for each resource type).
-  * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
-  For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
-  lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
+    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
+      For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
+      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
 * stores in memory a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
-  * Essentially, the `Model` component could be considered as the **domain**
-    layer of the application. It contains core application logic that should not
-    be altered even if we completely swap out the UI or storage components.
+    * Essentially, the `Model` component could be considered as the **domain**
+      layer of the application. It contains core application logic that should not
+      be altered even if we completely swap out the UI or storage components.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> In the diagram above, we have used the Pilot class to give specific examples of the relations
@@ -283,7 +284,6 @@ The `Storage` component,
   and read them back into corresponding objects.
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
-
 
 <div style="page-break-after: always;"></div>
 
@@ -727,8 +727,6 @@ is to make illegal states unrepresentable.
 
 ![Functional Programming](images/FunctionalProgrammingClassDiagram.png)
 
-## Appendix: Requirements
-
 ### Product scope
 
 **Target user profile**:
@@ -784,7 +782,6 @@ unlikely to have) - `*`
 | `* *`    | airline manager | unlink planes from locations                                    | change where a plane is located                            |
 | `* *`    | airline manager | unlink pilots from locations                                    | change where a pilot is located                            |
 | `* *`    | airline manager | unlink crew from locations                                      | change where a crew is located                             |
-
 
 <div style="page-break-after: always;"></div>
 
@@ -949,3 +946,106 @@ is the `user`, unless specified otherwise)
 * **Plane**: A unit plane which can be assigned to be used in flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
+
+## Appendix: Requirements
+
+## Appendix: Planned Enhancements
+
+The Wingman app is still a work in progress and there's a lot of
+potential for our app in the future. Some features could not be
+worked on due to the complexity within our time constraints.
+In this section, we detail features which we aim to develop and
+include in our Wingman app in upcoming versions.
+
+Below, are the details of the planned enhancements:
+
+#### 1. `filter` command
+
+The `filter` command would serve to allow managers to navigate their
+resource lists, as they can search by specific attributes of a resource.
+
+Currently, there is no way to search through resource lists - they
+only can be scrolled through and the order of listed resources is
+based on the order the resources have been added to Wingman. This might
+not be the most efficient solution when an airline has a large number
+of resources.
+
+Therefore, a `filter` feature would be particularly useful for
+airline managers. To elaborate, a `filter` command for each resource
+would allow managers to search for a specific resource based on the
+resources attributes. As a result, the resource list would show
+the resources which match the query at the top.
+
+For example, `Crew` could be filtered by their rank and as a result, the
+`Crew` list would only show the `Crew` with the corresponding rank.
+
+#### 2. Improving the current linking
+
+In Wingman's current implementation, linking between resources is made
+with a `Link` object. The `Link` can constrain how many resources are linked
+to another. However, `Link` only supports one-directional relations.
+This means that if B is linked to A, only A is "aware" that such a
+`Link` exists.
+
+For better use of our app, it would be helpful to have a bidirectional
+`Link` instead. With a bidirectional `Link`, we could do more commands
+or operations seamlessly (e.g. the `check` command, which is
+detailed below). Furthermore, fixing the `Link` would allow us to fix
+our `LinkLocation` commands.
+
+Given the time constraints of our project, this was not feasible
+for this iteration but with more time, we can implement it for
+upcoming versions.
+
+#### 3. Input validation
+
+There are multiple commands in the Wingman app which require input
+validation before they should be executed.
+
+For example, the linking commands such as `LinkXYZtoFlight` or
+`LinkXYZtoLocation`. It seems that currently, a resource could be in
+more than one `Location` at once. Additionally, a resource in
+`Location` A can be linked to a `Flight` starting at `Location` B.
+
+Another example where input validation is required in Wingman is our
+previous availability attribute and `check` command which will be
+elaborated on further in the following point.
+
+One way of tackling this issue would be to modify the current logic of the
+affected commands such that error messages can be thrown when an error is
+detected. The errors would prevent resources being linked to multiple
+locations etc.
+
+In following versions, we would add more input validation to Wingman in
+order to ensure smooth operation of our app.
+
+#### 4. Availability attribute and `check` command
+
+Previously, we tried adding an `availability` feature to `Crew`,
+`Pilot`, and `Plane` to indicate whether they are currently assigned
+to a `Flight`.
+
+However, under our time constraints, it was difficult
+for us to synchronize when these resources' availability changes.
+Specifically, there were cases where a resource's availability did not
+change when it should have.
+
+When linking a resource to a `Flight`, we should be checking
+the resource's availability and determining if the `Link` can be
+made or not. This is another aspect of input validation as described
+earlier.
+
+Therefore, due to the error-prone nature of this command,
+we decided to exclude it from this release. However, the nature of Wingman as a scheduling app would require an
+availability feature. So, with more time, we should be able to implement
+this feature - perhaps by making `Link` bidirectional, or rethinking
+our approach to availability.
+
+#### 5. UI enhancements
+
+A point which was raised up by some test users of Wingman is that
+the resource lists might be slightly hard to navigate.
+
+To fix this, we could further develop our UI by resizing our "item cards"
+so that all the information for a given resource can be seen easily
+without needing to scroll.
