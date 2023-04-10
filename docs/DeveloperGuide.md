@@ -1055,18 +1055,23 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 ## **Appendix G: Effort**
 
-| Feature       | AB3 | Docedex                                |
-|---------------|-----|----------------------------------------|
-| Effort        | 10  |
-| Lines of Code | 10  |
+| Feature       | AB3 | Docedex |
+|---------------|-----|---------|
+| Effort        | 10  | 22      |
+| Lines of Code | 6k  | +13k    |
 
 The Docedex project involved a significant effort to adapt the AddressBook-Level3 (AB3) application to a new domain of doctors and patients. One of the major changes was the addition of two new models, Doctor and Patient, which required modifying the existing data model and the associated logic components. Another significant change was the complete redesign of the user interface using JavaFX, which required a significant amount of time and effort to learn and implement.
 
-While Doctor and Patient models extended AB3's Patient model, there were several challenges to overcome. The most significant challenge was to map a many-to-many relationship between doctors and patients during assignment. To solve this, the team decided to create a list of patients inside each Doctor instance (and vice versa for patients). This change required us to modify multiple components to update the lists after patient assignment and display them onto the UI.
+Firstly, although code was reused from AB3, a lot of it had to be refactored to fit our use case. We now had to deal with 2 entity types, patient and doctor, which meant that the way we stored the information also had to change. Moreover, with more attributes for both `Doctor` and `Patient` classes, it also meant more effort in validating the inputs and writing high quality test cases for each attribute, an extremely time-consuming process.
+
+The most significant challenge was to map a many-to-many relationship between doctors and patients during assignment. To solve this, the team decided to create a list of patients inside each Doctor instance (and vice versa for patients). This change required us to modify multiple components to update the lists after patient assignment and display them onto the UI.
+
+Our work on implementing the assignment feature is the most prominent in the AssignDoctorCommand and AssignPatientCommand, and their relevant parsers and model methods.
 
 Another challenge was redesigning the interface to display more information. Changing the interface of an application can be a major undertaking. In the case of Docedex, this involved designing new UI components, updating existing components to reflect the new models and data, and potentially creating new navigation and layout structures to support the new workflows. Significant time was taken to learn JavaFX and implementing the components to fit Docedex use cases.
 
-Our work on implementing the assignment feature is the most prominent in the AssignDoctorCommand and AssignPatientCommand, and their relevant parsers and model methods.
+We even tried to add test cases to the UI, following AB4 example closely. This can be seen in an open pull request which we have intentionally chosen to not merge because we felt that the complexity in implementing the test cases extended beyond the objectives of the module, and we did not want to submit half completed work.
+
 
 
 
