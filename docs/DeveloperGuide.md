@@ -269,7 +269,7 @@ to only require one `Tag` object per unique tag, instead of each `Module` needin
 
 <img src="images/BetterModelClassDiagram.png" width="650">
 
-<div align="center"> A more OOP model of the Model component. </div>
+A more OOP model of the Model component.
 
 </div>
 
@@ -300,8 +300,6 @@ that belong to the `Model`)
 Classes used by multiple components are in the 
 [`seedu.moduletracker.commons`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/commons) 
 package.
-
-<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 
