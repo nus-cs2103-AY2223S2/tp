@@ -3,6 +3,9 @@ layout: page
 title: "Tutorial: Tracing code"
 ---
 
+<div markdown="span" class="alert alert-warning">:exclamation: This tutorial is based on the AddressBook-Level3 project. However, the underlying architecture is largely similar to LoyaltyLift.
+</div>
+
 > Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. …​\[Therefore,\] making it easy to read makes it easier to write.
 >
 > —  Robert C. Martin Clean Code: A Handbook of Agile Software Craftsmanship
