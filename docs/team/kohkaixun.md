@@ -33,6 +33,7 @@ My code contributions can be found [here](https://nus-cs2103-ay2223s2.github.io/
   * Addressed integer overflow bug in displayed error messages, but enhancement was not merged after discovering it violated feature freeze. [#194](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/194)
 
 **Project Management**
+* Set up certain issues.
 * Reviewed and approved pull requests for merging.
 * Testing of InternBuddy releases on MacOS environment.
 
