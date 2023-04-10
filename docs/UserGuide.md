@@ -22,14 +22,14 @@ title: User Guide
 
 
 
-## INTRODUCTION <a name="introduction"></a>
+## INTRODUCTION to the Tutee managing system (TMS)<a name="introduction"></a>
 
-Is it hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the  ## **Tutee managing system (TMS)** . TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+Is it hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the **Tutee managing system (TMS)** . TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quickstart"></a>
+## Quick start: A guide to start using TMS <a name="quickstart"></a>
 
 1. Ensure you have Java `11` or above installed in your computer.
 
