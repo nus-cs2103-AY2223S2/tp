@@ -547,7 +547,7 @@ Format: `llve`
 
 ### 4.3.6. Listing all leaves taken by an employee: `llbe`
 
-Lists all the leave date(s) of an employee.
+Lists all the leave date(s) taken by an employee.
 
 Format: `llbe eid/EMPLOYEE_ID`
 
@@ -655,9 +655,6 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 --------------------------------------------------------------------------------------------------------------------
 
 # **5. FAQ**
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and replace the default empty data file `sudohr.json` with the file that contains the data of your previous SudoHR home folder.
 
 **Q**: There seems to be many commands and prefixes to remember! Is there an easy way to remember them?<br>
 **A**: We understand how the short form command names may be difficult to remember, but don't worry. We have thus created a command summary here in the user guide for you in [section 4.6](#46-command-summary)! <br>
