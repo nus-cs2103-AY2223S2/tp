@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
+<img class="ui-img" src="images/ug-images/vimification.png" alt="Logo" title="Vimification Logo">
 ## **Table of Contents**
+
 - [**Table of Contents**](#table-of-contents)
 - [Introduction](#introduction)
 - [Purpose of this User Guide](#purpose-of-this-user-guide)
@@ -34,30 +36,19 @@ title: User Guide
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
-
 ## Introduction
 
-<!-- Might want to make this introduction more concise -->
+Vimification is a **desktop app** built for Vim enthusasts to manage to-dos and deadlines, optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a computing student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With Vimification, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
-
-Vimification is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can track your to-dos faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, fret not as we also provide a Graphical User interface (GUI) to assist you.
-
-You can quickly create new tasks, set due dates, prioritize your work, and track your progress, all within Vimification. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, Vimification has everything you need to stay organized and focused.
-
-So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience its power for yourself!
+Vimification is modelled after `Vim`, so the command syntax for the Vimificaiton CLI closely mimics `Vim`.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Purpose of this User Guide
 
 The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
-The purpose of this user guide is to provide you with a comprehensive guide on using the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using Vimification's powerful and intuitive interface.
 
-The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
-The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
-
-Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
+The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will also provide you with clear and concise instructions that are easy to follow, whether you are a new user or an experienced Vim enthusiast. Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using Vimification.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -88,21 +79,53 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 3. Run `java -jar vimification.jar`.
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
-   <img class="ui-img" src="images/Ui.png" alt="Ui Image" title="Overall User Interface">
+   <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
+
+### Navigating Vimification
+
+Similar to `Vim`, you can use the `j` and `k` (or `↓` and `↑`) key to move down and up the task-list respectively.
+
+Assuming we have already have some tasks loaded in Vimification(we'll show you how to add tasks later), pressing `j` brings us down.
+<img class="ui-img" src="images/ug-images/2.before-j.png">
+<img class="ui-img" src="images/ug-images/3.after-j.png">
+Similarly, pressing `k` brings us up the task-list.
+<img class="ui-img" src="images/ug-images/4.before-k.png">
+<img class="ui-img" src="images/ug-images/5.after-k.png">
+
+Just like `Vim`, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right and display the task detail.
+<img class="ui-img" src="images/ug-images/6.before-l.png">
+<img class="ui-img" src="images/ug-images/7.after-l.png">
+
+**NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again.**
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+### Exiting Vimification
+
+Similiar to `Vim`, you can quit Vimification by just typing `:quit` or `:q` on your keyboard while in Vimification.
+<img class="ui-img" src="images/ug-images/8.quit.png">
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Trying out the commands
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.</p>
+Example:
+<img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-   Some example commands you can try:
+Type the command in the command box and press the `Enter` key to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
-   - `:a "tutorial"` : Adds a task with the title `tutorial` to Vimification.
+Some example commands you can try:
 
-   - `:a "quiz for cs2103T" -d 2023-04-01` : Adds a task with the title `quiz for cs2103T` and deadline `2023-04-01` to Vimification.
+- `:a "tutorial"` : Adds a task with the title `tutorial` to Vimification.
 
-   - `:d 2` : Deletes the 2nd task shown in the current list.
+- `:a "quiz for cs2103T" -d 2023-04-01` : Adds a task with the title `quiz for cs2103T` and deadline `2023-04-01` to Vimification.
 
-   - `:wq` : Exits the app.
+- `:d 2` : Deletes the 2nd task shown in the current list.
+
+- `:quit` : Exits Vimification.
+
+- `:help` : Brings up the manual page.
 
 2. Refer to the [Features and commands](#features-and-commands) below for details of each command.
 
@@ -110,21 +133,13 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 ---
 
-## Navigating Vimification
-
-Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j`,`k`,`l` to move to the left, down, up, right respectively. To open the detailed task list, use 'l'.
-
-Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as well.
-
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
-
 ## Using the commands
 
-Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will bring the cursor to the command input field, which is at the bottom of the application.</p>
+Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will shift the focus to the command input field, which is at the bottom of the application.</p>
 Example:
-<img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
+<img class="ui-img" src="images/ug-images/9.showcommand.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-Note that beside the navigation commands (`h`,`j`,`k`,`l`), the rest of the commands always start with a colon (`:`).
+**NOTE: Besides the navigation commands (`j`,`k`,`l`), every command always starts with a colon (`:`).**
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -132,23 +147,24 @@ Note that beside the navigation commands (`h`,`j`,`k`,`l`), the rest of the comm
 
 In Vimification, a task can has the following attributes:
 
-| Attribute | Its meaning & purpose                                    | Flag | The range of values it accepts                          |
-| --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------- |
-| Title^    | Name or general description of a task.                   | `-t` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
-| Status    | Status of a task, indicating that is it done or not.     | `-s` | 0, 1, 2 or 3. See below for more details.               |
-| Deadline  | The date (and time) the task is due at.                  | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm.        |
-| Labels    | The tags that the task has.                              | `-l` | Any phrase enclosed in quotation marks (" " or ' ')*.   |
-| Priority  | How important/urgent a task is.                          | `-p` | 0, 1, 2 or 3. See below for more details.               |
+| Attribute | Its meaning & purpose                                | Flag | The range of values it accepts                         |
+| --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
+| Title^    | Name or general description of a task.               | `-t` | Any phrase enclosed in quotation marks (" " or ' ')\*. |
+| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, 2 or 3. See below for more details.              |
+| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of yyyy-MM-dd or yyyy-MM-dd HH:mm.       |
+| Labels    | The tags that the task has.                          | `-l` | Any phrase enclosed in quotation marks (" " or ' ')\*. |
+| Priority  | How important/urgent a task is.                      | `-p` | 0, 1, 2 or 3. See below for more details.              |
 
 ^Title is the only compulsory attribute while creating a new task, the other attributes are all optional.
 
-*For a title or label, if the phrase is only one single word, the quotation marks are optional.
+\*For a title or label, if the phrase is only one single word, the quotation marks are optional.
 Another 2 constraints on the quotation marks are:
-* There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
-* 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
-Another 2 constraints on the quotation marks are:
-* There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
-* 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
+
+- There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
+- 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
+  Another 2 constraints on the quotation marks are:
+- There can be at most 2 nested quotation marks &nbsp;&nbsp;&nbsp; (so `"Say 'SUPER "Cheesy"' "` and `'Say "SUPER 'Cheesy'" '` are not allowed)
+- 2 nested quotation marks cannot be the same types &nbsp;&nbsp;&nbsp; (so `"Say "cheese" "` and `'Say 'cheese' '` are not allowed)
 
 | Priority | Meaning          |
 | -------- | ---------------- |
@@ -157,12 +173,12 @@ Another 2 constraints on the quotation marks are:
 | 2        | Urgent           |
 | 3        | Not urgent       |
 
-| Status   | Meaning          |
-| -------- | ---------------- |
-| 0        | Not done         |
-| 1        | In progress      |
-| 2        | Completed        |
-| 3        | Overdue          |
+| Status | Meaning     |
+| ------ | ----------- |
+| 0      | Not done    |
+| 1      | In progress |
+| 2      | Completed   |
+| 3      | Overdue     |
 
 ## Information on commands' parameters
 
@@ -218,16 +234,17 @@ Adds a task to the current task list.
 
 Format: `:a "<title>" [-d <deadline>] [-l <label>]... [-p <priority>]`
 
-| Parameter    | Detail                                      | Compulsory | Example        |
-| ------------ | ------------------------------------------- | ---------- | -------------- |
-| `"<title>"`  | Title of the task                           | Yes        | `"CS2103T UG"` |
-| `<deadline>` | Deadline of the task                        | No         | `2023-03-31`   |
-| `<label>`    | Label given to the task                     | No         | `presentation` |
-| `<priority>` | Priority level assigned to the task         | No         | `1`            |
+| Parameter    | Detail                              | Compulsory | Example        |
+| ------------ | ----------------------------------- | ---------- | -------------- |
+| `"<title>"`  | Title of the task                   | Yes        | `"CS2103T UG"` |
+| `<deadline>` | Deadline of the task                | No         | `2023-03-31`   |
+| `<label>`    | Label given to the task             | No         | `presentation` |
+| `<priority>` | Priority level assigned to the task | No         | `1`            |
 
 Note: SoC students can put module code as the label.
 
 Example of command
+
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
 
 ### Inserting parameters to a task
@@ -243,10 +260,12 @@ Format: `:i <task_index> [-d <deadline>] [-l <label_name>]`
 | `<label_name>` | Name of the label you want to insert | cs2103t(assuming the task list has this label)  |
 
 Example of command
+
 1. `:i 3 -d 2023-04-5` inserts the deadline to task 3
 2. `:i 3 -l cs2103t` inserts the "cs2103t" label to task 3
 
 Condition
+
 - At least one for the flags should be present.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
@@ -262,11 +281,12 @@ Format: `:d <task_index>`
 | -------------- | ------------------------------------ | ---------- | ----------------------------------------------- |
 | `<task_index>` | Index of the task you want to delete | Yes        | 3 (assuming the task list has at least 3 tasks) |
 
-
 Example of command
+
 1. `:d 3` deletes task 3
 
 Condition
+
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
@@ -283,10 +303,12 @@ Format: `:d <task_index> [-d] [-l <label_name>]`
 | `<label_name>` | Name of the label you want to delete | cs2103t (assuming the task list has this label) |
 
 Example of command
+
 1. `:d 3 -d` deletes the deadline of task 3
 2. `:d 3 -l cs2103t` deletes the "cs2103t" label of task 3
 
 Condition
+
 - At least one for the flags should be present. Else, command will be treated as deleting the task at index number.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
@@ -298,16 +320,17 @@ Edit the parameters as specified by the flag of a task in the current task list 
 
 Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]... `
 
-| Parameter    | Detail                                     | Example                                        |
-| ------------ | ------------------------------------------ | ---------------------------------------------- |
-| `"<title>"`  | New title of task                          | `"CS2103T UG"`                                 |
-| `<deadline>` | New deadline of the task                   | `2023-03-31`                                   |
-| `<status>`   | New status of task                         | `2`                                            |
-| `<priority>` | Priority level assigned to the task        | `1`                                            |
-| `<previous_label>` | Name of the label you want to edit   | cs2103t(assuming the task list has this label) |
-| `<new_label>` | New name of the label                     | `group project`                                |
+| Parameter          | Detail                              | Example                                        |
+| ------------------ | ----------------------------------- | ---------------------------------------------- |
+| `"<title>"`        | New title of task                   | `"CS2103T UG"`                                 |
+| `<deadline>`       | New deadline of the task            | `2023-03-31`                                   |
+| `<status>`         | New status of task                  | `2`                                            |
+| `<priority>`       | Priority level assigned to the task | `1`                                            |
+| `<previous_label>` | Name of the label you want to edit  | cs2103t(assuming the task list has this label) |
+| `<new_label>`      | New name of the label               | `group project`                                |
 
 Example of command
+
 1. `:e 3 -t "quiz"` edits the title of task 3 to "quiz"
 2. `:e 3 -d 2023-04-05` edits the deadline of task 3 to 2023-04-05
 3. `:e 3 -s 1` edits the status of task 3 to be in progress
@@ -315,11 +338,11 @@ Example of command
 5. `:e 3 -l oldLabel newLabel` edits oldLabel of task 3 to be newLabel
 
 Condition
+
 - At least one for the flags should be present.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
-
 
 ### Filtering task
 
@@ -327,16 +350,16 @@ Filter the parameters as specified by the flag.
 
 Format: `:f [-w "<keywords>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
 
-| Parameter       | Detail                                          | Example                                        |
-| --------------- | ----------------------------------------------- | ---------------------------------------------- |
-| `"<keywords>"`  | Keywords to filter                              | `"CS2103T UG"`                                 |
-| `<date>`        | Date of the task to filter before or after      | `2023-03-31`                                   |
-| `<status>`      | Status of task to filter                        | `2`                                            |
-| `<priority>`    | Priority level of task to filter                | `1`                                            |
-| `<label>`       | Label of task to filter                         | cs2103t(assuming the task list has this label) |
-
+| Parameter      | Detail                                     | Example                                        |
+| -------------- | ------------------------------------------ | ---------------------------------------------- |
+| `"<keywords>"` | Keywords to filter                         | `"CS2103T UG"`                                 |
+| `<date>`       | Date of the task to filter before or after | `2023-03-31`                                   |
+| `<status>`     | Status of task to filter                   | `2`                                            |
+| `<priority>`   | Priority level of task to filter           | `1`                                            |
+| `<label>`      | Label of task to filter                    | cs2103t(assuming the task list has this label) |
 
 Example of command
+
 1. `:f -w "quiz"` filter for tasks with "quiz" as keyword
 2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
 3. `:f -s 1` filter for tasks with status of in_progress
@@ -344,8 +367,8 @@ Example of command
 5. `:f -l cs2103t` filter for tasks with label of cs2103t
 
 Condition
-- Only one flag should be present.
 
+- Only one flag should be present.
 
 ### Sorting task
 
@@ -354,11 +377,13 @@ Sort the parameters as specified by the flag.
 Format: `:s [-t] [-d] [-p] `
 
 Example of command
+
 1. `:s -t` sort for tasks by title
 2. `:s -d` sort for tasks by deadline
 3. `:s -p` sort for tasks by priority level
 
 Condition
+
 - Only one flag should be present.
 
 ### General information on MACRO commands
@@ -378,7 +403,6 @@ You can undo the previous command by simply keying in `:undo`.
 Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
 
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
-
 
 ### Saving the task list data
 
@@ -411,17 +435,16 @@ _Details coming soon in v2.0 ..._
 
 ## Command summary
 
-| Action                 | Format                                                                                                            |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| View help              | `:help`                                                                                                           |
-| Add task               | `:a "<title>" [-d <deadline>] [-p <priority>] [-l <label>] `                                                      |
-| Insert parameter       | `:i <task_index> [-d <deadline>] [-l <label_name>]`                                                               |
-| Delete task            | `:d [index]`                                                                                                      |
-| Delete parameter       | `:d <task_index> [-d] [-l <label_name>]`                                                                          |
-| Edit parameter         | `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] ` |
-| Filter                 | `:f [-w "<keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                       |
-| Sort                   | `:s [-t] [-d] [-p] `                                                                                              |
-| Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                                                                        |
-
+| Action               | Format                                                                                                            |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| View help            | `:help`                                                                                                           |
+| Add task             | `:a "<title>" [-d <deadline>] [-p <priority>] [-l <label>] `                                                      |
+| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label_name>]`                                                               |
+| Delete task          | `:d [index]`                                                                                                      |
+| Delete parameter     | `:d <task_index> [-d] [-l <label_name>]`                                                                          |
+| Edit parameter       | `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] ` |
+| Filter               | `:f [-w "<keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                       |
+| Sort                 | `:s [-t] [-d] [-p] `                                                                                              |
+| Exit the application | `quit`, `:q`                                                                                                      |
 
 <p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
