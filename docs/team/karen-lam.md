@@ -37,7 +37,7 @@ Given below are my contributions to the project.
       events result in clashes with other event. As an internship managing application, users require TinS to provide
       them with a way to find the clashes in their schedule.
 
-* **Code contributed**: [link](https://github.com/Karen-Lam/tp)
+* **Code contributed**: [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=karen&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 * **Project management**:
   * Merging of code of newly implemented features for v1.3 [(#125](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/125), 
