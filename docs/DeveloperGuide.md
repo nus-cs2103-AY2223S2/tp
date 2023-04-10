@@ -730,13 +730,13 @@ otherwise)
 
 1. Administrator types add command together with the patient details (NRIC, age, gender, medicine usage, health
    conditions).
-2. HS adds the patient to the system. Use case ends.
+2. HospiSearch adds the patient to the system. Use case ends.
 
 **Extensions**
 
-* 1a. HS detects an error in the entered patient details or missing patient details.
+* 1a. HospiSearch detects an error in the entered patient details or missing patient details.
 
-  1a1. HS requests for the correct data. 1a2. Administrator enters the new data. Steps 1a1-1a2 are repeated until the
+  1a1. HospiSearch requests for the correct data. 1a2. Administrator enters the new data. Steps 1a1-1a2 are repeated until the
   data entered are correct. Use case resumes at step 2.
 
 **Use case: UC2 - Edit patients' details**
@@ -744,13 +744,13 @@ otherwise)
 **MSS**
 
 1. Administrator requests to update a patients' details and enters the updated information.
-2. HS updates the patient's record in the system. Use case ends.
+2. HospiSearch updates the patient's record in the system. Use case ends.
 
 **Extensions**
 
-* 1a. HS detects an error in the updated information.
+* 1a. HospiSearch detects an error in the updated information.
 
-  1a1. HS requests for the correct data. 1a2. Administrator enters the new data. Steps 1a1-1a2 are repeated until the
+  1a1. HospiSearch requests for the correct data. 1a2. Administrator enters the new data. Steps 1a1-1a2 are repeated until the
   data entered are correct. Use case resumes at step 2.
 
 **Use case: UC3 - Help Administrator obtain information on HospiSearch**
@@ -758,21 +758,21 @@ otherwise)
 **MSS**
 
 1. Administrator is new to the system and requests for help.
-2. HS gives a list of all possible commands together with brief descriptions to guide the user. Use case ends.
+2. HospiSearch gives a list of all possible commands together with brief descriptions to guide the user. Use case ends.
 
 **Use case: UC4 - Clear all data**
 
 **MSS**
 
 1. Administrator requests to clear all data in the system.
-2. HS clears all the data in the system. Use case ends.
+2. HospiSearch clears all the data in the system. Use case ends.
 
 **Use case: UC5 - Search for patients by address**
 
 **MSS**
 
 1. Administrator wants to search for patient by his address
-2. HS provides a list of all people staying in the given address
+2. HospiSearch provides a list of all people staying in the given address
 
 **Extensions**
 
@@ -783,22 +783,22 @@ otherwise)
 **MSS**
 
 1. Administrator requests for a list of patients using a certain type of medicine as he wants to stock up on medicine.
-2. HS provides a list of patients using the specified type of medicine. Use case ends.
+2. HospiSearch provides a list of patients using the specified type of medicine. Use case ends.
 
 **Extensions**
 
-* 1a. There are no patients using the specified type of medicine in HS system. Use case ends.
+* 1a. There are no patients using the specified type of medicine in HospiSearch system. Use case ends.
 
 **Use case: UC7 - Get patient by NRIC**
 
 **MSS**
 
 1. Administrator wants to get patient details’ based on the patient’s NRIC.
-2. HS provides the details of the patient with the specified NRIC. Use case ends.
+2. HospiSearch provides the details of the patient with the specified NRIC. Use case ends.
 
 **Extensions**
 
-* 1a. There is no such patient with specified NRIC in the HS system. Use case ends.
+* 1a. There is no such patient with specified NRIC in the HospiSearch system. Use case ends.
 
 
 <sub>[return to table of contents](#table-of-contents)</sub>
