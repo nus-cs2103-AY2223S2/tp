@@ -69,20 +69,42 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/Ui.java) and uses the JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+![UI Packages](images/UiPageComponents.png)
+
+*Figure 1: Packages in the UI component*
+
+As CLIpboard is a multi-page application, it is made up of different UI components corresponding to each page. The UI classes relevant to each page are classified in their own individual packages as shown in Figure 1.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/java/tfifteenfour/clipboard/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The UI also consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `HelpWindow`, and `StatusBarFooter`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+These parts also remain visible as the user navigates through the different pages in the GUI.
 
-The `UI` component,
+#### Initialising the UI
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
+![Homepage](images/UiHomePage.png)
+
+*Figure 2: CLIpboard landing page*
+
+The `UiManager` is a controller class containing the `start` method which initialises the UI in the following sequence:
+
+1. Instantiate a new `MainWindow` object.
+2. `show` the `MainWindow` object.
+3. Populate the UI window using the the `fillInnerParts` method of `MainWindow`.
+
+The `MainWindow#fillInnerParts` method will populate the UI by:
+1. Populating the Left Pane with a `CourseListPanel`.
+2. Populating the `pageTab`
+3. Populating the `commandBox`
+4. Populating the `resultDisplay`
+5. Populating the `statusBarFooter`
+
+As shown in Figure 2, users will be shown the Course Page upon launching the application. The GUI will then refresh accordingly as the user navigates through the different pages in the application.
+
 
 ### Logic component
 
@@ -154,6 +176,127 @@ Classes used by multiple components are in the `tfifteenfour.clipboard.commons` 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### User Interface Implementation
+
+This subsection describes implementation details related to `UI`, such as page navigation and design.
+
+#### Navigating through pages
+
+![Navigation Guide](images/navigation.png)
+
+*Figure 3: CLIpboard navigation guide*
+
+As shown in Figure 3, users can navigate through the application using a combination of `select`, `task`, `session`, and `back` commands.
+When a command such as `select` is called, the left pane or the right pane, or both, will be refreshed in `MainWindow`.
+
+
+![Select Sequence Diagram](images/SelectSequenceDiagram.png)
+
+*Figure 4: Sequence Diagram for `select`*
+
+
+Figure 4's Sequence Diagram depicts how the `UI`, `Logic`, and `Model` components interact when `select 1` is called on the Course Page. The user's selection path (in this case `Course` -> `Group`) is tracked by the `CurrentSelection` class as they navigate from the Course Page to the Group Page.
+
+To display the Group Page after the user selects a `Course` from the Course Page, the `UI` first obtains the `PageType` to be displayed in the GUI from the `Logic` component. Then, the `UI` retrieves the selected `Course` from `CurrentSelection` and subsequently invokes the `showGroupPane` method based on the selected `Course`.
+
+Before creating the `GroupListPanel` to display the groups in the selected `Course`, the UI obtains an `ObservableList<Group>` from the selected `Course` in the `Model` component.
+Each `Group` in the `ObservableList<Group>` is then mapped into a `GroupListViewCell` in `GroupListPanel`.
+At the end of the `showGroupPane` method call, the Left Pane, previously populated by the `CourseListPanel`, will be refreshed to show the `GroupListPanel`
+
+This sequence of interactions is similar across each page navigation.
+
+#### Design considerations
+
+- **Attendance Page Design**
+
+![Attendance Page](images/UiAttendancePageDesign.png)
+
+*Figure 5: Screenshot of Attendance Page*
+
+
+In Figure 5, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `SessionListPanel` and an `AttendanceListPanel` respectively.
+The navigation from Session Page to Attendance Page does not close the `SessionListPanel`, instead the `SessionListPanel` remain displayed in the Left Pane and the `AttendanceListPanel` is displayed in the Right Pane.
+However, the current page shown in Figure 5 is still treated as the Attendance Page, hence only commands applicable to the Attendance Page is accepted.
+This also applies to the Grades Page, when the `SessionListPanel` is displayed alongside the `GradesListPanel`.
+
+Initially, each student in the Attendance Page will be marked as absent and their individual student cards will be shown in red.
+After marking a student's attendance with the `mark` command, the student card will be changed to green.
+This change occurs immediately after the command execution by generating a new `AttendanceListPanel` when a `mark` command is called.
+Figure 6 shows the Sequence Diagram when a `mark` command is executed.
+
+![Mark Sequence Diagram](images/MarkSequenceDiagram.png)
+
+*Figure 6: Sequence Diagram of mark command. Due to Plant UML limitations, the `alt` frame extends slightly beyond the `UI` frame.*
+
+As shown in Figure 6, when a new `AttendanceListPanel` is initialised, an `AttendanceListViewCell` will be created.
+Similar to the sequence described under Figure 4, the `AttendanceListPanel` takes in an `ObservableList<StudentWithAttendance>` and maps each `StudentWithAttendance` into an `AttendanceListViewCell`.
+Each `StudentWithAttendance` has an `attendance` flag to indicate if they are present or absent for a particular session.
+Based on the flag, either a new `PresentAttendanceListCard` (with a green background) or a new `AbsentAttendanceListCard` (with a red background) will be created for the particular student.
+
+- **Student Page Design**
+
+![Student Page](images/UiStudentPageDesign.png)
+
+*Figure 7: Screenshot of Student Page*
+
+In Figure 7, we have a screenshot of the student page, with the Left Pane and Right Pane populated with a `StudentListPanel` and a `StudentViewCard` respectively.
+The user interface has a straightforward dashboard layout that uses a list panel to display Courses, Groups, Sessions, Tasks, or Students in the Left Pane.
+Since we are on the student page, a list of students is shown.
+Unlike the Attendance and Grades Page, even though both Left and Right Panes are populated, the page shown in Figure 7 is still the Student Page, hence commands which are applicable to the Student Page are accepted here.
+
+
+##### Alternative considerations
+
+
+![StudentListCard](images/UiStudentListCard.png)
+
+*Figure 8: A student list card*
+
+Instead of `StudentId`, we initially considered displaying the `Course` and `Group` the student belongs to in their individual student cards.
+However, this information is already displayed in the navigation bar (shown in Figure 7, above the `StudentListPanel` in "CS2103T > T15").
+Furthermore, since each `Student` is uniquely identified by their `StudentId` (i.e adding another student with the same `StudentId` to the same `Group` will throw an error message), it would be more useful to display their `StudentId` instead.
+
+Another alternative we considered was displaying the full information of a `Student` in each `StudentListCard`, however doing so will quickly overwhelm the `StudentListPanel` if there were many students in the group.
+As such, we have implemented a separate `StudentViewCard` that will be shown on the Right Pane (as shown in Figure 7) when the user enters a `select` command on the Student Page.
+
+#### CLIpboard Theme
+
+Most of the CLIpboard style components can be found in the CSS file `BrownTheme.css`, found under `src/main/resources/view`.
+
+Below is the colour palette used for CLIpboard. CLIpboard mainly adopts brown tones to reflect a wooden traditional clipboard.
+
+**Main colours:**
+
+![A1826D](images/colour-palette/A1826D.png) **#A1826D** : A chestnut-brown colour.
+
+![D8B4A4](images/colour-palette/D8B4A4.png) **#D8B4A4** : A light sandy brown used for the background.
+
+**Accent colours:**
+
+![574539](images/colour-palette/574539.png) **#574539** : A darker shade of brown, mainly used for lettering and page tabs.
+
+![B56D5E](images/colour-palette/B56D5E.png) **#B56D5E** : A reddish-brown accent for `StudentId` in Student Page.
+
+![8B3A3A](images/colour-palette/8B3A3A.png) **#8B3A3A** : A deep red colour used for students marked as absent.
+
+![5EB56D](images/colour-palette/5EB56D.png) **#5EB56D** : A light green colour used for students marked as present.
+
+CLIpboard also utilises two primary fonts, namely the Open Sans font family and the Satoshi font family.
+Both are free to use, and can be downloaded from [Google Fonts](https://fonts.google.com/specimen/Open+Sans) and [FontShare](https://www.fontshare.com/fonts/satoshi) respectively.
+
+**Open Sans:**
+
+![OpenSans](images/OpenSansFont.png)
+
+**Satoshi:**
+
+![Satoshi](images/SatoshiFont.png)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Logic Implementation
 
 ### Undo feature
 `undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important to note that allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.

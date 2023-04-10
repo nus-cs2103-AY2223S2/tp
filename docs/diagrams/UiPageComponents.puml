@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI  {
+package CoursePage
+package GroupPage
+package TaskPage
+package GradesPage
+package SessionPage
+package AttendancePage
+package StudentsPage
+}
+
+
+@enduml

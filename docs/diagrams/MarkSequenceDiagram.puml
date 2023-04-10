@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+participant Hidden #FFFFFF
+
+box UI UI_COLOR_T1
+participant ":AttendanceListPanel" as AttendanceListPanel UI_COLOR
+participant ":AttendanceListViewCell" as AttendanceListViewCell UI_COLOR
+participant ":AbsentAttendanceListCard" as AbsentListCard UI_COLOR
+participant ":PresentAttendanceListCard" as PresentListCard UI_COLOR
+end box
+
+create AttendanceListPanel
+Hidden -> AttendanceListPanel : new AttendanceListPanel(ObservableList<StudentWithAttendance>)
+activate AttendanceListPanel
+
+create AttendanceListViewCell
+AttendanceListPanel -> AttendanceListViewCell : new AttendanceListViewCell()
+activate AttendanceListViewCell
+
+alt isPresent
+
+create PresentListCard
+AttendanceListViewCell -> PresentListCard : new PresentAttendanceListCard()
+
+activate PresentListCard
+PresentListCard --> AttendanceListViewCell
+deactivate PresentListCard
+
+else isAbsent
+create AbsentListCard
+AttendanceListViewCell -> AbsentListCard : new AbsentAttendanceListCard()
+
+activate AbsentListCard
+AbsentListCard --> AttendanceListViewCell
+deactivate AbsentListCard
+end
+
+AttendanceListViewCell --> AttendanceListPanel
+deactivate AttendanceListViewCell
+@enduml
