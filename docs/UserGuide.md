@@ -104,8 +104,6 @@ Examples:
 
 ![AddPatient](images/AddPatient.png)
 
-![AddDoctor](images/AddDoctor.png)
-
 ### Deleting a person by NRIC : `delete`
 
 Deletes the specified person from MediConnect.
@@ -119,9 +117,6 @@ Format: `delete ic/NRIC`
 
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
-
-![DeleteBefore](images/Delete_before.png)
-![DeleteAfter](images/Delete_after.png)
 
 ### Editing a person : `edit`
 
@@ -197,7 +192,7 @@ Restrictions:
   * The patient does not have any prior booking on this date, **and** the doctor is not scheduled to meet any other patients on the same date.
 
 Examples:
-* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S7654321Z` on `01-04-2023 10:00`.
+* `appointment ic/S1234567A d/18-04-2023 10:00 dric/S3523567R` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S3523567R` on `18-04-2023 10:00`.
 
 ![Appointment](images/Appointment.png)
 
@@ -221,8 +216,6 @@ Restrictions:
 Examples:
 * `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`."
 
-![DeleteAppointment](images/DeleteAppointment.png)
-
 ### Prescribing patient’s medication : `prescribe`
 
 * Prescribes medication to a patient, noting the medication's name and cost.
@@ -231,8 +224,8 @@ Examples:
 Format: `prescribe ic/NRIC m/MEDICATION c/COST`
 
 Examples:
-*  `prescribe m/paracetamol ic/S1234567X c/0.7` prescribes paracetamol at a cost of $0.7 to the patient with NRIC number S1234567X.
-*  `prescribe m/Cough Syrup ic/S1234567X c/10.7` prescribes Cough Syrup at a cost of $10.7 to the patient with NRIC number S1234567X.
+*  `prescribe m/paracetamol ic/S1234567A c/0.7` prescribes paracetamol at a cost of $0.7 to the patient with NRIC number S1234567A.
+*  `prescribe m/Cough Syrup ic/S1234567A c/10.7` prescribes Cough Syrup at a cost of $10.7 to the patient with NRIC number S1234567A.
 
 ![Prescribe](images/Prescribe.png)
 
@@ -243,10 +236,8 @@ Removes a chosen medication from a patient.
 Format: `unprescribe ic/NRIC m/MEDICATION`
 
 Examples:
-*  `unprescribe ic/S1234567X m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567X.
-*  `unprescribe m/Cough Syrup ic/S1234567X` removes Cough Syrup prescription from patient with NRIC number S1234567X.
-
-![Unprescribe](images/Unprescribe.png)
+*  `unprescribe ic/S1234567A m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567A.
+*  `unprescribe m/Cough Syrup ic/S1234567A` removes Cough Syrup prescription from patient with NRIC number S1234567A.
 
 ### Bill : `bill`
 
@@ -255,7 +246,7 @@ Calculates the cost of all medication given a Patient's prescription.
 Format: `bill ic/NRIC`
 
 Examples:
-* `bill ic/S1234567X` calculates the cost of all medication for patient with NRIC S1234567X.
+* `bill ic/S1234567A` calculates the cost of all medication for patient with NRIC S1234567A.
 
 ![Bill](images/Bill.png)
 
@@ -265,7 +256,6 @@ Shows a list of all persons in MediConnect.
 
 Format: `list`
 
-![List](images/List.png)
 
 ### Retrieve doctors information : `listDoctors`
 
@@ -295,7 +285,6 @@ Format: `clear`
 Example:
 * `clear` permanently deletes all data stored in the system.
 
-![Clear](images/Clear.png)
 
 ### Requesting help : `help`
 
@@ -339,7 +328,7 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Person**         | 1. `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` <br> 2. `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd` |
 | **Bill**               | `bill ic/NRIC` <br> e.g.,                               bill ic/S1234567X                                                                                                                                                                                                                                                                                |
-| **Book Appointment**   | `appointment ic/NRIC d/DATE dric/NRIC` <br> e.g., `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z`                                                                                                                                                                                                                                           |
+| **Book Appointment**   | `appointment ic/NRIC d/DATE dric/NRIC` <br> e.g., `appointment ic/S1234567A d/01-04-2023 10:00 dric/S3523567R`                                                                                                                                                                                                                                           |
 | **Clear**              | `clear`                                                                                                                                                                                                                                                                                                                                                  |
 | **Delete Appointment** | `deleteAppointment INDEX ic/NRIC` <br> e.g., `deleteAppointment 2 ic/S1234567A`                                                                                                                                                                                                                                                                          |
 | **Delete Person**      | `delete ic/NRIC`<br> e.g., `delete ic/S1234567A`                                                                                                                                                                                                                                                                                                         |
@@ -349,5 +338,5 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
 | **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
 | **List**               | `list` <br> `listDoctors` <br> `listPatients`                                                                                                                                                                                                                                                                                                            |
-| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/COST` <br> e.g, prescribe ic/S1234567X m/paracetamol c/10.7                                                                                                                                                                                                                                                            |
-| **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g., unprescribe ic/S1234567X  m/paracetamol                                                                                                                                                                                                                                                                    |
+| **Prescribe**          | `prescribe ic/NRIC m/MEDICATION c/COST` <br> e.g, prescribe ic/S1234567A m/paracetamol c/10.7                                                                                                                                                                                                                                                            |
+| **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g., unprescribe ic/S1234567A  m/paracetamol                                                                                                                                                                                                                                                                    |
