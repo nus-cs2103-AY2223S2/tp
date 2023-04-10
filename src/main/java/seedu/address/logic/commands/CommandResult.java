@@ -164,7 +164,7 @@ public class CommandResult {
     }
 
     /**
-     * Checks if compelted job window is shown
+     * Checks if completed job window is shown
      */
     public boolean isShowComplete() {
         return showComplete;

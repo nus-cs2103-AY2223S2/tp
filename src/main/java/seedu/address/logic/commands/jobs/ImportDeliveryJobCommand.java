@@ -23,6 +23,8 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
     public static final String COMMAND_WORD = "import_job";
     public static final String MESSAGE_EMPTY_FILE = "File is empty";
     public static final String MESSAGE_SUCCESS = "File is imported";
+    public static final String MESSAGE_WRONG_FILE = "File type is unsupported. Please upload a CSV file and check if "
+            + "file extension is named .csv";
 
     private final File toAdd;
 
@@ -40,6 +42,9 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
         requireNonNull(model);
         List<Person> listOfCustomers = new ArrayList<>();
 
+        if (!getFileExtensions(toAdd).equals("csv")) {
+            throw new CommandException(MESSAGE_WRONG_FILE);
+        }
         if (toAdd.length() == 0) {
             throw new CommandException(MESSAGE_EMPTY_FILE);
         }
@@ -55,10 +60,26 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
         }
 
         for (int i = 0; i < listOfAddDeliveryJob.size(); i++) {
-            model.addDeliveryJob(listOfAddDeliveryJob.get(i));
+            if (!model.hasDeliveryJob(listOfAddDeliveryJob.get(i))) {
+                model.addDeliveryJob(listOfAddDeliveryJob.get(i));
+            }
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    /**
+     * Gets type of file extension.
+     *
+     * @param file File that extension is checked
+     * @return String file extension name
+     */
+    public String getFileExtensions(File file) {
+        String fileName = file.getName();
+        String extension = "";
+        int i = fileName.lastIndexOf(".");
+        extension = fileName.substring(i + 1, fileName.length());
+        return extension;
     }
 }
 
