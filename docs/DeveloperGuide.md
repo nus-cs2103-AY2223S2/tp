@@ -162,17 +162,18 @@ The `Model` component,
 
 <img src="images/DG-images/TaskClassDiagram.png" width="280" />
 
-* A `Student` has a `TaskList` object which holds all their `Task` objects.
+* A `Student` has a `UniqueTaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
-* The `creationDate` will be hidden from the user and only be used for sorting the `TaskList`.
+* The `creationDate` will be hidden from the user and only be used for sorting the `UniqueTaskList`.
 
-#### Score model
-**API** : [`Score.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
+#### UniqueScoreList model
+**API** : [`UniqueScoreList.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/score/UniqueScoreList.java)
 
 <img src="images/DG-images/ScoreClassDiagram.png" width="280" />
 
-* A `Student` only has one `UniqueScoreList` object which holds all his/her `Score` objects.
+* A `Student` has only one `UniqueScoreList` object which holds all his/her `Score` objects.
 * `UniqueScoreList` is a separate filtered list with recent score at front which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* There is an inner class `ScoreSummary` inside `UniqueScoreList` class which holds the summary of recent five scores.
 
 ### Storage component
 
