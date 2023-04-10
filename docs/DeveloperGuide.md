@@ -487,8 +487,6 @@ respective field requested.
     * Cons:
         * Some part of the code is the same as EditCommand.
 
-
-<<<<<<< HEAD
 ### \[Developed\] Adding Recurring Event
 User can add recurring events. Adding a recurring event is almost similar to the adding isolated event except that it is implemented using `AddRecurringEventCommand`,
 `AddRecurringEventCommandParser` and `RecurringEventList`, `TimeMaksk`  classes.
@@ -544,7 +542,6 @@ Given below is an example usage scenario and how the command mechanism behaves a
         * There will be instances when users will have event that span over multiple days such as studying overnight 
           from 23:00 to 01:00. Hence, it will reduce the user-friendliness if we restrict isolated events to be only one day long.
 
-=======
 ### \[Developed\] Finding free time slots
 This feature allows a user to display unoccupied time slots shared by members of a group.
 
@@ -618,8 +615,6 @@ Given below is an example usage scenario and how the command mechanism behaves a
 
 * **Justification**
     * To ensure the correctness of our application within the insufficient amount of time remaining, we have decided not to implement this.
-  
->>>>>>> master
 
 ### \[Developed\] Export
 
@@ -1141,9 +1136,42 @@ testers are expected to do more *exploratory* testing.
    Expected: GroupList will list out 1 group with name 'CS2103' and personList will list out all person in group 'CS2103'. 1 group listed shown in status message.
 
 3. Test case: `group_find Bestfriends`<br>
-   Expected: Group and person list will not display anytrhing
-   
-   
+   Expected: Group and person list will not display anything
+
+### Creating an Isolated event
+
+1. Prerequisities: The preloaded data for person are not modified.
+
+2. Test case: `event_create 1 ie/Swimming f/10/04/2025 14:00 t/10/04/2025 16:00`<br>
+   Expected: An Isolated event 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00' will be created for Alex Tan
+
+3. Test case: `event_create 1 ie/Camping f/10/04/2020 14:00 t/13/04/2020 12:00`<br>
+   Expected: Isolated event not created. Status message indicates that event date cannot be before the current time
+
+4. Test case: `event_create 1 ie/Karoke with friends f/13/04/2025 14:00 t/12/04/2025 12:00`<br>
+   Expected: Isolated event not created. Status message indicates that end time should not be earlier than start time.
+
+5. Test case: `event_create 1 ie/Watching movie f/10/04/2025 14:00 t/10/04/2025 16:00`<br>
+   Expected: Isolated event not created. Status message indicates that event has conflict with Isolated Event List followed by
+   the index of the isolated event that it conflicted with and 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00'.
+
+### Creating an Recurring event
+1. Prerequisities: The preloaded data for person are not modified.
+
+2. Test case: `event_create_recur 1 re/CS2103 Lecture d/Friday f/14:00 t/16:00`<br>
+   Expected: A Recurring Event 'CS2103 Lecture on FRIDAY from 14:00' will be created for Alex Tan
+
+3. Test case: `event_create_recur 1 re/CS2101 Lecture d/Tuueeesdayy f/14:00 t/16:00`<br>
+   Expected: Recurring event not created. Status message indicates that the day of the week should be either MONDAY, 
+   TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY or SUNDAY.
+
+4. Test case: `event_create_recur 1 re/CS2103 Tutorial d/Thursday f/10:00 t/09:00`<br>
+   Expected: Recurring event not created. Status message indicates that end time should not be earlier than start time.
+
+5. Test case: `event_create_recur 1 re/Self Studying d/Friday f/12:00 t/15:00`<br>
+   Expected: Recurring event not created. Status message indicates that event has conflict with Recurring Event List followed by
+   the index of the recurring event that it conflicted with and 'CS2103 Lecture on FRIDAY from 14:00 to 16:00.
+
 ### Export a person
 
 1. Export a person while all persons are being shown
