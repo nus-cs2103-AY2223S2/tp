@@ -331,6 +331,7 @@ The below sequence diagram shows how the various components interact with each o
 
 Users have the ability to list all their projects. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed.
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation
 
