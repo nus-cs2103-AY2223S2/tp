@@ -1255,7 +1255,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `edit 1 xxx/PARAMETER...` (where xxx is a valid prefix and PARAMETER is a valid input for the respective prefix and ... indicates any number of additional xxx/PARAMETER) \\
       Expected: Same as before except updated/added detail(s) are the specified inputs.
    
-   5. Test case: `edit` \\ 
+   5. Test case: `edit`  \\ 
       Expected: No student in the list is edited. The error message shown details `Invalid command format!` followed by the `edit` command format and example.
 
    6. Test case: `edit 1 i/` \\
@@ -1280,7 +1280,6 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all students using the `list` command.
    
    2. Test case: `find` \\
-   
       Expected: All students will be listed.
       
    3. Test case: `find xxx/` (where xxx is any parameters other than t/ and m/) \\
