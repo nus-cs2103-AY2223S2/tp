@@ -12,7 +12,9 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class OpeningListPanel
+Class OpeningDetailsPanel
 Class OpeningCard
+Class KeydateCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,21 +35,28 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" OpeningListPanel
+MainWindow *-down-> "0..1" OpeningDetailsPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 OpeningListPanel -down-> "*" OpeningCard
+
+OpeningCard -down-> "*" KeydateCard
+OpeningDetailsPanel -down-> "*" KeydateCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 OpeningListPanel --|> UiPart
+OpeningDetailsPanel --|> UiPart
 OpeningCard --|> UiPart
+KeydateCard -left-|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 OpeningCard ..> Model
+OpeningDetailsPanel ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

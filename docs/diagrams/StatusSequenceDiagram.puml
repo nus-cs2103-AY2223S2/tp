@@ -55,10 +55,11 @@ deactivate Model
 
 StatusCommand --> LogicManager : commandResult
 deactivate StatusCommand
-StatusCommand -[hidden]-> LogicManager : commandResult
+
+StatusCommand -[hidden]-> LogicManager
 destroy StatusCommand
 
-ContainsStatusPredicate -[hidden]-> LogicManager : commandResult
+ContainsStatusPredicate -[hidden]-> LogicManager
 destroy ContainsStatusPredicate
 
 LogicManager --> MainWindow : commandResult

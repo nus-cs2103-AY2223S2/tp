@@ -190,26 +190,30 @@ Classes used by multiple components are in the `seedu.ultron.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add remark feature
-<!-- Darren -->
-![UI Interaction for the `remark 1 r/2 OAs` Command](images/RemarkSequenceDiagram.png)
 
 The `RemarkCommandParser` class parses the user input and returns a `RemarkCommand` object. The `RemarkCommand` object then accesses the `Model` component to get its filteredOpenings.
 
 The `RemarkCommand` object accesses the filteredOpenings to get the opening at the specified index. It then uses the details of the retrieved opening along with a new remark to create a new opening.
 
+![UI Interaction for the `remark 1 r/2 OAs` Command](images/RemarkSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The `RemarkCommand` object then calls `setOpening()` on `Model`, passing in the openingToEdit and editedOpening. The `Model` will then set the opening at the index specified to be the editedOpening.
 
 Once the opening in the model has been changed, the result indicating the command's success will be returned to `LogicManager` and `MainWindow`
 
-
-
 ### Show opening details feature
-<!-- Yu Fei -->
-![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
 
 The `show` command was outlined with existing commands which take in indexes. It is similar to both the `delete` and `edit` commands, accessing the displayed list in  the `Model` component.
 
 The `ShowCommandParser` class parses the user input and returns a `ShowCommand` object. The `ShowCommand` object then accesses the `Model` component to get the opening at the specified index from the openings list.
+
+![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 An `Index` is tracked by the model component and updated on every `ShowCommand` execution. A `CommandResult` object is then returned to the `LogicManager`.
 
@@ -219,11 +223,27 @@ A new `OpeningDetailsPanel` is created and displayed to the user. The `OpeningDe
 
 A simplified sequence was employed for mouse clicks. The `OpeningListPanel` class handles the mouse click event and calls the logic component to set the selected opening. The `MainWindow` class then calls the `handleShow` method to recreate the `OpeningDetailsPanel` with the selected opening.
 
+#### Design considerations:
+
+**Aspect:** How show command executes:
+
+* **Alternative 1 (current choice):** Access the opening at the specified index from the displayed list in the `Model` component.
+    * Pros:
+      * Easy to implement.
+      * Meets the basic requirement of the feature.
+      * Simple to understand.
+    * Cons: May not be very useful if the user wants to see the details of an opening that is not displayed in the current list.
+* **Alternative 2:** Access the opening at the specified index from the full list in the `Model` component.
+    * Pros:
+      * More useful as the user can see the details of any opening in the address book.
+      * Flexible usage.
+      * Follows the `find` command which also accesses the full list.
+    * Cons: We must ensure that the index is still valid even if the list is filtered or sorted, which may be difficult to implement.
+
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
 
 ### Status filtering feature
-<!-- Kevin -->
 
 Implementation
 
@@ -233,7 +253,7 @@ Given below is an example usage scenario and how the status feature's mechanisms
 
 Step 1. The user launches the application with pre-existing openings added, each with different status values, such as `APPLIED` or `INTERVIEWING`. The user decides to only want to focus on openings that he has only just applied to. The user executes `status applied` to filter the openings to only show openings with `APPLIED` status.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the exceution, the list will not be updated and remain unchanged.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the execution, the list will not be updated and remain unchanged.
 </div>
 
 The following sequence diagram shows how the status operation works:
@@ -249,7 +269,7 @@ Step 3. The `LogicManager` then calls the `execute()` of the `StatusCommand` obj
 
 Step 4. The `MainWindow` class receives the `CommandResult` object and the new filtered list is displayed for the user.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How many keywords status command allows:**
 
@@ -379,12 +399,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     1a1. Ultron informs the user that no openings of that status exist
     Use case ends
 
-**Use case:  UC 6 - Sort openings by deadline**
+**Use case:  UC 6 - List openings with upcoming keydates**
 
 **MSS**
 
-1. User enters a command to sort all openings by deadline in ascending order
-2. Ultron shows the user a list of openings that contain deadlines, sorted by deadlines in ascending order
+1. User enters a command to list all openings by keydates in ascending order, specifying a number of days
+2. Ultron shows the user a list of openings that contain keydates, sorted by keydates in ascending order
    Use case ends.
 
 *{More to be added}*
