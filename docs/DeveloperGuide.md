@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Developer Guide
+title: AIMS Developer Guide
 ---
+## Table of Contents
 
+- [**Legend**](#legend)
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
 - [**Design**](#design)
@@ -22,7 +24,6 @@ title: Developer Guide
     - [Copy: Current implementation](#copy-current-implementation)
   - [New army-specific fields](#new-army-specific-fields)
     - [New army fields: Current implementation](#new-army-fields-current-implementation)
-  - [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -32,20 +33,39 @@ title: Developer Guide
   - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
+  - [Adding a person](#adding-a-person)
+  - [Editing a person](#editing-a-person)
   - [Deleting a person](#deleting-a-person)
+  - [Toggling the favorite status of a person](#toggling-the-favorite-status-of-a-person)
   - [Saving data](#saving-data)
+- [**Appendix: Effort**](#appendix-effort)
+- [**Appendix: Planned Enhancements**](#appendix-planned-enhancements)
 
 ---
+## Legend
+
+Here are some symbols used throughout the user guide to inform you of additional details.
+
+:information_source: **Notes:** Notes aim to provide you with extra information.
+
+:bulb: **Tip:** Tips are useful suggestions that you can follow.
+
+[Back to Top ↑](#table-of-contents)
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Opencsv](https://opencsv.sourceforge.net).
+
+[Back to Top ↑](#table-of-contents)
 
 ---
 
 ## **Setting up, getting started**
 
 Refer to the guide [*Setting up and getting started*](SettingUp.md).
+
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -56,6 +76,8 @@ Refer to the guide [*Setting up and getting started*](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+[Back to Top ↑](#table-of-contents)
 
 ### Architecture
 
@@ -99,6 +121,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Back to Top ↑](#table-of-contents)
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -115,6 +139,8 @@ The `UI` component,
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[Back to Top ↑](#table-of-contents)
 
 ### Logic component
 
@@ -150,6 +176,8 @@ How the parsing works:
 - When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Back to Top ↑](#table-of-contents)
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -171,6 +199,8 @@ The `Model` component,
 
 </div>
 
+[Back to Top ↑](#table-of-contents)
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -183,9 +213,13 @@ The `Storage` component,
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Back to Top ↑](#table-of-contents)
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -334,6 +368,8 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 *{more aspects and alternatives to be added}*
 
+[Back to Top ↑](#table-of-contents)
+
 ### Filter feature
 
 #### Filter: Current implementation
@@ -359,6 +395,8 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 </div>
 
+[Back to Top ↑](#table-of-contents)
+
 ### Copy feature
 
 #### Copy: Current implementation
@@ -378,6 +416,8 @@ The following sequence diagram shows how the copy operation works:
 
 In the scenario where the user's system's clipboard is not accessible, the requested information will be displayed in the UI for the user to manually copy it.
 
+[Back to Top ↑](#table-of-contents)
+
 ### New army-specific fields
 
 #### New army fields: Current implementation
@@ -389,9 +429,7 @@ The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 - We made the `unit`, `company` and `platoon` fields optional as military personnel might not always be assigned to a unit, company, and/or platoon.
   - If the user omitted the `unit`, `company` and/or `platoon` fields when creating a new contact, they will be automatically set to `"N/A"`.
 
-### \[Proposed\] Data archiving
-
-*{Explain here how the data archiving feature will be implemented}*
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -403,6 +441,8 @@ The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 - [Configuration guide](Configuration.md)
 - [DevOps guide](DevOps.md)
 
+[Back to Top ↑](#table-of-contents)
+
 ---
 
 ## **Appendix: Requirements**
@@ -412,6 +452,8 @@ The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 **Target user profile**: Military admin clerk who handles information of other military personnel
 
 **Value proposition**: Contains dedicated fields in a contact card that manages military-specific information (e.g., rank, company, unit, etc.)
+
+[Back to Top ↑](#table-of-contents)
 
 ### User stories
 
@@ -458,6 +500,8 @@ Priority:
 | 3        | ration manager            | filter and count the number of people that need halal meals / are allergic to seafood   | I know how many halal / non-seafood food packs to order                                                        |
 | 3        | artistic user             | edit the theme of the app/font of the UI                                                | I can personalize the look of the app to be more aesthetically pleasing to me                                  |
 | 3        | person with bad eyesight  | increase the font size/UI size of the whole app                                         | I can see text better                                                                                          |
+
+[Back to Top ↑](#table-of-contents)
 
 ### Use cases
 
@@ -525,7 +569,7 @@ Priority:
   - 2a1. FAILS prompts the admin clerk to decide which CSV column refer to which FAILS contact field (e.g., the CSV might have a column called "mobile_number" whereas FAILS has a field called "phone").
   - Use case resumes at step 3.
 
-*{More to be added}*
+[Back to Top ↑](#table-of-contents)
 
 ### Non-Functional Requirements
 
@@ -540,11 +584,15 @@ Priority:
 1. FAILS must not lose critical data on military personnel even during a computer crash.
 1. FAILS must be accessible to military personnel with disabilities.
 
+[Back to Top ↑](#table-of-contents)
+
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
 - **Non-technical person**: Someone who is able to execute basic tasks using the computer's point-and-click interface and has the ability to use simple GUI applications.
+
+[Back to Top ↑](#table-of-contents)
 
 ---
 
@@ -568,22 +616,131 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-1. *{ more test cases …​ }*
+
+[Back to Top ↑](#table-of-contents)
+
+### Adding a person
+1. Adding a person while all existing persons are being shown
+   1. Prerequisites: The existing list contains a person with the following information:
+   ``` text
+    Rank: REC
+    Name: Alex Yeoh
+    Unit: 2 SIR
+    Company: Charlie
+    Platoon: 2
+    Phone: 87438807
+    Email: alexyeoh@example.com
+    Address: Blk 30 Geylang Street 29, #06-40
+    Tags: [friends]
+   ```
+   
+   2. Test case: `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10`<br>
+   Expected: A person with the specified information will be added and displayed in the main list of the GUI.
+   
+   3. Test case: `add n/Alex Yeoh r/CPL c/Bravo u/1 SIR p/89043761 e/alexyeoh@example.com a/Blk 21 Buona Vista Rd, #11-01`<br>
+   Expected: Error details shown in the message box, indicating that duplicate emails or phones are not allowed.
+   
+   4. Test case: `add n/Zachary Tan r/CPL`<br>
+   Expected: Error details shown in the message box, indicating that the command entered is invalid.
+
+[Back to Top ↑](#table-of-contents)
+
+### Editing a person
+1. Editing a person while all persons are being shown
+   1. Prerequisites: The second person in the existing list contains the following information:
+   ``` text
+    Rank: CPL
+    Name: Bernice Yu
+    Unit: 1 GDS
+    Company: Charlie
+    Platoon: 2
+    Phone: 99272758
+    Email: berniceyu@example.com
+    Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+    Tags: [colleagues][friends]
+   ```
+   
+   2. Test case: `edit 2 n/Sally Wee e/sallywee@gmail.com`<br>
+      Expected: The name and email of the second person in the list will be changed to `Sally Wee` and `sallywee@gmail.com` respectively, with the other information left unchanged.
+
+   3. Test case: `edit 2 t/`<br>
+      Expected: All existing tags of the second person in the list will be removed, with the other information left unchanged.
+
+[Back to Top ↑](#table-of-contents)
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First person is deleted from the list. Details of the deleted person shown in the status message. Timestamp in the status bar is updated.
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-1. *{ more test cases …​ }*
+
+[Back to Top ↑](#table-of-contents)
+
+### Toggling the favorite status of a person
+
+1. Toggling the favorite status of a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No current favorited persons in the favorites list.
+   2. Test case: `favorite 1`<br>
+      Expected: First person is added to the favorites list. Person is pinned in the favorites list on the left.
+   3. Test case: `favorite 1` followed by `favorite 1`<br>
+      Expected: First person is added to the favorites list and then removed. Person is pinned in the favorites list on the left after the first command and then unpinned after the second command.
+   4. Test case: `favorite 0`<br>
+      Expected: No person is toggled as favorite. Error details shown in the message box.
+
+[Back to Top ↑](#table-of-contents)
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   1. *{explain how to simulate a missing/corrupted file, and the expected behavior}*
-1. *{ more test cases …​ }*
+   1. Prerequisite: The current data file `aims.json` exists in the `./data` folder.
+   2. Test case: Delete the `aims.json` file in the `./data` folder and launch AIMS again.<br>
+      Expected: AIMS loads a default list of persons upon launch and a new data file `aims.json` will be created and saved in the `./data` folder after exiting AIMS.
+
+[Back to Top ↑](#table-of-contents)
+
+## **Appendix: Effort**
+
+[Back to Top ↑](#table-of-contents)
+
+## **Appendix: Planned Enhancements**
+
+### Feature Flaw 1: Tags are case-sensitive
+**Brief description:** When using the `add` or `edit` feature in AIMS, tags that are provided with the same names but in different cases (e.g. 1 in lowercase and 1 in uppercase), are treated as different tags which should not be the case.
+
+**Example:** `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10 t/friends t/Friends` <br>
+    In this command, the tags given are `friends` and `Friends` which have the same tag name but treated as 2 different tags because of an uppercase letter in `Friends`.
+
+![featureflaw1](./images/featureflaw1.png)
+
+**Proposed Enhancement:** We plan on improving the validation by making sure that tags are case-insensitive so that when 2 tags of same name and different cases are provided, an error message will be displayed to the user: `Duplicate tags are provided!`.
+
+
+### Feature flaw 2: Error message for invalid `add` command is not specific
+**Brief description:** Our [`add`](./UserGuide.md#adding-a-person--add) command requires the user to provide several compulsory fields (rank, name, phone, email, address) in order to add a person to AIMS. However, in the case where the user happens to miss out on any fields, a generic invalid command format error message is displayed to them, not specifying which field is missing. As a result, this can cause inconvenience for the user as they may need to carefully look through the provided example to identify which field(s) is/are needed.
+
+**Example:**
+`add n/James Lee p/99190258 e/jameslee@email.com r/CPL c/Charlie` <br>
+Upon entering the command above, a generic error message is displayed to the user, not specifying which field(s) is/are missing.
+![featureflaw2](./images/featureflaw2.png)
+
+**Proposed enhancement:**
+Instead of just showing a valid example, we plan to change the error message such that it tells the user which specific field(s) is/are missing so that they can know at one glance what is further required.
+
+### Feature flaw 3: Lack of input validation in `filter` feature
+
+**Brief description:** The `filter` feature allow users to search invalid values. For instance, for the phone number field, we have an input validation in the `add` feature which checks that the provided phone number is **valid** with only numbers and at least 3 digits long. However, the user can search for a phone number `abcd` using the `filter` command which is illogical and does not align with our implementation of the `add` feature. 
+
+**Example:** `filter p/abcd`<br>
+Even though AIMS does give a correct result that there are 0 persons with the phone number `abcd` but this will always be the case since AIMS will never allow a person with phone number `abcd` to be added, so we should include the input validation in `filter` as well. 
+![featureflaw3](./images/featureflaw3.png)
+
+**Proposed enhancement:**
+We plan to include the same input validation that we used in the `add` feature for the `filter` feature. This will ensure that the user is informed when they are filtering using an invalid value.
+
+
+[Back to Top ↑](#table-of-contents)
