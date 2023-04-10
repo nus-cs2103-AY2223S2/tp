@@ -430,6 +430,7 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 
 This window was made by the `HelpWindow` class, which ties in its respective `fxml` and `css` files to display the relevant UI to the user.
 To provide the instructions to the user, a `HelpStrings` class is maintained to give instructions stored in lengthy strings.
+<div style="page-break-after: always;"></div>
 
 A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar.
 The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
