@@ -583,7 +583,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
    
-1. User requests to switch panel.
+1. Tutor requests to switch panel.
 2. MATHUTORING switch the panel.
 
    Use case ends.
@@ -599,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to switch panel.
+1. Tutor requests to switch panel.
 
    Use case ends.
 
@@ -612,28 +612,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
    
-1. User requests to filter the student.
+1. Tutor requests to filter the student/s by student tag/s.
 2. MATHUTORING shows the filtered result.
 
    Use case ends.
 
 **Extensions**
-* 1a. The student list is empty.
    
-  Use case ends.
+* 1a. The given command is invalid.
    
-* 1b. The given command is invalid.
+  * 1a1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 1.
+   
+* 1b. The given command argument(s) are invalid.
    
   * 1b1. MATHUTORING shows an error message.
    
-  Use case resumes at step 1.
+  Tutor case resumes at step 1.
    
-* 1c. The given command argument(s) are invalid.
-   
-  * 1c1. MATHUTORING shows an error message.
-   
-  Use case resumes at step 1.
+**17. Use case: Check a student**
 
+**MSS**
+   
+1. Tutor requests to list students.
+   
+2. MATHUTORING shows a list of students.
+   
+3. Tutor requests to check a student.
+   
+2. MATHUTORING shows the repsective student's task list and score list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The student list is empty.
+   
+  Use case ends.
+   
+* 3a. The given command is invalid.
+   
+  * 3a1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 2.
+   
+* 3b. The given index is invalid.
+   
+  * 3b1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 2.
    
 ### Non-Functional Requirements
 
