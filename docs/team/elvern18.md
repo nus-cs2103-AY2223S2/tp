@@ -50,24 +50,24 @@ Given below are my contributions to the project.
   * Submit PE-D bugs
 
 * **Review/mentoring contributions**:
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/29
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/34
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/43
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/47
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/83
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/97
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/156
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/157
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/160
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/161
-  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/170
+  * [#29](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/29)
+  * [#34](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/34)
+  * [#43](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/43)
+  * [#47](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/47)
+  * [#83](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/83)
+  * [#97](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/97)
+  * [#156](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/156)
+  * [#157](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/157)
+  * [#160](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/160)
+  * [#161](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/161)
+  * [#170](https://github.com/AY2223S2-CS2103-F10-3/tp/pull/170)
 
 * **Contributions beyond the project task**:
     * Bugs reported in other team's products
-        * https://github.com/elvern18/ped/issues/1
-        * https://github.com/elvern18/ped/issues/2
-        * https://github.com/elvern18/ped/issues/3
-        * https://github.com/elvern18/ped/issues/4
-        * https://github.com/elvern18/ped/issues/5
-        * https://github.com/elvern18/ped/issues/6
+        * [#1](https://github.com/elvern18/ped/issues/1)
+        * [#2](https://github.com/elvern18/ped/issues/2)
+        * [#3](https://github.com/elvern18/ped/issues/3)
+        * [#4](https://github.com/elvern18/ped/issues/4)
+        * [#5](https://github.com/elvern18/ped/issues/5)
+        * [#6](https://github.com/elvern18/ped/issues/6)
 
