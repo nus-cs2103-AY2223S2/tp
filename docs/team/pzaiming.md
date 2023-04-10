@@ -61,9 +61,8 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 
 * **Contributions to Team-based Tasks**:
-  * Created priority and type tags in team repository.
-  * Reviewed Pull Requests done by the team.
-  * Check for correctness of the code.
+  * Created labels and tags in team repository.
+  * Reviewed Pull Requests done by the team and check for correctness of the code.
   * Bug Fixes:
     * Fixed DG bug for the sequence diagram of sorting, where the `SalaryCommand` and `DeadlineCommand` object is 
       created before `OrderParser`.
