@@ -213,7 +213,7 @@ Format: `sort FIELD/ORDER`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about sort:**<br>
+**:information_source: Notes about `sort`:**<br>
 - You can only sort by one field in a command.
 </div>
 
@@ -258,9 +258,18 @@ Format: `delete INDEX`
 
 - Deletes the patient at the specified index as of the currently displayed list.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `delete`:**<br>
+On entering a `delete` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that the user truly intends to perform that action and is fully aware of its consequences.
+</div>
+
 Examples:
 
 `delete 1`
+
+
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -303,7 +312,6 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-
 ### Deleting a ward from the system: `deleteward`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -315,6 +323,12 @@ Deletes a ward by index.
 Format: `deleteward INDEX`
 
 - Deletes the ward at the specified index as of the currently displayed list.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `deleteward`:**<br>
+On entering a `deleteward` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that the user truly intends to perform that action and is fully aware of its consequences.
+</div>
 
 Examples:
 
