@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Glen Lim's Project Portfolio Page
 ---
 
 ### Project: ExpressLibrary
