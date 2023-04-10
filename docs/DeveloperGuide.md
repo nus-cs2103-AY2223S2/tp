@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AIMS Developer Guide
+title: Developer Guide
 ---
 ## Table of Contents
 
@@ -737,7 +737,7 @@ testers are expected to do more *exploratory* testing.
 **Proposed Enhancement:** We plan on improving the validation by making sure that tags are case-insensitive so that when 2 tags of same name and different cases are provided, an error message will be displayed to the user: `Duplicate tags are provided!`.
 
 
-### Feature flaw 2: Error message for invalid `add` command is not specific
+### Feature Flaw 2: Error message for invalid `add` command is not specific
 **Brief description:** Our [`add`](./UserGuide.md#adding-a-person--add) command requires the user to provide several compulsory fields (rank, name, phone, email, address) in order to add a person to AIMS. However, in the case where the user happens to miss out on any fields, a generic invalid command format error message is displayed to them, not specifying which field is missing. As a result, this can cause inconvenience for the user as they may need to carefully look through the provided example to identify which field(s) is/are needed.
 
 **Example:**
@@ -748,7 +748,7 @@ Upon entering the command above, a generic error message is displayed to the use
 **Proposed enhancement:**
 Instead of just showing a valid example, we plan to change the error message such that it tells the user which specific field(s) is/are missing so that they can know at one glance what is further required.
 
-### Feature flaw 3: Lack of input validation in `filter` feature
+### Feature Flaw 3: Lack of input validation in `filter` feature
 
 **Brief description:** The `filter` feature allow users to search invalid values. For instance, for the phone number field, we have an input validation in the `add` feature which checks that the provided phone number is **valid** with only numbers and at least 3 digits long. However, the user can search for a phone number `abcd` using the `filter` command which is illogical and does not align with our implementation of the `add` feature. 
 
@@ -759,5 +759,26 @@ Even though AIMS does give a correct result that there are 0 persons with the ph
 **Proposed enhancement:**
 We plan to include the same input validation that we used in the `add` feature for the `filter` feature. This will ensure that the user is informed when they are filtering using an invalid value.
 
+### Feature Flaw 4: Slashes can be used in the `unit`, `platoon`, and `company` fields
+
+**Brief description:** Slashes can be used in the `unit`, `platoon`, and `company` although it should not be allowed in these fields as it is a special character used to delimit command parameters.
+
+**Example:** `edit 1 u/n/pl/alpha`<br>
+Edit command for unit works even though the unit field contains slashes.
+![featureflaw4](./images/featureflaw4.png)
+
+**Proposed enhancement:**
+We plan to make the default value of unit, rank, and platoon "NA" instead of "N/A" so that we can remove slashes from the list of allowed characters for `unit`, `platoon`, and `company`.
+
+### Feature Flaw 5: Error message from importing CSV file with invalid fields does not show row number of problematic fields
+
+**Brief description:** If any field is invalid when importing a CSV file using the `importcsv` command (i.e phone number has letter), the error message shown does not specify which row the problematic field is in.
+
+**Example:** `importcsv`<br>
+Importing a CSV file with an invalid phone number field shows an error message without specifying which row the invalid phone number is on.
+![featureflaw5](./images/featureflaw5.png)
+
+**Proposed enhancement:**
+We plan to enhance the error message to tell the user which row number the invalid field is at, so that they can easily make changes to it without having to manually look for the error.
 
 [Back to Top ↑](#table-of-contents)
