@@ -869,6 +869,34 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Click on either the "text" or "chart" tab under score list<br>
    Expected: The panel will be switched.
 
+### Exporting out student(s) data
+
+1. Exporting student data using CLI
+   1. Test case (Windows): `export p/data`
+   Expected: `data` directory stored in the home folder containing the `data.json` file.
+
+   2. Test case (Mac): `export p/data`
+   Expected: `data` directory stored in the home folder containing the `data.json` file.
+
+2. Exporting student data using GUI
+
+   1. Test case: Click on the `File` Menu on the top left, followed by `Export`. Subsequently select a folder directory to export on then after click the export button.
+   Expected: `data.json` should appear in the folder you have selected.
+
+### Importing in student(s) data
+
+1. Importing student data using CLI
+   1. Test case (Windows): `import p/data\data.json`
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
+   2. Test case (Mac): `import p/data/data.json`
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
+2. Importing student data using GUI
+
+   1. Test case: Click on the `File` Menu on the top left, followed by `Import`. Subsequently select the `data.json` from the file explorer **OR** drag and drop the file used to import in then after click the import button.
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
 ### Saving data
 The data will be automatically saved by MATHUTORING.
    
