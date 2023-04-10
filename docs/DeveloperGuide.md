@@ -1058,136 +1058,131 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Before each of the following test scenarios, 
+ensure that your sprINT application is launched and opened on your device.
+
+</div>
+
 ### Adding an application
 
-Before each test scenario, ensure that your sprINT application is launched and opened on your device.
+Prerequisites: sprINT's main window is launched and opened.
 
-1. Adding an application to sprINT
+1. Test case 1: `add-app c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
+    Expected: A new application is added to sprINT. Details of the newly added application shown in the Command Result Box.
 
-    1. Prerequisites: sprINT's main window is launched and opened.
-
-    2. Test case: `add-app c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
-        Expected: A new application is added to sprINT. Details of the newly added application shown in the status message.
-
-    3. Test case: `add-app 1 c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
-       Expected: No application is added due to **Invalid Command Format**. Add application command does not accept an 
-   `INDEX` parameter. Error details shown in the status message.
+2. Test case 2: `add-app 1 c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
+   Expected: No application is added due to **Invalid Command Format**. Add application command does not accept an 
+`INDEX` parameter. Error details shown in the Command Result Box.
    
-   4. Test case: `add-app c/NUS r/Teaching Assistant s/offered t/school t/nsws` <br>
-        Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
-   from the command. `Company Email` is a compulsory input parameter for the add application command.
+3. Test case 3: `add-app c/NUS r/Teaching Assistant s/offered t/school t/nsws` <br>
+     Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
+from the command. `Company Email` is a compulsory input parameter for the add application command.
 
 
 ### Editing an application
 
-Before each test scenario, ensure that your sprINT application is launched and opened on your device.
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-1. Editing an application while all applications are being shown
+1. Test case 1: `edit-app 1 c/NTU`<br>
+   Expected: First application is edited from the list. Details of the edited application shown in the Command Result Box. 
 
-    1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+2. Test case 2: `edit-app 2 c/HelloCompany s/Rejected`<br>
+   Expected: Second application is edited from the list. Details of the edited application shown in the Command Result Box. Pie chart changes accordingly.
 
-    2. Test case: `edit-app 1 c/NTU`<br>
-       Expected: First application is edited from the list. Details of the edited application shown in the status message. 
+3. Test case 3: `edit-app 0 c/HelloCompany`<br>
+   Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the Command Result Box.
 
-    3. Test case: `edit-app 2 c/HelloCompany s/Rejected`<br>
-       Expected: Second application is edited from the list. Details of the edited application shown in the status message. Pie chart changes accordingly.
-   4. Test case: `edit-app 0 c/HelloCompany`<br>
-      Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the status message.
-
-   5. Other incorrect delete commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
-         Expected: Similar to the above test case for `delete-app 0`.
+4. Other incorrect delete commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to the above test case for `delete-app 0`.
    
 
 ### Finding an application
 
-1. Finding an application while all applications are being shown.
+Prerequisites: List of applications is displayed through means like `list` or `sort`.
 
-    1. Prerequisites: List of applications is displayed through means like `list` or `sort`.
+1. Test case 1: `find r/SWE`<br>
+   Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the Command Result Box.
 
-    1. Test case: `find r/SWE`<br>
-       Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the status message.
+2. Test case 2: `find c/Google`<br>
+   Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the Command Result Box.
 
-    1. Test case: `find c/Google`<br>
-      Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the status message.
+3. Test case 3: `find s/Offered`<br>
+   Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the Command Result Box.
 
-    1. Test case: `find s/Offered`<br>
-      Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the status message.
+4. Test case 4: `find r/SWE c/Google s/Offered`<br>
+   Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the Command Result Box.
 
-    1. Test case: `find r/SWE c/Google s/Offered`<br>
-       Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the status message.
-
-    1. Test case: `find`<br>
-      Expected: No application is found. Invalid command error is shown in the status message. Status bar remains the same, with the input command highlighted in red.
+5. Test case 5: `find`<br>
+   Expected: No application is found. Invalid command error is shown in the Command Result Box. Status bar remains the same, with the input command highlighted in red.
 
 ### Help
 
-1. Opening the help window for a summary of commands and their formats.
+Opening the help window for a summary of commands and their formats.
 
-    1. Prerequisites: sprINT's main window is working.
+Prerequisites: sprINT's main window is open.
 
-    1. Test case: Enter `help` command<br>
-       Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the status message.
+1. Test case 1: Enter `help` command<br>
+   Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the Command Result Box.
 
-    1. Test case: Manually clicking on the help button on the Toolbar<br>
-       Expected: Pop-up window for a summary of help commands and their formats is shown.
+2. Test case 2: Manually clicking on the help button on the Toolbar<br>
+   Expected: Pop-up window for a summary of help commands and their formats is shown.
 
-    1. Test case: Enter `help [keyword]` command, where keyword can comprise some characters.<br>
-       Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the status message.
+3. Test case 3: Enter `help [keyword]` command, where keyword can comprise some characters.<br>
+   Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the Command Result Box.
 
-   1. Test case: Enter `help123` command<br>
-      Expected: No Pop-up window is shown, `Unknown command` is displayed in the status message as the word is recognised to be an invalid command.
+4. Test case 4: Enter `help123` command<br>
+   Expected: No Pop-up window is shown, `Unknown command` is displayed in the Command Result Box as the word is recognised to be an invalid command.
 
 ### Deleting an application
 
-1. Deleting an application while all applications are being shown
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+1. Test case 1: `delete-app 1`<br>
+   Expected: First application is deleted from the list. Details of the deleted application shown in the Command Result Box. Timestamp in the status bar is updated.
 
-   2. Test case: `delete-app 1`<br>
-      Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
+2. Test case 2: `delete-app 0`<br>
+   Expected: No application is deleted. Error details shown in the Command Result Box. 
 
-   3. Test case: `delete-app 0`<br>
-      Expected: No application is deleted. Error details shown in the status message. 
-
-   4. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to the above test case for `delete-app 0`.
+3. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to the above test case for `delete-app 0`.
 
 ### Sorting the application list
 
 1. Sorting the application list while all applications are being shown
 
-   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list. Multiple applications with tasks (and deadlines).
+    Prerequisites: List all applications using the `list` command. Multiple applications in the list. Multiple applications with tasks (and deadlines).
    
-   2. Test case: `sort a alphabetical` <br>
+   1. Test case 1: `sort a alphabetical` <br>
       Expected: Applications are listed in alphabetical order of their role from A to Z. 
       Applications with the same role will have their company name as a tiebreaker.
 
-   3. Test case: `sort d alphabetical` <br>
+   2. Test case 2: `sort d alphabetical` <br>
       Expected: Same behaviour as the test case for `sort a alphabetical`. Except that the alphabetical order is now
       in reverse from Z to A.
 
-   4. Test case: `sort a deadline` <br>
+   3. Test case 3: `sort a deadline` <br>
       Expected: Applications without tasks are **not** shown. Applications with tasks are listed by order of the deadline of their task. 
       Applications with closer deadlines will be shown first.
 
-   5. Test case: `sort d deadline` <br>
+   4. Test case 4: `sort d deadline` <br>
       Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
       applications with further deadlines will be shown first.
    
-   6. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+   5. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
       `sort` (nothing specified), `...` <br>
-      Expected: No sorting is done and application list remains the same. Error details shown in the status message.
+      Expected: No sorting is done and application list remains the same. Error details shown in the Command Result Box.
       
-2. Sorting the application list when it is a filtered state, due to a previously executed `find` command
+2. Sorting the application list when it is a **filtered** state, due to a previously executed `find` command
 
-   1. Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
+    Prerequisites: Multiple applications in the current displayed list. Multiple applications with tasks (and deadlines).
    
-   2. Valid test cases: Same as the test cases mentioned in steps 2-5 for sorting while all applications are being shown <br>
+   1. Valid test cases: Same as the test cases mentioned in steps 2-5 for sorting while all applications are being shown <br>
       Expected: Same behaviour as when sorting while all applications are being shown. <br> Additionally, check that no application entries that are not in the currently displayed list of applications
       shows up after sorting.
 
-   3. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
-      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
+   2. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
+      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the Command Result Box.
 
 ### Listing all applications
 
@@ -1196,68 +1191,69 @@ in the **default order**, meaning the order in which they were added. (i.e., mor
 
 1. Listing all applications after list has been filtered with a `find` command
 
-   1. Prerequisites: Multiple applications in the original full list. From there, select one or more applications with `find [keyword(s)]`.  
+   Prerequisites: Multiple applications in the original full list. From there, select one or more applications with `find [keyword(s)]`.  
 
-   2. Test case: `list` <br>
+   1. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
 
 2. Listing all applications after list has been sorted with a `sort` command
 
-   1. Prerequisites: Multiple applications in the original full list. From there, the list is sorted with one of the following:
-      * `sort a deadline`
-      * `sort d deadline`
-      * `sort a alphabetical`
-      * `sort d alphabetical`
+   Prerequisites: Multiple applications in the original full list. From there, the list is sorted with one of the following:
+   * `sort a deadline`
+   * `sort d deadline`
+   * `sort a alphabetical`
+   * `sort d alphabetical`
    
-   2. Test case: `list` <br>
+   1. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
 
 3. Listing all applications after list has been filtered and sorted with a series of `find` and `sort` commands
 
-   1. Prerequisites: Multiple applications in the original full list. From there, execute any sequence of `find` and `sort` commands <br>
-      Example: `find r/SWE` followed by `sort a deadline`
+   Prerequisites: Multiple applications in the original full list. From there, execute any sequence of `find` and `sort` commands <br>
+   Example: `find r/SWE` followed by `sort a deadline`
    
-   2. Test case: `list` <br>
+   1. Test case: `list` <br>
       Expected: The displayed list should return to the original full list of applications, in the default order.
 
 
-### Deleting all applications
+### Clearing all applications
 Before each test scenario, execute `list` beforehand and take note of the **original full list of applications**. If your original list is empty, 
 please add dummy applications by executing the `add-app` command.
 
-1. Clearing all applications 
-   1. Prerequisites: There is **at least 1** application present in sprINT.
-   2. Test case: `clear` <br>
-      Expected: All applications in sprINT will be deleted. 
-   3. Test case: `clear [keyword]`, where keyword can be any combination of characters. <br>
-      Expected: All applications in sprINT will be deleted. By default, only the first expression in the input is recognised
-   as the command. In this case, it is `clear`.
-   4. Test case: `clear1234`. <br>
-      Expected: Applications will not be deleted. In this case, the first expression is recognised as `clear1234`, which is an invalid command.
-   Error message `Unknown command` will be displayed in the status message.
+Prerequisites: There is **at least 1** application present in sprINT.
+
+1. Test case 1: `clear` <br>
+   Expected: All applications in sprINT will be deleted. 
+2. Test case 2: `clear [keyword]`, where keyword can be any combination of characters. <br>
+   Expected: All applications in sprINT will be deleted. By default, only the first expression in the input is recognised
+as the command. In this case, it is `clear`.
+3. Test case 3: `clear1234`. <br>
+   Expected: Applications will not be deleted. In this case, the first expression is recognised as `clear1234`, which is an invalid command.
+Error message `Unknown command` will be displayed in the Command Result Box.
 
 
 ### Adding a task
-Prerequisites for test cases: there are at least 2 applications in the internship book, and the first 2 applications 
+Prerequisites: There are at least 2 applications in the internship book, and the first 2 applications 
 do not have a task. 
 
 1. Test case 1: `add-task 1 d/Interview by/31-03-2023` 
 
    Expected: A new task is added to the first application on the list. Details of the newly added task shown in the 
-   status message.
+   Command Result Box.
 
 2. Test case 2: `add-task 2`
 
    Expected: No task is added due to **Invalid Command Format**. The `Description` and `Deadline` prefixes and inputs
    are missing from the command. `Description` and `Deadline` are compulsory input parameters for the add task command. 
-   Error details shown in the status message. 
+   Error details shown in the Command Result Box. 
 
 3. Test case 3: `add-task 2 d/Online Assessment by/33-05-2023`
 
-   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the status message.
+   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the Command Result Box.
 
 ### Editing a task
-Prerequisites for test cases: there are at least 2 applications in the internship book, and the first 2 applications
+
+Prerequisites: There are at least 2 applications in the internship book, and the first 2 applications
 have an existing task. 
 
 1. Test case 1: `edit-task 1 by/Online Interview`
@@ -1273,21 +1269,21 @@ have an existing task.
 3. Test case 3: `edit-task 2 by/20042023`
 
    Expected: The task for the second application is not edited due to invalid date input (incorrect format). Error 
-   details shown in the status message.
+   details shown in the Command Result Box.
 
 ### Deleting a task
 
-Prerequisites for test cases: there are at least 2 applications in the internship book, the first application has
+Prerequisites: There are at least 2 applications in the internship book, the first application has
 an existing task and the second application does not have an existing task.
 
 1. Test case 1: `delete-task 1`
 
-   Expected: The task for the first application is deleted. Details of the deleted task shown in the status message.
+   Expected: The task for the first application is deleted. Details of the deleted task shown in the Command Result Box.
    Timestamp in the status bar is updated.
 
 2. Test case 2: `delete-task 2`
 
-   Expected: No task is deleted (no existing task). Error details shown in the status message. 
+   Expected: No task is deleted (no existing task). Error details shown in the Command Result Box. 
 
 3. Test case 3: `delete-task 0`
 
@@ -1296,7 +1292,7 @@ an existing task and the second application does not have an existing task.
 
 ### Undo
 
-Prerequisites for test cases: You must have made a command that is of type add/edit/delete app or tasks, or the clear command.
+Prerequisites: You must have made a command that is of type add/edit/delete app or tasks, or the clear command.
 
 1. Test case 1: `undo`
 
@@ -1308,7 +1304,7 @@ Prerequisites for test cases: You must have made a command that is of type add/e
 
 ### Redo
 
-Prerequisites for test cases: You must have called undo as the previous command.
+Prerequisites: You must have called undo as the previous command.
 
 1. Test case 1: `redo`
 
@@ -1319,18 +1315,16 @@ Prerequisites for test cases: You must have called undo as the previous command.
    Expected: The previous command that you undone has been redone. Note that this is because all inputs after the redo command is ignored.
 
 ### Exiting sprINT
-Before each test scenario, ensure that sprINT application is launched and opened on your device.
 
-1. Exiting sprINT
-    1. Prerequisites: sprINT's main window is launched and opened.
-   2. Test case: `exit` <br>
-      Expected: The sprINT application will close.
-   3. Test case: `exit [keyword]`, where keyword can be any combination of characters. <br>
-      Expected: The sprINT application will close. By default, only the first expression in the input is recognised as the command. In this case,
-   it is `exit`.
-   4. Test case: `exit1234`. <br>
-      Expected: sprINT application remains open. In this case, the first expression is recognised as `exit1234`, which is an invalid command.
-    Error message `Unknown command` will be displayed in the status message.
+Prerequisites: sprINT's main window is launched and opened.
+1. Test case 1: `exit` <br>
+   Expected: The sprINT application will close.
+2. Test case 2: `exit [keyword]`, where keyword can be any combination of characters. <br>
+   Expected: The sprINT application will close. By default, only the first expression in the input is recognised as the command. In this case,
+it is `exit`.
+3. Test case 3: `exit1234`. <br>
+   Expected: sprINT application remains open. In this case, the first expression is recognised as `exit1234`, which is an invalid command.
+ Error message `Unknown command` will be displayed in the Command Result Box.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -1354,10 +1348,10 @@ In the future, we plan to inform the user through the Command Result Box that th
 In the `execute` function of `SortCommand`, check for the size of the currently displayed application list. Craft an appropriate message
 as part of the `CommandResult` to inform the user that they have no applications with deadlines to display and sort.
 
-#### 2. Edit operations display misleading status message when edited values are the same as the original values 
+#### 2. Edit operations display misleading message when edited values are the same as the original values 
 
 At present, the application treats any edit made by the user to a task or application as a modification, **regardless of 
-whether the new value is identical to the original value**. As a result, the status message displayed after a user 
+whether the new value is identical to the original value**. As a result, the message displayed in the Command Result Box after a user 
 carries out such an operation suggests that the task or application was edited, even though the fields remain the same 
 in reality. While this does not affect the functionality of the commands themselves, it could potentially confuse 
 the user.
@@ -1390,7 +1384,7 @@ viewed by the user. This is illustrated in the screenshot below.
 
 ![LongRoleName.png](images/LongRoleName.png)
 
-While such role names of such length are uncommon, it is not impossible. 
+While role names of such length are uncommon, it is not impossible. 
 
 **Potential Enhancement and Suggested Implementation:** <br>
 In the future, we plan to have the role name wrap around (i.e. continue on a second line) if it goes beyond a certain
@@ -1434,9 +1428,9 @@ In the future, we plan to add an additional check when parsing the command that 
 the user has given a valid positive input for the index, and if not, it will throw an exception that will
 be returned to the user to state specifically that the index they input should be positive.
 
-#### 7. Help: 2 truncated commands in the Help Window
+#### 7. Undo command description appears truncated in Help Window
 
-Some users may experience truncated undo and redo commands in the Help Window, possibly due to different screen sizes 
+Some users may see a truncated undo command in the Help Window as seen in the screenshot below, possibly due to different screen sizes 
 and resolutions.
 
 ![img.png](images/HelpWindowTruncatedCommandError.png)
@@ -1446,21 +1440,21 @@ In the future, we plan to increase the commandColumn's `prefWidth` to `155`. Thi
 
 For now, users can move the bar beside `Command` on the first row to adjust the column's width if needed.
 
-#### 8. Find Command: Grammatical error when only 1 application is listed
+#### 8. Grammatical error in message returned by find command when only 1 application is listed
 
-When a user uses the find command and only 1 application is listed, display message `1 applications listed` is 
-shown and this is grammatically incorrect.
+When a user uses the find command and only 1 application is listed, the message that is displayed 
+(`1 applications listed`) is grammatically incorrect.
 
 **Potential Enhancement and Suggested Implementation:** <br>
-In the future, we can fix this grammatical error.
+In the future, we will rectify the grammatical error.
 
 #### 9. Duplicate application entries
 
-Currently, sprINT detects duplicate entries when all the fields: `Role`, `Company Name`,
- `Company Email`, `Tags` (if any) as well as `Application Task` (if any) are the same. This means that 
-an application with the same role, company name and company email can be added which is less than ideal.
+Currently, sprINT detects duplicate entries when the following fields - `Role`, `Company Name`,
+ `Company Email`, `Tags` (if any) as well as `Application Task` (if any) - are the same. This means that 
+an application with the same role, company name and company email can be added, which may not be ideal.
 
 **Potential Enhancement and Suggested Implementation:** <br>
 In the future, we plan to enhance sprINT to detect duplicate entries based on just `Role`, `Company Name` and 
 `Company Email`. Users will be told that the application already exists when they attempt to add an application that 
-matches an existing entry defined by these two criteria.
+matches an existing entry defined by these 3 criteria.
