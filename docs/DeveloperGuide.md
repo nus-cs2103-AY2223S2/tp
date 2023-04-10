@@ -294,7 +294,7 @@ However, a parent can only be deleted if no student is attached to that parent.
 7. If the student exists, PowerConnect will then check if the parent of the student to be deleted exists.
 8. If the parent exists, the student will be deleted and their parent will be updated.
 9. The result of the command execution is encapsulated as a `CommandResult` object which is returned to `Logic`.
-10. The user tries deleting the parent with `parent delete n/Bob pnP/91234567` again, PowerConnect carries out `step 5 & 6` just that it is now for parent instead of student.
+10. The user tries deleting the parent with `parent delete n/Bob pnP/91234567` again, PowerConnect carries out `step 5 & 6` similarly just that it is now for parent instead of student.
 11. If the parent exists, PowerConnect will then check that the parent to be deleted has no students attached before deleting the parent.
 12. Afterwards, PowerConnect will carry out `step 9` for `parent delete`.
 
