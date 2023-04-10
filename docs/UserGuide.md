@@ -33,8 +33,11 @@ This guide aims to quickly get you started in using and navigating FriendlyLink.
 We suggest reading this guide in sequential order to familiarise yourself with the keywords used in this guide in the 
 glossary and differently styled text which have special meanings.
 
-If you are already familiar with the following, you might want to go ahead to see the [Quick Start](#quick-start) guide, 
-[Features](#features) explained with examples, or [Fields](#fields) and their specification (such as email, phone numbers and addresses). 
+If you're a new user, head over to the [Quick Start](#quick-start) guide, [Features](#features) explained with examples, 
+or [Fields](#fields) and their specification (such as email, phone numbers and addresses) to learn more.
+
+If you're an experienced user, head over to [Command Summary](#command-summary) to quickly access the available commands.
+
 All terms used are summarised in the [Glossary](#glossary)
 
 ### Callouts 
@@ -788,5 +791,3 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |
 
 [Back to top](#table-of-contents)
-
--------------------------------------------

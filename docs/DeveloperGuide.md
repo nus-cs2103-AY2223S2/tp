@@ -1022,7 +1022,3 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
 | JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
 | Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |
-
-[Back to top](#table-of-contents)
-
--------------------------------------------
