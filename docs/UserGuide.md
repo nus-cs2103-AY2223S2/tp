@@ -169,7 +169,7 @@ In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` w
   </tr>
 </table>
 
-In Vim, pressing `h` moves you to the left, but in Vimification, pressing `l` would move you back to the task list(and hence clear out the right-side panel!).
+In Vim, pressing `h` moves you to the left, but in Vimification, pressing `h` would move you back to the task list (and hence clear out the right-side panel!).
 
 <table>
   <tr>
@@ -290,10 +290,6 @@ Bracketed items with `…`​ behind means that user can provide multiple parame
 
 - e.g. `:a <title> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101` and `:a "Do OP2 slides" -l cs2101 -l presentation` are both acceptable.
 
-Bracketed items with `|` inside means that user can provide one, and only one, of the options.
-
-- e.g. `:f [-a|-o] [-l <label>]...`, for example, `:f -a -l "Touhou 6" -l "Touhou 7"` and `:f -o -l "Touhou 6" -l "Touhou 7"` are both acceptable (but not `:f -a -o -l "Touhou 6" -l "Touhou 7"`).
-
 Parameters identified by flags can be in any order.
 
 - e.g. `:a "Do OP2 slides" -l cs2101 -p high`, `:a "Do OP2 slides" -p high -l cs2101` are both acceptable.
@@ -356,10 +352,14 @@ Format: `:a "<title>" [-d <deadline>] [-l <label>]... [-p <priority>]`
 | `-l` | `--label`        |
 | `-p` | `--priority`     |
 
-Example of command
+Example of command:
 
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
 2. `:a "Play Touhou Project" --priority 1`
+
+Note:
+
+- Duplicated label(s) provided as argument(s) will be discarded.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -380,17 +380,20 @@ Format: `:i <task_index> [-d <deadline>] [-l <label>]...`
 | `-d` | `--deadline`     |
 | `-l` | `--label`        |
 
-Example of command
+Example of command:
 
 1. `:i 3 -d 2023-04-5` inserts the deadline to task 3
 2. `:i 3 -l cs2103t` inserts the label "cs2103t" to task 3
 
-Condition
+Note:
 
 - At least one of the flags must be present.
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3, etc.
 - The index must not exceed the number of tasks in the displayed task list.
+- Duplicated label(s) provided as argument(s) will be discarded.
+- If you try to insert a deadline into a task that already has a deadline, the command will fail.
+- If you try to insert a label that already exists, the command will fail.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -404,11 +407,11 @@ Format: `:d <task_index>`
 | -------------- | ------------------------------------ | ---------- | ------------------------------------------------- |
 | `<task_index>` | Index of the task you want to delete | Yes        | `3` (assuming the task list has at least 3 tasks) |
 
-Example of command
+Example of command:
 
 1. `:d 3` deletes task 3
 
-Condition
+Note:
 
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3 etc.
@@ -432,17 +435,20 @@ Format: `:d <task_index> [-d] [-l <label>]...`
 | `-d` | `--deadline`     |
 | `-l` | `--label`        |
 
-Example of command
+Example of command:
 
 1. `:d 3 -d` deletes the deadline of task 3
 2. `:d 3 -l cs2103t` deletes the label "cs2103t" of task 3
 
-Condition
+Note:
 
 - At least one of the flags must be present. Otherwise, the command will be treated as deleting the task at index number.
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
+- Duplicated label(s) provided as argument(s) will be discarded.
+- If you try to delete the deadline of a task that has no deadline, the command will fail.
+- If you try to delete a non-existent label, the command will fail.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -469,7 +475,7 @@ Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <prior
 | `-s` | `--status`       |
 | `-p` | `--priority`     |
 
-Example of command
+Example of command:
 
 1. `:e 3 -t "quiz"` edits the title of task 3 to "quiz"
 2. `:e 3 -d 2023-04-05` edits the deadline of task 3 to 2023-04-05
@@ -477,12 +483,14 @@ Example of command
 4. `:e 3 -p 1` edits the priority of task 3 to "urgent"
 5. `:e 3 -l label1 label2` edits "label1" of task 3 to "label2"
 
-Condition
+Note:
 
 - At least one of the flags must be present.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
+- If you try to edit the deadline of a task that has no deadline, the command will fail.
+- If you try to edit a non-existent label, or edit an existing label into another existing label, the command will fail.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
@@ -490,7 +498,7 @@ Condition
 
 Filter by the parameters as specified by the flag.
 
-Format: `:f [-a|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`
+Format: `:f [-a] [-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`
 
 | Parameter    | Detail                                         | Example        |
 | ------------ | ---------------------------------------------- | -------------- |
@@ -502,6 +510,8 @@ Format: `:f [-a|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <stat
 
 | Flag       | Alternative form |
 | ---------- | ---------------- |
+| `-a`       | `--and`          |
+| `-o`       | `--or`           |
 | `-w`       | `--keyword`      |
 | `--before` | None             |
 | `--after`  | None             |
@@ -509,7 +519,7 @@ Format: `:f [-a|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <stat
 | `-s`       | `--status`       |
 | `-p`       | `--priority`     |
 
-Example of command
+Example of command:
 
 1. `:f -w "quiz"` filter for tasks with "quiz" as keyword
 2. `:f --before 2023-04-05` filter for tasks with deadline before 2023-04-05
@@ -518,9 +528,10 @@ Example of command
 5. `:f -a -l "label1" -l "label2"` filter for tasks contain "label1" and "label2"
 6. `:f -o -l "label1" -l "label2"` filter for tasks contain "label1" or "label2"
 
-Condition
+Note:
 
-- If flag `-a` and flag `-o` are not provided, only one flag should be present.
+- If both flag `-a` and flag `-o` are not provided, you can only use a single argument.
+- You cannot use flag `-a` and flag `-o` at the same time.
 - If flag `-a` is provided, the conditions are combined with **and** operator. If there is no other flag, all tasks will be selected.
 - If flag `-o` is provided, the conditions are combined with **or** operator. If there is no other flag, no task will be selected.
 
@@ -538,13 +549,13 @@ Format: `:s [-d] [-s] [-p]`
 | `-s` | `--status`       |
 | `-p` | `--priority`     |
 
-Example of command
+Example of command:
 
 1. `:s -s` sort for tasks by status
 2. `:s -d` sort for tasks by deadline
 3. `:s -p` sort for tasks by priority level
 
-Condition
+Note:
 
 - Only one flag should be present.
 
@@ -552,7 +563,7 @@ Condition
 
 ### Refreshing task list
 
-Refresh the task list, reverting it back to its original state by removing any filter or sort.
+Refresh the task list and revert it back to the original state by removing any filter or sort.
 
 Format: `:refresh`
 
@@ -630,7 +641,7 @@ If your changes to the data file makes its format invalid, Vimification will dis
 | Delete task          | `:d <task_index>`                                                                                              |
 | Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                                                                         |
 | Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...`   |
-| Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...` |
+| Filter               | `:f [-a] [-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...` |
 | Sort                 | `:s [-s] [-d] [-p]`                                                                                            |
 | Refresh              | `:refresh`                                                                                                     |
 | Undo                 | `:undo`                                                                                                        |

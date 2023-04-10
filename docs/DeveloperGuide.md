@@ -39,8 +39,14 @@ If you're interested in contributing to the Vimification project, this Developer
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a task](#deleting-a-task)
-  - [Saving data](#saving-data)
+  - [Adding](#adding)
+  - [Inserting](#inserting)
+  - [Deleting](#deleting)
+  - [Filtering](#filtering)
+  - [Sorting](#sorting)
+  - [Refresh](#refresh)
+  - [Help](#help)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 ---
 
@@ -569,47 +575,45 @@ Note that, the command classes do not interact directly with `TaskList`, but wit
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                   | I want to …​                                                                                          | So that I can…​                                                                                                                                                                                 |
-| -------- | ------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `* * *`  | SoC Student who knows Vim | use my task planner efficiently                                                                       | reduce time spent on managing my tasks and editing my task planner                                                                                                                              |
-| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to-do list                                                              | look at all the things I need to do at one glance                                                                                                                                               |
-| `* * *`  | SoC Student who knows Vim | quickly add new tasks that come to my mind                                                            | always keep track of all the tasks I need to do especially when many things come to my mind at the same time                                                                                    |
-| `* * *`  | SoC Student who knows Vim | keep track of the deadline of a task                                                                  | always finish my assignments and submissions before their due dates                                                                                                                             |
-| `* * *`  | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important                                  | filter/sort the tasks by their priorities later                                                                                                                                                 |
-| `* * *`  | SoC Student who knows Vim | add labels to a task                                                                                  | filter/sort the tasks by specifying the labels later                                                                                                                                            |
-| `* * *`  | SoC Student who knows Vim | mark a task as completed                                                                              | filter out the incompleted tasks from the completed ones later                                                                                                                                  |
-| `* * *`  | SoC Student who knows Vim | unmark a task as not yet completed                                                                    | change the status of the task back to be not yet completed if I last minute realise that it is still not done but I have previously marked it as completed                                      |
-| `* * *`  | SoC Student who knows Vim | insert labels to a task                                                                               | filter/sort the tasks by specifying the labels later                                                                                                                                            |
-| `* * *`  | SoC Student who knows Vim | insert deadline to a task                                                                             | keep track of the date that to complete the task                                                                                                                                                |
-| `* * *`  | SoC Student who knows Vim | edit priority to a task                                                                               | give higher priority to more important tasks which should be completed first                                                                                                                    |
-| `* * *`  | SoC Student who knows Vim | delete a task                                                                                         | remove the tasks that I no longer want them to exist in my task planner                                                                                                                         |
-| `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                                                          | delete the details if no longer needed                                                                                                                                                          |
-| `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords                                      | find all task with the same keyword                                                                                                                                                             |
-| `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level                                                 | view tasks with higher priority to complete them first                                                                                                                                          |
-| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specified list of labels                                                  | view all the tasks in the specified categories                                                                                                                                                  |
-| `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                                                           | view tasks to are not completed                                                                                                                                                                 |
-| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time                                        | view all tasks that need to be done before a certain date and time                                                                                                                              |
-| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time                                         | find all tasks that need to be done after a certain date and time                                                                                                                               |
-| `* *`    | SoC Student who knows Vim | filter for tasks by deadlines within a specified period of time (by specifying both before and after) | find all tasks that need to be done within that specified period of time while arranging my schedule, allowing me to finish them on time                                                        |
-| `* * *`  | SoC Student who knows Vim | edit and delete based on the filtered list                                                            | make changes to the list of task easily                                                                                                                                                         |
-| `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                                                      | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time                                         |
-| `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                                                          | see which are the more important tasks I should focus on completing first                                                                                                                       |
-| `* * *`  | New user                  | be able to access a briefer version of the user guide without the need to leave the app               | save the hassle of leaving and coming back to the app while referring to the user guide                                                                                                         |
-| `* * *`  | SoC Student who knows Vim | sort based on the filtered list                                                                       | sort only the tasks that are from a certain category                                                                                                                                            |
-| `* * *`  | SoC Student who knows Vim | edit and delete based on the sorted list                                                              | make changes to the list of task easily                                                                                                                                                         |
-| `* * *`  | SoC Student who knows Vim | refresh the task list                                                                                 | go to the original task after sorting or filter                                                                                                                                                 |
-| `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands                                       | use a short keyword instead of the full command for recurring tasks                                                                                                                             |
-| `* *`    | SoC Student who knows Vim | mark a task as "in progress"                                                                          | keep a mental note and come back to the task at a later time if I only halfway done with the task                                                                                               |
-| `* *`    | SoC Student who knows Vim | search for all tasks that are currently in progress                                                   | come back to these tasks and continue to work on them after I paused them previously                                                                                                            |
-| `* *`    | SoC Student who knows Vim | edit a task’s title, deadline and/or labels                                                           | change the details if added wrongly                                                                                                                                                             |
-| `* *`    | SoC Student who knows Vim | undo an action                                                                                        | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner                                                                                  |
-| `* *`    | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts                                | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way                                                                                      |
-| `* *`    | SoC Student who knows Vim | group the tasks together by their status                                                              | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
-| `* *`    | SoC Student who knows Vim | view tasks with different priorities using different indicating colors                                | notice the urgent/important tasks more easily                                                                                                                                                   |
-| `* *`    | SoC Student who knows Vim | configure the storage location of the file                                                            | customise the storage location to my own preference, allowing me to refer to it easily in future                                                                                                |
-| `*`      | SoC Student who knows Vim | delete all completed task                                                                             | remove the completed tasks that I no longer want to track                                                                                                                                       |
-| `*`      | SoC Student who knows Vim | add a task that recurs at a specified fixed itme interval                                             | save time as I do not need to repeatedly create the same tasks over and over again                                                                                                              |
-| `*`      | SoC Student who knows Vim | sort tasks lexicographically or alphabetically                                                        | find the tasks that I want to look for more quickly while scrolling through the list of tasks in alphabetical order                                                                             |
+| Priority | As a …​                   | I want to …​                                                                            | So that I can…​                                                                                                                                                                                 |
+| -------- | ------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `* * *`  | SoC Student who knows Vim | use my task planner efficiently                                                         | reduce time spent on managing my tasks and editing my task planner                                                                                                                              |
+| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to-do list                                                | look at all the things I need to do at one glance                                                                                                                                               |
+| `* * *`  | SoC Student who knows Vim | quickly add new tasks that come to my mind                                              | always keep track of all the tasks I need to do especially when many things come to my mind at the same time                                                                                    |
+| `* * *`  | SoC Student who knows Vim | keep track of the deadline of a task                                                    | always finish my assignments and submissions before their due dates                                                                                                                             |
+| `* * *`  | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important                    | filter/sort the tasks by their priorities later                                                                                                                                                 |
+| `* * *`  | SoC Student who knows Vim | add labels to a task                                                                    | filter/sort the tasks by specifying the labels later                                                                                                                                            |
+| `* * *`  | SoC Student who knows Vim | mark a task as completed                                                                | filter out the incompleted tasks from the completed ones later                                                                                                                                  |
+| `* * *`  | SoC Student who knows Vim | unmark a task as not yet completed                                                      | change the status of the task back to be not yet completed if I last minute realise that it is still not done but I have previously marked it as completed                                      |
+| `* * *`  | SoC Student who knows Vim | insert labels to a task                                                                 | filter/sort the tasks by specifying the labels later                                                                                                                                            |
+| `* * *`  | SoC Student who knows Vim | insert deadline to a task                                                               | keep track of the date that to complete the task                                                                                                                                                |
+| `* * *`  | SoC Student who knows Vim | edit priority to a task                                                                 | give higher priority to more important tasks which should be completed first                                                                                                                    |
+| `* * *`  | SoC Student who knows Vim | delete a task                                                                           | remove the tasks that I no longer want them to exist in my task planner                                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                                            | delete the details if no longer needed                                                                                                                                                          |
+| `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords                        | find all task with the same keyword                                                                                                                                                             |
+| `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level                                   | view tasks with higher priority to complete them first                                                                                                                                          |
+| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specific label                                              | view all the tasks in the specified categories                                                                                                                                                  |
+| `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                                             | view tasks to are not completed                                                                                                                                                                 |
+| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time                          | view all tasks that need to be done before a certain date and time                                                                                                                              |
+| `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time                           | find all tasks that need to be done after a certain date and time                                                                                                                               |
+| `* * *`  | SoC Student who knows Vim | edit and delete based on the filtered list                                              | make changes to the list of task easily                                                                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                                        | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time                                         |
+| `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                                            | see which are the more important tasks I should focus on completing first                                                                                                                       |
+| `* * *`  | New user                  | be able to access a briefer version of the user guide without the need to leave the app | save the hassle of leaving and coming back to the app while referring to the user guide                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | sort based on the filtered list                                                         | sort only the tasks that are from a certain category                                                                                                                                            |
+| `* * *`  | SoC Student who knows Vim | edit and delete based on the sorted list                                                | make changes to the list of task easily                                                                                                                                                         |
+| `* * *`  | SoC Student who knows Vim | refresh the task list                                                                   | go to the original task after sorting or filter                                                                                                                                                 |
+| `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands                         | use a short keyword instead of the full command for recurring tasks                                                                                                                             |
+| `* *`    | SoC Student who knows Vim | mark a task as "in progress"                                                            | keep a mental note and come back to the task at a later time if I only halfway done with the task                                                                                               |
+| `* *`    | SoC Student who knows Vim | edit a task’s title, deadline, labels and/or priority level                             | change the details if added wrongly                                                                                                                                                             |
+| `* *`    | SoC Student who knows Vim | undo an action                                                                          | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner                                                                                  |
+| `* *`    | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts                  | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way                                                                                      |
+| `* *`    | SoC Student who knows Vim | group the tasks together by their status                                                | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
+| `* *`    | SoC Student who knows Vim | view tasks with different priorities using different indicating colors                  | notice the urgent/important tasks more easily                                                                                                                                                   |
+| `* *`    | SoC Student who knows Vim | configure the storage location of the file                                              | customise the storage location to my own preference, allowing me to refer to it easily in future                                                                                                |
+| `*`      | SoC Student who knows Vim | delete all completed task                                                               | remove the completed tasks that I no longer want to track                                                                                                                                       |
+| `*`      | SoC Student who knows Vim | add a task that recurs at a specified fixed itme interval                               | save time as I do not need to repeatedly create the same tasks over and over again                                                                                                              |
+| `*`      | SoC Student who knows Vim | sort tasks lexicographically or alphabetically                                          | find the tasks that I want to look for more quickly while scrolling through the list of tasks in alphabetical order                                                                             |
 
 ### Use cases
 
@@ -713,8 +717,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 - 1d. The attribute does not exist.
-
-<<<<<<< HEAD
 
 - 1d1. Vimification shows an error message.
 
@@ -830,15 +832,11 @@ Use case ends.
 
   Use case ends.
 
-# <<<<<<< HEAD
-
-> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
-> > > > > > > **Use case 6: Filter for tasks based on certain conditions**
+**Use case 6: Filter for tasks based on certain conditions**
 
 **MSS**
 
 1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search.
-    <<<<<<< HEAD
 2.  Vimification converts the conditions into a predicate.
 3.  # Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
 4.  Vimification converts the conditions into a predicate.
@@ -910,10 +908,7 @@ Use case ends.
 
     Use case ends.
 
-# <<<<<<< HEAD
-
-> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
-> > > > > > > **Use case 8: Adds a macro command**
+**Use case 8: Adds a macro command**
 
 **MSS**
 
@@ -960,10 +955,7 @@ Use case ends.
 
     Use case ends.
 
-# <<<<<<< HEAD
-
-> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
-> > > > > > > **Use case 10: Refresh the task list**
+**Use case 10: Refresh the task list**
 
 **MSS**
 
@@ -1007,7 +999,6 @@ Use case ends.
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **GUI**: Graphical User Interface
-  <<<<<<< HEAD
 - # **UML** Unified Modeling Language
 - **UML**: Unified Modeling Language
 
@@ -1043,25 +1034,185 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a task
+### Adding
 
-1. Deleting a task while all of the tasks are being shown and there are multiple tasks.
+1. Adding a task with only title to the task list
+   1. Test case: `:a "quiz" `<br>
+      Expected: Task with "quiz" as the title added to the task list.
+   2. Test case: `:a "" `<br>
+      Expected: An error message will be displayed since title cannot be empty
+2. Adding a task with the title and deadline to the task list.
+   1. Test case: `:a "quiz" -d 2023-04-10 23:59`<br>
+      Expected: Task with "quiz" as the title and 10 April 2023, 23 hours 59 secs as the deadline added to the task list.
+   2. Test case: `:a "quiz" -d 2023-04-10`<br>
+      Expected: Task with name "quiz" and 10 April 2023, 00 hours 00 secs as the deadline added to the task list.
+   3. Test case: `:a "quiz" -d 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+   4. Other incorrect test cases: `:a "quiz" -d 2023 April 1`, `:a "quiz" -d ""`<br>
+      Excepted: An error message will be displayed since the deadline is invalid
+3. Adding a task with the title and status to the task list.
+   1. Test case: `:a "quiz" -s 0`<br>
+      Expected: Task with "quiz" as the title and not done as the status is added to the task list.
+   2. Test case: `:a "quiz" -s 1`<br>
+      Expected: Task with "quiz" as the title and in progress as the status is added to the task list.
+   3. Test case: `:a "quiz" -s 2 `<br>
+      Expected: Task with "quiz" as the title and completed as the status is added to the task list.
+   4. Other incorrect test cases: `:a "quiz" -s 3` or `:a "quiz" -s -1` or `:a "quiz" -s `<br>
+      Excepted: An error message will be displayed since the status cannot be empty and can only be 0, 1 or 2.
+4. Adding a task with the title and priority to the task list.
+   1. Test case: `:a "quiz" -p 0`<br>
+      Expected: Task with "quiz" as the title and unknown as the priority is added to the task list.
+   2. Test case: `:a "quiz" -p 1`<br>
+      Expected: Task with "quiz" as the title and very urgent as the priority is added to the task list.
+   3. Test case: `:a "quiz" -p 2 `<br>
+      Expected: Task with "quiz" as the title and urgent as the priority is added to the task list.
+   4. Test case: `:a "quiz" -p 3`<br>
+      Expected: Task with "quiz" as the title and not urgent as the priority is added to the task list.
+   5. Other incorrect test cases: `:a "quiz" -p 4` or `:a "quiz" -p -1` or `:a "quiz" -p `<br>
+      Excepted: An error message will be displayed since the priority cannot be empty and can only be 0, 1, 2 or 3.
 
+### Inserting
+
+1. Inserting deadline to a task
+   Prerequisites: there is only one task in the list.
+   1. Test case: `:i 1 -d 2023-04-10 23:59`<br>
+      Expected: Task at index 1 now has a new deadline of 10 April 2023, 23 hours 59 secs.
+   2. Test case: `:i 1 -d 2023-04-10`<br>
+      Expected: Task at index 1 now has a new deadline of 10 April 2023, 00 hours 00 secs.
+   3. Test case: `:i 0 -d 2023-04-10` or `:i 2 -d 2023-04-10`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+   4. Test case: `:i 1 -d 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+2. Inserting label to a task.
+   Prerequisites: there is only one task in the list with an existing label, "graded"
+   1. Test case: `:i 1 -l "cs2103t"`<br>
+      Expected: Task at index 1 now has a new label "cs2103t".
+   2. Test case: `:i 1 -l ""`<br>
+      Expected: An error message will be displayed since label cannot be empty
+   3. Test case: `:i 0 -l "cs2103t"` or `:i 2 -l "cs2103t"` <br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+   4. Test case: `:i 1 -l "graded"`<br>
+      Excepted: An error message will be displayed since there cannot be identical label for the same task.
+
+### Deleting
+
+1. Deleting the task
+   Prerequisites: there is only one task in the list.
    1. Test case: `:d 1`<br>
-      Expected: First task is deleted from the list.
+      Expected: Task at index 1 is now deleted.
+   2. Test case: `:d 0` or `:d 2`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+   3. Test case: `:d `<br>
+      Excepted: An error message will be displayed since index cannot be empty.
+2. Deleting the label to a task.
+   Prerequisites: there is only one task in the list with an existing label, "cs2103t"
+   1. Test case: `:d 1 -l "cs2103t"`<br>
+      Expected: Task at index 1 now has the "cs2103t" label removed.
+   2. Test case: `:d 1 -l "graded"`<br>
+      Expected: An error message will be displayed since there is no existing "graded" label
+   3. Test case: `:d 0 -l "cs2103t"` or `:d 2 -l "cs2103t"`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+3. Deleting the deadline to a task.
+   Prerequisites: there is only one task in the list with an existing deadline
+   1. Test case: `:d 1 -d`<br>
+      Expected: Task at index 1 now has its deadline removed.
+   2. Test case: `:d 0 -d` or `:d 2 -d`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
 
-   1. Test case: `d -1`<br>
-      Expected: No task is deleted. Error details shown at the bottom of the screen.
+### Filtering
 
-   1. Other incorrect delete commands to try: `:delete`, `:delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Filtering the task by keyword
+   1. Test case: `:f -w "quiz"`<br>
+      Expected: All the task with "quiz" as the keyword will be displayed
+   2. Test case: `:f -w ""` <br>
+      Excepted: An error message will be displayed since keyword cannot be empty
+2. Filtering the task by priority
+   1. Test case: `:f -p 0`<br>
+      Expected: All the task with "unknown" as the priority will be displayed
+   2. Test case: `:f -p 1`<br>
+      Expected: All the task with "very urgent" as the priority will be displayed
+   3. Test case: `:f -p 2`<br>
+      Expected: All the task with "urgent" as the priority will be displayed
+   4. Test case: `:f -p 3`<br>
+      Expected: All the task with "not urgent" as the priority will be displayed
+   5. Test case: `:f -p -1` or `:f -p 4` or `:f -p `<br>
+      Expected: An error message will be displayed since priority cannot be empty and can only be 0, 1, 2 or 3.
+3. Filtering the task by status
+   1. Test case: `:f -s 0`<br>
+      Expected: All the task with "not done" as the status will be displayed
+   2. Test case: `:f -s 1`<br>
+      Expected: All the task with "in progress" as the status will be displayed
+   3. Test case: `:f -s 2`<br>
+      Expected: All the task with "completed" as the tatus will be displayed
+   4. Test case: `:f -s -1` or `:f -s 3` or `:f -s `<br>
+      Expected: An error message will be displayed since status cannot be empty and can only be 0, 1, or 2.
+4. Filtering the task by label
+   1. Test case: `:f -l "cs2103t"`<br>
+      Expected: All the task with "cs2103t" as the label will be displayed
+   2. Test case: `:f -l ""`<br>
+      Expected: An error message will be displayed since label cannot be empty
+5. Filtering the task by date before
+   1. Test case: `:f --before 2023-04-10`<br>
+      Expected: All the task with "deadline" before 10 April 2023, 0 hours 0 secs will be displayed.
+   2. Test case: `:f --before 2023-04-10 23:59`<br>
+      Expected: All the task with "deadline" before 10 April 2023, 23 hours 59 secs will be displayed.
+   3. Test case: `:f --before 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+6. Filtering the task by date after
+   1. Test case: `:f --after 2023-04-10`<br>
+      Expected: All the task with "deadline" after 10 April 2023, 0 hours 0 secs will be displayed.
+   2. Test case: `:f --after 2023-04-10 23:59`<br>
+      Expected: All the task with "deadline" after 10 April 2023, 23 hours 59 secs will be displayed.
+   3. Test case: `:f --after 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
 
-1. _{ more test cases …​ }_
+### Sorting
 
-### Saving data
+1. Sort the task by priority
+   1. Test case: `:s -p`<br>
+      Expected: Task is now sorted according to priority.
+   2. Test case: `:s` <br>
+      Excepted: An error message will be displayed since no flag is specified.
+2. Sort the task by deadline
+   1. Test case: `:s -d`<br>
+      Expected: Task is now sorted according to deadline.
+   2. Test case: `:s` <br>
+      Excepted: An error message will be displayed since no flag is specified.
 
-1. Dealing with missing/corrupted data files
+### Refresh
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Refresh the tasklist
+   1. Test case: `:refresh`<br>
+      Expected: TaskList now has no filter and is sorted according to the time added to the task list.
+   2. Test case: `:refresh 123` <br>
+      Excepted: An error message will be displayed.
 
-1. _{ more test cases …​ }_
+### Help
+
+1. View the help manual
+   1. Test case: `:help`<br>
+      Expected: A help manual will be displayed.
+   2. Test case: `:help 123` <br>
+      Excepted: An error message will be displayed.
+
+## **Appendix: Planned Enhancements**
+
+1. The current error message is not very informative nor precise. We plan to fix this feature flaw by adding more details to the error message. For example, the error message will show the user the correct format of the command. This will allow the user to easily identify the problem and fix it.
+
+2. We plan to add new commands like the "clear all" and "clear completed" commands. These commands will allow the user to clear all the tasks or clear all the completed tasks in a single command, instead of having to delete each task one by one.
+
+3. We plan to add an "overdue" status to the tasks. This will allow the user to see all the tasks that are overdue in a single tab. Each time when the app is open on a new day, the "overdue" status will be updated accordingly by comparing the current date with the deadline of each task.
+
+4. We plan to have a multiple tabs instead of the current single tab. Each of these tabs corresponds to the different status of the tasks. For example, one tab will show all the tasks that are overdue, another tab will show all the tasks that are ongoing and another tab will show all the tasks that are completed.
+
+5. We plan to add a "reminder" feature to the app. This will allow the user to set a reminder for a task. The reminder will be displayed to the user when the app is open on the day that the reminder is set for.
+
+6. We plan to add scheduled tasks to the app. This means the task will have a start time and an end time. The user can set a task to be scheduled for a certain time period. For example, the user can set a task to be scheduled from 2pm to 4pm on 1st January 2016. The status of the task will be changed to "ongoing" when the current time is between the start time and the end time. The status of the task will be changed to "completed" when the current time is after the end time.
+
+7. We plan to add a feature that allows users to search for free time slots. This will allow the user to find a time slot that is free for a certain period of time. For example, the user can search for a time slot that is free for 2 hours and the app will then produce time slots that are free for 2 hours within next 7 days.
+
+8. We plan to add recurring tasks. This will allow the user to set a task to recur on a certain day of the week. For example, the user can set a task to recur every Monday. The task will be added to the task list every Monday. User can also set a task to recur at a fixed interval. For example, the user can set a task to recur every 2 days. The task will be added to the task list every 2 days.
+
+9. We plan to devise simpler and more intuitive command formats for the user. This will allow the user to use the app more efficiently by reducing the amount of typing required to execute a command. With more intuitive command formats, the user will also be able to remember the command formats more easily.
+
+10. Currently, the "insert" and "edit" commands seem to be very similar. We plan to devise a way to better structure & streamline these two commands so that the user can easily differentiate between them. With due consideration, we might even be able to merge these two commands into one command. Hopefully with this, the user will be able to remember the command formats more easily as they will be more intuitive.

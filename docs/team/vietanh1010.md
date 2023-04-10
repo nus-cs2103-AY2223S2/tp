@@ -47,7 +47,7 @@ Given below are my contributions to the project:
 
   - **Testing**
 
-    - Wrote test cases for the parsers and commands. Test coverage increased by roughly 40%.
+    - Wrote test cases for the parsers and commands. Test coverage increased by roughly 30%.
 
   - **Tooling**
     - Set up GitHub actions to be suitable for the team's workflow.
