@@ -161,23 +161,22 @@ There are various commands available in GoodMatch which will allow users to mana
 
 These commands will be discussed in the following sections.
 
-
 ---
 
 ## **Features**
 Here is a list of GoodMatch features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
 
-1.  [`help`](#viewing-help--help)
-2.  [`view`](#viewing-all-job-listings--view)
-3.  [`add`](#adding-a-job-listing--add)
-4.  [`edit`](#editing-a-job-listing--edit)
-5.  [`delete`](#deleting-a-job-listing--delete)
-6.  [`add_app`](#adding-an-applicant-to-listing--addapp)
-7.  [`edit_app`](#editing-an-applicant-of-a-listing--editapp)
-8.  [`del_app`](#deleting-an-applicant-from-a-listing--delapp)
-9.  [`find`](#locating-job-listings-by-title--find)
-10.  [`sort`](#sorting-job-listings--sort)
-11.  [`undo`](#undo-latest-command--undo)
+1.  [`help`](#viewing-help-help)
+2.  [`view`](#viewing-all-job-listings-view)
+3.  [`add`](#adding-a-job-listing-add)
+4.  [`edit`](#editing-a-job-listing-edit)
+5.  [`delete`](#deleting-a-job-listing-delete)
+6.  [`add_app`](#adding-an-applicant-to-listing-add_app)
+7.  [`edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+8.  [`del_app`](#deleting-an-applicant-from-a-listing-del_app)
+9.  [`find`](#locating-job-listings-by-title-find)
+10.  [`sort`](#sorting-job-listings-sort)
+11.  [`undo`](#undo-latest-command-undo)
 12.  [Saving data](#saving-the-data)
 13.  [Editing data file](#editing-the-data-file)
 
