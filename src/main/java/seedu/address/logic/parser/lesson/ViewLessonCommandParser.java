@@ -65,10 +65,6 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ViewLessonCommand.MESSAGE_USAGE));
                 }
-                int spaceIndex = name.indexOf(" ");
-                //                if (spaceIndex != -1) {
-                //                    name = name.substring(0, spaceIndex);
-                //                }
                 nameKeywords.set(i, name);
             }
             nameList = nameKeywords;
@@ -110,6 +106,6 @@ public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof ViewLessonCommandParser // instanceof handles nulls
-            && this.equals((ViewLessonCommandParser) other)); // state check
+            && this.equals(other)); // state check
     }
 }

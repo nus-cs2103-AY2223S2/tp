@@ -67,10 +67,6 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
                     CreateLessonCommand.MESSAGE_USAGE));
             }
             name = name.trim();
-            //            int spaceIndex = name.indexOf(" ");
-            //            if (spaceIndex != -1) {
-            //                name = name.substring(0, spaceIndex);
-            //            }
             nameKeywords.set(i, name);
         }
         names = nameKeywords;
