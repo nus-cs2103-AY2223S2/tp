@@ -217,12 +217,13 @@ and reads them back into corresponding objects. It inherits from both `AddressBo
 means it can be treated as either (if the functionality of only one is needed). It depends on some classes in the 
 `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to `OfficeConnectModel`).
 
-<div style="page-break-after: always;"></div>
 ### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 3. Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
