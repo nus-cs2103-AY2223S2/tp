@@ -15,6 +15,7 @@ title: Developer Guide
   - [Add remark feature](#add-remark-feature)
   - [Show opening details feature](#show-opening-details-feature)
   - [Upcoming keydates feature](#upcoming-keydates-feature)
+      - [Design considerations:](#design-considerations)
   - [Status filtering feature](#status-filtering-feature)
     - [Design considerations:](#design-considerations)
 - [**Appendix: Requirements**](#appendix-requirements)
@@ -242,7 +243,26 @@ A simplified sequence was employed for mouse clicks. The `OpeningListPanel` clas
 
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
+Implementation
 
+The `upcoming` feature takes in a positive integer as the argument. This integer represents the number of days to consider, excluding today. The feature will filter openings based on whether their keydate falls between today and the specified number of days in the future, including today. It also filters out openings without any keydates.
+
+Given below is an example usage scenario and ow the upcoming feature's mechanisms behaves in steps.
+
+Step 1. The user launches the application with pre-existing openings added, each with certain keydates, such as `Interview: 2023-10-10`. The user decides to only want to focus on openings that has key events coming up in the next 5 days. The user executes `upcoming 5` to filter the openings to only show openings with keydates within 5 days.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the execution, the list will not be updated and remain unchanged.
+</div>
+
+The following sequence diagram shows how the status operation works:
+
+![UI Interaction for the `upcoming 5` Command](images/UpcomingSequenceDiagram.png)
+
+Step 2. The `UltronParser` class parses the user input of `upcoming 5` and returns a `UpcomingCommand` object with a `OpeningsBeforeDaysPredicate` representing the `5` portion of the input.
+
+Step 3. The `LogicManager` then calls the `execute()` of the `UpcomingCommand` object, which accesses the `Model` component to update the current list of openings to be displayed. This new list will be filtered based on the `OpeningsBeforeDaysPredicate`, checking through the full list of openings for openings within `5` days.
+
+Step 4. The `MainWindow` class receives the `CommandResult` object and the new filtered list is displayed for the user.
 
 #### Design considerations:
 
