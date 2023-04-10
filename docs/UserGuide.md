@@ -33,7 +33,9 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
   - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
   - [Sorting job listings: `sort`](#sorting-job-listings-sort)
   - [Undo latest command: `undo`](#undo-latest-command-undo)
-  - 
+  - [Exit the application: `exit`](#exit-the-application-exit)
+  - [Saving data](#saving-the-data)
+  - [Editing data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -178,8 +180,9 @@ Here is a list of GoodMatch features, click on them to jump to the section! Each
 9.  [`find`](#locating-job-listings-by-title-find)
 10.  [`sort`](#sorting-job-listings-sort)
 11.  [`undo`](#undo-latest-command-undo)
-12.  [Saving data](#saving-the-data)
-13.  [Editing data file](#editing-the-data-file)
+12.  [`exit`](#exit-the-application-exit)
+13.  [Saving data](#saving-the-data)
+14.  [Editing data file](#editing-the-data-file)
 
 
 <div markdown="block" class="alert alert-info">
