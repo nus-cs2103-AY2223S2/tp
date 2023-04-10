@@ -30,7 +30,7 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/10000` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/10000` : Adds a contact named `John Doe` to the E-Lister.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -87,7 +87,7 @@ Format: `help`
 
 #### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to E-Lister.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME [t/TAG] [t/MORE_TAGS]…​`
 
@@ -106,16 +106,16 @@ Examples:
 
 #### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the E-Lister.
 
 Format: `list`
 
 ![list](images/listExample.png)
 
-*Why do we need this command?* This is mostly used to refresh the whole list of contacts storing in the app so far after you use **filter** command *(see later)*.
+*Why do we need this command?* This is mostly used to refresh the whole list of contacts stored in the app so far after you use **filter** command *(see later)*.
 #### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the E-Lister.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [t/MORE_TAGS]…​`
 
@@ -152,7 +152,7 @@ Examples:
 
 #### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from E-Lister.
 
 Format: `delete INDEX`
 
@@ -161,20 +161,20 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in E-Lister.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete 6` will deletes the 6th person in the address book (which is Betsy Crowe in this example).![delete example](images/deleteExample.png)
+* `delete 6` will delete the 6th person in E-Lister (which is Betsy Crowe in this example).![delete example](images/deleteExample.png)
 
 #### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from E-Lister.
 
 Format: `clear`
 
 ### Tag
 #### Adding a tag : `tag`
 
-Adds a tag to any given person stored in the address book.
+Adds a tag to any given person stored in E-Lister.
 
 Format: `tag INDEX [tagName]`
 
@@ -337,12 +337,12 @@ Format: `import [combine|reset]`
 
 Opens a file chooser to select a directory where you can save the data to a CSV file.
 
-If you wish to export to a new file, you may type its intended name in the **File Name** box and click **Save**. This will create the new CSV file with the exported data. Otherwise, you can select an existing CSV file to overwrite.
+If you wish to export to a new file, you may type its intended name in the **File Name** box and click **Save**. This will create a new CSV file with the exported data. Otherwise, you can select an existing CSV file to overwrite.
 
 Format: `export [shown|all]`
 
 * If `shown` is entered, only the current _selection_ of persons will be exported.
-* If `all` is entered, all persons will be exported, including those which are not displayed due to filters.
+* If `all` is entered, all persons will be exported, including those who are not displayed due to filters.
 * If neither keyword is entered, the behaviour will be the same as `shown`.
 
 ![export example](images/exportExample.png)
@@ -350,7 +350,7 @@ Format: `export [shown|all]`
 ### Input Log
 On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
 
-*Why do we need this?* Keeping a record of all commands executed in a contacts managing app is important for several reasons.
+*Why do we need this?* Keeping a record of all commands executed in contacts managing app is important for several reasons.
 - It provides a historical log of all actions taken by the insurance agent, which can be useful in case of any disputes or discrepancies that may arise in the future.
 - It allows the agent to keep track of their progress and performance, providing a clear overview of where they are in the workflow at any given time. This can be especially helpful when managing a large number of customers and tasks simultaneously, as it can be easy to lose track of what has been done and what still needs to be done
 - Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
@@ -359,7 +359,7 @@ On the right side of the application, an Input Log section is available & displa
 ### Applying Filters Display
 Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
 
-*Why do we need this?* The reasoning is pretty the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
+*Why do we need this?* The reasoning is pretty much the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
 
 
 ## Exiting the program : `exit`
@@ -370,14 +370,14 @@ Format: `exit`
 
 ### Saving the data
 
-E-Lister data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+E-Lister data is saved on the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
 E-Lister data is saved as a JSON file `[JAR file location]/data/elister.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
 
 ![applying filters display](images/filtersDisplay.png)
@@ -390,7 +390,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous E-Lister home folder.
+**A**: Install the app on the another computer and overwrite the empty data file it creates with the file that contains the data of your previous E-Lister home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
