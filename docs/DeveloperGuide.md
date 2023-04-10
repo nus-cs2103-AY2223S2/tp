@@ -258,16 +258,16 @@ The following diagram summarises how the activities unfold after the user types 
 #### 3.1.1 Design Consideration
 
 #### Option 1 (current choice):
-* Currently, the user can add multiple tasks with different names but same other fields in the task command.
+* Currently, the user can add multiple tasks with different names but other fields being the same in the task command.
 * pros: This approach helps user simplify the addition of repetitive tasks, such as lab assignments but for different subjects.In this situation, the user could just enter `n/CS2106 n/CS2109S d/labs`.
-* cons: For events and deadlines, this feature is not that useful because there will rarely any situation where two events share the same start and end time.
+* cons: For events and deadlines, this feature is not that useful because there be will rarely any situation where two events share the same start and end time.
 
 Option 1 is chosen as it allows user to still add events and deadlines that happen to be at the same time but with different names.
 
 #### Option 2:
 * We do not allow the addition of multiple deadlines and events in the same command line.
-* pros: This is more realistic to real-life situation where two deadlines are unlikely to be on the exact same time and two events occur at the same time.
-* cons: While few, there are still situations where two events can happen at the same time, such as doing some discussion during a tutorial. In this case, group discussion and tutorial can be added as two events with same duration.
+* pros: This is more realistic to real-life situation where two deadlines are unlikely to be at the exact same time and two events occur at the same time.
+* cons: While few, there are still situations where two events can happen at the same time, such as doing some discussion during a tutorial. In this case, group discussion and tutorial can be added as two events happening at the same time.
 
 
 #### 3.1.2 Add a Subsection
@@ -298,15 +298,15 @@ The following diagram summarises how the activities unfold after the user types 
 #### 3.1.3 Design Consideration
 
 #### Option 1 (current choice):
-* The user can now only add name as subsection into the main tasks.
-* pros: This approach makes subsection very easy to add, in fact, online applications such as Microsoft Todo uses the same approach in adding subsection.
-* cons: User cannot add effort level to the task, and subsections also cannot take the type of deadlines and events. This limits the functionality of subsections. We plan to address this and our enhancements section attempt to address this problem. 
+* The user can now only add name and descriptions in the subsection.
+* pros: This approach makes subsection very easy to add, in fact, online applications such as Microsoft Todo uses the same approach in adding subsections.
+* cons: User cannot add effort level to the task, and subsections also cannot take the type of deadlines and events. This limits the functionality of subsections. We plan to address this and our enhancements section explains more.
 
-Option 1 is chosen for now as it aligns with the main purpose of subsection which is to give users a general breakdown of tasks.
+Option 1 is chosen for now as it aligns with the main purpose of adding subsections which is to give users a general breakdown of tasks.
 
 #### Option 2:
 * Allow the user to add deadlines and events in the subsection, as well as effort levels.
-* pros: This approach allows user to have a clearer plan of doing a huge task, by setting small deadlines and events in the subsections. 
+* pros: This approach allows user to have a clearer plan of doing a huge task, by creating deadlines and events in the subsections. 
 * cons: This makes the subsection unwieldy to add, and it is harder to develop as well. 
 
 #### 3.1.4 Delete a Subsection
@@ -427,7 +427,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### 3.4.1 Design Consideration
 
 #### Option 1 (current choice): 
-* Edit can only edit a single task at a time.
+* Users can only edit a single task at a time.
 * Pros: Easy to develop.
 * Cons: It takes more time to edit multiple tasks if they happen to need the same change, e.g. events are postponed to the same date.
 
