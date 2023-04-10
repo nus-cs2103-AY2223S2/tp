@@ -744,7 +744,7 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
     </li>
     <li>
       <code>delete lecture 1, lecture 2 /mod ST2334</code><br/>
-      deletes "lecture 1" and "lecture 2" lectures found in module "ST2334"</code>
+      deletes "lecture 1" and "lecture 2" lectures found in module "ST2334"
     </li>
   </ul>
 </details>
@@ -768,7 +768,7 @@ Deletes the specified video(s) and all its embodied content from the same specif
   <ul>
     <li>
       <code>delete video 3 /mod CS2040 /lec lecture 1</code><br/>
-      deletes <code>video 3</code> from lecture <code>lecture 1</code> of module `CS2040`
+      deletes "video 3" from lecture "lecture 1" of module "CS2040"
     </li>
     <li>
       <code>delete video 1, video 3 /mod CS2040 /lec lecture 1</code><br/>
@@ -807,13 +807,13 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
   <summary>Examples:</summary>
   <ul>
     <li><code>mark Vid 1 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 1` in `Week 1` lecture of `CS2040` module as watched</li>
+    marks "Vid 1" in "Week 1" lecture of "CS2040" module as watched</li>
     <li><code>mark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 1` and `Vid 2` in lecture of `Week 1` of `CS2040` module as watched</li>
+    marks "Vid 1" and "Vid 2" in lecture of "Week 1" of "CS2040" module as watched</li>
     <li><code>unmark Vid 2 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 2` in lecture `Week 1` of module `CS2040` as unwatched</li>
+    marks "Vid 2" in lecture "Week 1" of module "CS2040" as unwatched</li>
     <li><code>unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 1` and `Vid 2` in lecture `Week 1` of `CS2040` module as unwatched</li>
+    marks "Vid 1" and "Vid 2" in lecture "Week 1" of "CS2040" module as unwatched</li>
   </ul>
 </details>
 
