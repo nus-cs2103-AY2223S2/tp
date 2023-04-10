@@ -11,8 +11,9 @@ title: MediMate's Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/)
-* Reused code from [`AY2223S1-CS2103T-T17-1`](https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui) for UI design
+* Reused code from [`AY2223S1-CS2103T-T17-1`](https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui) for UI design 
 * Reused code from [`AY2223S1-CS2103T-W11-3`](https://github.com/AY2223S1-CS2103T-W11-3/tp) for UI design
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -172,7 +173,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 1.Making appointment
+### 1. Making appointment
 This feature servers as one of the core features of Medimate, so how is it implemented?
 
 This feature is achieved by the following classes:
@@ -208,7 +209,6 @@ and refresh the whole patient list with new appointment added.
 ### 2. Uploading Medical file for a Patient
 This feature servers as one of the core features of Medimate, so how is it implemented?
 
-#### Note:
 * There are two ways to upload medical files for a patient within the application. 
 * Users can either utilize a command (similar to 1.Marking Appointment using UploadFileCommand) or click the `upload button` in the user interface.
 * Medical files should be in PDF, JPG, or PNG format, and can contain additional information about the patient, such as medical history, test results, or treatment plans.
@@ -230,8 +230,8 @@ Initially when user click the `upload button`, FileManger is initialised with th
 <img src="images/uploadFile.png" width="600" />
 
 ### 3. Create medical certificate PDF file
+This feature servers as one of the core features of Medimate, so how is it implemented?
 
-#### Note:
 * There are two ways to create medical certificate for a patient within the application.
   Users can either utilize a command (similar to 1.Marking Appointment using CreateCommand ) or click the `create button` in the user interface.
 * PDF file generated will be a copy of [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
@@ -604,6 +604,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Patient**: A person who is receiving medical treatment from a doctor or other healthcare professional.
 * **Medical certificate**: A legal document issued by a doctor that certifies a patient's medical condition or ability to perform certain tasks.
 * **NRIC**: National Registration Identity Card, an identification document issued to citizens and permanent residents of Singapore.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -621,38 +622,41 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file 
+      * Expected: Shows the GUI with a set of sample contacts. 
+      * The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Resize the window to an optimum size. 
+   2. Move the window to a different location. 
+   3. Close the window.
+   4. Re-launch the app by double-clicking the jar file.<br>
+      * Expected: The most recent window size and location is retained.
 
 ### Adding a patient
 
-1. Adding a patient while all patients are being shown
+1. Adding a new patient's while all existing patients are shown
 
-   1. Prerequisites: List all patients using the list command. Multiple recipes in the list.
+   1. Prerequisites: List all patients using the list command.
 
    2. Test case: add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
-      Expected: John Doe is added into the list. Success message shown in the result display.
+      Expected: John Doe is added into the list. Result Display shows a success message.
 
    3. Test case: add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ag/20 n/Flu nric/S9524050Y t/friend t/colleague
-      Expected: James Ho is added. Success message shown in the result display.
+      Expected: James Ho is added. Result Display shows a success message.
    
    4. Test case: add n/James Lu p/22224444 e/example.com a/123, Clementi Rd, 1234665 ag/20 n/Flu nric/S9524050Y t/friend t/colleague
-      Expected: No patient is added. Error message shown in the result display indicating wrong email format.
+      Expected: No patient is added. Error message of wrong email format is shown on the result display.
    
 ### Editing a patient
 
-1. Editing a recipe while all recipes are being shown
+1. Editing a patient's while all patients are shown
 
-   1. Prerequisites: List all patients using the list command. Multiple patients in the list.
+   1. Prerequisites: List all patients using the list command.
 
    2. Test case: edit 1 n/James Lee e/jameslee@example.com 
-      Expected: The name of the first patient is changed to James Lee and its email changed to jameslee@example.com. Success message shown in the result display.
+      Expected: The name of the first patient and email is changed to James Lee and jameslee@example.com respectively. Result display shows a success message.
    
    3. Test case: edit 1 Expected: The first patient remains the same. Error message shown in the result display.
     

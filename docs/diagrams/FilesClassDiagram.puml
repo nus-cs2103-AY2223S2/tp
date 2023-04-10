@@ -23,17 +23,17 @@ PdfGenerator .up.|> FileGenerator
 ImageReader .up.|> FileReader
 FileManager .up.|> Files
 
-FileManager -down-> FileReaderManager : 1
-FileManager -down-> PdfGenerator : 1
-FileManager -down-> FileStorage : 1
-FileReaderManager -down-> PdfReader : 1
-FileReaderManager -down-> ImageReader : 1
+FileManager -down-> FileReaderManager
+FileManager -down-> PdfGenerator
+FileManager -down-> FileStorage
+FileReaderManager -down-> PdfReader
+FileReaderManager -down-> ImageReader
 
 package UI {
 Class HiddenModel #FFFFFF
 }
 
-PdfReader --> UI : 1
-ImageReader --> UI : 1
+PdfReader --> UI
+ImageReader --> UI
 
 @enduml
