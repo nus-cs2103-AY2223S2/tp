@@ -1,9 +1,12 @@
 package seedu.task.storage;
 
 
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
@@ -20,6 +23,7 @@ public class JsonAdaptedSubtask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedSubtask.class);
     private final String name;
     private final String description;
 
@@ -73,11 +77,13 @@ public class JsonAdaptedSubtask {
 
         if (description == null
             || hasDescription.equals("null")) {
+            logger.info("Null value in description");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
         }
         if (Boolean.parseBoolean(hasDescription)
             && !Description.isValidDescription(description)) {
+            logger.info("Invalid value in description");
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription;
