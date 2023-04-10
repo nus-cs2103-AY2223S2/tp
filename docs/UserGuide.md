@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 <p align="center">
-  <img src="../src/main/resources/images/Wingman.png" />
+<img src="images/Wingman.png" width="2032">
 </p>
 
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
