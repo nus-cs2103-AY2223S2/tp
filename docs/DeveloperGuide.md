@@ -2753,7 +2753,7 @@ Command: `add Vid 3 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags An
 Output:
 
 ```
-`New video added to lecture Week 1 of module CS2040S: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]`
+New video added to lecture Week 1 of module CS2040S: Vid 3; Watched; Timestamp: 01:04:20; Tags: [Big][Analysis]
 ```
 
 4. The following is a sample command for editing a module and it's output message upon success:\
@@ -2782,7 +2782,7 @@ Edited video of lecture Week 1 of module CS2040S: Vid 01; Not Watched; Timestamp
 
 **Proposed Solution:**
 
-We plan on changing the output message to be more user friendly and to make better use of the vertical space of result display window.
+We plan on changing the output message to be more user friendly and to make better use of the vertical space of the result display window.
 
 Given the above 6 examples, their respective redesigned output will be as such:
 
