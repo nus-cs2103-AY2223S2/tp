@@ -9,7 +9,8 @@
     "schedule" : "friday",
     "startTime" : "08:30",
     "endTime" : "10:30",
-    "tagged": [ "friends" ]
+    "tagged" : [ "GoodEffort" ],
+    "lessons" : ["Meet Tutor"]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -19,6 +20,8 @@
     "schedule" : "friday",
     "startTime" : "08:30",
     "endTime" : "10:30",
-    "remark" : ""
+    "remark" : "",
+    "tagged" : [ "GoodEffort" ],
+    "lessons" : ["Meet Tutor"]
   } ]
 }

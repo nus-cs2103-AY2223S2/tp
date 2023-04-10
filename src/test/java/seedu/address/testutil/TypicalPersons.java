@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_EFFORT;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUICK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -16,8 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +26,8 @@ import java.util.List;
 
 import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Lesson;
 
 /**
  * A utility class containing a list of {@code Tutee} objects EndTime be used in tests.
@@ -34,34 +37,34 @@ public class TypicalPersons {
     public static final Tutee ALICE = new TuteeTestBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withSubject("Math").withSchedule("friday").withRemark("")
-            .withStartTime("10:30").withEndTime("12:30").withTags("friends").build();
+            .withStartTime("10:30").withEndTime("12:30").withTags("GoodEffort").withAttendance(new Attendance()).withLesson(new Lesson()).build();
     public static final Tutee BENSON = new TuteeTestBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
+            .withAddress("311, Clementi Ave 2, #02-25").withRemark("")
             .withEmail("johnd@example.com").withPhone("98765432").withSubject("Math").withSchedule("friday")
-            .withStartTime("12:30").withEndTime("14:30").withTags("owesMoney", "friends").build();
+            .withStartTime("12:30").withEndTime("14:30").withTags("GoodEffort").withAttendance(new Attendance()).withLesson(new Lesson()).build();
     public static final Tutee CARL = new TuteeTestBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withSubject("Math").withSchedule("friday")
-            .withStartTime("14:30").withEndTime("16:30").build();
+            .withEmail("heinz@example.com").withAddress("wall street").withSubject("Math").withSchedule("friday").withRemark("")
+            .withStartTime("14:30").withEndTime("16:30").withAttendance(new Attendance()).withLesson(new Lesson()).build();
     public static final Tutee DANIEL = new TuteeTestBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street")
-            .withStartTime("16:30").withEndTime("18:30").withTags("friends").build();
-    public static final Tutee ELLE = new TuteeTestBuilder().withName("Elle Meyer").withPhone("9482224")
+            .withEmail("cornelia@example.com").withAddress("10th street").withRemark("").withSubject("Math").withSchedule("friday")
+            .withStartTime("16:30").withEndTime("18:30").withTags("GoodEffort").withAttendance(new Attendance()).withLesson(new Lesson()).build();
+    public static final Tutee ELLE = new TuteeTestBuilder().withName("Elle Meyer").withPhone("9482224").withRemark("")
             .withEmail("werner@example.com").withAddress("michegan ave").withSubject("Math").withSchedule("friday")
-            .withStartTime("18:30").withEndTime("20:30").build();
-    public static final Tutee FIONA = new TuteeTestBuilder().withName("Fiona Kunz").withPhone("9482427")
+            .withStartTime("18:30").withEndTime("20:30").withAttendance(new Attendance()).withLesson(new Lesson()).build();
+    public static final Tutee FIONA = new TuteeTestBuilder().withName("Fiona Kunz").withPhone("9482427").withRemark("")
             .withEmail("lydia@example.com").withAddress("little tokyo").withSubject("Math").withSchedule("friday")
-            .withStartTime("20:30").withEndTime("22:30").build();
-    public static final Tutee GEORGE = new TuteeTestBuilder().withName("George Best").withPhone("9482442")
+            .withStartTime("20:30").withEndTime("22:30").withAttendance(new Attendance()).withLesson(new Lesson()).build();
+    public static final Tutee GEORGE = new TuteeTestBuilder().withName("George Best").withPhone("9482442").withRemark("")
             .withEmail("anna@example.com").withAddress("4th street").withSubject("Math").withSchedule("friday")
-            .withStartTime("08:30").withEndTime("10:30").build();
+            .withStartTime("08:30").withEndTime("10:30").withAttendance(new Attendance()).withLesson(new Lesson()).build();
 
     // Manually added
-    public static final Tutee HOON = new TuteeTestBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Tutee HOON = new TuteeTestBuilder().withName("Hoon Meier").withPhone("8482424").withRemark("")
             .withEmail("stefan@example.com").withAddress("little india").withSubject("Math").withSchedule("friday")
-            .withStartTime("15:30").withEndTime("16:30").build();
-    public static final Tutee IDA = new TuteeTestBuilder().withName("Ida Mueller").withPhone("8482131")
+            .withStartTime("15:30").withEndTime("16:30").withAttendance(new Attendance()).withLesson(new Lesson()).build();
+    public static final Tutee IDA = new TuteeTestBuilder().withName("Ida Mueller").withPhone("8482131").withRemark("")
             .withEmail("hans@example.com").withAddress("chicago ave").withSubject("Math").withSchedule("friday")
-            .withStartTime("10:00").withEndTime("12:00").build();
+            .withStartTime("10:00").withEndTime("12:00").withAttendance(new Attendance()).withLesson(new Lesson()).build();
 
     // Manually added - Tutee's details found in {@code CommandTestUtil}
     public static final Tutee AMY = new TuteeTestBuilder()
@@ -74,7 +77,8 @@ public class TypicalPersons {
         .withSchedule(VALID_SCHEDULE_AMY)
         .withStartTime(VALID_STARTTIME_AMY)
         .withEndTime(VALID_ENDTIME_AMY)
-        .withTags(VALID_TAG_FRIEND)
+        .withTags(TAG_DESC_EFFORT)
+
         .build();
 
     public static final Tutee BOB = new TuteeTestBuilder()
@@ -86,7 +90,7 @@ public class TypicalPersons {
         .withSchedule(VALID_SCHEDULE_BOB)
         .withStartTime(VALID_STARTTIME_BOB)
         .withEndTime(VALID_ENDTIME_BOB)
-        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .withTags(TAG_DESC_EFFORT, TAG_DESC_QUICK)
         .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
