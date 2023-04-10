@@ -176,6 +176,7 @@ public class ModelManager implements Model {
         if (doctor.isSameDoctor(editedDoctor)) {
             displayedPerson = editedDoctor;
         }
+        //todo fix update display
     }
 
     @Override
@@ -186,6 +187,7 @@ public class ModelManager implements Model {
         if (patient.isSamePatient(editedPatient)) {
             displayedPerson = editedPatient;
         }
+        //todo fix update display
     }
 
     //=========== Filtered Person List Accessors =============================================================

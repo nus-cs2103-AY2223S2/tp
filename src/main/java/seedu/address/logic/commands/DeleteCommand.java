@@ -46,17 +46,15 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> personsToDelete = model.getFilteredPersonList();
 
-        if (personsToDelete.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
-        } else {
-            int index = 0;
-            for (int i = 0; i < personsToDelete.size(); i++) {
-                if (personsToDelete.get(i).getNric().equals(nric)) {
-                    index = i;
-                    break;
-                }
-            }
-            if (personsToDelete.get(index).getNric().equals(this.nric)) {
+        checkIfPersonFound(personsToDelete);
+
+        int index = retrievePersonToDeleteIndex(personsToDelete);
+        CommandResult commandResult = handleDeleteAppmts(model, personsToDelete, index);
+        return commandResult;
+    }
+
+    private CommandResult handleDeleteAppmts(Model model, List<Person> personsToDelete, int index) throws CommandException {
+        if (personsToDelete.get(index).getNric().equals(this.nric)) {
                 Person deletedPerson = personsToDelete.get(index);
 
                 if (deletedPerson.isPatient()) {
@@ -91,8 +89,23 @@ public class DeleteCommand extends Command {
             } else {
                 throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
             }
-        }
+    }
 
+    private int retrievePersonToDeleteIndex(List<Person> personsToDelete) {
+        int index = 0;
+        for (int i = 0; i < personsToDelete.size(); i++) {
+            if (personsToDelete.get(i).getNric().equals(nric)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    private static void checkIfPersonFound(List<Person> personsToDelete) throws CommandException {
+        if (personsToDelete.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+        }
     }
 
     @Override
