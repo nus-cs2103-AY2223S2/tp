@@ -116,7 +116,6 @@ The following table provides clarification of the terms commonly used in TutorPr
 |     **Exam**     | An `Exam` that a Student is scheduled to sit for                                                                                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## GUI
 When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**.
@@ -135,6 +134,8 @@ You may enter the following commands in the Command Box to see how the Display L
 * `delete 1` deletes the student with index 1.
 
 You may also click the quick access buttons one each student card to see how the Detailed Information Section changes.
+
+<div style="page-break-after: always;"></div>
 
 ### Quick Access Buttons and Detailed Information Section
 Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section.
@@ -192,6 +193,8 @@ If you want to see the index of the exams in the list,
 you can use the `view-exams` command to view the list of exams.
 
 :bulb: **Tip:** This page only shows the most basic information of the exams. If you want to see more details of the exams, you can use the `view-exams` command to view the list of exams.
+
+<div style="page-break-after: always;"></div>
 
 ## Main Entities
 TutorPro allows you to easily handle three main entities of your students: `Homework`, `Lesson`, and `Exam`.
