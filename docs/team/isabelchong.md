@@ -17,7 +17,7 @@ View my code contribution here: [Code Dashboard](https://nus-cs2103-ay2223s2.git
   [#74](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/74),
   [#59](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/59))
     * Updated `AddCommand`, `EditCommand` and `Student` class to include `module` field
-* Implemented features of assigning grades ([#133](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/133), 
+* Implemented features of assigning grades ([#133](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/133),
     [#142](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/142),
     [#264](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/264))
     * Created classes `Task`, `UniqueTasksList` and `SerializedTask`
@@ -42,7 +42,7 @@ View my code contribution here: [Code Dashboard](https://nus-cs2103-ay2223s2.git
 * Contributed to DG for v1.4 ([#221](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/221),
   [#254](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/254))
   * Refactored mentions of `AB3` to `CLIpboard`, including descriptions and links
-  * Added instructions for `Manual Testing` section for the following commands or sections - `Launch and Shutdown`, 
+  * Added instructions for `Manual Testing` section for the following commands or sections - `Launch and Shutdown`,
     `General Commands`, `Course Page Commands`, `Group Page Commands`, `Task Page Commands`, `Grades Page Commands`,
     `Saving Data`
 * Helped to review PRs about DG [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/pulls?q=is%3Apr+commenter%3A%40me+DG+-author%3A%40me)
@@ -51,7 +51,7 @@ View my code contribution here: [Code Dashboard](https://nus-cs2103-ay2223s2.git
 * Handled setting up of `codecov`
 
 ### Review/Monitoring Contributions
-* Reviewed [PRs](https://github.com/AY2223S2-CS2103T-T15-4/tp/pulls?q=is%3Apr+commenter%3A%40me) on code and 
+* Reviewed [PRs](https://github.com/AY2223S2-CS2103T-T15-4/tp/pulls?q=is%3Apr+commenter%3A%40me) on code and
   documentation quality
 
 ### Contributions Beyond the Project Team
