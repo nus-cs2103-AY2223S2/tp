@@ -52,29 +52,10 @@ deactivate TaskBookParser
 
 LogicManager -> DeleteSubtaskCommand : execute()
 activate DeleteSubtaskCommand
+ref over  DeleteSubtaskCommand, SimpleTask, Deadline, Event : create task with deleted subsection
 
-alt old task is SimpleTask
 
-    DeleteSubtaskCommand -> SimpleTask
-    activate SimpleTask
 
-    SimpleTask --> DeleteSubtaskCommand : t (new task)
-    deactivate SimpleTask
-
-else old task is Deadline
-    DeleteSubtaskCommand -> Deadline
-    activate Deadline
-
-    Deadline --> DeleteSubtaskCommand : l (new task)
-    deactivate Deadline
-
-else old task is Event
-    DeleteSubtaskCommand -> Event
-    activate Event
-
-    Event --> DeleteSubtaskCommand : v (new task)
-    deactivate Event
-end
 
 DeleteSubtaskCommand -> Model : setTask()
 activate Model

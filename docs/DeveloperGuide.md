@@ -254,6 +254,7 @@ Step 6. The result of execution is returned to the logic manager and the UI will
 The following diagram summarises the sequence of events happening during the execution.
 ![AddCommandSequenceDiagram](images/AddCommand.png)
 
+
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![AddCommandActivityDiagram](images/AddActivityDiagram.png)
 
@@ -293,6 +294,7 @@ Step 6. Results are shown immediately on UI.
 
 The following diagram summarises the sequence of events happening during the execution.
 ![SubsectionSequenceDiagram](images/SubsectionSequenceDiagram.png)
+![SubsectionSequenceRef](images/SubsectionSequenceRef.png)
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![SubsectionActivityDiagram](images/SubsectionActivityDiagram.png)
@@ -332,6 +334,7 @@ Step 6. Results are shown immediately on UI.
 
 The following diagram summarises the sequence of events happening during the execution.
 ![RemoveSubsectionCommandSequenceDiagram](images/RemoveSubsectionSequenceDiagram.png)
+![RemoveSubsectionRef](images/removesubsectionref.png)
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![RemoveSubsectionCommandActivityDiagram](images/RemoveSubsectionActivityDiagram.png)
@@ -421,6 +424,8 @@ Step 6. The result of the filtered list is passed back to the UI.
 The following sequence diagram summarizes what happens in this example usage scenario:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
+![EditSequenceDiagramRef](images/EditSequenceDiagramRef.png)
+
 
 The following activity diagram summarizes what happens when a user executes a new `edit` command:
 
