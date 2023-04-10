@@ -37,6 +37,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -97,6 +99,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/logic/Logic.java)
@@ -126,6 +130,8 @@ How the parsing works:
 * When called upon to parse a user command, the `PatientistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `PatientistParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/model/Model.java)
 
@@ -147,6 +153,7 @@ as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities
 of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -646,12 +653,4 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
