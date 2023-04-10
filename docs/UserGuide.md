@@ -25,6 +25,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 <div markdown="block" class="alert alert-info">
 **:bulb: Tip:**There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
 <div>
+
 ## 1.2. Key Terms
 
 **Deck**<br>
