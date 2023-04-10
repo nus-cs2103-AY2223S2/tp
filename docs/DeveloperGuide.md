@@ -643,14 +643,19 @@ Sequence Diagram for listing the alarms
       current functions of the list_alarms command, though may be extended in the future to allow listing of a 
       particular alarm)
     
-### Import CSV files Feature
-Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`. See more at the [CSV Format](#Loading/Saving data in CSV format) section below. 
+### Import CSV Files Feature
+
+Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`. See more at the _**Loading/Saving Data in CSV Format**_ section below. 
+
 #### Implementation
+
 * `ImportCommandParser` -- Parses the import command.
 * `ImportCommand` -- Executes the command given the parsed user input.
 * `Model` -- Adds (and delete if needed) students.
 Below is the sequence diagram for importing a CSV file.
+
 #### Design Considerations
+
 **Aspect: Dealing with duplicated students**
 1. **Alternative 1:** If a student already exists, ignore the data of that name in incoming CSV file.
     * Pros: Simplify the software design and comply with constraints of other parts of the software.
@@ -659,13 +664,18 @@ Below is the sequence diagram for importing a CSV file.
     * Pros: Gives user more choice.
     * Cons: Data overwriting is irreversible and can be dangerous.
 
-### Export CSV files Feature
-Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`. See more at the [CSV Format](#Loading/Saving data in CSV format) section below.
+### Export CSV Files Feature
+
+Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`. See more at the **_Loading/Saving Data in CSV Format_** section below.
+
 #### Implementation
+
 * `ExportCommandParser` -- Parses the export command.
 * `ExportCommand` -- Executes the command given the parsed user input.
 * `Model` -- Provides the list of students.
+
 #### Design Considerations
+
 **Aspect: Dealing with writing to an existing file**
 1. **Alternative 1:** Always overwrite the user-designated file if possible.
     * Pros: Command is simpler to implement and to use.
@@ -674,6 +684,56 @@ Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and
     * Pros: Gives user more choice and room for mistake.
     * Cons: User may get used to using the -force flag, reducing the case to alternative 1.
 
+### Data Archiving
+
+TAA application data only contains a list of students and a list of assignments. It is automatically stored in JSON
+format at each successful command execution.
+
+#### Implementation
+
+TAA data saving is handled by `JsonTaaStorage`.
+
+Reading data from JSON:
+
+* MainApp.initModelManager()
+   * JsonTaaStorage.readTaaData()
+      * JsonUtil.readJsonFile()
+      * JsonSerializableTaaData.toModelType()
+
+Saving data to JSON:
+
+* LogicManager.execute()
+   * ModelManager.getTaaData()
+   * JsonTaaStorage.saveTaaData())
+      * JsonUtil.saveJsonFile()
+      * JsonSerializableTaaData.new()
+
+The TAA application data only contains a list of students and a list of assignments. The data conversion is implemented
+by
+`JsonSerializableTaaData` which supports [Jackson](https://github.com/FasterXML/jackson) data conversion between Java
+objects and JSON objects.
+
+#### Design Considerations
+
+Inherited from AB3. The Jackson framework is easy to use.
+
+### Command History Navigation Feature
+
+Import CSV command is facilitated by `CommandBox` and `Logic`.
+
+#### Implementation
+
+* `CommandBox` -- Makes the GUI listening to up and down keystrokes.
+* `Logic` -- Keeps track of command history and provides the selected command.
+
+#### Design Considerations
+
+1. **Alternative 1:** When executing a past command, clear all commands executed after that one.
+   * Pros: Feature is more similar to the undo-redo standard adopted by many office softwares.
+   * Cons: Unable to navigate forwards from that command anymore.
+2. **Alternative 2 (Chosen):** Keep all command history and always append the newly executed command.
+   * Pros: Easy to implement; Adopted by many command shell.
+   * Cons: Executing a sequence of commands in a loop involves multiple backward operations at every command. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -684,35 +744,6 @@ Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-### Data Archiving
-TAA application data only contains a list of students and a list of assignments. It is automatically stored in JSON
-format at each successful command execution.
-
-#### Implementation
-TAA data saving is handled by `JsonTaaStorage`.
-
-Reading data from JSON:
-
-* MainApp.initModelManager()
-    * JsonTaaStorage.readTaaData()
-        * JsonUtil.readJsonFile()
-        * JsonSerializableTaaData.toModelType()
-
-Saving data to JSON:
-
-* LogicManager.execute()
-    * ModelManager.getTaaData()
-    * JsonTaaStorage.saveTaaData())
-        * JsonUtil.saveJsonFile()
-        * JsonSerializableTaaData.new()
-
-The TAA application data only contains a list of students and a list of assignments. The data conversion is implemented
-by
-`JsonSerializableTaaData` which supports [Jackson](https://github.com/FasterXML/jackson) data conversion between Java
-objects and JSON objects.
-
-#### Design Considerations
-Inherited from AB3. The Jackson framework is easy to use.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1102,7 +1133,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Loading/Saving data in CSV format
+### Loading/Saving Data in CSV Format
 
 Our CSV files follow the following format:
 
