@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 /**
- * Parses Date and Time String
+ * Data class containing java LocalDateTime.
  */
 public abstract class DateTime implements Comparable<DateTime> {
     public static final String MESSAGE_CONSTRAINTS =
@@ -30,8 +30,7 @@ public abstract class DateTime implements Comparable<DateTime> {
 
 
     /**
-     * DateTime Constructor Only for the Sentinel Value
-     * @param localDateTime
+     * DateTime Constructor from LocalDateTime.
      */
     public DateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
@@ -39,6 +38,9 @@ public abstract class DateTime implements Comparable<DateTime> {
         this.localTime = localDateTime.toLocalTime();
     }
 
+    /**
+     * Returns true if this DateTime lies between the given start and end DateTime (exclusive).
+     */
     public boolean isBetween(DateTime start, DateTime end) {
         return localDateTime.isBefore(end.localDateTime) && localDateTime.isAfter(start.localDateTime);
     }
@@ -54,12 +56,15 @@ public abstract class DateTime implements Comparable<DateTime> {
         return this.localDate;
     }
 
+    /**
+     * @return Numeric Date Time String.
+     */
     public String getNumericDateTimeString() {
         return NUMERIC_DATE_TIME_FORMATTER.format(localDateTime);
     }
 
     /**
-     * @return Formatted Alphanumeric Date Time String
+     * @return Formatted Alphanumeric Date Time String.
      */
     @Override
     public String toString() {
@@ -71,9 +76,7 @@ public abstract class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * DateTime elemts are compared to on the basis of LocalDateTime object
-     * @param other
-     * @return
+     * DateTime elements are compared to on the basis of its LocalDateTime object.
      */
     @Override
     public int compareTo(DateTime other) {
@@ -81,8 +84,7 @@ public abstract class DateTime implements Comparable<DateTime> {
     }
 
     /**
-     * @param day
-     * @return suffix for days
+     * @return suffix for the given day integer.
      */
     public String getDaySuffix(int day) {
         if (day == 1 || day == 21 || day == 31) {

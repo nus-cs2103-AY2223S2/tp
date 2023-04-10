@@ -14,18 +14,18 @@ import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
- * Parses and Execute Event Commands
+ * Parses and Execute Event Commands.
  */
 public class EventCatalogueParser {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into eventCommand for execution.
+     * Parses user input into EventCommand for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput full user input string.
+     * @return the command based on the user input.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public Command parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());

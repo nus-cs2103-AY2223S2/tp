@@ -76,7 +76,7 @@ public class Statistics {
     }
 
     /**
-     * Extracts internship related data and passes the values to internship related Datapoints.
+     * Extracts internship related data and passes the values to internship related Datapoint.
      * @param internships Internship list with data to parse.
      */
     private void parseInternshipList(ObservableList<Internship> internships) {
@@ -102,7 +102,7 @@ public class Statistics {
     }
 
     /**
-     * Extract event related data and passes the values to event related Datapoints.
+     * Extract event related data and passes the values to event related Datapoint.
      * @param events Event list with data to parse.
      */
     private void parseEventList(ObservableList<Event> events) {

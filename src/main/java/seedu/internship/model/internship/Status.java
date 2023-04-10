@@ -5,7 +5,7 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Internship's Status in the internship catalogue.
- * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(Integer)}
  */
 public class Status {
 

@@ -110,7 +110,7 @@ public interface Model {
     ReadOnlyEventCatalogue getEventCatalogue();
 
     /**
-     * Returns true if a event with the same contents as {@code event} exists in the event catalogue.
+     * Returns true if an event with the same contents as {@code event} exists in the event catalogue.
      */
     boolean hasEvent(Event event);
 
@@ -134,7 +134,9 @@ public interface Model {
      */
     void setEvent(Event target, Event editedEvent);
 
-    /** Returns an unmodifiable view of the filtered event list */
+    /**
+     * Returns an unmodifiable view of the filtered event list.
+     */
     ObservableList<Event> getFilteredEventList();
 
     /**
@@ -146,25 +148,22 @@ public interface Model {
     //Selected Internships Method
 
     /**
-     * Updates Current Internship in Internhsip Catalogue
-     * @param intern
+     * Updates Current Internship in Internship Catalogue.
      */
     public void updateSelectedInternship(Internship intern);
 
     /**
-     * Clears Current Internship in Internship Catalogue
+     * Clears Current Internship in Internship Catalogue.
      */
     public void clearSelectedInternship();
 
     /**
-     * Checks If current Internship Exists in Internship Catalogue
-     * @return
+     * Returns true if current Internship Exists in Internship Catalogue.
      */
     public boolean hasSelectedInternship();
 
     /**
-     * Return Current Internship in Internship Catalogue
-     * @return
+     * Return Current Internship in Internship Catalogue.
      */
     public Internship getSelectedInternship();
 

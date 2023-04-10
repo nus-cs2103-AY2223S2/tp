@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import seedu.internship.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w11-2.github.io/tp/UserGuide.html";

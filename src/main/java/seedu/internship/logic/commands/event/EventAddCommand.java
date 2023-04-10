@@ -16,19 +16,19 @@ import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Adds an event to the selected internship.
+ * Adds an event belonging to an internship to the event catalogue.
  */
 public class EventAddCommand extends EventCommand {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " "
-            + EventAddCommand.COMMAND_WORD + ": Adds an event to the event catalogue.\n"
+            + COMMAND_WORD + ": Adds an event to the event catalogue.\n"
             + "Parameters: "
-            + PREFIX_EVENT_NAME + "EVENT NAME"
-            + PREFIX_EVENT_START + "START DATE TIME "
-            + PREFIX_EVENT_END + "END DATE TIME "
-            + PREFIX_EVENT_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_EVENT_NAME + "EVENT_NAME "
+            + PREFIX_EVENT_START + "START_DATETIME "
+            + PREFIX_EVENT_END + "END_DATETIME "
+            + "[" + PREFIX_EVENT_DESCRIPTION + "EVENT_DESCRIPTION]"
             + "\nExample: " + EventCommand.COMMAND_WORD + " "
-            + EventAddCommand.COMMAND_WORD + " "
+            + COMMAND_WORD + " "
             + PREFIX_EVENT_NAME + "Technical Interview "
             + PREFIX_EVENT_START + "10/09/2023 1500 "
             + PREFIX_EVENT_END + "10/09/2023 1700 "
@@ -44,7 +44,7 @@ public class EventAddCommand extends EventCommand {
     private final Event eventToAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Event}
+     * Creates an EventAddCommand to add the specified {@code Event}
      */
     public EventAddCommand(Event event) {
         requireNonNull(event);
@@ -54,7 +54,7 @@ public class EventAddCommand extends EventCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (eventToAdd.getStart().compareTo(eventToAdd.getEnd()) == 1) {
+        if (eventToAdd.getStart().compareTo(eventToAdd.getEnd()) >= 1) {
             throw new CommandException(MESSAGE_END_BEFORE_START);
         }
 
@@ -75,7 +75,7 @@ public class EventAddCommand extends EventCommand {
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         boolean isClashing = false;
         for (Event e : model.getFilteredEventList()) {
-            if (eventToAdd.isClash(e)) {
+            if (!e.isDeadline() && eventToAdd.isClash(e)) {
                 isClashing = true;
                 break;
             }
@@ -84,7 +84,7 @@ public class EventAddCommand extends EventCommand {
         model.addEvent(eventToAdd);
         model.updateFilteredEventList(new EventByInternship(selectedIntern));
         ObservableList<Event> events = model.getFilteredEventList();
-        if (isClashing) {
+        if (isClashing && !eventToAdd.isDeadline()) {
             return new CommandResult(String.format(MESSAGE_EVENT_CLASH_WARNING, eventToAdd), ResultType.SHOW_INFO,
                     selectedIntern, events);
         }

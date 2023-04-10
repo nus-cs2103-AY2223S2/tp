@@ -49,7 +49,7 @@ public class StringUtil {
     }
 
     /**
-     * Checks if String input is an Integer
+     * Returns true if {@code s} represents an Integer
      *
      * @param s Input String.
      * @return True if input String can be parsed to an Integer.

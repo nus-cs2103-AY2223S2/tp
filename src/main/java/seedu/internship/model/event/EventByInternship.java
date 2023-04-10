@@ -5,13 +5,13 @@ import java.util.function.Predicate;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Predicate filters to give you a List with one required events.
+ * Predicate filters to give you a List with one required event.
  */
 public class EventByInternship implements Predicate<Event> {
     private final Internship intern;
 
     /**
-     * Intialises Predicate with Internship
+     * Intialises Predicate with Internship.
      * @param intern Internship
      */
     public EventByInternship(Internship intern) {

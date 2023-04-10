@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.internship.model.event.Event;
 
 /**
- * Unmodifiable view of an Event Catalogue
+ * Unmodifiable view of an Event Catalogue.
  */
 public interface ReadOnlyEventCatalogue {
 
