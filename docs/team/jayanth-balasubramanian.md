@@ -14,11 +14,9 @@ Given below are my contributions to the project.
    * **Justification**: This feature is necessary to store appointment details entered by the user. It was implemented in a similar fashion to AB3's `Person` and `PersonList`.
    * **Highlights**: This feature was a significant undertaking, as it involved creating a new model component, and updating the existing `Model` and `ModelManager` classes to support the new component, coming to 400+ lines of code.
    !![AppointmentModel](../images/Jayanth-AppointmentModel.png)
-   
 2. `AppointmentCard` and `AppointmentListPanel`: UI for displaying appointment details.
    * **What it does**: displays appointment details as a list in the UI.
    * **Justification**: This feature is necessary to display appointment details to the user. It was implemented in a similar fashion to AB3's `PersonCard` and `PersonListPanel`.
-  
    ![AppointmentPanel](../images/Jayanth-AppointmentPanelSample.png)
 3. `CalendarCard`: Calendar panel to display appointments visually.
    * **What it does**: displays appointments in a calendar format, with the ability to click on a date to view appointments for that date.
@@ -47,9 +45,8 @@ Given below are my contributions to the project.
   ![](../images/Jayanth-DGSample.png)
   * Updated UI related UML diagrams.
   ![](../images/UiClassDiagram.png)
-  * Added section detailing known feature flaws and proposals for fixing them in the future. 
+  * Added section detailing known feature flaws and proposals for fixing them in the future.
   ![](../images/Jayanth-DGfeatureFlaws.png)
-
 ### Contributions to team-based tasks:
 * Refactored AB3 codebase, changing class names and attributes to suit MediMeet.
 * This was a massive undertaking that involved changing 81 files, with 1300+ lines of code changed.
