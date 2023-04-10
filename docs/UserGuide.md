@@ -136,7 +136,7 @@ Format: `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL c/COMPANY l/LOCATION o/OCCUP
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact must include all fields except tag and have a unique name that is not already in the contact list.
-
+</div>
 
 Examples:
 
