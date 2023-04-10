@@ -252,6 +252,11 @@ Format: `mark/unmark <index> [date...]`
 * If a date is not specified, the current date is used.  
 * If the tutee was already absent or present, the command will have no effect.  
 
+Examples: 
+* `mark 1` marks the attendance of the first student displayed for the current date
+* `mark 1 2023-03-10` marks the attendance of the first student displayed for the date "2023-03-10" as shown below
+![mark.png](images/mark.PNG)
+
 #### [Back to top](#table-of-content) 
 ### Querying attendance
 Use this command to check the tutee's attendance.  
@@ -260,6 +265,11 @@ Format: `query <index> [date]`
 * Queries the attendence of a student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​  
 * If no date is given, all of the dates that tutee was present on will be displayed  
 * Otherwise, the command will return if the tutee was present on the given date.
+
+Examples: 
+* `query 1` displays all the marked dates that the first student has as shown below
+![query.png](images/query.PNG)
+* `query 1 2023-03-10` displays whether the first student was marked present during his lesson on 2023-03-10
 
 #### [Back to top](#table-of-content) 
 ### Saving locally <a name="save"></a>
@@ -306,10 +316,10 @@ Format: ```exit```
 
 | Action | Format and Examples                 |
 |------|-------------------------------------|
-| **Add Student** |                                     |
+| **Add Student** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/STARTTIME et/ENDTIME [t/TAG]...` <br> e.g., add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/09:30 et/11:30 |
+| **Copy Student** | `copy INDEX`<br> e.g., `delete 1` |
 | **Delete Student** | `delete INDEX`<br> e.g., `delete 1` |
 | **Clear** | `clear`                             |
-| **** |                                     |
 | **Edit** |                                     |
 | **Find** |                                     |
 | **Filter** |                                     |
