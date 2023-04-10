@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Updated documentation for the commands `appointment`, `deleteAppointment`, and `display`
   * Developer Guide:
     * Added documentation for user stories
-    * Updated implementation details for the commands `appointment`, `deleteAppointment`, and `display`
+    * Updated implementation details and diagrams for the commands `appointment`, `deleteAppointment`, and `display`, and `Ui`, `Model` components
 
 * **Contributions to team-based tasks**:
   * Reviewed team member's PRs
@@ -58,3 +58,4 @@ Given below are my contributions to the project.
   * GitHub
   * Git
   * SceneBuilder
+  * PlantUML
