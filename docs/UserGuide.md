@@ -261,12 +261,12 @@ where you can meet your friends.
 
 <img src="images/UG_ui_pictures/MeetUpRecommendationUnlabelled.svg" style="width:80%;margin:1% 1% 1% 10%">
 
-<center>Diagram 6: Recommended timings and locations for meetups displayed</center>
+<center>Diagram 6: Recommended timings and locations for meet ups displayed</center>
 <br>
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Components of Meet Up Recommendation Panel**<br>
-The panel, as shown below, contains all the recommended timings and locations for your meetups.
+The panel, as shown below, contains all the recommended timings and locations for your meet ups.
 <br>
 
 <img src="images/UG_ui_pictures/MeetUpRecommendationPanel.svg" style="width:80%;margin:0 10%">
@@ -313,9 +313,10 @@ The panel contains all the information of every scheduled meet up with your cont
 ### Command Response Box
 
 The Command Response Box is where EduMate will provide some feedback on the outcome
-of each command you execute (e.g success, invalid format etc).
+of each command you execute (e.g. success, invalid format etc).
 
-The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
+The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box)
+, and it is also scrollable for longer command feedback messages.
 
 <br>
 
@@ -402,7 +403,7 @@ can then edit over later!
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
-E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
+E.g. `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
@@ -411,7 +412,7 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
-E.g `tag g/SoC g/Sailing`
+E.g. `tag g/SoC g/Sailing`
 
 </div>
 
@@ -553,7 +554,7 @@ appear in the Person List.
 
 **Pattern:** `m/MODULE DAY START_TIME END_TIME`<br>
 
-**Rules:** `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
+**Rules:** `MODULE` should be the name of a valid NUS module. `DAY` should be a valid weekday of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
 
 **Example:** `m/CS1234 mon 12 13`
 
@@ -623,7 +624,7 @@ As you may have already see above, when adding a contact with some fields presen
 missing information. <br>
 
 <br>
-Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Zen Qing results in `@zenqing0000`).
+Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g. Zen Qing results in `@zenqing0000`).
 This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
 </div>
@@ -713,7 +714,7 @@ What you should see:<br>
 
 * `edit 3 n/Zen Qing`: Changes the name of the third contact to `Zen Qing`.
 * `edit 6 p/89229358 t/@zenqing`: Changes the phone number and telegram handle of the sixth contact.
-* `edit s/Bedok`: Updates your address to `Bedok`.
+* `edit s/Bedok`: Updates your nearest MRT station to `Bedok`.
 </div>
 
 ### Delete a contact `delete`
@@ -850,8 +851,8 @@ What you should see:<br>
 
 :bulb: **Group Tag Examples**<br>
 
-* `untag 1 g/Cycling` : Removes Cycling tag from the first contact from EduMate.
-* `untag g/Project` : Removes Project tag from your own profile.
+* `untag 1 g/Cycling` : Removes Cycling tag (if it exists) from the first contact from EduMate.
+* `untag g/Project` : Removes Project tag (if it exists) from your own profile.
 
 </div>
 
@@ -930,7 +931,7 @@ What you should see:<br>
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tips on usage**<br>
-* The search is case-insensitive. e.g hans will match Hans
+* The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
@@ -996,7 +997,7 @@ We will now teach you how to effectively use the `sort` command.
 
 ##### Scenario (Continuation from previous scenario):
 
-Suppose you want to arrange contacts such from those that take the most number of common modules as you to the least. 
+Suppose you want to arrange contacts such from those that take the most number of common modules with you to the least. 
 
 If there is a tie in the number of common modules shared with you, you decide to just rank the name lexicographically.
 
@@ -1014,7 +1015,7 @@ What you should see:<br>
 
 The command `sort m/d n/a` would mean that EduMate would first sort contacts by decreasing number of common modules with you, and tie-break by its lexicographical ordering.
 
-Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules as you.
+Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules with you.
 
 ##### More Examples of Usage:
 
@@ -1119,7 +1120,7 @@ What you should see:<br>
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Examples**<br>
-* `meet 12 32 8 4` : Recommends some meeting times and locations for a potential meetup with friends with the following indices `12, 32, 4, 8`.
+* `meet 12 32 8 4` : Recommends some meeting times and locations for a potential meet up with friends with the following indices `12, 32, 4, 8`.
 * `eat 5 2 8 1 3` : Recommends some meeting times and eating spots for friends with the following indices `5, 2, 8, 1, 3`
 * `study 6 2` : Recommends some meeting times and study spots for friends with the following indices `6 and 2`.
 
@@ -1127,9 +1128,9 @@ What you should see:<br>
 
 ### Schedule Commands
 
-The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. The feature is useful for keeping track of your upcoming meetups in an organised and efficient way. 
+The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. The feature is useful for keeping track of your upcoming meet ups in an organised and efficient way. 
 
-In addition, EduMate offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
+In addition, EduMate offers the `unorganise` command, which helps you manage and clean up scheduled meet ups by removing them - making it easy to stay on top of your schedule.
 
 Any organised meet ups will be displayed at EduMate's [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
 
@@ -1185,7 +1186,7 @@ What you should see:<br>
 
 #### Unorganise a meet up `unorganise`
 
-If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
+If you wish to remove a scheduled meet up from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -1298,18 +1299,18 @@ suggest new features, and it is easily extensible!
 
 ### Prefixes
 
-| Prefix | Representation  |
-|--------|-----------------|
-| `n/`   | Name            |
-| `s/`   | Station         | 
-| `p/`   | Telegram Handle | 
-| `e/`   | Email           | 
-| `g/`   | Group           | 
-| `m/`   | Module          | 
-| `d/`   | Day             |
-| `l/`   | Location        |
-| `T/`   | Time Period     |
-| ` `    | Empty           | 
+| Prefix         | Representation  |
+|----------------|-----------------|
+| `n/`           | Name            |
+| `s/`           | Station         | 
+| `p/`           | Telegram Handle | 
+| `e/`           | Email           | 
+| `g/`           | Group           | 
+| `m/`           | Module          | 
+| `d/`           | Day             |
+| `l/`           | Location        |
+| `T/`           | Time Period     |
+| <code> </code> | Empty           | 
 
 ### Command Summary
 

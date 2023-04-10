@@ -87,14 +87,15 @@ title: Developer Guide
    * [Testing Commands](#testing-commands)
    * [Testing Parsers](#testing-parsers)
    * [GUI Tests](#gui-tests)
-     * [Setting up automated GUI Tests in Github Actions](#setting-up-automated-gui-tests-in-github-actions)
+     * [Setting up automated GUI Tests in GitHub Actions](#setting-up-automated-gui-tests-in-github-actions)
      * [Understanding GUI Tests](#understanding-gui-tests)
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
 6. [Documentation](#6-documentation)
+   * [Useful Text Boxes](#useful-text-boxes)
    * [Using PlantUML](#using-plantuml)
-7. [Appendix](#7-appendix)
+8. [Appendix](#7-appendix)
    * [Planned Enhancements](#planned-enhancements)
    * [Project Requirements](#project-requirements)
    * [Product Scope](#product-scope)
@@ -114,18 +115,18 @@ title: Developer Guide
      * [Filter persons by keywords](#filter-persons-by-keywords)
      * [Arrange persons by criteria](#arrange-persons-by-criteria)
      * [Generate a sample EduMate](#generate-a-sample-edumate)
-     * [Suggest meetup locations and times](#suggest-meetup-locations-and-times)
+     * [Suggest meet up locations and times](#suggest-meet-up-locations-and-times)
      * [Organise and confirm meetings](#organise-and-confirm-meetings)
      * [Cancel scheduled meetings](#cancel-scheduled-meetings)
    * [Glossary](#glossary)
-   * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+   * [More Information on Documentation, Logging, Testing, Configuration and Dev-ops](#more-information-on-documentation-logging-testing-configuration-and-dev-ops)
 
 # **1. Introduction**
 
 ---
 
 ## **Software Overview**
-EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If the user can quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
 
 ---
 
@@ -301,19 +302,20 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 
 ## **Architecture**
 
+Given below is a quick overview of main components and how they interact with each other.
+
 <img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
 
-Given below is a quick overview of main components and how they interact with each other.
 
 ### **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initialises the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At app launch: initialising the components in the correct sequence, and connecting them up with each other.
+* At shut down: shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -342,7 +344,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.svg" style="width:70%;margin:0 15%">
+<img src="images/ComponentManagers1.svg" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
@@ -491,7 +493,7 @@ objects which is then used elsewhere in the codebase.
 `HourBlock` is an object which represents an hour of time.
 
 #### **TimeBlock**
-`TimeBlock` is an object which can represent any (non-negative) hour of time.
+`TimeBlock` is an object which can represent any positive hour of time.
 
 #### **TimePeriod**
 `TimePeriod` is the parent class of both `HourBlock` and `TimeBlock`. Hence, we often use `TimePeriod` when passing arguments around.
@@ -626,11 +628,11 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
 2. If needed, a command-specific parser (like `AddCommandParser`) will be called to parse the arguments of the user input.
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddCommand`) which is executed by the `LogicManager`.
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-### **Commands**
+## **Commands**
 
 #### **Add Command**
 
@@ -728,6 +730,8 @@ In summary, the activity diagram is as such:
 
 #### **Delete Command**
 
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/DeleteCommandParser.java)
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 <img src="images/DeleteSequenceDiagram.svg" style="width:80%;margin:0 10%">
@@ -808,12 +812,12 @@ Similar to the `tag` command, the `untag` command allows user to remove `ModuleT
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ViewCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/ViewCommandParser.java)
 
-The view command allows users to view their information or their contact's information on the profile panel on the lower right side of the application, above the command box. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
-a contact's information appending their assigned `ContactIndex` or by adding `n/NAME` behind the `view` command.
+The `view` command allows users to view their information or their contact's information on the Profile Panel on the lower right side of the application, above the Command Box. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
+a contact's information appending their assigned `ContactIndex` or by adding `n/FULL_NAME` behind the `view` command.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info:** The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
+:information_source: **Info:** The last viewed profile will remain displayed on the Profile Panel should there be any exceptions thrown during the parsing process.
 
 </div>
 
@@ -821,11 +825,11 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 :information_source: **Command Formats:** <br>
 
-* `view` : Displays user's profile on the display panel.
+* `view` : Displays user's profile on the Profile Panel.
 
-* `view n/XYZ` : Display XYZ's profile on the display panel.
+* `view n/XYZ` : Display XYZ's profile on the Profile Panel.
 
-* `view INDEX` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+* `view INDEX` : Display the contact's whose `ContactIndex` is `INDEX` on the Profile Panel.
 
 </div>
 
@@ -1076,8 +1080,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <br>
 
 How the parsing works:
-* When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g. `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser` etc.) inherit from the `Parser` interface so that they can be treated similarly where possible (e.g. during testing).
 
 #### **Argument Multimap**
 
@@ -1099,7 +1103,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 The `Recommender` component,
 * consists of 2 sub-components (modules) : `LocationRecommender` and `TimingRecommender`
-* recommends timing and location of meetups for relevant participants and the user.
+* recommends timing and location of meet ups for relevant participants and the user.
 
 How the `Recommender` Component works:
 1. User enters a `meet/eat/study` command.
@@ -1109,7 +1113,7 @@ How the `Recommender` Component works:
 5. The `TimingRecommender` recommends common available timings amongst users and participants.
 6. Based on the timings provided, the `LocationTracker`s return each person's approximate locations.
 7. The `LocationRecommender` recommends optimal meeting points based on the locations provided by the `LocationTracker`s.
-8. Feedbacks to user the recommended meetup locations and timings.
+8. Feedbacks to user the recommended meet up locations and timings.
 
 <img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
@@ -1120,7 +1124,7 @@ How the `Recommender` Component works:
 #### Timing Recommender
 The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
 The `TimingRecommender` uses the participants' schedule to find common time periods that everyone
-will be free so that a meetup could be scheduled.
+will be free so that a meet up could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
@@ -1344,19 +1348,20 @@ All UI tests using `TestFX` extend from `GuiUnitTest` and handles are created fo
 ---
 
 ## **Measuring Coverage of Integration Tests**
-We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests.
+We have used `Jacoco` and `Codecov` to monitor the code coverage of integration tests.
 
 ### **Create Code Coverage Report**
-Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecev` for setting up on CI/CD.
+Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecov` for setting up on CI/CD.
 
 ### **Read Code Coverage Report**
 For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
 
----
-
 # **6. Documentation**
 
 ---
+
+We take documentation very seriously as it not only helps users, but new developers in the team to quickly get up to speed with the project
+so that they can start contributing as soon as possible.
 
 ## **Useful Text Boxes**
 
@@ -1396,15 +1401,16 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 
 </div>
 
----
-
 ## **Using PlantUML**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+
+For more information, you may view our special documentation page [here](Documentation.md).
 
 # **7. Appendix**
 
@@ -1436,7 +1442,7 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 #### **Target user profile**
 
 * has a need to manage a significant number of contacts
-* frustrated in the struggle to find suitable meetup venues and timings
+* frustrated in the struggle to find suitable meet up venues and timings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -1483,7 +1489,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **Use Cases**
 
-(For all use cases below, the **System** is EduMate and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is EduMate and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - View the list of all contacts**
 
@@ -1504,21 +1510,21 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 2.
 
-**Use case: UC02 - Get a help message using a command**
+**Use case: UC02 - Display a help window using a command**
 
 **MSS**
 
 1. User requests for help.
-2. EduMate shows a help message containing usages for commands.
+2. EduMate shows a help window containing usages for commands.
 
    Use case ends.
 
-**Use case: UC03 - Get a help message using a button**
+**Use case: UC03 - Display a help window using a button**
 
 **MSS**
 
 1. User clicks the help button.
-2. EduMate shows a help message containing usages for commands.
+2. EduMate shows a help window containing usages for commands.
 
    Use case ends.
 
@@ -1598,8 +1604,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The name is invalid or missing.
     * 1a1. EduMate shows an error message.
 
-* 1f. The person with the given name already exists in the contact list.
-    * 1f1. EduMate shows an error message.
+* 1b. The person with the given name already exists in the contact list.
+    * 1b1. EduMate shows an error message.
 
 * 2a. The email field is missing.
     * 2a1. EduMate assigns an email based on the name.
@@ -1715,7 +1721,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. The module code exists in the person's contact.
     * 3a1. EduMate does not add any tags.
-    * 3b2. EduMate does not show the module in the feedback message.
+    * 3a2. EduMate does not show the module in the feedback message.
 
   Use case resumes at step 5.
 
@@ -1755,7 +1761,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 6.
 * 4c. The module and lesson exist in the contact's module set.
-    * 4c1. EduMate throws an error message.
+    * 4c1. EduMate shows an error message.
 
 **Use case: UC15 - Untag a module from a contact**
 
@@ -1864,6 +1870,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. No contacts satisfy the criteria.
     * 3a1. EduMate shows no contacts.
+
   Use case ends.
 
 **Use case: UC19 - Sort contacts based on index**
@@ -2064,8 +2071,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 2a. A file with the name already exists within the folder.
     * 2a1. EduMate replaces the file in the folder.
-
-  Use case ends.
+  
+    Use case ends.
 
 **Use case: UC29 - Load from a backup file**
 
@@ -2109,18 +2116,18 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User presses the UP button.
-2. EduMate shows a previous command in the command box.
+2. EduMate shows the previous command in the command box.
 
    Use case ends.
 
 **Extensions**
 
 * 2a. The user has already typed in the command box.
-    * 2a1. EduMate does not show a previous command.
+    * 2a1. EduMate does not show the previous command.
 
   Use case ends.
 * 2b. There are no more previous commands.
-    * 2b1. EduMate does not show a previous command.
+    * 2b1. EduMate does not show the previous command.
 
   Use case ends.
 
@@ -2129,7 +2136,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User presses the DOWN button.
-2. EduMate shows a next command in the command box.
+2. EduMate shows the next command in the command box.
 
    Use case ends.
 
@@ -2172,7 +2179,7 @@ testers are expected to do more *exploratory* testing.
 
     * 1a. Download the jar file and copy into an empty folder
 
-    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    * 1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
 ### **Add a new person**
 
@@ -2260,7 +2267,7 @@ Context: None needed.
 
 Command executed: `delete`
 
-Expected Output in the Command Output Box: Invalid command format!
+Expected Output in the Command Response Box: Invalid command format!
 `delete`: Deletes the person identified by the index number used in the displayed person list.
 
 #### **_Scenario 4_**
@@ -2413,7 +2420,7 @@ Command executed: `sample 101`
 
 Expected Output in Command Response Box: Error message for Invalid Size.
 
-### **Suggest meetup locations and times**
+### **Suggest meet up locations and times**
 
 #### **_Scenario 1_**
 
@@ -2475,14 +2482,13 @@ Expected Output in Scheduled Meet Up Panel: `MeetUp` of index 2 disappears, only
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
-* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MRT**: Also known as the Mass Rapid Transit, Singapore high-speed railway system
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **More Information on Documentation, Logging, Testing, Configuration and Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
