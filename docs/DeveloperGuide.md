@@ -15,7 +15,7 @@ title: Developer Guide
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 
 ## **Intended Audience**
 
@@ -33,7 +33,7 @@ This guide contains certain visuals to aid in conveying information more effecti
 | :information_source:  | `:information_source:` | Supplementary information for the developer |
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+
 
 ## **About Us**
 Please refer to the [About Us](AboutUs.md) page for information about the developers.
@@ -190,7 +190,7 @@ The `Model` component,
 The Storage Component reads data from, and writes data to, the hard disk.
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/library/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="525" />
+<img src="images/StorageClassDiagram.png" width="510" />
 
 The `Storage` component,
 * can save both Library data and user preference data in json format, and read them back into corresponding objects.
@@ -202,7 +202,6 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.library.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## **Implementation**
