@@ -612,7 +612,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​        | I want to …​                                        | So that I can…​                                                             |
 |----------|----------------|-----------------------------------------------------|-----------------------------------------------------------------------------|
-| `* * *`  | new user       | see a brief and simple guide                        | quick-start the application without reading long documentations             |
+| `* *`    | new user       | see a brief and simple guide                        | quick-start the application without reading long documentations             |
 | `* * *`  | forgetful user | see usage instructions                              | refer to instructions when I forget how to use the App                      |
 | `* * *`  | manager        | add tasks                                           |                                                                             |
 | `* * *`  | manager        | edit tasks                                          | keep the task updated with the most updated information                     |
