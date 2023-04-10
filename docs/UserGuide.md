@@ -522,6 +522,8 @@ Example:
   * Temperature: 40 degrees celsius
   * Date and time associated with each reading: 06/04/2023 1433
 
+(continued next page)
+
 ![AddReadingDemo](images/UiAddReadingsDemo.png)
 
 ### Deleting the most recent set of readings: `tank delLastReadings`
