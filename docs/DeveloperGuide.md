@@ -76,13 +76,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+💡 **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
 
 <p>
   <img class="diagram" src="images/ArchitectureDiagram.png" />
+  
   <em>Architecture Diagram for GoodMatch</em>
 </p>
 
@@ -160,9 +161,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ListingBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a Listing).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a Listing).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -342,11 +343,19 @@ Sorting is all done in ascending order.
 
 Refer to the activity diagram below for what happens when a user runs a sort command.
 
-> insert activity diagram here
+<p>
+  <img class="diagram" 
+   src="images/SortActivityDiagram.png" />
+  <em>Activity Diagram for the `sort` command</em>
+</p>
 
-#### Feature details
+Refer to the sequence diagram below for a typical `sort` command using `title` as the sorting field.
 
-#### Design considerations
+<p>
+  <img class="diagram" 
+   src="images/SortSequenceDiagram.png" />
+  <em>Sequence Diagram for the `sort` command</em>
+</p>
 
 ### Undo feature
 
