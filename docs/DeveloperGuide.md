@@ -886,7 +886,8 @@ Our application:
 ## 4.7 Planned Enhancements
 
 **1.** Ensure all the commands follow the standard format so that it is easier for the user to remember.<br>
-Currently, some commands do not follow this format, such as `find_supplier` where it is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
+Currently, some commands do not follow the standard format which requires a prefix in front of each parameter. 
+For instance, `find_supplier` is of the format `find_supplier NAME` instead of `find_supplier n/NAME`.<br>
 The format is shown below.
   <div style="background-color:silver; font-weight:bold">
    <span style="color:darkblue">&lt;command&gt;</span>
@@ -898,18 +899,25 @@ The format is shown below.
   <br>
 
 **2.** Provide better error messages for commands.<br>
-Currently, some commands do not show a comprehensive error message to display what the user has done.<br>
-For example some command return a success message of `Edited task: task`. We suggest a more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
+Currently, some commands shows ambiguous success or error messages to the user.<br>
+For example some command return a success message of `Edited task: task`. 
+We suggest a clearer and more comprehensive message such as `Edited task: <TASK DATA>` where `<TASK DATA>` represents the edited data.<br>
 Specifically, `Edited task: Buy eggs; Deadline:01 January 2023; Status: Not Done`.
 
 **3.** Fix error messages for commands.<br>
 Currently, some commands have an issue with their error message.<br>
-For example, if there is a duplicate from this command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`, the error message should be `This Order already exists in the order list`. However, this error message is shown now `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`.
+For example, if there is a duplicate from this command `add_order on/Chocolate Cookies q/10 d/10/10/2023 n/Ben p/11111111 a/Ben Street`, 
+the error message should be `This Order already exists in the order list`. 
+However, currently, this error message is shown instead: `This Order already exists in the Chocolate Cookies; 10; Deadline: 10 October 2023; Status: Not Delivered; Customer: Ben; Phone: 11111111; Address: Ben Street list`.
 
 **4.** Improve validity checks.<br>
-Currently, there is no comprehensive validity check for some of our parameters, which might result in bugs shown within the application.<br>
+Currently, there is no comprehensive validity check for most of our parameters, which might result in bugs shown within the application.<br>
 For example, profit and cost should be limited within `1000` or else there might be an issue with the calculation if the user keys in an obsessive number for them.
 For example, name should contain at least a few alphabets `Vanilla Cake 2002` and not be solely numeric `1234`.
+
+Some validity checks are not strict enough and allows for inputs that may be considered to be wrong or weird in a real-world scenario.
+For instance, for deadlines (for tasks and orders), users can input dates far away in the past (e.g. `01/01/1800`), so we intend to limit the deadlines allowed to be within the past 10 years as any dates beyond that are likely to be a mistake in the input.
+Also, for phone numbers, users are able to input unconventional phone numbers with a large number of digits (e.g. `9111111111111111`), so we plan to limit the number of digits to the more commonly seen 8 digits in the future.
 
 --------------------------------------------------------------------------------------------------------------------
 
