@@ -11,12 +11,12 @@ GUI apps.
 This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
-## Table of Contents
+## **Table of Contents**
 
-- [Legend](#legend)
-- [Quick start](#quick-start)
-- [Overview of AIMS GUI](#overview-of-aims-gui)
-- [Features](#features)
+- [**Legend**](#legend)
+- [**Quick start**](#quick-start)
+- [**Overview of AIMS GUI**](#overview-of-aims-gui)
+- [**Features**](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
   - [Importing multiple persons from a CSV file : `importcsv`](#importing-multiple-persons-from-a-csv-file--importcsv)
@@ -33,12 +33,12 @@ This user guide shows you how to get started using AIMS and how to make use of t
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+- [**FAQ**](#faq)
+- [**Command summary**](#command-summary)
 
 ---
 
-## Legend
+## **Legend**
 
 Here are some symbols used throughout the user guide to inform you of additional details.
 
@@ -48,9 +48,11 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 :exclamation: **Caution:** Cautions are used as warnings for actions that may cause data loss.
 
-## Quick start
+[Back to Top ↑](#table-of-contents)
 
-1. Ensure you have Java `11` or above installed in your computer.
+## **Quick start**
+
+1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 2. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
@@ -59,18 +61,19 @@ Here are some symbols used throughout the user guide to inform you of additional
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-
-<div style="text-align: center;">
-  <img src="images/Ui.png">
-  <p style="font-style: italic;"><br>Default state of the app on startup</p>
-  <br>
-</div>
+  <div style="text-align: center;">
+    <img src="images/Ui.png">
+    <p style="font-style: italic;"><br>Default state of the app on startup</p>
+    <br>
+  </div>
 
 5. Refer to the [Features](#features) below for details of each command.
 
+[Back to Top ↑](#table-of-contents)
+
 ---
 
-## Overview of AIMS GUI
+## **Overview of AIMS GUI**
 
 ![Overview of AIMS GUI](images/AIMS_GUI_Overview.png)
 
@@ -83,13 +86,15 @@ Here are some symbols used throughout the user guide to inform you of additional
 | Main list             | You can view a list of AIMS contacts here. If you perform a search, this list will update to show you the search results |
 | Location of data file | This shows you the location of the AIMS data file should you ever need to migrate to another device                      |
 
-## Features
+[Back to Top ↑](#table-of-contents)
+
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are **optional**.<br>
@@ -98,7 +103,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 - Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as <code>&nbsp;</code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-- Parameters can be in any order.<br>
+- You can give parameters in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
@@ -113,7 +118,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows you a message explaining how to access the help page.
 
 Format: `help`
 
@@ -123,11 +128,11 @@ Format: `help`
   <br>
 </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Adding a person : `add`
 
-Adds a person to AIMS.
+Lets you add a person to AIMS.
 
 Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -138,21 +143,19 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 </div>
 
 Examples:
+- `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`<br>
+  Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
+  <div style="text-align: center;">
+    <img src="images/addLawrenceSuccess.png">
+    <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
+    <br>
+  </div>
 
- `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`
-  adds a new person `Lawrence Tay` to AIMS with the following information:
-
-<div style="text-align: center;">
-  <img src="images/addLawrenceSuccess.png">
-  <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
-  <br>
-</div>
-
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
-Adds all persons from a given valid CSV file to AIMS.
+Lets you add all persons in a valid CSV file to AIMS.
 
 Format: `importcsv PATH_TO_CSV_FILE`
 
@@ -168,49 +171,48 @@ The given CSV file must fulfill the following conditions:
 
 Examples:
 
-- example of a Google Sheet that would be valid once converted to CSV.
-
+- A Google Sheet that would be valid once it is converted to a CSV file.
 <div style="text-align: center;">
   <img src="images/demoSheets.png">
   <p style="font-style: italic;"><br>Google sheet containing contact information in the correct format</p>
   <br>
 </div>
 
-- valid CSV file:
-
+- A valid CSV file:
 <div style="text-align: center;">
   <img src="images/demoCsv.png">
   <p style="font-style: italic;"><br>CSV file containing contact information exported from the Google Sheet above</p>
   <br>
 </div>
 
-- `importcsv C:\file\6coy_platoon_four_data.csv`
-
+- `importcsv C:\file\6coy_platoon_four_data.csv`<br>
+All persons in the valid CSV file from the above example will be added into AIMS.
 <div style="text-align: center;">
   <img src="images/importcsvSuccess.png">
   <p style="font-style: italic;"><br>Success screen upon successful import of CSV file into AIMS</p>
   <br>
 </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in AIMS.
+Shows you a list of all existing persons in AIMS.
 
 Format: `list`
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Copying information to clipboard : `copy`
 
-Copies the information of a person to the user's clipboard.
+Copies the information of a person to your clipboard.
 
 Format: `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`
 
 - Copies the required information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- To only copy certain fields, you just need to type its prefix. (e.g. To only copy the name of a person, type `copy INDEX n/`)
 - If no fields are specified, all information will be copied.
 
 <div markdown="span" class="alert alert-info">
@@ -230,8 +232,8 @@ see all the text.
 
 Examples:
 
-- `copy 2` will show this when your clipboard is accessible
-
+- `copy 2` <br>
+If your clipboard is accessible, a success message will be displayed.
     <div style="text-align: center;">
       <img src="images/copy2Result.png">
       <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
@@ -252,100 +254,90 @@ Examples:
     Tags: [colleagues][friends]
      ```
 
-- `copy 2` will show this when your clipboard is not accessible.
-
+- `copy 2` <br>
+If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
    <div style="text-align: center;">
      <img src="images/copy2_noclipboard.png">
      <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
      <br>
    </div>
 
-<div markdown="span" class="alert alert-primary">
-
-  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
-
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Editing a person : `edit`
 
-Edits an existing person in AIMS.
+Lets you edit an existing person in AIMS.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
+- At **least** one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-- You can remove all the person's tags by typing `t/` without
-  specifying any tags after it.
+- When editing tags, the existing tags of the person will be removed. (i.e. adding of tags is not cumulative)
+- You can remove all the person's tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
-  and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- `edit 1 p/91234567 e/johndoe@example.com` <br>
+Edits the phone number and email address of the 1st person in the existing list to be `91234567`and `johndoe@example.com` respectively.
+- `edit 2 n/Betsy Crower t/` <br>
+Edits the name of the 2nd person in the existing list to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by any field : `find`
 
-Finds persons who have any fields that contain any of the given keywords.
+Lets you find persons who have any fields that contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g `hans` will match `Hans`
+- The search is case-insensitive. (e.g `hans` will match `Hans`)
 - Keywords cannot contain spaces. Instead, spaces are used to separate keywords.
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- The order of the keywords does not matter. (e.g. `Hans Bo` will match `Bo Hans`)
 - All fields (rank, name, unit, company, platoon, phone, email, address, tags) are searched.
-- Only part of a field is needed for a successful match e.g. `tani` will match `Botanic Gardens`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`
+- Only part of a field is needed for a successful match. (e.g. `tani` will match `Botanic Gardens`)
+- Persons matching at least one keyword will be returned. (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`)
 
-Examples:
-
-- `find Jo` returns `john`, `John Doe`, `joseph moseph` and `anjolino`
-- `find live delta` returns 3 persons in this example:
+Example:
+- `find live delta` <br>
+3 persons will be found:
   - `Charlotte Oliveiro` (name matches `live`)
   - `Irfan Ibrahim` (email matches `live`)
   - `Roy Balakrishnan` (company matches `delta`)<br>
+  <div style="text-align: center;">
+    <img src="images/findCharlotteIrfanRoyResult.png">
+    <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
+    <br>
+  </div>
 
-<div style="text-align: center;">
-  <img src="images/findCharlotteIrfanRoyResult.png">
-  <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
-  <br>
-</div>
-
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Locating persons using filters on fields : `filter`
 
-Filters all persons to only show those whose fields contain all the given keywords.
+Lets you filter all persons to only show those whose fields contain **all** the given keywords.
 
 Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [p/PLATOON] [t/TAG]…​`
 
-- The search is case-insensitive. e.g. `hanS` will match `Hans`
-- The order of the keywords does not matter. e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`
-- Only persons matching all keywords will be returned (i.e. `AND` search).
-- If multiple keywords for the same field are provided, only the last keyword for that field will be used (
-  i.e. `r/3sg r/cpl` has the same result as `r/cpl`)
-- Only part of a field is needed for a successful match e.g. `tanic g` will match `Botanic Gardens`
-- At least one of the optional fields must be provided.
+- The search is case-insensitive. (e.g. `hanS` will match `Hans`)
+- The order of the keywords does not matter. (e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`)
+- Only persons matching all keywords will be returned. (i.e. `AND` search)
+- If multiple keywords for the same field are provided, only the last keyword for that field will be used. (i.e. `r/3sg r/cpl` has the same result as `r/cpl`)
+- Only part of a field is needed for a successful match. (e.g. `tanic g` will match `Botanic Gardens`)
+- At **least** one of the optional fields must be provided.
 
-Examples:
-
-- `filter n/Jo` returns `john`, `John Doe` and `joseph`
-- `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`
-
+Example:
+- `filter a/street r/sg` <br>
+2 persons named `Davlid Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
   <div style="text-align: center;">
     <img src="images/filterDavidLeeResult.png">
     <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
     <br>
   </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from AIMS.
+Lets you delete a specified person from AIMS.
 
 Format: `delete INDEX`
 
@@ -355,22 +347,24 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd person in AIMS.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `list` followed by `delete 2` <br>
+The 2nd existing person in AIMS will be deleted.
+- `find Betsy` followed by `delete 1` <br>
+The 1st person in the resulting list of the `find` command will be deleted.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Clearing all entries : `clear`
 
-Clears all entries from AIMS.
+Lets you clear all existing entries in AIMS.
 
 Format: `clear`
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Undoing last modification : `undo`
 
-Undoes the last modification done to AIMS. Specifically, commands like `list`, `find` and `filter` that do not modify
+Lets you undo the last modification done to AIMS. However, commands like `list`, `find` and `filter` that **do not** modify
 AIMS are not recorded in the undo history.
 
 <div markdown="block" class="alert alert-warning">
@@ -381,7 +375,7 @@ AIMS are not recorded in the undo history.
 
 Format: `undo`
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Viewing command history
 
@@ -399,11 +393,11 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
   from this point in the command history, the changes you've made to this current command in history will be lost.
 - The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Toggling the favorite status of a person : `favorite`
 
-Toggles the favorite status of a person from AIMS.
+Lets you toggle the favorite status of a person from AIMS.
 
 Format: `favorite INDEX`
 
@@ -414,34 +408,37 @@ Format: `favorite INDEX`
 - The index **must be a positive integer** 1, 2, 3, …​
 - The favorites list on the sidebar is sorted according to the index number of the persons that is shown after running the list command.
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
+
+</div>
+
 Example:
 
-- `favorite 3` will pin the third person in the favorites panel.
-
+- `favorite 3`<br> 
+The third person in the existing main list will be added to and pinned in the favorites list.<br>
   <div style="text-align: center;">
     <img src="images/favorite3.png">
     <p style="font-style: italic;"><br>Screen showing the result of favoriting person 3, causing the contact to be pinned to the sidebar</p>
     <br>
   </div>
 
-:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
-
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exit from AIMS.
 
 Format: `exit`
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Saving the data
 
-AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.
+AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ### Editing the data file
 
@@ -451,15 +448,15 @@ directly by editing that data file.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:** If your changes to the data file makes its format invalid, AIMS will discard all data and
-start with an empty data file at the next run.
+start with an empty data file in the next run.
 
 </div>
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
 
 ---
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -467,7 +464,7 @@ the data of your previous AIMS home folder.
 
 ---
 
-## Command summary
+## **Command summary**
 
 | Action              | Format, Examples                                                                                                                                                                                                                           |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -483,4 +480,4 @@ the data of your previous AIMS home folder.
 | **List**            | `list`                                                                                                                                                                                                                                     |
 | **Help**            | `help`                                                                                                                                                                                                                                     |
 
-[Return to Top](#table-of-contents)
+[Back to Top ↑](#table-of-contents)
