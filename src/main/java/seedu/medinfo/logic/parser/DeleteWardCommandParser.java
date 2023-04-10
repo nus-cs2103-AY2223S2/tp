@@ -12,8 +12,8 @@ import seedu.medinfo.logic.parser.exceptions.ParseException;
 public class DeleteWardCommandParser implements Parser<DeleteWardCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteWardCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code DeleteWardCommand}
+     * and returns a {@code DeleteWardCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteWardCommand parse(String args) throws ParseException {

@@ -16,9 +16,6 @@ import seedu.medinfo.model.patient.NricContainsKeywordsPredicate;
 import seedu.medinfo.model.patient.StatusContainsKeywordsPredicate;
 import seedu.medinfo.model.ward.WardNameContainsKeywordsPredicate;
 
-
-
-
 /**
  * Parses input arguments and creates a new FindCommand object
  */

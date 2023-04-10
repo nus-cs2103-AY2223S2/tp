@@ -14,20 +14,38 @@ public class Capacity {
 
     private int value;
 
+    /**
+     * Constructs a {@code Capacity} with the given capacity.
+     *
+     * @param capacity Integer value of the capacity.
+     */
     public Capacity(int capacity) {
         value = capacity;
     }
 
+    /**
+     * Constructs a {@code Capacity} with the given capacity.
+     *
+     * @param capacity String value of the capacity.
+     */
     public Capacity(String capacity) {
         value = Integer.parseInt(capacity);
     }
 
+    /**
+     * Sets the Capacity value.
+     *
+     * @param capacity Integer value to be set.
+     */
     public void setCapacity(int capacity) {
         value = capacity;
     }
 
     /**
      * Returns true if a given string is a valid capacity.
+     *
+     * @param test String capacity value to be tested.
+     * @return If the given string is a valid capacity.
      */
     public static boolean isValidCapacity(String test) {
         try {
@@ -41,6 +59,11 @@ public class Capacity {
         }
     }
 
+    /**
+     * Returns the Integer value of {@code this}.
+     *
+     * @return
+     */
     public int getValue() {
         return value;
     }

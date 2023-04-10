@@ -13,16 +13,17 @@ import java.util.Date;
  */
 public class Discharge {
 
-    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time"
-            + " of the form dd/MM/yyyy HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time" +
+            " of the format dd/MM/yyyy HHmm";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
     public static final String DATE_FORMAT = "dd/MM/yyyy HHmm";
+
     public final String value;
 
     /**
      * Constructs a {@code Discharge}.
      *
-     * @param discharge A valid discharge.
+     * @param discharge A valid discharge date.
      */
     public Discharge(String discharge) {
         requireNonNull(discharge);
@@ -32,8 +33,8 @@ public class Discharge {
 
     /**
      * Returns true if a given discharge date-time is valid.
+     * @param date Date to check.
      */
-
     public static boolean isValidDischarge(String date) {
         if (date.equals(DEFAULT_DISCHARGE)) {
             return true;
@@ -50,15 +51,12 @@ public class Discharge {
 
     /**
      * Returns the dateTime.
-     *
      * @return LocalDateTime
      */
     public Date getDateTime() {
         try {
-            // DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             DateFormat df = new SimpleDateFormat(DATE_FORMAT);
             df.setLenient(false);
-            // return LocalDateTime.parse(value, format);
             return df.parse(value);
         } catch (ParseException e) {
             return new Date();
@@ -72,9 +70,9 @@ public class Discharge {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Discharge // instanceof handles nulls
-                && value.equals(((Discharge) other).value)); // state check
+        return other == this
+                || (other instanceof Discharge
+                && value.equals(((Discharge) other).value));
     }
 
     @Override

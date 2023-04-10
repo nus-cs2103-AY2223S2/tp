@@ -5,7 +5,11 @@ title: Navaneeth Ramapurath's Project Portfolio Page
 
 ### Project: MedInfo
 
-MedInfo aims to solve the problem of slow, multiple step process of documenting patient medical records during in-processing and provide faster access to a particular patient’s medical records for hospital admin staff.
+MedInfo is a desktop application for private hospital administrative staff. It helps manage patients,
+their status, discharge dates and wards. MedInfo aims to solve the problem of slow, multiple step process of
+documenting patient medical records during in-processing by zeroing in on the important details and provide simple,
+fast access to a particular patient’s medical records for hospital admin staff.
+
 The user interacts with MedInfo using a CLI, and it has a GUI created with JavaFX.
 MedInfo is written in Java, and has about 10 kLoC.
 

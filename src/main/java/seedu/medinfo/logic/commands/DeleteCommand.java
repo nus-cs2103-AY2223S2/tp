@@ -11,7 +11,7 @@ import seedu.medinfo.model.Model;
 import seedu.medinfo.model.patient.Patient;
 
 /**
- * Deletes a patient identified using it's displayed index from MedInfo.
+ * Deletes a patient identified using its displayed index from MedInfo.
  */
 public class DeleteCommand extends Command {
 
@@ -26,10 +26,20 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a new {@code DeleteCommand} to delete the {@code Patient} at the specified index.
+     * @param targetIndex Index of the {@code Patient} to be deleted in the list.
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the {@code DeleteCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

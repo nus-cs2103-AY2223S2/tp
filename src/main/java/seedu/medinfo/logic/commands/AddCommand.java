@@ -30,13 +30,19 @@ public class AddCommand extends Command {
     private final Patient toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Patient}
+     * Constructs a new {@code AddCommand} to add the specified {@code Patient}.
      */
     public AddCommand(Patient patient) {
         requireNonNull(patient);
         toAdd = patient;
     }
 
+    /**
+     * Executes the {@code AddCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

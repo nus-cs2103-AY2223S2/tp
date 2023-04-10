@@ -53,7 +53,8 @@ appropriate version for your system [here](https://www.oracle.com/java/technolog
    2. Double-clicking the [`.jar`](#glossary) file or
    3. Opening a [command terminal](#glossary), `cd` into the folder you put the `.jar` file in, and use the `java -jar medinfo.jar`
 command to run the application.<br>
-4. A [GUI](#glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. A [GUI](#glossary) similar to the one below should appear in a few seconds. If you are starting the app for the first time, the 
+app will contain some sample data for you to try commands.<br>
       ![Ui](images/Ui.png)
 
 5. Type the command in the command input box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing
@@ -64,7 +65,9 @@ command to run the application.<br>
 
    - `add nric/S1234567A name/John Doe` : Adds a patient named `John Doe` to MedInfo.
 
-   - `delete 1` : Deletes the first patient on the currently displayed list
+   - `delete 1` : Deletes the first patient on the currently displayed list.
+   
+   - `clear` : Clears all patient and ward data.
 
    - `exit` : Exits the app.
 

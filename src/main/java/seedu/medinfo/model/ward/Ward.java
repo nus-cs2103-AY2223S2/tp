@@ -46,10 +46,10 @@ public class Ward {
     }
 
     /**
-     * Ward factory constructor with string for comparisons
+     * Ward factory constructor with string for comparing.
      *
-     * @param name
-     * @return placeholder Ward
+     * @param name Name of the ward.
+     * @return placeholder Ward for comparison.
      */
     public static Ward wardWithName(String name) {
         WardName wardName = new WardName(name);
