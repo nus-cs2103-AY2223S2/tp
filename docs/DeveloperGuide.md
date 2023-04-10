@@ -154,7 +154,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented] Add feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:** In the sequence diagrams, all the dotted lines representing the return values from the function calls may look like solid lines due to the resolution of the images.
+</div>
+
+### \[Implemented] Add person feature
 
 #### Current Implementation
 
@@ -181,6 +184,18 @@ The following sequence diagram shows how the add event operation works.
 
 This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
 
+### \[Implemented] List persons from an event feature
+
+#### Current Implementation
+
+Listing persons from an event is a feature that uses the command `listevcontact [EVENT_INDEX]`. The following sequence diagram shows how the listing of persons from an event works.
+
+![ListEvContactSequenceDiagram](images/ListEvContactSequenceDiagram.png)
+
+The `listevcontact` constructs an `EventSetContainsEventPredicate` object first, then executes `Model#updateFilteredPersonList(EventSetContainsEventPredicate)` to update the list according to the predicate to list of persons whose event set contain the specified event.
+
+The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand` instead of `ListEvContactCommandParser` because the `EventSetContainsEventPredicate` object needs to take in the specified `Event` which can only be referenced by the `EVENT_INDEX` in `ListEvContactCommand` class.
+
 ### \[Implemented] Sort events feature
 
 #### Current Implementation
@@ -201,19 +216,6 @@ Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, w
 This sorting feature can only be executed when there are more than 1 event listed on the UI.
 It will only sort the event list based on the last String entered in the user input.
 
-### \[Implemented] Find event feature
-
-#### Current Implementation
-
-Finding an event is a feature that uses the command `findevent KEYWORD [MORE_KEYWORDS]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
-Below is the sequence diagram detailing how the `findevent` operation works.
-
-![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
-
-Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
-This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
-The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
-
 ### \[Implemented] Edit event feature
 
 #### Current Implementation
@@ -222,13 +224,26 @@ Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/E
 
 ![EditEventActivityDiagram](images/EditEventActivityDiagram.png)
 
-The event at the displayed list's `EVENT_INDEX` is denoted as `eventToEdit`. The edited version is denoted as `editedEvent`. 
+The event at the displayed list's `EVENT_INDEX` is denoted as `eventToEdit`. The edited version is denoted as `editedEvent`.
 
 Editing an event involves calling `Model#setEvent(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEvent(eventToEdit, editedEvent)` to edit the specified event, `eventToEdit`, in the `AddressBook`.
 
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and editing the specified event, `eventToEdit`. This is done by calling `Model#setEventFromPersonList(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEventFromPersonList(eventToEdit, editedEvent)`.
 
 The `setEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely edit the specified event in the `AddressBook`.
+
+### \[Implemented] Find event feature
+
+#### Current Implementation
+
+Finding an event is a feature that uses the command `findevent KEYWORD [KEYWORD]...`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Below is the sequence diagram detailing how the `findevent` operation works.
+
+![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
+
+Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
+This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
+The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
 
 ### \[Implemented] Delete event feature
 
@@ -243,18 +258,6 @@ This operation is similar to that of deleting a person. Deleting an event involv
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely remove the specified event from the `AddressBook`.
-
-### \[Implemented] List persons from an event feature
-
-#### Current Implementation
-
-Listing persons from an event is a feature that uses the command `listevcontact [EVENT_INDEX]`. The following sequence diagram shows how the listing of persons from an event works.
-
-![ListEvContactSequenceDiagram](images/ListEvContactSequenceDiagram.png)
-
-The `listevcontact` constructs an `EventSetContainsEventPredicate` object first, then executes `Model#updateFilteredPersonList(EventSetContainsEventPredicate)` to update the list according to the predicate to list of persons whose event set contain the specified event.
-
-The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand` instead of `ListEvContactCommandParser` because the `EventSetContainsEventPredicate` object needs to take in the specified `Event` which can only be referenced by the `EVENT_INDEX` in `ListEvContactCommand` class.
 
 ---
 
@@ -308,7 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PlanEase` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PlanEase` and the **Actor** is the `User`, unless specified otherwise.)
 
 **Use case: Add a new event**
 
@@ -467,7 +470,7 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to delete a specific event in the list
+1.  User requests to delete a specific event in the list.
 2.  PlanEase deletes the event in the list and deletes all occurrences of the event tied to person in the address book, if any.
 
 Use case ends.
@@ -535,7 +538,7 @@ Use case ends.
 
   Use case ends.
 
-### Non-Functional Requirements
+### Non-functional requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -589,10 +592,10 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `addevent ev/Wedding Dinner from/17-07-2023 12:00 to/13-07-2023 22:00`<br>
    Expected: No event is added. Error details shown in the status message.
 
-4. Other incorrect addevent commands to try: `addevent`, `...`<br>
+4. Other incorrect addevent commands to try: `addevent`, ...<br>
    Expected: Similar to previous.
 
-### Listing Events
+### Listing events
 
 1. No prerequisite.
 
@@ -606,7 +609,7 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `listevcontact 1`<br>
    Expected: App will display the list of all persons from first event if any.
 
-3. Other incorrect listevcontact commands to try: `listevcontact x`, `...` (where x is not a valid event index).<br>
+3. Other incorrect listevcontact commands to try: `listevcontact x`, ... (where x is not a valid event index).<br>
    Expected: Error details shown in the status message.
 
 ### Sorting event list
@@ -619,10 +622,10 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `sortevent`<br>
    Expected: Event list is not sorted. Error details shown in the status message.
 
-4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
+4. Other incorrect sortevent commands to try: `sortevent x`, ... (where x is not a, b, c, or d).<br>
    Expected: Similar to previous.
 
-### Editing an Event
+### Editing an event
 
 1. Editing an event while all events are being shown
 
@@ -639,7 +642,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
 
-   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [MORE_KEYWORDS]` command. Multiple events in the list.
+   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [KEYWORD]...` command. Multiple events in the list.
 
    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
       Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
@@ -660,43 +663,36 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `findevent Magical`<br>
    Expected: No matching event is found.
 
-4. Other incorrect findevent commands to try: `findevent`, `...`.<br>
+4. Other incorrect findevent commands to try: `findevent`, ...<br>
    Expected: Error details shown in the status message.
 
-### Deleting a person
+### Deleting an event
 
-1. Deleting a person while all persons are being shown
+1. Deleting an event while all events are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   2. Test case: `delevent 1`<br>
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+   3. Test case: `delevent 0`<br>
+      Expected: No event is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delevent commands to try: `delevent`, `delevent x`, ... (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Deleting a person while persons with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
+2. Deleting an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
 
-    1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
+    1. Prerequisites: List all events using the `listevent` command, then find all events with `[KEYWORD]` using the `findevent KEYWORD [KEYWORD]...` command. Multiple events in the list.
 
-    2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the displayed list. Details of the deleted contact shown in the status message.
+    2. Test case: `delevent 1`<br>
+       Expected: First event is deleted from the displayed list. Details of the deleted event shown in the status message.
 
-    3. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message.
+    3. Test case: `delevent 0`<br>
+       Expected: No event is deleted. Error details shown in the status message.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+    4. Other incorrect delevent commands to try: `delevent`, `delevent x`, ... (where x is larger than the displayed list size)<br>
        Expected: Similar to previous.
-
-### Sorting event list
-
-1. Prerequisite: Current list of events have at least 2 events.
-
-2. Test case: `sortevent a`<br>
-   Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
 
 ### Listing all persons and events
 
@@ -727,7 +723,7 @@ testers are expected to do more *exploratory* testing.
 
 Currently, the name of a Person is not case-sensitive.
 Anyone with the same name but in different casing are considered different Persons.
-For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Contacts:
+For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of contacts:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
@@ -748,13 +744,14 @@ The current version of this application has no prior knowledge of how phone numb
 For example, the user is currently able to add the following command.
 * `add n/John Doe p/1234566789900000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`.
 * `add n/John Doe p/00000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`
+
 For future enhancements, checks can be made to ensure that the numbers are formatted with accordance to phone numbers found in Singapore as an example.
 
 ### Events that have ended can be displayed differently
 
 In this version of the application, the displayed events does not have any special indicator to show that it has "expired" or ended.
 For example, if today's date is 9th April 2023 and there are events that have end dates earlier than 9th April, they should be shown as greyed out events to indicate to the user that the event has ended.
-This UI enhancement would help allow the users to focus on upcoming events.
+This UI enhancement would help the users to focus on upcoming events.
 
 For future enhancements, the UI should display past events with a special indicator or color to differentiate itself from future events.
 
