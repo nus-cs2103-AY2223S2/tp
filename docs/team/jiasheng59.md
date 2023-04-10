@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jiasheng59&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
+  * Set up the GitHub team org and repo
   * Lead the discussion in weekly project meeting
   * Encourage teammates to brainstorm for Unique Selling Point of InternEase at the end of v1.2 iteration
   * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
@@ -45,7 +46,8 @@ Given below are my contributions to the project.
         * Added documentation for the features `list`, `help`, `sort` and `find`: [\#200](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/200), [\#210](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/210), [\#212](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/212)
         * Did cosmetic tweaks to existing documentation of features: [\#291](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/291)
     * Developer Guide:
-        * Added implementation details of the `list`, `sort`, and `find` feature.
+        * Added implementation details of the `list`, `sort`, and `find` feature and corresponding use cases
+        * Drew related UML diagrams for better illustration
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#106](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/106), [\#129](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/129), 
