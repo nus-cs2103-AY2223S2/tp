@@ -659,14 +659,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
    
    2. Test Cases
-      1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
+      1. Test case 1: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
          - Testing for: Command successful execution
          - Expected: A contact is added to the contact list with Pierce as its name, Serangoon Central as its address, and Friend and Genius as its tags.
       
-      2. **Test case 2**: `add p/91238917 a/Serangoon Central` 
+      2. Test case 2: `add p/91238917 a/Serangoon Central` 
          - Testing for: No name specified
          - Expected: No contact is added. Error details show in the status message.
-      3. **Test case 3**: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
+      3. Test case 3: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
          - Testing for: Invalid fields
          - Expected: Same as test case 2
 
@@ -677,15 +677,15 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
 
    2. Test Cases
-      1. **Test case 1**: `delete 1`
+      1. Test case 1: `delete 1`
          - Testing for: Command successful execution
          - Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-      2. **Test case 2**: `delete 0`
+      2. Test case 2: `delete 0`
          - Testing for: Erroneous index results in command failure
          - Expected: No person is deleted. Error details shown in the status message.
 
-      3. **Other test cases**: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
+      3. Other test cases: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
          - Testing for: Erroneous index results in command failure
          - Expected: Similar to test case 2.
 
@@ -721,21 +721,18 @@ testers are expected to do more *exploratory* testing.
          - Testing for: Command successful execution 
          - Expected: Shows all contacts with `Pi` in their names show up in the contacts list.
       2. Test case 2: `find n/Stan n/Pierce`
-        
          - Testing for: Command successful execution
          - Expected: Shows all contacts with `Stan` **or** `Pierce` in their names will show up in the contacts list
       3. Test case 3: `find n/Pie m/Comp`
-        
          - Testing for: Command successful execution
          - Expected: Shows all contacts with `Pie` in their name field **and** have `Comp` in their major field.
       4. Test case 4: `find`
-        
          - Testing for: No fields specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
       5. Test case 5: `find 1 n/Pi`
-         
          - Testing for: Index specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
+
 
 2. Find a contact when there are no contacts
 
@@ -764,6 +761,7 @@ testers are expected to do more *exploratory* testing.
       3. Test case 3: `fav 1` when Contact at Index 1 is already favourited 
           - Testing for: Successful Command Execution
           - Expected: Contact at index 1 on the list will remain favourited and will pass as Successful Command Execution. Same result as Test Case 1.
+
 
 2. Unfavouriting a contact
 
