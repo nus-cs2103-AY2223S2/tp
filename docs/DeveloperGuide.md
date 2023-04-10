@@ -87,7 +87,7 @@ title: Developer Guide
    * [Testing Commands](#testing-commands)
    * [Testing Parsers](#testing-parsers)
    * [GUI Tests](#gui-tests)
-     * [Setting up automated GUI Tests in Github Actions](#setting-up-automated-gui-tests-in-github-actions)
+     * [Setting up automated GUI Tests in GitHub Actions](#setting-up-automated-gui-tests-in-github-actions)
      * [Understanding GUI Tests](#understanding-gui-tests)
    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
    * [Create Code Coverage Report](#create-code-coverage-report)
@@ -115,7 +115,7 @@ title: Developer Guide
      * [Filter persons by keywords](#filter-persons-by-keywords)
      * [Arrange persons by criteria](#arrange-persons-by-criteria)
      * [Generate a sample EduMate](#generate-a-sample-edumate)
-     * [Suggest meetup locations and times](#suggest-meetup-locations-and-times)
+     * [Suggest meet up locations and times](#suggest-meet-up-locations-and-times)
      * [Organise and confirm meetings](#organise-and-confirm-meetings)
      * [Cancel scheduled meetings](#cancel-scheduled-meetings)
    * [Glossary](#glossary)
@@ -632,7 +632,7 @@ How the `Logic` component works:
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-### **Commands**
+## **Commands**
 
 #### **Add Command**
 
@@ -729,6 +729,8 @@ In summary, the activity diagram is as such:
 </div>
 
 #### **Delete Command**
+
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/DeleteCommandParser.java)
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -1101,7 +1103,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 The `Recommender` component,
 * consists of 2 sub-components (modules) : `LocationRecommender` and `TimingRecommender`
-* recommends timing and location of meetups for relevant participants and the user.
+* recommends timing and location of meet ups for relevant participants and the user.
 
 How the `Recommender` Component works:
 1. User enters a `meet/eat/study` command.
@@ -1111,7 +1113,7 @@ How the `Recommender` Component works:
 5. The `TimingRecommender` recommends common available timings amongst users and participants.
 6. Based on the timings provided, the `LocationTracker`s return each person's approximate locations.
 7. The `LocationRecommender` recommends optimal meeting points based on the locations provided by the `LocationTracker`s.
-8. Feedbacks to user the recommended meetup locations and timings.
+8. Feedbacks to user the recommended meet up locations and timings.
 
 <img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
@@ -1122,7 +1124,7 @@ How the `Recommender` Component works:
 #### Timing Recommender
 The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
 The `TimingRecommender` uses the participants' schedule to find common time periods that everyone
-will be free so that a meetup could be scheduled.
+will be free so that a meet up could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
@@ -1440,7 +1442,7 @@ For more information, you may view our special documentation page [here](Documen
 #### **Target user profile**
 
 * has a need to manage a significant number of contacts
-* frustrated in the struggle to find suitable meetup venues and timings
+* frustrated in the struggle to find suitable meet up venues and timings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -1487,7 +1489,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **Use Cases**
 
-(For all use cases below, the **System** is EduMate and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is EduMate and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - View the list of all contacts**
 
@@ -2418,7 +2420,7 @@ Command executed: `sample 101`
 
 Expected Output in Command Response Box: Error message for Invalid Size.
 
-### **Suggest meetup locations and times**
+### **Suggest meet up locations and times**
 
 #### **_Scenario 1_**
 
