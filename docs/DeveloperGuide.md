@@ -29,7 +29,8 @@ title: Developer Guide
 
 ## Acknowledgements
 
-Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/).
+Wingman was built atop the codebase
+for [AB3](https://se-education.org/addressbook-level3/).
 Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
 albeit involving different implementations and classes.
 
@@ -65,13 +66,17 @@ Main has two classes called Main and MainApp. It is responsible for,
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App. The UI of Wingman is built using JavaFX with FXML.
-* [**`Logic`**](#logic-component): The command executor. This layer is responsible for parsing user
+* [**`UI`**](#ui-component): The UI of the App. The UI of Wingman is built using
+  JavaFX with FXML.
+* [**`Logic`**](#logic-component): The command executor. This layer is
+  responsible for parsing user
   input into executable commands, and executing them. It adopts the command
   pattern, the facade pattern, and the factory pattern.
-* [**`Model`**](#model-component): Holds the data of the App in memory and defines the different
+* [**`Model`**](#model-component): Holds the data of the App in memory and
+  defines the different
   entities.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the
+  hard disk.
 
 <div style="page-break-after: always;"></div>
 
@@ -90,7 +95,8 @@ in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main
 
 The UI consists of a `MainWindow` that is made up of parts
 e.g.`CommandBox`, `ResultDisplay`, `XYZListPanel`, `StatusBarFooter` etc.
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class
+which captures
 the commonalities between classes that represent parts of the visible GUI.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
@@ -117,7 +123,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies
   on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays
-  `Flight`, `Crew`, `Plane`, `Pilot`, `Location` objects residing in the `Model`.
+  `Flight`, `Crew`, `Plane`, `Pilot`, `Location` objects residing in
+  the `Model`.
 
 <div style="page-break-after: always;"></div>
 
@@ -140,9 +147,11 @@ We shall be looking at the 3 parts one by one.
 
 #### Command Parser
 
-Wingman abandoned the use of the parser design in AB3. The main motivation behind
+Wingman abandoned the use of the parser design in AB3. The main motivation
+behind
 this decision was that we felt that AB3's parser design was too complicated.
-Furthermore, AB3's parser didn't have the `mode` component, which was crucial to the
+Furthermore, AB3's parser didn't have the `mode` component, which was crucial to
+the
 design of Wingman.
 
 ![Wingman's parser design](images/ParserLogicSequenceDiagram.png)
@@ -240,27 +249,35 @@ it does not differ significantly from the command pattern in AB3.
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
 </p>
 
-The `Model` package consists of a `Model Manager`, which stores the `UserPref` and `Wingman` data.
-`Wingman` data is stored in 5 separate `ItemManager` objects (one for each resource type),
+The `Model` package consists of a `Model Manager`, which stores the `UserPref`
+and `Wingman` data.
+`Wingman` data is stored in 5 separate `ItemManager` objects (one for each
+resource type),
 each of which has an `UniqueList` object.
 
 The `Model` component,
 
 * stores in memory the Wingman data
-  i.e., all `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects (which are contained in separate
+  i.e., all `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects (which are
+  contained in separate
   `UniqueList` objects).
-* stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects
+* stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location`
+  and `Crew` objects
   as separate _filtered_ lists (one for each resource type).
-    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
-      For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
-      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
+    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>`
+      objects that can be 'observed'.
+      For instance, the UI can be bound to these lists so that the UI
+      automatically updates when the data in the
+      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or
+      Location)
 * stores in memory a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
     * Essentially, the `Model` component could be considered as the **domain**
-      layer of the application. It contains core application logic that should not
+      layer of the application. It contains core application logic that should
+      not
       be altered even if we completely swap out the UI or storage components.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
@@ -289,14 +306,14 @@ The `Storage` component,
 * can save both Wingman data and user preference data in json format,
   and read them back into corresponding objects.
 * depends on some classes in the `Model` component (e.g. `UserPref`)
-  because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
+  because the `Storage` component's job is to save/retrieve objects that belong
+  to the `Model`
 
-> **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
-> user when he/she directly modifies the data files. The user is expected to 
+> **IMPORTANT**: Wingman is not responsible for the data loss caused by the
+> user when he/she directly modifies the data files. The user is expected to
 > work with the data files only through Wingman.
 
 <div style="page-break-after: always;"></div>
-
 
 ### Overall Sequence
 
@@ -328,9 +345,11 @@ diagrams to depict the processes at each layer in greater detail.
 <img src="images/WingmanDeleteCrewActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
 
-These activity diagrams represent the paths a user will take when trying to link/unlink a
+These activity diagrams represent the paths a user will take when trying to
+link/unlink a
 resource entity, XYZ
-to a flight, as well as deleting a `Crew` entity. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
+to a flight, as well as deleting a `Crew` entity. XYZ can be
+a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
 entity.
 
 <div style="page-break-after: always;"></div>
@@ -446,13 +465,17 @@ passes control to the logic layer.
 At the logic layer, `execute(input)` parses the input using the
 WingmanParser's `parse` function.
 
-Firstly, the WingmanParser separates the input into tokens. Secondly, it determines
-what mode the command is from using the `parse` command in the `CommandGroup` class.
-Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser` class
+Firstly, the WingmanParser separates the input into tokens. Secondly, it
+determines
+what mode the command is from using the `parse` command in the `CommandGroup`
+class.
+Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser`
+class
 which uses the `createCommand` method to finally create a `DeleteCommand`.
 Finally, the `DeleteCommand` is returned in the original `LogicManager`.
 
-The next step in the `LogicManager` is to execute the returned command. To do so,
+The next step in the `LogicManager` is to execute the returned command. To do
+so,
 it calls the command's `execute` method which in this example, uses a
 `DeleteFunction` to run `delete(model, xyz)` (where xyz is the resource
 to be deleted).
@@ -467,8 +490,10 @@ indicating a successful deletion.
 
 For the parsing logic in the Wingman app, the commands were split based on their
 related "mode." This is due to the nature that there are some commands which
-only concern some modes. This implementation decision was made so that parsing would be
-more simple across the five modes since each mode would only have to handle their
+only concern some modes. This implementation decision was made so that parsing
+would be
+more simple across the five modes since each mode would only have to handle
+their
 related commands only.
 
 <div style="page-break-after: always;"></div>
@@ -560,7 +585,8 @@ Hence, in this description the general term XYZ is used instead.
 This feature is enabled by the following classes in particular:
 
 - `UnlinkXYZtoFlightCommand` - The command that unlinks a crew from a flight
-- `XYZFlightLinkCommandFactory` - The factory class that creates an `UnlinkXYZtoFlightCommand`
+- `XYZFlightLinkCommandFactory` - The factory class that creates
+  an `UnlinkXYZtoFlightCommand`
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
 
@@ -574,8 +600,10 @@ this command is passed from the UI layer to the logic layer similar to the way
 described above, in the
 'Adding XYZ' section.
 
-At the logic layer, while the sequence of method calls is similar to what is described in the 'Deleting XYZ' section,
-the `UnlinkXYZtoFlightCommand.execute(model)` method is called instead of the `DeleteCommand.execute(model)` method.
+At the logic layer, while the sequence of method calls is similar to what is
+described in the 'Deleting XYZ' section,
+the `UnlinkXYZtoFlightCommand.execute(model)` method is called instead of
+the `DeleteCommand.execute(model)` method.
 
 This method then calls
 the `flight.XYZLink.delete(entry.getKey(), entry.getValue())` method
@@ -586,20 +614,30 @@ similar to the ones described in the
 'Linking XYZ to a flight' section until the control is passed back to the logic
 layer.
 
-Subsequently, the control is passed to the storage layer through the `logicManager.save()` method.
-This method calls the `storage.saveXYZManager(model.getXYZManager())` for all resource types
-(i.e. `Flight`, `Pilot`, `Plane`, `Location` and `Crew`) to save all the updates made across all objects
-in storage. Since these method calls work in the same way for each resource type, we shall focus on just the
-method call to save the updated flight objects in storage, to keep the diagram simple.
+Subsequently, the control is passed to the storage layer through
+the `logicManager.save()` method.
+This method calls the `storage.saveXYZManager(model.getXYZManager())` for all
+resource types
+(i.e. `Flight`, `Pilot`, `Plane`, `Location` and `Crew`) to save all the updates
+made across all objects
+in storage. Since these method calls work in the same way for each resource
+type, we shall focus on just the
+method call to save the updated flight objects in storage, to keep the diagram
+simple.
 
 <img src="images/WingmanUnlinkXYZSequenceDiagram.png" width="966" alt="Sequence diagram at Storage layer">
 
-After `model.getFlightManager()` returns the model, the `saveFlightManager` method calls the
-`saveFlightManager(flightManager, flightStorage.getPath())` method in the same `StorageManager` class.
-For the parameters, flightManager is a `ReadOnlyItemManager<Flight>` object and `flightStorage` is
+After `model.getFlightManager()` returns the model, the `saveFlightManager`
+method calls the
+`saveFlightManager(flightManager, flightStorage.getPath())` method in the
+same `StorageManager` class.
+For the parameters, flightManager is a `ReadOnlyItemManager<Flight>` object
+and `flightStorage` is
 a `ItemStorage<Flight>` object.
-This method call uses the imported json package to store 'JsonIdentifiableObject' versions of the flightManager
-which in turn contains the JsonAdaptedFlights, including the flight with the updated link represented as a
+This method call uses the imported json package to store '
+JsonIdentifiableObject' versions of the flightManager
+which in turn contains the JsonAdaptedFlights, including the flight with the
+updated link represented as a
 `Map<FlightXYZType, Deque<String>>` object.
 
 **Why was it implemented this way?**
@@ -971,23 +1009,34 @@ Below, are the details of the planned enhancements:
 
 #### 1. Addressing the 'multiple link' to flights issue
 
-- **Feature flaw:** A resource entity can currently be linked to one flight through multiple links at once.
-   (e.g. Crew Member Ben can be linked to Flight SQ312 as both a Cabin Service Director and a Trainee)
+- **Feature flaw:** A resource entity can currently be linked to one flight
+  through multiple links at once.
+  (e.g. Crew Member Ben can be linked to Flight SQ312 as both a Cabin Service
+  Director and a Trainee)
 
-- **Feature tweak:** We plan to change the crew entity to be linked to one flight through only one appointment
-  at a time. This can be done by adding a new field labelled availability to the different resource classes
-  in the model layer to prevent the same resource from being assigned to multiple flights at the same time.
-  The linkXYZtoFlight command will also be changed to check this additional field before creating the link if the
-  resource entity is available or returning an error message if the resource entity is not available. Upon creation
-  of the link, this command will also update the availability field of the resource entity to false.
-  The unlinkXYZtoFlight command will also be changed to update the availability field of the resource entity
+- **Feature tweak:** We plan to change the crew entity to be linked to one
+  flight through only one appointment
+  at a time. This can be done by adding a new field labelled availability to the
+  different resource classes
+  in the model layer to prevent the same resource from being assigned to
+  multiple flights at the same time.
+  The linkXYZtoFlight command will also be changed to check this additional
+  field before creating the link if the
+  resource entity is available or returning an error message if the resource
+  entity is not available. Upon creation
+  of the link, this command will also update the availability field of the
+  resource entity to false.
+  The unlinkXYZtoFlight command will also be changed to update the availability
+  field of the resource entity
   to true when the unlinking is successful.
 
-- **Sample Error Message:** The resource entity is not available for the specified flight.
+- **Sample Error Message:** The resource entity is not available for the
+  specified flight.
 
 #### 2. Availability attribute and `check` command
 
-- **Feature flaw:** Previously, we tried adding an `availability` feature to `Crew`,
+- **Feature flaw:** Previously, we tried adding an `availability` feature
+  to `Crew`,
   `Pilot`, and `Plane` to indicate whether they are currently assigned
   to a `Flight`. However, under our time constraints, it was difficult
   for us to synchronize when these resources' availability changes.
@@ -995,39 +1044,92 @@ Below, are the details of the planned enhancements:
   Specifically, there were cases where a resource's availability did not
   change when it should have.
 
-- **Feature tweak:** When linking a resource to a `Flight`, we should be checking
+- **Feature tweak:** When linking a resource to a `Flight`, we should be
+  checking
   the resource's availability and determining if the `Link` can be
   made or not. This is another aspect of input validation as described
   earlier. Therefore, due to the error-prone nature of this command,
-  we decided to exclude it from this release. With more time, we should be able to implement
-  this feature correctly. By checking that the availability of a resource is updated
-  correctly whenever a `linkflight`, `unlinkflight`, `linklocation`, `unlinklocation`,`add`
+  we decided to exclude it from this release. With more time, we should be able
+  to implement
+  this feature correctly. By checking that the availability of a resource is
+  updated
+  correctly whenever
+  a `linkflight`, `unlinkflight`, `linklocation`, `unlinklocation`,`add`
   or `delete` command is executed, we can solve this issue.
 
 #### 3. UI enhancements
 
-- **Feature flaw:** A point which was raised up by some test users of Wingman is that
-  the resource lists might be slightly hard to navigate/view. This was due to text wrapping
-  not being enabled and due to the physical constraints of the application window. 
+- **Feature flaw:** A point which was raised up by some test users of Wingman is
+  that
+  the resource lists might be slightly hard to navigate/view. This was due to
+  text wrapping
+  not being enabled and due to the physical constraints of the application
+  window.
 
-- **Feature tweak:** To fix this, we could further develop our UI by resizing our "item cards"
+- **Feature tweak:** To fix this, we could further develop our UI by resizing
+  our "item cards"
   so that all the information for a given resource can be seen easily
-  without needing to scroll horizontally. An alternative solution would be to enable text wrapping.
+  without needing to scroll horizontally. An alternative solution would be to
+  enable text wrapping.
 
 #### 4. Improving the current linking
 
-- **Feature flaw:** In Wingman's current implementation, linking between resources is made
+- **Feature flaw:** In Wingman's current implementation, linking between
+  resources is made
   with a `Link` object. The `Link` can constrain how many resources are linked
   to another. However, `Link` only supports one-directional relations.
   This means that if B is linked to A, only A is "aware" that such a
   `Link` exists.
 
-- **Feature tweak:** For better use of our app, it would be helpful to have a bidirectional
+- **Feature tweak:** For better use of our app, it would be helpful to have a
+  bidirectional
   `Link` instead. With a bidirectional `Link`, we could do more commands
   or operations seamlessly (e.g. the `check` command, which is
   detailed below). Furthermore, fixing the `Link` would allow us to fix
-  our `LinkLocation` commands. 
+  our `LinkLocation` commands.
+- Given the time constraints of our project, this was not feasible for this
+  iteration but with more time, we can implement it for upcoming versions.
 
-- Given the time constraints of our project, this was not feasible
-for this iteration but with more time, we can implement it for
-upcoming versions.
+#### 5. Consistency check for the link when creating the link
+
+- **Feature flaw:** Currently, we do not check if a link is possible before
+  making the link. For example, a `Plane` should be able to be linked to a
+  `Flight` if and only if the `Plane` is at the same `Location` as the
+  starting location of the `Flight`. However, we do not check this. The same
+  thing applies for `Crew` and `Pilot` as well.
+- **Feature tweak:** To fix this, we can add a validation logic in the
+  linking related operations, checking if the link can be made. This can be
+  done if we move the link into a separate function, and inside that
+  function, we can navigate to the other resources that the resource is linked
+  to, then we can check if the link is possible. If the link is not possible,
+  we can throw a `CommandException` with the appropriate error message.
+- **Sample Error Message:** Cannot link ___ to ___ because ___.
+
+#### 6. Consistency check for the link when it becomes invalid
+
+- **Feature flaw:** If one of the resources's condition changed such that
+  the link is no longer valid, we should be able to detect this and then
+  inform the user. For example, if a `Plane` is linked to a `Flight` and
+  then the `Plane` is moved to a different `Location`, the link should then
+  become invalid and a warning should be shown to the user.
+- **Feature tweak:** To fix this, we can add a validation logic in the
+  linking related operations, checking if the link is still valid. The logic
+  should be similar to the one that we describe in the previous enhancement.
+  Alternatively, we can also implement a lock, i.e. when a resource is
+  linked to the flight, the resource is locked and cannot be modified,
+  unless it was unlinked from the flight.
+- **Sample Error Message:** Link between ___ and ___ is no longer valid.
+
+#### 7. An Entity (Crew, Pilot, Plane) can be linked to multiple locations at once
+
+- **Feature Flaw**: currently, an entity can be linked to multiple locations
+  at once, which is not possible in reality. For example, a plane can only
+  be at one location at a time.
+- **Feature tweak**: To fix this, we need to change where the link is stored
+  from `Location` to each respective resources. For example, instead of
+  storing the link to `Plane`s inside a `Location`, we can store the link
+  to `Location` inside a `Plane`. Since we were unsure whether if this would
+  be considered as adding a new feature, we decided to leave it out of this
+  iteration. Alternatively, this problem could be solved if we implement a
+  bidirectional linking, i.e. extending the navigability of between two
+  entities to be bidirectional.
