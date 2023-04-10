@@ -185,7 +185,7 @@ The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
 * Allows for filtering to display a subset of Elderly or Volunteers in UI.
 * Allows for easy retrieval of information for pairing.
 
-The `delete_elderly` and `delete_volunteer` commands make use of `NRIC`
+The `delete_elderly` and `delete_volunteer` commands make use of the `NRIC`
 attribute of Elderly and Volunteer.
 FriendlyLink retrieves the target person uniquely identified by its NRIC,
 and removes it from the database.
@@ -193,12 +193,12 @@ and removes it from the database.
 * Allows more efficient deletion compare to index-based deletion.
 * The user don't need to check the index of the target person before deletion.
 
-If the deleted Elderly or Volunteer has existing pairing, the associated
+If the deleted Elderly or Volunteer has existing pairings, the associated
 pairs will be automatically removed as well.
 
 ### Command Recommendation and Autocompletion of Field's Prefixes
 
-Both autocompletion and recommendation is facilitated by `CommandRecommendationEngine.java`. The Logic component registers 
+Both autocompletion and recommendation are facilitated by `CommandRecommendationEngine.java`. The Logic component registers 
 individual command parsers, which implement the `Parser` interface, to enable recommendations of command inputs. Each parser,
 such as `{XYZ}CommandParser`, specifies how recommendation should differ for a specific command by overriding the 
 `Parser#getCommandInfo` method. When the user types a valid command, the `CommandBox` UI component detects the keystroke 
@@ -234,8 +234,8 @@ Aspect: How recommendation executes:
 ### Edit by index & NRIC
 
 In FriendlyLink, there are 2 methods to  choose which elderly/volunteer to edit:
-- via **index** using the `edit_elderly` and `edit_volunteer` commands
-- via **NRIC** using the `edit` command
+- via **index** using the `edit_elderly` and `edit_volunteer` commands.
+- via **NRIC** using the `edit` command.
 
 Similar to adding elderly/volunteers, editing is done by specifying the desired field(s) to edit using their prefixes, 
 and then providing the new value for the field(s). For consistency, the prefixes between the adding and 
@@ -249,7 +249,7 @@ Retrieving of the desired `Elderly`/`Volunteer` to edit is done differently
 depending on whether `edit_elderly`/`edit_volunteer`
 or `edit` is called:
 - `edit_elderly`/`edit_volunteer`: The `Elderly`/`Volunteer` is retrieved directly from
-the `filteredElderly`/`filteredVolunteer` of `Model`
+the `filteredElderly`/`filteredVolunteer` of `Model`.
 - `edit`: We first check if an `Elderly` with the specified NRIC exists in `Model`. 
 If so, we retrieve it; Otherwise, we perform a similar check for `Volunteer`, and retrieve it if 
 such a `Volunteer` exists.
@@ -262,7 +262,7 @@ with the values specified in the `EditDescriptor`
 - `createEditedVolunteer(Volunteer, EditDescriptor)`: returns a `Volunteer` representing the given `Volunteer` modified 
 with the values specified in the `EditDescriptor`
 
-The `Elderly`/`Volunteer` and then edited in the model using the `setElderly`/`setVolunteer` methods
+The `Elderly`/`Volunteer` are then edited in the model using the `setElderly`/`setVolunteer` methods
 of `Model` respectively.
 
 Design decisions:
@@ -286,9 +286,9 @@ The results of the ```find``` command are displayed as the filtered version of t
 together with the number of entities listed being shown in the command result box.
 
 Volunteers and elderly who match all the provided attributes that they have are filtered out and displayed in their respective list.
-For each filtered person, Any pairing that they are involve in would be filtered and displayed in the pair list.
+For each filtered person, Any pairings that they are involved in will be filtered and displayed in the pair list.
 
-Arguments for the ```find``` command involves at least one of the attributes belonging to an elderly or a volunteer.
+Arguments for the ```find``` command involve at least one of the attributes belonging to an elderly or a volunteer.
 Any number of attributes can be specified but if multiple of the same attribute is specified then only the last one will be
 used in the search.
 
@@ -316,7 +316,7 @@ Design decisions:
   - The search should narrow the field with each additional new attribute for a more targeted result.
 - Related pairings are also shown during the search.
   - Provides a comprehensive search results where all information related to the people found are shown.
-- People with Available dates that contain the specified dates or have no available dates will be found when searching with the specified dates.
+- People with available dates that contain the specified dates or have no available dates will be found when searching with the specified dates.
   - They are found because they are available on the specified dates.
 
 ### Pairing and unpairing of elderly and volunteers
@@ -350,7 +350,7 @@ The `Summary` object
 
 <img src="images/developerGuide/StatsCommandClassDiagram.png" width="500" />
 
-The `StatsCommand` keeps a `Summary` object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunctions` with appropriate arguments and passes them to the `Summary` to be described.
+The `StatsCommand` keeps a `Summary` object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunction`s with appropriate arguments and passes them to the `Summary` to be described.
 
 <img src="images/developerGuide/StatsSequenceDiagram.png" width="500" />
  
@@ -370,8 +370,8 @@ Persons saved contains all their attributes such as name, NRIC, in JSON format.
 Pairs saved only contains the NRIC of the elderly and volunteer in JSON format.
 
 **Reasons**
-* Reduce space needed to store pairs
-* Reduce chance of inconsistent data between a person and the corresponding pair,
+* Reduce space needed to store pairs.
+* Reduce chance of inconsistent data between a person and the corresponding pair.
 * Reduce number of files to amend manually when updating person information.
 
 **Implications**
