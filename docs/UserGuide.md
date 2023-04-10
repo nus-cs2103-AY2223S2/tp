@@ -429,8 +429,6 @@ Allows for toggling between light mode and dark mode based on user preference.
 
 ---
 
-<div style="page-break-after: always"></div>
-
 # 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
