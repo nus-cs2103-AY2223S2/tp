@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/yyj-02)]
 [[portfolio](team/yyj-02.md)]
 
-* Role: Code Reviewer
+* Role: Lead Developer
 
 ### Tan Homun
 
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/homuntan02)]
 [[portfolio](team/homuntan02.md)]
 
-* Role: Developer, Water Boy
+* Role: Developer, Quality Assurance
 
 ### Clevon Wong
 
@@ -34,8 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/clevon-w)] [[portfolio](team/clevon-w.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, UI/UX
 
 ### Nicholas Tan
 
@@ -44,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/nt-nic)]
 [[portfolio](team/nt-nic.md)]
 
-* Role: Developer, Vice President (External)
+* Role: Developer, Documentation
 
 ### Branda Ang
 
@@ -53,5 +52,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/panpannnnn)]
 [[portfolio](team/panpannnnn.md)]
 
-* Role: Developer
-* Responsibilities: Task creator
+* Role: Developer, Documentation
