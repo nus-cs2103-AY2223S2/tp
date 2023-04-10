@@ -384,9 +384,11 @@ Formats:
 
 **Implementation**:
 
-The implementation of this feature requires 'LightCommand' and 'DarkCommand'.
+The implementation of this feature requires `LightCommand` and `DarkCommand`.
 
 ModCheck will save the user's favorite theme automatically. When the user exits the app, the handleExit() method in the MainWindow class will save the user last used theme to preferences.json so that when the user returns to the app. The favorite theme will still remain.
+
+Below is an activity diagram that shows what happens when a user executes the `light or dark` command
 
 ![AddActivityDiagram](images/lightdarkactivitydiagram.png)
 
@@ -694,7 +696,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+* 1a. Already in the selected theme.
+    * 1a1. ModCheck shows an error message.
+   
+      Use case ends.
 
 ### Non-Functional Requirements
 
