@@ -261,12 +261,12 @@ where you can meet your friends.
 
 <img src="images/UG_ui_pictures/MeetUpRecommendationUnlabelled.svg" style="width:80%;margin:1% 1% 1% 10%">
 
-<center>Diagram 6: Recommended timings and locations for meetups displayed</center>
+<center>Diagram 6: Recommended timings and locations for meet ups displayed</center>
 <br>
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Components of Meet Up Recommendation Panel**<br>
-The panel, as shown below, contains all the recommended timings and locations for your meetups.
+The panel, as shown below, contains all the recommended timings and locations for your meet ups.
 <br>
 
 <img src="images/UG_ui_pictures/MeetUpRecommendationPanel.svg" style="width:80%;margin:0 10%">
@@ -1128,9 +1128,9 @@ What you should see:<br>
 
 ### Schedule Commands
 
-The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. The feature is useful for keeping track of your upcoming meetups in an organised and efficient way. 
+The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. The feature is useful for keeping track of your upcoming meet ups in an organised and efficient way. 
 
-In addition, EduMate offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
+In addition, EduMate offers the `unorganise` command, which helps you manage and clean up scheduled meet ups by removing them - making it easy to stay on top of your schedule.
 
 Any organised meet ups will be displayed at EduMate's [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
 
