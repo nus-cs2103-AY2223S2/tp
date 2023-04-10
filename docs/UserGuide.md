@@ -659,17 +659,16 @@ What you should see:
 <ul>
     <li>All fields apart from <code>INDEX</code> are optional. However, you need to include at least one optional 
 parameter.</li>
+</li>
+    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+</li>
     <li> However for <code>NOTE</code>:
         <ul> 
             <li>If two or more values for <code>NOTE</code> are provided, both parameters will be taken in.</li>
             <li>If an empty <code>NOTE</code> is provided, all notes will be removed.</li>
         </ul>
     </li>
-    <li>You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time and application
-date time using edit command. 
-</li>
-    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-</li>
+    <li>You are allowed to change <code>INTERVIEW DATETIME</code> to a value before the current datetime but after the applicant's application date time using the <code>edit</code> command.
 </ul> </div>
 
 
@@ -825,18 +824,18 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### Applicant Commands
 
-| Action                                   | Format                                                                                                                                                                        | Example                                                                     |
-|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Add a new applicant                      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                            | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                  | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                                      | `find n/Tom p/98763213`                                                     |
-| List all applicants                      | `list`                                                                                                                                                                        | `list`                                                                      |
-| Delete an applicant                      | `delete n/NAME p/PHONE`                                                                                                                                                       | `delete n/Tom p/98763213`                                                   |
-| Advance an applicant                     | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide an `INTERVIEW DATETIME` to advance an applicant's status from `APPLIED` to `ACCEPTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
-| Reject an applicant                      | `reject n/NAME p/PHONE`                                                                                                                                                       | `reject n/Tom p/98763213`                                                   |
-| View the interview dates of applicants   | `interview`                                                                                                                                                                   | `interview`                                                                 |
-| Edit the information of an applicant     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                     | `edit 1 n/Marry p/98763245`                                                 |
-| Remind an applicant's interview date     | `remind`                                                                                                                                                                      | `remind`                                                                    |
-| Filter applicants with specific skill(s) | `skill KEYWORD(s)`                                                                                                                                                            | `skill java`                                                                |
+| Action                                   | Format                                                                                                                                                                           | Example                                                                     |
+|------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                               | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                  | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                                         | `find n/Tom p/98763213`                                                     |
+| List all applicants                      | `list`                                                                                                                                                                           | `list`                                                                      |
+| Delete an applicant                      | `delete n/NAME p/PHONE`                                                                                                                                                          | `delete n/Tom p/98763213`                                                   |
+| Advance an applicant                     | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide an `INTERVIEW DATETIME` to advance an applicant's status from `APPLIED` to `SHORTLISTED` | `advance n/Tom p/98763213 d/20-03-2024 12:12`                               |
+| Reject an applicant                      | `reject n/NAME p/PHONE`                                                                                                                                                          | `reject n/Tom p/98763213`                                                   |
+| View the interview dates of applicants   | `interview`                                                                                                                                                                      | `interview`                                                                 |
+| Edit the information of an applicant     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                        | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date     | `remind`                                                                                                                                                                         | `remind`                                                                    |
+| Filter applicants with specific skill(s) | `skill KEYWORD(s)`                                                                                                                                                               | `skill java`                                                                |
  
 
 [Back to Table of Contents](#table-of-contents)
