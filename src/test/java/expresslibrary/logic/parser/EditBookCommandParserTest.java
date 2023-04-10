@@ -1,6 +1,6 @@
 package expresslibrary.logic.parser;
 
-import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX;
 import static expresslibrary.logic.commands.CommandTestUtil.AUTHOR_DESC_ROWLING;
 import static expresslibrary.logic.commands.CommandTestUtil.BORROW_DATE_DESC;
 import static expresslibrary.logic.commands.CommandTestUtil.DUE_DATE_DESC;
@@ -32,7 +32,7 @@ import expresslibrary.testutil.EditBookDescriptorBuilder;
 
 public class EditBookCommandParserTest {
 
-    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_BOOK_DISPLAYED_INDEX,
             EditBookCommand.MESSAGE_USAGE);
 
     private EditBookCommandParser parser = new EditBookCommandParser();
@@ -40,28 +40,28 @@ public class EditBookCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_TITLE_HARRY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_TITLE_HARRY, MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         // no field specified
         assertParseFailure(parser, "1", EditBookCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + AUTHOR_DESC_ROWLING, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + AUTHOR_DESC_ROWLING, MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + AUTHOR_DESC_ROWLING, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + AUTHOR_DESC_ROWLING, MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 z/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 z/ string", MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
     }
 
     @Test
