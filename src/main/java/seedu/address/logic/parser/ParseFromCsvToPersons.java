@@ -80,9 +80,9 @@ public class ParseFromCsvToPersons {
         Address address = ParserUtil.parseAddress(csv.getEntry(rowNumber, "address"));
 
         // optional fields
-        Unit unit = ParserUtil.parseUnit(orElseNa(csv.getEntry(rowNumber, "unit")));
-        Company company = ParserUtil.parseCompany(orElseNa(csv.getEntry(rowNumber, "company")));
-        Platoon platoon = ParserUtil.parsePlatoon(orElseNa(csv.getEntry(rowNumber, "platoon")));
+        Unit unit = ParserUtil.parseUnit(returnNaIfBlank(csv.getEntry(rowNumber, "unit")));
+        Company company = ParserUtil.parseCompany(returnNaIfBlank(csv.getEntry(rowNumber, "company")));
+        Platoon platoon = ParserUtil.parsePlatoon(returnNaIfBlank(csv.getEntry(rowNumber, "platoon")));
 
         Set<Tag> tags = getTagsFromRow(rowNumber);
 
@@ -117,7 +117,7 @@ public class ParseFromCsvToPersons {
         return tags;
     }
 
-    private String orElseNa(String string) {
+    private String returnNaIfBlank(String string) {
         if (string.isBlank()) {
             return "N/A";
         }
