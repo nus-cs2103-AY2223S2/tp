@@ -976,10 +976,6 @@ Below is the main success scenarios of adding, deleting and listing alarms.
 * 2a. User does not provide sufficient arguments
     * 2a1. TAA shows an error message. Use case ends.
 
-Below is the sequence diagram for adding an alarm.
-
-<img src="images/AddAlarmSequenceDiagram.PNG" />
-
 ##### Delete alarm
 1.  User requests to delete a scheduled alarm with specified index.
 2.  TAA deletes the alarm with the specified index, the alarm will no longer ring.
@@ -992,10 +988,6 @@ Below is the sequence diagram for adding an alarm.
 * 2b. User does not provide a valid index
     * 2a1. TAA shows an error message. Use case ends.
 
-Below is the sequence diagram for deleting an alarm.
-
-<img src="images/DeleteAlarmSequenceDiagram.PNG" />
-
 ##### List alarms
 1.  User requests to list all scheduled alarms.
 2. TAA shows all scheduled alarms on the command window.
@@ -1004,10 +996,6 @@ Below is the sequence diagram for deleting an alarm.
 
 * 2a. There is no alarms scheduled.
     * 2a1. TAA shows an error message. Use case ends.
-
-Below is the sequence diagram for listing the alarms.
-
-<img src="images/ListAlarmsSequenceDiagram.PNG" />
 
 ### Non-functional requirements
 
