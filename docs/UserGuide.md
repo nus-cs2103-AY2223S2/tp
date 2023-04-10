@@ -26,11 +26,7 @@ and delete records easily, and see a summary of all records in FriendlyLink!
 
 ----------------------------------------------------
 
-## Before you Begin
-
-Please read this and [Quick Start](#quick-start) before skipping  ahead.
-
-### How to use this User Guide
+## How to use this User Guide
 
 This guide aims to quickly get you started in using and navigating FriendlyLink.
 
@@ -40,13 +36,15 @@ If you are already familiar with the [Terminology](#terminology),  you might wan
 [Features](#features) explained with examples, or [Fields](#fields) and their specification (such as email, phone numbers and addresses). 
 All terms used are summarised in the [Glossary](#glossary)
 
-#### Icons 
+## Callouts 
 
 The following callouts can be found throughout our user guide:
 
 <div markdown="span" class="alert alert-info">:information_source: **Information:** This provides some additional information that you are recommended to know.  </div> 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. </div>
 <div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Do pay attention to the information here carefully. </div> 
+
+## Icons
 
 The following icons are found in our application: 
 
@@ -65,6 +63,30 @@ The following icons are found in our application:
 For more information about what they represent, refer to the [Fields](#fields) section.
 
 [Back to top](#table-of-contents)
+
+## Terminology
+
+### Prefix
+Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent.
+For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
+* Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`.
+* Fields after prefixes have leading and trailing whitespaces removed e.g. `n/ Mary` is trimmed to `n/Mary`.
+
+### Field
+Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
+* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
+* Fields can be entered in any order e.g.`n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
+* If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the 
+field will be taken e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored 
+e.g. if you specify `help 123`, it will be interpreted as `help`.
+* For more information on each specific field, refer to the [Fields](#fields) section.
+
+### Preamble
+Preamble is a special piece of information specified for certain commands that are entered without prefixes.
+* They need to be specified right after the [command](#command) word and before any other [Fields](#field) 
+e.g.`edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid 
+as the preamble `S1234567A` has to come before all other fields.
 
 -------------------------------------------
 
@@ -132,29 +154,6 @@ format is adopted in FriendlyLink.
 
 For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]… `, a user may choose to specify
 `example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
-
-#### Prefix
-Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent.
-For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
-* Prefixes should be entered in all **lower case** (E.g. n/Abdul instead of N/Abdul)
-* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is trimmed to `n/Mary`)
-
-#### Field
-Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
-* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
-* Fields can be entered in any order.
-    * E.g. Specifying `n/John Doe p/97129078` or `p/97129078 n/John Doe` is acceptable.
-* If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the field will be taken.<br>
-    * E.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    * E.g. If you specify `help 123`, it will be interpreted as `help`.
-* For more information on each specific field, refer to the [Fields](#fields) section
-
-#### Preamble
-Preamble is a special piece of information specified for certain commands that are entered without prefixes.
-* They need to be specified right after the [command](#command) word and before any other [Fields](#field).
-    * For example, `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A`
-    * On the other hand, specifying `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.
 
 --------------------------------------------------------------
 
