@@ -959,7 +959,7 @@ revo OINDEX
 * Edits the order at the specified `OINDEX`.
 * An order's status will be reverted in the following sequence: "Completed", "Shipped", "Paid", "Pending".
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**<br>
 
