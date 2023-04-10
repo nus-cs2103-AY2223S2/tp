@@ -44,12 +44,12 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setUltronFilePath(Path addressBookFilePath);
+    void setUltronFilePath(Path ultronFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Ultron data with the data in {@code ultron}.
      */
-    void setUltron(ReadOnlyUltron addressBook);
+    void setUltron(ReadOnlyUltron ultron);
 
     /** Returns the Ultron */
     ReadOnlyUltron getUltron();
