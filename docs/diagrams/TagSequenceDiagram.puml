@@ -52,16 +52,16 @@ activate TagCommand
 TagCommand -> Model : getFilteredPersonList()
 activate Model
 
-Model --> TagCommand : lastShownList
+Model -> TagCommand : lastShownList
 
-TagCommand --> FilteredList : get(targetIndex.getZeroBased())
+TagCommand -> FilteredList : get(targetIndex.getZeroBased())
 activate FilteredList
 
 FilteredList --> TagCommand : personToTag
 deactivate FilteredList
 
 TagCommand -> Model : addTag()
-Model -> TagCommand
+Model --> TagCommand
 deactivate Model
 
 create CommandResult
