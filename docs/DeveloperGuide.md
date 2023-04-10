@@ -145,7 +145,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/DG-images/ModelClassDiagram.png" width="450" />
+<img src="images/DG-images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -161,12 +161,12 @@ The `Model` component,
 
 </div>
 
-<img src="images/DG-images/BetterModelClassDiagram.png" width="450" />
+<img src="images/DG-images/BetterModelClassDiagram.png" width="600" />
 
 #### Task model
 **API** : [`Task.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
 
-<img src="images/DG-images/TaskClassDiagram.png" width="280" />
+<img src="images/DG-images/TaskClassDiagram.png" width="400" />
 
 * A `Student` has a `UniqueTaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
@@ -176,7 +176,7 @@ The `Model` component,
 #### UniqueScoreList model
 **API** : [`UniqueScoreList.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/score/UniqueScoreList.java)
 
-<img src="images/DG-images/ScoreClassDiagram.png" width="280" />
+<img src="images/DG-images/ScoreClassDiagram.png" width="400" />
 
 * A `Student` has only one `UniqueScoreList` object which holds all their `Score` objects.
 * `UniqueScoreList` is a separate filtered list with recent score at front which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
