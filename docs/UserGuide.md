@@ -938,7 +938,7 @@ a drug in the CareFlow. The full details of the selected drug will be shown on t
 
 ## 5.2 Editing the data file
 
-* All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
+* All CareFlow data is saved as a JSON <sup>[3](#3)</sup> file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
@@ -990,7 +990,7 @@ The following are the general commands that are available in Careflow for you to
 | **Exit** | `g exit`        | Saves all data and safely exits.                 |
 
 <p align="center">
-  <i>Table 4. Summary of general commands.</i>
+  <i>Table 3. Summary of general commands.</i>
 </p>
 
 ## 7.2 Patient Commands
@@ -1009,7 +1009,7 @@ The following commands are patient-related commands that are available in Carefl
 | **List patient**            | `p list`                                                                                                                                                                                                                                                                                         | Lists all the patients that have been recorded in CareFlow.                                      |
 
 <p align="center">
-  <i>Table 5. Summary of patient commands.</i>
+  <i>Table 4. Summary of patient commands.</i>
 </p>
 
 ## 7.3 Drug Commands
@@ -1028,7 +1028,7 @@ The following commands are drug-related commands that are available in Careflow 
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                       | Removes all drug records stored in CareFlow                              |
 
 <p align="center">
-  <i>Table 6. Summary of drug commands.</i>
+  <i>Table 5. Summary of drug commands.</i>
 </p>
 
 [🠉 Back to top](#top)
@@ -1045,6 +1045,11 @@ of it like texting your computer to get it to do things.
 <span id="2">2. Graphical User Interface (GUI) </span>
 <br/>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
+<br/>
+
+<span id="3">3. JavaScript Object Notation (JSON) </span>
+<br/>
+A type of computer file format used to store and exchange data between different software programs. It's easy for both people and computers to understand and work with.
 <br/>
 
 [🠉 Back to top](#top)
