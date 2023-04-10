@@ -833,7 +833,7 @@ The following sequence diagram summarizes what happens when the user executes a 
 
 Given below is the activity diagram to illustrate what happens when the user calls the `find` command:
 
-<img src="images/FindActivityDiagram.png" width="600">
+![Find Activity Diagram](images/FindActivityDiagram.png)
 
 <img src="images/createCombinedPredicate.png" width="300">
 
