@@ -2,12 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+
+## <a id="table"></a>**Table of Contents**
+
 * Table of Contents
 {:toc}
 
-# About coNtactUS
+# **About coNtactUS**
 
-## **1. Introduction**
+## 1. Introduction
 
 ### **1.1 About coNtactUS**
 
@@ -55,11 +58,15 @@ respective header.
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5)
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ------------------------------------------------------------------------------------------------------------------------
 ## **3. Setting up, getting started**
 
 If you want to get started with developing your own coNtactUS, you may refer to the guide 
 [_Setting up and getting started_](SettingUp.md).
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **4. Overview of the Design**
@@ -86,18 +93,32 @@ and is responsible for:
 * Initializing the other components in the correct sequence at software launch, and connecting them up with each other.
 * Shutting down the components when the program is closed and invoking cleanup methods where necessary.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### `Commons`
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### `UI`
 [**`UI`**](#ui-component) is responsible for the user interface of the module tracker.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### `Logic`
 [**`Logic`**](#logic-component) is responsible for executing commands.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### `Model`
 [**`Model`**](#model-component) holds the data of the module tracker in memory.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### `Storage`
 [**`Storage`**](#storage-component) reads data from, and writes data to, the hard disk.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 4.2 How the architecture components interact with each other
 
@@ -112,6 +133,8 @@ The *Sequence Diagram* below illustrates this in detail:
 
 
 <div align="center">Figure 1: How the different components interact with each other upon the command `delete 1` </div>
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 4.3 Interfaces that are implemented by the architecture components
 
@@ -133,11 +156,9 @@ to the implementation of a component), as illustrated in the (partial) class dia
 <p align="center">
     <img src="images/ComponentManagers.png" width="300" />
 </p>
-<div align="center"> The Logic component. </div>
+<div align="center"> Relationship between the Interfaces and their concrete classes </div>
 
-
-Relationship between the Interfaces and their concrete classes
-
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ## **5. An in-depth look at each architecture component**
 
@@ -170,6 +191,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 5.2 The Logic component
 
@@ -214,6 +237,8 @@ as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
 interface so that they can be treated similarly where possible e.g, during testing.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 5.3 The Model component
 The **API** of this component is specified in
 [`Model.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -239,12 +264,13 @@ model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module`
 to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
 <p align="center">
-    <img src="images/BetterModelClassDiagram.png" width="650" /> </p>
+    <img src="images/BetterModelClassDiagram.png" width="650" /></p>
 
 <div align="center"> A more OOP model of the Model component. </div>
 
 </div>
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 5.4 The Storage component
 
@@ -264,11 +290,15 @@ the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 5.5 Common classes
 
 Classes used by multiple components are in the 
 [`seedu.moduletracker.commons`](https://github.com/AY2223S2-CS2103T-W10-1/tp/tree/master/src/main/java/seedu/address/commons) 
 package.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -312,6 +342,8 @@ Below is an example usage scenario and how the sort command behaves at each step
 
 **Step 4:** The method passes the Comparator to the **SortedList**, updating the displayed list. 
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 5.2 Find feature
 
 #### 5.2.1 Find Command Implementation
@@ -334,6 +366,8 @@ Below is an example usage scenario and how the find command behaves at each step
 **Step 3:** The command is executed through the execute method, which updates the list through **Model#updateFilteredModuleList**.
 
 **Step 4:** The method sets the predicate to the filtered list, which runs the **NameContainsKeywordsPredicate#test()** method to find the items based on name or type.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 5.3 Reminder feature
 
@@ -365,22 +399,7 @@ type. The title of the alert is "Work Today."
 
 **Step 3:** The user can now close the alert and continue using the software.
 
-<!--
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire module tracker.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the module being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
--->
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -396,9 +415,14 @@ and a `ReminderCommandParser` class, analogous to the `FindCommand` and `FindCom
 These enhancements should provide users with more flexibility in accessing and managing their reminders, leading to an
 improved user experience.
 
-### 6.2 More checks to teacher, remarks
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-Bla bla
+### 6.2 Introduce a horizontal scroll bar for long attributes
+
+We propose to include a horizontal scroll bar so that users can see their entire module details without being forced
+to resize the software window (e.g: Extremely long website names)
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **7. Documentation, logging, testing, configuration, dev-ops**
@@ -408,6 +432,8 @@ Bla bla
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -435,6 +461,7 @@ not be able to remember them
   * Find a specific module by name or type
   * Sort existing modules based on their deadline or class time slots
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 8.2 User stories
 
@@ -453,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | unorganised user  | search for my modules by name or type         | find specific information quickly    |
 
 
-*{More to be added}*
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 8.3 Use cases
 
@@ -689,6 +716,8 @@ Use case ends.
 
       Use case resumes at step 2.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 8.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -698,7 +727,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 4. Only language supported is English
 5. The software size (including the data file with up to 1000 modules) should not exit 100MB.
 
-*{More to be added}*
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -718,6 +747,8 @@ be able to accomplish most of the tasks faster using commands than using the mou
 * **Teacher**: The name of the teacher conducting the module
 * **TimeSlot**: The time of the class of a module
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 9.2 Miscellaneous
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -729,6 +760,8 @@ be able to accomplish most of the tasks faster using commands than using the mou
 * **UML**: Unified Modelling Language
 * **Parser**: A class that translates user inputs to machine language to run the corresponding commands.
 * **JAR**: Java ARchive
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -758,6 +791,8 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 10.2 Deleting a module
 
 1. Test case: `delete 1`<br>
@@ -769,6 +804,8 @@ Timestamp in the status bar is updated.
 
 3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 10.3 Adding a module
  1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
@@ -787,6 +824,8 @@ Timestamp in the status bar is updated.
  4. Other incorrect add commands to try: `add`, `add x`, `...` (where x is the attribute you want to add, without
      using the prefixes) <br>
      Expected: Similar to previous.
+
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ### 10.4 Editing a module
   1. Test case: `edit 1 n/CS1101S` <br>
@@ -814,6 +853,8 @@ Timestamp in the status bar is updated.
    and y is the attribute you want to edit, either without using the prefixes, or the format is incorrect).
    Expected: Similar to previous.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 10.5 Finding a module/type
 
 1. Test case: `find CS2103T` <br>
@@ -839,6 +880,8 @@ Expected: No modules are found, because the keyword does not exist in the existi
 
 7. Note: Make sure to list the modules again when you want to find another module.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 10.6 Sorting a module by `timeslot` or `deadline`
 
 1. Test case: `sort timeslot` <br>
@@ -852,12 +895,16 @@ The modules without `deadline` will be unsorted at the very end of the list.
 3. Test case: `sort x` (where x is empty, or anything other than `timeslot` or `deadline`) <br>
 Expected: The modules will not be sorted.
 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
+
 ### 10.7 Saving data
 
 1. Dealing with missing/corrupted data files
 
     1. If the data file is _missing_, coNtactUS will create a new data file, with sample data.
     2. Similar outcome for _corrupted_ data files.
+   3. 
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -909,6 +956,5 @@ Effort required: 8 / 10)
    * Similar to the `find` command. Much of the time is spent on understanding new concepts and libraries. The `reminder` window goes through all the tasks and extract the `DateTime` and compares it to the current system time. Exceptions are checked and then the string is parsed for output. 
    * Although implementing the reminder window was not overly difficult, the process took some time due to the need to learn and understand new aspects of the program.
 
-
-Back to top hyperlink
+<p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
