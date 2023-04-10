@@ -358,6 +358,8 @@ Examples:
 * `New homework added:`
 ![add homework image](images/addhomework.png)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 * Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.<br>
    * Duplicate test/homework is checked through having the same name. <br>
@@ -365,7 +367,6 @@ Examples:
 * Score is out of 100.<br>
 * Weightage is out of 100%.<br>
 </div>
-
 
 Note:
 * Score is out of 100.<br>
@@ -634,14 +635,12 @@ Examples:
 * `parent find Joseph`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
-To list back all parent, use the [general list](#listing) command! <br><br>
+To list back all parent, use the [general list](#listing) command! 
 </div>
-
-<div style="page-break-after: always;"></div>
 
 **Expected Outcome:**
 * 1 parent listed!
-* 2 parents listed! <br><br>
+* 2 parents listed! 
 
   ![parent_find.png](images/parentfind.png)
 
