@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to edit students from PowerConnect.
   * What it does: Allows users to edit students from PowerConnect via the Student Edit Command.
   * Justification: This feature contributes significantly to the product as one of the intended features in allowing teachers to edit students from their students list.
-  * Highlights: The implementation was challenging as the student class has many prefixes that can be edited. If StudentEditCommand changes parent information in students, that parent and all its students attached to that parent has to be updated too.
+  * Highlights: The implementation was challenging as the student class has many prefixes that can be edited. If StudentEditCommand changes parent information in a student, that parent and all students attached to that parent will be updated too.
   * * Credits: *T17-2's DeleteDepartmentCommand*
       <br><br>
 
