@@ -579,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
    
-**14. Use case: Switch via CLI**
+**14. Use case: Switch panel via CLI**
 
 **MSS**
    
@@ -590,10 +590,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given command is invalid.
+   
   * 1a1. MATHUTORING shows an error message.
+   
   Use case resumes at step 1.
    
-**15. Use case: Switch via GUI**
+**15. Use case: Switch panel via GUI**
 
 **MSS**
 
@@ -605,6 +607,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. GUI not able to render.
    
    Use case ends.
+   
+**16. Use case: Filter student list by student tag/s**
+
+**MSS**
+   
+1. User requests to filter the student.
+2. MATHUTORING shows the filtered result.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The student list is empty.
+   
+  Use case ends.
+   
+* 1b. The given command is invalid.
+   
+  * 1b1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 1.
+   
+* 1c. The given command argument(s) are invalid.
+   
+  * 1c1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 1.
+
    
 ### Non-Functional Requirements
 
