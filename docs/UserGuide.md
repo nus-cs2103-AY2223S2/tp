@@ -72,6 +72,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -90,6 +91,8 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
 You may come across some terms you don't understand in the user guide.
@@ -113,6 +116,8 @@ The following table provides clarification of the terms commonly used in TutorPr
 |     **Exam**     | An `Exam` that a Student is scheduled to sit for                                                                                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## GUI
 When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**.
 
