@@ -10,10 +10,19 @@ Class Label
 Class Student
 Class UniqueScoreList
 Class Score
+Class ScoreSummary
+
+class ScoreSummary {
+    - maxScore: Double
+    - minScore: Double
+    - average: Double
+    - percentage: Double
+}
 
 Student *--> UniqueScoreList
 
 UniqueScoreList --> "~* " Score
+UniqueScoreList +-- "1" ScoreSummary
 
 Score *--> "1" Date
 Score *--> "1" Label
