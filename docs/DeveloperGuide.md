@@ -31,7 +31,6 @@ TutorPro is a **desktop app designed to help private tutors manage their student
   * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     + [Proposed Implementation](#proposed-implementation)
     + [Design considerations:](#design-considerations)
-  * [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
   * [Product scope](#product-scope)
@@ -56,7 +55,8 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
   * [Deleting a student](#deleting-a-student)
-  * [Saving data](#saving-data)
+* [Saving data](#saving-data)
+* [Appendix: Effort](#appendix-effort)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -926,16 +926,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. use the command `java -jar TutorPro` jar file Expected: Shows the GUI with a set of sample contacts. The window 
+      size may 
+      not be 
+      optimum.
 
-2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 ### Deleting a student
 
@@ -943,21 +939,53 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete index/1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
-   3. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete index/0`<br>
+      Expected: No student is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete index/x`, `...` (where x is larger than the list size)
+      <br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Exit TutorPro.
+    2. Open the data/addressbook.json file in a suitable text editor.
+    2. Delete some lines randomly.
+    3. Reopen TutorPro.
+     Expected: Should start with a new TutorPro with sample data.
 
-2. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+Our team feels that we've put in more effort than that was required for this project, as we implemented many new features and enhancements that were not required for the project. We've also spent a lot of time on the UI, as we wanted to make the application as user-friendly as possible. We've also spent a lot of time on the documentation, as we wanted to make the documentation as detailed as possible, so that the user can easily understand how to use the application.
+
+We faced several difficulties in the project.
+
+* Difficulty managing the schedule clash of Student's lessons and exams.
+  * Since the Student's lessons and exams are stored in separate lists, we have to carefully handle the interactions between the two lists. We also have to make sure that our assumptions about the clashes are as realistic as possible.
+  * For example, we assume those no two students can have lessons at the same time but two students can sit for the same exam at the same time.
+  * It takes us a lot of time to come up with a design that can handle all the possible clashes.
+
+* Difficulty in implementing new UI
+  * We have to carefully handle the interactions between the different components in the UI.
+  * For example, we have to make sure that the Detailed Information Section is updated when the user clicks on a different student card.
+  * It takes us a lot of time to come up with a design that can handle all the possible interactions.
+
+* Difficulty in UG and DG
+  * The User Guide and Developer Guide underwent extensive revisions and proofreading to accommodate the numerous new entities and commands that were added to the product. These changes were necessary to ensure that users and future developers could fully comprehend how the product operates. Having comprehensive documentation is crucial in helping users and developers utilize the product effectively and efficiently, which ultimately leads to an enhanced user experience and increased adoption. It's commendable that you invested time and effort into updating and refining your guides.
+
+We also saved many efforts and time by reuse
+* reuse date and time parser from RussellDash332's ip code
+  * RussellDash332's code provides a nice and need way to parse multiple formats of date and time, which saves us a lot of time.
+  * This reuse allows us to focus on other parts of the project.
+
+Effort Required and Achievement of our Team
+* Our team has invested significant time and effort in this project with the goal of meeting the needs of our users and enhancing their experience when using our product. By expanding on the original AB3 code base, we have made substantial progress in the development of our product, as evidenced by the lines of code we have written and number of new commands we have created. Our ultimate desire is for our users to find our product effective in addressing their needs and for future developers to express interest in contributing to its further growth and development.
