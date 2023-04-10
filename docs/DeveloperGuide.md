@@ -172,6 +172,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Implementation of MasterDeck
+
+The `MasterDeck` class stores all the `Deck` and `Card` data the users will interact with.
+Below are the current implementation we chose for `MasterDeck` and the possible alternative designs that we will explore in the future.
+
+#### Current Implementation
+
+![MasterDeck Class Diagram](images/CurrentMasterDeckClassDiagram.png)
+
+MasterDeck stores 2 independent lists, a `UniqueCardList` storing all existing unique cards and a `UniqueDeckList` storing all existing unique decks.
+
+Each `Card` instance references an existing instance of `Deck`. This reference denotes that the card belongs to a specific deck.
+
+Why we chose this design:
+- Ease of implementation: The deck behaves similarly to a tag whose purpose is to group the cards together. This allows us to take reference from the source code of the `Tag` class from the AddressBook3 (AB3).
+- Single Responsibility Principle: The `UniqueDeckList` class's sole responsibility is to store and modify the user-created decks. If we store a `UniqueCardList` inside each deck (similar to the alternative design below), the `UniqueDeckList` has to be responsible for managing the cards inside each deck as well. This can potentially violate Single Responsibility Principle (SRP).
+
+Limitation:
+- Worse time complexity: Some commands (e.g., `selectDeck`) require the whole card list to be filtered to show only the cards in a specific deck. This incurs a worse runtime complexity, as performance degrades when the size of the card list grows.
+
+#### Alternative Designs
+
+A more intuitive design for `MasterDeck` is given below.
+
+![Alternative MasterDeck Class Diagram](images/AlternativeMasterDeckClassDiagram.png)
+
+- The `MasterDeck` has a `UniqueDeckList` which stores unique instances of decks.
+- Each deck in turn stores a reference to a `UniqueCardList`.
+- Each `UniqueCardList` stores a list of unique instances of cards inside a specific deck.
+
+Pros:
+- This design follows Object-Oriented Programming (OOP) more closely, as a deck is supposed to contain a list of cards in the real world.
+- Time complexity is improved for some commands (e.g., `selectDeck` retrieves cards from a deck much faster, as it does not require filtering every single existing card like our current implementation).
+
+Cons:
+- Requires a complete overhaul of the code base and test cases, which may not be practical considering our limited development time.
+
+While the alternative design seems more appropriate than our current design, we deem it less feasible to implement due to our project's time constraint. 
+Furthermore, the performance difference is negligible as our average user does not have enough cards to cause noticeable performance degradation. Nevertheless, we intend to prioritize the implementation of the alternative design in future iterations, as time and resources permit.
+
 ### Command Validity Based on Application Mode
 The activity diagram below illustrates what happens when a user enters a command.
 
@@ -304,46 +344,6 @@ Step 3. The user moves on to the next card by executing `]` in the command line 
 The following activity diagram summarizes what happens when a user executes `NextCard` command:
 
 ![NextCardActivityDiagram](images/NextCardReviewActivityDiagram.png)
-
-
-### Implementation of MasterDeck
-
-The `MasterDeck` class contains all data regarding the `Deck` and `Card` the users have created. 
-Below are the current implementation we chose for `MasterDeck` and the possible alternative designs that we will explore in the future.
-
-#### Current Implementation
-
-![MasterDeck Class Diagram](images/CurrentMasterDeckClassDiagram.png)
-
-MasterDeck stores 2 independent lists, a `UniqueCardList` storing all existing unique cards and a `UniqueDeckList` storing all existing unique decks.
-
-Each `Card` instance references an existing instance of `Deck`. This reference denotes that the card belongs to a specific deck.
-
-Why we chose this design:
-- Ease of implementation: The deck behaves similarly to a tag whose purpose is to group the cards together. This allows us to take reference from the source code of the `Tag` class from the AddressBook3 (AB3). 
-- Single Responsibility Principle: The `UniqueDeckList` class's sole responsibility is to store and modify the user-created decks. If we store a `UniqueCardList` inside each deck (similar to the alternative design below), the `UniqueDeckList` has to be responsible for managing the cards inside each deck as well. This can potentially violate Single Responsibility Principle (SRP). 
-
-Limitation:
-- Worse time complexity: Some commands (e.g., `selectDeck`) require the whole card list to be filtered to show only the cards in a specific deck. This incurs a worse runtime complexity, as performance degrades when the size of the card list grows.
-
-#### Alternative Designs
-
-A more intuitive design for `MasterDeck` is given below.
-
-![Alternative MasterDeck Class Diagram](images/AlternativeMasterDeckClassDiagram.png)
-
-- The `MasterDeck` has a `UniqueDeckList` which stores unique instances of decks. 
-- Each deck in turn stores a reference to a `UniqueCardList`.
-- Each `UniqueCardList` stores a list of unique instances of cards inside a specific deck.
-
-Pros:
-- This design follows Object-Oriented Programming (OOP) more closely, as a deck is supposed to contain a list of cards in the real world.
-- Time complexity is improved for some commands (e.g., `selectDeck` retrieves cards from a deck much faster, as it does not require filtering every single existing card like our current implementation).
-
-Cons:
-- Requires a complete overhaul of the code base and test cases, which may not be practical considering our limited development time.
-
-While the alternative design seems more appropriate than our current design, we deem it less feasible to implement due to our project's time constraint. Furthermore, the performance difference is negligible as our average user does not have enough cards to cause noticeable performance degradation. Nevertheless, we intend to prioritize the implementation of the alternative design in future iterations, as time and resources permit.
 
 --------------------------------------------------------------------------------------------------------------------
 
