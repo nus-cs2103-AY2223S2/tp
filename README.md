@@ -19,7 +19,10 @@ Not just that, WGT allows you to **keep track of all your events** such as your 
 lectures and cca timings. No more digging through your pinned messages or photo album to find your timetable
 anymore!
 
-Useful links:
+## Useful links:
 - [User Guide](https://ay2223s2-cs2103t-t09-2.github.io/tp/UserGuide.html) to start your journey with WGT
 - [Developer Guide](https://ay2223s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html)
 - [About us](https://ay2223s2-cs2103t-t09-2.github.io/tp/AboutUs.html)
+
+## Acknowledgement:
+This project is based on the [SE-EDU initiative](https://se-education.org).
