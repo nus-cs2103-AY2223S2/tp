@@ -755,14 +755,13 @@ We plan to make the default value of unit, rank, and platoon "NA" instead of "N/
 
 ### Feature Flaw 5: Error message from importing CSV file with invalid fields does not show row number of problematic fields
 
-**Brief description:** If any field is invalid when importing a CSV file using the `importcsv` command (i.e phone number has letter), the error message shown does not specify which row the problematic
-field is in.
+**Brief description:** If any field is invalid when importing a CSV file using the `importcsv` command (i.e phone number has letter), the error message shown does not specify which row the problematic field is in.
 
 **Example:** `importcsv`<br>
 Importing a CSV file with an invalid phone number field shows an error message without specifying which row the invalid phone number is on.
 ![featureflaw5](./images/featureflaw5.png)
 
 **Proposed enhancement:**
-We plan to enhance the error message to show the line number of the invalid field.
+We plan to enhance the error message to tell the user which row number the invalid field is at, so that they can easily make changes to it without having to manually look for the error.
 
 [Back to Top ↑](#table-of-contents)
