@@ -315,7 +315,8 @@ The panel contains all the information of every scheduled meet up with your cont
 The Command Response Box is where EduMate will provide some feedback on the outcome
 of each command you execute (e.g success, invalid format etc).
 
-The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
+The Command Response Box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box)
+, and it is also scrollable for longer command feedback messages.
 
 <br>
 
@@ -850,8 +851,8 @@ What you should see:<br>
 
 :bulb: **Group Tag Examples**<br>
 
-* `untag 1 g/Cycling` : Removes Cycling tag from the first contact from EduMate.
-* `untag g/Project` : Removes Project tag from your own profile.
+* `untag 1 g/Cycling` : Removes Cycling tag (if it exists) from the first contact from EduMate.
+* `untag g/Project` : Removes Project tag (if it exists) from your own profile.
 
 </div>
 

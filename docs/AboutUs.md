@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/russelltankaimin.md)]
 
 * Role: Developer, Team Lead
-* Responsibilities: `view` command, `TimingRecommender`, Deliverables, Deadlines, Gradle issues
+* Responsibilities: Deliverables, Deadlines, Gradle issues
 
 ### Izz Hafeez Bin Zek Hazley
 

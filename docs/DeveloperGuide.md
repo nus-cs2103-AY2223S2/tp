@@ -93,8 +93,9 @@ title: Developer Guide
    * [Create Code Coverage Report](#create-code-coverage-report)
    * [Read Code Coverage Report](#read-code-coverage-report)
 6. [Documentation](#6-documentation)
+   * [Useful Text Boxes](#useful-text-boxes)
    * [Using PlantUML](#using-plantuml)
-7. [Appendix](#7-appendix)
+8. [Appendix](#7-appendix)
    * [Planned Enhancements](#planned-enhancements)
    * [Project Requirements](#project-requirements)
    * [Product Scope](#product-scope)
@@ -118,7 +119,7 @@ title: Developer Guide
      * [Organise and confirm meetings](#organise-and-confirm-meetings)
      * [Cancel scheduled meetings](#cancel-scheduled-meetings)
    * [Glossary](#glossary)
-   * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+   * [More Information on Documentation, Logging, Testing, Configuration and Dev-ops](#more-information-on-documentation-logging-testing-configuration-and-dev-ops)
 
 # **1. Introduction**
 
@@ -1350,11 +1351,12 @@ Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codec
 ### **Read Code Coverage Report**
 For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
 
----
-
 # **6. Documentation**
 
 ---
+
+We take documentation very seriously as it not only helps users, but new developers in the team to quickly get up to speed with the project
+so that they can start contributing as soon as possible.
 
 ## **Useful Text Boxes**
 
@@ -1394,15 +1396,16 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 
 </div>
 
----
-
 ## **Using PlantUML**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+
+For more information, you may view our special documentation page [here](Documentation.md).
 
 # **7. Appendix**
 
@@ -2480,7 +2483,7 @@ Expected Output in Scheduled Meet Up Panel: `MeetUp` of index 2 disappears, only
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **More Information on Documentation, Logging, Testing, Configuration and Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
