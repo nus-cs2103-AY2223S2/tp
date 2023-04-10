@@ -24,6 +24,7 @@ Class DayDeliveryJobCard
 
 }
 
+
 Class MainWindow
 MainWindow *-down-> "1" TimetableWindow
 
@@ -32,10 +33,11 @@ CommandBox -[hidden]down- ResultDisplay
 ResultDisplay -[hidden]down- StatusBarFooter
 
 TimetableWindow *-down-> "1" TimetableDetailPanel
-TimetableDetailPanel --> Logic
+
 
 DayOfWeekPanel -[hidden]down- DayOfMonthPanel
 WeekJobListPanel -[hidden]left- DayOfWeekPanel
+DayOfMonthPanel -[hidden]left- DayDeliveryJobCard
 WeekJobListPanel *-down-> "7" DayJobListPanel
 DayJobListPanel *-down-> "*" DayDeliveryJobCard
 

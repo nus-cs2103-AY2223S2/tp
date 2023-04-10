@@ -103,8 +103,13 @@ Timetable Window displays timetable of the specific week - which is specified by
 
 * displays the corresponding job list with the correct date and slot 
 * returns command execution result.
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
-* `TimetableDetailPanel` gets the sorted job list by date and slot using `Logic` component: `Logic#getDayofWeekJob()` - and fills in the timetable. 
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` to `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+* `TimetableWindow` gets the sorted job list by date and slot using `Logic` component and fills in the timetable. 
+
+Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `TimetableWindow` is being instantiated by calling `TimetableWindow#fillInnerParts()` to initialize the UI, and fill in the job list/detail for the corresponding parts. 
+
+![Sequence Diagram of initialization the Timetable Window](images/UiSequenceDiagramTimetableWindow.png)
+
 
 `Unschedule Window`:
 
@@ -114,6 +119,11 @@ Timetable Window displays timetable of the specific week - which is specified by
 * gets the unscheduled job list using `Logic` component: `Logic#getUnscheduledDeliveryJobList()`
 * remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
 
+Upon calling `MainWindow#handleUnscheduled()`, the diagram below shows how `UnscheduleWindow` is being instantiated by calling `UnscheduleWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+
+![Sequence Diagram of initialization the Unschedule Window](images/UiSequenceDiagramUnscheduledTimetableWindow.png)
+
+
 `Complete Window`:
 
 ![Structure of the Completed Window](images/UiClassDiagramCompleteWindow.png)
@@ -121,6 +131,10 @@ Timetable Window displays timetable of the specific week - which is specified by
 * displays the list of completed jobs
 * gets the completed job list using `Logic` component: `Logic#getCompletedDeliveryJobList()`
 * remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+
+Upon calling `MainWindow#handleCompleted()`, the diagram below shows how `CompleteWindow` is being instantiated by calling `CompleteWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+
+![Sequence Diagram of initialization the Complete Window](images/UiSequenceDiagramCompleteWindow.png)
 
 
 #### Create Job Window
