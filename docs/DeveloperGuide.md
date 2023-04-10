@@ -302,13 +302,14 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 
 ## **Architecture**
 
+Given below is a quick overview of main components and how they interact with each other.
+
 <img src="images/ArchitectureDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
 <br>
 
-Given below is a quick overview of main components and how they interact with each other.
 
 ### **Main components of the architecture**
 
