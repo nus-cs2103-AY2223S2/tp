@@ -782,8 +782,6 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **11. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
