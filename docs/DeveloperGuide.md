@@ -125,7 +125,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `FitBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FitBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
+<div style="page-break-after: always;"></div>
 ### FitBookModel component
 
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
@@ -146,13 +146,13 @@ The `FitBookModel` component,
 <img src="images/BetterFitBookModelClassDiagram.png"/>
 
 </div>
-
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Exercise` list in the `FitBookExerciseRoutine`, which `Routine` references. This allows `FitBookExerciseRoutine` to only require one `Exercise` object per unique exercise, instead of each `Routine` needing their own `Exercise` objects.<br>
 
 <img src="images/BetterFitBookExerciseRoutineModelClassDiagram.png"  />
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/storage/FitBookStorage.java)
@@ -163,7 +163,7 @@ The `Storage` component,
 * can save all FitBook, FitBookExerciseRoutine data and user preference data in json format, and read them back into corresponding objects.
 * inherits from all `FitBookExerciseRoutineStorage`, `FitBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `FitBookModel` component (because the `Storage` component's job is to save/retrieve objects that belong to the `FitBookModel`)
-
+<div style="page-break-after: always;"></div>
 ### Common classes
 
 Classes used by multiple components are in the `seedu.fitbook.commons` package.
@@ -188,7 +188,7 @@ The `Client` consists of these objects after adding. Objects that are a `Set` ca
 All objects must contain non-null attributes. All objects must be present after adding/editing the client other than objects in the `Set` objects.
 
 ![ClientObject](images/ClientObject.png)
-
+<div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the FitBook on start up, and the information from the Storage will be converted into `JsonAdaptedClient` and all the other JsonAdapted classes accordingly.
