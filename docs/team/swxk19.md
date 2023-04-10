@@ -3,7 +3,6 @@ layout: page
 title: Kelvin's Project Portfolio Page
 ---
 ## Project: CLIpboard
-### Overview
 CLIpboard is a desktop application that helps educators, especially those that tutor multiple classes, by managing their students’ particulars in an organised manner.
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI) created with JavaFX.
 
