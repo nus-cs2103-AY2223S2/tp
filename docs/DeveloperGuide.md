@@ -290,8 +290,6 @@ Classes used by multiple components are in the [`seedu.internship.commons`](http
  
 The following section describes some noteworthy details on how certain features are implemented.
 
-<div style="page-break-after: always;"></div>
-
 ### Selecting an `Internship`: `select` command
 
 #### Purpose of `select` command
@@ -699,7 +697,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to find events by a desired criteria (i.e. event title, start date and end date).
+1. User requests to find events by a desired criteria (i.e. event title, start timing and end timing).
 2. System displays the list of events that fulfills the criteria specified.
  
 Use case ends.
