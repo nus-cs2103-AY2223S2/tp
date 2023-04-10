@@ -267,7 +267,8 @@ public class EditModeParser {
                 throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
             }
         } else {
-            //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INVENTORY_COMMAND));
+            //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            // MESSAGE_INVALID_INVENTORY_COMMAND));
         }
     }
 }
