@@ -45,7 +45,7 @@ activate ListDepartmentHeadcountCommand
 ListDepartmentHeadcountCommand --> ListDepartmentHeadcountCommandParser
 deactivate ListDepartmentHeadcountCommand
 
-ListDepartmentHeadcountCommandParser -> SudoHrParser
+ListDepartmentHeadcountCommandParser --> SudoHrParser
 deactivate ListDepartmentHeadcountCommandParser
 
 ListDepartmentHeadcountCommandParser -[hidden]-> SudoHrParser
