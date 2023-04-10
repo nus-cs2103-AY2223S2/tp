@@ -838,6 +838,14 @@ testers are expected to do more *exploratory* testing.
          - Testing for: Successful command execution
          - Expected: No changes made because Neobook is already on desired tab. Warning message appears in
          status to remind user that he/she is already on the tab.
+3. Changing to invalid tab
+
+   1. Prerequisites: Neobook currently on any of the 3 tabs.
+   
+   2. Test Cases
+      1. Test case 1: `tab 4`
+      - Testing for: Index specified results in command failure
+      - Expected: Remains on current tab because invalid index. Error details shown in the status message.
 
 ### Saving data
 

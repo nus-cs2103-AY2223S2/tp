@@ -38,7 +38,9 @@ Given below are my contributions to the project.
       * Edited images to highlight important features to add with UI breakdowns
   * Developer Guide:
     * Added [implementation details of the `select command`](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-selecting) (PR [#138](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/138))
-
+    * Added documentation for manual testing for the following commands (PR [#318](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/318)):
+      * [Select Command](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#selecting-a-contact)
+      * [Tab Command](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#moving-to-another-tab-in-neobook)
 * **Community**:
   * `to be added soon`
 
