@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 - **New Feature**
     - Added discharge date-time field to patient
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ksunil2001&breakdown=true)
+- **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ksunil2001&breakdown=true)
 
 - **Enhancements to existing features**:
     - Fixed majority of the failing testcases
@@ -24,11 +24,14 @@ Given below are my contributions to the project.
     - Fixed the display of ward name when editing a patient's details
     - Created a help.txt file to summarise the list of commands and their syntax
 
+
 - **Documentation**:
     - Organised features by Patient, Ward and Utility in the User Guide
     - Updated the editward and addward command features in the User Guide
     - Added a use case for the find command in the Developer Guide
     - Updated the product scope, target user profile, value proposition, user stories, use cases and glossary of the Developer Guide
+
+<div style="page-break-after: always;"></div>
 
 - **Contributions to Team-based tasks**:
     - Refactored Person to Patient throughout the code
@@ -37,10 +40,11 @@ Given below are my contributions to the project.
     - Organised features by Patient, Ward and Utility in the User Guide
 
 - **Review/mentoring contributions**:
-    - This link lists all the PRs I have reviewed: [Reviewed PRs link](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
-    - Helped to verify the checkstlye and clarify a doubt in this PR: [PR link](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/121)
-    - Corrected the code to implement abstraction and improve the checkstyle in this PR: [PR link](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/159)
-    - Checked the grammar of the UG in this PR: [PR link](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/249)
+    - This link lists all the PRs I have reviewed: [Reviewed PRs](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aksunil2001)
+    - Helped to verify the checkstlye and clarify a doubt in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/121)
+    - Corrected the code to implement abstraction and improve the checkstyle in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/159)
+    - Checked the grammar of the UG in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/249)
+
 
 - **Contributions beyond the project team**:
     - Reported a total of 11 bugs during the PE dry run
