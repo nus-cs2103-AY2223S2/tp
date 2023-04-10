@@ -236,7 +236,7 @@ The `setEventFromPersonList` method will check through the full list of `Person`
 
 #### Current Implementation
 
-Finding an event is a feature that uses the command `findevent KEYWORD [KEYWORDS]...`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Finding an event is a feature that uses the command `findevent KEYWORD [KEYWORD]...`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
 Below is the sequence diagram detailing how the `findevent` operation works.
 
 ![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
@@ -642,7 +642,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
 
-   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [KEYWORDS]...` command. Multiple events in the list.
+   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [KEYWORD]...` command. Multiple events in the list.
 
    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
       Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
