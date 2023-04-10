@@ -301,7 +301,7 @@ contact information.
 :bulb: <b>Tips:</b> CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 </div>
 
-**Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
+**Related:** [Viewing a person/Changing tabs: `view`](#3-viewing-a-personchanging-tabs--view)
 
 <br>
 <div style="page-break-after: always;"></div>
