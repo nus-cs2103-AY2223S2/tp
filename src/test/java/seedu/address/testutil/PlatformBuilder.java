@@ -25,7 +25,7 @@ public class PlatformBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Applicant} that we are building.
+     * Sets the {@code PlatformName} of the {@code Platform} that we are building.
      */
     public PlatformBuilder withName(String platformName) {
         this.platformName = new seedu.address.model.platform.PlatformName(platformName);

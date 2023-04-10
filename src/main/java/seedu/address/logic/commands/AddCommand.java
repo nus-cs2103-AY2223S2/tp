@@ -21,14 +21,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_APPLICANT + "APPLICANT]... "
+            + "[" + PREFIX_APPLICANT + "APPLICANT]..."
             + "[" + PREFIX_PLATFORM + "PLATFORM]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_DESCRIPTION + "Informative job description "
             + PREFIX_APPLICANT + "John "
-            + PREFIX_APPLICANT + "Sam "
-            + PREFIX_PLATFORM + "LinkedIn";
+            + PREFIX_APPLICANT + "Sam"
+            + PREFIX_PLATFORM + "Linkedin";
 
     public static final String MESSAGE_SUCCESS = "Added new listing:%1$s";
     public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the listing book";
