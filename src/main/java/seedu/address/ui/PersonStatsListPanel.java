@@ -97,7 +97,7 @@ public class PersonStatsListPanel extends UiPart<Region> {
         personStatsListView.setItems(personStatsList);
     }
 
-    private static double round (double value, int precision) {
+    private static double round(double value, int precision) {
         int scale = (int) Math.pow(10, precision);
         return (double) Math.round(value * scale) / scale;
     }
