@@ -15,14 +15,16 @@ title: FastTrack User Guide
 3. [Purpose of this guide](#purpose-of-this-guide)
 4. [How to understand this guide](#understanding-this-guide)
    1. [Icons](#icons)
-   2. [Command Syntax](#command-syntax)
 5. [Quick Start and Installation](#quick-start-and-installation)
 6. [GUI Walkthrough](#graphical-user-interface-gui-walkthrough)
 7. [Features](#features)
-    1. [Category Features](#category-features)
-    2. [Expense Features](#expense-features)
-    3. [General Features](#general-features)
-    4. [Expense Statistics Feature](#expense-statistics-feature)
+   1. [Command Syntax](#command-syntax)
+   2. [Category Features](#category-features)
+   3. [Expense Features](#expense-features)
+      1. [One-Time Expenses](#one-time-expenses)
+      2. [Recurring Expenses](#recurring-expenses)
+   4. [General Features](#general-features)
+   5. [Expense Statistics Feature](#expense-statistics-feature)
 8. [Saving the data](#saving-the-data)
 9. [Editing the data file (For Advanced Users)](#editing-the-data-file)
 10. [Frequently Asked Questions](#frequently-asked-questions)
@@ -101,7 +103,7 @@ This provides some quick and convenient hacks that you can use to optimize your 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `fastTrack.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-2/tp/releases).
+2. Download the latest `fastTrack.jar` [here](https://github.com/AY2223S2-CS2103T-W09-2/tp/releases).
 
 3. Drag the file into a folder you want to use as the _home folder_ for FastTrack.
 
@@ -257,47 +259,6 @@ add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]
 
 Don't worry if it takes a bit of time to get used to the commands. Once you're familiar with the commands, you'll be able to add expenses quickly and easily.
 
-
-### Category Features Command Summary
-
-| Feature                                            | Command Format                              | Examples                           |
-|----------------------------------------------------|---------------------------------------------|------------------------------------|
-| [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
-| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
-| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
-| [**Edit Category**](#editing-a-category-edcat)     | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
-
-### Expense Features Command Summary
-#### One-time Expenses
-
-| Feature                                                              | Command Format                                                                        | Examples                                                       |
-|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| [**List Expenses**](#listing-expenses-list)                          | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                                                | `list c/Food t/month`                                          |
-| [**Add Expense**](#adding-an-expense-add)                            | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                    | `add c/Food p/20 n/Mac d/14/2/23`                              |
-| [**Delete Expense**](#deleting-an-expense-delete)                    | `delete INDEX`                                                                        | `delete 1`                                                     |
-| [**Edit Expense**](#editing-an-expense-edexp)                        | `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`                   | `edexp 1 c/Food n/Mac d/20/4/23 p/10`                          |
-| [**Find Expense**](#search-for-an-expense-by-keyword-find)           | `find KEYWORD [MORE_KEYWORDS]`                                                        | `find KFC chicken`                                             |
-
-
-#### Recurring Expenses
-| Feature                                                              | Command Format                                                                        | Example                                                        |
-|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| [**List Recurring Expense**](#listing-recurring-expenses-lrec)       | `lrec`                                                                                | `lrec`                                                         |
-| [**Add Recurring Expense**](#adding-a-recurring-expense-addrec)      | `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]`   | `addrec c/Shows n/Netflix p/10 t/month sd/10/3/23 ed/10/03/24` |
-| [**Delete Recurring Expense**](#deleting-a-recurring-expense-delrec) | `delrec INDEX`                                                                        | `delrec 1`                                                     |
-| [**Edit Recurring Expense**](#editing-a-recurring-expense-edrec)     | `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]` | `edrec 1 c/Show n/Disney Plus p/2 t/week ed/10/5/24`           |
-
-
-### General Features Command Summary
-
-| Feature                                       | Command Format | Examples     |
-|-----------------------------------------------|----------------|--------------|
-| [**Set Budget**](#setting-a-budget-set)       | `set p/AMOUNT` | `set p/1000` |
-| [**Help**](#viewing-help-help)                | `help`         | `help`       |
-| [**Exit program**](#exiting-fasttrack-exit)   | `exit`         | `exit`       |
-| [**Clear data**](#clearing-all-entries-clear) | `CLEAR`        | `CLEAR`      |
-
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Information about the command format**<br>
@@ -318,6 +279,7 @@ Before diving further into the guide, here are some things to take note about th
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
+
 --------------------------------------------------------------------------------------------------------------------
 # **Category Features**
 
@@ -332,6 +294,17 @@ FastTrack even has a default Misc category for any expenses that you haven't cat
 **:information_source: Info**<br>
 Note that category names in FastTrack are case-insensitive. For example, a category named `Groceries` will be treated as the exact same category as `groceries`.
 </div>
+
+###  Command Summary
+
+| Feature                                            | Command Format                              | Examples                           |
+|----------------------------------------------------|---------------------------------------------|------------------------------------|
+| [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
+| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
+| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
+| [**Edit Category**](#editing-a-category-edcat)     | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Listing Categories** `lcat`
 
@@ -436,6 +409,26 @@ An **expense** is a single purchase that you want to track. Each expense has a _
 
 Finally, there are **recurring expenses**. These are expenses that are charged on a regular basis, such as a monthly subscription to Netflix or an annual Heroku subscription. Instead of manually creating an expense every time the payment is due, you can set up a recurring expense in FastTrack.
 Simply specify the start date, interval (daily, weekly, monthly, yearly), and end date (if applicable), and FastTrack will automatically generate the expenses for you.
+
+###  Command Summary
+#### One-time Expenses
+
+| Feature                                                              | Command Format                                                                        | Examples                                                       |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| [**List Expenses**](#listing-expenses-list)                          | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                                                | `list c/Food t/month`                                          |
+| [**Add Expense**](#adding-an-expense-add)                            | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                    | `add c/Food p/20 n/Mac d/14/2/23`                              |
+| [**Delete Expense**](#deleting-an-expense-delete)                    | `delete INDEX`                                                                        | `delete 1`                                                     |
+| [**Edit Expense**](#editing-an-expense-edexp)                        | `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`                   | `edexp 1 c/Food n/Mac d/20/4/23 p/10`                          |
+| [**Find Expense**](#search-for-an-expense-by-keyword-find)           | `find KEYWORD [MORE_KEYWORDS]`                                                        | `find KFC chicken`                                             |
+
+
+#### Recurring Expenses
+| Feature                                                              | Command Format                                                                        | Example                                                        |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| [**List Recurring Expense**](#listing-recurring-expenses-lrec)       | `lrec`                                                                                | `lrec`                                                         |
+| [**Add Recurring Expense**](#adding-a-recurring-expense-addrec)      | `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]`   | `addrec c/Shows n/Netflix p/10 t/month sd/10/3/23 ed/10/03/24` |
+| [**Delete Recurring Expense**](#deleting-a-recurring-expense-delrec) | `delrec INDEX`                                                                        | `delrec 1`                                                     |
+| [**Edit Recurring Expense**](#editing-a-recurring-expense-edrec)     | `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]` | `edrec 1 c/Show n/Disney Plus p/2 t/week ed/10/5/24`           |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -771,6 +764,18 @@ If you edit the recurring expense to end before the current date, this only prev
 
 # General Features
 
+
+###  Command Summary
+
+| Feature                                       | Command Format | Examples     |
+|-----------------------------------------------|----------------|--------------|
+| [**Set Budget**](#setting-a-budget-set)       | `set p/AMOUNT` | `set p/1000` |
+| [**Help**](#viewing-help-help)                | `help`         | `help`       |
+| [**Exit program**](#exiting-fasttrack-exit)   | `exit`         | `exit`       |
+| [**Clear data**](#clearing-all-entries-clear) | `CLEAR`        | `CLEAR`      |
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting A Budget** `set`
@@ -991,6 +996,9 @@ FastTrack's data are saved as a JSON file `[JAR file location]/data/fastTrack.js
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FastTrack will discard all data and start with an empty data file at the next run.
 </div>
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 # Frequently Asked Questions
 
