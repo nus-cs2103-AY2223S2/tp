@@ -743,7 +743,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FitBook shows an error message.
 
       Use case resumes at step 2.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC02 - Add a client**
 
 **MSS**
@@ -788,7 +788,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Client list is empty use case.
 
   Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC04 - Edit a client**
 
 **MSS**
@@ -838,7 +838,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook exits the program.
 
    Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC07 - Find**
 
 **MSS**
@@ -879,7 +879,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Routine list is empty use case.
 
   Use case ends.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC09 - Clear Routines**
 
 **MSS**
@@ -920,7 +920,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FitBook shows an error message.
 
       Use case resumes at step 2.
-
+<div style="page-break-after: always;"></div>
 > **Use case: UC11 - Delete Exercise**
 
 **MSS**
