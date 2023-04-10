@@ -3,9 +3,10 @@ layout: page
 title: User Guide
 ---
 
-E-Lister is a comprehensive **desktop app**, specially designed for **insurance agents and other financial professionals** to **streamline the management of their customers' contact information**.  This powerful tool provides a simple and intuitive interface, allowing users to:
-- easily operate with the contact information via CLI (Command Line Interface)
-- **see the history of commands that the users keyed in and executed** so that they can keep **a record of their workflow progress**, hence improving productivity.
+E-Lister is a comprehensive **desktop app**, specially designed for **insurance agents and other financial professionals** to streamline the management of their customers' contact information.  This powerful tool provides users with:
+1.	Basic operations (add, delete, find, clear) with the contact information via CLI (Command Line Interface) and user-customized tags for labeling.
+2.	Import and export CSV files.
+3.	Other advanced operations (filter, mass operation, freeze, undo, shortcut).
 
 * Table of Contents
 {:toc}
@@ -14,14 +15,14 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
 1. Download the latest `eLister.jar` from [here](https://github.com/AY2223S2-CS2103T-T17-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for E-Lister.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eLister.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the picture below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -46,12 +47,14 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 <div markdown="block" class="alert alert-info">
 
 **Some notices before going through this guide:**<br>
+* Any notation with a letter followed by a `/` is referred to as a input field for user to key in.<br>
+e.g `t/TAG`, `n/NAME`, `p/PHONE_NUMBER`, etc
 
-* Words in `UPPER_CASE` are the parameters for you to supply.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the input values for you to supply.<br>
+  e.g. in `add n/NAME`, `NAME` is an input value which can be used as `add n/John Doe`.
 
 * Words separated by `|` indicate that you should only pick one of the keywords.<br>
-  e.g. `shown|all` indicates that you may enter either `shown` or `all`.
+  e.g. `all|shown` indicates that you may enter either `all` or `shown`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -59,13 +62,13 @@ E-Lister is a comprehensive **desktop app**, specially designed for **insurance 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* Input  can be in any order.<br>
   e.g. both the commands following `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` are acceptable with the same effect.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a input field is expected only once in the command but you specified it multiple times, only the last occurrence of the input field will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous input values for commands that do not take in input values (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
@@ -80,7 +83,9 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### Adding a person: `add`
+### Basic operation
+
+#### Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -99,7 +104,7 @@ Examples:
 
 ![add example](images/addExample.png)
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
@@ -108,7 +113,7 @@ Format: `list`
 ![list](images/listExample.png)
 
 *Why do we need this command?* This is mostly used to refresh the whole list of contacts storing in the app so far after you use **filter** command *(see later)*.
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -126,7 +131,7 @@ Examples:
 *  `edit 1 p/91234567 e/alex_clone@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `alex_clone@example.com` respectively.![edit example](images/editExample.png)
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -145,7 +150,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find mart On` returns `Martin Henz`, `Ong Wai Kit`
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -160,7 +165,14 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete 6` will deletes the 6th person in the address book (which is Betsy Crowe in this example).![delete example](images/deleteExample.png)
 
-### Adding a tag : `tag`
+#### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Tag
+#### Adding a tag : `tag`
 
 Adds a tag to any given person stored in the address book.
 
@@ -174,7 +186,7 @@ Examples:
 * `list` followed by `tag 2 banker` adds the tag “banker” to the 2nd person.
 * `tag 1 billionaire` will add the tag "billionaire" to the 1st person (which is Alex in this example).![add tag example](images/tagExample.png)
 
-### Deleting a tag : `delete_tag`
+#### Deleting a tag : `delete_tag`
 
 Deletes a tag on a person.
 
@@ -189,7 +201,8 @@ Examples:
 * `list` followed by `delete_tag 3 teacher` deletes the tag "teacher" from the 3rd person(only if there's a person with index 3 and carrying tag "teacher").
 * `delete_tag 1 t/billionaire` will delete the tag "billionaire" from the 1st person (which is Alex in this example).![delete_tag example](images/deleteTagExample.png)
 
-### Filter by fields : `filter`
+### Advanced Operation
+#### Filter by fields : `filter`
 
 Search for persons whose fields all match one or more keywords.
 
@@ -221,7 +234,7 @@ and will not match `banker` or `bankrupt`.
 * `filter e/.*\.org$ n/(?<!len)rin(?!len) e/.*\.net$` will list all persons with the substring "rin" but not "len" in their name,
 as well as an email that ends in ".org" or ".net".
 
-### Freezing the display : `freeze`
+#### Freezing the display : `freeze`
 
 Freezes the current <span style="color:green">selection</span> of persons displayed.
 
@@ -238,14 +251,14 @@ Format: `freeze`
 and will act on the display as it appears to you.
 * The effects of a `freeze` are withdrawn when a new `list`, `find`, or `filter` command is entered.
 
-### Unfreezing the display : `unfreeze`
+#### Unfreezing the display : `unfreeze`
 
 Unfreezes the current <span style="color:green">selection</span> of persons displayed. Any changes to the selection which were previously withheld
 due to a `freeze` will now be applied.
 
 Format: `unfreeze`
 
-### Creating a shortcut : `shortcut`
+#### Creating a shortcut : `shortcut`
 
 Allows the user to create a shortcut for a command; this shortcut can be used in place of the command.
 
@@ -259,7 +272,7 @@ Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
 Examples:
 * `shortcut list lst` will allow the user to input `lst` in place of `list`.
 
-### Mass operations : `mass`
+#### Mass operations : `mass`
 
 Takes in a command typically applied to a single target index, and applies it to all _displayed_ persons.
 
@@ -271,7 +284,7 @@ Examples:
 * `mass delete` will delete all displayed persons.
   * Contrast with `clear`, which deletes all persons, whether displayed or not.
 
-### Undoing a command : `undo`
+#### Undoing a command : `undo`
 
 Undo one or more of the most recent commands done.
 
@@ -289,7 +302,7 @@ Format: `undo [NUM]`
 Examples:
 * `undo 3` will undo the last 3 commands.
 
-### Redoing a command : `redo`
+#### Redoing a command : `redo`
 
 Redo one or more of the most recent commands undone.
 
@@ -305,15 +318,10 @@ Format: `redo [NUM]`
 Examples:
 * `redo 3` will redo 3 commands.
 
-### Clearing all entries : `clear`
+### Import&Export CSV file
+#### Import data from CSV : `import`
 
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Import data from CSV : `import`
-
-Opens a file chooser to select and import a CSV file containing relevant data. 
+Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
 
 Format: `import [combine|reset]`
 
@@ -323,10 +331,9 @@ Format: `import [combine|reset]`
 
 **Note: Your CSV file must have the following headers in this order: `Name, Phone, Email, Address, Income, Tags`**
 
-![CSV headers example](images/importExample.png)
+![CSV headers example](https://user-images.githubusercontent.com/55232476/230785869-dd530813-1753-4d59-b7bf-18fa12a20894.png)
 
-
-### Export data to CSV : `export`
+#### Export data to CSV : `export`
 
 Opens a file chooser to select a directory where you can save the data to a CSV file.
 
@@ -340,7 +347,22 @@ Format: `export [shown|all]`
 
 ![export example](images/exportExample.png)
 
-### Exiting the program : `exit`
+### Input Log
+On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
+
+*Why do we need this?* Keeping a record of all commands executed in a contacts managing app is important for several reasons.
+- It provides a historical log of all actions taken by the insurance agent, which can be useful in case of any disputes or discrepancies that may arise in the future.
+- It allows the agent to keep track of their progress and performance, providing a clear overview of where they are in the workflow at any given time. This can be especially helpful when managing a large number of customers and tasks simultaneously, as it can be easy to lose track of what has been done and what still needs to be done
+- Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
+
+![history display](images/historyDisplay.png)
+### Applying Filters Display
+Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
+
+*Why do we need this?* The reasoning is pretty the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
+
+
+## Exiting the program : `exit`
 
 Exits the program.
 
@@ -357,20 +379,6 @@ E-Lister data is saved as a JSON file `[JAR file location]/data/elister.json`. A
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
-
-### Input Log
-On the right side of the application, an Input Log section is available & displays successful commands you have previously entered.
-
-*Why do we need this?* Keeping a record of all commands executed in a contacts managing app is important for several reasons.
-- It provides a historical log of all actions taken by the insurance agent, which can be useful in case of any disputes or discrepancies that may arise in the future.
-- It allows the agent to keep track of their progress and performance, providing a clear overview of where they are in the workflow at any given time. This can be especially helpful when managing a large number of customers and tasks simultaneously, as it can be easy to lose track of what has been done and what still needs to be done
-- Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
-
-![history display](images/historyDisplay.png)
-### Applying Filters Display
-Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
-
-*Why do we need this?* The reasoning is pretty the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
 
 ![applying filters display](images/filtersDisplay.png)
 ### Archiving data files `[coming in v2.0]`
@@ -394,8 +402,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Import** | `import [combine\|reset]`
-**Export** | `export [shown\|all]`
+**Export** | `export`
 **Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Freeze** | `freeze`
