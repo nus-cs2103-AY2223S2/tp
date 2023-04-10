@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jiasheng59.md)]
 
 * Role: Developer
-* Responsibilities: `Find` and `Help` feature
+* Responsibilities: `Statistics`, `Find` , `Sort` and `Help` feature
 
 ### Lai Hui Qi
 
