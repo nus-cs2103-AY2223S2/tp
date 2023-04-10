@@ -540,7 +540,7 @@ Examples:
 
 ### 4.3.5. Listing all leave dates: `llve`
 
-Displays all leaves taken by employees.
+Displays all leaves taken by all employees.
 
 Format: `llve`
 
