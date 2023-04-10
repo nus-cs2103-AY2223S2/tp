@@ -1068,6 +1068,8 @@ Syntax: `delete_supplier INDEX`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.4.2 Deleting an order: `delete_order`
 
 Deletes the specified order from the order list.
@@ -1177,6 +1179,8 @@ Sorts tasks according to the criteria specified.
 
 Syntax: `sort_task [c/CRITERIA]`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
@@ -1219,6 +1223,8 @@ Sorts orders according to the criteria specified.
 
 Syntax: `sort_order [c/CRITERIA]`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
@@ -1257,6 +1263,8 @@ Syntax: `sort_order [c/CRITERIA]`
   * `sort_o c/Name` sorts all `Not Delivered` orders found according to their `Name`
 
 </div><br>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.6 List
 
