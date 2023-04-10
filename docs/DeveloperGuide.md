@@ -264,7 +264,7 @@ information on how the `Logic` component handles a command.
 The parsing and execution of FindMeeting command can be shown with the following
 sequence diagram:
 
-![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+![FindMeetingSequenceDiagram](images)
 
 ### 7. Policy Tag Feature
 
