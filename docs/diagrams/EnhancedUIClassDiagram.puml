@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 30
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+Class "<<interface>>\nDisplayable" as Displayable
+Class DisplayManager
+Class RoleDisplay
+Class StringDisplay
+
+
+DisplayManager -down- Displayable
+RoleDisplay -up..|>  Displayable
+StringDisplay -up..|> Displayable
+
+
+@enduml

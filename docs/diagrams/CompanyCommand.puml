@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
+participant ":CompanyCommandParser" as CompanyCommandParser LOGIC_COLOR
+participant "c:CompanyCommand" as CompanyCommand LOGIC_COLOR
+participant ":CompanyContainsKeywordsPredicate" as CompanyContainsKeywordsPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("company Google")
+activate LogicManager
+
+LogicManager -> RoleBookParser : parseCommand("company Google")
+activate RoleBookParser
+
+create CompanyCommandParser
+RoleBookParser -> CompanyCommandParser
+activate CompanyCommandParser
+
+CompanyCommandParser --> RoleBookParser
+deactivate CompanyCommandParser
+
+RoleBookParser -> CompanyCommandParser : parse("Google")
+activate CompanyCommandParser
+
+create CompanyContainsKeywordsPredicate
+CompanyCommandParser -> CompanyContainsKeywordsPredicate
+activate CompanyContainsKeywordsPredicate
+
+CompanyContainsKeywordsPredicate --> CompanyCommandParser
+deactivate CompanyContainsKeywordsPredicate
+
+create CompanyCommand
+CompanyCommandParser -> CompanyCommand
+activate CompanyCommand
+
+CompanyCommand --> CompanyCommandParser : c
+deactivate CompanyCommand
+
+CompanyCommandParser --> RoleBookParser : c
+deactivate CompanyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CompanyCommandParser -[hidden]-> RoleBookParser
+destroy CompanyCommandParser
+
+RoleBookParser --> LogicManager : c
+deactivate RoleBookParser
+
+
+LogicManager -> CompanyCommand : execute(model)
+activate CompanyCommand
+
+
+CompanyCommand -> Model : updateFilteredRoleList(pred)
+activate Model
+
+Model --> CompanyCommand
+deactivate Model
+
+create CommandResult
+CompanyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CompanyCommand
+deactivate CommandResult
+
+CompanyCommand --> LogicManager : result
+deactivate CompanyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

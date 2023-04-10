@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+skinparam defaultFontSize 40
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
+participant ":SalaryCommandParser" as SalaryCommandParser LOGIC_COLOR
+participant "o:OrderParser" as OrderParser LOGIC_COLOR
+participant "s:SalaryCommand" as SalaryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("salary asc")
+activate LogicManager
+
+LogicManager -> RoleBookParser : parseCommand("salary asc")
+activate RoleBookParser
+
+create SalaryCommandParser
+RoleBookParser -> SalaryCommandParser
+activate SalaryCommandParser
+
+SalaryCommandParser --> RoleBookParser
+deactivate SalaryCommandParser
+
+RoleBookParser -> SalaryCommandParser : parse("asc")
+activate SalaryCommandParser
+
+create OrderParser
+SalaryCommandParser -> OrderParser
+activate OrderParser
+
+OrderParser --> SalaryCommandParser : o
+deactivate OrderParser
+
+create SalaryCommand
+SalaryCommandParser -> SalaryCommand
+activate SalaryCommand
+
+SalaryCommand --> SalaryCommandParser : s
+deactivate SalaryCommand
+
+SalaryCommandParser --> RoleBookParser : s
+deactivate SalaryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SalaryCommandParser -[hidden]-> RoleBookParser
+destroy SalaryCommandParser
+
+RoleBookParser --> LogicManager : s
+deactivate RoleBookParser
+
+
+LogicManager -> SalaryCommand : execute()
+activate SalaryCommand
+
+
+SalaryCommand -> Model : displaySortedSalaryList()
+activate Model
+
+Model --> SalaryCommand
+deactivate Model
+
+create CommandResult
+SalaryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SalaryCommand
+deactivate CommandResult
+
+SalaryCommand --> LogicManager : result
+deactivate SalaryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
