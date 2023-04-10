@@ -10,10 +10,10 @@ MedInfo aims to solve the problem of slow, multiple step process of documenting 
 Given below are my contributions to the project.
 
 - **New Feature**
-    - Added discharge date-time field to patient
+    - Added discharge date-time field to patient <br>
 
 
-- **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ksunil2001&breakdown=true)
+- **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ksunil2001&breakdown=true) <br>
 
 
 - **Enhancements to existing features**:
@@ -22,9 +22,8 @@ Given below are my contributions to the project.
       - Even after finding the error, it took some time to understand how and why the error occurred before I could fix it
       - Overall it was a time-consuming process
     - Updated json files for test cases
-    - Refactored Person to Patient throughout the code
     - Fixed the display of ward name when editing a patient's details
-    - Created a help.txt file to summarise the list of commands and their syntax
+    - Created a help.txt file to summarise the list of commands and their syntax <br>
 
 
 - **Documentation**:
@@ -37,16 +36,14 @@ Given below are my contributions to the project.
 
 - **Contributions to Team-based tasks**:
     - Refactored Person to Patient throughout the code
-    - Fixed checkstyle issues
-    - Updated the product scope, target user profile, value proposition, user stories, use cases and glossary of the Developer Guide
-    - Organised features by Patient, Ward and Utility in the User Guide
+    - Fixed checkstyle issues <br>
 
 
 - **Review/mentoring contributions**:
     - This link lists all the PRs I have reviewed: [Reviewed PRs](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aksunil2001)
     - Helped to verify the checkstlye and clarify a doubt in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/121)
     - Corrected the code to implement abstraction and improve the checkstyle in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/159)
-    - Checked the grammar of the UG in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/249)
+    - Checked the grammar of the UG in this PR: [PR](https://github.com/AY2223S2-CS2103T-T12-2/tp/pull/249) <br>
 
 
 - **Contributions beyond the project team**:
