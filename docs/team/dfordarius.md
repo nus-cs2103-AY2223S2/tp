@@ -25,6 +25,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because user gets to delete a specific Routine in the Routine Storage.
   * Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current Routine's storage.
 
+  <div style="page-break-after: always;"></div>
 * **New Feature**: Added *addExercise* and *listRoutines* functionality for Routine Class.
   * What it does: allows the user to list all routines as well as add exercises to the specific Routine in the Routine Storage, and it will be updated in the current model for Routine.
   * Justification: This feature improves the product significantly because it allows user to add new Exercises to the specific Routine in the Routine Storage as well as see the full Routine list stored in FitBook.
@@ -35,12 +36,6 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because it allows user to filter and search Routines that have been stored in the Routine's Storage. Additionally, allows users to clear all Routines in the storage.
   * Highlights: It required an in-depth analysis of design alternatives.
 
-* **Testing**: Added tests for Gender, Goal, Weight, listRoutines, findRoutines, clearRoutines.
-  * What it does: run automated checks for features for this app to mitigate some bugs.
-  * Justification: This feature improves the product significantly by mitigating any potential bugs.
-  * Highlights: Testing has to be done on a case to case basis. Testings for features are not simple and required an in-depth analysis of design alternatives.
-  
-<div style="page-break-after: always;"></div>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dfordarius&tabRepo=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
