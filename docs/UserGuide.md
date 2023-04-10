@@ -30,7 +30,7 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
       - [Applicants List](#applicants-list)
       - [Platforms released](#platforms-released)
     - [Applicant](#applicant)
-      - [IDs](#ids)
+      - [ID](#id)
     - [Platform](#platform)
     - [Commands](#commands)
   - [**Features**](#features)
@@ -163,7 +163,7 @@ An applicant refers to someone who has applied for a job listing. Applicants are
 - Applicants with identical names are allowed in the same job listing.
 - Can be managed individually or as a whole list in each job listing.
 
-#### IDs
+#### ID
 In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing. 
 <br><br> 
 
