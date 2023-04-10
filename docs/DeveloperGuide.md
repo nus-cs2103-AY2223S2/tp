@@ -1343,10 +1343,10 @@ All UI tests using `TestFX` extend from `GuiUnitTest` and handles are created fo
 ---
 
 ## **Measuring Coverage of Integration Tests**
-We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests.
+We have used `Jacoco` and `Codecov` to monitor the code coverage of integration tests.
 
 ### **Create Code Coverage Report**
-Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecev` for setting up on CI/CD.
+Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecov` for setting up on CI/CD.
 
 ### **Read Code Coverage Report**
 For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
