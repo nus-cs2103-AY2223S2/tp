@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Alson
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alson001.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/alson001)]
+[[portfolio](team/alson001.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor, Testing
+- Responsibilities: Code Quality
 
-### Jane Doe
+### Filbert Phang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/filbertphang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/filbertphang)]
+[[portfolio](team/filbertphang.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Testing, Scheduling and tracking
+- Responsibilities: UI, Bug fixes, Issue tracking
 
-### Johnny Doe
+### James Liu Zixin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jamesliuzx.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jamesliuzx)]
+[[portfolio](team/jamesliuzx.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Team Lead, UI Head
+- Responsibilities: UI, Code Quality 
 
-### Jean Doe
+### Ong Seeu Sim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seeusim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/SeeuSim)]
+[[portfolio](team/seeusim.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Code Quality, Integration Head
+- Responsibilities: Core Infrastructure, Project Management, Lead Editor
 
-### James Doe
+### Tang Zong Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhtang29.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zhtang29)]
+[[portfolio](team/zhtang29.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Deliverables, Tracking and Deadlines Head, Documentation Head
+- Responsibilities: Project Management, Project Documentation

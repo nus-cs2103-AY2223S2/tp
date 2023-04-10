@@ -1,0 +1,30 @@
+* { /* ROOT COLOR VARIABLES */
+    -fx-bg: #18181b;
+    -fx-ctr: #f4f4f5;
+    -fx-gry: #71717a;
+    -fx-rd: #f70d1a;
+    -fx-rsd: derive(-fx-bg, 40%);
+}
+
+.text-area {
+    -fx-background-color: derive(-fx-bg, 40%);
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #52525b;
+    -fx-padding: 5;
+    -fx-border-width: 1;
+    -fx-margin: 10;
+
+    -fx-background-insets: 5;
+    -fx-border-insets: 5;
+    -fx-font-family: "IBM Plex Sans Italic";
+    -fx-font-size: 13pt;
+    -fx-text-fill: derive(-fx-bg, 200%);
+}
+
+.text-area .content {
+    -fx-background-color: derive(-fx-bg, 40%);
+
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}

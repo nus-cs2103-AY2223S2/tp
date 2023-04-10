@@ -4,18 +4,26 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
-Class "<<interface>>\nUi" as Ui
+package Ui <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui_
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class RecipeListPanel
+Class RecipeCard
+Class RecipePopup
+Class RecipeForm
+Class RecipeAddForm
+Class RecipeEditForm
 Class StatusBarFooter
 Class CommandBox
+Class DeleteRecipeEvent
+Class EditRecipeEvent
 }
+
+Class "<<interface>>\nCommandExecutor" as CommandExecutor
 
 package Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
@@ -26,35 +34,52 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
+HiddenOutside .down.> Ui_
 
-UiManager .left.|> Ui
+UiManager .up.|> Ui_
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-->  "1" CommandBox
+MainWindow *--> "1" ResultDisplay
+MainWindow *---> "1" RecipeListPanel
+MainWindow *---> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow .down> DeleteRecipeEvent
 
-PersonListPanel -down-> "*" PersonCard
+RecipeListPanel *--> "*" RecipeCard
 
-MainWindow -left-|> UiPart
+MainWindow --|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+ResultDisplay -|> UiPart
+CommandBox -|> UiPart
+RecipeListPanel --|> UiPart
+RecipeCard -|> UiPart
+StatusBarFooter -|> UiPart
+HelpWindow -|> UiPart
+RecipeForm --|> UiPart
+RecipePopup --|> UiPart
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
+RecipeCard .up.> Model
 
-PersonListPanel -[hidden]left- HelpWindow
+RecipeCard ..> RecipePopup
+RecipeCard ..>  RecipeForm
+RecipeCard .up>  DeleteRecipeEvent
+
+RecipeAddForm -left-|>  RecipeForm
+RecipeEditForm --|> RecipeForm
+RecipeAddForm -up->  Logic
+
+RecipeEditForm .down.> EditRecipeEvent
+RecipeEditForm .up.> MainWindow
+
+UiManager -left> Logic
+MainWindow -right> Logic
+
+CommandExecutor .up.> Logic
+MainWindow .down.> CommandExecutor
+
+RecipeListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
-MainWindow -[hidden]-|> UiPart
 @enduml

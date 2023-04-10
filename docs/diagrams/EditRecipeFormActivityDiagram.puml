@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+
+(*) --down> "User hovers over or navigates to a \nRecipe Card in the Main Window"
+--down> "User presses 'F' key"
+--down> "Edit Recipe Form opens"
+--down> "User navigates to desired field(s)"
+--down> "User edits desired field(s)"
+if ""
+  --left> [User presses 'esc' key or clicks 'cancel' button]"Form window closes "
+  -----down> (*)
+else
+  --down> [User presses 'Enter' key or clicks 'save' button] "Edit Recipe Form saves edited fields"
+  --down> Edit Recipe Form creates a command string from \n the edited fields
+  --down> Form window closes
+  --down> Parent Recipe Card creates an \n "EditRecipeEvent" and fires it to the app
+  --left> (*)
+@enduml
