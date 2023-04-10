@@ -24,7 +24,7 @@ import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
 
 /**
- * Parses input arguments and creates a new AddLab object
+ * Parses input arguments and creates a new AddLab object.
  */
 public class AddLabParser implements Parser<AddLabCommand> {
 
