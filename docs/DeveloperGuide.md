@@ -617,7 +617,7 @@ The following is a description of the code execution flow
 - `DeleteVideoCommand`: single video to be deleted
 - `DeleteMultipleVideosCommand`: more than one video to be deleted
 
-4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
+4. If no exceptions are thrown, Le Tracker has successfully managed to delete the specified module(s)/lecture(s)/video(s) the respective context. <br>
 Possible exceptions that could be thrown are:
     - Command contains duplicate entities to be deleted
     - Invalid format for any entity
@@ -628,7 +628,7 @@ Possible exceptions that could be thrown are:
 **Reasons for such implementation**
 
 1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification.
-2. Having abstract classes to group multiple commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
+2. Having abstract classes to group multiple commands together allows for adherence of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
 
 **Alternatives considered**
 
@@ -654,7 +654,7 @@ The `mark` command supports:
 - Marking unmarked videos as watched
 - Marking marked videos as unwatched
 - Marking multiple videos in 1. and 2.
-  - E.g.: User wishes to mark multile videos "Vid 1, Vid 2" in lecture "Week 1" of module "CS2040S" as watched.\
+  - E.g.: User wishes to mark multiple videos "Vid 1, Vid 2" in lecture "Week 1" of module "CS2040S" as watched.\
     Executing `mark Vid 1, Vid 2 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
     1. the module (CS2040S) does not exist in the Tracker
     2. the lecture (Week 1) does not exist in the module (CS2040S)
@@ -713,7 +713,7 @@ The following is a description of the code execution flow:
 2. The argument values are then checked on as such:
 
    - ModuleCode: valid module code that complies with the module code format
-   - LectureName: valid lecture name that does not containt symbols
+   - LectureName: valid lecture name that does not contain symbols
    - VideoName: valid lecture name that does not contain symbols
 
    Note: VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
@@ -734,7 +734,7 @@ The following is a description of the code execution flow:
 **Reasons for such implementation**
 
 1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification
-2. Having abstract classes to group mark commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
+2. Having abstract classes to group mark commands together allows for adherence of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
 
 **Alternatives considered**
 
@@ -821,7 +821,7 @@ The `untag` command supports:
   `Tracker` object
 
 The `untag` behaviour is dependent on the arguments provided by the user. Multiple `Tag` objects can be deleted in a
-single command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
+single command. If a command contains non-existent tags and tags that were already added to modules, lectures, or
 videos, a `CommandException` will be thrown. Duplicated tags in the command, if any, will be ignored.
 
 **Notable Classes**
@@ -1063,12 +1063,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | :white_check_mark:   | `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                                   |
 | :white_check_mark:   | `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                                    |
 | :white_check_mark:   | `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                          |
-| :white_check_mark:   | `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                                 | 
-| :white_check_mark:   | `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                                | 
-| :white_check_mark:   | `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                                | 
+| :white_check_mark:   | `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                                 |
+| :white_check_mark:   | `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                                |
+| :white_check_mark:   | `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                                |
 | :white_check_mark:   | `* *`    | user             | remove tags from modules                                                           | remove tags that are no longer relevant or added by accident                                                                   |
-| :white_check_mark:   | `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                                   | 
-| :white_check_mark:   | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                                   | 
+| :white_check_mark:   | `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                                   |
+| :white_check_mark:   | `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                                   |
 | :white_check_mark:   | `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over or clear sample modules                                               |
 | :white_check_mark:   | `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                         |
 | :white_check_mark:   | `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                                  |
@@ -1122,7 +1122,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User wants to see all modules and executes list modules command.
-1. A list of module is populated.
+1. A list of modules is populated.
 
    Use case ends.
 
@@ -1145,7 +1145,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. The module does not exists.
+- 1a. The module does not exist.
 
   - 1a1. Le Tracker shows an error message.
 
@@ -1168,13 +1168,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. The module does not exists.
+- 1a. The module does not exist.
 
   - 1a1. Le Tracker shows an error message.
 
     Use case resumes at step 1.
 
-- 1b. The lecture does not exists.
+- 1b. The lecture does not exist.
 
   - 1b1. Le Tracker shows an error message.
 
@@ -1222,7 +1222,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-- 1b. The module does not exists.
+- 1b. The module does not exist.
 
   - 1b1. Le Tracker shows an error message.
 
@@ -1250,13 +1250,13 @@ with module, lecture and keyword supplied.
 
     Use case resumes at step 1.
 
-- 1b. The module does not exists.
+- 1b. The module does not exist.
 
   - 1b1. Le Tracker shows an error message.
 
     Use case resumes at step 1.
 
-- 1c. The lecture does not exists.
+- 1c. The lecture does not exist.
 
   - 1c1. Le Tracker shows an error message.
 
@@ -1343,7 +1343,7 @@ with module, lecture and keyword supplied.
 
 **Extensions**
 
-- 1a. The module that is suppose to contain the lecture does not exist.
+- 1a. The module that is supposed to contain the lecture does not exist.
 
   - 1a1. Le Tracker shows an error message.
 
@@ -1419,7 +1419,7 @@ with module, lecture and keyword supplied.
 
 **Extensions**
 
-- 1a. The module that is suppose to contain the lecture to edit does not exist.
+- 1a. The module that is supposed to contain the lecture to edit does not exist.
 
   - 1a1. Le Tracker shows an error message.
 
@@ -1460,13 +1460,13 @@ with module, lecture and keyword supplied.
 
 **Extensions**
 
-- 1a. The module that is suppose to contain the lecture does not exist.
+- 1a. The module that is supposed to contain the lecture does not exist.
 
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
-- 1b. The lecture that is suppose to contain the video to edit does not exist.
+- 1b. The lecture that is supposed to contain the video to edit does not exist.
 
   - 1b1. Le Tracker shows an error message.
 
@@ -1546,7 +1546,7 @@ with module, lecture and keyword supplied.
 
     Use case ends.
 
-- 1c. At least one module of module codes do not exist in Le Tracker.
+- 1c. At least one of the module codes supplied does not belong to any module in Le Tracker.
 
   - 1c1. Le Tracker shows an error message.
 
@@ -2146,7 +2146,7 @@ with module, lecture and keyword supplied.
 
 1. User requests to save all data in the current tracker to a new file.
 2. User specifies the name of the file to save to.
-3. All modules data in the current tracker is saved to the file.
+3. All module data in the current tracker is saved to the file.
 
    Use case ends.
 
@@ -2170,7 +2170,7 @@ with module, lecture and keyword supplied.
 
 1. User requests to save all data in the current tracker to an existing file.
 2. User specifies the name of the file to save to, as well as indicating that user wants to overwrite the existing file.
-3. All modules data in the current tracker is saved to the file.
+3. All module data in the current tracker is saved to the file.
 
    Use case ends.
 
@@ -2198,9 +2198,9 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User requests to import all modules data from an existing file.
+1. User requests to import all module data from an existing file.
 2. User specifies the name of the file to import from.
-3. All modules data in the file is imported to the current tracker.
+3. All module data in the file is imported to the current tracker.
 
    Use case ends.
 
@@ -2234,9 +2234,9 @@ with module, lecture and keyword supplied.
 
 **MSS**
 
-1. User requests to import all modules data from an existing file.
+1. User requests to import all module data from an existing file.
 2. User specifies the name of the file to import from.
-3. All modules data in the file is imported to the current tracker.
+3. All module data in the file is imported to the current tracker.
 
    Use case ends.
 
@@ -3010,6 +3010,6 @@ As listed above, calling `unmark` on multiple videos has a different result as c
 
 **Proposed Solution**
 
-Set `unmark` for multiple videos to catch when any of the videos specified have already been marked as unwatched, and alert thte user with a similar error message to its counterparts.
+Set `unmark` for multiple videos to catch when any of the videos specified have already been marked as unwatched, and alert the user with a similar error message to its counterparts.
 
 This implementation would allow for users to better realise what their commands are doing, especially if they are in a different context that does not allow them to visualise the effect of their commands.
