@@ -885,6 +885,25 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Job to delete is in the list.
    1. Test case: `select a job` > press `del` key<br>
       Expected: Job selected is removed.
+2. Import jobs by GUI
+   1. Prerequisites: 
+      1. File to be imported is prepared.
+      2. File to be imported is in csv.
+      3. File to be imported has header as specified in UG.
+      4. File to be imported has no empty cells.
+      5. File to be imported has "na" filled into optional cells.
+   2. Test case: `click on DeliveryJobSystem in menu bar` > `click import jobs` > select the csv file to be imported
+      1. Files are available for testing in docs.
+         1. testimportfile.csv
+            1. Expected: File is imported with new delivery jobs and new customers if customers do not already exist in address book.
+         2. empty.csv (incorrect format to try)
+            1. Expected: File is empty. Nothing is imported.
+         3. some_na.csv (Some optional cells left empty)
+            1. Expected: File is imported with new delivery jobs and new customers if customers do not already exist in address book.
+         4. missingelements.csv (incorrect format to try)
+            1. Missing elements in import. Check if there are empty cells.
+   
+    
 ### Notifications
 <<<<<<< HEAD
 =======
