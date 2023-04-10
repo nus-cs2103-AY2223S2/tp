@@ -1,0 +1,53 @@
+@startuml
+!include <office/Concepts/globe_internet>
+!include <office/Concepts/documents>
+!include <office/Users/user>
+!include style.puml
+
+participant ":MainApp" as MainApp #grey
+
+box Storage STORAGE_COLOR_T1
+participant "storage:JsonRosterStorage" as JsonRosterStorage STORAGE_COLOR
+participant "jsonRoster:SerialziedRoster" as SerializedRoster STORAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainApp : init()
+activate MainApp
+create JsonRosterStorage
+
+
+MainApp -> JsonRosterStorage : new JsonRosterStorage(rosterFilePath)
+MainApp -> MainApp : initModelManager(storage, userPrefs)
+activate MainApp
+
+MainApp -> JsonRosterStorage : readRoster()
+activate JsonRosterStorage
+create SerializedRoster
+JsonRosterStorage -> SerializedRoster
+
+JsonRosterStorage -> SerializedRoster : toModelType()
+activate SerializedRoster
+SerializedRoster --> JsonRosterStorage : Roster
+deactivate SerializedRoster
+
+SerializedRoster -[hidden]-> JsonRosterStorage
+destroy SerializedRoster
+
+JsonRosterStorage --> MainApp : Roster
+deactivate JsonRosterStorage
+
+JsonRosterStorage -[hidden]-> MainApp
+destroy JsonRosterStorage
+
+create ModelManager
+MainApp -> ModelManager : new ModelManager(roster, userPrefs)
+MainApp --> MainApp : Model
+deactivate MainApp
+[<-- MainApp
+deactivate MainApp
+
+@enduml
