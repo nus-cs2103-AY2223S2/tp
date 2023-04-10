@@ -18,7 +18,7 @@ if () then ([Parser returns ShowCommand])
     :Set predicate for filteredPersons;
     :update filteredPersons in ModelManager;
     :PersonCard of all filtered people displayed in Ui;
-else ([Parser throws exception])])
+else ([Parser throws exception])
     :Display error message;
 endif
 stop
