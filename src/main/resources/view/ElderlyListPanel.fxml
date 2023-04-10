@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox styleClass="listView" fx:id="elderlyListBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <Label styleClass="listLabel"  minHeight="-Infinity"  VBox.vgrow="ALWAYS" prefWidth="248.0" text="Elderly">
+      <font>
+         <Font/>
+      </font>
+   </Label>
+   <BorderPane style="-fx-border-color: whitesmoke; -fx-border-width: 1"/>
+   <ListView fx:id="elderlyListView" VBox.vgrow="ALWAYS"/>
+</VBox>

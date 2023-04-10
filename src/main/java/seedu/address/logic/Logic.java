@@ -7,44 +7,85 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.FriendlyLink;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
-     * @return the result of the command execution.
+     * @return The result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the FriendlyLink.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getFriendlyLink()
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    FriendlyLink getFriendlyLink();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns an unmodifiable view of the filtered list of elderly.
+     *
+     * @return Filtered elderly list.
      */
-    Path getAddressBookFilePath();
+    ObservableList<Elderly> getFilteredElderlyList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of volunteers.
+     *
+     * @return Filtered volunteer list.
+     */
+    ObservableList<Volunteer> getFilteredVolunteerList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of pairs.
+     *
+     * @return Filtered pair list.
+     */
+    ObservableList<Pair> getFilteredPairList();
+
+    /**
+     * Returns the user prefs' elderly file path.
+     *
+     * @return Elderly file path.
+     */
+    Path getElderlyFilePath();
+
+    /**
+     * Returns the user prefs' volunteer file path.
+     *
+     * @return Volunteer file path.
+     */
+    Path getVolunteerFilePath();
+
+    /**
+     * Returns the user prefs' pair file path.
+     *
+     * @return Pair file path.
+     */
+    Path getPairFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
+     *
+     * @return GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Set the user prefs' GUI settings.
+     *
+     * @param guiSettings GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 }

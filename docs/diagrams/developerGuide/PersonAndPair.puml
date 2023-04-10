@@ -1,0 +1,44 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+
+Class Elderly
+Class Volunteer
+Class Pair
+Class "{abstract} Person" as Person
+
+Class Name
+Class Phone
+Class Email
+Class Address
+Class NRIC
+Class Age
+Class Region
+Class AvailableDates
+Class Tag
+Class RiskLevel
+Class MedicalQualificationTag
+
+Pair *--> "1" Volunteer
+Pair *--> "1" Elderly
+Elderly --|> Person
+Volunteer --|> Person
+
+Person *--> Name
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Person *--> NRIC
+Person *--> Age
+Person *--> Region
+Person *--> "~*" Tag
+Person *--> "~*" AvailableDates
+
+Elderly *--> RiskLevel
+Volunteer *--> "~*" MedicalQualificationTag
+}
+@enduml

@@ -1,14 +1,17 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REGION_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalVolunteers.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,20 +20,24 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.ReadOnlyElderly;
+import seedu.address.model.ReadOnlyPair;
+import seedu.address.model.ReadOnlyVolunteer;
+import seedu.address.model.person.Volunteer;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.storage.elderly.JsonElderlyStorage;
+import seedu.address.storage.pair.JsonPairStorage;
+import seedu.address.storage.volunteer.JsonVolunteerStorage;
+import seedu.address.testutil.ModelManagerBuilder;
+import seedu.address.testutil.VolunteerBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -38,15 +45,21 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManagerBuilder().build();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonPairStorage friendlyLinkStorage =
+                new JsonPairStorage(temporaryFolder.resolve("friendlylink.json"));
+        JsonElderlyStorage elderlyStorage =
+                new JsonElderlyStorage(temporaryFolder.resolve("elderly.json"));
+        JsonVolunteerStorage volunteerStorage =
+                new JsonVolunteerStorage(temporaryFolder.resolve("volunteer.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        StorageManager storage =
+                new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -58,8 +71,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "delete_volunteer T9999999I";
+        assertCommandException(deleteCommand, MESSAGE_NRIC_NOT_EXIST);
     }
 
     @Test
@@ -70,27 +83,45 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonFriendlyLinkIoExceptionThrowingStub
+        JsonPairStorage friendlyLinkStorage =
+                new JsonPairIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
+        JsonElderlyStorage elderlyStorage =
+                new JsonElderlyIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionElderly.json"));
+        JsonVolunteerStorage volunteerStorage =
+                new JsonVolunteerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVolunteer.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        StorageManager storage =
+                new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        // Execute add volunteer command
+        String addVolunteerCommand = AddVolunteerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NRIC_DESC_AMY + BIRTH_DATE_DESC_AMY + REGION_DESC_AMY;
+        Volunteer expectedVolunteer = new VolunteerBuilder(AMY).withTags().build();
+        ModelManager expectedModel = new ModelManagerBuilder().build();
+        expectedModel.addVolunteer(expectedVolunteer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addVolunteerCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredVolunteerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredVolunteerList().remove(0));
+    }
+
+    @Test
+    public void getFilteredElderlyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredElderlyList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPairList().remove(0));
     }
 
     /**
@@ -129,7 +160,9 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +182,42 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonPairIoExceptionThrowingStub extends JsonPairStorage {
+        private JsonPairIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void savePair(ReadOnlyPair friendlyLink, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonElderlyIoExceptionThrowingStub extends JsonElderlyStorage {
+        private JsonElderlyIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveElderly(ReadOnlyElderly elderly, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonVolunteerIoExceptionThrowingStub extends JsonVolunteerStorage {
+        public JsonVolunteerIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveVolunteer(ReadOnlyVolunteer volunteer, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

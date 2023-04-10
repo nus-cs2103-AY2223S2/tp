@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -10,11 +12,13 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.FriendlyLinkParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 import seedu.address.storage.Storage;
 
 /**
@@ -23,30 +27,35 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final FriendlyLinkParser friendLinkParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     *
+     * @param model FriendlyLink model.
+     * @param storage FriendlyLink storage.
      */
     public LogicManager(Model model, Storage storage) {
+        requireAllNonNull(model, storage);
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        friendLinkParser = new FriendlyLinkParser();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        logger.info("[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = friendLinkParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePair(model.getFriendlyLink());
+            storage.saveElderly(model.getFriendlyLink());
+            storage.saveVolunteer(model.getFriendlyLink());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +64,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public FriendlyLink getFriendlyLink() {
+        return model.getFriendlyLink();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public Path getElderlyFilePath() {
+        return model.getElderlyFilePath();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getVolunteerFilePath() {
+        return model.getVolunteerFilePath();
+    }
+
+    @Override
+    public Path getPairFilePath() {
+        return model.getPairFilePath();
     }
 
     @Override
@@ -78,4 +92,21 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    // --- The following are displayed in the UI.
+    @Override
+    public ObservableList<Elderly> getFilteredElderlyList() {
+        return model.getFilteredElderlyList();
+    }
+
+    @Override
+    public ObservableList<Volunteer> getFilteredVolunteerList() {
+        return model.getFilteredVolunteerList();
+    }
+
+    @Override
+    public ObservableList<Pair> getFilteredPairList() {
+        return model.getFilteredPairList();
+    }
+
 }

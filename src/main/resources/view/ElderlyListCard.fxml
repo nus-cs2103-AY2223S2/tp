@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="id" styleClass="cell_big_label_with_ball" style="-fx-padding: 4 2 2 2">
+        <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE"/>
+        </minWidth>
+    </Label>
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" prefWidth="250"/>
+        </columnConstraints>
+
+        <VBox minHeight="105" GridPane.columnIndex="0" spacing="3">
+            <padding>
+                <Insets bottom="5" left="5" right="5" top="5"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT">
+                <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" minWidth="300">
+                    <Label fx:id="name"  styleClass="cell_big_label" wrapText="true" HBox.hgrow="ALWAYS" text="\$first"/>
+                </HBox>
+                <FlowPane fx:id="riskLevel" style="-fx-padding: 0 5 0 0;" alignment="CENTER_RIGHT" HBox.hgrow="NEVER"/>
+            </HBox>
+            <HBox spacing="5" fx:id="regionBox">
+                <Label>
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/region.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <FlowPane fx:id="region" alignment="CENTER_LEFT"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5" fx:id="addressBox">
+                <ImageView fitHeight="15" pickOnBounds="true"  preserveRatio="true">
+                    <Image url="@/images/home-address.png"/>
+                </ImageView>
+                <Label alignment="TOP_LEFT" fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+            </HBox>
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity"
+                       HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/nric.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+
+                <Label fx:id="age" styleClass="cell_small_label" text="\$age" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/age.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+
+                <VBox fx:id="phoneBox" HBox.hgrow="ALWAYS">
+                <Label fx:id="phone"  styleClass="cell_small_label" text="\$phone" wrapText="true" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/phone.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER_LEFT"  fx:id="emailBox">
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/email.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+
+            </HBox>
+            <HBox spacing="5" fx:id="tagsBox">
+                <Label>
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/tags.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
+            </HBox>
+
+            <HBox spacing="5" fx:id="availableDatesBox">
+                <Label>
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/calendar.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <FlowPane fx:id="availableDates" alignment="CENTER_LEFT"/>
+            </HBox>
+
+        </VBox>
+        <rowConstraints>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
+</HBox>

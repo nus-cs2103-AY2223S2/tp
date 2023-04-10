@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -20,13 +21,15 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/app_icon.png";
 
-    private Logic logic;
+    private final Logic logic;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
+     *
+     * @param logic FriendlyLink logic component.
      */
     public UiManager(Logic logic) {
         this.logic = logic;
@@ -51,7 +54,7 @@ public class UiManager implements Ui {
     }
 
     private Image getImage(String imagePath) {
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
+        return new Image(Objects.requireNonNull(MainApp.class.getResourceAsStream(imagePath)));
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {

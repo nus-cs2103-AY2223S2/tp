@@ -1,0 +1,77 @@
+{
+  "_comment": "Elderly save file which contains the same Elderly values as in TypicalElderly#getTypicalElderly()",
+  "elderly" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "nric" : "S9186983G",
+    "birthDate": "1990-01-01",
+    "region": "NORTH",
+    "riskLevel" : "LOW",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "nric" : "S0116088E",
+    "birthDate": "1951-02-01",
+    "region": "NORTH",
+    "riskLevel" : "MEDIUM",
+    "tagged" : [ "owesMoney", "friends" ],
+    "availableDates": ["2023-05-01 to 2023-05-12"]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "nric" : "S1604578J",
+    "birthDate": "1952-03-01",
+    "region": "CENTRAL",
+    "riskLevel" : "HIGH",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "nric" : "S6414118Z",
+    "birthDate": "1953-04-01",
+    "region": "WEST",
+    "riskLevel" : "LOW",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "nric" : "S3271607E",
+    "birthDate": "1954-05-01",
+    "region": "EAST",
+    "riskLevel" : "HIGH",
+    "tagged" : [ ],
+    "availableDates": ["2023-04-01 to 2023-04-12"]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "nric" : "S4862780C",
+    "birthDate": "1955-06-01",
+    "region": "CENTRAL",
+    "riskLevel" : "MEDIUM",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "nric" : "S2241030Z",
+    "birthDate": "1956-07-01",
+    "region": "NORTH",
+    "riskLevel" : "LOW",
+    "tagged" : [ ],
+    "availableDates": ["2023-05-01 to 2023-05-12"]
+  } ]
+}

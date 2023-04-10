@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox styleClass="listView" fx:id="pairListBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <Label styleClass="listLabel" minHeight="-Infinity" VBox.vgrow="ALWAYS" prefWidth="248.0" text="Pair">
+      <font>
+         <Font/>
+      </font>
+   </Label>
+   <BorderPane style="-fx-border-color: whitesmoke; -fx-border-width: 1"/>
+   <HBox minHeight="-Infinity" >
+      <Label text="Elderly" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
+      <Label text="Volunteer"  maxWidth="Infinity" HBox.hgrow="ALWAYS" textAlignment="RIGHT" alignment="CENTER_RIGHT"
+             style=" -fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10; "/>
+   </HBox>
+   <ListView fx:id="pairListView" VBox.vgrow="ALWAYS"/>
+</VBox>

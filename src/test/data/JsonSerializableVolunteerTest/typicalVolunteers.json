@@ -1,0 +1,90 @@
+{
+  "_comment": "Volunteers save file which contains the same Volunteer values as in TypicalVolunteers#getTypicalVolunteers()",
+  "volunteers" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "nric" : "S9673908G",
+    "birthDate" : "1990-01-01",
+    "region": "CENTRAL",
+    "tagged" : [ "friends" ],
+    "medicalTags" : [ {
+      "skill" : "CPR",
+      "level" : "BASIC"
+    } ],
+    "availableDates": ["2023-05-01 to 2023-05-12", "2023-05-12 to 2023-05-15", "2023-05-02 to 2023-05-14"]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "nric" : "S6878241D",
+    "birthDate" : "1991-02-01",
+    "region": "WEST",
+    "tagged" : [ "owesMoney", "friends" ],
+    "medicalTags" : [ ],
+    "availableDates": ["2023-05-02 to 2023-05-10", "2023-05-01 to 2023-05-12"]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "nric" : "S3634466J",
+    "birthDate" : "1992-03-01",
+    "region": "EAST",
+    "tagged" : [ ],
+    "medicalTags" : [ {
+      "skill" : "BLS",
+      "level" : "INTERMEDIATE"
+    }, {
+      "skill" : "AED",
+      "level" : "BASIC"
+    } ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "nric" : "S0203151E",
+    "birthDate" : "1993-04-01",
+    "region": "NORTH",
+    "tagged" : [ "friends" ],
+    "medicalTags" : [ ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "nric" : "S7238791J",
+    "birthDate" : "1994-05-01",
+    "region": "NORTH",
+    "tagged" : [ ],
+    "medicalTags" : [ ],
+    "availableDates": ["2023-05-11 to 2023-05-12"]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "nric" : "S3576311B",
+    "birthDate" : "1995-06-01",
+    "region": "EAST",
+    "tagged" : [ ],
+    "medicalTags" : [ {
+      "skill" : "AED",
+      "level" : "ADVANCED"
+    } ],
+    "availableDates": ["2023-02-01 to 2023-03-01"]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "address" : "4th street",
+    "nric" : "S1262951F",
+    "birthDate" : "1996-07-01",
+    "region": "CENTRAL",
+    "tagged" : [ ],
+    "medicalTags" : [ ]
+  } ]
+}

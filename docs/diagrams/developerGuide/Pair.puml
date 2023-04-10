@@ -1,0 +1,28 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class FriendlyLink
+Class ModelManager
+
+Class UniqueElderlyList
+Class UniqueVolunteerList
+Class UniquePairList
+Class Pair
+Class Volunteer
+Class Elderly
+}
+
+ModelManager --> "1" FriendlyLink
+FriendlyLink *--> "1" UniqueElderlyList
+FriendlyLink *--> "1" UniqueVolunteerList
+FriendlyLink *---> "1" UniquePairList
+UniquePairList --> "~* all" Pair
+Pair *--> "1" Volunteer
+Pair *--> "1" Elderly
+
+ModelManager ->"~* filtered" Pair
+@enduml

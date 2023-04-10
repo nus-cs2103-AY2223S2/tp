@@ -1,0 +1,57 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class ModelManager
+Class FriendlyLink
+
+Class UniqueElderlyList
+Class UniqueVolunteerList
+Class UniquePairList
+
+Class Elderly
+Class Volunteer
+Class "{abstract} Person" as Person
+
+Class Name
+Class Phone
+Class Email
+Class Address
+Class NRIC
+Class Age
+Class Region
+Class AvailableDates
+Class Tag
+Class RiskLevel
+Class MedicalQualificationTag
+}
+
+ModelManager --> "1" FriendlyLink
+FriendlyLink *--> "1" UniqueElderlyList
+FriendlyLink *--> "1" UniqueVolunteerList
+FriendlyLink *--> "1" UniquePairList
+
+UniqueElderlyList --> "~* all" Elderly
+UniqueVolunteerList --> "~* all" Volunteer
+
+Elderly --|> Person
+Volunteer --|> Person
+
+Person *--> Name
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Person *--> NRIC
+Person *--> Age
+Person *--> Region
+Person *--> "~*" Tag
+Person *--> "~*" AvailableDates
+
+Elderly *--> RiskLevel
+Volunteer *--> "~*" MedicalQualificationTag
+
+
+@enduml

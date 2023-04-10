@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,8 +21,8 @@ public class ArgumentTokenizer {
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to tokenize the arguments string with
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     * @param prefixes Prefixes to tokenize the arguments string with.
+     * @return ArgumentMultimap object that maps prefixes to their arguments.
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
@@ -32,8 +33,8 @@ public class ArgumentTokenizer {
      * Finds all zero-based prefix positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to find in the arguments string
-     * @return           List of zero-based prefix positions in the given arguments string
+     * @param prefixes Prefixes to find in the arguments string.
+     * @return List of zero-based prefix positions in the given arguments string.
      */
     private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
         return Arrays.stream(prefixes)
@@ -53,7 +54,6 @@ public class ArgumentTokenizer {
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
         }
-
         return positions;
     }
 
@@ -68,6 +68,11 @@ public class ArgumentTokenizer {
      * occurrences of "p/" with whitespace before it. However, if
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns 5.
+     *
+     * @param argsString Arguments.
+     * @param prefix Prefix to find in the arguments string.
+     * @param fromIndex Start index.
+     * @return Prefix offset from start position in string.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
         int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
@@ -80,14 +85,14 @@ public class ArgumentTokenizer {
      * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
      * {@code argsString}.
      *
-     * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}.
+     * @return ArgumentMultimap object that maps prefixes to their arguments.
      */
     private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
 
         // Sort by start position
-        prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
+        prefixPositions.sort(Comparator.comparingInt(PrefixPosition::getStartPosition));
 
         // Insert a PrefixPosition to represent the preamble
         PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
@@ -105,13 +110,17 @@ public class ArgumentTokenizer {
             String argValue = extractArgumentValue(argsString, prefixPositions.get(i), prefixPositions.get(i + 1));
             argMultimap.put(argPrefix, argValue);
         }
-
         return argMultimap;
     }
 
     /**
      * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
      * The end position of the value is determined by {@code nextPrefixPosition}.
+     *
+     * @param argsString Arguments.
+     * @param currentPrefixPosition Current prefix pointer.
+     * @param nextPrefixPosition Next prefix pointer.
+     * @return Trimmed argument pointed to by {@code currentPrefixPosition}.
      */
     private static String extractArgumentValue(String argsString,
                                         PrefixPosition currentPrefixPosition,
@@ -128,7 +137,7 @@ public class ArgumentTokenizer {
      * Represents a prefix's position in an arguments string.
      */
     private static class PrefixPosition {
-        private int startPosition;
+        private final int startPosition;
         private final Prefix prefix;
 
         PrefixPosition(Prefix prefix, int startPosition) {
@@ -142,6 +151,13 @@ public class ArgumentTokenizer {
 
         Prefix getPrefix() {
             return prefix;
+        }
+
+        @Override
+        public String toString() {
+            return "PrefixPosition{"
+                    + "startPosition=" + startPosition
+                    + ", prefix=" + prefix + '}';
         }
     }
 

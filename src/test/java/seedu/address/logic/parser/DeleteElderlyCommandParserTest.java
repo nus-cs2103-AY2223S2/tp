@@ -1,0 +1,36 @@
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.DeleteElderlyCommand;
+import seedu.address.model.person.information.Nric;
+
+/**
+ * As we are only doing white-box testing, our test cases do not cover path variations
+ * outside the DeleteVolunteerCommand code. For example, inputs "1" and "1 abc" take the
+ * same path through the DeleteVolunteerCommand, and therefore we test only one of them.
+ * The path variation for those two cases occur inside the ParserUtil, and
+ * therefore should be covered by the ParserUtilTest.
+ */
+class DeleteElderlyCommandParserTest {
+    private DeleteElderlyCommandParser parser = new DeleteElderlyCommandParser();
+
+    @Test
+    public void parse_validArgs_returnsDeleteElderlyCommand() {
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_NRIC_BOB,
+                new DeleteElderlyCommand(new Nric(VALID_NRIC_BOB)));
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_PERSON_NRIC, "elderly", MESSAGE_CONSTRAINTS));
+    }
+}

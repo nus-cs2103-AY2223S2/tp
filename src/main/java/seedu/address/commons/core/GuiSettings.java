@@ -10,8 +10,8 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 740;
+    private static final double DEFAULT_HEIGHT = 1000;
+    private static final double DEFAULT_WIDTH = 1230;
 
     private final double windowWidth;
     private final double windowHeight;
@@ -28,6 +28,11 @@ public class GuiSettings implements Serializable {
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
+     *
+     * @param windowWidth Width of the window.
+     * @param windowHeight Height of the window.
+     * @param xPosition Position of the window along the x axis.
+     * @param yPosition Position of the window along the y axis.
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
         this.windowWidth = windowWidth;
@@ -70,10 +75,8 @@ public class GuiSettings implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Width : " + windowWidth + "\n");
-        sb.append("Height : " + windowHeight + "\n");
-        sb.append("Position : " + windowCoordinates);
-        return sb.toString();
+        return "Width : " + windowWidth + "\n"
+                + "Height : " + windowHeight + "\n"
+                + "Position : " + windowCoordinates;
     }
 }

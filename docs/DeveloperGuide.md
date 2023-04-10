@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
@@ -9,7 +10,11 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+[//]: # (list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well)
+
+* AddressBook Level-3 [documentation](https://se-education.org/addressbook-level3/)
+* AddressBook Level-3 [code](https://github.com/nus-cs2103-AY2223S2/tp)
+* Agolia [Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,10 +28,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip** The `.puml` files used to create diagrams in this document can be found in [here](https://github.com/AY2223S2-CS2103T-W12-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
+
+The General Architecture of FriendlyLink follows that of [AddressBook3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -36,7 +43,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -49,17 +56,16 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_elderly S1234567G`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="600" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -69,40 +75,44 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/developerGuide/UiClassDiagram.png" width="800" />
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ElderlyListPanel`
+, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
+the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Elderly`, `Volunteer` and `Pair` objects residing in
+  the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. When `Logic` is called upon to execute a command, it uses the `FriendlyLinkParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPairCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a pair).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_elderly S1234567I")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<img src="images/DeleteSequenceDiagram.png" width="1200" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteElderlyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,43 +120,45 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `FriendlyLinkParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPairCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPairCommand`) which the `FriendlyLinkParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPairCommandParser`, `DeletePairCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/developerGuide/ModelDiagram.png" width="600" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores `FriendlyLink` data i.e., all `Elderly`, `Volunteer` and `Pair` objects (which are contained in a `UniqueElderlyList`, `UniqueVolunteerList` and `UniquePairList` objects respectively).
+* stores the currently 'selected' `Elderly`, `Volunteer` and `Pair` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Elderly>`,  `ObservableList<Volunteer>` and `ObservableList<Pair>` respectively  that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* depends on some classes in the `Storage` component (because the `Model` component requires `Storage` to save/retrieve objects that belong to the `Model`)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+This is the detailed implementation of `Person` in `Model`. 
+* Both `Elderly` and `Volunteer` inherit from the abstract class `Person`.
+* A `Pair` makes reference to one `Elderly` and one `Volunteer` each.
 
-</div>
+<br>
+
+<img src="images/developerGuide/PersonNew.png" width="250" />
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/developerGuide/StorageClassDiagram.png"/>
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save `Elderly`, `Volunteer`, `Pair` and `UserPrefs` data in JSON format, and read them back into corresponding objects.
+* inherits from `ElderlyStorage`, `VolunteerStorage`, `PairStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* does not depend on any of the other three components (as the `Storage` represents data entities on disk, they should make sense on their own without depending on other components)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,90 +166,217 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add and Delete Elderly and Volunteer
 
-#### Proposed Implementation
+In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
+Each prefix is followed by the information of one attribute.
+Some prefixes, such as `availableDates`, `tags`, are optional.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* This grants greater flexibility of user input, as the user can key in the attributes in any order.
+* The unspecified optional fields will return `null` value.
+* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
+* When the `add` command format is invalid, or the user tries to add a duplicated person,
+  the add operation will be aborted.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+* Allows for filtering to display a subset of Elderly or Volunteers in UI.
+* Allows for easy retrieval of information for pairing.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The `delete_elderly` and `delete_volunteer` commands make use of the `NRIC`
+attribute of Elderly and Volunteer.
+FriendlyLink retrieves the target person uniquely identified by its NRIC,
+and removes it from the database.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+* Allows more efficient deletion compare to index-based deletion.
+* The user don't need to check the index of the target person before deletion.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+If the deleted Elderly or Volunteer has existing pairings, the associated
+pairs will be automatically removed as well.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+### Command Recommendation and Autocompletion of Field's Prefixes
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Both autocompletion and recommendation are facilitated by `CommandRecommendationEngine.java`. The Logic component registers 
+individual command parsers, which implement the `Parser` interface, to enable recommendations of command inputs. Each parser,
+such as `{XYZ}CommandParser`, specifies how recommendation should differ for a specific command by overriding the 
+`Parser#getCommandInfo` method. When the user types a valid command, the `CommandBox` UI component detects the keystroke 
+through its `KeyPressedHandler` and triggers the `CommandRecommendationEngine#generateCommandRecommendations` method. 
+This method then returns the relevant recommendations. When a `KeyEvent.TAB` event is triggered, autocompletion builds 
+on the method and replaces the user input with the recommended values. 
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Using the longest prefix match algorithm, the engine first **identifies** the related command and then **verifies** the 
+fields associated with it. If there are ambiguities in the recommendations, the recommendation will rank the commands 
+using lexicographical ordering. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+In order to simplify implementation, we differentiate between two types of commands: "Full Attribute" commands and "Complete" commands. 
+A "Full Attribute" command is one in which all the fields, both optional and required, have been specified. 
+A "Complete" command, on the other hand, means that the command has been fully typed, but the fields may or may not
+have been entered. This distinction assists the engine in giving more precise suggestions based on the user's input.
 
+The following activity diagram describes the activity flow:
+
+<img src="images/developerGuide/CommandRecommendationActivityDiagram.png"/>
+
+#### Design considerations
+
+Aspect: How recommendation executes:
+
+**Alternative 1 (current choice)**: Custom recommendations for each command 
+  - Requires each `{XYZ}CommandParser` to override the `Parser#getCommandInfo` method, specifying the exact behaviour on how recommendations should behave.
+  - Recommendations will be more relevant to the current command, and user input can be validated against the set of possible prefixes specified in the overridden method.
+
+**Alternative 2**: Store all possible prefixes and recommends based on user input 
+  - Cannot enforce that user only inputs relevant prefixes as there is no reference as to what the "correct" prefixes are.
+  - Likewise, such design is unable to recommend all relevant attributes, which can greatly reduce the user experience. 
+
+### Edit by index & NRIC
+
+In FriendlyLink, there are 2 methods to  choose which elderly/volunteer to edit:
+- via **index** using the `edit_elderly` and `edit_volunteer` commands.
+- via **NRIC** using the `edit` command.
+
+Similar to adding elderly/volunteers, editing is done by specifying the desired field(s) to edit using their prefixes, 
+and then providing the new value for the field(s). For consistency, the prefixes between the adding and 
+editing commands are kept the same.
+
+For the editing of fields that accept multiple arguments (i.e. `AvailableDate`, `Tag` and `MedicalQualificationTag`),
+the specified behaviour is to leaves them unchanged if no new values are provided, else overwrite the existing values 
+with the newly provided values.
+
+Retrieving of the desired `Elderly`/`Volunteer` to edit is done differently 
+depending on whether `edit_elderly`/`edit_volunteer`
+or `edit` is called:
+- `edit_elderly`/`edit_volunteer`: The `Elderly`/`Volunteer` is retrieved directly from
+the `filteredElderly`/`filteredVolunteer` of `Model`.
+- `edit`: We first check if an `Elderly` with the specified NRIC exists in `Model`. 
+If so, we retrieve it; Otherwise, we perform a similar check for `Volunteer`, and retrieve it if 
+such a `Volunteer` exists.
+
+These edits are performed primarily through the `EditDescriptor` class. This class
+contains `Optional` types of the **union** of the fields between `Elderly` and `Volunteer`. In order to "transform"
+a given volunteer/elderly with the edited fields, 2 important static methods are provided:
+- `createEditedElderly(Elderly, EditDescriptor)`: returns a new `Elderly` representing the given `Elderly` modified 
+with the values specified in the `EditDescriptor`
+- `createEditedVolunteer(Volunteer, EditDescriptor)`: returns a `Volunteer` representing the given `Volunteer` modified 
+with the values specified in the `EditDescriptor`
+
+The `Elderly`/`Volunteer` are then edited in the model using the `setElderly`/`setVolunteer` methods
+of `Model` respectively.
+
+Design decisions:
+- The reason behind the `editDescriptor` class, as opposed to directly using an `Elderly` or `Volunteer` class, is that
+  it better encapsulates the logic behind editing. That is, with the same `editDescriptor` object, we can easily "edit" multiple
+  `Elderly` and `Volunteer` objects simply through the `createEditedElderly`/`createEditedVolunteer` methods.
+- Initially, we had created 2 separate descriptor classes `ElderlyEditDescriptor` and `VolunteerEditDescriptor`. However,
+  we felt that this was simply unnecessary, and combined them into a single `editDescriptor` class instead.
+
+As an example, the following sequence diagram shows the sequence for the command `edit S1234567I n/Shaun ag/21`, where
+the NRIC `S1234567I` belongs to an existing **volunteer**:
+<img src="images/developerGuide/EditSequenceDiagram.png" width="1200"/>
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+### Find by keyword
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The ```find``` command allows users to easily filter and locate the relevant elderly and volunteers, together with their related parings.
+The results of the ```find``` command are displayed as the filtered version of the elderly, volunteers and pairs lists, 
+together with the number of entities listed being shown in the command result box.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Volunteers and elderly who match all the provided attributes that they have are filtered out and displayed in their respective list.
+For each filtered person, Any pairings that they are involved in will be filtered and displayed in the pair list.
 
-</div>
+Arguments for the ```find``` command involve at least one of the attributes belonging to an elderly or a volunteer.
+Any number of attributes can be specified but if multiple of the same attribute is specified then only the last one will be
+used in the search.
 
-The following sequence diagram shows how the undo operation works:
+The Sequence Diagram below illustrates the execution of the ```find``` command.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<img src="images/developerGuide/FindSequenceDiagram.png" width="1200" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The command execution flow is as given below
+1. The ```LogicManager``` will begin the execution of the command.
+2. Input parsed by ```FriendlyLinkParser``` which creates and return a ```FindCommandParser```.
+3. The ```FindCommandParser``` parses the arguments and returns a ```FindCommand``` with the relevant predicates.
+4. The ```LogicManager``` executes the ```FindCommand```.
+5. The ```FindCommand``` combines the relevant predicates for elderly and volunteers and calls ```updateFilteredElderlyList``` and ```updateFilteredVoolunteerList``` of ```Model```.
+6. Based on the filtered elderly and volunteers a predicate to get the related pairs is created and ```updateFilteredPairList``` of ```Model``` is called.
+7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
 
-</div>
+The class diagram below shows the relation of predicates to ```FindCommandParser``` and ```FindCommand```.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+<img src="images/developerGuide/FindCommandClassDiagram.png" width="700" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Design decisions:
+- Name, address, email, phone, tags and medical qualification attributes allow substring searching.
+  - Easier to search with only partial information available.
+- When multiple attributes and stated, the result must match all instead of any.
+  - The search should narrow the field with each additional new attribute for a more targeted result.
+- Related pairings are also shown during the search.
+  - Provides a comprehensive search results where all information related to the people found are shown.
+- People with available dates that contain the specified dates or have no available dates will be found when searching with the specified dates.
+  - They are found because they are available on the specified dates.
 
-</div>
+### Pairing and unpairing of elderly and volunteers
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Pairs are implemented as a class with 2 referenced attributes, `Elderly` and `Volunteer`.
+* This allows the NRIC of a person in the pair to be automatically updated when the person is updated.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+The pairs are stored in a list similar to persons.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+* Allows for filtering to display a subset of pairs in the UI.
+* Allows for identifying a pair by index.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Two pairs are identical if they have the same elderly and volunteer NRIC.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+* Just like persons, we do not allow duplicate pairs (due to add or edit pair)
+* Elderly and volunteer NRIC is used to identify a pair for deletion.
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+### Summary Statistics
 
-#### Design considerations:
+The `stats` command displays summary statistics about FriendlyLink, such as the total number of elderly, volunteers and unpaired persons.
 
-**Aspect: How undo & redo executes:**
+It is implemented using the `Summary` and `AggregateFunction` class.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The `AggregateFunction`
+* describes a particular statistic of FriendlyLink with a number.
+* is an abstract class that requires concrete classes to override the `getDescription()` and `getResult()` method.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+The `Summary` object
+* formats the results to be displayed to the user.
+* takes in 0 or more `AggregateFunction`s to show their description and results.
 
-_{more aspects and alternatives to be added}_
+<img src="images/developerGuide/StatsCommandClassDiagram.png" width="500" />
 
-### \[Proposed\] Data archiving
+The `StatsCommand` keeps a `Summary` object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunction`s with appropriate arguments and passes them to the `Summary` to be described.
 
-_{Explain here how the data archiving feature will be implemented}_
+<img src="images/developerGuide/StatsSequenceDiagram.png" width="500" />
+ 
+### Storage
+This section specifies how entities such as `Elderly`, `Volunteer` and `Pair` are stored on disk.
 
+Elderly, volunteers and pairs are stored in separate files to reduces the impact of a corrupted file, since it will only affect either elderly or volunteers.
+
+#### Persons
+
+Persons saved contains all their attributes such as name, NRIC, in JSON format.
+* Single value attributes are stored as key value pairs, such as name and NRIC.
+* Multiple value attributes such as tag and available date sets are stored as JSON lists.
+
+#### Pairs
+
+Pairs saved only contains the NRIC of the elderly and volunteer in JSON format.
+
+**Reasons**
+* Reduce space needed to store pairs.
+* Reduce chance of inconsistent data between a person and the corresponding pair.
+* Reduce number of files to amend manually when updating person information.
+
+**Implications**
+* A pair is reconstructed on startup by searching the model for the corresponding person.
+* Elderly and volunteer files need to be read into the model before pair files.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,121 +396,705 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* single administrator of a Voluntary Welfare Organisation (VWO) who needs to track volunteers and their assigned elderly.
+* works alone in managing volunteer and elderly information.
+* adequately tech-savvy.
+* has a need to manage a significant number of volunteers and elderly.
+* prefers desktop applications over other types.
+* can type fast.
+* prefers typing to mouse interactions.
+* comfortable using CLI applications.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: FriendlyLink streamlines volunteer and elderly management for single administrators of VWOs.
+With its easy-to-use text-based interface and contact management features, say goodbye to manual record-keeping and hello
+to a more efficient and organised way of managing volunteers’ and elderly’s contact details.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                                                               | I want to …​                                                                                      | So that I can…​                                                                   |
+|----------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | single administrator of a VWO                                                         | view the list of volunteers                                                                       | see all the volunteers and their information readily                              |
+| `* * *`  | single administrator of a VWO                                                         | add a new volunteer to the system                                                                 | track and manage new volunteers                                                   |
+| `* * *`  | single administrator of a VWO                                                         | remove an existing volunteer from the system                                                      | stop tracking volunteers that have left                                           |
+| `* * *`  | single administrator of a VWO                                                         | edit the particulars of a volunteer, such as names or addresses                                   | keep their information up to date and rectify any error                           |
+| `* * *`  | single administrator of a VWO                                                         | view the list of elderly                                                                          | see all the elderly and their information readily                                 |
+| `* * *`  | single administrator of a VWO                                                         | add a new elderly member to the system                                                            | track and manage new elderly                                                      |
+| `* * *`  | single administrator of a VWO                                                         | remove an existing elderly member from the system                                                 | stop tracking elderly that have left                                              |
+| `* * *`  | single administrator of a VWO                                                         | edit the particulars of an elderly, such as names or addresses                                    | keep their information up to date and rectify any error                           |
+| `* * *`  | single administrator of a VWO                                                         | find a particular volunteer or elderly by NRIC                                                    | uniquely identify and access their information                                    |
+| `* * *`  | single administrator of a VWO                                                         | remove pairings that elderly and volunteers are involved in when they are removed from the system | maintain accurate and error-free records of pairings                              |
+| `* * *`  | single administrator of a VWO                                                         | add a pair of a volunteer and an elderly                                                          | track and manage pairings of volunteer and elderly                                |
+| `* * *`  | single administrator of a VWO                                                         | find and list unpaired volunteers and elderly                                                     | prioritise pairing volunteers and elderly who are unpaired                        |
+| `* * *`  | single administrator of a VWO                                                         | remove pairings                                                                                   | to remove pairs that are no longer valid                                          |
+| `* * `   | single administrator of a VWO                                                         | search for particular volunteers by keywords                                                      | quickly see the volunteer's details                                               |
+| `* *`    | single administrator of a VWO                                                         | view nursing / medical courses that volunteers have taken in the past                             | pair an elderly with a more suitable volunteer                                    |
+| `* *`    | single administrator of a VWO                                                         | filter and list elderly members by keyword search of name                                         | increasing efficiency of finding elderly with certain names                       |
+| `* *`    | single administrator of a VWO                                                         | filter pairs by involved elderly members                                                          | to quickly find involved volunteers when elderly members are in need of attention |
+| `* *`    | single administrator of a VWO                                                         | filter and list elderly members by age group                                                      | dedicate more attentions to older members                                         |
+| `* *`    | single administrator of a VWO                                                         | filter and list elderly members by risk level                                                     | dedicate more attentions to members with higher risks                             |
+| `* *`    | single administrator of a VWO                                                         | filter and list elderly members by region and community                                           | pair volunteers who can better reach out to elderly living close-by               |
+| `* *`    | single administrator of a VWO                                                         | search elderly members by tags                                                                    | access the information of elderly members with specific tags                      |
+| `* *`    | single administrator of a VWO                                                         | autocomplete commands                                                                             | know what are some possible commands and fields that I need to type               |
+| `* *`    | single administrator of a VWO                                                         | rank elderly members in the order of their medical risk level                                     | better pair volunteers with more medical knowledge with higher-risk elderly       |
+| `* *`    | single administrator of a VWO                                                         | keep track of the region and community of the elderly members                                     | reach out to the elderly members conveniently                                     |
+| `* *`    | single administrator of a VWO                                                         | view the last visited time/date of the elderly                                                    | know when to plan the next visit                                                  |
+| `* *`    | single administrator of a VWO                                                         | set up reminder system for elderly                                                                | plan volunteers to assist on those days                                           |
+| `* *`    | single administrator of a VWO                                                         | find a pair by keyword                                                                            | to quickly look up important information when required                            |
+| `* *`    | single administrator of a VWO                                                         | view overlapping pairs between the same volunteers or elderly members                             | to take note of overlapping work.                                                 |
+| `* *`    | single administrator of a VWO                                                         | filter pairs by tags                                                                              | to quickly find certain groups of elderly members for events or routine checkups  |
+| `* *`    | single administrator of a VWO                                                         | see summaries of number of elderly members assigned to each volunteer                             | to evenly distribute workload of volunteers                                       |
+| `* *`    | single administrator of a VWO                                                         | see min, max and average number of elderly buddies per volunteer                                  | to evenly distribute workload of volunteers or to request for more resources      |
+| `*`      | single administrator of a VWO                                                         | filter volunteers by tags                                                                         | access relevant groups of volunteers quickly                                      |
+| `*`      | single administrator of a VWO                                                         | manage volunteers by region                                                                       | arrange the volunteers such that they can conveniently reach out to the elderly   |
+| `*`      | single administrator of a VWO                                                         | record the community information of volunteers, but not their specific address                    | ensure that the volunteers' privacy is not compromised                            |
+| `*`      | single administrator of a VWO                                                         | manage the volunteers' available dates and time                                                   | efficiently find volunteers available for activities                              |
+| `*`      | single administrator of a VWO                                                         | see how long a volunteer has been with the program                                                | assess their experience                                                           |
+| `*`      | single administrator of a VWO                                                         | track the befriending history of a volunteer                                                      | audit past involvements easily                                                    |
+| `*`      | single administrator of a VWO                                                         | rank elderly members in the order of their loneliness situation                                   | arrange more frequent volunteer visits for more lonely elderly                    |
+| `*`      | single administrator of a VWO                                                         | track the befriending history of an elderly                                                       | audit past involvements easily                                                    |
+| `*`      | single administrator of a VWO                                                         | view past pairings                                                                                | to pair up members familiar with each other                                       |
+| `*`      | single administrator of a VWO                                                         | making recurring pairings                                                                         | to handle recurrent changes in pairs.                                             |
+| `*`      | single administrator of a VWO                                                         | adjust frequency and period limit of pairings                                                     | to facilitate regular swaps of volunteers and elderly members.                    |
+| `*`      | single administrator of a VWO                                                         | track important dates                                                                             | to facilitate regular volunteer check ins on elderly members.                     |
+| `*`      | single administrator of a VWO                                                         | set up reminders                                                                                  | to remind volunteers of their commitments                                         |
+| `*`      | single administrator of a VWO                                                         | set up version control of the application                                                         | trace commands that are executed throughout the lifetime of the application       | 
+| `*`      | lazy single administrator of a VWO                                                    | automatically pair up available volunteers to elderly                                             | quickly assign a volunteer to an elderly                                          | 
+| `*`      | efficient single administrator of a VWO                                               | use natural language dates                                                                        | quickly assign add a volunteer availability into the database                     |  
+| `*`      | organized single administrator of a VWO                                               | add tags to volunteer, elderly and pairs                                                          | filter the entities by tags                                                       |  
+| `*`      | organized single administrator of a VWO                                               | assign a random integer ID to each entry                                                          | retrieve, modify and delete them directly without looking through the list        |  
+| `*`      | organized single administrator of a VWO who have used the application for a long time | retrieve summary statistics of elderly, volunteers, and pairs in the database                     | have a better understanding of the organisation and it's clients                  |  
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FriendlyLink (FL)` and the **Actor** is the `Admin`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01- Pair Volunteer and Elderly**
+
+Preconditions: Elderly and Volunteer is already in FL.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters the details of elderly and volunteer to be paired into the application.
+2. FL feedbacks the successful addition of the pair, and shows the new pair.
+3. User sees the new pair in FL.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. FL detects that the elderly is not in the current database.
+    * 1a1. FL informs User that the elderly has not been created.
+
+    Use case ends.
+
+* 1b. FL detects that volunteer is not in the current database.
+    * 1b1. FL informs User that the volunteer has not been created.
+
+    Use case ends.
+
+* 1c. FL detects missing arguments or an error in the entered command.
+    * 1c1. FL feedbacks that entered command is incorrect.
+
+    Use case ends.
+
+* 1d. FL detects duplicate pair records in the entered command.
+    * 1d1. FL feedbacks that it is a duplicate record.
+
+    Use case ends.
+
+**Use case: UC02- Add Elderly**
+
+**MSS**
+
+1. User enters the details of elderly to be added into the application.
+2. FL feedbacks the successful addition of the elderly, and shows the new elderly.
+3. User sees the new elderly in FL.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+    
+    Use case ends.
+
+* 1b. FL detects duplicate elderly records in the entered command.
+    * 1b1. FL informs it is a duplicate record.
+
+    Use case ends.
+
+**Use case: UC03- Add Volunteer**
+
+**MSS**
+
+1. User enters the details of volunteer to be added into the application.
+2. FL feedbacks the successful addition of the volunteer and shows the new volunteer.
+3. User sees the new volunteer in FL.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+  * 1a1. FL feedbacks that entered command is incorrect.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. FL detects duplicate volunteer records in the entered command.
+  * 1b1. FL informs it is a duplicate record.
 
-    * 3a1. AddressBook shows an error message.
+  Use case ends.
 
-      Use case resumes at step 2.
+**Use case: UC04- Unpair Volunteer and Elderly**
 
-*{More to be added}*
+Preconditions: Volunteer and elderly is already paired in FL.
+
+**MSS**
+
+1. User enters the pair details (elderly & volunteer) to be deleted into FL.
+2. FL feedbacks the successful unpairing and removes the pair from view.
+3. User sees that the pair is removed from FL.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects that the elderly is not in the current database.
+    * 1a1. FL informs User that the elderly has not been created.
+
+  Use case ends.
+
+* 1b. FL detects that volunteer is not in the current database.
+    * 1b1. FL informs User that the volunteer has not been created.
+
+  Use case ends.
+
+* 1c. FL detects missing arguments or an error in the entered command.
+    * 1c1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC05- Delete Volunteer**
+
+Preconditions: Volunteer is already in FL.
+
+**MSS**
+
+1. User enters the NRIC of the volunteer to be deleted.
+2. FL feedbacks the successful deletion of the volunteer, and removes the volunteer from view.
+3. User sees that the volunteer is removed from FL.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC06-  Delete Elderly**
+
+**MSS**
+
+1. User enters the NRIC of the elderly to be deleted.
+2. FL feedbacks the successful deletion of the elderly and removes the elderly from view.
+3. User sees that the elderly is removed from FL.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+  * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC07- Edit Elderly**
+
+Preconditions: Elderly is already in FL.
+
+**MSS**
+
+1. User enters the index of the elderly to be edited, together with the details of the fields to be edited.
+2. FL feedbacks the successful edit of the elderly and shows the updated elderly.
+3. User sees that the elderly is updated in FL.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC08- Edit Volunteer**
+
+Preconditions: Volunteer is already in FL.
+
+**MSS**
+
+1. User enters the index of the volunteer to be edited, together with the details of the fields to be edited.
+2. FL feedbacks the successful edit of the volunteer and shows the updated volunteer.
+3. User sees that the volunteer is updated in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC09- Edit Person identified by NRIC**
+
+Preconditions: Person is already in FL.
+
+**MSS**
+
+1. User enters the NRIC of the person to be edited, together with the details of the fields to be edited.
+2. FL feedbacks the successful edit of the person and shows the updated person.
+3. User sees that the person is updated in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC10- Find person and related pairs**
+
+**MSS**
+
+1. User enters the details of all the fields to be matched.
+2. FL shows all the matching elderly, volunteer and pairs.
+3. User sees all the relevant persons and pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC11- View all persons and pairs**
+
+**MSS**
+
+1. User enters the command to list all persons and pairs.
+2. FL shows all the current elderly, volunteers and pairs.
+3. User sees all persons and pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC12- View paired persons**
+
+**MSS**
+
+1. User enters the command to list all paired persons.
+2. FL shows all the paired elderly, paired volunteers and all pairs.
+3. User sees all paired persons and all pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC13- View unpaired persons**
+
+**MSS**
+
+1. User enters the command to list all unpaired persons.
+2. FL shows all the unpaired elderly, unpaired volunteers and all pairs.
+3. User sees all unpaired persons and all pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects missing arguments or an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC14- View statistics**
+
+**MSS**
+
+1. User enters the command to see statistics.
+2. FL shows the statistics of elderly, volunteer, pairs and their pairing situations.
+3. User sees the summary statistics of persons and pairs in FL.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC15- Look up Help Page**
+
+**MSS**
+
+1. User enters the command to see more help.
+2. FL provides a link to direct user to the user guide webpage.
+3. User visits the user guide webpage and reads the relevant sections.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
+
+**Use case: UC16- Exit the app**
+
+**MSS**
+
+1. User enters the command to exit FriendlyLink.
+2. FL exits.
+3. User sees that FL has exited.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. FL detects an error in the entered command.
+    * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+1. FriendlyLink should work on Microsoft Windows, macOS, and Linux that has `Java 11` is installed.
+1. FriendlyLink should be able to hold up to 100 person (elderly and volunteer) without incurring a delay larger than 3 second for any command.
+1. A user with above average typing speed (40wpm) for regular English text (i.e. not code, not system admin commands) should be able to perform at least 75% of use cases faster using commands instead of using the mouse.
+1. FriendlyLink will perform minimal checks on correctness of details entered into FriendlyLink.
+1. FriendlyLink will not be responsible for the privacy and security of the data stored in FriendlyLink.
+1. FriendlyLink will not recover from corrupted data files.
+1. FriendlyLink will only be available in English.
+1. FriendlyLink does not require internet connection to work.
+1. FriendlyLink is meant for VWOs in Singapore to store information about elderly and volunteers, and pair them up.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. You are recommended to start with an empty FriendlyLink and follow the instructions sequentially
+in order for the example commands provided to be relevant. You can refer to the user guide for more details on the features.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch
 
 1. Initial launch
+   * Download the jar file and copy it into an empty folder. 
+   * Double-click the jar file.
+   * Expected: The program runs and shows the GUI. Note that the window size may not be optimum.
 
-   1. Download the jar file and copy into an empty folder
+### Viewing help
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Opening the help window
+    * Type the following help command into the text field.<br>
+      `help`
+    * Press enter.
+    * Expected: The GUI shows a popup with a message and a link to the user guide.
+
+### Adding records
+
+1. Adding an elderly
+    * Type the following add elderly command into the text field.<br>
+     `add_elderly n/John Doe ic/S5583628H bd/1955-11-24 re/NORTH r/LOW p/93456688 e/Jdoe@gmail.com a/Coral street t/single dr/2023-06-03, 2023-06-25`
+    * Press enter.
+    * Expected: The GUI shows the added elderly in the elderly list.
+
+1. Adding a volunteer
+    * Type the following add volunteer command into the text field.<br>
+      `add_volunteer n/Jane Doe ic/T0058345F bd/2000-05-14 re/EAST p/91157884 e/Jane45@gmail.com a/Kings street t/strong mt/cpr, BASIC dr/2023-05-03, 2023-09-25`
+    * Press enter.
+    * Expected: The GUI shows the added volunteer in the volunteer list.
+
+1. Pairing a volunteer to an elderly
+    * Type the following pair command into the text field.<br>
+      `pair eic/S5583628H vic/T0058345F`
+    * Press enter.
+    * Expected: The GUI shows the pairing in the pair list.
+
+### Editing records
+
+1. Editing an elderly by index
+    * Type the following edit elderly command into the text field.<br>
+      `edit_elderly 1 p/98337512 r/HIGH`
+    * Press enter.
+    * Expected: The GUI shows the new fields for the elderly at the specified index. (pair list is updated if applicable)
+
+1. Editing a volunteer by index
+    * Type the following edit volunteer command into the text field.<br>
+      `edit_volunteer 1 a/Max street`
+    * Press enter.
+    * Expected: The GUI shows the new fields for the volunteer at the specified index. (pair list is updated if applicable)
+
+1. Editing a person by NRIC
+    * Type the following edit command into the text field.<br>
+      `edit T0058345F e/guest@gmail.com`
+    * Press enter.
+    * Expected: The GUI shows the new fields for the person with the specified NRIC. (pair list is updated if applicable)
+
+### Finding records
+
+1. Finding people and their related pairs
+    * Type the following find command into the text field.<br>
+      `find n/John`
+    * Press enter.
+    * Expected: The elderly, volunteer and pair list are filtered based on the find command.
+
+1. Listing people who are paired
+    * Type the following list command into the text field.<br>
+      `list paired`
+    * Press enter.
+    * Expected: The GUI shows elderly and volunteers who have a pairing in their respective lists. (all pairs are shown)
+
+1. Listing people who are not paired
+    * Type the following list command into the text field.<br>
+      `list unpaired`
+    * Press enter.
+    * Expected: The GUI shows elderly and volunteers who do not have a pairing in their respective lists. (all pairs are shown)
+
+1. Listing everyone
+    * Type the following list command into the text field.<br>
+      `list`
+    * Press enter.
+    * Expected: The GUI shows all elderly, volunteers and pairs that are in FriendlyLink.
+
+### Show summary statistics
+
+1. View the statistics of the displayed elderly, volunteers and pairs
+    * Type the following stats command into the text field.<br>
+      `stats`
+    * Press enter.
+    * Expected: Statistics are shown in the command result box in the GUI.
+
+### Deleting records
+
+1. Unpair volunteer and elderly
+    * Type the following unpair command into the text field.<br>
+      `unpair eic/S5583628H vic/T0058345F`
+    * Press enter.
+    * Expected: The pairing of the elderly and volunteer with the specified NRICs is removed from the pair list in the GUI.
+
+1. Deleting an elderly
+    * Type the following delete elderly command into the text field.<br>
+      `delete_elderly S5583628H`
+    * Press enter.
+    * Expected: The elderly with the specified NRICs is removed from the elderly list in the GUI.
+
+1. Deleting a volunteer
+    * Type the following delete volunteer command into the text field.<br>
+      `delete_volunteer T0058345F`
+    * Press enter.
+    * Expected: The volunteer with the specified NRICs is removed from the volunteer list in the GUI.
+
+### Exit
+
+1. Exiting the app
+    * Use the `exit` command or click the 'X' button in the top right corner.<br>
+    * Expected: The app closes.
+
+### Saving
 
 1. Saving window preferences
+    * Resize the window to an optimum size, preferably full screen. Close the window.
+    * Re-launch the app by double-clicking the jar file.
+    * Expected: The most recent window size and location is retained.
+    * Note: The window looks best under 1920 x 1080 resolution, 125% scale.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Saving data
+    * Launch the app by double-clicking the jar file.
+    * Execute an add command to add an `elderly` or `volunteer` in the database.
+    * Close the app.
+    * Expected: A `data` folder is created under the current repository where the jar file is located.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+------------------------------------------------------------
 
-1. _{ more test cases …​ }_
+## Appendix: Planned Enhancements
 
-### Deleting a person
 
-1. Deleting a person while all persons are being shown
+When creating software, there are always areas that can be improved upon.
+In the interest of transparency and keeping our users informed, we have identified some aspects
+of our product that we recognise as feature flaws. We appreciate your patience as
+we are actively working to find the best solution to address these feature flaws.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Editing a pair by index: `edit_pair`
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+Currently, editing a pair by index has not been implemented. This feature can increase the efficiency of using FriendlyLink.
+This feature was originally deemed low priority, since a pair only has 2 fields: elderly and volunteer, and thus users can reasonably still achieve this by deleting a pair and adding a new pair. Through user feedback, we acknowledge that this is still a useful feature to have to improve efficiency and user experience.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Proposed usage: Edits an existing pair based on their index in the pairs list.
+Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+Proposed behaviour:
+* Edits the pair at the specified `INDEX` in the displayed pair list.
+* Any combination of the optional fields is possible but **at least one** optional field must be specified.
+* Existing values will be updated to the input values.
 
-1. _{ more test cases …​ }_
+Examples:
+* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
 
-### Saving data
+### Deleting a pair by index: `delete_pair`
 
-1. Dealing with missing/corrupted data files
+Currently, pairs are deleted by specifying NRIC of both elderly and volunteer. This feature can increase the efficiency of using FriendlyLink, if we allow users to simply specify the index of the pair.
+This feature is originally implemented as such to prevent accidental deletion of pairs, as it is easy to enter the wrong index but hard to accidentally enter a pair of incorrect NRICs and delete the wrong pair. Through user feedback, we acknowledge that we should implement it to delete by index and support this with an `undo` feature to minimise impact of accidental deletions.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Proposed usage: Deletes an existing pair based on their index in the pairs list.
+Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
 
-1. _{ more test cases …​ }_
+Proposed behaviour:
+* Edits the pair at the specified `INDEX` in the displayed pair list.
+* Any combination of the optional fields is possible but **at least one** optional field must be specified.
+* Existing values will be updated to the input values.
+
+### Display birthdate in person cards
+
+When users provide a birthdate for an Elderly or Volunteer profile, only the person's current age is displayed in the app. To view the specific birthdate, users must refer to the respective JSON file.
+We should include birthdate in each person's information card as well.
+
+### Enhance display of large number of tags
+
+There are no limits on the number of tags or the character limit for each tag. If large number of tags or tags with excessively long names are used, it affects the UI display and impact user experience.
+We plan to limit each tag within 50 characters, with the total number of tags being less than 20.
+This would ensure decent degree of input flexibility, while not severely clogging up the UI display.
+
+### Enhance display of pair information
+
+Currently, users need to mouse over the pair card to view information of each pair. This reduces the efficiency of FriendlyLink, which is intended to be optimised for typing.
+We plan to add a command to view pairing details directly as information cards. This would help to improve efficiency of display.
+
+### Enhance effectiveness of autoPair feature
+
+autoPair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always be the most optimal in terms of time efficiency or number of pairings we can automatically pair.
+We are continuously searching for better pairing algorithms.
+
+### Enhance available dates feature
+
+Currently, available dates take in dates and not time of day.
+We should improve it to also allow users to enter time into the availability fields, such as `YYYY-MM-DD HH:MM:SS` to provide greater flexibility in specifying availability period.
+
+### Enhance name to accept special characters
+
+Currently, names do not accept `.` and `\\`. This may cause some problems where a person's legal name contains these special characters.
+We should modify the name to accept these special characters.
+
+### Enhance warning message for input validation
+
+Currently, when a wrong command or prefix is entered, the input will simply turn red. While this may be intuitive for experienced users,
+it may not provide the best experience for new users. As such, we intend to implement a feature which can convert the current recommendation
+feature to also display the warning. For example, if the user enters `add_person`, this is currently an invalid command,
+so the corresponding error message will be displayed in the same text box (replacing the command recommendation).
+
+-----------------------------------------------------
+
+## Appendix: Efforts
+
+**Adding records**
+
+1. This task is of medium difficulty. We managed to implement a variety of attribute fields, such as available dates as date ranges, medical qualifications as tags, and regions as enums. 
+2. Given the different attribute data types, transferring these fields into formats adaptable for JSON storage become the main challenge.
+3. Furthermore, as we made many of the fields optional, making the tracking and recording of fields with `NULL` values compatible with JSON, given the various data types, becomes another challenge.
+4. Despite these challenges, we successfully added comprehensive and flexible record-keeping capabilities to the system.
+
+**Deleting records**
+
+1. This task is of medium difficulty. We managed to implement logic checks ensuring the logical correctness of deletion. For example, when deleting an elderly record, we also had to delete all of its existing pairs. To ensure the accuracy and correctness, we wrote many unit test cases. 
+2. Through careful testing and debugging, we successfully implemented a reliable and robust deletion feature.
+
+**Pairing feature** 
+
+1. This task is of medium difficulty. The main effort involved taking references of elderly and volunteer information instead of copying it, so that when a person's information is edited, deleted, or searched, the corresponding pairing situation can be displayed.
+
+**Editing records**
+
+1. This task is of medium difficulty. We had to correctly handle all possible correct and incorrect inputs, particularly when we had an 'edit' command that was usable by both elderly and volunteer users.
+2. Through careful unit testing and debugging, we successfully implemented a feature that automatically ignored non-applicable edit fields and update all applicable information.
+
+**Finding records**
+
+1. Finding information was of high difficulty. We had to correctly handle different possible situations, such as when a user entered a wrong field format or a field that was not applicable to the person or when different searching formats were used for enums, date tags, etc. 
+2. Additionally, we had to simultaneously filter elderly, volunteer, and pair cards and display all possible information.
+3. Through extensive testing and refinement, we successfully implemented a powerful and flexible searching feature.
+
+**Command Recommendation**
+
+1. Implementing the command recommendation feature was of high difficulty. The main challenges were showing the correct command recommendations as the user typed each character and throwing warnings at the correct times.
+2. For example, the main challenges include that we had to distinguish between "wrong command" and "incomplete command", as well as detecting existing attributes to avoid repetitive recommendations.
+3. For this feature, we make use of the [Agolia Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions/) 
+4. We successfully achieved this feature, which effectively increased input speed and user satisfaction.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+These terms have specific meanings in the context of FriendlyLink. 
+
+### Non-Technical
+
+| Term                  | Meaning                                                                                                              |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------|
+| Availability Date     | The availability of a person.                                                                                        |
+| BirthDate             | The birth date of a person.                                                                                          |
+| Command               | An instruction given by you to FriendlyLink to perform a specific task.                                              |
+| Date                  | The date of an event.                                                                                                |
+| Duplicate Pairs       | Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink.                    |
+| Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink.                                   |
+| Elderly               | Elderly are people under the care of your VWO.                                                                       |
+| Email                 | The email of a person.                                                                                               |
+| FriendlyLink          | The name of our application.                                                                                         |
+| Field                 | A field is the information following the slash in a command.                                                         |
+| Index                 | An index represents the position of the referred item in a displayed list of persons.                                |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the skill name and a skill level.               |
+| NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                               |
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly.                    | 
+| Phone number          | The phone number of a person.                                                                                        |
+| Prefix                | Prefix refers to the characters appearing before a slash in a command. Prefix describe the field that it represents. |
+| Region                | The general portion of area in Singapore.                                                                            |
+| Risk level            | The susceptibility level of an elderly to injury or sickness.                                                        |
+| Tag                   | A generic description for a group of people.                                                                         |
+| Volunteer             | Volunteers that signed up to pair up with and accompany elderly members.                                             |
+| VWO                   | Voluntary Welfare Organisations such as yourself.                                                                    |
+
+### Technical
+
+| Term     | Meaning                                                                                                                                                                                  |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Java     | Java is a programming language that FriendlyLink is written in. It is required to run the application.                                                                                   |
+| JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
+| JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
+| Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |

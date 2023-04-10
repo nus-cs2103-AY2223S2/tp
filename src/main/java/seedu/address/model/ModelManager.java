@@ -3,7 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,33 +14,47 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
+import seedu.address.storage.Storage;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the FriendlyLink data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
-    private final AddressBook addressBook;
+    private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Elderly> filteredElderly;
+    private final FilteredList<Volunteer> filteredVolunteers;
+    private final FilteredList<Pair> filteredPairs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Constructs a {@code ModelManager} with the data from {@code Storage} and {@code userPrefs}. <br>
+     * An empty application will be used instead if errors occur when reading {@code storage}.
+     *
+     * @param storage Storage to retrieve data from.
+     * @param userPrefs User preferences.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
+    public ModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(storage, userPrefs);
+        FriendlyLink temporaryFriendlyLink = new FriendlyLink();
+        try {
+            temporaryFriendlyLink = storage.read();
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
+        }
+        friendlyLink = temporaryFriendlyLink;
+        logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-    }
-
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
+        filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
+        filteredPairs = new FilteredList<>(friendlyLink.getPairList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -64,68 +81,225 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    //=========== FriendlyLink ================================================================================
+
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public void setFriendlyLink(FriendlyLink friendlyLink) {
+        this.friendlyLink.resetFriendlyLinkData(friendlyLink);
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public FriendlyLink getFriendlyLink() {
+        return friendlyLink;
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FriendlyLink Elderly  ======================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public Path getElderlyFilePath() {
+        return userPrefs.getElderlyFilePath();
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public void setElderlyFilePath(Path elderlyFilePath) {
+        requireNonNull(elderlyFilePath);
+        userPrefs.setElderlyFilePath(elderlyFilePath);
+    }
+
+    public Elderly getElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getElderly(nric);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.hasElderly(nric);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteElderly(Elderly target) {
+        friendlyLink.removeElderly(target);
+        refreshAllFilteredLists();
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addElderly(Elderly elderly) {
+        friendlyLink.addElderly(elderly);
+        refreshAllFilteredLists();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setElderly(Elderly target, Elderly editedElderly) {
+        requireAllNonNull(target, editedElderly);
+        friendlyLink.setElderly(target, editedElderly);
+    }
+
+    //=========== FriendlyLink Volunteers ======================================================================
+
+    @Override
+    public Path getVolunteerFilePath() {
+        return userPrefs.getVolunteerFilePath();
+    }
+
+    @Override
+    public void setVolunteerFilePath(Path volunteerFilePath) {
+        requireNonNull(volunteerFilePath);
+        userPrefs.setVolunteerFilePath(volunteerFilePath);
+    }
+
+
+    @Override
+    public Volunteer getVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.getVolunteer(nric);
+    }
+
+    @Override
+    public boolean hasVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.hasVolunteer(nric);
+    }
+
+    @Override
+    public void deleteVolunteer(Volunteer target) {
+        friendlyLink.removeVolunteer(target);
+        refreshAllFilteredLists();
+    }
+
+    @Override
+    public void addVolunteer(Volunteer volunteer) {
+        friendlyLink.addVolunteer(volunteer);
+        refreshAllFilteredLists();
+    }
+
+    @Override
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireAllNonNull(target, editedVolunteer);
+        friendlyLink.setVolunteer(target, editedVolunteer);
+    }
+
+    //=========== FriendlyLink Pairs ======================================================================
+
+    @Override
+    public Path getPairFilePath() {
+        return userPrefs.getPairFilePath();
+    }
+
+    @Override
+    public void setPairFilePath(Path friendlyLinkFilePath) {
+        requireNonNull(friendlyLinkFilePath);
+        userPrefs.setPairFilePath(friendlyLinkFilePath);
+    }
+
+    @Override
+    public boolean hasPair(Pair pair) {
+        requireNonNull(pair);
+        return friendlyLink.hasPair(pair);
+    }
+
+    @Override
+    public Pair addPair(Nric elderlyNric, Nric volunteerNric) {
+        Pair pair = friendlyLink.addPair(elderlyNric, volunteerNric);
+        refreshAllFilteredLists();
+        return pair;
+    }
+
+    @Override
+    public void addPair(Pair pair) {
+        friendlyLink.addPair(pair);
+        refreshAllFilteredLists();
+    }
+
+    @Override
+    public void deletePair(Nric elderlyNric, Nric volunteerNric) {
+        friendlyLink.removePair(elderlyNric, volunteerNric);
+        refreshAllFilteredLists();
+    }
+
+    @Override
+    public void setPair(Pair target, Pair editedPair) {
+        requireAllNonNull(target, editedPair);
+        friendlyLink.setPair(target, editedPair);
+    }
+
+    //=========== Filtered Elderly List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Elderly} backed by the internal list of
+     * {@code versionedFriendlyLink}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Elderly> getFilteredElderlyList() {
+        return filteredElderly;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredElderlyList(Predicate<Elderly> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredElderly.setPredicate(predicate);
+    }
+
+    //=========== Filtered Volunteer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Volunteer} backed by the internal list of
+     * {@code versionedFriendlyLink}
+     */
+    @Override
+    public ObservableList<Volunteer> getFilteredVolunteerList() {
+        return filteredVolunteers;
+    }
+
+    @Override
+    public void updateFilteredVolunteerList(Predicate<Volunteer> predicate) {
+        requireNonNull(predicate);
+        filteredVolunteers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Pair List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Pair} backed by the internal list of
+     * {@code versionedFriendlyLink}
+     */
+    @Override
+    public ObservableList<Pair> getFilteredPairList() {
+        return filteredPairs;
+    }
+
+    @Override
+    public void updateFilteredPairList(Predicate<Pair> predicate) {
+        requireNonNull(predicate);
+        filteredPairs.setPredicate(predicate);
+    }
+
+    //=========== Others ==================================================================================
+
+    @Override
+    public boolean check(Elderly elderly, BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        return friendlyLink.check(elderly, predicate);
+    }
+
+    @Override
+    public boolean check(Volunteer volunteer, BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        return friendlyLink.check(volunteer, predicate);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void refreshAllFilteredLists() {
+        updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        updateFilteredPairList((Predicate<Pair>) PREDICATE_SHOW_ALL);
+    }
+
+    @Override
+    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+            Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+        updateFilteredElderlyList(elderlyPredicate);
+        updateFilteredVolunteerList(volunteerPredicate);
+        updateFilteredPairList(pairPredicate);
     }
 
     @Override
@@ -142,9 +316,16 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return friendlyLink.equals(other.friendlyLink)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredElderly.equals(other.filteredElderly)
+                && filteredVolunteers.equals(other.filteredVolunteers)
+                && filteredPairs.equals(other.filteredPairs);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(friendlyLink, userPrefs, filteredElderly,
+                filteredVolunteers, filteredPairs);
+    }
 }

@@ -1,19 +1,27 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.information.Address;
+import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
+import seedu.address.model.person.information.Email;
+import seedu.address.model.person.information.Name;
+import seedu.address.model.person.information.Nric;
+import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in FriendlyLink.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
     private final Name name;
@@ -22,18 +30,28 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Nric nric;
+    private final BirthDate birthDate;
+    private final Region region;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<AvailableDate> availableDates = new HashSet<>();
 
     /**
+     * Constructs a new person.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Nric nric,
+                  BirthDate birthDate, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
+        requireAllNonNull(name, phone, email, address, nric, birthDate, region, tags, availableDates);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
+        this.birthDate = birthDate;
+        this.region = region;
         this.tags.addAll(tags);
+        this.availableDates.addAll(availableDates);
     }
 
     public Name getName() {
@@ -52,6 +70,18 @@ public class Person {
         return address;
     }
 
+    public Nric getNric() {
+        return nric;
+    }
+
+    public BirthDate getBirthDate() {
+        return birthDate;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -59,18 +89,65 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    public Set<AvailableDate> getAvailableDates() {
+        return Collections.unmodifiableSet(availableDates);
+    }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
+     *
+     * @param otherPerson Person to be compared to.
+     * @return True if both persons have the same nric and false otherwise.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
-
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(nric);
+    }
+
+    /**
+     * Returns true if both persons belong to suitable regions.
+     * {@code otherPerson} must not be null.
+     *
+     * @param otherPerson Person to be compared to.
+     * @return True if both persons belong to the same region or at least one person
+     *      has no specified region, false otherwise.
+     */
+    public boolean isSuitableRegion(Person otherPerson) {
+        requireNonNull(otherPerson);
+        return otherPerson.getRegion().isMatch(region);
+    }
+
+    /**
+     * Checks whether there are suitable available dates between two persons.
+     * {@code otherPerson} must not be null.
+     *
+     * @param otherPerson Person to be compared to.
+     * @return True if both persons share common available dates or at least one person
+     *     has no specified available dates, false otherwise.
+     */
+    public boolean hasSuitableAvailableDates(Person otherPerson) {
+        requireNonNull(otherPerson);
+        Set<AvailableDate> availableDates = getAvailableDates();
+        Set<AvailableDate> otherAvailableDates = otherPerson.getAvailableDates();
+
+        // no restrictions
+        if (availableDates.isEmpty() || otherAvailableDates.isEmpty()) {
+            return true;
+        }
+
+        // find first matching dates
+        for (AvailableDate date : availableDates) {
+            for (AvailableDate availableDate : otherAvailableDates) {
+                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -88,36 +165,15 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        return otherPerson.getName().equals(name)
+                && otherPerson.getPhone().equals(phone)
+                && otherPerson.getEmail().equals(email)
+                && otherPerson.getAddress().equals(address)
+                && otherPerson.getNric().equals(nric)
+                && otherPerson.getBirthDate().equals(birthDate)
+                && otherPerson.getRegion().equals(region)
+                && otherPerson.getTags().equals(tags)
+                && otherPerson.getAvailableDates().equals(availableDates);
     }
 
 }

@@ -23,16 +23,29 @@ public class Index {
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
+    /**
+     * Returns the index starting from 0.
+     *
+     * @return Index starting from 0.
+     */
     public int getZeroBased() {
         return zeroBasedIndex;
     }
 
+    /**
+     * Returns the index starting from 1.
+     *
+     * @return Index starting from 1.
+     */
     public int getOneBased() {
         return zeroBasedIndex + 1;
     }
 
     /**
      * Creates a new {@code Index} using a zero-based index.
+     *
+     * @param zeroBasedIndex Index starting from 0.
+     * @return An {@code Index}.
      */
     public static Index fromZeroBased(int zeroBasedIndex) {
         return new Index(zeroBasedIndex);
@@ -40,6 +53,9 @@ public class Index {
 
     /**
      * Creates a new {@code Index} using a one-based index.
+     *
+     * @param oneBasedIndex Index starting from 1.
+     * @return An {@code Index}.
      */
     public static Index fromOneBased(int oneBasedIndex) {
         return new Index(oneBasedIndex - 1);

@@ -25,6 +25,17 @@ public class CommandParserTestUtil {
     }
 
     /**
+     * Assert that the parsing of user input is successful only.
+     */
+    public static void assertParseOptionalSuccess(Parser<? extends Command> parser, String userInput) {
+        try {
+            Command command = parser.parse(userInput);
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
+    }
+
+    /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
      * equals to {@code expectedMessage}.
      */

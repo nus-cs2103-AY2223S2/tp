@@ -6,38 +6,66 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage{
 
-package "UserPrefs Storage" #F4F6F6{
-Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
-Class JsonUserPrefsStorage
-}
-
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
+Class JsonAppStorage
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "UserPrefs Storage" #F4F6F6{
+    Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+    Class JsonUserPrefsStorage
 }
 
+package "Elderly Storage" #F4F6F6 {
+Class "<<interface>>\nElderlyStorage" as ElderlyStorage
+Class JsonElderlyStorage
+Class JsonSerializableElderly
+Class JsonAdaptedElderly
+}
+
+package "Volunteer Storage" #F4F6F6 {
+Class "<<interface>>\nVolunteerStorage" as VolunteerStorage
+Class JsonVolunteerStorage
+Class JsonSerializableVolunteer
+Class JsonAdaptedVolunteer
+}
+
+package "Pair Storage" #F4F6F6 {
+Class "<<interface>>\nPairStorage" as PairStorage
+Class JsonPairStorage
+Class JsonSerializablePair
+Class JsonAdaptedPair
+}
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -down-> "1" UserPrefsStorage
+StorageManager -down-> "1" ElderlyStorage
+StorageManager -down-> "1" VolunteerStorage
+StorageManager -down-> "1" PairStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -down-|> ElderlyStorage
+Storage -down-|> VolunteerStorage
+Storage -down-|> PairStorage
+Storage -down-|> UserPrefsStorage
+
+JsonElderlyStorage ---right-|> JsonAppStorage
+JsonPairStorage ---right-|> JsonAppStorage
+JsonVolunteerStorage ---right-|> JsonAppStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonElderlyStorage .up.|> ElderlyStorage
+JsonElderlyStorage ..> JsonSerializableElderly
+JsonSerializableElderly --> "*" JsonAdaptedElderly
+
+JsonPairStorage .up.|> PairStorage
+JsonPairStorage ..> JsonSerializablePair
+JsonSerializablePair --> "*" JsonAdaptedPair
+
+JsonVolunteerStorage .up.|> VolunteerStorage
+JsonVolunteerStorage ..> JsonSerializableVolunteer
+JsonSerializableVolunteer --> "*" JsonAdaptedVolunteer
 
 @enduml

@@ -13,14 +13,22 @@ public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
 
+    /**
+     * Returns true if {@code path} contains a regular file.
+     *
+     * @param file Location of the file.
+     * @return True if regular file exists and false otherwise.
+     */
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
+     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String, String...)},
      * otherwise returns false.
+     *
      * @param path A string representing the file path. Cannot be null.
+     * @return True if path is valid and false otherwise.
      */
     public static boolean isValidPath(String path) {
         try {
@@ -33,7 +41,9 @@ public class FileUtil {
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
-     * @throws IOException if the file or directory cannot be created.
+     *
+     * @param file Location of the file.
+     * @throws IOException If the file or directories cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
         if (!isFileExists(file)) {
@@ -43,6 +53,9 @@ public class FileUtil {
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
+     *
+     * @param file Location of the file.
+     * @throws IOException If the file or directories cannot be created.
      */
     public static void createFile(Path file) throws IOException {
         if (Files.exists(file)) {
@@ -55,7 +68,10 @@ public class FileUtil {
     }
 
     /**
-     * Creates parent directories of file if it has a parent directory
+     * Creates parent directories of file if it has a parent directory.
+     *
+     * @param file Location of the file.
+     * @throws IOException If the directories cannot be created.
      */
     public static void createParentDirsOfFile(Path file) throws IOException {
         Path parentDir = file.getParent();
@@ -66,7 +82,11 @@ public class FileUtil {
     }
 
     /**
-     * Assumes file exists
+     * Reads from a file. Assumes the file exists.
+     *
+     * @param file Location of the file.
+     * @return Lines red from the file.
+     * @throws IOException If reading fails.
      */
     public static String readFromFile(Path file) throws IOException {
         return new String(Files.readAllBytes(file), CHARSET);
@@ -75,6 +95,10 @@ public class FileUtil {
     /**
      * Writes given string to a file.
      * Will create the file if it does not exist yet.
+     *
+     * @param file Location of the file.
+     * @param content Content to write.
+     * @throws IOException If writing fails.
      */
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));

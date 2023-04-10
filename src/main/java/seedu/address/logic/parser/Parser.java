@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -8,9 +9,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public interface Parser<T extends Command> {
 
+    public static final String FIELD_NOT_SPECIFIED = "";
+
     /**
      * Parses {@code userInput} into a command and returns it.
-     * @throws ParseException if {@code userInput} does not conform the expected format
+     *
+     * @param userInput String from user.
+     * @return A {@code Command}.
+     * @throws ParseException If {@code userInput} does not conform the expected format.
      */
     T parse(String userInput) throws ParseException;
+
+    CommandInfo getCommandInfo();
 }

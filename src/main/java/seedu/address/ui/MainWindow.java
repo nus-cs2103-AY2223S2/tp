@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandRecommendationEngine;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,14 +25,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
-
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private VolunteerListPanel volunteerListPanel;
+    private ElderlyListPanel elderlyListPanel;
+    private PairListPanel pairListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +43,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane volunteerListPanelPlaceholder;
+
+    @FXML
+    private StackPane elderlyListPanelPlaceholder;
+
+    @FXML
+    private StackPane pairListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -52,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     *
+     * @param primaryStage Main container.
+     * @param logic        FriendlyLink logic component.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -62,7 +72,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -78,7 +87,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     *
+     * @param keyCombination The KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -110,16 +120,23 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        volunteerListPanel = new VolunteerListPanel(logic.getFilteredVolunteerList());
+        elderlyListPanel = new ElderlyListPanel(logic.getFilteredElderlyList());
+        pairListPanel = new PairListPanel(logic.getFilteredPairList());
+        volunteerListPanelPlaceholder.getChildren().add(volunteerListPanel.getRoot());
+        elderlyListPanelPlaceholder.getChildren().add(elderlyListPanel.getRoot());
+        pairListPanelPlaceholder.getChildren().add(pairListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        String footerMessage = "Data is saved to " + logic.getElderlyFilePath()
+                + ", " + logic.getVolunteerFilePath()
+                + ", " + logic.getPairFilePath();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(footerMessage);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, CommandRecommendationEngine.getInstance());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -163,8 +180,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public VolunteerListPanel getVolunteerListPanel() {
+        return volunteerListPanel;
+    }
+
+    public ElderlyListPanel getElderlyListPanel() {
+        return elderlyListPanel;
     }
 
     /**
