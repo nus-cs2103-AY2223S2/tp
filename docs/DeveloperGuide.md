@@ -1164,7 +1164,7 @@ _{More to be added}_
 
   Use case ends.
 
-**Use case: UC22 - list the department headcount**
+**Use case: UC22 - Listing a department's headcount**
 
 1. User requests to list all the employees present in a given department.
 2. SudoHr lists all the employees present in the given department for the current date.
@@ -1193,16 +1193,13 @@ _{More to be added}_
 
     Use case resumes at step 1.
 
-_{More to be added}_
 
 ### 6.4. Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 10,000 employees, 10,000 departments, 10,000 leaves and 10,000 tags without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Comfortable working with CLI.
-
-_{More to be added}_
 
 ### 6.5. Glossary
 
@@ -1367,23 +1364,6 @@ testers are expected to do more *exploratory* testing.
 3. Other incorrect `leid` commands to try: `leid`, `...` (non-existent department, etc) <br>
    Expected: Shows specific error message in result display.
 
-#### 7.3.10. List department headcount on a specific day
-
-1. Test case: `ldhc n/HR d/2023-04-01` <br>
-   Expected:
-   1. Lists all employees from HR department who are present on the given day, inside the employee window.
-   2. Shows the given department in the department window.
-   3. Shows the given leave in the leave window.
-2. Test case: `ldhc n/HR` <br>
-   Expected:
-   1. Lists all employees from HR department who are present today, inside the employee window.
-   2. Shows the given department in the department window.
-   3. Shows the given leave in the leave window.
-3. Test case: `ldhc HR` (incorrect command format) <br>
-   Expected: No changes to the windows. Result display shows correct command format and command constraints
-4. Other incorrect `ldhc` commands to try: `ldhc`, `...` (non-existent department, etc) <br>
-   Expected: Shows specific error message in result display.
-
 ### 7.4 Leave commands
 
 #### 7.4.1. Adding a leave
@@ -1440,6 +1420,23 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `llbe 1` (incorrect command format) <br>
    Expected: No changes to the windows. Result display shows correct command format and command constraints
 3. Other incorrect `llbe` commands to try: `llbe`, `...` (non-existent employee, etc) <br>
+   Expected: Shows specific error message in result display.
+
+#### 7.4.7. List department headcount on a specific day
+
+1. Test case: `ldhc n/HR d/2023-04-01` <br>
+   Expected:
+    1. Lists all employees from HR department who are present on the given day, inside the employee window.
+    2. Shows the given department in the department window.
+    3. Shows the given leave in the leave window.
+2. Test case: `ldhc n/HR` <br>
+   Expected:
+    1. Lists all employees from HR department who are present today, inside the employee window.
+    2. Shows the given department in the department window.
+    3. Shows the given leave in the leave window.
+3. Test case: `ldhc HR` (incorrect command format) <br>
+   Expected: No changes to the windows. Result display shows correct command format and command constraints
+4. Other incorrect `ldhc` commands to try: `ldhc`, `...` (non-existent department, etc) <br>
    Expected: Shows specific error message in result display.
 
 ### 7.5 General commands
