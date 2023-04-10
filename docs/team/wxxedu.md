@@ -5,7 +5,8 @@ title: Wang Xiuxuan's Project Portfolio Page
 
 ### Project: AddressBook Level 3
 
-Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
+Wingman is an application designed to help airline managers efficiently manage
+the allocation of their resources.
 Given below are my contributions to the project.
 
 * **Code Contribution**:
@@ -20,18 +21,24 @@ Given below are my contributions to the project.
     * Migrated `ReadOnlyAddressBook` to `ReadOnlyItemManager`, an interface that
       managers the `Item`s inside it.
     * Migrated `AddressBook` to `ItemManager`.
-    * **What they do**: allows my teammates to work on independent features without writing much duplicate code.
+    * **What they do**: allows my teammates to work on independent features
+      without writing much duplicate code.
     * **Justification**: same as above.
 
 2. Handled general implementation for
    Pilot ([#22](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/22))
-    * Responsible for implementing the Plane model in Wingman along with all the basic functions related. This includes:
-      adding and deleting a Plane, linking or unlinking a Plane to or from a Flight, and handling the storage and the
+    * Responsible for implementing the Plane model in Wingman along with all the
+      basic functions related. This includes:
+      adding and deleting a Plane, linking or unlinking a Plane to or from a
+      Flight, and handling the storage and the
       parsing of a Plane.
 
-    * **What it does:** Allows for a Plane to be properly managed in the Wingman app.
-    * **Justification:** It includes all the necessary commands which a manager would need to manage the planes in their
-      fleet eg. they can add a new plane, and delete planes which are out of service.
+    * **What it does:** Allows for a Plane to be properly managed in the Wingman
+      app.
+    * **Justification:** It includes all the necessary commands which a manager
+      would need to manage the planes in their
+      fleet eg. they can add a new plane, and delete planes which are out of
+      service.
 
 3. Rewrote the parser for Wingman, abandoning the original parsing logic.
    ([#39](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/39))
@@ -39,12 +46,17 @@ Given below are my contributions to the project.
       parsing scheme easily.
     * **What it does**: parses the command put into Wingman.
     * **Justification**: to reduce the boilerplate in the original AddressBook
-      parser.
+      parser and make the parser more suitable to a modal design.
 
 4. Implemented a `Link` class that represents a link between two entities.
     * **What it does**: describes a link from one entity to another.
     * **Justification**: reduce code duplication (did not work so well).
 
+5. Added unit tests for most of the core refactorings that I did.
+    * **What it does**: ensures that the refactoring is done correctly.
+    * **Justification**: to ensure that the refactoring is done correctly.
+
 * **Project Management**:
-    * Joined in discussions about where the project is going. 
+    * Joined in discussions about where the project is going.
+    * Reviewed several pull requests and gave feedback to my teammates.
 
