@@ -800,7 +800,7 @@ Preconditions: Person is already in FL.
 1. FriendlyLink will not recover from corrupted data files.
 1. FriendlyLink will only be available in English.
 1. FriendlyLink does not require internet connection to work.
-1. FriendlyLink is meant for VWOs in Singapore to contain information of pairs, elderly and volunteers.
+1. FriendlyLink is meant for VWOs in Singapore to contain information of, and pair elderly and volunteers.
 
 --------------------------------------------------------------------------------------------------------------------
 
