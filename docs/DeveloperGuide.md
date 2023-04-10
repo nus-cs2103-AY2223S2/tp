@@ -1865,6 +1865,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. No contacts satisfy the criteria.
     * 3a1. EduMate shows no contacts.
+
   Use case ends.
 
 **Use case: UC19 - Sort contacts based on index**
