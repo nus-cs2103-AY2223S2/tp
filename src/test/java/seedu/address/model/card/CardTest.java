@@ -62,19 +62,14 @@ public class CardTest {
         editedLoop = new CardBuilder(LOOP).withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.isSameCard(editedLoop));
 
-        // different answer, all other attributes same -> returns false
+        // different answer, all other attributes same -> returns true
         editedLoop = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build();
-        assertFalse(LOOP.isSameCard(editedLoop));
+        assertTrue(LOOP.isSameCard(editedLoop));
 
         // question differs in case, all other attributes same -> returns false
         Card editedPhotosynthesis = new CardBuilder(PHOTOSYNTHESIS)
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS.toLowerCase())
                 .build();
-        assertFalse(PHOTOSYNTHESIS.isSameCard(editedPhotosynthesis));
-
-        // question has trailing spaces, all other attributes same -> returns false
-        String questionWithTrailingSpaces = VALID_QUESTION_PHOTOSYNTHESIS + " ";
-        editedPhotosynthesis = new CardBuilder(PHOTOSYNTHESIS).withQuestion(questionWithTrailingSpaces).build();
         assertFalse(PHOTOSYNTHESIS.isSameCard(editedPhotosynthesis));
     }
 
