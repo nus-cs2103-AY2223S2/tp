@@ -833,6 +833,27 @@ Please refer to the screenshots below to see the various ways you can exit the a
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GoodMatch home folder.
 
+**Q**: Can GoodMatch be used on any operating system?<br>
+**A**: Yes. GoodMatch can be used on any operating system as long as your computer has Java 11 or above.
+
+**Q**: What should I do if I encounter an error or bug in GoodMatch?<br>
+**A**: Report the error! You can report the error at this [link](https://github.com/AY2223S2-CS2103T-W14-3/tp/issues). We will be notified for any issues and get back to you as soon as possible.
+
+**Q**: Can GoodMatch be used by multiple users or on multiple computers?<br>
+**A**: No, GoodMatch can only be used by you. If you want to use it on another computer, set up GoodMatch on the other computer and copy the contents in `[JAR file location]/data/listingbook.json` from the old device to the new device.
+
+**Q**: Is there a limit to the number of job listings or applicants I can add to GoodMatch?<br>
+**A**: There is no limit to the number of job listings or applicants you can add to GoodMatch other than your own computer's storage limits. However, we do recommend you to keep the number of job listings under 1000 for best performance! 
+
+**Q**: Can I customize the appearance of GoodMatch or the data fields for job listings and applicants?<br>
+**A**: No, unfortunately you cannot customize the appearance of GoodMatch but if you have a brilliant suggestion for us, let us know!
+
+**Q**: How often does GoodMatch receive updates or new features?<br>
+**A**: We have a few updates and features in store for you! We are working hard to push them as soon as possible so stay tuned for them!
+
+**Q**: Is there a user forum or support community for GoodMatch?<br>
+**A**: Any questions, suggestions or issues you have can be posted [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/issues). We will be able to answer any concerns that you have there!
+
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ---
