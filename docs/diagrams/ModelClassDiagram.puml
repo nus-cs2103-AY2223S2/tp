@@ -75,8 +75,8 @@ Cost -[hidden]right-> Medication
 AddressBook *--> "1" HospitalAppointmentList
 HospitalAppointmentList *--> "*" Appointment
 Appointment *-left-> "1" Booking
-Appointment *--> "1" Doctor
-Appointment *--> "1 " Patient
+Appointment --> "1" Doctor
+Appointment --> "1 " Patient
 
 ModelManager -->"   ~* filtered" Person
 @enduml
