@@ -983,7 +983,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting an employee
 
-1. Deleting a employee while all employees are being shown
+1. Deleting an employee while all employees are being shown
 
    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
