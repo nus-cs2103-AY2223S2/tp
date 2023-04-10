@@ -275,18 +275,9 @@ The following sequence diagram summarizes the interaction of classes when the co
 
 <img src="images/DeleteStudentSequenceDiagramWithoutReturns.png" />
 
-#### Design considerations:
+#### Possible Updates
 
-**Aspect: How the command input is structured**
-
-* **Alternative 1 (current choice):** Chooses the student index from a list of students in the event.
-    * Pros: Easier for TA to refer to.
-    * Cons: More difficult to implement as student index reference needs to be changes.
-
-* **Alternative 2:** Choose the student index from the list of students in the student tab.
-    * Pros: Easier to implement since same student index reference can be used.
-    * Cons: More troublesome for the TA since changing of tabs needs to be done to find the student index.
-
+Support could be added for the command to take in more student index fields, so that the TA may delete multiple students at once without needing to keep re-entering the same command.
 
 ### Help feature
 
@@ -1088,3 +1079,13 @@ Given below are our planned enhancements.
 
 - As of now, the student table is not optimized for long data. When the window is minimized, the student data is not centered horizontally and vertically in each cell.
 We can simply add cosmetic changes in the fxml file to center the student data horizontally and vertically in each cell.
+
+- As of now, the performance indicator (a score of 0 to 100), is as descriptive of a student's performance in class as it can be.
+In future iterations, we planned to add more descriptive performance fields, like examination and assignment scores.
+
+- The current way of entering performance scores is quite troublesome for the TA. In future enhancements, performance scores in various aspects (like assignment or examination grades)
+can be automatically imported or read from Canvas or any other learning management system used by the university.
+
+- The current way of adding students into the student list is also quite troublesome. In future enhancements, they can be automatically parsed from a class list
+from canvas or any other learning management system used by the university.
+- 

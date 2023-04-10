@@ -5,7 +5,7 @@ title: Jia Ao's Project Portfolio Page
 
 ### Project: TrAcker
 
-TrAcker - TrAcker is a desktop event management application for NUS CS2040 Teaching Assitants (TA). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+TrAcker - TrAcker is a desktop event management application for NUS CS2040 Teaching Assistants (TA). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
 
