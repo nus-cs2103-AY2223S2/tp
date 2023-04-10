@@ -14,12 +14,13 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook. 
    * To check your Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
    * If your computer does not have Java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
-
 
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
@@ -33,12 +34,9 @@ This User Guide provides brief documentation on how you can install the applicat
      3. `java -jar fitbook.jar`
 
    * If you are unsure how to open the command terminal, you may refer to the guide below.
-   
      • [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt)
-   
      • [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal)
    
-     
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -87,7 +85,7 @@ The menu bar is typically located at the top of the user interface and is primar
 #### Help
 * Provides a new tab outside FitBook with the link to the User Guide.
 
-### Result Display
+### Result Panel
 
 Panels are _empty_ when the data for that specific panel is _empty_.
 
@@ -112,13 +110,14 @@ Panels are _empty_ when the data for that specific panel is _empty_.
 
   ![Summary Panel](images/summary.png)
 
-### Feedback Box
+### Result Display
 When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you have entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or the specific error encountered.
 ### Command Box
 The Command Box is where you can type in your commands. It is found below the Feedback Box. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
 
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -179,6 +178,8 @@ The Command Box is where you can type in your commands. It is found below the Fe
 While `All Taken` means for example `add ... t/friends t/VIP ...` both tags will be added to the client.  </div>
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Client Commands
 
@@ -410,6 +411,8 @@ Example:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Exercise Routine Commands
 
 * All routines and exercises must be in alphanumeric characters and spaces between characters are allowed.
@@ -586,6 +589,8 @@ Format: `exportRoutines`
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### FitBook Miscellaneous Commands
 
 #### Viewing help : `help`
@@ -640,7 +645,12 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 **Q**: When I try to edit my weight a few times, and it updates in the client panel, but the data does not show up on the graph?<br>
 **A**: To view historical weight data on the line graph, more values of weight must be added using addWeight command. edit command only changes the latest weight of the client.
 
+**Q**: Why is my FitBook empty even though I have data saved in the storage?<br>
+**A**: The format of your json file storage is invalid. Hence, it will create an empty storage system for the FitBook as a measure.
+
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 

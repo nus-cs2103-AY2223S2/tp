@@ -13,7 +13,7 @@ Darius Ng - `darius-ng@live.com`
 
 Kalaris Ng - `kalarisng@u.nus.edu`
 
-JiaHui Liao - `e0775484@nus.edu.sg`
+JiaHui Liao - `e0775484@u.nus.edu`
 
 
 ## Project team

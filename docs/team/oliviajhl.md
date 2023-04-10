@@ -5,20 +5,16 @@ title: Jiahui's Project Portfolio Page
 
 ### Project: FitBook
 
-FitBook is a desktop application designed for tracking the progress and information.
-It is built using Java and features both a Command-Line Interface (CLI) and a 
-Graphical User Interface (GUI) created with JavaFX. The CLI allows users to interact 
-with the application using text-based commands, while the GUI provides a visual interface 
-for navigating the application's features. With FitBook, fitness professionals can easily 
-track their clients' progress, manage appointments, and customize routines to help their 
-clients reach their fitness goals.
+FitBook is a desktop tracking book application used for tracking the progress and information
+for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added *ClientAppointmentComparator* and enhanced *Appointment* class to client.
     * What it does: Allows the user to view sorted appointments of clients.
     * Justification: This feature significantly improves the product by providing users with an easy way to keep track of appointment dates and times for their clients, making it easier to manage client relationships and ensure appointments are scheduled effectively.
-    * Highlights: This enhancement affects existing commands and commands to be added in the future. The implementation was challenging as it required changes to existing commands and an in-depth analysis of design alternatives to determine the most effective and user-friendly approach. However, the end result is a highly useful feature that enhances the overall user experience of FitBook.
+    * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   
 * **New Feature**: Added **view** Command.
     * What it does: Allows users to view detailed information about a selected client, including their basic information, as well as any attached exercises and routines.
@@ -48,12 +44,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-      * Enhanced documentation for `Quick Start` [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
       * Added documentation for `User Interface Introduction` [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
-      * Added documentation for `Prefixes for Client Commands` [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
-      * Added documentation for `Prefixes for Routine Commands`[\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
+      * Enhanced documentation for `Quick Start`, `Prefixes for Client Commands`, `Prefixes for Routine Commands`, and `FAQ`  [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
       * Added documentation for the features `listClients` [\#72](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/72)
-      * Added documentation for `FAQ` [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
       * Did cosmetic tweaks to existing for `Command Sumamry` [\#196](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/196)
       
   * Developer Guide:

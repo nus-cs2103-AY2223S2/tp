@@ -37,7 +37,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because user gets to add or change the exercise routines in the storage system for future uses.
   * Highlights: This enhancement affects existing storage to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it modifies the current client's storage and required to new commands.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jundatan&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=jundatan&zR=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&zACS=355.44&zS=2023-02-17&zFS=jundatan&zU=2023-04-04&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jundatan&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed releases `v1.3` (1 releases) on GitHub.
