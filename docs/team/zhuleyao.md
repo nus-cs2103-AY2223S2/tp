@@ -30,6 +30,7 @@ Given below are my contributions to the project.
 * **Contributions to the DG**: 
   * User stories
   * Use cases
+  * Instructions for manual testing
 
 * **Contributions to team-based tasks**:
   * Review/mentoring contributions:
