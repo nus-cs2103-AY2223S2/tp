@@ -31,7 +31,8 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [KEYWORD]\n"
             + "Example: " + COMMAND_WORD + " John Cena";
 
-    public static final String MESSAGE_PERSON_FOUND = "%1$s person found";
+    public static final String MESSAGE_PERSON_FOUND_S = "%1$s person found";
+    public static final String MESSAGE_PERSON_FOUND_P = "%1$s persons found";
     public static final String MESSAGE_NO_PERSON_FOUND = "No such person found";
     private static final Logger logger = LogsCenter.getLogger(FindCommand.class);
     private final NameContainsInOrderKeywordsPredicate predicate;
@@ -54,10 +55,6 @@ public class FindCommand extends Command {
         requireAllNonNull(model, officeConnectModel);
 
         List<Person> personList = model.filterReadOnlyPersonList(predicate);
-        if (personList.size() < 1) {
-            logger.warning("Invalid keywords used to initialize predicate: " + predicate);
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
-        }
 
         List<Id> pIdList = personList.stream().map(person -> person.getId()).collect(Collectors.toList());
 
@@ -69,7 +66,8 @@ public class FindCommand extends Command {
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         } else {
             int numOfPersonFound = model.getFilteredPersonList().size();
-            return new CommandResult(String.format(MESSAGE_PERSON_FOUND, numOfPersonFound));
+            String message = numOfPersonFound > 1 ? MESSAGE_PERSON_FOUND_P : MESSAGE_PERSON_FOUND_S;
+            return new CommandResult(String.format(message, numOfPersonFound));
         }
     }
 

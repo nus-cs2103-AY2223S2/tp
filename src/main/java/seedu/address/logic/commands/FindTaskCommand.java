@@ -30,7 +30,7 @@ public class FindTaskCommand extends Command {
 
     public static final String MESSAGE_TASK_FOUND_S = "%1$s task found";
     public static final String MESSAGE_TASK_FOUND_P = "%1$s tasks found";
-    public static final String MESSAGE_NO_TASK_FOUND = "No such task found.";
+    public static final String MESSAGE_NO_TASK_FOUND = "No such task found";
 
     private static final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
 
@@ -54,10 +54,6 @@ public class FindTaskCommand extends Command {
 
         RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
         List<Task> taskList = taskModelManager.filterReadOnlyList(predicate);
-        if (taskList.size() < 1) {
-            logger.warning("Invalid keywords used to initialize predicate: " + predicate);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK);
-        }
 
         List<Id> tIdList = taskList.stream().map(task->task.getId()).collect(Collectors.toList());
 
