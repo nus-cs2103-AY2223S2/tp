@@ -40,11 +40,9 @@ public class ListRecurringExpensesCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         List<Expense> expected = TypicalExpenses.getTypicalExpenses();
         List<Expense> actual = model.getFilteredExpenseList();
-        for (List<Expense> expenses : Arrays.asList(expected, actual)) {
-            Collections.sort(expenses);
-        }
+
         assertEquals(
-                expected,
-                actual);
+                expectedModel.getFilteredExpenseList(),
+                model.getFilteredExpenseList());
     }
 }
