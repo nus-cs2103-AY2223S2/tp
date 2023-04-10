@@ -578,21 +578,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case 9 (UC9): Add a client**
 
-**MSS**:
+**MSS**
+
+1. User requests to list clients.
+2. ArB shows a list of clients.
+3. User requests to add a client to the client list.
+4. ArB adds the client to the client list.
 
 **Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+* 3a. Provided details are invalid.
+  * 3a1. ArB shows an error message. <br>
+    Use case resumes at step 3.
 
 **Use case 10 (UC10): Add a project**
 
 **MSS**:
 
+1. User requests to list projects.
+2. ArB shows a list of projects.
+3. User requests to add a project to the project list.
+4. ArB adds the project to the project list.
+
 **Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+* 3a. Provided details are invalid.
+    * 3a1. ArB shows an error message. <br>
+      Use case resumes at step 3.
 
 **Use case 11 (UC11): Edit a client**
 
-**MSS**
+**MSS**:
+1. User selects a client to edit, and provides ArB with the details to edit.
+2. ArB edits client to use new details.
+3. Use case ends.
 
 **Extensions**
+
+* 1a. Provided details are invalid.
+    * 1a1. ArB shows an error message.<br>
+      Use case ends.
+* 1b. Provided index is invalid.
+    * 1b1. ArB shows an error message.<br>
+      Use case ends.
 
 **Use case 12 (UC12): Edit a project**
 
@@ -638,14 +670,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case 15 (UC15): Sort Clients**
 
 **MSS**:
+1. User requests to sort clients, providing ArB with a necessary parameter.
+2. ArB sorts all clients based on the provided parameter.<br>
+    Use case ends.
 
 **Extensions**
+
+* 1a. The parameter provided is invalid.
+    * 1a1. ArB shows an error message.<br>
+      Use case ends.
 
 **Use case 16 (UC16): Sort Projects**
 
 **MSS**:
+1. User requests to sort projects, providing ArB with a necessary parameter.
+2. ArB sorts all projects based on the provided parameter.<br>
+   Use case ends.
 
 **Extensions**
+
+* 1a. The parameter provided is invalid.
+    * 1a1. ArB shows an error message.<br>
+      Use case ends.
 
 **Use case 17 (UC17): Link Project To Client**
 
