@@ -30,7 +30,7 @@ interface "<<interface>>\nIsSame<T>" as IsSame
 
 Model --|> ClientModel
 Model --|> ProjectModel
-Model --> "1" AddressBook
+Model *--> "1" AddressBook
 
 AddressBook ..> UniqueList
 AddressBook ..> Project
