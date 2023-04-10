@@ -71,10 +71,9 @@ public class DeleteMultipleVideosCommand extends DeleteCommand {
             for (int i = 0; i < this.targetVideoNames.size(); i++) {
                 VideoName videoName = this.targetVideoNames.get(i);
                 DeleteVideoCommand dvc = new DeleteVideoCommand(this.moduleCode, this.lectureName, videoName);
-                dvc.execute(model);
+                CommandResult r = dvc.execute(model);
 
-                editedVideos[i] = new VideoEditInfo(moduleCode, lectureName,
-                        model.getVideo(moduleCode, lectureName, videoName), null);
+                editedVideos[i] = r.getVideoEditInfoList().get(0);
             }
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,

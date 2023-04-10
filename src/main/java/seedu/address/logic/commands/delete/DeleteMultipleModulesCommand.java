@@ -52,8 +52,9 @@ public class DeleteMultipleModulesCommand extends DeleteCommand {
             for (int i = 0; i < this.targetModuleCodes.size(); i++) {
                 ModuleCode moduleCode = this.targetModuleCodes.get(i);
                 DeleteModuleCommand dmc = new DeleteModuleCommand(moduleCode);
-                dmc.execute(model);
-                editedModules[i] = new ModuleEditInfo(model.getModule(moduleCode), null);
+                CommandResult r = dmc.execute(model);
+
+                editedModules[i] = r.getModuleEditInfoList().get(0);
             }
 
 
