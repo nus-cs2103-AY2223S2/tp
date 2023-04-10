@@ -1489,7 +1489,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **Use Cases**
 
-(For all use cases below, the **System** is EduMate and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is EduMate and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - View the list of all contacts**
 
