@@ -299,13 +299,34 @@ The sequence diagram shows how the various components interact with each other w
 
 Users have the ability to list all their projects. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed.
 
+
 #### Implementation
 
 The sequence diagram shows how the various components interact with each other when `list-project` is entered by the user.
 <br>
 <img src="images/ListProjectSequenceDiagram.png" width="600" />
 
-### Clearing clients
+### Deleting a Client
+
+Users have the ability to delete a particular client.
+
+#### Implementation
+
+The sequence diagram shows how the various components interact with each other when `delete-client 1` is entered by the user.
+<br>
+<img src="images/DeleteClientSequenceDiagram.png" width="600">
+
+### Deleting a Project
+
+Users have the ability to delete a particular project.
+
+#### Implementation
+
+The sequence diagram shows how the various components interact with each other when `delete-project 1` is entered by the user.
+<br>
+<img src="images/DeleteProjectSequenceDiagram.png" width="600">
+
+### Clearing Clients
 
 Users have the ability to clear all their clients.
 
@@ -315,7 +336,7 @@ The sequence diagram shows how the various components interact with each other w
 <br>
 <img src="images/ClearClientSequenceDiagram.png" width="600" />
 
-### Clearing projects
+### Clearing Projects
 
 Users have the ability to clear all their projects.
 
@@ -357,48 +378,48 @@ The sequence diagram shows how the various components interact with each other w
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* *` | artist with many ongoing commissioned projects to keep track of | view my current commissioned projects in order of deadline recency | not miss any deadlines |
-| `*` | artist inexperienced in command line commands | use commands that are closer to natural language | better understand and more effectively use commands |
-| `* * *` | artist | add a deadline to a project | record when a project needs to be done |
-| `*` | artist working with commissions | import a list of clients from a CSV file | use an editable format |
-| `* *` | first-time user of the application | view a guide on how to use the app | learn how to use the app |
-| `*` | artist who wants to increase my earnings | add a large number of commissioned projects at any time | increase my income |
-| `*` | expert in using the application | setup shortcuts for commands I often use | execute them quickly |
-| `* *` | artist who does not want to be overwhelmed by too many ongoing commission projects | quickly see how many ongoing projects I have | deliver for my clients |
-| `* *` | artist | tag clients in the list | filter by the tags if necessary |
-| `* *` | artist | tag projects in the list | filter by the tags if necessary |
-| `*` | inexperienced user | undo commands | remedy mistakes |
-| `* *` | first-time user of the application | see sample data in the application | understand what the application can do |
-| `* * *` | artist | add clients to the application | keep track of all of my clients |
-| `* * *` | artist | remove clients from my list | keep the list accurate |
-| `* *` | artist | edit client info | keep client info up to date in case of changes |
-| `* *` | artist | edit project info | keep project info up to date in case of changes |
-| `* *` | artist who wants to know which of my ongoing projects are most lucrative | quickly sort my ongoing projects based on commission size | prioritize higher commissioned projects |
-| `* *` | artist | add to a project how much money it will make me | know the profit of my projects |
-| `* *` | artist | search for clients using keywords | find specific clients quickly |
-| `* *` | artist ready to start using the application | purge any sample data on the application | start entering my own data onto the application |
-| `*` | artist | quickly see how many times a specific client has commissioned me for a project before | know if clients are returning |
-| `* *` | artist | see how much profit a client has made me so far | know which client is making me the most profit |
-| `* *` | artist | sort clients by how much profit they have made me so far | know which clients are making me the most profit |
-| `* *` | artist | sort clients by the number of times they have commissioned me before | know if a given client and I have a long-standing relationship |
-| `* * *`| artist | add contact info to clients | know how to reach them if needed |
-| `*` | artist | blacklist certain clients | know who to avoid |
-| `* *` | artist | link projects to clients | know what projects are for what clients |
-| `* *` | artist | get asked if I am sure I want to delete an ongoing project | be prevented from accidentally deleting an ongoing project |
-| `* * *`| artist | mark a certain project as done | know it is no longer ongoing |
-| `*` | user | easily generate text to share client information | send it to someone else if required |
-| `* * *` | artist | unmark a project as done | ensure my list is accurate in case I accidentally marked a project as done |
-| `*` | artist | add dates in different formats without being asked to give it in a certain format | not have to memorize providing dates in a certain format |
-| `* *`| artist | see all projects due within a specific time period | know what is due at different times and plan my work |
-| `*` | artist | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
-| `* *` | artist | see all tags I have used | know what tags to use to find clients/projects |
-| `*` | experienced user | directly edit the data file | change stored information without having to open the app |
-| `* *` | artist | find specific clients | see their information |
-| `* *`| artist | find specific projects | see their information |
-| `* *` | artist | search for projects using keywords | find specific projects quickly |
-| `* *` | busy artist | see what projects are due in a certain timeframe | better plan my schedule |
+| Priority | As a …​                                                                            | I want to …​                                                                                                 | So that I can…​                                                                       |
+|----------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* *`    | artist with many ongoing commissioned projects to keep track of                    | view my current commissioned projects in order of deadline recency                                           | not miss any deadlines                                                                |
+| `*`      | artist inexperienced in command line commands                                      | use commands that are closer to natural language                                                             | better understand and more effectively use commands                                   |
+| `* * *`  | artist                                                                             | add a deadline to a project                                                                                  | record when a project needs to be done                                                |
+| `*`      | artist working with commissions                                                    | import a list of clients from a CSV file                                                                     | use an editable format                                                                |
+| `* *`    | first-time user of the application                                                 | view a guide on how to use the app                                                                           | learn how to use the app                                                              |
+| `*`      | artist who wants to increase my earnings                                           | add a large number of commissioned projects at any time                                                      | increase my income                                                                    |
+| `*`      | expert in using the application                                                    | setup shortcuts for commands I often use                                                                     | execute them quickly                                                                  |
+| `* *`    | artist who does not want to be overwhelmed by too many ongoing commission projects | quickly see how many ongoing projects I have                                                                 | deliver for my clients                                                                |
+| `* *`    | artist                                                                             | tag clients in the list                                                                                      | filter by the tags if necessary                                                       |
+| `* *`    | artist                                                                             | tag projects in the list                                                                                     | filter by the tags if necessary                                                       |
+| `*`      | inexperienced user                                                                 | undo commands                                                                                                | remedy mistakes                                                                       |
+| `* *`    | first-time user of the application                                                 | see sample data in the application                                                                           | understand what the application can do                                                |
+| `* * *`  | artist                                                                             | add clients to the application                                                                               | keep track of all of my clients                                                       |
+| `* * *`  | artist                                                                             | remove clients from my list                                                                                  | keep the list accurate                                                                |
+| `* *`    | artist                                                                             | edit client info                                                                                             | keep client info up to date in case of changes                                        |
+| `* *`    | artist                                                                             | edit project info                                                                                            | keep project info up to date in case of changes                                       |
+| `* *`    | artist who wants to know which of my ongoing projects are most lucrative           | quickly sort my ongoing projects based on commission size                                                    | prioritize higher commissioned projects                                               |
+| `* *`    | artist                                                                             | add to a project how much money it will make me                                                              | know the profit of my projects                                                        |
+| `* *`    | artist                                                                             | search for clients using keywords                                                                            | find specific clients quickly                                                         |
+| `* *`    | artist ready to start using the application                                        | purge any sample data on the application                                                                     | start entering my own data onto the application                                       |
+| `*`      | artist                                                                             | quickly see how many times a specific client has commissioned me for a project before                        | know if clients are returning                                                         |
+| `* *`    | artist                                                                             | see how much profit a client has made me so far                                                              | know which client is making me the most profit                                        |
+| `* *`    | artist                                                                             | sort clients by how much profit they have made me so far                                                     | know which clients are making me the most profit                                      |
+| `* *`    | artist                                                                             | sort clients by the number of times they have commissioned me before                                         | know if a given client and I have a long-standing relationship                        |
+| `* * *`  | artist                                                                             | add contact info to clients                                                                                  | know how to reach them if needed                                                      |
+| `*`      | artist                                                                             | blacklist certain clients                                                                                    | know who to avoid                                                                     |
+| `* *`    | artist                                                                             | link projects to clients                                                                                     | know what projects are for what clients                                               |
+| `* *`    | artist                                                                             | get asked if I am sure I want to delete an ongoing project                                                   | be prevented from accidentally deleting an ongoing project                            |
+| `* * *`  | artist                                                                             | mark a certain project as done                                                                               | know it is no longer ongoing                                                          |
+| `*`      | user                                                                               | easily generate text to share client information                                                             | send it to someone else if required                                                   |
+| `* * *`  | artist                                                                             | unmark a project as done                                                                                     | ensure my list is accurate in case I accidentally marked a project as done            |
+| `*`      | artist                                                                             | add dates in different formats without being asked to give it in a certain format                            | not have to memorize providing dates in a certain format                              |
+| `* *`    | artist                                                                             | see all projects due within a specific time period                                                           | know what is due at different times and plan my work                                  |
+| `*`      | artist                                                                             | have the application convert different time zones to my local one and state which country the client is from | add times for clients from various countries and not have to do the conversion myself |
+| `* *`    | artist                                                                             | see all tags I have used                                                                                     | know what tags to use to find clients/projects                                        |
+| `*`      | experienced user                                                                   | directly edit the data file                                                                                  | change stored information without having to open the app                              |
+| `* *`    | artist                                                                             | find specific clients                                                                                        | see their information                                                                 |
+| `* *`    | artist                                                                             | find specific projects                                                                                       | see their information                                                                 |
+| `* *`    | artist                                                                             | search for projects using keywords                                                                           | find specific projects quickly                                                        |
+| `* *`    | busy artist                                                                        | see what projects are due in a certain timeframe                                                             | better plan my schedule                                                               |
 
 ### Use cases
 
