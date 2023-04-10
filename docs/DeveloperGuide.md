@@ -126,9 +126,12 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 <p align="center">
 
 <img src="images/PageClasses.png" width="650" />
-
+  
+</p>
 
 <div style="page-break-after: always;"></div>
+
+<div height="100px"></div>
 
 **How a `Page` is generated** 
 
