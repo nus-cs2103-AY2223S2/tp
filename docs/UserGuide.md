@@ -22,7 +22,6 @@ This User Guide provides brief documentation on how you can install the applicat
    * To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
    * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
 
-
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
 3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook.
@@ -30,12 +29,9 @@ This User Guide provides brief documentation on how you can install the applicat
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    * If you are unsure how to open the command terminal, you may refer to the guide below.
-   
      • [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt)
-   
      • [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal)
    
-     
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
