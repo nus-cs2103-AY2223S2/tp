@@ -975,6 +975,8 @@ A `CommandResult` with execution result message is returned until the `MainWindo
 
 The `RemindFeature` is a good to have feature. Existing reminder window is cleaned-up upon executing commands to prevent multiple windows from clogging up the screen.
 
+[Go back to Table of Contents](#table-of-contents)
+
 ### Exit feature
 This section elaborated the `exit` feature by its functionality and the path of execution together with the `ExitCommand` implementation. Uml diagram is used to aid this description.
 
