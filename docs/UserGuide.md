@@ -777,6 +777,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 ![image2 message](images/images2.png)
 
     Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX>.png`
+    
 ![imagestudent message](images/imagestudent.png)
 
     Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
