@@ -38,7 +38,7 @@ title: Developer Guide
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
-  - [Product Scope](#product-scope-)
+  - [Product Scope](#product-scope-%EF%B8%8F)
   - [User Stories](#user-stories-)
   - [Use Cases](#use-cases)
   - [Non-functional Requirements](#non-functional-requirements)
@@ -1533,5 +1533,4 @@ testers are expected to do more *exploratory* testing.
 
 <img src="images/createCombinedPredicate.png" width="300">
 
-<div style="page-break-after: always;"></div>
 
