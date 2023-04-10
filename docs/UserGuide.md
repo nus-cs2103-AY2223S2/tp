@@ -421,6 +421,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+
+Deleting a  person does not affect any meetings that have already been created with the person as one of the attendees.
+
+</div>
+
 ### Exporting of contact : `export`
 
 * Exports the persons at the specified `INDEX`es.
