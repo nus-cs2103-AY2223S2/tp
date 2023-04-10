@@ -29,6 +29,7 @@ Given below are my contributions to the project.
     * `sort` command enhancement. [#61](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/61)
       * `sort` is meant to organise the task list for the users to have a clearer image of the tasks at hand.
       * This is such that a user can see all `Event`, `Deadline`, `SimpleTask` objects adjacent to each other rather than scattered according to input sequence.
+<div style="page-break-after: always;"></div>
     * Color code UI enhancement. [#74](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/74)
       * AB3 has all its tags of the same color background, which impacts the users ability to sieve out different `Task` with the same tags.
       * From a 20 predefined colors, a color is assigned to a tag based on the tag's name.
