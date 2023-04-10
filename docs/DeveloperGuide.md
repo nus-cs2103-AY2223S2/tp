@@ -153,9 +153,10 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 
+index/1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete index/1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 the </div>
@@ -589,8 +590,8 @@ Priorities:
 
 **MSS**
 
-1.  User enters new-student command with NAME, ADDRESS, PHONE, EMAIL and (optionally) School, Grade Level.
-2.  TutorPro adds the new student to the student list.
+1.  User enters update-info command with any of the optional fields: NAME, ADDRESS, PHONE, EMAIL, SCHOOL, GRADE LEVEL.
+2.  TutorPro updates the student's particulars.
     Use case ends.
 
 **Extensions**
@@ -624,7 +625,7 @@ Priorities:
 
 1.  User requests to list students
 2.  TutorPro shows a list of students
-3.  User enters assign-homework command with student name and homework title.
+3.  User enters new-homework command with student's name, homework title, and deadline.
 4.  TutorPro assigns the homework to that particular student.
 
     Use case ends.
@@ -637,25 +638,26 @@ Priorities:
 
 * 3a. The given name doesn't exist in the list.
 * 3b. The user used invalid command format.
+* 3c. The user provided a date that is earlier than the current date.
 
     * 3*1. TutorPro shows an error message.
 
   Use case resumes at step 3.
+
 
 ### View a Student's Homework
 
 **MSS**
 
 1.  User enters view-homework command with a student's name.
-2.  TutorPro shows all the completed/incomplete homework of that student.
+2.  TutorPro shows all the completed/pending homework of that student.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. Alternatively, the user clicks on the **Homework** button next to the student name.
-
-  Use case resumes at 2.
+     * 1a1. TutorPro displays homework information on the Detailed Information section.
 
 ### Mark a Homework as DONE
 
