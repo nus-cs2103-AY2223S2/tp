@@ -31,7 +31,7 @@ public class ArgumentCounter {
 
     private void throwIfNotAllowed(ArgumentFlag flag) {
         if (!maximumCounts.containsKey(flag)) {
-            throw new ParserException("Invalid flag " + flag);
+            throw new ParserException("Invalid flag");
         }
     }
 
@@ -49,7 +49,7 @@ public class ArgumentCounter {
             currentCounts.merge(composedFlag.getActualFlag(), 1, Integer::sum);
         }
         if (count > maximumCounts.get(flag)) {
-            throw new ParserException("Number of arguments for flag " + flag + " exceeded limit");
+            throw new ParserException("Number of arguments for flag exceeded limit");
         }
     }
 
