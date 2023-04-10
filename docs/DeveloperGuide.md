@@ -217,7 +217,7 @@ Step 9. Event is added.
 
 The execution can be seen in the activity diagram given below.
 
-_Activity Diagram for a typical `add` command_
+_Activity Diagram for a typical `add` command_  
 ![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
 ### **Recur Command**
@@ -259,7 +259,7 @@ Step 10. Add event into Ez-Schedule on all dates to be recurred.
 
 The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
 
-_Activity Diagram for a typical `recur` command_
+_Activity Diagram for a typical `recur` command_  
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
 
 _Activity: Check for time clash for all recurring dates._  
@@ -303,13 +303,13 @@ Step 9. Event is edited.
 
 The execution can be seen in the activity diagram given below.
 
-_Activity Diagram for a typical `edit` command_
+_Activity Diagram for a typical `edit` command_  
 ![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### **Delete Command**
 
+_Activity Diagram for a typical `delete` command_  
 ![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
-Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
@@ -347,20 +347,44 @@ Step 9. Updates the `ObservableList` using the predicate.
 
 The execution can be seen in the activity diagram given below.
 
-_Activity Diagram for a typical `find` command_
+_Activity Diagram for a typical `find` command_  
 ![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
 
 ### **Next Command**
 
-_Activity Diagram for a typical `next` command_
+_Activity Diagram for a typical `next` command_  
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
 
 ### **Undo Command**
 
-_Activity Diagram for a typical `undo` command_
-![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
+[UndoCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/UndoCommand.java
 
-### **List Command**
+For _Undo_ command, the noteworthy classes are:
+- [`UndoCommand.java`][UndoCommand.java] - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- CommandException for attempting to execute undo when recent command is empty
+
+Given below is an example usage scenario of how the _Undo_ command executes.
+
+-- user input --  
+Step 1. User executes a valid `add` command.
+
+-- `AddCommand` --  
+Step 2. Adds the `add` command as recent command.  
+Step 3. Adds the added `Event` as recent event.
+
+-- user input --  
+Step 4. User executes `undo` command.
+
+-- `UndoCommand` --  
+Step 5. Verify that recent command is not empty.  
+Step 6. Undo the recent command (deletes the recent event).
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `undo` command_  
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
 
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
@@ -374,6 +398,7 @@ _Activity Diagram for a typical `undo` command_
 
 
 ## **Glossary**
+
 --------------------------------------------------------------------------------------------------------------------
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A task with a starting time and an ending time
