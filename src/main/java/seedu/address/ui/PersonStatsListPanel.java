@@ -84,7 +84,9 @@ public class PersonStatsListPanel extends UiPart<Region> {
                     .average()
                     .orElse(Double.NaN);
 
-            personStatsList.add(new PersonStats(person, tasksAssigned, tasksCompleted, averageScore));
+            double finalScore = round(averageScore, 1);
+
+            personStatsList.add(new PersonStats(person, tasksAssigned, tasksCompleted, finalScore));
         }
 
         return FXCollections.observableArrayList(personStatsList);
@@ -93,5 +95,10 @@ public class PersonStatsListPanel extends UiPart<Region> {
     private void updatePersonStatsList() {
         personStatsList = createPersonStatsList(logic.getFilteredPersonList(), logic.getFilteredTaskList());
         personStatsListView.setItems(personStatsList);
+    }
+
+    private static double round (double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
     }
 }
