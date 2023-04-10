@@ -7,13 +7,13 @@ title: User Guide
 * [Quick start](#quickstart)
 * [Features](#features)
     1. [Viewing help](#help)
-    2. [Add student](#add)
-    3. [Copy student](#copy)
-    4. [Delete student](#delete)
-    5. [List student](#list)
+    2. [Add Student](#add)
+    3. [Copy Student](#copy)
+    4. [Delete Student](#delete)
+    5. [List Students](#list)
     6. [Edit Student](#edit)
     7. [Find Student](#find)
-    8. [Filter student](#filter)
+    8. [Filter Students](#filter)
     9. [Add a lesson](#learn)
     10. [Remove a lesson](#unlearn)
     11. [Mark attendence](#mark)
@@ -21,7 +21,8 @@ title: User Guide
     13. [Query attendence](#query)
     14. [Local save](#save)
     15. [Local load](#load)
-    16. [Exit program](#exit)
+    16. [Clear Students](#clear)
+    17. [Exit program](#exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
@@ -138,7 +139,7 @@ Examples:
 * ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd student in the managing system and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
 #### [Back to top](#table-of-content) 
-### Deleting student : `delete`<a name="delete"></a>
+### Delete Student : `delete`<a name="delete"></a>
 
 Removes a student from the managing system.
 
@@ -150,7 +151,7 @@ Examples:
 * ```delete 1``` deletes the first student displayed in the system
 
 #### [Back to top](#table-of-content) 
-### Listing students : `list`<a name="list"></a>
+### List Students : `list`<a name="list"></a>
 
 Lists students in the managing system.
 
@@ -161,7 +162,7 @@ Examples:
 * ```list``` 
 
 #### [Back to top](#table-of-content) 
-### Editing a student : `edit` <a name="edit"></a>
+### Edit Student : `edit` <a name="edit"></a>
 
 Edits an existing student in the managing system.
 
@@ -313,7 +314,7 @@ Done automatically.
 
 
 #### [Back to top](#table-of-content) 
-### Clearing all entries : `clear`
+### Clear students : `clear` <a name="clear"></a>
 
 Clears all entries from the managing system.  
 
