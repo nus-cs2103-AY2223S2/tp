@@ -123,17 +123,17 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the URL in web browser.
+     * Opens the user guide in the user's web browser.
      */
     @FXML
     private void openUserGuide() {
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
-                logger.fine("Opened user guide in web browser.");
+                logger.info("Opened user guide in web browser.");
             }
         } catch (IOException | URISyntaxException e) {
-            logger.fine("Failed to open user guide in web browser.");
+            logger.info("Error: could not open user guide.");
         }
     }
 }
