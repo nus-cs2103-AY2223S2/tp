@@ -18,6 +18,8 @@ managers to efficiently delegate tasks in an organised manner.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Getting started
 
 #### 1.1 Accessing the app
@@ -59,8 +61,9 @@ Below are the prefixes and parameters we use in commands.
 - After entering a prefix and its parameter, there should be a space before the next prefix and its parameter.
   (e.g `addp n/Peterp/95748483e/pter@gmail.coma/Sims Drive 6` is an invalid command format. The valid command format should be `addp n/Peter p/95748483 e/pter@gmail.com a/Sims Drive 6`)
 
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 2. Tutorial
 
@@ -68,9 +71,7 @@ Welcome to OfficeConnect!
 
 This section is designed specifically for newcomers who are looking to get started with our platform. 
 Here, you'll find all the essential information you need to start using OfficeConnect and make the most out of 
-its features.
-
-So without any further ado, let's dive in!
+its features. So without any further ado, let's dive in!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 OfficeConnect comes with preloaded data that aims to help you get familiar with the platform when you first launch it.
@@ -84,7 +85,7 @@ added.
 ![add_whitebackground.jpg](images%2Fproduct-screenshots%2Fadd_whitebackground.jpg)
 <p align="center">
 <em>New contact added!</em>
-</p><br/>
+</p>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 With OfficeConnect, you can experience a real-time search functionality where the search results update dynamically
@@ -96,28 +97,34 @@ should be able to see the list being updated as such:
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
 <p align="center">
 <em>Alice found not slacking;)</em>
-</p><br/>
+</p>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may notice that there are progress bars of different 
    <span style="color:red">**c**</span><span style="color:orange">**o**</span><span style="color:yellow">**l**</span><span style="color:green">**o**</span><span style="color:blue">**r**</span><span style="color:violet">**s**</span> within each task, as well as circles besides each person with a percentage(%) written below it. Let's look at what these colors and circle mean! Let's see an example with all the different types of progress bars below. <br>
    ![image](https://user-images.githubusercontent.com/99934242/230615373-609f3ec9-fca3-48e9-bbb2-ce1c8d7b048f.png)
 <br>
-<br>The <span style="color:green">**green**</span> colored progress bar indicates that the task is done, and before the deadline.
-<br>The <span style="color:red">**red**</span> colored progress bar indicates that the task is not done, and that the deadline has passed.
-<br>The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is not done, but the deadline has not passed.
-<br> The circles indicate the percentage of assigned tasks a person has completed. In the example above, Alice Pauline has completed 50% of the tasks assigned to her! Meanwhile, those who either have no tasks assigned or have completed all tasks assigned will have a green circle with the word "done" below!
+<br>- The <span style="color:green">**green**</span> colored progress bar indicates that the task is done, and before the deadline.
+<br>- The <span style="color:red">**red**</span> colored progress bar indicates that the task is not done, and that the deadline has passed.
+<br>- The <span style="color:blue">**blue**</span> colored progress bar indicates that the task is not done, but the deadline has not passed.
+<br>- The circles indicate the percentage of assigned tasks a person has completed. In the example above, Alice Pauline has completed 50% of the tasks assigned to her! Meanwhile, those who either have no tasks assigned or have completed all tasks assigned will have a green circle with the word "done" below!
 </div>
+
+<div style="page-break-after: always;"></div>
 
 If you find yourself forgetting some commands over time, there's no need to worry. Memory leak happens to the best of 
 us. You can simply access the help menu using a simple command: `help` to refresh your memory or even 
 learn more about new features. 
 ![help_whitebackground.jpg](images%2Fproduct-screenshots%2Fhelp_whitebackground.jpg)
 <p align="center">
-<em>Help sent</em>
-</p><br/>
+<em>Help is on the way!</em>
+</p>
 
 ----------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -168,7 +175,9 @@ Format: `quickstart`
 ![quickstart_whitebackground.jpg](images%2Fproduct-screenshots%2Fquickstart_whitebackground.jpg)
 <p align="center">
 <em>Virtual guide to app mastery</em>
-</p><br/>
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.2 Viewing help : `help`
 
@@ -185,7 +194,7 @@ Format: `help`
 ![help_whitebackground.jpg](images%2Fproduct-screenshots%2Fhelp_whitebackground.jpg)
 <p align="center">
 <em>Assistance at your fingertips</em>
-</p><br/>
+</p>
 
 ### 3.2 Person Commands
 
@@ -259,7 +268,7 @@ Examples:
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
 <p align="center">
 <em>Find Alice's assigned tasks</em>
-</p><br/>
+</p>
 
 ### 3.3 Task Commands
 
@@ -340,6 +349,8 @@ Format: `mark INDEX`
 Examples:
 - `mark 2` marks task 2 as completed.
 
+<div style="page-break-after: always;"></div>
+
 #### 3.3.7 Unmarking a Task: `unmark`
 
 Unmarks a task in OfficeConnect
@@ -377,6 +388,8 @@ Format: `unassign ti/INDEX pi/INDEX`
 
 Examples:
 - `unassign ti/ 2 pi/ 3` unassigns task 2 from person 3.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Filter Commands
 
@@ -419,6 +432,8 @@ assigned to one or more persons.
 
 Format: `viewassignedall`
 
+<div style="page-break-after: always;"></div>
+
 #### 3.5.7 View Unassigned: `viewunassignedall`
 
 Displays a list of all persons who have not been assigned to any task and a list of all tasks that have not been 
@@ -460,6 +475,7 @@ Format: `ti INDEX`
 Example:
 - `ti 1` displays task 1 and all persons assigned to that task.
 
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Others
 
@@ -496,7 +512,7 @@ Sets the overall theme of OfficeConnect to light mode. This mode is chosen as th
 ![startup_whitebackground.jpg](images%2Fproduct-screenshots%2Fstartup_whitebackground.jpg)
 <p align="center">
 <em>The Days</em>
-</p><br/>
+</p>
 
 #### 3.6.5  Dark theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -508,7 +524,7 @@ Sets the overall theme of OfficeConnect to dark mode.
 ![darktheme_whitebackground.jpg](images%2Fproduct-screenshots%2Fdarktheme_whitebackground.jpg)
 <p align="center">
 <em>The Nights</em>
-</p><br/>
+</p>
 
 ### 3.7 Archiving data files `[coming in v1.5]`
 
@@ -520,12 +536,16 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OfficeConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
