@@ -251,9 +251,6 @@ public class JsonAdaptedInternshipApplication {
 
 
     private InterviewDate getInterviewDate() throws IllegalValueException {
-        if (!InterviewDate.isValidInterviewDate(interviewDate)) {
-            throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
-        }
         return interviewDate == null ? null : new InterviewDate(interviewDate);
     }
 

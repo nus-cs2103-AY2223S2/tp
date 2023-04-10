@@ -13,9 +13,9 @@ Given below are my contributions to the project.
 
 * **New Features**:
     * Manage the company contact of an internship application
-      * What it does: Users are able to add, a company contact, which consists of both a phone and an email, to an internship application, and subsequently edit and remove it.
-      * Justification: This feature allows the user, an internship applicant in this case to quickly retrieve the contact details of an application, so that he can make an enquiry or ask for an update on his application status, making his/her internship application journey even easier.
-      * Highlights: The regular expression used for validating the email from the user input was updated, which was challenging in the sense that those available on the Internet were not always correct and have to be carefully modified and adapted.
+      * What it does: Users are able to add a company contact, which consists of both a phone and an email to an internship application, and subsequently edit and remove it.
+      * Justification: This feature allows the user, an internship applicant in this case to quickly retrieve the contact details of an application, so that he can make an enquiry or ask for an update on his/her application status, making his/her internship application journey even easier.
+      * Highlights: The regular expression used for validating the email from the user input was updated, which was challenging in the sense that those available on the Internet were not always correct and had to be carefully modified and adapted.
       * Credits: Some parts of the code was reused and adapted from the [AB3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org/).
     * Manage the documents of an internship application
       * What it does: Users are able to add links to documents consisting of a resume and a cover letter to an internship application, and edit and remove them afterwards.

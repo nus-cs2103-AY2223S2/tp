@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalNotes.NOTE_5;
@@ -78,5 +80,26 @@ public class FindTaskCommandTest {
 
     private ContentContainsKeywordsPredicate prepareContentPredicate(String userInput) {
         return new ContentContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    @Test
+    public void equals() {
+        FindTaskCommand findTaskOneCommand = new FindTaskCommand(prepareTitlePredicate("one"),
+                prepareContentPredicate("one"));
+        FindTaskCommand findTaskTwoCommand = new FindTaskCommand(prepareTitlePredicate("one"),
+                prepareContentPredicate("two"));
+        FindTaskCommand findTaskThreeCommand = new FindTaskCommand(prepareTitlePredicate("three"),
+                prepareContentPredicate("one"));
+        FindTaskCommand findTaskSameCommand = new FindTaskCommand(prepareTitlePredicate("one"),
+                prepareContentPredicate("one"));
+
+        // same object -> returns true
+        assertTrue(findTaskOneCommand.equals(findTaskOneCommand));
+
+        assertFalse(findTaskOneCommand.equals(findTaskTwoCommand));
+
+        assertFalse(findTaskThreeCommand.equals(findTaskOneCommand));
+
+        assertTrue(findTaskOneCommand.equals(findTaskSameCommand));
     }
 }

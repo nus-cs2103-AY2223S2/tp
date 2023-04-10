@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.application.InternshipApplicationAttribute;
 
+// @@author SE-EDU
+// with minor modifications
 /**
  * Represents a company's email in the internship application.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -30,6 +32,7 @@ public class Email extends InternshipApplicationAttribute {
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
 
+    //Adapted from https://owasp.org/www-community/OWASP_Validation_Regex_Repository
     private static final String VALIDATION_REGEX =
             LOCAL_PART_REGEX + "@" + "(" + DOMAIN_PART_REGEX + "\\.)+[a-zA-Z]{2,7}$";
 

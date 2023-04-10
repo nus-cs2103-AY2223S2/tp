@@ -53,7 +53,7 @@ public class ModelManager implements Model {
         sortedFilteredInternships = new SortedList<>(filteredInternships);
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
-        this.reminder = new Reminder(filteredInternships);
+        this.reminder = new Reminder(this.addressBook.getInternshipList());
         cachedInternshipList = new ArrayList<>();
         updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
     }

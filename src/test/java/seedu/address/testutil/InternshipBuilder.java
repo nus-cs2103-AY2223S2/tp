@@ -144,6 +144,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code ProgrammingLanguage} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withProgrammingLanguage(ProgrammingLanguage language) {
+        this.programmingLanguages.add(language);
+        return this;
+    }
+
+    /**
      * Returns the {@code InternshipApplication} with configured attributes.
      */
     public InternshipApplication build() {
