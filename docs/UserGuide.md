@@ -13,30 +13,65 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ## Table of Contents
 
-- [User Guide Information](#user-guide-information)
-  - [Purpose of this guide](#purpose-of-this-guide)
-  - [How to use this guide](#how-to-use-this-guide)
-  - [Legends](#legends)
-- [Quick Start](#quick-start)
-- [Introduction to GoodMatch](#introduction-to-goodmatch)
-- [Features](#features)
-  - [Viewing help: `help`](#viewing-help--help)
-  - [Viewing all job listings: `view`](#viewing-all-job-listings--view)
-  - [Adding a job listing: `add`](#adding-a-job-listing--add)
-  - [Editing a job listing: `edit`](#editing-a-job-listing--edit)
-  - [Deleting a job listing: `delete`](#deleting-a-job-listing--delete)
-  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing--addapp)
-  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing--editapp)
-  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing--delapp)
-  - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
-  - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-  - [Locating job listings by title: `find`](#locating-job-listings-by-title--find)
-  - [Sorting job listings: `sort`](#sorting-job-listings--sort)
-  - [Undo latest command: `undo`](#undo-latest-command--undo)
-  - [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
-  - [Tagging a job listing `[coming in v2.0]`](#tagging-a-job-listing-coming-soon)
-- [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [GoodMatch](#goodmatch)
+  - [**Overview**](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [User Guide Information](#user-guide-information)
+    - [Purpose of this guide](#purpose-of-this-guide)
+    - [How to use this guide](#how-to-use-this-guide)
+    - [Legends](#legends)
+  - [**Quick Start**](#quick-start)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents-)
+  - [Introduction to GoodMatch](#introduction-to-goodmatch)
+    - [Summary](#summary)
+    - [Listing](#listing)
+      - [Title](#title)
+      - [Description](#description)
+      - [Applicant List](#applicant-list)
+      - [Platforms released](#platforms-released)
+    - [Applicant](#applicant)
+      - [ID](#id)
+    - [Platform](#platform)
+    - [Commands](#commands)
+  - [**Features**](#features)
+    - [Viewing help: `help`](#viewing-help-help)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--1)
+    - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--2)
+    - [Adding a job listing: `add`](#adding-a-job-listing-add)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--3)
+    - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--4)
+    - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--5)
+    - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--6)
+    - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--7)
+    - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--8)
+    - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--9)
+    - [Delete a platform from a listing: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--10)
+    - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--11)
+    - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--12)
+    - [Undo latest command: `undo`](#undo-latest-command-undo)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--13)
+    - [Saving the data](#saving-the-data)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--14)
+    - [Editing the data file](#editing-the-data-file)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--15)
+    - [Filtering job listings \[coming soon!\]](#filtering-job-listings-coming-soon)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--16)
+    - [Tagging a job listing \[coming soon\]](#tagging-a-job-listing-coming-soon)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--17)
+  - [**FAQ**](#faq)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--18)
+  - [**Command summary**](#command-summary)
+          - [_\< Back to Table of Contents \>_](#-back-to-table-of-contents--19)
 
 ---
 
@@ -49,7 +84,7 @@ Welcome to the user guide for GoodMatch. This guide will help you understand how
 
 ### How to use this guide
 
-To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
+To make the most of this guide, start by reading it from beginning to end. If you are an experienced user, you can skip to the [Features](#features) section for a detailed guide. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
 Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
 
@@ -107,19 +142,23 @@ A job listing is the basic building block of GoodMatch. It helps managers to kee
 What the job listing is called. It serves as an identifier for a job listing.<br> Some constraints that a job title include:
 - It is **compulsory** in a job listing.
 - Two job listings with the same title cannot exist in GoodMatch at the same time (**no duplicates**).
-- Titles must only contain alphanumeric characters.
+- Titles must contain at least one alphanumeric character.
+- Titles should not exceed 100 characters.
 
 #### Description
 A simple description of what the job entails.
 - It is **compulsory** in a job listing.
+- Descriptions must contain at least one alphanumeric character.
+- Descriptions should not exceed 500 characters.
 
-#### Applicants List
+#### Applicant List
 A list of people who applied for the job.
 - It is possible for a job listing to have no applicants.
 
 #### Platforms released
 A list of job platforms on which the job listing has been publicized.
 - It is possible for a job listing to have no platforms released.
+- Platform names in a job listing should be unique
 
 ### Applicant
 An applicant refers to someone who has applied for a job listing. Applicants are displayed according to their names and are specific to each job listing.
@@ -128,17 +167,18 @@ An applicant refers to someone who has applied for a job listing. Applicants are
 - Applicants with identical names are allowed in the same job listing.
 - Can be managed individually or as a whole list in each job listing.
 
-#### IDs
+#### ID
 In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing. 
+
 <br><br> 
 
 > If the listing has only one applicant named *Tom*, the applicant will be displayed as `Tom`.
 
-> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#6969`
+> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#2103`
 
 
 ### Platform
-A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are Linkedin, Indeed, etc.
+A platform refers to a site or avenue in which a job listing has been publicized. Some of the more well known platforms are LinkedIn, Indeed, etc.
 - A platform must have a name.
 - A platform's name must contain only alphanumeric characters.
 - Platforms in the same listing cannot have identical names (**no duplicates**).
@@ -153,19 +193,21 @@ There are various commands available in GoodMatch which will allow users to mana
 ## **Features**
 Here is a list of GM features, click on them to jump to the section! Each section describes a command that you can execute in GoodMatch to keep track of your job listings.
 
-1.  [`help`](#viewing-help--help)
-2.  [`view`](#viewing-all-job-listings--view)
-3.  [`add`](#adding-a-job-listing--add)
-4.  [`edit`](#editing-a-job-listing--edit)
-5.  [`delete`](#deleting-a-job-listing--delete)
-6.  [`add_app`](#adding-an-applicant-to-listing--addapp)
-7.  [`edit_app`](#editing-an-applicant-of-a-listing--editapp)
-8.  [`del_app`](#deleting-an-applicant-from-a-listing--delapp)
-9.  [`find`](#locating-job-listings-by-title--find)
-10.  [`sort`](#sorting-job-listings--sort)
-11.  [`undo`](#undo-latest-command--undo)
-12.  [Saving data](#saving-the-data)
-13.  [Editing data file](#editing-the-data-file)
+1.  [`help`](#viewing-help-help)
+2.  [`view`](#viewing-all-job-listings-view)
+3.  [`add`](#adding-a-job-listing-add)
+4.  [`edit`](#editing-a-job-listing-edit)
+5.  [`delete`](#deleting-a-job-listing-delete)
+6.  [`add_app`](#adding-an-applicant-to-listing-add_app)
+7.  [`edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+8.  [`del_app`](#deleting-an-applicant-from-a-listing-del_app)
+9.  [`add_plat`](#adding-a-platform-add_plat)
+10.  [`del_plat`](#delete-a-platform-from-a-listing-del_plat)
+11.  [`find`](#locating-job-listings-by-title-find)
+12.  [`sort`](#sorting-job-listings-sort)
+13.  [`undo`](#undo-latest-command-undo)
+14.  [Saving data](#saving-the-data)
+15.  [Editing data file](#editing-the-data-file)
 
 
 <div markdown="block" class="alert alert-info">
@@ -197,7 +239,8 @@ Here is a list of GM features, click on them to jump to the section! Each sectio
 
 Shows a message explaining how to access the help page.
 
-![Help Message](./images/helpMessage.png)
+
+![Help Message](./images/HelpMessage.png)
 
 ✏️ **Format:** `help`
 
@@ -245,13 +288,14 @@ Adds a listing to the listing book.
 - `add t/NodeFlair SWE Intern d/Fullstack Experience`
 
 🎯 **Expected Output:**
-You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+You should see a confirmation message showing the job title, description, applicants (if any) and platforms (if any). An example is shown below:
 
 ```ignorelang
 Added new listing:
 Job Title: Chicken Rice Uncle
 Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
+Platforms: JobStreet
 ```
 
 ❌ **Possible Errors:**
@@ -259,10 +303,10 @@ Applicants: Nicholas, Tom, Adele
 If the above format is not followed, an error message will be displayed.
 
 ```ignorelang
-Invalid Command Format!
+Invalid command format!
 add: Adds a listing to the listing book.
 Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORMS]...
-Example: add t/Cool job title d/Informative job description a/John a/Sam
+Example: add t/Cool job title d/Informative job description a/John a/Sam p/LinkedIn
 ```
 
 If a listing with the same title exists, the following error message will be displayed.
@@ -301,15 +345,15 @@ Edits the details of a job listing.
 
 📚 **Examples:**
 
-- `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson`
+- `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson p/Glints`
 - `edit 2 t/Videographer d/Films videos`
 - `edit 1 a/` (clears all applicants from the listing)
 - `edit 3 p/` (clears all platforms from the listing)
-- `edit 1 t/Photographer p/`
+- `edit 1 t/Photographer p/Glints`
 
 🎯 **Expected Output:**
 
-You will see a confirmation message showing the edited job title, description and applicants (if any).
+You will see a confirmation message showing the edited job title, description, applicants (if any) and platforms (if any).
 An example is shown below:
 
 ```ignorelang
@@ -317,6 +361,7 @@ Edited listing:
 Job Title: Noodle seller
 Job Description: Cooks tasty noodles
 Applicants: Johnson
+Platforms: Glints
 ```
 
 ❌ **Possible Errors:**
@@ -336,7 +381,7 @@ Example: edit 1 t/Cool job title a/John a/Sam p/LinkedIn
 The listing index provided exceeded the number of listings shown!
 ```
 
-If there is an attempt to edit the title to an existing title, the following error message will be shown.
+If there is an attempt to edit the title to an existing title in the listing book, the following error message will be shown.
 
 ```ignorelang
 A listing with the given title already exists!
@@ -369,6 +414,7 @@ Deleted listing:
 Job Title: Chicken farmer
 Job Description: farms chickens
 Applicants: Tommy, Connor
+Platforms: Glints
 ```
 
 ❌ **Possible Errors:**
@@ -405,7 +451,7 @@ Adds an applicant to a specified listing.
 - `add_app 1 a/Tom`
 
 🎯 **Expected Output:**
-You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
+You should see a confirmation message showing the added applicant and the job title. An example is shown below:
 
 ```ignorelang
 Applicant Tom added to the listing Computer Science Intern
@@ -446,8 +492,7 @@ Edits the name of an applicant in a specified listing.
 
 🎯 **Expected Output:**
 
-You will see a confirmation message showing the edited job title, description and applicants (if any).
-An example is shown below:
+You will see a confirmation message showing the edited applicant and the job title.
 
 ```ignorelang
 Applicant: Tom#1334 has been edited to Johnson in Computer Science Intern
@@ -499,7 +544,7 @@ Deletes an applicant from a specified listing.
 
 🎯 **Expected Output:**
 
-A confirmation message will show, along with the details of the listing. An example message is shown below:
+A confirmation message will show, along with the details of the deleted applicant. An example message is shown below:
 
 ```ignorelang
 Applicant: Tom has been deleted from Computer Science Intern!
@@ -553,14 +598,14 @@ Adds a new platform to the specified job listing.
 - The command only adds one platform at a time. Should there be more than one platform per command then only the latest platform will be taken into consideration. If the lastest platform provided is invalid, an error will occur even if the rest of the provided platforms are valid.
 
 📚 **Examples:**
-- `add_plat 1 p/linkedin`
-- `add_plat 3 p/indeed`
-- `add_plat 2 p/glints p/jobstreet` (only "jobstreet" will be added)
+- `add_plat 1 p/LinkedIn`
+- `add_plat 3 p/Indeed`
+- `add_plat 2 p/Glints p/jobstreet` (only "jobstreet" will be added)
 
 🎯 **Expected Output:**
 A confirmation message showing the platform as well as the title of the listing that it is added to will be shown. An example of the message is shown below:
 ```ignorelang
-Platform linkedin added to listing Computer Science Intern
+Platform LinkedIn added to listing Computer Science Intern
 ```
 
 ❌ **Possible Errors:**
@@ -577,7 +622,7 @@ This listing already contains the provided platform.
 
 If the platform name provided is invalid, the following error message will show:
 ```ignorelang
-Names should only contain alphanumeric characters and spaces, and it should not be blank.
+Platforms should only contain alphanumeric characters and spaces, and it should not be blank.
 ```
 
 If there are any other deviations from the expected format of the command, there will be an error message shown along with the correct usage of the command:
@@ -606,13 +651,13 @@ Deletes a platform from a specified job listing.
 
 📚 **Examples:**
 
-- `del_plat 1 p/linkedin`
-- `del_plat 2 p/linkedin p/glints` - Only "glints" will be deleted
+- `del_plat 1 p/LinkedIn`
+- `del_plat 2 p/LinkedIn p/Glints` - Only "Glints" will be deleted
 
 🎯 **Expected Output:**
 A confirmation message showing the deleted platform and the listing it was deleted from will be displayed, such as the one shown below:
 ```ignorelang
-Platform: glints has been deleted from Computer Science Intern!
+Platform: Glints has been deleted from Computer Science Intern!
 ```
 
 ❌ **Possible Errors:**
@@ -624,7 +669,7 @@ The listing index provided exceeded the number of listings shown!
 
 If the platform provided does not exist in the specified listing, an error message such as the one below will show:
 ```ignorelang
-Platform linkedin cannot be found in Computer Science Intern.
+Platform LinkedIn cannot be found in Computer Science Intern.
 ```
 
 If there are other deviations from the expected command format, an error message will be displayed along with the expected usage of the command:
@@ -815,13 +860,13 @@ Add tags to a job listing for easy reference.
 | **help**     | `help`                                                                                                                                                  |
 | **view**     | `view`                                                                                                                                                  |
 | **add**      | `add t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORM]...` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom a/Adele p/JobStreet` |
-| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/`               |
+| **edit**     | `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles a/Mary p/LinkedIn`               |
 | **delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                     |
 | **add_app**  | `add_app INDEX a/APPLICANT`<br> e.g.,`add_app 1 a/Tom`                                                                                                  |
 | **edit_app** | `edit_app INDEX id/APPLICANT a/APPLICANT`<br> e.g.,`edit_app 1 id/Tom a/Johnson`, `edit_app 2 id/Tom#1334 a/Johnson `                                   |
 | **del_app**  | `del_app INDEX id/APPLICANT`<br> e.g.,`del_app 1 id/Tom`, `del_app 2 id/Tom#1334`                                                                       |
-| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/linkedin`                                                                                            |
-| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/glints`                                                                                             |  
+| **add_plat** | `add_plat INDEX p/PLATFORM`<br> e.g.,`add_plat 1 p/LinkedIn`                                                                                            |
+| **del_plat**  | `del_plat INDEX p/PLATFORM`<br> e.g.,`del_plat 1 p/Glints`                                                                                             |  
 | **find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                                          |
 | **sort**     | `sort f/[FIELD]`<br> e.g., `sort f/title`, `sort f/description`, `sort f/applicants`                                                                    |
 | **undo**     | `undo`                                                                              |
@@ -829,3 +874,4 @@ Add tags to a job listing for easy reference.
 
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
