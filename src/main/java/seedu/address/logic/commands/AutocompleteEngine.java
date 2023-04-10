@@ -251,7 +251,7 @@ public class AutocompleteEngine {
     private static void validateIndex(List<Prefix> argPrefixes, List<String> words) throws ParseException {
         long numOfIndexRequired = argPrefixes.stream().filter(INDEX_PLACEHOLDER::equals).count();
         boolean areAllValidIndexes = words.stream().limit(numOfIndexRequired)
-                .allMatch(word -> word.matches("\\d+"));
+                .allMatch(word -> word.matches("\\d+") && !word.matches("0+"));
 
         if (!areAllValidIndexes) {
             throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
