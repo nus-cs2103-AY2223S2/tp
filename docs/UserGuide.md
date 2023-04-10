@@ -55,6 +55,8 @@ You can use the interactive [table of contents](#table-of-contents) to navigate 
 
 ### Legends
 
+Here is a breakdown of the different symbols we will use throughout this guide.
+
 ✏️ **Format**: Shows you what you should type in order to use a command.
 
 ℹ️ **Notes**: You can find additional information about the command or feature here.
@@ -74,7 +76,9 @@ You can use the interactive [table of contents](#table-of-contents) to navigate 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.4).
 3. Copy the file to the folder you want to use as the _home folder_ for your GoodMatch.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.</br>A GUI similar to the one below should appear in a few seconds.</br>
+4. Open a command terminal, `cd` (change directory) into the folder (a directory is the same as a folder) you put the jar file in. 
+   1. For example, if your file is in the `Downloads` folder, run `cd ~/Downloads` this changes your directory to the `Downloads` folder on your computer.
+5. After you navigate to the folder that contains `goodmatch.jar`, use the `java -jar goodmatch.jar` command to run the application.</br>A GUI similar to the one below should appear in a few seconds.</br>
 <p>
   <img class="diagram" src="images/Ui.png" />
   <em>Example of GUI</em>
