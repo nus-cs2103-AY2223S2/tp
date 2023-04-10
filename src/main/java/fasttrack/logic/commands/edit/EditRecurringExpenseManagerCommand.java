@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import fasttrack.commons.core.Messages;
 import fasttrack.commons.core.index.Index;
@@ -143,27 +144,11 @@ public class EditRecurringExpenseManagerCommand implements EditCommand {
     @Override
     public boolean equals(Object other) {
         EditRecurringExpenseManagerCommand otherTypeCasted = (EditRecurringExpenseManagerCommand) other;
-        boolean checkName = (newExpenseName != null && otherTypeCasted.newExpenseName != null);
-        boolean checkEitherName = ((newExpenseName == null) && (otherTypeCasted.newExpenseName != null)
-                || (newExpenseName != null) && (otherTypeCasted.newExpenseName == null));
-        boolean checkAmt = (newExpenseAmount != null && otherTypeCasted.newExpenseAmount != null);
-        boolean checkEitherAmt = ((newExpenseAmount == null) && (otherTypeCasted.newExpenseAmount != null)
-                || (newExpenseAmount != null) && (otherTypeCasted.newExpenseAmount == null));
-        boolean checkDate = (newExpenseEndDate != null && otherTypeCasted.newExpenseEndDate != null);
-        boolean checkEitherDate = ((newExpenseEndDate == null) && (otherTypeCasted.newExpenseEndDate != null)
-                || (newExpenseEndDate != null) && (otherTypeCasted.newExpenseEndDate == null));
-        boolean checkCategory = (newExpenseCategoryInString != null
-                && otherTypeCasted.newExpenseCategoryInString != null);
-        boolean checkEitherCategory = ((newExpenseName == null) && (otherTypeCasted.newExpenseCategoryInString != null)
-                || (newExpenseName != null) && (otherTypeCasted.newExpenseCategoryInString == null));
-
-        return other == this // short circuit if same object
-                || (other instanceof EditRecurringExpenseManagerCommand // instanceof handles nulls
-                && (targetIndex.equals(otherTypeCasted.targetIndex))
-                && (checkName ? newExpenseName.equals(otherTypeCasted.newExpenseName) : !checkEitherName)
-                && (checkAmt ? newExpenseAmount.equals(otherTypeCasted.newExpenseAmount) : !checkEitherAmt)
-                && (checkDate ? newExpenseEndDate.equals(otherTypeCasted.newExpenseEndDate) : !checkEitherDate)
-                && (checkCategory ? newExpenseCategoryInString.equals(otherTypeCasted.newExpenseCategoryInString)
-                : !checkEitherCategory));
+        return targetIndex.equals(otherTypeCasted.targetIndex)
+                && (Objects.equals(newExpenseName, otherTypeCasted.newExpenseName))
+                && (Objects.equals(newExpenseAmount, otherTypeCasted.newExpenseAmount))
+                && (Objects.equals(newExpenseEndDate, otherTypeCasted.newExpenseEndDate))
+                && (Objects.equals(newExpenseCategoryInString, otherTypeCasted.newExpenseCategoryInString))
+                && (Objects.equals(newFrequencyInString, otherTypeCasted.newFrequencyInString));
     }
 }
