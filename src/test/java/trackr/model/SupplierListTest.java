@@ -23,6 +23,7 @@ import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 
+//@@author arkarsg-reused
 public class SupplierListTest {
 
     private final SupplierList supplierList = new SupplierList();
@@ -84,6 +85,7 @@ public class SupplierListTest {
         assertThrows(UnsupportedOperationException.class, () -> supplierList.getItemList().remove(0));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void equals() {
         supplierList.addItem(ALICE);
@@ -101,6 +103,7 @@ public class SupplierListTest {
         assertFalse(supplierList.equals(differentSupplierList)); //different supplier list
         assertFalse(supplierList.equals(1)); //different objects
     }
+    //@@author
 
     /**
      * A stub ReadOnlySupplierList whose suppliers list can violate interface constraints.

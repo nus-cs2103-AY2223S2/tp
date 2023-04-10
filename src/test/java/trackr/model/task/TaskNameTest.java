@@ -7,6 +7,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author hmuumyatmoe-reused
 public class TaskNameTest {
 
     @Test
@@ -20,6 +21,7 @@ public class TaskNameTest {
         assertThrows(IllegalArgumentException.class, () -> new TaskName(invalidTaskName));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void isValidTaskName() {
         // null task name
@@ -38,7 +40,9 @@ public class TaskNameTest {
         assertTrue(TaskName.isValidName("Buy Eggs")); // with capital letters
         assertTrue(TaskName.isValidName("Buy 10kg of Flour and 5kg of Eggs and 2kg of sugar")); // long names
     }
+    //@@author
 
+    //@@author hmuumyatmoe-reused
     @Test
     public void toStringTest() {
         String expectedTaskName = "Sort Inventory";

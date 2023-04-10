@@ -25,6 +25,7 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void equals() {
         Tag tag = new Tag("first");

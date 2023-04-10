@@ -21,6 +21,7 @@ import trackr.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
+//@@author liumc-sg-reused
 public class ListSupplierCommandTest {
 
     private Model model;
