@@ -11,8 +11,6 @@ If you're interested in contributing to the Vimification project, this Developer
 
 ---
 
----
-
 ## **Table of Contents**
 
 - [Acknowledgements](#acknowledgements)

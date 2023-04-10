@@ -219,7 +219,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public VBox getRightComponent() {
-        return this.rightComponent;
+        return rightComponent;
     }
 
     public void setRightComponent(VBox rightComponent) {
@@ -227,7 +227,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public HBox getBottomComponent() {
-        return this.bottomComponent;
+        return bottomComponent;
     }
 
     public void setBottomComponent(HBox bottomComponent) {

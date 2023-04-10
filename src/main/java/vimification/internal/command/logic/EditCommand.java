@@ -62,7 +62,8 @@ public class EditCommand extends UndoableLogicCommand {
         });
         taskList.set(actualIndex, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()),
+                true);
     }
 
     /**

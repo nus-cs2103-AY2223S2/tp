@@ -37,4 +37,9 @@ public class WelcomePanel extends UiPart<VBox> {
         webView.prefHeightProperty().bind(this.getRoot().heightProperty());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof HelpManualPanel;
+    }
+
 }

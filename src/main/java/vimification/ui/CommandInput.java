@@ -84,7 +84,23 @@ public class CommandInput extends UiPart<HBox> {
         // System.out.println("Your command is " + input);
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
+        refreshRightComponent(result);
         returnFocusToTaskListPanel();
+    }
+
+    private void refreshRightComponent(CommandResult result) {
+        boolean isHelpManualPanelLoaded = mainScreen.getRightComponent().getChildren()
+                .contains(new HelpManualPanel().getRoot());
+
+        boolean isWelcomePanelLoaded = mainScreen.getRightComponent().getChildren()
+                .contains(new WelcomePanel().getRoot());
+
+        // Only refresh the TaskDetailPanel
+        boolean shouldRefreshUi =
+                result.getShouldRefreshUi() && !(isHelpManualPanelLoaded || isWelcomePanelLoaded);
+        if (shouldRefreshUi) {
+            mainScreen.getTaskListPanel().loadTaskDetailPanel();
+        }
     }
 
     /**
