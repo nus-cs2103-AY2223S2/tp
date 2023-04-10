@@ -34,6 +34,7 @@ Given below are my contributions to the project.
 
 * **Contributions to the team-based tasks:**
   * Refactored tags to variants as a follow up to Markus' overall refactoring.
+  * 
 
 
 * **Review/mentoring contributions:**

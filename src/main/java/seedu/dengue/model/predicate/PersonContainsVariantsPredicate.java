@@ -25,9 +25,6 @@ public class PersonContainsVariantsPredicate extends PredicateUtil<Person> {
     }
     @Override
     public boolean test(Person person) {
-        if (person.getVariants().containsAll(variants)) {
-            return true;
-        }
-        return false;
+        return person.getVariants().containsAll(variants);
     }
 }

@@ -61,9 +61,8 @@ public class CsvUtilTest {
     @Test
     public void testReadFromCsvFile_noExceptionThrown() throws DataConversionException {
         Optional<List<CsvTestClass>> optionalList = readCsvFile(TEST_DATA_FILE);
-        if (!optionalList.isPresent()) {
+        if (optionalList.isEmpty()) {
             assert false;
-            return;
         }
         assertArrayEquals(optionalList.get().toArray(), Arrays.stream(CsvTestClass.TEST_ARRAY).toArray());
     }

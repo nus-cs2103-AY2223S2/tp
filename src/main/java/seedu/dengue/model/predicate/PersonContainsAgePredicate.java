@@ -26,10 +26,7 @@ public class PersonContainsAgePredicate extends PredicateUtil<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (age.isPresent()) {
-            return person.getAge().equals(age.get());
-        } else {
-            return true;
-        }
+        return age.map(value -> person.getAge().equals(value))
+                .orElse(true);
     }
 }

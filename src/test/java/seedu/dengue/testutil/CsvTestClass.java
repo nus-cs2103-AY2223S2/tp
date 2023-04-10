@@ -23,8 +23,8 @@ public class CsvTestClass {
 
     /**
      * Creates a Csv test class
-     * @param columnOne
-     * @param columnTwo
+     * @param columnOne Value in the first column.
+     * @param columnTwo Value in the second column.
      */
     public CsvTestClass(String columnOne, String columnTwo) {
         this.columnOne = columnOne;
@@ -97,10 +97,7 @@ public class CsvTestClass {
         if (!(obj instanceof CsvTestClass)) {
             return false;
         }
-        if (columnOne.equals(((CsvTestClass) obj).getColumnOne())
-                && columnTwo.equals(((CsvTestClass) obj).getColumnTwo())) {
-            return true;
-        }
-        return false;
+        return columnOne.equals(((CsvTestClass) obj).getColumnOne())
+                && columnTwo.equals(((CsvTestClass) obj).getColumnTwo());
     }
 }
