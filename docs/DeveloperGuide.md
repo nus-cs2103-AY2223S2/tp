@@ -998,6 +998,11 @@ Therefore, we plan to improve on this by only allowing users to key in deadlines
 Since both `OrderDeadline` and `TaskDeadline` extends the common class `Deadline` and `Deadline::isValidDeadline` is used to check the validity of both parameters,
 we plan to simply tweak the implementation of `Deadline::isValidDeadline` for stricter checks on deadlines entered.
 
+**6.** Fix error in `find_order`.
+Currently, `find_order` only works on the last field that is typed into the command. Hence, it is ignoring the other fields.
+We plan to improve this feature to match `find_task` command where it would match the multiple fields if they are present in an `AND` format.
+Specifically, `find_order q/2 d/01/01/2024` would list all orders that have quantity of `2` and a deadline of `01/01/2024`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4.8 Instructions for manual testing
