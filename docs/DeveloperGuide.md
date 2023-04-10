@@ -614,6 +614,78 @@ attribute in the flight class and update
 it directly with every change. However, this approach had a few limitations as
 discussed in the previous section.
 
+<div style="page-break-after: always;"></div>
+
+### 4. Linking XYZ to a location
+
+**Rationale**
+
+Since there are associations between flight-related resources and locations, we use this command 
+for users to capture such associations. For example, a crew might be staying at some places, then the
+user should be able to link a crew to a few places. 
+
+**How is this feature implemented?**
+
+This linking feature is implemented in a similar way to the feature that links
+flight-related resources to flights. 
+
+To be more concrete, we will take linking a plane to a location as an example. Linking other entities, 
+such as crews, pilots, and planes, to locations, are very similar to linking a plane to a location.
+
+This feature is enabled by the following classes in particular:
+
+- `LinkPlaneToLocationCommand` - The command that links a plane to a location
+- `PlaneLocationLinkCommandFactory` - The factory class that creates an {@code
+  LinkPlaneToLocationCommand}
+- `Link` - The class defining a link to a target
+- `Location` - The class defining a location object in Wingman
+
+- When a user enters the command:
+
+```
+linklocation /lo {location-index} /pl {plane-index}
+```
+
+this command is passed from the UI layer to the logic layer similar to the
+other methods in previous sections. 
+
+At the logic layer, the app parses the command with the `parse` command from `WingmanParser`, which
+calls the `parse` method from the `CommandGroup` class. `CommandGroup` class then 
+class the method `parseFactory` from the `FactoryParser` class, which instantiates 
+an object of class `PlaneLocationLinkCommandFactory`. The object of `PlaneLocationLinkCommandFactory`
+is able to create a command object of type `LinkPlaneToLocationCommand`. 
+
+This command is passed all the way back to `PlaneLocationLinkCommandFactory`, then
+`FactoryParser`, `CommandGroup`, `WingmanParser`, and finally `LogicManager`.
+
+To execute the command, `LogicManager` calls the `execute` method of the command object, 
+which gets the `Link` object that contains all the planes linked to the location
+from the `Location` object by calling the method `getPlaneLink`.
+Next, to put the plane into the `Link` object, it calls the `putRevolve` method of 
+the `planLink` with the plane object as the parameter. One note here is that, the plane object
+is stored in a Map object, so we need to retrieve the plane from the map before sending it
+to `putRevolve`. This can be done with a loop, i.e., iterating all the values in the Map, 
+although the Map only contains one value only.
+
+Finally, the command object returns the execution result to `LogicManager`, which
+returns the result to `Ui` for display.
+
+The sequence diagram below shows the process. Note that storage layer and model layers have
+been omitted for brevity.
+
+<img src="images/WingmanLinkLocationSequenceDiagram.png" width="966">
+
+**Why this way?**
+
+In this way, we are able to make the linklocation feature work in a very similar way
+to the linkflight feature, simply by adding a `planeLink` object atrribute
+to the location class.
+
+**Alternatives that were considered:**
+
+One alternative implementation that was considered was to set the link as an
+attribute in the location class and update it directly with every change. However, 
+this approach had a few limitations as discussed in the previous section.
 
 <div style="page-break-after: always;"></div>
 
