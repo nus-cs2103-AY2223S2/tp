@@ -176,7 +176,6 @@ Classes used by multiple components are in the `tfifteenfour.clipboard.commons` 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
 ### User Interface Implementation
 
 This subsection describes implementation details related to `UI`, such as page navigation and design.
@@ -391,6 +390,8 @@ Saving of data is done every time a command is executed. The sequence diagram be
 ![SavingStorageSequenceDiagram](images/SavingStorageSequenceDiagram.png)
 
 #### Design Considerations:
+
+**Aspect: When a `Roster` is saved to file:**
 
 * **Alternative 1 (current choice):** Save the `Roster` every time a command is executed.
   * Pros: Easy to implement.
