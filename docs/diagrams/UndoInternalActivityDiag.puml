@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+title Revert API Activity Diagram
+skinparam conditionStyle diamond
+start
+:check if undoStack is empty;
+if () then ([empty])
+:throw NoPrevStateException;
+stop
+else ([else])
+:push copy of current shop to redoStack;
+:pop last shop state from undoStack and set current Shop state to it;
+stop
+@enduml

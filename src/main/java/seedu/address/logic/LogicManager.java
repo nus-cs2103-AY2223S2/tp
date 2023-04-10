@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,17 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
+import seedu.address.model.mapping.AppointmentDataMap;
+import seedu.address.model.mapping.CustomerDataMap;
+import seedu.address.model.mapping.ServiceDataMap;
+import seedu.address.model.mapping.TechnicianDataMap;
+import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.storage.Storage;
 
 /**
@@ -46,7 +57,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveShop(model.getShop());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -65,8 +76,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return model.getShopFilePath();
     }
 
     @Override
@@ -77,5 +88,91 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return model.getFilteredCustomerList();
+    }
+
+    @Override
+    public ObservableList<Vehicle> getFilteredVehicleList() {
+        return model.getFilteredVehicleList();
+    }
+
+    @Override
+    public ObservableList<Service> getFilteredServiceList() {
+        return model.getFilteredServiceList();
+    }
+
+    /**
+     * @return Unmodifiable view of the filtered list of appointments
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    /**
+     * @return Unmodifiable view of the filtered list of technicians
+     */
+    @Override
+    public ObservableList<Technician> getFilteredTechnicianList() {
+        return model.getFilteredTechnicianList();
+    }
+
+    @Override
+    public ObservableList<Map.Entry<String, Integer>> getPartMap() {
+        return model.getFilteredPartMap();
+    }
+
+    @Override
+    public CustomerDataMap getCustomerVehicleMap() {
+        return model.getShop().getCustomerDataMap();
+    }
+
+    @Override
+    public VehicleDataMap getVehicleDataMap() {
+        return model.getShop().getVehicleDataMap();
+    }
+
+    @Override
+    public ServiceDataMap getServiceDataMap() {
+        return model.getShop().getServiceDataMap();
+    }
+
+    @Override
+    public AppointmentDataMap getAppointmentDataMap() {
+        return model.getShop().getAppointmentDataMap();
+    }
+
+    @Override
+    public TechnicianDataMap getTechnicianDataMap() {
+        return model.getShop().getTechnicianDataMap();
+    }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return model.getSelectedCustomer();
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return model.getSelectedVehicle();
+    }
+
+    @Override
+    public Service getSelectedService() {
+        return model.getSelectedService();
+    }
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return model.getSelectedAppointment();
+    }
+
+    @Override
+    public Technician getSelectedTechnician() {
+        return model.getSelectedTechnician();
     }
 }

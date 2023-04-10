@@ -5,15 +5,25 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListAppointmentsCommand;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListPartsCommand;
+import seedu.address.logic.commands.ListServicesCommand;
+import seedu.address.logic.commands.ListTechniciansCommand;
+import seedu.address.logic.commands.ListVehiclesCommand;
+import seedu.address.logic.commands.Tab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -22,8 +32,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
+
+    public final String[] tabResultDisplayMessages = new String[6];
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,24 +42,61 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CustomerListPanel customerListPanel;
+    private VehicleListPanel vehicleListPanel;
+    private ServiceListPanel serviceListPanel;
+    private AppointmentListPanel appointmentListPanel;
+    private TechnicianListPanel technicianListPanel;
+    private PartListPanel partListPanel;
+    private CustomerDetailsPanel customerDetailsPanel;
+    private VehicleDetailsPanel vehicleDetailsPanel;
+    private ServiceDetailsPanel serviceDetailsPanel;
+    private AppointmentDetailsPanel appointmentDetailsPanel;
+    private TechnicianDetailsPanel technicianDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane customerListPanelPlaceholder;
+
+    @FXML
+    private StackPane vehicleListPanelPlaceholder;
+
+    @FXML
+    private StackPane serviceListPanelPlaceholder;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane technicianListPanelPlaceholder;
+    @FXML
+    private StackPane partListPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabs;
+    @FXML
+    private StackPane customerDetailsPlaceholder;
+    @FXML
+    private StackPane vehicleDetailsPlaceholder;
+    @FXML
+    private StackPane serviceDetailsPlaceholder;
+    @FXML
+    private StackPane appointmentDetailsPlaceholder;
+    @FXML
+    private StackPane technicianDetailsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +126,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -106,21 +155,87 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    private void initCustomerListPanel() {
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(),
+                logic.getCustomerVehicleMap());
+        customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+    }
 
+    private void initVehicleListPanel() {
+        vehicleListPanel = new VehicleListPanel(logic.getFilteredVehicleList(),
+                logic.getVehicleDataMap());
+        vehicleListPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
+    }
+
+    private void initServiceListPanel() {
+        serviceListPanel = new ServiceListPanel(logic.getFilteredServiceList(),
+                logic.getServiceDataMap());
+        serviceListPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
+    }
+
+    private void initAppointmentListPanel() {
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(),
+                logic.getAppointmentDataMap());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+    }
+
+    private void initTechnicianListPanel() {
+        technicianListPanel = new TechnicianListPanel(logic.getFilteredTechnicianList(),
+                logic.getTechnicianDataMap());
+        technicianListPanelPlaceholder.getChildren().add(technicianListPanel.getRoot());
+    }
+
+    private void initPartListPanel() {
+        partListPanel = new PartListPanel(logic.getPartMap());
+        partListPlaceholder.getChildren().add(partListPanel.getRoot());
+    }
+
+    private void initBasicComponents() {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getShopFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
+    }
+
+    private void initTabResultDisplayMessages() {
+        tabResultDisplayMessages[Tab.CUSTOMERS.ordinal()] = ListCustomersCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.SERVICES.ordinal()] = ListServicesCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.APPOINTMENTS.ordinal()] = ListAppointmentsCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.TECHNICIANS.ordinal()] = ListTechniciansCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.PARTS.ordinal()] = ListPartsCommand.MESSAGE_SUCCESS;
+    }
+
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillInnerParts() {
+        initTabResultDisplayMessages();
+
+        initCustomerListPanel();
+        initVehicleListPanel();
+        initServiceListPanel();
+        initAppointmentListPanel();
+        initTechnicianListPanel();
+        initPartListPanel();
+
+        initSelected();
+        initBasicComponents();
+
+        //@@author kimberlybp-reused
+        //Reused from https://stackoverflow.com/a/56516060
+        //To implement tab selection listener, with minor modifications
+        tabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            resultDisplay.setFeedbackToUser(tabResultDisplayMessages[newValue.intValue()]);
+            if (newValue.intValue() == Tab.PARTS.ordinal()) {
+                initPartListPanel();
+            }
+        });
     }
 
     /**
@@ -163,9 +278,45 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    private void updateSelectedTab(CommandResult commandResult) {
+        int tabIndex = commandResult.getType().ordinal();
+        if (commandResult.getType() != Tab.UNCHANGED && commandResult.getType() != Tab.ALL) {
+            tabResultDisplayMessages[tabIndex] = commandResult.getFeedbackToUser();
+        }
+        if (commandResult.getType() == Tab.ALL) {
+            for (int i = 0; i < tabResultDisplayMessages.length; i++) {
+                tabResultDisplayMessages[i] = commandResult.getFeedbackToUser();
+            }
+        }
+        if (!tabs.getSelectionModel().isSelected(tabIndex) && commandResult.getType() != Tab.UNCHANGED) {
+            tabs.getSelectionModel().select(tabIndex);
+        }
     }
+
+    private void initSelected() {
+        customerDetailsPlaceholder.getChildren().clear();
+        customerDetailsPanel = new CustomerDetailsPanel(logic.getSelectedCustomer(), logic.getCustomerVehicleMap());
+        customerDetailsPlaceholder.getChildren().add(customerDetailsPanel.getRoot());
+
+        vehicleDetailsPlaceholder.getChildren().clear();
+        vehicleDetailsPanel = new VehicleDetailsPanel(logic.getSelectedVehicle(), logic.getVehicleDataMap());
+        vehicleDetailsPlaceholder.getChildren().add(vehicleDetailsPanel.getRoot());
+
+        serviceDetailsPlaceholder.getChildren().clear();
+        serviceDetailsPanel = new ServiceDetailsPanel(logic.getSelectedService(), logic.getServiceDataMap());
+        serviceDetailsPlaceholder.getChildren().add(serviceDetailsPanel.getRoot());
+
+        appointmentDetailsPlaceholder.getChildren().clear();
+        appointmentDetailsPanel = new AppointmentDetailsPanel(logic.getSelectedAppointment(),
+                logic.getAppointmentDataMap());
+        appointmentDetailsPlaceholder.getChildren().add(appointmentDetailsPanel.getRoot());
+
+        technicianDetailsPlaceholder.getChildren().clear();
+        technicianDetailsPanel = new TechnicianDetailsPanel(logic.getSelectedTechnician(),
+                logic.getTechnicianDataMap());
+        technicianDetailsPlaceholder.getChildren().add(technicianDetailsPanel.getRoot());
+    }
+
 
     /**
      * Executes the command and returns the result.
@@ -176,7 +327,13 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            updateSelectedTab(commandResult);
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            initSelected();
+
+            if (commandResult.getType() == Tab.PARTS || commandResult.getType() == Tab.ALL) {
+                initPartListPanel();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

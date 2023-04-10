@@ -13,7 +13,10 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.entity.shop.Shop;
+import seedu.address.testutil.TypicalShop;
 
 public class StorageManagerTest {
 
@@ -26,7 +29,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonShopStorage shopStorage = new JsonShopStorage(getTempFilePath("shop"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, shopStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -65,4 +69,16 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    @Test
+    public void shopReadSave() throws Exception {
+        Shop original = new TypicalShop().getTypicalModel().getShop();
+        storageManager.saveShop(original);
+        ReadOnlyShop retrieved = storageManager.readShop().get();
+        assertEquals(original, new Shop(retrieved));
+    }
+
+    @Test
+    public void getShopFilePath() {
+        assertNotNull(storageManager.getShopFilePath());
+    }
 }

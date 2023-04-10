@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+skinparam conditionStyle diamond
+title Redo API Activity Diagram
+start
+:check if redoStack is empty;
+if () then ([empty])
+:throw NoNextStateException;
+stop
+else ([else])
+:push copy of current shop state to undoStack;
+:pop last shop state from redoStack and set current shop state to it;
+stop
+@enduml

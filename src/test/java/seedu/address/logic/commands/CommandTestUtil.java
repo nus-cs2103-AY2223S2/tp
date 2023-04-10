@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -15,10 +16,16 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyShop;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.NameContainsKeywordsPredicate;
+import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -95,22 +102,22 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
-    /**
-     * Executes the given {@code command}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
-     */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-    }
+    //    /**
+    //     * Executes the given {@code command}, confirms that <br>
+    //     * - a {@code CommandException} is thrown <br>
+    //     * - the CommandException message matches {@code expectedMessage} <br>
+    //     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+    //     */
+    //    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    //        // we are unable to defensively copy the model for comparison later, so we can
+    //        // only do so by copying its components.
+    //        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+    //        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+    //
+    //        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+    //        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+    //        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    //    }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -123,6 +130,106 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    // ==== For Customers ====================================================
+
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered customer list and selected customer in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        ReadOnlyShop expectedAddressBook = new Shop(actualModel.getShop());
+        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCustomerList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedAddressBook, actualModel.getShop());
+        assertEquals(expectedFilteredList, actualModel.getFilteredCustomerList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showCustomerAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasCustomer(targetId));
+
+        model.updateFilteredCustomerList(c -> c.getId() == targetId);
+        Customer customer = model.getFilteredCustomerList().get(0);
+        assertNotNull(customer);
+
+        final String[] splitName = customer.getName().fullName.split("\\s+");
+        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredCustomerList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the vehicle at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showVehicleAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasVehicle(targetId));
+
+        model.updateFilteredVehicleList(v -> v.getId() == targetId);
+        Vehicle vehicle = model.getFilteredVehicleList().get(0);
+        assertNotNull(vehicle);
+
+        model.updateFilteredVehicleList(v -> v.getPlateNumber() == vehicle.getPlateNumber());
+        assertEquals(1, model.getFilteredVehicleList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the service at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showServiceAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasService(targetId));
+
+        model.updateFilteredServiceList(s -> s.getId() == targetId);
+        Service service = model.getFilteredServiceList().get(0);
+        assertNotNull(service);
+
+        model.updateFilteredServiceList(s -> s.getId() == service.getId()
+                && s.getDescription().equalsIgnoreCase(service.getDescription()));
+        assertEquals(1, model.getFilteredServiceList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showAppointmentAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasAppointment(targetId));
+
+        model.updateFilteredAppointmentList(a -> a.getId() == targetId);
+        Appointment appointment = model.getFilteredAppointmentList().get(0);
+        assertNotNull(appointment);
+
+        model.updateFilteredAppointmentList(a -> a.getId() == appointment.getId()
+                && a.getCustomerId() == appointment.getCustomerId());
+        assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the technician at the given {@code targetIndex} in the
+     * {@code model}'s shop.
+     */
+    public static void showTechnicianAtId(Model model, int targetId) {
+        assertTrue(model.getShop().hasTechnician(targetId));
+
+        model.updateFilteredTechnicianList(t -> t.getId() == targetId);
+        Technician technician = model.getFilteredTechnicianList().get(0);
+        assertNotNull(technician);
+
+        final String[] splitName = technician.getName().fullName.split("\\s+");
+        model.updateFilteredTechnicianList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredTechnicianList().size());
     }
 
 }

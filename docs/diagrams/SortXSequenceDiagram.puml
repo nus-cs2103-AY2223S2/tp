@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortXCommandParser" as SortXCommandParser LOGIC_COLOR
+participant "x:SortXCommand" as SortXCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box JavaFx JAVAFX_COLOR_T1
+participant ":SortedList<X>" as JavaFx JAVAFX_COLOR
+end box
+
+[-> LogicManager : execute("sortX by/PARAM")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sortX by/PARAM")
+activate AddressBookParser
+
+create SortXCommandParser
+AddressBookParser -> SortXCommandParser
+activate SortXCommandParser
+
+SortXCommandParser --> AddressBookParser
+deactivate SortXCommandParser
+
+AddressBookParser -> SortXCommandParser : parse("args*")
+activate SortXCommandParser
+
+create SortXCommand
+SortXCommandParser -> SortXCommand : new SortXCommand(Comparator<X> cmp)
+activate SortXCommand
+
+SortXCommand --> SortXCommandParser : x
+deactivate SortXCommand
+
+SortXCommandParser --> AddressBookParser : x
+deactivate SortXCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortXCommandParser -[hidden]-> AddressBookParser
+destroy SortXCommandParser
+
+AddressBookParser --> LogicManager : x
+deactivate AddressBookParser
+
+LogicManager -> SortXCommand : execute()
+activate SortXCommand
+
+SortXCommand -> Model : updateXComparator(Comparator<X> cmp)
+activate Model
+
+Model --> JavaFx : setComparator(cmp)
+activate JavaFx
+
+JavaFx --> Model
+deactivate JavaFx
+
+Model --> SortXCommand
+deactivate Model
+
+create CommandResult
+SortXCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortXCommand
+deactivate CommandResult
+
+SortXCommand --> LogicManager : result
+deactivate SortXCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

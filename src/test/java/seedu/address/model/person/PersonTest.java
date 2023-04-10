@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.entity.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {

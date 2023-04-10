@@ -5,46 +5,45 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyShop" as ReadOnlyShop
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Shop
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class "List<X>"
+Class X
+Class "Map<String, Integer> Parts"
+Class YDataMap
+Class Y
+Class IdGenerator
+Class "Stack<Shop>"
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Shop .up.|> ReadOnlyShop
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyShop
+ModelManager -right-> "1" Shop
 ModelManager -right-> "1" UserPrefs
+ModelManager -right-> "1" Y
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Shop *--> "1" "List<X>"
+"List<X>" --> "~* all" X
+ModelManager -->"~* filtered" X
+ModelManager -->"~* sorted" X
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Shop *--> "1" "Map<String, Integer> Parts"
+Shop *---> "1" YDataMap
+Shop *---> "1" IdGenerator
+Shop *---> "2" "Stack<Shop>"
 
-ModelManager -->"~* filtered" Person
+
+
 @enduml

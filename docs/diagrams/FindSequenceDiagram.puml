@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "x:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box JavaFx JAVAFX_COLOR_T1
+participant ":FilteredList<X>" as JavaFx JAVAFX_COLOR
+end box
+
+[-> LogicManager : execute("find KEYWORDS")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("find KEYWORDS")
+activate AddressBookParser
+
+create FindCommandParser
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> AddressBookParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse("args*")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand : new FindCommand()
+activate FindCommand
+
+FindCommand --> FindCommandParser : x
+deactivate FindCommand
+
+FindCommandParser --> AddressBookParser : x
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> AddressBookParser
+destroy FindCommandParser
+
+AddressBookParser --> LogicManager : x
+deactivate AddressBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredXList(Predicate<? super X> predicate)
+activate Model
+
+Model --> JavaFx : setPredicate(predicate)
+activate JavaFx
+
+JavaFx --> Model
+deactivate JavaFx
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TotalAppointmentCommandParser" as TotalAppointmentCommandParser LOGIC_COLOR
+participant "t:TotalAppointmentCommand" as TotalAppointmentCommand LOGIC_COLOR
+participant "t:TotalAppointmentCommand" as TotalAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("totalappointment d/2023-02-04")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("totalappointment d/2023-02-04")
+activate AddressBookParser
+
+create TotalAppointmentCommandParser
+AddressBookParser -> TotalAppointmentCommandParser
+activate TotalAppointmentCommandParser
+
+TotalAppointmentCommandParser --> AddressBookParser
+deactivate TotalAppointmentCommandParser
+
+AddressBookParser -> TotalAppointmentCommandParser : parse("d/2023-02-04")
+activate TotalAppointmentCommandParser
+
+create TotalAppointmentCommand
+TotalAppointmentCommandParser  -> TotalAppointmentCommand
+activate TotalAppointmentCommand
+
+TotalAppointmentCommand --> TotalAppointmentCommandParser : t
+deactivate TotalAppointmentCommand
+
+TotalAppointmentCommandParser --> AddressBookParser : t
+deactivate TotalAppointmentCommandParser
+
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TotalAppointmentCommandParser -[hidden]-> AddressBookParser
+destroy TotalAppointmentCommandParser
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+
+LogicManager -> TotalAppointmentCommand : execute()
+activate TotalAppointmentCommand
+
+create CommandResult
+TotalAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TotalAppointmentCommand
+deactivate CommandResult
+
+TotalAppointmentCommand --> LogicManager : result
+deactivate TotalAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

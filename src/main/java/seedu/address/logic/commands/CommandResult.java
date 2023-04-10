@@ -17,6 +17,18 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final Tab type;
+
+    /**
+     * Constructs a {@code CommandResult}.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Tab type) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.type = type;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +36,15 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.type = Tab.UNCHANGED;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code type},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Tab type) {
+        this(feedbackToUser, false, false, type);
     }
 
     /**
@@ -36,6 +57,10 @@ public class CommandResult {
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public Tab getType() {
+        return this.type;
     }
 
     public boolean isShowHelp() {

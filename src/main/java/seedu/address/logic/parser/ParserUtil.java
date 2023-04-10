@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +12,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.entity.person.Address;
+import seedu.address.model.entity.person.Email;
+import seedu.address.model.entity.person.Name;
+import seedu.address.model.entity.person.Phone;
+import seedu.address.model.service.ServiceStatus;
+import seedu.address.model.service.VehicleType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,10 +26,14 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String PART_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}-_ ]*";
+    public static final String PART_MESSAGE_CONSTRAINTS = "Parts should only contain alphanumeric characters, dashes,"
+            + "underscore and spaces, and it should not be blank";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -120,5 +129,114 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses string into integer
+     *
+     * @param rawInt String to be parsed
+     * @return Parsed integer
+     * @throws ParseException If string cannot be parsed as integer
+     */
+    public static int parseInt(String rawInt) throws ParseException {
+        try {
+            return Integer.parseInt(rawInt);
+        } catch (NumberFormatException ex) {
+            throw new ParseException("Input not a number");
+        }
+    }
+
+    /**
+     * Parses string into vehicle type
+     *
+     * @param rawType String to be parsed
+     * @return Parsed VehicleType
+     * @throws ParseException If string cannot be parsed as vehicleType
+     */
+    public static VehicleType parseVehicleType(String rawType) throws ParseException {
+        requireNonNull(rawType);
+        switch (rawType.toLowerCase()) {
+        case "car":
+            return VehicleType.CAR;
+        case "motorbike":
+            return VehicleType.MOTORBIKE;
+        default:
+            throw new ParseException(VehicleType.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses string into ServiceStatus
+     *
+     * @param rawStatus String to be parsed
+     * @return Parsed ServiceStatus
+     * @throws ParseException If string cannot be parsed into ServiceStatus
+     */
+    public static ServiceStatus parseServiceStatus(String rawStatus) throws ParseException {
+        requireNonNull(rawStatus);
+        for (ServiceStatus p : ServiceStatus.values()) {
+            if (p.isEqual(rawStatus)) {
+                return p;
+            }
+        }
+        throw new ParseException(ServiceStatus.MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Parses string into LocalDate
+     *
+     * @param rawDate String to be parsed
+     * @return Parsed LocalDate
+     * @throws ParseException If string cannot be parsed as LocalDate
+     */
+    public static LocalDate parseDate(String rawDate) throws ParseException {
+        requireNonNull(rawDate);
+        try {
+            return LocalDate.parse(rawDate);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException("Date should be in the format 'YYYY-MM-DD'");
+        }
+    }
+
+    /**
+     * Parses string into LocalTime
+     *
+     * @param rawTime String to be parsed
+     * @return Parsed LocalTime
+     * @throws ParseException If string cannot be parsed as LocalTime
+     */
+    public static LocalTime parseTime(String rawTime) throws ParseException {
+        requireNonNull(rawTime);
+        try {
+            return LocalTime.parse(rawTime);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException("Time should be in the format 'HH:MM:SS' or 'HH:MM'");
+        }
+    }
+
+    /**
+     * Return given string.
+     *
+     * @param rawString The String
+     * @return The String.
+     */
+    public static String parseString(String rawString) throws ParseException {
+        requireNonNull(rawString);
+        String ret = rawString.trim();
+        if (ret.isBlank()) {
+            throw new ParseException("Provided string is empty!");
+        }
+        return ret;
+    }
+
+
+    /**
+     * Returns true if a given string is a valid part name.
+     *
+     * @param test string to validate against
+     * @return boolean to indicate if string is valid part name
+     */
+    public static boolean isValidPartName(String test) {
+        return test.matches(PART_VALIDATION_REGEX);
     }
 }

@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+title Remove Service Activity Diagram
+start
+skinparam conditionStyle diamond
+:check if service exists;
+if () then ([else[)
+    :throw AppointmentNotFoundException;
+stop
+else ([exist])
+:push copy of shop to undostack;
+:clear redo stack;
+:check service status;
+if () then ([not complete])
+    repeat: for part in service's required parts
+    :add part, part quantity back into shop;
+    repeat while ([has next]);
+    else ([complete])
+endif
+:remove appointment ID from customer;
+:update serviceMapppings;
+repeat: for assigned technician IDs in service;
+    :remove service ID from tech;
+    :update techMappings;
+repeat while ([has next]);
+:remove service from shop;
+:update serviceMappings;
+:set service ID unused;
+stop
+@enduml
