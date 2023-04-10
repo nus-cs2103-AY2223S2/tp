@@ -134,7 +134,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [KEYWORDS]...`
 
 * The search is case-insensitive. E.g `hans` will match `Hans`.
 * The order of the keywords does not matter. E.g. `Hans Bo` will match `Bo Hans`.
@@ -257,7 +257,7 @@ Examples:
 
 Finds events whose names contain any of the given keywords.
 
-Format: `findevent KEYWORD [MORE_KEYWORDS]`
+Format: `findevent KEYWORD [KEYWORD]...`
 
 * The search is case-insensitive. E.g. `party` will match `Party`.
 * The order of the keywords does not matter. E.g. `Birthday Party` will match `Party Birthday`.
@@ -353,7 +353,7 @@ Action | Format, Examples
 **List All Contacts and Events** | `listall`
 **List Contact** | `list`
 **List Event** | `listevent`
-**List Contact From Event** | `listevcontact EVENT_INDEX`
+**List Contact From Event** | `listevcontact EVENT_INDEX`<br> e.g., `listevcontact 1`
 **Help** | `help`
 **Sort Event** | `sortevent SORT_KEY` <br> e.g., `sortevent c`
 
