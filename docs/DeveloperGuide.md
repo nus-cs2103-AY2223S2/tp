@@ -87,7 +87,7 @@ The sections below give more details of each component.
 
 <img src="images/DG-images/UiClassDiagram.png" width="350" />
 
-More detailed Class diagram for Ui component
+More detailed Class diagram for Ui component:
 
 <img src="images/DG-images/BetterUiClassDiagram.png" width="500" />
 
@@ -171,7 +171,7 @@ The `Model` component,
 * A `Student` has a `UniqueTaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
 * The `creationDate` will be hidden from the user and only be used for sorting the `UniqueTaskList`.
-* The `UniqueTaskList` is sorted according to `TaskStatus`, and if two tasks have the same `TaskStatus`, they will be compared using their creation date.
+* The `UniqueTaskList` is sorted according to `TaskStatus`, and if two tasks have the same `TaskStatus`, they will be compared using their `creationDate`.
 
 #### UniqueScoreList model
 **API** : [`UniqueScoreList.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/score/UniqueScoreList.java)
@@ -309,35 +309,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**3. Use case: Delete a task**
+**3. Use case: Add a task**
 
 **MSS**
 
-*{More to be added}*
+1.  Tutor requests to list students.
+2.  MATHUTORING shows a list of students.
+3.  Tutor requests to add a task with a task name to a specific student in the list.
+4.  MATHUTORING creates the task with given task name, task status and creation date.
+
+   Use case ends.
 
 **Extensions**
 
-*{More to be added}*
+* 2a. The list is empty.
 
-**4. Use case: Update a task**
+  Use case ends.
+
+* 3a. The given student index or task name is missing.
+
+    * 3a1. MATHUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given student index is invalid.
+
+    * 3b1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3c. The given command argument is invalid.
+
+    * 3c1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3d. The given task is a duplicate of a task already in the task list of the specific student.
+
+    * 3d1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+**4. Use case: Delete a task**
 
 **MSS**
 
-*{More to be added}*
+1.  Tutor requests to list students.
+2.  MATHUTORING shows a list of students.
+3.  Tutor requests to delete a specific task from a specific student in the list.
+4.  MATHUTORING deletes the task from the task list of the specific student.
+
+Use case ends.
 
 **Extensions**
 
-*{More to be added}*
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given student index or task index is missing.
+
+    * 3a1. MATHUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given student index is invalid.
+
+    * 3b1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3c. The given task index is invalid.
+
+    * 3c1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+**5. Use case: Mark a task as late**
 
 **MSS**
 
-*{More to be added}*
+1.  Tutor requests to list students.
+2.  MATHUTORING shows a list of students.
+3.  Tutor requests to mark a specific task from a specific student in the list as late.
+4.  MATHUTORING marks the task from the task list of the specific student as late.
+
+Use case ends.
 
 **Extensions**
 
-*{More to be added}*
+* 2a. The list is empty.
 
-**5. Use case: Add a score**
+  Use case ends.
+
+* 3a. The given student index or task index is missing.
+
+    * 3a1. MATHUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given student index is invalid.
+
+    * 3b1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3c. The given task index is invalid.
+
+    * 3c1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+**6. Use case: Add a score**
 
 **MSS**
 
@@ -363,11 +446,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. MATHUTORING detects that the score has already exited.
 
-    * 1c1. MATHUTORING informs the tutor that the score has already exited.
+    * 1c1. MATHUTORING informs the tutor that the score already exists.
 
       Use case ends.
 
-**6. Use case: Delete a score**
+**7. Use case: Delete a score**
 
 **MSS**
 
@@ -408,7 +491,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**7. Use case: Export a student's progress**
+**8. Use case: Export a student's progress**
 
 **MSS**
 
@@ -436,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 5.
 
-**8. Use case: Import application data via CLI**
+**9. Use case: Import application data via CLI**
 
 **MSS**
 
@@ -454,7 +537,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**9. Use case: Import application data via GUI**
+**10. Use case: Import application data via GUI**
 
 **MSS**
 
@@ -473,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 3.
 
-**10. Use case: Export application data via CLI**
+**11. Use case: Export application data via CLI**
 
 **MSS**
 
@@ -487,7 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**11. Use case: Export application data via GUI**
+**12. Use case: Export application data via GUI**
 
 **MSS**
 
@@ -507,7 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**12. Use case: Export student's progress via CLI**
+**13. Use case: Export student's progress via CLI**
 
 **MSS**
 
@@ -525,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**13. Use case: Export student's progress via GUI**
+**14. Use case: Export student's progress via GUI**
 
 **MSS**
 
@@ -566,7 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
    
-**14. Use case: Switch panel via CLI**
+**15. Use case: Switch panel via CLI**
 
 **MSS**
    
@@ -582,7 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
   Use case resumes at step 1.
    
-**15. Use case: Switch panel via GUI**
+**16. Use case: Switch panel via GUI**
 
 **MSS**
 
@@ -595,7 +678,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case ends.
    
-**16. Use case: Filter student list by student tag/s**
+**17. Use case: Filter student list by student tag/s**
 
 **MSS**
    
@@ -618,7 +701,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
   Tutor case resumes at step 1.
    
-**17. Use case: Check a student**
+**18. Use case: Check a student**
 
 **MSS**
    
