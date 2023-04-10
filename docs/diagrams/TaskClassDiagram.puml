@@ -7,7 +7,7 @@ skinparam classBackgroundColor TASK_MODEL_COLOR
 Class LocalDateTime
 Class Name
 Class Student
-Class TaskList
+Class UniqueTaskList
 Class Task
 
 Enum "<<enumeration>>\n TaskStatus" as TaskStatus {
@@ -16,9 +16,9 @@ LATE
 COMPLETE
 }
 
-Student *--> TaskList
+Student *--> UniqueTaskList
 
-TaskList --> "~* " Task
+UniqueTaskList --> "~* " Task
 
 Task *--> "creationDate" LocalDateTime
 Task *--> Name

@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=astraxq&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * to be added soon.
+    * Handled and finalised `v1.3` release.
 
 * **Enhancements to existing features**:
     * Added Person.java to take in an additional attribute `parentPhone`.
@@ -26,17 +26,15 @@ Given below are my contributions to the project.
 * **Documentation**:
     * Updated AboutUs page and README page.
     * Updated UG for Export and Import.
-    * Added Use Cases in DG.
+    * Contributed into Use Cases, Manual Testing and Effort sections of the DG.
 
 * **Contributions to team-based tasks**:
     * Conceptualized the ideas and came up with v1.1 UI design.
     * Added several GitHub issues and helped manage the issues through adding labels and milestones.
 
 * **Contributions beyond the project team**:
-    * Handled a multi responsibility PR by breaking it to smaller PRs (cherry picking) to resolve conflicts.
+    * Handled a multi responsibility PR by breaking it to smaller PRs (cherry picking) to resolve conflicts in `v1.3`.
 
 * **Community**:
     * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/171))
 
-* **Tools**:
-    * to be added soon.
