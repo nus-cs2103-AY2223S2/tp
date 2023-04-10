@@ -18,6 +18,8 @@ Given below are my contributions to the project.
     * What it does: Allows user to add a contact to the contact list.
     * Justification: This feature improves the product significantly because a user can keep track of all the contacts in the contact list. This is useful for users who just want to search for the contact.
     * Highlights: This addition is created with future enhancement in mind. It required an in-depth analysis of design alternatives.The implementation too was challenging as it required huge additions to the main classes such as UI, Model, Storage and more. This addition also required writing a lot of unit testcases. 
+  * `linkcontact` Drafted and attempt to implement, picked up by Sean to improve and implement.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bryansendeavour&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
@@ -33,9 +35,11 @@ Given below are my contributions to the project.
   * Release of `v1.4` on GitHub.
     * Bug fixes Pull Request [#228](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/228)
 
+
 * **Enhancements to existing features**:
   * Enhanced the `clear` command
     * `clear` command used to only clear the event book, now it clears both event book and contact list.
+
 
 * **Documentation**:
   * User Guide:
