@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -180,7 +181,7 @@ public class EditCommandTest {
         }
 
         @Override
-        public Character createFromTemplate(Name entityName, Name templateName) {
+        public Character createFromTemplate(Name entityName, String templateName) throws NoSuchElementException {
             throw new AssertionError("This method should not be called.");
         }
 
