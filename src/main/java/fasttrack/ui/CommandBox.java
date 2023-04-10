@@ -29,19 +29,22 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, boolean initialiseAutocompletion) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        initialiseAutocompleteHandler();
+        if (initialiseAutocompletion) {
+            initialiseAutocompleteHandler();
+        }
     }
+
 
     /**
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() {
+    public void handleCommandEntered() {
         String commandText = commandTextField.getText();
         if (commandText.equals("")) {
             return;

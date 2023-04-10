@@ -928,6 +928,16 @@ For example, if your monthly budget is $1000, and you have already spent $500, y
 This gives you an idea of how much of your monthly budget you have used up.
 
 
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution**<br>
+
+Even if you have exceeded your budget, this statistic will reflect that you have fully utilised your budget, and will remain at `100%`. 
+
+</div>
+
+
+
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
