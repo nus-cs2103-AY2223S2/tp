@@ -11,7 +11,7 @@ title: User Guide
   - [Our Target](#our-target)
   - [User Guide](#user-guide)
 - [**Legend**](#legend)
-- [**Quick start**](#quick-start)
+- [**Quick Start**](#quick-start)
 - [**Overview of AIMS GUI**](#overview-of-aims-gui)
 - [**Features**](#features)
   - [Viewing help : `help`](#viewing-help--help)
@@ -31,7 +31,7 @@ title: User Guide
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
 - [**FAQ**](#faq)
-- [**Command summary**](#command-summary)
+- [**Command Summary**](#command-summary)
 
 ---
 ## Introduction
@@ -62,7 +62,9 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 [Back to Top ↑](#table-of-contents)
 
-## **Quick start**
+---
+
+## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
@@ -99,6 +101,8 @@ Here are some symbols used throughout the user guide to inform you of additional
 | Location of data file | This shows you the location of the AIMS data file should you ever need to migrate to another device                      |
 
 [Back to Top ↑](#table-of-contents)
+
+---
 
 ## **Features**
 
@@ -364,7 +368,7 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 
 Example:
 - `filter a/street r/sg` <br>
-2 persons named `Davlid Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
+2 persons named `David Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
   <div style="text-align: center;">
     <img src="images/filterDavidLeeResult.png">
     <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
@@ -502,7 +506,7 @@ the data of your previous AIMS home folder.
 
 ---
 
-## **Command summary**
+## **Command Summary**
 
 | Action              | Format, Examples                                                                                                                                                                                                                           |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
