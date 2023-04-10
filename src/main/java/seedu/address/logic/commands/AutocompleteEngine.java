@@ -195,11 +195,7 @@ public class AutocompleteEngine {
         Map<Prefix, List<String>> existingArgValues = getExistingArgValuesForAutocomplete();
 
         if (commandBody.isBlank()) {
-            String allArgs = argPrefixes.stream()
-                    .map(Prefix::toPlaceholderString)
-                    .collect(Collectors.joining(" "));
-            String leadingPadding = commandBody.isEmpty() ? " " : "";
-            return leadingPadding + allArgs;
+            return getFullArgSuggestion(argPrefixes, commandBody);
         }
 
         String[] splitArr = commandBody.trim().split(" +");
@@ -280,6 +276,15 @@ public class AutocompleteEngine {
                 .map(Prefix::toPlaceholderString)
                 .collect(Collectors.joining(" "));
         return remainingArgs;
+    }
+
+    /** Gets the full argument suggestion for the command. (ie. suggest all the arguments) */
+    private static String getFullArgSuggestion(List<Prefix> argPrefixes, String commandBody) {
+        String allArgs = argPrefixes.stream()
+                .map(Prefix::toPlaceholderString)
+                .collect(Collectors.joining(" "));
+        String leadingPadding = commandBody.isEmpty() ? " " : "";
+        return leadingPadding + allArgs;
     }
 
 }
