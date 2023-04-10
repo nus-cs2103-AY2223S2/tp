@@ -319,6 +319,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 Syntax: `findt TASKNAME` 
 
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
+<div style="page-break-after: always;"></div>
 
 #### 3.4.1 Implementation
 The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
