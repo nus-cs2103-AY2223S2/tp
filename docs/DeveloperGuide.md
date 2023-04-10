@@ -149,12 +149,15 @@ How the parsing works:
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
-The `Model` component,
+The `Model` component does the following.
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* Stores the address book data 
+  * i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
+* Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' 
+  * e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores a `UserData` object that contains a `User` object that represents the User's data. This is exposed to the outside as a `ReadOnlyUser` object. 
+* Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 Within the Model component holds the Person Class.
 
