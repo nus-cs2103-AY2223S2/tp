@@ -109,7 +109,9 @@ public class ParentEditCommand extends ParentCommand {
                 if (Address.isDefaultAddress(newAddress.value)) {
                     this.newAddress = parent.getAddress();
                 }
-                this.newTagList = parent.getTags();
+                if (newTagList.size() == 0) {
+                    this.newTagList = parent.getTags();
+                }
                 Parent newParent = new Parent(this.newName, this.newAge, this.newImage, this.newEmail,
                         this.newPhoneNumber, this.newAddress, this.newTagList);
                 model.setParent(parent, editParent(parent, newParent, model));
