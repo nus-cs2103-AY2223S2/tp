@@ -73,7 +73,6 @@ By using MM, medical professionals can manage patient data more efficiently and 
    * `delete 3` : Deletes the 3rd patient shown in the current list.
    * `exit` : Exits the app.
 7. Refer to the [Features](#features) below for details of each command.
-
 ---
 
 ## Features
@@ -200,7 +199,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL
 * Refer to [Restriction on Add and Edit](#restriction-on-add-and-edit) below on the `edit` function restriction.
 
 Examples:
-
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
