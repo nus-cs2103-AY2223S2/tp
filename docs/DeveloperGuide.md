@@ -173,7 +173,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 1.Making appointment
+### 1. Making appointment
 This feature servers as one of the core features of Medimate, so how is it implemented?
 
 This feature is achieved by the following classes:
