@@ -8,8 +8,8 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at our following emails:
 
 1. Mandy Kaw: e0758899@u.nus.edu.sg
-
-Low Jian Feng: e0727089@u.nus.edu.sg
+2. Thennant Lim: e0726804@u.nus.edu.sg
+3. Low Jian Feng: e0727089@u.nus.edu.sg
 
 ## Project team
 
@@ -40,7 +40,7 @@ Low Jian Feng: e0727089@u.nus.edu.sg
 [[portfolio](team/peanutbutters93.md)]
 
 * Role: Developer
-* Responsibilities: TBD
+* Responsibilities: Prescribe Feature
 
 ### Stefanos Avraam
 

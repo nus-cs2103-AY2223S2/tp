@@ -292,7 +292,7 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
 
 #### Design considerations:
 
-**Aspect: Command format:**
+* Aspect: Command format:
 
 * **Alternative 1 (current choice):** Delete appointment specified by the `INDEX`.
     * Pros: User can input a shorter command.
@@ -302,6 +302,24 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
     * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
     * Cons: More tedious to implement and less convenient for the user to input command.
 
+## Prescribe Feature
+`Prescription` refers to a `Medication` being sold at a `Cost`. Each `Patient` can have one or more `Prescriptions`
+which can help generate their bill. There are a few ways to implement connecting these 4 classes, and we opted for 
+the one simplest for the User to use as our Users could be not tech-savvy.
+
+#### Design considerations:
+* **Alternative 1 (Current Choice):** Allow `Patient` to have direct access to `Prescription`, which encapsulates `Medication` and `Cost`.
+  * Pros: Simpler to implement as it reuses existing code. 
+  * Cons: Duplicated information, if multiple `Patient` have the same `Prescription`.
+
+![PrescriptionImplementationCurrent.png](images/PrescriptionImplementationCurrent.png)
+
+* **Alternative 2:**  Allow `Patient` to have access to only `Medication`. And store the `Prescription` relationship of
+`Medication` and `Cost` in a separate table.
+  * Pros: This is the most object-oriented, and thus intuitive design. `Patient` is less coupled to `Cost`.
+  * Cons: Most challenging design. Does not allow prescribing `Medication` at a different `Cost`, such as if the prices rise.
+  
+![PrescriptionImplementationAlternative.png](images/PrescriptionImplementationAlternative.png)
 
 ### \[Proposed\] Undo/redo feature
 
