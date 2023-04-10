@@ -228,7 +228,7 @@ Users can find the application by using the command flags. The command flags spe
 #### Usage 
 The `find` command format is as shown below:
 
-`find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
+`find [r/RECIPE] [t/TITLE] [d/DESCRIPTION] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
 The meaning of each prefix is as shown below:
 
@@ -236,6 +236,7 @@ The meaning of each prefix is as shown below:
 - the flag `t/` searches only through the recipe's title
 - the flag `s/` searches only through the recipe's steps
 - the flag `i/` searches only through the recipe's ingredient names
+- the flag `d/` searches only thorugh the recipe's description
 - the flag `tag/` searches only through the recipe's tags
 
 #### Implementation
