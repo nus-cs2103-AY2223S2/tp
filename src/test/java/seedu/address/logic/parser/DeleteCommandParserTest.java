@@ -11,20 +11,21 @@ import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Name;
 
 public class DeleteCommandParserTest {
-    private final String CHARACTER = "char";
-    private final String NAME_STRING = "TEST";
-    private final Name DEFAULT_NAME = new Name(NAME_STRING);
+    private static final String CHARACTER_COMMAND = "char";
     // Creates a Character classification
-    private final Classification DEFAULT_CLASSIFICATION = new Classification(CHARACTER);
-    private final DeleteCommandParser parser = new DeleteCommandParser();
+    private static final Classification DEFAULT_CLASSIFICATION = new Classification(CHARACTER_COMMAND);
+    private static final DeleteCommandParser parser = new DeleteCommandParser();
 
     /**
      * Tests if the normal input of "char TEST" creates a valid command
      */
     @Test
     public void parse_normalInput_success() {
-        final DeleteCommand normalCommand = new DeleteCommand(DEFAULT_NAME, DEFAULT_CLASSIFICATION);
-        String normalInput = CHARACTER + " " + NAME_STRING;
+        final String normalNameString = "TEST";
+        final Name normalName = new Name(normalNameString);
+        final DeleteCommand normalCommand = new DeleteCommand(normalName, DEFAULT_CLASSIFICATION);
+        final String normalInput = CHARACTER_COMMAND + " " + normalNameString;
+
         assertParseSuccess(parser, normalInput , normalCommand);
     }
 
@@ -36,7 +37,8 @@ public class DeleteCommandParserTest {
         final String whiteSpaceString = "   WHITESPACE  ";
         final Name whiteSpaceName = new Name("WHITESPACE");
         final DeleteCommand whiteSpaceCommand = new DeleteCommand(whiteSpaceName, DEFAULT_CLASSIFICATION);
-        String whiteSpaceInput = CHARACTER + " " + whiteSpaceString;
+        final String whiteSpaceInput = CHARACTER_COMMAND + " " + whiteSpaceString;
+
         assertParseSuccess(parser, whiteSpaceInput , whiteSpaceCommand);
     }
 
@@ -48,7 +50,8 @@ public class DeleteCommandParserTest {
         final String multipleSpaceString = "MANY     SPACES";
         final Name multipleSpaceName = new Name("MANY     SPACES");
         final DeleteCommand multipleSpaceCommand = new DeleteCommand(multipleSpaceName, DEFAULT_CLASSIFICATION);
-        String multipleSpaceInput = CHARACTER + " " + multipleSpaceString;
+        final String multipleSpaceInput = CHARACTER_COMMAND + " " + multipleSpaceString;
+
         assertParseSuccess(parser, multipleSpaceInput , multipleSpaceCommand);
     }
 
@@ -57,8 +60,9 @@ public class DeleteCommandParserTest {
      */
     @Test
     public void parse_invalidCommandFormat_fail() {
-        final String invalidInputWithNoName = CHARACTER;
+        final String invalidInputWithNoName = CHARACTER_COMMAND;
         final String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
         assertParseFailure(parser, invalidInputWithNoName, expectedErrorMessage);
     }
 }

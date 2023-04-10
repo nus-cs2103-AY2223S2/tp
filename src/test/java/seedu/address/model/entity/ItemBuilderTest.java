@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +26,7 @@ public class ItemBuilderTest {
     @Test
     public void build_useDefaultFields_allDefaultFieldsPresent() {
         ItemBuilder baseBuilder = new ItemBuilder(DEFAULT_NAME);
-        Item baseItem =  baseBuilder.build();
+        Item baseItem = baseBuilder.build();
         assertNotNull(baseItem);
         assertEquals(DEFAULT_COST, baseItem.getCost());
         assertEquals(DEFAULT_WEIGHT, baseItem.getWeight());
@@ -37,20 +38,20 @@ public class ItemBuilderTest {
      */
     @Test
     public void build_setAllFields_allFieldsSetCorrectly() {
-        final Cost CUSTOM_COST = new Cost();
-        final Weight CUSTOM_WEIGHT = new Weight(2.0);
-        final Set<Tag> CUSTOM_TAGS = new HashSet<>();
-        CUSTOM_TAGS.add(new Tag("Testing"));
+        final Cost customCost = new Cost();
+        final Weight customWeight = new Weight(2.0);
+        final Set<Tag> customTags = new HashSet<>();
+        customTags.add(new Tag("Testing"));
 
         ItemBuilder customBuilder = new ItemBuilder(DEFAULT_NAME)
-                .setCost(CUSTOM_COST)
-                .setWeight(CUSTOM_WEIGHT)
-                .setTags(CUSTOM_TAGS);
+                .setCost(customCost)
+                .setWeight(customWeight)
+                .setTags(customTags);
 
         Item customItem = customBuilder.build();
         assertNotNull(customItem);
-        assertEquals(CUSTOM_COST, customItem.getCost());
-        assertEquals(CUSTOM_WEIGHT, customItem.getWeight());
-        assertEquals(CUSTOM_TAGS, customItem.getTags());
+        assertEquals(customCost, customItem.getCost());
+        assertEquals(customWeight, customItem.getWeight());
+        assertEquals(customTags, customItem.getTags());
     }
 }

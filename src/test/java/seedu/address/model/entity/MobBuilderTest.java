@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.InventoryStub;
 
@@ -28,7 +29,7 @@ public class MobBuilderTest {
     @Test
     public void build_useDefaultFields_allDefaultFieldsPresent() {
         MobBuilder baseBuilder = new MobBuilder(DEFAULT_NAME);
-        Mob baseMob =  baseBuilder.build();
+        Mob baseMob = baseBuilder.build();
         assertNotNull(baseMob);
         assertEquals(DEFAULT_STATS, baseMob.getStats());
         assertEquals(DEFAULT_INVENTORY, baseMob.getInventory());
@@ -42,26 +43,26 @@ public class MobBuilderTest {
      */
     @Test
     public void build_setAllFields_allFieldsSetCorrectly() {
-        final Stats CUSTOM_STATS = new Stats(1, 1, 1);
-        final Inventory CUSTOM_INVENTORY = new InventoryStub();
-        final ChallengeRating CUSTOM_CHALLENGE_RATING = new ChallengeRating(1.4);
-        final Legend CUSTOM_LEGEND = new Legend(true);
-        final Set<Tag> CUSTOM_TAGS = new HashSet<>();
-        CUSTOM_TAGS.add(new Tag("Testing"));
+        final Stats customStats = new Stats(1, 1, 1);
+        final Inventory customInventory = new InventoryStub();
+        final ChallengeRating customChallengeRating = new ChallengeRating(1.4);
+        final Legend customLegend = new Legend(true);
+        final Set<Tag> customTags = new HashSet<>();
+        customTags.add(new Tag("Testing"));
 
         MobBuilder customBuilder = new MobBuilder(DEFAULT_NAME)
-                .setStats(CUSTOM_STATS)
-                .setInventory(CUSTOM_INVENTORY)
-                .setChallengeRating(CUSTOM_CHALLENGE_RATING)
-                .setLegend(CUSTOM_LEGEND)
-                .setTags(CUSTOM_TAGS);
+                .setStats(customStats)
+                .setInventory(customInventory)
+                .setChallengeRating(customChallengeRating)
+                .setLegend(customLegend)
+                .setTags(customTags);
 
         Mob customMob = customBuilder.build();
         assertNotNull(customMob);
-        assertEquals(CUSTOM_STATS, customMob.getStats());
-        assertEquals(CUSTOM_INVENTORY, customMob.getInventory());
-        assertEquals(CUSTOM_CHALLENGE_RATING, customMob.getChallengeRating());
-        assertEquals(CUSTOM_LEGEND, customMob.getLegend());
-        assertEquals(CUSTOM_TAGS, customMob.getTags());
+        assertEquals(customStats, customMob.getStats());
+        assertEquals(customInventory, customMob.getInventory());
+        assertEquals(customChallengeRating, customMob.getChallengeRating());
+        assertEquals(customLegend, customMob.getLegend());
+        assertEquals(customTags, customMob.getTags());
     }
 }

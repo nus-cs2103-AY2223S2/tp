@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.InventoryStub;
 
@@ -27,7 +28,7 @@ public class CharacterBuilderTest {
     @Test
     public void build_useDefaultFields_allDefaultFieldsPresent() {
         CharacterBuilder baseBuilder = new CharacterBuilder(DEFAULT_NAME);
-        Character baseChar =  baseBuilder.build();
+        Character baseChar = baseBuilder.build();
         assertNotNull(baseChar);
         assertEquals(DEFAULT_STATS, baseChar.getStats());
         assertEquals(DEFAULT_INVENTORY, baseChar.getInventory());
@@ -40,23 +41,23 @@ public class CharacterBuilderTest {
      */
     @Test
     public void build_setAllFields_allFieldsSetCorrectly() {
-        final Stats CUSTOM_STATS = new Stats(1, 1, 1);
-        final Inventory CUSTOM_INVENTORY = new InventoryStub();
-        final Progression CUSTOM_PROGRESSION = new Progression(99, 1);
-        final Set<Tag> CUSTOM_TAGS = new HashSet<>();
-        CUSTOM_TAGS.add(new Tag("Testing"));
+        final Stats customStats = new Stats(1, 1, 1);
+        final Inventory customInventory = new InventoryStub();
+        final Progression customProgression = new Progression(99, 1);
+        final Set<Tag> customTags = new HashSet<>();
+        customTags.add(new Tag("Testing"));
 
         CharacterBuilder customBuilder = new CharacterBuilder(DEFAULT_NAME)
-                .setStats(CUSTOM_STATS)
-                .setInventory(CUSTOM_INVENTORY)
-                .setProgression(CUSTOM_PROGRESSION)
-                .setTags(CUSTOM_TAGS);
+                .setStats(customStats)
+                .setInventory(customInventory)
+                .setProgression(customProgression)
+                .setTags(customTags);
 
         Character customChar = customBuilder.build();
         assertNotNull(customChar);
-        assertEquals(CUSTOM_STATS, customChar.getStats());
-        assertEquals(CUSTOM_INVENTORY, customChar.getInventory());
-        assertEquals(CUSTOM_PROGRESSION, customChar.getProgression());
-        assertEquals(CUSTOM_TAGS, customChar.getTags());
+        assertEquals(customStats, customChar.getStats());
+        assertEquals(customInventory, customChar.getInventory());
+        assertEquals(customProgression, customChar.getProgression());
+        assertEquals(customTags, customChar.getTags());
     }
 }

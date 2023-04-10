@@ -12,8 +12,8 @@ import seedu.address.model.entity.Character.CharacterBuilder;
 import seedu.address.model.entity.Name;
 
 public class MakeCommandParserTest {
-    private final String CHARACTER_COMMAND = "char";
-    private final MakeCommandParser parser = new MakeCommandParser();
+    private static final String CHARACTER_COMMAND = "char";
+    private static final MakeCommandParser parser = new MakeCommandParser();
 
     /**
      * Tests if the normal input of "char TEST" creates a valid command
