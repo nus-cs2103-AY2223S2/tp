@@ -215,7 +215,7 @@ counted as overdue. For example, if the current date is 11/04/2023, projects wit
 will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue
 project list**.
 
-Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates.
+Both **Due and Overdue project lists** utilise the `java.time` package to perform various operations on dates.
 
 For Progress Overview Pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
