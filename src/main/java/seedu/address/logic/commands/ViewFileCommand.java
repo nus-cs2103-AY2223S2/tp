@@ -21,7 +21,7 @@ public class ViewFileCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": view file for the people identified by the index numbers used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) index (must be the exact name)\n"
-            + "Example: " + COMMAND_WORD + " 1" + "1";
+            + "Example: " + COMMAND_WORD + " 1" + " 1";
 
     public static final String MESSAGE_VIEW_SUCCESS = "View Person: %1$s";
 
