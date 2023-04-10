@@ -192,6 +192,8 @@ In Vim, pressing `h` moves you to the left, but in Vimification, pressing `h` wo
 
 **NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again, otherwise, use your mouse to click on the task list in Vimification to recalibrate the focus.**
 
+**NOTE: It is not recommended to use arrow key, because it is not supported!**
+
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Exiting Vimification
