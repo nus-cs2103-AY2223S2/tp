@@ -180,6 +180,11 @@ _Architecture_ section above.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+[SchedulerParser]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/SchedulerParser.java
+[ParseException]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/exceptions/ParseException.java
+[CommandException]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/exceptions/CommandException.java
+[InvalidDateException]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/exceptions/InvalidDateException.java
+
 ### **Add Command**
 
 For _Add_ command, the noteworthy classes are:
@@ -304,9 +309,16 @@ Activity Diagram for a typical `delete` command
 
 ### **Find Command**
 
+[FindCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/FindCommand.java
+[FindCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/FindCommandParser.java
+[FindEventDescriptor]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/FindCommand.java#L86
+[EventMatchesKeywordsAndDatePredicate]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/EventMatchesKeywordsAndDatePredicate.java
+[EventContainsKeywordsPredicate]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/EventContainsKeywordsPredicate.java
+[EventMatchesDatePredicate]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/EventMatchesDatePredicate.java
+
 For _Find_ command, the noteworthy classes are:
-- `FindCommandParser.java` - For parsing the arguments to `FindCommand.java`.
-- `FindCommand.java` - For execution.
+- [`FindCommandParser.java`][FindCommandParser.java] - For parsing the arguments to [`FindCommand.java`][FindCommand.java].
+- [`FindCommand.java`][FindCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
@@ -318,19 +330,21 @@ Given below is an example usage scenario of how the _Find_ command executes.
 -- user input --  
 Step 1. User executes find command with correct and valid arguments.
 
--- `SchedulerParser` --  
-Step 2. Returns new `FindCommandParser`.
+-- [`SchedulerParser`][SchedulerParser] --  
+Step 2. Returns new [`FindCommandParser.java`][FindCommandParser.java].
 
--- `FindCommandParser` --  
-Step 3. Verify that at least one of the argument prefixes are present.  
+-- [`FindCommandParser.java`][FindCommandParser.java] --  
+Step 3. Verify that at least one of the argument prefixes is present.  
 Step 4. Verify that provided arguments are valid.  
 Step 5. Creates a `FindEventDescriptor`  
-Step 6. Returns new `FindCommand` using `FindEventDescriptor`.
+Step 6. Returns new [`FindCommand.java`][FindCommand.java] using [`FindEventDescriptor`][FindEventDescriptor].
 
 -- `FindCommand` --  
-Step 7. Determine if `Name`, `Date` or both are present from `FindEventDescriptor`.  
+Step 7. Determine if `Name`, `Date` or both are present from [`FindEventDescriptor`][FindEventDescriptor].  
 Step 8. Create one of the following predicates, depending on the arguments provided: 
-`EventMatchesKeywordsAndDatePredicate`, `EventContainsKeywordsPredicate` or `EventMatchesDatePredicate`.  
+[`EventMatchesKeywordsAndDatePredicate`][EventMatchesKeywordsAndDatePredicate], 
+[`EventContainsKeywordsPredicate`][EventContainsKeywordsPredicate] or 
+[`EventMatchesDatePredicate`][EventMatchesDatePredicate].  
 Step 9. Updates the `ObservableList` using the predicate.
 
 The execution can be seen in the activity diagram given below.
