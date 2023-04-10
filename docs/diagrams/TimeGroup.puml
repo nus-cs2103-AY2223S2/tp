@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Time <<Rectangle>> {
+    enum "<<enumeration>>\nDay" as Day
+    class "{abstract}\nTimePeriod" as TimePeriod
+    class HourBlock
+    class TimeBlock
+}
+
+Class Timetable
+
+Timetable *--- "70" HourBlock : consists of >
+Timetable -- Day
+HourBlock -u-|> TimePeriod
+TimeBlock -u-|> TimePeriod
+TimeBlock --right-- "*"HourBlock : < merge
+note left of HourBlock: Only consecutive,\ndisjoint HourBlocks can\nmerge to form TimeBlock.
+Day "1" -right--> TimePeriod : has <
+
+@enduml

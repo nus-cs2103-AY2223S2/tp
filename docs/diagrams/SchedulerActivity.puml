@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+start
+:User enters a meet command
+        (meet/eat/study);
+:Recommender triggers the scheduler;
+:adds all participants;
+if () then ([Some participants
+could not be added])
+    : Error: No Such Person
+            in Model;
+else  ([else])
+    : Adds participants' and
+        user's timetable;
+    : Finds all common
+    available time periods;
+    if () then ([Have common
+  time periods])
+        : Sorts all time periods
+        in decreasing duration;
+    else ([else])
+    endif
+    :       Feedbacks to
+    LocationRecommender;
+endif
+stop
+@enduml

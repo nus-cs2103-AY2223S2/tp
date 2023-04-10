@@ -1,0 +1,206 @@
+/* ---- Fonts ---- */
+
+@font-face {
+    font-family: 'Inter Regular';
+    src: url('../fonts/Inter/static/Inter-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Inter SemiBold';
+    src: url('../fonts/Inter/static/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('../fonts/Inter/static/Inter-Bold.ttf');
+}
+
+/* ---- Start of side bar css ---- */
+
+.edumate-header {
+    -fx-font-size: 18;
+    -fx-fill: black;
+    -fx-background-color:  rgb(255,255,255,0.5);
+    -fx-background-radius: 10;
+    -fx-font-family: 'Inter Bold';
+}
+
+.edumate-header:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.profile-text {
+    -fx-font-family: 'Inter SemiBold';
+    -fx-font-size: 11;
+}
+
+.profile-text-light {
+    -fx-font-family: 'Inter Regular';
+    -fx-font-size: 10;
+}
+
+.side-bar {
+    -fx-background-image: url("../images/background.png");
+    -fx-background-size: cover;
+}
+
+.side-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-opacity: 0.7;
+}
+
+.side-button:hover {
+    -fx-background-color: rgb(255,255,255,0.5);
+    -fx-text-fill: #769ced;
+    -fx-font-size: 13;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 3, 1, 0.0, 0.0);
+    -fx-background-color: transparent;
+    -fx-rotate: 0;
+}
+
+.side-button:pressed {
+    -fx-background-color: rgb(255,255,255,0.5);
+    -fx-border-color: #769ced;
+    -fx-text-fill: #ca76ed;
+    -fx-font-size: 13;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 3, 1, 0.0, 0.0);
+    -fx-background-color: transparent;
+    -fx-rotate: 20;
+}
+
+.small-user-frame {
+    -fx-background-color:  rgb(255,255,255, 0.3);
+    -fx-background-radius: 10;
+}
+/* ---- Start of middle pane css ---- */
+
+.middle-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.command-box-placeholder {
+    -fx-background-color: #dbdbdb;
+    -fx-background-radius: 10;
+}
+
+.command-box {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 5 5;
+}
+
+.person-card-box {
+    -fx-background-color: rgb(139, 86, 142);
+    -fx-background-radius: 5 5 0 0;
+    -fx-padding: 3;
+}
+
+.person-card-upper-box-element {
+    -fx-text-fill: white;
+    -fx-padding: 5;
+    -fx-font-family: "Inter SemiBold";
+    -fx-font-size: 13;
+}
+
+.person-card-lower-box-element {
+    -fx-text-fill: #5e5e5e;
+}
+
+.list-panel {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+}
+
+.person-list-placeholder {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+/* ---- Start of right pane css ---- */
+
+.result-display-panel {
+    -fx-border-color: transparent;
+}
+
+.result-display-text {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.result-display-placeholder {
+    -fx-opacity: 0.5;
+}
+
+.user-profile-placeholder {
+    -fx-background-color: rgb(227, 211, 238, 0.3);
+    -fx-background-radius: 10;
+}
+
+.meet-schedule-placeholder {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.right-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.meet-placeholder {
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+}
+
+.no-background {
+    -fx-background-color: transparent;
+}
+
+.meet-list-card {
+    -fx-background-color: rgb(227, 211, 238);
+    -fx-background-radius: 5;
+}
+
+.meet-list-panel {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.meet-list-bold-text {
+    -fx-font-family: 'Inter Bold';
+}
+
+.meet-list-regular-text {
+    -fx-font-family: 'Inter SemiBold';
+}
+
+.organised-meet-list {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.organised-meet-main-card {
+    -fx-background-color: black;
+    -fx-background-radius: 5;
+}
+
+.organised-meet-card-top {
+    -fx-background-color: rgb(227, 211, 238);
+    -fx-background-radius: 5;
+}
+
+.organised-meet-card-top-label {
+    -fx-font-family: 'Inter SemiBold';
+    -fx-font-size: 11;
+}
+
+.organised-meet-card-bottom-label {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-family: 'Inter SemiBold';
+}

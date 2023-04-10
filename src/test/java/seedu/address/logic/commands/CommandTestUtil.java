@@ -2,11 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,9 +10,11 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.EduMate;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -26,47 +23,70 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String NAME_ALEX = "Alex Quinn";
+    public static final String NAME_BEN = "Benjamin Khoo";
+    public static final String PHONE_ALEX = "94587551";
+    public static final String PHONE_BEN = "92552446";
+    public static final String EMAIL_ALEX = "alexquinn@gmail.com";
+    public static final String EMAIL_BEN = "benjaminkhoo@gmail.com";
+    public static final String STATION_ALEX = "Queenstown";
+    public static final String STATION_BEN = "Bencoolen";
+    public static final String TELEGRAM_HANDLE_ALEX = "@alexquinn";
+    public static final String TELEGRAM_HANDLE_BEN = "@benjaminkhoo";
+    public static final Integer INDEX_ALEX = 16;
+    public static final Integer INDEX_BEN = 17;
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String VALID_GROUP_1 = "Groupmate";
+    public static final String VALID_GROUP_2 = "TA";
+    public static final String VALID_MODULE_1 = "CS2100";
+    public static final String VALID_MODULE_2 = "GEA1000";
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String NAME_DESC_ALEX = " " + Prefix.NAME + NAME_ALEX;
+    public static final String NAME_DESC_BEN = " " + Prefix.NAME + NAME_BEN;
+    public static final String PHONE_DESC_ALEX = " " + Prefix.PHONE + PHONE_ALEX;
+    public static final String PHONE_DESC_BEN = " " + Prefix.PHONE + PHONE_BEN;
+    public static final String EMAIL_DESC_ALEX = " " + Prefix.EMAIL + EMAIL_ALEX;
+    public static final String EMAIL_DESC_BEN = " " + Prefix.EMAIL + EMAIL_BEN;
+    public static final String TELEGRAM_DESC_ALEX = " " + Prefix.TELEGRAM_HANDLE + TELEGRAM_HANDLE_ALEX;
+    public static final String TELEGRAM_DESC_BEN = " " + Prefix.TELEGRAM_HANDLE + TELEGRAM_HANDLE_BEN;
+
+    public static final String STATION_DESC_ALEX = " " + Prefix.STATION + STATION_ALEX;
+    public static final String STATION_DESC_BEN = " " + Prefix.STATION + STATION_BEN;
+    public static final String VALID_GROUP_2_DESC = " " + Prefix.GROUP_TAG + VALID_GROUP_2;
+    public static final String VALID_GROUP_1_DESC = " " + Prefix.GROUP_TAG + VALID_GROUP_1;
+    public static final String VALID_MODULE_1_DESC = " " + Prefix.MODULE_TAG + VALID_MODULE_1;
+    public static final String VALID_MODULE_2_DESC = " " + Prefix.MODULE_TAG + VALID_MODULE_2;
+
+    public static final String INVALID_NAME_DESC = " " + Prefix.NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC = " " + Prefix.PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_EMAIL_DESC = " " + Prefix.EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_STATION_DESC = " " + Prefix.STATION; // empty string not allowed for stations
+    public static final String INVALID_TELEGRAM_DESC = " " + Prefix.TELEGRAM_HANDLE
+            + "hellothere"; // missing '@' symbol
+    public static final String INVALID_GROUP_DESC = " " + Prefix.GROUP_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_MODULE_1_DESC = " " + Prefix.MODULE_TAG + "c1101"; // first 2 or 3 not alphabets
+    public static final String INVALID_MODULE_2_DESC = " " + Prefix.MODULE_TAG + "cfg111"; // not 4 digit module code
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPersonDescriptor DESC_ALEX;
+    public static final EditCommand.EditPersonDescriptor DESC_BEN;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ALEX = new EditPersonDescriptorBuilder().withName(NAME_ALEX)
+                .withPhone(PHONE_ALEX).withEmail(EMAIL_ALEX).withStation(STATION_ALEX)
+                .withTelegramHandle(TELEGRAM_HANDLE_ALEX)
+                .withContactIndex(INDEX_ALEX)
+                .withGroupTags(VALID_GROUP_2)
+                .withModuleTags(VALID_MODULE_1, VALID_MODULE_2).build();
+        DESC_BEN = new EditPersonDescriptorBuilder().withName(NAME_BEN)
+                .withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
+                .withStation(STATION_BEN)
+                .withContactIndex(INDEX_BEN)
+                .withTelegramHandle(TELEGRAM_HANDLE_BEN)
+                .withGroupTags(VALID_GROUP_1, VALID_GROUP_2)
+                .withModuleTags(VALID_MODULE_2).build();
     }
 
     /**
@@ -104,25 +124,26 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        EduMate expectedEduMate = new EduMate(actualModel.getEduMate());
+        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getObservablePersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedEduMate, actualModel.getEduMate());
+        assertEquals(expectedFilteredList, actualModel.getObservablePersonList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getObservablePersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Person person = model.getObservablePersonList().get(targetIndex.getZeroBased());
+        final String[] splitName = person.getName().getValue().split("\\s+");
+        model.updateObservablePersonList(
+                new ContainsKeywordsPredicate(Arrays.asList(splitName[0]), Prefix.NAME));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getObservablePersonList().size());
     }
 
 }

@@ -1,0 +1,247 @@
+<details xmlns="http://www.w3.org/1999/html">
+    <summary><a href="#1-introduction">Introduction</a></summary>
+    <ul>
+        <li><a href="#software-overview">Software Overview</a></li>
+        <li><a href="#intended-audience">Intended Audience</a></li>
+        <li><details>
+            <summary><a href="#using-the-guide">Using the Guide</a></summary>
+            <ul>
+                <li><a href="#what-do-the-emojis-mean">What Do the Emojis Mean</a></li>
+            </ul>
+        </details></li>
+        <li><a href="#content-overview">Content Overview</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#getting-help">Getting Help</a></li>
+        <li><a href="#core-technologies">Core Technologies</a></li>
+        <li><a href="#acknowledgements">Acknowledgements</a></li>
+        <li><details>
+            <summary><a href="#version-control">Version Control</a></summary>
+            <ul>
+                <li><a href="#the-master-branch">The Master Branch</a></li>
+                <li><a href="#how-to-make-a-pull-request">How to Make a Pull Request</a></li>
+            </ul>
+        </details></li>
+        <li><a href="#issue-tracker">Issue Tracker</a></li>
+    </ul>
+</details>
+
+<a href="#2-development-environment">Development Environment</a>
+
+<details>
+    <summary><a href="#3-tips">Tips</a></summary>
+    <ul><li><a href="#sample-data">Sample Data</a></li></ul>
+</details>
+
+<details>
+    <summary><a href="#4-design">Design</a></summary>
+
+    <ul>
+        <li><details>
+            <summary><a href="#architecture">Architecture</a></summary>
+            <ul>
+                <li><a href="#main-components-of-the-architecture">Main Components of the Architecture</a></li>
+                <li><a href="#how-the-architecture-components-interact-with-each-other">How the Architecture Components Interact with Each Other</a></li>
+            </ul>
+        </details></li>
+
+        <li><a href="#ui-component">UI Component</a></li>
+        <li><a href="#key-mapping">Key Mapping</a></li>
+
+        <li><details>
+            <summary><a href="#model-component">Model Component</a></summary>
+            <ul>
+                <li><details>
+                    <summary><a href="#person">Person</a></summary>
+                    <ul>
+                        <li><a href="#name">Name</a></li>
+                        <li><a href="#station">Station</a></li>
+                        <li><a href="#phone">Phone</a></li>
+                        <li><a href="#email">Email</a></li>
+                        <li><a href="#telegram-handle">Telegram Handle</a></li>
+                        <li><a href="#group-tag-set">Group Tag Set</a></li>
+                        <li><a href="#module-tag-set">Module Tag Set</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#tag">Tag</a></summary>
+                    <ul>
+                        <li><a href="#group-tag">Group Tag</a></li>
+                        <li><a href="#module-tag">Module Tag</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#time">Time</a></summary>
+                    <ul>
+                        <li><a href="#day">Day</a></li>
+                        <li><a href="#hourblock">HourBlock</a></li>
+                        <li><a href="#timeblock">TimeBlock</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#location">Location</a></summary>
+                    <ul>
+                        <li><a href="#distance-util">DistanceUtil</a></li>
+                        <li><a href="#location-data-util">LocationDataUtil</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#commitment">Commitment</a></summary>
+                    <ul>
+                        <li><a href="#lesson">Lesson</a></li>
+                    </ul>
+                </details></li>
+
+                <li><a href="#timetable">Timetable</a></li>
+
+                <li><details>
+                    <summary><a href="#utils">Utils</a></summary>
+                    <ul><li><a href="#sample-data-util">Sample Data Util</a></li></ul>
+                </details></li>
+            </ul>
+        </details></li>
+
+
+        <li><details>
+            <summary><a href="#logic-component">Logic Component</a></summary>
+            <ul>
+                <li><details>
+                    <summary><a href="#commands">Commands</a></summary>
+                    <ul>
+                        <li><a href="#add-command">Add Command</a></li>
+                        <li><a href="#edit-command">Edit Command</a></li>
+                        <li><a href="#delete-command">Delete Command</a></li>
+                        <li><a href="#tag-command">Tag Command</a></li>
+                        <li><a href="#untag-command">Untag Command</a></li>
+                        <li><a href="#view-command">View Command</a></li>
+                        <li><a href="#find-command">Find Command</a></li>
+                        <li><a href="#sort-command">Sort Command</a></li>
+                        <li><a href="#list-command">List Command</a></li>
+                        <li><a href="#exit-command">Exit Command</a></li>
+                        <li><a href="#save-command">Save Command</a></li>
+                        <li><a href="#load-command">Load Command</a></li>
+                        <li><a href="#meet-command">Meet Command</a></li>
+                        <li><a href="#organise-command">Organise Command</a></li>
+                        <li><a href="#sample-command">Sample Command</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#parsers">Parsers</a></summary>
+                    <ul>
+                        <li><a href="#argument-multimap">Argument Multimap</a></li>
+                        <li><a href="#prefix">Prefix</a></li>
+                    </ul>
+                </details></li>
+
+                <li><details>
+                    <summary><a href="#recommenders">Recommenders</a></summary>
+                    <ul>
+                        <li><a href="#timing-recommender">Timing Recommender</a></li>
+                        <li><a href="#location-recommender">Location Recommender</a></li>
+                        <li><a href="#location-tracker">Location Tracker</a></li>
+                    </ul>
+                </details></li>
+            </ul>
+        </details></li>
+
+        <li><a href="#storage-component">Storage Component</a></li>
+        <li><details>
+            <summary><a href="#common-classes">Common Classes</a></summary>
+            <ul>
+                <li><a href="#mathutil">MathUtil</a></li>
+            </ul>
+        </details></li>
+    </ul>
+</details>
+
+<details>
+    <summary><a href="#5-testing">Testing</a></summary>
+    <ul>
+        <li><details>
+            <summary><a href="#testing-types">Testing Types</a></summary>
+            <ul>
+                <li><a href="#developer-testing">Developer Testing</a></li>
+                <li><a href="#regression-testing">Regression Testing</a></li>
+                <li><a href="#unit-tests">Unit Tests</a></li>
+                <li><a href="#stubs">Stubs</a></li>
+                <li><a href="#integration-testing">Integration Testing</a></li>
+                <li><a href="#dogfooding">Dogfooding</a></li>
+            </ul>
+        </details></li>
+
+        <li><a href="#model">Model</a></li>
+        <li><a href="#testing-commands">Testing Commands</a></li>
+        <li><a href="#testing-parsers">Testing Parsers</a></li>
+
+        <li><details>
+            <summary><a href="#gui-tests">GUI Tests</a></summary>
+            <ul>
+                <li><a href="#setting-up-automated-gui-tests-in-github-actions">Setting up automated GUI Tests in Github Actions</a></li>
+                <li><a href="#understanding-gui-tests">Understanding GUI Tests</a></li>
+            </ul>
+        </details></li>
+
+        <li><details>
+            <summary><a href="#measuring-coverage-of-integration-tests">Measuring Coverage of Integration Tests</a></summary>
+            <ul>
+                <li><a href="#create-code-coverage-report">Create Code Coverage Report</a></li>
+                <li><a href="#read-code-coverage-report">Read Code Coverage Report</a></li>
+            </ul>
+        </details></li>
+    </ul>
+</details>
+
+<details>
+    <summary><a href="#6-documentation">Documentation</a></summary>
+    <ul>
+        <li><a href="#useful-text-boxes">Useful Text Boxes</a></li>
+        <li><a href="#using-plantuml">Using PlantUML</a></li>
+    </ul>
+</details>
+
+<details>
+    <summary><a href="#7-appendix">Appendix</a></summary>
+    <ul>
+        <li><a href="#planned-enhancements">Planned Enhancements</a></li>
+        <li><a href="#project-requirements">Project Requirements</a></li>
+
+        <li><details>
+            <summary><a href="#product-scope">Product Scope</a></summary>
+            <ul>
+                <li><a href="#target-user-profile">Target User Profile</a></li>
+                <li><a href="#value-proposition">Value Proposition</a></li>
+            </ul>
+        </details></li>
+
+        <li><a href="#user-stories">User Stories</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
+
+        <li><details>
+            <summary><a href="#instructions-for-manual-testing">Instructions for Manual Testing</a></summary>
+            <ul>
+                <li><a href="#launch-and-shutdown">Launch and shutdown</a></li>
+                <li><a href="#add-a-new-person">Add a new person</a></li>
+                <li><a href="#view-a-person">View a person</a></li>
+                <li><a href="#edit-a-person">Edit a person</a></li>
+                <li><a href="#delete-a-person">Delete a person</a></li>
+                <li><a href="#add-a-tag-to-a-person">Add a tag to a person</a></li>
+                <li><a href="#remove-a-tag-from-a-person">Remove a tag from a person</a></li>
+                <li><a href="#filter-persons-by-keywords">Filter persons by keywords</a></li>
+                <li><a href="#arrange-persons-by-criteria">Arrange persons by criteria</a></li>
+                <li><a href="#generate-a-sample-edumate">Generate a sample EduMate</a></li>
+                <li><a href="#suggest-meet-up-locations-and-times">Suggest meet up locations and times</a></li>
+                <li><a href="#organise-and-confirm-meetings">Organise and confirm meetings</a></li>
+                <li><a href="#cancel-scheduled-meetings">Cancel scheduled meetings</a></li>
+            </ul>
+        </details></li>
+
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#more-information-on-documentation-logging-testing-configuration-and-dev-ops">More Information on Documentation, Logging, Testing, Configuration and Dev-ops</a></li>
+    </ul>
+</details>
+

@@ -3,39 +3,49 @@ package seedu.address.commons.util;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Helper functions for handling strings.
  */
 public class StringUtil {
+    private static final Logger logger = LogsCenter.getLogger(StringUtil.class);
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsKeyWordIgnoreCase("ABc def", "abc") == true
+     *       containsKeyWordIgnoreCase("ABc def", "DEF") == true
+     *       containsKeyWordIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsKeyWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
-        String preppedWord = word.trim();
+        String preppedWord = word.trim().toLowerCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
+        String preppedSentence = sentence.toLowerCase();
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(existentWord -> existentWord.contains(preppedWord));
     }
 
     /**
@@ -64,5 +74,36 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+
+    /**
+     * Saves the String input to the specified file.
+     * Adds the String to the top of the file.
+     * @param input cannot be null
+     * @param filePath cannot be null
+     * @throws IOException if there was an error during writing to the file
+     */
+    public static void saveStringFile(String input, Path filePath) throws IOException {
+        requireNonNull(input);
+        requireNonNull(filePath);
+        FileUtil.writeToFile(filePath, input, true);
+    }
+
+    /**
+     * Reads the specified text file and saves it into an ArrayList.
+     * @param filePath cannot be null
+     * @return An arrayList of strings
+     * @throws IOException If there was an error during reading from the fille
+     */
+    public static ArrayList<String> readStringFile(Path filePath) throws IOException {
+        requireNonNull(filePath);
+        if (!Files.exists(filePath)) {
+            logger.info("Command file " + filePath + " not found");
+            return new ArrayList<String>(100);
+        }
+
+        List<String> lines = Files.readAllLines(filePath, Charset.defaultCharset());
+        return new ArrayList<String>(lines);
     }
 }

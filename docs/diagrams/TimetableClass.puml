@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+class Timetable
+
+class HourBlock
+enum "<<enumeration>>\nDay" as Day
+class Commitment
+
+Day "5    " --right-- Timetable : has <
+HourBlock -up-*"consists   \nof    " Timetable
+HourBlock ---right---> "  1" Day : occurs on
+HourBlock --> "0...1" Commitment : contains >
+
+@enduml

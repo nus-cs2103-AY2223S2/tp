@@ -4,11 +4,14 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * API of the Logic component
@@ -24,19 +27,30 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the EduMate.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getEduMate()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyEduMate getEduMate();
+
+    String getPreviousCommand(boolean isUp);
+
+    boolean isUpPressedBefore();
+
+    String getCurrentCommand();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Person> getObservablePersonList();
+
+    /** Returns an unmodifiable view of the filtered list of recommendations */
+    ObservableList<Recommendation> getObservableRecommendationList();
+
+    ObservableList<MeetUp> getObservableMeetUpList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEduMateFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +61,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Get user information
+     */
+    User getUser();
 }

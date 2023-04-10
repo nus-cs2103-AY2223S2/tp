@@ -1,14 +1,22 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.location.Location;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Station;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -16,16 +24,21 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Amirah Tan";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_EMAIL = "amirahtan@gmail.com";
+    public static final String DEFAULT_STATION = "Tanah Merah";
+    public static final String DEFAULT_TELEGRAM_HANDLE = "@amirahtan";
+    public static final Integer DEFAULT_CONTACT_INDEX = 1;
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Station station;
+    private TelegramHandle telegramHandle;
+    private ContactIndex contactIndex;
+    private Set<GroupTag> groupTags;
+    private Set<ModuleTag> moduleTags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,8 +47,11 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        station = new Station(DEFAULT_STATION);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
+        contactIndex = new ContactIndex(DEFAULT_CONTACT_INDEX);
+        groupTags = new HashSet<>();
+        moduleTags = new HashSet<>();
     }
 
     /**
@@ -45,8 +61,11 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        station = personToCopy.getStation();
+        groupTags = new HashSet<>(personToCopy.getImmutableGroupTags());
+        moduleTags = new HashSet<>(personToCopy.getImmutableModuleTags());
+        telegramHandle = personToCopy.getTelegramHandle();
+        contactIndex = personToCopy.getContactIndex();
     }
 
     /**
@@ -58,18 +77,62 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code groupTags} into a {@code Set<GroupTag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withGroupTags(String ... groupTags) {
+        this.groupTags = SampleDataUtil.getGroupTagSet(groupTags);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withModuleTags() {
+        this.moduleTags = SampleDataUtil.getModuleTagSet();
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(String ... moduleTags) {
+        this.moduleTags = SampleDataUtil.getModuleTagSet(moduleTags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(ModuleTag... moduleTags) {
+        this.moduleTags = Arrays.stream(moduleTags).collect(Collectors.toSet());
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(Collection<? extends ModuleTag> moduleTags) {
+        this.moduleTags = new HashSet<>(moduleTags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Station} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStation(String station) {
+        this.station = new Station(station);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Station} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStation(Location location) {
+        this.station = new Station(location.getName());
         return this;
     }
 
@@ -89,8 +152,36 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TelegramHandle} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegramHandle(String telegramHandle) {
+        this.telegramHandle = new TelegramHandle(telegramHandle);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ContactIndex} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withContactIndex(Integer index) {
+        this.contactIndex = new ContactIndex(index);
+        return this;
+    }
+
+    /**
+     * Returns a {@code Person} with input features called so far.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, station, telegramHandle, contactIndex,
+                groupTags, moduleTags);
+    }
+
+    /**
+     * Returns a {@code User} with input features called so far.
+     */
+    public User buildAsUser() {
+        return new User(name, phone, email, station, telegramHandle, contactIndex,
+                groupTags, moduleTags);
     }
 
 }

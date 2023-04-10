@@ -1,12 +1,17 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.COMPARATOR_CONTACT_INDEX_RECOMMENDATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECOMMENDATIONS;
+import static seedu.address.model.recommendation.TypicalRecommendations.RECOMMENDATION_STEVENS_THU_10AM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
+import static seedu.address.testutil.TypicalPersons.BART;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,8 +20,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.testutil.EduMateBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +33,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new EduMate(), new EduMate(modelManager.getEduMate()));
+        assertEquals(new EduMateHistory(), modelManager.getEduMateHistory());
     }
 
     @Test
@@ -37,14 +45,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setEduMateFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setEduMateFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +69,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setEduMateFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setEduMateFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setEduMateFilePath_validPath_setsEduMateFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setEduMateFilePath(path);
+        assertEquals(path, modelManager.getEduMateFilePath());
     }
 
     @Test
@@ -78,55 +86,148 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasRecommendation_nullRecommendation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRecommendation(null));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasPerson_personNotInEduMate_returnsFalse() {
+        assertFalse(modelManager.hasPerson(ALBERT));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void hasRecommendation_recommendationNotInEduMate_returnsFalse() {
+        assertFalse(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+    }
+
+    @Test
+    public void hasPerson_personInEduMate_returnsTrue() {
+        modelManager.addPerson(ALBERT);
+        assertTrue(modelManager.hasPerson(ALBERT));
+    }
+
+    @Test
+    public void hasRecommendation_recommendationInEduMate_returnsTrue() {
+        modelManager.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        assertTrue(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+    }
+
+    @Test
+    public void deletePerson_personInEduMate_success() {
+        if (!modelManager.hasPerson(ALBERT)) {
+            modelManager.addPerson(ALBERT);
+        }
+        modelManager.deletePerson(ALBERT);
+        assertFalse(modelManager.hasPerson(ALBERT));
+    }
+
+    @Test
+    public void deleteRecommendation_recommendationInEduMate_success() {
+        if (!modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR)) {
+            modelManager.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        }
+        assertTrue(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+        modelManager.deleteRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        assertFalse(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+    }
+
+    @Test
+    public void getObservablePersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getObservablePersonList().remove(0));
+    }
+
+    @Test
+    public void getObservableRecommendationList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getObservableRecommendationList().remove(0));
+    }
+
+    @Test
+    public void updateObservableRecommendationList_validComparator_success() {
+        assertDoesNotThrow(() -> modelManager
+                .updateObservableRecommendationList(COMPARATOR_CONTACT_INDEX_RECOMMENDATION));
+    }
+
+    @Test
+    public void updateObservableRecommendationList_validPredicate_success() {
+        assertDoesNotThrow(() -> modelManager
+                .updateObservableRecommendationList(PREDICATE_SHOW_ALL_RECOMMENDATIONS));
+    }
+
+    @Test
+    public void getRecommendationByIndex_validIndex_success() {
+        if (!modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR)) {
+            modelManager.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        }
+
+        assertTrue(modelManager.getRecommendationByIndex(new ContactIndex(1)).isPresent());
+        assertEquals(RECOMMENDATION_STEVENS_THU_10AM_2HR,
+                modelManager.getRecommendationByIndex(new ContactIndex(1)).get());
+    }
+
+    @Test
+    public void setEduMate() {
+        EduMate newEduMate = new EduMate(modelManager.getEduMate());
+        modelManager.setEduMate(newEduMate);
+        assertEquals(newEduMate, modelManager.getEduMate());
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        EduMate eduMate = new EduMateBuilder().withPerson(ALBERT).withPerson(BART).build();
+        EduMate differentEduMate = new EduMate();
         UserPrefs userPrefs = new UserPrefs();
+        EduMateHistory eduMateHistory = new EduMateHistory();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        modelManager = new ModelManager(eduMate, userPrefs, eduMateHistory);
+        ModelManager modelManagerCopy = new ModelManager(eduMate, userPrefs, eduMateHistory);
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different eduMate -> returns false
+        assertNotEquals(modelManager, new ModelManager(differentEduMate, userPrefs, eduMateHistory));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        createEqualsFilteredList(
+                Prefix.NAME, ALBERT.getName().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
+        createEqualsFilteredList(
+                Prefix.EMAIL, ALBERT.getEmail().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
+        createEqualsFilteredList(
+                Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
+        createEqualsFilteredList(
+                Prefix.STATION, ALBERT.getStation().getValue().getName().split("\\s+"),
+                eduMate, userPrefs, eduMateHistory);
+        createEqualsFilteredList(
+                Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
+                eduMate, userPrefs, eduMateHistory);
+
+        createEqualsFilteredList(
+                Prefix.GROUP_TAG,
+                ALBERT.getImmutableGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
+                eduMate, userPrefs, eduMateHistory);
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateObservablePersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setEduMateFilePath(Paths.get("differentFilePath"));
+        assertNotEquals(modelManager, new ModelManager(eduMate, differentUserPrefs, eduMateHistory));
+    }
+
+    public void createEqualsFilteredList(
+            Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs, EduMateHistory eduMateHistory) {
+        modelManager.updateObservablePersonList(
+                new ContainsKeywordsPredicate(Arrays.asList(keywords), prefix));
+        assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs, eduMateHistory));
     }
 }

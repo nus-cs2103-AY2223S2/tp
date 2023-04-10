@@ -1,0 +1,16 @@
+@startuml
+start
+:User enters add command;
+if () then ([Invalid arguments])
+    :Error: Message usage;
+    stop
+elseif () then ([Name exists])
+    :Error: Duplicate person;
+    stop
+else ()
+endif
+:Common modules and contact index are computed;
+:Person is added to EduMate;
+:Success message is returned;
+stop
+@enduml

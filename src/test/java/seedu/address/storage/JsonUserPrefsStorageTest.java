@@ -50,6 +50,12 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
+    public void getUserPrefsFilePath_validPath_success() {
+        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(TEST_DATA_FOLDER);
+        assertEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), TEST_DATA_FOLDER);
+    }
+
+    @Test
     public void readUserPrefs_fileInOrder_successfullyRead() throws DataConversionException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
@@ -73,7 +79,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setEduMateFilePath(Paths.get("edumate.json"));
         return userPrefs;
     }
 

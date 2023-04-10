@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_BACKGROUND
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":EduMateParser" as EduMateParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_BACKGROUND
+participant "p:Person" as Person MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1...")
+activate LogicManager
+
+LogicManager -> EduMateParser : parseCommand("edit 1...")
+activate EduMateParser
+
+create EditCommandParser
+EduMateParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> EduMateParser
+deactivate EditCommandParser
+
+EduMateParser -> EditCommandParser : parse("1...")
+activate EditCommandParser
+
+ref over EditCommandParser : Parse Arguments
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+create Person
+EditCommand -> Person
+activate Person
+
+Person --> EditCommand : p
+deactivate Person
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> EduMateParser : e
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> EduMateParser
+destroy EditCommandParser
+
+EduMateParser --> LogicManager : e
+deactivate EduMateParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setPerson(p)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

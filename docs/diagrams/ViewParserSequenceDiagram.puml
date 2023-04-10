@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_BACKGROUND
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "m:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant "contactIndex:ContactIndex" as ContactIndex LOGIC_COLOR
+end box
+
+activate ViewCommandParser
+
+    alt Empty ParseArguments
+    else Non-empty arguments
+
+        ref over ViewCommandParser, ArgumentMultimap : Parse Arguments
+        alt Name present in arguments
+            ViewCommandParser -> ArgumentMultimap : getValue()
+            ArgumentMultimap --> ViewCommandParser : name
+        else Non-empty Preamble
+            ViewCommandParser -> ArgumentMultimap : getPreamble()
+
+            ArgumentMultimap --> ViewCommandParser : stringNumber
+
+            create ContactIndex
+            ViewCommandParser -> ContactIndex : stringNumber
+            activate ContactIndex
+
+            ContactIndex --> ViewCommandParser : contactIndex
+            deactivate ContactIndex
+        end
+    deactivate ViewCommandParser
+end
+@enduml

@@ -1,30 +1,30 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
+import seedu.address.logic.parser.IndexHandler;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Station;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.person.User;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -37,69 +37,140 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + Prefix.NAME + "NAME] "
+            + "[" + Prefix.PHONE + "PHONE] "
+            + "[" + Prefix.EMAIL + "EMAIL] "
+            + "[" + Prefix.STATION + "STATION] "
+            + "[" + Prefix.TELEGRAM_HANDLE + "TELEGRAM_HANDLE] "
+            + "[" + Prefix.GROUP_TAG + "TAG]... "
+            + "[" + Prefix.MODULE_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + Prefix.PHONE + "91234567 "
+            + Prefix.EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_USER_SUCCESS = "Edited User: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    protected final ContactIndex contactIndex;
+    protected final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param contactIndex of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(ContactIndex contactIndex, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.contactIndex = contactIndex;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (contactIndex == null) {
+            return editUser(model);
+        }
+
+        return editPerson(model);
+    }
+
+    /**
+     * Edits person at the given index.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    protected CommandResult editPerson(Model model) throws CommandException {
+        IndexHandler indexHandler = new IndexHandler(model);
+        Optional<Person> personToEditOption = indexHandler.getPersonByIndex(contactIndex);
+
+        if (personToEditOption.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = personToEditOption.get();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
+        editedPerson.setCommonModules(userModuleTags);
+
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.updateObservablePersonList();
+        model.updateObservableMeetUpList(Model.COMPARATOR_CONTACT_INDEX_MEETUP);
+        return new ViewCommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), editedPerson);
+    }
+
+    /**
+     * Edits the user information
+     * @param model {@code Model} which the command should operate on
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    private CommandResult editUser(Model model) {
+        User editedUser = createEditedUser(model.getUser(), editPersonDescriptor);
+
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
+        model.getObservablePersonList().forEach(person -> person.setCommonModules(userModuleTags));
+
+        model.setUser(editedUser);
+        return new ViewCommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser), editedUser);
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    protected static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        ContactIndex unchangedContactIndex = personToEdit.getContactIndex();
+        Station updatedStation = editPersonDescriptor.getStation().orElse(personToEdit.getStation());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
+                .orElse(personToEdit.getTelegramHandle());
+        Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
+                .orElse(personToEdit.getImmutableGroupTags());
+        Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
+                .orElse(personToEdit.getImmutableModuleTags());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedStation, updatedTelegramHandle,
+                unchangedContactIndex, updatedGroupTags, updatedModuleTags);
+    }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    /**
+     * Creates and returns a {@code User} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    protected static User createEditedUser(User userToEdit, EditPersonDescriptor editPersonDescriptor) {
+        Name updatedName = editPersonDescriptor.getName().orElse(userToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(userToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(userToEdit.getEmail());
+        Station updatedStation = editPersonDescriptor.getStation().orElse(userToEdit.getStation());
+        TelegramHandle updatedTelegramHandle = editPersonDescriptor.getTelegramHandle()
+                .orElse(userToEdit.getTelegramHandle());
+        Set<GroupTag> updatedGroupTags = editPersonDescriptor.getGroupTags()
+                .orElse(userToEdit.getImmutableGroupTags());
+        Set<ModuleTag> updatedModuleTags = editPersonDescriptor.getModuleTags()
+                .orElse(userToEdit.getImmutableModuleTags());
+
+        return new User(updatedName, updatedPhone, updatedEmail,
+                updatedStation, updatedTelegramHandle, new ContactIndex(0),
+                updatedGroupTags, updatedModuleTags);
     }
 
     @Override
@@ -116,7 +187,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return contactIndex.equals(e.contactIndex)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
@@ -128,28 +199,38 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private Station station;
+        private ContactIndex contactIndex;
+        private TelegramHandle telegramHandle;
+        private Set<GroupTag> groupTags;
+        private Set<ModuleTag> moduleTags;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code groupTags} and {@code moduleTags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setStation(toCopy.station);
+            setContactIndex(toCopy.contactIndex);
+            setTelegramHandle(toCopy.telegramHandle);
+            setGroupTags(toCopy.groupTags);
+            setModuleTags(toCopy.moduleTags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, station, groupTags, moduleTags, telegramHandle);
+        }
+
+        public void setContactIndex(ContactIndex contactIndex) {
+            this.contactIndex = contactIndex;
         }
 
         public void setName(Name name) {
@@ -158,6 +239,10 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public ContactIndex getContactIndex() {
+            return contactIndex;
         }
 
         public void setPhone(Phone phone) {
@@ -176,29 +261,54 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setStation(Station station) {
+            this.station = station;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Station> getStation() {
+            return Optional.ofNullable(station);
+        }
+
+        public void setTelegramHandle(TelegramHandle telegramHandle) {
+            this.telegramHandle = telegramHandle;
+        }
+
+        public Optional<TelegramHandle> getTelegramHandle() {
+            return Optional.ofNullable(telegramHandle);
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code groupTags} to this object's {@code groupTags}.
+         * A defensive copy of {@code groupTags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setGroupTags(Set<GroupTag> groupTags) {
+            this.groupTags = (groupTags != null) ? new HashSet<>(groupTags) : null;
+        }
+
+        /**
+         * Sets {@code moduleTags} to this object's {@code moduleTags}.
+         * A defensive copy of {@code moduleTags} is used internally.
+         */
+        public void setModuleTags(Set<ModuleTag> moduleTags) {
+            this.moduleTags = (moduleTags != null) ? new HashSet<>(moduleTags) : null;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code groupTags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<GroupTag>> getGroupTags() {
+            return (groupTags != null) ? Optional.of(Collections.unmodifiableSet(groupTags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code moduleTags} is null.
+         */
+        public Optional<Set<ModuleTag>> getModuleTags() {
+            return (moduleTags != null) ? Optional.of(Collections.unmodifiableSet(moduleTags)) : Optional.empty();
         }
 
         @Override
@@ -215,12 +325,13 @@ public class EditCommand extends Command {
 
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
-
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getStation().equals(e.getStation())
+                    && getTelegramHandle().equals(e.getTelegramHandle())
+                    && getGroupTags().equals(e.getGroupTags())
+                    && getModuleTags().equals(e.getModuleTags());
         }
     }
 }

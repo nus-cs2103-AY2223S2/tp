@@ -4,47 +4,54 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Package Model <<Rectangle>> {
+Class "<<interface>>\nReadOnlyEduMate" as ReadOnlyEduMate
+Class "<<interface>>\nReadOnlyEduMateHistory" as ReadOnlyEduMateHistory
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nModel" as Model1
+Class EduMate
+Class EduMateHistory
 Class ModelManager
 Class UserPrefs
 
+Class UniqueMeetUpList
+Class UniqueRecommendationList
 Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
 
+Class Participants
+Class Person
+Class User
+Class Recommendation
+Class MeetUp
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Model1
 
-AddressBook .up.|> ReadOnlyAddressBook
+EduMate .up.|> ReadOnlyEduMate
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+EduMateHistory .up.|> ReadOnlyEduMateHistory
+
+ModelManager .up.|> Model1
+Model1 .right.> ReadOnlyUserPrefs
+Model1 .left.> ReadOnlyEduMate
+Model1 .left.> ReadOnlyEduMateHistory
+ModelManager -left-> "1" EduMate
 ModelManager -right-> "1" UserPrefs
+ModelManager -left-> "1" EduMateHistory
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+EduMate *--> "1" UniqueMeetUpList
+EduMate *--> "1" UniqueRecommendationList
+EduMate *--> "1" UniquePersonList
+EduMate *--> "1" User
+User --|> Person
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+UniqueMeetUpList --> "~* all" MeetUp
+UniqueRecommendationList --> "~* all" Recommendation
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Participants --> Person
+MeetUp --> Participants
 
 ModelManager -->"~* filtered" Person
 @enduml

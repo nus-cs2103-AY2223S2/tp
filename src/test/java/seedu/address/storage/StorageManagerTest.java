@@ -2,7 +2,8 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
 
@@ -11,11 +12,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.EduMate;
+import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.PersonUtil;
 
 public class StorageManagerTest {
+
+    private static final String STORAGE_FILE_PATH = "ab";
+    private static final String USER_PREFS_FILE_PATH = "prefs";
+
+    private static final String HISTORY_FILE_PATH = "cd";
 
     @TempDir
     public Path testFolder;
@@ -24,9 +31,11 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        EduMateStorageManager eduMateStorage = new EduMateStorageManager(getTempFilePath(
+                STORAGE_FILE_PATH), getTempFilePath(HISTORY_FILE_PATH));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath(
+                USER_PREFS_FILE_PATH));
+        storageManager = new StorageManager(eduMateStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +57,29 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void eduMateReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link EduMateStorageManager} class.
+         * More extensive testing of UserPref saving/reading is done in {@link EduMateStorageManagerTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        EduMate original = getTypicalEduMate();
+        storageManager.saveEduMate(original);
+        ReadOnlyEduMate retrieved = storageManager.readEduMate().get();
+        ReadOnlyEduMate pushed = new EduMate(retrieved);
+        assertEquals(original.getPersonList(), pushed.getPersonList());
+        assertTrue(PersonUtil.isSameUserAndUserStub(pushed.getUser(), original.getUser()));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getEduMateFilePath() {
+        assertNotNull(storageManager.getEduMateFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath_validFilePath_success() {
+        assertEquals(storageManager.getUserPrefsFilePath(),
+                getTempFilePath(USER_PREFS_FILE_PATH));
     }
 
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="535px" preserveAspectRatio="none" style="width:669px;height:535px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 669 535" width="669px" zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <rect fill="#E6EFF9" height="516.902" style="stroke:#181818;stroke-width:0.5;" width="631.5" x="16" y="6"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="34" x="313.25" y="19.897">Logic
+        </text>
+        <rect fill="#FFFFFF" height="448.1281" style="stroke:#181818;stroke-width:1.0;" width="10" x="103.5"
+              y="71.7739"/>
+        <rect fill="#FFFFFF" height="381.716" style="stroke:#181818;stroke-width:1.0;" width="10" x="287.5"
+              y="122.186"/>
+        <rect fill="#FFFFFF" height="42.706" style="stroke:#181818;stroke-width:1.0;" width="10" x="292.5" y="161.892"/>
+        <rect fill="#FFFFFF" height="213.892" style="stroke:#181818;stroke-width:1.0;" width="10" x="292.5"
+              y="251.304"/>
+        <rect fill="#FFFFFF" height="147.186" style="stroke:#181818;stroke-width:1.0;" width="10" x="546.5"
+              y="280.304"/>
+        <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="551.5" y="358.784"/>
+        <rect fill="none" height="433.1281" style="stroke:#000000;stroke-width:1.5;" width="653.5" x="10" y="78.7739"/>
+        <rect fill="none" height="81.412" style="stroke:#000000;stroke-width:1.5;" width="456.5" x="197" y="315.3719"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="108" x2="108" y1="61.7739"
+              y2="528.902"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="292" x2="292" y1="61.7739"
+              y2="528.902"/>
+        <line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="551.5" x2="551.5" y1="296.338"
+              y2="528.902"/>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="157"
+              x="30" y="27.706"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="37"
+              y="49.672">:AddCommandParser
+        </text>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151"
+              x="217" y="27.706"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="224"
+              y="49.672">:ArgumentTokenizer
+        </text>
+        <rect fill="#FFFFFF" height="448.1281" style="stroke:#181818;stroke-width:1.0;" width="10" x="103.5"
+              y="71.7739"/>
+        <rect fill="#FFFFFF" height="381.716" style="stroke:#181818;stroke-width:1.0;" width="10" x="287.5"
+              y="122.186"/>
+        <rect fill="#FFFFFF" height="42.706" style="stroke:#181818;stroke-width:1.0;" width="10" x="292.5" y="161.892"/>
+        <rect fill="#FFFFFF" height="213.892" style="stroke:#181818;stroke-width:1.0;" width="10" x="292.5"
+              y="251.304"/>
+        <rect fill="#FFFFFF" height="147.186" style="stroke:#181818;stroke-width:1.0;" width="10" x="546.5"
+              y="280.304"/>
+        <rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="551.5" y="358.784"/>
+        <path d="M10,78.7739 L185,78.7739 L185,88.4799 L175,98.4799 L10,98.4799 L10,78.7739 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="433.1281" style="stroke:#000000;stroke-width:1.5;" width="653.5" x="10" y="78.7739"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="130" x="25" y="93.6709">sd Parse Arguments
+        </text>
+        <polygon fill="#181818" points="275.5,118.186,285.5,122.186,275.5,126.186,279.5,122.186"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="113.5" x2="281.5" y1="122.186" y2="122.186"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="131" x="135"
+              y="116.377">tokenize("n/Bart...", ...)
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="297.5" x2="344.5" y1="148.892" y2="148.892"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="344.5" x2="344.5" y1="148.892" y2="161.892"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="303.5" x2="344.5" y1="161.892" y2="161.892"/>
+        <polygon fill="#181818" points="313.5,157.892,303.5,161.892,313.5,165.892,309.5,161.892"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="206" x="309.5"
+              y="143.083">findAllPrefixPositions("n/Bart...", ...)
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="302.5" x2="344.5" y1="203.598"
+              y2="203.598"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="344.5" x2="344.5" y1="203.598"
+              y2="216.598"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="297.5" x2="344.5" y1="216.598"
+              y2="216.598"/>
+        <polygon fill="#181818" points="307.5,212.598,297.5,216.598,307.5,220.598,303.5,216.598"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="309.5"
+              y="197.789">positions
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="297.5" x2="344.5" y1="238.304" y2="238.304"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="344.5" x2="344.5" y1="238.304" y2="251.304"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="303.5" x2="344.5" y1="251.304" y2="251.304"/>
+        <polygon fill="#181818" points="313.5,247.304,303.5,251.304,313.5,255.304,309.5,251.304"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="235" x="309.5"
+              y="232.495">extractArguments("n/Bart...", positions)
+        </text>
+        <polygon fill="#181818" points="457.5,266.304,467.5,270.304,457.5,274.304,461.5,270.304"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="302.5" x2="463.5" y1="270.304" y2="270.304"/>
+        <rect fill="#005EC4" height="33.0679" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="164"
+              x="469.5" y="264.304"/>
+        <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="150" x="476.5"
+              y="286.27">m:ArgumentMultimap
+        </text>
+        <path d="M197,315.3719 L270,315.3719 L270,325.0779 L260,335.0779 L197,335.0779 L197,315.3719 " fill="#EEEEEE"
+              style="stroke:#000000;stroke-width:1.5;"/>
+        <rect fill="none" height="81.412" style="stroke:#000000;stroke-width:1.5;" width="456.5" x="197" y="315.3719"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing"
+              textLength="28" x="212" y="330.2689">loop
+        </text>
+        <polygon fill="#181818" points="539.5,354.784,549.5,358.784,539.5,362.784,543.5,358.784"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="302.5" x2="545.5" y1="358.784" y2="358.784"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="83" x="385.5"
+              y="352.975">prefixPosition
+        </text>
+        <polygon fill="#181818" points="313.5,423.49,303.5,427.49,313.5,431.49,309.5,427.49"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="307.5" x2="550.5" y1="427.49"
+              y2="427.49"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12" x="421"
+              y="421.681">m
+        </text>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="302.5" x2="344.5" y1="464.196"
+              y2="464.196"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="344.5" x2="344.5" y1="464.196"
+              y2="477.196"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="297.5" x2="344.5" y1="477.196"
+              y2="477.196"/>
+        <polygon fill="#181818" points="307.5,473.196,297.5,477.196,307.5,481.196,303.5,477.196"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12" x="309.5"
+              y="458.387">m
+        </text>
+        <polygon fill="#181818" points="124.5,499.902,114.5,503.902,124.5,507.902,120.5,503.902"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="118.5" x2="291.5" y1="503.902"
+              y2="503.902"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="12" x="197"
+              y="498.093">m
+        </text><!--SRC=[hPDDJuGm48Rl_HKZ9qqKxtimOJ7P6578Hi-RIhkRndwGjXZqrrjOgLjOicYM0o7JcUUTTpfSC5docb0mzfFJkAe5H-XDDP2f7IiXorSFwIRDitozMIRfusgTlpxVemfhoqfMOMaXMYI4f4e8B4c1jQ4w0cnW63n43UlrhXPKsXVrJYNxwW73w3H1UCHJpIqJk0e8VJ00K4d0-KG8bvPzO4j77IEqqwgkm13e0fvd4BXdPF3cxaZF2x0_tvUHl5swhkCuZgx1lQywpA_yi1RjPKR82PqjaoJXlD1qovf26MQPakPygXEoLQ_KrH5wDZ-qiTh1_D139rvsdfzIqyFJVYDETnHaZbJyQNVCbThdpQQsymlkovTFI_KPHqOTvBW53oVkHQUkKg1Jt3_kXlZ_JhJ4uGys2zZQ_WO0]-->
+    </g>
+</svg>

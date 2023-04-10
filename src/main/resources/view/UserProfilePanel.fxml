@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane id="userProfilePane" fx:id="userProfilePane" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+
+    <stylesheets>
+        <URL value="@UserProfilePanel.css" />
+    </stylesheets>
+
+    <VBox alignment="TOP_LEFT" prefHeight="152.0" prefWidth="267.0">
+        <HBox minHeight="-Infinity" prefHeight="51.0" prefWidth="246.0">
+            <VBox.margin>
+                <Insets bottom="5.0" left="5.0" />
+            </VBox.margin>
+            <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                <image><Image url="@../images/userpfp.png" /></image>
+                <HBox.margin>
+                    <Insets right="10.0" />
+                </HBox.margin>
+            </ImageView>
+            <Label fx:id="name" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="198.0" text="\$name" wrapText="true" />
+        </HBox>
+        <Label fx:id="phone" text="\$phone" wrapText="true">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+        <Label fx:id="email" text="\$email" wrapText="true">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+        <Label fx:id="telegramHandle" text="\$telegramHandle" wrapText="true">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+        <Label fx:id="station" text="\$address" wrapText="true">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
+      </Label>
+        <FlowPane fx:id="allTags">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </FlowPane>
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin>
+      <StackPane.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </StackPane.margin>
+      <padding>
+         <Insets bottom="5.0" left="10.0" right="15.0" top="5.0" />
+      </padding>
+    </VBox>
+    <StackPane.margin>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </StackPane.margin>
+</StackPane>

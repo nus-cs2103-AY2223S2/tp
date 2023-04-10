@@ -1,0 +1,41 @@
+@startuml
+!pragma layout smetana
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_DARK
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>> UI_COLOR_BACKGROUND {
+Class MainWindow
+Class ResultDisplay
+Class CommandBox
+Class HelpWindow
+Class UserProfilePanel
+Class PersonListPanel
+Class MeetListPanel
+Class ScheduledMeetsListPanel
+Class PersonCard
+Class MeetCard
+Class ScheduledMeetsCard
+}
+
+package Model <<Rectangle>> MODEL_COLOR_BACKGROUND {
+}
+
+MainWindow *-up-> "0..1" HelpWindow
+MainWindow *-up-> "1" CommandBox
+MainWindow *-up-> "1" ResultDisplay
+MainWindow *-up-> "1" UserProfilePanel
+MainWindow *--> "1" PersonListPanel
+MainWindow *--> "1" MeetListPanel
+MainWindow *--> "1" ScheduledMeetsListPanel
+
+PersonListPanel --> "*" PersonCard
+MeetListPanel --> "*" MeetCard
+ScheduledMeetsListPanel --> "*" ScheduledMeetsCard
+
+PersonCard ..> Model
+MeetCard ..> Model
+ScheduledMeetsCard ..> Model
+
+@enduml

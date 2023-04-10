@@ -1,43 +1,23 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.ALEX;
+import static seedu.address.testutil.TypicalPersons.BEN;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Station;
+import seedu.address.model.person.TelegramHandle;
+import seedu.address.model.tag.GroupTag;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -45,97 +25,262 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BEN)
+                .withGroupTags(CommandTestUtil.VALID_GROUP_2).withModuleTags().build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BEN
+                + CommandTestUtil.PHONE_DESC_BEN + CommandTestUtil.EMAIL_DESC_BEN
+                + CommandTestUtil.STATION_DESC_BEN + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_2_DESC, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX + CommandTestUtil.NAME_DESC_BEN
+                + CommandTestUtil.PHONE_DESC_BEN + CommandTestUtil.EMAIL_DESC_BEN
+                + CommandTestUtil.STATION_DESC_BEN + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_2_DESC, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_ALEX
+                + CommandTestUtil.PHONE_DESC_BEN + CommandTestUtil.EMAIL_DESC_BEN
+                + CommandTestUtil.STATION_DESC_BEN + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_2_DESC, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_ALEX + CommandTestUtil.EMAIL_DESC_BEN
+                + CommandTestUtil.STATION_DESC_BEN + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_2_DESC, new AddCommand(expectedPerson));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple stations - last station accepted
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_ALEX
+                + CommandTestUtil.STATION_DESC_BEN + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_2_DESC, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BEN)
+                .withGroupTags(CommandTestUtil.VALID_GROUP_2, CommandTestUtil.VALID_GROUP_1)
+                .withModuleTags(CommandTestUtil.VALID_MODULE_2)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_1_DESC
+                + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_2_DESC, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_tagsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        Person expectedPerson = new PersonBuilder(ALEX).withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.STATION_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
                 new AddCommand(expectedPerson));
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_phoneMissing_default() {
+        // no phone
+        Person expectedPerson = new PersonBuilder(ALEX).withPhone("00000000")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.STATION_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_emailMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withEmail("alexquinn@gmail.com")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.STATION_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withEmail("benjaminkhoo@gmail.com")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.STATION_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_addressMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withStation("Kent Ridge")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withStation("Kent Ridge")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_telegramMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withTelegramHandle("@alexquinn")
+            .withTelegramHandle("@alexquinn00000").withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.STATION_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withTelegramHandle("@benjaminkhoo")
+                .withTelegramHandle("@benjaminkhoo00000").withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.STATION_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_multipleFieldsMissing_default() {
+        // Alex
+        Person expectedPerson = new PersonBuilder(ALEX).withEmail("alexquinn@gmail.com")
+                .withStation("Kent Ridge")
+                .withTelegramHandle("@alexquinn00000")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.PHONE_DESC_ALEX
+                        + CommandTestUtil.TELEGRAM_DESC_ALEX + "00000",
+                new AddCommand(expectedPerson));
+
+        expectedPerson = new PersonBuilder(ALEX).withPhone("00000000")
+                .withTelegramHandle("@alexquinn00000")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
+                        + CommandTestUtil.EMAIL_DESC_ALEX
+                        + CommandTestUtil.STATION_DESC_ALEX,
+                new AddCommand(expectedPerson));
+
+        // Ben
+        expectedPerson = new PersonBuilder(BEN).withEmail("benjaminkhoo@gmail.com")
+                .withStation("Kent Ridge")
+                .withTelegramHandle("@benjaminkhoo00000")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN + "00000",
+                new AddCommand(expectedPerson));
+
+        expectedPerson = new PersonBuilder(BEN).withPhone("00000000")
+                .withTelegramHandle("@benjaminkhoo00000")
+                .withGroupTags().withModuleTags().build();
+        assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.STATION_DESC_BEN,
+                new AddCommand(expectedPerson));
+    }
+
+
+    @Test
+    public void parse_nameMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, CommandTestUtil.NAME_BEN + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, CommandTestUtil.NAME_BEN + CommandTestUtil.PHONE_BEN
+                        + CommandTestUtil.EMAIL_BEN + CommandTestUtil.STATION_BEN,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_1_DESC + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.VALID_MODULE_2_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.INVALID_PHONE_DESC
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_1_DESC + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.VALID_MODULE_2_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.INVALID_EMAIL_DESC + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_1_DESC + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.VALID_MODULE_2_DESC, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        // invalid station
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.INVALID_STATION_DESC
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_1_DESC + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.VALID_MODULE_2_DESC,
+                Station.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        // invalid telegram handle
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.INVALID_TELEGRAM_DESC
+                + CommandTestUtil.VALID_GROUP_1_DESC + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.VALID_MODULE_2_DESC,
+                TelegramHandle.MESSAGE_CONSTRAINTS);
+
+        // invalid group
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.INVALID_GROUP_DESC + CommandTestUtil.VALID_GROUP_2
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.VALID_MODULE_2_DESC,
+                GroupTag.MESSAGE_CONSTRAINTS);
+
+        // invalid module
+        assertParseFailure(parser, CommandTestUtil.NAME_DESC_BEN + CommandTestUtil.PHONE_DESC_BEN
+                + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.STATION_DESC_BEN
+                + CommandTestUtil.TELEGRAM_DESC_BEN
+                + CommandTestUtil.VALID_GROUP_1_DESC + CommandTestUtil.VALID_GROUP_2_DESC
+                + CommandTestUtil.VALID_MODULE_1_DESC + CommandTestUtil.INVALID_MODULE_1_DESC,
+                ModuleTag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.PHONE_DESC_BEN
+                        + CommandTestUtil.EMAIL_DESC_BEN + CommandTestUtil.INVALID_STATION_DESC
+                        + CommandTestUtil.TELEGRAM_DESC_BEN,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY + CommandTestUtil.NAME_DESC_BEN
+                        + CommandTestUtil.PHONE_DESC_BEN + CommandTestUtil.EMAIL_DESC_BEN
+                        + CommandTestUtil.TELEGRAM_DESC_BEN
+                        + CommandTestUtil.STATION_DESC_BEN + CommandTestUtil.VALID_GROUP_1_DESC
+                        + CommandTestUtil.VALID_GROUP_2_DESC,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
