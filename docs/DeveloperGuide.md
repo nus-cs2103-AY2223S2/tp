@@ -165,7 +165,7 @@ optional
 positional `String` value. The optional positional value will allow the user
 to input something right after the command's first keyword. For example:
 
-``` 
+```
 keyword something /someparam somevalue /someotherparam someothervalue
         ^^^^^^^^^ <- this is the positional value
 ```
@@ -176,10 +176,10 @@ command:
 
 ```java
 @Override
-public DeleteCommand<T> createCommand(CommandParam param) throws ParseException{
-    int index = param.getUnnamedIntOrThrow(); // Look at here
-    return new DeleteCommand<>(index, getManagerFunction, deleteFunction);
-}
+public DeleteCommand<T> createCommand(CommandParam param)throws ParseException{
+        int index=param.getUnnamedIntOrThrow(); // Look at here
+        return new DeleteCommand<>(index,getManagerFunction,deleteFunction);
+        }
 ```
 
 The `param.getUnnamedIntOrThrow()` will return the positional value as an
@@ -293,8 +293,7 @@ entity.
 **How is this feature implemented?**
 
 In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and
-users can add new objects
-into the database via `add` command.
+users can add new objects into the database via `add` command.
 
 This feature is enabled by the following classes:
 
@@ -376,8 +375,8 @@ to be a more natural fit.
 **How is this feature implemented?**
 
 The deleting feature is implemented in the same way for deleting crews, flights,
-locations, pilots, and planes from the
-Wingman app. Hence, in this description, the general term XYZ is used instead to
+locations, pilots, and planes from the Wingman app.
+Hence, in this description, the general term XYZ is used instead to
 refer to all for simplicity.
 
 This feature is enabled by the following classes in particular:
@@ -395,42 +394,34 @@ delete {XYZ identifier}
 the input goes through the UI layer where `logic.execute(input)` is called which
 passes control to the logic layer.
 
-At the logic layer, `execute(input)` first parses the input using the
-WingmanParser's `parse` function. The aim of
-parsing is to determine what type of command the user's input is and determine
-which mode - Crew, Flight, Location,
+At the logic layer, `execute(input)` first parses the input using the `parse`
+method in the `WingmanParser` class. The aim of parsing is to determine what type of
+command the user's input is and determine which mode - Crew, Flight, Location,
 Pilot, or Plane - should handle the execution of said command.
 
-The WingmanParser separates the input into tokens, determines what mode the
-command is from, and then returns the
-desired command type. In this case, the input allows the WingmanParser to
-recognize it is a `DeleteXYZCommand` and as a
-result, returns a new `DeleteXYZCommand` with the {XYZ identifier}.
+The `parse` command in `WingmanParser` class separates the input into tokens,
+and determines what mode the command is from using the `CommandGroup` class'
+`parseFactory` method. The `parse` command in `CommandGroup` uses the `parseFactory`
+command from the `FactoryParser` class. This results in the creation of a `DeleteCommand`
+using the `DeleteCommandFactory`.
 
-The `DeleteXYZCommand` is executed using the corresponding `XYZManager`.
-Firstly, the `XYZManager` uses `getItem(id)`
-to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls
-the `deleteXYZ(id)` method. The
-`deleteXYZ(id)` method uses the `item.removeItem(id)` method in order to remove
-the desired XYZ from the Wingman app.
+Now, the created `DeleteCommand` is to be executed. The execution of this command is handled
+by the `ModelManager` and more specifically, the `ItemManager`. The `ItemManager` calls the
+`delete(id)` method uses the `item.removeItem(id)` method in order to remove the desired XYZ
+from the Wingman app.
 
-Finally, the `CommandResult` is returned which is the message the user will see
-indicating a successful deletion.
+Finally, the `CommandResult` is returned which is the message the user will see indicating
+a successful deletion.
 
 <img src="images/WingmanDeleteXYZSequenceDiagram.png" width="966">
 
 **Why was it implemented this way?**
 
-For the parsing logic in the Wingman app, the commands were split based on their
-related "mode." This implementation
-decision was made so that parsing would be more simple across the five modes. To
-elaborate, each mode would handle their
-related commands only.
-
-**Alternatives considered for deleting XYZ:**
-
-Description coming soon
-
+For the parsing logic in the Wingman app, the commands were split based on their related
+"mode." There are some commands in the Wingman app which only concern some modes.
+Therefore, this implementation approach was chosen so that modes would only have to handle
+what concerns them. Overall, this implementation decision was made so that
+parsing would be simpler across the five modes.
 
 <div style="page-break-after: always;"></div>
 
@@ -929,4 +920,3 @@ is the `user`, unless specified otherwise)
 * **Plane**: A unit plane which can be assigned to flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
-

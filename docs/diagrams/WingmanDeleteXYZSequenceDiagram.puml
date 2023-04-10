@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WingmanParser" as WingmanParser LOGIC_COLOR
+participant ":CommandGroup" as CommandGroup LOGIC_COLOR
+participant ":FactoryParser" as FactoryParser LOGIC_COLOR
+participant "factory:DeleteCommandFactory" as DeleteCommandFactory LOGIC_COLOR
+participant "command:DeleteCommand" as DeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("delete 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("delete 1")
+activate LogicManager
+
+LogicManager -> WingmanParser : parse(getOperationMode(), "delete 1")
+activate WingmanParser
+
+WingmanParser -> CommandGroup : parse(tokens)
+activate CommandGroup
+
+CommandGroup -> FactoryParser : parseFactory(tokens)
+activate FactoryParser
+
+create DeleteCommandFactory
+FactoryParser -> DeleteCommandFactory
+
+create DeleteCommand
+DeleteCommandFactory -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandFactory : command
+deactivate DeleteCommand
+
+DeleteCommandFactory --> FactoryParser : command
+FactoryParser --> CommandGroup : command
+deactivate FactoryParser
+
+CommandGroup --> WingmanParser : command
+deactivate CommandGroup
+
+WingmanParser --> LogicManager : command
+deactivate WingmanParser
+
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> ModelManager : deleteXYZ()
+activate ModelManager
+
+ModelManager --> DeleteCommand : commandResult
+deactivate ModelManager
+DeleteCommand --> LogicManager : commandResult
+deactivate DeleteCommand
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+[<-- MainWindow
+deactivate MainWindow
+
+@enduml
