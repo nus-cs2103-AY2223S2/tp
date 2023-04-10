@@ -35,7 +35,9 @@ Given below are my contributions to the project.
         * Reviewed User Guide for bugs and QoL improvements.
     * Developer Guide:
         * Updated UIClassDiagram [#389](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/389)
+        * Added details for UI implementation.
         * Reviewed Developer Guide for bugs and QoL improvements.
 
 * **Community**:
   * Fixed a wide variety of bugs during the Mock PE.
+  * Caught many high severity bugs for assigned team and provided suggestions on how to fix them
