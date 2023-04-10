@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import taa.model.ClassList;
 import taa.model.Tutor;
 import taa.model.UniqueClassLists;
-import taa.model.assignment.Assignment;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
@@ -45,7 +44,7 @@ public class SampleDataUtil {
         UniqueClassLists classLists = new UniqueClassLists();
         classLists.add(sampleAb);
         Tutor tutor = new Tutor(new Name("James"), new HashSet<>(), classLists);
-        return new TaaData(tutor, new Assignment[0]);
+        return new TaaData(tutor);
     }
 
     /**

@@ -13,15 +13,12 @@ import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.tag.Tag;
 
 /**
- * Represents a Student in TAA.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents a Student in TAA. Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
 
-    private static int lastId;
     // Identity fields
     private final Name name;
-    private final int id;
 
     // Data fields
     private final Attendance atd;
@@ -36,7 +33,6 @@ public class Student {
      */
     public Student(Name name, String atd, String pp, ArrayList<String> submissionStrArr, Set<Tag> classTags) {
         CollectionUtil.requireAllNonNull(name, classTags);
-        this.id = ++lastId;
         this.name = name;
         this.atd = new Attendance(atd, pp);
         this.classTags.addAll(classTags);
@@ -67,8 +63,8 @@ public class Student {
     }
 
     /**
-     * Returns an immutable class tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable class tag set, which throws {@code UnsupportedOperationException} if modification is
+     * attempted.
      */
     public Set<Tag> getClassTags() {
         return Collections.unmodifiableSet(classTags);
@@ -94,6 +90,7 @@ public class Student {
 
     /**
      * Updates the submission storage string when grading/ungrading a student submission.
+     *
      * @param submission
      */
     public void updateSubmission(Submission submission) {
@@ -102,8 +99,7 @@ public class Student {
     }
 
     /**
-     * Returns the latest submission by this student.
-     * If there are no submissions, null is returned.
+     * Returns the latest submission by this student. If there are no submissions, null is returned.
      */
     public Submission getLatestSubmission() {
         return this.submissions.getLatestSubmission();
@@ -134,8 +130,8 @@ public class Student {
     }
 
     /**
-     * Returns the grade obtained by the student, if it exists.
-     * Otherwise, an Optional.empty() is returned.
+     * Returns the grade obtained by the student, if it exists. Otherwise, an Optional.empty() is returned.
+     *
      * @throws AssignmentNotFoundException if the assignment does not exist.
      */
     public Optional<Integer> getGradesForAssignment(String assignmentName)
@@ -143,9 +139,14 @@ public class Student {
         return this.submissions.getSubmissionScore(assignmentName);
     }
 
+    @Override
+    public int hashCode() {
+        return hashcode;
+    }
+
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both persons have the same identity and data fields. This defines a stronger notion of equality
+     * between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -163,11 +164,6 @@ public class Student {
     }
 
     @Override
-    public int hashCode() {
-        return hashcode;
-    }
-
-    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
@@ -181,9 +177,9 @@ public class Student {
     }
 
     /**
-     * Takes in a counter of length Attendance.NUM_WEEKS and increments the value at index i
-     * if this Student is marked as present on week i.
-     *
+     * Takes in a counter of length Attendance.NUM_WEEKS and increments the value at index i if this Student is marked
+     * as present on week i.
+     * <p>
      * If the counter passed in is of incorrect size, it will not be updated. (i.e. will fail silently)
      */
     public void updateAttendanceCounter(int[] counter) {

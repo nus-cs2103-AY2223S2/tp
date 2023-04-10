@@ -73,13 +73,13 @@ class JsonAdaptedStudent {
         if (pp == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
         }
-        if (!Attendance.isValidPpStorageString(pp)) {
+        if (!Attendance.isAcceptablePpStr(pp)) {
             throw new IllegalValueException("Invalid participation value \"" + pp + "\" in JSON file");
         }
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
         }
-        if (!Attendance.isValidAttendanceStorageString(attendance)) {
+        if (!Attendance.isValidAtdStr(attendance)) {
             throw new IllegalValueException("Invalid attendance value \"" + attendance + "\" in JSON file");
         }
 

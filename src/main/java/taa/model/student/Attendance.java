@@ -103,10 +103,18 @@ public class Attendance {
         return args.length == NUM_WEEKS && Arrays.stream(args).map(String::trim).allMatch(p);
     }
 
+    /**
+     * @param ppStr Participation points string from storage files
+     * @return true if string is valid and false otherwise
+     */
     public static boolean isAcceptablePpStr(String ppStr) {
         return isValidArgStr(ppStr, IS_ACCEPTABLE_PARTICIPATION_POINT);
     }
 
+    /**
+     * @param atdStr Attendance string from storage files
+     * @return true if string is valid and false otherwise
+     */
     public static boolean isValidAtdStr(String atdStr) {
         return isValidArgStr(atdStr, ParserUtil.IS_BIN_INT);
     }
@@ -235,44 +243,5 @@ public class Attendance {
             res.append(String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]));
         }
         return res.toString();
-    }
-
-    /**
-     * @param str Attendance string from json file
-     * @return true if string is valid and false otherwise
-     */
-    public static boolean isValidAttendanceStorageString(String str) {
-        String[] arr = str.split(";");
-        if (arr.length != 12) {
-            return false;
-        }
-        for (String val : arr) {
-            if (!val.equals("0") && !val.equals("1")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * @param str Participation points string from storage
-     * @return true if string is valid and false otherwise
-     */
-    public static boolean isValidPpStorageString(String str) {
-        String[] arr = str.split(";");
-        if (arr.length != 12) {
-            return false;
-        }
-        for (String val : arr) {
-            try {
-                int convertedPoint = Integer.parseInt(val);
-                if (convertedPoint < -1 || convertedPoint > 700) {
-                    return false;
-                }
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        }
-        return true;
     }
 }

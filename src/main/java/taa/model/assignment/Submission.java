@@ -45,6 +45,11 @@ public class Submission {
         this.marks = marks;
     }
 
+    public static String getAsgnName(String submissionStr) {
+        final int idx = submissionStr.indexOf(STR_SEP);
+        return idx < 0 ? submissionStr : submissionStr.substring(0, idx).trim();
+    }
+
     public Student getStudent() {
         return this.student;
     }
