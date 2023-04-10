@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 public class TaskNameTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskName(null));
@@ -38,6 +40,7 @@ public class TaskNameTest {
         assertTrue(TaskName.isValidName("Buy Eggs")); // with capital letters
         assertTrue(TaskName.isValidName("Buy 10kg of Flour and 5kg of Eggs and 2kg of sugar")); // long names
     }
+    //@@author
 
     @Test
     public void toStringTest() {

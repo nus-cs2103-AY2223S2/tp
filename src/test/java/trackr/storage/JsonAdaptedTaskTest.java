@@ -76,6 +76,8 @@ public class JsonAdaptedTaskTest {
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void toModelType_invalidTimeAdded_throwsIllegalValueException() {
         JsonAdaptedTask task =
@@ -90,5 +92,5 @@ public class JsonAdaptedTaskTest {
         String expectedMessage = JsonAdaptedTask.MESSAGE_PARSE_TIME_ADDED_ERROR;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
-
+    //@@author
 }

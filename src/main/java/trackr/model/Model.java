@@ -123,7 +123,8 @@ public interface Model {
     void sortFilteredOrderList(Comparator<Order> comparator);
 
     // ===================================================== Task =====================================================
-
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     /**
      * Returns the TaskList.
      */
@@ -133,6 +134,7 @@ public interface Model {
      * Returns an unmodifiable view of the filtered task list.
      */
     ObservableList<Task> getFilteredTaskList();
+    //@@author
 
     /**
      * Sorts the filtered task list.

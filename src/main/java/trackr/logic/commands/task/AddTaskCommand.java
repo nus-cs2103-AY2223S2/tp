@@ -11,6 +11,8 @@ import trackr.model.task.Task;
  * Adds a task to the task list.
  */
 public class AddTaskCommand extends AddItemCommand<Task> {
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final String COMMAND_WORD = "add_task";
     public static final String COMMAND_WORD_SHORTCUT = "add_t";
 
@@ -23,6 +25,7 @@ public class AddTaskCommand extends AddItemCommand<Task> {
             + PREFIX_NAME + "Sort Inventory "
             + PREFIX_DEADLINE + "01/01/2024 "
             + PREFIX_STATUS + "N ";
+    //@@author
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}.

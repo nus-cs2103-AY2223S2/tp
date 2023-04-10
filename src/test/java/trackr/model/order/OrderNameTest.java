@@ -22,6 +22,8 @@ public class OrderNameTest {
 
     @Test
     public void isValidOrderName() {
+        //@@author HmuuMyatMoe-reused
+        //Reused from AB3 with minor modifications
         // null task name
         assertThrows(NullPointerException.class, () -> OrderName.isValidName(null));
 
@@ -37,6 +39,7 @@ public class OrderNameTest {
         assertTrue(OrderName.isValidName("10 Brownies")); // alphanumeric characters
         assertTrue(OrderName.isValidName("Egg Tart")); // with capital letters
         assertTrue(OrderName.isValidName("Brownies with extra corn flakes and chcocolate")); // long names
+        //@@author
     }
 
     @Test

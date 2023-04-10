@@ -163,6 +163,8 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with modifications
     @Test
     public void toModelType_nullOrderStatus_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -190,5 +192,5 @@ public class JsonAdaptedOrderTest {
         String expectedMessage = JsonAdaptedOrder.MESSAGE_PARSE_TIME_ADDED_ERROR;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
-
+    //@@author
 }

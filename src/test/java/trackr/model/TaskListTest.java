@@ -24,6 +24,8 @@ import trackr.testutil.TaskBuilder;
 
 public class TaskListTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     private final TaskList taskList = new TaskList();
 
     @Test
@@ -77,6 +79,7 @@ public class TaskListTest {
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         assertTrue(taskList.hasItem(editedTask)); //different status
     }
+    //@@author
 
     @Test
     public void setTaskList_nullTask_throwsNullPointerException() {
@@ -107,10 +110,13 @@ public class TaskListTest {
         assertEquals(expectedTaskList, taskList);
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> taskList.getItemList().remove(0));
     }
+    //@@author
 
     @Test
     public void equals() {
@@ -130,6 +136,8 @@ public class TaskListTest {
         assertFalse(taskList.equals(1)); //different objects
     }
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     /**
      * A stub ReadOnlyTaskList whose tasks list can violate interface constraints.
      */
@@ -145,5 +153,5 @@ public class TaskListTest {
             return tasks;
         }
     }
-
+    //@@author
 }

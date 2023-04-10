@@ -128,6 +128,8 @@ public class Task extends Item {
         return taskDeadline.compare(otherTask.getTaskDeadline());
     }
 
+    //@@author HmuuMyatMoe-reused
+    // Reused from AB3 with minor modifications
     /**
      * Returns true if both tasks have the same name and deadline.
      * This defines a weaker notion of equality between two tasks.
@@ -185,5 +187,6 @@ public class Task extends Item {
                 .append(getTaskStatus());
         return builder.toString();
     }
+    //@@author
 }
 

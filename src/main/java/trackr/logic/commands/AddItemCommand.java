@@ -36,6 +36,7 @@ public abstract class AddItemCommand<T extends Item> extends Command {
 
     /**
      * Adds the item {@code toAdd} to its respective item list.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return Success message of the add operation for display.
      * @throws CommandException If item to be added is considered to be duplicates

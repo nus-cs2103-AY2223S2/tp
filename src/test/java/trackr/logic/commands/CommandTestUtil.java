@@ -90,6 +90,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
+    //Solution below for task is adapted from AB3
     //task fields
     public static final String VALID_TASK_NAME_SORT_INVENTORY = "Sort Inventory";
     public static final String VALID_TASK_NAME_BUY_FLOUR = "Buy Flour";
@@ -119,6 +120,8 @@ public class CommandTestUtil {
     public static final String INVALID_TASK_STATUS_DESC =
             " " + PREFIX_STATUS + "d2"; // status can only be d / D / n / N
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     public static final TaskDescriptor DESC_SORT_INVENTORY;
     public static final TaskDescriptor DESC_BUY_FLOUR;
 
@@ -133,6 +136,7 @@ public class CommandTestUtil {
                 .withTaskDeadline(VALID_TASK_DEADLINE_2100)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
     }
+    //@@author
 
     //order fields
     public static final String VALID_ORDER_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";

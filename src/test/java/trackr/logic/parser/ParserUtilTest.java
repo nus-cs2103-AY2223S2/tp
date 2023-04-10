@@ -221,6 +221,8 @@ public class ParserUtilTest {
     }
 
     //=====================Test parser util methods that are related to task==================
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     @Test
     public void parseTaskName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTaskName((String) null));
@@ -289,6 +291,7 @@ public class ParserUtilTest {
         TaskStatus expectedTaskStatus = new TaskStatus(VALID_TASK_STATUS);
         assertEquals(expectedTaskStatus, ParserUtil.parseTaskStatus(taskStatusWithWhitespace));
     }
+    //@@author
 
     //=====================Test parser util methods that are related to order==================
     @Test

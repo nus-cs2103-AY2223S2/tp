@@ -7,6 +7,8 @@ import javafx.scene.layout.Region;
 import trackr.model.task.Task;
 import trackr.ui.UiPart;
 
+//@@author HmuuMyatMoe-reused
+// Reused from AB3 with minor modifications
 /**
  * An UI component that displays information of a {@code Task}.
  */
@@ -65,3 +67,4 @@ public class TaskCard extends UiPart<Region> {
                 && task.equals(card.task);
     }
 }
+//@@author

@@ -25,10 +25,16 @@ import trackr.logic.parser.exceptions.ParseException;
  */
 public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
     private List<String> listOfCommands = new ArrayList<String>();
+    //@@author HmuuMyatMoe-reused
+    //Reused from
+    //https://github.com/nus-cs2103-AY2223S2/tp/blob/master/src/main/java/seedu/address/logic/parser
+    // /AddCommandParser.java
+    // with minor modifications
     /**
      * Parses the given {@code String} of arguments in the context of the UploadCsvCommand
      * and returns an UploadCsvCommand object for execution.
      */
+    //@@author
     public UploadCsvCommand parse(String args) throws ParseException {
         String[] raw = args.split(",");
         String[] components = Arrays.copyOfRange(raw, 1, raw.length);

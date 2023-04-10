@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 public class TaskDeadlineTest {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with modifications
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskDeadline(null));
@@ -31,10 +33,11 @@ public class TaskDeadlineTest {
     public void constructor_notDate_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new TaskDeadline("Not a Date"));
     }
+    //@@author
 
+    //Solution below for isValidTaskDeadline is adapted from AB3
     @Test
     public void isValidTaskDeadline() {
-        // null task deadline
         assertThrows(NullPointerException.class, () -> TaskDeadline.isValidDeadline(null));
 
         // invalid task deadline

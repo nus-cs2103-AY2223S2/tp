@@ -11,6 +11,7 @@ import trackr.model.task.SortTasksComparator;
 /**
  * Sorts all task in task list using a criteria given.
  */
+//Solution below adapted from AB3
 public class SortTasksCommand extends Command {
     public static final String COMMAND_WORD = "sort_task";
     public static final String COMMAND_WORD_SHORTCUT = "sort_t";

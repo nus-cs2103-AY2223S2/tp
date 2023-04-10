@@ -33,7 +33,7 @@ public class OrderQuantity {
     }
 
     /**
-     * Returns a quantity value in the form of an int from a string value.
+     * Returns an order quantity value in the form of an int from a string value.
      *
      * @return {@code int} form of value string.
      */
@@ -42,7 +42,7 @@ public class OrderQuantity {
     }
 
     /**
-     * Returns a quantity value in the form of a string.
+     * Returns an order quantity value in the form of a string.
      *
      * @return value in the form of a string.
      */

@@ -67,6 +67,7 @@ public class TrackrParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    //Solution below is adapted from AB3
     /**
      * Parses user input into command for execution.
      *

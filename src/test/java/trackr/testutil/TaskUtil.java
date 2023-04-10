@@ -14,6 +14,8 @@ import trackr.model.task.TaskDescriptor;
  */
 public class TaskUtil {
 
+    //@@author HmuuMyatMoe-reused
+    //Reused from AB3 with minor modifications
     /**
      * Returns an AddTaskCommand string for adding the {@code task}.
      */
@@ -50,6 +52,7 @@ public class TaskUtil {
                 .ifPresent(taskStatus -> sb.append(PREFIX_STATUS).append(taskStatus.toJsonString()).append(" "));
         return sb.toString();
     }
+    //@@author
 
     // Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
     public static String getTaskPredicateDetails(TaskContainsKeywordsPredicate predicate) {
