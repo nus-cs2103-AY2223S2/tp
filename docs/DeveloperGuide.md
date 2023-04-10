@@ -31,8 +31,13 @@ It is intended for:
 
 ## **2. Acknowledgements**
 
-sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
-project created by the SE-EDU initative. 
+* sprINT is adapted from the [AddressBook-Level3](https://se-education.org/addressbook-level3/) 
+project created by the SE-EDU initiative.
+* sprINT's logo is made using Canva. 
+* The undo and redo feature (including the code and implementation details) are reused with minimal changes from the
+[AddressBook-Level4](https://github.com/se-edu/addressbook-level4) project by the SE-EDU initiative.
+* The class diagram of the Model component is adapted from a past CS2103T project 
+[PleaseHireUs](https://ay2223s1-cs2103t-w17-4.github.io/tp/), ([DG](https://ay2223s1-cs2103t-w17-4.github.io/tp/DeveloperGuide.html)). 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,7 +126,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete-app 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteApplicationCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
