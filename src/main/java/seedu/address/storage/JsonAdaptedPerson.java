@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,12 +11,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Status;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -28,7 +33,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String status;
+    private final String interviewDate;
+    private final String applicationDate;
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +44,18 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("status") String status, @JsonProperty("applicationDate") String applicationDate,
+            @JsonProperty("interviewDate") String interviewDate,
+            @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.status = status;
+        this.interviewDate = interviewDate;
+        this.applicationDate = applicationDate;
+        if (notes != null) {
+            this.notes.addAll(notes);
         }
     }
 
@@ -54,8 +67,11 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        status = source.getStatus().name();
+        interviewDate = source.getInterviewDateTimeString();
+        applicationDate = source.getApplicationDateTimeString();
+        notes.addAll(source.getNotes().stream()
+                .map(JsonAdaptedNote::new)
                 .collect(Collectors.toList()));
     }
 
@@ -65,9 +81,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Note> personNotes = new ArrayList<>();
+        for (JsonAdaptedNote note : notes) {
+            personNotes.add(note.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +118,43 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        if (!Status.isValidStatus(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = Status.valueOf(status);
+
+        if (applicationDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ApplicationDateTime.class.getSimpleName()));
+        }
+
+        if (!DateTimeParser.isValidDateTime(applicationDate)) {
+            throw new IllegalValueException(ApplicationDateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        final ApplicationDateTime modelApplicationDateTime = new ApplicationDateTime(
+                DateTimeParser
+                .parseDateTime(applicationDate));
+
+        if (interviewDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InterviewDateTime.class.getSimpleName()));
+        }
+
+        if (!DateTimeParser.isValidDateTime(interviewDate)) {
+            throw new IllegalValueException(InterviewDateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        //will not throw ParseException as it has been checked in previous line
+        final Optional<InterviewDateTime> modelInterviewDateTime = InterviewDateTime
+                .createInterviewDateTime(interviewDate);
+
+        final Set<Note> modelNotes = new HashSet<>(personNotes);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelApplicationDateTime,
+                modelInterviewDateTime, modelNotes);
     }
 
 }

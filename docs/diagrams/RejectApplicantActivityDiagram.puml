@@ -1,0 +1,20 @@
+@startuml
+!pragma useVerticalIf on
+
+start
+:User enters reject command;
+if () then ([else])
+    :Error: Invalid command format;
+    stop
+([Name and phone provided]) elseif () then ([else])
+    :Error: Applicant cannot be found;
+    stop
+else ([Applicant is found])
+    if () then ([Applicant not rejected yet])
+    :Reject command successfully executes;
+    stop
+    else ([else])
+    :Error: Applicant is already rejected;
+    stop;
+endif
+@enduml

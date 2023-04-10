@@ -4,11 +4,17 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "status" : "APPLIED",
+    "applicationDate" : "02-02-2023 14:00",
+    "interviewDate" : "",
+    "notes": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "status" : "APPLIED",
+    "applicationDate" : "02-02-2023 14:00",
+    "interviewDate" : "",
     "address": "4th street"
   } ]
 }

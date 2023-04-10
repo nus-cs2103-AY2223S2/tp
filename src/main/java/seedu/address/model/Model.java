@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -16,41 +17,48 @@ public interface Model {
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
+     * @param userPrefs the user prefs to replace the current preference settings.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs.
+     * @return the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.
+     * @return the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Sets the user prefs' GUI settings.
+     * @param guiSettings Settings to change to.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
      * Returns the user prefs' address book file path.
+     * @return the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
 
     /**
      * Sets the user prefs' address book file path.
+     * @param addressBookFilePath the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
+     * @param addressBook the address book to replace the current address book.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyHMHero addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyHMHero getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -76,6 +84,11 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Refreshes the list after a command.
+     */
+    void refreshListWithPredicate(Predicate<Person> predicate);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +97,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sets the comparator of the filtered person list
+     */
+    void sortFilteredPersonList(Comparator<Person> comparator);
 }
