@@ -124,7 +124,7 @@ This is what a task looks like in Clock-Work.
 
 <div style="page-break-after: always;"></div>
 
-This is what each component mean:
+This is what each component means:
 
 | Component | Meaning | How to use it | Usage Specifications                                                                       |
 |--| --------- | ------------- |--------------------------------------------------------------------------------------------|
@@ -164,6 +164,8 @@ For easy reference and understanding, this guide utilizes some special formattin
 | :man_technologist: | Short messages from us to you |
 | :bulb:             | Tips on how to enhance your user experience |
 | :warning:          | Important things to note to avoid unintended behaviour |
+
+<div style="page-break-after: always;"></div>
 
 ### Inputs into Clock-Work
 
@@ -267,8 +269,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the task book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-<div style="page-break-after: always;"></div>
-
 ### 4.4 Listing all tasks : `list`
 
 :man_technologist: **Want to have an overview of all your tasks? Try this!**
@@ -352,8 +352,6 @@ Prints the top 10 tags (if applicable) from the list of tasks currently shown, a
 
 Format: `stats`
 
-<div style="page-break-after: always;"></div>
-
 ### 4.8 Get alerts : `alert [ALERT WINDOW]`
 
 :man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
@@ -406,7 +404,6 @@ Task book allocates tasks as such:
 
 
 #### 4.9.2 Displaying Daily Plans
-<br>
 <br>
 Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
 As plans are only valid for 30 days from the last time it was generated, you are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.<br>

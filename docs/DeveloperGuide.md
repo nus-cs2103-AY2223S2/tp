@@ -43,6 +43,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 This Developer Guide details Clock-Work's design and implementation details.
@@ -67,6 +69,8 @@ If you would like to contact the development team, we can be contacted at our [A
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 2. **Design**
 
@@ -136,6 +140,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/logic/Logic.java)
@@ -159,11 +165,13 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
@@ -183,7 +191,7 @@ The `TaskBook` component,
 * stores `Task` are contained in a `UniqueTaskList` object.
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
-<img src="images/ModelClassDiagram3.png" width="450" />
+![ModelClassDiagram3](images/ModelClassDiagram3.png)
 * stores the generated plan, i.e. all `DailyPlan` objects<br>
 We wish to show more details in the DailyPlan Class but the styling restricts us from doing so
 The `Planner` component,
@@ -211,6 +219,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.task.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 3. **Implementation**
 
@@ -776,6 +786,8 @@ The color of this tag is then decided by looking up the result in an array of co
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 **This section contains some links to the guides that are used when developing Clock-Work. You are highly encouraged to adhere to these guides when working on Clock-Work.**
@@ -787,6 +799,8 @@ The color of this tag is then decided by looking up the result in an array of co
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 5. **Appendix: Requirements**
 
@@ -926,6 +940,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 6. **Appendix: Instructions for manual testing**
 
@@ -1140,6 +1156,8 @@ testers are expected to do more *exploratory* testing.
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 7. **Appendix: Planned Enhancements**
 
