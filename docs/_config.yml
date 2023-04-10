@@ -14,5 +14,9 @@ github_icon: "images/github-icon.png"
 plugins:
   - jemoji
 
-
+gems:
+  - jekyll-toc
+toc:
+  min_level: 1
+  max_level: 4
 
