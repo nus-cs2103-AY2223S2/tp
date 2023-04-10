@@ -186,7 +186,7 @@ Below are the steps to use this command:
 Things to note:
 
 - A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
-- For multiple tags for an employee, the tags should be separated by " \ ".
+- For multiple tags for an employee, the tags should be separated by "/".
 
 
 Sample `.csv` file:
