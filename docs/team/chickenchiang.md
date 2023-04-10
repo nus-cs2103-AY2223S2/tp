@@ -16,12 +16,12 @@ Given below are my contributions to the project.
   * Credits: TeamTags takes inspiration for the Tags class from AB3 and heavily mirrors the methods it uses there.
 
 * **New Feature**: JsonAdaptedTeams and JsonAdaptedNames
-  * What it does: For TeamBuilder to both read and store Teams and their respective members from/into the data file in JsonFormat. 
+  * What it does: For TeamBuilder to both read and store Teams and their respective members from/into the data file in JsonFormat.
   * Justification: This feature is necessary for TeamBuilder to reach a minimum viable product stage, as teams will not be lost after users exit the program.
   * Credits: This feature heavily references the JsonAdaptedPerson class provided by AB3.
 
 * **New Feature**: UniqueTeamList
-  * What it does: Allows for TeamBuilder's model component to hold a list of Teams. 
+  * What it does: Allows for TeamBuilder's model component to hold a list of Teams.
   * Justification: This feature is necessary for TeamBuilder to function and store teams created by the user.
   * Credits: This feature heavily reference the UniquePersonsList from AB3.
 
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Documented AddCommand implementation and created an activity diagram to aid understanding.
     * Added Future Enhancement section.
-    * Added documentation for how optional fields are achieved for person class. 
+    * Added documentation for how optional fields are achieved for person class.
 
 * **Bug fixes**:
   * Fixed Ui issue where the TeamList Ui is cutoff when the TeamBuilder window is resized too small.
