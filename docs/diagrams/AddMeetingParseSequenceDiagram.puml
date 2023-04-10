@@ -15,7 +15,13 @@ LogicManager -> AddressBookParser : parseCommand(meetingAdd 1 \n"md/Meeting with
 activate AddressBookParser
 
 create AddMeetingCommandParser
-AddressBookParser -> AddMeetingCommandParser : parse("md/Meeting with Alex  ms/30-04-2023 23:30  me/30-04-2023 23:40")
+AddressBookParser -> AddMeetingCommandParser
+activate AddMeetingCommandParser
+
+AddMeetingCommandParser --> AddressBookParser
+deactivate AddMeetingCommandParser
+
+AddressBookParser -> AddMeetingCommandParser : parse("md/Meeting with Alex \n ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate AddMeetingCommandParser
 
 create AddMeetingCommand
