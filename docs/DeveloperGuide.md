@@ -22,6 +22,8 @@ _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming ev
 
 Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -66,6 +68,8 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
+
 ### **How the Architecture Components Interact With Each**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues 
@@ -85,6 +89,8 @@ through its interface rather than the concrete class(reason: to prevent outside 
 implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+
+<div style="page-break-after: always;"></div>
 
 ### **UI Component**
 
@@ -106,6 +112,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### **Logic Component**
 
@@ -139,6 +147,8 @@ How the parsing works:
 * When called upon to parse a user command, the `SchedulerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### **Model Component**
 
 **API** : [`Model.java`][ModelClass]
@@ -156,6 +166,8 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 ### **Storage Component**
 
 **API** : [`Storage.java`][StorageClass]
@@ -171,6 +183,8 @@ The `Storage` component,
 ### **Common Classes**
 
 Classes used by multiple components are in the `ezschedule.commons` package.
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -220,6 +234,8 @@ The execution can be seen in the activity diagram given below.
 _Activity Diagram for a typical `add` command_  
 ![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Recur Command**
 
 [RecurCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/RecurCommand.java
@@ -265,6 +281,8 @@ _Activity Diagram for a typical `recur` command_
 _Activity: Check for time clash for all recurring dates._  
 ![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Edit Command**
 
 [EditCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/EditCommand.java
@@ -306,6 +324,8 @@ The execution can be seen in the activity diagram given below.
 _Activity Diagram for a typical `edit` command_  
 ![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### **Delete Command**
 
 [DeleteCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/DeleteCommandParser.java
@@ -343,6 +363,7 @@ Other alternative path of execution can be traced in the activity diagram below.
 _Activity Diagram for a typical `delete` command_  
 ![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
 
+<div style="page-break-after: always;"></div>
 
 ### **Find Command**
 
@@ -382,6 +403,8 @@ The execution can be seen in the activity diagram given below.
 
 _Activity Diagram for a typical `find` command_  
 ![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
+
+<div style="page-break-after: always;"></div>
 
 ### **Next Command**
 
@@ -432,9 +455,10 @@ Other alternative path of execution can be traced in the activity diagram below.
 _Activity Diagram for a typical `next` command_  
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
 
-
 [ListChangeListener]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.html
 [`ListChangeListener.Change`]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.Change.html
+
+<div style="page-break-after: always;"></div>
 
 ### **Undo Command**
 
@@ -467,6 +491,7 @@ The execution can be seen in the activity diagram given below.
 _Activity Diagram for a typical `undo` command_  
 ![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
 
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
@@ -489,6 +514,7 @@ _Activity Diagram for a typical `undo` command_
 * **Ongoing Event**: An event that has started, but not ended
 * **Upcoming Event**: An event that has not started
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendices**
 
@@ -722,6 +748,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
 
+<div style="page-break-after: always;"></div>
+
 ### **Appendix B: Planned Enhancements**
 
 To resolve certain known feature flaws, we have planned to add some enhancements in the near future:
@@ -787,6 +815,8 @@ special characters such as brackets, colons, and dashes.
 
 We plan to increase the number of characters supported in event names. 
 However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
+
+<div style="page-break-after: always;"></div>
 
 ### **Appendix C: Instructions for Manual Testing**
 
@@ -1049,6 +1079,7 @@ testers are expected to do more *exploratory* testing.
 * The Response Box will display the message "Action undone: delete"
 * The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
 
+<div style="page-break-after: always;"></div>
 
 ### **Appendix D: Effort**
 
