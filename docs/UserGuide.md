@@ -437,40 +437,34 @@ Finds students based on a keyword in the parameter that you want.
 
 The `find` and `filter` commands allow you to match keywords or partial keywords with the entries, for example:
 
-<h4 style="color:Orange">Find</h4>
+<!-- Prevent adding the Find section into the TOC to reduce clutter in TOC. -->
+#### Find
+{:.no_toc}
 
-`find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
+The `find` command allows you to zoom in on entries that matches **all** search criterias!
 
-The `find` command allows you to zoom in on an entry that matches **all** your `PREFIX` and `KEYWORDS`
-
-> Format: \\
-> `find PREFIX... KEYWORDS...`
-
-<h4 style="color:Orange">Filter</h4>
-
-`filter` will also show you those who match with **at least one** of the criteria.
+`find n/Sh n/Na` displays the students with names containing both `sh` and `na` _(case-insensitive)_, such as `Shanna` or `Nashira`. This partial-keyword matching _(eg. matching `sh` in `Shaun`)_ applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
 
 > Format: \\
-> `filter PREFIX... KEYWORDS...`
+> `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
 
-* `PREFIX` refers to the type of details such as name, address, email and so on.
-* Input the parameter like so:
-  * Name: `n/`
-  * Address: `a/`
-  * Email: `e/`
-  * Phone No.: `p/`
-  * Education: `edu/`
-  * Telegram Handle: `tele/`
-  * Remark: `r/`
-  * Tags: `t/`
-  * Modules: `m/`
+<!-- Prevent adding the Find section into the TOC to reduce clutter in TOC. -->
+#### Filter
+{:.no_toc}
 
-For more details and examples on prefixes, please refer to the [Prefix Summary](#prefix-summary)!
+Unlike `find`, the `filter` command instead show entries that match **at least one** of the search criterias!
 
-<div markdown="span" class="alert alert-success">:bulb: **Tip:** 
+`filter n/Sh n/Na` displays the students with names containing either `sh` or `na` _(case-insensitive)_, such as `Sheryl` or `Nala`. Same as `find`, partial-keyword matching doesn't apply to tags and modules, where you will have to enter the keywords in full.
 
-* Using `find` without any `PREFIX`s has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
-* Using `filter` without any `PREFIX`s will result in an empty list!
+> Format: \\
+> `filter [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
+
+Please refer to the [Prefix Summary](#prefix-summary) for more details!
+
+<div markdown="block" class="alert alert-success">:bulb: **Tip:** 
+
+* Using `find` without specifying any fields has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
+* Using `filter` without specifying any fields will result in an empty list!
 </div>
 
 Examples:
@@ -606,7 +600,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                                   |
 | Edit   | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [edu/EDUCATION] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
 | Exit   | `exit`                                                                                                                                                                                                                                                            |
-| Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                               |                                                                                                                                                                                           |
+| Find   | `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                               |                                                                                                                                                                                           |
 | List   | `list`                                                                                                                                                                                                                                                            |
 | Redo   | `redo`                                                                                                                                                                                                                                                            |
 | Remark | `remark INDEX [REMARK]` <br/>eg. `remark 2 Not good in Japanese`                                                                                                                                                                                              |
@@ -710,21 +704,21 @@ The code below is a direct quote from the default data file.
 
 `persons` is an array containing every student entry as an element. Each element is enclosed in curly braces `{}`
 
-<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** The values you input should adhere to the parameter requirements.
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** The values you input should adhere to the parameter requirements. Otherwise the app will display an empty student list.
 </div>
 
 The parameters in the braces indicate which parameter in the [Parameter descriptions](#parameter-descriptions) the input should adhere to.
 
 
-- `name`: Represents the student's name. If empty, input`""`. (NAME)
-- `phone`: Represents the student's phone number. If empty, input`""`. (PHONE)
-- `email`: Represents the student's email. If empty, input`""`. (EMAIL)
-- `address`: Represents the student's address. If empty, input`""`. (ADDRESS)
-- `remark`: Represents the remark or notes for a student and can contain the newline character `\n`. If empty, input`""`. (REMARK)
-- `education`: Represents the education level of a student. If empty, input`""`. (EDUCATION)
-- `telegram`: Represents the telegram handle of a student. If empty, input`""`. (TELEGRAM)
-- `modules`: Represents an array of modules the student takes. If empty, input`[ ]`. (MODULE)
-- `tagged`: Represents an array of tags the student is labelled with. If empty, input`[ ]`. (TAG)
+- `name`: Represents the student's name. Cannot be empty. (NAME)
+- `phone`: Represents the student's phone number. If the student entry lacks a phone value, omit the "phone" row. (PHONE)
+- `email`: Represents the student's email. If the student entry lacks an email value, omit the "email" row. (EMAIL)
+- `address`: Represents the student's address. If the student entry lacks an address value, omit the entire "address" row. (ADDRESS)
+- `remark`: Represents the remark or notes for a student. If the student entry lacks a remark, input`""` or omit the "remark" row. (REMARK)
+- `education`: Represents the education level of a student. If the student entry lacks an education value, omit the "education" row. (EDUCATION)
+- `telegram`: Represents the telegram handle of a student. If the student entry lacks a telegram value, omit the "telegram" row. (TELEGRAM)
+- `modules`: Represents an array of modules the student takes. If the student entry lacks module values, input `[]`. (MODULE)
+- `tagged`: Represents an array of tags the student is labelled with. If the student entry lacks tags, input `[]`. (TAG)
 
 After making the desired changes, simply save the data file, and re-launch TeachMeSenpai again.
 
