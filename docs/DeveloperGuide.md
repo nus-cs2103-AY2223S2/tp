@@ -679,26 +679,27 @@ Our application:
 
 **MSS**
 
-1. Actor enters the command to add a supplier with the required information.
-2. Trackr saves the new supplier to the system.
-3. Trackr display success message that a new supplier added to the list
-4. Actor can see the new supplier information in the contacts list.
+1. Actor chooses to add a supplier
+2. Actor enters the command to add a supplier with the required information.
+3. Trackr saves the new supplier to the system.
+4. Trackr display success message that a new supplier added to the list
+5. Actor can see the new supplier information in the contacts list.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The Actor does not enter all required information.
+* 2a. Not all the required information was given.
 
-    * 1a1. Trackr shows an error message.
+    * 2a1. Trackr shows an error message.
 
-      Use case goes back to step 1.
+      Use case resumes at step 2.
 
-* 1b. The Actor adds a supplier that already exists in the list.
+* 2b. The Actor adds a supplier that already exists in the list.
 
-    * 1b1. Trackr shows an error message.
+    * 2b1. Trackr shows an error message.
 
-      Use case goes back to step 1.
+      Use case ends.
 
 **Use case: UC11 - Add a new task**
 
@@ -716,10 +717,11 @@ Our application:
 
 **MSS**
 
-1. Actor enters the command to list contacts.
-2. Trackr shows a list of contacts.
-3. Actor requests to delete a specific contact from the list.
-4. Trackr deletes the contact.
+1. Actor chooses to delete a supplier.
+2. Actor enters the command to list contacts.
+3. Trackr shows a list of contacts.
+4. Actor enters the command to delete a specific indexed contact from the list.
+5. Trackr deletes the contact.
 
    Use case ends.
 
@@ -729,11 +731,17 @@ Our application:
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 4a. The given index is invalid.
 
-  * 3a1. Trackr shows an error message.
+  * 4a1. Trackr shows an error message.
 
-    Use case resumes at step 3.
+    Use case resumes at step 4.
+
+* 4b. No index was given.
+  * 4b1. Trackr shows an error message.
+
+    Use case resumes at step 4.
+
 
 **Use case: UC12 - Delete a task**
 
@@ -751,10 +759,11 @@ Our application:
 
 **MSS**
 
-1. Actor enters the command to list contacts.
-2. Trackr shows a list of contacts.
-3. Actor enters an edit contact command for a specific contact and the updated information.
-4. Trackr updates the contact details with the new information.
+1. Actor chooses to edit a supplier
+2. Actor enters the command to list contacts.
+3. Trackr shows a list of contacts.
+4. Actor enters an edit contact command for a specific contact and the updated information.
+5. Trackr updates the contact details with the new information.
 
    Use case ends.
 
@@ -776,6 +785,12 @@ Our application:
 
     Use case resumes at step 3.
 
+* 3c. The Actor does not enter any information.
+
+  * 3c1. Trackr displays an error message.
+
+    Use case resumes at step 3.
+
 **Use case: UC13 - Edit a task**
 
 (Similar to UC03 except it is for task)
@@ -792,8 +807,8 @@ Our application:
 
 **MSS**
 
-1. Actor enter the command to find a supplier.
-2. Actor enters the command with the desired search criteria.
+1. Actor chooses to find a supplier
+2. Actor enter the command to find a supplier with the desired search criteria.
 3. Trackr searches for suppliers that match the given criteria.
 4. Trackr displays a list of suppliers that match the criteria.
 
@@ -801,15 +816,17 @@ Our application:
 
 **Extensions**
 
-* 2a. The Actor does not enter any search criteria.
+* 2a. No search criteria was given.
 
   * 2a1. Trackr displays an error message.
 
   * Use case resumes at step 2.
 
 * 4a. No supplier matches the given search criteria.
+  
+  * 4a1. Trackr display an empty list.
 
-  Use case ends.
+    Use case ends.
 
 **Use case: UC14 - Find a task**
 
@@ -827,19 +844,24 @@ Our application:
 
 **MSS**
 
-1. Actor enters the command with the desired sorting criteria.
-2. Trackr sorts tasks according to the criteria.
-3. Trackr displays a list of tasks that are sorted.
+1. Actor chooses to sort tasks.
+2. Actor enters the command with the desired sorting criteria.
+3. Trackr sorts tasks according to the criteria.
+4. Trackr displays a list of tasks that are sorted.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The Actor does not enter any search criteria.
+* 2a. No sorting criteria was given.
 
-  * 1a1. Trackr uses the default sorting criteria based on status and deadline.
+  * 2a1. Trackr sorts tasks based on default criteria.
 
-  * Use case resumes at step 2.
+  * Use case ends.
+* 2b. Invalid sorting criteria was given.
+  * 2b1. Trackr displays error message.
+
+  Use case resumes at step 2.
 
 **Use case: UC25 - Sort orders**
 
