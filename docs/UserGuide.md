@@ -347,9 +347,6 @@ Format: `delete_docs INDEX`
 Examples:
 * `delete_docs 1` deletes the documents for the 1st application in the list of applications.
 
-GUI alternative:
-1. Click the <img align="center" src = "images/ui/buttons/delete-internship-button.png" alt="Delete Internship" height = "25"/> button to delete an internship application.
-
 [↑ Back to Features Menu](#features-menu)
 
 ### Archive an internship application : `archive`
