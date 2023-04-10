@@ -632,7 +632,7 @@ How the `Logic` component works:
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-### **Commands**
+## **Commands**
 
 #### **Add Command**
 
