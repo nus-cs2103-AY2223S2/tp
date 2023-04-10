@@ -290,7 +290,7 @@ The `only` command format is as shown below:
 13. The Ui component displays the contents of the `CommandResult` to the User.
     
 The sequence diagram for the `only` command is as shown below:
-![OnlyCommandSequenceDiagram](images/OnlyCommandSequenceDiagram.png)
+![OnlyCommandSequenceDiagram](images/OnlySequenceDiagram.png)
 
 ### Sort feature
 
