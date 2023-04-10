@@ -26,6 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.PersonBuilder;
 
 /**
  * Edits the details of an existing person in OfficeConnect.
@@ -82,8 +83,11 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        officeConnectModel.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+
+        Person copyEditedPerson = new PersonBuilder(editedPerson).withTask(personToEdit.getTasks()).build();
+
+        officeConnectModel.setPerson(personToEdit, copyEditedPerson);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, copyEditedPerson));
     }
 
     /**
