@@ -14,7 +14,7 @@ Given below are my contributions to the project:
 * **New Features:**
   * Add Gradle CI cache (in this [Commit](https://github.com/AY2223S2-CS2103T-T13-2/tp/commit/96bffd3c9a047abffd4586288b545dbdbf5d75c8))
     * What it does: Adds cache to Github Actions for builds with Gradle as well as JDK
-    * Justification: Having the CI environment repeatedly pull the same resources as opposed to fetching from a cache wastes resources and slows down the CI runs. THis allows the Gradle and JDK to be refreshed from a cache on Github's server.
+    * Justification: Having the CI environment repeatedly pull the same resources as opposed to fetching from a cache wastes resources and slows down the CI runs. This allows the Gradle and JDK to be refreshed from a cache on Github's server.
   * Add TestFX testing framework (in this [Commit](https://github.com/AY2223S2-CS2103T-T13-2/tp/commit/07ed5a8b5c3e383219d52d93d6ab39b81f8eefe1))
     * What it does: Allows for JUnit tests to mock JavaFX environments in unit testing
     * Justification: As our app is highly graphic in nature, some form of unit testing is required for the GUI components. However, these tests were unable to be implemented as there is no support on Ubuntu for TestFX, which interferes with our multiplatform non-functional requirement.
