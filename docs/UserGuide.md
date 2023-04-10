@@ -399,8 +399,6 @@ Format: `unassign ti/INDEX pi/INDEX`
 Examples:
 - `unassign ti/ 2 pi/ 3` unassigns task 2 from person 3.
 
-<div style="page-break-after: always;"></div>
-
 ### 3.5 Filter Commands
 
 #### 3.5.1 Listing all Persons and Tasks: `listall`
