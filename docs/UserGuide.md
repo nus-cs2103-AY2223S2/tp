@@ -888,8 +888,6 @@ Format: You cannot make these in the command line, they are made when you open *
 
 Parameters: No parameters
 
-> :information_source: Additional information: These reminders are only updated when you open *Fish Ahoy!*
-
 > :information_source: Additional information: Each tank can have up to 1 feeding reminder, consolidating all hungry
 > fish in that tank
 
