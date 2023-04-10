@@ -8,7 +8,7 @@ title: Hmuu Myat Moe's Project Portfolio Page
 Trackr is a desktop address book application used for teaching Software Engineering principles.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-Given below are my contributions to the project. (Some of the )
+Given below are my contributions to the project.
 
 * Added the ability to add tasks to a task list and list tasks.
     * What it does:
