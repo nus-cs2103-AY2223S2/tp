@@ -23,19 +23,6 @@ public class Doctor extends Person {
     }
 
     /**
-     * Returns true if both Doctors have the same NRIC.
-     * This defines a weaker notion of equality between two doctors.
-     */
-    public boolean isSameDoctor(Doctor otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getNric().equals(getNric());
-    }
-
-    /**
      * Returns a list of Appointments.
      */
     public ArrayList<Appointment> getPatientAppointments() {
@@ -60,35 +47,6 @@ public class Doctor extends Person {
      */
     public void addPatientAppointment(Appointment appointment) {
         patientAppointments.add(appointment);
-    }
-
-    /**
-     * Get the patient's appointments as a String in list form.
-     * @return list of patient's appointment bookings in String
-     */
-    public String drAppointmentsToString() {
-        ArrayList<Appointment> patientAppointments = getPatientAppointments();
-        String string = "";
-        int count = 1;
-        for (Appointment appointment : patientAppointments) {
-            String appointmentBooking = appointment.getBooking().toString();
-            string += count + ". " + appointmentBooking + "; " + appointment.getPatientNric().toString() + "\n";
-            count++;
-        }
-        return string;
-    }
-
-    /**
-     * Returns true if both persons have the same NRIC.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSameDrByNric(Nric otherNric) {
-        if (otherNric == this.getNric()) {
-            return true;
-        }
-
-        return otherNric != null
-                && otherNric.equals(this.getNric());
     }
 
     /**
