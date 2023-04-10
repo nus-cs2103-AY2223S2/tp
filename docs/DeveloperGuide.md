@@ -1268,8 +1268,8 @@ this testing model as well, to ensure that unit tests are testing on a correct s
 ## **Testing Commands**
 
 Our organisation tested commands by creating commands with the correct parameters, bypassing the parser, and executed 
-them. Assertions were used to ensure that commands created, when executed performed the correct operations, on the model
-created specifically for tests, as well as ensuring that correct exceptions are thrown as and when needed, especially for
+them. Assertions were used to ensure that commands created, when executed, performed the correct operations on the model
+created specifically for tests, as well as to ensure that correct exceptions are thrown as and when needed, especially for
 invalid inputs.
 
 Our organisation made use of equivalence partitions to tests for the types of commands that can be executed, due to the
