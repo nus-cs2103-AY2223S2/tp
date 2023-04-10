@@ -3,7 +3,7 @@ package expresslibrary.logic.parser;
 import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static expresslibrary.testutil.Assert.assertThrows;
-import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -36,9 +36,10 @@ public class ExpressLibraryParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         // will fix later
-        //Person person = new PersonBuilder().build();
-        //AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        //assertEquals(new AddCommand(person), command);
+        // Person person = new PersonBuilder().build();
+        // AddCommand command = (AddCommand)
+        // parser.parseCommand(PersonUtil.getAddCommand(person));
+        // assertEquals(new AddCommand(person), command);
     }
 
     @Test
@@ -50,8 +51,8 @@ public class ExpressLibraryParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON, false), command);
+                DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeletePersonCommand(INDEX_FIRST, false), command);
     }
 
     @Test
@@ -59,8 +60,8 @@ public class ExpressLibraryParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditPersonCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -91,8 +92,8 @@ public class ExpressLibraryParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
-        ) -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test

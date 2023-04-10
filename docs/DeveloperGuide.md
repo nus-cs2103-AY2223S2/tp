@@ -166,39 +166,6 @@ Classes used by multiple components are in the `expresslibrary.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### How data is saved
-
-#### Implementation
-
-Data in ExpressLibrary is saved in `[JAR file location]/data/expresslibrary.json`, consisting of an array of `persons` and `books`.
-
-Each person in the `persons` array will contain these fields:
-
-* `name`: Represents the name of the person.
-* `phone`: Represents the phone number of the person.
-* `email`: Represents the email of the person.
-* `books`: Represents the set of books that the person has borrowed, will be an empty set if the person has not borrowed any.
-* `tagged`: Represents the tags assigned to the person, will be an empty set if the person has no tags assigned.
-
-<div markdown="span" class="alert alert-warning">
-
- :warning: **Note:** If editing the file manually, note that `books` in **each person** must be present in the main `books` array. Otherwise, the data file will be invalid.
-</div>
-
-Each book in the `books` array will contain these fields:
-
-* `title`: Represents the title of the book.
-* `author`: Represents the author of the book.
-* `isbn`: Represents the ISBN of the book.
-* `borrowDate`: Represents the date in the form `dd/mm/yyyy` when the book was borrowed by a person, will be an empty string if not borrowed.
-* `dueDate`: Represents the date in the form `dd/mm/yyyy` when the book has to be returned by a person, will be an empty string if not borrowed.
-* `isBorrowed`: Represents whether the book is borrowed. True if borrowed and false if not.
-
-<div markdown="span" class="alert alert-warning">
-
- :warning: **Note:** If editing the file manually, note that borrowDate and dueDate has to be included if isBorrowed is true and vice versa. Otherwise, the data file will be invalid.
-</div>
-
 ### Borrow/return feature
 
 #### Implementation
@@ -442,6 +409,20 @@ testers are expected to do more _exploratory_ testing.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** Advanced users of ExpressLibrary are welcome to manually edit the data file if they wish to do so. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved).
+:information_source: **Note:** Advanced users of ExpressLibrary are welcome to manually edit the data file if they wish to do so. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/UserGuide.html#how-data-is-saved).
 
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+Given below are some of the planned enhancements to ExpressLibrary current features.
+
+1. Currently all ExpressLibrary fields do not have any character limit, resulting in extreme inputs being truncated in the GUI. We plan to set an appropriate character limit for each field in order to counteract this and wrap the fields if the GUI cannot fit the fields in one line.
+
+2. Currently each person can borrow an unlimited books, we plan to fix this by limiting the number of books a person can borrow in a future update.
+
+3. Currently, ExpressLibrary assumes that there is only one copy of each book in the library which is obviously quite unrealistic. We plan to solve this by creating a BookInstance class in the future to account for different copies of the same book in the library.
+
+4. Email addresses are only validated based on regex (specifically RFC5322 standard) and not whether it is actually a valid email. We plan to use internationlised domain names in a future update in order to truly validate an email address.

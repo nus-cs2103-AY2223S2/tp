@@ -39,8 +39,8 @@ public class Author {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Isbn // instanceof handles nulls
-                        && name.equals(((Isbn) other).isbn)); // state check
+                || (other instanceof Author // instanceof handles nulls
+                        && name.equals(((Author) other).name)); // state check
     }
 
     @Override
