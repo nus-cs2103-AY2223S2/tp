@@ -66,10 +66,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Optional<Remark> remark = argMultimap.getValue(PREFIX_REMARK).map(ParserUtil::parseRemark);
+//        Optional<Remark> optionalRemark = Optional.of(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+//        Optional<Remark> optionalRemark = argMultimap.getValue(PREFIX_REMARK).map(ParserUtil::parseRemark);
+        boolean isRemarkPresent = argMultimap.getValue(PREFIX_REMARK).isPresent();
+        Remark remark;
+
+        if (isRemarkPresent) {
+            remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+        } else {
+            remark = null;
+        }
         List<Keydate> keydateList = ParserUtil.parseKeydates(argMultimap.getAllValues(PREFIX_KEYDATE));
 
-        Opening opening = new Opening(position, company, email, status, remark.orElse(null), keydateList);
+        Opening opening = new Opening(position, company, email, status, remark, keydateList);
 
         return new AddCommand(opening);
     }

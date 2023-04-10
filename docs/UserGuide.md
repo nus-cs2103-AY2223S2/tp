@@ -3,12 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship openings, optimized for use through keyboard typing and minimizing mouse clicking**.
+Ultron is a **desktop app for compiling job and internship applications, optimized for use through keyboard typing and minimizing mouse clicking.** 
 
-The application interface provides you with both a summary list and a detailed side panel display on the right, with a text input box at the top for user commands.
-## might make more sense to shift down, currently dupe with quick start
-
-If you are familiar with the Ultron interface and can type fast, it can help you organise your internship openings in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
+If you are familiar with the Ultron interface and can type fast, it can help you organise your internship applications in a much more efficient and structured manner compared to traditional methods such as using spreadsheets.
 
 ---
 
@@ -16,6 +13,7 @@ If you are familiar with the Ultron interface and can type fast, it can help you
 
 - [Table of Contents](#table-of-contents)
 - [Navigation](#navigation)
+- [Glossary](#glossary)
 - [Quick Start](#quick-start)
     - [Java Instructions](#java-instructions)
 - [Features](#features)
@@ -43,6 +41,16 @@ All sections of the User Guide(UG) is organized neatly into the Table of Content
 
 ---
 
+## Glossary
+
+### Opening
+Representation of an internship application, which contains all relevant information needed in your application journey.
+
+### Keydate
+Representation of important dates or deadlines of key events such as an Online Assessment or Zoom Interview, allowing you to neatly organise and track all dates, past and future.
+
+---
+
 ## Quick Start
 
 1. Ensure you have Java version `11` or above installed in your Computer. Instructions to check or download Java version `11` can be found [here](#java-instructions).
@@ -59,14 +67,13 @@ All sections of the User Guide(UG) is organized neatly into the Table of Content
 
 ![Ui](images/Ui.png)
 
-5. The app provides you with both a summary list of openings in the left panel and a more detailed information of an opening in the right panel, with a text input box at the top for user commands.
+5. The app provides you with a text input box at the top for user commands, as well as both a summary list of openings on the left panel and a right panel containing more details of any particular opening.
 
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
     - `list` : Lists all openings.
-    - `add c/Google p/Software Engineer e/google@gmail.com s/applied` : Adds an opening to Ultron, representing having applied at Google for a Software Engineer position.
+    - `add c/Google p/Engineer e/google@gmail.com s/applied` : Adds an opening to Ultron, representing having applied at Google for an Engineer position.
     - `delete 3` : Deletes the 3rd opening shown in the current list.
     - `show 1` : Displays on the right panel, more details of the 1st opening in the current list
     - `clear` : Deletes all openings.
@@ -126,6 +133,8 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 - All commands consists of a command word e.g `add`. Some commands require fields which start with 
 - their corresponding prefixes e.g. `r/` for remarks. Indexes are required for some commands to specify the exact opening of interest. e.g. `delete 1` deletes the first opening. 
 
+- Internship applications are represented as openings, By using clean and optimized representation of important dates or deadlines as *keydates*,
+
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
   e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
@@ -151,7 +160,7 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 
 Having too many internships offers and being unable to keep track of all of them?
 Ultron provides you with a platform to remember all your openings so you don't have to!
-Just type 'add' followed by details of your opening in the format below and you can see
+Just type `add` followed by details of your opening in the format below and you can see
 it being added to Ultron.
 
 Format: `add p/POSITION c/COMPANY e/EMAIL s/STATUS [r/REMARK] [d/KEYDATE]…​`
@@ -172,11 +181,11 @@ Examples:
 ### 2. Listing all openings : `list`
 
 Ultron gives you the option to view all your recorded openings in one window. Just type 'list'
-and the full list of openings will be displayed starting with the earliest added opening.
+and the full list of openings will be displayed starting with the earliest added opening. This is especially useful if you want to return to the full list of openings after filtering the list using commands like `find` [here](#filtering-openings-by-company-or-position--find) and `upcoming` [here](#listing-upcoming-dates--upcoming).
 
 Format: `list`
 
-- The most recently added opening will be displayed last.
+- Openings are displayed in order of when it was added, with the latest added opening at the bottom.
 
 ![List](images/List.png)
 
@@ -185,7 +194,7 @@ Format: `list`
 
 Accidentally typed the wrong company name? Don't worry, Ultron allows you to edit a previously
 added opening without having to delete and start over. Just type in 'edit' followed by the index
-number of the desired opening with the field you want to change. Ultron will update the opening with just a single command line.
+number of the desired opening with the field you want to change. Ultron will update the opening with just a single line of command.
 
 Format: `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​`
 
@@ -205,7 +214,7 @@ Examples:
 
 ### 4. Editing an opening's remarks : `remark`
 
-What happens when there is a change of information? Ultron gives you the flexibility to edit the remarks
+What happens when there is a change of information? Ultron gives you the flexibility to edit the remarks of any opening
 so that you can keep track of real time data without the need for any unnecessary additions.
 
 Format: `remark INDEX r/REMARK`
@@ -221,9 +230,7 @@ Format: `remark INDEX r/REMARK`
 
 ### 5. Showing full details of opening: `show`
 
-Ultron provides you with this simple but effective feature of viewing everything you want to know about
-the opening. If you favour using a mouse, you can simply click on the left panel instead to display
-full details of a specific opening.
+Ultron stays organised by only showing key details on the left panel. This feature allows you to view full details of any opening on the right panel, by using the index of the opening. Ultron even has added functionality to allow you to simply click on the opening of interest on the left panel, achieving the same result.
 
 Format: `show INDEX`
 
@@ -233,12 +240,14 @@ Format: `show INDEX`
 
 ### 6. Listing upcoming dates : `upcoming`
 
-Lists openings which has events today or within the next `DAYS` days, sorting in order of the first keydate of each relevant opening in ascending order.
+Lists openings which has events today or within the next `DAYS` days, 
 
 Format: `upcoming DAYS`
 
 - Lists all openings which has events today or within the next `DAYS` days.
 - `DAYS` **must be a positive integer** 1, 2, 3, …​
+
+**Display order** : All relevant 
 
 Examples:
 

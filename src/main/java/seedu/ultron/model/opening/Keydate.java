@@ -36,8 +36,8 @@ public class Keydate implements Comparable<Keydate> {
         requireNonNull(date);
         requireNonNull(name);
         checkArgument(isValidKeydate(new String[]{name, date}), MESSAGE_CONSTRAINTS);
-        fullDate = date;
-        fullKey = name;
+        fullDate = date.strip();
+        fullKey = name.strip();
     }
 
     /**
