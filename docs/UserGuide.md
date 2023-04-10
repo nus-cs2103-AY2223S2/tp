@@ -212,7 +212,7 @@ This section helps you to understand the format of the commands listed above and
 
 ## Valid data field inputs
 This section describes the requirements of the specified data fields.
-Aside from Variants, data fields must contain at least one non-whitespace character (i.e. blank inputs are not accepted).
+Data fields must contain at least one non-whitespace character (i.e. blank inputs are not accepted).
 
 ### Name
 * Names must only contain letters and spaces.
