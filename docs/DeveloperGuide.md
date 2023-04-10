@@ -38,8 +38,7 @@ new developers can use this guide as an entry point for navigating this extensiv
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-
-<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------<div style="page-break-after: always;"></div>
 
 ## Design
 
@@ -87,8 +86,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
-<div style="page-break-after: always;"></div>
+The sections below give more details of each component.<div style="page-break-after: always;"></div>
 
 ### UI component
 
