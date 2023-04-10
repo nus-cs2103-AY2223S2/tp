@@ -1716,7 +1716,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 3a. The module code exists in the person's contact.
     * 3a1. EduMate does not add any tags.
-    * 3b2. EduMate does not show the module in the feedback message.
+    * 3a2. EduMate does not show the module in the feedback message.
 
   Use case resumes at step 5.
 
@@ -2476,8 +2476,7 @@ Expected Output in Scheduled Meet Up Panel: `MeetUp` of index 2 disappears, only
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
-* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MRT**: Also known as the Mass Rapid Transit, Singapore high-speed railway system
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub
 
