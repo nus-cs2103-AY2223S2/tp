@@ -205,8 +205,6 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/93125841 t/John's Friend w/55 g/F`
 * `add n/Betsy Crowe app/12-12-2030 12:00 cal/2300 g/F e/betsycrowe@example.com a/Newgate Prison p/93125841 t/Friend`
 
-<div style="page-break-after: always;"></div>
-
 #### Editing a client : `edit`
 
 {% include information.html content="
@@ -237,8 +235,6 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 w/23.0` Edits the weight of the 3rd client to `23.0`.
 *  `edit 4 w/25.0 g/m` Edits the weight and gender of the 4th client to `25.0` and `m`.
-
-<div style="page-break-after: always;"></div>
 
 #### Locating clients by fields: `find`
 
@@ -271,21 +267,6 @@ Examples:
 * `find p/91234567` returns every client with phone numbers that match or contains '91234567'.
 * `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
   '91234567'
-
-#### Listing all clients : `listClients`
-
-{% include information.html content="
-
-Displays a list of all clients in the FitBook under the Client panel.
-
-" %}
-
-Format: `listClients`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
-
-* Initiate the command with `listClients`
-* All clients in FitBook has been listed once again!
 
 <div style="page-break-after: always;"></div>
 
@@ -330,6 +311,21 @@ Examples:
 * `find n/Alex` followed by `view 1` views the summary of the 1st client in the results of the `view` command.
 
 <div style="page-break-after: always;"></div>
+
+#### Listing all clients : `listClients`
+
+{% include information.html content="
+
+Displays a list of all clients in the FitBook under the Client panel.
+
+" %}
+
+Format: `listClients`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
+
+* Initiate the command with `listClients`
+* All clients in FitBook has been listed once again!
 
 #### Clearing all entries : `clear`
 {% include information.html content="
