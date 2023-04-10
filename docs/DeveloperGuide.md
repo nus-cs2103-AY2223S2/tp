@@ -1159,6 +1159,37 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) \\
       Expected: Similar to previous.
 
+### Adding a student
+
+1. Adding a student while all students are being shown
+
+   1. Prerequisites: List any existing students using the `list` command.
+
+   2. Test case: `add n/Shaun` \\
+      Expected: New student is added to the bottom of the student list. Details shown only include the name.
+   
+   3. Test case: `add n/Shaun n/Benny` \\
+      Expected: New student is added to the bottom of the student list. Details shown only includes the last parameter specified, `Benny`.
+
+   4. Test case: `add n/Shaun xxx/PARAMETER...` (where xxx is any of the valid prefixes, PARAMETER is any valid input for the respective prefix and ... indicates any number of optional prefixes etc.) \\
+      Expected: Similar to previous, details included in the entry are the valid inputs specified.
+
+   5. Test case: `add p/999` \\
+      Expected: No student is added to the list. The error message shown details `Invalid command format!` followed by the `add` command format and example.
+
+   6. Test case: `add` \\
+      Expected: No student is added to the list. Same as previous.
+
+   7. Test case: `add n/???` \\
+      Expected: No student is added to the list. The error message shown details the requirements for a valid name parameter input.
+
+   8. Test case: `add n/Shaun xxx/` \\
+      Expected: No student is added to the list. Same as previous.
+
+   9. Other incorrect add commands to try: `add n/Shaun xxx/INVALID_PARAMETER`, (where xxx is any of the valid prefixes, INVALID_PARAMETER is an invalid parameter input for the respective prefix). \\
+      Expected: Same as previous, except error message is xxx prefix specific.
+   
+
 [↑ Back to top](#table-of-contents)
 
 ### Saving data
