@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExecutiveProParser" as ExecutiveProParser LOGIC_COLOR
+participant ":BatchExportCommandParser" as BatchExportCommandParser LOGIC_COLOR
+participant ":BatchExportCommand" as BatchExportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("batchexport file.csv")
+activate LogicManager
+
+LogicManager -> ExecutiveProParser : parseCommand("batchexport file.csv")
+activate ExecutiveProParser
+
+create BatchExportCommandParser
+ExecutiveProParser -> BatchExportCommandParser
+activate BatchExportCommandParser
+
+BatchExportCommandParser --> ExecutiveProParser
+deactivate BatchExportCommandParser
+
+ExecutiveProParser -> BatchExportCommandParser : parse("file.csv")
+activate BatchExportCommandParser
+
+create BatchExportCommand
+BatchExportCommandParser -> BatchExportCommand
+activate BatchExportCommand
+
+BatchExportCommand --> BatchExportCommandParser :
+deactivate BatchExportCommand
+
+BatchExportCommandParser --> ExecutiveProParser :
+deactivate BatchExportCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+BatchExportCommandParser -[hidden]-> ExecutiveProParser
+destroy BatchExportCommandParser
+
+ExecutiveProParser --> LogicManager :
+deactivate ExecutiveProParser
+
+LogicManager -> BatchExportCommand : execute()
+activate BatchExportCommand
+
+BatchExportCommand -> Model : getExecutiveProDb()
+activate Model
+
+
+
+
+Model --> BatchExportCommand
+deactivate Model
+
+create CommandResult
+BatchExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> BatchExportCommand
+deactivate CommandResult
+
+BatchExportCommand --> LogicManager : result
+deactivate BatchExportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

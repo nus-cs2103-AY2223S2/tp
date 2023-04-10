@@ -224,7 +224,7 @@ The command could be unsuccessful, and there are a few potential causes of this:
 1. There could be a *duplicate* entry in the file, i.e. two employees sharing the same identity in the file.
 2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly
    and the command will not run.
-3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format, 
+3. If you are using Excel to open your `.csv` file, the date formatting in Excel might not be set to the right format,
 please refer to the instructions [here](#u-opening-csv-files-in-excel--u) to rectify this problem.
 
 
@@ -297,15 +297,15 @@ and it should look something like the below image.
 ![](images/UserGuide/batchexport/exportedFileLocation.png)
 
 <div markdown="span" class="alert alert-warning">
-:warning: Caution: 
+:warning: Caution:
 If you open the exported `.csv file` in `Excel`
-and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format. 
-This could lead to issues when importing the file using the batchadd command. 
+and save it without ensuring that the date format is correct (YYYY-MM-DD), the dates might be saved in an incorrect format.
+This could lead to issues when importing the file using the batchadd command.
 To ensure the correct date format, please refer to the instructions [here](#u-opening-csv-files-in-excel--u).\
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:warning: Caution: 
+:warning: Caution:
 **Do take note to only export in `.csv file` and not any other file types.**
 </div>
 

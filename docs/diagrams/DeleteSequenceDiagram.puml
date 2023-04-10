@@ -50,7 +50,7 @@ deactivate ExecutiveProParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteEmployee(1)
 activate Model
 
 Model --> DeleteCommand

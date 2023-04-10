@@ -234,7 +234,8 @@ Moving on to the implementation, some things to note.
 _Pre-requisites: User has a CSV file filled with whatever information they want to `batchadd`
 and has stored it in the `/data` folder of the repository._
 
-UML Diagram:
+Below is a sequence diagram and the explanation of `batchadd` command.
+
 ![BatchAdd](images/BatchAddSequenceDiagram.png)
 
 **Steps:**
@@ -296,19 +297,20 @@ Moving on to the implementation, some things to note.
 
 #### Implementation:
 
-UML Diagram:
-![BatchExport]()
+Below is a sequence diagram and the explanation of `batchexport` command.
+
+![BatchExport](images/BatchExportSequenceDiagram.png)
 
 **Steps:**
 
 Step 1. User launches the application.
 
-Step 2. User executes `batchexport file.csv` command. In the `LogicManager` class, the `ExecutiveProParser` 
+Step 2. User executes `batchexport file.csv` command. In the `LogicManager` class, the `ExecutiveProParser`
 method is called.
 This will return a new `BatchExportCommandParser` object and `parse` function is then called.
 A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
 
-Step 3. The `parse` function returns a `BatchExportCommand` which is then executed. In this `execute` function, 
+Step 3. The `parse` function returns a `BatchExportCommand` which is then executed. In this `execute` function,
 the Model object is used to retrieve the current ExecutiveProDb employee database.
 
 Step 4. For each Employee in the database, the relevant fields (e.g. name, phone, department, payroll, etc.) are retrieved and written to the CSV file using a CSVPrinter.
@@ -320,9 +322,9 @@ Step 5. If the export is successful, a CommandResult with a success message is r
 ##### Aspect: How BatchExport is run
 
   - Alternative 1 (Current Choice): Rely on the existing data retrieval mechanisms in the Model and Employee classes.
-    - Pros: Leverages existing code and ensures consistency with other features. 
+    - Pros: Leverages existing code and ensures consistency with other features.
     - Cons: BatchExport might fail if data retrieval from Model or Employee fails.
-  
+
   - Alternative 2: Own implementation of BatchExport without relying on Model and Employee classes.
     - Pros: If data retrieval from Model or Employee fails, BatchExport can still work.
     - Cons: Heavy implementation and may result in duplicated code.
@@ -576,11 +578,13 @@ As such, we plan to implement a check that requires at least `1` day specified f
 We plan to take into account case sensitivity in addition to the current check of phone number and email.
 6. Currently, there are no error messages for invalid Date Of Birth, such as using future dates.
 We plan to implement checks for date validity and return an error message: `Invalid Date Of Birth`
-7. Currently, BatchExport with invalid path or invalid file type is not handled. We plan to check for file path 
+7. Currently, BatchExport with invalid path or invalid file type is not handled. We plan to check for file path
 validity and file type validity, returning an error message: `Invalid file path` and `Invalid file type` respectively.
 8. Currently, the right panel of our application is not centralized and long inputs may go out of bounds. We plan to make
 the right panel horizontally scrollable as well as increase the size of the right panel to ensure that the information
 remains centralized during the launch of our application.
+
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Requirements**
 
@@ -848,7 +852,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
+
 ### Adding an employee
 1. Adding an employee with all fields specified:
     1. Test case: `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/311, Clementi Ave 2, #02-25 l/19 dob/2000-04-21 doj/2022-01-04 t/SoftwareEngineer`
