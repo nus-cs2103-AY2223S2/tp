@@ -1311,4 +1311,5 @@ testers are expected to do more *exploratory* testing.
 
 ### 3. Recurring Event Time
 * Feature flaw: Users cannot add a recurring event that last the whole day due to hourly basis implementation. ie: from today 00:00 to tomorrow 23:59
-* Feature plan: We plan to allow users to enter recurring events that spans over more than one day to solve so that it will be more felxible.
+* Feature plan: We plan to allow users to enter recurring events that spans over more than one day to solve so that it will be more flexible.
+
