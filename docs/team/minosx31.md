@@ -27,17 +27,17 @@ Given below are my contributions to the project.
 
 - **Documentation**:
     - User Guide:
-        - Added documentation for the `copy` feature [#59](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/59)
-        - Made improvements to the formatting and language used [#168](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/168), [178](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/178)
+        - Added documentation for the `copy` feature [\#59](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/59)
+        - Made improvements to the formatting and language used [\#168](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/168), [\#178](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/178)
 
     - Developer Guide:
         - Added implementation details for the `copy`
-          feature [#65](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/65)
-        - Added test cases under manual testing section [#176](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/176)
+          feature [\#65](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/65)
+        - Added test cases under manual testing section [\#176](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/176)
 
 - **Community**:
-    - Reviewed several PRs: [#66](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/66)
-      , [#105](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/105)
+    - Reviewed several PRs: [\#66](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/66)
+      , [\#105](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/105)
     - Hosted multiple discussion sessions with team members on PR issues and weekly tasks.
     - Reported bugs for [CS2103-W16-2](https://github.com/AY2223S2-CS2103-W16-2/tp) and gave suggested
       improvements [here](https://github.com/minosx31/ped/issues).
