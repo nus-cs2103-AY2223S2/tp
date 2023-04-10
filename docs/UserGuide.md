@@ -185,7 +185,7 @@ no patients, and thus the Patient List will be empty.
 This behaviour will also exist if the user adds a patient instead too.
 
 <div markdown="span" class="alert alert-danger">
-    Some users have mentioned being alarmed by <strong>sudden disappearances of
+    :exclamation: :exclamation: Some users have mentioned being alarmed by <strong>sudden disappearances of
     their Doctor Cards and Patient Cards</strong> within their respective lists
     after entering certain commands. The explainer above details why this happens.
     <br/><br/>
