@@ -567,7 +567,7 @@ _Details coming soon ..._
    You can assign tasks to persons using the assignment commands. This feature helps to distribute work efficiently and track the progress of each task.
 
 5. **What if I accidentally delete or modify data in the OfficeConnect data file?**
-   Please exercise caution when editing the data file, as any changes to the data file might cause data corruption and lead to the app malfunctioning. If the data file becomes corrupted, OfficeConnect will start with an empty data file on the next run.
+   Please do not edit the data file, as any changes to the data file might cause data corruption and lead to the app malfunctioning. If the data file becomes corrupted, OfficeConnect will start with an empty data file on the next run.
 
 6. **Does OfficeConnect support different themes?**
    Yes, OfficeConnect offers both light and dark themes for your preference. You can easily switch between themes using the respective keyboard shortcuts.
