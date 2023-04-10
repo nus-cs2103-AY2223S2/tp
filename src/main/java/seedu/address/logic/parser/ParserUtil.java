@@ -199,14 +199,16 @@ public class ParserUtil {
      */
     public static String toTitleCase(String input) {
         StringBuilder titleCase = new StringBuilder();
-        boolean nextTitleCase = true;
+        boolean isFirstChar = true;
 
         for (char c : input.toCharArray()) {
             if (Character.isSpaceChar(c)) {
-                nextTitleCase = true;
-            } else if (nextTitleCase) {
+                isFirstChar = true;
+            } else if (isFirstChar) {
                 c = Character.toTitleCase(c);
-                nextTitleCase = false;
+                isFirstChar = false;
+            } else {
+                c = Character.toLowerCase(c);
             }
 
             titleCase.append(c);
@@ -214,6 +216,7 @@ public class ParserUtil {
 
         return reduceSpace(titleCase.toString());
     }
+
 
     /**
      * formats the spacing of every word in a string
