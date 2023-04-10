@@ -103,10 +103,12 @@ in [`FlightListPanel.fxml`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/ma
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Flight`, `Crew`, `Plane`, `Pilot`, `Location`
-objects residing in the `Model`.
+* listens for changes to `Model` data so that the UI can be
+  updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies
+  on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays
+  `Flight`, `Crew`, `Plane`, `Pilot`, `Location` objects residing in the `Model`.
 
 <div style="page-break-after: always;"></div>
 
@@ -259,6 +261,7 @@ the UniqueList class. It must be noted however that different resource classes h
 will have some minor but important differences in their corresponding class diagrams.
 Attributes of primitive types (e.g. age) have also been omitted from the diagrams for brevity.
 </div>
+
 
 <div style="page-break-after: always;"></div>
 
