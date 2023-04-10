@@ -10,36 +10,40 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: [To be added]
-* **New Feature**: [To be added]
+* **Code contributed**: 
+My code contributions can be found on:
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=derricksaltfish&breakdown=true)
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=DerrickSaltFish&breakdown=true)
 
-* **Project management**:
-  * [To be added]
+## Feature and Enhancements
+
+* **New Feature**: Added `copy` command [#130](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/130)
+  * What it does: Allows users to copy the information of an internship entry onto the clipboard of the computer.
+  * Justification:
+    * Uses `SwingUtilities.invokeLater()` to wrap the clipboard code in a `Runnable` object, ensures the clipboard operation to be safe to run from a test or other non-GUI context.
 
 * **Enhancements to existing features**:
-  * [To be added]
-  * [To be added]
-* **Documentation**:
-  * Site-Wide Settings:
-    * Update site-wide settings in `[JAR file location]\docs\_config.yml` and `[JAR file location]\docs\index.md`
-  * User Guide:
-    * Add discription for `exit`, save and load the data in User Guide
-  * Developer Guide:
-    * [To be added]
+  * Update help information for the help box opened by command `help` and click on the Help button [#59](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/59)
+  * Update Load Data feature to fit for InternBuddy [#59](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/59)
 
-* **Community**:
-  * Contributed PRs (with non-trivial review comments): [\#19](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/19), [\#28](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/28)
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+**Project Management**
+* Reviewed and approved pull requests for merging.
+* Testing of InternBuddy releases after each version evolution.
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+## Documentation
 
-<br/>
-<p align="center">
-  <img width="300" height="200" src="../images/team-mascots/InternBuddyArtist.png">
-</p>
+**Documentation**
+* Side-Wide settings: 
+  * Update site-wide settings in `[JAR file location]\docs\_config.yml` and `[JAR file location]\docs\index.md` [#19](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/19)
+* User Guide:
+  * Initial update of command `exit`, Save data and Load data contents [#28](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/28)
+  * Update descriptions for Load data, Edit data and Clearing all Internship entries [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
+* Developer Guide:
+  * Update content in common classes and AddressBook related content to InternBuddy [#99](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/99)
+  * Update of `copy` command with inclusion of UML sequence diagrams [#205](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/205)
+  * Update appendix A content [#104](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/104)
+
+## Others
+
+**Community**
+* PRs reviewed (with non-trivial review comments): [#33](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/33) [#204](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/204)

@@ -29,7 +29,7 @@ import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
 /**
- * Edits the details of an existing internship in the address book.
+ * Edits the details of an existing internship in InternBuddy.
  */
 public class EditCommand extends Command {
 

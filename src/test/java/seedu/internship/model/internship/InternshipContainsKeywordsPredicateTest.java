@@ -41,7 +41,7 @@ public class InternshipContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different internship -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

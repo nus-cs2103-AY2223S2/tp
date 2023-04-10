@@ -34,10 +34,8 @@ including details on the installation process and features. For more advanced us
 this guide will also help customize your experience.
 
 [//]: # (@@author eugenetangkj - reused with modifications)
-
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
-[//]: # ()
 ### Using the User Guide
 This uses guide uses a set of formatting standards and visuals to better communicate information.
 
@@ -94,7 +92,7 @@ Keyboard keys are indicated using rounded buttons.
    InternBuddy. It will contain a subfolder where your InternBuddy data will be stored.
    </div>
    <br/>
-
+   
 4. Double-click on the file `internbuddy.jar` to launch InternBuddy. A GUI similar to Figure 1 should
    appear in a few seconds. Note how the app contains some sample data.<br/>
    <p align="center">
@@ -105,13 +103,13 @@ Keyboard keys are indicated using rounded buttons.
     <div style="page-break-after: always;"></div>
 
 5. You can interact with InternBuddy by typing into the box with the text `Enter command here...`, then pressing
-   <button>Enter</button> to execute your command. For example, typing help and pressing <button>Enter</button> will open
+   <button>Enter</button> to execute your command. For example, typing `help` and pressing <button>Enter</button> will open
    the help window.
 
 
 6. Here are some other example commands you can try:
 
-    - `list`: List all internships stored in InternBuddy
+    - `list`: Lists all internships stored in InternBuddy
     - `add n/Food Panda r/Web Developer s/Applied d/2023-04-01`: Adds a new internship into InternBuddy.
     - `delete-index 3` : Deletes the 3rd internship of the current list displayed in InternBuddy.
     - `exit` : Exits InternBuddy.
@@ -121,12 +119,15 @@ Do refer to [Features](#features) below for a comprehensive list of supported fe
 
 <div style="page-break-after: always;"></div>
 
+[//]: # (@@author eugenetangkj - reused with modifications)
+[//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
+
 ## **Exploring the Graphical User Interface**
 Figure 2 provides a visual representation of the different parts of InternBuddy's GUI, while
 Table 1 explains what each part is used for.
 
 <p align="center">
-  <img src="images/gui-markup.png" width="600" />
+  <img src="images/gui-markup.png" width="700" />
 </p>
 
 <p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
@@ -172,7 +173,7 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
 [//]: # (@@author potty10)
 ### Command Format
 
-* Words in `UPPER_CASE` are the fields to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the fields that are to be supplied by you.<br>
   e.g. If the command format is `add n/COMPANY_NAME`, you may input the command as `add n/Apple` where you supply the
   value `Apple` to the field `COMPANY_NAME`.
 
@@ -181,7 +182,7 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
   you omit the value for the field `COMMENT`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Java`, `t/Java t/Python` etc.
+  e.g. `[t/TAG]…​` can be used as `   ` (i.e. 0 times), `t/Java`, `t/Java t/Python` etc.
 
 * Fields can be in any order.<br>
   e.g. If the command format is `n/COMPANY_NAME r/ROLE`, both `n/Apple r/Software Engineer` and `r/Software Engineer n/Apple`
@@ -196,31 +197,38 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
   ignored.<br>
   e.g. If the command format is `help`, typing in `help 123` will cause your input to be interpreted as `help`.
 
-* Command names are case-sensitive. For example, `help` will work, but `HELP` or `Help` will not work.
+* Command names are case-sensitive. For example, `help` will work, but `HELP` or `Help` will not.
+
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author eugenetangkj)
-### Prefixes and Rules for Fields
+### Prefixes and Constraints for Fields
 In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
 
-There are 2 important things that you should note:
+There are 3 important things that you should note:
 1. Most fields have associated [**prefixes**](#glossary). 
     * Prefixes are short character combinations that you can use to identify the field to which a value belongs.
       They are a convenient shorthand that allows you to refer a field without having to type out its
       entire name, saving precious time.
     * For example, in `add n/Apple`, the value `Apple` is associated with the
-   field `COMPANY_NAME` since the `n/` prefix is used.
-    * Prefixes are **case-sensitive**. `n/` will work but `N/` will not work.
-2. There are **rules** that you must adhere to when replacing fields with values. 
-   * Rules differ based on the fields.
-   * If you do not adhere to these rules and enter invalid values, an error message will be
+      field `COMPANY_NAME` since the `n/` prefix is used.
+    * Prefixes are **case-sensitive**. `n/` will work but `N/` will not.
+
+2. When entering a command, do remember to use **spaces** to separate different fields of information. If you enter multiple fields without using space(s) to separate them, InternBuddy will interpret them as a single field.
+    * For example, `edit 1 n/Visa r/Software Engineer` associates `Visa` with the field `COMPANY_NAME` and `Software Engineer` with the field `ROLE`.
+    * Conversely, `edit 1 n/Visar/Software Engineer` associates `Visar/Software Engineer` with the field `COMPANY_NAME`.
+
+3. There are **constraints** that you must adhere to when replacing fields with values. 
+   * Constraints differ based on the fields.
+   * If you do not adhere to these constraints and enter invalid values, an error message will be
      displayed in the [Result Display](#exploring-the-graphical-user-interface) when you
      press <button>Enter</button>. The message will alert you to the invalid input and provide information
      on how to correct the command.
 
-Table 2 provides a summary of the fields with their descriptions, prefixes and rules.
+Table 2 provides a summary of the fields with their descriptions, prefixes and constraints.
 
-| Field          | Description                                                                                                        | Prefix | Rules                                                                                                                                                                                   |
+| Field          | Description                                                                                                        | Prefix | Constraints                                                                                                                                                                             |
 |----------------|--------------------------------------------------------------------------------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `COMPANY_NAME` | The name of the company                                                                                            | `n/`   | Cannot be blank and must be at most 50 characters.                                                                                                                                      |
 | `ROLE`         | The role that you applied for                                                                                      | `r/`   | Cannot be blank and must be at most 50 characters.                                                                                                                                      |
@@ -230,7 +238,7 @@ Table 2 provides a summary of the fields with their descriptions, prefixes and r
 | `TAG`          | A label that you can give to an internship application                                                             | `t/`   | Cannot be blank (except when used in the `edit` command) and must be at most 30 characters.                                                                                             |
 | `INDEX`        | The index number of the internship entry as displayed in the [List Panel](#exploring-the-graphical-user-interface) | -      | A positive integer that is smaller than or equal to the largest index number shown in the [List Panel](#exploring-the-graphical-user-interface). Note that 0 is not a positive integer. |
 
-<p style="text-align: center;">Table 2: Fields with their descriptions, prefixes and rules</p>
+<p style="text-align: center;">Table 2: Fields with their descriptions, prefixes and constraints</p>
 
 ### Details on `STATUS` and `DATE`
 The field `STATUS` represents the current status of an internship application. It can only take on one
@@ -249,7 +257,6 @@ Note that this is **not case-sensitive**. Table 3 explains the meaning of each s
 | `Rejected`   | You have either been rejected by the company, or that you have rejected the internship offer.                                     |
 
 <p style="text-align: center;">Table 3: Description of statuses</p>
-
 
 Depending on the status of the internship application, the `DATE` field will be interpreted differently. Table 4
 documents the meaning of `DATE` with respect to each `STATUS` value.
@@ -271,12 +278,13 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 InternBuddy does not allow for the storage of duplicate internships. Should you enter a command that attempts to store 
 a duplicate internship, InternBuddy will remind you that the internship already exists.
 
-2 internships are considered to be duplicates if they have matching `COMPANY_NAME`, `STATUS`,`ROLE` **and**
-`DATE`. The comparison is case-insensitive.
+2 internships are considered to be duplicates if they have matching `COMPANY_NAME`, `STATUS`, `ROLE` **and**
+`DATE`. The comparison is **case-insensitive**.
 
 In Table 5, internships A and B are considered as duplicate internships, because they have the same
-`COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`. Note how the capitalisation differences in `COMPANY_NAME`
+`COMPANY_NAME`, `ROLE`, `STATUS` and `DATE`. Note how the capitalisation differences in `COMPANY_NAME`
 and `ROLE` do not affect the comparison.
+
 
 | `Field`        | Internship A      | Internship B      |
 |----------------|-------------------|-------------------|
@@ -289,9 +297,8 @@ and `ROLE` do not affect the comparison.
 
 <p style="text-align: center;">Table 5: Duplicate internships</p>
 
-<div style="page-break-after: always;"></div>
 
-Meanwhile, as shown in Table 6, internships C and Internship D are not considered as duplicate
+Meanwhile, in Table 6, internships C and D are not considered as duplicate
 internships, because they have different values for `COMPANY_NAME`.
 
 
@@ -308,12 +315,14 @@ internships, because they have different values for `COMPANY_NAME`.
 
 <div style="page-break-after: always;"></div>
 
-
 [//]: # (@@author potty10)
 ### Duplicate Tags
 If you attempt to store duplicate tags within the same internship entry, InternBuddy would only store one of them. A duplicate tag refers to a tag that is identical to another tag in every way, including the spelling and capitalisation (tags are **case-sensitive**). In other words, a duplicate tag is a tag that is an exact copy of another tag.
 
+<div style="page-break-after: always;"></div>
+
 ## **Features**
+InternBuddy offers a variety of features that can empower you to systematically track your internships.
 
 [//]: # (@@author eugenetangkj)
 ### Listing all Internships : `list`
@@ -342,7 +351,7 @@ Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: **Info:** You would not be able to add [duplicate internships](#duplicate-internships) into InternBuddy (an error message would be shown). If you attempt to add [duplicate tags](#duplicate-tags) into the same internship entry, InternBuddy would only store one of the tags.
+:information_source: **Info:** You will not be able to add [duplicate internships](#duplicate-internships) into InternBuddy (an error message will be shown). If you attempt to add [duplicate tags](#duplicate-tags) into the same internship entry, InternBuddy will only store one of the tags.
 
 </div>
 
@@ -356,7 +365,7 @@ Examples:
 * `add n/Food Panda s/New d/2023-02-01` Displays an error because the `ROLE` field is missing.
 * `add n/Apple r/App Developer s/New d/2023-02-01 t/Java t/Java` Adds a new internship entry 
   with company name `Apple`, role `App Developer`, status `New`, deadline of application `2023-02-01`,
-  and tag `Java` (only one `tag` would be stored since they are duplicate tags).
+  and tag `Java` (only one tag is stored since the two tags provided are duplicates).
 
 
 ![Add Command](images/ug-add-example.png)
@@ -386,6 +395,9 @@ to the internship only having the tag `macOS`. To have all 3 tags, you need to t
 </div>
 
 Examples:
+
+Suppose you have at least 2 internships displayed in the [List Panel](#exploring-the-graphical-user-interface).
+
 * `edit 2 s/Assessment r/Software Developer` Sets the status and role of the second internship entry as `Assessment` and
   `Software Developer` respectively. This example is illustrated in Figure 4.
 * `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
@@ -413,15 +425,16 @@ Format: `view INDEX`
   where their content change according to the status of the internship entry.
 
 Examples:
-* `view 1` Assuming that you have at least three internships displayed in the
+* `view 3` Assuming that you have at least 3 internships displayed in the
 [List Panel](#exploring-the-graphical-user-interface), this displays the details of the third internship in the
 [View Panel](#exploring-the-graphical-user-interface).
-
 * `view -1` Displays an error because `INDEX` must be a positive integer.
 * `view 8` Assuming that you have 7 internships displayed in the
   [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
   than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
 
+
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author DerrickSaltFish)
 ### Copying an Internship to Clipboard : `copy`
@@ -433,12 +446,13 @@ Format: `copy INDEX`
 * Copies the details of the internship entry with index number `INDEX` as indicated in
   the [List Panel](#exploring-the-graphical-user-interface).
 * The copied text will be in the format of
-  `Company Name: COMPANY_NAME; Role: ROLE; Status: STATUS, Date: DATE; Comment: [COMMENT]; Tags: [TAG]`.
+  `Company Name: COMPANY_NAME; Role: ROLE; Status: STATUS; Date: DATE; Comment: [COMMENT]; Tags: [TAG]`.
 
 Examples:
-* `copy 2` Assuming that you have at least three internships displayed in the
-  [List Panel](#exploring-the-graphical-user-interface), this copies the details of the
-  third internship to your clipboard.
+* Suppose the first internship displayed in the [List Panel](#exploring-the-graphical-user-interface)
+  has company name `Amazon`, role `Cloud Architect`, status `New`, date `2023-03-28`, comment `I love Amazon!`,
+  and tags `AWS` and `Cloud Services`. Then, `copy 1` copies `Company Name: Amazon; Role: Cloud Architect; Status: New; Date: 2023-03-28; Comment: [I love Amazon!]; Tags: [Cloud Services][AWS]` to your clipboard.
+
 * `copy -1` Displays an error because `INDEX` must be a positive integer.
 * `copy 8` Assuming that you have 7 internships displayed in the
   [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
@@ -455,7 +469,7 @@ your entries and narrow down your search.
 Format: `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`
 
 * You have to provide at least one of the optional fields.
-* The `find` command is case-insensitive, and it returns exact matches only. For example,
+* The `find` command is **case-insensitive**, and it returns **exact matches only**. For example,
   `find n/Google Ltd` will not return an entry with company name `Google` because `Google`
   does not exactly match with `Google Ltd`. On the other hand, `find t/Java` will return
   an entry with tag `java` because the search is case-insensitive.
@@ -464,7 +478,7 @@ There are 2 possible ways for you to use the `find` command.
 
 **Method 1: Use a single field type**
 
-e.g., `find s/Applied`, `find s/Applied s/New`, `find n/Google n/Apple n/Meta`
+e.g. `find s/Applied`, `find s/Applied s/New`, `find n/Google n/Apple n/Meta`
 
 * The `find` command returns all internship entries that match with **any** of the values that you provide.
 
@@ -476,32 +490,50 @@ More examples:
 
 **Method 2: Use 2 or more different field types**
 
-e.g., `find n/Google n/Apple s/New`, `find n/Google n/Apple s/Applied s/New`, `find n/Google r/Engineer t/Python t/Java`
+e.g. `find n/Google n/Apple s/New`, `find n/Google n/Apple s/Applied s/New`, `find n/Google r/Engineer t/Python t/Java`
 
-* The `find` command returns all internship entries that matches with **at least one** value for
+* The `find` command returns all internship entries that match with **at least one** value for
   **every** field type that is specified.
 
-More examples:
-* `find n/Google n/Apple s/new` returns internship entries that have a status `New` **and** have
-  a company name of `Google` **or** `Apple`.
-* `find n/Google n/Apple s/Applied s/New` returns internship entries that have company names
-  of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
-* Figure 5 below shows InternBuddy starting off with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`, the internship entries in green boxes in the after image were returned. The internship entries in red boxes in the before images, however, were not displayed as they did not match the search.
-  * In the after image, internship entry index 1 was filtered out because it contains at least one company name 'Google' and both tags 'python' and 'java'.
-  * In the after image, internship entry index 2 was filtered out because it contains at least one company name 'Google' and at least one tag 'python'.
-  * In the after image, internship entry index 3 was filtered out because it contains at least one company name 'Apple' and at least one tag 'java'
-  * In the before image, internship entry index 4 was not filtered out because even though it contains at least one searched company name 'Google', it does not contain at least one of the searched tags.
-  * In the before image, internship entry index 5 was not filtered out because even though it contains at least one of the searched tags 'java' and 'python', it does not contain at least one of the searched company names.
+Detailed example:
+* Figure 5 below shows InternBuddy starting with 5 internship entries. After entering `find n/Google n/Apple t/python t/java`,
+  the internships in green boxes were returned while those in red boxes were not.
 
-
+  
 <p align="center">
-  <img src="images/ug-find-example.png" width="1000" />
+  <img src="images/ug-find-example.png" width="500" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Example of the find command in action</p>
+   <p style="text-align: center;">Figure 5: Example of the find command in action</p>
 
 <br/>
 
+<div style="page-break-after: always;"></div>
+
+* Table 7 explains the reasoning behind Figure 5.
+  
+
+| Index of Internship | Returned? | Explanation                                                                       |
+|---------------------|-----------|-----------------------------------------------------------------------------------|
+| 1                   | Yes       | It contains at least one company name `Google` and both tags `python` and `java`. |
+| 2                   | Yes       | It contains at least one company name `Google` and at least one tag `python`.     |
+| 3                   | Yes       | It contains at least one company name `Apple` and at least one tag `java`.        |
+| 4                   | No        | It lacks both of the searched tags, `python` and `java`.                          |
+| 5                   | No        | It lacks both of the searched company names, `Google` and `Apple`.                |
+
+<p style="text-align: center;">Table 7: Explanation of Figure 5 </p>
+
+
+
+
+
+More examples:
+* `find n/Google n/Apple s/Interview` returns internship entries that have a status `Interview` **and** have
+  a company name of `Google` **or** `Apple`.
+* `find n/Google n/Apple s/Applied s/Interview` returns internship entries that have company names
+  of `Google` **or** `Apple` **and** roles of `Applied` **or** `Interview`.
+
+  
 
 <div markdown="span" class="alert alert-primary">
 
@@ -510,6 +542,7 @@ that are stored in InternBuddy. This means that it will also search through entr
 in the [List Panel](#exploring-the-graphical-user-interface).
 </div>
 
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author seadragon2000341)
 ### Getting Upcoming Events and Deadlines : `upcoming`
@@ -517,19 +550,18 @@ Want to view your upcoming events and deadlines? You can do so using the `upcomi
 
 Format: `upcoming`
 * The `upcoming` command provides the list of internships that have events (interviews/assessments) or deadlines (application deadline/offer acceptance deadline) within the upcoming week.
-* In other words, it gives you the list of internships that have a `STATUS` of `New/Offered/Assessment/Interview`, and the `DATE`  falls within the upcoming week.
+* In other words, it gives you the list of internships that have a `STATUS` of `New/Offered/Assessment/Interview` and a `DATE` that  falls within the upcoming week.
 * Upcoming week is defined as the current day and the 6 days that follow it.
 
 
 
 Examples: 
-* `upcoming` If today's date is 5 January 2023, it will list all internships that have a `STATUS`of `New/Offered/Assessment/Interview` and `DATE` is from 5 January 2023 to 11 January 2023 inclusive.
+* `upcoming` If today's date is 5 January 2023, it will list all internships that have a `STATUS` of `New/Offered/Assessment/Interview` and a `DATE` that is from 5 January 2023 to 11 January 2023 inclusive.
 
-<div style="page-break-after: always;"></div>
 
 [//]: # (@@author potty10)
-### Deleting Internships by Index : `delete-index`
-Need to keep your screen nice and tidy? `delete-index` can help you achieve this by deleting multiple internships using their indices.
+### Deleting Internships by Indices : `delete-index`
+Need to keep your screen neat and tidy? `delete-index` can help you achieve this by deleting multiple internships using their indices.
 
 Format: `delete-index INDEX [INDEX]...`
 
@@ -543,31 +575,29 @@ Examples:
 * If you run `delete-index 1` after `find`, it will delete the first entry as displayed by `find` in the [List Panel](#exploring-the-graphical-user-interface).
 * If you run `delete-index 1` after `list`, it will delete the first entry as displayed by `list` in the [List Panel](#exploring-the-graphical-user-interface).
 * `delete-index 1 3` Deletes the first and third
-  internship in the [List Panel](#exploring-the-graphical-user-interface).
+  internships in the [List Panel](#exploring-the-graphical-user-interface).
 * `delete-index 3 1 3 3 1` Deletes the first and third
-  internship in the [List Panel](#exploring-the-graphical-user-interface).
+  internships in the [List Panel](#exploring-the-graphical-user-interface).
 * `delete-index` Displays an error because at least one `INDEX` must be specified.
-
-<div style="page-break-after: always;"></div>
 
 [//]: # (@@author potty10)
 ### Deleting Internships by Fields : `delete-field`
-Wish that you could delete internships using fields instead of indices? You can
+Wish that you can delete internships using fields instead of indices? You can
 certainly do so using `delete-field`.
 
 Format: `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`
 
 * You have to provide at least one of the optional fields.
-* The `delete-field` command is case-insensitive. For example, `delete-field n/Google` deletes all internships with company names `google`, `Google` or `gOOgle`.
+* The `delete-field` command is **case-insensitive**. For example, `delete-field n/Google` deletes all internships with company names `google`, `Google` or `gOOgle`.
   Also, `delete-field t/java` deletes all internships with tags `Java`, `java` or `JaVa`.
-* `delete-field` deletes entries with exact matches only. For example, `delete-field n/Google Ltd` will not delete an entry with company name `Google` because
+* `delete-field` deletes entries with **exact matches only**. For example, `delete-field n/Google Ltd` will not delete an entry with company name `Google` because
   `Google` does not exactly match with `Google Ltd`.
 
-There are 2 possible scenarios when using the `delete-field` command.
+There are 2 possible ways for you to use the `delete-field` command.
 
 **Method 1: Use a single field type**
 
-e.g., `delete-field s/Applied`, `delete-field s/Applied s/New`,
+e.g. `delete-field s/Applied`, `delete-field s/Applied s/New`,
 `delete-field n/Google n/Apple n/Meta`
 
 * The `delete-field` command deletes all internship entries that match with **any** of the values that you provide.
@@ -579,17 +609,17 @@ More Examples:
 
 **Method 2: Use 2 or more different field types**
 
-e.g., `delete-field n/Google n/Apple s/New`, `delete-field n/Google n/Apple s/Applied s/New`,
+e.g. `delete-field n/Google n/Apple s/New`, `delete-field n/Google n/Apple s/Applied s/New`,
 `delete-field n/Google r/Engineer t/Python t/Java`
 
 * The `delete-field` command deletes all internship entries that matches with **at least one** value for
   **every** field type that is specified.
 
 More Examples:
-* `delete-field n/Google n/Apple s/new` Delete internship entries that have a status `New` **and** have
+* `delete-field n/Google n/Apple s/Interview` Deletes internship entries that have a status `Interview` **and** have
   a company name of `Google` **or** `Apple`.
-* `delete-field n/Google n/Apple s/Applied s/New` Delete internship entries that have company names
-  of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
+* `delete-field n/Google n/Apple s/New s/Interview` Deletes internship entries that have company names
+  of `Google` **or** `Apple` **and** roles of `New` **or** `Interview`.
 
 
 <div markdown="span" class="alert alert-primary">
@@ -604,7 +634,7 @@ will never delete entries that are not currently displayed in the
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning:**  If you use an unknown prefix or a prefix not specific to this command, it will be interpreted as
-part of your input value. For example, `delete-field r/Engineer c/Good company` will try to find internships with a role
+part of your input value. For example, `delete-field r/Engineer c/Good company` will try to delete internships with a role
 of `Engineer c/Good company`.
 </div>
 
@@ -658,13 +688,12 @@ Done with tracking your internships for the day? Exit InternBuddy using the `exi
 
 Format: `exit`
 
-<div style="page-break-after: always;"></div>
 
 [//]: # (@@author kohkaixun)
 ### Navigating through Past Commands
 
-Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
-After you have clicked on the [Input Box](#exploring-the-graphical-user-interface), pressing <button>&uarr;</button> and <button>&darr;</button> will fill the [Input Box](#exploring-the-graphical-user-interface) with commands that you have recently entered.
+Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy has got your back!
+After clicking on the [Command Box](#exploring-the-graphical-user-interface), pressing <button>&uarr;</button> and <button>&darr;</button> will fill the [Command Box](#exploring-the-graphical-user-interface) with commands that you have recently entered.
 This allows you to effortlessly access and use past commands without having to go through the tedious process of typing them all over again.
 
 <div markdown="span" class="alert alert-primary">
@@ -677,8 +706,8 @@ you entered during the previous run.
 <div markdown="span" class="alert alert-primary">
 
 :information_source: **Info:** Once you have navigated to the first command that you have ever entered into
-InternBuddy, pressing <button>&uarr;</button> would not lead to any further change. Similarly, once you have
-navigated to the current state of waiting for new input, pressing <button>&darr;</button> would not
+InternBuddy, pressing <button>&uarr;</button> will not lead to any further change. Similarly, once you have
+navigated to the current state of waiting for new input, pressing <button>&darr;</button> will not
 change anything.
 </div>
 
@@ -690,51 +719,52 @@ make amendments accordingly without having to type out the entire command again.
 </div>
 
 Example:
-- Figure XX illustrates an example of how you can navigate through past commands where the inputs
-  `list`, `clear` and `upcoming` are entered in this particular order.
+- Figure 7 illustrates how you can navigate through past commands where the inputs
+  `list`, `clear` and `upcoming` are entered in this particular order. The <button>&uarr;</button> and
+  <button>&darr;</button> keys are used to navigate between the different inputs.
 
 
 <p align="center">
   <img src="images/ug-navigate-commands.png" width="1000" />
 </p>
 
-   <p style="text-align: center;">Figure XX: Navigating between commands</p>
+   <p style="text-align: center;">Figure 7: Navigating between commands</p>
 
 <br/>
 
 
 ### Saving your Internship Data
 
-          Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
-          in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
-          where you placed `internbuddy.json`. There is no need to save manually.
+Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
+in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
+where you placed `internbuddy.json`. There is no need to save manually.
 
 <div markdown="span" class="alert alert-primary">
 
-          :information_source: **Info:** The file location of `internbuddy.json` is stated in the
-          <a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
+:information_source: **Info:** The file location of `internbuddy.json` is stated in the
+<a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
 </div>
 
 
 ### Loading the Data
 
-          InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
-          manually.
+InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
+manually.
 * If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
-          entries.
-* If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
-          empty data file.
+  entries.
+* If the content in `internbuddy.json` was altered and as a result has an invalid format, InternBuddy will start with an
+   empty data file.
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-danger">
 
-          :warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
-          InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
-          with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
+:warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
+InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
+with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
       [Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
 
 </div>
-
-<div style="page-break-after: always;"></div>
 
 
 ## **FAQ**
@@ -751,27 +781,25 @@ that we are exploring and hope to implement in the future!
 
 [//]: # (@@author potty10)
 ## **Command Summary**
-Table 7 provides an overview of the commands supported in InternBuddy.
+Table 8 provides an overview of the commands supported in InternBuddy.
 
-| Action                        | Format, Examples                                                                                                                              |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| List                          | `list`                                                                                                                                        |
-| Add                           | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`  <br> e.g., `add n/Apple r/Software Engineer s/New d/2023-03-01`           |
-| Edit                          | `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [c/COMMENT] [t/TAG]...`<br> e.g.,`edit 2 s/Assessment r/Software Developer`         |
-| View                          | `view INDEX`<br> e.g., `view 1`                                                                                                               |
-| Copy to Clipboard             | `copy INDEX`<br> e.g., `copy 1`                                                                                                               |
-| Find                          | `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `find n/Apple n/Google`                                 |
-| Get Upcoming Events/Deadlines | `upcoming`                                                                                                                                    |
-| Delete by Index               | `delete-index INDEX [INDEX]...`<br> e.g., `delete 1 3`                                                                                        |
-| Delete by Fields              | `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `delete-field n/Apple n/Google s/New s/Applied` |
-| Clear                         | `clear`                                                                                                                                       |
-| Help                          | `help`                                                                                                                                        |
-| Exit                          | `exit`                                                                                                                                        |
+| Action                          | Format, Examples                                                                                                                             |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| List all Internships            | `list`                                                                                                                                       |
+| Add an Internship               | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`  <br> e.g. `add n/Apple r/Software Engineer s/New d/2023-03-01`           |
+| Edit an Internship              | `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [c/COMMENT] [t/TAG]...`<br> e.g.`edit 2 s/Assessment r/Software Developer`         |
+| View an Internship              | `view INDEX`<br> e.g. `view 1`                                                                                                               |
+| Copy an Internship to Clipboard | `copy INDEX`<br> e.g. `copy 1`                                                                                                               |
+| Find Internships                | `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g. `find n/Apple n/Google`                                 |
+| Get Upcoming Events/Deadlines   | `upcoming`                                                                                                                                   |
+| Delete Internships by Indices   | `delete-index INDEX [INDEX]...`<br> e.g. `delete-index 1 3`                                                                                  |
+| Delete Internships by Fields    | `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g. `delete-field n/Apple n/Google s/New s/Applied` |
+| Clear all Internships           | `clear`                                                                                                                                      |
+| Get Help                        | `help`                                                                                                                                       |
+| Exit InternBuddy                | `exit`                                                                                                                                       |
 
 
-<p style="text-align: center;">Table 7: Commands in InternBuddy</p>
-
-<div style="page-break-after: always;"></div>
+<p style="text-align: center;">Table 8: Commands in InternBuddy</p>
 
 
 ## **Appendix A: Installing Java 11**
@@ -808,31 +836,30 @@ previously.
 The following steps outline how you can properly edit the `internbuddy.json` file:
 1. Open the `internbuddy.json` file by double-clicking on it. If you are prompted to select an application to open
    the file, you can choose any text editor such as `Notepad`.
-2. Once opened, you will see the JSON data file in a format as shown in Figure 7. Referring to Figure 7,
+2. Once opened, you will see the JSON data file in a format as shown in Figure 8. Referring to Figure 8,
    each box contains the data for one specific internship entry.
 3. Within each box, you can see that there are pairings where each pair is made up of a `FIELD` and `VALUE`.
    <p align="center">
     <img src="images/ug-appendix-b-json-example.png" width="550" />
    </p>
-   <p style="text-align: center;">Figure 7: Sample JSON data file</p>
+   <p style="text-align: center;">Figure 8: Sample JSON data file</p>
 
    <br/>
-    <div style="page-break-after: always;"></div>
 
-4. To manually change the value of a field, simply replace the text for `VALUE`. Figure 8 illustrates an example
+4. To manually change the value of a field, simply replace the text for `VALUE`. Figure 9 illustrates an example
    where we change the value of `STATUS` from `assessment` to `interview` for the internship entry with company name
    `Google`. Once your changes have been made, you can save the file by pressing <button>CTRL</button> + <button>S</button>.
    <br/><br/>
    <div markdown="span" class="alert alert-danger">
-    :warning: **Warning:**  Make sure that you follow the <a href="#prefixes-and-rules-for-fields">rules</a>
-    when substituting in your own values. If the rules are not satisfied, InternBuddy will not be able to
+    :warning: **Warning:**  Make sure that you follow the <a href="#prefixes-and-constraints-for-fields">constraints</a>
+    when substituting in your own values. If the constraints are not satisfied, InternBuddy will not be able to
     read your data in the `internbuddy.json` file and will restart with all your internship data cleared.
 
     </div>
     <br/>
 
    ![Editing the JSON File](images/ug-appendix-b-json-change.png)
-    <p style="text-align: center;">Figure 10: Editing the JSON file</p>
+    <p style="text-align: center;">Figure 9: Editing the JSON file</p>
 
     <br/>
 5. Launch InternBuddy and you will see that your data have been updated accordingly.
@@ -843,19 +870,20 @@ The following steps outline how you can properly edit the `internbuddy.json` fil
 ## **Appendix C: Populating InternBuddy with Sample Data**
 Follow the following steps to populate InternBuddy with sample data.
 1. Visit this [link](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/internbuddy.json).
-2. In the top right corner, click the button labelled `Raw`. Figure 11 shows where the `Raw` button is.
+2. Left-click the button labelled `Raw`. Figure 10 shows where the `Raw` button is.
+   
    ![InternBuddy Sample Data](images/github-raw.png)
-   <p style="text-align: center;">Figure 11: Raw button on GitHub interface</p>
+   <p style="text-align: center;">Figure 10: Raw button on the GitHub interface</p>
     <br/>
 
    <div style="page-break-after: always;"></div>
 
-3. Your screen will look like Figure 12. Right click, then click on `Save As`.
+3. Your screen will look like Figure 11. Right click, then click on `Save As`.
    <p align="center">
     <img src="images/internbuddy-json-sample.png" width="300" />
    </p>
 
-   <p style="text-align: center;">Figure 12: InternBuddy Sample Data</p>
+   <p style="text-align: center;">Figure 11: InternBuddy Sample Data</p>
     <br/>
 4. You will be prompted to choose a folder to save the file in. Choose the `data` subfolder that is found in the [home folder](#quick-start) that
    you have chosen for InternBuddy.
@@ -874,18 +902,20 @@ Follow the following steps to populate InternBuddy with sample data.
 
 
 ## **Glossary**
-Table 8 provides a glossary for the technical terms used in this user guide.
+Table 9 provides a glossary for the technical terms used in this user guide.
 
 | Term                           | Definition                                                                                                                                                                                                  |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                        |
 | Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                           |
 | Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                |
-| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                    |
+| Mainstream Operating Systems   | Include Windows, macOS, Linux and Unix.                                                                                                                                                                     |
 | Field                          | A part of the command where you have to supply a value for the command to be valid.                                                                                                                         |
 | Prefix                         | A short form for the name of a field. It indicates which field does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the field `COMPANY_NAME` since the `n/` prefix is used. |
 
-<p style="text-align: center;">Table 8: Glossary for InternBuddy's User Guide</p>
+<p style="text-align: center;">Table 9: Glossary for InternBuddy's User Guide</p>
+
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -894,6 +924,10 @@ Table 8 provides a glossary for the technical terms used in this user guide.
   the [SE-EDU initiative](https://se-education.org).
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
-* Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (primarily for the purposes of GUI testing and the feature of navigating through past commands).
+* GUI testing is implemented with references from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp). We utilised code from these projects to set
+  up GUI testing and added our own test cases to test the UI components that we created.
+* The feature of Navigating Through Past Commands is primarily adapted from  [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp),
+  but we added code modifications and test cases.
+* The sections on explaining the formatting standards and GUI interface in the User and Developer Guides are
+  inspired by [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
