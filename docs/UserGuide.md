@@ -280,12 +280,12 @@ Format: `meetingFind DATE|CLIENT_INDEX `
 
 Required Information:
 
-* Date (dd/mm/yyyy)
+* Date (dd-mm-yyyy)
 * Index of a client that is already stored in FAid.
 
 
 Examples:
-* `meetingFind 11/05/2023` Lists out all meetings that start on 11th May 2023
+* `meetingFind 11-05-2023` Lists out all meetings that start on 11th May 2023
 * `meetingFind 5` Lists out all meetings with client of index 5 in FAid
 
 
