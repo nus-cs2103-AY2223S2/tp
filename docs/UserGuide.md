@@ -8,6 +8,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 
 # Table of Contents
   * [Introduction](#introduction)
@@ -46,6 +47,8 @@ title: User Guide
     * [Summary of prefixes in commands](#command-prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # Introduction
 
@@ -145,6 +148,9 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
+
 # About the Interface
 
 The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**,
@@ -183,6 +189,8 @@ The [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-
 > :bulb: Tip: Fluctuations in tank conditions can lead to a lot of stress for your fish. The handy charts displayed for [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature) and
 [pH](#tank-ph-reading-phph) can let you know at a glance if your levels are stable! 
 
+<div style="page-break-after: always;"></div>
+
 ## Fish Interface
 
 A sample Fish item is shown below. Each Fish you add in *Fish Ahoy!* has multiple [parameters](#parameters-br), such as
@@ -195,6 +203,8 @@ The **Fish Icon** is matched to the [Species](#species-sspecies) of the fish!
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # *Fish Ahoy!* Commands
 
@@ -329,6 +339,8 @@ In general, the command format is as follows:<br>
 * Example: `p/high`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # Features
 
@@ -512,6 +524,8 @@ Example:
   * Temperature: 40 degrees celsius
   * Date and time associated with each reading: 06/04/2023 1433
 
+(continued next page)
+
 ![AddReadingDemo](images/UiAddReadingsDemo.png)
 
 ### Deleting the most recent set of readings: `tank delLastReadings`
@@ -532,8 +546,13 @@ Parameters:
 Example:
 * Scenario 1: You have one tank, 'Freshwater tank' of index 1, with 2 sets of readings. One set made at 12pm and one set made at 3pm. `tank delLastReadings 1`
 deletes the most recent readings, the set made at 3pm.
+
+(continued next page)
+
+<div style="page-break-after: always;"></div>
+
 * Scenario 2 (Screenshot below) : You mistakenly add a set of readings to 'Freshwater tank' of index 1.
-  `tank delLastReadings 1` deletes the most recent set of readings.
+  `tank delLastReadings 1` deletes the most recent set of readings. 
 
 ![AddReadingDemo](images/UiDelLastReadingsDemo.png)
 
@@ -593,6 +612,8 @@ Example:
   * Last fed date: 4th April 2023, 1130 am
   * Feeding interval: 2 days 0 hours
   * Tank: Tank with index 1
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a fish: `fish delete`
 
@@ -702,6 +723,8 @@ Using `fish sort by/n tk/1` will result in the following fishes from tank 1 bein
   * 2 - 'Marlin'
   * 3 - 'Nemo'
 
+(continued next page)
+
 ![AddReadingDemo](images/UiSortNameDemo.png)
 
 ### Viewing a fish: `fish view`
@@ -802,6 +825,8 @@ Parameters:
 Example:
 * `task delete 1` deletes the first task listed in the [tasks panel](#about-the-interface)
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a task: `task edit`
 
 You can edit the details of an existing task with the `task edit` command.
@@ -886,6 +911,11 @@ Example:
 
 ![UiFeedingReminder](images/UiTankFeed1.png)
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+
 ## Storage
 ### Saving the data
 
@@ -904,6 +934,8 @@ you might want to insert it directly in the `readings.json` file!
 > This will result in a completely empty interface. Delete your `data` folder, containing `addressbook.json` and so on
 > to revert back to the default *Fish Ahoy!*
 
+<div style="page-break-after: always;"></div>
+
 ## Help
 ### Viewing help : `help`
 
@@ -917,6 +949,8 @@ Format: `help`
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -940,6 +974,8 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action     | Format, Examples                                                                                                        |
@@ -951,6 +987,7 @@ Format: `help`
 | **List**   | `list tasks` `list fishes`                                                                                              |
 | **Help**   | `help`                                                                                                                  |
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Command prefix summary
 
@@ -968,3 +1005,5 @@ Format: `help`
 | **Tank**          | **Temperature reading**   | **tp/**  |
 | **Task**          | **Priority**              | **p/**   |
 | **All**           | **Tank**                  | **tk/**  |
+
+--------------------------------------------------------------------------------------------------------------------

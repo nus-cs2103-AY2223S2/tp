@@ -611,16 +611,18 @@ testers are expected to do more *exploratory* testing.
 1. Checking that graphs of each tank can display readings correctly
    1. Prerequisites: The tanks are the default sample tanks, "freshwater tank" and "saltwater tank"
    2. Test case: paste the following test values into `readings.json`: <br>
+ 
+  
 ```json
 {
   "readingLevels" : [ {
-    "tankName" : "freshwater tank",
-    "commaSeperatedValuesAmmonia" : "0.2,0.3,0.0",
-    "commaSeperatedDatesAmmonia" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
-    "commaSeperatedValuesPH" : "7.1,6.8,7.0",
-    "commaSeperatedDatesPH" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
-    "commaSeperatedValuesTemp" : "26.0,25.0,26.2",
-    "commaSeperatedDatesTemp" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02"
+  "tankName" : "freshwater tank",
+  "commaSeperatedValuesAmmonia" : "0.2,0.3,0.0",
+  "commaSeperatedDatesAmmonia":"03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
+  "commaSeperatedValuesPH": "7.1,6.8,7.0",
+  "commaSeperatedDatesPH" : "03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02",
+  "commaSeperatedValuesTemp" : "26.0,25.0,26.2",
+  "commaSeperatedDatesTemp":"03/04/2023 14:00,04/04/2023 20:01,05/04/2023 14:02"
   }, {
     "tankName" : "saltwater tank",
     "commaSeperatedValuesAmmonia" : "",
