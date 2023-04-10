@@ -7,10 +7,10 @@ Welcome to CareFlow, your all-in-one solution for managing patient information a
 
 CareFlow is a **desktop application for [patient management](#31-patient-information-management) and [drug inventory
 management](#32-drug-inventory-management), optimised for use
-via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI) <sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [2. Quick Start](#2-quick-start) to get started. Enjoy!
+via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI) <sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [2. Quick Start](#2-quick-start) to get started.
 
 <p align="center">
-  <img src="images/Ui.png" style="zoom:100%"/>
+  <img src="images/Ui.png" style="zoom:100%">
 </p>
 <p align="center">
   <i>Figure 1. Graphical User Interface (GUI) of CareFlow</i>
@@ -67,17 +67,18 @@ sections as needed.
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
-| **Symbol/ Format**                                    | **Meaning**                                                                                                                                                                                                                                                                                               |
-|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 'p'/ 'd'/ 'g'                                         | Commands starting with 'p' are patient commands, those starting with 'd' are drug commands and those starting with 'g' are general commands.                                                                                                                                                              |
-| :information_source:                                  | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
-| :exclamation:                                         | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
-| UPPER_CASE                                            | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
-| ...UPPER_CASE                                         | Words in UPPER CASE prefixed with ellipsis are the parameters that accepts multiple arguments. E.g. in `p find ...PATIENT_NAME`, you can indicate multiple names for the `PATIENT_NAME` parameter. So commands such as `p find Yu Yeoh` and `p find a b c d`are valid commands.                           |
-| [brackets]                                            | Items in square brackets are optional. E.g. `update -n NAME [-ph PHONE]` can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                               |
-| `command`                                             | The grey highlighting boxes indicates that the word is a command to be entered by the user.                                                                                                                                                                                                               |
-| <span style="background-color: #6E7373">button</span> | The grey highlighting indicates that the word in a button to click, either on the Careflow interface or physical buttons/keys on your own laptop. eg. <span style="background-color: #6E7373">Open Url</span>, <span style="background-color: #6E7373">Enter</span>                                       |
-| [1. About](#1-about)                                  | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
+| **Symbol/ Format**                                    | **Meaning**                                                                                                                                                                                                                                                                                              |
+|-------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 'p'/ 'd'/ 'g'                                         | Commands starting with 'p' are patient commands, those starting with 'd' are drug commands and those starting with 'g' are general commands.                                                                                                                                                             |
+| :information_source:                                  | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                    |
+| :exclamation:                                         | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                         |
+| :bulb:                                                | This symbol is used to indicate tips that is helpful for you when using CareFlow.                                                                                                                                                                                                                        |
+| UPPER_CASE                                            | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`.|
+| ...UPPER_CASE                                         | Words in UPPER CASE prefixed with ellipsis are the parameters that accepts multiple arguments. E.g. in `p find ...PATIENT_NAME`, you can indicate multiple names for the `PATIENT_NAME` parameter. So commands such as `p find Yu Yeoh` and `p find a b c d`are valid commands.                          |
+| [brackets]                                            | Items in square brackets are optional. E.g. `update -n NAME [-ph PHONE]` can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                              |
+| `command`                                             | The grey highlighting boxes indicates that the word is a command to be entered by the user.                                                                                                                                                                                                              |
+| <span style="background-color: #6E7373">button</span> | The grey highlighting indicates that the word in a button to click, either on the Careflow interface or physical buttons/keys on your own laptop. eg. <span style="background-color: #6E7373">Open Url</span>, <span style="background-color: #6E7373">Enter</span>                                      |
+| [1. About](#1-about-this-user-guide)                  | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                             |
 
 <p align="center">
   <i>Table 1. Symbols and formats used in this User Guide.</i>
@@ -271,16 +272,16 @@ Throughout this user guide, you may come across different formatting styles and 
     <i>Figure 12. Dark mode user interface with Patient tab opened. </i>
     </p>
 
-<p align="center">
+  <p align="center">
     <img src="images/UGscreenshots/ug_desc_diagram_002.png" style="zoom:100%">
   </p>
   <p align="center">
     <i>Figure 13. Dark mode user interface with Drug tab opened. </i>
     </p>
 
-<p align="center">
+  <p align="center">
     <img src="images/UGscreenshots/ug_desc_diagram_003.png" style="zoom:100%">
-  </p>
+    </p>
   <p align="center">
     <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
     </p>
@@ -316,7 +317,8 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#42-patient-commands">4.2 Patient Commands</a> for more information on how to manage patient data in CareFlow.
+<div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#42-patient-commands">4.2 
+Patient Commands</a> for more information on how to manage patient data in CareFlow.
 </div>
 
 
@@ -326,7 +328,7 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#43-drug-commands">4.3 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
+<div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#43-drug-commands">4.3 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
 </div>
 
 
@@ -334,7 +336,7 @@ With CareFlow, you can easily keep track of your stock and avoid the risk of run
 
 If you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<div markdown="block" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or
+<div markdown="block" class="alert alert-success">:information_source: Please note that you are not allowed to edit or
 change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please
 feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html">contact us</a> and let us know. We
 are committed to constantly improving our software to meet your needs.
@@ -361,7 +363,8 @@ drug of CareFlow.
   </p>
   <br/>
 * **Format:** `g help`
-<div markdown="block" class="alert alert-warning">:information_source:  **Note:** Clicking on <span style="background-color: #6E7373">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
+<div markdown="block" class="alert alert-success">:information_source:  **Note:** Clicking on <span 
+style="background-color: #6E7373">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
 </div>
 <br/>
 
@@ -372,7 +375,7 @@ drug of CareFlow.
 <h3>Exit the program</h3>
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
 * **Format:** `g exit`
-<div markdown="block" class="alert alert-info">:information_source:   **Note:** Executing this command has the same effect as directly closing the application window
+<div markdown="block" class="alert alert-success">:information_source:   **Note:** Executing this command has the same effect as directly closing the application window
 </div>
 <br/>
 
@@ -391,17 +394,21 @@ ___
   &nbsp;
 * <span id="patient-constraints">**Parameter constraint:**</span>
 
-| Parameter                | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| PATIENT_NAME             | Names should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' " it should have a length between 1 and 50 characters and it must not be left blank                                                                                                                                                                                                                                                                             | John Smith                            |
-| PHONE_NUMBER             | Phone numbers should contain numbers, special character like: space, +, -, (), and it should be at least 3 or at most 20 digit and special character long                                                                                                                                                                                                                                                                                                               | 12345678                              |
-| EMAIL                    | The email address should follow the format of "username@domain.extension". The "username" can include letters, numbers, dots, hyphens, and underscores, it cannot start or end with any special character. The domain name must <br/> - end with a domain label at least 2 characters long <br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | johnson@gmail.com                     |
-| ADDRESS                  | Addresses can take any values, it should not be blank and equal or less than 200 characters long                                                                                                                                                                                                                                                                                                                                                                        | Robert Robertson, 1234 NW Bobcat Lane |
-| DATE_OF_BIRTH            | Date of birth should only contain numeric characters and spaces, the format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy and the date should fall between 01/01/1900 and current date                                                                                                                                                                                                                                                                       | 01-01-2000, 01.01.2000, 01/01/2000    |
-| GENDER                   | The gender field only accommodates two options, which are female or male.                                                                                                                                                                                                                                                                                                                                                                                               | male or m or female or f              |
-| NRIC                     | The IC number begins with a letter followed by 7 digits and concludes with another letter.                                                                                                                                                                                                                                                                                                                                                                              | A1234567B                             |
-| DRUG_ALLERGY             | Drug allergy should be alphanumeric and equal or less than 500 characters long.                                                                                                                                                                                                                                                                                                                                                                                         | penicillin                            |
-| EMERGENCY_CONTACT_NUMBER | same constraint as PHONE_NUMBER.                                                                                                                                                                                                                                                                                                                                                                                                                                        | +(65)-1234 5678                       |
+| Parameter                     | Constraint                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Example                               |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------------------------------- |
+| PATIENT_NAME                  | It should only contain alphanumeric characters, spaces, and special character like " . ", " - ", " ' ".<br/> The input length should be a minimum of 1 characters and a maximum of 50 characters.                                                                                                                                                                                                                                                                       | John Smith                            |
+| PHONE_NUMBER                  | It should contain numbers, special character like space, +, -, ().<br/> The input length should be a minimum of 3 characters and a maximum of 20 characters.                                                                                                                                                                                                                                                                                                            | 12345678                              |
+| EMAIL                         | The email address should follow the format of "username@domain.extension". The "username" can include letters, numbers, dots, hyphens, and underscores, it cannot start or end with any special character. The domain name must <br/> - end with a domain label at least 2 characters long <br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | johnson@gmail.com                     |
+| ADDRESS                       | It can take any values. It should not be blank and less than 201 characters long                                                                                                                                                                                                                                                                                                                                                                                        | Robert Robertson, 1234 NW Bobcat Lane |
+| DATE_OF_BIRTH                 | It should follow one of the format dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy.<br/>The date should fall between 01/01/1900 and today's date.                                                                                                                                                                                                                                                                                                                                | 01-01-2000, 01.01.2000, 01/01/2000    |
+| GENDER                        | It only accommodates two options, which are female or male.                                                                                                                                                                                                                                                                                                                                                                                                             | male or m or female or f              |
+| NRIC                          | It begins with a letter followed by 7 digits and concludes with another letter.                                                                                                                                                                                                                                                                                                                                                                                         | A1234567B                             |
+| DRUG_ALLERGY                  | Drug allergy should be alphanumeric and less than 500 characters long.                                                                                                                                                                                                                                                                                                                                                                                                  | penicillin                            |
+| EMERGENCY_<br/>CONTACT_<br/>NUMBER | same constraint as PHONE_NUMBER.                                                                                                                                                                                                                                                                                                                                                                                                                                        | +(65)-1234 5678                       |
+
+<p align="center">
+  <i>Table 2. Parameter constraints for patient command fields.</i>
+</p>
 
 * **Example:** `p add -n John Doe -ph 91234567 -em johndoe@example.com -ad John Street, Block 123, #01-01 -dob 09-09-2000 -g male -ic S9284729C -da Xanax -ec 81234567`
     * Type the command into the command box and hit <span style="background-color: #6E7373">Enter</span>
@@ -421,9 +428,10 @@ ___
         <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:100%">
       </p>
       <br/>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate patient information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as `NAME`, `NRIC`, `PHONE`, etc).
+<div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate patient 
+information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as `NAME`, `NRIC`, `PHONE`, etc).
 </div>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.
 </div>
 
 <br/>
@@ -497,7 +505,7 @@ ___
         </p>
 
       <br/>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** 
+<div markdown="block" class="alert alert-success">:information_source: **Note:** 
   <ul style="list-style-type:none;">
     <li>
     The index of a patient can change depending on the filter you currently apply on the patient list.</li>
@@ -543,7 +551,7 @@ ___
       </p>
       <br/>
     * Suppose we wish to update the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively. The command would be:`p update Bety -n Betsy Crower -da Aspirin`
-<div markdown="block" class="alert alert-info">:information_source: **Note:** 
+<div markdown="block" class="alert alert-success">:information_source: **Note:** 
   <ul style="list-style-type:none;">
     <li>You can update 1 to 9 items, 9 being all pieces of information of a patient.</li>
     <li> When updating, it is necessary that you use the full name of the patient. Since we do not allow duplicated names, indicating full name would be sufficient to eliminate any ambiguity duing update.</li>
@@ -574,7 +582,7 @@ ___
       <br/>
     * You can click on either record to see detailed information.
 
-<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter `p find Yu Yeoh`, both `Bernice Yu` and `Alex Yeoh` will be shown.
 </div>
 
 <br/>
@@ -648,8 +656,8 @@ Use this with command with caution!
   &nbsp;
 * **Format:** `p list`
 \
-&nbsp; 
-* <div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <code style="background-color:#C8EAB3;"><span>p list hellothere</span></code> or <code style="background-color:#C8EAB3;"><span>p list 1234</span></code> will not cause errors in the system</div>
+&nbsp;
+* <div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <code><span style="background-color:#C8EAB3;">p list hellothere</span></code> or <code><span style="background-color:#C8EAB3;">p list 1234</span></code> will not cause errors in the system</div>
   &nbsp;
 * **Example:**
     <p align="center">
@@ -687,7 +695,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:100%">
       </p>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** You can indicate drug information in any order that you wish. But do make sure that you have entered all compulsory parameters.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate drug information in any order that you wish. But do make sure that you have entered all compulsory parameters.
 </div>
 
 <br/>
@@ -756,7 +764,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:100%">
       </p>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the `d list` command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a `d find TRADE_NAME` command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the `d list` command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a `d find TRADE_NAME` command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.
 </div>
 
 <br/>
@@ -795,9 +803,9 @@ by specifying the trade name.
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
         </p>
         <br/>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** You will need to prefix the value with + or - for addition and subtraction respectively.
 </div>
-<div markdown="block" class="alert alert-info">:information_source: **Note:** The storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values of 0 and 499 respectively, without reporting an error.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** The storage of a drug should be between 0 and 499. If you attempt to increase the storage of a drug to below the threshold or above the upper limit, the system will automatically set the storage to the boundary values of 0 and 499 respectively, without reporting an error.
 </div>
 <br/>
 
@@ -881,7 +889,7 @@ by specifying the trade name.
             <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:100%">
       </p>
       <br/>
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
   :information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as`d list hellothere` or `d list 1234?!` will not cause any errors in the system.
 </div>
 <br />
@@ -984,7 +992,7 @@ The following are the general commands that are available in Careflow for you to
 | **Exit** | `g exit`        | Saves all data and safely exits.                 |
 
 <p align="center">
-  <i>Table 2. Summary of general commands.</i>
+  <i>Table 4. Summary of general commands.</i>
 </p>
 
 ## 7.2 Patient Commands
@@ -1003,7 +1011,7 @@ The following commands are patient-related commands that are available in Carefl
 | **List patient**            | `p list`                                                                                                                                                                                                                                                                                         | Lists all the patients that have been recorded in CareFlow.                                      |
 
 <p align="center">
-  <i>Table 3. Summary of patient commands.</i>
+  <i>Table 5. Summary of patient commands.</i>
 </p>
 
 ## 7.3 Drug Commands
@@ -1022,7 +1030,7 @@ The following commands are drug-related commands that are available in Careflow 
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                       | Removes all drug records stored in CareFlow                              |
 
 <p align="center">
-  <i>Table 4. Summary of drug commands.</i>
+  <i>Table 6. Summary of drug commands.</i>
 </p>
 
 [🠉 Back to top](#top)
@@ -1030,16 +1038,16 @@ The following commands are drug-related commands that are available in Careflow 
 --------------------------------------------------------------------------------------------------------------------
 # **8. Glossary**
 
-* Command Line Interface (CLI) <br/>
+<span id="1">1. Command Line Interface (CLI)</span>
+<br/>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think
 of it like texting your computer to get it to do things.
+<br/>
 
-<br/><br/>
-
-* Graphical User Interface (GUI) <br/>
+<span id="2">2. Graphical User Interface (GUI) </span>
+<br/>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
-
-<br/><br/>
+<br/>
 
 [🠉 Back to top](#top)
 
