@@ -95,6 +95,7 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Card` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -560,6 +561,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 6. A card should be easily added/deleted in less than 3 commands after opening the program
 7. The data stored by PowerCards should be forward compatible such that old data can still be loaded in newer versions of the program
 
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
