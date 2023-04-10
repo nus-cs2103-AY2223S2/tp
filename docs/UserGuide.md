@@ -1,6 +1,8 @@
 ---
 layout: page
 title: FastTrack User Guide
+
+![FastTrack logo](images/fasttrack_logo.png)
 ---
 
 
@@ -541,6 +543,8 @@ Format: `delete INDEX`
 3. FastTrack deletes the second expense in the expense list with the confirmation message `Deleted expense: Name: milk, Amount: $4.5, Date: 2023-04-07, Category: groceries`.
 
 
+![FastTrack delete](images/demo/expense/delete.png)
+
 ## **Editing an expense** `edexp`
 
 Edits the expense at the specified `INDEX` in the expense list.
@@ -693,7 +697,7 @@ Format: `delrec INDEX`
 
 <div markdown="span" class="alert alert-info">:information_source: Automatic Deletion of Recurring Expenses:
 
-If a recurring expense's end date has already passed, and the current date too is already past the end date, FastTrack automatically deletes the recurring expense the next time the application is started. This means you do not need to worry about manually deleting recurring expenses which are no longer applicable!
+If a recurring expense's end date has already passed, FastTrack automatically deletes the recurring expense the next time the application is started. This means you do not need to worry about manually deleting recurring expenses which are no longer applicable!
 
 </div>
 
@@ -733,7 +737,7 @@ to `INDEX`, otherwise the command will not go through.
 <div markdown="block" class="alert alert-warning">
 
 **:exclamation: Caution**<br>
-If you want to stop a recurring expense before its intended `END_DATE`, make sure to terminate it before the current date. 
+If you want to stop a recurring expense before its intended `END_DATE`, make sure to delete it before the current date. 
 If you edit the recurring expense to end before the current date, this only prevents new expenses from being added, but expenses that were previously generated will still exist in FastTrack.
 </div>
 
@@ -742,8 +746,8 @@ If you edit the recurring expense to end before the current date, this only prev
 * `edrec 2 p/4.50 ed/15/5/2023` updates the price and ending date of the second recurring expense in the expense tracker.
 
 ### Demonstration
-1. Enter the command `lrec` to switch to the **Recurring Expense Display**
-2. Say you have upgraded to a Netflix yearly subscription plan - enter the command `edrec 2 p/200 t/year` 
+1. Enter the command `lrec` to switch to the **Recurring Expense Display**.
+2. Say you have upgraded to a Netflix yearly subscription plan - enter the command `edrec 2 p/200 t/year` .
 3. FastTrack edits the second recurring expense in the recurring expense list with the confirmation message `Edited recurring expense generator: Recurring Expense: Netflix, Amount: 200.0, Category: entertainment, Start Date: 2023-01-20, End Date: Ongoing, Recurring Expense Type: YEARLY`.
 
 ![FastTrack edrec1](images/demo/recurring_expense/edrec1.png)
@@ -774,7 +778,7 @@ If you edit the recurring expense to end before the current date, this only prev
 
 ## **Setting A Budget** `set`
 
-Sets a monthly budget for FastTrack. For first-time users of FastTrack, no budget is set and some expense statistics are not updated. 
+Sets a monthly budget for FastTrack. For first-time users of FastTrack, no budget is set and expense statistics are not updated. 
 
 In order to view all the expense statistics, you must first set a budget using this command.
 
@@ -791,16 +795,16 @@ Format `set p/AMOUNT`
 
 **:exclamation: Caution**<br>
 
-FastTrack does not allow setting a budget of $0
+FastTrack does not allow setting a budget of $0.
 
 </div>
 
 
 ### Examples
-* `set p/500` sets the monthly budget of FastTrack to $500
+* `set p/500` sets the monthly budget of FastTrack to $500.
 
 ### Demonstration
-1. Enter the command `set p/500` to set the monthly budget of FastTrack to $500
+1. Enter the command `set p/500` to set the monthly budget of FastTrack to $500.
 2. FastTrack updates the monthly budget to $500 with the confirmation message `Monthly budget successfully set to $500.0`
 
 ![FastTrack set](images/demo/general/set.png)
@@ -831,25 +835,25 @@ Narrow down the list of suggested categories by typing the first few words of yo
 **:exclamation: Caution**<br>
 
 To use category autocompletion, make sure that `c/` is the last text you've entered into the command box. 
-If there's any other text in front of `c/`, the autocompletion feature will be disabled. 
+If there is any other text in front of `c/`, the autocompletion feature will be disabled. 
 </div>
 
 
 ### Demonstration
 
-1. Enter `list c/` into the command box
-2. A list of suggested categories appear in a popup above the command box
+1. Enter `list c/` into the command box.
+2. A list of suggested categories appear in a popup above the command box.
 3. Navigate into the suggestion list using the `UP` arrow key and press `ENTER` on the desired category `Transportation`. 
-4. This autocompletes the category name
-5. If you need to navigate out of the suggestion list, press the `DOWN` arrow key until the cursor returns to the command box
+4. This autocompletes the category name.
+5. If you need to navigate out of the suggestion list, press the `DOWN` arrow key until the cursor returns to the command box.
 
 ![FastTrack autocomplete_a1](images/demo/general/autocomplete_a1.png)
 ![FastTrack autocomplete_a2](images/demo/general/autocomplete_a2.png)
 
-1. Enter `list c/` into the command box
-2. A list of suggested categories appear in a popup above the command box
+1. Enter `list c/` into the command box.
+2. A list of suggested categories appear in a popup above the command box.
 3. If the desired category `Shopping` is the first suggestion in the list (the bottom-most suggestion), press `TAB` within the command box.
-4. This autocompletes the category name
+4. This autocompletes the category name.
 
 ![FastTrack autocomplete_b1](images/demo/general/autocomplete_b1.png)
 ![FastTrack autocomplete_b2](images/demo/general/autocomplete_b2.png)
@@ -864,14 +868,14 @@ Format: `CLEAR`
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Caution**<br>
 
-This command will delete **all** the data stored in FastTrack apart from the stored monthly budget. To minimise the risk of accidentally using this command, we have made it such that the command only works when the `CLEAR` is fully uppercase.
+This command will delete **all** the data stored in FastTrack apart from the stored monthly budget. To minimise the risk of accidentally using this command, we have made it such that the command only works when the word `CLEAR` is fully uppercase.
 
 Exercise caution before using this command.
 </div>
 
 ### Demonstration
 
-1. Enter `CLEAR` in the command box
+1. Enter `CLEAR` in the command box.
 2. FastTrack clears all previously logged expenses, recurring expenses and categories, with the confirmation message `Deleted all prior entries`.
 
 ![FastTrack clear](images/demo/general/clear.png)
@@ -905,37 +909,37 @@ Here are the types of statistics displayed and what they mean.
 
 
 ## Monthly spending statistic
-This statistic represents the total amount of money you have spent in the current month. 
+This statistic represents the **total amount of money you have spent** in the **current month**. 
 It includes all expenses recorded in the current month. 
 
 For example, if the current month is March, this statistic shows the total amount of money spent in March.
 
 ## Monthly remaining statistic
 
-This statistic represents the amount of money you have left from your monthly budget.
+This statistic represents the **amount of money you have left** from your **monthly** budget.
 It gives you an idea of how much money you have left to spend for the rest of the month.
 
 ## Monthly percentage change statistic
 
-This statistic represents the percentage increase or decrease in your monthly spending relative to the previous month. 
-The indicator colour is red if it is a percentage increase and green if it is a percentage decrease.
+This statistic represents the percentage **increase** or **decrease** in your **monthly** spending relative to the previous month. 
+The indicator colour is **red** if it is a percentage increase and **green** if it is a percentage decrease.
 
 For example, if you spent $500 last month and $750 this month, the monthly percentage change indicator would be `+50.00%` and be displayed in a red colour. 
 If you spent $750 last month and $500 this month, the monthly percentage change would be `-33.30%` and be displayed in a green color.
 
 ## Weekly spending statistic
 
-This statistic represents the total amount of money you have spent in the current week, starting from Monday to Sunday. 
+This statistic represents the **total amount of money you have spent** in the **current week**, starting from Monday to Sunday. 
 This gives you an idea of how much money you are spending on a weekly basis.
 
 ## Weekly remaining statistic
 
-This statistic represents the amount of money you have left from your weekly budget. 
+This statistic represents the **amount of money you have left** from your **weekly** budget. 
 Your weekly budget is the value of your monthly budget divided by four. This gives you an idea of how much money you have left to spend for the rest of the week.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
-Please take note that this value should be treated as a rough guide. 
+Please take note that this value should be treated as a rough guide. <br>
 Even if you have exceeded your previous week's budget, this statistic will show that you have more remaining, as the weekly budget is fixed based on the monthly budget. 
 Therefore, it is important to use this value as an estimate and not solely rely on it for your spending decisions!
 
@@ -944,15 +948,15 @@ Therefore, it is important to use this value as an estimate and not solely rely 
 
 ## Weekly percentage change statistic
 
-This statistic represents the percentage increase or decrease in your weekly spending relative to the previous week.
-The indicator colour is red if it is a percentage increase and green if it is a percentage decrease.
+This statistic represents the percentage **increase** or **decrease** in your **weekly** spending relative to the previous week.
+The indicator colour is **red** if it is a percentage increase and **green** if it is a percentage decrease.
 
 For example, if you spent $500 last week and $750 this week, the weekly percentage change indicator would be `+50.00%` and be displayed in a red colour. 
 If you spent $750 last week and $500 this week, the weekly percentage change would be `-33.30%`.
 
 ## Total spent statistic
 
-This statistic represents the total amount of money you have spent to date, starting from the first expense you recorded in FastTrack. 
+This statistic represents the **total amount of money you have spent to date**, starting from the first expense you recorded in FastTrack. 
 This gives you an idea of how much money you have spent over the period of time from when you started tracking your expenses.
 
 
