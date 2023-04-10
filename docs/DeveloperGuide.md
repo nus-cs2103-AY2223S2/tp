@@ -446,6 +446,7 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -464,7 +465,7 @@ On program initialization, `UiManager` creates `MainWindow` as a primary stage w
 parts, the left [Course List Panel](#course-list-panel) which shows all available courses, the middle [Main Section](#main-section) which handles user input and executes command, the right side
 [Info Panel](#info-panel) which shows more details about a specific person.
 
-![ui-main-sections](images/ui-diagrams/ui-main-sections.PNG)
+![ui-main-sections](images/ui-diagrams/ui-main-sections.png)
 
 Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
 explained under [Theme](#theme) section.
@@ -473,12 +474,16 @@ explained under [Theme](#theme) section.
 
 Refer to [UI Component](#ui-component) for more information about this package.
 
+<div style="page-break-after: always;"></div>
+
 #### **Course List Panel**
 The course list panel shows all the available courses and their corresponding numbers.
 
-![ui-main-sections](images/ui-diagrams/ui-course-list-panel.PNG)
+![ui-main-sections](images/ui-diagrams/ui-course-list-panel.png)
 
 The content with the 13 courses are stored in `CourseList` class as an `ArrayList` of `String`.
+
+<div style="page-break-after: always;"></div>
 
 #### **Main section**
 
@@ -489,7 +494,7 @@ Main section consists of the following components:
 * [PersonListPanel](#personlistpanel)
 * [StatusBarFooter](#statusbarfooter)
 
-![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.PNG)
+![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.png)
 
 #### **CommandBox**
 
@@ -500,7 +505,7 @@ bidirectional association between the two, removing the need for the `CommandBox
 
 Users are able to write their commands into its text field and execute it by pressing `Enter` key.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ##### Design considerations
 
@@ -550,7 +555,7 @@ To allow cells within the ListView to show relevant information about a person, 
 class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
 in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 #### **StatusBarFooter**
 
@@ -560,7 +565,7 @@ Currently, it shows the path for CoDoc's database. Developers who are looking to
 (such as internet connection availability, if required in future implementation) may use this to display such
 information.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### **Info Panel**
 
@@ -577,7 +582,9 @@ Info Panel consists of the following components:
 
 | InfoTab with DetailedContact                                           | InfoTab with DetailedModule                                          | InfoTab with DetailedSkill                                         |
 |------------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|
-| ![ui-info-panel-contact](images/ui-diagrams/ui-info-panel-contact.PNG) | ![ui-info-panel-module](images/ui-diagrams/ui-info-panel-module.PNG) | ![ui-info-panel-skill](images/ui-diagrams/ui-info-panel-skill.PNG) |
+| ![ui-info-panel-contact](images/ui-diagrams/ui-info-panel-contact.png) | ![ui-info-panel-module](images/ui-diagrams/ui-info-panel-module.png) | ![ui-info-panel-skill](images/ui-diagrams/ui-info-panel-skill.png) |
+
+<div style="page-break-after: always;"></div>
 
 #### **InfoTab**
 
@@ -585,8 +592,6 @@ Similar to how `MainWindow` is the main controller for the primary stage, `InfoT
 **main controller** for the right section, Info Panel.
 
 ![info-tab-sequence-diagram](images/InfoTabSequenceDiagram.png)
-
-<br>
 
 ##### Design considerations
 
@@ -607,22 +612,19 @@ Note that there are no listeners that observes the changes made to the staged `p
 over-coupling of components which makes maintenance of code much harder. Instead, `MainWindow`'s `executeCommand`
 creates a new `InfoTab` at the end of every execution by referring to the `protagonist` at given state.
 
-<br>
+<div style="page-break-after: always;"></div>
+
 
 #### **DetailedInfo**
 
 This is the parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
 `DetailedSkill`.
 
-<br>
-
 ##### Design considerations
 
 `InfoTab` may create either of the children classes, depending on what the user has specified using the
 [ViewCommand](#view-command). This parent class utilizes Java's polymorphism so that `InfoTab` can just display
 generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlaceholder` StackPane within the `InfoTab`.
-
-<br>
 
 #### **DetailedContact**
 
@@ -638,6 +640,8 @@ by a person that is created as a ListView, similar to the [PersonListPanel](#per
 
 Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
 by a person that is created as a ListView.
+
+<div style="page-break-after: always;"></div>
 
 ### **Theme**
 
@@ -662,7 +666,6 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 [Scroll back to UI Implementation](#ui-implementation)
 
 <div style="page-break-after: always;"></div>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -809,21 +812,24 @@ Similar process exist for set of modules.
    within the final set. If the final set is an empty one, it will clear existing set
 
 ```java
-Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved().orElse(new HashSet<>());
-Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded().orElse(new HashSet<>());
-Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills()); // Copy off original
+Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved()
+        .orElse(new HashSet<>());
+Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded()
+        .orElse(new HashSet<>());
+Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills());
 updatedSkills.removeAll(removedSkills); // Remove takes priority
 updatedSkills.addAll(addedSkills);
 Set<Skill> finalSkills = editPersonDescriptor.getSkillsFinal().orElse(updatedSkills);
-Set<Module> removedModules = editPersonDescriptor.getModulesRemoved().orElse(new HashSet<>());
-Set<Module> addedModules = editPersonDescriptor.getModulesAdded().orElse(new HashSet<>());
-Set<Module> updatedModules = new HashSet<>(personToEdit.getModules()); // Copy off original
+Set<Module> removedModules = editPersonDescriptor.getModulesRemoved()
+        .orElse(new HashSet<>());
+Set<Module> addedModules = editPersonDescriptor.getModulesAdded()
+        .orElse(new HashSet<>());
+Set<Module> updatedModules = new HashSet<>(personToEdit.getModules());
 updatedModules.removeAll(removedModules); // Remove takes priority
 updatedModules.addAll(addedModules);
-Set<Module> finalModules = editPersonDescriptor.getModulesFinal().orElse(updatedModules);
+Set<Module> finalModules = editPersonDescriptor.getModulesFinal()
+        .orElse(updatedModules);
 ```
-
-<br>
 
 ##### Design Considerations
 
