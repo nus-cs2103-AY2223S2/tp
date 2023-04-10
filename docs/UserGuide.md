@@ -648,13 +648,13 @@ Format: CLI and GUI supported.
 
 ### 1. Exporting the data of the students: `export`
 
-Exports all the student's data out. Users can export with or without specifying the path.
+Exports all the student's data out. Users can export with or without specifying the path. `export p/` is also allowed.
 The default exported position for CLI will be in the _data folder_ under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 The exported file name is `data.json`.
 
 Format: CLI and GUI supported.
 
-**CLI**<br> `export [FILE_PATH]`
+**CLI**<br> `export [p/FILE_PATH]`
 
 **GUI**<br>
 Click the "File" on the top menu, then choose "Export" under the drop-down list.
@@ -689,7 +689,7 @@ The imported file must be in `.json` format.
 
 Format: CLI and GUI supported.
 
-**CLI**<br> `import FILE_PATH`
+**CLI**<br> `import p/FILE_PATH`
 
 **GUI**<br> Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
 
@@ -715,7 +715,7 @@ Examples:
 
 ### 3. Exporting the progress of a student: `exportp`
 
-Exports the specified student progress into a PDF file. Users can export without specifying the path. The default
+Exports the specified student progress into a PDF file. Users can export without specifying the path. `exportp p/` is not allowed. The default
 exported position for CLI will be under the _home folder_.
 
 Format: CLI and GUI supported.

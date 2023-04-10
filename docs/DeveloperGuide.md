@@ -178,7 +178,7 @@ The `Model` component,
 
 <img src="images/DG-images/ScoreClassDiagram.png" width="280" />
 
-* A `Student` has only one `UniqueScoreList` object which holds all his/her `Score` objects.
+* A `Student` has only one `UniqueScoreList` object which holds all their `Score` objects.
 * `UniqueScoreList` is a separate filtered list with recent score at front which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * There is an inner class `ScoreSummary` inside `UniqueScoreList` class which holds the summary of recent five scores.
 
@@ -215,7 +215,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 **Target user profile**:
 
-* Private math tuition teachers
+* Private Math tuition teachers
 * Has a need to manage a number of students' contacts and performance
 * Prefer desktop apps over other types
 * Prefers typing to mouse interactions
@@ -1140,3 +1140,12 @@ There is an inconsistency for score color between score chart and PDF:
 **Solution proposed:**
 
 * To solve this issue, the criteria for the score color in the PDF file can be changed to follow the criteria of score color in the score chart.
+
+
+#### 8. Change the tags of the sample data
+
+Currently, the sample data contains tags, like `colleagues` and `friends`, that do not really fit the purpose of our application.
+
+**Solution proposed:**
+
+* To solve this issue, the tag can be changed to grade (primary, secondary, etc.) and gender.
