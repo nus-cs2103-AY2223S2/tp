@@ -53,4 +53,20 @@ public class SampleDataUtil {
 
         return sampleRoster;
     }
+
+    public static ReadOnlyRoster getTestRoster(Path sampleFilePath, InputStream sampleResourceStream) {
+
+        Roster sampleRoster = new Roster();
+
+        try {
+            File file = new File(sampleFilePath.toString());
+            SerializedRoster jsonSampleRoster = mapper.readValue(file, SerializedRoster.class);
+            sampleRoster = jsonToRoster(jsonSampleRoster);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sampleRoster;
+    }
 }
