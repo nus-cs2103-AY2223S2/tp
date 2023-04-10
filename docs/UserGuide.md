@@ -108,6 +108,8 @@ for a keyword.
 | :bulb:               | Tips that will optimize your usage of MedInfo.              |
 | :exclamation:        | Information that is crucial to know before using a command. |
 
+---
+
 ## Features
 
 The section below describes the commands available in MedInfo. The commands fall under 3 categories:
