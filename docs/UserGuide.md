@@ -51,11 +51,7 @@ The following callouts can be found throughout our user guide:
 
 In general, the following command format is adopted in FriendlyLink.
 
-<pre>
-
-command <[PREAMBLE]> PREFIX/FIELD [PREFIX/OPTIONAL_FIELD] [PREFIX/OPTIONAL_FIELD]…
-
-</pre>
+`command <[PREAMBLE]> PREFIX/FIELD [PREFIX/OPTIONAL_FIELD] [PREFIX/OPTIONAL_FIELD]…`
 
 | Name       | Meaning                                                                                                       | Examples                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
