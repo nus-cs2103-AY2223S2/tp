@@ -291,6 +291,7 @@ Creates a new pre-defined tag in WIFE.
 Format: `createtag n/TAG NAME [n/TAG NAME]...`
 
 Note:
+* `TAG NAME` can only contains **letter characters** and cannot be left blank.
 * `TAG NAME` has a maximum limit of **15 characters**.
 * `TAG NAME` is case-insensitive and two tags with the same name will be classified as duplicates.
 * If in the case where any of the tags (but not all) already exists in WIFE, the non-duplicate tags will be created. 
@@ -319,10 +320,11 @@ Pre-Defined Tags (These tags already exist when you start up the application):
 Format: `tag INDEX n/TAG NAME`
 
 Note:
+* Restrictions posed on `Tag` can be referenced from [`createtag`](#create-a-new-tag-createtag).
 * Each food item can have a maximum of **4** tags.
-* Only one tag can be tagged to a food item per command.
+* Only **one tag** can be tagged to a food item per command.
 * `TAG NAME` must be a valid tag created in WIFE. List of tags available can easily be checked 
-* using the [`listtag`](#list-all-tags-listtag) command.
+  using the [`listtag`](#list-all-tags-listtag) command.
 * `INDEX` refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example: <br/>
