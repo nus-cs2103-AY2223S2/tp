@@ -306,6 +306,12 @@ Examples:
 *  `find_appt 19032023 00:00 26032023 23:59` Finds all appointments between `find_appt 19032023 00:00` and `26032023 23:59`.
    ![Find appointment](images/findAppt2.png)
 
+### Viewing today's appointments: `today`
+
+Views the appointments that are occurring today.
+
+Format: `today`
+
 ### Deleting an appointment: `delete_appt` or `da`
 
 Deletes an existing appointment in MediMeet.
