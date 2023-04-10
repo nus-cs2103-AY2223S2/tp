@@ -1448,11 +1448,11 @@ testers are expected to do more *exploratory* testing.
    
 1. _{ more test cases …​ }_
 
-### Planned Enhancements
+## 8. Planned Enhancements
 
 Here are a list of fixes we plan to add in the near future to counter known feature flaws.
 
-#### 1. Department name constraints
+### 1. Department name constraints
 
 * Department name will be case insensitive as case sensitivity does not create ambiguity between department names.
 For example, 'Marketing' and 'marketing' are clearly the same department.
@@ -1471,7 +1471,7 @@ We understand this is far from ideal, since it is perfectly reasonable for busin
 * Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
 Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the same.
 
-## Glossary
+## 9. Glossary
 
 - **Mainstream OS** :Windows, Linux, Unix, OS-X
 - **Private contact detail** : A contact detail that is not meant to be shared with others

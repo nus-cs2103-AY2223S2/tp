@@ -19,6 +19,5 @@ if () then ([else])
   stop
  else ([Employee has not taken leave on the given day])
   :aelr command successfully executes.;
-endif
 stop
 @enduml
