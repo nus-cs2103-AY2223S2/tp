@@ -189,19 +189,17 @@ The `Attendance` field uses a hashset internally to store all the dates on which
 immutable, which means updating a tutee's absence or presence will create a new attendance field instance.
 
 #### Mark and Unmark Command
-The mark and unmark commands are implemented similarly: both follow the format of `<mark|unmark> <index> [date]`. The
+The mark and unmark commands are implemented similarly: both follow the format of `mark|unmark INDEX [DATES...]`. The
 user's input is parsed by its respective parser (`MarkCommandParser` and `UnmarkCommandParser`) and then those arguments
 are passed to the command.\
 If the user does not specify a date, then the command will use the default value as returned by `LocalDate.now()`.\
-If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add that
-date to the attendance field, thereby marking them as present on that date. Unmark will remove it, thereby marking them as absent on that date.\
-If tutee has already been marked present or absent on the specified date, the commands will have no effect.
+If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add the given
+dates to the attendance field, thereby marking them as present. Unmark will remove them, thereby marking them as absent.\
+If tutee has already been marked present or absent on the specified date, the corresponding command will have no effect.
 
 #### Query Command
 The date is represented as an `Optional<LocalDate>`. When the command is executed, if this optional is empty, then the command will return all the dates in which the tutee was present. Otherwise, the command will return whether the tutee was present by calling the
 `didAttend()` method on the attendance field.
-
-### \[Proposed\] Undo/redo feature
 
 ### Learn\Unlearn feature
 
@@ -245,10 +243,6 @@ The learn\unlearn mechanism is storing the `lessons` in a `Set`, adding\removing
 
 _{more aspects and alternatives to be added}_
 
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Filter feature
 
