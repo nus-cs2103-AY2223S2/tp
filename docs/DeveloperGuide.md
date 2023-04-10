@@ -219,7 +219,7 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 #### DateUtil 
 
 This class is in the `mycelium.mycelium.commons.util` package. This class contains functions for 
-parsing data from JSON file in  the dd/MM/uuuu format and comparing dates based on certain criteria. 
+parsing date strings from a JSON file in the dd/MM/uuuu format and comparing dates based on certain criteria. 
 
 #### Messages 
 
