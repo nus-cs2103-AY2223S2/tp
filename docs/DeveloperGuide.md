@@ -365,6 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. User inputs an invalid field
   * 1b1. An error message is displayed with instructions and example of how to use the command
   Use case ends.
+
 **Use case: Delete a student**
 
 **MSS:**
@@ -390,7 +391,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS:**
 
-1. User is prompted to enter student’s details to filter
+1. User is prompted to enter student’s details to filter.
+2. List of students that fit the user input is displayed.
+   
+**Extensions:**
+* 1a. User inputs an invalid field
+    * 1a1. An error message is displayed with instructions and example of how to use the command
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -416,7 +423,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CLI**: command line interface.
 * **GUI**: graphical user interface.
 * **JAR**: Java ARchive.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -473,7 +479,7 @@ Some challenges faced:
 * Refactoring the initial code to work with students 
 * Bugs appearing when editing start time and end time, where the end time must be after the start time.
 
-Our team worked together to overcome these challenges by having regular meetings and coordinating on messaging applications.
+Our team worked together to overcome these challenges by having regular meetings and coordinating on messaging platforms.
 
 ## **Appendix: Planned enhancement**
 
