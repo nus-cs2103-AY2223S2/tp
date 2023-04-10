@@ -127,7 +127,7 @@ Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
 
 Examples:
 
-* ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd person in the address book and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
+* ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd person in the managing system and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
 #### [Back to top](#table-of-content) 
 ### Deleting student <a name="delete"></a>
@@ -139,7 +139,7 @@ Format: ```delete INDEX```
 
 Examples:
 
-* ```delete 1``` deletes the first student in the system
+* ```delete 1``` deletes the first student displayed in the system
 
 #### [Back to top](#table-of-content) 
 ### Listing students <a name="list"></a>
@@ -155,7 +155,7 @@ Examples:
 #### [Back to top](#table-of-content) 
 ### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the managing system.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -271,7 +271,7 @@ Done automatically.
 #### [Back to top](#table-of-content) 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the managing system.
 
 Format: `clear`
 
