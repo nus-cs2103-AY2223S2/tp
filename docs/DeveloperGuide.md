@@ -227,6 +227,12 @@ implementing the `Entity` interface.
 Each class holds their own the classification-specific fields while exposing the data for the `Ui` thru the interface
 method `getFields`.
 
+#### Inventory
+
+Characters and Mobs in Reroll contain an `Inventory`, which can contain references to up to any number of `Item`s. Do
+note that these `Item` are added to the inventory as a immutable copy of the item when the `inventory add` command is
+used in edit mode.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -420,16 +426,19 @@ The user stories are not limited to those in this list. More can be added in the
 * **Items**: Weapons, armor or tools that players can keep and use
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Planned Enhancements**
 
 Future enhancements are planned to improve Reroll.
 
-1. Currently, fields such as weight, cost and challenge rating accepts negative values. Parser will be updated to detect such invalid values and print an error message.
-2. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work,
-   causing confusion among the testers.
+1. Currently, fields such as weight, cost and challenge rating accepts negative values. Parser will be updated to detect
+   such invalid values and print an error message.
+2. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work, causing
+   confusion among the testers.
 3. Entities with very long name does not wrap in the GUI. Changes to GUI to remedy this is expected.
 
 --------------------------------------
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -446,6 +455,7 @@ testers are expected to do more *exploratory* testing.
     1. Download the jar file and copy into an empty folder
 
     2. Double-click the jar file Expected: Shows the GUI with a set of sample entities. The window size may not be optimum.
+
 
 2. Saving window preferences
 

@@ -11,6 +11,7 @@ Class Item
 Class Mob
 Class Character
 Class Stats
+Class Inventory
 
 Entity -R->"1" Name
 Entity -R->"..*" Tags
@@ -21,4 +22,7 @@ Character .U.|> Entity
 
 Mob -D-> Stats
 Character -D-> Stats
+Character -D-> Inventory
+Mob -D-> Inventory
+Inventory o-- "..*" Item
 @enduml
