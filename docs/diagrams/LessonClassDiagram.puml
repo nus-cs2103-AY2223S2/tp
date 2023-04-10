@@ -8,11 +8,11 @@ skinparam classBackgroundColor MODEL_COLOR
 Class String
 Class Student
 Class Lesson
-Class List
+Class Set
 
 Student *--> Lesson
 
-Lesson --> "1 " List
+Lesson --> "1 " Set
 
-List *--> "~* "String
+Set *--> "~* "String
 @enduml
