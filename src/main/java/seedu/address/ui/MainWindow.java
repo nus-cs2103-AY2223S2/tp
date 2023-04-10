@@ -192,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
         tankListPanel.refresh();
         taskListPanel.refresh();
         fishListPanel.refresh();
-        executeFeedingReminderInitMainWindow();
+        refreshFeedingReminders();
     }
 
     public FishListPanel getFishListPanel() {
@@ -248,6 +248,17 @@ public class MainWindow extends UiPart<Stage> {
             } catch (CommandException e) {
                 logger.info("Error executing feeding reminder init");
                 resultDisplay.setFeedbackToUser(e.getMessage());
+            }
+        }
+    }
+
+    private void refreshFeedingReminders() {
+        ArrayList<TaskFeedingReminder> taskFeedingReminders = logic.getTaskFeedingReminderList();
+        for (TaskFeedingReminder t : taskFeedingReminders) {
+            try {
+                logic.executeFeedingReminderInitLogic(t);
+            } catch (CommandException e) {
+                logger.info("Error executing feeding reminder refresh");
             }
         }
     }
