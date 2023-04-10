@@ -46,10 +46,7 @@ max allowable])
     allowable message;
 stop
 else ([else])
-while () is ([end date has not reached])
-    : Check for time clash
-    on recurring dates <$rake>;
-endwhile ([else])
-:Add all recurring events from computed list to Ez-Schedule;
+:Check for time clash
+for all recurring dates <$rake>;
 stop
 @enduml

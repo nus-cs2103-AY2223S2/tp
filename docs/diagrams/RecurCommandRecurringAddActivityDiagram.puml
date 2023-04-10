@@ -2,6 +2,7 @@
 skinparam defaultTextAlignment center
 
 start
+while () is ([end date has not reached])
 if () then ([time slot is occupied
     by another event])
         :Response Box
@@ -14,6 +15,8 @@ if () then ([time slot is occupied
     :Computes the event
     and store it in a list;
     endif
+endwhile ([else])
+:Add all recurring events from computed list to Ez-Schedule;
 stop
 
 @enduml
