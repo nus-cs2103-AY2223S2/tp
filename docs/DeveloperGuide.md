@@ -1240,7 +1240,7 @@ that the features were tested more thoroughly as the team learned new testing ty
 ### **Stubs**
 
 Stubs were used to test features and classes in isolation, so that any bugs in dependencies will not affect the tests
-that are in place. Use of stubs were most common in testing commands and parsers, as they have a lot of dependencies
+that are in place. Use of stubs were most common in testing model, commands and parsers, as they have a lot of dependencies
 that make it difficult to test the entire logic in total. Stubs help to isolate dependencies so that each component's logic
 are tested without being affected by other components.
 
