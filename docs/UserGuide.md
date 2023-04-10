@@ -71,8 +71,9 @@ java -jar mycelium.jar
 ```
 
 If you see a window like the one shown below, then you have successfully
-installed and launched Mycelium! Notice that some mock data has been populated
-to help you get a feel for the application. Feel free to delete them later.
+installed and launched Mycelium! Notice that the app has been populated with
+some mock data to help you get a feel for the application. Feel free to delete
+the entries later.
 
 <img src="images/OnStartupScreenshot.png" />
 
