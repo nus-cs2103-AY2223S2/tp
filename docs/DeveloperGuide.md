@@ -33,7 +33,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-The General Architecture of FriendlyLink follows that of [AddressBook3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
+The General Architecture of FriendlyLink follows that of [Book3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -124,13 +124,13 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddPairCommandParser`, `DeletePairCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/developerGuide/ModelDiagram.png" width="600" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Elderly`, `Volunteer` and `Pair` objects (which are contained in a `UniqueElderlyList`, `UniqueVolunteerList` and `UniquePairList` objects respectively).
+* stores `FriendlyLink` data i.e., all `Elderly`, `Volunteer` and `Pair` objects (which are contained in a `UniqueElderlyList`, `UniqueVolunteerList` and `UniquePairList` objects respectively).
 * stores the currently 'selected' `Elderly`, `Volunteer` and `Pair` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Elderly>`,  `ObservableList<Volunteer>` and `ObservableList<Pair>` respectively  that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * depends on some classes in the `Storage` component (because the `Model` component requires `Storage` to save/retrieve objects that belong to the `Model`)
