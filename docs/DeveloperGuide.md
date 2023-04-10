@@ -794,8 +794,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | TA             | list all students in a class                                             | see an overview of the students in a class at a glance                                                       |
 | `*`      | head TA        | manage all other TAs                                                     | track whether each TA has done their job correctly                                                           |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `TAA` and the **Actor** is the `user`, unless specified otherwise)
@@ -1112,8 +1110,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }_
-
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -1131,8 +1127,6 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the
        list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases … }_
 
 ### Loading/Saving Data in CSV Format
 
