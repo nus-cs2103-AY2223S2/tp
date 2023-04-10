@@ -26,6 +26,7 @@ public class EditCommandTest {
         request.setEditedDeadline(newDeadline);
 
         Task task = TestUtil.newTask();
+        task.setDeadline(LocalDateTime.now());
         task.addLabel("EoSD");
         task.addLabel("LoLK");
         int numOfLabels = task.getLabels().size();
