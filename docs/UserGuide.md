@@ -701,7 +701,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 Deletes the specified module(s) and all its embodied content from the application.
 
 - [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format): The codes of the modules
-  - Must belong to an existing module in Le Tracker
+  - Must belong to existing modules in Le Tracker
   - Must not contain duplicates
 
 <details open>
@@ -709,11 +709,11 @@ Deletes the specified module(s) and all its embodied content from the applicatio
   <ul>
     <li>
       <code>delete CS2040</code><br/>
-      deletes <code>CS2040</code> module
+      deletes "CS2040" module
     </li>
     <li>
       <code>delete CS2040, ST2334</code><br/>
-      deletes <code>CS2040</code> and <code>ST2334</code> modules
+      deletes "CS2040" and "ST2334" modules
     </li>
   </ul>
 </details>
@@ -729,7 +729,7 @@ When in a module or lecture context, the navigation system will automatically in
 Deletes the specified lecture(s) and all its embodied content from the same specified module.
 
 - [<span style="color:#e46c0a">`lecture_name_1, lecture_name_2, lecture_name_3, ...`</span>](#lecture-name-format): The names of lectures
-  - Must belong to an existing lecture in the module specified in `module_code`
+  - Must belong to existing lectures in the module specified in `module_code`
   - Must not contain duplicates
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of module that contains the lectures specified by the names of lectures
   - Must belong to an existing module in Le Tracker
@@ -739,11 +739,11 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
   <ul>
     <li>
       <code>delete lecture 1 /mod CS2040</code><br/>
-      deletes <code>lecture 1</code> lecture found in module <code>CS2040</code>
+      deletes "lecture 1" lecture found in module "CS2040"
     </li>
     <li>
       <code>delete lecture 1, lecture 2 /mod ST2334</code><br/>
-      deletes <code>lecture 1</code> and <code>lecture 2</code> lectures found in module <code>ST2334</code>
+      deletes "lecture 1" and "lecture 2" lectures found in module "ST2334"
     </li>
   </ul>
 </details>
@@ -767,11 +767,11 @@ Deletes the specified video(s) and all its embodied content from the same specif
   <ul>
     <li>
       <code>delete video 3 /mod CS2040 /lec lecture 1</code><br/>
-      deletes <code>video 3</code> from lecture <code>lecture 1</code> of module `CS2040`
+      deletes "video 3" from lecture "lecture 1" of module "CS2040"
     </li>
     <li>
       <code>delete video 1, video 3 /mod CS2040 /lec lecture 1</code><br/>
-      deletes <code>video 1</code> and <code>video 3</code> from lecture <code>lecture 1</code> of module <code>CS2040</code>
+      deletes "video 1" and "video 3" from lecture "lecture 1" of module "CS2040"
     </li>
   </ul>
 </details>
@@ -796,7 +796,7 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
   - Must belong to existing videos in the lecture specified in `lecture_name`
   - Must not contain duplicates
   - For `mark`, must not already be marked
-  - For `unmark` for 1 video, must not already be unmarked
+  - For `unmark` for 1 video, must not already be marked as unwatched
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of the module
   - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format): The name of the lecture
@@ -806,13 +806,13 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
   <summary>Examples:</summary>
   <ul>
     <li><code>mark Vid 1 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 1` in `Week 1` lecture of `CS2040` module as watched</li>
+    marks "Vid 1" in "Week 1" lecture of "CS2040" module as watched</li>
     <li><code>mark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 1` and `Vid 2` in lecture of `Week 1` of `CS2040` module as watched</li>
+    marks "Vid 1" and "Vid 2" in lecture of "Week 1" of "CS2040" module as watched</li>
     <li><code>unmark Vid 2 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 2` in lecture `Week 1` of module `CS2040` as unwatched</li>
+    marks "Vid 2" in lecture "Week 1" of module "CS2040" as unwatched</li>
     <li><code>unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1</code><br/>
-    marks `Vid 1` and `Vid 2` in lecture `Week 1` of `CS2040` module as unwatched</li>
+    marks "Vid 1" and "Vid 2" in lecture "Week 1" of "CS2040" module as unwatched</li>
   </ul>
 </details>
 
@@ -841,7 +841,7 @@ Tag a specified module.
 <ul>
     <li>
     <code>tag EG2310 /tags fun, hard</code><br/>
-    Tag the module <code>EG2310</code> with the tags <code>fun</code> and <code>hard</code>
+    Tag the module "EG2310" with the tags "fun" and "hard"
     </li>
 </ul>
 </details>
@@ -869,7 +869,7 @@ Tag a specified lecture.
 <ul>
     <li>
     <code>tag Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Tag the lecture <code>Lecture_1</code> of module <code>CS2040</code> with the tag <code>Yay</code>
+    Tag the lecture "Lecture_1" of module "CS2040" with the tag "Yay"
     </li>
 </ul>
 </details>
@@ -895,7 +895,7 @@ Tag a specified video.
 <ul>
     <li>
     <code>tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Tag the video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code> with the tag <code>Yay</code>
+    Tag the video "Video_1" of lecture "Lecture_1" in module "CS2040" with the tag "Yay"
     </li>
 </ul>
 </details>
@@ -925,7 +925,7 @@ Remove specified tags from a module.
 <ul>
     <li>
     <code>untag EG2310 /tags fun, hard</code><br/>
-    Remove the tags <code>fun</code> and <code>hard</code> from module <code>EG2310</code>
+    Remove the tags "fun" and "hard" from module "EG2310"
     </li>
 </ul>
 </details>
@@ -953,7 +953,7 @@ Remove specified tags from a lecture.
 <ul>
     <li>
     <code>untag Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Remove the tag <code>Yay</code> from lecture <code>Lecture_1</code> of module <code>CS2040</code>
+    Remove the tag "Yay" from lecture "Lecture_1" of module "CS2040"
     </li>
 </ul>
 </details>
@@ -979,7 +979,7 @@ Remove specified tags from a video.
 <ul>
     <li>
     <code>untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Remove the tag <code>Yay</code> from video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code>
+    Remove the tag "Yay" from video "Video_1" of lecture "Lecture_1" in module "CS2040"
     </li>
 </ul>
 </details>
@@ -1054,11 +1054,11 @@ Import data from a specified file path to the current tracker.
     </li>
     <li>
     <code>import hehe.json /mod CS2040, MA2401</code><br/>
-    Import modules <code>CS2040</code> and <code>MA2401</code> from the file <code>hehe.json</code> in the default directory
+    Import modules "CS2040" and "MA2401" from the file <code>hehe.json</code> in the default directory
     </li>
     <li>
     <code>import hihi.json /mod EG2310 /overwrite</code><br/>
-    Import modules <code>EG2310</code> from the file <code>hihi.json</code>, overwriting the current progress of <code>EG2310</code> in the tracker
+    Import modules "EG2310" from the file <code>hihi.json</code>, overwriting the current progress of "EG2310" in the tracker
     </li>
 </ul>
 </details>
