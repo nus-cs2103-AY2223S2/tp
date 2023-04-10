@@ -6,20 +6,21 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddMeetingCommandParser" as AddMeetingCommandParser LOGIC_COLOR
 participant ":AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
-[-> LogicManager : execute(meetingAdd 1 \n "md/Meeting with Alex ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
+[-> LogicManager : execute(meetingAdd 1 \n "md/Meeting with Alex \n ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand(meetingAdd 1 \n"md/Meeting with Alex ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate AddressBookParser
 
 create AddMeetingCommandParser
+AddressBookParser -> AddMeetingCommandParser
+activate AddMeetingCommandParser
+
+AddMeetingCommandParser --> AddressBookParser
+deactivate AddMeetingCommandParser
+
 AddressBookParser -> AddMeetingCommandParser : parse("md/Meeting with Alex \n ms/30-04-2023 23:30 \n me/30-04-2023 23:40")
 activate AddMeetingCommandParser
 
@@ -35,38 +36,4 @@ deactivate AddMeetingCommandParser
 
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
-
-LogicManager -> AddMeetingCommand : execute(model)
-activate AddMeetingCommand
-
-AddMeetingCommand -> Model : addMeeting(personToEdit, meeting)
-activate Model
-
-Model --> AddMeetingCommand
-deactivate Model
-
-AddMeetingCommand -> Model : updateFilteredPersonList()
-activate Model
-
-Model --> AddMeetingCommand
-deactivate Model
-
-AddMeetingCommand -> Model : updateFilteredMeetingList()
-activate Model
-
-Model --> AddMeetingCommand
-deactivate Model
-
-create CommandResult
-AddMeetingCommand -> CommandResult : CommandResult()
-activate CommandResult
-
-CommandResult --> AddMeetingCommand
-deactivate CommandResult
-
-AddMeetingCommand --> LogicManager : result
-deactivate AddMeetingCommand
-
-[<-- LogicManager
-deactivate LogicManager
 @enduml

@@ -178,9 +178,11 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
   for the day specified
 
 After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
-The following sequence diagram illustrates the description for adding meeting:
+The following sequence diagrams illustrates the description for adding meeting:
 
-![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
+![AddMeetingSequenceDiagram](images/AddMeetingParseSequenceDiagram.PNG)
+
+![AddMeetingExecuteSequenceDiagram](images/AddMeetingExecuteSequenceDiagram.PNG)
 
 #### 2.2 Design Consideration
 
@@ -214,6 +216,18 @@ for the specified person. The following sequence diagram illustrates the descrip
 
 ![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
 
+#### 3.2 Design consideration
+
+**Aspect: meetingRemove format:**
+
+- **Alternative 1(current choice)**: `meetingRemove CLIENT_INDEX MEETING_INDEX` command format; MEETING_INDEX refers to the internal meeting list of `Person`
+    - Pros: Simpler to implement
+    - Cons: Can cause more confusion
+
+- **Alternative 2(future plan)**: `meetingRemove MEETING_INDEX` command format; MEETING_INDEX refers to the meeting list in Meeting List Panel instead
+    - Pros: Easier to use
+    - Cons: Required overhaul of implementation of meetingRemove (To be implemented in future version)
+
 ### 4. Region Feature
 
 Every `Address` is composed with an additional `Regions` Enumeration, which represents all the 5 regions in Singapore.
@@ -242,9 +256,11 @@ Just like other commands, the `Command#execute()` method of `UpdateMeetingComman
 information on how the `Logic` component handles a command.
 
 The parsing and execution of updateMeeting command can be shown with the following
-sequence diagram:
+sequence diagrams:
 
-![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram.png)
+![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram1.png)
+
+![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram2.png)
 
 ### 6. Find Meeting Feature
 
@@ -292,7 +308,21 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
 policy names are displayed. The following sequence diagram illustrates the description for finding policy:
 
-![FindPolicySequenceDiagram](images/FindPolicySequenceDiagram.PNG)
+![FindPolicyParseSequenceDiagram](images/FindPolicyParseSequenceDiagram.PNG)
+
+![FindPolicyExecuteSequenceDiagam](images/FindPolicyExecuteSequenceDiagram.PNG)
+
+#### 8.2 Design consideration
+
+**Aspect: How PolicyTag works:**
+
+- **Alternative 1(current choice)**: Convert `Tag` class to `PolicyTag` 
+    - Pros: Just simple refactoring of class name
+    - Cons: Allows keywords not related to financial policies to be parsed
+
+- **Alternative 2(future plan)**: Ensure `PolicyTag` accepts a set of names only
+    
+    - Pros: Ensures PolicyTag names have financial policies only 
 
 ### \[Proposed\] Undo/redo feature
 
