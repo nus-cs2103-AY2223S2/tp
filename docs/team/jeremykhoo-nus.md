@@ -33,7 +33,7 @@ The difficulty was, implementing new attributes for Person and dealing with immu
 
 <div style="page-break-after: always;"></div>
 
-  ## User Guide:
+## User Guide:
 * Add preliminary information to User guide
 * Described Sortm
 * Described Editm
