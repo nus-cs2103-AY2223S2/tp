@@ -462,7 +462,8 @@ Example:
 <br>
 <div markdown="span" class="alert alert-warning">
 **:exclamation: Caution:**
-Once the user exits the app, all temporarily saved states of the tracker will be deleted!
+Only the current state will be stored upon exiting the app.
+The temporary storage that stores the undo/redo states are not stored anywhere upon exit.
 Ensure that the current state of the DengueHotspotTracker (after undoing or redoing) is the state you want to save,
 before exiting the app!
 </div>
