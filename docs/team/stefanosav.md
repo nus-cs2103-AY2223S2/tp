@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Stefanos Avraam's Project Portfolio Page
- ---
+---
 
 ### Project: MediConnect
 
