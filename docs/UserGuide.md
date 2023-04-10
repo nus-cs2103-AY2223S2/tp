@@ -7,29 +7,35 @@ title: User Guide
 * [Quick start](#quickstart)
 * [Features](#features)
     1. [Viewing help](#help)
-    2. [Add student](#add)
-    3. [Copy student](#copy)
-    4. [Delete student](#delete)
-    5. [List student](#list)
-    6. [Filter student](#filter)
-    7. [Add a lesson](#learn)
-    8. [Remove a lesson](#unlearn)
-    9. [Local save](#save)
-    10. [Local load](#load)
-    11. [Exit program](#exit)
+    2. [Add Student](#add)
+    3. [Copy Student](#copy)
+    4. [Delete Student](#delete)
+    5. [List Students](#list)
+    6. [Edit Student](#edit)
+    7. [Find Student](#find)
+    8. [Filter Students](#filter)
+    9. [Add a lesson](#learn)
+    10. [Remove a lesson](#unlearn)
+    11. [Mark attendence](#mark)
+    12. [Unmark attendence](#unmark)
+    13. [Query attendence](#query)
+    14. [Local save](#save)
+    15. [Local load](#load)
+    16. [Clear Students](#clear)
+    17. [Exit program](#exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
 
 
-## INTRODUCTION <a name="introduction"></a>
+## INTRODUCTION to the Tutee managing system (TMS)<a name="introduction"></a>
 
-Is it hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the Tutee managing system (TMS). TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+Is it hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the **Tutee managing system (TMS)** . TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quickstart"></a>
+## Quick start: A guide to start using TMS <a name="quickstart"></a>
 
 1. Ensure you have Java `11` or above installed in your computer.
 
@@ -91,7 +97,7 @@ Is it hard for private tutor such as yourself to keep track of the students' inf
 
 #### [Back to top](#table-of-content) 
 
-### Viewing help <a name="help"></a>
+### Viewing help : `help`<a name="help"></a>
 
 Shows a message explaning how to access the help page.
 
@@ -100,7 +106,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 #### [Back to top](#table-of-content) 
-### Adding student <a name="add"></a>
+### Add Student : `add`<a name="add"></a>
 
 Adds a student to the managing system.
 
@@ -108,8 +114,9 @@ Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st
 
   * Subject supported: {`Math`, `Physics`, `English`}  
   * Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
-  * The added student must have a unqique name, phone number and email address and all the fields in the format present  
+  * The added student must have a unique name, phone number and email address and all the fields in the format present  
   * You may add an extra tag to the student by adding t/[tag] at the end of the command.
+  * Tags must be in alphanumeric characters
 
 Examples:
 
@@ -117,31 +124,34 @@ Examples:
 * ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/08:30 et/10:30 t/JC1 t/SonOfJerry``` adds the same student with two tags, `JC1` and `SonOfJerry`
 
 #### [Back to top](#table-of-content) 
-## Copy student <a name="copy"></a>
+### Copy Student : `copy` <a name="copy"></a>
 
 Copies an existing student to the managing system with a different subject or schedule.
 
-Format: ```copy INDEX s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
- * Copies the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+
+Format: ```copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
+ * Copies the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+
  * All of the fields must be provided.
 
 Examples:
 
-* ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd person in the address book and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
+* ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd student in the managing system and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
 #### [Back to top](#table-of-content) 
-### Deleting student <a name="delete"></a>
+### Delete Student : `delete`<a name="delete"></a>
 
 Removes a student from the managing system.
 
-Format: ```delete INDEX```
+Format: ```delete <index>```
+* Deletes the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 
 Examples:
 
-* ```delete 1```
+* ```delete 1``` deletes the first student displayed in the system
 
 #### [Back to top](#table-of-content) 
-### Listing students <a name="list"></a>
+### List Students : `list`<a name="list"></a>
 
 Lists students in the managing system.
 
@@ -152,27 +162,27 @@ Examples:
 * ```list``` 
 
 #### [Back to top](#table-of-content) 
-### Editing a student : `edit`
+### Edit Student : `edit` <a name="edit"></a>
 
-Edits an existing person in the address book.
+Edits an existing student in the managing system.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit <index> [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 #### [Back to top](#table-of-content) 
-### Locating students by name: `find`
+### Find Student: `find`<a name='find'></a>
 
-Finds persons whose names contain any of the given keywords.
+Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
@@ -180,7 +190,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -189,7 +199,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### [Back to top](#table-of-content) 
-### Filtering students by any fields <a name='filter'></a>
+### Filter Students : `filter`<a name='filter'></a>
 
 Filter and list students whose fields contain any of the given keywords.
 
@@ -211,11 +221,15 @@ Examples:
 ![img.png](images/filterExampleResult.png)
 
 #### [Back to top](#table-of-content) 
-### Adding a new lesson <a name="learn"></a>
+### Add a lesson : `learn`<a name="learn"></a>
 
 You can add a lesson taught to a student.
 
-Format: ```learn INDEX [l/LESSON]```
+
+Format: ```learn <index> [l/LESSON]```
+* The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+* The lesson must be in alphanumeric characters.
+
 
 Example:
 
@@ -224,11 +238,15 @@ Example:
   * The command adds the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh learn Rational Number`.
 
 #### [Back to top](#table-of-content) 
-### Removing a lesson <a name="unlearn"></a>
+### Removing a lesson : `unlearn`<a name="unlearn"></a>
 
 You can remove a lesson taught to a student.
 
-Format: ```unlearn INDEX [l/LESSON]```
+
+Format: ```unlearn <index> [l/LESSON]```
+* The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+* The lesson must match an existing lesson displayed
+
 
 Examples:
 
@@ -237,29 +255,73 @@ Examples:
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
 #### [Back to top](#table-of-content) 
-### Marking/Unmarking attendance
-Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
-they were absent. If a date is not specified, the current date is used.\
-If the tutee was already absent or present for a given date, the corresponding command will have no effect on the attendance for that date.
 
-Format: `mark/unmark INDEX [DATES]…`
+### Marking attendance : `mark` <a name="mark"></a>
+Use `mark` to indicate that the tutee was present on the given dates
+
+Format: `mark <index> [date...]`
+* Marks the attendence of a student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+* If a date is not specified, the current date is used.  
+* If the tutee was already present, the command will have no effect.  
+
+Examples: 
+* `mark 1` marks the attendance of the first student displayed for the current date
+* `mark 1 2023-03-10` marks the attendance of the first student displayed for the date "2023-03-10" as shown below
+![mark.png](images/mark.png)
+
+### Unmarking attendance : `unmark` <a name="unmark"></a>
+Use `unmark` to indicate that the tutee was absent on the given dates
+
+Format: `unmark <index> [date...]`
+* Unmarks the attendence of a student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+* If a date is not specified, the current date is used.  
+* If the tutee was already absent, the command will have no effect.  
+
+Examples: 
+* `unmark 1` marks the attendance of the first student displayed for the current date
+* `unmark 1 2023-03-10` marks the attendance of the first student displayed for the date "2023-03-10" as shown below
+![unmark.png](images/unmark.png)
 
 #### [Back to top](#table-of-content) 
-### Querying attendance
-Use this command to check the tutee's attendance. If no date is given, all of the dates that the tutee was present.\
-Otherwise, the command will return if the tutee was present on the given date.
+### Query attendance : `query` <a name="query"></a>
+Use this command to check the tutee's attendance.  
 
-Format: `query INDEX [DATE]`
+Format: `query <index> [date]`
+* Queries the attendence of a student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​  
+* If no date is given, all of the dates that tutee was present on will be displayed  
+* Otherwise, the command will return if the tutee was present on the given date.
+
+Examples: 
+* `query 1` displays all the marked dates that the first student has as shown below
+![query.png](images/query.png)
+* `query 1 2023-03-10` displays whether the first student was marked present during his lesson on 2023-03-10
 
 #### [Back to top](#table-of-content) 
-### Clearing all entries : `clear`
+### Local save <a name="save"></a>
 
-Clears all entries from the address book.
+Saves the current state of the program on the hard disk upon exit.
+
+Done automatically.
+
+#### [Back to top](#table-of-content) 
+### Local load <a name="load"></a>
+
+Loads the saved state of the program (if there is any) on the hard disk.
+
+Creates an empty file if there is none.
+
+Done automatically.
+
+
+#### [Back to top](#table-of-content) 
+### Clear students : `clear` <a name="clear"></a>
+
+Clears all entries from the managing system.  
 
 Format: `clear`
 
 #### [Back to top](#table-of-content) 
-### Exiting program <a name="exit"></a>
+### Exit program <a name="exit"></a>
 
 Exit the program.
 
@@ -297,21 +359,21 @@ To see the full list, refer to the entry for that command in the guide above.
 
 | Action | Format and Examples                 |
 |------|-------------------------------------|
-| **Add Tutee** |                                     |
+| **Add Student** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/STARTTIME et/ENDTIME [t/TAG]...` <br> e.g., add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/09:30 et/11:30 |
+| **Copy Student** | `copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME`<br> e.g., `copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME` |
+| **Delete Student** | `delete INDEX`<br> e.g., `delete 1` |
+| **List Students** | `list` |
+| **Edit** |`edit <index> [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 1 p/91234567 e/johndoe@example.com` |
+| **Find** |`find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find John` |
+| **Filter** |`filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SUBJECT] [sch/SCHEDULE] [st/START TIME] [et/END TIME] [t/TAG]`<br> e.g., `filter a/clementi s/math`|
+| **Add lesson** |`learn <INDEX> [l/LESSON]`<br> e.g., `learn 1 l/Rational number`|
+| **Remove lesson** |`unlearn <index> [l/LESSON]`<br> e.g., `unlearn 1 l/Rational number`|
+| **Mark attendance** |`mark <index> [date...]`<br> e.g., `mark 1 2023-03-10`|
+| **Unmark attendence** |`unmark <index> [date...]`<br> e.g., `unmark 1 2023-03-10`|
+| **Query attendence** |`query <index> [date]`<br> e.g., `query 1 2023-03-10`|
 | **Clear** | `clear`|
-| **Copy Tutee** | `copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME` <br> e.g. `copy  1 s/Math`                                   |
-| **Delete Tutee** | `delete INDEX`<br> e.g., `delete 1` |
-| **Edit tutee** |`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit 1 n/John Tan p/12345678`|
-| **Exit** |`exit`|
-| **Find tutee by name** | `find KEYWORD [MORE_KEYWORDS]…` <br> e.g. `find john doe`                                   |
-| **Filter tutees by fields** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `filter a/Clementi` |
-| **Help** |`help`|
-| **List Tutees** | `list`                              |
-| **Add new lesson to tutee** | `learn l/LESSON` <br> e.g. `learn l/Rational Numbers`|
-| **Mark Attendance** | `mark INDEX [DATES]…` <br> e.g. `mark 1 2023-05-03 2023-05-04`|
-| **Query Attendance** | `query INDEX [DATE]` <br> e.g `query 1 2023-05-03`                                    |
-| **Add Remark to Tutee** | `remark INDEX REMARK`|
-| **Remove lesson from tutee** | `unlearn l/LESSON`|
-| **Mark Absence** | `unmark INDEX [DATES]…`|
+| **Exit program** |`Exit`|
+| **Help** | `help` |
+
 
 #### [Back to top](#table-of-content) 

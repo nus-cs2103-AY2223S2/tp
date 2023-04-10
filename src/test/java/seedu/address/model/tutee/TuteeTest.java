@@ -2,11 +2,13 @@ package seedu.address.model.tutee;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_EFFORT;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_QUICK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUICK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -33,7 +35,7 @@ public class TuteeTest {
 
         // same name, all other attributes different -> returns true
         Tutee editedAlice = new TuteeTestBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(TAG_DESC_QUICK).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,7 +87,7 @@ public class TuteeTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new TuteeTestBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new TuteeTestBuilder(ALICE).withTags(VALID_TAG_QUICK).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

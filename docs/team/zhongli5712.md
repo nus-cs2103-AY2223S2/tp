@@ -17,7 +17,6 @@ Given below are my contributions to the project.
 
 
 * **Code contributed**: [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=zhongli5712&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
 * **Project management**:
   * Set up milestones, issues.
   * Wrap up milestones.
