@@ -248,19 +248,31 @@ Examples:
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
 #### [Back to top](#table-of-content) 
-### Marking/Unmarking attendance : `mark` and `unmark` <a name="mark"></a>
-Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
-they were absent. 
+### Marking attendance : `mark` <a name="mark"></a>
+Use `mark` to indicate that the tutee was present on the given dates
 
-Format: `mark/unmark <index> [date...]`
+Format: `mark <index> [date...]`
 * Marks the attendence of a student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * If a date is not specified, the current date is used.  
-* If the tutee was already absent or present, the command will have no effect.  
+* If the tutee was already present, the command will have no effect.  
 
 Examples: 
 * `mark 1` marks the attendance of the first student displayed for the current date
 * `mark 1 2023-03-10` marks the attendance of the first student displayed for the date "2023-03-10" as shown below
 ![mark.png](images/mark.png)
+
+### Unmarking attendance : `unmark` <a name="unmark"></a>
+Use `unmark` to indicate that the tutee was absent on the given dates
+
+Format: `unmark <index> [date...]`
+* Unmarks the attendence of a student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+* If a date is not specified, the current date is used.  
+* If the tutee was already absent, the command will have no effect.  
+
+Examples: 
+* `unmark 1` marks the attendance of the first student displayed for the current date
+* `unmark 1 2023-03-10` marks the attendance of the first student displayed for the date "2023-03-10" as shown below
+![unmark.png](images/unmark.png)
 
 #### [Back to top](#table-of-content) 
 ### Querying attendance : `query` <a name="query"></a>
