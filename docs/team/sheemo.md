@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Sze SHao Hong's Project Portfolio Page
+title: Sze Shao Hong's Project Portfolio Page
 ---
 
 ### Project: TeachMeSenpai
