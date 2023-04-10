@@ -71,8 +71,9 @@ java -jar mycelium.jar
 ```
 
 If you see a window like the one shown below, then you have successfully
-installed and launched Mycelium! Notice that some mock data has been populated
-to help you get a feel for the application. Feel free to delete them later.
+installed and launched Mycelium! Notice that the app has been populated with
+some mock data to help you get a feel for the application. Feel free to delete
+the entries later.
 
 <img src="images/OnStartupScreenshot.png" />
 
@@ -94,12 +95,13 @@ and Mycelium will start as an empty application with no projects and clients.
 
 ## Glossary
 
-
 | Term                                     | Definition                                                                                                                                                                                                                                       |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                           |
-| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
-| Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.         |
+| Fuzzy search                             | A feature which allows for searching via partial matches                                                                                                                                                                                         |
+| Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                            |
+| HotKey                                   | A convenient combination of key presses meant to invoke some app functionality                                                                                                                                                                   |
+| Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.          |
+| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse, and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,7 +156,7 @@ The Clients tab lists all the clients you have created. Each client block contai
 The Statistics panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
 
 The top portion is composed of two tabs. One lists the projects that are due within this week or the next (Week starts from Sunday).
-For example, if the current date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will appear on the **Due soon project list**.
+For example, if the current date is 11/04/2023 (a Tuesday), all projects with deadlines from 09/04/2023 to 22/04/2023 inclusive will appear on the **Due soon project list**.
 
 The other tab lists projects that are overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
 will not appear in **Overdue project list**, but projects with deadlines on 10/04/2023 will appear in the **Overdue
@@ -206,14 +208,14 @@ The range of valid years is from -9999 to 9999.
 data. For example, any attempts to create a project named *Mycelium -pn
 Desktop* would fail. In the command `p -pn Mycelium -pn Desktop -e
 spiderman@gmail.com`, *Desktop* is interpreted as another argument and
-overrides *Mycelium*. So we end up with a project named *Desktop*.
+overrides *Mycelium*, so we end up with a project named *Desktop*.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing Clients
 
-This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in Mycelium.
+This user guide section outlines how to _create_, _delete_, and _update_ client contacts using command in Mycelium.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -364,7 +366,7 @@ If the project is added successfully, a message confirming the addition will be 
 **Optional Arguments**
 
 - `-s status`
-    - Here `status` should be set, to one of `not_started`, `in_progress`, or
+    - Here `status` should be set to one of `not_started`, `in_progress`, or
       `done`.
     - **Default:** `not_started`
 - `-src source`
@@ -482,7 +484,7 @@ argument, if specified, will be used to partially update the project.
     * A new client email.
     * **Default:** *Existing email*
 * `-s status`
-    * A new project status. Should be set, to one of `not_started`,
+    * A new project status. Should be set to one of `not_started`,
       `in_progress`, or `done`.
     * **Default:** *Existing status*
 * `-src source`
@@ -509,7 +511,7 @@ project](#creating-a-project-p) for more details on what each argument means.
 
 **Example**
 
-Suppose you have a project named *Mycelium Desktop*, and wish to update
+Suppose you have a project named *Mycelium Desktop* and wish to update
 
 1. its name to *Mycelium Mobile*; and
 1. its status to `in_progress`.
@@ -536,7 +538,7 @@ blocked.
 
 <div markdown="span" class="alert alert-info">
 :information_source: The target project should already exist in Mycelium.
-Otherwise, an error will be displayed and no changes are made to the data.
+Otherwise, an error will be displayed, and no changes are made to the data.
 </div>
 
 <div markdown="span" class="alert alert-danger">
@@ -610,12 +612,12 @@ This shortcut allows you toggle the command box between **search mode** and
 
 In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted teal and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
+In **search mode**, the command box is highlighted teal, and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
 Your existing input while in **command mode** will be cached when you switch to
 **search mode**. It is then restored when you switch back to **command mode**.
 Similarly, your existing input while in **search mode** will be cached when
-switching to **command mode**, and restored when switching back to **search
+switching to **command mode** and restored when switching back to **search
 mode**.
 
 <div markdown="span" class="alert alert-danger">
@@ -692,7 +694,7 @@ Fuzzy searching for clients works exactly the same as fuzzy searching projects.
 Just remember that the query is matched against the clients' names only, and
 not their emails.
 
-### Extracing client and project info
+### Extracting client and project info
 
 While in **search mode**, you can use the (ENTER) key to extract a client's email
 or a project's name. This will automatically switch you back to **command mode**
@@ -724,7 +726,7 @@ full name or email.
 ### Fuzzy search Gotchas
 
 In general, fuzzy search in Mycelium should feel familiar to most developers,
-since it is similar to, for example, finding files in IDEs, or the well known
+since it is similar to, for example, finding files in IDEs, or the well-known
 [fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
 might wish to note:
 
@@ -769,14 +771,17 @@ Action | Format | Example
 ### FAQs
 
 **Q:** Does Mycelium require an internet connection to run?
+<br>
 **A:** No, Mycelium is intended to work fully offline.
 
 **Q:** How can I sync my local data to the cloud?
+<br>
 **A:** Mycelium does not provide such a feature, but you may look into using
 network-attached storage, Git, or other services to back up the `mycelium.json`
 file.
 
 **Q:** What operating systems can I run Mycelium on?
+<br>
 **A:** Mycelium has been developed and tested on Windows, Mac, and Linux (X11)
 operating systems only.
 
