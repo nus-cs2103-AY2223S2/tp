@@ -62,26 +62,6 @@ public class InternshipApplication implements Comparable<InternshipApplication> 
     /**
      * Company name and job title field must be present and not null.
      */
-    public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews, InternshipStatus status,
-                                 Documents documents) {
-        requireAllNonNull(name, job);
-        this.companyName = name;
-        this.jobTitle = job;
-        this.location = null;
-        this.salary = null;
-        this.rating = null;
-
-        this.reviews.addAll(reviews);
-        this.contact = null;
-        this.status = status;
-        this.isArchived = false;
-        this.interviewDate = null;
-        this.documents = documents;
-    }
-
-    /**
-     * Company name and job title field must be present and not null.
-     */
     public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews,
         Set<ProgrammingLanguage> programmingLanguages, Set<Qualification> qualifications, Location location,
         Salary salary, Set<Note> notes, Rating rating, Set<Reflection> reflections) {
