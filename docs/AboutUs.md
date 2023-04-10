@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Jarrett Teo
@@ -16,7 +14,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Jarrett0203)]
 [[portfolio](team/jarrett0203.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Team Lead
 
 ### Glen Lim
 <img src="images/glyfy.png" width="200px">
@@ -24,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/glyfy)]
 [[portfolio](team/glyfy.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Kenz Antonius
@@ -55,4 +54,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kynhan.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration

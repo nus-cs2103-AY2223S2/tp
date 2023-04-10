@@ -13,3 +13,5 @@ github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
+
+incremental: true
