@@ -734,6 +734,7 @@ Import CSV command is facilitated by `CommandBox` and `Logic`.
 2. **Alternative 2 (Chosen):** Keep all command history and always append the newly executed command.
    * Pros: Easy to implement; Adopted by many command shell.
    * Cons: Executing a sequence of commands in a loop involves multiple backward operations at every command. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
