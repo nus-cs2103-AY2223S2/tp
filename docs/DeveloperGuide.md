@@ -30,16 +30,23 @@ including but not limited to the following...
 ### 1.2 About the developer guide
 
 This developer guide describes the high-level software architecture and how user inputs are parsed into corresponding
-commands in coNtactUS. 
+commands in coNtactUS.
+
 
 If you simply want to start using coNtactUS in your daily university life, look no further and jump
 straight into our user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html). 
 
+
 If who want to understand how the software works, or you want to further
 develop coNtactUS for yourself, you may feel free to proceed with this guide.
 
+
 If you have any difficulties understanding what some terminologies mean at any point, you may refer 
 to the [glossary](#9-glossary) for that.
+
+To help you better navigate through our developer guide, the [Return to ToC](#toc) at the end of each section
+allows you return to the Table of Contents. From there, you can quickly access another section by clicking the
+respective header.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +56,7 @@ to the [glossary](#9-glossary) for that.
   [JUnit5](https://github.com/junit-team/junit5)
 
 ------------------------------------------------------------------------------------------------------------------------
- ## **3. Setting up, getting started**
+## **3. Setting up, getting started**
 
 If you want to get started with developing your own coNtactUS, you may refer to the guide 
 [_Setting up and getting started_](SettingUp.md).
@@ -62,7 +69,12 @@ If you want to get started with developing your own coNtactUS, you may refer to 
 This section gives you a quick overview of the architecture components of coNtactUS. The diagram shown below gives you
 a high-level description of the overall architecture.
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+
+<p align="center">
+    <img height = "440" src="images/ArchitectureDiagram.png" width="280" /> </p>
+<div align="center"> Architecture of the module tracker. </div>
+
+The ***Architecture Diagram*** given above explains the high-level design of the module tracker.
 
 Architecture of the module tracker.
 
@@ -94,9 +106,12 @@ the user issues the command `delete 1` to delete the first module from the list.
 
 The *Sequence Diagram* below illustrates this in detail: 
 
-<img src="https://ay2223s2-cs2103t-w10-1.github.io/tp/images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+    <img src="https://ay2223s2-cs2103t-w10-1.github.io/tp/images/ArchitectureSequenceDiagram.png" width="580" />
+</p>
 
-How the different components interact with each other upon the command `delete 1`
+
+<div align="center">Figure 1: How the different components interact with each other upon the command `delete 1` </div>
 
 ### 4.3 Interfaces that are implemented by the architecture components
 
@@ -112,9 +127,14 @@ using the `LogicManager.java` class which follows the `Logic` interface. Other c
 component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
 to the implementation of a component), as illustrated in the (partial) class diagram below.
 
+
 <br>
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
+    <img src="images/ComponentManagers.png" width="300" />
+</p>
+<div align="center"> The Logic component. </div>
+
 
 Relationship between the Interfaces and their concrete classes
 
@@ -128,8 +148,11 @@ The **API** of this component is specified in
 
 The diagram below provides a detailed description of the `UI` component.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
-The structure of the UI Component
+<p align="center">
+    <img src = "images/UiClassDiagram.png">
+</p>
+
+<div align="center"> The structure of the UI Component. </div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart`
@@ -155,8 +178,9 @@ The **API** of this component is specified in
 
 The diagram below provides a detailed description of the `Logic` component.
 
-<img src="images/LogicClassDiagram.png" width="650"/>
-The partial structure of the Logic component 
+<p align="center">
+    <img src="images/LogicClassDiagram.png" width="650"/> </p>
+<div align="center"> The partial structure of the Logic component. </div>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ModuleTrackerParser` class to parse the user command.
@@ -177,8 +201,10 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
-Classes in the Logic component used for parsing a user command
+
+<p align="center">
+    <img src="images/ParserClasses.png" width="600"/> </p>
+<div align="center"> Classes in the Logic component used for parsing a user command </div>
 
 How the parsing works:
 * When called upon to parse a user command, the `ModuleTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a
@@ -192,9 +218,10 @@ interface so that they can be treated similarly where possible e.g, during testi
 The **API** of this component is specified in
 [`Model.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="800" />
-The structure of the Model component
+<p align="center">
+    <img src="images/ModelClassDiagram.png" width="800" /> </p>
 
+<div align="center"> The structure of the Model component. </div>
 
 The `Model` component,
 
@@ -211,8 +238,10 @@ they should make sense on their own without depending on other components)
 model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module` references. This allows `ModuleTracker`
 to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="650" />
-A more OOP model of the Model component
+<p align="center">
+    <img src="images/BetterModelClassDiagram.png" width="650" /> </p>
+
+<div align="center"> A more OOP model of the Model component. </div>
 
 </div>
 
@@ -222,8 +251,10 @@ A more OOP model of the Model component
 The **API** of this component is specified in
 [`Storage.java`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
-The structure of the Storage component
+<p align="center">
+    <img src="images/StorageClassDiagram.png" width="550" /></p>
+
+<div align="center"> The structure of the Storage component.</div>
 
 The `Storage` component,
 * can save both module tracker data and user preference data in json format, and read them back into corresponding
@@ -336,7 +367,7 @@ improved user experience.
 
 ### 6.2 More checks to teacher, remarks
 
-Bla bla 
+Bla bla
 
 --------------------------------------------------------------------------------------------------------------------
 ## **7. Documentation, logging, testing, configuration, dev-ops**
@@ -504,14 +535,14 @@ specified otherwise)
     * 1b3. Repeat steps 1b1 and 1b2 until there are no more missing information. <br>
 
       Use case resumes at step 2.
-  
+
 
 **Use case 4: Finding a specific module**
 
 **MSS**
 
 1.  User requests to list all the modules.
-2.  coNtactUS shows a list of all the modules added into the module tracker. 
+2.  coNtactUS shows a list of all the modules added into the module tracker.
 3.  User requests to find a specific module in the list with a specified keyword.
 4.  coNtactUS shows a filtered list of the modules that contain the specified keyword.
 
@@ -524,7 +555,7 @@ specified otherwise)
     Use case ends.
 
 * 4a. None of the existing modules contain the keyword.
-   
+
     Use case ends.
 
 **Use case 5: Sorting the modules by `timeslot`**
@@ -590,6 +621,42 @@ bottom. Modules without `timeslot` will be pushed to the back, unsorted.
 * 4a. None of the existing modules contain `deadline`.
 
   Use case ends.
+
+**Use case 7: Opening `help`**
+
+**MSS**
+
+1.  User requests to open the help menu by using the command.
+2. coNtactUS opens up the help menu. <br>
+
+Use case ends.
+
+**Extensions**
+
+* 1a. coNtactUS detects missing information in the command.
+  * 1a1. coNtactUS shows an error message.
+  * 1a2. User enters the information again.
+  * 1a3. Repeat steps 1a1 and 1a2 until there are no more missing information.
+
+    Use case resumes at step 2.
+
+**Use case 8: Exiting the software `exit`**
+
+**MSS**
+
+1.  User requests to exit the software by using the command.
+2. coNtactUS exits from the user's computer. <br>
+
+Use case ends.
+
+**Extensions**
+
+* 1a. coNtactUS detects missing information in the command.
+    * 1a1. coNtactUS shows an error message.
+    * 1a2. User enters the information again.
+    * 1a3. Repeat steps 1a1 and 1a2 until there are no more missing information.
+
+      Use case resumes at step 2.
 
 ### 8.4 Non-Functional Requirements
 
@@ -674,19 +741,20 @@ Timestamp in the status bar is updated.
 
 ### 10.3 Adding a module
  1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
-     Expected: A new module is added to the list with name being CS2103T and type being Tutorial. Details of the added
-     module is shown in the status message. Empty optional fields are left as "None.".
+     Expected: A new module is added to the list with name being `CS2103T` and description being `Tutorial`. Details of
+     the added module is shown in the status message. Empty optional fields are left as "None.".
 
- 2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>
-     Expected:  A new module is added to the list with name being CS2101, type being Lecture, address being COM3,
-     TimeSlot being 210323 10:00, teacher being Mr Ng. Details of the added module is shown in the status message.
+ 2. Test case: `add n/CS2101 t/Lecture a/COM3 e/Tuesday 10:00 12:00 s/Mr Ng`<br>
+     Expected:  A new module is added to the list with name being `CS2101`, description being `Lecture`, venue being
+     `COM3`, TimeSlot being `Tuesday 10:00 12:00`, and teacher being `Mr Ng`. Details of the added module is shown
+     in the status message.
 
  3. Test case: `add n/CS1101S`<br>
-    Expected: No module is added as type, which is a compulsory field, is missing. Error details shown in the
+    Expected: No module is added as description, which is a compulsory field, is missing. Error details shown in the
     status message.
 
  4. Other incorrect add commands to try: `add`, `add x`, `...` (where x is the attribute you want to add, without
-     using the prefixes)<br>
+     using the prefixes) <br>
      Expected: Similar to previous.
 
 ### 10.4 Editing a module
@@ -694,8 +762,8 @@ Timestamp in the status bar is updated.
    Expected: The name of the first module in the list is edited, and is now `CS1101S`. Details of the updated module
    is shown in the status message.
 
-2. Test case: `edit 2 e/310323 14:00` <br>
-   Expected: The time slot of the first module in the list is edited, and is now `Friday 02:00PM`. Details of the
+2. Test case: `edit 2 e/Saturday 15:00 16:00` <br>
+   Expected: The time slot of the first module in the list is edited, and is now `Saturday 15:00 16:00`. Details of the
    updated module is shown in the status message.
 
 3. Test case: `edit 1 t/Lecture` <br>
@@ -727,19 +795,19 @@ Expected: Module(s) with the description `tutorial` Details of the found tutoria
 3. Test case: `find tutorial lab` <br>
 Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in
 the list. <br>
-   
+
 4. Test case: `find CS` <br>
 Expected: Module(s) with the name or description `CS` is (are) found. Details of the found module(s) are shown in the list.
 <br>
 
 5. Test case: `find` <br>
 Expected: No modules are found, because the keyword is not specified.
-   
+
 6. Test case: `find x`(where x is the keyword that none of the existing modules have) <br>
 Expected: No modules are found, because the keyword does not exist in the existing module list.
-   
+
 7. Note: Make sure to list the modules again when you want to find another module.
-   
+
 ### 10.6 Sorting a module by `timeslot` or `deadline`
 
 1. Test case: `sort timeslot` <br>
@@ -768,30 +836,43 @@ Expected: The modules will not be sorted.
 
 **Overall effort required: 8 / 10**
 
+In general, our team members have contributed equal effort to turn `coNtactUS` into a functional, intuitive software.
+We strived to meet weekly project deadlines, making sure that all the important features of our module tracker
+were completed and implemented perfectly by each specified milestones.
+
 ### 11.1 Challenges faced:
 
 1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
 required: 9 / 10)
-   * Bla bla 
+   * Function names such as `AddressBook`, `addressbook` and `ab` have to be refactored to fit `coNtactUS`.
+   * It is not difficult, but highly tedious to refactor, as there were different forms of `addressbook`, hence it is
+   not possible to refactor everything in one go.
 
 2. Implementation of `add`, `edit`, `delete` command for `Module`. (Difficulty: 6 / 10, Effort required: 9 / 10)
-   * Bla bla
+   * More attributes were added to fit `coNtactUS`, such as `Timeslot`, `Deadline` and `Teacher`.
+   * The difficulty is moderate, since we do not have to code out the said commands ourselves from scratch, as they
+   are already implemented in `AddressBook3`.
+   * However, it is tedious to change the attributes of `AddressBook3` that do not fit `coNtactUS`, as well as adding
+   new attributes to the commands.
 
 3. Enhancements of `find` command. (Difficulty: 7 / 10, Effort required: 7 / 10)
-   * Bla bla
+   * Tariq-Droid
 
 4. Enhancement of `timeslot` and `deadline` attributes from `String` to `DateTime` format. (Difficulty: 8 / 10,
 Effort required: 8 / 10)
-   * Bla bla
+   * When refactoring from `AddressBook3`'s attributes, `timeslot` and `deadline` were parsed as `String`. However, to
+   allow users to `sort` these attributes based on whichever modules come first (and thus improve their time-keeping
+   ability in NUS), we further developed them to take in `DateTime` as user inputs.
+   * It is not highly arduous and tough, but we decided to use different `DateTime` formats for both `timeslot` and
+   `deadline` (more specifically, `Day HH:mm /*START_TIME*/ HH:mm /**END_TIME*/` for `timeslot`, `ddMMyy HH:mm` for
+   `deadline`) because it does not really make sense to store date for weekly-recurring `timeslot`.
 
 5. Addition of `sort` command. (Difficulty: 9 / 10, Effort required: 8 / 10)
-   * Bla bla
+   * Jia Yuan
 
 6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
-   * Bla bla
-
-------------------------------------------------------------------------------------------------------------------------
+   * Tariq
 
 
-
+Back to top hyperlink
 

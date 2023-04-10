@@ -16,7 +16,7 @@ You can reach us via our email `coNtactUS@comp.nus.edu.sg`
 [[github](http://github.com/Tariq-droid)]
 [[portfolio](team/tariq-droid.md)]
 
-* Responsibilities: 
+* Responsibilities:
   * Back-End Developer
   * Front-End Developer
 
@@ -27,7 +27,8 @@ You can reach us via our email `coNtactUS@comp.nus.edu.sg`
 [[github](http://github.com/jayhee3)]
 [[portfolio](team/jayhee3.md)]
 
-* Responsibilities: 
+* Responsibilities:
+  * Team Leader
   * Back-End Developer
   * Front-End Developer
 
@@ -38,7 +39,7 @@ You can reach us via our email `coNtactUS@comp.nus.edu.sg`
 [[github](http://github.com/jamieeeleow)]
 [[portfolio](team/jamieeeleow.md)]
 
-* Responsibilities: 
+* Responsibilities:
   * Quality Assurance/Testing Specialist
 
 ### Chew Ting Yi
@@ -48,7 +49,6 @@ You can reach us via our email `coNtactUS@comp.nus.edu.sg`
 [[github](http://github.com/tingyic)]
 [[portfolio](team/tingyic.md)]
 
-* Responsibilities: 
+* Responsibilities:
   * Back-End Developer
-
-
+  * Documentation Expert
