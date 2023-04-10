@@ -70,7 +70,7 @@ product effectively.
 ###### Figure 2
 
 1. Using the File and Help Tabs
-   * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on 
+   * If you want to close the app, simply click on `File > Exit` with your mouse. To open the help window, click on
      `Help > Help`.
 2. Using the Page Tabs
    * The Page Tabs give you a quick summary of the type of page you are on.
@@ -78,21 +78,21 @@ product effectively.
 3. Using the Navigation Bar
    * You can see the courses and groups you have selected and the page you are currently on in the Navigation Bar.
 4. Using the Left Pane
-   * This is where you can find your list of added page objects such as `Courses`, `Groups`, `Students`, `Sessions`, 
+   * This is where you can find your list of added page objects such as `Courses`, `Groups`, `Students`, `Sessions`,
      and `Tasks`.
 5. Using the Right Pane
-   * The Right Pane will appear when you are on the `Attendance Page` or `Tasks Page`. It will show the list of 
+   * The Right Pane will appear when you are on the `Attendance Page` or `Tasks Page`. It will show the list of
      students to mark their attendance or assign them a grade.
 6. Entering Commands in the Command Box
    * To enter a command, type it into the Command Box.
 7. Viewing Results in the Result Display
-   * After entering a command, you can view whether it was successful in the Result Display. 
+   * After entering a command, you can view whether it was successful in the Result Display.
    * If your command failed, you can also find help messages with valid arguments here.
 8. Checking the Status Bar Footer
-   * The Status Bar Footer displays the file path from which the data is being loaded or saved in relation to the 
+   * The Status Bar Footer displays the file path from which the data is being loaded or saved in relation to the
      location of `clipboard.jar`.
 9. Checking the CLIppy Indicator
-   * The CLIppy Indicator can help you know whether you are typing in a command correctly. 
+   * The CLIppy Indicator can help you know whether you are typing in a command correctly.
    * When you enter a correct command, CLIppy will be happy. If you have a command failure, CLIppy will be sad.
 
 --------------------------------------------------------------------------------------------------------------
@@ -117,11 +117,11 @@ If you need more information on how to use these commands, just refer to our han
 ###### Figure 3
 
 Here is an example workflow to help you better understand the Navigation Guide (Figure 3) better:
-1. Start at the Course Page where you see two modules displayed. 
-2. Type `select 1` to view the groups of the first course. You'll be redirected to the `Group Page`. 
+1. Start at the Course Page where you see two modules displayed.
+2. Type `select 1` to view the groups of the first course. You'll be redirected to the `Group Page`.
 3. Choose to assign grades for `T15` group at index 1 by typing `task 1`. You'll be redirected to the `Task Page`.
-4. You realize you made a mistake and want to mark attendance for the `T16` group instead. Simply type `back` and 
-   you'll be redirected back to the `Group Page`. 
+4. You realize you made a mistake and want to mark attendance for the `T16` group instead. Simply type `back` and
+   you'll be redirected back to the `Group Page`.
 5. To view `Session Page` for `T16` group, type `session 2`. You'll be redirected to the `Session Page` for that group.
 
 --------------------------------------------------------------------------------------------------------------
@@ -323,7 +323,7 @@ Examples:
 - `add course CS2105` will add a new course with module code `CS2105`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Course code can have special characters! i.e. "AY2223S2-CS2103T" 
+Course code can have special characters! i.e. "AY2223S2-CS2103T"
 </div>
 <br>
 
@@ -421,7 +421,7 @@ Examples:
 - `add group L08` will add a new group with group name `L08`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Group names can have special characters! i.e. "AY2223S2-T15" 
+Group names can have special characters! i.e. "AY2223S2-T15"
 </div>
 <br>
 
@@ -649,14 +649,16 @@ Examples:
 - `sort id` will sort list of students alphanumerically according to student ID.
 
 ![image](./images/UiStudentSortName.png)
+###### Figure 7
 ![image](./images/UiStudentSortId.png)
+###### Figure 8
 
 [Back to list of commands](#commands)
 
 ### Displays a student's information: `select`
 
 ![image](./images/UiStudentView.png)
-###### Figure 7
+###### Figure 9
 
 Select a particular student and display his / her particulars.
 
@@ -727,7 +729,7 @@ photo will be displayed in the profile of student with student ID `A0123456X`
 ### Viewing a student's attendance throughout the course: `attendance`
 
 ![image](./images/UiStudentAttendanceView.png)
-###### Figure 8
+###### Figure 10
 
 Shows a summary of a student's attendance in the view pane.
 
@@ -744,7 +746,7 @@ attendance
 ## Session Page Commands
 
 ![image](./images/UiSessionPage.png)
-###### Figure 9
+###### Figure 11
 
 ### Adding a session: `add session`
 
@@ -765,7 +767,7 @@ Examples:
 - `add session Lab3`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Session names can have special characters! i.e. "AY2223S2-Tutorial15" 
+Session names can have special characters! i.e. "AY2223S2-Tutorial15"
 </div>
 
 [Back to list of commands](#commands)
@@ -835,7 +837,7 @@ Examples:
 
 ## Attendance Page Commands
 ![images](./images/UiAttendancePage.png)
-###### Figure 10
+###### Figure 12
 
 ### Marking selected students as present: `mark`
 
@@ -874,7 +876,7 @@ Examples:
 Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
-###### Figure 11
+###### Figure 13
 
 Format:
 ```
@@ -887,7 +889,7 @@ attendance
 
 ## Task Page Commands
 ![image](./images/UiTaskPage.png)
-###### Figure 12
+###### Figure 14
 
 ### Adding a task: `add task`
 
@@ -907,7 +909,7 @@ Examples:
 - `add task Critical Reflection 3`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Did you know?:**
-Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper" 
+Task names can have special characters! i.e. "AY2223S2-Midterm Practice Paper"
 </div>
 <br>
 
@@ -976,7 +978,7 @@ Examples:
 
 ## Grades Page Commands
 ![images](./images/UiGradesPage.png)
-###### Figure 13
+###### Figure 15
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
@@ -998,7 +1000,7 @@ Examples:
 
 ## Glossary
 
-| **Term**              | **Definition**                                                                                            | **Example(s)**                          |                                                             
+| **Term**              | **Definition**                                                                                            | **Example(s)**                          |
 |-----------------------|-----------------------------------------------------------------------------------------------------------|-----------------------------------------|
 | **Course**            | A module that provides a certain level of understanding in a subject area.                                | CS2103T, CS2105                         |
 | **Group**             | A group of students in a Course that can be categorised according to their tutorial, project group, etc.  | T15, Team15                             |
@@ -1007,5 +1009,5 @@ Examples:
 | **Path**              | A string of characters used to uniquely identify a location in a directory structure.                     | C:/Users/AlexYeoh/Desktop/A0123456X.png |
 | **Absolute Path**     | A path that always contains the root element and the complete directory list required to locate the file. | C:/Users/AlexYeoh/Desktop/A0123456X.png |
 | **Relative Path**     | A hierarchical path that locates a file or folder on a file system starting from the current directory.   | ../A1234567X.png                        |
-| **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |                   
-| **Student ID**        | A unique identification number given to a student.                                                        | A1234567X |                              | 
+| **Special Character** | A character that does not fall under the category of either alphabet or a number.                         | -,+,*                                   |
+| **Student ID**        | A unique identification number given to a student.                                                        | A1234567X |                              |

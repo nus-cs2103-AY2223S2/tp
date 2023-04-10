@@ -24,7 +24,7 @@ public class TypicalModel {
      */
     public TypicalModel() {
         Path sampleFilePath = Paths.get("src", "test", "data", "sampleRoster.json");
-        ReadOnlyRoster sampleRoster = SampleDataUtil.getSampleRoster(sampleFilePath, null);
+        ReadOnlyRoster sampleRoster = SampleDataUtil.getTestRoster(sampleFilePath, null);
         Model initModel = new ModelManager(sampleRoster, new UserPrefs());
         Roster typicalRoster = initModel.getRoster();
 

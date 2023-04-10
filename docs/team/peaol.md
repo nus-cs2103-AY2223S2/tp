@@ -34,7 +34,7 @@ To view codes contributed by me: [tP Code Dashboard](https://nus-cs2103-ay2223s2
 - Fixing UG Documentation bugs ([bugs](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/259))
 
 ### Review/Monitoring Contributions
-- Merged teammates' PRs 
+- Merged teammates' PRs
 
 ### Contributions Beyond the Project Team
 - Attended PE-D to catch bugs of Team EduMate ([bugs](https://github.com/peaol/ped/issues))

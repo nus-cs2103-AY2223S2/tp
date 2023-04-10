@@ -570,6 +570,12 @@ public class MainWindow extends UiPart<Stage> {
                 && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
             rightPanelPlaceholder.getChildren().clear();
 
+        } else if (logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+            handleBackCommand();
+            closeSessionTab();
+            closeTaskTab();
+            showGroupTab();
+
         } else if (prevCommand instanceof SelectCommand) {
             handleBackCommand();
 
