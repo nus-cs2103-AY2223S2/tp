@@ -136,7 +136,7 @@ Format: `add n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL c/COMPANY l/LOCATION o/OCCUP
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact must include all fields except tag and have a unique name that is not already in the contact list.
-</div>
+
 
 Examples:
 
@@ -348,6 +348,7 @@ The 2 types of transaction statuses supported are:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 All fields must be provided. Owner needs to be an existing person in the contact list.
+</div>
 
 Examples:
 
@@ -437,8 +438,6 @@ SalesPunch data are saved as a JSON file `[JAR file location]/data/salespunch.js
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SalesPunch will discard all data and start with an empty data file at the next run.
-</div>
-
 ---
 
 ## FAQ
