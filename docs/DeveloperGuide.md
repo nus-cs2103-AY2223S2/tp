@@ -185,8 +185,8 @@ The following sequence diagrams illustrates the description for adding meeting:
   - Pros: Shorter command for user to type
   - Cons: Harder to implement to address for cases where meeting goes past midnight (signifiying a new day).
 
-- **Alternative 2(current choice)**: `INDEX md/ [DESC] ms/ [START DATE & TIME] me/ [END DATE & TIME]` command format 
-  
+- **Alternative 2(current choice)**: `INDEX md/ [DESC] ms/ [START DATE & TIME] me/ [END DATE & TIME]` command format
+
   - Pros: Simpler to implement; can account for meetings that go past midnight
   - Cons: Longer command for user to type
 
@@ -311,13 +311,13 @@ policy names are displayed. The following sequence diagram illustrates the descr
 
 **Aspect: How PolicyTag works:**
 
-- **Alternative 1(current choice)**: Convert `Tag` class to `PolicyTag` 
+- **Alternative 1(current choice)**: Convert `Tag` class to `PolicyTag`
     - Pros: Just simple refactoring of class name
     - Cons: Allows keywords not related to financial policies to be parsed
 
 - **Alternative 2(future plan)**: Ensure `PolicyTag` accepts a set of names only
-    
-    - Pros: Ensures PolicyTag names have financial policies only 
+
+    - Pros: Ensures PolicyTag names have financial policies only
 
 ### \[Proposed\] Undo/redo feature
 
@@ -644,11 +644,11 @@ testers are expected to do more *exploratory* testing.
 ## Appendix: Planned/Proposed Enhancements to known Feature Flaws
 
 1. Currently, the meetings in the list shown by `listMeeting` command is unsorted as it can affect other commands adversely. We plan to sort meetings in that list by chronological order without affecting other commands.
-2. Currently, meetingRemove and meetingUpdate has `CLIENT_INDEX` and `MEETING_INDEX` as inputs. `MEETING_INDEX` refers to the the index of meeting list given by `meetingFind CLIENT_INDEX`. We plan to rework meetingRemove and meetingUpdate to take in only one index instead of two indexes - the sole index will refer to 
+2. Currently, meetingRemove and meetingUpdate has `CLIENT_INDEX` and `MEETING_INDEX` as inputs. `MEETING_INDEX` refers to the the index of meeting list given by `meetingFind CLIENT_INDEX`. We plan to rework meetingRemove and meetingUpdate to take in only one index instead of two indexes - the sole index will refer to
 the list shown by `listMeeting`.
 3. Currently, PolicyTag accepts any keywords to be set as the name. We plan to rework PolicyTag to only allow a set of PolicyTag names to accept only financial policies
 4. Currently there is no way to manually set the region of a person, and addresses that the detector doesn't recognise will be
-   defaulted to Unknown. One possible enhancement is to allow a `setRegion` command that allows users to set region manually 
+   defaulted to Unknown. One possible enhancement is to allow a `setRegion` command that allows users to set region manually
    and also edit regions that the detector has detected wrongly.
 5. The `DESCRIPTION` parameter of all meeting commands will take in more than just alphanumberical inputs. However, we intend to
 rework this so that it will only be able to accept alphanumerical inputs.
