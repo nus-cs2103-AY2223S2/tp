@@ -59,6 +59,13 @@ public class PatientCard extends UiPart<Region> {
         discharge.setText(patient.getDischargeString());
     }
 
+    /**
+     * Overrides equality check for PatientCard to compare two patient cards by
+     * the NRICs and the patients.
+     *
+     * @param other Object to check equality with.
+     * @return Boolean indicating whether objects are equal.
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
