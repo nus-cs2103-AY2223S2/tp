@@ -152,7 +152,8 @@ public class ScoreListPanel extends UiPart<Region> {
         average.setSortable(false);
         percentage.setSortable(false);
 
-        //Due to the nature of callback and setCellFactory, it will be difficult to extract them out as a single method.
+        // Due to the nature of callback and setCellFactory,
+        // it will be difficult to extract them out as a single method.
         maxScore.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
             public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
                 return new TableCell<ScoreSummary, Double>() {
@@ -177,7 +178,8 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         });
 
-        //Due to the nature of callback and setCellFactory, it will be difficult to extract them out as a single method.
+        // Due to the nature of callback and setCellFactory,
+        // it will be difficult to extract them out as a single method.
         minScore.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
             public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
                 return new TableCell<ScoreSummary, Double>() {
@@ -202,7 +204,8 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         });
 
-        //Due to the nature of callback and setCellFactory, it will be difficult to extract them out as a single method.
+        // Due to the nature of callback and setCellFactory,
+        // it will be difficult to extract them out as a single method.
         average.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
             public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
                 return new TableCell<ScoreSummary, Double>() {
