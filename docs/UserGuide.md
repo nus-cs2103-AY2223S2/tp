@@ -478,12 +478,12 @@ PCs data are saved in the hard disk automatically after any command that changes
 
 PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="block" class="alert alert-warning">
 
 :exclamation: **Caution:**<br>  
 
-- If your changes to the data file make its format invalid, PowerCards will start with an empty data file on the next run. 
-- Do **not** type in any command as this will overwrite and discard your previous data! Simply close the application manually and edit the data file again until it is in valid format. 
+* If your changes to the data file make its format invalid, PowerCards will start with an empty data file on the next run. 
+* Do **not** type in any command as this will overwrite and discard your previous data! Simply close the application manually and edit the data file again until it is in valid format. 
 
 </div>
 
