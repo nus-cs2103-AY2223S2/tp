@@ -33,7 +33,7 @@ I implemented the exporting and importing features of Le Tracker:
 
 - **Exporting modules**, so that users don't have to worry about losing the data. Users may also want to export modules to a file, which serves as an archive, so that they can keep track of the productivity level and learning process after the semester ends.
 
-- `**Importing modules**, so that users may revise specific concepts from the modules they previously took. user can also use the feature to track productivity level during a semester. 
+- `**Importing modules**, so that users may revise specific concepts from the modules they took. User can also use the feature to track productivity level during a semester. 
 
 To implement said features, an `Archive` class was adapted from AB3's JSONStorage.
 
