@@ -352,7 +352,6 @@ Format: `deleteward INDEX`
 - You will not be able to delete a ward that currently has patients assigned to it.
 </div>
 
-<div markdown="block" class="alert alert-info">
 
 Examples:
 
