@@ -107,7 +107,7 @@ For more information on **navigation**, please view the [navigation section](#na
 
 ### Tutorials and Examples
 
-:information_source: Both scenarios achieve the same results, the difference lies in the context system used. You may try on either one of the scenario. If you are familiar with [navigation](#navigation), try out `Scenario 2` to be more comfortable with the syntax. If not, try out `Scenario 1` to gain a better understanding of how [navigation](#navigation) works.
+:information_source: Both scenarios achieve the same results, the difference lies in the context system used. You may try either one of the scenarios. If you are familiar with [navigation](#navigation), try out `Scenario 2` to be more comfortable with the syntax. If not, try out `Scenario 1` to gain a better understanding of how [navigation](#navigation) works.
 
 Scenario 1 - Using [Navigation](#navigation)
 
@@ -117,13 +117,13 @@ Scenario 1 - Using [Navigation](#navigation)
 1. To add a lecture, execute `add Week 1`.
 1. To navigate into lecture `Week 1`, execute `nav Week 1`.
 1. To add a video, execute `add Vid 1`.
-1. To add a timestamp, execute `edit Vid 1 /timestamp 10:20:15`.
+1. To edit a timestamp, execute `edit Vid 1 /timestamp 01:20:15`.
 1. To mark video as watched, execute `mark Vid 1`.
 1. To change video name to `video 1`, execute `edit Vid 1 /name video 1`.
 1. To delete a video, execute `delete video 1`.
 1. To navigate back into module `CS2103` and list it's lectures, execute `navb`.
 1. To add a tag of `Intro`, execute `edit Week 1 /tags Intro`.
-1. To remove a tag of `Intro`, execute `untag Week 1 /tags Intro`
+1. To remove a tag of `Intro`, execute `untag Week 1 /tags Intro`.
 1. To navigate back to root context and list all modules, execute `nav` or `navb`.
 
 Scenario 2 - Not using [Navigation](#navigation)
@@ -132,14 +132,14 @@ Scenario 2 - Not using [Navigation](#navigation)
 1. To add a tag of `BestModule`, execute `tag CS2103 /tags BestModule`.
 1. To add a lecture, execute `add Week 1 /mod CS2103`.
 1. To add a video, execute `add Vid 1 /mod CS2103 /lec Week 1`.
-1. To add a timestamp, execute `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
+1. To edit a timestamp, execute `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 01:20:15`.
 1. To list videos, execute `list /mod CS2103 /lec Week 1`.
 1. To mark video as watched, execute `mark Vid 1 /mod CS2103 /lec Week 1`.
 1. To change video name to `video 1`, execute `edit Vid 1 /mod CS2103 /lec Week 1 /name video 1`.
 1. To delete a video, execute `delete video 1 /mod CS2103 /lec Week 1`.
 1. To list lectures, execute `list /mod CS2103`.
 1. To add a tag of `Intro`, execute `edit Week 1 /mod CS2103 /tags Intro`.
-1. To remove a tag of `Intro`, execute `untag Week 1 /mod CS2103 /tags Intro`
+1. To remove a tag of `Intro`, execute `untag Week 1 /mod CS2103 /tags Intro`.
 1. To list all modules, execute `list`.
 
 :clap: That covers all the main commands. Refer to the [Command Manual](#command-manual) section for details of each command. Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch.
@@ -170,7 +170,7 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
 3. An ellipsis (i.e. `...`) indicates that **multiple** values can be provided.
    <details>
    <summary>Example</summary>
-   For a command with format <code>tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]</code>, the <code>/tag</code> argument can take multiple values. The command can be used as <code>tag CS2040S /tags Heavy, Hard, Math, Analysis</code>.
+   For a command with format <code>tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]</code>, the <code>/tags</code> argument can take multiple values. The command can be used as <code>tag CS2040S /tags Heavy, Hard, Math, Analysis</code>.
    </details>
    <p></p>
 
@@ -430,7 +430,7 @@ The code of the module that contains the lecture specified in `lecture_name`
 
 ### Find
 
-:exclamation: This is a case insensitive search and matches a target that starts with the search term.\
+:exclamation: This is a case insensitive search and matches a target that **starts with** the search term.\
 E.g:
 
 |Type|Data|Keyword|Matched|
@@ -443,9 +443,9 @@ E.g:
 
 > `find {keywords} [/byTag]`
 
-Find all modules whose code starts with any of the keyword(s).
+Find all modules whose code **starts with** any of the keyword(s).
 
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for modules whose tag list contains any tag that starts with any of the keyword(s)
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for modules whose tag list contains any tag that **starts with** any of the keyword(s)
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -466,12 +466,11 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 > `find {keywords} /mod {module_code} [/byTag]`
 
-Find all lectures in a specified module whose name starts with any of the keyword(s).
+Find all lectures in a specified module whose name **starts with** any of the keyword(s).
 
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
-
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specified module whose tag list contains any tag that **starts with** any of the keyword(s)
 
 <details open>
 <summary>Example</summary>
@@ -491,13 +490,13 @@ Find all lectures in a specified module whose name starts with any of the keywor
 
 > `find {keywords} /mod {module_code} /lec {lecture_name} [/byTag]`
 
-Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s).
+Find all videos in a specified lecture in a specified module whose name **starts with** any of the keyword(s).
 
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the specified `module_code`
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that **starts with** any of the keyword(s)
 
 <details open>
 <summary>Example</summary>
