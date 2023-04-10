@@ -18,12 +18,12 @@ activate factory LOGIC_COLOR
 create command
 factory -[LOGIC_COLOR]> command : command
 activate command LOGIC_COLOR
-command -[LOGIC_COLOR]> factory : command
+command --[LOGIC_COLOR]> factory : command
 deactivate command
-factory -[LOGIC_COLOR]> parser : command
+factory --[LOGIC_COLOR]> parser : command
 deactivate factory
 end
-parser -[LOGIC_COLOR]> parser : command
+parser --[LOGIC_COLOR]> parser : command
 deactivate parser
 alt command is empty
 parser -[LOGIC_COLOR]> parser : parseGroup(mode, input)
@@ -37,21 +37,21 @@ activate factory LOGIC_COLOR
 create command
 factory -[LOGIC_COLOR]> command : command
 activate command LOGIC_COLOR
-command -[LOGIC_COLOR]> factory : command
+command --[LOGIC_COLOR]> factory : command
 deactivate command
-factory -[LOGIC_COLOR]> gp : command
+factory --[LOGIC_COLOR]> gp : command
 deactivate factory
 end
-gp -[LOGIC_COLOR]> parser : command
+gp --[LOGIC_COLOR]> parser : command
 deactivate gp
 end
-parser -[LOGIC_COLOR]> parser : command
+parser --[LOGIC_COLOR]> parser : command
 deactivate parser
 end
-parser -[LOGIC_COLOR]> logic : command
+parser --[LOGIC_COLOR]> logic : command
 deactivate parser
 logic -[LOGIC_COLOR]> command : execute(model)
 activate command LOGIC_COLOR
-command -[LOGIC_COLOR]> logic : result
+command --[LOGIC_COLOR]> logic : result
 deactivate command
 @enduml
