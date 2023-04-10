@@ -11,6 +11,7 @@ Class "<<interface>>\nModel" as Model
 Class Elister
 Class ModelManager
 Class UserPrefs
+Class InputHistory
 
 Class UniquePersonList
 Class Person
@@ -30,6 +31,7 @@ Elister .up.|> ReadOnlyElister
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyElister
+ModelManager --left-> "1" InputHistory
 ModelManager -left-> "1" Elister
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs

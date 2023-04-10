@@ -11,6 +11,11 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
+package "InputHistory Storage" #F4F6F6{
+Class "<<interface>>\nInputHistoryStorage" as InputHistoryStorage
+Class TxtInputHistoryStorage
+}
+
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
@@ -30,9 +35,13 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" ElisterStorage
+StorageManager -up-> "1" InputHistoryStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> ElisterStorage
+Storage -right-|> InputHistoryStorage
+
+TxtInputHistoryStorage .up.|> InputHistoryStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonElisterStorage .up.|> ElisterStorage
