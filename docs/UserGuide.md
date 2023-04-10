@@ -67,16 +67,17 @@ sections as needed.
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
-| **Symbol/ Format**   | **Meaning**                                                                                                                                                                                                                                                                                               |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 'p'/ 'd'/ 'g'        | Commands starting with 'p' are patient commands, those starting with 'd' are drug commands and those starting with 'g' are general commands.                                                                                                                                                              |
-| :information_source: | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
-| :exclamation:        | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
-| UPPER_CASE           | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
-| ...UPPER_CASE        | Words in UPPER CASE prefixed with ellipsis are the parameters that accepts multiple arguments. E.g. in `p find ...PATIENT_NAME`, you can indicate multiple names for the `PATIENT_NAME` parameter. So commands such as `p find Yu Yeoh` and `p find a b c d`are valid commands.                           |
-| [brackets]           | Items in square brackets are optional. E.g. `update -n NAME [-ph PHONE]` can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                               |
-| `command`            | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                     |
-| [1. About](#1-about-this-user-guide) | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
+| **Symbol/ Format**                                    | **Meaning**                                                                                                                                                                                                                                                                                               |
+|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 'p'/ 'd'/ 'g'                                         | Commands starting with 'p' are patient commands, those starting with 'd' are drug commands and those starting with 'g' are general commands.                                                                                                                                                              |
+| :information_source:                                  | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
+| :exclamation:                                         | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
+| UPPER_CASE                                            | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
+| ...UPPER_CASE                                         | Words in UPPER CASE prefixed with ellipsis are the parameters that accepts multiple arguments. E.g. in `p find ...PATIENT_NAME`, you can indicate multiple names for the `PATIENT_NAME` parameter. So commands such as `p find Yu Yeoh` and `p find a b c d`are valid commands.                           |
+| [brackets]                                            | Items in square brackets are optional. E.g. `update -n NAME [-ph PHONE]` can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                               |
+| `command`                                             | The grey highlighting boxes indicates that the word is a command to be entered by the user.                                                                                                                                                                                                               |
+| <span style="background-color: #6E7373">button</span> | The grey highlighting indicates that the word in a button to click, either on the Careflow interface or physical buttons/keys on your own laptop. eg. <span style="background-color: #6E7373">Open Url</span>, <span style="background-color: #6E7373">Enter</span>                                       |
+| [1. About](#1-about)                                  | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
 
 <p align="center">
   <i>Table 1. Symbols and formats used in this User Guide.</i>
@@ -99,7 +100,7 @@ Throughout this user guide, you may come across different formatting styles and 
       <summary> I. Installing Java 11 on Windows: </summary>
       <ul>
       <li>
-      To install Java 11 on Window, you have to first <span style="color:orange">download the jdk installer</span> and then <span style="color:orange">run the jdk installer</span> to install Java 11. 
+      To install Java 11 on Window, you have to first download the jdk installer and then run the jdk installer to install Java 11. 
       </li>
       <br/>
       <li>
@@ -109,7 +110,7 @@ Throughout this user guide, you may come across different formatting styles and 
           <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
           </p>
         <p align="center">
-          <i>Figure 2. Screenshot of the 'Downloading the JDK Installer' section on the link given.</i>
+          <i>Figure 2. Screenshot of the Downloading the JDK Installer section on the link given.</i>
           </p>
         </li>
       <br/>
@@ -119,7 +120,7 @@ Throughout this user guide, you may come across different formatting styles and 
             <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
           </p>
         <p align="center">
-          <i>Figure 3. Screenshot of the 'Java SE Downloads' page.</i>
+          <i>Figure 3. Screenshot of the Java SE Downloads page.</i>
           </p>
       </li>
 
@@ -142,7 +143,7 @@ Throughout this user guide, you may come across different formatting styles and 
           <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:16.1%">
           </p>
           <p align="center">
-          <i>Figure 5. Screenshot of Java SE 11 download page with download link for 'Windows x64' circled.</i>
+          <i>Figure 5. Screenshot of Java SE 11 download page with download link for Windows x64 circled.</i>
           </p>
           <p align="center">
           <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:15%">
@@ -185,11 +186,11 @@ Throughout this user guide, you may come across different formatting styles and 
        </details>
        </details>
 
-2. Download the latest `careflow.jar` jar file from <a href="https://github.com/AY2223S2-CS2103T-W09-3/tp/releases">here</a>.
+2. Download the latest jar (careflow.jar) file from <a href="https://github.com/AY2223S2-CS2103T-W09-3/tp/releases">here</a>.
 
-3. Copy the jar file to the folder you want to use as the home folder for your careflowBook. For instance, you can create a folder `CareFlow` on your desktop and put the jar file inside.
+3. Copy the jar file to the folder you want to use as the home folder for your careflowBook. For instance, you can create a folder named CareFlow on your desktop and put the jar file inside.
 
-4. Open a `command terminal`
+4. Open a command terminal
    <details>
    <summary>Click here for more information on how to open a command terminal</summary>
       <details>
@@ -262,7 +263,7 @@ Throughout this user guide, you may come across different formatting styles and 
    </ul>
 
    </details>
-6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. An application similar to the one shown below should appear in a few seconds. Note that the app contains some sample data.
+6. Type the `java -jar careflow.jar` command into your command terminal and hit <span style="background-color: #6E7373">Enter</span> to run the application. An application similar to the one shown below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
     <img src="images/UGscreenshots/ug_desc_diagram_001.png" style="zoom:100%">
   </p>
@@ -283,8 +284,8 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
     </p>
-    
-7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`g help`** and hit `Enter` will open the help window.<br/>
+
+7. You can now start typing some command into the command box at the bottom and hit <span style="background-color: #6E7373">Enter</span> to execute it. e.g. type in **`g help`** and hit <span style="background-color: #6E7373">Enter</span> will open the help window.<br/>
    <details>
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
@@ -349,7 +350,7 @@ are committed to constantly improving our software to meet your needs.
 This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
-### View help
+<h3>View help</h3>
 * Feeling stuck or lost? Follow the link shown on the pop-up window to see a comprehensive guide on the functionalities of CareFlow.
   <br/><br/>
   <p align="left">
@@ -360,7 +361,7 @@ drug of CareFlow.
   </p>
   <br/>
 * **Format:** `g help`
-<div markdown="block" class="alert alert-success">:information_source:  **Note:** Clicking** on `Open URL` button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
+<div markdown="block" class="alert alert-warning">:information_source:  **Note:** Clicking** on <span style="background-color: #6E7373">Open URL</span> button will open the CareFlow User Guide on a new tab if you already have a browser window opening OR a new browser window otherwise.
 </div>
 <br/>
 
@@ -368,7 +369,7 @@ drug of CareFlow.
 
 <br/>
 
-### Exit the program
+<h3>Exit the program</h3>
 * Done with your session? You can exit the program with this command, your data will be automatically saved to the hard disk.
 * **Format:** `g exit`
 <div markdown="block" class="alert alert-success">:information_source:   **Note:** Executing this command has the same effect as directly closing the application window
@@ -383,7 +384,7 @@ ___
 
 ## 4.2 Patient Commands
 
-### Add a Patient record
+<h3>Add a Patient record</h3>
 * Have a new patient visiting your clinic for the first time? You can use this command to add a new patient to the patient records.
   &nbsp;
 * **Format:** `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]`
@@ -403,7 +404,7 @@ ___
 | EMERGENCY_CONTACT_NUMBER | same constraint as PHONE_NUMBER.                                                                                                                                                                                                                                                                                                                                                                                                                                        | +(65)-1234 5678                       |
 
 * **Example:** `p add -n John Doe -ph 91234567 -em johndoe@example.com -ad John Street, Block 123, #01-01 -dob 09-09-2000 -g male -ic S9284729C -da Xanax -ec 81234567`
-    * Type the command into the command box and hit `Enter`
+    * Type the command into the command box and hit <span style="background-color: #6E7373">Enter</span>
       <p align="center">
         <img src="images/UIscreenshots/patientSS/patientAdd.png" style="zoom:100%">
       </p>
@@ -434,7 +435,7 @@ ___
 
 <br/>
 
-### Delete a patient record by NRIC
+<h3>Delete a patient record by NRIC<h3>
 * Trying to remove an irrelevant or dated patient record? This command deletes the specified patient from the patient list
   and records.
   \
@@ -443,7 +444,7 @@ ___
   \
   &nbsp;
 * **Example:** `p delete -ic S9284729C`
-    * Type the command into the command box and hit `Enter`
+    * Type the command into the command box and hit <span style="background-color: #6E7373">Enter</span>
         <p align="center">
               <img src="images/UIscreenshots/patientSS/pdeleteic.png" style="zoom:100%">
         </p>
@@ -470,7 +471,7 @@ ___
 
 <br/>
 
-### Delete a patient record by index
+<h3>Delete a patient record by index</h3>
 * Trying to remove an irrelevant or dated patient record without using their NRIC? You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
     * The index refers to the index number shown in the displayed person list.
     * The index must be a positive integer 1, 2, 3, …​
@@ -519,7 +520,7 @@ ___
 
 <br/>
 
-### Update a patient by name
+<h3>Update a patient by name</h3>
 
 * A patient reports a change of address, phone number, or any other information? You can easily update the information of that patient with the `p update` command.
   \
@@ -555,7 +556,7 @@ ___
 
 <br/>
 
-### Retrieve a patient record by name
+<h3>Retrieve a patient record by name</h3>
 * Need to promptly search for a specific patient record? You can quickly retrieve the information of a patient by searching with his or her name.
   \
   &nbsp;
@@ -583,7 +584,7 @@ ___
 [↑ Back to top](#top)
 <br/>
 
-### View a patient's full information
+<h3>View a patient's full information</h3>
 
 
 * Need to view additional information of a patient record? You can view detailed information of a patient with the `view` command.
@@ -610,7 +611,7 @@ The full detail of the retrieved patient will be shown on the right side of the 
 <br/>
 
 
-### Clear all patient records
+<h3>Clear all patient records</h3>
 
 * Wish to terminate your subscription with CareFlow and move to another system? :pensive:
 You can also clear all patient records.
@@ -638,7 +639,7 @@ Use this with command with caution!
 <br/>
 
 
-### List all patient records
+<h3>List all patient records</h3>
 
 * Want to have an overview of patient records? You can use the `list` command to see the list of
   all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
@@ -668,7 +669,7 @@ ___
 
 ## 4.3 Drug Commands
 
-### Add a drug entry
+<h3>Add a drug entry</h3>
 * Decided to prescribe a new drug? You can add a new drug to the list of drug records with the `d add` command.
   \
   &nbsp;
@@ -698,7 +699,7 @@ ___
 <br/>
 
 
-### Delete a drug entry by TRADE_NAME
+<h3>Delete a drug entry by TRADE_NAME</h3>
 * Decided to stop prescribing a certain drug? You can also delete the specified drug with the
   `d delete` command by specifying the trade name of the drug.
   \
@@ -731,7 +732,7 @@ ___
 <br/>
 
 
-### Delete a drug entry by INDEX
+<h3>Delete a drug entry by INDEX</h3>
 * Decided to stop prescribing a certain drug? You can also delete a specified drug from the drug list
   by specifying its index in the given drug list.
   \
@@ -767,7 +768,7 @@ ___
 <br/>
 
 
-### Update storage count of a drug entry
+<h3>Update storage count of a drug entry</h3>
 * Dispensed or restocked a certain drug? You can update the storage count of specified drug entry
 by specifying the trade name.
   \
@@ -807,7 +808,7 @@ by specifying the trade name.
 <br/>
 
 
-### Retrieve a drug entry by TRADE_NAME
+<h3>Retrieve a drug entry by TRADE_NAME</h3>
 * Need to access a drug information swiftly? You can quickly retrieve the information of
   a specific drug by using the `d find` command and specify the trade name of the drug you want to search.
   \
@@ -840,7 +841,7 @@ by specifying the trade name.
 <br/>
 
 
-### Clear all drug entries
+<h3>Clear all drug entries</h3>
 * Need to empty your dispensary and drug records? You can clear all records of drugs.
 <div markdown="block" class="alert alert-warning">
   :exclamation: **Caution:**Use this with command with caution!
@@ -865,7 +866,7 @@ by specifying the trade name.
 <br/>
 
 
-### List all drug entries
+<h3>List all drug entries</h3>
 * Want to have an overview of all drug records? You can view all drug records currently stored in the CareFlow system by
   using the `d list` command, drug records will be presented in alphabetical order.
   \
@@ -892,7 +893,7 @@ by specifying the trade name.
 <br/>
 
 
-### View a drug by index
+<h3>View a drug by index</h3>
 * Need to view additional information of a drug record? You can view detailed information of
 a drug in the CareFlow. The full details of the selected drug will be shown on the right side of the application.
 * Index refers to the index number shown in the displayed drug list.
