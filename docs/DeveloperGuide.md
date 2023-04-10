@@ -26,8 +26,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
+</div> 
 
 ### Architecture
 
@@ -39,13 +38,16 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/MainApp.java).
+
+It is responsible for:
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -95,6 +97,7 @@ Here is a (partial) class diagram of the `Logic` component:
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `DengueHotspotTrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a case).
@@ -154,8 +157,7 @@ Overall, we have this flow:
 1. Doing so will create a new `XYZAnalyst` object with the given `Person` list as the input.
 1. Upon instantiation of `XYZAnalyst`, the input list is sorted into `DataBin` objects.
 1. The summary of the data can then be obtained.
-
-</div>
+</div> 
 
 ### Storage component
 
@@ -345,16 +347,16 @@ The following sequence diagram summarises what happens when a user executes a Pr
 **Aspect: How find-by-prefix handles inputs that do not make sense (e.g. numerics in names, non-existent postal codes)**
 
 * **Alternative 1:** Accepts the user input and executes the find command as per usual.
-    * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
-      would not have to change if new postal codes were to be implemented.
-    * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
-      what they keyed in.
+  * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
+  would not have to change if new postal codes were to be implemented.
+  * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
+    what they keyed in.
 
 * **Alternative 2 (current choice):** Displays a message indicating that the input is erroneous for the first erroneous
   prefix detected.
-    * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their
-      input may be unintended.
-    * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
+  * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their
+  input may be unintended.
+  * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
 
 ### Find-by-range feature
 
@@ -375,14 +377,14 @@ The following activity diagram summarises what happens when a user enters a find
 
 * **Alternative 1:** Accepts the user input and executes the find command as per usual, showing success message of zero
 cases found.
-    * Pros: It is a straightforward approach that requires minimal development effort.
-    * Cons: It may confuse users who are not familiar with the range syntax and are unaware that their input is
+  * Pros: It is a straightforward approach that requires minimal development effort.
+  * Cons: It may confuse users who are not familiar with the range syntax and are unaware that their input is
   invalid and will always show zero cases found. 
 
 * **Alternative 2 (current choice):** Displays a message indicating that the input range is erroneous.
-    * Pros: In the case of the user unknowingly making an erroneous input, there would be an indication to the user
+  * Pros: In the case of the user unknowingly making an erroneous input, there would be an indication to the user
   that their input may be unintended.
-    * Cons: It is no longer as straightforward in development due to requiring validation checkers for the separate
+  * Cons: It is no longer as straightforward in development due to requiring validation checkers for the separate
   date ranges and age ranges.
 
 **Aspect: How find-by-range handles only one of the range prefix of the two are present**
@@ -390,16 +392,16 @@ cases found.
 * **Alternative 1 (current choice):** Accepts the user input and executes the find command, finding all cases that
 matches after the start of a range if only the start range prefixes are used, or any cases that matches before the end
 of a range if only the end range prefixes are used.
-    * Pros: It provides more functionality and convenience to the user if they only want to find cases that matches
-      after a certain start of a range, or before a certain end of a range.
-    * Cons: It may confuse users who are not familiar with the range syntax as it is more difficult to understand that
+  * Pros: It provides more functionality and convenience to the user if they only want to find cases that matches
+  after a certain start of a range, or before a certain end of a range.
+  * Cons: It may confuse users who are not familiar with the range syntax as it is more difficult to understand that
   the prefixes could be either used simultaneously or individually.
 
 * **Alternative 2:** The range prefixes must come in a pair, displaying a message indicating that the user input is
 erroneous otherwise.
-    * Pros: It requires minimal development effort, and it is less confusing to the user as fixing range as a pair is
+  * Pros: It requires minimal development effort, and it is less confusing to the user as fixing range as a pair is
   a simple-to-understand implementation.
-    * Cons: The range prefixes are less flexible, and less convenient if the user only wants to find cases that matches
+  * Cons: The range prefixes are less flexible, and less convenient if the user only wants to find cases that matches
   after a certain start of a range, or before a certain end of a range.
 
 ### Sort feature
@@ -425,8 +427,7 @@ The following sequence diagram shows how the sort operation works:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** Sorting is performed directly on the **entire** list. Sorting is also **permanent**, i.e. it cannot be undone.
-
-</div>
+</div> 
 
 ### Undo/redo feature
 
@@ -464,8 +465,7 @@ Step 3. The user executes `add n/David d/2000 31 January...` to add a new case. 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** If a command fails its execution, it will not call `Model#saveChanges()`, so the Dengue Hotspot Tracker state will not be saved into the `TemporaryMemory`.
-
-</div>
+</div> 
 
 Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command pops an item from the primary `Deque` in `TemporaryMemory`, and pushes it into the auxiliary storage `Stack`. The new top-level item in the primary `Deque` stack will be read in as the current file.
 
@@ -475,8 +475,7 @@ Step 4. The user now decides that adding the case was a mistake, and decides to 
 
 **:information_source: Note:** If there is only 1 element in the `Deque`, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `TemporaryMemory#canUndo` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
-
-</div>
+</div> 
 
 Step 5. The user again decides that adding the case was not a mistake, and decides to redo the action by executing the `redo` command. The `redo` command pops an item from the auxiliary `Stack` in `TemporaryMemory` and pushes it back into the primary stack `Deque`, where it is being read as the current file.
 
@@ -493,8 +492,7 @@ The following activity and sequence diagrams shows how the undo operation works:
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
+</div> 
 
 The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
@@ -975,8 +973,7 @@ Given below are instructions to test the app manually.
 
 **:information_source: Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
-</div>
+</div> 
 
 ### Launch and shutdown
 
