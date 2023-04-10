@@ -6,6 +6,7 @@ import static seedu.address.model.entity.Character.CharacterBuilder;
 import static seedu.address.model.entity.Item.ItemBuilder;
 import static seedu.address.model.entity.Mob.MobBuilder;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.MakeCommand;
@@ -18,7 +19,11 @@ import seedu.address.model.entity.Name;
  * Parses input arguments and creates a new AddCommand object
  */
 public class MakeCommandParser implements Parser<MakeCommand> {
-
+    // Arguments should have the format: CLASSIFICATION NAME
+    // Example: char John Cena
+    private static final Pattern COMMAND_FORMAT = Pattern.compile(
+            "^(?<classification>\\w+)\\s+(?<name>.+)$"
+    );
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand and returns an AddCommand object
      * for execution.
@@ -26,19 +31,22 @@ public class MakeCommandParser implements Parser<MakeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public MakeCommand parse(String args) throws ParseException {
-        boolean isValidCommand = Pattern.matches("^(char|item|mob|c|i|m)(\\s+[\\w]+)+$", args.trim());
-        if (!isValidCommand) {
-            // Check what kind of invalid command it is
-            boolean hasRightFields = Pattern.matches(".*((\\s+[\\w]+)+)$", args.trim());
-            if (!hasRightFields) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE));
-            }
+        final Matcher matcher = COMMAND_FORMAT.matcher(args.trim());
+
+        // Arguments have the wrong format
+        boolean hasInvalidFormat = !matcher.matches();
+        if (hasInvalidFormat) {
+            String errorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE);
+            throw new ParseException(errorMessage);
         }
-        String[] split = args.trim().split("\\s+", 2);
-        Name name = ParserUtil.parseName(split[1]);
-        Classification classification = ParserUtil.parseClassification(split[0]);
+
+        final String classificationString = matcher.group("classification");
+        final String nameString = matcher.group("name");
+
+        Name name = ParserUtil.parseName(nameString);
+        Classification classification = ParserUtil.parseClassification(classificationString);
+        assert name != null;
+        assert classification != null;
 
         Entity newEntity = null;
         if (classification.isCharacter()) {

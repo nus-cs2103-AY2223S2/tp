@@ -7,7 +7,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents the classification of an entity: char (template), item or mob
  */
 public class Classification {
-
     public static final String MESSAGE_CONSTRAINTS =
         "Classifications can only be char, item or mob, and should not be left blank.";
 
