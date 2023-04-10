@@ -5,6 +5,7 @@ title: User Guide
 
 * Table of Contents
 {:toc}
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
@@ -137,7 +138,7 @@ This section provides a quick rundown of the various components of MyLib's user 
 
    <img width="680" src="images/annotated-UI.png">
 
-### Purposes of each GUI component
+### Purpose of each GUI component
 
 |     Component      |                          Purpose                          |
 |:------------------:|:---------------------------------------------------------:|
@@ -189,6 +190,7 @@ This section provides an in-depth explanation of MyLib's commands. For a quick r
 * Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `genre`, `tags` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
+
 <div style="page-break-after: always;"></div>
 
 ### Tag Commands
@@ -260,6 +262,8 @@ Examples:
     * Adds a bookmark for a fantasy novel called Solo Leveling, authored by Chugong, giving it a rating of 4 and with the last read chapter being the 110th chapter.
 * `add n/The Odyssey g/Action`
     * Adds a bookmark for a book called The Odyssey with the Action genre. All other items are optional and are left empty.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a bookmark : `delete`
 
@@ -355,7 +359,7 @@ Format: `list`
 
 ### Viewing a bookmark's details : `view`
 
-Displays details of Bookmark in the right side panel.
+Display details of Bookmark on the right side panel.
 
 Format: `view INDEX`
 
@@ -368,6 +372,8 @@ Examples:
 * `find n/Chainsaw Man` followed by `goto 1` displays 1st bookmark in the results of the `find` command.
 
 ![View](images/View-command.png)
+
+
 <figcaption style="text-align:center"><em><strong>
    Figure 2
    </strong>
