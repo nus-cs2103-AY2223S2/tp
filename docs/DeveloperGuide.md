@@ -1292,8 +1292,7 @@ These commands should be tested on the Grades Page.
 ## Appendix: Effort
 ##### Multiple Object Types
 One of the main challenges we faced was establishing dependencies between the various object types in a way that
-ensured consistency and minimized data duplication. This required careful consideration of the various use cases and
-edge cases that could arise during the management of the student roster. This is in contrast to AB3 which has only 1 main object type (`Person`) to manipulate in the `AddressBook`.
+ensured consistency and minimized data duplication. This is in contrast to AB3 which has only 1 main object type (`Person`) to manipulate in the `AddressBook`.
 Detailed implementation is described under [Implementation](#student-roster-object-types).
 
 ##### Page Navigation
