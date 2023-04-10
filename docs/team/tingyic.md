@@ -7,7 +7,7 @@ title: Chew Ting Yi's Project Portfolio Page
 
 ## Overview
 
-Welcome to **Chew Ting Yi's** personal Project Portfolio Page!
+Welcome to **Chew Ting Yi's** personal **Project Portfolio Page**!
 
 **coNtactUS** is a **module tracker** created specially for ***NUS computing students***, by ***NUS computing
 students***. It is optimised for use via typing instead of clicking, which has been shown to be faster. This helps
@@ -15,15 +15,15 @@ students***. It is optimised for use via typing instead of clicking, which has b
 who are familiar with the problems that the students face on a daily basis, **coNtactUS** is here to **make module
 tracking an effortless process**.
 
-### My contribution to the project
-
-coNtactUS is written in **Java**. The development team consists of 4 intermediate student developers, including myself. 
-Given below are my contributions to the project.
-
 
 <div style="page-break-after: always;"></div>
 
 
+
+### My contribution to the project
+
+coNtactUS is written in **Java**. The development team consists of 4 intermediate student developers, including myself. 
+Given below are my contributions to the project.
 #### Feature and enhancements
 
 * **New feature**: Added the ability for users to enter `teacher` to a module in the module tracker.
