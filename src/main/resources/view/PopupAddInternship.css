@@ -1,0 +1,27 @@
+.primary-button {
+    -fx-background-color: #55CEFF;
+    -fx-background-radius: 8;
+    -fx-text-fill: #2d3f4d;
+}
+
+.primary-button:hover {
+    -fx-background-color: #3769FF;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #0072A0;
+}
+
+.add-button {
+    -fx-background-color: #B5B7BB;
+    -fx-background-radius: 8;
+    -fx-text-fill: #2d3f4d;
+}
+
+.add-button:hover {
+    -fx-background-color: #A8A9AD;
+}
+
+.add-button:pressed {
+    -fx-background-color: #757575;
+}

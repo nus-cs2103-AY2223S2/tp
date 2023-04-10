@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ContactParser" as ContactParser LOGIC_COLOR
+participant ":EditContactCommandParser" as EditContactCommandParser LOGIC_COLOR
+participant "a:EditContactCommand" as EditContactCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(edit_contact)
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand(edit_contact)
+activate InternEaseParser
+
+create ContactParser
+InternEaseParser -> ContactParser : parseContactCommand(edit_contact, args)
+activate ContactParser
+
+create EditContactCommandParser
+ContactParser -> EditContactCommandParser
+activate EditContactCommandParser
+
+EditContactCommandParser --> ContactParser
+deactivate EditContactCommandParser
+
+ContactParser -> EditContactCommandParser : parse(args)
+activate EditContactCommandParser
+
+create EditContactCommand
+EditContactCommandParser -> EditContactCommand
+activate EditContactCommand
+
+EditContactCommand --> EditContactCommandParser : e
+deactivate EditContactCommand
+
+EditContactCommandParser --> ContactParser : e
+deactivate EditContactCommandParser
+EditContactCommandParser -[hidden]-> InternEaseParser : result
+destroy EditContactCommandParser
+
+ContactParser --> InternEaseParser : e
+deactivate ContactParser
+
+InternEaseParser --> LogicManager : e
+deactivate InternEaseParser
+
+LogicManager -> EditContactCommand : execute()
+activate EditContactCommand
+
+EditContactCommand -> Model : setApplication(original, contactEdited)
+activate Model
+
+Model --> EditContactCommand
+deactivate Model
+
+create CommandResult
+EditContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditContactCommand : r
+deactivate CommandResult
+
+EditContactCommand --> LogicManager : r
+deactivate EditContactCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

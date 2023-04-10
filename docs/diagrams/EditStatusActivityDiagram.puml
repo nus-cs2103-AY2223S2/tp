@@ -1,0 +1,22 @@
+@startuml
+start
+:User enters command edit_status;
+if () then ([PREFIX s/ is present])
+    :Parse command arguments;
+    if () then ([Provided status is valid])
+            :Generate new EditStatusCommand;
+            if () then ([Provided index is valid])
+                    :Edit status of the specified application;
+                    :Generate success message;
+                else ([else])
+                :Generate error message;
+                endif
+        else ([else])
+        :Generate error message;
+        endif
+    else ([else])
+    :Generate error message;
+endif
+:Display result message to user;
+stop
+@enduml

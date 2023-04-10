@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Class AddNoteCommandParser
+Class DeleteNoteCommandParser
+Class AddNoteCommand
+Class ClearNoteCommand
+Class DeleteNoteCommand
+Class ListNoteCommand
+Class "{abstract}\nCommand" as Command
+}
+
+package Model{
+
+Class NoteList MODEL_COLOR
+Class UniqueNoteList MODEL_COLOR
+Class "{abstract}\nReadOnlyNoteList" as ReadOnlyNoteList MODEL_COLOR
+Class Note MODEL_COLOR
+Class NoteContent MODEL_COLOR
+Class "<<enumeration>>\nTaskType" as TaskType MODEL_COLOR
+}
+
+AddNoteCommand -up-|> Command
+ClearNoteCommand -up-|> Command
+DeleteNoteCommand -up-|> Command
+ListNoteCommand -up-|> Command
+AddNoteCommandParser .up.> AddNoteCommand
+DeleteNoteCommandParser .up.> DeleteNoteCommand
+
+AddNoteCommand .up.> NoteList
+ClearNoteCommand .up.> NoteList
+DeleteNoteCommand .up.> NoteList
+ListNoteCommand .up.> NoteList
+
+NoteList -up-|> ReadOnlyNoteList
+NoteList *--> UniqueNoteList
+NoteList *--> Note
+Note *--> NoteContent
+Note *--> TaskType
+
+AddNoteCommand -left->"1" Note
+
+Command ..> Model
+@enduml

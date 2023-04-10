@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.UniqueApplicationList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,17 +14,16 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
-
+    private final UniqueApplicationList applications;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     * NoteList that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        applications = new UniqueApplicationList();
     }
 
     public AddressBook() {}
@@ -40,11 +39,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the person list with {@code applications}.
+     * {@code applications} must not contain duplicate applications.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setApplications(List<InternshipApplication> applications) {
+        this.applications.setApplications(applications);
     }
 
     /**
@@ -53,68 +52,86 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setApplications(newData.getInternshipList());
     }
 
+    /// application-level operations
+    /**
+     * Returns true if an internship application with the same identity
+     * as {@code internshipApplication} exists in the address book.
+     */
+    public boolean hasApplication(InternshipApplication application) {
+        requireNonNull(application);
+        return applications.contains(application);
+    }
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Adds an internship application to the tracker.
+     * The application must not already exist in the tracker.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public void addApplication(InternshipApplication application) {
+        applications.add(application);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds internship applications to the tracker.
+     * The application must not already exist in the tracker.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addApplications(List<InternshipApplication> application) {
+        applications.add(application);
+    }
+
+
+    /**
+     * Adds an application to the address book.
+     * The application must not already exist in the address book.
+     */
+    public void addInternshipApplication(InternshipApplication internshipApplication) {
+        applications.add(internshipApplication);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with {@code editedApplication}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The application identity of {@code editedApplication}
+     * must not be the same as another existing application in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setApplication(InternshipApplication target, InternshipApplication editedApplication) {
+        requireNonNull(editedApplication);
 
-        persons.setPerson(target, editedPerson);
+        applications.setApplication(target, editedApplication);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeApplication(InternshipApplication key) {
+        applications.remove(key);
     }
-
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        return applications.asUnmodifiableObservableList().size() + " applications";
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<InternshipApplication> getInternshipList() {
+        return applications.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && applications.equals(((AddressBook) other).applications));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return applications.hashCode();
     }
 }

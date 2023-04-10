@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ContactParser" as ContactParser LOGIC_COLOR
+participant ":AddContactCommandParser" as AddContactCommandParser LOGIC_COLOR
+participant "a:AddContactCommand" as AddContactCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(add_contact)
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand(add_contact)
+activate InternEaseParser
+
+create ContactParser
+InternEaseParser -> ContactParser : parseContactCommand(add_contact, args)
+activate ContactParser
+
+create AddContactCommandParser
+ContactParser -> AddContactCommandParser
+activate AddContactCommandParser
+
+AddContactCommandParser --> ContactParser
+deactivate AddContactCommandParser
+
+ContactParser -> AddContactCommandParser : parse(args)
+activate AddContactCommandParser
+
+create AddContactCommand
+AddContactCommandParser -> AddContactCommand
+activate AddContactCommand
+
+AddContactCommand --> AddContactCommandParser : a
+deactivate AddContactCommand
+
+AddContactCommandParser --> ContactParser : a
+deactivate AddContactCommandParser
+AddContactCommandParser -[hidden]-> InternEaseParser : result
+destroy AddContactCommandParser
+
+ContactParser --> InternEaseParser : a
+deactivate ContactParser
+
+InternEaseParser --> LogicManager : a
+deactivate InternEaseParser
+
+LogicManager -> AddContactCommand : execute()
+activate AddContactCommand
+
+AddContactCommand -> Model : setApplication(original, contactAdded)
+activate Model
+
+Model --> AddContactCommand
+deactivate Model
+
+create CommandResult
+AddContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddContactCommand : r
+deactivate CommandResult
+
+AddContactCommand --> LogicManager : r
+deactivate AddContactCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

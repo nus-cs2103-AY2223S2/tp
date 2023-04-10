@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "{abstract}\nUiPart" as UiPart
+Class TodoListPanel
+Class NoteListPanel
+Class MixedPanel #CF2765
+Class TodoCard
+Class NoteCard
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+MixedPanel --|> UiPart
+TodoListPanel --|> UiPart
+NoteListPanel --|> UiPart
+TodoCard --|> UiPart
+NoteCard --|> UiPart
+
+MixedPanel -down-> "1" TodoListPanel
+MixedPanel -down-> "1" NoteListPanel
+TodoListPanel -down-> TodoCard
+NoteListPanel -down-> NoteCard
+
+TodoCard .right.> Model
+NoteCard .right.> Model
+NoteCard -[hidden]right- TodoCard
+
+@enduml

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.net.URL?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+    <stylesheets>
+        <URL value="@TodoListCard.css" />
+    </stylesheets>
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <BorderPane>
+      <top>
+        <HBox alignment="CENTER_RIGHT" spacing="5" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets left="10" right="15" top="10" />
+            </padding>
+            <children>
+            <Label fx:id="tags" alignment="CENTER" styleClass="cell_small_label"  text="Label" wrapText="true" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="2" left="4" right="4" top="2" />
+                </padding>
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+            </Label>
+            </children>
+        </HBox>
+      </top>
+      <bottom>
+        <HBox spacing="5" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="5" />
+            </padding>
+          <children>
+            <Label fx:id="createDate" styleClass="cell_small_label" text="Label" wrapText="true">
+              <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+              </minWidth>
+          </Label>
+          </children>
+        </HBox>
+      </bottom>
+      <left>
+      </left>
+         <center>
+             <VBox spacing="3" BorderPane.alignment="CENTER">
+                 <padding>
+                     <Insets left="15" right="5"/>
+                 </padding>
+                 <HBox spacing="3" BorderPane.alignment="CENTER">
+                     <children>
+                         <Label fx:id="id" styleClass="cell_big_label" text="Label" wrapText="true" BorderPane.alignment="CENTER_LEFT">
+                             <minWidth>
+                                 <!-- Ensures that the label text is never truncated -->
+                                 <Region fx:constant="USE_PREF_SIZE" />
+                             </minWidth>
+                         </Label>
+                         <Label fx:id="companyName" styleClass="cell_big_label" text="Label" wrapText="true">
+                             <minWidth>
+                                 <!-- Ensures that the label text is never truncated -->
+                                 <Region fx:constant="USE_PREF_SIZE" />
+                             </minWidth>
+                         </Label>
+                     </children>
+                 </HBox>
+                 <children>
+                  <Label fx:id="jobTitle" styleClass="cell_small_label" text="Label" wrapText="true">
+                   <minWidth>
+                       <!-- Ensures that the label text is never truncated -->
+                       <Region fx:constant="USE_PREF_SIZE" />
+                   </minWidth>
+                  </Label>
+                  <Label fx:id="deadline" styleClass="cell_small_label" text="Label" wrapText="true">
+                      <minWidth>
+                          <!-- Ensures that the label text is never truncated -->
+                          <Region fx:constant="USE_PREF_SIZE" />
+                      </minWidth>
+                  </Label>
+                  <Label fx:id="note" styleClass="cell_small_label" text="Label" wrapText="true">
+                      <minWidth>
+                          <!-- Ensures that the label text is never truncated -->
+                          <Region fx:constant="USE_PREF_SIZE" />
+                      </minWidth>
+                  </Label>
+               </children>
+            </VBox>
+         </center>
+    </BorderPane>
+    <rowConstraints>
+      <RowConstraints />
+    </rowConstraints>
+  </GridPane>
+</HBox>

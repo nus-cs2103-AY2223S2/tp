@@ -1,0 +1,17 @@
+@startuml
+start
+:User enters command archive;
+:Generate new ArchiveCommand;
+if () then ([Provided index is valid])
+        if () then ([Internship application is not archived])
+                :Archive the specified application;
+                :Generate success message;
+            else ([else])
+            :Generate error message;
+            endif
+    else ([else])
+    :Generate error message;
+    endif
+:Display result message to user;
+stop
+@enduml

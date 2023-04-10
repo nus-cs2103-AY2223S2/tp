@@ -1,23 +1,33 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REVIEW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.Note;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -31,22 +41,33 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE, PREFIX_REVIEW, PREFIX_LOCATION,
+                PREFIX_PROGRAMMING_LANGUAGE, PREFIX_QUALIFICATION, PREFIX_SALARY, PREFIX_RATING, PREFIX_NOTE,
+                PREFIX_REFLECTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        CompanyName companyName = ParserUtil.parseCompanyName(
+                                                    argMultimap.getValue(PREFIX_COMPANY_NAME).orElse(null));
+        JobTitle jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).orElse(null));
+        Set<Review> reviewList = ParserUtil.parseReviews(argMultimap.getAllValues(PREFIX_REVIEW));
+        Set<ProgrammingLanguage> programmingLanguages = ParserUtil.parseProgrammingLanguages(
+                                                                argMultimap.getAllValues(PREFIX_PROGRAMMING_LANGUAGE));
+        Set<Qualification> qualifications = ParserUtil.parseQualifications(
+                                                                argMultimap.getAllValues(PREFIX_QUALIFICATION));
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(null));
+        Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).orElse(null));
+        Set<Note> notes = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse(null));
+        Set<Reflection> reflections = ParserUtil.parseReflections(argMultimap.getAllValues(PREFIX_REFLECTION));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        InternshipApplication application = new InternshipApplication(companyName, jobTitle, reviewList,
+            programmingLanguages, qualifications, location, salary, notes, rating, reflections);
 
-        return new AddCommand(person);
+        return new AddCommand(application);
     }
 
     /**

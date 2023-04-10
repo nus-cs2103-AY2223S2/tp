@@ -10,15 +10,13 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
-Class StatusBarFooter
+Class ReminderWindow
 Class CommandBox
-}
-
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+Class ResultDialog
+Class Panels #CF2765
+Class QuickAccessToolbar
+Class PopupAddInternship
+Class PopupEditInternship
 }
 
 package Logic <<Rectangle>> {
@@ -31,30 +29,31 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> HelpWindow
+MainWindow *-down-> ReminderWindow
+MainWindow --> "0..1" ResultDialog
+MainWindow *-down-> "1" Panels
+MainWindow *-down-> "1" QuickAccessToolbar
+MainWindow *-down-> "1" PopupAddInternship
+MainWindow *-down-> "*" PopupEditInternship
 
-PersonListPanel -down-> "*" PersonCard
-
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
+MainWindow --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+ReminderWindow --|> UiPart
+Panels --|> UiPart
+QuickAccessToolbar --|> UiPart
+PopupAddInternship --|> UiPart
+PopupEditInternship --|> UiPart
 
-PersonCard ..> Model
-UiManager -right-> Logic
+UiManager -left-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+HelpWindow -[hidden]right- ResultDialog
+ResultDialog -[hidden]right- CommandBox
+CommandBox -[hidden]right- Panels
+MainWindow -[hidden]right- QuickAccessToolbar
+UiManager -[hidden]down- Logic
 
 MainWindow -[hidden]-|> UiPart
 @enduml

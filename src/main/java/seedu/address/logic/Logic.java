@@ -8,7 +8,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.statstics.StatsManager;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
 
 /**
  * API of the Logic component
@@ -30,13 +33,40 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Returns a StatsManager.
+     */
+    StatsManager getStatsManager();
+
+    /** Returns an unmodifiable view of the filtered list of internship applications. */
+    ObservableList<InternshipApplication> getFilteredInternshipList();
+
+    /** Returns an unmodifiable view of the sorted filtered list of internship applications */
+    ObservableList<InternshipApplication> getSortedFilteredInternshipList();
+
+    /** Returns an unmodifiable view of the filtered list of todos. */
+    ObservableList<InternshipTodo> getFilteredTodoList();
+
+    /** Returns an unmodifiable view of the filtered list of notes. */
+    ObservableList<Note> getFilteredNoteList();
+
+    /** Returns the InternshipApplication with the most imminent interview*/
+    InternshipApplication getReminderApplication();
 
     /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' todo list file path.
+     */
+    Path getTodoListFilePath();
+
+    /**
+     * Returns the user prefs' note list file path.
+     */
+    Path getNoteListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

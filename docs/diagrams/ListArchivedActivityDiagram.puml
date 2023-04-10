@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters command list_archived;
+:Generate new ListArchivedCommand;
+:Update the list filteredInternships to show only archived entries;
+    if () then ([filteredInternships is not empty])
+        :Generate success message;
+    else ([else])
+        :Generate error message;
+    endif
+stop
+
+@enduml

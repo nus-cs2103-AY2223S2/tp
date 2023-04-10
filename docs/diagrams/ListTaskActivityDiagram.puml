@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters ListTaskCommand;
+:Generate new ListTaskCommand;
+:Update filtered TodoList and filtered NoteList to show all entries;
+    if () then ([TodoList and NoteList are both empty])
+        :Generate null message;
+    else ([else])
+        :Generate success message;
+    endif
+stop
+
+@enduml

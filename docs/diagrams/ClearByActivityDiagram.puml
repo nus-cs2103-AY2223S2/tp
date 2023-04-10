@@ -1,0 +1,34 @@
+@startuml
+start
+:User enters ClearByCommand;
+if () then ([PREFIX is provided])
+    :Parse command arguments;
+    if () then ([PREFIX is n])
+        :Generate new ClearByCommand of CompanyName;
+        :
+         Refer to activity in Group Company Name
+        ;
+        else ([else])
+            if () then ([PREFIX is j])
+            :Generate new ClearByCommand of JobTitle;
+            :
+            Refer to activity in Group Job Title
+            ;
+            else ([else])
+                if () then ([PREFIX is s])
+                :Generate new ClearByCommand of Status;
+                :
+                Refer to activity in Group Status
+                ;
+                else ([else])
+                :Generate error message;
+                endif
+            endif
+        endif
+    else ([else])
+    :Generate error message;
+endif
+:Display result message to user;
+stop
+
+@enduml

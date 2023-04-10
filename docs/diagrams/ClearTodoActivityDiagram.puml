@@ -1,0 +1,12 @@
+@startuml
+start
+:User enters ClearTodoCommand;
+:Generate new ClearTodoCommand;
+    if () then ([TodoList is empty])
+        :Generate null message;
+    else ([else])
+        :Clear the TodoList and replace it with a new null TodoList;
+        :Generate success message;
+    endif
+stop
+@enduml

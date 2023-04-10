@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import seedu.address.MainApp;
 
 /**
- * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
+ * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, etc.
  * It contains a scene graph with a root node of type {@code T}.
  */
 public abstract class UiPart<T> {
@@ -45,6 +45,7 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     *
      * @see #UiPart(URL, T)
      */
     public UiPart(String fxmlFileName, T root) {
@@ -60,6 +61,7 @@ public abstract class UiPart<T> {
 
     /**
      * Loads the object hierarchy from a FXML document.
+     *
      * @param location Location of the FXML document.
      * @param root Specifies the root of the object hierarchy.
      */

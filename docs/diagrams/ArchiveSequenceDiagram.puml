@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ArchiveCommandParser" as ArchiveCommandParser LOGIC_COLOR
+participant "a:ArchiveCommand" as ArchiveCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(archive)
+activate LogicManager
+
+LogicManager -> InternEaseParser : parseCommand(archive)
+activate InternEaseParser
+
+create ArchiveCommandParser
+InternEaseParser -> ArchiveCommandParser
+activate ArchiveCommandParser
+
+ArchiveCommandParser --> InternEaseParser
+deactivate ArchiveCommandParser
+
+InternEaseParser -> ArchiveCommandParser : parse(args)
+activate ArchiveCommandParser
+
+create ArchiveCommand
+ArchiveCommandParser -> ArchiveCommand
+activate ArchiveCommand
+
+ArchiveCommand --> ArchiveCommandParser : a
+deactivate ArchiveCommand
+
+ArchiveCommandParser --> InternEaseParser : a
+deactivate ArchiveCommandParser
+ArchiveCommandParser -[hidden]-> InternEaseParser : result
+destroy ArchiveCommandParser
+
+InternEaseParser --> LogicManager : a
+deactivate InternEaseParser
+
+LogicManager -> ArchiveCommand : execute()
+activate ArchiveCommand
+
+ArchiveCommand -> Model : setApplication(original, archived)
+activate Model
+
+Model --> ArchiveCommand
+deactivate Model
+
+create CommandResult
+ArchiveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ArchiveCommand : r
+deactivate CommandResult
+
+ArchiveCommand --> LogicManager : r
+deactivate ArchiveCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

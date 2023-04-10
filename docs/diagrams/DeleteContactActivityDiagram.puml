@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters command delete_contact;
+:Generate new DeleteContactCommand;
+if () then ([Provided index is valid])
+        :Delete contact details of the specified application;
+        :Generate success message;
+    else ([else])
+    :Generate error message;
+    endif
+:Display result message to user;
+stop
+@enduml

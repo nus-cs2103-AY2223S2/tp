@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -14,6 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.task.note.JsonNoteListStorage;
+import seedu.address.storage.task.todo.JsonTodoListStorage;
 
 public class StorageManagerTest {
 
@@ -26,7 +28,9 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonTodoListStorage todoListStorage = new JsonTodoListStorage(getTempFilePath("prefsTodo"));
+        JsonNoteListStorage noteListStorage = new JsonNoteListStorage(getTempFilePath("prefsNote"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, todoListStorage, noteListStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -36,7 +40,7 @@ public class StorageManagerTest {
     @Test
     public void prefsReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * NoteList: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonUserPrefsStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
@@ -50,7 +54,7 @@ public class StorageManagerTest {
     @Test
     public void addressBookReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * NoteList: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
@@ -61,8 +65,8 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getNoteListFilePath() {
+        assertNotNull(storageManager.getNoteListFilePath());
     }
 
 }

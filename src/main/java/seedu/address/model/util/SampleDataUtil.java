@@ -1,60 +1,155 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.NoteList;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.ReadOnlyNote;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.TodoList;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.documents.CoverLetterLink;
+import seedu.address.model.documents.Documents;
+import seedu.address.model.documents.ResumeLink;
+import seedu.address.model.tag.TaskType;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static InternshipApplication[] getSampleInternshipApplications() {
+        return new InternshipApplication[] {
+            new InternshipApplication(new CompanyName("Facebook"), new JobTitle("Software Engineer")),
+            new InternshipApplication(new CompanyName("Grab"), new JobTitle("Backend Developer"),
+                    getReviewSet("Competitive environment"),
+                    new Contact(new Phone("98765432"), new Email("career@grab.com")), InternshipStatus.RECEIVED,
+                    false,
+                    new Documents(new ResumeLink("https://myowndrive.com/resume_grab"),
+                            new CoverLetterLink("https://myowndrive.com/cover_letter_grab"))),
+            new InternshipApplication(new CompanyName("Foodpanda"), new JobTitle("Fullstack Developer"),
+                    getReviewSet("Interesting people", "Interesting atmosphere"),
+                    getProgrammingLanguageSet("Java", "C++"),
+                    getQualificationSet("Test Qualification", "AWS Cloud Certificate"),
+                    new Location("Holland Village"), new Salary("9999 SGD"),
+                    getNoteSet("Great food available nearby"),
+                    new Rating("5/5"),
+                    getReflectionSet("Can improve on coding speed", "Learn more about the company"),
+                    new Contact(new Phone("12345678"), new Email("hr@foodpanda.com")), InternshipStatus.PENDING,
+                    false, new InterviewDate("2024-01-03 12:31 PM"),
+                    new Documents(new ResumeLink("https://example.com/resume_foodpanda"),
+                            new CoverLetterLink("https://example.com/cover_letter_foodpanda")))
+        };
+    }
+
+    public static InternshipTodo[] getSampleTodo() {
+        return new InternshipTodo[] {
+            new InternshipTodo(new CompanyName("Google"), new JobTitle("SE"),
+                    new ApplicationDeadline(LocalDate.parse("2023-10-01")),
+                    new NoteContent("no note"), LocalDate.parse("2023-03-11"), TaskType.TODO),
+            new InternshipTodo(new CompanyName("Meta"), new JobTitle("Web Dev"),
+                    new ApplicationDeadline(LocalDate.parse("2023-07-10")),
+                    new NoteContent("no note"), LocalDate.parse("2023-02-11"), TaskType.TODO),
+            new InternshipTodo(new CompanyName("Amazon"), new JobTitle("App Dev"),
+                    new ApplicationDeadline(LocalDate.parse("2023-10-02")),
+                    new NoteContent("no note"), LocalDate.parse("2023-01-11"), TaskType.TODO)
+        };
+    }
+
+    public static Note[] getSampleNotes() {
+        return new Note[] {new Note(new NoteContent("Vacation starts next week!")),
+            new Note(new NoteContent("Project should be finalized by this week!")),
+            new Note(new NoteContent("Write letter!"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (InternshipApplication sampleInternshipApplication : getSampleInternshipApplications()) {
+            sampleAb.addInternshipApplication(sampleInternshipApplication);
         }
         return sampleAb;
     }
 
+    public static ReadOnlyTodoList getSampleTodoList() {
+        TodoList sampleTd = new TodoList();
+        for (InternshipTodo sampleTodo : getSampleTodo()) {
+            sampleTd.addTodo(sampleTodo);
+        }
+        return sampleTd;
+    }
+
+    public static ReadOnlyNote getSampleNoteList() {
+        NoteList sampleNl = new NoteList();
+        for (Note sampleNote : getSampleNotes()) {
+            sampleNl.addNote(sampleNote);
+        }
+        return sampleNl;
+    }
+
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a review set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Review> getReviewSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Review::new)
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a programming language set containing the list of strings given.
+     */
+    public static Set<ProgrammingLanguage> getProgrammingLanguageSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(ProgrammingLanguage::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a qualification set containing the list of strings given.
+     */
+    public static Set<Qualification> getQualificationSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Qualification::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a note set containing the list of strings given.
+     */
+    public static Set<seedu.address.model.application.Note> getNoteSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(seedu.address.model.application.Note::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a reflection set containing the list of strings given.
+     */
+    public static Set<Reflection> getReflectionSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Reflection::new)
+                .collect(Collectors.toSet());
+    }
 }

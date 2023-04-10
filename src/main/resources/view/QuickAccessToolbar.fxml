@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import java.net.URL?>
+
+<GridPane fx:id="quickAccessToolbar" maxWidth="200" maxHeight="43" hgap="20" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+    <stylesheets>
+        <URL value="@QuickAccessToolbar.css" />
+    </stylesheets>
+  <columnConstraints >
+    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" percentWidth="10"/>
+    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" percentWidth="30"/>
+      <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="30"/>
+      <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="30"/>
+      <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+  </columnConstraints>
+  <rowConstraints >
+    <RowConstraints vgrow="ALWAYS" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="homeButton" onAction="#redirectToHome" maxWidth="28" maxHeight="34" mnemonicParsing="false" GridPane.columnIndex="1">
+       <graphic>
+           <ImageView fitWidth="30" fitHeight="30">
+               <image>
+                   <Image url="@/images/home.png"/>
+               </image>
+           </ImageView>
+       </graphic>
+   </Button>
+      <Button fx:id="helpButton" onAction="#redirectToHelp" maxWidth="28" maxHeight="34" mnemonicParsing="false" GridPane.columnIndex="3">
+          <graphic>
+              <ImageView fitWidth="30" fitHeight="30">
+                  <image>
+                      <Image url="@/images/help.png"/>
+                  </image>
+              </ImageView>
+          </graphic>
+      </Button>
+      <Button fx:id="notificationButton" onAction="#redirectToReminder" maxWidth="28" maxHeight="34" mnemonicParsing="false" GridPane.columnIndex="2">
+          <graphic>
+              <ImageView fitWidth="30" fitHeight="30">
+                  <image>
+                      <Image url="@/images/notification.png"/>
+                  </image>
+              </ImageView>
+          </graphic>
+      </Button>
+   </children>
+</GridPane>

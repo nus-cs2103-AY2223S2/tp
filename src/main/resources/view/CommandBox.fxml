@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import java.net.URL?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
-</StackPane>
-
+<GridPane alignment="CENTER" minWidth="420" hgap="15" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@CommandBox.css"/>
+   </stylesheets>
+   <columnConstraints>
+      <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="88"/>
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="10"/>
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES"/>
+   </rowConstraints>
+   <TextField fx:id="commandTextField" maxHeight="38" onAction="#handleCommandEntered" minWidth="320"
+              promptText="Enter command here..."/>
+   <Button fx:id="enterButton" maxHeight="38" alignment="CENTER" minWidth="110" onAction="#handleCommandEntered"
+           mnemonicParsing="false" text="ENTER" GridPane.columnIndex="1"/>
+</GridPane>
