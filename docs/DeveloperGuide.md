@@ -944,7 +944,8 @@ testers are expected to do more *exploratory* testing.
 
 ------------------------------------------------------------
 
-## **Appendix: Planned Enhancements**
+## Appendix: Planned Enhancements
+
 
 When creating software, there are always areas that can be improved upon.
 In the interest of transparency and keeping our users informed, we have identified some aspects
@@ -1010,6 +1011,39 @@ We should improve it to also allow users to enter time into the availability fie
 
 Currently, names do not accept `.` and `\\`. This may cause some problems where a person's legal name contains these special characters.
 We should modify the name to accept these special characters.
+
+-----------------------------------------------------
+
+## Appendix: Efforts
+
+1. Adding records:
+  1. This task is of medium difficulty. We managed to implement a variety of attribute fields, such as available dates as date ranges, medical qualifications as tags, and regions as enums. 
+  2. Given the different attribute data type, transferring these fields into formats adaptable for JSON storage become the main challange.
+  3. Furthermore, as we made many of the fields optional, making the tracking and recording of fields with `NULL` values compatible with JSON, given the various data types, becomes another challenge.
+  4. Despite these challenges, we successfully added comprehensive and flexible record-keeping capabilities to the system.
+
+2. Deleting records: 
+  1. This task is of medium difficulty. We managed to implement logic checks ensuring the logical correctness of deletion. For example, when deleting an elderly record, we also had to delete all of its existing pairs. To ensure the accuracy  and correctness, we wrote many unit test cases. 
+  2. Through careful testing and debugging, we successfully implemented a reliable and robust deletion feature.
+
+3. Pairing feature: 
+  1. This task is of medium difficulty. The main effort involved taking references of elderly and volunteer information instead of copying it, so that when a person's information is edited, deleted, or searched, the corresponding pairing situation can be displayed.
+
+4. Editing records:
+  1. This task is of medium difficulty. We had to correctly handle all possible correct and incorrect inputs, particularly when we had an 'edit' command that was usable by both elderly and volunteer users.
+  2. Through careful unit testing and debugging, we successfully implemented a feature that automatically ignored inapplicable edit fields and update all applicable information.
+
+5. Finding records:
+  1. Finding information was of high difficulty. We had to correctly handle different possible situations, such as when a user entered a wrong field format or a field that was not applicable to the person or when different searching formats were used for enums, date tags, etc. 
+  2. Additionally, we had to simultaneously filter elderly, volunteer, and pair cards and display all possible information.
+  3. Through extensive testing and refinement, we successfully implemented a powerful and flexible searching feature.
+
+6. Command Recommendation:
+  1. Implementing the command recommendation feature was of high difficulty. The main challenges were showing the correct command recommendations as the user typed each character and throwing warnings at the correct times.
+  2. For example, the main challenges include that we had to distinguish between "wrong command" and "incomplete command", as well as detecting existing attributes to avoid repetitive recommendations.
+  3. For this feature, we make use of the [Agolia Documentaiton](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions/) 
+  4. We successfully achieved this feature, which effectively increased input speed and user satisfaction.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
