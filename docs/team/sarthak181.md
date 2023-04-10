@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Sarthak Saxena's Project Portfolio Page
+title: Sarthak's Project Portfolio Page
 ---
 
 ### Project: The Intern's Ship
