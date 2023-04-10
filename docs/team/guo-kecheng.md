@@ -73,5 +73,5 @@ Given below are my contributions to the project.
 
 
 - **Community**:
-  * PRs reviewed: #64, #93, #94, #114, #120, #121, #129, #137, #146
+  * PRs reviewed: [#64](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/64), [#93](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/93), [#94](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/94), [#114](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/114), [#120](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/120), [#121](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/121), [#129](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/129), [#137](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/137), [#146](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/146)
  
