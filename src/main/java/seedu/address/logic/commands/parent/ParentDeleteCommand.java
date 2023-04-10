@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,15 +16,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * Deletes a parent identified using his or her name and phone number displayed on PowerConnect's parent list.
  */
 public class ParentDeleteCommand extends ParentCommand {
 
-    private static Logger logger = Logger.getLogger(ParentDeleteCommand.COMMAND_WORD);
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the parent identified by their name and phone number used.\n"
@@ -33,6 +32,8 @@ public class ParentDeleteCommand extends ParentCommand {
             + PREFIX_PHONEPARENT + "91234567";
 
     public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s; Phone Number: %2$s;";
+
+    private static final Logger logger = Logger.getLogger(ParentDeleteCommand.COMMAND_WORD);
 
     private final Phone phoneNumber;
     private final Name parentName;
@@ -70,8 +71,8 @@ public class ParentDeleteCommand extends ParentCommand {
         logger.log(Level.INFO, "----------------[PARENT DELETE][Parent successfully deleted]");
         Name deletedParentName = parentToDelete.getName();
         Phone deletedParentPhoneNumber = parentToDelete.getPhone();
-        assert  deletedParentName != null : "Name of deleted parent should not be null";
-        assert  deletedParentPhoneNumber != null : "phone number of deleted parent should not be null";
+        assert deletedParentName != null : "Name of deleted parent should not be null";
+        assert deletedParentPhoneNumber != null : "phone number of deleted parent should not be null";
 
         return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, deletedParentName,
                 deletedParentPhoneNumber));

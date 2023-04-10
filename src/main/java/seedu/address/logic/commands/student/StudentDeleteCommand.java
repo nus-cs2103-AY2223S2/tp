@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,15 +16,10 @@ import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * Deletes a student identified using his or her class and index number from PowerConnect.
  */
 public class StudentDeleteCommand extends StudentCommand {
-
-    private static Logger logger = Logger.getLogger(StudentDeleteCommand.COMMAND_WORD);
 
     public static final String COMMAND_WORD = "delete";
 
@@ -34,6 +32,8 @@ public class StudentDeleteCommand extends StudentCommand {
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS =
             "Deleted Student: %1$s; Class: %2$s; Index Number: %3$s;";
+
+    private static Logger logger = Logger.getLogger(StudentDeleteCommand.COMMAND_WORD);
 
     private final IndexNumber targetIndex;
     private final Class studentClass;
