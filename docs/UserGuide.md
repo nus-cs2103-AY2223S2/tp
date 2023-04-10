@@ -20,8 +20,8 @@ This User Guide provides brief documentation on how you can install the applicat
 
 1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook.
    * To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
-   * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A). <br>
-   
+   * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
 3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook. You may create a new folder under any directory.
@@ -34,10 +34,8 @@ This User Guide provides brief documentation on how you can install the applicat
      3. `java -jar fitbook.jar`
 
    * If you are unsure how to open the command terminal, you may refer to the guide below.
-     
-     • [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt)
-     
-     • [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal)
+     * [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt) 
+     * [Mac](https://support.apple.com/en-sg/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac#:~:text=Click%20the%20Launchpad%20icon%20in,%2C%20then%20double%2Dclick%20Terminal)
    
    ![Ui](images/Ui.png)
 
@@ -334,6 +332,8 @@ Examples:
 * `view 1` views the summary of the first client in the FitBook.
 * `find n/Alex` followed by `view 1` views the summary of the 1st client in the results of the `view` command.
 
+<div style="page-break-after: always;"></div>
+
 #### Clearing all entries : `clear`
 {% include information.html content="
 
@@ -394,6 +394,8 @@ Examples:
 * `addWeight 1 w/70 d/10-03-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 March 2023, 6pm.
 * `find n/Alex` followed by `addWeight 1 w/70 d/10-03-2023 18:00` adds weight 70kg, dated 10 March 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
+
 #### Plotting weight history graph for a client: `graph`
 
 {% include information.html content="
@@ -447,28 +449,6 @@ Examples:
 Example: (Adding Routine without any exercises)
 ![AddRoutine](images/AddRoutineUG.png)
 
-#### Listing all routines in FitBook : `listRoutines`
-
-{% include information.html content="
-
-Edits an existing routine in the FitBook.
-
-" %}
-
-
-Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
-
-* Edits the routine at the specified `ROUTINE_INDEX`. The index refers to the index number shown in the displayed routine list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The index must not contain signs +1, +2, +3, …​
-* The index must not be larger than `Integer.MAX_VALUE` i.e. 2147483647
-* At least one of the two types should be used. No mixture of the two types is not allowed.
-* This command only allows the editing existing Routine's name or existing Exercise's name.
-
-Examples:
-*  `editRoutine 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
-*  `editRoutine 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
-
 <div style="page-break-after: always;"></div>
 
 #### Listing all Routines in FitBook : `listRoutines`
@@ -485,8 +465,6 @@ Format: `listRoutines`
 
 * Initiate the command with 'listRoutines'
 * All Routines in FitBook has been listed once again!
-
-<div style="page-break-after: always;"></div>
 
 #### Editing a routine : `editRoutine`
 
@@ -510,6 +488,8 @@ Examples:
 * `editRoutine 1 r/Cardio` edits the routine name of the 1st routine to be `Cardio` respectively.
 * `editRoutine 2 exno/1 ex/3x10sets dumbbells` edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
 * `editRoutine 3 r/Cardio exno/1 ex/3x10 sets dumbbells` will throw an error as it attempts to change both the routine name and the exercises in the routine.
+
+<div style="page-break-after: always;"></div>
 
 #### Locating routines by name: `findRoutine`
 
