@@ -565,11 +565,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 _**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to view overall statistics.
-3. System shows total earnings, statistics on jobs completed/pending in total and in the previous week.
+3. System shows total earnings, statistics on jobs completed/pending in total and in the previous week.  
    Use case ends.
 
 _**Extensions**_
-* 2a. The list is empty.
+* 2a. The list is empty.  
       Use case ends.
 
 
@@ -578,14 +578,18 @@ _**MSS**_
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
-4. System displays the full detail of the delivery job.
+4. System displays the full detail of the delivery job.  
+   Use case ends.
 
+_**Extensions**_
+* 2a. The list is empty.  
+      Use case ends.
 
 #### [DE2] Add a delivery job
 _**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to add a job in the list.
-3. System adds job and job appears in list of jobs.
+3. System adds job and job appears in list of jobs.  
    Use case ends.
 
 #### [DE3] Delete a delivery job
@@ -593,14 +597,14 @@ _**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests to delete a specific job in the list.
-4. System deletes the job.
+4. System deletes the job.  
    Use case ends.
 
 _**Extensions**_
-* 2a. The list is empty.
-  Use case ends.
+* 2a. The list is empty.  
+      Use case ends.
 * 3a. The given index is invalid.
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message.  
       Use case resumes at step 2.
 
 #### [DE4] Edit a delivery job
@@ -610,14 +614,14 @@ _**MSS**_
 2. System shows a list of jobs.
 3. User requests to edit a specific job in the list.
 4. User fill in and submit the changes.
-4. System update the job and list the new information.
+4. System update the job and list the new information.  
    Use case ends.
 
 _**Extensions**_
-* 2a. The list is empty.
-  Use case ends.
+* 2a. The list is empty.  
+      Use case ends.
 * 3a. The given index is invalid.
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message.  
       Use case resumes at step 2.
 
 #### [DE5] Find a delivery job
@@ -625,22 +629,22 @@ _**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests search for a job with options.
-4. System displays search results that matches the query.
+4. System displays search results that matches the query.  
    Use case ends.
 
 _**Extensions**_
 * 3a. Invalid search option given.
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message.  
       Use case resumes at step 2.
 * 4a. No item matches the query options.
-    * 4a. System shows empty list.
+    * 4a. System shows empty list.  
       Use case resumes at step 2.
 
 #### [TT1] Display timetable of scheduling tasks of current week
 
 _**MSS**_
 1. User requests to display timetable by selecting Timetable option on homepage.
-2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.
+2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.  
    Use case ends.
 
 #### [TT2] Display timetable of scheduling tasks of week containing a specific date
@@ -665,7 +669,7 @@ _**MSS**_
 3. If the current timing falls more than 20 mins before a timetable slot, System will check if there is any current job. 
 If yes, it will count and alert the user through the notification feature.
 4. System runs in the background to only check the timetable for upcoming jobs.
-   System will repeat step 2 every hour, 20 mins before the next timetable slot.
+   System will repeat step 2 every hour, 20 mins before the next timetable slot.  
    Use case ends.
 
 _**Extensions**_
@@ -676,7 +680,7 @@ _**Extensions**_
     * 3b1. System will check in the first timetable slot and count number of upcoming jobs.
     * 3b2. Alert the user through the notification feature.
 * 3c. If the current time is after the last timetable slot
-    * 3c1. System will not check for any or upcoming scheduled jobs.
+    * 3c1. System will not check for any or upcoming scheduled jobs.  
       Use case resumes from step 4.
 
 #### [RE2] Alert reminders
@@ -687,26 +691,26 @@ _**MSS**_
 specified in a reminder, System will count it as an active reminder. 
 4. System will display the number of active notifications.
 5. System runs in the background to check against the list of reminders after every minute.
-   System will repeat the check at step 3.
+   System will repeat the check at step 3.  
    Use case ends.
 
 _**Extensions**_
 * 4a. User can dismiss the reminder. Doing will prevent the app from showing anymore notifications.
-    * 4a1. A new reminder is activated.
+    * 4a1. A new reminder is activated.  
       Use case resumes from step 4.
-    * 4a2. No new reminder is activated.
+    * 4a2. No new reminder is activated.  
       Use case resumes from step 5
 
 #### [RE3] Add reminders
 _**MSS**_
 
 1. User details the description, date and time of a reminder to the System.
-2. System adds the reminder into the reminder list.
+2. System adds the reminder into the reminder list.  
    Use case ends.
 
 _**Extensions**_
 * 2a. date and time of reminder is not provide.
-    * 2a1. System will prompt user again.
+    * 2a1. System will prompt user again.  
            Use case resumes from step 1.
 
 #### [RE4] Delete reminders
@@ -714,12 +718,12 @@ _**Extensions**_
 _**MSS**_
 
 1. User specifies a reminder to be deleted based on its index number.
-2. System finds the corresponding reminder, and deletes it from the reminder list.
+2. System finds the corresponding reminder, and deletes it from the reminder list.  
    Use case ends.
 
 _**Extensions**_
 * 2a. Index provided by user is not found in reminder list.
-    * 2a1. System will prompt user again.
+    * 2a1. System will prompt user again.  
       Use case resumes from step 1.
 
 #### [RE5] List reminders
@@ -727,7 +731,7 @@ _**Extensions**_
 _**MSS**_
 
 1. User request System to show all reminders in reminder list.
-2. System displays all reminders.
+2. System displays all reminders.   
    Use case ends.
 
 
@@ -828,9 +832,9 @@ testers are expected to do more *exploratory* testing.
 1. Add a job by GUI
    1. Prerequisites: User have access to GUI. Select `menu` > `Delivery Job System` > `Create Job`.  
    1. Test case: fill in mandatory fields only (recipient/sender/earning)<br>
-      Expected: Similar to `1.ii`
+      Expected: Similar to `1.2`
    1. Test case: fill in all fields<br>
-      Expected: Similar to `1.iii`
+      Expected: Similar to `1.3`
    1. Other incorrect approach to try:  
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  
@@ -852,7 +856,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The changes made is reflected in the detail pane after submission.
    1. Other incorrect approach to try:  
       - Similar to create job GUI.
-1. Find a job by command
+1. Find a job
    1. Prerequisites: Target job is valid.
    1. Test case: `find_job ji/BECHE8833A`<br>
       Expected: Job with id `BECHE8833A` displayed in the list.
@@ -861,17 +865,15 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect format to try:  
       - Invalid command: `find_job`  
       Expected: Error message displayed in result box.
-1. Delete a job by command
+1. Delete a job
    1. Prerequisites: Job to delete is valid.
    1. Test case: `delete_job DAIR765586`<br>
       Expected: Job with id `DAIR765586` removed from the list.
+   1. Test case: `select a job` > press `del` key<br>
+      Expected: Job selected is removed.
    1. Other incorrect format to try:  
       - Invalid command: `delete_job`  
       Expected: Error message displayed in result box.
-1. Delete a job by Hot Key
-   1. Prerequisites: Job to delete is in the list.
-   1. Test case: `select a job` > press `del` key<br>
-      Expected: Job selected is removed.
 
 ### Notifications
 
