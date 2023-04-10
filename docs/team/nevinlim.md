@@ -10,11 +10,10 @@
 
 
 ## <ins>Enhancements implemented: </ins>
-* A summary of the enhancements you implemented.
 * ### Enhancement to Application UI:
   * ***Implementation of Light/Dark Theme:***
     * Added a `lighttheme.css` stylesheet and implemented a toggle theme method `setTheme` within the `MainWindow` class for UI.
-    * Created shortcut keys accelerators which allows users to use shortcut keys combinations to toggle theme:
+    * Added shortcut keys accelerators, allowing users to use shortcut keys to toggle themes:
     **CTRL+SHIFT+L** for light and **CTRL+SHIFT+D** for dark.
     * Created `MenuItem` for the respective Dark and Light theme for additional mode of input to toggle themes.
   * ***Altered the button for Help popup Window:***
@@ -23,26 +22,22 @@
 * ### Enhancement to Application Main Features:
   * ***Implementation of Drug command classes for Drug subsystem:***
     * Created `DeleteCommand`, `FindCommand`, `ListCommand`, `UpdateCommand` and helped implement `AddCommand`,
-    `ClearCommand` in the `drugcommands` directory (located in `commands` in `logic`)
-    * Specified the respective message usages for each command
-    * Implemented the constructor methods for the aforementioned classes
-    * Implemented the `execute` methods for the various classes as well as exception handling in each
-    of these classes
+    `ClearCommand` in `drugcommands` 
+    * Implemented the constructor and `execute` methods for the aforementioned classes 
+    as well as exception handling and respective usage messages.
   * ***Implementation of Drug command Parser classes for the Drug subsystem:***
     * Created `AddCommandParser`, `DeleteCommandParser`, `FindCommandParser` and `UpdateCommandParser`classes
-    in the `drugparser` directory (located in `parser` in `logic`)
-    * Implemented the `parse` method for the aforementioned classes to handle the various user inputs for the
-    respective commands.
-    * Implemented the various parsing methods for the Drug Parser classes such as `parseTradeName`,
-    `parseActiveIngredient`, `parseDirection`, `parsePurpose`, `parseSideEffect` and `parseStorageCount` to parse
-    user inputs into the necessary Objects that the respective Drug Command requires.
+    in `drugparser` 
+    * Implemented the `parse` method for the aforementioned classes to handle the user inputs as well as various parsing 
+    methods for the Drug Parser classes such as `parseTradeName`, `parseActiveIngredient`, `parseDirection`, `parsePurpose`, 
+    `parseSideEffect` and `parseStorageCount` to parse user inputs into the necessary Objects that the respective Drug 
+    Command requires.
 
 ## <ins>Contributions to the UG: </ins>
 * Contributions to User Guide:
   * Added the sample screenshots for every command
   * Implemented some part of the documentation for `Drug` Commands such as `d add`, `d find`, `d update`
   * Improved the description of most commands in section 4, Commands.
-  * Helped in the formatting and tidying up some parts of the UG such as removing white-spaces and adding line breaks.
 
 ## <ins>Contributions to the DG: </ins>
 * Contributions to Documentation Guide:
@@ -58,7 +53,7 @@
 after bugs were reported from PE-Dry Run.
 
 * Wrote java test files for `AddCommandParserTest`, `DeleteCommandParserTest`, `FindCommandParserTest`
-and `UpdateCommandParserTest` in `drugparser` to improve the code-coverage of our program.
+and `UpdateCommandParserTest` in `drugparser`.
 
 * Contributed in the brainstorming process for user stories and certain essential features.
 
@@ -89,5 +84,3 @@ and `UpdateCommandParserTest` in `drugparser` to improve the code-coverage of ou
 [#5](https://github.com/nevinlim/ped/issues/5),
 [#6](https://github.com/nevinlim/ped/issues/6),
 [#7](https://github.com/nevinlim/ped/issues/7)
-
-* Lent a helping hand to W09-4(ExecutivePro) by clarifying some queries regarding UI, certain JavaFX functions and behaviour.
