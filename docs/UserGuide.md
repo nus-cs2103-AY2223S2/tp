@@ -380,10 +380,11 @@ For more detailed information on the calculations, please refer to this [section
 
 #### 5.8 View help : `help` <a name="view-help"></a>
 
-Displays a list of help commands or a summary of a specific command's usage and format.
+Not sure what **MODTrek** can do? Need a helping hand on a specific command's usage? Use our help function to clarify any
+of those queries that you may have. 
 
 **Syntax**
-* _To display a list of help commands:_ `help`
+* _To display the list of commands **MODTrek** has:_ `help`
 * _To display a summary of a specific command's usage and format:_ `help <command>`
 
 Specify exactly one parameter in `<command>`. This can be from one of the commands:
@@ -447,8 +448,8 @@ are provided only by NUS.
 **Q**: Why is it that I cannot add a module I intend to retake in upcoming semester?<br> <a name="faq3"></a>
 **A**: Unfortunately as per our add command, we do not allow 2 modules with the same module code to be present in our app
 as of now. We understand that the NUS curriculum is **very** flexible so the application tries to accommodate as many curriculums as possible.
-Any deviations from these constraints for any reason (eg. Exchange modules, Retaken modules or MOOCs) should be mapped to modules within the application's constraints.
-For example, one may use dummy module codes like TEST1001 to include these modules in their degree progression and CAP calculation.
+Any deviations from these constraints for any reason (e.g. Exchange modules, Retaken modules or MOOCs) should be mapped to modules within the application's constraints.
+For example, one may use dummy module codes like CS1101A to represent retaking CS1101S and hence including these modules in their degree progression and CAP calculation.
 
 **Q**: Why is "W" grade not allowed?<br>
 **A**: We did not believe "W" grades in the application would be essential. It is equivalent to deleting the module from the
