@@ -136,6 +136,8 @@ The `Model` component
 
 ![!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
+</div>
+
 Here are some more details on how `Overview` is designed:
 
 ![!OverviewClassDiagram](images/OverviewClassDiagram.png)
@@ -153,7 +155,7 @@ Overall, we have this flow:
 1. Upon instantiation of `XYZAnalyst`, the input list is sorted into `DataBin` objects.
 1. The summary of the data can then be obtained.
 
-</div>
+</>
 
 ### Storage component
 
