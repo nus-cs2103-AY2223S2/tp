@@ -188,7 +188,7 @@ We write in a general so that we cover breadth, and that we may adhere to
 #### Adding
 
 ##### Description
-The `AddCommand` handles the addition of `Object` into QuickContacts. See the syntax for `AddCommand`
+The `AddXYZCommand` handles the addition of `Object` into QuickContacts. See the syntax for `AddXYZCommand`
 [here](#command-summary).
 
 ##### Implementation
@@ -197,10 +197,10 @@ When adding an `Object` the control flow is as follows:
 1. The user queries the `UI` to add using the [`add` or `addm` command](#command-summary).
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate an `AddParser` object.
 3. `QuickContactsParser` then passes the arguments to the `AddParser` object.
-4. `AddParser` initiates an `AddCommand` object.
-5. `AddCommand` object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on `AddCommand`.
-7. `AddCommand` updates the model and returns a `CommandResult` to `LogicManager`.
+4. `AddParser` initiates an `AddXYZCommand` object.
+5. `AddXYZCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on `AddXYZCommand`.
+7. `AddXYZCommand` updates the model and returns a `CommandResult` to `LogicManager`.
 8. `LogicManager` updates the `UniqueList`.
 
 Below is the Sequence Diagram as a concrete example for a `Person`:
@@ -214,8 +214,8 @@ no person in the address book has a matching name). The name must match exactly 
 
 #### Editing
 ##### Description
-The `EditCommand` is responsible for handling the editing of an `Object` in QuickContacts. It allows users to modify the
-details of a specific `Object`. See the syntax for `EditCommand` [here](#command-summary).
+The `EditXYZCommand` is responsible for handling the editing of an `Object` in QuickContacts. It allows users to modify the
+details of a specific `Object`. See the syntax for `EditXYZCommand` [here](#command-summary).
 
 ##### Implementation
 When editing a meeting, the control flow is as follows:
@@ -223,10 +223,10 @@ When editing a meeting, the control flow is as follows:
 1. The user queries the UI to edit a `Object` using the [`edit` or `editm` command](#command-summary).
 2. The UI calls the `QuickContactsParser` through `LogicManager` to initiate an `EditParser` object.
 3. `QuickContactsParser` then passes the arguments to the `EditParser` object.
-4. `EditParser` initiates an `EditCommand` object.
-5. `EditCommand` object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on the `EditCommand`.
-7. `EditCommand` updates the model with the edited `Object` details and returns a `CommandResult` to `LogicManager`.
+4. `EditParser` initiates an `EditXYZCommand` object.
+5. `EditXYZCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on the `EditXYZCommand`.
+7. `EditXYZCommand` updates the model with the edited `Object` details and returns a `CommandResult` to `LogicManager`.
 8. `LogicManager` updates the `UniqueList` with the new information by replacing the old with the new object.
 
 Below is the Sequence Diagram as a concrete example for a `Person`:
@@ -234,12 +234,12 @@ Below is the Sequence Diagram as a concrete example for a `Person`:
 ![Interactions Inside the Logic Component for the `edit` Command](images/EditSequenceDiagram.png)
 
 ##### Exceptions
-The `EditCommand` throws a `CommandException` if any of the object's names is not found in QuickContacts. The name
-must match exactly (**case-sensitive**) or else a `CommandException` will be thrown.
+`EditMeetingCommand` throws a `CommandException` if any one of the `Person`'s name is not found in QuickContacts. The
+name must match exactly (**case-sensitive**).
 
 #### Deleting
 ##### Description
-The `DeleteCommand` handles the deletion of an `Object` from QuickContacts. See the syntax for `DeleteCommand`
+The `DeleteXYZCommand` handles the deletion of an `Object` from QuickContacts. See the syntax for `DeleteXYZCommand`
 [here](#command-summary).
 
 ##### Implementation
@@ -248,10 +248,10 @@ When deleting an `Object`, the control flow is as follows:
 1. The user queries the UI to delete using the [`delete` or `delm` command](#command-summary).
 2. The UI calls the `QuickContactsParser` through LogicManager to initiate a `DeleteParser` object.
 3. `QuickContactsParser` then passes the arguments to the `DeleteParser` object.
-4. `DeleteParser` initiates a `DeleteCommand` object.
-5. `DeleteCommand` object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on `DeleteCommand`.
-7. `DeleteCommand` updates the model and returns a `CommandResult` to `LogicManager`.
+4. `DeleteParser` initiates a `DeleteXYZCommand` object.
+5. `DeleteXYZCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on `DeleteXYZCommand`.
+7. `DeleteXYZCommand` updates the model and returns a `CommandResult` to `LogicManager`.
 8. `LogicManager` updates the `UniquePersonList` by deleting the `Person` from it.
 
 Below is the Sequence Diagram:
@@ -259,7 +259,7 @@ Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
 ##### Exceptions
-The `DeleteCommand` throws a CommandException if the specified index is not found in quickbook.
+The `DeleteXYZCommand` throws a CommandException if the specified index is not found in QuickContacts.
 
 ### Finding `Person`
 
