@@ -529,8 +529,6 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?  
