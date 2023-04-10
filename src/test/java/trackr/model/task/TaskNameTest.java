@@ -44,8 +44,6 @@ public class TaskNameTest {
     }
     //@@author
 
-    //@@author HmuuMyatMoe-reused
-    //Reused from AB3 with minor modifications
     @Test
     public void toStringTest() {
         String expectedTaskName = "Sort Inventory";
@@ -64,5 +62,4 @@ public class TaskNameTest {
         assertFalse(taskName.equals(differentTaskName)); //different task name
         assertFalse(taskName.equals(1)); //different type
     }
-    //@@author
 }
