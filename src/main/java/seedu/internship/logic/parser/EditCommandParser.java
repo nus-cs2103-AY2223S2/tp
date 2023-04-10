@@ -2,8 +2,6 @@ package seedu.internship.logic.parser;
 
 
 import static java.util.Objects.requireNonNull;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;

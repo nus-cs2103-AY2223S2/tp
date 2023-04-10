@@ -1,7 +1,5 @@
 package seedu.internship.logic.parser;
 
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 
 import java.util.List;

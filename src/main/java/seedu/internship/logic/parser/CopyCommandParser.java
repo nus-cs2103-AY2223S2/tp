@@ -1,8 +1,5 @@
 package seedu.internship.logic.parser;
 
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
-
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
