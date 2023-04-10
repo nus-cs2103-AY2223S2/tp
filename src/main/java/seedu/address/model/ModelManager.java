@@ -237,20 +237,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Entity> getListByClassification(String classification) {
+    public ObservableList<Entity> getListByClassification(Classification classification) {
         requireNonNull(classification);
         ObservableList<Entity> entities = null;
-        switch (classification) {
-        case "char":
+        if (classification.isCharacter()) {
             entities = this.reroll.getEntities().getCharList();
-            break;
-        case "mob":
+        } else if (classification.isMob()) {
             entities = this.reroll.getEntities().getMobList();
-            break;
-        case "item":
+        } else if (classification.isItem()) {
             entities = this.reroll.getEntities().getItemList();
-            break;
-        default:
+        } else {
             logger.info("What have you done");
         }
         return entities;
