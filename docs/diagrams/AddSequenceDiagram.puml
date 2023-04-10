@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/James y/2 c/13 e/james@gmail.com")
+[-> LogicManager : execute\n("add n/James\ny/2 c/13\ne/james@gmail.com")
 activate LogicManager
 
-LogicManager -> CodocParser : parseCommand("add n/James y/2 c/13 e/james@gmail.com")
+LogicManager -> CodocParser : parseCommand\n("add n/James\ny/2 c/13\ne/james@gmail.com")
 activate CodocParser
 
 create AddCommandParser
@@ -27,7 +27,7 @@ activate AddCommandParser
 AddCommandParser --> CodocParser
 deactivate AddCommandParser
 
-CodocParser -> AddCommandParser : parse("add n/James y/2 c/13 e/james@gmail.com")
+CodocParser -> AddCommandParser : parse\n("add n/James \ny/2 c/13 \ne/james@gmail.com")
 activate AddCommandParser
 
 AddCommandParser -> ParserUtil : parseName("James")
