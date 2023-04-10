@@ -9,9 +9,9 @@ src/main/resources/docs/
 /*.iml
 
 # Storage/log files
-/config.json
-/preferences.json
-/*.log.*
+#/config.json
+#/preferences.json
+#/*.log.*
 
 # Test sandbox files
 src/test/data/sandbox/

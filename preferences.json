@@ -1,0 +1,11 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 1000.0,
+    "windowHeight" : 835.2000122070312,
+    "windowCoordinates" : {
+      "x" : 276,
+      "y" : 78
+    }
+  },
+  "expenseTrackerFilePath" : "data\\addressbook.json"
+}
