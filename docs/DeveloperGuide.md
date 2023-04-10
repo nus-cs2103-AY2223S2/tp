@@ -8,6 +8,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Introduction
 
@@ -43,6 +44,7 @@ by [se-education.org](https://se-education.org).
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 2. Design
 
@@ -74,8 +76,8 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#22-ui-component): The UI of the App.
 * [**`Logic`**](#23-logic-component): The command executor.
-* [**`OfficeConnectModel`**](#24-model-component): Holds the data of the App in memory.
-* [**`Storage`**](#26-storage-component): Reads data from, and writes data to, the hard disk.
+* [**`OfficeConnectModel`**](#24-officeconnectmodel-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 #### 2.1.2 How the architecture components interact with each other
 
@@ -219,6 +221,7 @@ means it can be treated as either (if the functionality of only one is needed). 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3. Implementation
 This section describes some noteworthy details on how certain features are implemented.
@@ -525,6 +528,8 @@ Similar to Help Window in section 3.7, this window is maintained by `QuickstartW
 similarly named `fxml` and `css` to display the relevant quickstart information.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 4. Planned Enhancements
 
 ### 4.1 Support for overseas domains
@@ -544,6 +549,8 @@ would result in a constant need to refer to the User Guide for assistance. Likew
 in extra effort to learn and memorize the commands.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
@@ -553,6 +560,8 @@ in extra effort to learn and memorize the commands.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 6. Appendix: Requirements
 
 ### 6.1 Product scope
@@ -1134,6 +1143,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. Appendix: Instructions for manual testing
 
@@ -1426,6 +1436,8 @@ testers are expected to do more *exploratory* testing.
          Expected: No tasks are displayed. "No such task found" shown in status message.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 8. Appendix: Effort
 OfficeConnect is a project built upon AB3, which was built out of the SE-EDU initiative. Our group has been actively working on OfficeConnect for the past 9 weeks, holding meetings to stay on task ever since the group has been formed, **meeting all weekly checkpoints punctually.** <br> <br>
 Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
