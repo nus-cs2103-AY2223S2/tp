@@ -42,13 +42,11 @@ All terms used are summarised in the [Glossary](#glossary)
 
 #### Icons 
 
-The following icons throughout our user guide:
+The following callouts can be found throughout our user guide:
 
-| **Icons**                                                                                                                                               | **Meaning**                                                                                                   |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| <div markdown="block" class="alert alert-info">:information_source: This provides some additional information that you are recommended to know.  </div> | Infomation                                                                                                    | 
-| <div markdown="block" class="alert alert-primary">:bulb: </div>                                                                                         | This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. |
-| <div markdown="block" class="alert alert-danger">:exclamation: </div>                                                                                   | Danger zone! Do pay attention to the information here carefully.                                              |
+<div markdown="span" class="alert alert-info">:information_source: **Information:** This provides some additional information that you are recommended to know.  </div> 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. </div>
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Danger zone! Do pay attention to the information here carefully. </div> 
 
 The following icons are found in FriendLink: 
 
