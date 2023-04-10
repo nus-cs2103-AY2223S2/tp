@@ -29,11 +29,11 @@ title: Developer Guide
 
 ## Acknowledgements
 
-Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/). 
+Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/).
 Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
-albeit involving different implementations and classes. 
+albeit involving different implementations and classes.
 
-For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.  
+For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.
 
 ## Setting up, Getting started
 
@@ -75,12 +75,12 @@ The rest of the App consists of four components.
 
 <div style="page-break-after: always;"></div>
 
-We will introduce each of these components below. 
+We will introduce each of these components below.
 
 ### UI Component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java). 
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java).
 **API**
 [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -440,17 +440,17 @@ the input goes through the UI layer where `logic.execute(input)` is called which
 passes control to the logic layer.
 
 At the logic layer, `execute(input)` parses the input using the
-WingmanParser's `parse` function. 
+WingmanParser's `parse` function.
 
 Firstly, the WingmanParser separates the input into tokens. Secondly, it determines
-what mode the command is from using the `parse` command in the `CommandGroup` class. 
-Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser` class 
+what mode the command is from using the `parse` command in the `CommandGroup` class.
+Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser` class
 which uses the `createCommand` method to finally create a `DeleteCommand`.
 Finally, the `DeleteCommand` is returned in the original `LogicManager`.
 
-The next step in the `LogicManager` is to execute the returned command. To do so, 
-it calls the command's `execute` method which in this example, uses a 
-`DeleteFunction` to run `delete(model, xyz)` (where xyz is the resource 
+The next step in the `LogicManager` is to execute the returned command. To do so,
+it calls the command's `execute` method which in this example, uses a
+`DeleteFunction` to run `delete(model, xyz)` (where xyz is the resource
 to be deleted).
 
 The deletion of the resource is handled under the model layer. Once deleted,
@@ -463,8 +463,8 @@ indicating a successful deletion.
 
 For the parsing logic in the Wingman app, the commands were split based on their
 related "mode." This is due to the nature that there are some commands which
-only concern some modes. This implementation decision was made so that parsing would be 
-more simple across the five modes since each mode would only have to handle their 
+only concern some modes. This implementation decision was made so that parsing would be
+more simple across the five modes since each mode would only have to handle their
 related commands only.
 
 <div style="page-break-after: always;"></div>
