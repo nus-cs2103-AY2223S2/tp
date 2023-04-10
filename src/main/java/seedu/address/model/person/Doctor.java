@@ -7,22 +7,14 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Doctor in Mediconnect.
+ * Represents a Doctor in MediConnect.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Doctor extends Person {
     private final ArrayList<Appointment> patientAppointments;
 
     /**
-     * Creates Doctor object.
-     * @param name
-     * @param phone
-     * @param email
-     * @param nric
-     * @param address
-     * @param tags
-     * @param patientAppointments
-     * @param role
+     * Every field must be present and not null.
      */
     public Doctor(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
                   ArrayList<Appointment> patientAppointments, Role role) {

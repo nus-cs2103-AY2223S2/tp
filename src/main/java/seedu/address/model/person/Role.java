@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-//import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's role in the address book.
@@ -25,7 +24,6 @@ public class Role {
      */
     public Role(String role) {
         requireNonNull(role);
-        //checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
         this.role = role;
     }
 
