@@ -636,12 +636,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Required project details are not provided.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Create a client**
 
@@ -658,12 +658,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Required client details are not provided.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Delete a project**
 
@@ -680,7 +680,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Project with submitted name does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Delete a client**
 
@@ -697,7 +697,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Client with submitted email does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Edit a project**
 
@@ -714,12 +714,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Project with submitted name does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 **Use case: Edit a client**
 
@@ -736,12 +736,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Client with submitted email does not exist.
    * 1a1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 * 1b. Some client details are invalid.
    * 1b1. Mycelium shows an error message.
 
-   Use case resumes at step 1.
+   Use case ends.
 
 **Use case: Find a project**
 
@@ -790,8 +790,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  All user operations should complete under 100ms.
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
-
-*{More to be added}*
 
 ## Glossary
 
