@@ -42,7 +42,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_KEYDATE + "KEYDATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY + "Microsoft "
@@ -85,6 +84,7 @@ public class EditCommand extends Command {
 
         model.setOpening(openingToEdit, editedOpening);
         model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
+        model.setSelectedIndex(null);
         return new CommandResult(String.format(MESSAGE_EDIT_OPENING_SUCCESS, editedOpening));
     }
 

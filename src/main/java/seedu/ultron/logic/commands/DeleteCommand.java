@@ -46,6 +46,7 @@ public class DeleteCommand extends Command {
             model.setSelectedIndex(null);
         }
         model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
+        model.setSelectedIndex(null);
         return new CommandResult(String.format(MESSAGE_DELETE_OPENING_SUCCESS, openingToDelete));
     }
 
