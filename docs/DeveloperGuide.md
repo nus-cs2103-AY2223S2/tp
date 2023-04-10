@@ -1590,8 +1590,6 @@ message is displayed in the Result Display. Do refer to Figures 22 and 23 for an
 <p style="text-align: center;">Figure 23: Result of the add command in figure 22</p>
 
 
-<div style="page-break-after: always;"></div>
-
 A possible implementation is to change the `findPrefixPosition()` method in `seedu.internship.logic.parser.ArgumentTokenizer` as shown in Figure 24. Instead of finding the first exact match of the prefix, the method tries to find the first case-insensitive match of the prefix.
 
 
