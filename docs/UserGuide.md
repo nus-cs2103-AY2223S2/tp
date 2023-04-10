@@ -38,7 +38,7 @@ title: User Guide
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest `TrAcker.jar` from [here](https://github.com/AY2223S2-CS2103-F11-1/tp/releases/tag/v1.3.1).
+2. Download the latest `TrAcker.jar` from [here](https://github.com/AY2223S2-CS2103-F11-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the home folder for your TrAcker.
 
@@ -441,6 +441,7 @@ Examples:
 ### Sort students in recurring events: `sort-student`
 
 - Sorts the students in events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
+- The urgency level of a student is given by 100 - participation. The lower the performance level, the higher the urgency level.
 - The master list in the student tab will only be sorted if the group selected is all.
 - If the group selected is not all (i.e consultation, lab, or tutorial), the list of students in the event card in the event tab will be sorted, and not the master student list.
 - The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
@@ -469,7 +470,7 @@ Examples:
 ### Filter students in recurring events: `filter`
 
 Filters all students depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100).
-
+The urgency level of a student is given by 100 - performance. The lower the performance level, the higher his/her urgency level.
 The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
 Format: `filter METRIC THRESHOLD`
