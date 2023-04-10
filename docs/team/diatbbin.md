@@ -29,14 +29,14 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to edit students from PowerConnect.
   * What it does: Allows users to edit students from PowerConnect via the Student Edit Command.
   * Justification: This feature contributes significantly to the product as one of the intended features in allowing teachers to edit students from their students list.
-  * Highlights: The implementation was challenging as the student class has many prefixes that can be edited. If StudentEditCommand changes parent information in a student, that parent and all students attached to that parent will be updated too.
+  * Highlights: The implementation was challenging and tedious as the student class has more than 12 details that can be edited. If the parent information in a student is edited using StudentEditCommand, that parent and all the students attached to that parent will be updated too.
   * * Credits: *T17-2's DeleteDepartmentCommand*
       <br><br>
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=T09-1&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Diatbbin&tabRepo=AY2223S2-CS2103T-T09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Participated in releases `v1.1` - `v1.4` (6 releases) on GitHub 
+  * Participated in releases `v1.2` - `v1.4` (5 releases) on GitHub 
   * Helped to check documentation <br><br>
 
 * **Enhancements to existing features**:
@@ -49,7 +49,7 @@ Given below are my contributions to the project.
         * Check and amended errors in User Guide [\#144](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/144), [\#204](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/204)
     * Developer Guide:
       * Added implementation details of the `student/parent delete` feature. [\#233](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/233) 
-      * Helped check and update user stories [\#247](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/247) <br><br>
+      * Helped to check and update user stories [\#247](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/247) <br><br>
       
 * **Review Contributions during team project**:
   * PRs reviewed and merged: [\#96](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/96), [\#112](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/112), [\#215](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/215) 
