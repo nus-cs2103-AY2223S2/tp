@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/yanlings.png" width="200px">
 
 [[github](https://github.com/yanlings)]
-[[portfolio](team/yanling.md)]
+[[portfolio](team/yanlings.md)]
 
 * Role: Developer
 * Responsibilities: Develop ExecutivePro system
