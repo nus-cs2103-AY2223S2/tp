@@ -10,6 +10,7 @@ import wingman.model.crew.Crew;
 import wingman.model.crew.FlightCrewType;
 import wingman.model.item.Item;
 import wingman.model.link.Link;
+import wingman.model.link.exceptions.LinkException;
 import wingman.model.location.FlightLocationType;
 import wingman.model.location.Location;
 import wingman.model.pilot.FlightPilotType;
@@ -119,6 +120,30 @@ public class Flight implements Item {
      */
     public Link<FlightLocationType, Location, ReadOnlyItemManager<Location>> getLocationLink() {
         return locationLink;
+    }
+
+    /**
+     * Sets a departure or arrival location for this flight.
+     * If the location is already set, it will replace the existing location.
+     *
+     * @param type     the type of location (departure or arrival).
+     * @param location the location to set.
+     * @throws LinkException if the key is not valid.
+     */
+    public void setLocation(FlightLocationType type, Location location) throws LinkException {
+        locationLink.putRevolve(type, location);
+    }
+
+    /**
+     * Removes a departure or arrival location for this flight.
+     * If the location is not set, it will do nothing.
+     *
+     * @param type the type of location (departure or arrival).
+     * @param location the location to remove.
+     * @throws LinkException if the key is not valid.
+     */
+    public void removeLocation(FlightLocationType type, Location location) throws LinkException {
+        locationLink.delete(type, location);
     }
 
     @Override

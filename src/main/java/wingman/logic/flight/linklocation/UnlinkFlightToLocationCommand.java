@@ -58,7 +58,7 @@ public class UnlinkFlightToLocationCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
-                flight.locationLink.delete(entry.getKey(), entry.getValue());
+                flight.removeLocation(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
