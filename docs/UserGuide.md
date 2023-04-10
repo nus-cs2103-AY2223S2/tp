@@ -29,7 +29,7 @@ This user guide shows you how to get started using AIMS and how to make use of t
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing last modification : `undo`](#undoing-last-modification--undo)
   - [Viewing command history](#viewing-command-history)
-  - [Adding a person to favorites : `favorite`](#adding-a-person-to-favorites--favorite)
+  - [Toggling the favorite status of a person : `favorite`](#toggling-the-favorite-status-of-a-person--favorite)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -52,7 +52,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your computer.
+1. Ensure you have Java `11` or above installed in your computer. If not, you can download it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
 2. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
@@ -61,7 +61,12 @@ Here are some symbols used throughout the user guide to inform you of additional
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-  ![Ui](images/Ui.png)
+  <div style="text-align: center;">
+    <img src="images/Ui.png">
+    <p style="font-style: italic;"><br>Default state of the app on startup</p>
+    <br>
+  </div>
+
 5. Refer to the [Features](#features) below for details of each command.
 
 [Back to Top ↑](#table-of-contents)
@@ -98,7 +103,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 - Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as <code>&nbsp;</code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-- Parameters can be given in any order.<br>
+- You can give parameters in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
@@ -117,7 +122,11 @@ Shows you a message explaining how to access the help page.
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+<div style="text-align: center;">
+  <img src="images/helpMessage.png">
+  <p style="font-style: italic;"><br>Dialog with instructions to navigate to the help page</p>
+  <br>
+</div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -136,9 +145,13 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 Examples:
 - `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`<br>
   Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
-  ![add Lawrence success](images/addLawrenceSuccess.png)
+  <div style="text-align: center;">
+    <img src="images/addLawrenceSuccess.png">
+    <p style="font-style: italic;"><br>Success screen upon successful addition of Lawrence Tay</p>
+    <br>
+  </div>
 
-[Back to Top ↑](#table-of-contents)
+[Return to Top](#table-of-contents)
 
 ### Importing multiple persons from a CSV file : `importcsv`
 
@@ -159,17 +172,26 @@ The given CSV file must fulfill the following conditions:
 Examples:
 
 - A Google Sheet that would be valid once it is converted to a CSV file.
-
-  ![demo sheets](images/demoSheets.png)
+<div style="text-align: center;">
+  <img src="images/demoSheets.png">
+  <p style="font-style: italic;"><br>Google sheet containing contact information in the correct format</p>
+  <br>
+</div>
 
 - A valid CSV file:
-
-  ![demo CSV](images/demoCsv.png)
+<div style="text-align: center;">
+  <img src="images/demoCsv.png">
+  <p style="font-style: italic;"><br>CSV file containing contact information exported from the Google Sheet above</p>
+  <br>
+</div>
 
 - `importcsv C:\file\6coy_platoon_four_data.csv`<br>
-  All persons in the valid CSV file from the above example will be added into AIMS.
-
-![importcsv success](images/importcsvSuccess.png)
+All persons in the valid CSV file from the above example will be added into AIMS.
+<div style="text-align: center;">
+  <img src="images/importcsvSuccess.png">
+  <p style="font-style: italic;"><br>Success screen upon successful import of CSV file into AIMS</p>
+  <br>
+</div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -212,8 +234,11 @@ Examples:
 
 - `copy 2` <br>
 If your clipboard is accessible, a success message will be displayed.
-
-    ![result for 'copy 2'](images/copy2Result.png)
+    <div style="text-align: center;">
+      <img src="images/copy2Result.png">
+      <p style="font-style: italic;"><br>Success screen upon successful copying of information to clipboard</p>
+      <br>
+    </div>
 
     The following text will be copied into your clipboard.
 
@@ -231,8 +256,11 @@ If your clipboard is accessible, a success message will be displayed.
 
 - `copy 2` <br>
 If your clipboard is not accessible, the information will be displayed in the message box which can be manually selected and copied.
-
-  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
+   <div style="text-align: center;">
+     <img src="images/copy2_noclipboard.png">
+     <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
+     <br>
+   </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -275,8 +303,11 @@ Example:
   - `Charlotte Oliveiro` (name matches `live`)
   - `Irfan Ibrahim` (email matches `live`)
   - `Roy Balakrishnan` (company matches `delta`)<br>
-
-  ![result for 'find charlotte irfan roy'](images/findCharlotteIrfanRoyResult.png)
+  <div style="text-align: center;">
+    <img src="images/findCharlotteIrfanRoyResult.png">
+    <p style="font-style: italic;"><br>Screen showing the result of finding 3 persons using partial keyword matching</p>
+    <br>
+  </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -296,7 +327,11 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 Example:
 - `filter a/street r/sg` <br>
 2 persons named `Davlid Li` and `S Lee Chong Wei`, both with an address that contains `street` and a rank that contains `sg` will be shown.
-  ![result for 'filter david lee'](images/filterDavidLeeResult.png)
+  <div style="text-align: center;">
+    <img src="images/filterDavidLeeResult.png">
+    <p style="font-style: italic;"><br>Screen showing the results of filtering by address and rank</p>
+    <br>
+  </div>
 
 [Back to Top ↑](#table-of-contents)
 
@@ -360,21 +395,34 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
 
 [Back to Top ↑](#table-of-contents)
 
-### Adding a person to favorites : `favorite`
+### Toggling the favorite status of a person : `favorite`
 
-Favorites the specified person from AIMS.
+Lets you toggle the favorite status of a person from AIMS.
 
 Format: `favorite INDEX`
 
-- Favorites the person at the specified `INDEX`.
-- Running this command on a person who is already in the favorite list will remove him from the favorite list.
+- Toggles favorite status for the person at the specified `INDEX`.
+- If the command is run on a person who is not in the favorite list, he will be added to the favorite list.
+- If the command is run on a person who is already in the favorite list, he will be removed from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- The favorites list on the sidebar is sorted according to the index number of the persons that is shown after running the list command.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `favorite`!
+
+</div>
 
 Example:
 
-- `favorite 3` will pin the third person in the favorites panel.
-  ![result for `favorite 3`](images/favorite3.png)
+- `favorite 3`<br> 
+The third person in the existing main list will be added to and pinned in the favorites list.<br>
+  <div style="text-align: center;">
+    <img src="images/favorite3.png">
+    <p style="font-style: italic;"><br>Screen showing the result of favoriting person 3, causing the contact to be pinned to the sidebar</p>
+    <br>
+  </div>
 
 [Back to Top ↑](#table-of-contents)
 
