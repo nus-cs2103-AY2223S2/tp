@@ -181,7 +181,7 @@ public class UniqueHomeworkList implements Iterable<Homework> {
             }
         }
         pieChartData.add(new PieChart.Data("Completed", completedHomework));
-        pieChartData.add(new PieChart.Data("Uncompleted", uncompletedHomework));
+        pieChartData.add(new PieChart.Data("Pending", uncompletedHomework));
         return pieChartData;
     }
 
