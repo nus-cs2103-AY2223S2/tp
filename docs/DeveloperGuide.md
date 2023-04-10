@@ -858,10 +858,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to sort the list by a given criterion
-4.  DengueHotspotTracker sorts the list by the given criterion
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to sort the list by a given criterion.
+4.  DengueHotspotTracker sorts the list by the given criterion.
 
     Use case ends.
 
@@ -912,6 +912,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. DengueHotspotTracker reverts to showing the complete list.
 
     Use case resumes at step 3.
+
+#### Use case: Change the overview type
+
+**MSS**
+
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to change the overview type to a given aspect.
+4.  DengueHotspotTracker changes the overview panel to update based on the new aspect.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given criterion is invalid.
+
+  * 3a1. DengueHotspotTracker shows an error message.
+
+    Use case resumes at step 2.
 
 #### Use case: Import data
 
