@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortEventCommand;
-import seedu.address.testutil.TypicalSortEventTypes;
+import seedu.address.testutil.TypicalSortEventKeys;
 
 public class SortEventCommandParserTest {
 
@@ -21,7 +21,7 @@ public class SortEventCommandParserTest {
 
     @Test
     public void parse_validArg_returnsSortEventCommand() {
-        SortEventCommand expectedSortEventCommand = new SortEventCommand(SortEventType.SORT_BY_START_DATE_TIME);
-        assertParseSuccess(parser, TypicalSortEventTypes.SORT_BY_START_DATE_TIME, expectedSortEventCommand);
+        SortEventCommand expectedSortEventCommand = new SortEventCommand(SortEventKey.SORT_BY_START_DATE_TIME);
+        assertParseSuccess(parser, TypicalSortEventKeys.SORT_BY_START_DATE_TIME, expectedSortEventCommand);
     }
 }

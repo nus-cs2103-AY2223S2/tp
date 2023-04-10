@@ -24,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W16-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -71,13 +71,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The user interface (UI) of the system is composed of a `MainWindow` that is made up of various parts such as `CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities among classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -88,7 +88,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -119,22 +119,22 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` (which are contained in a `UniquePersonList` object) and `Event` (which are contained in a `UniqueEventList` object) objects .
+- stores the address book data i.e., all `Person` (which are contained in a `UniquePersonList` object) and `Event` (which are contained in a `UniqueEventList` object) objects.
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Event` objects, similar to how the currently 'selected' `Person` objects are stored and updated. It is stored as an unmodifiable `ObservableList<Event>`.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -142,7 +142,7 @@ The `Storage` component,
 
 - can save both address book data and user preference data in json format, and read them back into corresponding objects.
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -153,6 +153,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Implemented] Add feature
+
+#### Current Implementation
+
+Adding a person is a feature that uses the command `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`.
+
+The following activity diagram shows how the add operation works when given valid parameters or invalid parameters and with or without the optional event tag parameter.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Every person object has a set of events, denoted by `eventSet`. If event tag parameter `evt/EVENT_INDEX` is present, the event at the displayed list's `EVENT_INDEX`, denoted as `eventToAdd`, will be added to the `eventSet` of the person. Otherwise, the person object will have an empty `eventSet`.
+
+This operation is similar to that of adding an event. Adding a person involves calling `Model#addPerson(Person)`, which in turn calls `AddressBook#addPerson(Person)` to add the Person object to the existing `AddressBook`.
+
 
 ### \[Implemented] Add event feature
 
@@ -166,11 +181,31 @@ The following sequence diagram shows how the add event operation works.
 
 This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
 
+### \[Implemented] Sort events feature
+
+#### Current Implementation
+
+Sorting a list of events is a feature that uses the commands listed below.
+The events can be sorted based on their:
+- names in ascending ASCII order (using `sortevent a` command)
+- names in descending ASCII order (using `sortevent b` command)
+- start date times in ascending order (using `sortevent c` command)
+- end date times in ascending order (using `sortevent d` command)
+
+The following sequence diagram shows how the sort events operation works.
+
+![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
+
+Sorting a list of events involves calling `Model#sortEventList(SortEventKey)`, which will sort the event list based on the `SortEventKey` object passed into the method.
+
+This sorting feature can only be executed when there are more than 1 event listed on the UI.
+It will only sort the event list based on the last String entered in the user input.
+
 ### \[Implemented] Find event feature
 
 #### Current Implementation
 
-Finding an event is a feature that uses the command `findevent [EVENT_NAME]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Finding an event is a feature that uses the command `findevent KEYWORD [MORE_KEYWORDS]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
 Below is the sequence diagram detailing how the `findevent` operation works.
 
 ![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
@@ -178,6 +213,22 @@ Below is the sequence diagram detailing how the `findevent` operation works.
 Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
 This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
 The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+
+### \[Implemented] Edit event feature
+
+#### Current Implementation
+
+Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`. The following activity diagram shows how the edit event operation works when given valid parameters or invalid parameters.
+
+![EditEventActivityDiagram](images/EditEventActivityDiagram.png)
+
+The event at the displayed list's `EVENT_INDEX` is denoted as `eventToEdit`. The edited version is denoted as `editedEvent`. 
+
+Editing an event involves calling `Model#setEvent(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEvent(eventToEdit, editedEvent)` to edit the specified event, `eventToEdit`, in the `AddressBook`.
+
+Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and editing the specified event, `eventToEdit`. This is done by calling `Model#setEventFromPersonList(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEventFromPersonList(eventToEdit, editedEvent)`.
+
+The `setEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely edit the specified event in the `AddressBook`.
 
 ### \[Implemented] Delete event feature
 
@@ -191,27 +242,7 @@ This operation is similar to that of deleting a person. Deleting an event involv
 
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
-The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
-
-### \[Implemented] Sort events feature
-
-#### Current Implementation
-
-Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`.
-The events can be sorted based on their:
-- names in ascending ASCII order (using `sortevent a`)
-- names in descending ASCII order (using `sortevent b`)
-- start date times in ascending order (using `sortevent c`)
-- end date times in ascending order (using `sortevent d`)
-
-The following sequence diagram shows how the sort events operation works.
-
-![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
-
-Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, which will sort the event list based on the `SortEventType` object passed into the method.
-
-This sorting feature can only be executed when there are more than 1 event listed on the UI.
-It will only sort the event list based on the last String entered in the user input.
+The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely remove the specified event from the `AddressBook`.
 
 ### \[Implemented] List persons from an event feature
 
@@ -284,39 +315,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a new event.
-2.  PlanEase shows a prompt to indicate that the event has been added successfully.
+2.  PlanEase indicates that the event has been added successfully.
 
 Use case ends.
 
 **Extensions**
 
-- 1a. PlanEase detects the event description is missing.
+- 1a. PlanEase detects the event name is missing.
 
-  - 1a1. PlanEase prompts User of invalid inputs.
+  - 1a1. PlanEase shows an error message.
 
   Use case ends.
 
 - 1b. PlanEase detects that the datetime range or format is not valid.
 
-  - 1b1. PlanEase prompts User of invalid inputs.
+  - 1b1. PlanEase shows an error message.
 
   Use case ends.
 
-- 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
+- 1c. PlanEase detects that the User entered less than or more than 2 datetime inputs.
 
-  - 1c1. PlanEase prompts User of invalid number of datetime inputs.
+  - 1c1. PlanEase shows an error message.
 
   Use case ends.
 
 - 1d. PlanEase detects that the User has used invalid prefix(es).
 
-  - 1d1. PlanEase prompts User of invalid prefix(es) used.
+  - 1d1. PlanEase shows an error message.
 
   Use case ends.
 
-- 1e. PlanEase detects that event already exists.
+- 1e. PlanEase detects that the event already exists.
 
-  - 1e1. PlanEase prompts User of duplicate event used.
+  - 1e1. PlanEase shows an error message.
 
   Use case ends.
 
@@ -330,6 +361,105 @@ Use case ends.
 2.  PlanEase shows a list of events.
 
 Use case ends.
+
+<br>
+
+**Use case: Sorts current list of events**
+
+**MSS**
+
+1.  User requests to sort all events based on a sorting key.
+2.  PlanEase shows the list of sorted events based on the user's choice of sorting key.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The given character to represent the sorting key is invalid (i.e. not a, b, c, or d).
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. There are less than 2 events in the list.
+
+    - 1b1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
+**Use case: Edit an event**
+
+**MSS**
+
+1.  User requests to edit an event.
+2.  PlanEase indicates that the event has been edited successfully.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The given event index is invalid.
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. PlanEase detects that no fields are provided for the edit.
+
+    - 1b1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1c. PlanEase detects the event name is empty or invalid.
+
+    - 1c1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1d. PlanEase detects that the datetime range or format is not valid.
+
+    - 1d1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1e. PlanEase detects that the User has used invalid prefix(es).
+
+    - 1e1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1f. PlanEase detects that the event already exists.
+
+    - 1f1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
+**Use case: Find an event**
+
+**MSS**
+
+1.  User requests to find an event based on a given keyword.
+2.  PlanEase shows the list of filtered events based on the user’s keyword.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. PlanEase detects that no fields are provided for the keyword.
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. The given keyword does not exist in any of the event's event name.
+
+    - 1b1. PlanEase does not display any events.
+
+  Use case ends.
 
 <br>
 
@@ -357,7 +487,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to add a new contact.
-2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
+2.  PlanEase indicates that the contact has been added successfully.
 
 Use case ends.
 
@@ -381,6 +511,30 @@ Use case ends.
 
   Use case ends.
 
+- 1d. The name prefix is not used.
+
+    - 1d1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1e. The phone number prefix is not used.
+
+    - 1e1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1f. The email prefix is not used.
+
+    - 1f1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1g. The address prefix is not used.
+
+    - 1g1. PlanEase shows an error message.
+
+  Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -391,14 +545,14 @@ Use case ends.
 6.  Should minimally support ASCII characters.
 7.  Must perform without failure in 95 percent of use cases during a month.
 8.  GUI color scheme should have high contrast and font size must not be too small, to aid those with vision impairments.
-9.  Application file size should not exceed (.jar/.zip) 100MB.
+9.  Application file size (.jar) should not exceed 100MB.
 10. Should only allow for 1 instance of the application running each time to ensure that data saved is consistent.
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Gregorian Calendar**: Solar calendar with 12 months of 28-31 days each, used in most parts of the world
-- **ASCII Characters**: A 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters
+- **Mainstream OS**: Windows, Linux, Unix, macOS.
+- **Gregorian Calendar**: Solar calendar with 12 months of 28-31 days each, used in most parts of the world.
+- **ASCII Characters**: A 7-bit character set containing 128 characters. It contains the numbers from 0-9, the upper and lower case English letters from A to Z, and some special characters.
 
 ---
 
@@ -415,13 +569,99 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file.
+
+      1. Expected: Shows the GUI with a set of sample contacts and events. The window size may not be optimum.
 
 2. Shutting down
 
    1. Enter `exit` in the app's input box or click on the cancel button on the top right of the app.
+
+### Adding an event
+
+1. No prerequisite.
+
+2. Test case: `addevent ev/CEO's 50th Birthday Carnival from/17-07-2023 12:00 to/23-07-2023 22:00`<br>
+   Expected: 1 event with the name `CEO's 50th Birthday Carnival` is added. Details of the added event shown in the status message.
+
+3. Test case: `addevent ev/Wedding Dinner from/17-07-2023 12:00 to/13-07-2023 22:00`<br>
+   Expected: No event is added. Error details shown in the status message.
+
+4. Other incorrect addevent commands to try: `addevent`, `...`<br>
+   Expected: Similar to previous.
+
+### Listing Events
+
+1. No prerequisite.
+
+2. Test case: `listevent`<br>
+   Expected: All events are displayed. Details of successful command execution shown in the status message.
+
+### Listing all persons from an event
+
+1. No prerequisite.
+
+2. Test case: `listevcontact 1`<br>
+   Expected: App will display the list of all persons from first event if any.
+
+3. Other incorrect listevcontact commands to try: `listevcontact x`, `...` (where x is not a valid event index).<br>
+   Expected: Error details shown in the status message.
+
+### Sorting event list
+
+1. Prerequisite: Current list of events has at least 2 events.
+
+2. Test case: `sortevent a`<br>
+   Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
+
+3. Test case: `sortevent`<br>
+   Expected: Event list is not sorted. Error details shown in the status message.
+
+4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
+   Expected: Similar to previous.
+
+### Editing an Event
+
+1. Editing an event while all events are being shown
+
+    1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
+
+    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+       Expected: First event is edited from the event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+    3. Test case: `editevent 0`<br>
+       Expected: No event is edited. Error details shown in the status message.
+
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+       Expected: Similar to previous.
+
+2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
+
+   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [MORE_KEYWORDS]` command. Multiple events in the list.
+
+   2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+      Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+   3. Test case: `editevent 0`<br>
+      Expected: No event is edited. Error details shown in the status message.
+
+   4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+      Expected: Similar to previous.
+
+### Finding an event
+
+1. Prerequisites: Current list of events has only two events with event names `Sports Carnival` and `Magic Carnival`.
+
+2. Test case: `findevent Carnival`<br>
+   Expected: 2 event with the keyword `Carnival` is found. They are `Sports Carnival` and `Magic Carnival`.
+
+3. Test case: `findevent Magical`<br>
+   Expected: No matching event is found.
+
+4. Other incorrect findevent commands to try: `findevent`, `...`.<br>
+   Expected: Error details shown in the status message.
 
 ### Deleting a person
 
@@ -429,21 +669,127 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person while persons with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
+
+    1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the displayed list. Details of the deleted contact shown in the status message.
+
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+       Expected: Similar to previous.
+
+### Sorting event list
+
+1. Prerequisite: Current list of events have at least 2 events.
+
+2. Test case: `sortevent a`<br>
+   Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
+
+### Listing all persons and events
+
+1. No prerequisite.
+
+2. Test case: `listall`<br>
+   Expected: App will display the list of all persons and events if any.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Missing `/data/addressbook.json` file before running the app
 
-1. _{ more test cases …​ }_
+      1. Expected: App will create this file after the user enters a valid input.
+
+2. Dealing with corrupted data files
+
+   1. Corrupted `/data/addressbook.json` file (file is not in valid json format) before running the app
+
+      1. Expected: App will not list any contacts and events.
+         It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
+         Format of `/data/addressbook.json` file becomes valid.
+
+## **Appendix: Planned Enhancements**
+
+### Person name will not be case-sensitive
+
+Currently, the name of a Person is not case-sensitive.
+Anyone with the same name but in different casing are considered different Persons.
+For example, the user is allowed to enter these 2 commands and create 2 Persons in the list of Contacts:
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
+* `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
+
+For future enhancements, Person names with the same sequence of characters but different casing will be considered the same Person.
+
+### Person name can be more flexible
+
+The current version of this application is not able to accept names that contain non-alphanumeric characters. The non-alphanumeric characters found in most names are `/` and `'`.
+For example, the user is not allowed to enter these 2 commands and create the following Persons in the list of Contacts due to the current constraint:
+* `add n/John O'neal p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John O'neal**.
+* `add n/John s/o Raju p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John s/o Raju**.
+
+For future enhancements, Person names should be more flexible in catering for names that may contain non-alphanumeric characters in the English language.
+
+### Phone number checks can be done
+
+The current version of this application has no prior knowledge of how phone numbers work in real-life.
+For example, the user is currently able to add the following command.
+* `add n/John Doe p/1234566789900000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`.
+* `add n/John Doe p/00000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`
+For future enhancements, checks can be made to ensure that the numbers are formatted with accordance to phone numbers found in Singapore as an example.
+
+### Events that have ended can be displayed differently
+
+In this version of the application, the displayed events does not have any special indicator to show that it has "expired" or ended.
+For example, if today's date is 9th April 2023 and there are events that have end dates earlier than 9th April, they should be shown as greyed out events to indicate to the user that the event has ended.
+This UI enhancement would help allow the users to focus on upcoming events.
+
+For future enhancements, the UI should display past events with a special indicator or color to differentiate itself from future events.
+
+## **Appendix: Planned Features**
+
+### Ability to archive events
+
+In line with previous enhancement above, as the user continues to use the application, events that have ended may accumulate if the user wishes to keep them.
+
+For future enhancements, the user should be able to archive events that have ended so that they are stashed away and only accessible upon using a command.
+At least two commands may be required to implement stashing and un-stashing of an event from the archive. A separate storage may also be needed store these archived events.
+
+### Ability to set and receive reminders
+
+In this version of the application, users are not able to set reminders of upcoming events.
+
+For future enhancements, the user should be able to set a reminder for each event. This could be implemented by first modifying the existing `Event` class to also hold the date that the user wishes to be reminded on.
+Additional checks must also be put in place to ensure that the user does not add reminder dates that have already passed.
+Also, the UI may require enhancements to display the reminders and additional considerations must be made when more than one reminder occurs at a time.
+
+### Ability to mark an overall-in-charge for an event
+
+In this version of the application, events are not assigned an overall-in-charge from the contact list.
+
+For future enhancements, the user should be able to set an overall-in-charge to the events. This is to identify specific individuals that are linked to a particular event and make them more prominent in the application.
+A possible way to design this implementation is to make the event keep track of the person who represents the overall-in-charge, that way we can safely restrict the number of overall-in-charge to just one contact or no contacts.
+As for the UI, similar to the tagging of event to the person, the overall-in-charge person can be tagged to the event and displayed on the UI.
+
+### Ability to set up a checklist of event's requirements
+
+In this version of application, users are not able to set up a checklist of event's requirements.
+
+For future enhancements, users should be able to set up a checklist of event's requirements. This is to ensure that every need for the event is being accounted for. 
+Additionally, users are able to check-off and uncheck the requirements of the event to indicate whether the requirements have been satisfied or not. 
+
+A possible way to implement this is to let every event object contain a `requirementList` attribute, users can add in the requirements to the list by modifying the existing `addevent` and `editevent` command to accept the requirements. 
+Two new commands, `mark EVENT_INDEX r/REQUIREMENT_INDEX` and `unmark EVENT_INDEX r/REQUIREMENT_INDEX`, may be required to implement the checking-off and unchecking of a requirement, specified by the `REQUIREMENT_INDEX`, of an event, specified by the `EVENT_INDEX`.
+The UI will also display the list of requirements of each event and their statuses (checked or unchecked).  

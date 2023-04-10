@@ -29,7 +29,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.SortEventType;
+import seedu.address.logic.parser.SortEventKey;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -248,7 +248,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void sortEventList(SortEventType sortType) {
+        public void sortEventList(SortEventKey sortKey) {
             throw new AssertionError("This method should not be called.");
         }
     }

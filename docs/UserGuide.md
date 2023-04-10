@@ -13,15 +13,15 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3).
+2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your PlanEase application.
+3. Copy the file to a local folder you want to use as the _home folder_ for your PlanEase application.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar planease.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -36,9 +36,9 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
    * `delete 3` : Deletes the 3rd contact shown in the current contact list.
 
-   * `findevent disney` : Displays events with the word 'disney' present in their event name as a keyword.
-
    * `delevent 1` : Deletes the 1st event shown in the current event list.
+
+   * `findevent disney` : Displays events with the word 'disney' present in their event name as a keyword.
 
    * `clear` : Deletes all contacts and events.
 
@@ -55,24 +55,25 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  E.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [evt/EVENT_INDEX]` can be used as `n/John Doe evt/1` or as `n/John Doe`.
+  E.g `n/NAME [evt/EVENT_INDEX]` can be used as `n/John Doe evt/1` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[evt/EVENT_INDEX]…​` can be used as ` ` (i.e. 0 times), `evt/1`, `evt/1 evt/2` etc.
+  E.g. `[evt/EVENT_INDEX]…​` can be used as ` ` (i.e. 0 times), `evt/1`, `evt/1 evt/2` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  E.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. 
+  E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. e.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
+* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command.<br>
+  E.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  E.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * All `DATETIME` must strictly be in this format: `DD-MM-YYYY HH:mm`.
 
@@ -82,22 +83,25 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 #### Adding a person: `add`
 
-Adds a person to the address book and adds existing event to this person if event index is specified.
+Adds a person to the address book and adds existing event tag to this person if event index is specified.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 
 * Person name cannot exceed 50 characters.
-* Person name is restricted to alphanumeric characters. 
+* Person name is restricted to alphanumeric characters.
+* Phone number has no character limits to allow any types of phone numbers.
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have any number of events (including 0)
+A person can have any number of events (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` Adds person to the address book.
-* `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1` Adds 1st event to the new person `Pearlyn Yeah` in the address book.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` adds person to the address book.
+* `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1` adds 1st event to the new person `Pearlyn Yeah` in the address book.
+
+![example usage for add command](images/add.png)
 
 #### Listing all persons : `list`
 
@@ -105,22 +109,26 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+![example usage for list command](images/list.png)
+
 #### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT INDEX]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the tags will be added to the existing tags of the person i.e adding of tags is cumulative.
-* You can remove all the person’s event tags by typing `evt/` without
-    specifying any event index after it.
+* When editing event tags, the event tags will be added to the existing event tags of the person i.e. adding of event tags is cumulative.
+* You can remove all the person’s event tags by typing `evt/` only without specifying any event index after it.
+* Either the addition of event tags or the removal of event tags can be done at a time, i.e. removal and addition of event tags cannot be done in a single command. For example, `evt/ evt/2` cannot be recognised as removing all the event tags and adding event at event index 2 and `evt/2 evt/` cannot be recognised as adding event at event index 2 then removing all the event tags.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower evt/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing event tags.
+*  `edit 2 n/Betsy Crower evt/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing event tags.
+*  `edit 7 p/91234567 e/johndough@example.com` edits the phone number of the 7th person to `91234567` and the email address to `johndough@example.com`.
+
+![example usage for edit command](images/edit.png)
 
 #### Locating persons by name: `find`
 
@@ -128,17 +136,18 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. E.g `hans` will match `Hans`.
+* The order of the keywords does not matter. E.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched. E.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find John` returns `john` and `John Doe`.
+* `find roy john` returns `Roy Balakrishnan`, `John Doe`.<br>
+
+![example usage for find command](images/find.png)
 
 #### Deleting a person : `delete`
 
@@ -151,8 +160,10 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* Entering these 2 commands consecutively (`find roy john` followed by `delete 2`) deletes the 2nd person in the results of the `find` command.
+* Entering these 2 commands consecutively (`list` followed by `delete 1`) deletes the 1st person in the address book.
+
+![example usage for delete command](images/delete.png)
 
 ### Event Features
 
@@ -172,8 +183,10 @@ Past events can be added for tracking purposes.
 </div>
 
 Examples:
-* `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
-* `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30`
+* `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30` adds an event called `Dinner` which starts at `01-05-2023 17:30` and ends at `01-05-2023 19:30`.
+* `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00` adds an event called `Wedding Dinner` which starts at `01-05-2023 17:00` and ends at `01-05-2023 21:00`.
+
+![example usage for addevent command](images/addevent.png)
 
 #### Listing all events : `listevent`
 
@@ -187,9 +200,11 @@ Format: `listevent`
 Examples:
 * `listevent` prints a list of events.
 
+![example usage for listevent command](images/listevent.png)
+
 #### Listing persons from an event: `listevcontact`
 
-Shows a list of persons in the address book whose event set contains the specified event.
+Shows a list of persons in the address book who have the specified event tag tied to them.
 
 Format: `listevcontact EVENT_INDEX`
 
@@ -198,24 +213,28 @@ Format: `listevcontact EVENT_INDEX`
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listevent` followed by `listevcontact 2` lists all the persons whose event set contains the 2nd event in the event list.
+* `listevent` followed by `listevcontact 2` lists all the persons whose event tags contains the 2nd event in the event list.
+
+![example usage for listevcontact command](images/listevcontact.png)
 
 #### Sorting events: `sortevent`
 
 Sorts the events in the current event list based on the user's input.
 
-Format: `sortevent SORT_TYPE`
+Format: `sortevent SORT_KEY`
 
-* Sorts all the events in the current event list based on the specified `SORT_TYPE`.
-* `SORT_TYPE` must be one of these values:
+* Sorts all the events in the current event list based on the specified `SORT_KEY`.
+* `SORT_KEY` must be one of these values:
   * `a`: Sorts based on event names in ascending ASCII order.
   * `b`: Sorts based on event names in descending ASCII order.
   * `c`: Sorts based on start date times in ascending order.
   * `d`: Sorts based on end date times in ascending order.
-* There must be at least 2 events in the current event list to sort the event list.
+* There must be at least 2 events displayed in the current event list to sort the event list.
 
 Examples:
-* `listevent` followed by `sortevent c` sorts all the events in the address book based on their start date times in ascending order.
+* Entering these 2 commands consecutively (`listevent` followed by `sortevent c`) sorts all the events in the address book based on their start date times in ascending order.
+
+![example usage for sortevent command](images/sortevent.png)
 
 #### Editing an event : `editevent`
 
@@ -224,13 +243,15 @@ Edits an existing event in the address book.
 Format: `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`
 
 * Edits the event at the specified `EVENT_INDEX` and edits the relevant event tag tied to all persons in the address book.
-* The event index refers to the index number shown in the displayed event list. The event index **must be a positive integer** 1, 2, 3, …​
+* The event index refers to the index number shown in the displayed event list. The event index **must be a positive integer** 1, 2, 3, …​.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Edits will not allow start date time to be after the end date time.
 
 Examples:
-*  `editevent 1 ev/Birthday Party from/17-07-2023 12:00` Edits the event name and start datetime of the 1st event to be `Birthday Party` and `17-07-2023 12:00` respectively.
+*  `editevent 1 ev/Birthday Party from/17-07-2023 12:00` edits the event name and start datetime of the 1st event to be `Birthday Party` and `17-07-2023 12:00` respectively.
+
+![example usage for editevent command](images/editevent.png)
 
 #### Finding events by name: `findevent`
 
@@ -238,16 +259,18 @@ Finds events whose names contain any of the given keywords.
 
 Format: `findevent KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `party` will match `Party`
-* The order of the keywords does not matter. e.g. `Birthday Party` will match `Party Birthday`
+* The search is case-insensitive. E.g. `party` will match `Party`.
+* The order of the keywords does not matter. E.g. `Birthday Party` will match `Party Birthday`.
 * Only the event name is searched.
-* Only full words will be matched e.g. `Concert` will not match `Concerts`
+* Only full words will be matched. E.g. `Concert` will not match `Concerts`.
 * Events matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Wedding Dinner` will return `Wedding Ceremony`, `Birthday Dinner`
+  E.g. `Wedding Dinner` will return `Wedding Ceremony`, `Birthday Dinner`.
 
 Examples:
-* `findevent Dinner` returns `Wedding Dinner` and `Dinner and Dance`
-* `findevent birthday party` returns `Birthday Lunch`, `Graduation Party`
+* `findevent Dinner` returns `Wedding Dinner` and `Dinner and Dance`.
+* `findevent birthday party` returns `Birthday Lunch`, `Graduation Party`.
+
+![example usage for findevent command](images/findevent.png)
 
 #### Deleting an event : `delevent`
 
@@ -260,7 +283,9 @@ Format: `delevent EVENT_INDEX`
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listevent` followed by `delevent 2` deletes the 2nd event in the event list and all occurrences of the 2nd event tied to persons in the address book, if any.
+* `listevent` followed by `delevent 1` deletes the 1st event in the event list and all occurrences of the 1st event tied to persons in the address book, if any.
+
+![example usage for delevent command](images/delevent.png)
 
 ### Other Features
 
@@ -269,6 +294,8 @@ Examples:
 Prints all the existing persons and events in the address book.
 
 Format: `listall`
+
+![example usage for listall command](images/listall.png)
 
 #### Viewing help : `help`
 
@@ -283,6 +310,8 @@ Format: `help`
 Clears all entries from the address book.
 
 Format: `clear`
+
+![example usage for clear command](images/clear.png)
 
 #### Exiting the program : `exit`
 
@@ -303,29 +332,30 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder. <br>
+**Q**: My commands are not working properly? <br>
+**A**: Check that your commands are using the correct prefix. Check for extra `/` being used.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX] …​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX]…​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
 **Add Event** | `addevent ev/EVENT_NAME from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Event** | `delevent EVENT_INDEX` <br> e.g., `delevent 2`
-**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g.,`editevent 1 ev/Birthday Party from/17-07-2023 12:00`
-**Find Contact** |  `find KEYWORD [MORE_KEYWORDS]`
-**Find Event** | `findevent KEYWORD [MORE_KEYWORDS]`
+**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
+**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g., `editevent 1 ev/Birthday Party from/17-07-2023 12:00`
+**Find Contact** |  `find KEYWORD [KEYWORD]...`<br> e.g., `find roy john`
+**Find Event** | `findevent KEYWORD [KEYWORD]...`<br> e.g., `findevent tour`
 **List All Contacts and Events** | `listall`
 **List Contact** | `list`
 **List Event** | `listevent`
-**List Contact From event** | `listevcontact`
+**List Contact From Event** | `listevcontact`
 **Help** | `help`
-**Sort Event** | `sortevent SORT_TYPE` <br> e.g., `sortevent c`
+**Sort Event** | `sortevent SORT_KEY` <br> e.g., `sortevent c`
 
 
 

@@ -43,13 +43,13 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void contains_eventWithSameIdentityFieldsInList_returnsFalse() {
+    public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEventList.add(CARNIVAL);
         Event editedCarnival = new EventBuilder(CARNIVAL).withName(VALID_EVENT_NAME_CARNIVAL)
                 .withStartDateTime(VALID_START_DATE_TIME_CARNIVAL)
                 .withEndDateTime(VALID_END_DATE_TIME_CARNIVAL)
                 .build();
-        assertFalse(uniqueEventList.contains(editedCarnival));
+        assertTrue(uniqueEventList.contains(editedCarnival));
     }
 
     @Test

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.parser.SortEventType;
+import seedu.address.logic.parser.SortEventKey;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
@@ -136,5 +136,5 @@ public interface Model {
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
-    void sortEventList(SortEventType sortType);
+    void sortEventList(SortEventKey sortKey);
 }

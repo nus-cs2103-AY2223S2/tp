@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.parser.SortEventType;
+import seedu.address.logic.parser.SortEventKey;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventComparator;
 import seedu.address.model.person.Person;
@@ -195,9 +195,9 @@ public class ModelManager implements Model {
 
     //=========== Sort Event List Accessors =============================================================
     @Override
-    public void sortEventList(SortEventType sortEventType) {
-        requireNonNull(sortEventType);
-        sortedEvents.setComparator(EventComparator.getComparator(sortEventType));
+    public void sortEventList(SortEventKey sortEventKey) {
+        requireNonNull(sortEventKey);
+        sortedEvents.setComparator(EventComparator.getComparator(sortEventKey));
     }
 
     //=========== Utils =============================================================
