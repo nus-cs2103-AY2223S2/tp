@@ -888,7 +888,6 @@ Tag a specified video.
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the video
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the video (if any) will be ignored
 
