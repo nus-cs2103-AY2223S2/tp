@@ -74,7 +74,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#23-logic-component): The command executor.
 * [**`OfficeConnectModel`**](#24-officeconnectmodel-component): Holds the data of the App in memory.
 * [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
-<div style="page-break-after: always;"></div>
 
 #### 2.1.2 How the architecture components interact with each other
 
