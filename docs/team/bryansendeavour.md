@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `newcontact` (Pull Request) [#44](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/44)
+    * Added documentation for the features `newcontact` (Pull Request [#44](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/44))
   * Developer Guide:
   * Added implementation details of the `newcontact` feature (Pull Request [#139](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/139))
 
