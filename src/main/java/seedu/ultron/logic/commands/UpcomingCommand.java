@@ -31,6 +31,7 @@ public class UpcomingCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOpeningList(predicate);
         model.sortFilteredOpeningList(new KeydateSort("asc"));
+        model.setSelectedIndex(null);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getFilteredOpeningList().size()));
     }
