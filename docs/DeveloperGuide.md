@@ -853,6 +853,8 @@ with respective student IDs `A1234567X`, `A123`, `A98765432X`.
      Expected: Displays error message on the log box.
    3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student lit)
       Expected: Displays error message on the log box.
+   4. Test case: `remark 1` where the first student already has a remark. <br>
+      Expected: Deletes the remark from the first student listed in the student list.
    
 #### Uploading a student's photo
 1. Uploads a student's photo to be displayed in the student roster.
