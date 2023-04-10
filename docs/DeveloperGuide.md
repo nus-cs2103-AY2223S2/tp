@@ -574,6 +574,8 @@ abbreviations can be confusing for new users as they do not provide any informat
 would result in a constant need to refer to the User Guide for assistance. Likewise, this requires the user to put 
 in extra effort to learn and memorize the commands.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3 Improving data processing
 #### 4.3.1 Description
 Our current data structure for storing input data in the application is Java's observable filter list. While this structure has performed well for smaller volumes of data, we have observed that it is not suitable for larger datasets, particularly when updating the user interface. As a result, we are exploring the possibility of switching to a more efficient data structure that can better handle large volumes of data and process only the necessary portion of it on the screen using techniques such as data buffering and paging. This proposed change is expected to significantly improve the overall performance of our application, leading to a much-improved user experience.
