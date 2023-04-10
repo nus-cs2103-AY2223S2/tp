@@ -120,6 +120,12 @@ public class AddOrderCommand extends Command {
             setAddress(toCopy.address);
         }
 
+        public AddOrderDescriptor(Order toCopy) {
+            setName(toCopy.getName());
+            setQuantity(toCopy.getQuantity());
+            setAddress(toCopy.getAddress());
+        }
+
         public void setName(Name name) {
             this.name = name;
         }

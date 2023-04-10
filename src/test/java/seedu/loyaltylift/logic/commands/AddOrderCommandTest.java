@@ -6,10 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_B;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_A;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.model.order.StatusUpdate.DATE_FORMATTER;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
@@ -22,24 +25,20 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.loyaltylift.commons.core.GuiSettings;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
-import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
 import seedu.loyaltylift.model.ReadOnlyUserPrefs;
-import seedu.loyaltylift.model.UserPrefs;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.Order;
-import seedu.loyaltylift.testutil.AddOrderDescriptorBuilder;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.OrderBuilder;
 
 public class AddOrderCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     @Test
     public void constructor_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(INDEX_FIRST, null));
@@ -49,9 +48,32 @@ public class AddOrderCommandTest {
     public void constructor_nullCustomerIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddOrderCommand(null, DESC_ADD_ORDER_A));
     }
+
+    @Test
+    public void execute_duplicateOrder_success() throws Exception {
+        LocalDate dateToday = LocalDate.now();
+        String formattedDate = dateToday.format(DATE_FORMATTER);
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+        Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
+        Order validOrder = new OrderBuilder().withCustomer(customerToAdd)
+                .withCreatedDate(formattedDate).withInitialStatus(formattedDate).build();
+        AddOrderCommand.AddOrderDescriptor validAddOrderDescriptor = new AddOrderCommand.
+                AddOrderDescriptor(validOrder);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, validAddOrderDescriptor);
+
+        CommandResult commandResult = addOrderCommand.execute(modelStub);
+
+        assertEquals(
+                String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
+    }
+
 /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+        Order validOrder = new OrderBuilder().build();
+
         LocalDate dateToday = LocalDate.now();
         String formattedDate = dateToday.format(DATE_FORMATTER);
         Order orderToAdd =
@@ -235,18 +257,30 @@ public class AddOrderCommandTest {
     /**
      * A Model stub that contains a single customer.
      */
-    private class ModelStubWithOrder extends ModelStub {
-        private final Order order;
 
-        ModelStubWithOrder(Order order) {
+    private class ModelStubAcceptingOrderAdded extends ModelStub {
+        Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
+        final ArrayList<Customer> customers = new ArrayList<>(
+                Arrays.asList(customerToAdd));
+        final ArrayList<Order> ordersAdded = new ArrayList<>();
+
+        @Override
+        public void addOrder(Order order) {
             requireNonNull(order);
-            this.order = order;
+            ordersAdded.add(order);
         }
 
         @Override
-        public boolean hasOrder(Order order) {
-            requireNonNull(order);
-            return this.order.isSameOrder(order);
+        public ObservableList<Customer> getFilteredCustomerList() {
+            return FXCollections.observableList(customers);
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<Order> predicate) {}
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
         }
     }
 
