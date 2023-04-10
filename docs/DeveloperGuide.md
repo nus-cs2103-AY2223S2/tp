@@ -532,13 +532,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | SoC Student who knows Vim | quickly add new tasks that come to my mind | always keep track of all the tasks I need to do especially when many things come to my mind at the same time |
 | `* * *` | SoC Student who knows Vim | keep track of the deadline of a task | always finish my assignments and submissions before their due dates |
 | `* * *` | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important | filter/sort the tasks by their priorities later |
- `* *` | SoC Student who knows Vim | mark a task as "in progress" | keep a mental note and come back to the task at a later time if I only halfway done with the task|
+| `* * *` | SoC Student who knows Vim | mark a task as completed | filter out the incompleted tasks from the completed ones later |
 | `* * *` | SoC Student who knows Vim | insert labels to a task | filter/sort the tasks by specifying the labels later |
 | `* * *`  | SoC Student who knows Vim | insert deadline to a task                                        | keep track of the date that to complete the task          |
 | `* * *`  | SoC Student who knows Vim | edit priority to a task                                          | give higher priority to more important tasks which should be completed first|
 | `* * *`  | SoC Student who knows Vim | edit status of a task to in progress                             | keep track of tasks that I have begin doing               |
 | `* * *`  | SoC Student who knows Vim | edit status of a task to completed                               | keep track of tasks that I have completed                 |
-| `* *`    | SoC Student who knows Vim | edit a task’s title, deadline and/or  label                      | change the details if added wrongly                       |
 | `* * *`  | SoC Student who knows Vim | delete a task                                                    | remove the tasks that I no longer want them to exist in my task planner |
 | `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                     | delete the details if no longer needed                    |
 | `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords | find all task with the same keyword                       |
@@ -554,7 +553,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | sort based on the filtered list                                  | sort only the tasks that are from a certain category      |
 | `* * *`  | SoC Student who knows Vim | edit and delete based on the sorted list                         | make changes to the list of task easily                   |
 | `* * *`    | SoC Student who knows Vim | refresh the task list                                            | go to the original task after sorting or filter         |
-| `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands  | use a short keyword instead of the full command for recurring tasks |  
+| `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands  | use a short keyword instead of the full command for recurring tasks |
+| `* *` | SoC Student who knows Vim | mark a task as "in progress" | keep a mental note and come back to the task at a later time if I only halfway done with the task |
+| `* *` | SoC Student who knows Vim | edit a task’s title, deadline and/or label | change the details if added wrongly |
 | `* *` | SoC Student who knows Vim | undo an action | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner |
 | `* *` | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way |
 | `* *` | SoC Student who knows Vim | group the tasks together by their status | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
