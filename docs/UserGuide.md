@@ -14,6 +14,8 @@ Disclaimer: This application is currently geared towards NUS Computer Science St
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents <a name="toc"></a>
 
 1. [How To Use This Guide](#how-to)
@@ -355,6 +357,8 @@ category to sort by when **MODTrek** is in the module list screen.
 <p align="center"><em>Result of sort command</em><br></p>
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
 
 #### 5.7 Toggle screens : `view` <a name="change-view"></a>
 
