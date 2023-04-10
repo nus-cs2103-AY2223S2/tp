@@ -29,19 +29,27 @@ Given below are my contributions to the project.
     * Highlights: Allows users to easily reset and carry out the next action even if the list had been filtered based on
     previously commands.
 - **New Feature**: Light and Dark Theme
-  ![Ui](../images/Ui.png)
-  ![Ui](../images/UiDark.png) 
-
-    * What it does: 
+    * What it does: Toggle between light and dark themes using F2 and F3 keyboard shortcuts.
     * Justification: A quality of life improvement. Users would previously be required to delete and add a new task 
     which can now be achieved using the edittask function
     * Highlights: Users are not required to fill up all the fields to be able to edit a task.
+<div style="display:flex;">
+    <div style="flex:1; padding-right:10px; text-align:center;">
+        <img src="../images/Ui.png" alt="Light Theme">
+        <p>Light Theme</p>
+    </div>
+    <div style="flex:1; padding-left:10px; text-align:center;">
+        <img src="../images/UiDark.png" alt="Dark Theme">
+        <p>Dark Theme</p>
+    </div>
+</div>
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=guo-kecheng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
 
 - **Project management**:
   * Release [v1.4](https://github.com/AY2223S2-CS2103-F10-1/tp/releases/tag/v1.4)
-
+  * Added user stories which serve as a communication tool between the development team and the customer or end-user.
+  * Opened and closed github issues to help keep track of the team's progress
 
 - **Enhancements to existing features**: Find a person and his/her assigned tasks
   * What it does: With this new feature, users can now find out what tasks are allocated to a person.
