@@ -23,16 +23,18 @@ title: Developer Guide
     - **[Service Locator](#service-locator)**
     - **[Functional Programming](#functional-programming)**
 - **[Appendix: Requirements](#appendix--requirements)**
+- **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
+- **[Appendix: Efforts](#appendix--efforts)**
 
 <div style="page-break-after: always;"></div>
 
 ## Acknowledgements
 
-Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/). 
+Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/).
 Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
-albeit involving different implementations and classes. 
+albeit involving different implementations and classes.
 
-For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.  
+For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.
 
 ## Setting up, Getting started
 
@@ -74,12 +76,12 @@ The rest of the App consists of four components.
 
 <div style="page-break-after: always;"></div>
 
-We will introduce each of these components below. 
+We will introduce each of these components below.
 
 ### UI Component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java). 
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java).
 **API**
 [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -198,10 +200,10 @@ command:
 
 ```java
 @Override
-public DeleteCommand<T> createCommand(CommandParam param) throws ParseException{
-    int index = param.getUnnamedIntOrThrow(); // Look at here
-    return new DeleteCommand<>(index, getManagerFunction, deleteFunction);
-}
+public DeleteCommand<T> createCommand(CommandParam param)throws ParseException{
+        int index=param.getUnnamedIntOrThrow(); // Look at here
+        return new DeleteCommand<>(index,getManagerFunction,deleteFunction);
+        }
 ```
 
 The `param.getUnnamedIntOrThrow()` will return the positional value as an
@@ -250,17 +252,17 @@ The `Model` component,
   `UniqueList` objects).
 * stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects
   as separate _filtered_ lists (one for each resource type).
-  * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
-  For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
-  lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
+    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
+      For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
+      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
 * stores in memory a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
-  * Essentially, the `Model` component could be considered as the **domain**
-    layer of the application. It contains core application logic that should not
-    be altered even if we completely swap out the UI or storage components.
+    * Essentially, the `Model` component could be considered as the **domain**
+      layer of the application. It contains core application logic that should not
+      be altered even if we completely swap out the UI or storage components.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> In the diagram above, we have used the Pilot class to give specific examples of the relations
@@ -290,8 +292,12 @@ The `Storage` component,
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
 
+> **IMPORTANT**: Wingman is not responsible for the data loss caused by the 
+> user when he/she directly modifies the data files. The user is expected to 
+> work with the data files only through Wingman.
 
 <div style="page-break-after: always;"></div>
+
 
 ### Overall Sequence
 
@@ -315,11 +321,18 @@ diagrams to depict the processes at each layer in greater detail.
 <img src="images/WingmanLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
 
-This activity diagram represents the path a user will take when trying to link a
-resource entity, XYZ
-to a flight. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
-entity.
+<p align="center">
+<img src="images/WingmanUnlinkFlightActivity.png" width="231" alt="Unlink Flight activity diagram">
+</p>
 
+<p align="center">
+<img src="images/WingmanDeleteCrewActivity.png" width="231" alt="Link Flight activity diagram">
+</p>
+
+These activity diagrams represent the paths a user will take when trying to link/unlink a
+resource entity, XYZ
+to a flight, as well as deleting a `Crew` entity. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
+entity.
 
 <div style="page-break-after: always;"></div>
 
@@ -413,39 +426,39 @@ refer to all for simplicity.
 
 This feature is enabled by the following classes in particular:
 
-- `DeleteXYZCommand` - The command that deletes a XYZ from the Wingman app
-- `DeleteXYZCommandFactory` - The factory class that creates a {@code
-  DeleteXYZCommand}
+- `DeleteCommand` - The command that deletes an item from the Wingman app
+- `DeleteCommandFactory` - The factory class that creates a `DeleteCommand`
 
 When a user enters the command:
 
 ```
-delete {XYZ identifier}
+delete {item index}
 ```
 
 the input goes through the UI layer where `logic.execute(input)` is called which
 passes control to the logic layer.
 
-At the logic layer, `execute(input)` first parses the input using the
-WingmanParser's `parse` function. The aim of
-parsing is to determine what type of command the user's input is and determine
-which mode - Crew, Flight, Location,
-Pilot, or Plane - should handle the execution of said command.
+At the logic layer, `execute(input)` parses the input using the
+WingmanParser's `parse` function.
 
+Firstly, the WingmanParser separates the input into tokens. Secondly, it determines
+what mode the command is from using the `parse` command in the `CommandGroup` class.
+Then, `CommandGroup` calls the `parseFactory` method in the `FactoryParser` class
+which uses the `createCommand` method to finally create a `DeleteCommand`.
+Finally, the `DeleteCommand` is returned in the original `LogicManager`.
 The WingmanParser separates the input into tokens, determines what mode the
 command is from, and then returns the
 desired command type. In this case, the input allows the WingmanParser to
 recognize it is a `DeleteXYZCommand` and as a
 result, returns a new `DeleteXYZCommand` with the `{XYZ identifier}`.
 
-The `DeleteXYZCommand` is executed using the corresponding `XYZManager`.
-Firstly, the `XYZManager` uses `getItem(id)`
-to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls
-the `deleteXYZ(id)` method. The
-`deleteXYZ(id)` method uses the `item.removeItem(id)` method in order to remove
-the desired XYZ from the Wingman app.
+The next step in the `LogicManager` is to execute the returned command. To do so,
+it calls the command's `execute` method which in this example, uses a
+`DeleteFunction` to run `delete(model, xyz)` (where xyz is the resource
+to be deleted).
 
-Finally, the `CommandResult` is returned which is the message the user will see
+The deletion of the resource is handled under the model layer. Once deleted,
+a `CommandResult` is returned which is the message the user will see
 indicating a successful deletion.
 
 <img src="images/WingmanDeleteXYZSequenceDiagram.png" width="966">
@@ -453,15 +466,10 @@ indicating a successful deletion.
 **Why was it implemented this way?**
 
 For the parsing logic in the Wingman app, the commands were split based on their
-related "mode." This implementation
-decision was made so that parsing would be more simple across the five modes. To
-elaborate, each mode would handle their
+related "mode." This is due to the nature that there are some commands which
+only concern some modes. This implementation decision was made so that parsing would be
+more simple across the five modes since each mode would only have to handle their
 related commands only.
-
-**Alternatives considered for deleting XYZ:**
-
-Description coming soon
-
 
 <div style="page-break-after: always;"></div>
 
@@ -857,7 +865,6 @@ unlikely to have) - `*`
 | `* *`    | airline manager | unlink pilots from locations                                    | change where a pilot is located                            |
 | `* *`    | airline manager | unlink crew from locations                                      | change where a crew is located                             |
 
-
 <div style="page-break-after: always;"></div>
 
 ### Use cases
@@ -1022,30 +1029,108 @@ is the `user`, unless specified otherwise)
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
 
-## **Appendix: Effort**
-If the efforts required to implement the full AB3 from scratch, we believe our effort 
+<div style="page-break-after: always;"></div>
+
+## Appendix: Planned Enhancements
+
+The Wingman app is still a work in progress and there's a lot of
+potential for our app in the future. Some features could not be
+worked on due to the complexity of the product and the given time constraints.
+In this section, we detail features which we aim to develop and
+include in our Wingman app in upcoming versions.
+
+Below, are the details of the planned enhancements:
+
+#### 1. Addressing the 'multiple link' to flights issue
+
+- **Feature flaw:** A resource entity can currently be linked to one flight through multiple links at once.
+   (e.g. Crew Member Ben can be linked to Flight SQ312 as both a Cabin Service Director and a Trainee)
+
+- **Feature tweak:** We plan to change the crew entity to be linked to one flight through only one appointment
+  at a time. This can be done by adding a new field labelled availability to the different resource classes
+  in the model layer to prevent the same resource from being assigned to multiple flights at the same time.
+  The linkXYZtoFlight command will also be changed to check this additional field before creating the link if the
+  resource entity is available or returning an error message if the resource entity is not available. Upon creation
+  of the link, this command will also update the availability field of the resource entity to false.
+  The unlinkXYZtoFlight command will also be changed to update the availability field of the resource entity
+  to true when the unlinking is successful.
+
+- **Sample Error Message:** The resource entity is not available for the specified flight.
+
+#### 2. Availability attribute and `check` command
+
+- **Feature flaw:** Previously, we tried adding an `availability` feature to `Crew`,
+  `Pilot`, and `Plane` to indicate whether they are currently assigned
+  to a `Flight`. However, under our time constraints, it was difficult
+  for us to synchronize when these resources' availability changes.
+
+  Specifically, there were cases where a resource's availability did not
+  change when it should have.
+
+- **Feature tweak:** When linking a resource to a `Flight`, we should be checking
+  the resource's availability and determining if the `Link` can be
+  made or not. This is another aspect of input validation as described
+  earlier. Therefore, due to the error-prone nature of this command,
+  we decided to exclude it from this release. With more time, we should be able to implement
+  this feature correctly. By checking that the availability of a resource is updated
+  correctly whenever a `linkflight`, `unlinkflight`, `linklocation`, `unlinklocation`,`add`
+  or `delete` command is executed, we can solve this issue.
+
+#### 3. UI enhancements
+
+- **Feature flaw:** A point which was raised up by some test users of Wingman is that
+  the resource lists might be slightly hard to navigate/view. This was due to text wrapping
+  not being enabled and due to the physical constraints of the application window. 
+
+- **Feature tweak:** To fix this, we could further develop our UI by resizing our "item cards"
+  so that all the information for a given resource can be seen easily
+  without needing to scroll horizontally. An alternative solution would be to enable text wrapping.
+
+#### 4. Improving the current linking
+
+- **Feature flaw:** In Wingman's current implementation, linking between resources is made
+  with a `Link` object. The `Link` can constrain how many resources are linked
+  to another. However, `Link` only supports one-directional relations.
+  This means that if B is linked to A, only A is "aware" that such a
+  `Link` exists.
+
+- **Feature tweak:** For better use of our app, it would be helpful to have a bidirectional
+  `Link` instead. With a bidirectional `Link`, we could do more commands
+  or operations seamlessly (e.g. the `check` command, which is
+  detailed below). Furthermore, fixing the `Link` would allow us to fix
+  our `LinkLocation` commands. 
+
+- Given the time constraints of our project, this was not feasible
+for this iteration but with more time, we can implement it for
+upcoming versions.
+
+
+<div style="page-break-after: always;"></div>
+
+## Appendix: Effort
+If the efforts required to implement the full AB3 from scratch, we believe our effort
 in this project is almost 20.
 
-Firstly, we refactored the codebase of AB3. We abstract away unnecessary abstractions, and add new 
-ones needed. 
+Firstly, we refactored the codebase of AB3. We abstract away unnecessary abstractions, and add new
+ones needed.
 
-Second, we adopt a `modal` design, and we have different object classes, i.e., `crew`, `plane`, 
-`flight`, `pilot`, and `location`. For each of these classes, we need to implement basic commands such 
-as adding and deleting, and also handle the display of these objects. Moreover, as we want to minimize code 
-duplication, we need more abstractions to abstract out their commonalities. This is already `5x` of the 
+Second, we adopt a `modal` design, and we have different object classes, i.e., `crew`, `plane`,
+`flight`, `pilot`, and `location`. For each of these classes, we need to implement basic commands such
+as adding and deleting, and also handle the display of these objects. Moreover, as we want to minimize code
+duplication, we need more abstractions to abstract out their commonalities. This is already `5x` of the
 number of classes in AB3, though we have fewer command features for each class.
 
-Third, we need to handle the relation between these different objects. These classes are not standalone, 
-but also connected to each other. For this, we implemented the `link` command. The efforts required here 
-are huge, because we need to implement the data structure for the link, while considering how to store the 
+Third, we need to handle the relation between these different objects. These classes are not standalone,
+but also connected to each other. For this, we implemented the `link` command. The efforts required here
+are huge, because we need to implement the data structure for the link, while considering how to store the
 link (which is not a primitive type, but a data structure class) on the disk and load it when
 start-up. Think about it, assuming `A`is linked to `B`, when we load `A` from the disk, `B` may have been
 instantiated, then the `Link` between `A` and `B` cannot be instantiated. To address this, we implemented
 the `Link` in a lazy-evaluation manner, such that it does not require both `A` and `B` to be instantiated
 before the `Link` can be read from the disk. There are other corner cases, such as
 * Assuming `A` is linked to `B`, what should happen if one of them is deleted?
-* How many `A`s can we link to `B`? This number may differ for different `A` and `B`. 
-How to implement it in systematic manner?
+* How many `A`s can we link to `B`? This number may differ for different `A` and `B`.
+  How to implement it in systematic manner?
 * How to display the link information on the GUI?
 
 These are all additional complexities when we capture the associations between
@@ -1056,11 +1141,11 @@ between all other classes and `Flight`, and between all other classes and `Locat
 
 Last by not least, we also spent a lot of time refining the UG and DG. Due to the large number
 of classes we have, it is not easy to teach readers how to use/develop it in a succinct manner. These efforts
-are significantly higher than that of AB3. 
+are significantly higher than that of AB3.
 
 Overall, our team really scaled up AB3 in terms of models and features, which we believe way exceed
-what is required for this class. Roughly speaking, we should be able to claim that we took 2x of the 
+what is required for this class. Roughly speaking, we should be able to claim that we took 2x of the
 efforts needed to create AB3 from scratch. We wish graders to take this into account when grading our
-efforts and product quality. 
+efforts and product quality.
 
 Thank you!
