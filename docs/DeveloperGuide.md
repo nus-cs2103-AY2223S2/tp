@@ -741,7 +741,7 @@ we can keep the information displayed organised and clear to the user.
 
 ### Service Locator
 
-Service locator is like a globel variable that can be accessed from anywhere in
+Service locator is like a global variable that can be accessed from anywhere in
 the code. This reduces the hassle of passing the code from one place to
 another, i.e. reducing the number of parameters in a method. However, it
 also has its disadvantages. For example: it increases the coupling between
