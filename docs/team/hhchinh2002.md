@@ -1,4 +1,3 @@
-# Hoang Huu Chinh's Project Portfolio Page
 ### Project: E-Lister
 
 E-Lister is desktop software designed to help insurance sellers to manage their customers' information. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
