@@ -67,5 +67,5 @@ Given below are my contributions to the project.
       marking and unmarking tasks.
 
 * **Community**:
-    * Reviewed PRs of peers, including: #66, #79, #94, #111, #118, #123, #186, #248 #253
+    * Reviewed PRs of peers, including: #66, #79, #94, #111, #118, #123, #186, #248 #253, #289
     * Contributed to discussion of certain aspects of the project through GitHub issues
