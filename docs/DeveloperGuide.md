@@ -748,8 +748,6 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 ------------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **10. Glossary**
 
 ### 10.1 coNtactUS related terminology
@@ -928,8 +926,6 @@ Expected: The modules will not be sorted.
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
 ------------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## 12. Appendix: Effort
 
