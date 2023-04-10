@@ -9,7 +9,7 @@ title: Developer Guide
 {:toc}
 
 ---
-
+<div style="page-break-after: always;"></div>
 >## **About FitBook**
 
 FitBook app is a collective project by a group of NUS undergrads (AY2223/CS2103T-T15-2).
