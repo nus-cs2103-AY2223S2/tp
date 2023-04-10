@@ -183,7 +183,7 @@ The `TaskBook` component,
 * stores `Task` are contained in a `UniqueTaskList` object.
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
-<img src="images/ModelClassDiagram3.png" width="450" />
+![ModelClassDiagram3](images/ModelClassDiagram3.png)
 * stores the generated plan, i.e. all `DailyPlan` objects<br>
 We wish to show more details in the DailyPlan Class but the styling restricts us from doing so
 The `Planner` component,
