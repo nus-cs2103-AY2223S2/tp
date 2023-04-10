@@ -40,17 +40,17 @@ public class UniqueWardList implements Iterable<Ward> {
 
     private static final WardName WAITING_ROOM = new WardName("Waiting Room");
     /**
-     * Initializes empty wardlist.
+     * Constructor for a UniqueWardList.
      */
     public UniqueWardList() {
 
     }
 
     /**
-     * Initializes NEW wardlist with default Waiting Room ward with capacity of 10
+     * Constructor for a NEW UniqueWardList with default Waiting Room ward with capacity of 10
      * inside.
      */
-    public UniqueWardList NewUniqueWardList() {
+    public static UniqueWardList NewUniqueWardList() {
         Ward WaitingRoom = new Ward(WAITING_ROOM);
         UniqueWardList NewUniqueWardList = new UniqueWardList();
         NewUniqueWardList.add(WaitingRoom);
