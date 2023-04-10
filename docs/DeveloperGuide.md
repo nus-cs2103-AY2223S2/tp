@@ -7,6 +7,8 @@ title: Developer Guide
 * Table of Contents 
 {:toc}
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 ### 1.1 Product Overview
@@ -1137,9 +1139,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 #### *A*
-  - ##### All
+  - All
     - All task and person.
-  - ##### Assign
+  - Assign
     - Assign a task to a person.
 
 #### *M*
