@@ -32,7 +32,7 @@ You can reach us at our following emails:
 [[github](http://github.com/thennant)] [[portfolio](team/thennant.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, Implementation
 
 ### Low Jian Feng
 
