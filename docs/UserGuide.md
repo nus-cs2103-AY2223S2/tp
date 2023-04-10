@@ -351,6 +351,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 <h2 id="Short-form commands"></h2>
+
 ## Short-form commands
 
 To aid expert users, commonly used commands and fields have short-form variants that can be used instead.
