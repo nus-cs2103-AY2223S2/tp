@@ -50,9 +50,9 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
   - [2.14 View tasks](#214-viewing-persons-view)
   - [2.15 Review](#215-viewing-statistics-review)
   - [2.16 Help](#216-getting-help-help)
-  - [2.17 Lighting modes](#217-toggling-light-and-dark-mode)
+  - [2.17 Lighting modes](#217-toggling-between-light-and-dark-mode)
 - [3. FAQ](#3-faq)
-- [4. Checking Java Version](#4-how-do-i-check-my-java-versionbr)
+- [4. Checking Java Version](#4-how-do-i-check-my-java-version)
 - [5. Command summary](#5-command-summary)
 
 ---
