@@ -32,30 +32,29 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
 --------------------------------------------------------------------------------------------------------------------
 
 #### Additional code contributions [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
-1. Improving code quality by utilising the KISS and SLAP principles
-2. Employing greater use of exceptions, assertions and defensive programming
-3. Fixing of failing test cases
-4. Fixing checkstyle errors 
+* Improving code quality by utilising the KISS and SLAP principles
+* Employing greater use of exceptions, assertions and defensive programming
+* Fixing of failing test cases
+* Fixing checkstyle errors 
 
 --------------------------------------------------------------------------------------------------------------------
 #### Contributions to the User Guide (UG) [\#158](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/158)
   * Added and improved documentation for the following sections: 
-     1. About the User Guide
-     2. How to use the User Guide
-     3. Familiarising with a module
-     4. Features in coNtactUS
-     5. Format restrictions for input values by the user
-     6. Product limitations
-     7. Coming soon
+     * About the User Guide
+     * How to use the User Guide
+     * Familiarising with a module
+     * Features in coNtactUS
+     * Format restrictions for input values by the user
+     * Product limitations
+     * Coming soon
   
 --------------------------------------------------------------------------------------------------------------------
 
 #### Contributions to the Developer Guide (DG) 
-  * Developer Guide:
-    * Added and improved documentation for the following sections: 
-      1. High level details of the overall architecture for coNtactUS
-      2. Implemtation details for SortCommand
-      3. Evaluation of effort for SortCommand
+  * Added and improved documentation for the following sections: 
+      * High level details of the overall architecture for coNtactUS
+      * Implemtation details for SortCommand
+      * Evaluation of effort for SortCommand
       
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,21 +65,21 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
 
 #### Contributions to team-based tasks
 My contributions to team-based tasks include but are not limited to the following: 
-1. Creating of issues and project milestones
-2. Setting priority of issues 
-3. Closing of issues
-4. Creating and management of releases  
-5. Organising internal project documents to make them cleaner and better structured 
+* Creating of issues and project milestones
+* Setting priority of issues 
+* Closing of issues
+* Creating and management of releases  
+* Organising internal project documents to make them cleaner and better structured 
 
  --------------------------------------------------------------------------------------------------------------------
 
 #### Review/ Mentoring contributions 
-1. Reviewing pull requests from team members [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
-2. Helping team members to better understand the code base and assisting them with difficulties they faced implementing features or bug fixing 
+* Reviewing pull requests from team members [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
+* Helping team members to better understand the code base and assisting them with difficulties they faced implementing features or bug fixing 
 
  --------------------------------------------------------------------------------------------------------------------
 
 #### Contributions beyond the project team
-1. Participated in software testing of other project teams to catch bugs and help them improve their product 
+* Participated in software testing of other project teams to catch bugs and help them improve their product 
 
  --------------------------------------------------------------------------------------------------------------------
