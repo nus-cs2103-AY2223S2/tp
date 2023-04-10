@@ -46,6 +46,9 @@ public class LogicManager implements Logic {
     private final Injector navigationInjector;
     private final TrackerEventSystem trackerEventSystem;
 
+    private final ListObserver listObserver;
+    private final NavigationObserver navObserver;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and
      * {@code Storage}.
@@ -54,24 +57,23 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         this.navigationInjector = new NavigationInjector();
+
         trackerParser = new TrackerParser();
         trackerEventSystem = new TrackerEventSystem();
         archive = new Archive(storage);
+
+        this.listObserver = new ListObserver(model);
+        this.navObserver = new NavigationObserver(model);
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
 
-        // Subscribe to tracker system
-        ListObserver listObserver = new ListObserver(model);
-        NavigationObserver navObserver = new NavigationObserver(model);
-        this.trackerEventSystem.addOnModuleModifiedObserver(navObserver, listObserver);
-        this.trackerEventSystem.addOnLectureModifiedObserver(navObserver, listObserver);
-        this.trackerEventSystem.addOnVideoModifiedObserver(listObserver);
+        subscribeToTrackerEvents();
 
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        commandText = navigationInjector.inject(commandText, model);
+        commandText = preprocessCommand(commandText);
 
         logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
 
@@ -80,22 +82,18 @@ public class LogicManager implements Logic {
 
         if (!commandResult.getPath().isEmpty()) {
             if (commandResult.isExporting()) {
-                archive.exportToArchive(commandResult.getPath().get(),
-                        model.getTracker(), commandResult.isOverwriting(), storage.getTrackerFilePath());
+                archive.exportToArchive(commandResult.getPath().get(), model.getTracker(),
+                        commandResult.isOverwriting(), storage.getTrackerFilePath());
             } else {
                 // modify CommandResult object to include ModuleEditInfo objects to update trackerEventSystem
                 commandResult = archive.importFromArchive(commandResult.getPath().get(), model,
-                        commandResult.isImportingWholeArchive(),
-                        commandResult.isOverwriting(), commandResult.getModuleCodesToImport(), trackerEventSystem);
+                        commandResult.isImportingWholeArchive(), commandResult.isOverwriting(),
+                        commandResult.getModuleCodesToImport(), trackerEventSystem);
             }
         }
 
         triggerTrackerEvents(commandResult);
-
-        // Unsubscribe to tracker system
-        this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver, listObserver);
-        this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
-        this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
+        unsubscribeToTrackerEvents();
 
         try {
             storage.saveTracker(model.getTracker());
@@ -104,6 +102,22 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    private String preprocessCommand(String commandText) {
+        return navigationInjector.inject(commandText, model);
+    }
+
+    private void subscribeToTrackerEvents() {
+        this.trackerEventSystem.addOnModuleModifiedObserver(listObserver, navObserver);
+        this.trackerEventSystem.addOnLectureModifiedObserver(listObserver, navObserver);
+        this.trackerEventSystem.addOnVideoModifiedObserver(listObserver);
+    }
+
+    private void unsubscribeToTrackerEvents() {
+        this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
     }
 
     @Override

@@ -21,7 +21,7 @@ import seedu.address.model.video.Video;
 public class AddVideoCommand extends AddCommand {
 
     /** The message for when a {@code Video} is successfully added. */
-    public static final String MESSAGE_SUCCESS = "New video added to module %s of lecture %s: %s";
+    public static final String MESSAGE_SUCCESS = "New video added to lecture %s of module %s: %s";
 
     /** The error message for when a duplicate {@code Video} is detected. */
     public static final String MESSAGE_DUPLICATE_VIDEO = "This video already exists in lecture %s of module %s.";
@@ -100,7 +100,7 @@ public class AddVideoCommand extends AddCommand {
     }
 
     private CommandResult createSuccessResult() {
-        String message = String.format(MESSAGE_SUCCESS, moduleCode, lectureName, toAdd);
+        String message = String.format(MESSAGE_SUCCESS, lectureName, moduleCode, toAdd);
         VideoEditInfo editInfo = new VideoEditInfo(moduleCode, lectureName, null, toAdd);
 
         return new CommandResult(message, editInfo);

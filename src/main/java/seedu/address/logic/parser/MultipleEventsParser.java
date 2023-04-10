@@ -41,8 +41,9 @@ public interface MultipleEventsParser {
      */
     public static ModuleCode[] parseModuleCodes(String preamble) throws ParseException {
 
-        String[] moduleCodeStrings = preamble.split(",");
+        String[] moduleCodeStrings = preamble.split(",", -1);
         int numOfModuleCodes = moduleCodeStrings.length;
+
         ModuleCode[] moduleCodes = new ModuleCode[numOfModuleCodes];
         ArrayList<ModuleCode> duplicates = new ArrayList<>();
 
@@ -72,8 +73,9 @@ public interface MultipleEventsParser {
      * @throws ParseException if any lecture name in string contains any invalid characters (excluding ',')
      */
     public static LectureName[] parseLectureNames(String preamble) throws ParseException {
-        String[] lectureNameStrings = preamble.split(",");
+        String[] lectureNameStrings = preamble.split(",", -1);
         int numOfLectureNames = lectureNameStrings.length;
+
         LectureName[] lectureNames = new LectureName[numOfLectureNames];
         ArrayList<LectureName> duplicates = new ArrayList<>();
 
@@ -102,8 +104,9 @@ public interface MultipleEventsParser {
      * @throws ParseException if any video name in string contains any invalid characters (excluding ',')
      */
     public static VideoName[] parseVideoNames(String preamble) throws ParseException {
-        String[] videoNameStrings = preamble.split(",");
+        String[] videoNameStrings = preamble.split(",", -1);
         int numOfVideoNames = videoNameStrings.length;
+
         VideoName[] videoNames = new VideoName[numOfVideoNames];
         ArrayList<VideoName> duplicates = new ArrayList<>();
 

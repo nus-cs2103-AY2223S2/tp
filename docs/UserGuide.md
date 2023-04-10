@@ -167,28 +167,35 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
    </details>
    <p></p>
 
-3. Named arguments can be specified in **any order** as long as it is after all unnamed arguments (if any).
+3. An ellipsis (i.e. `...`) indicates that **multiple** values can be provided.
+   <details>
+   <summary>Example</summary>
+   For a command with format <code>tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}[, ...]]]</code>, the <code>/tag</code> argument can take multiple values. The command can be used as <code>tag CS2040S /tags Heavy, Hard, Math, Analysis</code>.
+   </details>
+   <p></p>
+
+4. Named arguments can be specified in **any order** as long as it is after all unnamed arguments (if any).
    <details>
    <summary>Example</summary>
    For a command with format <code>edit {module_code} /code {updated_code} /name {updated_name}</code>, the command can be used as <code>edit CS2040 /code CS2040S /name DSAG</code> or as <code>edit CS2040 /name DSAG /code CS2040S</code>.
    </details>
    <p></p>
 
-4. If a named argument is expected only once in the command but the user specified it multiple times, only the **last occurrence** of the argument will be taken.
+5. If a named argument is expected only once in the command but the user specified it multiple times, only the **last occurrence** of the argument will be taken.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} [/name {module_name}]</code>, if used as <code>add CS2040 /name Data Structures and Algorithms /name DSAG</code>, <code>DSAG</code> will be taken as the value of the <code>/name</code> argument.
    </details>
    <p></p>
 
-5. Extraneous arguments will be **ignored**.
+6. Extraneous arguments will be **ignored**.
    <details>
    <summary>Example</summary>
    For a command with format <code>add {module_code} /name {module_name}</code>, if used as <code>add CS2040 /name DSAG /foo bar</code>, the <code>/foo</code> argument is ignored.
    </details>
    <p></p>
 
-6. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a **named argument** if the following 2 conditions are met:
+7. Any occurrence of `/{argument_name}`, where `{argument_name}` contains only alphabetical characters (a-z, A-Z), will be treated as a **named argument** if the following 2 conditions are met:
    - There is a whitespace before `/{argument_name}`
    - `/{argument_name}` is followed by a whitespace or it is the end of the command
 
@@ -335,7 +342,7 @@ Navigate to the root context from any context.
 
 Navigates from the root context to a module context.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module to navigate to
   - Must belong to an existing module in Le Tracker
 
 #### Navigate from Module Context to Lecture Context
@@ -344,7 +351,7 @@ Navigates from the root context to a module context.
 
 Navigates from a module context to a lecture context.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module of the current working context
 
 #### Navigate Directly
@@ -353,9 +360,9 @@ Navigates from a module context to a lecture context.
 
 Navigates directly to the specified module or lecture context.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module to navigate to
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to navigate to
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture to navigate to
   - Must belong to an existing lecture in the module specified in `module_code`
 
 #### Navigate Backwards
@@ -461,9 +468,9 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Find all lectures in a specified module whose name starts with any of the keyword(s).
 
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 
 
 <details open>
@@ -486,11 +493,11 @@ Find all lectures in a specified module whose name starts with any of the keywor
 
 Find all videos in a specified lecture in a specified module whose name starts with any of the keyword(s).
 
-- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the specified `module_code`
+- <span style="color:#e46c0a">`/byTag`</span> : If specified, the list filters for videos in a specified lecture in a specified module whose tag list contains any tag that starts with any of the keyword(s)
 
 <details open>
 <summary>Example</summary>
@@ -692,7 +699,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 > `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
-Deletes the specified module(s) and all its embodied content from the application
+Deletes the specified module(s) and all its embodied content from the application.
 
 - [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format): The codes of the modules
   - Must belong to an existing module in Le Tracker
@@ -720,7 +727,7 @@ When in a module or lecture context, the navigation system will automatically in
 
 > `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
 
-Deletes the specified lecture(s) and all its embodied content from the same specified module
+Deletes the specified lecture(s) and all its embodied content from the same specified module.
 
 - [<span style="color:#e46c0a">`lecture_name_1, lecture_name_2, lecture_name_3, ...`</span>](#lecture-name-format): The names of lectures
   - Must belong to an existing lecture in the module specified in `module_code`
@@ -746,7 +753,7 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
 
 > `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
+Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module.
 
 - [<span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>](#video-name-format): The names of videos
   - Must belong to existing videos in the lecture specified in `lecture_name`
@@ -780,18 +787,20 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 > `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Marks video(s) as **watched** in lecture of its specified module
+Marks video(s) as **watched** in lecture of its specified module.
 
 > `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
 Marks video(s) as **unwatched** in a lecture of its specified module.
 
-- [<span style="color:#e46c0a">`video_name_1`, `video_name_2`, `video_name_3`, ...</span>](#video-name-format): The names of videos
+- [<span style="color:#e46c0a">`video_name_1, video_name_2, video_name_3, ...`</span>](#video-name-format): The names of videos
   - Must belong to existing videos in the lecture specified in `lecture_name`
-  - For `mark`, must not contain duplicates
-- [<span style="color:#e46c0a">`module_code`</span>](#module-code): The code of the module
+  - Must not contain duplicates
+  - For `mark`, must not already be marked
+  - For `unmark` for 1 video, must not already be unmarked
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of the module
   - Must belong to an existing module in Le Tracker
-- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name): The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format): The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
 
 <details open>
@@ -822,16 +831,21 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Tag a specified module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the module
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the module
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the module (if any) will be ignored
 
-Example:
-
-- `tag EG2310 /tags fun, hard`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>tag EG2310 /tags fun, hard</code><br/>
+    Tag the module <code>EG2310</code> with the tags <code>fun</code> and <code>hard</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -843,18 +857,23 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Tag a specified lecture.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the lecture
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the lecture
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the lecture (if any) will be ignored
 
-Examples:
-
-- `tag Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>tag Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Tag the lecture <code>Lecture_1</code> of module <code>CS2040</code> with the tag <code>Yay</code>
+    </li>
+</ul>
+</details>
 
 #### Tag a Video
 
@@ -862,20 +881,25 @@ Examples:
 
 Tag a specified video.
 
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
   - Must belong to an existing video in the lecture specified in `lecture_name`
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture that contains the video specified in `video_name`
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be applied to the video
-  - Refer to [Argument Formats](#argument-formats) for the "Tag" format
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be applied to the video
   - Repeated tags (if any) will be ignored
   - Tags that were already applied to the video (if any) will be ignored
 
-Examples:
-
-- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Tag the video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code> with the tag <code>Yay</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -891,15 +915,21 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 
 Remove specified tags from a module.
 
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the module
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be removed from the module
   - Must belong to existing tags in the module specified by `module_code`
   - Repeated tags (if any) will be ignored
 
-Example:
-
-- `untag EG2310 /tags fun, hard`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>untag EG2310 /tags fun, hard</code><br/>
+    Remove the tags <code>fun</code> and <code>hard</code> from module <code>EG2310</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -911,17 +941,23 @@ When in a module or lecture context, the navigation system will inject the `/mod
 
 Remove specified tags from a lecture.
 
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-  - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the lecture
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be removed from the lecture
   - Must belong to existing tags in the lecture specified in `lecture_name`
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `untag Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>untag Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Remove the tag <code>Yay</code> from lecture <code>Lecture_1</code> of module <code>CS2040</code>
+    </li>
+</ul>
+</details>
 
 #### Untag a Video
 
@@ -929,19 +965,25 @@ Examples:
 
 Remove specified tags from a video.
 
-- <span style="color:#e46c0a">`video_name`</span> : The name of the video
+- [<span style="color:#e46c0a">`video_name`</span>](#video-name-format) : The name of the video
   - Must belong to an existing video in the lecture specified in `lecture_name`
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
+- [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format) : The name of the lecture that contains the video specified in `video_name`
   - Must belong to an existing lecture in the module specified in `module_code`
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+- [<span style="color:#e46c0a">`module_code`</span>](#module-code-format) : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to be removed from the video
+- [<span style="color:#e46c0a">`tag_1, tag_2, ...`</span>](#tag-format) : The tags to be removed from the video
   - Must belong to existing tags in the video specified in `video_name`
   - Repeated tags (if any) will be ignored
 
-Examples:
-
-- `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay`
+<details open>
+<summary>Example:</summary>
+<ul>
+    <li>
+    <code>untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
+    Remove the tag <code>Yay</code> from video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code>
+    </li>
+</ul>
+</details>
 
 <img src="images/ModContext.png" height="20" />
 <img src="images/LectureContext.png" height="20" />
@@ -963,10 +1005,19 @@ Export all module data to a file.
 - <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in `file_path` if it exists
   - If the file specified in `file_path` doesn't exist, the flag `/overwrite` will be ignored
 
-Examples:
-
-- `export hello.json`
-- `export /../../haha.json /overwrite`
+<details open>
+<summary>Examples:</summary>
+<ul>
+    <li>
+    <code>export hello.json</code><br/>
+    Export all modules in tracker to the file <code>hello.json</code> in the default directory
+    </li>
+    <li>
+    <code>export /../../haha.json /overwrite</code><br/>
+    Export all modules in tracker to the file path <code>/../../haha.json</code>, overwriting its content
+    </li>
+</ul>
+</details>
 
 [Back to TOC :clipboard:](#table-of-contents)
 
@@ -984,19 +1035,34 @@ Import data from a specified file path to the current tracker.
 - <span style="color:#e46c0a">`/mod`</span> : If specified, Le Tracker will only import progress from the modules specified in `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
   - If specified, `{module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]` must also be specified
   - If unspecified, Le Tracker will import progress of all modules in the file specified in `file_path`
-- <span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span> : The modules to import from `file_path`
+- [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format) : The modules to import from `file_path`
   - If `/overwrite` is not specified, `module_code_1, module_code_2, module_code_3, ...` must not exist in the current tracker
   - Must belong to existing modules in the file specified in `file_path`
   - Repeated modules (if any) will be ignored
 - <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules progress with the progress of the imported modules, provided they have the same code
   - If the imported modules do not exist in the current tracker, the flag `/overwrite` will be ignored
 
-Examples:
-
-- `import hello.json`
-- `import /../../haha.json /overwrite`
-- `import hehe.json /mod CS2040, MA2401`
-- `import hihi.json /mod EG2310 /overwrite`
+<details open>
+<summary>Examples:</summary>
+<ul>
+    <li>
+    <code>import hello.json</code><br/>
+    Import all modules from the file <code>hello.json</code> in the default directory to the tracker
+    </li>
+    <li>
+    <code>import /../../haha.json /overwrite</code><br/>
+    Import all modules from the file path <code>/../../haha.json</code>, overwriting any modules that currently exists in the tracker
+    </li>
+    <li>
+    <code>import hehe.json /mod CS2040, MA2401</code><br/>
+    Import modules <code>CS2040</code> and <code>MA2401</code> from the file <code>hehe.json</code> in the default directory
+    </li>
+    <li>
+    <code>import hihi.json /mod EG2310 /overwrite</code><br/>
+    Import modules <code>EG2310</code> from the file <code>hihi.json</code>, overwriting the current progress of <code>EG2310</code> in the tracker
+    </li>
+</ul>
+</details>
 
 [Back to TOC :clipboard:](#table-of-contents)
 

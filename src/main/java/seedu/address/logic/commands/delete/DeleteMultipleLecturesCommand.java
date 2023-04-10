@@ -61,10 +61,9 @@ public class DeleteMultipleLecturesCommand extends DeleteCommand {
             for (int i = 0; i < this.targetLectureNames.size(); i++) {
                 LectureName lectureName = this.targetLectureNames.get(i);
                 DeleteLectureCommand dlc = new DeleteLectureCommand(this.moduleCode, lectureName);
-                dlc.execute(model);
+                CommandResult r = dlc.execute(model);
 
-                editedLectures[i] = new LectureEditInfo(moduleCode,
-                        model.getLecture(moduleCode, lectureName), null);
+                editedLectures[i] = r.getLectureEditInfoList().get(0);
             }
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
