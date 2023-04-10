@@ -43,7 +43,6 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ## User Guide Information
 
-
 ### Purpose of this guide
 
 Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process. We aim to help you find the best candidates for your company. 
@@ -52,7 +51,7 @@ Welcome to the user guide for GoodMatch. This guide will help you understand how
 
 To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
-Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
+You can use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
 
 ### Legends
 
@@ -99,46 +98,54 @@ Some example commands you can try:
 
 ### Listing
 
-A job listing is the basic building block of GoodMatch. It helps managers to keep track and display all the details relating to the job. Job listings can be created, deleted, or edited.
+A job listing is the basic building block of GoodMatch. It helps you keep track and display all the details relating to the job. You can create, delete, and edit job listings.
 
 A job listing in GoodMatch contains the following fields:
 
 #### Title
 
-What the job listing is called. It serves as an identifier for a job listing.
+The job title is what you want to call the job listing. It serves as an identifier for a job listing.
 
 Some constraints that a job title include:
-- It is **compulsory** in a job listing.
-- Two job listings with the same title cannot exist in GoodMatch at the same time (**no duplicates**).
-- Titles must only contain alphanumeric characters.
+- It is **compulsory** in your job listing.
+- You cannot have two job listings with the same title exist in GoodMatch at the same time (**no duplicates**).
+- Your titles should only contain alphabets and numbers.
+- All of your job titles should have a maximum of 100 characters.
 
 #### Description
 
-A simple description of what the job entails.
-- It is **compulsory** in a job listing.
+What is your job listing about? A job description is a simple description of what the job entails.
+- It is **compulsory** in your job listing.
+- All of your job description should have a maximum of 500 characters.
 
 #### Applicants List
 
-A list of people who applied for the job.
+When applicants apply for your job listing, you can add them to the job listing!
+
+A list of applicants who applied for your job.
 - It is possible for a job listing to have no applicants.
 
 #### Platforms released
 
-A list of job platforms on which the job listing has been publicized.
+When you post a job listing, you often want to reach a wide audience of potential candidates. 
+To do this, you may publish the job listing on various job platforms, such as job boards or social media platforms. 
+These job platforms that you published on are referred to as "platforms released" for that particular job listing. 
+
+A list of job platforms on which the job listing has been published.
 - It is possible for a job listing to have no platforms released.
 
 ### Applicant
 
-An applicant refers to someone who has applied for a job listing. 
+An applicant refers to someone who has applied for your job listing.
 
 Applicants are displayed according to their names and are specific to each job listing.
 - An applicant must have a name.
-- An applicant's name must contain only alphanumeric characters.
+- An applicant's name must contain only alphabets and numbers.
 - Applicants with identical names are allowed in the same job listing.
 - Can be managed individually or as a whole list in each job listing.
 
 #### IDs
-In a job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. 
+In your job listing, each applicant will have a unique 4-digit ID, generated automatically by GoodMatch. 
 
 The ID will be displayed (behind the applicant's name) in the case that there are two or more applicants with identical names in the same listing.
 
@@ -150,7 +157,7 @@ The ID will be displayed (behind the applicant's name) in the case that there ar
 
 ### Platform
 
-A platform refers to a site or avenue in which a job listing has been publicized. 
+A platform refers to a site or avenue in which your job listing has been published. 
 
 Some of the more well known platforms are Linkedin, Indeed, etc.
 - A platform must have a name.
