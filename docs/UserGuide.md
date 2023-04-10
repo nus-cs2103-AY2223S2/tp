@@ -375,8 +375,8 @@ Format: `check INDEX`
 
 **:information_source:  Note:**<br>
 After the user checked a student, the respective student's task list and score list will continue to be displayed, unless:
-  * That respective student (the latest checked student) is being deleted.
-  * That respective student (the latest checked student) is being edited.
+  * The respective student (the latest checked student) is being deleted.
+  * The respective student (the latest checked student) is being edited.
   * The student list being cleared.
   * New student data (.json file) is being imported.
 
@@ -429,7 +429,7 @@ Filters students whose tags match with any of the given keywords.
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
 * The filter is case-insensitive. e.g. `primary` will match `Primary`
-* The order of the keywords does not matter. e.g. `primaryprimary4` will match `primary4primary`
+* The order of the keywords does not matter. e.g. `primary primary4` and `primary4 primary` have the same filter results.
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
 * Students whose tag matches at least one keyword will be returned (i.e. `OR` search).
@@ -540,7 +540,7 @@ Examples:
 * `list` followed by `marklate 2 3` marks the third task of the 2nd student in the student list as late.<br>
     The following result assumes that the user have [checked](#4-checking-a-student-check) the student before.<br>
     Before command execution:
-    ![Mark a task (before)](images/UG-images/Mark%20a%20task%20(before).png)
+    ![Mark a task late (before)](images/UG-images/Mark%20a%20task%20late%20(before).png)
     After command execution:
     ![Mark a task late (after)](images/UG-images/Mark%20a%20task%20late%20(after).png)
 * `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
