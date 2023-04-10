@@ -23,6 +23,7 @@ title: Developer Guide
     - **[Service Locator](#service-locator)**
     - **[Functional Programming](#functional-programming)**
 - **[Appendix: Requirements](#appendix--requirements)**
+- **[Appendix: Planned Enhancements](#appendix--planned-enhancements)**
 
 <div style="page-break-after: always;"></div>
 
@@ -949,3 +950,17 @@ is the `user`, unless specified otherwise)
 * **Plane**: A unit plane which can be assigned to be used in flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
+
+## Appendix: Planned Enhancements
+
+1. **Feature flaw:** A resource entity can currently be linked to one flight through multiple links at once.
+   (e.g. Crew Member Ben can be linked to Flight SQ312 as both a Cabin Service Director and a Trainee)
+  - **Feature tweak:** We plan to change the crew entity to be linked to one flight through only one appointment
+    at a time. This can be done by adding a new field labelled availability to the different resource classes
+    in the model layer to prevent the same resource from being assigned to multiple flights at the same time.
+    The linkXYZtoFlight command will also be changed to check this additional field before creating the link if the
+    resource entity is available or returning an error message if the resource entity is not available. Upon creation
+    of the link, this command will also update the availability field of the resource entity to false.
+    The unlinkXYZtoFlight command will also be changed to update the availability field of the resource entity
+    to true when the unlinking is successful.
+  - **Sample Error Message:** The resource entity is not available for the specified flight.

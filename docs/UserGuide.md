@@ -2,9 +2,9 @@
 layout: page
 title: User Guide
 ---
-<p align="center">
+<div align="center">
   <img src="../src/main/resources/images/Wingman.png" />
-</p>
+</div>
 
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
 flights, locations, pilots, and planes via command lines. The functionalities include adding, deleting, checking, or
