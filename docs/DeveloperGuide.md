@@ -299,6 +299,8 @@ The below sequence diagram shows how the various components interact with each o
 
 Users have the ability to mark a certain project as DONE.
 
+<div style="page-break-after: always;"></div>
+
 #### Implementation
 
 The below sequence diagram shows how the various components interact with each other when `mark 1` is entered by the user.
