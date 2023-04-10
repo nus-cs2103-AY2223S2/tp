@@ -1066,6 +1066,8 @@ Currently, the `edit` feature allows editing all fields except for remarks and t
 Currently, the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
 leads users to believe that their input (without `n/NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/NAME`.
 
+[↑ Back to top](#table-of-contents)
+
 ### Find/Filter
 #### Feature flaw
 Currently, we don't explicitly handle the case of argument-less `find`/`filter` nor do we disallow it, which results in the behaviour where argument-less `find` shows all users, while `filter` shows none.
@@ -1077,14 +1079,20 @@ Let's say argument-less `find`/`filter` is allowed, the possible behaviours coul
 
 Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
 
+[↑ Back to top](#table-of-contents)
+
 ### Ui
 #### Feature flaw
 Currently, all the labels except for remarks are truncated. When the texts are too long, they do not wrap, especially for long tags and when the window is resized. To improve user experience, we plan to wrap text for long names, address, email, telegram handle, and the tags component.
+
+[↑ Back to top](#table-of-contents)
 
 ### General
 #### Feature Flaw
 Currently, the user will experience noticeable lagging issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
 We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future to fulfil our non-functional requirements.
+
+[↑ Back to top](#table-of-contents)
 
 ### Error handling
 #### Feature flaw
