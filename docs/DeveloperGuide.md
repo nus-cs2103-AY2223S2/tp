@@ -8,8 +8,8 @@ title: Developer Guide
 ## **Introduction**
 
 -------------------------------------------------------------------------------------------------------------------
-_Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
-Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
+_Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a CLI**
+while still providing an easy way to visualize all events through a GUI.
 
 _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
@@ -308,8 +308,41 @@ _Activity Diagram for a typical `edit` command_
 
 ### **Delete Command**
 
+[DeleteCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/DeleteCommandParser.java
+[DeleteCommandClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/DeleteCommand.java
+
+For _Delete_ command, the noteworthy classes are:
+- [`DeleteCommandParser.java`][DeleteCommandParserClass] - Parse the arguments for `DeleteCommand`
+- [`DeleteCommand.java`][DeleteCommandClass] - Execute command
+
+The following exceptions may be thrown during this process, namely:
+- `ParseException` for missing arguments
+- `ParseException` for invalid arguments
+- `CommandException` for index exceeding list size
+
+Given below is an example usage scenario of how the _Delete_ command executes.
+
+-- user input --  
+Step 1. User executes `delete` command with multiple valid arguments.  
+
+-- `SchedulerParser` --  
+Step 2. Returns new `DeleteCommandParser`.  
+
+-- `DeleteCommandParser` --  
+Step 3. Verifies that provided arguments is valid.  
+Step 4. Parses provided arguments into `List<Index>`.  
+Step 5. Returns new `DeleteCommand`.  
+
+-- `DeleteCommand` -- <br>
+Step 6: Sorts and Reverses provided `List<Index>`.  
+Step 7: Verifies that none of the `Index` exceeds size of list of `Event`.  
+Step 8: Delete the `Event`(s) according the `List<Index>`.  
+
+Other alternative path of execution can be traced in the activity diagram below.
+
 _Activity Diagram for a typical `delete` command_  
 ![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
+
 
 ### **Find Command**
 
@@ -352,8 +385,56 @@ _Activity Diagram for a typical `find` command_
 
 ### **Next Command**
 
+[ShowNextCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/ShowNextCommandParser.java
+[ShowNextCommandClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/ShowNextCommand.java
+[UpcomingEventPredicateClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/UpcomingEventPredicate.java
+
+To keep track of the next upcoming event, we have opted to keep `Event`s sorted in chronological order.
+
+`Event`s are kept chronologically sorted by:
+1. `Event` was made comparable via a `Comparable<Event>` interface.
+   The comparison criteria are `Event#Date` and `Event#StartTime`.
+2. In `Scheduler`, attached a [`javafx.collections.ListChangeListener`][ListChangeListener] to `UniqueEventList` 
+   (the underlying run-time storage of the list of `Event`s) to know whenever `UniqueEventList` is changed
+   (possibly as a result of `add`, `edit`, `delete`, or even a sorting action).
+3. When a change is detected, we would sort the `Event`s via `FXCollections#sort`.
+
+Sequence Diagram for how `UniqueEventList` maintains a chronological order of `Event`
+![SortSequenceDiagram.png](images/SortSequenceDiagram.png)
+
+For _Next_ command, the noteworthy classes are:
+- [`ShowNextCommandParser.java`][ShowNextCommandParserClass] - Parse the arguments for `ShowNextCommand`
+- [`ShowNextCommand.java`][ShowNextCommandClass] - Execute command
+- [`UpcomingEventPredicate.java`][UpcomingEventPredicateClass] - Check if `Event` should be displayed as ongoing/upcoming
+
+During this process, `ParseException` may be thrown for invalid arguments.
+No exception is thrown for no arguments, as there is a default behaviour.
+
+Given below is an example usage scenario of how the `Next` command executes.
+
+-- user input --  
+Step 1. User executes `next` command with valid arguments.  
+
+-- `SchedulerParser` --  
+Step 2. Returns new `ShowNextCommandParser`.  
+
+-- `ShowNextCommandParser` --  
+Step 3. Verifies that provided argument is valid.  
+Step 4. Returns new `ShowNextCommand`.  
+
+-- `ShowNextCommand` --  
+Step 5. Creates an `UpcomingEventPredicate` using the provided argument.  
+Step 6. Uses the created `UpcomingEventPredicate` to filter for ongoing/upcoming `Event`(s).  
+Step 7. Updates `EventListPanel` with filtered `Event`(s).  
+
+Other alternative path of execution can be traced in the activity diagram below.
+
 _Activity Diagram for a typical `next` command_  
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
+
+
+[ListChangeListener]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.html
+[`ListChangeListener.Change`]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.Change.html
 
 ### **Undo Command**
 
@@ -400,11 +481,13 @@ _Activity Diagram for a typical `undo` command_
 ## **Glossary**
 
 --------------------------------------------------------------------------------------------------------------------
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
+* **CLI**: Command Line Interface
 * **Event**: A task with a starting time and an ending time
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **GUI**: Graphical User Interface
 * **Ongoing Event**: An event that has started, but not ended
 * **Upcoming Event**: An event that has not started
-* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
 
 
 ## **Appendices**
@@ -969,23 +1052,28 @@ testers are expected to do more *exploratory* testing.
 
 ### **Appendix D: Effort**
 
-**Difficulty Level:** 
+**Difficulty Level:** Overall _Medium_ difficulty (averaged total votes by all members)
 
 **Challenges Faced:**
-* During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
+- During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
   We would copy over whichever code we deem relevant. Halfway through the milestone, one of us realised that doing this
   possibly violated [`Constraint-Brownfield`][tp constraints brownfield]. After checking with our tutor/prof, we had to
   restart again, effectively wasting our effort and restricting our duration for `milestone 1` by half.
-* During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
+- During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
   required a lot of careful checking. Despite using IDE features like refactor and find-and-replace, there were
   still variable name and comments which we had to change, and we had to painstakingly double-check everything.
-* Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
+- Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
   Java CI failing for a prolonged period. We spend a lot of time in `milestone 2` changing/fixing the broken test 
   cases, which left us with not a lot of time to implement new features in `milestone 2` and `milestone 3`.
 
 **Effort Required:** High effort for the morphing process.
 
 **Achievements of Project:**
-
+- Created a working product
+- Experienced using GitHub Issues and PRs
+- Experienced making UML diagrams digitally
+- Practiced debugging & testing skills taught
+- Practiced workflows & design approaches taught
+- Collaborated with a group on a huge project (~13kLoC)
 
 [tp constraints brownfield]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-brownfield
