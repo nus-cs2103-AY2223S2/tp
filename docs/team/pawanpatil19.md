@@ -1,4 +1,7 @@
-# Pawan Kishor Patil
+---
+layout: page
+title: Pawan Kishor Patil's Project Portfolio Page
+---
 
 ### Hi there 👋 <br><br>
 I took part in developing Pied Piper, a task management and performace tracking app that helps current and future university student

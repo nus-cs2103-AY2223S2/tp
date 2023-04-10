@@ -1,4 +1,7 @@
-## Cyrus Krispin Vijikumar
+---
+layout: page
+title: Cyrus Krispin Vijikumar's Project Portfolio Page
+---
 
 ### Project: Pied Piper
 
