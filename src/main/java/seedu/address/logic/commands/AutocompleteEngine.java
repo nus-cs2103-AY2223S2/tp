@@ -229,20 +229,7 @@ public class AutocompleteEngine {
                 return "";
             }
 
-            String matchingArgs = argPrefixes.stream()
-                    // Excludes prefix-less arguments like index/keywords.
-                    .filter(prefix -> !prefix.isPlaceholder())
-                    // Remove filled non-repeating prefixed arguments.
-                    .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
-                            || prefix.isRepeatable())
-                    .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
-                    .map(Prefix::toPlaceholderString)
-                    .collect(Collectors.joining(" "));
-
-            return matchingArgs.isEmpty()
-                    ? ""
-                    : matchingArgs.replaceFirst("^\\[", "") // If first arg is optional, remove it's opening bracket.
-                            .substring(lastWord.length());
+            return getMatchingArgSuggestion(argPrefixes, argumentMultimap, lastWord);
         }
 
         return getRemainingArgSuggestion(argPrefixes, argumentMultimap, words);
@@ -303,6 +290,28 @@ public class AutocompleteEngine {
         return matchingExistingValues.isEmpty()
                 ? ""
                 : matchingExistingValues.substring(argValue.length());
+    }
+
+    /**
+     * Get suggestion for arguments starting with what the user is typing.
+     * (eg. "add e" returns the suggestion "add e/EMAIL] [edu/EDUCATION]")
+     */
+    private String getMatchingArgSuggestion(List<Prefix> argPrefixes, ArgumentMultimap argumentMultimap,
+            String lastWord) {
+        String matchingArgs = argPrefixes.stream()
+        // Excludes prefix-less arguments like index/keywords.
+        .filter(prefix -> !prefix.isPlaceholder())
+        // Remove filled non-repeating prefixed arguments.
+        .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
+                || prefix.isRepeatable())
+        .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
+        .map(Prefix::toPlaceholderString)
+        .collect(Collectors.joining(" "));
+
+        return matchingArgs.isEmpty()
+                ? ""
+                : matchingArgs.replaceFirst("^\\[", "") // If first arg is optional, remove it's opening bracket.
+                        .substring(lastWord.length());
     }
 
 }
