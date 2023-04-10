@@ -44,13 +44,13 @@ streamline your hospital management processes.
 - **Contributions to the DG**
 Here are my contributions to the DG
   - Sections
-    - Aided in crafting and formatting of [user stories](../DeveloperGuide.md#user-stories)
-    - Aided in crafting and formatting of [use cases](../DeveloperGuide.md#use-cases)
+    - Aided in crafting and formatting of [user stories](../DeveloperGuide.md#appendix-c-user-stories)
+    - Aided in crafting and formatting of [use cases](../DeveloperGuide.md#appendix-d-use-cases)
       - UC1: Add a doctor, UC2: Delete a doctor
     - Detailed implementation details of [`AddDoctorCommand`](../DeveloperGuide.md#add-doctor-feature), [`AddPatientCommand`](../DeveloperGuide.md#add-patient-feature), [`DeleteDoctorComand`](../DeveloperGuide.md#delete-doctor-feature) and [`DeletePatientCommand`](../DeveloperGuide.md#delete-patient-feature).
     - Detailed implementation details of [Logic](../DeveloperGuide.md#logic-component) and [Model](../DeveloperGuide.md#model-component) components.
-    - Aided in the creation of [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a--planned-enhancements) and associated format to document planned enhancements for future versions of Docedex.
-    - Detailed problems 3 and 4 under [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a--planned-enhancements).
+    - Aided in the creation of [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a-planned-enhancements) and associated format to document planned enhancements for future versions of Docedex.
+    - Detailed problems 3 and 4 under [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a-planned-enhancements).
   - UML diagrams
       - Class Diagrams: Created class diagrams for `Logic` and `Model` classes
       - Sequence Diagrams: Created sequence diagrams for `AddDoctorCommand`, `AddPatientCommand`, `DeleteDoctorComand`, `DeletePatientCommand`
