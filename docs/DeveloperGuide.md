@@ -469,6 +469,7 @@ Purpose: Allows users to unassign a task from a person in OfficeConnect.
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/UnassignActivity.png" width="550" />
+<div style="page-break-after: always;"></div>
 
 Below is a sequence diagram that illustrates how a user unassign a tasks from a person in the OfficeConnectModel. 
 
