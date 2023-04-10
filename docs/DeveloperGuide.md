@@ -295,7 +295,7 @@ any arguments.
 ### Exporting and importing of contacts
 #### Description
 Exporting generates a JSON for the contacts at the indices given.
-For example, `export p/ 1 p/2` generates a JSON for the first and second contacts.
+For example, `export p/1 p/2` generates a JSON for the first and second contacts.
 Example JSON:
 ```json
 [ {
@@ -325,16 +325,17 @@ Could provide more readable and/or less text for copying.
 Benefit: can directly copy-paste to and from the data files that already exist in the system.
 
 #### Implementation
-Here we only describe the Export command. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
+Here we only describe the `ExportCommand`. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
 Control flow is as follows.
-1. The user queries the `UI` to export using a [export command](#command-summary) prefix.
+
+1. The user queries the `UI` to export using a [export command](#command-summary).
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
 3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
-4. <u>`ExportCommand`</u> is returned to `LogicManager`
-5. `LogicManager` executes <u>`ExportCommand`</u>
-6. <u>`ExportCommand`</u> queries `ModelManager` for Json string
-7. <u>`ExportCommand`</u> returns Json string to `LogicManager` and `ModelManager`
-8. `UI` outputs the JSON string
+4. `ExportCommand` is returned to `LogicManager`.
+5. `LogicManager` executes <u>`ExportCommand`.
+6. `ExportCommand` queries `ModelManager` for JSON string.
+7. `ExportCommand` returns JSON string to `LogicManager` and `ModelManager`.
+8. `UI` outputs the JSON string.
 
 Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `export` Command](images/ExportSequenceDiagram.png)
@@ -347,7 +348,7 @@ corresponding indexes provided, then search for meetings between the start and e
 only the other date is considered.
 
 ##### Exceptions
-Using the exported JSON, one can then import it using `import THE_JSON`.
+Using the exported JSON, one can then import it using `import VALID_JSON`.
 
 Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing
 to ensure we do not have "half imports".
@@ -397,7 +398,7 @@ command to better the user experience.
 
 Traversal of commands is facilitated by `CommandHistory` model in addition to `KeyPressedHandler` in the `CommandBox` UI component.
 
-Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Note that `LinkedList` is a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) and this allows us to traverse the list of commands forward and backward in O(1) [time complexity](https://en.wikipedia.org/wiki/Time_complexity). Traversal of the list is facilitated by a `static` pointer.
+Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Traversal of the list is facilitated by a `static` pointer.
 
 `CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
@@ -844,7 +845,7 @@ MSS:
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
 * **LinkedList**: Data structure that consists of nodes that contain data and a reference to the next node
-* **Time complexity**: Amount of time taken by an algorithm to run, as a function of the length of the input
+* **JSON**: Stands for JavaScript Object Notation and it is a file format used for storing and transmitting data in attribute-value pairs and arrays.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -954,6 +955,7 @@ testers are expected to do more *exploratory* testing.
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
 | **List all contacts**        | `list`                                                                                                                                                                                                               |
 | **Help**                     | `help [COMMAND_WORD]`                                                                                                                                                                                                |
+| **Exit the app**             | `exit`                                                                                                                                                                                                |
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
@@ -963,7 +965,7 @@ testers are expected to do more *exploratory* testing.
 | **View pending Meetings**    | `pending`                                                                                                                                                                                                            |
 | **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
 | **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
-| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
+| **Export a meeting**         | `exportm p/INDEX [p/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]` <br> e.g., `exportm m/1 m/2 m/3`                                                                               |
 | **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
 | **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
