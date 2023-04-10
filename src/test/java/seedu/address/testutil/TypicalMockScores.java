@@ -27,8 +27,9 @@ public class TypicalMockScores {
     public static final ScoreValue SCORE_2_VALUE = new ScoreValue("70");
     public static final Date SCORE_2_DATE = new Date("2022-03-09");
     public static final Score SCORE_3 = mock(Score.class);
-    public static final Label SCORE_3_NAME = new Label("MA2100 Final Exam");
-    public static final ScoreValue SCORE_3_VALUE = new ScoreValue("70");
+    public static final Label SCORE_3_NAME = new Label("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+    public static final ScoreValue SCORE_3_VALUE = new ScoreValue("100");
     public static final Date SCORE_3_DATE = new Date("2022-03-09");
 
     // Manually added - Score's details found in {@code CommandTestUtil}
