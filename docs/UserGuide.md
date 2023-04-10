@@ -447,7 +447,8 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * `INTEGER` must be a strictly positive integer.
 * The user cannot undo/redo actions from a previous session of starting the app.
 * The user cannot undo actions that are more than 10 iterations old.
-* The user cannot undo actions that do not change the data of DengueHotspotTracker, such as `list` and `find`.
+* The user cannot undo actions that do not alter the data of DengueHotspotTracker, such as `list`, `sort`, `overview` and `find`.
+* An alteration is defined as a process that changes the contents of the list of persons, such as in the form of edits, additions, or deletions to the list
 * Performing a change after undoing will clear any possible `redo` actions.
 
 Example:
@@ -460,6 +461,13 @@ Example:
 ![RedoCommandExample](images/RedoCommandExample.png)
 
 <br>
+<div markdown="span" class="alert alert-warning">
+**:exclamation: Caution:**
+Only the current state will be stored upon exiting the app.
+The temporary storage that stores the undo/redo states are not stored anywhere upon exit.
+Ensure that the current state of the DengueHotspotTracker (after undoing or redoing) is the state you want to save,
+before exiting the app!
+</div>
 
 ### Changing the overview type: `overview`
 
