@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
@@ -22,7 +23,6 @@ import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
 import seedu.address.testutil.EntityBuilder;
 
-import javafx.collections.ObservableList;
 
 public class EditCommandTest {
 
