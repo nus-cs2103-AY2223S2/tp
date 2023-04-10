@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added the advo, revo, and cancelo commands, including the example uses and the format by whichs they shouldbe typed.
+        * Added the advo, revo, and cancelo commands, including the example uses and the format by which they should be typed.
     * Developer Guide:
         * Updated the previously obsolete Model component section, with a new Class Diagram of the Model component
 
