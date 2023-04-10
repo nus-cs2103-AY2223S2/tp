@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `new-lesson`, `view-lesson`, `delete-lesson`, `update-lesson`, `new-exam`, `view-exam`, `delete-exam`, `update-exam`: [#184](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/184)
     * Added Glossary, List of Commands, and List of Prefixes as 3 separate tables: [#117](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/117)
   * Developer Guide:
-    * Added implementation for `CreateLessonCommand` with Sequence Diagramm and Activity Diagram [#89](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/89)
+    * Added implementation for `CreateLessonCommand` with Sequence Diagram and Activity Diagram [#89](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/89)
     * Added Glossary and changed the table of contents [#198](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/198)
   
 * **Community**:
