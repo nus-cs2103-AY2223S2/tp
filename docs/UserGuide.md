@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 <p align="center">
-  <img src="../src/main/resources/images/Wingman.png" />
+<img src="images/Wingman.png" width="2032">
 </p>
 
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
@@ -89,7 +89,6 @@ following sections:
 3. [Command Formatting](#command-formatting) to understand how we explain how to use each command in the following
    [Features](#features) section.
 
-<div style="page-break-after: always;"></div>
 
 ### Layout of Wingman Application Window
 
@@ -108,7 +107,6 @@ The following table describes the sections in detail:
 | `Mode Indicator`     | Displays the current mode.                                                          |
 
 [Back to contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 
 ### Modal Editing
 
@@ -389,6 +387,7 @@ the command is valid, Wingman will return a response confirming the link that ha
 <img src="images/ug/UG-linklocation.jpg" width="2032" alt="Screenshot depicting execution of a link command">
 
 We detail the format for different modes below.
+
 
 ###### Crew mode: `linklocation /lo location-index /cr {crew-index}`
 
