@@ -44,6 +44,7 @@ I was able to set up the organisation, create the repository and gave my teammat
         * Tidied up table of content links and navigation and ensure their proper function
         * Tidied up glossaries and added Java specific definitions
         * Added use cases and neaten up use cases which can be inside other use cases
+        * Provided images for the UI implementation segments and added Course List Panel Segment.
 
 * **Tools**:
     * JavaFX

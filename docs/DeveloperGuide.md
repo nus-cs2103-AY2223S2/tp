@@ -18,6 +18,7 @@ title: Developer Guide
   - [Storage Component](#storage-component)
 - [Implementation](#implementation)
   - [UI](#ui-implementation)
+    - [Course List Panel](#course-list-panel)
     - [Main Section](#main-section)
     - [Info Panel](#info-panel)
     - [Theme](#theme)
