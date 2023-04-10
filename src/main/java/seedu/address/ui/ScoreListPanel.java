@@ -79,10 +79,11 @@ public class ScoreListPanel extends UiPart<Region> {
     private final Color red = Color.rgb(194, 47, 40);
 
     /**
-     * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ScoreListPanel} with the given {@code Student}, tabNumber, and callBack.
      *
-     * @param student Selected student's scores.
-     * @param tabNumber Which tab is being selected.
+     * @param student The student.
+     * @param tabNumber The tab to be displayed.
+     * @param callBack Callback method to trigger main window update.
      */
     public ScoreListPanel(Student student, int tabNumber, Consumer<Integer> callBack) {
         super(FXML);
@@ -91,10 +92,29 @@ public class ScoreListPanel extends UiPart<Region> {
         nameChart.setText("No student being checked now");
         scoreScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scoreStatistic.setVisible(false);
-
         scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
 
+        scoreListPanelDisplay(student);
 
+        fullTabs.getSelectionModel().select(tabNumber);
+
+        tab1.setOnSelectionChanged(switchTab(tab1, 0, callBack));
+
+        tab2.setOnSelectionChanged(switchTab(tab2, 1, callBack));
+    }
+
+    private EventHandler<Event> switchTab(Tab tab, int i, Consumer<Integer> callBack) {
+        return new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                if (tab.isSelected()) {
+                    callBack.accept(i);
+                }
+            }
+        };
+    }
+
+    private void scoreListPanelDisplay(Student student) {
         if (student != null) {
             scoreListView.setItems(student.getSortedScoreList());
             if (student.getSortedScoreList().size() != 0) {
@@ -110,29 +130,13 @@ public class ScoreListPanel extends UiPart<Region> {
                 }
             }
         }
-
-        fullTabs.getSelectionModel().select(tabNumber);
-
-        tab1.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                if (tab1.isSelected()) {
-                    callBack.accept(0);
-                }
-            }
-        });
-
-        tab2.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                if (tab2.isSelected()) {
-                    callBack.accept(1);
-                }
-            }
-        });
-
     }
 
+    /**
+     * Generates tableview to show the summary statistic of recent 5 scores.
+     *
+     * @param student Selected student.
+     */
     private void statisticTable(Student student) {
 
         scoreStatistic.setVisible(true);
@@ -147,6 +151,8 @@ public class ScoreListPanel extends UiPart<Region> {
         average.setSortable(false);
         percentage.setSortable(false);
 
+        // Due to the nature of callback and setCellFactory,
+        // it will be difficult to extract them out as a single method.
         maxScore.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
             public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
                 return new TableCell<ScoreSummary, Double>() {
@@ -171,6 +177,8 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         });
 
+        // Due to the nature of callback and setCellFactory,
+        // it will be difficult to extract them out as a single method.
         minScore.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
             public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
                 return new TableCell<ScoreSummary, Double>() {
@@ -195,6 +203,8 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         });
 
+        // Due to the nature of callback and setCellFactory,
+        // it will be difficult to extract them out as a single method.
         average.setCellFactory(new Callback<TableColumn<ScoreSummary, Double>, TableCell<ScoreSummary, Double>>() {
             public TableCell<ScoreSummary, Double> call(TableColumn<ScoreSummary, Double> param) {
                 return new TableCell<ScoreSummary, Double>() {
@@ -245,14 +255,14 @@ public class ScoreListPanel extends UiPart<Region> {
     }
 
     /**
-     * Generates chart for a specific student.
+     * Generates chart for a student.
      *
      * @param student Selected student.
      */
 
     private void newChart(Student student) {
         name.setText("Score history for " + student.getName().fullName);
-        nameChart.setText("Recent 5 scores for " + student.getName().fullName + " (at most 5)");
+        nameChart.setText("Recent scores for " + student.getName().fullName + " (at most 5)");
         if (student.getName().fullName.length() >= 30) {
             name.setText("Score history for " + student.getName().fullName.substring(0, 29) + "...");
             nameChart.setText("Recent scores for " + student.getName().fullName.substring(0, 29) + "..."
@@ -260,9 +270,14 @@ public class ScoreListPanel extends UiPart<Region> {
         }
         scoreChart.setVisible(true);
         scoreChart.setLegendVisible(false);
-        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        chartNode();
+        constructChart(student);
+    }
 
+    private void chartNode() {
         Region chartContent = (Region) scoreChart.lookup(".chart-content");
+
+        //The for loop seems to have an arrow pattern, but the code should not be further split anymore.
         for (Node node: chartContent.getChildrenUnmodifiable()) {
             if (node instanceof Group) {
                 node.toFront();
@@ -270,6 +285,10 @@ public class ScoreListPanel extends UiPart<Region> {
                 plotArea.setClip(null);
             }
         }
+    }
+
+    private void constructChart(Student student) {
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
 
         for (int i = 0; i < student.getRecentScoreList().size() && i < 5; i++) {
             String date = student.getRecentScoreList().get(i).getDate().toString();
@@ -291,9 +310,10 @@ public class ScoreListPanel extends UiPart<Region> {
      * Displays "tooltip" when hover over a specific node.
      */
     private class HoveredThresholdNode extends StackPane {
-        HoveredThresholdNode(Double scoreValue, String examLabel) {
+        private HoveredThresholdNode(Double scoreValue, String examLabel) {
             final Label label = createDataThresholdLabel(scoreValue, examLabel);
 
+            //The setOnMouseEntered seems to have an arrow pattern, but the code should not be further split anymore.
             setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -303,6 +323,7 @@ public class ScoreListPanel extends UiPart<Region> {
                 }
             });
 
+            //The setOnMouseExited seems to have an arrow pattern, but the code should not be further split anymore.
             setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -311,29 +332,36 @@ public class ScoreListPanel extends UiPart<Region> {
                 }
             });
         }
+    }
 
-        private Label createDataThresholdLabel(Double scoreValue, String examLabel) {
-            final Label label = new Label(examLabel + ": " + "\n" + scoreValue);
-            label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
-            label.setStyle("-fx-font-size: 12; -fx-font-weight: bold; -fx-background-color: white; "
-                    + "-fx-border-color: #FF94B4; -fx-border-width: 2; -fx-alignment: center");
+    /**
+     * Constructs data threshold label.
+     *
+     * @param scoreValue The score value.
+     * @param examLabel The name of the exam.
+     * @return A label that contains exam label and exam score value.
+     */
+    private Label createDataThresholdLabel(Double scoreValue, String examLabel) {
+        final Label label = new Label(examLabel + ": " + "\n" + scoreValue);
+        label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
+        label.setStyle("-fx-font-size: 12; -fx-font-weight: bold; -fx-background-color: white; "
+                + "-fx-border-color: #FF94B4; -fx-border-width: 2; -fx-alignment: center");
 
-            if (scoreValue >= 80) {
-                label.setTextFill(green);
-            } else if (50 <= scoreValue && scoreValue < 80) {
-                label.setTextFill(yellow);
-            } else {
-                label.setTextFill(red);
-            }
-
-            if (examLabel.length() >= 12) {
-                label.setText(examLabel.substring(0, 11) + "..." + "\n" + scoreValue);
-            }
-
-            label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
-
-            return label;
+        if (scoreValue >= 80) {
+            label.setTextFill(green);
+        } else if (50 <= scoreValue && scoreValue < 80) {
+            label.setTextFill(yellow);
+        } else {
+            label.setTextFill(red);
         }
+
+        if (examLabel.length() >= 12) {
+            label.setText(examLabel.substring(0, 11) + "..." + "\n" + scoreValue);
+        }
+
+        label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+
+        return label;
     }
 
     /**

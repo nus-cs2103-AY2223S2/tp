@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.text.DecimalFormat;
 import java.util.DoubleSummaryStatistics;
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -166,25 +165,6 @@ public class UniqueScoreList implements Iterable<Score> {
         return other == this // short circuit if same object
                 || (other instanceof UniqueScoreList // instanceof handles nulls
                 && internalList.equals(((UniqueScoreList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code scores} contains only unique scores.
-     */
-    private boolean scoresAreUnique(List<Score> scores) {
-        for (int i = 0; i < scores.size() - 1; i++) {
-            for (int j = i + 1; j < scores.size(); j++) {
-                if (scores.get(i).isSameScore(scores.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     public int size() {
