@@ -798,7 +798,7 @@ Preconditions: Person is already in FL.
 1. FriendlyLink will perform minimal checks on correctness of details entered into FriendlyLink.
 1. FriendlyLink will not be responsible for the privacy and security of the data stored in FriendlyLink.
 1. FriendlyLink will not recover from corrupted data files.
-1. FriendlyLink will only available in English.
+1. FriendlyLink will only be available in English.
 1. FriendlyLink does not require internet connection to work.
 1. FriendlyLink is meant for VWOs in Singapore to contain information of and pair elderly and volunteers.
 
