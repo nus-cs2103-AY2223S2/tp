@@ -30,6 +30,7 @@ It is developed in Java, and uses JavaFX to create the GUI.
   - Add `<div style="page-break-after: always;"></div>` page breaks for PDF printing
 
 - **Contributions to the Developer Guide**
+  - _Delete Command_ and _Next Command_ sections
   - _Glossary_ section
   - **Data Verification when loading save files** in _Appendix: Planned Enhancements_ section
   - _Appendix: Effort_ section
