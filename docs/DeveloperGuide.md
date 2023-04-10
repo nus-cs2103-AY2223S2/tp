@@ -443,7 +443,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to find an event based on a given keyword.
-2.  PlanEase shows the list of filtered events based on the user’s choice of keyword.
+2.  PlanEase shows the list of filtered events based on the user’s keyword.
 
 Use case ends.
 
@@ -452,6 +452,12 @@ Use case ends.
 - 1a. PlanEase detects that no fields are provided for the keyword.
 
     - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+- 1b. The given keyword does not exist in any of the event's event name.
+
+    - 1b1. PlanEase does not display any events.
 
   Use case ends.
 
@@ -566,7 +572,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file.
-   
+
       1. Expected: Shows the GUI with a set of sample contacts and events. The window size may not be optimum.
 
 2. Shutting down
@@ -646,12 +652,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding an event
 
-1. Prerequisites: Current list of events has only one event with the word `Carnival` and no event with the word `Magic`.
+1. Prerequisites: Current list of events has only two events with event names `Sports Carnival` and `Magic Carnival`.
 
 2. Test case: `findevent Carnival`<br>
-   Expected: 1 event with the word `Carnival` is found.
+   Expected: 2 event with the keyword `Carnival` is found. They are `Sports Carnival` and `Magic Carnival`.
 
-3. Test case: `findevent Magic`<br>
+3. Test case: `findevent Magical`<br>
    Expected: No matching event is found.
 
 4. Other incorrect findevent commands to try: `findevent`, `...`.<br>
@@ -662,7 +668,7 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-   
+
    2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
@@ -685,6 +691,13 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
        Expected: Similar to previous.
 
+### Sorting event list
+
+1. Prerequisite: Current list of events have at least 2 events.
+
+2. Test case: `sortevent a`<br>
+   Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
+
 ### Listing all persons and events
 
 1. No prerequisite.
@@ -697,13 +710,13 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing data files
 
    1. Missing `/data/addressbook.json` file before running the app
-   
+
       1. Expected: App will create this file after the user enters a valid input.
 
 2. Dealing with corrupted data files
 
    1. Corrupted `/data/addressbook.json` file (file is not in valid json format) before running the app
-   
+
       1. Expected: App will not list any contacts and events.
          It will clear all the contacts and events in the `/data/addressbook.json` file when a valid input is entered by the user.
          Format of `/data/addressbook.json` file becomes valid.
@@ -718,9 +731,57 @@ For example, the user is allowed to enter these 2 commands and create 2 Persons 
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John Doe**.
 * `add n/John doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John doe**.
 
-For future enhancement, Person names with the same sequence of characters but different casing will be considered the same Person.
+For future enhancements, Person names with the same sequence of characters but different casing will be considered the same Person.
 
-## **Appendix:** Planned Features
+### Person name can be more flexible
+
+The current version of this application is not able to accept names that contain non-alphanumeric characters. The non-alphanumeric characters found in most names are `/` and `'`.
+For example, the user is not allowed to enter these 2 commands and create the following Persons in the list of Contacts due to the current constraint:
+* `add n/John O'neal p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John O'neal**.
+* `add n/John s/o Raju p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John s/o Raju**.
+
+For future enhancements, Person names should be more flexible in catering for names that may contain non-alphanumeric characters in the English language.
+
+### Phone number checks can be done
+
+The current version of this application has no prior knowledge of how phone numbers work in real-life.
+For example, the user is currently able to add the following command.
+* `add n/John Doe p/1234566789900000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`.
+* `add n/John Doe p/00000000000 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2`
+For future enhancements, checks can be made to ensure that the numbers are formatted with accordance to phone numbers found in Singapore as an example.
+
+### Events that have ended can be displayed differently
+
+In this version of the application, the displayed events does not have any special indicator to show that it has "expired" or ended.
+For example, if today's date is 9th April 2023 and there are events that have end dates earlier than 9th April, they should be shown as greyed out events to indicate to the user that the event has ended.
+This UI enhancement would help allow the users to focus on upcoming events.
+
+For future enhancements, the UI should display past events with a special indicator or color to differentiate itself from future events.
+
+## **Appendix: Planned Features**
+
+### Ability to archive events
+
+In line with previous enhancement above, as the user continues to use the application, events that have ended may accumulate if the user wishes to keep them.
+
+For future enhancements, the user should be able to archive events that have ended so that they are stashed away and only accessible upon using a command.
+At least two commands may be required to implement stashing and un-stashing of an event from the archive. A separate storage may also be needed store these archived events.
+
+### Ability to set and receive reminders
+
+In this version of the application, users are not able to set reminders of upcoming events.
+
+For future enhancements, the user should be able to set a reminder for each event. This could be implemented by first modifying the existing `Event` class to also hold the date that the user wishes to be reminded on.
+Additional checks must also be put in place to ensure that the user does not add reminder dates that have already passed.
+Also, the UI may require enhancements to display the reminders and additional considerations must be made when more than one reminder occurs at a time.
+
+### Ability to mark an overall-in-charge for an event
+
+In this version of the application, events are not assigned an overall-in-charge from the contact list.
+
+For future enhancements, the user should be able to set an overall-in-charge to the events. This is to identify specific individuals that are linked to a particular event and make them more prominent in the application.
+A possible way to design this implementation is to make the event keep track of the person who represents the overall-in-charge, that way we can safely restrict the number of overall-in-charge to just one contact or no contacts.
+As for the UI, similar to the tagging of event to the person, the overall-in-charge person can be tagged to the event and displayed on the UI.
 
 ### Ability to set up a checklist of event's requirements
 
@@ -729,6 +790,6 @@ In this version of application, users are not able to set up a checklist of even
 For future enhancements, users should be able to set up a checklist of event's requirements. This is to ensure that every need for the event is being accounted for. 
 Additionally, users are able to check-off and uncheck the requirements of the event to indicate whether the requirements have been satisfied or not. 
 
-A possible way to implement this is to let every event object contains a `requirementList` attribute, users can add in the requirements to the list by modifying the existing `addevent` and `editevent` command to accept the requirements. 
+A possible way to implement this is to let every event object contain a `requirementList` attribute, users can add in the requirements to the list by modifying the existing `addevent` and `editevent` command to accept the requirements. 
 Two new commands, `mark EVENT_INDEX r/REQUIREMENT_INDEX` and `unmark EVENT_INDEX r/REQUIREMENT_INDEX`, may be required to implement the checking-off and unchecking of a requirement, specified by the `REQUIREMENT_INDEX`, of an event, specified by the `EVENT_INDEX`.
 The UI will also display the list of requirements of each event and their statuses (checked or unchecked).  
