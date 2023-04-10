@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -17,10 +18,20 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Sorted all athletes successfully.\n";
+    public static final String MESSAGE_INVALID_SORT_FAILURE = "Invalid sort index, please enter either: "
+            + "sort 1 or sort 2.\n";
 
     private final int attribute;
 
-    public SortCommand(int attribute) {
+    /**
+     * sort command constructor
+     * @param attribute
+     * @throws CommandException
+     */
+    public SortCommand(int attribute) throws CommandException {
+        if (attribute != 1 && attribute != 2) {
+            throw new CommandException(MESSAGE_INVALID_SORT_FAILURE);
+        }
         this.attribute = attribute;
     }
 
