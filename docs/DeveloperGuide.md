@@ -87,7 +87,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.<div style="page-break-after: always;"></div>
+The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -136,7 +137,8 @@ Each of the three types of readings has their own `ObservableList` which is then
 A possible improvement to the way that readings are currently stored is to use a `HashMap` instead of three separate `ObservableList`s.
 This could allow the user to supply their own types of readings (which would be the key of the `HashMap`) and the corresponding values.
 Combining this with the ability to choose which chart to display for each tank would allow for a lot of flexibility in terms of how the user can view their tank readings.
-However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.<div style="page-break-after: always;"></div>
+However, this would requite significant changes to the way readings are stored. It might require a rework of the entire `readings` package to make it more flexible.
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -188,7 +190,7 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
