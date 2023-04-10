@@ -5,29 +5,17 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command is missing any arguments])
-    :Show invalid command
-    error message;
+if () then ([valid single module inputted])
+    :Update filteredModuleList and display
+    the filtered module on GUI;
 
 else ([else])
-    if () then ([contains prefix without detail])
-        :Show missing detail
-        error message;
+    if () then ([valid prefix(es) with detail(s) inputted])
+        :Update filteredModuleList and display
+        the filtered modules on GUI;
     else ([else])
-        if () then ([format of detail for prefix is invalid])
-            :Show invalid detail
-            error message;
-        else ([else])
-            switch ()
-            case ([contains invalid module code as preamble])
-                :Show invalid module code
-                error message;
-            case ([contains valid module code as preamble])
-                :Display filtered module for the code on GUI;
-            case ([does not contain preamble])
-                :Display all filtered modules on GUI;
-            endswitch
-        endif
+        :Throw ParseException due to
+        invalid formatting or missing details;
     endif
 endif
 

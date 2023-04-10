@@ -31,7 +31,7 @@ public class FooterButtonGroup extends UiPart<Region> {
     private HBox footerButtonGroup;
 
     /**
-     * Creates a {@code FooterButtonGroup}.
+     * Creates a {@code FooterButtonGroup} component.
      * @param progressButtonLabel The text label of the progress button.
      * @param moduleListButtonLabel The text label of the module-list button.
      * @param progressButtonHandler The function to execute on clicking the progress button.
@@ -74,7 +74,7 @@ public class FooterButtonGroup extends UiPart<Region> {
     }
 
     /**
-     * Updates the styles for uttonsall footer b for the case where module-search button gets selected.
+     * Updates the styles for all footer buttons for the case where module-search button gets selected.
      */
     public void selectModuleSearchButton() {
         progressButton.clearSelectedStyle();

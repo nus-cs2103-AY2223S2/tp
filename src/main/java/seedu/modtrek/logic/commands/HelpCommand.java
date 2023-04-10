@@ -40,9 +40,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (selectedMessage.isEmpty()) {
-            return new CommandResult(SHOWING_ALL_MESSAGE_USAGE, false, false, false, false);
-        }
         return new CommandResult(selectedMessage, false, false, false, false);
     }
 

@@ -42,7 +42,7 @@ public class CliSection extends UiPart<Region> {
     }
 
     /**
-     * Handles the Enter button pressed event.
+     * Handles the event when the 'Enter' button is pressed.
      */
     @FXML
     private void handleCommandEntered() {

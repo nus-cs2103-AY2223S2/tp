@@ -38,6 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             isAll = true;
             codes = new HashSet<>();
         } else if (flag.isEmpty() && !codeString.isEmpty()) {
+            ParserUtil.checkIfSlashIsPresent(argMultimap, PREFIX_CODE, DeleteCommand.MESSAGE_USAGE);
             isAll = false;
             codes = ParserUtil.parseCodes(argMultimap.getAllValues(PREFIX_CODE));
         } else {

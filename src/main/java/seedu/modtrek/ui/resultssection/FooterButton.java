@@ -20,7 +20,7 @@ public class FooterButton extends UiPart<Region> {
     private Button footerButton;
 
     /**
-     * Creates a {@code FooterButton}.
+     * Creates a {@code FooterButton} component.
      * @param label The label of the button.
      * @param handler The function to be executed on clicking the button.
      */

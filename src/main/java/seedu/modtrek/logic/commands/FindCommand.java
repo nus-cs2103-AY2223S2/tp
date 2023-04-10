@@ -41,6 +41,9 @@ public class FindCommand extends Command {
      * @param filtersList list of filters
      */
     public FindCommand(ModuleCodePredicate predicate, List<String> filtersList) {
+        requireNonNull(predicate);
+        requireNonNull(filtersList);
+
         this.predicate = predicate;
         this.filtersList = filtersList;
     }

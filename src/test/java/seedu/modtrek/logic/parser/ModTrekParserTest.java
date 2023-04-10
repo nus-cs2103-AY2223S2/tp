@@ -2,7 +2,6 @@ package seedu.modtrek.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
@@ -87,7 +86,7 @@ public class ModTrekParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
             -> parser.parseCommand(""));
     }
 

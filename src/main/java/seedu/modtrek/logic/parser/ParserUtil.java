@@ -1,9 +1,11 @@
 package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -187,5 +189,20 @@ public class ParserUtil {
             codeSet.add(parseCode(code));
         }
         return codeSet;
+    }
+
+    /**
+     * Checks if the argument following the specified prefix contains the "/" character.
+     *
+     * @throws ParseException if the argument following the specified prefix contains the "/" character.
+     */
+    public static void checkIfSlashIsPresent(ArgumentMultimap argumentMultimap, Prefix prefix,
+                                             String messageUsage) throws ParseException {
+        List<String> prefixArgs = argumentMultimap.getAllValues(prefix);
+        for (String prefixArg : prefixArgs) {
+            if (prefixArg.contains("/")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage));
+            }
+        }
     }
 }

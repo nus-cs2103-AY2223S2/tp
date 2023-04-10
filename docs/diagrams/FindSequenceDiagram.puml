@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant "model:ModelManager" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(commandText)
+[-> LogicManager : execute("find /m CS")
 activate LogicManager
 
-LogicManager -> ModTrekParser : parseCommand(commandText)
+LogicManager -> ModTrekParser : parseCommand("find /m CS")
 activate ModTrekParser
 
 create FindCommandParser
@@ -27,7 +27,7 @@ activate FindCommandParser
 FindCommandParser --> ModTrekParser
 deactivate FindCommandParser
 
-ModTrekParser -> FindCommandParser : parse(arguments)
+ModTrekParser -> FindCommandParser : parse("/m CS")
 activate FindCommandParser
 
 create ModuleCodePredicate

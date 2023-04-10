@@ -7,7 +7,6 @@ import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -45,7 +44,7 @@ public class EditCommand extends Command {
             + PREFIX_SEMYEAR + " Y2S2";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided. \n\n%1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the grade book.";
 
     private final Code code;
@@ -82,7 +81,7 @@ public class EditCommand extends Command {
         }
 
         model.setModule(moduleToEdit, editedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.updateFilteredModuleList(model.getPredicate());
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 

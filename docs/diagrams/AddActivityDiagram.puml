@@ -20,8 +20,8 @@ else ([else])
             error message;
 
         else ([else])
-        :Add new internship to list of
-        internship applications;
+        :Add new module to list of
+        modules;
         endif
     endif
 endif

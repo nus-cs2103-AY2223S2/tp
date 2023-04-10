@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.commands.SortCommand;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 import seedu.modtrek.model.module.Module;
 
 /**
@@ -103,7 +104,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         degreeProgression.addModule(module);
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredModuleList(getPredicate());
     }
 
     @Override
@@ -111,6 +112,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedModule);
 
         degreeProgression.setModule(target, editedModule);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+    @Override
+    public DegreeProgressionData generateData() {
+        return degreeProgression.getProgressionData();
     }
 
     //=========== Filtered Module List Accessors =============================================================
@@ -122,6 +129,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredModules;
+    }
+
+    @Override
+    public Predicate<Module> getPredicate() {
+        if (filteredModules.equals(getDegreeProgression().getModuleList())) {
+            return PREDICATE_SHOW_ALL_MODULES;
+        }
+        @SuppressWarnings("unchecked")
+        Predicate<Module> predicate = (Predicate<Module>) filteredModules.getPredicate();
+        return predicate;
     }
 
     @Override

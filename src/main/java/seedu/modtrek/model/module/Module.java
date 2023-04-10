@@ -104,6 +104,14 @@ public class Module {
         return grade.isSatisfactory();
     }
 
+    public boolean isPass() {
+        return grade.isPass();
+    }
+
+    public boolean isMultiTagged() {
+        return tags.size() > 1;
+    }
+
     /**
      * Checks if the module is the same based on its code only.
      *

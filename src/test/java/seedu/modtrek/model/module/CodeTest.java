@@ -21,16 +21,18 @@ public class CodeTest {
 
     @Test
     public void isValidCode() {
-        // null name
+        // null code
         assertThrows(NullPointerException.class, () -> Code.isValidCode(null));
 
-        // invalid name
+        // invalid code
         assertFalse(Code.isValidCode("")); // empty string
         assertFalse(Code.isValidCode(" ")); // spaces only
         assertFalse(Code.isValidCode("^")); // only non-alphanumeric characters
         assertFalse(Code.isValidCode("peter*")); // contains non-alphanumeric characters
+        assertFalse(Code.isValidCode("CS")); // missing numbers
+        assertFalse(Code.isValidCode("3230")); // missing letters
 
-        // valid name
+        // valid code
         assertTrue(Code.isValidCode("CS3230"));
         assertTrue(Code.isValidCode("CS3211"));
         assertTrue(Code.isValidCode("CS2105"));

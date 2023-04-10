@@ -1,7 +1,6 @@
 package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.DeleteCommand;
@@ -28,9 +27,6 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         requireNonNull(args);
 
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            return new HelpCommand("");
-        }
         switch (trimmedArgs.toUpperCase()) {
         case "ADD":
             return new HelpCommand(AddCommand.MESSAGE_USAGE);
@@ -49,8 +45,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         case "SORT":
             return new HelpCommand(SortCommand.MESSAGE_USAGE);
         default:
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return new HelpCommand(HelpCommand.SHOWING_ALL_MESSAGE_USAGE);
         }
     }
 }

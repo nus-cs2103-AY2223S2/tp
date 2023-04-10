@@ -2,8 +2,9 @@ package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.modtrek.model.DegreeProgressionData;
+import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.Model;
+import seedu.modtrek.model.degreedata.DegreeProgressionData;
 
 /**
  * View the data progress or module list
@@ -29,13 +30,26 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (isProgress) {
-            DegreeProgressionData details = model.getDegreeProgression().getProgressionData();
-            return new CommandResult(MESSAGE_PROGRESS_SUCCESS + details, false, true, false, false);
+            DegreeProgressionData details = model.generateData();
+            if (details.isValid()) {
+                return new CommandResult(MESSAGE_PROGRESS_SUCCESS + details, false, true, false, false);
+            } else {
+                throw new CommandException(DegreeProgressionData.ERROR);
+            }
         } else {
             return new CommandResult(MESSAGE_MODULES_SUCCESS);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof ViewCommand)) {
+            return false;
+        }
+        return this.isProgress == ((ViewCommand) o).isProgress;
+    }
+
 }
