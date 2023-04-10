@@ -467,12 +467,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01- Pair Volunteer and Elderly**
 
-Precondtions: Elderly and Volunteer is already in FL.
+Preconditions: Elderly and Volunteer is already in FL.
 
 **MSS**
 
-1.  User enters the details of elderly and volunteer to be paired into the application.
-2.  FL feedbacks the successful addition of the pair, and shows the new pair.
+1. User enters the details of elderly and volunteer to be paired into the application.
+2. FL feedbacks the successful addition of the pair, and shows the new pair.
+3. User see the new pair in FL.
 
     Use case ends.
 
@@ -502,8 +503,9 @@ Precondtions: Elderly and Volunteer is already in FL.
 
 **MSS**
 
-1.  User enters the details of elderly to be added into the application.
-2.  FL feedbacks the successful addition of the elderly, and shows the new elderly.
+1. User enters the details of elderly to be added into the application.
+2. FL feedbacks the successful addition of the elderly, and shows the new elderly.
+3. User see the new elderly in FL.
 
     Use case ends.
 
@@ -523,8 +525,9 @@ Precondtions: Elderly and Volunteer is already in FL.
 
 **MSS**
 
-1.  User enters the details of volunteer to be added into the application.
-2.  FL feedbacks the successful addition of the volunteer and shows the new volunteer.
+1. User enters the details of volunteer to be added into the application.
+2. FL feedbacks the successful addition of the volunteer and shows the new volunteer.
+3. User see the new volunteer in FL.
 
     Use case ends.
 
@@ -546,8 +549,9 @@ Preconditions: Volunteer and elderly is already paired in FL.
 
 **MSS**
 
-1.  User enters the pair details (elderly & volunteer) to be deleted into FL.
-2.  FL feedbacks the successful unpairing and removes the pair from view.
+1. User enters the pair details (elderly & volunteer) to be deleted into FL.
+2. FL feedbacks the successful unpairing and removes the pair from view.
+3. User sees that the pair is removed from FL.
 
     Use case ends.
 
@@ -574,8 +578,9 @@ Preconditions: Volunteer is already in FL.
 
 **MSS**
 
-1.  User enters the NRIC of the volunteer to be deleted.
-2.  FL feedbacks the successful deletion of the volunteer, and removes the volunteer from view.
+1. User enters the NRIC of the volunteer to be deleted.
+2. FL feedbacks the successful deletion of the volunteer, and removes the volunteer from view.
+3. User sees that the volunteer is removed from FL.
 
     Use case ends.
 
@@ -590,8 +595,9 @@ Preconditions: Volunteer is already in FL.
 
 **MSS**
 
-1.  User enters the NRIC of the elderly to be deleted.
-2.  FL feedbacks the successful deletion of the elderly and removes the elderly from view.
+1. User enters the NRIC of the elderly to be deleted.
+2. FL feedbacks the successful deletion of the elderly and removes the elderly from view.
+3. User sees that the elderly is removed from FL.
 
     Use case ends.
 
@@ -610,6 +616,7 @@ Preconditions: Elderly is already in FL.
 
 1. User enters the index of the elderly to be edited, together with the details of the fields to be edited.
 2. FL feedbacks the successful edit of the elderly and shows the updated elderly.
+3. User sees that the elderly is updated in FL.
 
     Use case ends.
 
@@ -628,6 +635,7 @@ Preconditions: Volunteer is already in FL.
 
 1. User enters the index of the volunteer to be edited, together with the details of the fields to be edited.
 2. FL feedbacks the successful edit of the volunteer and shows the updated volunteer.
+3. User sees that the volunteer is updated in FL.
 
    Use case ends.
 
@@ -646,6 +654,7 @@ Preconditions: Person is already in FL.
 
 1. User enters the NRIC of the person to be edited, together with the details of the fields to be edited.
 2. FL feedbacks the successful edit of the person and shows the updated person.
+3. User sees that the person is updated in FL.
 
    Use case ends.
 
@@ -662,6 +671,7 @@ Preconditions: Person is already in FL.
 
 1. User enters the details of all the fields to be matched.
 2. FL shows all the matching elderly, volunteer and pairs.
+3. User sees all the relevant persons and pairs in FL.
 
    Use case ends.
 
@@ -676,6 +686,7 @@ Preconditions: Person is already in FL.
 
 1. User enters the command to list all persons and pairs.
 2. FL shows all the current elderly, volunteers and pairs.
+3. User sees all persons and pairs in FL.
 
    Use case ends.
 
@@ -690,6 +701,7 @@ Preconditions: Person is already in FL.
 
 1. User enters the command to see statistics.
 2. FL shows the statistics of elderly, volunteer, pairs and their pairing situations.
+3. User sees the summary statistics of persons and pairs in FL.
 
    Use case ends.
 
@@ -703,7 +715,8 @@ Preconditions: Person is already in FL.
 **MSS**
 
 1. User enters the command to see more help.
-2. FL returns the pop-up whose link directs user to the user guide.
+2. FL provides a link to direct user to the user guide webpage.
+3. User visits the user guide webpage and reads the relevant sections.
 
    Use case ends.
 
@@ -718,6 +731,7 @@ Preconditions: Person is already in FL.
 
 1. User enters the command to exit FriendlyLink.
 2. FL exits.
+3. User sees that FL has exited.
 
    Use case ends.
 
