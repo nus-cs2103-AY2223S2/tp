@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
             }
         }
         internalList.add(toAdd);
-        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+        internalList.sort(Comparator.comparing(Lesson::getStartTime));
     }
 
     /**
@@ -73,7 +74,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         if (!internalList.remove(toRemove)) {
             throw new LessonNotFoundException();
         }
-        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+        internalList.sort(Comparator.comparing(Lesson::getStartTime));
     }
 
     /**
@@ -98,7 +99,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
             throw new ConflictingLessonsException();
         }
         internalList.setAll(lessons);
-        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+        internalList.sort(Comparator.comparing(Lesson::getStartTime));
     }
 
     public boolean validLessons() {
@@ -167,7 +168,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
 
     public List<Lesson> getSortedLessonsList() {
         List<Lesson> tempList = internalList;
-        tempList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
+        tempList.sort(Comparator.comparing(Lesson::getStartTime));
         return tempList;
     }
 

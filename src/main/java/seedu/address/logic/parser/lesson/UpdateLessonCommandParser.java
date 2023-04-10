@@ -60,17 +60,13 @@ public class UpdateLessonCommandParser implements Parser<UpdateLessonCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     UpdateLessonCommand.MESSAGE_USAGE));
             }
-            //            int spaceIndex = name.indexOf(" ");
-            //            if (spaceIndex != -1) {
-            //                name = name.substring(0, spaceIndex);
-            //            }
             nameKeywords.set(i, name);
         }
         names = nameKeywords;
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                "Only one name is allowed for update homework command."));
+                "Only one name is allowed for update lesson command."));
         }
 
         // if homework name is not present, set it to null, else parse it
