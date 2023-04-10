@@ -531,6 +531,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. ArB shows an error message.<br>
     Use case resumes at step 3.
 
+<div style="page-break-after: always;"></div>
+
 **Use case 5 (UC5): List all clients**
 
 **MSS**
