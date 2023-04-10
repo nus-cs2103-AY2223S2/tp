@@ -42,12 +42,11 @@ based on the last call.
 * **Documentation**:
     * Contributions to the User Guide:
         * GUI screenshot
-![UI](../images/Ui.png)
+        * UI explanation
+![UI](../images/UiBreakdown.png)
         * Fix typos
         * `find` command section
-![findDoc](../images/findDoc.png)
         * `alert` command section
-![alertDoc](../images/alertDoc.png)
     * Contributions to the Developer Guide:
         * Updating of the UI component
 ![uiPuml](../images/UiClassDiagram.png)
