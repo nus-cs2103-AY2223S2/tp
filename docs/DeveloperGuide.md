@@ -234,8 +234,8 @@ the logic behind adding the associated application instance to the existing `Int
 the execution of the command. 
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
-application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly added application
+and its details to the user, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.</div>
 
 
@@ -626,6 +626,7 @@ sequence diagram:
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
 
+Here are some guides that may help you during your development process:
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -1084,7 +1085,6 @@ Prerequisites: sprINT's main window is launched and opened.
      Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
 from the command. `Company Email` is a compulsory input parameter for the add application command.
 
-
 ### Editing an application
 
 Prerequisites: List all applications using the `list` command. Multiple applications in the list.
@@ -1098,9 +1098,21 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
 3. Test case 3: `edit-app 0 c/HelloCompany`<br>
    Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the Command Result Box.
 
-4. Other incorrect delete commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
+4. Other incorrect `edit-app` commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to the above test case for `edit-app 0 c/HelloCompany`.
+
+### Deleting an application
+
+Prerequisites: List all applications using the `list` command. Multiple applications in the list.
+
+1. Test case 1: `delete-app 1`<br>
+   Expected: First application is deleted from the list. Details of the deleted application shown in the Command Result Box. Timestamp in the status bar is updated.
+
+2. Test case 2: `delete-app 0`<br>
+   Expected: No application is deleted. Error details shown in the Command Result Box.
+
+3. Other incorrect `delete-app` commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to the above test case for `delete-app 0`.
-   
 
 ### Finding an application
 
@@ -1137,20 +1149,7 @@ Prerequisites: sprINT's main window is open.
    Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the Command Result Box.
 
 4. Test case 4: Enter `help123` command<br>
-   Expected: No Pop-up window is shown, `Unknown command` is displayed in the Command Result Box as the word is recognised to be an invalid command.
-
-### Deleting an application
-
-Prerequisites: List all applications using the `list` command. Multiple applications in the list.
-
-1. Test case 1: `delete-app 1`<br>
-   Expected: First application is deleted from the list. Details of the deleted application shown in the Command Result Box. Timestamp in the status bar is updated.
-
-2. Test case 2: `delete-app 0`<br>
-   Expected: No application is deleted. Error details shown in the Command Result Box. 
-
-3. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to the above test case for `delete-app 0`.
+   Expected: No pop-up window is shown, `Unknown command` is displayed in the Command Result Box as the word is recognised to be an invalid command.
 
 ### Sorting the application list
 
@@ -1174,7 +1173,7 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
       Expected: Same behaviour as the test case for `sort a deadline`. Except that the order is in reverse;
       applications with further deadlines will be shown first.
    
-   5. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
+   5. Other incorrect `sort` commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
       `sort` (nothing specified), `...` <br>
       Expected: No sorting is done and application list remains the same. Error details shown in the Command Result Box.
       
@@ -1186,7 +1185,7 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
       Expected: Same behaviour as when sorting while all applications are being shown. <br> Additionally, check that no application entries that are not in the currently displayed list of applications
       shows up after sorting.
 
-   2. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
+   2. Other incorrect `sort` commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
       Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the Command Result Box.
 
 ### Listing all applications
@@ -1429,9 +1428,7 @@ invalid command format, instead of being specific that the index given is invali
 A more specific error may be beneficial in bringing a more positive user experience.
 
 **Potential Enhancement and Suggested Implementation:** <br>
-In the future, we plan to add an additional check when parsing the command that makes sure
-the user has given a valid positive input for the index, and if not, it will throw an exception that will
-be returned to the user to state specifically that the index they input should be positive.
+In the future, we plan to have the command box display the error message: “The application index provided is invalid.” instead.
 
 #### 7. Undo command description appears truncated in Help Window
 
