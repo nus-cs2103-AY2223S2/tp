@@ -38,12 +38,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/MainApp.java).
-
-It is responsible for:
-
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/MainApp.java). It is responsible for
+* At app launch: Initialising the components in the correct sequence, and connecting them up with each other.
+* At shut down: Shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -139,9 +136,10 @@ The `Model` component
 **:information_source: Note:** <br> An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects. <br>
 
 ![!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
 </div>
 
-<br> Here are some more details on how `Overview` is designed:
+Here are some more details on how `Overview` is designed:
 
 ![!OverviewClassDiagram](images/OverviewClassDiagram.png)
 
@@ -1078,6 +1076,14 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
+### Adding cases
+
+1. Adding a case
+   1. Test case: `add n/Betty Tan p/123456 a/12 d/2023-03-23`<br>
+      Expected: A case with the name `Betty Tan`, postal code `123456`, date `2023-03-23`
+      and age `12` is added into DengueHotspotTracker.
+   1. Test case: `add n/River Lee`<br>
+      Expected: No case is added. Error details shown in the status message.
 
 ### Deleting cases
 
@@ -1102,6 +1108,15 @@ testers are expected to do more *exploratory* testing.
    
    5. Test case: `delete 0 1` <br>
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
+
+### Sorting cases
+
+1. Sorting cases
+    1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
+    1. Test case: `sort n/`<br>
+       Expected: Cases are sorted by name.
+    1. Test case: `sort v/`<br>
+       Expected: List does not change. Error details shown in the status message.
 
 ### Exporting/Importing data
 
@@ -1164,6 +1179,14 @@ product, enhancing the visual experience for users.
 DengueHotspotTracker currently alternates between using "case" or "person" to refer to each entry in the app.
 Standardising terminology would clean up the app and reduce any potential confusion for users and developers.
 
+### Enhancing duplicate checking
+
+DengueHotspotTracker currently considers a case a duplicate if they have the same name, age, and postal code
+as another pre-existing case. However, this would cause adding a case to fail if the same person were to
+contract dengue fever again at a later date—an unlikely but not impossible scenario.
+
+In future, we would improve duplicate checking to include checking for date and variant as well.
+
 ### Sorting by descending order
 
 The sort command currently only allows users to sort in ascending order. Users might find it more useful in some cases to
@@ -1198,7 +1221,7 @@ We did not implement this due to the difficulty as well as not having thought ab
 
 ### Check the validity of filenames which include subdirectories
 
-This feature helpful as described under export command's design considerations. However, this is an additional feature
+This feature is helpful as described under export command's design considerations. However, this is an additional feature
 and we were not able to add it into `v1.4`.
 
 This is a very helpful feature since it prevents accidental mistakes of overwriting preexisting CSV files.
