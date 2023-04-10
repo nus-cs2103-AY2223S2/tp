@@ -67,8 +67,7 @@ Given below are my contributions to the project.
     * Added documentation to include details and example of the basic commands we were implementing. [#15](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/15)
     * Added documentation to include command notes to take note for each command. [#129](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/129)
   * Developer Guide:
-    * Added implementation details and design considerations for the `find` command and its respective prefixes. [#95](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/95)
-    * Added sequence diagram for `find` command. [#95](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/95)
+    * Added implementation details, sequence diagram and design considerations for the `find` command and its respective prefixes. [#95](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/95)
     * Added test cases implementation for the `find` command. [#109](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/109)
     * Updated images to reflect changes and included appendix. [#238](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/238)
     
