@@ -8,6 +8,8 @@ FitBook is a desktop tracking book application used for tracking the progress an
 for the clients. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java. Given below are my contributions to the project. <br>
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dfordarius&tabRepo=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
 * **New Class**: Added *Weight*, *Gender*, *Goal*  class to client and enhanced **Add** and **Edit** Command.
   * What it does: allows the user to add and edit his/her weight/gender/goal.
   * Justification: This feature improves the product significantly because a user may want to keep track of the
@@ -33,8 +35,6 @@ It is written in Java. Given below are my contributions to the project. <br>
   * What it does: allows the user to find specific Routines in FitBook by keywords as well as clear all Routines in FitBook.
   * Justification: This feature improves the product significantly because it allows user to filter and search Routines that have been stored in the Routine's Storage. Additionally, allows users to clear all Routines in the storage.
   * Highlights: It required an in-depth analysis of design alternatives.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dfordarius&tabRepo=AY2223S2-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Created organisation and set up project repository.
