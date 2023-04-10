@@ -145,7 +145,7 @@ The `FitBookModel` component,
 <div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Exercise` list in the `FitBookExerciseRoutine`, which `Routine` references. This allows `FitBookExerciseRoutine` to only require one `Exercise` object per unique exercise, instead of each `Routine` needing their own `Exercise` objects.<br>
 
-<img src="images/BetterFitBookExerciseRoutineModelClassDiagram.png"  />
+<img src="images/BetterFitBookExerciseRoutineModelClassDiagram.png" height = "400"/>
 
 </div>
 <div style="page-break-after: always;"></div>
