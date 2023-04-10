@@ -35,7 +35,6 @@ This User Guide provides brief documentation on how you can install the applicat
    
    ![Ui](images/Ui.png)
 
-<div style="page-break-after: always;"></div>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -55,8 +54,6 @@ This User Guide provides brief documentation on how you can install the applicat
    * `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks` : Adds a new routine named `Cardio` with 2 exercises `3x5 1km Jog` and `3x10 Jumping Jacks`.
 
    * `exit` : Exits the app.
-
-
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
