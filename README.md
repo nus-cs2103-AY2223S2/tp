@@ -1,7 +1,6 @@
 ### SudoHR ###
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-T17-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T17-2/tp/actions)
-&nbsp;[![CI Status](https://github.com/AY2223S2-CS2103T-T17-2/tp/workflows/Build/badge.svg)](https://github.com/AY2223S2-CS2103T-T17-2/tp/actions)
 &nbsp;[![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T17-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-T17-2/tp)
 
 ![Ui](docs/images/Ui.png)

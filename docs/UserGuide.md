@@ -12,9 +12,8 @@ title: User Guide
 
 ## 1.1 What is SudoHR?
 
-SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leave data,
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface
-(GUI). If you can type fast, SudoHR can get your HR management tasks done faster than traditional GUI apps.
+{% include ppp-summary.html %}
+
 ## 1.2 Notations
 
 [//]: # (Explain notations used in the UG)
@@ -259,7 +258,7 @@ Format: `list`
 
 ### 4.1.3. Editing an employee : `edit`
 
-Edits an existing employee in SudoHR.
+Edits an existing employee in SudoHR. The leave section will be updated to show all leaves. The employee section will be updated to show all employees.
 
 Format: `edit eid/EMPLOYEE_ID [id/NEW_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -318,7 +317,7 @@ Examples:
 
 ### 4.1.6. Deleting an employee : `del`
 
-Deletes the specified employee from SudoHR.
+Deletes the specified employee from SudoHR. The department section will be updated to show all departments. The leave section will be updated to show all leaves.
 
 Format: `del eid/EMPLOYEE_ID`
 
@@ -495,7 +494,7 @@ Examples:
 
 ### 4.3.2. Adding a range of leaves for an employee: `aelr`
 
-Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start and end date. 
+Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start date till an end date both inclusive. 
 The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their 
 information will be displayed on the leave section.
 
@@ -651,7 +650,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. FAQ**
+# **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and replace the default empty data file `sudohr.json` with the file that contains the data of your previous SudoHR home folder.
@@ -666,7 +665,7 @@ This list is also available on the app, which can be accessed with the `help` fu
 
 [//]: # (To be added before Week 13)
 
-## **6. Glossary**
+# **6. Glossary**
 
 - **CLI** : CLI stands for Command Line Interface. When an application uses a Command Line Interface, it mean that the user gives commands to an application through text instead of buttons.
 - **GUI** : GUI stands for Graphical User Interface. It is a way to interact with your computer using visual componants such as icons or buttons. Additionally, it also includes displaying information to users with visuals instead of just text.
