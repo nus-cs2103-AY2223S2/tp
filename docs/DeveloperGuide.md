@@ -127,12 +127,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 <div style="page-break-after: always;"></div>
 ### FitBookModel component
-
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
-
 <img src="images/ModelClassDiagram.png" height = "400">
-
-
 The `FitBookModel` component,
 * stores the FitBook data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
 * stores the FitBookExerciseRoutine data i.e., all `Routine` objects (which are contained in a `UniqueRoutineList` object).
