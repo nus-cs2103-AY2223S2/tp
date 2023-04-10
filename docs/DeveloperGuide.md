@@ -340,20 +340,12 @@ FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predica
 modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
 `currentStatePointer` is shifted to the newly inserted FitBook state.
 
-![FindState1](images/FindState1.png)
-
 Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
 `find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
 `fitBookStateList`.
 
-![FindState2](images/FindState2.png)
-
-![FindState3](images/FindState3.png)
-
 Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
 the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
-
-![FindState3](images/FindState4.png)
 
 The following sequence diagram shows how the find operation works:
 
@@ -362,10 +354,6 @@ The following sequence diagram shows how the find operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/FindActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
