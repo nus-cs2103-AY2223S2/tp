@@ -1,5 +1,4 @@
 @startuml
-!include style.puml
 
 start
 :User wants to delete contact details;
