@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.exceptions.InvalidContactIndexException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -23,6 +24,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         } catch (NumberFormatException nfe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), nfe);
+        } catch (InvalidContactIndexException icie) {
+            throw new ParseException(
+                String.format(icie.getMessage(), DeleteCommand.MESSAGE_USAGE), icie);
         }
     }
 

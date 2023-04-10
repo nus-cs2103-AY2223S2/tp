@@ -19,9 +19,9 @@ public class ViewCommand extends Command {
 
 
     public static final String COMMAND_WORD = "view";
-    public static final String USAGE = "view <index> : Allows you to view the profile of the person who"
+    public static final String USAGE = "view <index> : Allows you to view the profile of the person who "
             + "has the index\n"
-            + "view n/<name> : Allows you to view profile for the specific person"
+            + "view n/FULL_NAME : Allows you to view profile for the specific person\n"
             + "view : Shows your own profile instead";
     private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
     private final Optional<String> name;

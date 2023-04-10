@@ -27,15 +27,15 @@ public class UntagCommand extends Command {
     public static final String COMMAND_WORD = "untag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a ModuleTag to a person. \n"
-            + "untag <index> m/<module> : Removes modules from the person of given index in displayed list. \n"
-            + "untag m/<module> : Removes modules from your own profile instead. \n"
-            + "untag <index> g/<group> : Remove groups from the person of given index. \n"
-            + "untag g/<group> : Remove groups from your own profile instead. \n";
+            + "untag INDEX m/MODULE : Removes modules from the person of given index in displayed list. \n"
+            + "untag m/MODULE : Removes modules from your own profile instead. \n"
+            + "untag INDEX g/GROUP : Remove groups from the person of given index. \n"
+            + "untag g/GROUP : Remove groups from your own profile instead. \n";
 
-    public static final String MESSAGE_MODULE_UNTAG_PERSON_SUCCESS = "Module(s) untagged to Person! \n";
-    public static final String MESSAGE_MODULE_UNTAG_USER_SUCCESS = "Module(s) untagged to User! \n";
-    public static final String MESSAGE_GROUP_UNTAG_PERSON_SUCCESS = "Group(s) untagged to Person! \n";
-    public static final String MESSAGE_GROUP_UNTAG_USER_SUCCESS = "Group(s) untagged to User! \n";
+    public static final String MESSAGE_MODULE_UNTAG_PERSON_SUCCESS = "Module(s) untagged from Person! \n";
+    public static final String MESSAGE_MODULE_UNTAG_USER_SUCCESS = "Module(s) untagged from User! \n";
+    public static final String MESSAGE_GROUP_UNTAG_PERSON_SUCCESS = "Group(s) untagged from Person! \n";
+    public static final String MESSAGE_GROUP_UNTAG_USER_SUCCESS = "Group(s) untagged from User! \n";
     public static final String MESSAGE_NO_TAGS = "At least one Module/Group must be provided. \n";
     public static final String MESSAGE_BOTH_TAGS_INPUTTED = "You can only tag groups or modules in the same command.\n";
 
