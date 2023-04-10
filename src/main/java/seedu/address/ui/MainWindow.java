@@ -490,11 +490,14 @@ public class MainWindow extends UiPart<Stage> {
             fileChooser.setTitle("Open Files");
             File selectedFile = fileChooser.showOpenDialog(new Stage());
 
-            logic.execute(new ImportDeliveryJobCommand(selectedFile));
+            CommandResult commandResult = logic.execute(new ImportDeliveryJobCommand(selectedFile));
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
         } catch (ParseException | CommandException e) {
-            logger.warning("[Event] importDeliveryJob" + e.getMessage());
+            logger.warning("[Event] importDeliveryJob " + e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage());
         } catch (FileNotFoundException | IllegalArgumentException e) {
-            logger.warning("[Event] importDeliveryJob" + e.getMessage());
+            logger.warning("[Event] importDeliveryJob " + e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage());
         }
     }
 
