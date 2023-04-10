@@ -62,7 +62,13 @@ Given below are my contributions to the project:
 
 ### Contribution to the UG
 
+* Polished the User Guide after other members wrote it.
+* Added a section about the macro feature.
+
 ### Contribution to the DG
+
+* Designed and added multiple diagrams to the documentation.
+* Wrote `Design` and `Implementation` sections.
 
 ### Contribution to team-based tasks
 
