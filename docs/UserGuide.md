@@ -524,6 +524,8 @@ Sets the overall theme of OfficeConnect to light mode. This mode is chosen as th
 <em>The Days</em>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.6.5  Dark theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The keyboard shortcut for the dark mode function is assigned to the F3 key.
