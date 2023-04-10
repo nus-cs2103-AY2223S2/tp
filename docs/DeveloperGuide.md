@@ -206,7 +206,7 @@ Activity Diagram for a typical `find` command
 
 To keep track of the next upcoming event, we have opted to keep `Event`s sorted in chronological order.
 
-`Event`s are sorted by:
+`Event`s are kept chronologically sorted by:
 1. `Event` was made comparable via a `Comparable<Event>` interface.
    The comparison criteria are `Event#Date` and `Event#StartTime`.
 2. In `Scheduler`, attached a [`javafx.collections.ListChangeListener`][ListChangeListener] to `UniqueEventList` 
@@ -236,8 +236,8 @@ Step 4. Returns new `ShowNextCommand`.<br>
 
 -- `ShowNextCommand` -- <br>
 Step 5. Creates an `UpcomingEventPredicate` using the provided argument.<br>
-Step 6. Uses the created `UpcomingEventPredicate` to filter for ongoing/upcoming `Event`s.<br>
-Step 7. Updates `EventListPanel` with filtered `Event`s.
+Step 6. Uses the created `UpcomingEventPredicate` to filter for ongoing/upcoming `Event`(s).<br>
+Step 7. Updates `EventListPanel` with filtered `Event`(s).<br>
 
 Other alternative path of execution can be traced in the activity diagram below.
 
