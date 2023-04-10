@@ -20,6 +20,8 @@ tracking an effortless process**.
 coNtactUS is written in **Java**. The development team consists of 4 intermediate student developers, including myself. 
 Given below are my contributions to the project.
 
+<div style="page-break-after: always;"></div>
+
 #### Feature and enhancements
 
 * **New feature**: Added the ability for users to enter `teacher` to a module in the module tracker.
