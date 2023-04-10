@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingAdd";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Adds a meeting to the person identified"
+        + ": Adds a meeting to the person identified "
         + "by the index number used in the last person listing.\n"
         + "A new meeting will not be added if there are clashes with"
         + "other meetings on the day or period specified.\n"

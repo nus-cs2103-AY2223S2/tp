@@ -22,10 +22,10 @@ import seedu.address.model.tag.PolicyTag;
 public class SampleDataUtil {
 
     public static Person[] getSamplePersons() {
-        Meeting introMeeting = new Meeting("Policy introduction with Jun Jie", 
+        Meeting introMeeting = new Meeting("Policy introduction with Jun Jie",
                     LocalDateTime.of(2023, 4, 14, 14, 0),
                     LocalDateTime.of(2023, 4, 14, 16, 0));
-        Meeting followupMeeting = new Meeting("Policy follow up with Jun Jie", 
+        Meeting followupMeeting = new Meeting("Policy follow up with Jun Jie",
                     LocalDateTime.of(2023, 5, 20, 14, 0),
                     LocalDateTime.of(2023, 5, 20, 16, 0));
 
@@ -36,7 +36,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Lim Jun Jie"), new Phone("87438807"), new Email("limjunjie@gmail.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("Insurance"), 
+                getTagSet("Insurance"),
                 junjieMeetingList),
             new Person(new Name("Tan Jia Qi"), new Phone("99272758"), new Email("tanjq@gmail.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),

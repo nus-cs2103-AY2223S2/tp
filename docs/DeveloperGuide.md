@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `PolicyTag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `PolicyTag` object per unique tag, instead of each `Person` needing their own `PolicyTag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -513,26 +513,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 3
 
-**Use Case: *UC05 Get list of clients based on a tag***
+**Use Case: *UC05 Get list of clients based on a policy***
 
 **Actor: User**
 
 **MSS:**
 
 1. User opens the app
-2. User wants to see all persons with a certain tag
-3. System requests for the tag
-4. User enters the tag
-5. System displays all persons with the given tag
+2. User wants to see all persons with a certain policy name
+3. System requests for the policy name
+4. User enters the policy name
+5. System displays all persons with the given policy name
 
    Use Case Ends
 
 **Extensions:**
-* 4a. System cannot find the tag supplied by the user
-  * 4a1. System requests for the correct tag
-  * 4a2. User enters a new tag
+* 4a. System cannot find the policy name supplied by the user
+  * 4a1. System requests for the correct policy name
+  * 4a2. User enters a new policy name
 
-    Steps 4a1-4a2 are repeated until the user provides a correct tag
+    Steps 4a1-4a2 are repeated until the user provides a correct policy name
     Use Case resumes from step 5
 
 *{More to be added}*
