@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         fitBookParser = new FitBookParser();
     }
-    
+
     //@@author
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
     public ObservableList<Client> getFilteredClientList() {
         return model.getFilteredClientList();
     }
-    
+
     //@@author
     @Override
     public Path getFitBookFilePath() {
