@@ -8,6 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneAddress;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneEmail;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOnePhone;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNullIndex;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -43,10 +48,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 EditCommand.MESSAGE_USAGE));
         }
 
+        checkMaxOneAddress(argMultimap);
+        checkMaxOneEmail(argMultimap);
+        checkMaxOnePhone(argMultimap);
+        checkUniqueNotNullIndex(argMultimap);
+
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         EditCommand.EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            checkUniqueNotNUllName(argMultimap);
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {

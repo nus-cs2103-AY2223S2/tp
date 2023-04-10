@@ -8,6 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneEndTime;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneExam;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneGrade;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneStartTime;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneWeight;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,6 +51,12 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CreateExamCommand.MESSAGE_USAGE));
         }
+
+        checkMaxOneExam(argMultimap);
+        checkMaxOneStartTime(argMultimap);
+        checkMaxOneEndTime(argMultimap);
+        checkMaxOneWeight(argMultimap);
+        checkMaxOneGrade(argMultimap);
 
         String examDescription = argMultimap.getValue(PREFIX_EXAM).get();
         if (examDescription.trim().isEmpty()) {

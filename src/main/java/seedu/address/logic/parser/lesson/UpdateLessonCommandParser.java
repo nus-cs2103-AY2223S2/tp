@@ -7,6 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneEndTime;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneLesson;
+import static seedu.address.logic.parser.ParserUtil.checkMaxOneStartTime;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNullIndex;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,6 +54,12 @@ public class UpdateLessonCommandParser implements Parser<UpdateLessonCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UpdateLessonCommand.MESSAGE_USAGE));
         }
+
+        checkUniqueNotNUllName(argMultimap);
+        checkUniqueNotNullIndex(argMultimap);
+        checkMaxOneStartTime(argMultimap);
+        checkMaxOneEndTime(argMultimap);
+        checkMaxOneLesson(argMultimap);
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);

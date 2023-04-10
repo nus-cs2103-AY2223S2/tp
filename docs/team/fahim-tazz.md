@@ -9,9 +9,11 @@ TutorPro is a desktop app designed to help private tutors manage their student i
 With TutorPro, tutors can easily keep track of their students' details, lesson plans, homeworks, and exams, all in one place.
 TutorPro uses a combination of GUI and CLI to provide an aesthetically-pleasing UI for viewing student's information, while promising the
 speed and control of a CLI. Whether you're managing a handful of students or hundreds,
+
 TutorPro can help you streamline your workflow and make your tutoring experience much more efficient.
 
 Given below are my contributions to the project.
+
 
 * **New Feature**: Track School name and Grade level in Student's profile.
     - What it does: Allows user to add an optional School name and Grade level.
@@ -19,6 +21,7 @@ Given below are my contributions to the project.
     - Highlights: This feature can allow future enhancements for batch processing, such as adding a homework to all students of a particular grade level.
  
 * **Code contributed**: [Reposense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fahim-tazz&breakdown=true)
+
 
 * **Project management**:
     * Managed release v1.3
