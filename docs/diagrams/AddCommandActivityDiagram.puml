@@ -5,7 +5,7 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([parameters are valid])
+if () then ([all parameters are valid])
     :Create a person with the specified parameters;
 if () then ([event tag parameter is present])
     :Tag the event to the person;
