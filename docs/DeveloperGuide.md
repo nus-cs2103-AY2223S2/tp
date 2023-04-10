@@ -528,8 +528,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | SoC Student who knows Vim | edit a task’s title, labels, priority level, or deadline | change the details if any of them have been added wrongly previously |
 | `* * *` | SoC Student who knows Vim | delete a task’s title, labels, priority level, or deadline | delete any unnecessary/irrelevant details of the task, especially if they are accidentally being added previously |
 | `* * *` | SoC Student who knows Vim | search for all tasks that are not completed | identify tasks to are not yet completed while choosing which task should I get started on |
-| `* * *` | SoC Student who knows Vim | search for tasks which their titles contain certain keywords | find the tasks that I am looking for more quickly by specifying the keywords |
-| `* * *` | SoC Student who knows Vim | search for tasks based on a specified list of tags | find the tasks that I am looking for more quickly, especially the tasks that are under certain categories (say certain modules/classes) |
+| `* * *` | SoC Student who knows Vim | search for tasks which their titles contain certain keywords | find the tasks that I want to look for more quickly by specifying the keywords |
+| `* * *` | SoC Student who knows Vim | search for tasks based on a specified list of tags | find the tasks that I want to look for more quickly, especially the tasks that are under certain categories (say certain modules/classes) |
 | `* * *` | SoC Student who knows Vim | sort tasks by upcoming deadlines | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time |
 | `* * *` | SoC Student who knows Vim | sort tasks by priorities in descending order | see which are the more important tasks I should focus on completing first |
 | `* * *` | New user | be able to access a briefer version of the user guide without the need to leave the app | save the hassle of leaving and coming back to the app while referring to the user guide |
@@ -546,6 +546,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | SoC Student who knows Vim | configure the storage location of the file | customise the storage location to my own preference, allowing me to refer to it easily in future |
 | `*` | SoC Student who knows Vim | delete all completed task | remove the completed tasks that I no longer want to track |
 | `*` | SoC Student who knows Vim | add a task that recurs at a specified fixed itme interval | save time as I do not need to repeatedly create the same tasks over and over again |
+| `*` | SoC Student who knows Vim | sort tasks lexicographically or alphabetically | find the tasks that I want to look for more quickly while scrolling through the list of tasks in alphabetical order |
 
 ### Use cases
 
