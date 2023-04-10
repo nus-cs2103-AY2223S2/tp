@@ -9,6 +9,7 @@ import trackr.model.item.Item;
 /**
  * Tests that a {@code Suppliers}'s {@code Name} matches any of the keywords given.
  */
+//@@author liumc-sg-reused
 public class PersonNameContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 

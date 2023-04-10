@@ -21,6 +21,7 @@ import trackr.testutil.SupplierBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddSupplierCommand}.
  */
+//@@author arkarsg-reused
 public class AddSupplierCommandIntegrationTest {
 
     private Model model;
@@ -45,6 +46,7 @@ public class AddSupplierCommandIntegrationTest {
                 expectedModel);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void execute_duplicateSupplier_throwsCommandException() {
         Supplier supplierInList = model.getSupplierList().getItemList().get(0);

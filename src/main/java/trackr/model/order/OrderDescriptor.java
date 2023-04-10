@@ -13,6 +13,7 @@ import trackr.model.person.PersonPhone;
 /**
  * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the order.
  */
+//@@author chongweiguan-reused
 public class OrderDescriptor implements ItemDescriptor<Order> {
     private OrderName orderName;
     private OrderDeadline orderDeadline;

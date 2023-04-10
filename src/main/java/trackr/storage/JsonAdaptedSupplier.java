@@ -46,6 +46,7 @@ class JsonAdaptedSupplier {
         }
     }
 
+    //@@author liumc-sg-reused
     /**
      * Converts a given {@code Supplier} into this class for Jackson use.
      */

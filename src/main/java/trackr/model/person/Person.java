@@ -15,6 +15,7 @@ import trackr.model.item.Item;
  * Represents a Person.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
+//@@author liumc-sg-reused
 public abstract class Person extends Item {
 
     // Identity fields

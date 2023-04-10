@@ -28,6 +28,7 @@ public abstract class DeleteItemCommand<T extends Item> extends Command {
      * @param targetIndex The index of the target item to be deleted.
      * @param modelEnum A representation of the name of the list where item is deleted.
      */
+    //@@author liumc-sg-reused
     public DeleteItemCommand(Index targetIndex, ModelEnum modelEnum) {
         requireAllNonNull(targetIndex, modelEnum);
         this.targetIndex = targetIndex;

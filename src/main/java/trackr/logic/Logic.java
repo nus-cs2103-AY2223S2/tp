@@ -67,17 +67,21 @@ public interface Logic {
      */
     ItemSellingPrice getTotalSales();
 
+    //@@author liumc-sg-reused
     /**
      * Returns the TaskList.
      *
      * @see trackr.model.Model#getTaskList()
      */
     ReadOnlyTaskList getTaskList();
+    //@@author
 
     /**
      * Returns an unmodifiable view of the filtered list of tasks.
      */
+    //@@author liumc-sg-reused
     ObservableList<Task> getFilteredTaskList();
+    //@@author
 
     /**
      * Returns the Menu.

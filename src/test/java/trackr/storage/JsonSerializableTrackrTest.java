@@ -38,6 +38,7 @@ public class JsonSerializableTrackrTest {
         assertEquals(supplierListFromFile, typicalSuppliersSuppliersList);
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void toModelType_invalidSupplierFile_throwsIllegalValueException() throws Exception {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(INVALID_SUPPLIER_FILE,
@@ -76,6 +77,7 @@ public class JsonSerializableTrackrTest {
         assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_TASK,
                 dataFromFile::toTaskModelType);
     }
+    //@@author
 
     //@@author chongweiguan-reused
     @Test

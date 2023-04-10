@@ -9,6 +9,7 @@ import trackr.model.task.TaskStatus;
 /**
  * A utility class to help with building TaskDescriptor objects.
  */
+//@@author liumc-sg-reused
 public class TaskDescriptorBuilder {
 
     private TaskDescriptor taskDescriptor;

@@ -21,6 +21,7 @@ import trackr.model.person.Supplier;
 /**
  * A utility class containing a list of {@code Supplier} objects to be used in tests.
  */
+//@@author arkarsg-reused
 public class TypicalSuppliers {
 
     public static final Supplier ALICE = new SupplierBuilder().withName("Alice Pauline")

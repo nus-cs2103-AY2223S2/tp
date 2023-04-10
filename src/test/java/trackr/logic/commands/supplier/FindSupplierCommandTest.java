@@ -28,6 +28,7 @@ import trackr.model.person.PersonNameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
+//@@author liumc-sg-reused
 public class FindSupplierCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());

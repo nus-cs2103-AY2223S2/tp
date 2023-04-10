@@ -9,6 +9,7 @@ import trackr.model.person.PersonPhone;
 /**
  * A utility class to help with building Customer objects.
  */
+//@@author chongweiguan-reused
 public class CustomerBuilder {
 
     //@@author chongweiguan-reused
