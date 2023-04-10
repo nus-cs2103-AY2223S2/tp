@@ -950,7 +950,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **GUI**: Graphical User Interface
-- **UML** Unified Modeling Language
+- **UML**: Unified Modeling Language
 ---
 
 
