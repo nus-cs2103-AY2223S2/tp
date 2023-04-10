@@ -301,7 +301,7 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
 After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
 policy names are displayed. The following sequence diagram illustrates the description for finding policy:
 
-![FindPolicyParseSequenceDiagram](images/FindPolicyParseSequenceDiagram.PNG)
+![FindPolicyParseSequenceDiagram](images/FindPolicyParseSequenceDiagram.png)
 
 ![FindPolicyExecuteSequenceDiagam](images/FindPolicyExecuteSequenceDiagram.PNG)
 
