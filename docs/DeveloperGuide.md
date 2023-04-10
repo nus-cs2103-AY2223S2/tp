@@ -42,6 +42,7 @@ title: Developer Guide
   - [Use Cases](#use-cases)
   - [Non-functional Requirements](#non-functional-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Extra diagrams to aid explanation](#appendix-extra-diagrams-to-aid-explanation)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
@@ -658,6 +659,8 @@ The optional parameters are `GitHub`, `LinkedIn`, `Skills` and `Modules`. These 
 * `m/` for updating the current module list
 * `s/` for updating the current skill list
 
+<div style="page-break-after: always;"></div>
+
 ##### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to add a new
@@ -669,7 +672,8 @@ person.
 
 Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
 ![Add Activity Diagram](images/AddActivityDiagram.png)
-<img src="images/createAttributes.png" width="170">
+
+Refer to [here]() for activity diagram on creating attributes for the person.
 
 
 ##### Design Considerations
@@ -1439,4 +1443,12 @@ testers are expected to do more *exploratory* testing.
 2. _{ more test cases …​ }_
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+## **Appendix: Extra diagrams to aid explanation**
+
+#### Creating attributes for the person
+<img src="images/createAttributes.png" width="170">
+
 
