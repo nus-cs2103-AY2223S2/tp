@@ -14,8 +14,8 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to filter fields,
   * What it does: allows the user to filter and display tutees by specifying fields and their prefix. (name, phone, email, address, subject, schedule, start time, end time, tags)
   * Justification: This feature improves the product significantly because a user is able to quickly locate and display tutees and their relevant information when a certain field is given.
-  * Highlights: The implementation of `filterCommand` was inspired from `editCommand` as it required users to specify a prefix of the field together with an input. The `fieldContainsKeywordPredicate` was also inspired from the `nameContainsKeywordPredicate` that findCommand uses except that it accepts every field instead of just the name of the tutee.
-  * Credits: Solution adapted from [filter-command](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/commands/FilterCommand.java). I read the code to understand the approach before implementing it myself with a few key differences such as only full words, not partial words, can be filtered.
+  * Highlights: The implementation of `filterCommand` was adapted from `editCommand` as it required users to specify a prefix of the field together with an input. It takes in a predicate, `fieldContainsKeywordPredicate` which was also adapted from `nameContainsKeywordPredicate` that findCommand uses except that it accepts every field instead of just the name of the tutee.
+  * Credits: Solution adapted from [filter-command](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/commands/FilterCommand.java). I read the code to understand the approach before implementing it myself with the fields customized for the Tutee Managing System.
   
 * **Enhancements to existing features**:
   * Added subject, schedule, start time, end time and remark field to a tutee.
