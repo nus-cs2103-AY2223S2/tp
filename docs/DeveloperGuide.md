@@ -304,7 +304,7 @@ registered event handlers, namely:
 * `PrevItemKey` Select previous (CTRL+K)
 * `FindKey` Search (CTRL+F)
 
-Each of these event handler perform an action associated with a keyboard event.
+Each of these event handlers perform an action associated with a keyboard event.
 The action performed by each event handler can be found and modified in their respectively
 named files found in the `java/mycelium/mycelium/logic/uievent` folder.
 
