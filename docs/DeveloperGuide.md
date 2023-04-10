@@ -823,7 +823,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Moving to another tab in NeoBook
 1. Changing to a different tab
+
    1. Prerequisites: NeoBook currently on address book tab.
+   
    2. Test Cases
       1. Test case 1: `tab 2`
          - Testing for: Successful command execution
@@ -831,8 +833,11 @@ testers are expected to do more *exploratory* testing.
       2. Test case 2: `tab 3`
        - Testing for: Successful command execution
        - Expected: Switch to Me tab
+       
 2. Changing to same tab
+
    1. Prerequisites: NeoBook currently on address book tab.
+   
    2. Test Cases
       1. Test case 1: `tab 1`
          - Testing for: Successful command execution
