@@ -52,7 +52,6 @@ JsonElisterStorage .up.|> ElisterStorage
 JsonElisterStorage ..> JsonSerializableElister
 JsonSerializableElister --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
-
 CsvElisterStorage .up.|> ElisterStorage
 CsvElisterStorage ..> CsvSerializableElister
 CsvSerializableElister --> "*" CsvAdaptedPerson
