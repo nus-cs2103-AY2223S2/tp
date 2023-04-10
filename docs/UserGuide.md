@@ -100,7 +100,7 @@ Refer to the [Features](#features) below for details of each command.
 
 * `ARG1|ARG2` in format means only one ARG1 or ARG2 must be a part of your input but not both
 
-* Refer to the [Prefix Masterlist](#prefix masterlist) for the list of prefixes used for the commands below.
+* Refer to the [Prefix Masterlist](#prefix-masterlist) for the list of prefixes used for the commands below.
 
 </div>
 
