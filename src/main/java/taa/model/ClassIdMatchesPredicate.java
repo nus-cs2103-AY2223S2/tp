@@ -15,7 +15,7 @@ public class ClassIdMatchesPredicate implements Predicate<ClassList> {
 
     @Override
     public boolean test(ClassList classList) {
-        return classList.getClassId().equals(keywords);
+        return classList.getClassName().equals(keywords);
     }
 
     //Credits: Solution below adapted from ChatGPT3.5 codes.

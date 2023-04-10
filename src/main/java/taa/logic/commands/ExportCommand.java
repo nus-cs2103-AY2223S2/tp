@@ -11,6 +11,7 @@ import taa.commons.util.AppUtil;
 import taa.commons.util.CsvUtil;
 import taa.commons.util.FileUtil;
 import taa.logic.commands.exceptions.CommandException;
+import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.student.Attendance;
 import taa.model.student.Student;
@@ -31,7 +32,7 @@ public class ExportCommand extends CsvCommand {
     private static String toStorageString(Set<Tag> s) {
         StringBuilder tags = new StringBuilder();
         for (Tag tag : s) {
-            tags.append(tag.tagName).append(';');
+            tags.append(tag.tagName).append(ClassList.STR_SEP);
         }
         return tags.toString();
     }

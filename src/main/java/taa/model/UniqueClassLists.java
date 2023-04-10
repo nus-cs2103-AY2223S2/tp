@@ -28,7 +28,7 @@ public class UniqueClassLists implements Iterable<ClassList> {
     public UniqueClassLists() {
     }
     /**
-     * Returns true if the list contains an equivalent student as the given argument.
+     * @return true if the list contains an equivalent student as the given argument.
      */
     public boolean contains(ClassList toCheck) {
         requireNonNull(toCheck);
@@ -65,7 +65,7 @@ public class UniqueClassLists implements Iterable<ClassList> {
      */
     public void addStudent(Student student, String className) {
         for (ClassList lst: this.internalList) {
-            if (lst.getClassId().equals(className) && !lst.hasStudent(student)) {
+            if (lst.getClassName().equals(className) && !lst.hasStudent(student)) {
                 lst.addStudent(student);
                 return;
             }
@@ -121,11 +121,12 @@ public class UniqueClassLists implements Iterable<ClassList> {
     }
 
     /**
-     * Returns true if {@code students} contains only unique students.
+     * @return true iff {@code students} contains only unique students.
      */
     private boolean classListsAreUnqiue(List<ClassList> classLists) {
-        for (int i = 0; i < classLists.size() - 1; i++) {
-            for (int j = i + 1; j < classLists.size(); j++) {
+        final int size = classLists.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = i + 1; j < size; j++) {
                 if (classLists.get(i).isSameClassList(classLists.get(j))) {
                     return false;
                 }
@@ -135,7 +136,7 @@ public class UniqueClassLists implements Iterable<ClassList> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * @return the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<ClassList> asUnmodifiableObservableList() {
         return internalUnmodifiableList;

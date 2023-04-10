@@ -22,6 +22,7 @@ public class Attendance {
             + "gers between 0-" + MAX_PP + " (inclusive)";
     public static final String PP_UNACCEPTABLE_MSG = "Participation points invalid. Must be exactly " + NUM_WEEKS + " i"
             + "ntegers between -1 and " + MAX_PP + " (inclusive)";
+    public static final String STR_SEP = ";";
     public static final String ORIGINAL_ATD = "0;0;0;0;0;0;0;0;0;0;0;0";
     public static final String ORIGINAL_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
 
@@ -44,8 +45,8 @@ public class Attendance {
         AppUtil.checkArgument(isValidAtdStr(atd), ATD_ERROR_MSG);
         requireNonNull(pp);
         AppUtil.checkArgument(isAcceptablePpStr(pp), POINTS_ERROR_MSG);
-        String[] atdArr = atd.split(";");
-        String[] ppArr = pp.split(";");
+        String[] atdArr = atd.split(STR_SEP);
+        String[] ppArr = pp.split(STR_SEP);
         for (int i = 0; i < atdArr.length; i++) {
             this.attendanceList[i] = "1".equals(atdArr[i].trim());
             this.participationPoint[i] = Integer.parseInt(ppArr[i].trim());
@@ -81,11 +82,7 @@ public class Attendance {
         } catch (NumberFormatException e) {
             return false;
         }
-        if (intWeek <= 0 || intWeek > NUM_WEEKS) {
-            System.out.println(week);
-            return false;
-        }
-        return true;
+        return intWeek > 0 && intWeek <= NUM_WEEKS;
     }
 
     /**
@@ -99,7 +96,7 @@ public class Attendance {
     }
 
     private static boolean isValidArgStr(String argStr, Predicate<String> p) {
-        final String[] args = argStr.split(";");
+        final String[] args = argStr.split(STR_SEP);
         return args.length == NUM_WEEKS && Arrays.stream(args).map(String::trim).allMatch(p);
     }
 
@@ -124,8 +121,8 @@ public class Attendance {
      */
     public int getNumWeeksPresent() {
         int count = 0;
-        for (int i = 0; i < NUM_WEEKS; i++) {
-            if (this.attendanceList[i]) {
+        for (boolean atd:attendanceList) {
+            if (atd) {
                 count++;
             }
         }
@@ -198,9 +195,9 @@ public class Attendance {
     public String atdStrorageStr() {
         StringBuilder res = new StringBuilder();
         for (boolean atd : this.attendanceList) {
-            res.append(atd ? "1;" : "0;");
+            res.append(atd ? '1' : '0').append(STR_SEP);
         }
-        return res.substring(0, 23);
+        return res.substring(0, res.length() - 1);
     }
 
     /**
@@ -209,7 +206,7 @@ public class Attendance {
     public String partPointsStorageStr() {
         StringBuilder res = new StringBuilder();
         for (int val : this.participationPoint) {
-            res.append(val).append(";");
+            res.append(val).append(STR_SEP);
         }
         return res.substring(0, res.length() - 1);
     }

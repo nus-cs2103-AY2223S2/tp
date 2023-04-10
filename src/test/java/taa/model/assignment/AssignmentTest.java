@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import taa.model.assignment.exceptions.InvalidGradeException;
 import taa.model.assignment.exceptions.SubmissionNotFoundException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 
@@ -25,8 +26,8 @@ class AssignmentTest {
     void setUp() {
         // Create a new assignment with total marks of 100.
         assignment = new Assignment("Test Assignment", 100);
-        student = new Student(new Name("John Doe"), "0;0;0;0;0;0;0;0;0;0;0;0",
-                "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1", new ArrayList<>(), new HashSet<>());
+        student = new Student(new Name("John Doe"), Attendance.ORIGINAL_ATD,
+                Attendance.ORIGINAL_PP, new ArrayList<>(), new HashSet<>());
     }
 
     @AfterEach

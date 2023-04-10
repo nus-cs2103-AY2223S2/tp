@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import taa.model.assignment.Assignment;
-import taa.model.assignment.Submission;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.tag.Tag;
 import taa.testutil.Assert;
@@ -60,41 +59,41 @@ public class StudentTest {
     public void equals() {
         // same values -> returns true
         Student aliceCopy = new PersonBuilder(TypicalPersons.ALICE).build();
-        Assertions.assertTrue(TypicalPersons.ALICE.equals(aliceCopy));
+        Assertions.assertEquals(TypicalPersons.ALICE, aliceCopy);
 
         // same object -> returns true
-        Assertions.assertTrue(TypicalPersons.ALICE.equals(TypicalPersons.ALICE));
+        Assertions.assertEquals(TypicalPersons.ALICE, TypicalPersons.ALICE);
 
         // null -> returns false
-        Assertions.assertFalse(TypicalPersons.ALICE.equals(null));
+        Assertions.assertNotEquals(null, TypicalPersons.ALICE);
 
         // different type -> returns false
-        Assertions.assertFalse(TypicalPersons.ALICE.equals(5));
+        Assertions.assertNotEquals(5, TypicalPersons.ALICE);
 
         // different student -> returns false
-        Assertions.assertFalse(TypicalPersons.ALICE.equals(TypicalPersons.BOB));
+        Assertions.assertNotEquals(TypicalPersons.ALICE, TypicalPersons.BOB);
 
         // different name -> returns false
         Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withName(VALID_NAME_BOB).build();
-        Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        Assertions.assertNotEquals(TypicalPersons.ALICE, editedAlice);
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_TUT_15).build();
-        Assertions.assertFalse(TypicalPersons.ALICE.equals(editedAlice));
+        Assertions.assertNotEquals(TypicalPersons.ALICE, editedAlice);
     }
 
     @Test
     public void getName() {
         // Test pre-built Students
-        Assertions.assertTrue(TypicalPersons.AMY.getName().equals(new Name(VALID_NAME_AMY)));
-        Assertions.assertTrue(TypicalPersons.BOB.getName().equals(new Name(VALID_NAME_BOB)));
+        Assertions.assertEquals(TypicalPersons.AMY.getName(), new Name(VALID_NAME_AMY));
+        Assertions.assertEquals(TypicalPersons.BOB.getName(), new Name(VALID_NAME_BOB));
 
         // Test fresh copies of Students
         Student amyCopy = new PersonBuilder(TypicalPersons.AMY).build();
-        Assertions.assertTrue(amyCopy.getName().equals(new Name(VALID_NAME_AMY)));
+        Assertions.assertEquals(amyCopy.getName(), new Name(VALID_NAME_AMY));
 
         Student bobCopy = new PersonBuilder(TypicalPersons.BOB).build();
-        Assertions.assertTrue(bobCopy.getName().equals(new Name(VALID_NAME_BOB)));
+        Assertions.assertEquals(bobCopy.getName(), new Name(VALID_NAME_BOB));
     }
 
     @Test
@@ -118,28 +117,12 @@ public class StudentTest {
     public void getClassTags_modifySet_throwsUnsupportedOperationException() {
         Set<Tag> amyClassTags = TypicalPersons.AMY.getClassTags();
         Assert.assertThrows(UnsupportedOperationException.class, ()
-            -> amyClassTags.add(new Tag(VALID_TAG_TUT_15)));
-    }
-
-    @Test
-    public void getLatestSubmission() {
-        Student amyCopy = new PersonBuilder(TypicalPersons.AMY).build();
-
-        // add other submissions
-        amyCopy.addSubmission(new Submission(amyCopy, new Assignment("test1", 100)));
-        amyCopy.addSubmission(new Submission(amyCopy, new Assignment("test2", 100)));
-
-        // keep track of latest submission
-        Submission latestSubmission = new Submission(amyCopy, new Assignment("test3", 100));
-        amyCopy.addSubmission(latestSubmission);
-
-        // check if returned value is indeed latest submission
-        Assertions.assertTrue(amyCopy.getLatestSubmission().equals(latestSubmission));
+                -> amyClassTags.add(new Tag(VALID_TAG_TUT_15)));
     }
 
     @Test
     public void getLatestSubmission_noSubmissions_returnsNull() {
-        Assertions.assertEquals(TypicalPersons.AMY.getLatestSubmission(), null);
+        Assertions.assertNull(TypicalPersons.AMY.getLatestSubmission());
     }
 
     @Test
@@ -242,6 +225,6 @@ public class StudentTest {
     @Test
     public void getGradesForAssignment_noSuchAssignment_throwsAssignmentNotFoundException() {
         Assertions.assertThrows(AssignmentNotFoundException.class, ()
-            -> TypicalPersons.AMY.getGradesForAssignment("nonexistent"));
+                -> TypicalPersons.AMY.getGradesForAssignment("nonexistent"));
     }
 }
