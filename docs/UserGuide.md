@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Patientist User Guide
+title: User Guide
 ---
 Patientist is command-line interface (CLI) based desktop app that is designed to streamline patient and staff management for 
 small clinics and hospitals. Its intuitive interface is easy to navigate, and its command-based system is straightforward
@@ -608,10 +608,10 @@ This overwrites the specified person’s particulars with new particulars. This 
 
 ---
 
-### Transferring a patient between wards: trfward
+### Transferring a person between wards: trfward
 {: #trfward}
 
-This moves the patient at `INDEX` position on the list to the specified `WARD_NAME`. `WARD_NAME` must already exist.
+This moves the person at `INDEX` position on the list to the specified `WARD_NAME`. `WARD_NAME` must already exist.
 
 <div markdown="span" class="alert alert-danger">
 

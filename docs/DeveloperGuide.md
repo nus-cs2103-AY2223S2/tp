@@ -97,6 +97,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/logic/Logic.java)
@@ -126,6 +128,8 @@ How the parsing works:
 * When called upon to parse a user command, the `PatientistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `PatientistParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/model/Model.java)
 
@@ -147,6 +151,7 @@ as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities
 of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -577,23 +582,22 @@ ___
 
    Use case ends.
 ___
-*{More to be added}*
+
+<div style="page-break-after: always;"></div>
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A first time user should be able to easily find help to learn how to use the app.
-5.  Should not take longer than a second to retrieve patient information.
-6.  Should be lightweight and be able to run on any computer with decently recent hardware.
-7.  Should be reliable and able to perform without failure in the majority of use cases during a month.
-8.  Should be available to be accessed by medical staff 24/7/365.
-9.  Should be easily troubleshot in the event of a failure.
-10. Comply with all data protection laws of Singapore (PDPA).
-11. Should follow Singapore localisation.
-12. Should be easily scaled with different number of users.
-13. Patient data should be secure from unauthorised users.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A first time user should be able to easily find help to learn how to use the app.
+5. Should not take longer than a second to retrieve patient information.
+6. Should be lightweight and be able to run on any computer with decently recent hardware.
+7. Should be reliable and able to perform without failure in the majority of use cases during a month.
+8. Should be available to be accessed by medical staff 24/7/365.
+9. Should be easily troubleshot in the event of a failure. 
+10. Should be easily scaled with different number of users.
 
 ### Glossary
 
@@ -646,12 +650,23 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
-### Saving data
+---
 
-1. Dealing with missing/corrupted data files
+# Planned Enhancements
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Currently, the `addward` command is case-sensitive, so `addward n/Block A Ward 1` and `addward n/block A ward 1`
+   would result in two different wards being added, even though it is likely that they should refer to the same ward.
+   We plan to make this command case-insensitive to ensure duplicate wards are not added by accident.
+2. The commands that add or delete todos and statuses from patients, `addpattodo`, `delpattodo`, `addpatstatus`, `delpatstatus`,
+   currently change the order of patients in the list of patients. We plan to change this behaviour such that the index and
+   position of patients is preserved when using these commands, so users would have an easier time tracking the patients.
+3. The `view` command currently does not update in real time, so if a change is made using a command lke `addpattodo`,
+   the change will not be visible until the `view` command is used again. We plan to change it such that the `view` command updates
+   the information shown in the GUI after every change so that the correct information is always reflected in the view panel.
+4. The `lsward` command also does not update in real time like `view`. Commands that change state of the ward like `addpat`
+   may not have their changes reflected until `lsward` is called again. We plan to change this in the future such that the information
+   shown in ward list always reflects the internal state of Patientist.
+5. Currently, `help` only links the URL to this User Guide. We plan to change it in the future to show a command summary as well
+   to simplify the process of finding the syntax for a certain command.
