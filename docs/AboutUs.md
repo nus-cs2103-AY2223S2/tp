@@ -10,6 +10,8 @@ You can reach us at our following emails:
 1. Mandy Kaw: e0758899@u.nus.edu.sg
 2. Thennant Lim: e0726804@u.nus.edu.sg
 3. Low Jian Feng: e0727089@u.nus.edu.sg
+4. Stefanos Avraam: e0735360@u.nus.edu.sg
+
 
 ## Project team
 
@@ -47,7 +49,7 @@ You can reach us at our following emails:
 <img src="images/stefanosav.png" width="200px">
 
 [[github](https://github.com/StefanosAv)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/stefanosav.md)]
 
-
-
+* Role: Developer
+* Responsibilities: Implementation/Testing
