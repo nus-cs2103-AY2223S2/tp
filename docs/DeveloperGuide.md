@@ -53,7 +53,7 @@ below. Here is what each of them means.
 
 This guide has been divided into five main parts.
 
-* [Design](#design) discusses the high level architecture of Mycelium
+* [Design](#design) discusses the high-level architecture of Mycelium
 * [User Interface](#user-interface) discusses GUI concerns
 * [Command Handling](#command-handling) discusses the parsing and executing of commands
 * [Storage](#storage) briefly explains Mycelium's approach to persisting data
@@ -266,13 +266,13 @@ for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded.
 ### Tabs panel
 In Mycelium, there are four main tabs: **Projects**, **Clients**, **Due soon** and **Overdue**.
 The **Projects** tab will be responsible for displaying all projects created while the **Clients** tab
-will display all clients created. Each of these two tabs is a `EntityTab` object, and contains a `EntityList` of
+will display all clients created. Each of these two tabs is a `EntityTab` object and contains a `EntityList` of
 `Project` for **Projects** tab and `Client` for **Clients** tab. Both will be in the same
 panel `EntityPanel` on the left side of the application view.
 
 The **Due soon** tab will be responsible for displaying all projects that are due soon while the **Overdue** tab
 will display all projects that are overdue as mentioned in the [Statistics Dashboard](#statistics-dashboard) section.
-Each of these two tabs is a `StatisticsTab` object, and contains a `EntityList` of `Project`. Both of these two
+Each of these two tabs is a `StatisticsTab` object and contains a `EntityList` of `Project`. Both of these two
 tabs will be in the same panel `StatisticsPanel` on the right side of the application view.
 
 ![Tabs](images/Tabs.png)
@@ -339,7 +339,7 @@ each of the registered event handlers to decide which event handler to invoke.
 ![GenericKey sequence diagram](images/uievent/GenericKey/GenericKey.png)
 
 The above sequence diagram shows what happens once there is a match with a
-generic event handler. An instance of the respective `Key` will be created,
+generic event handler. An instance of the respective `Key` will be created
 and executed. The event is then consumed to prevent the event from propagating
 any further to the inner UI elements.
 
@@ -391,7 +391,7 @@ of the command box by calling `CommandBox#setMode(Mode)`.
 ![CommandBoxSetMode sequence diagram](images/commandbox/CommandBoxSetMode.png)
 
 When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
-on its outgoing `Mode` to perform the necessary clean up which includes
+on its outgoing `Mode` to perform the necessary clean-up which includes
 reverting the input to its prior state. The command box then calls `Mode#setupMode(String)`
 on the incoming `Mode` which will perform the necessary setup for the incoming `Mode`.
 This includes caching the current input of the command box so that it can return the input
@@ -450,7 +450,7 @@ functions - `Fuzzy#delta` and `Fuzzy#levenshtein`, both returning a `double`
 between 0 and 1 inclusive. A score of 1 indicates a perfect match, and lower
 scores indicate poorer matches.
 
-* `Fuzzy#delta` is a simpler algorithm which takes a query string and a target,
+* `Fuzzy#delta` is a simpler algorithm which takes a query string and a target
   and expects to find the query string as a subsequence of the target. In other
   words, it expects to find every character of the query within the target, and
   in the same order.
@@ -486,7 +486,7 @@ strings are converted to lowercase before any comparison.
 
 In order to use fuzzy search from the application, we also have the
 `FuzzyManager` class which exposes a more convenient API for us to rank clients
-and projects. The class diagram below shows a high level overview of the
+and projects. The class diagram below shows a high-level overview of the
 classes involved.
 
 ![FuzzyManagerHighLevelClassDiagram](images/fuzzy/FuzzyManagerHighLevelClassDiagram.png)
@@ -594,37 +594,37 @@ Mycelium strives to be a one-stop shop for freelance web developers to consolida
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ...               | I want to ...                                                                                                  | So that ...                                                                          |
-|----------|------------------------|----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| * * *    | user                   | easily access each project by name for convenience.                                                            |                                                                                      |
-| * * *    | user                   | create new projects and contacts.                                                                              |                                                                                      |
-| * * *    | user                   | delete projects and contacts I no longer need.                                                                 |                                                                                      |
-| * * *    | user                   | use the application on different platforms and operating systems.                                              |                                                                                      |
-| * * *    | user                   | update details of existing projects and contacts                                                               | I can keep up with changing requirements of clients.                                 |
-| *        | new user               | experience an intuitive user-interface. There should be help messages to guide me around the features.         | I can refer to instructions when I forget how to use the App                         |
-| *        | user                   | efficiently log information about a new client                                                                 | I minimise the effort and time needed to start a project.                            |
-| *        | new user               | login using my GitHub account                                                                                  | it is convenient to login.                                                           |
-| *        | new user               | sign up using email and password                                                                               | I can avoid using third party authentication sources, like GitHub or Google.         |
-| *        | forgetful user         | be reminded of up coming deadlines                                                                             | I will not miss out any deliverables set by clients.                                 |
-| *        | user                   | easily categorise the type of each project I have been working on                                              | it is easier to reflect on in the future and navigate.                               |
-| *        | user                   | view statistics related to productivity (which channel I gain most projects, money from)                       | I know which project to put more focus on to earn better money.                      |
-| *        | user                   | track my client’s payment status                                                                               | transaction management would be fuss-free.                                           |
-| *        | user                   | track my project’s progress                                                                                    | I can provide timely updates to my clients.                                          |
-| *        | user                   | track the time I have worked on for each project                                                               | I can ensure I have allocated time for the different projects I am working on.       |
-| *        | user                   | easily view all of my freelance job requests from Fiverr and Upwork in one place.                              |                                                                                      |
-| *        | user                   | update my availability status for each platform in one place                                                   | I don't miss out on job offers due to scheduling conflicts.                          |
-| *        | user                   | store client information, such as contact details and project specifications, in one place                     | I can quickly access it when needed.                                                 |
-| *        | user with many clients | easily communicate with clients through the product                                                            | I can streamline my workflow and avoid having to switch between different platforms. |
-| *        | user                   | receive notifications when I receive new job offers or when deadlines are approaching                          | I can stay on top of my workload.                                                    |
-| *        | user                   | easily generate invoices for each freelance job and track payment status                                       | I can manage my finances more effectively.                                           |
-| *        | user                   | easily rate and review clients                                                                                 | I can make informed decisions about which jobs to accept in the future.              |
-| *        | user                   | follow the work of other developers                                                                            | I can find opportunities to collaborate.                                             |
-| *        | user                   | use the app to estimate the amount of time that I will need for a project                                      | I can determine if I have the capacity to take on new projects.                      |
-| *        | user                   | keep in contact with other developers                                                                          | I can work on larger projects efficiently.                                           |
-| *        | user                   | personalize my contacts                                                                                        | I can know each client better                                                        |
-| *        | user                   | export data from the product in different formats, such as CSV or Excel                                        | I can use the information elsewhere.                                                 |
-| *        | user                   | securely store confidential information, such as client details                                                | I can keep sensitive information safe.                                               |
-| *        | user                   | use the product offline                                                                                        | I can access my information when I don't have an internet connection.                |
+| Priority | As a ...               | I want to ...                                                                                                 | So that ...                                                                          |
+|----------|------------------------|---------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| * * *    | user                   | easily access each project by name for convenience.                                                           |                                                                                      |
+| * * *    | user                   | create new projects and contacts.                                                                             |                                                                                      |
+| * * *    | user                   | delete projects and contacts I no longer need.                                                                |                                                                                      |
+| * * *    | user                   | use the application on different platforms and operating systems.                                             |                                                                                      |
+| * * *    | user                   | update details of existing projects and contacts                                                              | I can keep up with changing requirements of clients.                                 |
+| *        | new user               | experience an intuitive user-interface. There should be help messages to guide me around the features.        | I can refer to instructions when I forget how to use the App                         |
+| *        | user                   | efficiently log information about a new client                                                                | I minimise the effort and time needed to start a project.                            |
+| *        | new user               | login using my GitHub account                                                                                 | it is convenient to login.                                                           |
+| *        | new user               | sign up using email and password                                                                              | I can avoid using third party authentication sources, like GitHub or Google.         |
+| *        | forgetful user         | be reminded of upcoming deadlines                                                                             | I will not miss out any deliverables set by clients.                                 |
+| *        | user                   | easily categorise the type of each project I have been working on                                             | it is easier to reflect on in the future and navigate.                               |
+| *        | user                   | view statistics related to productivity (which channel I gain most projects, money from)                      | I know which project to put more focus on to earn better money.                      |
+| *        | user                   | track my client’s payment status                                                                              | transaction management would be fuss-free.                                           |
+| *        | user                   | track my project’s progress                                                                                   | I can provide timely updates to my clients.                                          |
+| *        | user                   | track the time I have worked on for each project                                                              | I can ensure I have allocated time for the different projects I am working on.       |
+| *        | user                   | easily view all of my freelance job requests from Fiverr and Upwork in one place.                             |                                                                                      |
+| *        | user                   | update my availability status for each platform in one place                                                  | I don't miss out on job offers due to scheduling conflicts.                          |
+| *        | user                   | store client information, such as contact details and project specifications, in one place                    | I can quickly access it when needed.                                                 |
+| *        | user with many clients | easily communicate with clients through the product                                                           | I can streamline my workflow and avoid having to switch between different platforms. |
+| *        | user                   | receive notifications when I receive new job offers or when deadlines are approaching                         | I can stay on top of my workload.                                                    |
+| *        | user                   | easily generate invoices for each freelance job and track payment status                                      | I can manage my finances more effectively.                                           |
+| *        | user                   | easily rate and review clients                                                                                | I can make informed decisions about which jobs to accept in the future.              |
+| *        | user                   | follow the work of other developers                                                                           | I can find opportunities to collaborate.                                             |
+| *        | user                   | use the app to estimate the amount of time that I will need for a project                                     | I can determine if I have the capacity to take on new projects.                      |
+| *        | user                   | keep in contact with other developers                                                                         | I can work on larger projects efficiently.                                           |
+| *        | user                   | personalize my contacts                                                                                       | I can know each client better                                                        |
+| *        | user                   | export data from the product in different formats, such as CSV or Excel                                       | I can use the information elsewhere.                                                 |
+| *        | user                   | securely store confidential information, such as client details                                               | I can keep sensitive information safe.                                               |
+| *        | user                   | use the product offline                                                                                       | I can access my information when I don't have an internet connection.                |
 | *        | user                   | easily search and filter projects based on specific criteria, such as deadline, client name, or project status | I can quickly find the information I need.                                           |
 
 ### Use cases
@@ -767,7 +767,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* *a. At any time, User chooses to toggles out of search mode.
+* *a. At any time, User chooses to toggle out of search mode.
    * *a1. Mycelium switches back to normal command mode.
 
    Use case ends.
@@ -942,12 +942,12 @@ cases.
 As fuzzy search is a more involved feature different from the other commands, we
 provide a more detailed suggested test plan for it.
 
-1. Press (CTRL+F) to toggle to search mode, and note that the command box
+1. Press (CTRL+F) to toggle to search mode and note that the command box
    should switch color as an indication.
-1. Type a query into the command box that partially matches a project name, and
+1. Type a query into the command box that partially matches a project name and
    verify that the projects with matching names are displayed in the UI. Note
    that closer matches should be placed at the top.
-1. Verify that the search is interactive and the UI automatically updates as
+1. Verify that the search is interactive, and the UI automatically updates as
    you type your query.
 1. Verify that only projects that have a partial match with the query are
    shown. Projects that don't match at all should not be shown.
@@ -971,7 +971,7 @@ emails with (ENTER).
 
 ### Hotkeys
 
-The testing of hotkeys is simple and you can reference the [user
+The testing of hotkeys is simple, and you can reference the [user
 guide](https://ay2223s2-cs2103t-w14-1.github.io/tp/UserGuide.html#hotkeys) on
 the expected behaviour of each hotkey.
 
@@ -1004,7 +1004,7 @@ with.
   a possible corruption in their data and be prompted to restore the JSON file
   from a backup.
 * The JSON file will then proceed to be read by Mycelium. If the JSON file is
-  unreadable or contains invalid values, the JSON file will be ignored and the
+  unreadable or contains invalid values, the JSON file will be ignored, and the
   application will start as an empty application with no projects and clients.
 * Possible checksum algorithms are MD5, SHA-1, SHA-256, SHA-512.
    
@@ -1046,9 +1046,8 @@ status of any project were made
 **4. Case sensitivity of emails**
 
 Currently, it is possible to create clients with the same email but in
-different cases, e.g. *foo@bar.com* and *FOO@bar.com*. However, in the real
-world emails are [not case
-sensitive](https://mailchimp.com/resources/are-email-addresses-case-sensitive/).
+different cases, e.g. *foo@bar.com* and *FOO@bar.com*. However, in the real-world
+emails are [not case-sensitive](https://mailchimp.com/resources/are-email-addresses-case-sensitive/).
 Thus, the application should reflect this. Thankfully, the fix is easy, as it
 involves changing the `equals()` method on the `Email` class.
 
@@ -1081,7 +1080,7 @@ to adopt the following fixes:
    developers, 1800 is a very reasonable lower bound, after accounting for the
    age of modern computing as well as the average human lifespan.
 1. Allow years up to 10 years into the future. Why do we allow this? Consider
-   the following (rare) use case: a family member is expecting a child, and has
+   the following (rare) use case: a family member is expecting a child and has
    enlisted your help to set up a self-hosted photo storage system in
    preparation for keeping memories of his/her childhood.
    <br>
@@ -1089,7 +1088,7 @@ to adopt the following fixes:
    to ten years from whenever the present time is. It also does not cause
    problems for other use cases.
 
-The validation for this is simple, and goes into the `isValidYearOfBirth`
+The validation for this is simple and goes into the `isValidYearOfBirth`
 method of the [`YearOfBirth`
 class](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/YearOfBirth.java).
 In pseudocode, the check becomes
@@ -1142,7 +1141,7 @@ uc -e foo@bar.com -n totoro
 The intention of the command is to update the client whose email is
 *foo@bar.com* to have the name *totoro*. Unfortunately, the `-n` flag is wrong,
 and should instead be `-cn`. Mycelium reads `foo@bar.com -n totoro` as the
-email, and responds with an error message that the email is in the wrong
+email and responds with an error message that the email is in the wrong
 format.
 
 Firstly, we would like to note that with regards to what we have specified in
@@ -1190,7 +1189,7 @@ p -pn foo -ad qwerty -dd 14/03/2023
 ```
 
 The *accepted date* is invalid while the deadline is valid. Mycelium currently
-responds with the message "The date entered is invalid", and does not specify
+responds with the message "The date entered is invalid" and does not specify
 which one. This can be easily remedied by adding an overload for the method
 which parses dates. In brief, the new overload will
 
@@ -1204,7 +1203,7 @@ which parses dates. In brief, the new overload will
 AB3 was only able to support a single entity type, which was the `Person` class.
 We had to modify the codebase to support multiple entity types,
 which are the `Project` and `Client` classes. We also decided to stray away from the default
-command syntax in favour of a more unix-like syntax. This was a challenge as we had to extend the parser
+command syntax in favour of a more Unix-like syntax. This was a challenge as we had to extend the parser
 support a different and larger set commands.
 
 One of the challenges we faced was how to display 2 entity types in the same panel.
@@ -1219,7 +1218,7 @@ shortcuts. This was a challenge as we had to learn how to use the JavaFX `KeyEve
 implement the shortcuts in a way that was extensible for new shortcuts. This led us to come up
 with the `UiEvent` class as a single place to add new shortcuts.
 
-By supporting 2 type of entities, we would need to have commands related to each entity.
+By supporting 2 types of entities, we would need to have commands related to each entity.
 We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
 project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
 we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
@@ -1243,7 +1242,7 @@ We wanted the user to be able to get an overview of their projects.
 To do this, we created another panel to display
 
 * a pie chart to show the proportions of projects in each status, and
-* a table to show which projects are overdued and which projects are due soon.
+* a table to show which projects are overdue and which projects are due soon.
  
 This was a challenge as it was adding complexity to the UI and required us to learn
 how to use the `PieChart` class. With another panel, we now also need an additional
