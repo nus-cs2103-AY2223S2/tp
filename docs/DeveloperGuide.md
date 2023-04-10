@@ -43,6 +43,7 @@ title: Developer Guide
   - [Use Cases](#use-cases)
   - [Non-functional Requirements](#non-functional-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Extra diagrams to aid explanation](#appendix-extra-diagrams-to-aid-explanation)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
@@ -666,6 +667,8 @@ The optional parameters are `GitHub`, `LinkedIn`, `Skills` and `Modules`. These 
 * `m/` for updating the current module list
 * `s/` for updating the current skill list
 
+<div style="page-break-after: always;"></div>
+
 ##### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to add a new
@@ -676,9 +679,12 @@ person.
 <div style="page-break-after: always;"></div>
 
 Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
-![Add Activity Diagram](images/AddActivityDiagram.png)
-<img src="images/createAttributes.png" width="170">
 
+![Add Activity Diagram](images/AddActivityDiagram.png)
+
+Refer to [here](#creating-attributes-for-the-person) for activity diagram on creating attributes for the person.
+
+<div style="page-break-after: always;"></div>
 
 ##### Design Considerations
 
@@ -717,6 +723,8 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 * `s+/` for adding a new skill
 * `s-/` for deleting an existing skill
 
+<div style="page-break-after: always;"></div>
+
 ##### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
@@ -741,20 +749,21 @@ One notable thing about EditPersonDescriptor are its sets to handle : skillsAdde
 were implemented for modules as well. Parser handles all entries and get them assigned to EditPersonDescriptor.
 
 Before EditCommand executes, it will look into these sets to check if command is valid to run, illustrated by the
-activity diagram below:
+activity diagram [here](#editcommand-checking-for-valid-set-operations)
 
-![EditCommandCheck](images/EditCommandCheckActivity.png)
 
 If skillsRemoved or modulesRemoved are not empty, it will look through existing skills and modules of protagonist to
 ensure all of them are present (using containsAll method for Set). If any one of them does not exist in protagonist,
 it will throw CommandException with respective error messages. This can be improved by using contains method instead
 for every element then throwing the exception with specific skill/module that caused the exception.
 
+<div style="page-break-after: always;"></div>
+
 ```java
 if (editPersonDescriptor.getSkillsRemoved().isPresent()) {
     Set<Skill> original = personToEdit.getSkills();
     Set<Skill> edited = editPersonDescriptor.getSkillsRemoved().get();
-    if (!original.containsAll(edited)) { // Can be improved by specifying which skill is not present
+    if (!original.containsAll(edited)) {
         throw new CommandException(MESSAGE_SKILL_DOES_NOT_EXIST);
     }
 }
@@ -762,22 +771,22 @@ if (editPersonDescriptor.getSkillsRemoved().isPresent()) {
 if (editPersonDescriptor.getModulesRemoved().isPresent()) {
     Set<Module> original = personToEdit.getModules();
     Set<Module> edited = editPersonDescriptor.getModulesRemoved().get();
-    if (!original.containsAll(edited)) { // Can be improved by specifying which module is not present
+    if (!original.containsAll(edited)) {
         throw new CommandException(MESSAGE_MOD_DOES_NOT_EXIST);
     }
 }
 ```
+
 As EditCommand executes, it creates a new EditedPerson. Other attributes are simply updated, but modules and skills are
 sets to be updated following a sequence of activity below:
 
 ![EditCommandUpdateSkills](images/EditSkillsActivity.png)
 
 Similar process exist for set of modules.
-
    1. It will first look into original skills and modules.
    2. Entries to be removed are first removed, then entries to be added are added.
    3. If any final set of an attribute exists, the updates above are ignored and new set will be created with entries
-   within the final set. If the final set is an empty one, it will clear all existing set
+   within the final set. If the final set is an empty one, it will clear existing set
 
 ```java
 Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved().orElse(new HashSet<>());
@@ -843,6 +852,8 @@ Finding i.e. filtering a person by their attributes is implemented such that the
 * `m/` for `Module`
 * `s/` for `Skill`
 
+<div style="page-break-after: always;"></div>
+
 **Implementation Flow**
 
 The following sequence diagram summarizes what happens when the user executes a `find` command:
@@ -851,12 +862,15 @@ The following sequence diagram summarizes what happens when the user executes a 
 
 `ModelManager`, which implements the `Model` interface, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s that is shown in the `MainWindow` class as a `PersonListPanel`. When a `find` command is called by the user, `ModelManager` updates its `filteredPersons` to only contain `Person`s that satisfy all the `predicate`s corresponding to the attibrutes specified by the user. The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the activity diagram to illustrate what happens when the user calls the `find` command:
 
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
-<img src="images/createCombinedPredicate.png" width="300">
+Refer to [here](#findcommand-combining-predicates) for activity diagram on combining predicates.
 
+<div style="page-break-after: always;"></div>
 
 ##### Design Considerations
 
@@ -877,11 +891,14 @@ We also chose to make our find command case-insensitive to increase the speed of
     User cannot find people that have multiple attributes.
 - Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so with Alternative 1, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites use find by logical AND such as GitHub, YouTube and Shopee.
 
+<div style="page-break-after: always;"></div>
+
 **Aspect 2: `find` by contains vs containsWord:**
 
 - Alternative 1 (current choice): `find` by contains
   - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/com` finds people that enrolled in courses containing 'com', `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
   - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam.
+- 
 - Alternative 2: `find` by containsWord (not a built-in method but can be created)
   - Pros: Resolves the cons in Alternative 1.
   - Cons:
@@ -892,7 +909,10 @@ We also chose to make our find command case-insensitive to increase the speed of
 
 - Alternative 1 (current choice): `find` can be used consecutively with `list` to clear filters
   - Pros: User can narrow down their search results by calling the `find` command consecutively, i.e. `find y/1` followed by `find s/python` finds people that are both year 1 and have python skills. This is useful especially if the user wants to apply additional filters to the search results. 
-  - Cons: Harder for user to execute separate `find` commands, i.e. if a user wants to find people that are y/1 or have python skills he/she would have to call `find y/1` followed by `list`, and then `find s/python`, needing to call `list` every time to clear applied filters. User might forget to do so, leading to search results being smaller than expected. 
+  - Cons: Harder for user to execute separate `find` commands, i.e. if a user wants to find people that are y/1 or have python skills he/she would have to call `find y/1` followed by `list`, and then `find s/python`, needing to call `list` every time to clear applied filters. User might forget to do so, leading to search results being smaller than expected.
+
+<div style="page-break-after: always;"></div>
+
 - Alternative 2: `find` can only be used maximum once effectively
   - Pros: Clears applied filters automatically before finding every time `find` is called. No need for user to call `list` between each `find` command.
   - Cons:
@@ -901,6 +921,7 @@ We also chose to make our find command case-insensitive to increase the speed of
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 #### **View Command**
 
@@ -916,10 +937,13 @@ The following sequence diagram summarizes what happens when the user executes a 
 
 If command is executed with a tab character instead, `setCurrentTab` will be called instead of `setProtagonist`. 
 
+<div style="page-break-after: always;"></div>
+
 Given below is the activity diagram to illustrate what happens when the user calls the `View` command:
 
 ![View Activity Diagram](images/ViewCommandActivity.png)
 
+<div style="page-break-after: always;"></div>
 
 ##### Design Considerations
 
@@ -970,6 +994,8 @@ For duplicate persons, instead of checking whether they had the same `Name`, we 
 ##### Profile Picture Attribute
 `ProfilePicture` of a `Person` is randomly picked from a pool of 50 avatar icons whenever the `Person` is added. Not only does this improve the aesthetics of CoDoc, but it can also help users identify contacts by their `ProfilePicture`. Allowing users to add their own preferred profile picture has been considered but as of right now, this just serves as a default placeholder picture for each `Person`. `ProfilePicture` is part of the `Person` model and is saved like the other attributes.
 
+<div style="page-break-after: always;"></div>
+
 ##### Skills Attribute
 We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
 
@@ -986,9 +1012,9 @@ We included the `Skills` attribute to remind the user to add in the person's ski
     Slower and more inconvenient, need to add these attributes when adding a person.
 - Decision: We chose Alternative 1 as speed is important. The LinkedIn profile URL can be very lengthy as well. Since users can already connect with the added persons through their email, which is a compulsory attribute, we decided to make these socials optional.
 
-<div style="page-break-after: always;"></div>
-
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### **Module Class**
 Each module in CoDoc have a string representing its module.
@@ -1014,6 +1040,8 @@ The following are **invalid** (the last 2 digit number is not an increment of th
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 #### **Course and CourseList Class**
 Each `Course` in CoDoc is implemented in the following way:
 
@@ -1031,12 +1059,11 @@ the `Course` constructor, we wanted to standardize the names of courses without 
 input their own course names. This prevents 1 course from having multiple `String` representations
 in our `Storage` as well as the courses displayed in the application.
 
-<div style="page-break-after: always;"></div>
-
 [Scroll back to top](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
 ### **Storage Implementation**
 This section describes implementation of features within `storage` package. Refer to [Storage Component](#storage-component)
 for more information about this package.
@@ -1044,11 +1071,9 @@ for more information about this package.
 #### Saving Data
 <img src="images/SaveSequenceDiagram.png" />
 <br>
-<br>
 
 #### Retrieving Data
 <img src="images/ReadStorageSequenceDiagram.png"/>
-<br>
 <br>
 
 <div markdown="span" class="alert alert-info">
@@ -1056,6 +1081,8 @@ for more information about this package.
 </div>
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Potential Enhancement**
@@ -1078,6 +1105,8 @@ Step 1. The user launches the application for the first time. The `VersionedCodo
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `delete 5` command to delete the 5th person in CoDoc. The `delete` command calls `Model#commitCodoc()`, causing the modified state of CoDoc after the `delete 5` command executes to be saved in the `codocStateList`, and the `currentStatePointer` is shifted to the newly inserted CoDoc state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -1088,7 +1117,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCodoc()`, so CoDoc state will not be saved into the `codocStateList`.
 
-</div>
+<div style="page-break-after: always;"></div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCodoc()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous CoDoc state, and restores CoDoc to that state.
 
@@ -1127,6 +1156,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ##### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -1144,6 +1175,8 @@ _{more aspects and alternatives to be added}_
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1156,6 +1189,8 @@ _{more aspects and alternatives to be added}_
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Planned Enhancements**
 
@@ -1167,6 +1202,8 @@ _{more aspects and alternatives to be added}_
 5. `find c/-1` will generate an empty list with no contacts. However, it will good to include a validity check as `-1` is an invalid input for `course` and should be showing an error message instead. We will implement this validity check in the future as it does not return a wrong list of filtered people.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -1447,4 +1484,25 @@ testers are expected to do more *exploratory* testing.
 2. _{ more test cases …​ }_
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+## **Appendix: Extra diagrams to aid explanation**
+
+#### Creating attributes for the person
+<img src="images/createAttributes.png" width="170">
+
+<div style="page-break-after: always;"></div>
+
+#### EditCommand checking for valid set operations
+
+![EditCommandCheck](images/EditCommandCheckActivity.png)
+
+<div style="page-break-after: always;"></div>
+
+#### FindCommand combining predicates
+
+<img src="images/createCombinedPredicate.png" width="300">
+
+<div style="page-break-after: always;"></div>
 
