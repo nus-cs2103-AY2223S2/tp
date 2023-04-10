@@ -6,12 +6,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.InvalidDeadlineException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.shared.Datetime;
 import seedu.address.model.task.Task;
+
+import java.util.logging.Logger;
 
 /**
  * Adds a task to OfficeConnect
@@ -32,6 +35,8 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
+    private static final Logger logger = LogsCenter.getLogger(AddTaskCommand.class);
+
     private final Task toAdd;
 
     /**
@@ -47,14 +52,17 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
         if (toAdd.getDeadline().getTimestamp().isPresent()) {
             if (Datetime.isPastDateTime(toAdd.getDeadline(), toAdd.getCreateDateTime())) {
+                logger.warning("Deadline before created date");
                 throw new InvalidDeadlineException();
             }
         }
         if (officeConnectModel.hasTaskModelManagerItem(toAdd)) {
+            logger.warning("There is a duplicated task");
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         officeConnectModel.addTaskModelManagerItem(toAdd);
+        logger.info("Task added!");
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

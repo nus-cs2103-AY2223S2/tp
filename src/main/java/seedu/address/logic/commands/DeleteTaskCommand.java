@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,6 +27,8 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteTaskCommand.class);
+
     private final Index targetIndex;
 
     /**
@@ -41,6 +45,7 @@ public class DeleteTaskCommand extends Command {
         List<Task> lastShownList = officeConnectModel.getTaskModelManagerFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.warning("invalid index");
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
