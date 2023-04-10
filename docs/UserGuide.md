@@ -245,7 +245,7 @@ Examples:
   * e.g. `name gilded staff` or `lvl 9000`
   * Put the command word of the field you want to edit into the FIELD portion of the command.
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
-  * Shortform names can be used instead to shorten commands. Do check out [Short-form commands](###Short-form commands) section for shortform commands!
+  * Shortform names can be used instead to shorten commands. Do check out <a href="#Short-form commands">Short-form commands</a> section for shortform commands!
   
 
 * Inventory has a different command format for adding and removing items from the inventory:
@@ -350,7 +350,7 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reroll home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<h2 id="Short-form commands"></h2>
 ## Short-form commands
 
 To aid expert users, commonly used commands and fields have short-form variants that can be used instead.
