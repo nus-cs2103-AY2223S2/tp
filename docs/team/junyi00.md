@@ -42,9 +42,9 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added `viewc` and `viewo` command [#82](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/82),  [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
-        * Added and updated _Introduction_, _Tutorials_ & _Frequently Asked Questions_ [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
+        * Added and updated _Introduction_, _Tutorials_ & _Frequently Asked Questions_ [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102), [#202](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/202)
         * Updated language to be more user-friendly [#180](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/180)
-        * Organised _Features_ & _Command Summary_ into sections for improved readability [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
+        * Organised _Features_, _Command Summary_ & _FAQ_ into sections for improved readability [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102), [#202](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/202)
         * Added & updated most screenshots [#180](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/180)
     * Developer Guide:
         * Updated details in `Logic` component [#160](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/160)
