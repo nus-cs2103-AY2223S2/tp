@@ -174,11 +174,14 @@ do use this to redirect you to our user guide!
 A sample Tank item is shown below. For each Tank you add in *Fish Ahoy!*, you have to add a
 [Description]((#description)). A [Tank Index](#index-parameters) is then automatically assigned to the tank.
 The **Number of fish** will be automatically updated whenever you add/delete a fish from this tank in *Fish Ahoy!*
-The [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature)and
+The [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature) and
 [pH](#tank-ph-reading-phph) are generated from [readings](#tank-readings) that you add to *Fish Ahoy!*
 
 ![Ui](images/UiTank.png)
 
+
+> :bulb: Tip: Fluctuations in tank conditions can lead to a lot of stress for your fish. The handy charts displayed for [Ammonia](#tank-ammonia-level-reading-alammonia_level), [Temperature](#tank-temperature-reading-tptemperature) and
+[pH](#tank-ph-reading-phph) can let you know at a glance if your levels are stable! 
 
 ## Fish Interface
 
@@ -225,17 +228,18 @@ In general, the command format is as follows:<br>
 * Used as parameters for commands with `add`, `edit` and `addReadings` actions
 * Prefix parameters require a prefix. For example, the command is as follows: `tank add d/<TANK_NAME>`
 * In the features section, prefix parameters will be as such: `X/<CONTENT>` where `X` is a valid prefix and `<CONTENT>` is the content of this parameter, subject to its constraints
-* You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value.
-> :information_source: Additional information: You can have multiple prefix parameters for the same prefix, but only the last one will be used.
+* You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value. 
+
+> :information_source: Additional information: If you have multiple prefix parameters for the same prefix, only the last one will be used.
 > <br>For example: `tank add d/Tank 1 d/Tank 2` will create a tank called 'Tank 2'.
 
-> :information_source: Additional information: For alphanumeric parameters, they are case-sensitive!
+> :information_source: Additional information: Alphanumeric parameters are case-sensitive!
 > <br>For Example: `d/Freshwater tank` is different from `d/freshwater tank`
 
 > :bulb: Tip: Redundant spaces will be removed automatically for prefix parameters
 > <br> For example: `d/ Tank 1` does not make the description ' Tank 1', but is the same as `d/Tank 1`.
 
-> :bulb: Tip: The order you type distinct prefix parameters do not matter!
+> :bulb: Tip: The order you type distinct prefix parameters in does not matter!
 > <br> For example, `tank addReadings tk/1 al/1 ph/6 tp/23` is the same as `tank addReadings al/1 ph/6 tp/23 tk/1`
 
 > :exclamation: Warning: Alphanumeric parameters like descriptions and names may be truncated it they are too long!
@@ -304,7 +308,7 @@ In general, the command format is as follows:<br>
 * Type: `Tank`
 * `<PH>` A number, with or without decimal points.
 * Prefix: `ph/`
-* Example: `al/7.1`
+* Example: `ph/7.1`
 
 #### Tank temperature reading `tp/<TEMPERATURE>`
 * Type: `Tank`
@@ -383,8 +387,10 @@ Parameters:
 * Index parameters:
   * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
     * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+    
+    
+> :exclamation: Warning: You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank. This is to ensure that you don't accidentally remove any fish you did not mean to.
 
-> :exclamation: Warning: You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
 
 Example:
 * `tank delete 2` deletes the second tank in the [tanks panel](#about-the-interface)
@@ -416,7 +422,7 @@ Example:
 
 You can feed all the fish in a tank, updating all the fishes' last fed date to the current date and time with the `tank feed` command.
 
-Use this command when you feed your fishes in real life, so you can keep track of when you last fed your fishes in *Fish Ahoy!*
+Use this command when you feed your fishes in real life, so you can keep track of when you last fed your fishes in *Fish Ahoy!* 
 
 Format: `tank feed <TANK_INDEX>`
 
@@ -427,6 +433,8 @@ Parameters:
 
 > :bulb: Tip: If you do not want to set the fishes' last fed date to the current date and time, you can manually update it with the
 > `fish edit <FISH_INDEX> lfd/<LAST_FED_DATE>` command!
+
+> :bulb: Tip: If you have any [feeding reminders](#feeding-reminders), the `tank feed` command will automatically remove those for the specified tank!
 
 Example:
 * It is currently the 6th of April, 2.31 pm. If you have a tank which index is 1, with 3 fishes, named 'Nemo', 'Dory' and 'Marlin'. `tank feed 1` sets the following details of all three fishes:
@@ -496,12 +504,12 @@ Example:
 * Scenario 1: It is currently the 3rd of April, 12 pm. `tank addReadings tk/1 al/0.2 ph/7 tp/27.2` adds the readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
   * Ammonia level: 0.2 ppm
   * pH: 7
-  * Temperature: 27.2 degrees celcius
+  * Temperature: 27.2 degrees celsius
   * Date and time associated with each reading: 03/04/2023 1200
 * Scenario 2 (Screenshot below): On 6th April 2.33 pm, `tank addReadings tk/1 al/4 ph/14 tp/40` adds the following readings to the first tank in the [tanks panel](#about-the-interface) with the following details:
   * Ammonia level: 4 ppm
   * pH: 14
-  * Temperature: 40 degrees celcius
+  * Temperature: 40 degrees celsius
   * Date and time associated with each reading: 06/04/2023 1433
 
 ![AddReadingDemo](images/UiAddReadingsDemo.png)
@@ -912,8 +920,23 @@ Format: `help`
 
 ## FAQ
 
+**Q**: How do I add my fish to *Fish Ahoy!*<br>
+**A**: Simply [create a tank](#adding-a-tank-tank-add) with the `tank add` command, and then [add your fish](#adding-a-fish-fish-add) to that tank with the `fish add` command!
+
+**Q**: How can I use *Fish Ahoy!* to manage my fishes' feeding schedule?<br>
+**A**: The [Fish Interface](#fish-interface) for each fish displays the last time the fish was fed, and the next time the fish should be fed. You can use this information to manage your fishes' feeding schedule! *Fish Ahoy!* will also remind you to feed your fish when it is time to feed them!
+
+**Q**: How can I use *Fish Ahoy!* to manage my fishes' health?<br>
+**A**: The [Tank Interface](#tank-interface) for each tank displays a helpful summary chart of key tank conditions. You can use this information to manage your fishes' health! *Fish Ahoy!* will also remind you to feed your fish when it is time to feed them making sure you don't underfeed or overfeed your fish!
+
+**Q**: I added a fish, but I don't see it.<br>
+**A**: Make sure you are viewing the correct tank. You can switch between tanks using the `tank view` [command](#viewing-a-tank-tank-view). Alternatively, you can [list all fishes](#listing-fishes-list-fishes) using the `list fishes` [command](#listing-fishes-list-fishes) to see all fishes in all tanks.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install *Fish Ahoy!*  in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous *Fish Ahoy!* home folder.
+
+**Q**: Is there any limit to the number of fish I can store with *Fish Ahoy!*<br>
+**A**: No! You can store all of your fish on *Fish Ahoy!*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -927,6 +950,7 @@ Format: `help`
 | **Sort**   | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`                                                              |
 | **List**   | `list tasks` `list fishes`                                                                                              |
 | **Help**   | `help`                                                                                                                  |
+
 
 ## Command prefix summary
 
