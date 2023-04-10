@@ -55,7 +55,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
   * [Deleting a student](#deleting-a-student)
-* [Saving data](#saving-data)
+  * [Saving data](#saving-data)
 - [**Appendix: Effort**](#appendix-effort)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
