@@ -16,6 +16,7 @@ Given below are my contributions to the project.
     * Consideration: This feature required numerous design and usability considerations due to how familiar most users are with this feature. In addition, the implementation as well required an in-depth analysis of design alternatives to determine the most optimal solution for this project.
     * Credits: [zhixianggg](https://github.com/zhixianggg) - I reused and adapted some of his code to implement the UndoRedoStack.
                [bakano98](https://github.com/bakano98) - I reused and adapted some of his code to implement the undo redo test.
+               [9fc70c892](https://github.com/9fc70c892) - I reused and adapted some of his code to implement the undo redo test.
 
 * **New Feature**: Added the totalappointment command.
   * What it does: Finds the number of appointments on a specified date.
