@@ -136,7 +136,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
   review, and other fields may lead to unspecified behaviour:
     * `n/`, `j/`, `r/`, `p/`, `q/`, `l/`, `s/`, `note/`, `rate/`, `reflect/`, `e/`, `by/`, `c/`, `d/`, `rs/`, `cl/`, `before/`, `after/`, `from/`, `to/`, 
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, and `remind`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * >**Note:** <br/>
@@ -269,6 +269,7 @@ Format: `add_date INDEX d/DATE_TIME`
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
 - `DATE_TIME` should be a valid date time of the format `yyyy-MM-dd hh:mm a`, where `a` is either `AM` or `PM`, and the date and time must be after the current date and time.
+- If the internship application at the specified `INDEX` already has an interview date, the previous interview date will be overwritten by the new one.
 
 Examples:
 * `add_date 1 d/2023-05-02 11:30 AM` adds the date and time 2023-05-02 11:30 AM to the first application in the list of applications.
@@ -401,9 +402,6 @@ Format: `delete_docs INDEX`
 
 Examples:
 * `delete_docs 1` deletes the documents for the 1st application in the list of applications.
-
-GUI alternative:
-1. Click the <img align="center" src = "images/ui/buttons/delete-internship-button.png" alt="Delete Internship" height = "25"/> button to delete an internship application.
 
 [↑ Back to Features Menu](#features-menu)
 
@@ -709,7 +707,7 @@ Format: `clear_note`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InternEase home folder.
 
 **Q**: How do I update the statistics at bottom right corner?<br>
 **A**: It's automatically update after you execute every command / action via either CLI or GUI.
