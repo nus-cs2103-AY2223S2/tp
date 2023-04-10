@@ -57,7 +57,7 @@ PersonViewPanel --|> UiPart
 AppointmentCard --|> UiPart
 PrescriptionCard --|> UiPart
 
-PersonCard .down.> Model
+PersonCard ..down.> Model
 AppointmentCard .down.> Model
 PrescriptionCard .down.> Model
 UiManager -right-> Logic
