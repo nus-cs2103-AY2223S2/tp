@@ -26,6 +26,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/kennethk-1201.md)]
 
 - Role: Team Lead
+- Responsibilities: Integration and Testing
+- In-charge of: Department class and related features
 
 ### Park Kwangjoo
 
@@ -36,7 +38,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Developer
 - Responsibilities: Integration
-- In-charge of: Performance review features
+- In-charge of: Department and Leave features.
 
 ### Chee Jer En
 
@@ -47,7 +49,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Code reviewer
 - Responsibilities: Review Code
-- In-charge of: Leave features
+- In-charge of: Leave class and related features
 
 
 ### Johnathan Wee
@@ -59,4 +61,4 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Developer
 - Responsibilities: Secretary
-- In-charge of: Department features
+- In-charge of: UI
