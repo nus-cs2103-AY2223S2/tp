@@ -93,4 +93,12 @@ public class JsonSerializableTrackrTest {
                 JsonSerializableTrackr.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toOrderModelType);
     }
+
+    @Test
+    public void toOrderModelType_duplicateOrders_throwsIllegalValueException() throws Exception {
+        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ORDER_FILE,
+                JsonSerializableTrackr.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_ORDER,
+                dataFromFile::toOrderModelType);
+    }
 }

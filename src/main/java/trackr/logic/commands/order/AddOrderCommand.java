@@ -79,7 +79,7 @@ public class AddOrderCommand extends Command {
         }
 
         model.addItem(validOrder, modelEnum);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, modelEnum));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, modelEnum, validOrder));
     }
 
     @Override

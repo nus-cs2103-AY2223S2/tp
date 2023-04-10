@@ -38,6 +38,8 @@ Given below are my contributions to the project.
     * Managed project documentation (UG & DG)
         * Checked and updated UG to match with actual product [\#276](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/276)
         * Checked and standardise format of UG & DG [\#85](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/85) [\#86](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/86)
+    * Add and edit comments for code [\#295](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/295)
+    * Add test cases to improve test coverage [\#89](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/89)
     * Update site-wide settings [#52](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/52)
 <br><br>
 * **Documentation**:
