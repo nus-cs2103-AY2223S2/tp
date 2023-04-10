@@ -19,11 +19,11 @@ tracking an effortless process**.
 <div style="page-break-after: always;"></div>
 
 
-
 ### My contribution to the project
 
 coNtactUS is written in **Java**. The development team consists of 4 intermediate student developers, including myself. 
 Given below are my contributions to the project.
+
 #### Feature and enhancements
 
 * **New feature**: Added the ability for users to enter `teacher` to a module in the module tracker.
