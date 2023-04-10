@@ -27,5 +27,6 @@ UiEventManager -> Event : consume()
 activate Event
 Event --> UiEventManager
 deactivate Event
+deactivate UiEventManager
 @enduml
 
