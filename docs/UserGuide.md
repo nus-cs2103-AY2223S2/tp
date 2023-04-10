@@ -732,7 +732,7 @@ Example:
 
 <br/>
 
-[//]: # (@@author DerrickSaltFish - reused with modifications)
+[//]: # (@@author DerrickSaltFish)
 ### Saving your Internship Data
 
 Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
