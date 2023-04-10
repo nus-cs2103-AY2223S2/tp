@@ -6,7 +6,7 @@ start
 if () then ([Valid DECK_INDEX and deck is not empty])
     :User successfully enters REVIEW_MODE;
     repeat
-        :PowerCards displays the current card;
+        :Display the current card;
         :User attempts the question
         on the current card;
         :User inputs 'p' to flip the current
@@ -28,13 +28,12 @@ if () then ([Valid DECK_INDEX and deck is not empty])
     repeat while () is ([Next card exists])
     -> [Current card was last card];
 
-    :PowerCards informs user
-    that this was the last card;
+    :Inform user that this was the last card;
 
     :User inputs 'endReview' command to return to MAIN_MODE;
 
 else ([else])
-    :Throws exception;
+    :Throw exception;
     :Display error message;
 
 endif

@@ -6,10 +6,10 @@ start
 :User inputs ']' command to move on to next card;
 
 if () then ([Current card is last card])
-    :PowerCards informs user
-    that this was the last card;
+    :Inform user that this
+    was the last card;
 else ([Next card exists])
-    :PowerCards displays next flashcard;
+    :Display next flashcard;
 
 
 endif
