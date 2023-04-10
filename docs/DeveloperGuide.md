@@ -118,7 +118,9 @@ The sections below give more details of each component.
 
 ### UI component <a name="ui-component"></a>
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/Ui.java)
+
+Here's a (partial) class diagram of the `Ui` component:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -190,6 +192,8 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/model/Model.java)
 
+Here's a (partial) class diagram of the `Model` component:
+
 <img src="images/ModelClassDiagram.png" width="450" />
 
 [Back to Table of Contents](#toc)
@@ -208,6 +212,8 @@ The `Model` component,
 ### Storage component <a name="storage-component"></a>
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/storage/Storage.java)
+
+Here's a (partial) class diagram of the `Storage` component:
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -715,8 +721,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
-    * 2a1. MODTrek shows a message indicating that there are no modules found in the module list.
+* 1a. The module list is empty.
+    * 1a1. MODTrek shows a message indicating that there are no modules found in the module list.
 
       Use case ends.
 
@@ -733,8 +739,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
-    * 2a1. MODTrek shows an empty degree progression data.
+* 1a. The module list is empty.
+    * 1a1. MODTrek shows an empty degree progression data.
 
       Use case ends.
 
@@ -779,8 +785,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User requests for help on a particular command available on MODTrek.
-    * 1a1. MODTrek shows the use case of each command and its syntax.
+* 2a. User requests for help on a particular command available on MODTrek.
+    * 2a1. MODTrek shows the use case of each command and its syntax.
 
       Use case ends.
 
