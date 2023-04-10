@@ -119,7 +119,7 @@ us. You can simply access the help menu using a simple command: `help` to refres
 learn more about new features. 
 ![help_whitebackground.jpg](images%2Fproduct-screenshots%2Fhelp_whitebackground.jpg)
 <p align="center">
-<em>Help sent</em>
+<em>Help is on the way!</em>
 </p>
 
 ----------------------------------------------------------------
