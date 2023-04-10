@@ -792,10 +792,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should not lose any work in case the application crashes.
 1.  Data persists when the application restarts.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 ## Glossary
 
 The terms in this glossary are sorted in alphabetical order.
