@@ -24,6 +24,8 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
     public static final String MESSAGE_TASK_DOES_NOT_EXIST = "This application does not have an existing task ";
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in the internship book";
+
     private final Index targetIndex;
 
     /**
@@ -48,6 +50,13 @@ public class DeleteTaskCommand extends Command {
         }
 
         Application editedApplication = createEditedApplicationWithoutTask(applicationToDeleteTask);
+
+
+        if (model.hasApplication(editedApplication)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
+        }
+
+
         model.setApplication(applicationToDeleteTask, editedApplication);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.commitInternshipBookChange();

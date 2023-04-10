@@ -26,7 +26,7 @@ public class TypicalApplications {
     public static final Application GOOGLE = new ApplicationBuilder().withRole("Software Engineer")
             .withCompanyName("Google").withCompanyEmail("googlehires@gmail.com")
             .withStatus("interested")
-            .withTags("highSalary").withTask("31-12-2023", "Online Assessment").build();
+            .withTags("highSalary").withTask("31-12-2023", "Online Interview").build();
     public static final Application AMAZON = new ApplicationBuilder().withRole("Cloud Engineer Intern")
             .withCompanyName("Amazon").withCompanyEmail("amazonhires@amazon.com")
             .withStatus("applied")
