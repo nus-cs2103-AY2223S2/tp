@@ -406,7 +406,7 @@ Notice that the keys are all close to the Enter key so that you can breeze throu
 
 ### 3.6.4. Flipping the Card: `p`
 
-Flips the card to reveal the answer. 
+Flips the card to reveal or hide the answer. 
 
 Format: `p`
 - `p` is case-insensitive (`P` is also a valid command).
