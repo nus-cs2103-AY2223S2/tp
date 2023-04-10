@@ -27,7 +27,7 @@ activate FindMeetingCommandParser
 FindMeetingCommandParser --> AddressBookParser
 deactivate FindMeetingCommandParser
 
-AddressBookParser -> FindMeetingCommandParser : parse(meeting find 22/01/2023)
+AddressBookParser -> FindMeetingCommandParser : parse(meetingFind 22/05/2023)
 activate FindMeetingCommandParser
 
 
