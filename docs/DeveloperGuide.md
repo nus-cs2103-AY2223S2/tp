@@ -648,7 +648,7 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Planned/Proposed Enhancements to known Feature Flaws
 
-1. Currently, the meetings in Meeting List Panel is unsorted as it can affect other commands adversely. We plan to sort meetings in Meeting List Panel in chronological order without affecting other commands.
+1. Currently, the meeting list shown by `listMeeting` is unsorted as it can affect other commands adversely. We plan to sort the list in chronological order without affecting other commands.
 2. Currently, meetingRemove and meetingUpdate has `CLIENT_INDEX` and `MEETING_INDEX` as inputs. `MEETING_INDEX` refers to the the index of meeting list given by `meetingFind CLIENT_INDEX`. Rework meetingRemove and meetingUpdate to take in only one index instead of two indexes - the sole index will refer to 
 the list shown by `listMeeting`.
 3. Currently, PolicyTag accepts any keywords to be set as the name. We plan to rework PolicyTag to only allow a set of PolicyTag names to accept only financial policies
