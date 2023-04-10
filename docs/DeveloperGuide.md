@@ -280,7 +280,6 @@ The implementation of the add task function is facilitated by `LogicManager`. It
 - For an `event` task, the user input consists of 4 arguments, the command word being "event". The second argument is a description of the task, the third argument is the start date of the task, and the fourth argument is the end date of the task.
 
 
-
 The format is as follows:
 - `todo task/TASK_DESCRIPTION`
 - `deadline task/TASK_DESCRIPTION by/DEADLINE`
@@ -302,9 +301,13 @@ Step 5. `LogicManager` then calls `execute` in `ToDoCommand`, which carries out 
 
 :information_source: **Note:**The command can only work if a task with the same description is not already present in Pied Piper. Additionally, the above implmentation comes with the `edittask` feature, which allows the user to edit the details of a task in the task book.
 
-The following sequence diagram shows how the addition operation works:
+The following sequence diagram shows how the addition operation works for a `TodoTask`:
 
 <img src="images/ToDoSequenceDiagramUML.png"/>
+
+The following sequence diagram shows how the addition operation works for a `DeadlineTask`:
+
+<img src="images/DeadlineSequenceDiagramUML.png"/>
 
 [↑ Return to start of section](#4-implementation)
 

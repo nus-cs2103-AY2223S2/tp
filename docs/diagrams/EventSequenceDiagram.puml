@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box User UI_COLOR_T1
+participant ":User" as User UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":Matcher" as Matcher LOGIC_COLOR
+participant ":EventCommandParser" as EventCommandParser LOGIC_COLOR
+participant ":EventCommand" as EventCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "startDate:Date" as StartDate MODEL_COLOR
+participant "endDate:Date" as EndDate MODEL_COLOR
+participant "toAdd:EventTask" as EventTask MODEL_COLOR
+participant ":TaskBookModel" as TaskBookModel MODEL_COLOR
+end box
+
+User -> LogicManager : execute(commandText)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(commandText)
+activate AddressBookParser
+
+AddressBookParser -> Matcher : group("commandWord")
+activate Matcher
+Matcher --> AddressBookParser : commandWord
+deactivate Matcher
+
+AddressBookParser -> Matcher : group("arguments")
+activate Matcher
+Matcher --> AddressBookParser : arguments
+deactivate Matcher
+
+create EventCommandParser
+AddressBookParser -> EventCommandParser : EventCommandParser()
+activate EventCommandParser
+
+create StartDate
+EventCommandParser -> StartDate
+activate StartDate
+StartDate --> EventCommandParser
+deactivate StartDate
+
+create EndDate
+EventCommandParser -> EndDate
+activate EndDate
+EndDate --> EventCommandParser
+deactivate EndDate
+
+create EventTask
+EventCommandParser -> EventTask
+activate EventTask
+EventTask --> EventCommandParser
+deactivate EventTask
+
+create EventCommand
+EventCommandParser -> EventCommand
+activate EventCommand
+EventCommand --> EventCommandParser
+deactivate EventCommand
+
+EventCommandParser --> AddressBookParser :
+deactivate EventCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+
+LogicManager -> EventCommand : execute(model,taskBookModel)
+activate EventCommand
+
+EventCommand -> TaskBookModel : addTask(toAdd)
+activate TaskBookModel
+
+TaskBookModel --> EventCommand
+deactivate TaskBookModel
+
+EventCommand --> LogicManager : CommandResult
+deactivate EventCommand
+
+LogicManager --> User : CommandResult
+deactivate LogicManager
+
+@enduml
