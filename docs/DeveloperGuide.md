@@ -213,7 +213,7 @@ The following sequence diagram shows how the add operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at to destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 #### Design considerations
 
 **Aspect: How add & edit client executes:**
@@ -239,7 +239,7 @@ The following details explain how it works:
 * The `handleStatistics` is called by the MainWindow class to generate the weight data graph in a pop-up window. This method retrieves the weight data from the WeightHistory class and updates the graph with the most recent data using the updateSeries method.
 * The `updateSeries` method in the Logic component updates the `XYChart.Series` that populates the graph with data.
 
-
+<div style="page-break-after: always;"></div>
 Sequence Diagram for Graph feature. The diagram omits some method sequence in the pane, scene and stage as those details are just setting the parts for those classes which will not fit in the sequence diagram
 ![GraphSequenceDiagram](images/GraphSequenceDiagram.png)
 
@@ -258,7 +258,7 @@ graph. `updateSeries` method is called to ensure the data populating the graph i
     * The Past 30 days weight data graph feature retrieves the weight data from the WeightHistory class and updates the graph with the most recent data using the updateSeries method.
     * The weight data graph is displayed in a pop-up window.
 
-
+<div style="page-break-after: always;"></div>
 * Design Considerations
 
   One important design consideration is how to display the weight data graph. Our approach is to
@@ -293,7 +293,7 @@ The following details explain how it works:
       appointment date time are valid.
       * If the appointment date and time are valid, they are added to the appointment list, which is then sorted.
       Otherwise, an error message is returned.
-
+<div style="page-break-after: always;"></div>
 The following sequence diagram shows how the `edit` command works with appointment input: edit 1 app/05-05-2023 19:00
 ![EditAppointmentSequenceDiagram](images/EditAppointmentSequenceDiagram.png)
 
