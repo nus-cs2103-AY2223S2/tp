@@ -9,21 +9,21 @@ GoodMatch is a desktop application used for managing applicants and job listings
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added Listing class
+* **New Feature**: Added Listing class [#16](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/16)
 
   * What it does: It is the listing that users will be creating, deleting and editing when they use our app.
   * Justification: It is the basic building block of our application, a listing is what users are working with.
   * Highlight: Implementation of things at the beginning were mainly handled by Homun, Branda and I. We had to get the ball rolling with though simple features but features that were tough to implement because it was the very first step taken.
   * Credits: This class was implemented without referencing any other sources because our Listing is unique.
 
-* **New Feature**: Add Command
+* **New Feature**: Add Command [#52](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/52)
 
     * What it does: Allows the user to add a job listing into the ListingBook.
     * Justification: This feature is a core feature of the product, without it, nothing else can be done.
     * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands and also had to be up as soon as possible so that other members can work on their commands (if not they don't have any listings to test with). Since this was the first major change as well, many issues cropped up with things from AB3 that did not work with our implementation of things and it took a long time to delete and debug which we all did together as a team.
     * Credits: The implementation was referenced from AB3. However, since a listing is completely different from a person, the only parts that could be referenced is the parsing flow, from ListingBookParser to AddCommandParser.
     
-* **New Feature**: Completely new User Interface
+* **New Feature**: Completely new User Interface [#85](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/85) [#88](https://github.com/AY2223S2-CS2103T-W14-3/tp/pull/88)
 
   * What it does: Revamped the GUI for a much more refreshing look.
   * Justification: We did not want a user interface that was the exact same as the base AddressBook3 because it would seem dull and un original. Also, a white theme is something that is much cleaner and more minimalistic for users.
