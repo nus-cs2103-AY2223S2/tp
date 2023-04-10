@@ -31,7 +31,7 @@ https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tabrizplv&breakdown=t
 * Added UML diagram for Find Meeting feature
 
 **Contributions to team-based tasks:**
-* Fixed bugs in the user guide for other sections, including example syntax errors
+* Fixed bugs in other sections of the user guide, including example syntax errors
 * Fixed bugs in the sample data that did not meet the requirements that resulted in many errors
 
 **Review/Mentoring Contributions:**
