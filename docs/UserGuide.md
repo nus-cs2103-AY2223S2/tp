@@ -292,7 +292,7 @@ Examples:
 
 ### 3.4.4. Finding Cards by Keywords in Question : `findCards`
 
-This command allows you to find specific flashcards you want to interact with based on the keyword(s) you enter.
+This command allows you to find specific cards you want to interact with based on the keyword(s) you enter.
 
 It shows all the cards in the selected deck whose **questions** contain **any** of the given keyword(s).
 

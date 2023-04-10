@@ -124,7 +124,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the master deck data i.e., all `Card` objects (which are contained in a `UniqueCardList` object) and all `Deck` objects (which are contained in a `UniqueDeckList` object).
+* stores the MasterDeck data i.e., all `Card` objects (which are contained in a `UniqueCardList` object) and all `Deck` objects (which are contained in a `UniqueDeckList` object).
 * stores the currently 'selected' `Card` objects (e.g., results of selecting a deck) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Card>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Deck` objects (e.g., results of a deck search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Deck>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
@@ -153,7 +153,7 @@ The `Review`
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both master deck data and user preference data in json format, and read them back into corresponding objects.
+* can save both MasterDeck data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `MasterDeckStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -353,7 +353,7 @@ Pros:
 Cons:
 - Requires a complete overhaul of the code base and test cases, which may not be practical considering our limited development time.
 
-While the alternative design seems more appropriate than our current design, we deem it less feasible to implement due to our project's time constraint. Furthermore, the performance difference is negligible as our average user does not have enough flashcards to cause noticeable performance degradation. Nevertheless, we intend to prioritize the implementation of the alternative design in future iterations, as time and resources permit.
+While the alternative design seems more appropriate than our current design, we deem it less feasible to implement due to our project's time constraint. Furthermore, the performance difference is negligible as our average user does not have enough cards to cause noticeable performance degradation. Nevertheless, we intend to prioritize the implementation of the alternative design in future iterations, as time and resources permit.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -379,7 +379,7 @@ While the alternative design seems more appropriate than our current design, we 
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: study various topics using flashcards on the computer
+**Value proposition**: study various topics using cards on the computer
 
 
 ### User stories
@@ -404,13 +404,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user     | add the description of each masterDeck                                | I can check later what this masterDeck is about.       |
 | `Epic`   | user     | **review decks of cards**                                             ||
 | `* * *`  | user     | review a single masterDeck of cards                                   | I can test my knowledge of the topic                   |
-| `* * *`  | user     | mark a flash card to be correct / wrong during review                 ||
+| `* * *`  | user     | mark a card to be correct / wrong during review                       ||
 | `* *`    | user     | see how many cards I have left to review in one masterDeck            ||
 | `Epic`   | user     | **keep track of how effective my learning has been**                  ||
 | `* *`    | user     | record the number of questions I got right                            | I can see my progress                                  |
 | `* *`    | user     | see which are the cards I struggle with / succeed at                  ||
 | `*`      | user     | see which topics (decks) I am stronger / weaker in                    ||
-| `*`      | user     | revise PowerCards that I got wrong for                                | I can see what I’m weak at                             |
+| `*`      | user     | revise cards that I got wrong for                                     | I can see what I’m weak at                             |
 | `* *`    | user     | reset the statistics                                                  ||
 | `Epic`   | user     | **share and receive decks from my friends**                           ||
 | `* * *`  | user     | import decks from other users.                                        ||
@@ -531,7 +531,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Deck**: A group of PowerCards (flashcards) of a specific topic
+* **Deck**: A group of flashcards (cards) of a specific topic
 *{More to be added}*
    
 
@@ -624,7 +624,7 @@ testers are expected to do more *exploratory* testing.
 1. Showing all decks in MasterDeck
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
     2. Test case: `showDecks` <br>
-       Expected: All existing decks in MasterDeck will be shown.
+       Expected: All existing decks in MasterDeck are shown.
 
 ### Testing Commands for `MAIN_SELECTED_MODE`
 
@@ -820,3 +820,4 @@ In order to counter known feature flaws from testing, the following are enhancem
 
 ### Figure 4.2 Planned Enhancement: GUI with minimum width
 - ![GUI with min width](images/gui_min_width.png)
+
