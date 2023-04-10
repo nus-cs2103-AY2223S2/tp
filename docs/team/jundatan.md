@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user may want to keep track of the appointment dates and time,
     recommended calorie's intake of its clients and routine which makes it easier for the user to keep track.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  
+
 * **New Feature**: Added *Routine* and *Exercise* storage and model to client.
   * What it does: allows the user to make changes to Routine and exercises, and it will be stored in the exerciseroutine.json file and reflect it in the current model for FitBookExerciseRoutine.
   * Justification: This feature improves the product significantly because user gets to save their data into the storage system for future uses.
@@ -105,4 +105,3 @@ Given below are my contributions to the project.
   [\#114](https://github.com/nus-cs2103-AY2223S2/forum/issues/114),
   [\#150](https://github.com/nus-cs2103-AY2223S2/forum/issues/150)
   * Reported bugs and suggestions for other teams in the class (examples: [PE-DRY-RUN](https://github.com/jundatan/ped))
-  
