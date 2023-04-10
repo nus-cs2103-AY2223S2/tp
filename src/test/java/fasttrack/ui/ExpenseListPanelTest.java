@@ -3,11 +3,11 @@ package fasttrack.ui;
 import static fasttrack.testutil.TypicalExpenses.APPLE;
 import static fasttrack.testutil.TypicalExpenses.BANANA;
 import static fasttrack.testutil.TypicalExpenses.CHERRY;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -26,7 +26,6 @@ class ExpenseListPanelTest {
 
     private ExpenseListPanel expensePanel;
     private ObservableList<Expense> expenses;
-    private static CountDownLatch latch;
 
     @BeforeEach
     public void setUp() {
@@ -34,13 +33,10 @@ class ExpenseListPanelTest {
     }
 
     @BeforeAll
-    public static void initJFX() throws InterruptedException {
-        latch = new CountDownLatch(1);
-        Platform.startup(() -> {
-            latch.countDown();
-        });
-        latch.await();
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
     }
+
 
     @Test
     public void expenseListView_validExpenses_countEqual() {

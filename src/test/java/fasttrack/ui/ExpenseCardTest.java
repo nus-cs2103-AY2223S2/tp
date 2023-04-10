@@ -1,12 +1,12 @@
 package fasttrack.ui;
 
 import static fasttrack.testutil.TypicalExpenses.APPLE;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -22,7 +22,6 @@ class ExpenseCardTest {
 
     private Expense expense;
     private int displayedIndex;
-    private static CountDownLatch latch;
 
     @BeforeEach
     public void setUp() {
@@ -31,12 +30,8 @@ class ExpenseCardTest {
     }
 
     @BeforeAll
-    public static void initJFX() throws InterruptedException {
-        latch = new CountDownLatch(1);
-        Platform.startup(() -> {
-            latch.countDown();
-        });
-        latch.await();
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
     }
 
     @Test

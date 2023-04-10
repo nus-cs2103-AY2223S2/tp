@@ -1,12 +1,12 @@
 package fasttrack.ui;
 
 import static fasttrack.testutil.TypicalRecurringExpenses.GYM_MEMBERSHIP;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -22,7 +22,6 @@ class RecurringExpenseCardTest {
 
     private RecurringExpenseManager recurringExpenseManager;
     private int displayedIndex;
-    private static CountDownLatch latch;
 
     @BeforeEach
     public void setUp() {
@@ -31,13 +30,10 @@ class RecurringExpenseCardTest {
     }
 
     @BeforeAll
-    public static void initJFX() throws InterruptedException {
-        latch = new CountDownLatch(1);
-        Platform.startup(() -> {
-            latch.countDown();
-        });
-        latch.await();
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
     }
+
 
     @Test
     public void testRecurringExpenseCard_validData_success() {
@@ -103,5 +99,4 @@ class RecurringExpenseCardTest {
             fail("Assertion error thrown in Platform.runLater thread: " + e.getMessage());
         }
     }
-
 }

@@ -1,20 +1,22 @@
 package fasttrack.ui;
 
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Objects;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import fasttrack.logic.commands.exceptions.CommandException;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+
 
 public class CommandBoxTest {
 
@@ -28,7 +30,6 @@ public class CommandBoxTest {
 
     @BeforeEach
     public void setUp() {
-        new JFXPanel();
         commandExecuted = false;
         // Dummy command executor function
         CommandBox.CommandExecutor commandExecutor = commandText -> {
@@ -40,6 +41,12 @@ public class CommandBoxTest {
         };
         commandBox = new CommandBox(commandExecutor, false);
     }
+
+    @BeforeAll
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
+    }
+
 
     @Test
     public void handleCommandEntered_emptyCommand_commandNotExecuted() {
@@ -85,4 +92,5 @@ public class CommandBoxTest {
         String expected = "add n/Milk c/Groceries ";
         assertEquals(expected, textField.getText());
     }
+
 }

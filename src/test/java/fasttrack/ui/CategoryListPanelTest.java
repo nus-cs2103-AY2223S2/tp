@@ -4,12 +4,16 @@ import static fasttrack.testutil.TypicalCategories.FOOD;
 import static fasttrack.testutil.TypicalCategories.TECH;
 import static fasttrack.testutil.TypicalExpenses.APPLE;
 import static fasttrack.testutil.TypicalExpenses.CHERRY;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import fasttrack.model.category.Category;
@@ -25,7 +29,6 @@ public class CategoryListPanelTest {
     private CategoryListPanel categoryListPanel;
     private ObservableList<Category> categories;
     private ObservableList<Expense> expenses;
-    private static CountDownLatch latch;
 
     @BeforeEach
     public void setUp() {
@@ -34,13 +37,10 @@ public class CategoryListPanelTest {
     }
 
     @BeforeAll
-    public static void initJFX() throws InterruptedException {
-        latch = new CountDownLatch(1);
-        Platform.startup(() -> {
-            latch.countDown();
-        });
-        latch.await();
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
     }
+
 
     @Test
     public void categoryListView_validCategories_countEqual() {
