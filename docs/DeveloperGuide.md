@@ -280,15 +280,26 @@ with one another in the execution of an `addf` command.
 
 The `AddRecipeForm` class inherits from the `RecipeForm` base class which extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields`, `TextAreas` that are used for displaying and editing recipe details and `Buttons` for saving and closing the form.  
 
-The class has a constructor that takes a null `Recipe` object, a `StringBuilder` object to be returned to the caller in `AddFormCommand`, and the `title` of the form.
-The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.  
+The `RecipeForm` class has a constructor that takes a null `Recipe` object, a `StringBuilder` object reference that is created in `AddFormCommand`, and the `title` of the form.
+The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
+
+After the user modifies and saves the form, the
+`AddRecipeForm` modifies this `StringBuilder` reference to capture the form's edited
+details in a format which is parseable as an `Recipe` instance, by the app.
 
 In addition, it implements the following operations:
+
 * `RecipeForm#display` —  Displays the form with corresponding UI components such as the <kbd>Save</kbd> button and `TextField` and `TextArea` rows.
 * `RecipeForm#getFormData` —  Stores all the changed values in the form fields into a `HashMap`.
-* `RecipeForm#collectFields` —  Stores changed recipe fields in the `HashMap` into the data `StringBuilder`.
-* `RecipeForm#saveRecipe()` —  Saves the current recipe to the database by passing the `StringBuilder` instance containing the command string back to `AddFormCommand` to be executed.
+* `RecipeForm#collectFields` —  Stores changed recipe fields in the `HashMap` into the "data" `StringBuilder` reference.
+* `RecipeForm#saveRecipe()` —  Formats the current recipe by editing the
+`StringBuilder` instance such that it contains the command string in a format
+that an `AddCommandParser` can parse and understand.
 * `RecipeForm#closeForm()` —  Closes the form without saving any changes.
+
+After the user saves the form by clicking on the <kbd>Save</kbd> button, the
+command string is passed to the `AddCommandParser` class for parsing into a
+`RecipeDescriptor` instance, which will be saved by the app if there are no errors.
 
 #### Example Usage Scenario
 
@@ -302,16 +313,20 @@ In addition, it implements the following operations:
 
 5. The form is closed and the updated `StringBuilder` instance containing the command string is passed back to `AddFormCommand`.
 
-6. If the StringBuilder instance is empty, then a `CommandException()` is thrown to indicate that the form was empty. 
+6. If the StringBuilder instance is empty, then a `CommandException()` is thrown to indicate that the form was empty.
  Otherwise, `AddFormCommand` calls `AddCommandParser#parseToRecipeDescriptor(commandString)` to convert the command string into a `RecipeDescriptor` instance. 
 
-7. The `RecipeDesriptor` instance is converted to a new `Recipe` instance through `RecipeDesriptor#toRecipe()`  and is added to the model through `Model#addRecipe(recipeToAdd)`. 
+7. The `RecipeDescriptor` instance is converted to a new `Recipe` instance through `RecipeDescriptor#toRecipe()` and is added to the model through `Model#addRecipe(recipeToAdd)`.
+This also relies on the existing infrastructure to validate `Recipe` inputs, and
+any formatting errors will raise exceptions which will be returned to the UI of the
+App, to indicate the errors to the User.
 
 <div style="page-break-after: always;"></div>
+
 ### Feature: "Edit" Form UI
 
-The `EditRecipeForm` allows users to make changes to a recipe details directly over a Graphical User Interface edit form instead of the command box. 
-The following sequence diagram illustrates how the different components interact with one another in the execution of an edit form command.   
+The `EditRecipeForm` allows users to make changes to a recipe details directly over a Graphical User Interface edit form instead of the command box.
+The following sequence diagram illustrates how the different components interact with one another in the execution of an edit form command.
 
 <img class="diagram" src="images/EditRecipeFormSequenceDiagram.png" width="1128"/>  
 
@@ -320,10 +335,11 @@ The following sequence diagram illustrates how the different components interact
 #### Implementation
 
 Likewise, the `EditRecipeForm` also inherits from the `RecipeForm` base class and hence supports a similar set of operations
-as the `AddRecipeForm`. The key difference between the add and edit recipe forms is that the fields of the edit form are 
+as the `AddRecipeForm`. The key difference between the add and edit recipe forms is that the fields of the edit form are
 pre-populated with the existing recipe's data if a non-null recipe is provided.
 
 Pre-filling of recipe data into the text fields is implemented through the following additional operations:
+
 * `RecipeForm#saveInitialValues()` —  Stores the initial values of the form fields in a HashMap.
 * `RecipeForm#populateFields()` —  Prepopulates the form fields with values of current recipe.
 
@@ -345,24 +361,27 @@ Pre-filling of recipe data into the text fields is implemented through the follo
 5. The final command text is generated from the `StringBuilder` instance, and along with the `displayedIndex` of the recipe, is passed to an `EditRecipeEvent` object, which is then fired to update the model and subsequently the UI with the edited recipe details.
 
 <div style="page-break-after: always;"></div>
+
 #### Activity Diagram
 
 The following activity diagram summarizes the process when a user edits a recipe using the recipe form:
 
-[//]: # (Diagram width should be 600 when exporting to PDF)
-<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="1100"/>  
+<img class="diagram" src="images/EditRecipeFormActivityDiagram.png" width="650"/>  
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>Esc</kbd> key, 
+
+:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or presses the <kbd>Esc</kbd> key,
 the form will be closed without saving any changes.
+
 </div>
 
 <div style="page-break-after: always;"></div>
+
 ### Feature: Find-by-property
 
 #### Overview
 
-The `find` command allows the user to filter recipes by their properties: 
+The `find` command allows the user to filter recipes by their properties:
 e.g. their name, tags, or ingredients.
 The following sequence diagram illustrates how the different components interact with each other
 in the execution of a `find tag italian indian` command.
@@ -376,11 +395,12 @@ In `FindCommandParser`, we determine which is the target property.
 Keyword validation and predicate creation is then done depending on the target property.
 
 To determine whether a recipe's target property matches the given keywords, 2 predicate types are used:
-* `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T 
+
+* `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T
 matches any of the keywords.
-  * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are 
+  * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are
   finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match.
-* `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T 
+* `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T
 in a collection of property T matches any of the keywords.
   * e.g. if the property is `Tag`, and we have a recipe with tags ["Italian", "Breakfast"] and we are
   finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match.
@@ -388,79 +408,98 @@ in a collection of property T matches any of the keywords.
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
 
-
 ### Feature: Ingredient Substitutions
 
 #### Overview
+
 The `sub` command allows the user to search for commonly used substitutions for ingredients.
 
 #### Implementation
+
 The sub command likewise goes through the standard command execution pipeline.
 
-In `SubCommandParser`, we determine whether the ingredient defined by the user to be searched up for substitutes 
+In `SubCommandParser`, we determine whether the ingredient defined by the user (to be searched up for substitutes)
 is valid using the regex for ingredient names that was previously defined.
 
-In the execution of the sub command, the (valid) ingredient is queried first in a preloaded list of substitutions. 
+In the execution of the sub command, the (valid) ingredient is queried first in a preloaded list of substitutions.
 This preloaded list is stored within SubstitutionsUtil and accessed through a getter from the recipe book.
-Subsequently, the same ingredient is then queried in every recipe within the recipe book. 
+Subsequently, the same ingredient is then queried in every recipe within the recipe book.
 
 Should the ingredient be found in the preloaded list, the corresponding substitutions will be added to the list of
-substitutes to be returned to user. Otherwise, should the ingredient be found in any recipe in the recipe book, should 
+substitutes to be returned to user. Otherwise, should the ingredient be found in any recipe in the recipe book, should
 any substitutes for that ingredient be stored, it will likewise be added to the list.
 
 This list is created in the form of a `HashSet` such that any duplicates will not be displayed more than once.
 
-The display of the results will be in the command result box which is different from the other commands, since the 
-results of the `sub` command return ingredients instead of recipes. 
+The display of the results will be in the command result box which is different from the other commands, since the
+results of the `sub` command return ingredients instead of recipes.
 
 ### Feature: Import RecipeBook
 
 #### Overview
-The `import` command allows the user to select a file in JSON format. If the file parses correctly into a RecipeBook,
-the recipes in the JSON file are successfully imported while ignoring duplicates. If the file does not parse correctly,
-the import will fail and be cancelled.
+
+The `import` command allows the user to import another RecipeBook JSON file into the app.
+
+If the imported file parses correctly into a RecipeBook, the recipes in the JSON file are successfully imported while ignoring duplicates. Else, if the file does not parse correctly, the import operation will fail and be cancelled.
 
 <img class="diagram" src="images/ImportSequenceDiagram.png" width="1128" />
 
 #### Implementation
-The `import` command goes through the standard command execution pipeline, skipping the parser phase. 
 
-During the execution of the import command, we will call `execute()` on `ImportManager` class which is a part of 
-the `Storage` package which allows the user to select a JSON file that parses correctly into a RecipeBook. The parsing
-is done by the parse methods in `JsonUtil` class.
-Afterwards, we will check with our own RecipeBook to filter out duplicates and add the remaining non-duplicate recipes.
+The `import` command goes through the standard command execution pipeline, skipping the parser phase.
+
+During the execution of the import command, we will call `execute()` on `ImportManager` class instance. This class, which is a part of
+the `Storage` package, allows the user to select another Recipe Book JSON file for
+import from their file system. The parsing is performed using the existing `parse`
+methods in the `seedu.recipe.commons.util.JsonUtil` class.
+Afterwards, we will cross-check with our current RecipeBook to filter out
+duplicate recipes, and add the remaining non-duplicate recipes.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer without 
-selecting a JSON file, the recipe list will remain unchanged.
+
+:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer without
+selecting a JSON file, the recipe list will remain unchanged, and nothing will be
+imported.
+
 </div>
 
 ### Feature: Export RecipeBook
 
 #### Overview
-The `export` command allows the user to select a file path to export the current Recipe Book in JSON format, similar to
-how we would normally save the recipes in a JSON file. 
 
+The `export` command allows the user to export the current Recipe Book as a JSON
+file, to a file system location of their choosing. This JSON file will be in a
+format which is compatible with the [Import](#feature-import-recipebook) feature.
 
 <img class="diagram" src="images/ExportSequenceDiagram.png" width="1128" />
 
 #### Implementation
+
 The `export` command goes through the standard command execution pipeline, skipping the parser phase.
 
-During the execution of the export command, we will call `execute()` on `ExportManager` class which is a part of
-the `Storage` package which allows the user to select an existing file path for the export operation. 
-The export is done by copying the current saved RecipeBook JSON file and exporting the copy of it. If the RecipeBook
-Json file is not found, parsing of the current recipes will be done and exported as a JSON file.
-The parsing is done by the parse methods in `JsonUtil` class.
+During the execution of the export command, we will call `execute()` on an instance
+of the `ExportManager` class which forms a part of the `Storage` package. This
+class allows the user to select a save location for the exported JSON file.
+
+The export function is performed by performing a duplicate save of the current Recipe Book of the app, in addition to its default save location.
+If the current RecipeBook has not yet been saved, this command will first trigger
+a save into the App's default save location, then create another copy of that JSON
+file for export.
+The JSON formatting and export operations are performed by the parse methods in
+`seedu.recipe.commons.util.JsonUtil` class.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or closes the file explorer 
-without selecting a file path, nothing will be exported.
+
+:information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or 
+closes the file explorer without selecting a save location, the Recipe Book will 
+not be exported.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Glossary
@@ -477,8 +516,10 @@ Defined here are some common terms used throughout the guide, as well as their d
 * **Index**: Refers to the position of a specific recipe within a list of recipes, represented by a numerical value.
 
 ### Product scope
+
 **Target user profile:**
-* has a need to manage a large number of recipes and their relevant information
+
+* needs to manage a large number of recipes and their relevant information
 * prefers desktop applications to mobile applications
 * types fast
 * prefers typing to mouse interactions
@@ -486,6 +527,7 @@ Defined here are some common terms used throughout the guide, as well as their d
 **Value proposition:** manage recipes more conveniently and quickly as opposed to a typical mouse app
 
 <div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -818,6 +860,8 @@ testers are expected to do more *exploratory* testing.
    <br>**Expected:** The file picker window closes, and a file with the given filename is created in the given folder.
 
 <br>
+
+---
 
 ## **Conclusion**
 
