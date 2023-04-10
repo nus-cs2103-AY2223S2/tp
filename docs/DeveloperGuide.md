@@ -815,8 +815,8 @@ The terms in this glossary are sorted in alphabetical order.
   [draw.io](https://app.diagrams.net/).
 * **Fuzzy search**: A feature to search for items which partially match a query
   rather than exactly
-* **Hotkey**: A convenient combination of key presses meant to invoke some app
-  functionalities
+* **Hotkey**: A convenient combination of key presses meant to invoke an app
+  functionality
 * **PlantUML**: A text-based diagramming tool. See
   [plantuml.com](https://plantuml.com/) for more information.
 * **Project**: A freelance software development gig
