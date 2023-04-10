@@ -8,10 +8,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## 1. Introduction
-
 
 ### 1.1 Product Overview
 OfficeConnect is a task management tool designed specifically for managerial role personnels based within Singapore.
@@ -38,14 +35,11 @@ by [se-education.org](https://se-education.org).
 * Images retrieved from freepik and ICON8.
 * [JUnit5](https://junit.org/junit5/)
 
-
 ### 1.4 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## 2. Design
 
 <div markdown="span" class="alert alert-primary">
@@ -54,6 +48,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
+<div style="page-break-after: always;"></div>
 
 ### 2.1 Architecture
 
@@ -62,6 +57,7 @@ to learn how to create and edit diagrams.
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+<div style="page-break-after: always;"></div>
 
 #### 2.1.1 Main components of the architecture
 
@@ -78,6 +74,7 @@ The rest of the App consists of four components.
 * [**`Logic`**](#23-logic-component): The command executor.
 * [**`OfficeConnectModel`**](#24-officeconnectmodel-component): Holds the data of the App in memory.
 * [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
+<div style="page-break-after: always;"></div>
 
 #### 2.1.2 How the architecture components interact with each other
 
@@ -100,6 +97,7 @@ in the (partial) class diagram below.
 
 <img src="images/OfficeComponentManagers.png" width="750" />
 
+<div style="page-break-after: always;"></div>
 ### 2.2 UI component
 
 The **API** of this component is specified in
@@ -122,6 +120,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands. 
 * depends on some classes in the `OfficeConnectModel` component, as it displays `Person` and `Task` objects residing in
 the `OfficeConnectModel`.
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Logic component
 
@@ -161,7 +160,7 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 `AddressBookParser` returns back as a `Command` object. 
 * All `XYZCommandParser` classes (e.g., `AddTaskCommandParser`, 
 `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
+<div style="page-break-after: always;"></div>
 
 ### 2.4 OfficeConnectModel component
 
@@ -177,6 +176,7 @@ other classes shown above to parse the user command and create a `XYZCommand` ob
 of the `Model` component is provided below.
 * Does not depend on any of the other three components (as the `OfficeConnectModel` represents data entities of the domain,
 they should make sense on their own without depending on other components)
+<div style="page-break-after: always;"></div>
 
 ### 2.4.1 Model component
 
@@ -193,7 +193,7 @@ the UI can be bound to this list so that the UI automatically updates when the d
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a`ReadOnlyUserPref` 
 object.
 
-
+<div style="page-break-after: always;"></div>
 ### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F10-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -216,17 +216,17 @@ and reads them back into corresponding objects. It inherits from both `AddressBo
 means it can be treated as either (if the functionality of only one is needed). It depends on some classes in the 
 `OfficeConnectModel` component (because the `Storage` component's job is to save/retrieve objects that belong to `OfficeConnectModel`).
 
+<div style="page-break-after: always;"></div>
 ### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## 3. Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
 Notation: inputs placed in closed brackets [] are optional.
+<div style="page-break-after: always;"></div>
 
 ### 3.1 Adding a Task
 Syntax: `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`  
@@ -262,6 +262,7 @@ to distinguish between the tasks unless they read each of the task content indiv
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
 Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in
 both the short and long term.
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Deleting a Task
 Syntax: `deletet INDEX`  
@@ -279,6 +280,7 @@ If the index is invalid, an error will be thrown.
 
 Below is an activity diagram showcasing the 2 steps:  
 ![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png)
+
 
 #### 3.2.2 Design Considerations
 **Aspect: Implementation of Delete Task Command**
@@ -301,6 +303,7 @@ Below is an activity diagram showcasing the 2 steps:
     this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which
     would be troublesome and could lead to bugs. In alternative 1, all indexes are flushed to the front (i.e. first task
     has index 1, second task has index 2 etc.) and thus the invalid indexes can be easily obtained.
+<div style="page-break-after: always;"></div>
   
 ### 3.3 Finding a Person's Assigned Tasks
 Syntax: `findp NAME`  
@@ -312,6 +315,7 @@ The implementation of this feature is supported by `FindCommand` and `FindComman
 Below is an activity diagram that illustrates the control flow for the Find feature.  
 
 ![FindTaskActivityDiagram](images/FindActivityDiagram.png)
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Finding a Task's Assignees
 Syntax: `findt TASKNAME` 
@@ -338,6 +342,7 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
     * Pros: Shorter command to type out.
     * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
       to execute the findt command if the current display is empty.
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Editing a Task
 Syntax: `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE]`
@@ -359,6 +364,7 @@ The implementation of this feature is supported by `EditTaskCommand` and `EditTa
   * Pros: Forces users to be aware of the task to be edited instead of relying on subconscious mapping between index and tasks.
   * Cons: Less intuitive and less user-friendly. Users would be forced to retype all the fields of the task before being able
     to edit a single field.
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Assigning a Task
 Syntax: `assign pi/INDEX ti/INDEX` 
@@ -416,6 +422,7 @@ The following activity diagram summarizes what happens when a user wants to exec
   * Cons: From a manager's perspective, the generated recommendations for persons or tasks may not be suitable 
   for the given task or person. Thus, it may be better to give users full control over what they choose to display
   or search for before they choose to assign a task to a person.
+<div style="page-break-after: always;"></div>
 
 ### 3.7 Help Window
 
@@ -456,7 +463,7 @@ information, the user can choose to view the comprehensive User Guide instead.
     * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no restructuring of the list needed
     * Cons: Design not too intuitive, user may need to eyeball through all the commands in order to find what he/she is looking for.
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 3.8 Unassigning a Task from a Person
 
@@ -487,6 +494,7 @@ The implementation of this feature is supported by `UnassignTaskCommand` and `Un
 - **Alternative 2:** Unassign tasks using the task title and person name.
     - Pros: No need to obtain the index of the task and person, which could reduce the steps required for the user.
     - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
+<div style="page-break-after: always;"></div>
 
 ### 3.9 Listing all Tasks
 Syntax: `listt`  
@@ -497,6 +505,7 @@ The implementation of this feature is supported by `OfficeConnectModel`.
 Below is a sequence diagram that illustrates how a user can see all tasks stored in OfficeConnect.
 
 ![ListTaskSequenceDiagram](images/ListTaskSequenceDiagram.png)
+<div style="page-break-after: always;"></div>
 
 ### 3.10 Filtering Persons according to tag
 Syntax: `filterp tag/TAG`  
@@ -518,6 +527,7 @@ Below is an activity diagram that illustrates how a user finds all persons with 
 * **Alternative 2:** Allow multiple tags
   * Pros: Allows users to search for more than one tag at once, which increases convenience and flexibility.
   * Cons: Could produce many search results which may clutter up the GUI (as opposed to searching for only one task). More prone to bugs.
+<div style="page-break-after: always;"></div>
 
 ### 3.11 Quickstart Window
 Syntax: `quickstart`  
