@@ -85,7 +85,7 @@ Format: `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
 
 Example: `addtechnician n/Robert Low p/90253789 e/roblow@gmail.com a/25 Bedok East Rd, #08-20, SG405100 t/Leader`
 
-#### Adding a vehicle: `addvehicle`
+#### Adding a vehicle to a customer: `addvehicle`
 Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
 
 Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID cl/COLOR t/TYPE`
@@ -97,19 +97,19 @@ Examples:
 #### Adding a vehicle part: `addpart`
 Adds a vehicle part to the system.
 
-Format: `addpart n/NAME q/Quantity`
+Format: `addpart n/NAME q/QUANTITY`
 
 Example: `addpart n/Cylinder Head q/50`
 
 #### Adding a service to a vehicle: `addservice`
 Adds a service to perform on the specified vehicle plate number.
 
-Format: `addservice v/VEHICLE_ID [l/SERIVCE LENGTH (days)] [s/STATUS] [d/DESCRIPTION]`
+Format: `addservice v/VEHICLE_ID d/DESCRIPTION [l/SERIVCE LENGTH (days)] [s/STATUS]`
 
 Examples:
 * `addservice v/10 s/in progress d/Customer says abc`
 * `addservice v/10 t/standard l/10` \
-  Note: Adding service without specifying the type of service will default to “to repair” \
+  Note: Adding service without specifying the status of service will default to “to repair” \
   Note: Adding service without specifying the service length will default to 7 days
 
 #### Adding a vehicle part to specific service: `addservicepart`
@@ -121,7 +121,7 @@ Format: `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY`
 
 Example: `addservicepart s/2 n/Cylinder Head q/20`
 
-#### Adding a technician to a specific service: `addservicetech`
+#### Assigning a technician to a specific service: `addservicetech`
 Assigns an existing technician to an existing service
 
 Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
@@ -135,7 +135,7 @@ Format: `addappointment c/CUSTOMER_ID d/DATE t/TIME`
 
 Example: `addappointment c/5 d/2023-03-05 t/14:00`
 
-#### Adding a technician to an appointment: `addappointmenttech`
+#### Assigning a technician to an appointment: `addappointmenttech`
 Adds an existing technician to an exiting appointment.
 
 Format: `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID`
@@ -246,6 +246,26 @@ Format: `deletepart NAME`
 
 Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all their related records in the AutoM8 system.
 
+#### Unassign part from service: `removeservicepart`
+
+Removes part from service and transfers it back into global part List.
+
+Format: `removeservicepart n/PART_NAME s/SERVICE_ID q/PART_QTY`
+
+Example: `removeservicepart n/wheels s/2 q/2`
+
+#### Unassign technician from service: `removeservicetech`
+
+Format: `removeservicetech t/TECHNICIAN_ID s/SERVICE_ID`
+
+Example: `removeservicetech t/1 s/2`
+
+#### Unassign technician from appointment: `removeappointmenttech`
+
+Format: `removeappointment t/TECHNCIAN_ID a/APPOINTMENT_ID`
+
+Example: `removeappointmenttech t/1 a/2`
+
 ---
 ### Actions
 
@@ -343,7 +363,7 @@ TO BE UPDATED
 | **Add Technician**                                                    | `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addtechnician n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Add Vehicle**                                                       | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                                  |
 | **Add Vehicle Part**                                                  | `addpart n/NAME q/Quantity` <br> e.g., `addpart n/Cylinder Head q/50`                                                                                                           |
-| **Add Service**                                                       | `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `addservice v/10 t/standard s/in progress d/Customer says abc`                                    |
+| **Add Service**                                                       | `addservice v/VEHICLE_ID d/DESCRIPTION [s/STATUS] [l/SERVICE_LENGTH (days)]`<br> e.g., `addservice v/10 d/standard s/in progress l/5`                                           |
 | **Add Part to Service**                                               | `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY` <br> e.g., `addservicepart s/2 n/Cylinder Head q/20`                                                                       |
 | **Add Technician to Service**                                         | `addservicetech s/SERVICE_ID t/TECHNICIAN_ID` <br> e.g., `addservicetech s/1 t/3`                                                                                               |
 | **Add Customer Appointment**                                          | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`addappointment c/5 d/2023-03-05 t/14:00`                                                                                 |
@@ -351,9 +371,11 @@ TO BE UPDATED
 | **List all Vehicles/Customers/Parts/Appointments**                    | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`, `list`                                                                                                |
 | **Sort Displayed List**                                               | `sort by/ENTITY_PARAM d/DIRECTION`<br> e.g., `listvehicles` then `sort by/brand d/asc`                                                                                          |
 | **View specific Vehicle/Customer/Service/Appointment/Technician**     | `view(vehicle/customer/service/appointment/technician) ID`<br> e.g., `viewappointment 56`                                                                                       |
-| **Find specific Vehicle/Customer/Service/Appointment/Technician**     | `find(vehicle/customer/service/appointment/technician) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                 |
-| **Edit a specific Vehicle/Customer/Service/Appointment/Technician**   | `edit(vehicle/customer/service/appointment/technician) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                            |
+| **Find Vehicle/Customer/Service/Appointment/Technician**              | `find KEYWORD [MORE SPACE SEPERATED KEYWORDS]`<br> e.g., `find toyota car`                                                                                                      |
+| **Edit a specific Vehicle/Customer/Service/Appointment/Technician**   | `edit(vehicle/customer/service/appointment/technician) i/ID [?/PARAM] …​`<br> e.g., `edit customer i/1 p/91234567 e/johndoe@example.com`                                        |
 | **Delete a specific Vehicle/Customer/Service/Appointment/Technician** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                                   |
+| **Unassign Technician from Service/Appointent**                       | `remove(service/appointment)tech t/TECHCICIAN_ID (a//s/)APPOINTMENT/SERVICE_ID`<br> e.g., `removeservicetech s/1 t/2`                                                           | ` 
+| **Remove Part from Service**                                          | `removeservicepart s/SERVICE_ID n/PART_NAME q/PART_QUANTITY`<br> e.g., `removeservicepart s/1 n/wheels q/2`                                                                     |
 | **Get total number appointment on a specified date**                  | `totalAppointment d/DATE` <br> e.g., `totalappointment d/2023-02-03`                                                                                                            |
 | **Undo**                                                              | `undo`                                                                                                                                                                          |
 | **Redo**                                                              | `redo`                                                                                                                                                                          |
