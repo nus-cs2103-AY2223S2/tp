@@ -34,6 +34,7 @@ Given below are my contributions to the project.
     * Refactored referring to a person, and now instead to a client
   * Developer Guide:
     * Added implementation details of the `addPolicy` feature.
+    * Added use cases for all features.
 
 * **Community**:
 * PRs reviewed (with non-trivial review comments): [\#61](https://github.com/AY2223S2-CS2103T-T09-4/tp/pull/61),

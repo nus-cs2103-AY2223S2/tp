@@ -742,7 +742,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is `Advis.io` and the **Actor** is the `user (Financial Advisor)`, unless
 specified otherwise)
 
-**Use case: Manage client’s personal information**
+**Use case: Add a new client’s personal information**
 
 **MSS**
 
@@ -760,8 +760,55 @@ specified otherwise)
     Steps 1a1-1b are repeated until the data entered are correct.
 
     Use case resumes from step 2.
+    
+**Use case: Edit a client's personal information**
 
-**Use case: Manage client’s policy information**
+**MSS**
+
+1. User inputs the client’s index and modified personal information
+2. Advis.io confirms and modifies the client profile
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs the wrong format for the client’s information.
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs correct data
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+* 1b. The user inputs an invalid client index 
+  * 1b1. Advis.io displays a message indicating that the client index is invalid. 
+  * 1b2. User inputs another client index with the modified information
+
+    Steps 1b1-1b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+**Use case: Delete a client**
+
+**MSS**
+
+1. User inputs the delete command and the index of the client to delete.
+2. Advis.io confirms and deletes the client profile
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client index 
+  * 1a1. Advis.io displays a message indicating that the client index is invalid. 
+  * 1a2. User inputs another client index. 
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+
+**Use case: Add client’s policy information**
 
 **MSS**
 
@@ -780,6 +827,53 @@ specified otherwise)
 
     Use case resumes from step 2.
 
+**Use case: Edit client’s policy information**
+
+**MSS**
+
+1. User inputs the client’s policy index and modified policy information
+2. Advis.io confirms and modifies the policy under the client's profile
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs the wrong format for the policy’s information.
+  * 1a1. Advis.io requests for the user to input the correct data format.
+  * 1a2. User inputs revised data
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+* 1b. The user inputs an invalid client or policy index
+  * 1b1. Advis.io displays a message indicating that the client or policy index is invalid.
+  * 1b2. User inputs another client or policy index with the modified information
+
+    Steps 1b1-1b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+**Use case: Delete a client’s policy**
+
+**MSS**
+
+1. User inputs the delete command and the index of the client and policy to delete.
+2. Advis.io confirms and deletes the policy under the client's profile
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client or policy index
+  * 1a1. Advis.io displays a message indicating that the client or policy index is invalid.
+  * 1a2. User inputs another client or policy index.
+
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
+
+
 **Use case: Find Client**
 
 **MSS**
@@ -796,8 +890,11 @@ specified otherwise)
 
 * 2a. Advis.io does not find any clients matching the entered information.
   * 2a1. Advis.io displays a message indicating that no clients were found.
+  * 2a2. The user enters another search query with another set of information.
 
-    Use case resumes from step 1.
+    Steps 2a1-2a2 are repeated until the user enters a valid search query.
+
+    Use case resumes from step 3.
 
 **Use case: Undo and redo actions**
 
@@ -838,7 +935,9 @@ specified otherwise)
   * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
   * 1a2. The user enters a new appointment name and date.
 
-  Use case ends
+  Steps 1a1-1b are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
 
 
 * 1b. Advis.io adds an invalid appointment date.
@@ -847,8 +946,64 @@ specified otherwise)
 
   Steps 1b1-1b2 are repeated until the date entered is valid.
 
-  Use case ends.
+  Use case resumes from step 2.
 
+**Use case: Delete Appointment for Client**
+
+**MSS**
+
+1. The user inputs the deleteAppointment command and the index of the client to delete it from.
+2. Advis.io confirms and deletes the appointment under the client's profile.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client index.
+  * 1a1. Advis.io displays a message indicating that the client index is invalid.
+  * 1a2. User inputs another client index.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
+
+**Use case: Selecting a Client**
+
+**MSS**
+
+1. The user selects a client index from the list of clients, to display their information and policies.
+2. Advis.io displays the client's information and policies.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs an invalid client index.
+  * 1a1. Advis.io displays a message indicating that the client index is invalid.
+  * 1a2. User inputs another client index.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
+
+**Use case: Sorting clients**
+
+**MSS**
+
+1. The user inputs the sort command and the field to sort by, as well as an integer to indicate the order.
+2. Advis.io sorts the list of clients by the specified field and order.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user inputs a non-integer value to indicate the order.
+* 1a1. Advis.io displays a message indicating that the command format is invalid.
+* 1a2. User inputs another value to indicate the order.
+
+  Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes from step 2.
 
 
 ### Non-Functional Requirements
@@ -1038,3 +1193,4 @@ testers are expected to do more *exploratory* testing.
    use of maintaining a cloud-based server such that users may retrieve their own data on the go.
 6. We plan on implementing an administrative user interface. This administrative control will allow management of the company to control the types of policies which users (financial advisors) my key into the application.
 7. We plan to the ability to `clear` the filtered list from `find`. Now if we call `find` to get the filtered client list and call `clear` we will clear the entire original client list which might not be very intuitive for the user.
+8. For the sorting commands, which are `sortClientEmail` , `sortClientName`, `sortClientPhone` - we plan to fix a feature flaw such that the index the user can put in is only binary. Currently, the user can put in any integer and the command will still work. Only if the user puts the index as 0, it will be in descending order. We plan to fix this such that the user can only put in 1 or 0. If the user puts in 1, the list will be sorted in ascending order. If the user puts in 0, the list will be sorted in descending order. This will make the command more intuitive for the user. 
