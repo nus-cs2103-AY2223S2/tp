@@ -258,7 +258,7 @@ We originally wanted to identify Appointments by their `AppointmentId` instead o
 
 ### Help (`help`) command
 
-**Overview*
+**Overview**
 
 Creates popup message to assist help.
 
@@ -270,7 +270,7 @@ The help command creates a pop up window message redirecting the user to the use
 
 ### View patient card (`view`) command
 
-**Overview*
+**Overview**
 
 Creates popup message for user to fully view patient card of desired index.
 
@@ -280,6 +280,40 @@ Creates popup message for user to fully view patient card of desired index.
 
 The view command creates a pop up window message displaying the patient card to the user. This is executed by passing a boolean `showHelp = true` as well as the `index` of the desired patient into `CommandResult`. In `MainWindow`, the boolean `CommandResult.isView()` is set to true and will execute the `handleView()` method. This method will check if the view window is already showing. If it is not, it will open the window for the user.
 
+### List patients (`list_patient`) command
+
+**Overview**
+
+Lists all patients in the patient list in the patient panel.
+
+**Implementation**
+
+`list.execute(Model model)` updates the filtered patient list in `model` to show all patients by passing the predicate `PREDICATE_SHOW_ALL_PATIENTS` to `model.updateFilteredPatientList(Predicate<Patient> predicate)`. This predicate is a static field in `Patient` that returns true for all patients.
+
+### List appointments (`list_appt`) command
+
+**Overview**
+
+Displays all appointments in `ModelManager.appointmentList` to the appointment panel. This will update the calendar accordingly.
+
+**Implementation**
+`ListAppointmentCommand.execute(Model model)` updates the filtered appointment list in `model` to show all appointments by passing the predicate `PREDICATE_SHOW_ALL_APPOINTMENTS` to `model#updateFilteredAppointmentList(Predicate<Appointment> predicate)`. This predicate is a static field in `Appointment` that returns true for all appointments. The calendar is then updated by calling `CalendarCard.addAppointmentsToCalendar(model.getFilteredAppointmentList())`.
+
+### Clear (`clear`) command
+
+**Overview**
+
+The clear command deletes all patients and appointments from the patient and appointment list respectively. This will update the calendar accordingly.
+
+**Implementation**
+
+`ClearCommand.execute(Model model)` passes a `new AddressBook()` to `model#setAddressBook()` and a `new AppointmentList()` to `model#setAppointmentList()`. This will clear the patient and appointment list respectively.
+
+### Exit (`exit`) command
+
+**Overview**
+
+The exit command exits the application.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
