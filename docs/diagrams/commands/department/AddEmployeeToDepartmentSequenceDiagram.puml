@@ -62,7 +62,7 @@ destroy AddEmployeeToDepartmentCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> AddEmployeeToDepartmentCommand : execute()
+LogicManager -> AddEmployeeToDepartmentCommand : execute(model)
 activate AddEmployeeToDepartmentCommand
 
 AddEmployeeToDepartmentCommand -> Model : getEmployee(toAdd)
