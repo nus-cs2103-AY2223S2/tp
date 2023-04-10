@@ -12,16 +12,16 @@ With TinS, you can conveniently and efficiently manage, coordinate and keep trac
 all in one place.
 
 ### Notable Features
-* Finding a particular internship application in TinS using keywords: [`find`](#finding-internships-find)
-* Finding a particular event in TinS using keywords: [`event find`](#finding-a-particular-event--event-find)
-* Calendar View: [`calendar`](#opens-the-calendar-page--calendar)
-* Finding all clashing events: [`clash`](#finding-all-clashing-events--clash)
+* Finding a particular internship application in TinS using keywords: `find`
+* Finding a particular event in TinS using keywords: `event find`
+* Calendar View: `calendar`
+* Finding all clashing events: `clash`
 
 # Links
 
-- [About Us](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/docs/AboutUs.md)
-- [Developer Guide](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/docs/DeveloperGuide.md)
-- [User Guide](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/docs/UserGuide.md)
+- [About Us](https://ay2223s2-cs2103t-w11-2.github.io/tp/AboutUs.html)
+- [Developer Guide](https://ay2223s2-cs2103t-w11-2.github.io/tp/DeveloperGuide.html)
+- [User Guide](https://ay2223s2-cs2103t-w11-2.github.io/tp/UserGuide.html)
 
 # Acknowledgements
 
