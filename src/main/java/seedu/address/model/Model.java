@@ -58,15 +58,11 @@ public interface Model {
 
     /**
      * Returns the user prefs' GUI settings.
-     *
-     * @return The user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Sets the user prefs' GUI settings.
-     *
-     * @param guiSettings The GUI settings to set the user prefs's GUI settings to.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
@@ -120,63 +116,67 @@ public interface Model {
     boolean hasModule(ModuleCode moduleCode);
 
     /**
-     * Returns a module which has {@code moduleCode}.
-     * The module must exist in the tracker.
+     * Returns the module whose module code is the same as {@code moduleCode}. If no such module exist, return null.
      *
-     * @param moduleCode The code of the module to return
-     * @return Module that has {@code moduleCode}.
+     * @param moduleCode The code of the module to be returned.
+     * @return The module whose module code is the same as {@code moduleCode}. If no such module exist, return null.
      */
     ReadOnlyModule getModule(ModuleCode moduleCode);
 
     /**
-     * Deletes the given module. <p>
-     * The module must exist in the tracker.
+     * Removes the given module {@code target} from the tracker.
      *
-     * @param target The module to be deleted.
+     * @param target The module to be deleted from the tracker. It must exist in the tracker.
+     * @throws ModuleNotFoundException Indicates that the module does not exist in the tracker.
      */
     void deleteModule(ReadOnlyModule target);
 
     /**
      * Adds the given module.
      *
-     * @param module The module to be added.
+     * @param module The module to be added. It must not already exist in the tracker.
+     * @throws DuplicateModuleException Indicates that {@code module} already exist in the tracker.
      */
     void addModule(Module module);
 
     /**
-     * Replaces the given module {@code target} with {@code editedModule}.<p>
-     * {@code target} must exist in the tracker.<p>
-     * The module code of {@code editedModule} must not be the same as another existing module in the tracker.
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
      *
-     * @param target The module to be replaced.
-     * @param editedModule The module that will replace.
+     * @param target The module to be replaced. It must exist in the tracker.
+     * @param editedModule The module that will replace. It must not have the same module code as another
+     *                     existing module in the tracker.
+     * @throws ModuleNotFoundException Indicates that {@code target} does not exist in the tracker.
+     * @throws DuplicateModuleException Indicates that {@code editedModule} is the same as another existing
+     *                                  module in the tracker.
      */
     void setModule(ReadOnlyModule target, Module editedModule);
 
     /**
      * Returns true if a module of {@code moduleCode} has a lecture with {@code lectureName}.
      *
-     * @param moduleCode The moduleCode of the module that the lecture with {@code lectureName} belongs to.
-     * @return True if a module that has {@code moduleCode} has a lecture with {@code lectureName}. Otherwise, false.
+     * @param moduleCode The code of the module that the lecture with {@code lectureName} belongs to.
+     * @param lectureName The name of the lecture to check if exist.
+     * @return True if a module with code {@code moduleCode} has a lecture with name {@code lectureName}.
+     *         Otherwise, false.
      */
     boolean hasLecture(ModuleCode moduleCode, LectureName lectureName);
 
     /**
-     * Returns a lecture with {@code lectureName} in module of {@code moduleCode}
-     * The module must exist in the tracker.
-     * The lecture must exist in {@code module}
+     * Returns a lecture with name {@code lectureName} in module with code {@code moduleCode}
      *
-     * @param moduleCode The moduleCode of the module that the lecture with {@code lecturename} belongs to.
-     * @return Lecture with {@code lectureName} found in module of {@code moduleCode}
+     * @param moduleCode The code of the module that the lecture with {@code lectureName} belongs to.
+     * @param lectureName The name of the lecture.
+     * @return The lecture with name {@code lectureName} found in module of code {@code moduleCode}. If the no such
+     *         module or lecture exist, returns null.
      */
     ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName);
 
     /**
-     * Deletes the given lecture {@code target}.<p>
-     * The lecture must exist in {@code module}.
+     * Deletes the given lecture {@code target} from the module {@code module}.
      *
      * @param module The module to delete the lecture from.
-     * @param target The lecture to be deleted.
+     * @param target The lecture to be deleted. The lecture must exist in {@code module}.
+     * @throws LectureNotFoundException Indicates that the lecture does not exist in the module.
      */
     void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target);
 
@@ -185,17 +185,20 @@ public interface Model {
      *
      * @param module The module to add the lecture to.
      * @param lecture The lecture to add.
+     * @throws DuplicateLectureException Indicates that {@code lecture} already exist in the module.
      */
     void addLecture(ReadOnlyModule module, Lecture lecture);
 
     /**
-     * Replaces the given lecture {@code target} with {@code editedLecture}.<p>
-     * {@code target} must exist in {@code module}.<p>
-     * The name of {@code editedLecture} must not be the same as another existing lecture in {@code module}.
+     * Replaces the lecture {@code target} in {@code module}, with {@code editedLecture}.
      *
      * @param module The module whose lecture is to be replaced.
-     * @param target The lecture to be replaced.
-     * @param editedLecture The lecture that will replace.
+     * @param target The lecture to be replaced. It must not exist in the module.
+     * @param editedLecture The lecture that will replace. It must not be the same as another existing lecture
+     *                      in the module.
+     * @throws LectureNotFoundException Indicates that {@code target} does not exist in the module.
+     * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
+     *                                   lecture in the module.
      */
     void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture);
 
@@ -213,24 +216,23 @@ public interface Model {
 
     /**
      * Returns the video with the name {@code videoName} which exists in a lecture with the name {@code lectureName}
-     * which exists in a module with code {@code moduleCode}.<p>
-     *
-     * Returns null if the video does not exist.
+     * which exists in a module with code {@code moduleCode}.
      *
      * @param moduleCode The code of the module containing the lecture with name {@code lectureName}.
      * @param lectureName The name of the lecture containing the video with name {@code videoName}.
      * @param videoName The name of the video.
      * @return The video with the name {@code videoName} which exists in a lecture with the name {@code lectureName}
-     *         which exists in a module with code {@code moduleCode}. Null, if the video does not exist.
+     *         which exists in a module with code {@code moduleCode}. Null, if the module, lecture, or video does not
+     *         exist.
      */
     Video getVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName);
 
     /**
-     * Deletes the given video {@code target}.<p>
-     * The video must exist in {@code lecture}.
+     * Removes the given video {@code video} from {@code lecture}.
      *
      * @param lecture The lecture to delete the video from.
-     * @param video The video to be deleted.
+     * @param video The video to be deleted. It must exist in {@code lecture}.
+     * @throws VideoNotFoundException Indicates that the video does not exist in the lecture.
      */
     void deleteVideo(ReadOnlyLecture lecture, Video video);
 
@@ -239,17 +241,20 @@ public interface Model {
      *
      * @param lecture The lecture to add the video to.
      * @param video The video to add.
+     * @throws DuplicateVideoException Indicates that {@code video} already exist in the lecture.
      */
     void addVideo(ReadOnlyLecture lecture, Video video);
 
     /**
-     * Replaces the given video {@code target} with {@code editedVideo}.<p>
-     * {@code target} must exist in {@code lecture}.<p>
-     * The name of {@code editedVideo} must not be the same as another existing video in {@code lecture}.
+     * Replaces the given video {@code target} in {@code lecture}, with {@code editedVideo}.
      *
      * @param lecture The lecture whose video is to be replaced.
-     * @param target The video to be replaced.
-     * @param editedVideo The video that will replace.
+     * @param target The video to be replaced. It must exist in the lecture.
+     * @param editedVideo The video that will replace. It must not have the same name as another existing
+     *                    video in the lecture.
+     * @throws VideoNotFoundException Indicates that {@code target} does not exist in the lecture.
+     * @throws DuplicateVideoException Indicates that {@code editedVideo} is the same as another existing
+     *                                 video in the lecture.
      */
     void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo);
 

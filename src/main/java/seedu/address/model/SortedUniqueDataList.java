@@ -9,7 +9,7 @@ import seedu.address.model.exceptions.DataNotFoundException;
 import seedu.address.model.exceptions.DuplicateDataException;
 
 /**
- * A {@code UniqueDataList} that is sorted using {@code T#compareTo(T)}.
+ * A {@code UniqueDataList} that is sorted in ascending order using {@code T#compareTo(T)}.
  *
  * @see UniqueDataList
  */

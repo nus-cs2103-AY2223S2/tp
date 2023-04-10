@@ -9,18 +9,22 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode implements Comparable<ModuleCode> {
 
+    /** Message that specifies the constraints. */
     public static final String MESSAGE_CONSTRAINTS =
             "Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally "
                     + "followed by more uppercase alphabet characters";
 
+    /** The regex for validating the module code. */
     public static final String VALIDATION_REGEX = "[A-Z]+[0-9]+[A-Z]*";
 
+    /** The module code. */
     public final String code;
 
     /**
      * Constructs a {@code ModuleCode}.
      *
      * @param code A valid code.
+     * @throws IllegalArgumentException Indicates that {@code code} is an invalid module code.
      */
     public ModuleCode(String code) {
         requireNonNull(code);
@@ -53,7 +57,7 @@ public class ModuleCode implements Comparable<ModuleCode> {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof ModuleCode
-                && code.equals(((ModuleCode) other).code));
+                        && code.equals(((ModuleCode) other).code));
     }
 
     @Override

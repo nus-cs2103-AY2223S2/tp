@@ -13,14 +13,19 @@ public class Name implements Comparable<Name> {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
+    /** Message that specifies the constraints. */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    /** The name. */
     public final String name;
 
     /**
      * Constructs a {@code Name} which is validated using {@link Name#VALIDATION_REGEX}.
      *
      * @param name A valid name.
+     * @param constraintsMesssage The message that the {@code IllegalArgumentException} object should contain if
+     *                            thrown.
+     * @throws IllegalArgumentException Indicates that {@code name} is an invalid name.
      */
     public Name(String name, String constraintsMesssage) {
         this(name, VALIDATION_REGEX, constraintsMesssage);
@@ -31,6 +36,9 @@ public class Name implements Comparable<Name> {
      *
      * @param name A valid name.
      * @param validationRegex The regex use to validate the name.
+     * @param constraintsMesssage The message that the {@code IllegalArgumentException} object should contain if
+     *                            thrown.
+     * @throws IllegalArgumentException Indicates that {@code name} is an invalid name.
      */
     public Name(String name, String validationRegex, String constraintsMesssage) {
         requireAllNonNull(name, validationRegex);

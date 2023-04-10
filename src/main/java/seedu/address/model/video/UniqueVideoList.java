@@ -10,7 +10,7 @@ import seedu.address.model.video.exceptions.VideoNotFoundException;
 /**
  * A list of sorted videos that enforces uniqueness between its elements and does not allow nulls.<p>
  *
- * A video is sorted by using the {@code Video#compareTo(Video)} method.
+ * A video is sorted by using the {@code Video#compareTo(Video)} method.<p>
  *
  * A video is considered unique by comparing using {@code Video#isSameVideo(Video)}. As such, adding and updating of
  * videos uses {@code Video#isSameVideo(Video)} for equality so as to ensure that the video being added or updated is
@@ -57,11 +57,10 @@ public class UniqueVideoList extends SortedUniqueDataList<Video> {
 
     /**
      * Replaces the video {@code target} in the list with {@code editedVideo}.<p>
-     * {@code target} must exist in the list.<p>
-     * {@code editedVideo} must not have the same name as another existing video in the list.
      *
-     * @param target The video to be replaced.
-     * @param editedVideo The video that will replace.
+     * @param target The video to be replaced. It must exist in the list.
+     * @param editedVideo The video that will replace. It must not have the same name as another existing
+     *                    video in the list.
      * @throws VideoNotFoundException Indicates that {@code target} does not exist in the list.
      * @throws DuplicateVideoException Indicates that {@code editedVideo} is the same as another existing
      *                                 video in the list.
@@ -80,10 +79,9 @@ public class UniqueVideoList extends SortedUniqueDataList<Video> {
     }
 
     /**
-     * Replaces the contents of this list with {@code videos}.<p>
-     * {@code videos} must not contain duplicate videos.
+     * Replaces the contents of this list with {@code videos}.
      *
-     * @param videos The list containing the videos that will replace.
+     * @param videos The list containing the videos that will replace. It must not contain duplicate videos.
      */
     public void setVideos(List<Video> videos) {
         super.setAllData(videos);

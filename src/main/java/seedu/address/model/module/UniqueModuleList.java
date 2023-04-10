@@ -10,7 +10,7 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
 /**
  * A list of sorted modules that enforces uniqueness between its elements and does not allow nulls.<p>
  *
- * A module is sorted by using the {@code Module#compareTo(Module)} method.
+ * A module is sorted by using the {@code Module#compareTo(Module)} method.<p>
  *
  * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
  * modules uses {@code Module#isSameModule(Module)} for equality so as to ensure that the module being added or updated
@@ -56,12 +56,11 @@ public class UniqueModuleList extends SortedUniqueDataList<Module> {
     }
 
     /**
-     * Replaces the module {@code target} in the list with {@code editedModule}.<p>
-     * {@code target} must exist in the list.<p>
-     * {@code editedModule} must not be the same as another existing module in the list.
+     * Replaces the module {@code target} in the list with {@code editedModule}.
      *
-     * @param target The module to be replaced.
-     * @param editedModule The module that will replace.
+     * @param target The module to be replaced. It must exist in the list.
+     * @param editedModule The module that will replace. It must not have the same module code as another existing
+     *                     module in the list.
      * @throws ModuleNotFoundException Indicates that {@code target} does not exist in the list.
      * @throws DuplicateModuleException Indicates that {@code editedModule} is the same as another existing
      *                                  module in the list.
@@ -80,10 +79,9 @@ public class UniqueModuleList extends SortedUniqueDataList<Module> {
     }
 
     /**
-     * Replaces the contents of this list with {@code modules}.<p>
-     * {@code modules} must not contain duplicate modules.
+     * Replaces the contents of this list with {@code modules}.
      *
-     * @param modules The list containing the modules that will replace.
+     * @param modules The list containing the modules that will replace. It must not contain duplicate modules.
      */
     public void setModules(List<Module> modules) {
         super.setAllData(modules);

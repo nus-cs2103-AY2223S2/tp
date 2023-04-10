@@ -21,7 +21,7 @@ public interface ReadOnlyModule {
     /**
      * Returns the module's name.
      *
-     * @return The module name.
+     * @return The module's name.
      */
     public ModuleName getName();
 

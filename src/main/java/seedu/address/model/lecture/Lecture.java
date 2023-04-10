@@ -33,7 +33,8 @@ public class Lecture implements ReadOnlyLecture, Comparable<Lecture> {
      * Constructs a {@code Lecture}.
      *
      * @param name The name of the lecture.
-     * @param tags The tags applied to the module.
+     * @param tags The tags applied to the lecture.
+     * @param videos The videos of the lecture.
      */
     public Lecture(LectureName name, Set<Tag> tags, List<Video> videos) {
         requireAllNonNull(name, tags, videos);
@@ -98,22 +99,20 @@ public class Lecture implements ReadOnlyLecture, Comparable<Lecture> {
 
     /**
      * Adds a video to the lecture.
-     * The video must not already exist in the lecture.
      *
-     * @param video The video to add.
-     * @throws DuplicateVideoException Indicates that {@code video} already exist in the module.
+     * @param video The video to add. It must not already exist in the lecture.
+     * @throws DuplicateVideoException Indicates that {@code video} already exist in the lecture.
      */
     public void addVideo(Video video) {
         videos.add(video);
     }
 
     /**
-     * Replaces the given video {@code target} in the list with {@code editedVideo}.<p>
-     * {@code target} must exist in the lecture.<p>
-     * {@code editedVideo} must not have the same name as another existing video in the lecture.
+     * Replaces the given video {@code target} in the list with {@code editedVideo}.
      *
-     * @param target The video to be replaced.
-     * @param editedVideo The video that will replace.
+     * @param target The video to be replaced. It must exist in the lecture.
+     * @param editedVideo The video that will replace. It must not have the same name as another existing
+     *                    video in the lecture.
      * @throws VideoNotFoundException Indicates that {@code target} does not exist in the lecture.
      * @throws DuplicateVideoException Indicates that {@code editedVideo} is the same as another existing
      *                                 video in the lecture.
@@ -125,10 +124,9 @@ public class Lecture implements ReadOnlyLecture, Comparable<Lecture> {
     }
 
     /**
-     * Removes the given video {@code key} from this {@code Lecture}.<p>
-     * {@code key} must exist in the lecture.
+     * Removes the given video {@code key} from this {@code Lecture}.
      *
-     * @param key The video to be removed.
+     * @param key The video to be removed. It must exist in the lecture.
      * @throws VideoNotFoundException Indicates that the video does not exist in the lecture.
      */
     public void removeVideo(Video key) {
@@ -139,7 +137,7 @@ public class Lecture implements ReadOnlyLecture, Comparable<Lecture> {
      * Returns true if both lectures have the same fields.<p>
      * This defines a stronger notion of equality between two lectures.
      *
-     * @param other The lecture to check if it is equivalent to this lecture.
+     * @param other The object to check if it is equivalent to this lecture.
      * @return True if both lectures have the same fields. Otherwise, false.
      */
     @Override

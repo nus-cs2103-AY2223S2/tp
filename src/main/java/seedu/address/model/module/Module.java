@@ -34,7 +34,8 @@ public class Module implements ReadOnlyModule, Comparable<Module> {
     private final UniqueLectureList lectures = new UniqueLectureList();
 
     /**
-     * Every field must be not null.
+     * Constructs a {@code Module}.<p>
+     * Every field must be non-null.
      *
      * @param code The module's code.
      * @param name The name of the module.
@@ -109,10 +110,9 @@ public class Module implements ReadOnlyModule, Comparable<Module> {
     }
 
     /**
-     * Adds a lecture to the module.<p>
-     * The lecture must not already exist in the module.
+     * Adds a lecture to the module.
      *
-     * @param lecture The lecture to add.
+     * @param lecture The lecture to add. It must not exist in the module.
      * @throws DuplicateLectureException Indicates that {@code lecture} already exist in the module.
      */
     public void addLecture(Lecture lecture) {
@@ -120,12 +120,11 @@ public class Module implements ReadOnlyModule, Comparable<Module> {
     }
 
     /**
-     * Replaces the given lecture {@code target} in the list with {@code editedLecture}.<p>
-     * {@code target} must exist in the module.<p>
-     * {@code editedLecture} must not be the same as another existing lecture in the module.
+     * Replaces the given lecture {@code target} in the list with {@code editedLecture}.
      *
-     * @param target The lecture to be replaced.
-     * @param editedLecture The lecture that will replace.
+     * @param target The lecture to be replaced. It must not exist in the module.
+     * @param editedLecture The lecture that will replace. It must not be the same as another existing lecture
+     *                      in the module.
      * @throws LectureNotFoundException Indicates that {@code target} does not exist in the module.
      * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
      *                                   lecture in the module.
@@ -137,10 +136,9 @@ public class Module implements ReadOnlyModule, Comparable<Module> {
     }
 
     /**
-     * Removes the given lecture {@code key} from this {@code Module}.<p>
-     * {@code key} must exist in the module.
+     * Removes the given lecture {@code key} from this {@code Module}.
      *
-     * @param key The lecture to be removed.
+     * @param key The lecture to be removed. It must exist in the module.
      * @throws LectureNotFoundException Indicates that the lecture does not exist in the module.
      */
     public void removeLecture(ReadOnlyLecture key) {
@@ -151,7 +149,7 @@ public class Module implements ReadOnlyModule, Comparable<Module> {
      * Returns true if both modules have the same fields.<p>
      * This defines a stronger notion of equality between two modules.
      *
-     * @param other The module to check if it is equivalent to this module.
+     * @param other The object to check if it is equivalent to this module.
      * @return True if both modules have the same fields. Otherwise, false.
      */
     @Override

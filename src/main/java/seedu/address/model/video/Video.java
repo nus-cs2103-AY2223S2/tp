@@ -83,7 +83,7 @@ public class Video implements Comparable<Video> {
      * Returns true if both videos have the same fields.<p>
      * This defines a stronger notion of equality between two videos.
      *
-     * @param other The video to check if it is equivalent to this video.
+     * @param other The object to check if it is equivalent to this video.
      * @return True if both videos have the same fields. Otherwise, false.
      */
     @Override
