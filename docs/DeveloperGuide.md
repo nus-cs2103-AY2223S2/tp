@@ -670,7 +670,7 @@ Preconditions: Person is already in FL.
 
   Use case ends.
 
-**Use case: UC09- Find person and related pairs**
+**Use case: UC10- Find person and related pairs**
 
 **MSS**
 
@@ -685,7 +685,9 @@ Preconditions: Person is already in FL.
 * 1a. FL detects missing arguments or an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC10- View all persons and pairs**
+  Use case ends.
+
+**Use case: UC11- View all persons and pairs**
 
 **MSS**
 
@@ -700,7 +702,9 @@ Preconditions: Person is already in FL.
 * 1a. FL detects missing arguments or an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC11- View paired persons**
+  Use case ends.
+
+**Use case: UC12- View paired persons**
 
 **MSS**
 
@@ -715,7 +719,9 @@ Preconditions: Person is already in FL.
 * 1a. FL detects missing arguments or an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC12- View unpaired persons**
+  Use case ends.
+
+**Use case: UC13- View unpaired persons**
 
 **MSS**
 
@@ -730,7 +736,9 @@ Preconditions: Person is already in FL.
 * 1a. FL detects missing arguments or an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC13- View statistics**
+  Use case ends.
+
+**Use case: UC14- View statistics**
 
 **MSS**
 
@@ -745,7 +753,9 @@ Preconditions: Person is already in FL.
 * 1a. FL detects an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC14- Look up Help Page**
+  Use case ends.
+
+**Use case: UC15- Look up Help Page**
 
 **MSS**
 
@@ -760,7 +770,9 @@ Preconditions: Person is already in FL.
 * 1a. FL detects an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
 
-**Use case: UC15- Exit the app**
+  Use case ends.
+
+**Use case: UC16- Exit the app**
 
 **MSS**
 
@@ -774,6 +786,8 @@ Preconditions: Person is already in FL.
 
 * 1a. FL detects an error in the entered command.
     * 1a1. FL feedbacks that entered command is incorrect.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
