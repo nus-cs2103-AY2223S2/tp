@@ -15,14 +15,16 @@ title: FastTrack User Guide
 3. [Purpose of this guide](#purpose-of-this-guide)
 4. [How to understand this guide](#understanding-this-guide)
    1. [Icons](#icons)
-   2. [Command Syntax](#command-syntax)
 5. [Quick Start and Installation](#quick-start-and-installation)
 6. [GUI Walkthrough](#graphical-user-interface-gui-walkthrough)
 7. [Features](#features)
-    1. [Category Features](#category-features)
-    2. [Expense Features](#expense-features)
-    3. [General Features](#general-features)
-    4. [Expense Statistics Feature](#expense-statistics-feature)
+   1. [Command Syntax](#command-syntax)
+   2. [Category Features](#category-features)
+   3. [Expense Features](#expense-features)
+      1. [One-Time Expenses](#one-time-expenses)
+      2. [Recurring Expenses](#recurring-expenses)
+   4. [General Features](#general-features)
+   5. [Expense Statistics Feature](#expense-statistics-feature)
 8. [Saving the data](#saving-the-data)
 9. [Editing the data file (For Advanced Users)](#editing-the-data-file)
 10. [Frequently Asked Questions](#frequently-asked-questions)
@@ -95,45 +97,13 @@ This provides additional useful information that may help you with using FastTra
 This provides some quick and convenient hacks that you can use to optimize your experience with FastTrack.
 </div>
 
-## Command Syntax
-
-First-time users may have difficulty understanding the syntax described in the command instructions. 
-
-If you are new to using a **Command Line Interface (CLI)**, we recommend reading this brief section before using FastTrack. 
-Understanding the **CLI** will help you enter commands more efficiently, which can save you time in the long run.
-
-In simple terms, the **Command Line Interface (CLI)** is a way to interact with FastTrack by typing in commands using just one line of text. This means you can add expenses quickly and easily.
-
-Here is a quick guide on how to read the syntax mentioned in the User Guide for using FastTrack's commands.
-
-```
-command tag1/ PARAMETER_1 tag2/ PARAMETER_2 [tag3/ PARAMETER_3]
-```
-
-| Element     | Format                                        | Usage                                                                                                                   |
-|-------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `command`   | Name of command <br/> eg. `add`, `find`       | Specifies the command to be executed.                                                                                   |
-| `tag/`      | Prefix for a field, followed by `/`           | Specifies which field given input argument is for                                                                       |
-| `PARAMETER` | All capitalized                               | Specifies user input for field specified by `tag/`                                                                      |
-| `[]`        | Square brackets around `tag/` and `PARAMETER` | Indicates that field specified by `tag/` is optional. <br/><br/>If left unspecified, it will be set to a default value. |
-
-For example, the command format for `add`:
-```
-add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]
-```
-* `add` is the `command` name.
-* `c/`, `n/`, `p/`, `d/` are `tag/`s to denote fields of _category_, _name_, _price_ and _date_ respectively.
-* `CATEGORY_NAME`, `ITEM_NAME`, `PRICE`, `DATE` are `PARAMETERS` to be supplied to the aforementioned `tag/`s.
-* `[d/DATE]` indicates that the field for the date is optional.
-
-Don't worry if it takes a bit of time to get used to the commands. Once you're familiar with the commands, you'll be able to add expenses quickly and easily.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start and Installation
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `fastTrack.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-2/tp/releases).
+2. Download the latest `fastTrack.jar` [here](https://github.com/AY2223S2-CS2103T-W09-2/tp/releases).
 
 3. Drag the file into a folder you want to use as the _home folder_ for FastTrack.
 
@@ -188,6 +158,7 @@ command to list recurring expenses.
 | Expense Summary Display   | A visual display containing expense statistics (Refer to the feature [Expense Statistics](#expense-statistics-feature) below for details.                                                         |
 | Toolbar                   | Contains buttons which allow you to access the user guide and exit from the application.                                                                                                          |
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Understanding Categories, Expenses, and Recurring Expenses in FastTrack
 
@@ -255,51 +226,44 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
 
 FastTrack offers a variety of commands that you can use to take advantage of its many features. The following tables provide a summary of all the available commands in FastTrack, along with examples on how to use them effectively.
 
-### Category Features Command Summary
+## Command Syntax
 
-| Feature                                            | Command Format                              | Examples                           |
-|----------------------------------------------------|---------------------------------------------|------------------------------------|
-| [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
-| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
-| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
-| [**Edit Category**](#editing-a-category-edcat)     | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+First-time users may have difficulty understanding the syntax described in the command instructions.
 
+If you are new to using a **Command Line Interface (CLI)**, we recommend reading this brief section before using FastTrack.
+Understanding the **CLI** will help you enter commands more efficiently, which can save you time in the long run.
 
-### Expense Features Command Summary
+In simple terms, the **Command Line Interface (CLI)** is a way to interact with FastTrack by typing in commands using just one line of text. This means you can add expenses quickly and easily.
 
-| Feature                                                              | Command Format                                                                        | Examples                                                       |
-|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| [**List Expenses**](#listing-expenses-list)                          | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                                                | `list c/Food t/month`                                          |
-| [**Add Expense**](#adding-an-expense-add)                            | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                    | `add c/Food p/20 n/Mac d/14/2/23`                              |
-| [**Delete Expense**](#deleting-an-expense-delete)                    | `delete INDEX`                                                                        | `delete 1`                                                     |
-| [**Edit Expense**](#editing-an-expense-edexp)                        | `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`                   | `edexp 1 c/Food n/Mac d/20/4/23 p/10`                          |
-| [**Find Expense**](#search-for-an-expense-by-keyword-find)           | `find KEYWORD [MORE_KEYWORDS]`                                                        | `find KFC chicken`                                             |
-| [**List Recurring Expense**](#listing-recurring-expenses-lrec)       | `lrec`                                                                                | `lrec`                                                         |
-| [**Add Recurring Expense**](#adding-a-recurring-expense-addrec)      | `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]`   | `addrec c/Shows n/Netflix p/10 t/month sd/10/3/23 ed/10/03/24` |
-| [**Delete Recurring Expense**](#deleting-a-recurring-expense-delrec) | `delrec INDEX`                                                                        | `delrec 1`                                                     |
-| [**Edit Recurring Expense**](#editing-a-recurring-expense-edrec)     | `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]` | `edrec 1 c/Show n/Disney Plus p/2 t/week ed/10/5/24`           |
+Here is a quick guide on how to read the syntax mentioned in the User Guide for using FastTrack's commands.
 
+```
+command tag1/ PARAMETER_1 tag2/ PARAMETER_2 [tag3/ PARAMETER_3]
+```
 
-### General Features Command Summary
+| Element     | Format                                        | Usage                                                                                                                                                                                                                          |
+|-------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `command`   | Name of command <br/> eg. `add`, `find`       | Specifies the command to be executed.                                                                                                                                                                                          |
+| `tag/`      | Prefix for a field, followed by `/`           | Specifies which field given input argument is for                                                                                                                                                                              |
+| `PARAMETER` | Words that are in UPPERCASE                   | Specifies user input for field specified by `tag/` <br/><br/>e.g.<br/>In `add c/CATEGORY_NAME`, `CATEGORY_NAME` is a parameter, which the user decides is “groceries”. The final command will be entered as add `c/groceries`. |
+| `[]`        | Square brackets around `tag/` and `PARAMETER` | Indicates that field specified by `tag/` is optional and may be omitted. <br/><br/>If left unspecified, it will be set to a default value.                                                                                     |
 
-| Feature                                       | Command Format | Examples     |
-|-----------------------------------------------|----------------|--------------|
-| [**Set Budget**](#setting-a-budget-set)       | `set p/AMOUNT` | `set p/1000` |
-| [**Help**](#viewing-help-help)                | `help`         | `help`       |
-| [**Exit program**](#exiting-fasttrack-exit)   | `exit`         | `exit`       |
-| [**Clear data**](#clearing-all-entries-clear) | `CLEAR`        | `CLEAR`      |
+For example, the command format for `add`:
+```
+add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]
+```
+* `add` is the `command` name.
+* `c/`, `n/`, `p/`, `d/` are `tag/`s to denote fields of _category_, _name_, _price_ and _date_ respectively.
+* `CATEGORY_NAME`, `ITEM_NAME`, `PRICE`, `DATE` are `PARAMETERS` to be supplied to the aforementioned `tag/`s.
+* `[d/DATE]` indicates that the field for the date is optional.
 
+Don't worry if it takes a bit of time to get used to the commands. Once you're familiar with the commands, you'll be able to add expenses quickly and easily.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Information about the command format**<br>
 
 Before diving further into the guide, here are some things to take note about the way we formatted commands for FastTrack in this user guide.
-* Words in `UPPER_CASE` are called parameters. These are inputs that need to be supplied by the user.<br>
-  e.g. in `add c/CATEGORY_NAME`, `CATEGORY_NAME` is a parameter, which the user decides is "groceries". The final command will be entered as `add c/groceries`.
-
-* Items in square brackets are optional.<br>
-  e.g `p/PRICE [d/DATE]` means the `DATE` parameter is optional, and can be omitted from the command.`p/4.50 d/14/2/2023` can also be used as `p/4.50`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY_NAME p/PRICE`, `p/PRICE c/CATEGORY_NAME` is also acceptable.
@@ -316,9 +280,33 @@ Before diving further into the guide, here are some things to take note about th
     <a href="#top">Back to Top </a>
 </p>
 
-# Category Features
+--------------------------------------------------------------------------------------------------------------------
+# **Category Features**
 
-## Listing Categories `lcat`
+FastTrack makes it easy for you to keep track of your spending by organizing expenses into categories. A category is like a folder that holds all your expenses that fall under a specific theme. For example, you might have a category called Groceries where you record all purchases from Fairprice or NTUC.
+
+To create a category in FastTrack, simply give it a name, such as Entertainment or Transportation. You can also add a short text summary to give yourself more context about the category.
+
+FastTrack even has a default Misc category for any expenses that you haven't categorized yet, however, this category is not modifiable or accessible.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Info**<br>
+Note that category names in FastTrack are case-insensitive. For example, a category named `Groceries` will be treated as the exact same category as `groceries`.
+</div>
+
+###  Command Summary
+
+| Feature                                            | Command Format                              | Examples                           |
+|----------------------------------------------------|---------------------------------------------|------------------------------------|
+| [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
+| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
+| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
+| [**Edit Category**](#editing-a-category-edcat)     | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Listing Categories** `lcat`
 
 Displays the list of categories in FastTrack.
 
@@ -330,7 +318,7 @@ Format: `lcat`
 
 ![FastTrack lcat](images/demo/category/lcat.png)
 
-## Adding a category `addcat`
+## **Adding a category** `addcat`
 
 Adds a new category to FastTrack. If a category with the same name already exists, this command will not execute.
 
@@ -353,7 +341,7 @@ Format: `addcat c/CATEGORY_NAME s/SUMMARY`
 
 ![FastTrack addcat](images/demo/category/addcat.png)
 
-## Deleting a category `delcat`
+## **Deleting a category** `delcat`
 
 Deletes the category at the specified `INDEX` in the category list.
 
@@ -383,7 +371,7 @@ If you delete a category that has existing expenses associated with it, those ex
 
 ![FastTrack delcat](images/demo/category/delcat.png)
 
-## Editing a category `edcat`
+## **Editing a category** `edcat`
 
 Edits the category at the specified `INDEX` in the category list.
 
@@ -414,9 +402,41 @@ to `INDEX`, otherwise the command will not be executed.
     <a href="#top">Back to Top </a>
 </p>
 
-# Expense Features
+--------------------------------------------------------------------------------------------------------------------
 
-## Listing expenses `list`
+# **Expense Features**
+An **expense** is a single purchase that you want to track. Each expense has a _name_, _price_, _category_, and _date_. With FastTrack, you can easily duplicate an expense if you happen to make the same purchase multiple times, such as buying a coffee from CoolSpot every morning on your way to NUS.
+
+Finally, there are **recurring expenses**. These are expenses that are charged on a regular basis, such as a monthly subscription to Netflix or an annual Heroku subscription. Instead of manually creating an expense every time the payment is due, you can set up a recurring expense in FastTrack.
+Simply specify the start date, interval (daily, weekly, monthly, yearly), and end date (if applicable), and FastTrack will automatically generate the expenses for you.
+
+###  Command Summary
+#### One-time Expenses
+
+| Feature                                                              | Command Format                                                                        | Examples                                                       |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| [**List Expenses**](#listing-expenses-list)                          | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                                                | `list c/Food t/month`                                          |
+| [**Add Expense**](#adding-an-expense-add)                            | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                    | `add c/Food p/20 n/Mac d/14/2/23`                              |
+| [**Delete Expense**](#deleting-an-expense-delete)                    | `delete INDEX`                                                                        | `delete 1`                                                     |
+| [**Edit Expense**](#editing-an-expense-edexp)                        | `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`                   | `edexp 1 c/Food n/Mac d/20/4/23 p/10`                          |
+| [**Find Expense**](#search-for-an-expense-by-keyword-find)           | `find KEYWORD [MORE_KEYWORDS]`                                                        | `find KFC chicken`                                             |
+
+
+#### Recurring Expenses
+| Feature                                                              | Command Format                                                                        | Example                                                        |
+|----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| [**List Recurring Expense**](#listing-recurring-expenses-lrec)       | `lrec`                                                                                | `lrec`                                                         |
+| [**Add Recurring Expense**](#adding-a-recurring-expense-addrec)      | `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]`   | `addrec c/Shows n/Netflix p/10 t/month sd/10/3/23 ed/10/03/24` |
+| [**Delete Recurring Expense**](#deleting-a-recurring-expense-delrec) | `delrec INDEX`                                                                        | `delrec 1`                                                     |
+| [**Edit Recurring Expense**](#editing-a-recurring-expense-edrec)     | `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]` | `edrec 1 c/Show n/Disney Plus p/2 t/week ed/10/5/24`           |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **One-Time Expenses**
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Listing expenses** `list`
 
 The `list` feature in FastTrack allows you to view all your expenses. You can filter the list based on specific categories and timeframes to get a more customized view of your spending.
 
@@ -450,19 +470,19 @@ A `TIMEFRAME` allows you to set a specific interval to filter your expenses. `t/
 
 ### Demonstration
 
-### List Expenses by Category
+### **List Expenses by Category**
 1. Enter the command `list c/drink` into the command box
 2. FastTrack displays the expenses under the category `Drink` with the confirmation message `2 expenses listed`. The number of expenses may differ for every user.
 
 ![FastTrack list1](images/demo/expense/list1.png)
 
-### List All Expenses
+### **List All Expenses**
 1. Enter the command `list` into the command box
 2. FastTrack displays all expenses with the confirmation message `5 expenses listed`. The number of expenses may differ for every user.
 
 ![FastTrack list2](images/demo/expense/list2.png)
 
-### List Expenses by Timeframe
+### **List Expenses by Timeframe**
 
 1. Enter the command `list t/w` into the command box
 2. FastTrack displays all expenses within the current week with the confirmation message `2 expenses listed`. The number of expenses may differ for every user.
@@ -477,7 +497,7 @@ A `TIMEFRAME` allows you to set a specific interval to filter your expenses. `t/
 </div>
 
 
-## Adding an expense `add`
+## **Adding an expense** `add`
 
 Adds a new one-time expense to FastTrack.
 
@@ -507,7 +527,7 @@ Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`
 
 
 
-## Deleting an expense `delete`
+## **Deleting an expense** `delete`
 
 Deletes an expense at the specified `INDEX` in the expense list.
 
@@ -527,7 +547,7 @@ Format: `delete INDEX`
 3. FastTrack deletes the second expense in the expense list with the confirmation message `Deleted expense: Name: milk, Amount: $4.5, Date: 2023-04-07, Category: groceries`.
 
 
-## Editing an expense `edexp`
+## **Editing an expense** `edexp`
 
 Edits the expense at the specified `INDEX` in the expense list.
 
@@ -557,7 +577,7 @@ to `INDEX`, otherwise the command will not be executed.
 ![FastTrack edexp1](images/demo/expense/edexp1.png)
 ![FastTrack edexp2](images/demo/expense/edexp2.png)
 
-## Search for an expense by keyword `find`
+## **Search for an expense by keyword** `find`
 
 Find expenses whose names contain any of the given keywords.
 
@@ -592,7 +612,12 @@ Date: 2023-03-03, Category: Groceries, Name: Milk, Price: $4.00
 </p>
 
 
-## Listing Recurring Expenses `lrec`
+--------------------------------------------------------------------------------------------------------------------
+## **Recurring Expenses**
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Listing Recurring Expenses** `lrec`
 
 Displays the list of recurring expenses in FastTrack.
 
@@ -604,7 +629,7 @@ Format: `lrec`
 
 ![FastTrack lrec](images/demo/recurring_expense/lrec.png)
 
-## Adding a Recurring Expense `addrec`
+## **Adding a Recurring Expense** `addrec`
 
 Adds a recurring expense to FastTrack.
 
@@ -660,7 +685,7 @@ For example, if the current date is `3/2/2023` and the `START_DATE` is set to `3
 
 ![FastTrack addrec2](images/demo/recurring_expense/addrec2.png)
 
-## Deleting a recurring expense `delrec`
+## **Deleting a recurring expense** `delrec`
 
 Deletes an expense category at the specified `INDEX` in the recurring expense list.
 
@@ -692,7 +717,7 @@ If a recurring expense's end date has already passed, and the current date too i
 
 ![FastTrack delrec](images/demo/recurring_expense/delrec.png)
 
-## Editing a recurring expense `edrec`
+## **Editing a recurring expense** `edrec`
 
 Edits the expense at the specified `INDEX`
 
@@ -734,9 +759,26 @@ If you edit the recurring expense to end before the current date, this only prev
     <a href="#top">Back to Top </a>
 </p>
 
+
+--------------------------------------------------------------------------------------------------------------------
+
 # General Features
 
-## Setting A Budget `set`
+
+###  Command Summary
+
+| Feature                                       | Command Format | Examples     |
+|-----------------------------------------------|----------------|--------------|
+| [**Set Budget**](#setting-a-budget-set)       | `set p/AMOUNT` | `set p/1000` |
+| [**Help**](#viewing-help-help)                | `help`         | `help`       |
+| [**Exit program**](#exiting-fasttrack-exit)   | `exit`         | `exit`       |
+| [**Clear data**](#clearing-all-entries-clear) | `CLEAR`        | `CLEAR`      |
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Setting A Budget** `set`
 
 Sets a monthly budget for FastTrack. For first-time users of FastTrack, no budget is set and some expense statistics are not updated. 
 
@@ -769,7 +811,7 @@ FastTrack does not allow setting a budget of $0
 
 ![FastTrack set](images/demo/general/set.png)
 
-## Category Autocompletion
+## **Category Autocompletion**
 
 FastTrack offers a powerful and time-saving feature that autocompletes your category names for you! When you start typing `c/`, FastTrack provides a list of suggested category names as a popup above the command box.
 Give it a try and see how much time you can save with this feature!
@@ -819,7 +861,7 @@ If there's any other text in front of `c/`, the autocompletion feature will be d
 ![FastTrack autocomplete_b2](images/demo/general/autocomplete_b2.png)
 
 
-## Clearing all entries `CLEAR`
+## **Clearing all entries** `CLEAR`
 
 Clears all entries from FastTrack. This command removes all stored expenses, recurring expenses and categories.
 
@@ -840,7 +882,7 @@ Exercise caution before using this command.
 
 ![FastTrack clear](images/demo/general/clear.png)
 
-## Exiting FastTrack `exit`
+## **Exiting FastTrack** `exit`
 
 After logging your expenses, you might want to close the application and ensure your data is saved.
 This command closes FastTrack and saves the data to the `fastTrack.json` file located on computer's hard disk.
@@ -848,7 +890,7 @@ This command closes FastTrack and saves the data to the `fastTrack.json` file lo
 Format: `exit`
 
 
-## Viewing help `help`
+## **Viewing help** `help`
 
 Shows a message explaining how to access the help page, as well as a quick rundown of what commands can be used.
 
@@ -954,6 +996,9 @@ FastTrack's data are saved as a JSON file `[JAR file location]/data/fastTrack.js
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FastTrack will discard all data and start with an empty data file at the next run.
 </div>
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 # Frequently Asked Questions
 
