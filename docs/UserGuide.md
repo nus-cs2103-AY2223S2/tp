@@ -272,6 +272,8 @@ Examples:
 
 ***Click [HERE](#images-recommended-method-to-store-student-and-parentnok-images) to find out more on what to input for inserting image!!!***
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: Caution: <br>
 1. You cannot create two students of the same index number and same class. <br>
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent. <br>
