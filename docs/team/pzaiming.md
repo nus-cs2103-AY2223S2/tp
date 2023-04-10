@@ -68,7 +68,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
       created before `OrderParser`.
     * Fixed UG bug to specify that add command will take the latter details if multiple similar parameters is given.
     * Fixed salary bug where salary of zero is allowed.
-    * Fixed sorting bug, where sorting after filter commands such as tag, name deletes the original list in storage.
+    * Fixed sorting bug where sorting after filter commands deletes the original list.
 
 
 * **Review/mentoring contributions**
