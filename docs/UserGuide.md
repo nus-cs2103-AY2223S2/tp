@@ -710,11 +710,11 @@ Deletes the specified module(s) and all its embodied content from the applicatio
   <ul>
     <li>
       <code>delete CS2040</code><br/>
-      deletes <code>CS2040</code> module
+      deletes "CS2040" module
     </li>
     <li>
       <code>delete CS2040, ST2334</code><br/>
-      deletes <code>CS2040</code> and <code>ST2334</code> modules
+      deletes "CS2040" and "ST2334" modules
     </li>
   </ul>
 </details>
@@ -740,11 +740,11 @@ Deletes the specified lecture(s) and all its embodied content from the same spec
   <ul>
     <li>
       <code>delete lecture 1 /mod CS2040</code><br/>
-      deletes <code>lecture 1</code> lecture found in module <code>CS2040</code>
+      deletes "lecture 1" lecture found in module "CS2040"
     </li>
     <li>
       <code>delete lecture 1, lecture 2 /mod ST2334</code><br/>
-      deletes <code>lecture 1</code> and <code>lecture 2</code> lectures found in module <code>ST2334</code>
+      deletes "lecture 1" and "lecture 2" lectures found in module "ST2334"</code>
     </li>
   </ul>
 </details>
@@ -772,7 +772,7 @@ Deletes the specified video(s) and all its embodied content from the same specif
     </li>
     <li>
       <code>delete video 1, video 3 /mod CS2040 /lec lecture 1</code><br/>
-      deletes <code>video 1</code> and <code>video 3</code> from lecture <code>lecture 1</code> of module <code>CS2040</code>
+      deletes "video 1" and "video 3" from lecture "lecture 1" of module "CS2040"
     </li>
   </ul>
 </details>
@@ -797,7 +797,7 @@ Marks video(s) as **unwatched** in a lecture of its specified module.
   - Must belong to existing videos in the lecture specified in `lecture_name`
   - Must not contain duplicates
   - For `mark`, must not already be marked
-  - For `unmark` for 1 video, must not already be unmarked
+  - For `unmark` for 1 video, must not already be marked as unwatched
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of the module
   - Must belong to an existing module in Le Tracker
 - [<span style="color:#e46c0a">`lecture_name`</span>](#lecture-name-format): The name of the lecture
