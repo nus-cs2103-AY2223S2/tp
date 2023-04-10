@@ -19,4 +19,6 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 
 ### Acknowledgements
 
-- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+- Forked from: [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp)
+- Libraries utilised: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [JUnit 5](https://junit.org/junit5/)
+- Tools utilised: [Gradle](https://gradle.org/)
