@@ -72,7 +72,7 @@ class ExportProgressCommandTest {
             doReturn(0).when(validIndex).getZeroBased();
 
             String studentName = typicalStudentList.get(0).getName().fullName;
-            String defaultDir = Paths.get("").toAbsolutePath().toString();
+            String defaultDir = Paths.get("data").toAbsolutePath().toString();
 
             String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                     studentName + "'s Progress Report.pdf");
@@ -87,7 +87,7 @@ class ExportProgressCommandTest {
             doReturn(typicalStudentList.size() - 1).when(validIndex).getZeroBased();
 
             String studentName = typicalStudentList.get(typicalStudentList.size() - 1).getName().fullName;
-            String defaultDir = Paths.get("").toAbsolutePath().toString();
+            String defaultDir = Paths.get("data").toAbsolutePath().toString();
 
             String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                     studentName + "'s Progress Report.pdf");
