@@ -25,8 +25,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `prescribe`, `unprescribe` and `bill`
+      * Added documentation for the features `prescribe`, `unprescribe` and `bill`
     * Developer Guide:
+      * Added implementation for `prescribe`
+      * Added Use Cases for `prescribe`, `unprescribe` and `bill`
+      * Added manual testing for `prescribe`, `unprescribe` and `bill`
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#24](https://github.com/AY2223S2-CS2103T-W13-1/tp/pull/24),

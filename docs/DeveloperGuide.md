@@ -882,7 +882,22 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `DELETE`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
+### Prescribe, Unprescribe, Bill
+1. Prescribing medication to someone with existing medication
+   1. Prerequisites: Have a patient with no existing medication as the current display. This can be achieved by adding 
+   a patient using `addPatient`. Then `display`. We will assume the Patient has an IC of S1234567A.
+   2. Test case: `prescribe ic/S1234567A m/drugA c/1`<br>
+      Expected: Patient has gained 1 prescription.
+   3. Test case: `prescribe ic/S1234567A m/drugA c/2`<br>
+      Expected: Patient's 1 prescription has changed to reflect the new cost.
+   4. Test case: `prescribe ic/S1234567A m/drugA c/2`<br>
+      Expected: No change.
+   5. Test case: `prescribe ic/S1234567A m/drugB c/4`<br>
+      Expected: Patient has 2 prescriptions.
+   6. Test case: `bill ic/S1234567A`.<br>
+      Expected: Bill is $6.00
+   7. Test case: `unprescribe ic/S1234567A m/drugA c/2`<br>
+      Expected: Patient has 1 prescription.
     
 ## **Appendix: Planned Enhancements**
 
