@@ -580,6 +580,68 @@ Sequence Diagram for ungrading a student submission
     * Pros: More intuitive for the user.
     * Cons: More code.
 
+### Add Alarm
+
+#### Implementation
+Grade command is facilitated by `AddAlarmCommandParser`, `AddAlarmCommand` and `Model`
+
+* `AddAlarmCommandParser`-- Parse the input of users
+* `AddAlarmCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for adding an alarm.
+
+<img src="images/AddAlarmSequenceDiagram.PNG" />
+<figcaption style="text-align:center"><em><strong>
+Figure 19
+</strong>:
+Sequence Diagram for adding an alarm
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: Representation of Alarms**
+
+1. **Alternative 1 (Chosen):** Use an ArrayList to store the alarms list.
+    * Pros: Allow the accessing of alarm at a particular index to be done much faster (O(1)).
+    * Cons: Slow if we want to insert alarms into the middle of the array(O(n)), however such insertion operation is 
+      never used in our application, hence the time penalty would not matter.
+   
+2. **Alternative 2:** Use a list to store the alarms list.
+    * Pros: Faster to insert alarms in the middle of the alarm list.
+    * Cons: Slow if we want to access alarm at a particular index. (O(n))
+
+### List Alarm
+
+#### Implementation
+Grade command is facilitated by `ListAlarmCommand` and `Model`
+
+* `ListAlarmCommand` -- Execute the command given the parsed user input
+* `Model` -- Updates the assignment list.
+
+Below is the sequence diagram for listing the alarms.
+
+<img src="images/ListAlarmsSequenceDiagram.PNG" />
+<figcaption style="text-align:center"><em><strong>
+Figure 19
+</strong>:
+Sequence Diagram for listing the alarms
+</em></figcaption>
+
+#### Design Considerations
+
+**Aspect: Command Parser**
+
+1. **Alternative 1 (Chosen):** Exclude the command parser for list_alarms command.
+    * Pros: Simplify the internal process of responding to the list_alarms command.
+    * Cons: Less standardization - most of the other commands have their own specific parser.
+
+2. **Alternative 2:** Implement a specific command parser for list_alarms command.
+    * Pros: Standardization of code. Also allows for future extensions.
+    * Cons: Add complexity to the code structure unnecessarily, as the parser does not need to do anything (not for the
+      current functions of the list_alarms command, though may be extended in the future to allow listing of a 
+      particular alarm)
+
 ### Data archiving
 
 #### Implementation
