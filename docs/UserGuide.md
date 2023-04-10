@@ -260,6 +260,7 @@ Formats:
 3. `filter e/EMAIL_ADDRESS`
 4. `filter d/DESCRIPTION`
 5. `filter t/TAG`
+6. `filter m/MODULE_TAG`
 
 Examples:
 
@@ -271,13 +272,10 @@ Examples:
 * Only full words will be matched e.g. Han will not match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
   ![filterByName](images/filter/filterByNameResult.png)
-  <br/><br/>
 * `filter p/91031282` returns `1 contacts listed!`
   ![filterByPhoneNumber](images/filter/filterByPhoneNumberResult.png)
-  <br></br>
 * `filter e/royb@example.com` returns `1 contacts listed!`
   ![filterByEmail](images/filter/filterByEmailResult.png)
-  <br></br>
 * `filter d/helpful` returns `1 contacts listed!`
 * `filter d/helpful Newgate` returns `2 contacts listed!`
 * The search is case-sensitive. e.g Helpful will match Helpful and not helpful
@@ -286,10 +284,11 @@ Examples:
 * Only full words will be matched.
 * Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Helpful roommate will return Helpful, Helpful friend, lazy roomate
   ![filterByDescription](images/filter/filterByDescriptionResult.png)
-  <br></br>
 * `filter t/family` returns `1 contacts listed`
 * `filter t/family t/friends t/classmates` returns `3 contacts listed!`
-* ![filterByTags](images/filter/filterByTagsResult.png)
+  ![filterByTags](images/filter/filterByTagsResult.png)
+* `filter m/CS2103` returns `1 contacts listed`
+  ![filterByModule](images/filter/filterByModule.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -424,19 +423,19 @@ Format: `exit`
 
 ## 5. Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                      |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​ ` <br> e.g., `add n/Benedict Tan d/Great Friend e/BenedictTan@gmail.com p/98070707 t/Friend m/CS2103 m/CS3230 `                                                                                           |
-| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
-| **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |
-| **Edit**   | `edit {INDEX or NAME} [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` or `edit James e/jameslee@example.com`                                                                                                          |                                                                                                                                                                                                                       |
-| **List**   | `list`                                                                                                                                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                |
-| **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> |
-| **Undo**   | `undo`                                                                                                                                                                                                                                                                                |
-| **Redo**   | `redo`                                                                                                                                                                                                                                                                                |
-| **Load**   | `load` OR `load <path>`                                                                                                                                                                                                                                                               |
-| **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                              |
-| **Light**  | `light`                                                                                                                                                                                                                                                                               |
-| **Dark**   | `dark`                                                                                                                                                                                                                                                                                |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​ ` <br> e.g., `add n/Benedict Tan d/Great Friend e/BenedictTan@gmail.com p/98070707 t/Friend m/CS2103 m/CS3230 `                                                                                                                                                   |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                                                                               |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                       |
+| **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                                                                                 |
+| **Edit**   | `edit {INDEX or NAME} [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` or `edit James e/jameslee@example.com`                                                                                                                                                                  |                                                                                                                                                                                                                       |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                        |
+| **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> `filter m/MODULE_TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> e.g. `filter m/CS2103` </br> |
+| **Undo**   | `undo`                                                                                                                                                                                                                                                                                                                                        |
+| **Redo**   | `redo`                                                                                                                                                                                                                                                                                                                                        |
+| **Load**   | `load` OR `load <path>`                                                                                                                                                                                                                                                                                                                       |
+| **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                                                                                      |
+| **Light**  | `light`                                                                                                                                                                                                                                                                                                                                       |
+| **Dark**   | `dark`                                                                                                                                                                                                                                                                                                                                        |
