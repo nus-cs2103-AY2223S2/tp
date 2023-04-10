@@ -125,7 +125,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITI
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison 
+   p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
 * `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01`
 
 1. The first example contains strictly required information to identify a patient.
@@ -209,7 +210,7 @@ Examples:
 * `edit 3 ag/1222` This command is not allowed as age should be less than or equal to 120 and must be a positive
   integer.
 * `edit 1 ag/50 A/John street` This command is not allowed as it has invalid prefix.
-* `edit 1 nric/SS92433AB` This command is allowed. Hence, user must check the NRIC inputted carefully.
+* `edit 1 nric/SS92433AB` command is permissible. However, it is important for the user to carefully verify the NRIC that has been inputted to ensure its accuracy.
 
 ### Appointment
 
