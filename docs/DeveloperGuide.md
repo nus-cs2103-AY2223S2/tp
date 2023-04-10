@@ -1464,4 +1464,37 @@ While each tier will have some default color, we can also consider including an 
 
 To complement this new command, we also plan to include a `viewtiers` command to display the existing tiers and a `deletetier` command to remove an existing tier.
 
+### Access Orders made by a specific Customer
+
+This enhancement consists of two parts:
+
+* Accessing orders from a customer's order history
+* Filtering the order list by customer name or index
+
+#### Accessing orders from a customer's order history
+
+Currently, the user can see a customer's list of orders by viewing the customer using the `viewc` command. However, there is no way to view each order in detail afterwards.
+
+There are two approaches to make this possible:
+
+1. Use the same list for the main order list and the customer view order list
+
+   As described in the [_Model component_](#model-component) section, the order list of the displayed customer is a separate `FilteredList<Order>`. By using the same list as the main order list, we can use the `viewo` command to directly access the orders in the customer view.
+
+1. Provide a separate command for viewing the orders displayed in the customer view
+
+   This command may tentatively be called `viewco`, where it will specifically be used to access orders in the separate `FilteredList<Order>`.
+
+#### Filtering the order list by customer name
+
+Currently, the order list cannot be filtered to show only orders created by a specific customer. Moreover, the order list does not show the customer it's associated with. This can be inconvenient as multiple customers may make similar orders.
+
+Thus, we plan to:
+
+1. Update the UI of the order list to display each order's associated customer.
+
+2. Enhance the `listo` command to support filtering by customer name.
+
+   This can be implemented as a separate parameter `by/CUSTOMER_NAME` (e.g. `listo by/Alice`) where the keyword search logic would work in a similar manner as `findc` (case-insensitive, order-insensitive, full-word, `OR` search).
+
 [//]: # (@@author)
