@@ -56,4 +56,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jianminglok.md)]
 
 * Role: Developer
-* Responsibilities: Add contact and edit status feature
+* Responsibilities:
+  * Contact management features: `add_contact`, `edit_contact`, `delete_contact`
+  * Document management features: `add_docs`, `edit_docs`, `delete_docs`
+  * Edit internship application status feature: `edit_status`
+  * Archiving features: `archive`, `unarchive`, `list_archived`
