@@ -371,6 +371,16 @@ Examples:
   or they are in the 'Sales' department
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
+Below are the steps to use this command:
+
+**Step 1 (Creating the criteria) :**
+You can use the command syntax to input the search keywords, just like the image below.
+![](images/UserGuide/findInterface.png)
+
+**Step 2 (Results displayed) :**
+All the employees who match the keywords will be listed.
+![](images/UserGuide/findResults.png)
+
 --------------------------------------------------------------------------------------------------------------------
 ### Filtering out employees: `filter`
 
