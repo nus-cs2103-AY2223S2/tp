@@ -162,6 +162,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Command
+**Purpose:** Allow users to add contact details
+
+**Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​`
+
+**Fields:**
+
+`n/` : name of the person (COMPULSORY)
+
+`d/` : description of the person
+
+`e/` : email
+
+`p/` : phone number
+
+`t/` : tags
+
+`m/` : module tags
+
+**Constraints:**
+
+n/ : Alphanumeric characters and spaces, and it should not be blank
+
+e/ : Emails should be of the format `local-part@domain`. 
+  *  The local-part should only contain alphanumeric characters and these special characters, `+_.-`
+  *  The local-part may not start or end with any special characters.
+     This is followed by a `@` and then a domain name.
+  *  The domain name is made up of domain labels separated by periods. 
+  *  The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters, have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+p/ : Phone numbers should contain only numbers, and it should be at least 3 digits long.
+
+t/ or m/ : Alphanumeric characters
+
+#### Implementation
+
+The implementation of this feature requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
+Below is an activity diagram that shows what happens when a user executes the `filter` command
+
+![AddActivityDiagram](images/add/addcommandActivityDiagram.png)
+
 ### Undo/redo feature
 
 #### Implementation
