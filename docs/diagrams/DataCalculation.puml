@@ -1,4 +1,15 @@
 @startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+
 start
 :DegreeProgressionData.generate(UniqueModuleList) is executed;
 
@@ -6,33 +17,11 @@ if () then ([module is multi-tagged])
     :Adds to stack;
 
 else ([module is single-tagged])
-    if () then ([module is completed and gradeable])
-        :Counts the module under the requirement;
-        if () then ([module exercises SU option])
-        else ([else])
-            :Counts the module into CAP;
-        endif
-    else ([module is planned])
-        :Counts the module as planned;
-    endif
+    :Compute single-tagged modules <$rake>;
 endif
 
 if () then ([stack is not empty])
-    repeat
-        :Pop a multi-tagged module;
-        if () then ([module is completed and gradeable])
-            :Calculates total MCs to be mapped by module;
-            :Calculates duplicate MCs caused by module;
-            :Counts the module under the requirement;
-            if () then ([module exercises SU option])
-            else ([else])
-                :Counts the module into CAP;
-            endif
-        else ([module is planned])
-            :Counts the module as planned;
-        endif
-    repeat while () is ([stack not empty])
-    -> stack is empty;
+    :Compute multi-tagged modules <$rake>;
 else ([else])
 endif
 

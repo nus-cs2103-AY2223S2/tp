@@ -515,7 +515,14 @@ An algorithm is used to generate the necessary data for `view progress`. **Meani
 
 The following activity diagram illustrates the workflow of the algorithm when `DegreeProgressionData::generate` is called with the module list:
 
-![DataCalculation](images/DataCalculation.png)
+![DataCalculation](images/DataCalculation.png) <br>
+Activity: Computation activity flow
+<br><br>
+![DataComputeSingleModules](images/DataComputeSingleModules.png)<br>
+Activity: Compute single-tagged modules
+<br><br>
+![DataComputeMultiModules](images/DataComputeMultiModules.png)<br>
+Activity: Compute multi-tagged modules
 
 #### Design considerations
 **Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Separation of concerns principle_ is not violated?**

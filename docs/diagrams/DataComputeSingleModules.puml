@@ -1,0 +1,15 @@
+@startuml
+start
+
+if () then ([module is completed and gradeable])
+    :Counts the module under the requirement;
+    if () then ([module exercises SU option])
+    else ([else])
+        :Counts the module into CAP;
+    endif
+else ([module is planned])
+    :Counts the module as planned;
+endif
+
+stop
+@enduml
