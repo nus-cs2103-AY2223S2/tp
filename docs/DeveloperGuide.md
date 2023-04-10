@@ -38,10 +38,16 @@ If you're interested in contributing to the Vimification project, this Developer
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-  - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a task](#deleting-a-task)
-  - [Saving data](#saving-data)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Adding](#adding)
+  * [Inserting](#inserting)
+  * [Deleting](#deleting)
+  * [Filtering](#filtering)
+  * [Sorting](#sorting)
+  * [Refresh](#refresh)
+  * [Help](#help)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+
 
 ---
 
@@ -553,11 +559,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SoC Student who knows Vim | delete a task’s title, deadline and/or label                     | delete the details if no longer needed                    |
 | `* * *`  | SoC Student who knows Vim | filter for tasks which the descriptions contain certain keywords | find all task with the same keyword                       |
 | `* * *`  | SoC Student who knows Vim | filter for a task based on a specified priority level            | view tasks with higher priority to complete them first    |
-| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specified list of labels                       | view all the tasks in the specified categories            |
+| `* * *`  | SoC Student who knows Vim | filter for tasks based on a specific label                       | view all the tasks in the specified categories            |
 | `* * *`  | SoC Student who knows Vim | filter for all tasks that are not completed                      | view tasks to are not completed                           |
 | `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines before a certain date and time   | view all tasks that need to be done before a certain date and time|
 | `* * *`  | SoC Student who knows Vim | filter for tasks with deadlines after a certain date and time    | find all tasks that need to be done after a certain date and time|
-| `* *` | SoC Student who knows Vim | filter for tasks by deadlines within a specified period of time (by specifying both before and after) | find all tasks that need to be done within that specified period of time while arranging my schedule, allowing me to finish them on time |
 | `* * *`  | SoC Student who knows Vim | edit and delete based on the filtered list                       | make changes to the list of task easily                   |
 | `* * *` | SoC Student who knows Vim | sort tasks by upcoming deadlines | view all the tasks in the order of upcoming deadlines and know which more urgent tasks I should be completing first, allowing me to finish them on time |
 | `* * *` | SoC Student who knows Vim | sort tasks by priorities in descending order | see which are the more important tasks I should focus on completing first |
@@ -567,8 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`    | SoC Student who knows Vim | refresh the task list                                            | go to the original task after sorting or filter         |
 | `* * *`  | SoC Student who knows Vim | use macro commands to customise a shortcuts for longer commands  | use a short keyword instead of the full command for recurring tasks |
 | `* *` | SoC Student who knows Vim | mark a task as "in progress" | keep a mental note and come back to the task at a later time if I only halfway done with the task |
-| `* *` | SoC Student who knows Vim | search for all tasks that are currently in progress | come back to these tasks and continue to work on them after I paused them previously |
-| `* *` | SoC Student who knows Vim | edit a task’s title, deadline and/or labels | change the details if added wrongly |
+| `* *` | SoC Student who knows Vim | edit a task’s title, deadline, labels and/or priority level | change the details if added wrongly |
 | `* *` | SoC Student who knows Vim | undo an action | revert to the previous state if I have made a mistake or any unintended change to my tasks in the task planner |
 | `* *` | SoC Student who knows Vim | pre-save the actions of adding or deleting a certain task as shortcuts | save time by streamlining the process of carrying out these actions, as compared to doing it the usual way |
 | `* *` | SoC Student who knows Vim | group the tasks together by their status | identify tasks that are not yet started, tasks that are in progress and tasks that are completed all within a single list using a single action without needing to filter by each of the status |
@@ -982,28 +986,166 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a task
+### Adding
+1. Adding a task with only title to the task list
+   1. Test case: `:a "quiz" `<br>
+      Expected: Task with "quiz" as the title added to the task list. 
+   2. Test case: `:a "" `<br>
+      Expected: An error message will be displayed since title cannot be empty
+2. Adding a task with the title and deadline to the task list. 
+   1. Test case: `:a "quiz" -d 2023-04-10 23:59`<br>
+      Expected: Task with "quiz" as the title and 10 April 2023, 23 hours 59 secs as the deadline added to the task list. 
+   2. Test case: `:a "quiz" -d 2023-04-10`<br>
+      Expected: Task with name "quiz" and 10 April 2023, 00 hours 00 secs as the deadline added to the task list. 
+   3. Test case: `:a "quiz" -d 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+   4. Other incorrect test cases: `:a "quiz" -d 2023 April 1`, `:a "quiz" -d ""`<br>
+	Excepted: An error message will be displayed since the deadline is invalid
+3. Adding a task with the title and status to the task list. 
+   1. Test case: `:a "quiz" -s 0`<br>
+      Expected: Task with "quiz" as the title and not done as the status is added to the task list. 
+   2. Test case: `:a "quiz" -s 1`<br>
+      Expected: Task with "quiz" as the title and in progress as the status is added to the task list. 
+   3. Test case: `:a "quiz" -s 2 `<br>
+      Expected: Task with "quiz" as the title and completed as the status is added to the task list. 
+   4. Other incorrect test cases: `:a "quiz" -s 3` or `:a "quiz" -s -1` or `:a "quiz" -s `<br>
+      Excepted: An error message will be displayed since the status cannot be empty and can only be 0, 1 or 2.
+3. Adding a task with the title and priority to the task list. 
+   1. Test case: `:a "quiz" -p 0`<br>
+      Expected: Task with "quiz" as the title and unknown as the priority is added to the task list. 
+   2. Test case: `:a "quiz" -p 1`<br>
+      Expected: Task with "quiz" as the title and very urgent as the priority is added to the task list. 
+   3. Test case: `:a "quiz" -p 2 `<br>
+      Expected: Task with "quiz" as the title and urgent as the priority is added to the task list. 
+   4. Test case: `:a "quiz" -p 3`<br>
+	Expected: Task with "quiz" as the title and not urgent as the priority is added to the task list. 
+   5. Other incorrect test cases: `:a "quiz" -p 4` or `:a "quiz" -p -1` or `:a "quiz" -p `<br>
+      Excepted: An error message will be displayed since the priority cannot be empty and can only be 0, 1, 2 or 3.
 
-1. Deleting a task while all of the tasks are being shown and there are multiple tasks.
 
+
+### Inserting
+
+1. Inserting deadline to a task
+   Prerequisites: there is only one task in the list. 
+   1. Test case: `:i 1 -d 2023-04-10 23:59`<br>
+      Expected: Task at index 1 now has a new deadline of 10 April 2023, 23 hours 59 secs. 
+   2. Test case: `:i 1 -d 2023-04-10`<br>
+      Expected: Task at index 1 now has a new deadline of 10 April 2023, 00 hours 00 secs. 
+   3. Test case: `:i 0 -d 2023-04-10` or `:i 2 -d 2023-04-10`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2. 
+   4. Test case: `:i 1 -d 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+2. Inserting label to a task. 
+   Prerequisites: there is only one task in the list with an existing label, "graded"
+   1. Test case: `:i 1 -l "cs2103t"`<br>
+      Expected: Task at index 1 now has a new label "cs2103t". 
+   2. Test case: `:i 1 -l ""`<br>
+      Expected: An error message will be displayed since label cannot be empty
+   3. Test case: `:i 0 -l "cs2103t"` or `:i 2 -l "cs2103t"` <br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2. 
+   4. Test case: `:i 1 -l "graded"`<br>
+      Excepted: An error message will be displayed since there cannot be identical label for the same task.
+      
+      
+### Deleting
+
+1. Deleting the task
+   Prerequisites: there is only one task in the list. 
    1. Test case: `:d 1`<br>
-      Expected: First task is deleted from the list.
+      Expected: Task at index 1 is now deleted.
+   2. Test case: `:d 0` or `:d 2`<br>
+	      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+   3. Test case: `:d `<br>
+      Excepted: An error message will be displayed since index cannot be empty.
+2. Deleting the label to a task. 
+   Prerequisites: there is only one task in the list with an existing label, "cs2103t"
+   1. Test case: `:d 1 -l "cs2103t"`<br>
+      Expected: Task at index 1 now has the "cs2103t" label removed. 
+   2. Test case: `:d 1 -l "graded"`<br>
+      Expected: An error message will be displayed since there is no existing "graded" label
+   3. Test case: `:d 0 -l "cs2103t"` or `:d 2 -l "cs2103t"`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+3. Deleting the deadline to a task. 
+   Prerequisites: there is only one task in the list with an existing deadline
+   1. Test case: `:d 1 -d`<br>
+      Expected: Task at index 1 now has its deadline removed. 
+   2. Test case: `:d 0 -d` or `:d 2 -d`<br>
+      Excepted: An error message will be displayed since there is not task at index 0 or 2.
+      
+### Filtering
+1. Filtering the task by keyword 
+   1. Test case: `:f -w "quiz"`<br>
+      Expected: All the task with "quiz" as the keyword will be displayed
+   2. Test case: `:f -w ""` <br>
+	Excepted: An error message will be displayed since keyword cannot be empty
+2. Filtering the task by priority
+   1. Test case: `:f -p 0`<br>
+      Expected: All the task with "unknown" as the priority will be displayed
+   2. Test case: `:f -p 1`<br>
+      Expected: All the task with "very urgent" as the priority will be displayed
+   3. Test case: `:f -p 2`<br>
+      Expected: All the task with "urgent" as the priority will be displayed
+   4. Test case: `:f -p 3`<br>
+      Expected: All the task with "not urgent" as the priority will be displayed
+   5. Test case: `:f -p -1` or `:f -p 4` or `:f -p `<br>
+      Expected: An error message will be displayed since priority cannot be empty and can only be 0, 1, 2 or 3.
+3. Filtering the task by status
+   1. Test case: `:f -s 0`<br>
+      Expected: All the task with "not done" as the status will be displayed
+   2. Test case: `:f -s 1`<br>
+      Expected: All the task with "in progress" as the status will be displayed
+   3. Test case: `:f -s 2`<br>
+      Expected: All the task with "completed" as the tatus will be displayed
+   4. Test case: `:f -s -1` or `:f -s 3` or `:f -s `<br>
+      Expected: An error message will be displayed since status cannot be empty and can only be 0, 1, or 2.
+4. Filtering the task by label
+   1. Test case: `:f -l "cs2103t"`<br>
+      Expected: All the task with "cs2103t" as the label will be displayed
+   2. Test case: `:f -l ""`<br>
+      Expected: An error message will be displayed since label cannot be empty
+5. Filtering the task by date before
+   1. Test case: `:f --before 2023-04-10`<br>
+      Expected: All the task with "deadline" before 10 April 2023, 0 hours 0 secs will be displayed.
+   2. Test case: `:f --before 2023-04-10 23:59`<br>
+      Expected: All the task with "deadline" before 10 April 2023, 23 hours 59 secs will be displayed.
+   3. Test case: `:f --before 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+6. Filtering the task by date after
+   1. Test case: `:f --after 2023-04-10`<br>
+      Expected: All the task with "deadline" after 10 April 2023, 0 hours 0 secs will be displayed.
+   2. Test case: `:f --after 2023-04-10 23:59`<br>
+      Expected: All the task with "deadline" after 10 April 2023, 23 hours 59 secs will be displayed.
+   3. Test case: `:f --after 2023-13-01`<br>
+      Excepted: An error message will be displayed since the deadline is invalid (there is no 13th month)
+      
+### Sorting
+1. Sort the task by priority
+   1. Test case: `:s -p`<br>
+      Expected: Task is now sorted according to priority.
+   2. Test case: `:s` <br>
+	Excepted: An error message will be displayed since no flag is specified.
+2. Sort the task by deadline
+   1. Test case: `:s -d`<br>
+      Expected: Task is now sorted according to deadline.
+   2. Test case: `:s` <br>
+	Excepted: An error message will be displayed since no flag is specified.
+	
+### Refresh
+1. Refresh the tasklist
+   1. Test case: `:refresh`<br>
+      Expected: TaskList now has no filter and is sorted according to the time added to the task list. 
+   2. Test case: `:refresh 123` <br>
+	Excepted: An error message will be displayed.
 
-   1. Test case: `d -1`<br>
-      Expected: No task is deleted. Error details shown at the bottom of the screen.
 
-   1. Other incorrect delete commands to try: `:delete`, `:delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Help
+1. View the help manual
+   1. Test case: `:help`<br>
+      Expected: A help manual will be displayed.
+   2. Test case: `:help 123` <br>
+	Excepted: An error message will be displayed.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ## **Appendix: Planned Enhancements**
 
@@ -1026,3 +1168,4 @@ testers are expected to do more *exploratory* testing.
 9. We plan to devise simpler and more intuitive command formats for the user. This will allow the user to use the app more efficiently by reducing the amount of typing required to execute a command. With more intuitive command formats, the user will also be able to remember the command formats more easily.
 
 10. Currently, the "insert" and "edit" commands seem to be very similar. We plan to devise a way to better structure & streamline these two commands so that the user can easily differentiate between them. With due consideration, we might even be able to merge these two commands into one command. Hopefully with this, the user will be able to remember the command formats more easily as they will be more intuitive.
+
