@@ -437,7 +437,9 @@ Finds students based on a keyword in the parameter that you want.
 
 The `find` and `filter` commands allow you to match keywords or partial keywords with the entries, for example:
 
-<h4 style="color:Orange">Find</h4>
+<!-- Prevent adding the Find section into the TOC to reduce clutter in TOC. -->
+#### Find
+{:.no_toc}
 
 `find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all parameters EXCEPT tags and modules, where you will have to enter the keywords in full.
 
@@ -446,7 +448,9 @@ The `find` command allows you to zoom in on an entry that matches **all** your `
 > Format: \\
 > `find [n/NAME]... [p/PHONE]... [e/EMAIL]... [a/ADDRESS]... [edu/EDUCATION]... [tele/TELEGRAM]... [r/REMARK]... [t/TAG]... [m/MODULE]...`
 
-<h4 style="color:Orange">Filter</h4>
+<!-- Prevent adding the Find section into the TOC to reduce clutter in TOC. -->
+#### Filter
+{:.no_toc}
 
 `filter` will also show you those who match with **at least one** of the criteria.
 
