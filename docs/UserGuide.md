@@ -106,7 +106,15 @@ Salespeople managing client contacts who prefer a CLI
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   <br>
 
-- Current iteration can only accept up to 2147483647 contacts and and up to 2147483647 transactions. Therefore command referencing INDEX can only reach up to 2147483647.
+**:construction: Limitations for current iteration:**<br>
+
+- SalesPunch can only accept up to 2147483647 contacts and up to 2147483647 transactions. 
+  Therefore, commands referencing INDEX can only reach up to 2147483647.
+  <br>
+
+- Commands do not yet take into account an empty contact list.
+  Some may still function so long they are valid.
+  <br>
 
 </div>
 
