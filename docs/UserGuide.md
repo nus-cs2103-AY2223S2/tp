@@ -52,7 +52,7 @@ and 10,000 tags!
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **2. Quick start**
+# **2. Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -67,15 +67,13 @@ and 10,000 tags!
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
+    * `help` : Brings up the list of commands for reference
 
 6. Refer to the [Command](#4-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-
---------------------------------------------------------------------------------------------------------------------
 
 # **3. Quick Reference Guide**
 
@@ -107,7 +105,7 @@ employee.
 
 ### 3.1.4 Departments
 The leftmost panel is the Departments section. Here you can view the status of the departments in your
-company. The main data displayed is the number of employees available.
+company. The main data displayed is the number of employees in each department.
 
 ### 3.1.5 Leaves
 The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have
@@ -124,8 +122,8 @@ applied for leave. Each leave date would contain the number of employees who app
 
 ### 3.2.1. Employee
 
-Employees can be added to SudoHR to better
-track their data, involvement in the company, as well as easy retrieval of information.
+Employees can be added to SudoHR to better track their data, such as their leaves and the departments that they 
+belong to,  as well as easy retrieval of information.
 
 An employee possesses the following attributes:
 1. Employee ID
@@ -138,7 +136,7 @@ An employee possesses the following attributes:
 Employees are identified by their IDs. An employee's ID is a unique identification number assigned by the company.
 So, no two employees should share the same ID.
 
-Similarly, email address and phone number are fields that are not intended for sharing. 
+Similarly, email address and phone number are fields that belong to a single employee. 
 SudoHR enforces uniqueness for these two fields as well. However, do note that emails are case-sensitive.
 
 You cannot add an employee that share any of the following fields with a different employee in SudoHR:
@@ -148,7 +146,8 @@ You cannot add an employee that share any of the following fields with a differe
 
 ### 3.2.2. Department
 
-A department is made up of a group of employees. A department can have many employees and an employee can be in many departments.
+A department is made up of a group of employees. A department can have many employees and an employee can be in many 
+departments.
 
 Every employee in a department must be unique.
 
@@ -179,18 +178,20 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 </div>
 
 
-| Placeholder             | Corresponding Prefix | Description|
+List placeholders in the command
+
+| Placeholder             | Corresponding Prefix | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |-------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ID**                  | id/                  | {::nomarkdown} ID is the unique identifier for an employee. Leading zeroes are ignored. <br/> **Note: This flag is only used when adding an employee into the app**. <br/> It has the following constraints: <br/> <ul> <li> Must be a positive integer <ol> <li> 0 is often reserved for administrative use </li> <li> negative numbers are not conventionally used </li> </ol> </li> <li> Cannot be empty </li> </ul>  <br/>   Valid Examples: <ul> <li>1</li> <li>100</li> </ul> Invalid Examples: <ul> <li>Bob</li> <li>0</li> <li>-1</li> </ul> {:/} |
-| **EMPLOYEE_ID**         | eid/                 | Similar to ID, The EMPLOYEE_ID represents the ID of an employee. <br/> It is used for any commands that require referencing an employee. <br/> It follows the same constraints as ID.                                                                                                                                                                                                                  {:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **NAME**                | n/                   | {::nomarkdown}NAME represents the name of an employee. <br/> It has the following constraints: <br/> <ul><li> It must only contain alphanumerical characters </li> <li> Cannot be empty </li></ul> <br/> Valid Examples: <li>Kenneth</li> <li>Bob Lim</li> Invalid Examples: <li>Bob*</li> <li>1Alice</li> {:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **PHONE_NUMBER**        | p/                   | {::nomarkdown} PHONE_NUMBER represents the phone number of an employee. <br/> It has the following constraints: <li> It must contain only 8 digits </li> <li> First 4 digits can be space-separated from the last 4 digits </li> <li> it must be unique </li> <br/> Valid Examples: <li>12345678</li> <li>9762 8372</li> Invalid Examples: <li>123</li> <li>Hello</li>   {:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **ID**                  | id/                  | {::nomarkdown} ID is the unique identifier for an employee. Leading zeroes are ignored. <br/> **Note**: This flag is only used when adding an employee into the app. <br/> It has the following constraints: <br/> <ul> <li> Must be a positive integer <ol> <li> 0 is often reserved for administrative use </li> <li> negative numbers are not conventionally used </li> </ol> </li> <li> Cannot be empty </li> </ul>  <br/>   Valid Examples: <ul> <li>1</li> <li>100</li> <li>001000</li> </ul> Invalid Examples: <ul> <li>Bob</li> <li>0</li> <li>-1</li> </ul> {:/} |
+| **EMPLOYEE_ID**         | eid/                 | Similar to ID, The EMPLOYEE_ID represents the ID of an employee. <br/> It is used for any commands that require referencing an employee. <br/> It follows the same constraints as ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **NAME**                | n/                   | {::nomarkdown}NAME represents the name of an employee. <br/> It has the following constraints: <br/> <ul><li> It can only contain alphanumerical characters and spaces between these characters. </li> <li> Cannot be empty </li></ul> <br/> Valid Examples: <li>Kenneth</li> <li>Bob Lim</li> <li>Alice1</li> Invalid Examples: <li>Bob*</li> <li>Alice-1</li>    {:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **PHONE_NUMBER**        | p/                   | {::nomarkdown} PHONE_NUMBER represents the phone number of an employee. <br/> It has the following constraints: <li> It must contain only 8 digits </li> <li> First 4 digits can be space-separated from the last 4 digits </li> <li> it must be unique </li> <br/> Valid Examples: <li>12345678</li> <li>9762 8372</li> Invalid Examples: <li>123</li> <li>Hello</li> {:/} |
 | **EMAIL**               | e/                   | {::nomarkdown} EMAIL represents the email address of an employee. It must be of the format local-part@domain <br/> It has the following constraints: <li> It must be unique </li> <li> The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, &#40; +_.- &#41;. The local-part may not start or end with any special characters. </li>  <li> This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. </li> <li> The domain name must: <ol><li>End with a domain label at least 2 characters long</li><li>Have each domain label start and end with alphanumeric characters</li><li>Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.</li></ol></li> Valid Examples: <li>PeterJack+1190@example.com</li> <li>a1+be.d@example1.com</li> Invalid Examples: <li>peter jack@example.com</li> <li>-peterjack@example.com</li> {:/}    |
-| **ADDRESS**             | a/                   | {::nomarkdown} ADDRESS represents the home address of an employee. <br/> It can take on any value! {:/}    |
+| **ADDRESS**             | a/                   | {::nomarkdown} ADDRESS represents the home address of an employee. <br/> It can take on any value!    {:/} |
 | **TAG**                 | t/                   | {::nomarkdown} TAG represents a tag of an employee. This field is optional and is not restrictive in usage. <br/> For example, it can be used to indicate an employee's position in the department or simple remarks about the employee. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li> {:/}    |
-| **DEPARTMENT_NAME**     | n/                   | {::nomarkdown} DEPARTMENT_NAME is the unique identifier for a department. It is used when creating and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Finance</li> Invalid Examples: <li>*Finance</li> {:/}    |
-| **OLD_DEPARTMENT_NAME** | NA                   | {::nomarkdown}OLD_DEPARTMENT_NAME represents the original department name before editing a department. It has the same constraints as DEPARTMENT_NAME.{:/}    |
-| **NEW_DEPARTMENT_NAME** | n/                   | {::nomarkdown}NEW_DEPARTMENT_NAME represents the new department name when editing a department. It has the same constraints as DEPARTMENT_NAME. {:/}     |
+| **DEPARTMENT_NAME**     | n/                   | {::nomarkdown} DEPARTMENT_NAME is the unique identifier for a department. It is used when creating and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters and spaces. </li> <br/> Valid Examples: <li>Finance</li> Invalid Examples: <li>*Finance</li>   {:/} |
+| **OLD_DEPARTMENT_NAME** | NA                   | {::nomarkdown}OLD_DEPARTMENT_NAME represents the original department name before editing a department. It has the same constraints as DEPARTMENT_NAME. {:/}  |
+| **NEW_DEPARTMENT_NAME** | n/                   | {::nomarkdown}NEW_DEPARTMENT_NAME represents the new department name when editing a department. It has the same constraints as DEPARTMENT_NAME.  {:/}  |
 | **DATE**                | d/                   | {::nomarkdown} DATE represents the date of the leave. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br> {:/}  |
 | **START_DATE**          | s/                   | {::nomarkdown} START_DATE represents the start of a range of days where leave is taken. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br> {:/}     |
 | **END_DATE**            | e/                   | {::nomarkdown} START_DATE represents the end of a range of days where leave is taken. <br/> It has the following constraints: <li> Within a command, the END_DATE cannot be earlier than the START_DATE </li> <li> Within a command, the END_DATE can at most be 6 days later than the START_DATE </li><li>The date provided must be of the form YYYY-MM-DD. "YYYY" refers to the year , "MM" refers to the month, and "DD" refers to the day of the month for a specfic day in the calender.</li><li>The date provided must be a valid calender day.</li><br/> {:/}  |
@@ -211,12 +212,11 @@ It consists of:
 2. Prefixes - The identifiers for the various input values, different commands require different prefixes
 3. Placeholders - The actual input values for the command.
 
-[//]: # (## 6.4. Trying your first command)
-
-[//]: # (<-- Insert example context here -->)
-
-
-
+<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
+1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
+2. If duplicated prefixes are provided, only the argument associated with the last instance of the same prefix will 
+   be processed by the parser.
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 # **4. Commands**
@@ -447,29 +447,7 @@ Examples:
 * `leid n/Software Engineering`
 * `leid n/Sales`
 
-### 4.2.10 List department headcount: `ldhc`
 
-List all employees present in the given department on a given date. The department window will display only the given
-department.
-
-Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
-* If the date is not specified, employees present on the current date of inputting
-the command will be shown for the given department.
-* The given date must not be before the current date of inputting the command and must be within one year
-of the current date of inputting the command.
-* The date will be deemed invalid if it does not follow the form YYYY-MM-DD or if the date is not within the range
-specified above.
-
-<div markdown="span" class="alert alert-warning">**NOTE:**
-The input date must be of the form YYYY-MM-DD
-</div>
-
-Examples:
-* `ldhc n/Human Resources`
-* `ldhc n/Sales d/2023-06-03`
-
-
-![result for 'ldhc n/Sales d/2023-06-03'](images/UiListDepartmentHeadcountCommand.png)
 
 ## 4.3. Leave Commands
 
@@ -482,7 +460,7 @@ section.
 Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
-The employee shouldn't have taken leave on the date provided
+The employee should not have taken leave already on the date provided
 </div>
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
@@ -562,19 +540,39 @@ Examples:
 
 ### 4.3.5. Listing all leave dates: `llve`
 
-Displays all leaves taken by employees.
+Displays all leaves taken by all employees.
 
 Format: `llve`
 
 
 ### 4.3.6. Listing all leaves taken by an employee: `llbe`
 
-Lists all the leave date(s) of an employee.
+Lists all the leave date(s) taken by an employee.
 
 Format: `llbe eid/EMPLOYEE_ID`
 
 Examples:
 * `llbe eid/1`
+
+
+### 4.3.7 List department headcount: `ldhc`
+
+List all employees present in the given department on a given date. The department window will display only the given
+department and the leave window will display only the given date.
+
+Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
+* If the date is not specified, employees present on the current date of inputting
+  the command will be shown for the given department.
+* The given date must not be before the current date of inputting the command and must be within one year
+  of the current date of inputting the command.
+
+Examples:
+* `ldhc n/Human Resources`
+* `ldhc n/Sales d/2023-06-03`
+
+
+![result for 'ldhc n/Sales d/2023-06-03'](images/UiListDepartmentHeadcountCommand.png)
+
 
 ## 4.4. General Commands
 
@@ -657,9 +655,6 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 --------------------------------------------------------------------------------------------------------------------
 
 # **5. FAQ**
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and replace the default empty data file `sudohr.json` with the file that contains the data of your previous SudoHR home folder.
 
 **Q**: There seems to be many commands and prefixes to remember! Is there an easy way to remember them?<br>
 **A**: We understand how the short form command names may be difficult to remember, but don't worry. We have thus created a command summary here in the user guide for you in [section 4.6](#46-command-summary)! <br>

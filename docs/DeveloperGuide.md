@@ -170,7 +170,7 @@ This section describes some noteworthy details, alongside considerations and con
 ### 4.1. Design considerations:
 
 #### 4.1.1. Employee
-An important design consideration to note for Employee is the multiple different fields that qualify as candidate _keys_, such as an employee id, email address, and phone number.
+An important design consideration to note for Employee is the multiple different fields that qualify as _keys_, such as an employee id, email address, and phone number.
 
 These are fields to guard against duplication. An employee's id is any uniquely generated identifier assigned to it by the company upon joining. Two employees should not share email field or phone number as those two fields are understood to be unique.
 
@@ -226,10 +226,9 @@ The attributes of an Employee are:
 
 **Note**:
 1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
-   1. `edit eid/37 a/ntu p/8461 4872` will invoke the same result as `edit eid/37 p/8461 4872 a/ntu`
+   1. `edit eid/37 a/ntu p/8461 4872` will return the same result as `edit eid/37 p/8461 4872 a/ntu`
 2. If duplicated prefixes are provided, only the argument associated with last instance of the same prefix will be processed by the parser.
 3. We make a distinction between the prefixes `id/` and `eid/`. The former is used in commands during adding of an employee or editing of an employee’s Id field whereas the latter is used in commands that references an employee that exists in SudoHR.
-
 
 
 #### 4.2.1 Adding an employee
@@ -357,6 +356,10 @@ The attributes of a department are:
 - `UniqueEmployeeList`: The employees in a department, the list must not contain duplicate employees.
 
 The uniqueness of each department in `UniqueDepartmentList` is enforced by checking against the `DepartmentName`. This will be explained in the _Adding a department_ section.
+
+**Note**
+1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
+2. If duplicated prefixes are provided, only the argument associated with last instance of the same prefix will be processed by the parser.
 
 #### 4.3.1. Adding a department
 
@@ -577,6 +580,10 @@ The attributes of a leave are:
 
 - `LeaveDate`: The date of the leave, which is also the unique identifier for a leave
 - `UniqueEmployeeList` : The employees who applied for this leave, the list must not contain duplicate employees. 
+
+**Note**
+1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
+2. If duplicated prefixes are provided, only the argument associated with last instance of the same prefix will be processed by the parser.
 
 #### 4.4.1. Adding an employee's leave
 The `aetl` command adds an employee's leave on a specific day:
@@ -1274,7 +1281,7 @@ testers are expected to do more *exploratory* testing.
 
 #### 7.2.3. Editing an employee
 
-1. Test case: `edit eid/1 p/9999999` (employee must exist) <br>
+1. Test case: `edit eid/1 p/99999999` (employee must exist) <br>
    Expected: Employee with ID 1 is edited. Details of the edited employee is shown in the result display.
 2. Test case: `edit 1 p/88888888` (incorrect format) <br>
    Expected: No employee is edited. Result display shows correct command format and command constraints.
