@@ -176,11 +176,12 @@ Classes used by multiple components are in the `tfifteenfour.clipboard.commons` 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
 ### User Interface Implementation
 
 This subsection describes implementation details related to `UI`, such as page navigation and design.
 
-#### Navigating Through Pages
+#### Navigating through pages
 
 ![Navigation Guide](images/navigation.png)
 
@@ -205,7 +206,7 @@ At the end of the `showGroupPane` method call, the Left Pane, previously populat
 
 This sequence of interactions is similar across each page navigation.
 
-#### Design Considerations
+#### Design considerations
 
 - **Attendance Page Design**
 
@@ -326,7 +327,7 @@ In addition to the above diagram, the following object diagram illustrate a more
 ![ObjectDependencyObjectDiagram](images/ObjectDependencyObjectDiagram.png)
 
 
-### Undo Feature
+### Undo feature
 `undo` allows restoring up to 5 previous states, but can be modified to restore more/less states.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**  Allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
@@ -341,7 +342,7 @@ If new commands are to be added, it's interaction with `undo` must be kept in mi
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design Considerations:
+#### Design considerations:
 
 **Aspect: How undo executes:**
 
@@ -355,7 +356,7 @@ If new commands are to be added, it's interaction with `undo` must be kept in mi
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
-### Unique List of Items
+### Unique list of items
 Represented by the `UniqueList<T>` class, where `T` is the type of the item to be contained.
 
 `UniqueList` is an abstract class that was created to accommodate the storing of different types of items which require list operations. This class provides a generalized solution that can be applied to various scenarios where a list of unique items is needed.
@@ -381,17 +382,15 @@ The `ListableItem` interface would require that its classes also support the han
 Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.
 This serves to store/load data to/from a plaintext json file.
 
-##### During Loading of Data
+##### During loading of data
 Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` containing the saved data, through interactions with `Storage`.
 ![LoadingStorageSequenceDiagram](images/LoadingStorageSequenceDiagram.png)
 
-##### During Saving of Data
+##### During saving of data
 Saving of data is done every time a command is executed. The sequence diagram below illustrates how a `Roster` is saved into storage.
 ![SavingStorageSequenceDiagram](images/SavingStorageSequenceDiagram.png)
 
-#### Design Considerations:
-
-**Aspect: When a `Roster` is saved to file:**
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Save the `Roster` every time a command is executed.
   * Pros: Easy to implement.
@@ -413,6 +412,26 @@ Saving of data is done every time a command is executed. The sequence diagram be
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Effort
+
+### Page Navigation
+As CLIpboard has multiple different pages to display different types of objects at a given time. As such, a way of keeping track of the current page, as well as the possible pages to navigate to, was needed.
+
+Additionally, navigating a page also meant traversing the object hierarchy.
+There had to be a way to store information about which object had been selected, in order to know which object a user command should manipulate. (e.g If the user is on the "Courses" page and selects a course, this selection needs to be saved. Then, further commands performed by the user will execute on the selected course)
+
+In short, page information as well as pointers to the objects selected by the user needed to be maintained. These were achieved through the `CurrentSelection` class, which is tied to a `ModelManager` instance as a field.
+
+Adding page navigation added further challenges, as more factors had to now be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, as well as handling the loading of appropriate GUI elements respective to the page.
+
+### Storage
+As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
+
+The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
+
+On top of creating the respective `json` serializing classes for each different type of object, each type of object would also have slightly different fields to keep track of, which added further complexity to serializing these objects.
+
 
 ## **Appendix: Requirements**
 
@@ -1288,7 +1307,6 @@ These commands should be tested on the Grades Page.
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
-
 ## Appendix: Effort
 ##### Multiple Object Types
 One of the main challenges we faced was establishing dependencies between the various object types in a way that
