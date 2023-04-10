@@ -842,7 +842,7 @@ Tag a specified module.
 <ul>
     <li>
     <code>tag EG2310 /tags fun, hard</code><br/>
-    Tag the module <code>EG2310</code> with the tags <code>fun</code> and <code>hard</code>
+    Tag the module "EG2310" with the tags "fun and "hard"
     </li>
 </ul>
 </details>
@@ -870,7 +870,7 @@ Tag a specified lecture.
 <ul>
     <li>
     <code>tag Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Tag the lecture <code>Lecture_1</code> of module <code>CS2040</code> with the tag <code>Yay</code>
+    Tag the lecture "Lecture_1" of module "CS2040" with the tag "Yay"
     </li>
 </ul>
 </details>
@@ -896,7 +896,7 @@ Tag a specified video.
 <ul>
     <li>
     <code>tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Tag the video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code> with the tag <code>Yay</code>
+    Tag the video "Video_1" of lecture "Lecture_1" in module "CS2040" with the tag "Yay"
     </li>
 </ul>
 </details>
@@ -926,7 +926,7 @@ Remove specified tags from a module.
 <ul>
     <li>
     <code>untag EG2310 /tags fun, hard</code><br/>
-    Remove the tags <code>fun</code> and <code>hard</code> from module <code>EG2310</code>
+    Remove the tags "fun" and "hard" from module "EG2310"
     </li>
 </ul>
 </details>
@@ -954,7 +954,7 @@ Remove specified tags from a lecture.
 <ul>
     <li>
     <code>untag Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Remove the tag <code>Yay</code> from lecture <code>Lecture_1</code> of module <code>CS2040</code>
+    Remove the tag "Yay" from lecture "Lecture_1" of module "CS2040"
     </li>
 </ul>
 </details>
@@ -980,7 +980,7 @@ Remove specified tags from a video.
 <ul>
     <li>
     <code>untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay</code><br/>
-    Remove the tag <code>Yay</code> from video <code>Video_1</code> of lecture <code>Lecture_1</code> in module <code>CS2040</code>
+    Remove the tag "Yay" from video "Video_1" of lecture "Lecture_1" in module "CS2040"
     </li>
 </ul>
 </details>
@@ -1055,11 +1055,11 @@ Import data from a specified file path to the current tracker.
     </li>
     <li>
     <code>import hehe.json /mod CS2040, MA2401</code><br/>
-    Import modules <code>CS2040</code> and <code>MA2401</code> from the file <code>hehe.json</code> in the default directory
+    Import modules "CS2040" and "MA2401" from the file <code>hehe.json</code> in the default directory
     </li>
     <li>
     <code>import hihi.json /mod EG2310 /overwrite</code><br/>
-    Import modules <code>EG2310</code> from the file <code>hihi.json</code>, overwriting the current progress of <code>EG2310</code> in the tracker
+    Import modules "EG2310" from the file <code>hihi.json</code>, overwriting the current progress of "EG2310" in the tracker
     </li>
 </ul>
 </details>
