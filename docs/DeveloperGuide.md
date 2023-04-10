@@ -595,7 +595,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Students' progress**: For our current version, the progress of a student is tracked through
 the number of tasks the student has completed
 * **Students' performance**: For our current version, the performance of a student is tracked through a view
-of the student's scores. In future implementation, a student's performance will be shown in a line chart
+of the student's scores as well as a progress chart of the latest 5 scores.
+* **Index**: The number of the item shown beside its name, on the list being referred to (e.g. "index of student" refers to the index number of the student (shown beside the student's name)
+  in the student list shown in the application)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -629,9 +631,11 @@ testers are expected to do more *exploratory* testing.
 ### Adding a student
 
 1. Adding a student to the student list
+
    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`<br>
    Expected: The student is added to the student list. Details of the added student shown in the status message. Student list reverts to show
    all students.
+
    3. Test case: `add n/John Doe p/98765432 e/bob@example.com a/Down street #01-01 c/98762837` after entering previous test case<br>
    Expected: The student is not added to the student list. Error details shown in the status message
 
@@ -655,6 +659,7 @@ testers are expected to do more *exploratory* testing.
     Expected: Similar to previous.
 
 1. Deleting a student being checked
+
     1. Prerequisites: Check a student using `check` command.
 
     2. Test case: `delete x` (where x is the index of the student being checked)<br>
@@ -664,13 +669,17 @@ testers are expected to do more *exploratory* testing.
 ### Adding a task for a student
 
 1. Adding a task for a student in the student list when the student is being checked
+
    2. Prerequisites: Check a student using `check` command.
+
    3. Test case: `addtask x t/Complete Math Exercise` (where x is the index of the student being checked)<br>
    Expected: The task is added to the task list of the student. Student's name and details of the added task shown in the status message.
    The displayed task list of the checked student is updated with the added task.
 
 2. Adding a task for a student in the student list when the student is not being checked
+
    3. Prerequisites: Student with index x is not being checked.
+
    4. Test case: `addtask x t/Complete Math Exercise` (where x is the index of student not being checked)<br>
    Expected: The task in added to the task list of the student. Student's name and details of the added task shown in the status message.
    The displayed task list is not updated since the student is not being checked.
