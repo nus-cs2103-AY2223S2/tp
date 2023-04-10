@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickBookParser" as QuickBookParser LOGIC_COLOR
+participant ":QuickContactsParser" as QuickContactsParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 participant "d:AddCommand" as AddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("add n/Bob")
 activate LogicManager
 
-LogicManager -> QuickBookParser : parseCommand("add n/bob")
-activate QuickBookParser
+LogicManager -> QuickContactsParser : parseCommand("add n/bob")
+activate QuickContactsParser
 
 create AddCommandParser
-QuickBookParser -> AddCommandParser
+QuickContactsParser -> AddCommandParser
 activate AddCommandParser
 
-AddCommandParser --> QuickBookParser
+AddCommandParser --> QuickContactsParser
 deactivate AddCommandParser
 
-QuickBookParser -> AddCommandParser : parse("n/bob")
+QuickContactsParser -> AddCommandParser : parse("n/bob")
 activate AddCommandParser
 
 create AddCommand
@@ -36,14 +36,14 @@ activate AddCommand
 AddCommand --> AddCommandParser : d
 deactivate AddCommand
 
-AddCommandParser --> QuickBookParser : d
+AddCommandParser --> QuickContactsParser : d
 deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> QuickBookParser
+AddCommandParser -[hidden]-> QuickContactsParser
 destroy AddCommandParser
 
-QuickBookParser --> LogicManager : d
-deactivate QuickBookParser
+QuickContactsParser --> LogicManager : d
+deactivate QuickContactsParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand

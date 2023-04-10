@@ -15,8 +15,9 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Beebeeoii)]
 [[portfolio](team/beebeeoii.md)]
 
-* Role: Team Member
-* Responsibilities: To be added
+* Role: Team Lead / Developer
+* Responsibilities:
+  * Refer [here](https://ay2223s2-cs2103t-t11-2.github.io/tp/team/beebeeoii)
 
 ### Kannusami Saraan
 
@@ -25,8 +26,9 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/ks2499)]
 [[portfolio](team/ks2499.md)]
 
-* Role: Team Member
-* Responsibilities: To be added
+* Role: Developer
+* Responsibilities:
+  * Refer [here](https://ay2223s2-cs2103t-t11-2.github.io/tp/team/ks2499)
 
 ### Kelvin Chua
 
@@ -35,8 +37,9 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/chuakid)]
 [[portfolio](team/chuakid.md)]
 
-- Role: To Be Added
-- Responsibilities: To Be Added
+- Role: Developer
+- Responsibilities:
+    * Refer [here](https://ay2223s2-cs2103t-t11-2.github.io/tp/team/chuakid)
 
 ### Ethan Tan
 
@@ -45,8 +48,9 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/thedesalizes)]
 [[portfolio](team/thedesalizes.md)]
 
-- Role: To Be Added
-- Responsibilities: To Be Added
+- Role: Developer
+- Responsibilities:
+  - Refer [here](https://ay2223s2-cs2103t-t11-2.github.io/tp/team/thedesalizes)
 
 ### Jeremy Khoo
 
@@ -55,5 +59,6 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/jeremykhoo-NUS)]
 [[portfolio](team/jeremykhoo-nus.md)]
 
-- Role: To Be Added
-- Responsibilities: To Be Added
+- Role: Developer
+- Responsibilities:
+  - Refer [here](https://ay2223s2-cs2103t-t11-2.github.io/tp/team/jeremykhoo-nus)

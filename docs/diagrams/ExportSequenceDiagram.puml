@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickBookParser" as QuickBookParser LOGIC_COLOR
+participant ":QuickContactsParser" as QuickContactsParser LOGIC_COLOR
 participant ":ExportCommandParser" as ExportCommandParser LOGIC_COLOR
 participant "d:ExportCommand" as ExportCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> QuickBookParser : parseCommand()
-activate QuickBookParser
+LogicManager -> QuickContactsParser : parseCommand()
+activate QuickContactsParser
 
 create ExportCommandParser
-QuickBookParser -> ExportCommandParser
+QuickContactsParser -> ExportCommandParser
 activate ExportCommandParser
 
-ExportCommandParser --> QuickBookParser
+ExportCommandParser --> QuickContactsParser
 deactivate ExportCommandParser
 
-QuickBookParser -> ExportCommandParser : parse()
+QuickContactsParser -> ExportCommandParser : parse()
 activate ExportCommandParser
 
 create ExportCommand
@@ -36,14 +36,14 @@ activate ExportCommand
 ExportCommand --> ExportCommandParser : d
 deactivate ExportCommand
 
-ExportCommandParser --> QuickBookParser : d
+ExportCommandParser --> QuickContactsParser : d
 deactivate ExportCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-ExportCommandParser -[hidden]-> QuickBookParser
+ExportCommandParser -[hidden]-> QuickContactsParser
 destroy ExportCommandParser
 
-QuickBookParser --> LogicManager : d
-deactivate QuickBookParser
+QuickContactsParser --> LogicManager : d
+deactivate QuickContactsParser
 
 LogicManager -> ExportCommand : execute()
 activate ExportCommand

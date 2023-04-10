@@ -44,7 +44,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -76,13 +76,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `MeetingListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -93,7 +93,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/Logic.java)
 
 Here's a (partial) **_class diagram_** of the `Logic` component:
 
@@ -121,7 +121,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -146,7 +146,7 @@ The `Meeting` model,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -163,94 +163,118 @@ Classes used by multiple components are in the `seedu.quickcontacts.commons` pac
 
 ## **Feature Implementation**
 
-This section describes some noteworthy details on how certain features are implemented. Person and Meetings have similar functionality, how they are implemented are similar.
-Without loss of generality the specifications below can be applied to both class of objects.
+### Create, Edit and Delete Operations for `Person` and `Meeting`
 
-For example. in the sections we refer to a `UnqiueList` object, In the code there are two of such objects. One that acts on meeting `UniqueMeetingList`
-, and another that acts on person `UniquePersonList`. Depending on which object functionality you are exploring just substitute the general object with the
-specific object. We write in a general so that we cover breath first, and so that we may adhere to [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+This section describes some noteworthy details on how certain features related to `Person` and `Meeting` are
+implemented. `Person` and `Meeting` have similar functionality and how they are implemented are similar. Without loss of
+generality, the specifications below can be applied to both class of objects, unless specified otherwise.
 
-### CRUD Operations
+In this section:
+* `Object` is used to represent [`Person`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/model/person/Person.java) and [`Meeting`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/model/meeting/Meeting.java)
+* Correspondingly, `UniqueList` is used to represent [`UniquePersonList`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/model/person/UniquePersonList.java) and [`UniqueMeetingList`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/model/meeting/UniqueMeetingList.java)
+* Correspondingly, `AddXYZCommand` is used to represent [`AddCommand`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/commands/AddCommand.java) and [`AddMeetingCommand`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/commands/AddMeetingCommand.java)
+* Correspondingly, `EditXYZCommand` is used to represent [`EditCommand`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/commands/EditCommand.java) and [`EditMeetingCommand`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/commands/EditMeetingsCommand.java)
+* Correspondingly, `DeleteXYZCommand` is used to represent [`DeleteCommand`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/commands/DeleteCommand.java) and [`DeleteMeetingCommand`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/commands/DeleteMeetingCommand.java)
+* Correspondingly, `AddParser` is used to represent [`AddCommandParser`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/parser/AddCommandParser.java) and [`AddMeetingCommandParser`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/parser/AddMeetingCommandParser.java)
+* Correspondingly, `EditParser` is used to represent [`EditCommandParser`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/parser/EditCommandParser.java) and [`EditMeetingParser`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/parser/EditMeetingParser.java)
+* Correspondingly, `DeleteParser` is used to represent [`DeleteCommandParser`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/parser/DeleteCommandParser.java) and [`DeleteMeetingCommandParser`](https://github.com/AY2223S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/quickcontacts/logic/parser/DeleteMeetingCommandParser.java)
+
+Depending on which object functionality you are exploring, simply substitute the general object (`Object` or
+`UniqueList`) with the specific object.
+
+We write in a general so that we cover breadth, and that we may adhere to
+[DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+
 #### Adding
+
 ##### Description
-The <u>`AddCommand`</u> handles the addition of Objects into quickbook. See the syntax here [add command](#command-summary)
+The `AddCommand` handles the addition of `Object` into QuickContacts. See the syntax for `AddCommand`
+[here](#command-summary).
+
 ##### Implementation
+When adding an `Object` the control flow is as follows:
 
-When adding an `Object` the control flow is like the [main sequence diagram](#interaction-between-architecture-components)
-1. The user queries the `UI` to add using an [add command](#command-summary) prefix
-2. `UI` calls the QuickBookParser through `LogicManager` to initiate an <u>`AddParser`</u> object
-3. QuickBookParser then passes the arguments to the <u>`AddParser`</u> object
-4. <u>`AddParser`</u> initiates an <u>`AddCommand`</u> object
-5. <u>`AddCommand`</u> object is passed all the way back to `LogicManager`
-6. `LogicManager` calls execute on <u>`AddCommand`</u>
-7.  `AddCommand` updates the model and returns a `CommandResult` to `LogicManager`
-8. `LogicManager` updates the <u>`UniqueList`</u> pertaining to the `Object`
+1. The user queries the `UI` to add using the [`add` or `addm` command](#command-summary).
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate an `AddParser` object.
+3. `QuickContactsParser` then passes the arguments to the `AddParser` object.
+4. `AddParser` initiates an `AddCommand` object.
+5. `AddCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on `AddCommand`.
+7. `AddCommand` updates the model and returns a `CommandResult` to `LogicManager`.
+8. `LogicManager` updates the `UniqueList`.
 
-Below is the Sequence Diagram
+Below is the Sequence Diagram as a concrete example for a `Person`:
+
 ![Interactions Inside the Logic Component for the `add n/bob` Command](images/AddSequenceDiagram.png)
 
 ##### Exceptions
 The `AddMeetingCommand` throws a `CommandException` if the object's names is found in the address book (i.e.
 no person in the address book has a matching name). The name must match exactly (**case-sensitive**) or else the
-'CommandException' will be thrown.
+`CommandException` will be thrown.
 
 #### Editing
 ##### Description
-The `EditCommand` is responsible for handling the editing of `Objects` in QuickBook. It allows users to modify the details of a specific meeting. See the syntax here: [editMeeting command](#command-summary)
-##### Implementation
+The `EditCommand` is responsible for handling the editing of an `Object` in QuickContacts. It allows users to modify the
+details of a specific `Object`. See the syntax for `EditCommand` [here](#command-summary).
 
+##### Implementation
 When editing a meeting, the control flow is as follows:
 
-1. The user queries the UI to edit a meeting using the "edit" command prefix.
-2. The UI calls the `QuickBookParser` through `LogicManager` to initiate an <u>`EditParser`</u> object.
-3. The `QuickBookParser` then passes the arguments to the <u>`EditParser`</u> object.
-4. The <u>`EditParser`</u> initiates an <u>`EditCommand`</u> object.
-5. The <u>`EditCommand`</u> object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on the <u>`EditCommand`</u>.
-7. The <u>`EditCommand`</u> updates the model with the edited meeting details and returns a `CommandResult` to `LogicManager`.
-8. `LogicManager` updates the `UniqueList` with the edited object information by deleting the old and replacing with the new object with the updated information.
+1. The user queries the UI to edit a `Object` using the [`edit` or `editm` command](#command-summary).
+2. The UI calls the `QuickContactsParser` through `LogicManager` to initiate an `EditParser` object.
+3. `QuickContactsParser` then passes the arguments to the `EditParser` object.
+4. `EditParser` initiates an `EditCommand` object.
+5. `EditCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on the `EditCommand`.
+7. `EditCommand` updates the model with the edited `Object` details and returns a `CommandResult` to `LogicManager`.
+8. `LogicManager` updates the `UniqueList` with the new information by replacing the old with the new object.
 
-Below is the Sequence Diagram
-![Interactions Inside the Logic Component for the `editMeeting` Command](images/EditSequenceDiagram.png)
+Below is the Sequence Diagram as a concrete example for a `Person`:
+
+![Interactions Inside the Logic Component for the `edit` Command](images/EditSequenceDiagram.png)
 
 ##### Exceptions
-The `EditCommand` throws a `CommandException` if any of the object's names is not found in the address book. The name must match exactly (**case-sensitive**) or else the
-'CommandException' will be thrown.
-
+The `EditCommand` throws a `CommandException` if any of the object's names is not found in QuickContacts. The name
+must match exactly (**case-sensitive**) or else a `CommandException` will be thrown.
 
 #### Deleting
 ##### Description
-The `DeleteCommand` handles the deletion of Objects from quickbook. See the syntax here [delete command](#command-summary)
+The `DeleteCommand` handles the deletion of an `Object` from QuickContacts. See the syntax for `DeleteCommand`
+[here](#command-summary).
+
 ##### Implementation
+When deleting an `Object`, the control flow is as follows:
 
-When deleting an `Object`, the control flow is as follows
-1. The user queries the UI to delete using a delete command prefix.
-2. The UI calls the QuickBookParser through LogicManager to initiate a <u>`DeleteParser`</u> object.
-3. QuickBookParser then passes the arguments to the <u>`DeleteParser`</u> object.
-4. <u>`DeleteParser`</u> initiates a <u>`DeleteCommand`</u> object.
-5. <u>`DeleteCommand`</u> object is passed all the way back to LogicManager.
-6. LogicManager calls execute on <u>`DeleteCommand`</u>.
-7. <u>`DeleteCommand`</u> updates the model and returns a `CommandResult` to LogicManager.
-8. LogicManager updates the <u>`UniqueList`</u> pertaining to the Object.
+1. The user queries the UI to delete using the [`delete` or `delm` command](#command-summary).
+2. The UI calls the `QuickContactsParser` through LogicManager to initiate a `DeleteParser` object.
+3. `QuickContactsParser` then passes the arguments to the `DeleteParser` object.
+4. `DeleteParser` initiates a `DeleteCommand` object.
+5. `DeleteCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on `DeleteCommand`.
+7. `DeleteCommand` updates the model and returns a `CommandResult` to `LogicManager`.
+8. `LogicManager` updates the `UniquePersonList` by deleting the `Person` from it.
 
-Below is the Sequence Diagram for the interactions inside the Logic Component for the delete command:
+Below is the Sequence Diagram:
+
 ![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
 ##### Exceptions
 The `DeleteCommand` throws a CommandException if the specified index is not found in quickbook.
 
-#### Finding (only for person in contacts)
+### Finding `Person`
+
 ##### Description
-The `FindCommand` finds persons in the address book. See the syntax here [find command](#command-summary).
+The `FindCommand` finds persons in the address book. See the syntax for `FindCommand` [here](#command-summary).
+
 ##### Implementation
 When finding meetings, the control flow is as follows:
-1. The user queries the `UI` to find using a [find command](#command-summary) prefix.
-2. `UI` calls the QuickBookParser through `LogicManager` to initiate a `FindCommandParser` object.
+
+1. The user queries the `UI` to find using a [`find`](#command-summary) prefix.
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `FindCommandParser` object.
 3. `FindCommandParser` takes in a list of names and creates a `FindCommand` object.
-4.`FindCommand` is executed, and a `MeetingContainsNamesPredicate` is passed to the `updateFilteredMeetingList` method in the `Model` component.
-5. `LogicManager` creates a  `ContainsNamesPredicate`
-6. passing it to the `updateFilteredMeetingList` method in the `Model` component
-7.`UI` displays the filtered meetings to the user.
+4. `FindCommand` is executed, and a `MeetingContainsNamesPredicate` is passed to the `updateFilteredMeetingList` method in the `Model` component.
+5. `LogicManager` creates a `ContainsNamesPredicate`, passing it to the `updateFilteredMeetingList()` method in the `Model` component.
+6. `UI` displays the filtered meetings to the user.
 
 Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
@@ -261,7 +285,7 @@ The names no need to match exactly (**case-INsensitive**) but the Meetings are o
 as *space* is used as a delimiter. The command can be used **without arguments** to get back the original view of all meetings.
 
 ### Exporting and importing of contacts
-##### Description
+#### Description
 Exporting generates a JSON for the contacts at the indices given.
 For example, `export p/ 1 p/2` generates a JSON for the first and second contacts.
 Example JSON:
@@ -296,7 +320,7 @@ Benefit: can directly copy-paste to and from the data files that already exist i
 Here we only describe the Export command. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
 Control flow is as follows.
 1. The user queries the `UI` to export using a [export command](#command-summary) prefix.
-2. `UI` calls the QuickBookParser through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
 3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
 4. <u>`ExportCommand`</u> is returned to `LogicManager`
 5. `LogicManager` executes <u>`ExportCommand`</u>
@@ -369,6 +393,10 @@ Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/jav
 
 `CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
+The activity diagram below provides a visual representation of the flow of actions when the `UP` and `DOWN` keys are pressed.
+
+![Activity Diagram for Command Traversal](images/CommandTraversalActivityDiagram.png)
+
 ### DateTime parsing
 
 Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`.
@@ -402,7 +430,7 @@ The `SortMeetingCommand` is a Java class that allows the user to sort meetings s
 
 When sorting meetings, the control flow is as follows:
 1. The user issues a sort command with the desired attribute and optional reverse flag.
-2. The `UI` calls the `QuickBookParser` through `LogicManager` to initiate a `SortMeetingCommandParser` object.
+2. The `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `SortMeetingCommandParser` object.
 3. The `SortMeetingCommandParser` parses the command and creates a `SortMeetingCommand` object.
 4. The `SortMeetingCommand` is executed, and the correct `Comparator` for the specified attribute is applied to the `Model` object's `sortFilteredMeetingList` method.
 5. `LogicManager` returns a `CommandResult` to the `UI` with a success message indicating the attribute by which the meetings have been sorted.
@@ -778,6 +806,16 @@ Extensions:
     * 1b1. Show error message.
 
     Use case ends.
+
+**Use case: UC17 - View Pending Meetings**
+
+MSS:
+
+1. User requests to view pending meetings.
+2. QuickContacts displays meetings that are not marked as done and are in the future.
+
+   Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -907,7 +945,7 @@ testers are expected to do more *exploratory* testing.
 | **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
 | **List all contacts**        | `list`                                                                                                                                                                                                               |
-| **Help**                     | `help`                                                                                                                                                                                                               |
+| **Help**                     | `help [COMMAND_WORD]`                                                                                                                                                                                                |
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
@@ -922,3 +960,12 @@ testers are expected to do more *exploratory* testing.
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
 | **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
 
+
+## Appendix: Planned Enhancements
+1. Currently, the UI shows a blank area when an attribute is undefined for contacts and meetings.
+
+    Proposed Fix: Have a placeholder `No ATTRIBUTE defined` for each undefined attribute.
+2. Currently, once we define an attribute for a contact, we are unable to remove it.
+    
+    Proposed Fix: Add a new command "deleteattribute" for this purpose. For example, `deleteattribute p/1 e/`
+    to remove email for a contact or `deleteattribute m/1 des/` to remove description for a meeting.

@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickBookParser" as QuickBookParser LOGIC_COLOR
+participant ":QuickContactsParser" as QuickContactsParser LOGIC_COLOR
 participant ":SortMeetingCommandParser" as SortMeetingCommandParser LOGIC_COLOR
 participant "d:SortMeetingCommand" as SortMeetingCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("sortm n/")
 activate LogicManager
 
-LogicManager -> QuickBookParser : parseCommand("n/")
-activate QuickBookParser
+LogicManager -> QuickContactsParser : parseCommand("n/")
+activate QuickContactsParser
 
 create SortMeetingCommandParser
-QuickBookParser -> SortMeetingCommandParser
+QuickContactsParser -> SortMeetingCommandParser
 activate SortMeetingCommandParser
 
-SortMeetingCommandParser --> QuickBookParser
+SortMeetingCommandParser --> QuickContactsParser
 deactivate SortMeetingCommandParser
 
-QuickBookParser -> SortMeetingCommandParser : parse("n/")
+QuickContactsParser -> SortMeetingCommandParser : parse("n/")
 activate SortMeetingCommandParser
 
 create SortMeetingCommand
@@ -42,14 +42,14 @@ deactivate Comparator
 SortMeetingCommand --> SortMeetingCommandParser : d
 deactivate SortMeetingCommand
 
-SortMeetingCommandParser --> QuickBookParser : d
+SortMeetingCommandParser --> QuickContactsParser : d
 deactivate SortMeetingCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortMeetingCommandParser -[hidden]-> QuickBookParser
+SortMeetingCommandParser -[hidden]-> QuickContactsParser
 destroy SortMeetingCommandParser
 
-QuickBookParser --> LogicManager : d
-deactivate QuickBookParser
+QuickContactsParser --> LogicManager : d
+deactivate QuickContactsParser
 
 LogicManager -> SortMeetingCommand : execute()
 activate SortMeetingCommand
