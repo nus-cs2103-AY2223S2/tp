@@ -83,7 +83,7 @@ public class EditRecurringExpenseManagerCommand implements EditCommand {
         Category toBeAllocated = null;
 
         for (Category category : lastShownListOfCategories) {
-            if (category.getCategoryName().equals(this.newExpenseCategoryInString)) {
+            if (category.getCategoryName().equalsIgnoreCase(this.newExpenseCategoryInString)) {
                 toBeAllocated = category;
                 break;
             }
