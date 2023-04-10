@@ -702,7 +702,7 @@ When in a module or lecture context, the `/mod` argument will be injected if onl
 Deletes the specified module(s) and all its embodied content from the application.
 
 - [<span style="color:#e46c0a">`module_code_1, module_code_2, module_code_3, ...`</span>](#module-code-format): The codes of the modules
-  - Must belong to an existing module in Le Tracker
+  - Must belong to existing modules in Le Tracker
   - Must not contain duplicates
 
 <details open>
@@ -730,7 +730,7 @@ When in a module or lecture context, the navigation system will automatically in
 Deletes the specified lecture(s) and all its embodied content from the same specified module.
 
 - [<span style="color:#e46c0a">`lecture_name_1, lecture_name_2, lecture_name_3, ...`</span>](#lecture-name-format): The names of lectures
-  - Must belong to an existing lecture in the module specified in `module_code`
+  - Must belong to existing lectures in the module specified in `module_code`
   - Must not contain duplicates
 - [<span style="color:#e46c0a">`module_code`</span>](#module-code-format): The code of module that contains the lectures specified by the names of lectures
   - Must belong to an existing module in Le Tracker
