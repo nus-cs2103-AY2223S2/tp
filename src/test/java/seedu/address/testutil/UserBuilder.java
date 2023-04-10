@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventList;
 import seedu.address.model.event.OneTimeEvent;
 import seedu.address.model.event.RecurringEvent;
-import seedu.address.model.event.EventList;
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
