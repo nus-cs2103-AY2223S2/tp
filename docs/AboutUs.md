@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yeoh Yong Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yyj-02.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://yeohyongjie.com)]
+[[github](https://github.com/yyj-02)]
+[[portfolio](team/yyj-02.md)]
 
-* Role: Project Advisor
+* Role: Lead Developer
 
-### Jane Doe
+### Tan Homun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/homuntan02.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/homuntan02)]
+[[portfolio](team/homuntan02.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Quality Assurance
 
-### Johnny Doe
+### Clevon Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/clevon-w.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/clevon-w)] [[portfolio](team/clevon-w.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, UI/UX
 
-### Jean Doe
+### Nicholas Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nt-nic.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nt-nic)]
+[[portfolio](team/nt-nic.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, Documentation
 
-### James Doe
+### Branda Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/panpannnnn.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/panpannnnn)]
+[[portfolio](team/panpannnnn.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, Documentation

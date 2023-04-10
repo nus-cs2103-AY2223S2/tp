@@ -32,3 +32,9 @@ h2, h3, h4, h5, h6 {
   }
 }
 
+.diagram, .diagram + em { // center the diagram images and their captions
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+

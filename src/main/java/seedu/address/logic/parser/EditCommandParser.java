@@ -2,22 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditListingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.applicant.Applicant;
+import seedu.address.model.platform.Platform;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -32,7 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_APPLICANT, PREFIX_PLATFORM);
 
         Index index;
 
@@ -42,41 +40,58 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        EditListingDescriptor editListingDescriptor = new EditListingDescriptor();
+        if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
+            editListingDescriptor.setJobTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editListingDescriptor.setJobDescription(ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseApplicantsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT))
+                .ifPresent(editListingDescriptor::setApplicants);
+        parsePlatformsForEdit(argMultimap.getAllValues(PREFIX_PLATFORM))
+                .ifPresent(editListingDescriptor::setPlatforms);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editListingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editListingDescriptor);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code ArrayList<String> applicants} into a {@code ArrayList<Applicant>} if {@code applicants} is
+     * non-empty.
+     * If {@code applicants} contain only one element which is an empty string, it will be parsed into a
+     * {@code ArrayList<Applicant>} containing zero applicants.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<ArrayList<Applicant>> parseApplicantsForEdit(ArrayList<String> applicants) throws ParseException {
+        assert applicants != null;
 
-        if (tags.isEmpty()) {
+        if (applicants.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        ArrayList<String> applicantList = applicants.size() == 1 && applicants.contains("")
+                                          ? new ArrayList<>() : applicants;
+        return Optional.of(ParserUtil.parseApplicants(applicantList));
+    }
+
+    /**
+     * Parses {@code ArrayList<String> platforms} into a {@code ArrayList<Platform>} if {@code platforms} is
+     * non-empty.
+     * If {@code platforms} contain only one element which is an empty string, it will be parsed into a
+     * {@code ArrayList<Platform>} containing zero platforms.
+     */
+    private Optional<ArrayList<Platform>> parsePlatformsForEdit(ArrayList<String> platforms) throws ParseException {
+        assert platforms != null;
+
+        if (platforms.isEmpty()) {
+            return Optional.empty();
+        }
+        ArrayList<String> platformList = platforms.size() == 1 && platforms.contains("")
+                ? new ArrayList<>() : platforms;
+        return Optional.of(ParserUtil.parsePlatforms(platformList));
     }
 
 }

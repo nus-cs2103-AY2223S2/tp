@@ -1,19 +1,21 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.DeleteApplicantCommandParser.HASHCODE_MESSAGE_CONSTRAINTS;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.applicant.Applicant;
+import seedu.address.model.applicant.Name;
+import seedu.address.model.comparator.ListingComparator;
+import seedu.address.model.listing.JobDescription;
+import seedu.address.model.listing.JobTitle;
+import seedu.address.model.platform.Platform;
+import seedu.address.model.platform.PlatformName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -36,89 +38,136 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String jobTitle} into a {@code JobTitle}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code jobTitle} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
+    public static JobTitle parseTitle(String jobTitle) throws ParseException {
+        requireNonNull(jobTitle);
+        String trimmedTitle = jobTitle.trim();
+        if (!JobTitle.isValidTitle(trimmedTitle)) {
+            throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
+        }
+        return new JobTitle(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String jobDescription} into a {@code JobDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code jobDescription} is invalid.
+     */
+    public static JobDescription parseDescription(String jobDescription) throws ParseException {
+        requireNonNull(jobDescription);
+        String trimmedDescription = jobDescription.trim();
+        if (!JobDescription.isValidDescription(trimmedDescription)) {
+            throw new ParseException(JobDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new JobDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String applicantName} into a {@code Applicant}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code applicantName} is invalid.
+     */
+    public static Applicant parseApplicant(String applicantName) throws ParseException {
+        requireNonNull(applicantName);
+        String trimmedName = applicantName.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Applicant(new Name(trimmedName));
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String platformName} into a {@code Platform}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code platformName} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Platform parsePlatform(String platformName) throws ParseException {
+        requireNonNull(platformName);
+        String trimmedName = platformName.trim();
+        if (!PlatformName.isValidName(trimmedName)) {
+            throw new ParseException(PlatformName.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Platform(new PlatformName(trimmedName));
+    }
+
+
+
+    /**
+     * Parses {@code List<String> allPlatforms} into a {@code ArrayList<Platform>}
+     *
+     * @throws ParseException if the given {@code allPlatforms} is invalid.
+     */
+    public static ArrayList<Platform> parsePlatforms(List<String> allPlatforms) throws ParseException {
+        requireNonNull(allPlatforms);
+        final ArrayList<Platform> platformArrayList = new ArrayList<>();
+        for (String platformName : allPlatforms) {
+            platformArrayList.add(parsePlatform(platformName));
+        }
+        return platformArrayList;
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses {@code List<String> allApplicants} into a {@code ArrayList<Applicant>}
+     *
+     * @throws ParseException if the given {@code allApplicants} is invalid.
+     */
+    public static ArrayList<Applicant> parseApplicants(List<String> allApplicants) throws ParseException {
+        requireNonNull(allApplicants);
+        final ArrayList<Applicant> applicantArrayList = new ArrayList<>();
+        for (String applicantName : allApplicants) {
+            applicantArrayList.add(parseApplicant(applicantName));
+        }
+        return applicantArrayList;
+    }
+
+    /**
+     * Parses a {@code String applicantNameWithId} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code applicantNameWithId} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static String parseApplicantWithId(String applicantName) throws ParseException {
+        requireNonNull(applicantName);
+        String trimmedName = applicantName.trim();
+
+        if (trimmedName.length() > 5 && trimmedName.charAt(trimmedName.length() - 5) == '#') {
+            if (!trimmedName.substring(trimmedName.length() - 4).matches("\\d{4}")) {
+                throw new ParseException(HASHCODE_MESSAGE_CONSTRAINTS);
+            }
+            if (!Name.isValidName(trimmedName.substring(0, trimmedName.length() - 5))) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            return trimmedName;
+        } else {
+            if (!Name.isValidName(trimmedName)) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            return trimmedName;
         }
-        return new Address(trimmedAddress);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
+     * Parses a {@code String field} into a relevant {@code ListingComparator}.
+     * @param field input string
+     * @return A ListingComparator to be used to sort the listings.
+     * @throws ParseException if the given {@code field} is not in the list of accepted fields.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
-    }
+    public static ListingComparator parseFieldToCompare(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedAndCapitalisedField = field.trim().toUpperCase();
 
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        try {
+            ListingComparator listingComparator = ListingComparator.valueOf(trimmedAndCapitalisedField);
+            return listingComparator;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(ListingComparator.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }

@@ -16,64 +16,63 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyListingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.comparator.ListingComparator;
+import seedu.address.model.listing.Listing;
+import seedu.address.testutil.ListingBuilder;
 
 public class AddCommandTest {
-
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullListing_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_listingAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingListingAdded modelStub = new ModelStubAcceptingListingAdded();
+        Listing validListing = new ListingBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validListing).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validListing), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validListing), modelStub.listingsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateListing_throwsCommandException() {
+        Listing validListing = new ListingBuilder().build();
+        AddCommand addCommand = new AddCommand(validListing);
+        ModelStub modelStub = new ModelStubWithListing(validListing);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_LISTING, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Listing listing1 = new ListingBuilder().withTitle("Title 1").withDescription("Description 1").build();
+        Listing listing2 = new ListingBuilder().withTitle("Title 2").withDescription("Description 2").build();
+        AddCommand addListing1Command = new AddCommand(listing1);
+        AddCommand addListing2Command = new AddCommand(listing2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addListing1Command.equals(addListing1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addListing1CommandCopy = new AddCommand(listing1);
+        assertTrue(addListing1Command.equals(addListing1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addListing1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addListing1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addListing1Command.equals(addListing2Command));
     }
-
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -99,96 +98,115 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getListingBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setListingBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addListing(Listing listing) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setListingBook(ReadOnlyListingBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyListingBook getListingBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasListing(Listing listing) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteListing(Listing target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setListing(Listing target, Listing editedListing) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Listing> getDisplayedListingBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredListingBook(Predicate<Listing> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedListingBook(ListingComparator comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPreviousState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitListingBook() {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single listing.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithListing extends ModelStub {
+        private final Listing listing;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithListing(Listing listing) {
+            requireNonNull(listing);
+            this.listing = listing;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasListing(Listing listing) {
+            requireNonNull(listing);
+            return this.listing.isSameListing(listing);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the listing being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingListingAdded extends ModelStub {
+        final ArrayList<Listing> listingsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasListing(Listing listing) {
+            requireNonNull(listing);
+            return listingsAdded.stream().anyMatch(listing::isSameListing);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addListing(Listing listing) {
+            requireNonNull(listing);
+            listingsAdded.add(listing);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyListingBook getListingBook() {
+            return new ListingBook();
         }
     }
-
 }

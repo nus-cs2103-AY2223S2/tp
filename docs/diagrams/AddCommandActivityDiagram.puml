@@ -1,0 +1,19 @@
+@startuml
+title Add Command Flow
+
+start
+:User tries to run an add command;
+if () then ([else])
+  :Create a new listing with attributes based on prefixes;
+  if () then ([Listing exists in Model])
+    :Error: Duplicate listing;
+  else ([else])
+    :Add the listing to the model;
+    :Display success message to user;
+  endif
+else ([At least one compulsory prefix is not present or preamble empty])
+  :Error: Invalid command format;
+endif
+stop
+
+@enduml

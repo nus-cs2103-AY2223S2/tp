@@ -1,0 +1,21 @@
+@startuml
+title Autocomplete Activity Diagram
+
+start
+:User types an input into the command box;
+:New list of suggestions is generated;
+:Command suggestions are added from a list of possible commands;
+:Command usages are added based on command suggestions;
+:Prompt "TAB to cycle through suggestions" is made visible;
+:User presses TAB;
+:GoodMatch gets text from commandTextField;
+if () then ([Text not found in suggestions])
+  :Select first suggestion;
+else ([else])
+  :Select next suggestion;
+endif
+:Set selected suggestion as text in commandTextField;
+:Set focus back to commandTextField;
+:Position text cursor at end of suggestion;
+stop
+@enduml
