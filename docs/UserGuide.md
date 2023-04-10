@@ -169,7 +169,7 @@ In a job listing, each applicant will have a unique 4-digit ID, generated automa
 
 > If the listing has only one applicant named *Tom*, the applicant will be displayed as `Tom`.
 
-> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#6969`
+> If the listing has three applicants named *Tom*, the applicants will be displayed as `Tom#1234` `Tom#2345` `Tom#2103`
 
 
 ### Platform
