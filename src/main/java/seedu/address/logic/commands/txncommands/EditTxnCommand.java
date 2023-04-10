@@ -39,8 +39,8 @@ public class EditTxnCommand extends Command {
             + "[" + PREFIX_TXN_STATUS + "STATUS]";
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TRANSACTION = "This transaction already exists in the transaction " +
-            "list.";
+    public static final String MESSAGE_DUPLICATE_TRANSACTION = "This transaction already exists in the transaction "
+            + "list.";
 
     public static final String MESSAGE_INVALID_OWNER_TRANSACTION =
             "This transaction record has to be assigned to a existing person in the contact list";
