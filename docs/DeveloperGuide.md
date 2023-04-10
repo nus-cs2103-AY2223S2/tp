@@ -532,6 +532,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | SoC Student who knows Vim | quickly add new tasks that come to my mind | always keep track of all the tasks I need to do especially when many things come to my mind at the same time |
 | `* * *` | SoC Student who knows Vim | keep track of the deadline of a task | always finish my assignments and submissions before their due dates |
 | `* * *` | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important | filter/sort the tasks by their priorities later |
+| `* * *` | SoC Student who knows Vim | add labels to a task | filter/sort the tasks by specifying the labels later |
 | `* * *` | SoC Student who knows Vim | mark a task as completed | filter out the incompleted tasks from the completed ones later |
 | `* * *` | SoC Student who knows Vim | unmark a task as not yet completed | change the status of the task back to be not yet completed if I last minute realise that it is still not done but I have previously marked it as completed |
 | `* * *` | SoC Student who knows Vim | insert labels to a task | filter/sort the tasks by specifying the labels later |
