@@ -639,6 +639,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 ---
+<div style="page-break-after: always;"></div>
 #### 6.3.2 Use case 2: Delete a Person
 
 **Main Success Scenario (MSS):**
