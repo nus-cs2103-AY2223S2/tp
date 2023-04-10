@@ -375,6 +375,22 @@ The possible paths of the `load` command is shown in the activity diagram below.
 ![LoadCommandActivityDiagram.png](images/LoadCommand/LoadCommandActivityDiagram.png)
 
 
+### Dark/Light mode
+**Purpose**: Allows users to change to their favourite theme
+
+Formats: 
+1. `light`
+2. `dark`
+
+**Implementation**:
+
+The implementation of this feature requires 'LightCommand' and 'DarkCommand'.
+
+ModCheck will save the user's favorite theme automatically. When the user exits the app, the handleExit() method in the MainWindow class will save the user last used theme to preferences.json so that when the user returns to the app. The favorite theme will still remain.
+
+![AddActivityDiagram](images/lightdarkactivitydiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
