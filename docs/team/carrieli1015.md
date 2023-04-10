@@ -10,33 +10,58 @@ MATHUTORING is a desktop application used for private Math tuition teachers to m
 Given below are my contributions to the project.
 
 * **New Feature**:
-    * Switch
-    * Check
-    * Filter
-    * Score list chart
+    * Switch command<br>
+  Help the user to easily switch between score text panel and score chart panel. Support both CLI and mouse click.
+    * Check command<br>
+  For the user to check a specific student's tasks and scores information.
+    * Filter command<br>
+  To filter out student/s from the existing list. Filter key is the tag/s.
+    * Score list chart<br>
+  Created the score list chart to track the student's performance. 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=carrieli1015&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=carrieli1015&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * to be added soon.
+    * Individual
+      * Completed weekly requirements on time. 
+      * Created several GitHub branches for different increments.
+    * Group
+      * Met the milestone deadlines. 
+      * Used GitHub for increments tracking. 
 
 * **Enhancements to existing features**:
-    * UI integration
-    * Overall UI layout and responsive
+    * Revamp the existing student list.
+    * UI integration.
+    * Revamp the overall UI layout and make it more responsive
+      * Adjustable window size.
+      * Individual scroll bar for different panels.
+      * Allow text wrap and set up display restriction to avoid unwanted text truncate.
 
 * **Documentation**:
     * Updated AboutUs page and README page.
+    * Added a quick user guide inside help window.
+    * User guide
+      * Added in missing items.
+      * Updated UG to add in more details.
+    * Developer guide
+      * Helped with generate the Ui chart.
+      * Tweaked the DG and relevant guides.
 
 * **Contributions to team-based tasks**:
-    * Conceptualized the ideas and came up with v1.1 UI design.
+    * Conceptualized the ideas and came up with the overall UI design.
     * Added several GitHub issues and helped manage the issues through adding labels and milestones.
+    * Organized target user stories. 
+    * Created illustrations, including the avatars, student list icons, task list icons, and import/export window icons.
 
-* **Contributions beyond the project team**:
-    * to be added soon.
+* **Review/mentoring contributions**:
+  * Reviewed other teammates' pull requests.
 
 * **Community**:
-    * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/206))
+    * Shared idea and gave suggestions to another group.
+    * Contributed to forum discussions
+      * [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/206)
+      * [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/290)
 
 * **Tools**:
-    * to be added soon.
-
+    * JavaFX framework
+    * Adobe Illustrator
