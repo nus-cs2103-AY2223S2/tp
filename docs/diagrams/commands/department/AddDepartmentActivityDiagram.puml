@@ -5,12 +5,11 @@ start
 :User enters adep command;
 if () then ([else])
   :Error: Invalid command format;
-  stop
 ([Command format is valid])elseif () then ([else])
   :Error: Department already exists in SudoHr;
-   stop
  else ([Department does not exist in SudoHr])
   :adep command successfully executes.;
+ endif
 stop
 
 @enduml
