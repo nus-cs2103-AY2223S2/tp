@@ -999,12 +999,7 @@ Use case ends.
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **GUI**: Graphical User Interface
-- # **UML** Unified Modeling Language
 - **UML**: Unified Modeling Language
-
----
-
-> > > > > > > e4e5165e51b6e521ef7c71afdb033c9e5cd92e98
 
 ---
 
