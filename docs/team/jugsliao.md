@@ -3,7 +3,7 @@ layout: page
 title: Jacques Liao Project Portfolio Page
 ---
 
-### Project: Tuition Managing System (TMS)
+### Project: Tutee Managing System (TMS)
 
 Tutee Managing System (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
