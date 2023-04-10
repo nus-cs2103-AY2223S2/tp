@@ -60,7 +60,7 @@ destroy AddDepartmentCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> AddDepartmentCommand : execute()
+LogicManager -> AddDepartmentCommand : execute(model)
 activate AddDepartmentCommand
 
 AddDepartmentCommand -> Model : hasDepartment(toAdd)
