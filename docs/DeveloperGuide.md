@@ -107,6 +107,12 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 ![Components Class Diagram](images/archi/ComponentsClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: Throughout this guide, you may see some references to
+"address book", such as the `AddressBook` class. This is inherited from the AB3
+codebase, and can be thought of as another name for the application.
+</div>
+
 The sections below give more details of each component.
 
 ### UI component
