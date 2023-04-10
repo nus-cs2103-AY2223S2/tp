@@ -63,9 +63,9 @@ public class DeleteCommand extends Command {
                 ArrayList<Appointment> patientAppmts = deletedPatient.getPatientAppointments();
                 int patientAppmtsSize = patientAppmts.size();
                 for (int i = 0; i < patientAppmtsSize; i++) {
-                    Appointment a = patientAppmts.get(i);
+                    Appointment a = patientAppmts.get(0);
                     model.deleteAppointment(a);
-                    deletedPatient.deletePatientAppointment(i);
+                    deletedPatient.deletePatientAppointment(a);
                     Nric drIc = a.getDrNric();
                     Doctor d = (Doctor) model.retrievePersonByNric(drIc);
                     d.deletePatientAppointment(a);
