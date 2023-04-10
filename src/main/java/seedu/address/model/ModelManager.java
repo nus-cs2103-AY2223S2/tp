@@ -64,7 +64,9 @@ public class ModelManager implements Model {
             return true;
         } else if (other instanceof ModelManager) {
             ModelManager modelManager = (ModelManager) other;
-            return (modelManager.reroll).equals(this.reroll) && (modelManager.userPrefs).equals(this.userPrefs);
+            return (modelManager.reroll).equals(this.reroll)
+                    && (modelManager.userPrefs).equals(this.userPrefs)
+                    && (modelManager.filteredActive).equals(this.filteredActive);
         } else {
             return false;
         }

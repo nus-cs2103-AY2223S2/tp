@@ -82,6 +82,8 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Important Terms
+
 ## Entity classifications
 There are 3 different entity classifications in Reroll, each with their own set of fields to track.
 
@@ -93,17 +95,71 @@ meant to be defeated by player characters.
 `Item` refers to equipment such as armour, and miscellaneous tools. These are mainly dropped by mobs and
 can be used by the player characters.
 
-The definitive list of the different values each entity has:
+## Entity Fields
+This is a definitive list of the different fields each entity has:
 
-| Character  | Mob              | Item   |
-|----------------------|------------------|--------|
-| Name                 | Name             | Name   | 
-| Strength             | Strength         | Cost   |
-| Dexterity            | Dexterity        | Weight | 
-| Intelligence         | Intelligence     | Tags   |
-| Level                | Challenge Rating |        |
-| XP                   | Legendary        |        |
-| Tags                 | Tags             |        |
+| Character    | Mob              | Item   |
+|--------------|------------------|--------|
+| Name         | Name             | Name   | 
+| Strength     | Strength         | Cost   |
+| Dexterity    | Dexterity        | Weight | 
+| Intelligence | Intelligence     | Tags   |
+| Level        | Challenge Rating |        |
+| XP           | Legendary        |        |
+| Tags         | Tags             |        |
+| Inventory    | Inventory        |        |
+
+Each field accepts a certain type of value and has a number of command terms, as seen below:
+
+| Field            | Command Term          | Value Type           |
+|------------------|-----------------------|----------------------|
+| Name             | name                  | Alphanumeric String  | 
+| Strength         | strength, str         | `int`                |
+| Dexterity        | dexterity, dex        | `int`                | 
+| Intelligence     | intelligence          | `int`                |
+| Level            | level                 | `int`                |
+| XP               | exp, xp               | `int`                |
+| Challenge Rating | challengerating, cr   | `float`              |
+| Legendary        | isLegendary, legend   | true / false         |
+| Tags             | tags, tag             | Alphanumeric Strings |
+| Inventory        | inventory             | Items                |
+
+These values come predefined when an entity is created, and if you want the fields to have different values, then you
+can edit them later in the edit command, which will be mentioned later.
+
+Fill in one of the field's command terms into where the command says to fill in `FIELD` to edit the corresponding field.
+
+Here's a general breakdown of what each field means:
+
+`Name` is the name of the entity, be it the name of a character, or the name of a mob like a gargoyle.
+
+`Strength` is a numerical measure of the physical force that an entity can exert. This then measures actions like 
+if the entity is capable of carrying heavy items, or interacting in scenarios that require lots of 
+physical strength.
+
+`Dexterity` is a numerical measure of physical prowess, mostly related to aspects like agility, reflexes and how fast 
+the entity can move. Like strength, this determines the choices and outcomes of certain events in the game.
+
+`Intelligence` is a numerical measure of magical and fantastical knowledge, often used to determine if an entity
+is able to wield certain spells, use certain magic items, or decipher foreign languages.
+
+`Level` is the numerical measure of the current stage of capability of a character. This increases by one after a 
+certain number of XP points are gained, and usually characters get to increase their stats when they level up.
+
+`XP` stands for Experience Points, which are points gained when a character defeats a mob, or completes quests. These 
+help the character level up.
+
+`Challenge Rating` is a total numerical score used to judge mob. based on a number of different stats. The higher
+the rating, the more difficult it is to fight the mob.
+
+`Legendary` is a boolean value denoting if a mob is legendary, which allows them to have special Legendary Resistances
+or Legendary Actions that normal mobs do not have.
+
+`Tags` are string values used to label entities with extra information you might want to, like if a fish is tasty.
+
+`Inventory` is a list of items that mobs and characters have, basically denoting what items they have on hand currently 
+and can use. Records the total value of every item in the inventory.
+
 
 ## Templates
 
@@ -128,6 +184,8 @@ with a preferred stat distribution. Templates are pre-determined and cannot be c
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Entities in Reroll are identified by classification and name. Entities with the same name but different classification are valid.
+
+* After creation, entities are modified via the edit mode.
 
 </div>
 
@@ -158,27 +216,23 @@ Format: `list CLASSIFICATION`
 Examples:
 * `list char` shows a list of all characters
 
-### View an entity's details: `view`
-
-A detailed view of a single entity which shows all fields.
-
-Examples:
-* `view char John Cena` shows a detailed view of the character named John Cena.
-
-Format: `view CLASSIFICIATION NAME`
-
-Detailed view may be left by entering the command: `back` or `b` while in detailed view.
-
 ### Editing an entity : `edit`
 
 Enter into edit mode for the specified entity.
 
 Format: `edit CLASSIFICATION NAME`
 
-* In edit mode, changes can be made with the following format: <br>
+* In edit mode, changes can be made to any of the fields with the following format: <br>
   * `FIELD NEW_VALUE`
-  * e.g. `name gilded staff` or `level 9000`
+  * e.g. `name gilded staff` or `lvl 9000`
+  * Put the command word of the field you want to edit into the FIELD portion of the command.
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
+  * Multiple tags can be added at once, separated by spaces.
+  * For legendary status, any value other than `true` defaults to false.
+* Inventory has a different command format for adding and removing items from the inventory:
+  * `inventory add/remove NAME`
+  * e.g. `inventory add fish`
+* Refer to [entity fields](#entity-fields) for more details.
 * Edit mode may be left by entering the command: `back` or `b` while in edit mode.
 
 ### Filter entities by tags : `filter`
@@ -267,26 +321,27 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reroll home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-## Short-form commands 
+
+## Short-form commands
 
 To aid expert users, commonly used commands and fields have short-form variants that can be used instead.
 
-| Reference | Full | Short-form |
-| - | - | - |
-| Make command | make | m |
-| Edit command | edit | e |
-| Delete command | delete | d |
-| List command | list | l |
-| Character | char | c |
-| Mob | mob | m |
-| Item | item | i |
-| Template command | template | t |
-| Strength | strength | s |
-| Dexterity | dexterity | d |
-| Level | level | lvl |
-| Name | name | n |
-| Tags | tags | t | 
-| Inventory | inventory | inv |
+| Reference        | Full      | Short-form |
+|------------------|-----------|------------|
+| Make command     | make      | m          |
+| Edit command     | edit      | e          |
+| Delete command   | delete    | d          |
+| List command     | list      | l          |
+| Character        | char      | c          |
+| Mob              | mob       | m          |
+| Item             | item      | i          |
+| Template command | template  | t          |
+| Strength         | strength  | s          |
+| Dexterity        | dexterity | d          |
+| Level            | level     | lvl        |
+| Name             | name      | n          |
+| Tags             | tags      | t          | 
+| Inventory        | inventory | inv        |
 
 Example: `make char John Cena` -> `m c John Cena`
 
@@ -306,7 +361,6 @@ Example: `make char John Cena` -> `m c John Cena`
 | **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`               |
 | **Show templates**            | `show`                                                              |
 | **Template**                  | `template TEMPLATE_NAME NAME` <br> e.g. `template orc John Cena`    |
-| **View**                      | `view CLASSIFICATION NAME` <br> e.g. `view char John Cena`          |
 | **List entities**             | `list CLASSIFICATION` <br> e.g., `list item`                        |
 | **Help**                      | `help`                                                              |
 | **Filter**                    | `filter TAG [MORE_TAG]` <br> e.g., `filter elite`                   |

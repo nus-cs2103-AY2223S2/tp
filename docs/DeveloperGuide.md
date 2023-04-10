@@ -420,7 +420,16 @@ The user stories are not limited to those in this list. More can be added in the
 * **Items**: Weapons, armor or tools that players can keep and use
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
 
+Future enhancements are planned to improve Reroll.
+
+1. Currently, fields such as weight, cost and challenge rating accepts negative values. Parser will be updated to detect such invalid values and print an error message.
+2. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work,
+   causing confusion among the testers.
+3. Entities with very long name does not wrap in the GUI. Changes to GUI to remedy this is expected.
+
+--------------------------------------
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -460,6 +469,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No entity is deleted. Error details shown in the status message. Status bar remains the same.
 
     4. Other incorrect delete commands to try: `delete`, `delete garbage` <br>
+
        Expected: Similar to previous.
 
 2. _{ more test cases …​ }_

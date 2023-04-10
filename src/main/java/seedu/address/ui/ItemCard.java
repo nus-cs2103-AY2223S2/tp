@@ -42,7 +42,7 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.entity = item;
         name.setText(item.getName().fullName);
-        cost.setText(String.valueOf(item.getCost()) + "g");
+        cost.setText(item.getCost().toString());
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
