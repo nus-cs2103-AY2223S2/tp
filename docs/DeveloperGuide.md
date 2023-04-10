@@ -1085,3 +1085,6 @@ Given below are our planned enhancements.
   is deemed undesirable.
 
 - As of now, the help messages are displayed in the result box and the result box may be too small to view large chunks of help messages.
+
+- As of now, the student table is not optimized for long data. When the window is minimized, the student data is not centered horizontally and vertically in each cell.
+We can simply add cosmetic changes in the fxml file to center the student data horizontally and vertically in each cell.
