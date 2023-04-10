@@ -1411,10 +1411,20 @@ For more information, check [this](https://github.com/apps/codecov). The above [
 ## **Planned Enhancements**
 
 1. To handle cases where the module code provided is not a valid NUS module, we propose the use of the NUSMods API to check whether the module exists. In this way, we can also tag the lessons with a more specific venue to improve recommendation of locations within NUS. This is currently not implemented as EduMate is an offline application, and existing modules will change overtime.
+
+
 2. Apart from lessons, people may have commitments outside of NUS. To handle these cases, we propose to modify the `tag` command to take in a time and location to indicate that a person will be at the location at that time. This is currently not implemented as it is considered a new feature.
+
+
 3. To better create automated fields, we propose the use of `Optional` in our person fields. They would show "Unknown" if the field is not there, making it clearer that the fields have not been populated yet. This is currently not implemented as it would require major changes to the commands, as well as storage.
+
+
 4. The profile panel currently overspills when there are too many modules and groups. This can be solved in the future by converting the profile panel into a scroll pane, thereby allowing longer panels to be shown. This, however, requires us to refactor our UI components, which is not allowed at this phase.
+
+
 5. Despite us not allowing it, the application still can enter full screen mode due to the settings on certain devices. This is unintended behaviour, as we intended EduMate to remain at a fixed size. One possible solution would be to re-enable the resizing of the application. However, this would require major changes to the UI, making it more responsive to such resizing events.
+
+
 6. More explicit feedback messages for `tag` and `untag` commands for users.
 
 ## **Project Requirements**
