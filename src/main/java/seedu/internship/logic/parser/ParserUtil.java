@@ -1,6 +1,8 @@
 package seedu.internship.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.StringUtil;
+import seedu.internship.logic.commands.ViewCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.internship.Comment;
 import seedu.internship.model.internship.CompanyName;
@@ -59,6 +62,21 @@ public class ParserUtil {
         }
 
         return result;
+    }
+
+    /**
+     * Check index error message to determine
+     * @param pe
+     * @param commandFormatMessage
+     * @throws ParseException
+     */
+    public static void indexErrorMessageCheck(ParseException pe, String commandFormatMessage) throws ParseException {
+        if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
+            throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, commandFormatMessage), pe);
+        }
     }
 
     /**
