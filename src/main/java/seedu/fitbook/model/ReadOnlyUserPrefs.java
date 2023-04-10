@@ -10,7 +10,7 @@ import seedu.fitbook.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
-
+    //@@author
     Path getFitBookFilePath();
 
     Path getFitBookExerciseRoutineFilePath();
