@@ -601,7 +601,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ArB edits project to use new details.
 3. Use case ends.
 
-**Extension**:
+**Extensions**
 
 * 1a. Provided details are invalid.
   * 1a1. ArB shows an error message.<br>
@@ -617,7 +617,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ArB lists all clients that match the provided parameters.<br>
    Use case ends.
 
-**Extension**:
+**Extensions**
 * 1a. None of the parameters provided are valid.
   * 1a1. ArB shows an error message.<br>
   Use case ends.
@@ -629,13 +629,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ArB lists all projects that match the provided parameters.<br>
    Use case ends.
 
-**Extension**:
+**Extensions**
 
 * 1a. None of the parameters provided are valid.
   * 1a1. ArB shows an error message.<br>
   Use case ends.
 
-**Use case 15 (UC15): Link Project To Client**
+**Use case 15 (UC15): Sort Clients**
+
+**MSS**:
+
+**Extensions**
+
+**Use case 16 (UC16): Sort Projects**
+
+**MSS**:
+
+**Extensions**
+
+**Use case 17 (UC17): Link Project To Client**
 
 **MSS**:
 1. User indicates that they want to link a specific project to a client, providing ArB with client name keywords.
@@ -644,7 +656,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. ArB links the project to the selected client.<br>
    Use case ends.
 
-**Extension**:
+**Extensions**
 * 3a. User chooses to cancel the linking.<br>
   Use case ends.
 * 3b. Provided index is invalid.
