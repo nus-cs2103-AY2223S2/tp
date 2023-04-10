@@ -49,6 +49,10 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added [implementation for the `fav` and `unfav` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-favourite-contacts) (https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-unfavourite-contacts) (PR [#154](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/154)).
     * Added [implmentation for the `addevent` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-adding-events) (PR [#154](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/154)).
+    * Added [manual testing for the `fav` and `unfav` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#adding-an-event) https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#command-for-unfavourite-contacts (PR [#323](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/323)).
+    * Added [manual testing for the `addevent` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#adding-an-event) (PR [#323](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/323)).
+    * Added [manual testing for the `editevent` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#editing-an-event) (PR [#323](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/323)).
+    * Added [manual testing for the `delevent` commands](https://ay2223s2-cs2103t-f12-3.github.io/tp/DeveloperGuide.html#deleting-an-event) (PR [#323](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/323)).
 
 * **Community**:
   * Reviewed PRs [#163](https://github.com/AY2223S2-CS2103T-F12-3/tp/pull/163)
