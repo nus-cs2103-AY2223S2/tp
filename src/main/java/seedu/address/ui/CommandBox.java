@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -84,7 +83,6 @@ public class CommandBox extends UiPart<Region> {
             } catch (RecommendationException ce) {
                 setStyleToIndicateCommandFailure(true);
                 commandRecommendationTextField.setText("");
-                logger.log(Level.WARNING, ce.getMessage());
                 e.consume();
             }
         });
@@ -171,7 +169,6 @@ public class CommandBox extends UiPart<Region> {
             }
         } catch (RecommendationException e) {
             setStyleToIndicateCommandFailure(true);
-            logger.log(Level.WARNING, e.getMessage());
             commandRecommendationTextField.setText("");
 
         }

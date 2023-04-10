@@ -15,11 +15,6 @@ public class AddPairCommandParserTest {
     private final AddPairCommandParser parser = new AddPairCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        // TODO: test with the same format as AddCommandParserTest::parse_allFieldsPresent_success()
-    }
-
-    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE);
 
@@ -36,8 +31,4 @@ public class AddPairCommandParserTest {
                 expectedMessage);
     }
 
-    @Test
-    public void parse_invalidValue_failure() {
-        // TODO: Check for invalid elderly or volunteer
-    }
 }

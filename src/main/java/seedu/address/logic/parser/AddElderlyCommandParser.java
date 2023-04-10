@@ -67,8 +67,8 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(FIELD_NOT_SPECIFIED));
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).orElse(FIELD_NOT_SPECIFIED));
         RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).orElse(FIELD_NOT_SPECIFIED));
-        Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllEntries(PREFIX_AVAILABILITY));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllEntries(PREFIX_TAG));
 
         Elderly person = new Elderly(name, phone, email,
                 address, nric, birthDate, region, risk, tagList, availableDates);
