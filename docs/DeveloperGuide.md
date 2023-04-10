@@ -15,7 +15,7 @@ layout: page title: Developer Guide
     <br />
     <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md">Meet the Team</a>
     <br />
-    🎉 Version 1.2.1 is out. Check out the latest release
+    🎉 Version 1.4 is out! Check out the latest release
     <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">here</a>.
     <br />
     <br />
@@ -243,7 +243,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Make entity feature
+### Make Command Parsing
 
 #### Design considerations
 
@@ -263,20 +263,6 @@ important to minimize mental load on the user during the creation of new entitie
    This approach allows users to create detailed entities with just one command. However, usage of prefixes such as `n/`
    increases the mental load on the user to keep track of all the different prefixes, and increases their chance of
    making mistakes while inputting commands.
-
-#### [Proposed extension]
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the entity being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -436,6 +422,8 @@ Future enhancements are planned to improve Reroll.
 2. More case-insensitive commands will be implemented. Currently [CLASSIFICATION] must be in lowercase to work, causing
    confusion among the testers.
 3. Entities with very long name does not wrap in the GUI. Changes to GUI to remedy this is expected.
+4. The current error message for a failed `delete` command is too general. We plan to tweak this
+   to mention whether it was an incorrect format, invalid `Classification` or `Name` that caused the failure.
 
 --------------------------------------
 
