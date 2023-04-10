@@ -41,7 +41,7 @@ You can reach us at these emails :
 [[github](http://github.com/szejiancheng)] [[portfolio](team/szejiancheng.md)]
 
 * Role: coder
-* Responsibilities: UML diagrams, implementation, and providing snacks
+* Responsibilities: UML diagrams, implementation, ~~and providing snacks~~
 
 ### Muhammad Fahim Tajwar
 
