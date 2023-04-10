@@ -180,8 +180,6 @@ Prefixes are delimiters to differentiate between different types of input.
 There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 </div>
 
-
-List placeholders in the command
 | Placeholder             | Corresponding Prefix | Description|
 |-------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **ID**                  | id/                  | ID is the unique identifier for an employee. Leading zeroes are ignored. <br/> **Note: This flag is only used when adding an employee into the app**. <br/> It has the following constraints: <li> Must be a positive integer <ol> <li> 0 is often reserved for administrative use </li> <li> negative numbers are not conventionally used </li> </ol> </li> <li> Cannot be empty </li> <br/> Valid Examples: <li>1</li> <li>100</li> Invalid Examples: <li>Bob</li> <li>0</li> <li>-1</li> |
