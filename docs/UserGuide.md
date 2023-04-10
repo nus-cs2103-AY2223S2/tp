@@ -302,7 +302,7 @@ The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#p
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Components of Scheduled Meet Up Panel**<br>
-The panel contains all the information of every scheduled meet ups with your contacts as shown below.
+The panel contains all the information of every scheduled meet up with your contacts as shown below.
 <br>
 
 <img src="images/UG_ui_pictures/ScheduledMeetUpPanelLabelled.png" style="width:40%;margin:1% 1% 1% 30%">
