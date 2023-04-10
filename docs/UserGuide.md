@@ -284,8 +284,6 @@ Short form: `sc`
 
 Sorts the **currently visible** clients by name in ascending order.
 
-<div style="page-break-after: always;"></div>
-
 Example:
 
 Original List
