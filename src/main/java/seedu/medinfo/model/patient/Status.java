@@ -12,9 +12,9 @@ public class Status {
      * and the urgency of treatment needed.
      *
      * GRAY: Unknown condition, waiting for evaluation
-     * GREEN: Non-urgent, re-evaluation every 180 min
-     * YELLOW: Potentially unstable, re-evaluation every 60 min
-     * RED: Requires immediate evaluation by physician
+     * GREEN: Stable condition, re-evaluation every 180 min
+     * YELLOW: Serious condition, re-evaluation every 60 min
+     * RED: Critical condition, requires immediate evaluation by physician
      */
 
     public static final String MESSAGE_CONSTRAINTS = "Statuses should only be 'GRAY', 'GREEN', 'YELLOW', or 'RED'";
