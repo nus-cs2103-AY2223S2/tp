@@ -214,9 +214,13 @@ In link mode, the user can input an index to link the added/edited project to th
 
 <img src="images/LinkingIndexParsingSequenceDiagram.png" width="600" />
 
+<div style="page-break-after: always;"></div>
+
 Internally, a project can be linked to one client while a client can have multiple linked projects. A client's linked projects are stored in a `UniqueProjectList` object that each `Client` object has. This implementation is shown in the class diagram below.
 
 <img src="images/LinkedClassDiagram.png" width="400" />
+
+<div style="page-break-after: always;"></div>
 
 For example, the below is an object diagram representing the situation where we have two projects `p1` and `p2` that are both linked to the same `Client` object.
 
