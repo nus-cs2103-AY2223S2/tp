@@ -62,4 +62,4 @@ Given below are my contributions to the project.
     * Set up the pull request to the upstream repository.
 
 * **Contributions beyond the project team**:
-  * Reported 21 bugs in the PE-D, which put me in the top 10% of bug reporters
+  * Reported 21 bugs in the PE-D, which puts me in the top 10% of bug reporters
