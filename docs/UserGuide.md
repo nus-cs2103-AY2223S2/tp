@@ -41,7 +41,7 @@ this user guide has everything you need. Head over to the [Getting started](#get
 ## Table of Contents
 
 * Table of Contents
-{:toc exclude="Table of Contents"}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -774,6 +774,8 @@ the data of your previous QuickContacts home folder.
 | **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
 | **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
 
+<div style="page-break-after: always;"></div>
+
 ### Meeting Commands
 
 | Action                       | Format, Examples                                                                                                                                                                                                     |
@@ -789,6 +791,8 @@ the data of your previous QuickContacts home folder.
 | **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                   |
 | **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                 |
 | **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
+
+<div style="page-break-after: always;"></div>
 
 ### General Commands
 
