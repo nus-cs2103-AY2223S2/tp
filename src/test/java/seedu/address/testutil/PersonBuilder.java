@@ -5,7 +5,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -126,8 +128,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person with the data entered into the {@code PersonBuilder}
+     * @return A {@code Person} that has the details stored in the {@code PersonBuilder}.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
+        IsolatedEventList isolatedEventList = new IsolatedEventList();
+        RecurringEventList recurringEventList = new RecurringEventList();
+
+        isolatedEventList.addAll(isolatedEvents);
+        recurringEventList.addAll(recurringEvents);
+
+        return new Person(name, phone, email, address, tags, groups, isolatedEventList, recurringEventList);
     }
 
 }

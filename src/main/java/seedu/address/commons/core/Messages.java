@@ -25,7 +25,7 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_EVENT_INDEX = "The event index provided is invalid";
 
-    public static final String MESSAGE_EVENT_START_AFTER_END = "The end time should not be earlier than the start time";
+    public static final String MESSAGE_EVENT_START_AFTER_END = "The end time should be later than the start time";
 
     public static final String MESSAGE_INVALID_GROUP_DISPLAYED_INDEX = "The group index provided is invalid";
     public static final String MESSAGE_INVALID_GROUP = "The group(s) provided does not exist";

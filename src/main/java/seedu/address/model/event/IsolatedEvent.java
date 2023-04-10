@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.exceptions.EventConflictException;
 
 /**
  * Represents an {@code Event} that happens only once.
@@ -70,6 +69,46 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
     }
 
     /**
+     * Checks if the {@code IsolatedEvent} has any conflicts with any of the {@code RecurringEvent}s in the given
+     * {@code RecurringEventList}.
+     * @param recurringEventList The {@code RecurringEventList} to check for conflicts with.
+     * @throws EventConflictException if there is a conflict found in the given {@code RecurringEventList}.
+     */
+    public void checkConflictsRecurringEventList(RecurringEventList recurringEventList) throws EventConflictException {
+        LocalDateTime startPeriod = this.getStartDate();
+        LocalDateTime endPeriod = this.getEndDate();
+
+        int index = 1;
+        for (RecurringEvent re : recurringEventList.getRecurringEvents()) {
+            long count = re.numberOfDaysBetween(startPeriod, endPeriod, re.getDayOfWeek());
+
+            if (count == -1) {
+                continue;
+            }
+
+            LocalDateTime recurringEventDate = startPeriod.plusDays(count);
+            LocalDateTime dummyEventStartDate = LocalDateTime.of(recurringEventDate.toLocalDate(), re.getStartTime());
+            LocalDateTime dummyEventEndDate = LocalDateTime.of(recurringEventDate.toLocalDate(), re.getEndTime());
+
+            boolean isEventBefore = false;
+            boolean isEventAfter = false;
+
+            if (!dummyEventStartDate.isAfter(startPeriod) && !dummyEventEndDate.isAfter(startPeriod)) {
+                isEventBefore = true;
+            }
+
+            if (!dummyEventStartDate.isBefore(endPeriod) && !dummyEventEndDate.isBefore(endPeriod)) {
+                isEventAfter = true;
+            }
+
+            if (!(isEventBefore || isEventAfter)) {
+                throw new EventConflictException("Recurring Event List:\n" + index + " " + re);
+            }
+            index++;
+        }
+    }
+
+    /**
      * Returns a {@code boolean} that indicates if the {@code Event} occurs between the
      * given period.
      *
@@ -79,11 +118,11 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
      */
     @Override
     public boolean occursBetween(LocalDateTime startPeriod, LocalDateTime endPeriod) {
-        if (startDate.isBefore(startPeriod)) {
+        if (startDate.isBefore(startPeriod) && endDate.isBefore(endPeriod)) {
             return false;
         }
 
-        if (endDate.isAfter(endPeriod)) {
+        if (startDate.isAfter(endPeriod) && endDate.isAfter(endPeriod)) {
             return false;
         }
 
@@ -91,21 +130,34 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
     }
 
     /**
-     * Checks if the start date and the end date of the event is valid for isolated event.
-     *
-     * @throws ParseException if start time is after the end time or the dates keyed in are before today.
+     * Checks if the start of an {@code IsolatedEvent} is before its end.
+     * @throws EventConflictException if the start is after the end
      */
-    public void checkDateTime() throws CommandException {
+    public void checkValidStartEnd() throws EventConflictException {
+        if (this.startDate.isAfter(endDate) || this.startDate.equals(endDate)) {
+            throw new EventConflictException(Messages.MESSAGE_EVENT_START_AFTER_END);
+        }
+    }
+
+    /**
+     * Checks if the {@code IsolatedEvent} has already ended.
+     * @throws EventConflictException if the {@code IsolatedEvent} has already ended.
+     */
+    public void checkNotEnded() throws EventConflictException {
         LocalDateTime now = LocalDateTime.now();
 
-        if (this.startDate.isAfter(endDate) || this.startDate.equals(endDate)) {
-            throw new CommandException(Messages.MESSAGE_EVENT_START_AFTER_END);
-        }
-
         if (this.endDate.isBefore(now)) {
-            throw new CommandException(Messages.MESSAGE_EVENT_INVALID_DATE);
+            throw new EventConflictException(Messages.MESSAGE_EVENT_INVALID_DATE);
         }
+    }
 
+    /**
+     * Checks if the start date and the end date of the event is valid for isolated event.
+     * @throws EventConflictException if start time is after the end time or the dates keyed in are before today.
+     */
+    public void checkDateTime() throws EventConflictException {
+        this.checkValidStartEnd();
+        this.checkNotEnded();
     }
 
     @Override

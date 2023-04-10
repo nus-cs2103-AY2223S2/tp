@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
@@ -125,17 +124,6 @@ public interface Model {
 
     // TODO: Change type
     void updateFilteredTimeSlotList(Group group, LocalDate date);
-
-    /**
-     * Add IsolatedEvent object to the person's isolated event list.
-     * @param person
-     * @param eventToAdd
-     */
-    void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
-
-    void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
-
-    void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
 
     /**
      * Add Recurring Event object to the person's isolated event list

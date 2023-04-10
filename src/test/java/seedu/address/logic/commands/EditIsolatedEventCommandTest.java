@@ -22,7 +22,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.RecurringEvent;
-import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -33,17 +32,18 @@ public class EditIsolatedEventCommandTest {
     @Test
     public void execute_success() throws CommandException {
         Person editedPerson = new PersonBuilder().build();
+        editedPerson.getIsolatedEventList().insert(SKIING_ISOLATED_EVENT);
         model.addPerson(editedPerson);
-        model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptorBuilder("Sleep", TWO_O_CLOCK_VALID,
                 THREE_O_CLOCK_VALID).build();
         EditIsolatedEventCommand command = new EditIsolatedEventCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_EVENT, editEventDescriptor);
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS, SLEEPING_ISOLATED_EVENT)
-                + " for " + editedPerson.getName()
-                + "\nOriginal Event: " + SKIING_ISOLATED_EVENT + " for " + editedPerson.getName();
+        String expectedMessage = String.format(MESSAGE_SUCCESS, SLEEPING_ISOLATED_EVENT,
+                editedPerson.getName())
+                + "\nOriginal Event: "
+                + SKIING_ISOLATED_EVENT + " for " + editedPerson.getName();
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
     }
@@ -51,8 +51,8 @@ public class EditIsolatedEventCommandTest {
     @Test
     public void execute_conflictRecurringEvent() {
         Person editedPerson = new PersonBuilder().build();
+        editedPerson.getIsolatedEventList().insert(SKIING_ISOLATED_EVENT);
         model.addPerson(editedPerson);
-        model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
 
         model.addRecurringEvent(editedPerson, new RecurringEvent("Cycling", FOUR_O_CLOCK_VALID.getDayOfWeek(),
                 THREE_O_CLOCK_VALID.toLocalTime(), SIX_O_CLOCK_VALID.toLocalTime()));
@@ -63,14 +63,14 @@ public class EditIsolatedEventCommandTest {
         EditIsolatedEventCommand command = new EditIsolatedEventCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_EVENT, editEventDescriptor);
 
-        assertThrows(EventConflictException.class, () ->command.execute(model));
+        assertThrows(CommandException.class, () ->command.execute(model));
     }
     @Test
     public void execute_invalidEventIndex() throws CommandException {
         Person editedPerson = new PersonBuilder().build();
         Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        editedPerson.getIsolatedEventList().insert(SKIING_ISOLATED_EVENT);
         model.addPerson(editedPerson);
-        model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptorBuilder("Sleep", TWO_O_CLOCK_VALID,
                 FOUR_O_CLOCK_VALID).build();
