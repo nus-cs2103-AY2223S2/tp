@@ -895,7 +895,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to checking a student for his/her task list and score list, just that the check command is now working on the filtered student list prodcued by the find command.
 
 ### Saving data
-The data will be automaticlly saved by MATHUTORING.
+The data will be automatically saved by MATHUTORING.
    
 --------------------------------------------------------------------------------------------------------------------
 
