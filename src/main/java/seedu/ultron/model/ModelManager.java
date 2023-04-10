@@ -156,7 +156,10 @@ public class ModelManager implements Model {
         if (selectedIndex == null) {
             return null;
         }
-        return filteredOpenings.size() <= selectedIndex.getZeroBased() ? null : filteredOpenings.get(selectedIndex.getZeroBased());
+        if (filteredOpenings.size() <= selectedIndex.getZeroBased()) {
+            return null;
+        }
+        return filteredOpenings.get(selectedIndex.getZeroBased());
     }
 
     @Override
