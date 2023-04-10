@@ -22,9 +22,9 @@ This user guide will help you use PowerCards with ease and integrate it into you
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#3-features) section.
 * Having **issues**? Check out the [FAQ](#4-faq) section and see if you can find your solutions there!
 
-**:bulb: Tip:**<br>
-* There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
-
+<div markdown="block" class="alert alert-info">
+**:bulb: Tip:**There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
+<div>
 ## 1.2. Key Terms
 
 **Deck**<br>
@@ -514,7 +514,7 @@ PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Ad
 **A**: **No**. The name of the deck is case-sensitive and cannot be duplicated, e.g., if you already have a deck named `Science`, you cannot create another deck named `Science`. However, you can create a deck named `SCIENCE` since `SCIENCE` may be an acronym.
 
 **Q**: What if I would like to include the prefix within my card (question or answer) or deck name? (For example `addCard q\What is q\a a\It means q slash a` should add a card with question `What is q\a` instead of `a`)<br>
-**A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we used backslash `&#92;` rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
+**A**: At the moment we do not support that. However, we plan to support this feature in the next iteration. We also like to point out that this is the reason why we use backslash &#92; rather than forward slash `/` for this current iteration as backslash is less commonly use than forward slash.  
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Command Summary
