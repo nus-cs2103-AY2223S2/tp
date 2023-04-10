@@ -59,10 +59,35 @@ public class ParserUtil {
         "MMM dd, yyyy HH:mm"
     };
     //@@author
+
+    //@@author NBQian-reused
+    //Reused from https://github.com/Yufannnn/ip/blob/master/src/main/java/duke/parser/TimeHandler.java
+    //with minor modification, it is a pretty good way to organise and extend the acceptable date format.
     private static final String[] ACCEPTABLE_DATE_FORMATS = {
         "MMM dd yyyy", "yyyy-MM-dd", "dd/MM/yyyy", "yyyy/MM/dd",
         "dd MMM yyyy", "MMM dd, yyyy", "dd-mm-yyyy"
     };
+    //@@author
+
+    /**
+     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
+     *
+     * @param date The date string to be parsed
+     * @return The parsed LocalDate object
+     * @throws ParseException if the string does not match any supported date formats
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        for (String dateFormat : ACCEPTABLE_DATE_FORMATS) {
+            try {
+                return LocalDate.parse(date, DateTimeFormatter.ofPattern(dateFormat));
+            } catch (Exception e) {
+                // Go to the next dateFormat
+            }
+        }
+        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
+            + String.join("\n", ACCEPTABLE_DATE_FORMATS));
+    }
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -249,25 +274,6 @@ public class ParserUtil {
         } else {
             throw new ParseException("Invalid status. Please use either 'completed' or 'pending'.");
         }
-    }
-
-    /**
-     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
-     *
-     * @param date The date string to be parsed
-     * @return The parsed LocalDate object
-     * @throws ParseException if the string does not match any supported date formats
-     */
-    public static LocalDate parseDate(String date) throws ParseException {
-        for (String dateFormat : ACCEPTABLE_DATE_FORMATS) {
-            try {
-                return LocalDate.parse(date, DateTimeFormatter.ofPattern(dateFormat));
-            } catch (Exception e) {
-                // Go to the next dateFormat
-            }
-        }
-        throw new ParseException("Invalid date format. Please use one of the following formats:\n"
-            + String.join("\n", ACCEPTABLE_DATE_FORMATS));
     }
 
     /**
