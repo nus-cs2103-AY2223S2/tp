@@ -63,8 +63,16 @@ than current GUI apps in the industry.
 
 ## **Glossary**
 
+### Definitions
+
 Here are some descriptions of the words we use throughout the User Guide:
-- Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.
+- **Parameter**: Parameters are like fields in a form you are required to fill up.
+They include details you would include about the doctor/patient.
+- **Command**: An input from the user that tells Docedex to perform an action (ie. add a doctor).
+- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
+- **GUI component**: A subsection of the Graphical User Interface. For more information on specific GUI
+components, refer to [this section](#navigating-the-graphical-user-interface-gui).
+- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
 
 ### Parameter Information
 
@@ -98,6 +106,42 @@ The information below specifies parameter description, constraints and usage thr
 | d/        | Diagnosis                               | Alphanumeric characters (a to z, A to Z, 0 to 9)                                                                                            | Fever, Cancer         | 发烧                 |
 | st/       | Status                                  | Can only take one of the following values: Inpatient, Outpatient, Observation, Emergency Department, Intensive Care Unit, Transitional Care | Inpatient, Outpatient | Baymax, HelloWorld |
 
+---
+
+## **Command format**
+
+| Format                                                                                                       | Explanation                                                                  | Examples                                                                                          |
+|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                   | These are parameters that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                              | N/A                                                                          | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+---
+
+## **Command Summary**
+
+| Command               | Shorthand   | What it does                                                                              |
+|-----------------------|-------------|-------------------------------------------------------------------------------------------|
+| `add-doc / add-ptn`   | `ad / ap`   | Adds a doctor or patient into Docedex.                                                    |
+| `edit-doc / edit-ptn` | `ed / ep`   | Edits the specified doctor or patient.                                                    |
+| `del-doc / del-ptn`   | `dd / dp`   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
+| `find-doc / find-ptn` | `fd / fp`   | Finds the doctor(s) and patient(s) which matches the search query.                        |
+| `list-doc / list-ptn` | `lsd / lsp` | Lists all doctors or patients.                                                            |
+| `assign-ptn`          | `asn`       | Assigns a patient to a doctor.                                                            |
+| `unassign-ptn`        | `uasn`      | Unassigns a patient from a doctor.                                                        |
+| `sd / sp`             | `sd / sp`   | Selects the specified doctor or patient and displays the person's information on the GUI. |
+| `help`                | N/A         | Displays the link to the User Guide.                                                      |
+| `clear`               | N/A         | Clears all entries from Docedex. **This action cannot be undone.**                        |
+| `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+---
 
 ## **Navigating the Graphical User Interface (GUI)**
 
@@ -122,7 +166,6 @@ Here is a quick summary of each GUI component within Docedex.
 | **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
 | **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
 | **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
-
 
 ### Notes about the GUI
 
@@ -153,37 +196,6 @@ Fret not, as this is part of the functionality of Docedex. Your storage is still
 Unselecting doctors and patients is currently not supported in Docedex. If you wish to
 look through all the doctors and patients in Docedex, please use the
 [`list-doc`](#listing-all-doctors) and [`list-ptn`](#listing-all-patients) commands instead.
-
-[Scroll back to Table of Contents](#table-of-contents)
-
-## **Notes about the command format**
-
-| Notes                                                                                                        | Explanation                                                                  | Examples                                                                                          |
-|--------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| Words in `UPPER_CASE`                                                                                        | These are parameter values that are supplied by the user                     | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
-| Items in square brackets                                                                                     | These are optional parameters (can be left empty by user)                    | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
-| Items with `…`​ after them                                                                                   | These are parameters that can be used multiple times (or omitted completely) | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
-| Parameters can be in any order.                                                                              | N/A                                                                          | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
-| If a parameter is **expected only once** and entered multiple times, only the latest occurrence is accepted. | N/A                                                                          | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
-| Extraneous parameters for commands that do not take in parameters will be ignored.                           | N/A                                                                          | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
-
-[Scroll back to Table of Contents](#table-of-contents)
-
-## **Command Summary**
-
-| Command               | Shorthand   | What it does                                                                              |
-|-----------------------|-------------|-------------------------------------------------------------------------------------------|
-| `add-doc / add-ptn`   | `ad / ap`   | Adds a doctor or patient into Docedex.                                                    |
-| `edit-doc / edit-ptn` | `ed / ep`   | Edits the specified doctor or patient.                                                    |
-| `del-doc / del-ptn`   | `dd / dp`   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
-| `find-doc / find-ptn` | `fd / fp`   | Finds the doctor(s) and patient(s) which matches the search query.                        |
-| `list-doc / list-ptn` | `lsd / lsp` | Lists all doctors or patients.                                                            |
-| `assign-ptn`          | `asn`       | Assigns a patient to a doctor.                                                            |
-| `unassign-ptn`        | `uasn`      | Unassigns a patient from a doctor.                                                        |
-| `sd / sp`             | `sd / sp`   | Selects the specified doctor or patient and displays the person's information on the GUI. |
-| `help`                | N/A         | Displays the link to the User Guide.                                                      |
-| `clear`               | N/A         | Clears all entries from Docedex. **This action cannot be undone.**                        |
-| `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -566,7 +578,7 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
 
 ### Using Docedex
-**Q**: I entered a command and my doctor/patient list was cleared. What happenned?
+**Q**: I entered a command and my doctor/patient list was cleared. What happened?<br>
 **A**: Within the [Notes about the GUI](#notes-about-the-gui) section, refer to the
 subsection titled _"Selecting doctors or patients through commands"_ for an explanation of why this occurs.
 

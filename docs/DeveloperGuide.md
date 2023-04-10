@@ -920,9 +920,21 @@ the use case. Such associated pairs of use cases are listed in the table below.
 
 ## **Appendix F: Glossary**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **User**: Triage Admin Staff within the clinic.
-* **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
+- **Mainstream OS**: Windows, Linux, Unix, OS-X.
+- **User**: Triage Admin Staff within the clinic.
+- **Contact**: Data entry that stores the contact information of a doctor or patient in Docedex.
+- **UML**: [Unified Modeling Language](https://en.wikipedia.org/wiki/Unified_Modeling_Language)
+- **JSON**: [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON)
+- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
+- **GUI component**: A subsection of the Graphical User Interface.
+- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
+- **User Input**: An interaction from the user to Docedex. This is usually a mouse click or text input.
+- **Feedback**: An interaction from Docedex to the user. This is usually done as acknowledgement after some user input.
+- **Sequence Diagram**: A UML diagram that describes the interactions between objects within Docedex, based on a scenario.
+- **Class Diagram**: A UML diagram that describes the structure of classes within Docedex.
+- **Navigability**: A concept referring to instances of one class holding a reference to instances of another class.
+- **Association**: A concept referring to instances of classes being able to interact with each other.
+- **Association Class**: A class that represents additional information about an association.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
