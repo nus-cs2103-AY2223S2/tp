@@ -510,6 +510,7 @@ The implementation of this feature is supported by `FilterCommand` and `FilterCo
 Below is an activity diagram that illustrates how a user finds all persons with the specified tag.
 
 ![FilterTaskActivityDiagram](images/FilterTaskActivityDiagram.png)
+<div style="page-break-after: always;"></div>
 
 #### 3.10.2 Design Considerations
 **Aspect: Number of tags that users can input**
@@ -563,8 +564,6 @@ in extra effort to learn and memorize the commands.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 ## 6. Appendix: Requirements
 
 ### 6.1 Product scope
@@ -583,6 +582,7 @@ in extra effort to learn and memorize the commands.
 * Manage tasks and contacts faster than a typical mouse/GUI driven app
 * Able to view all upcoming tasks to be completed at one glance
 * Allows efficient delegation of tasks to subordinates in an organised and centralised manner
+<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
