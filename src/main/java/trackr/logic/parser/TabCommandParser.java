@@ -7,7 +7,7 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.TabCommand;
 import trackr.logic.parser.exceptions.ParseException;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Parses input arguments and creates a new TabCommand object.
  */
