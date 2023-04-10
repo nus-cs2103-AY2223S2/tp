@@ -731,7 +731,7 @@ Our application:
   
     Use case ends.
 
-* 2c. An item does not exist in menu
+* 2c. The item does not exist in menu
   * 2c1. Trackr displays error message.
   * 2c2. Actor <u>adds a new menu item(UC31)</u>.
 
