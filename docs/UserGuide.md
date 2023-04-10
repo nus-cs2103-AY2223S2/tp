@@ -116,6 +116,14 @@ If you need more information on how to use these commands, just refer to our han
 ![image](./images/navigation.png)
 ###### Figure 3
 
+Here is an example workflow to help you better understand the Navigation Guide (Figure 3) better:
+1. Start at the Course Page where you see two modules displayed. 
+2. Type `select 1` to view the groups of the first course. You'll be redirected to the `Group Page`. 
+3. Choose to assign grades for `T15` group at index 1 by typing `task 1`. You'll be redirected to the `Task Page`.
+4. You realize you made a mistake and want to mark attendance for the `T16` group instead. Simply type `back` and 
+   you'll be redirected back to the `Group Page`. 
+5. To view `Session Page` for `T16` group, type `session 2`. You'll be redirected to the `Session Page` for that group.
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Commands
