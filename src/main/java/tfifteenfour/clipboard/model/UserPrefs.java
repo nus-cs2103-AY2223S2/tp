@@ -56,9 +56,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return sampleFilePath;
     }
 
-    public void setRosterFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.rosterFilePath = addressBookFilePath;
+    public void setRosterFilePath(Path rosterFilePath) {
+        requireNonNull(rosterFilePath);
+        this.rosterFilePath = rosterFilePath;
     }
 
     @Override

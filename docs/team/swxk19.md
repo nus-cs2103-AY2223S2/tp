@@ -12,6 +12,7 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 [My authored PRs](https://github.com/AY2223S2-CS2103T-T15-4/tp/pulls?q=is%3Apr+author%3Aswxk19+)
 
 ## Enhances Implemented&nbsp;
+### Features
 1. Remodelling of AB3's `Model`, `Logic`, and `Storage` interfaces
 2. Implemented `undo`, `find`, `sort`, and navigation commands
 3. Contributed to `add`, `edit`, `delete` commands
@@ -25,9 +26,9 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 1. Participated in drafting [UG (v1.1)](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit?usp=share_link)
 
 ## Contributions to DG&nbsp;
-1. `undo` implementation in Logic Implementation section
-2. `Storage` implementation in Logic Implementation section
-3. `UniqueList` implementation in Logic Implementation section
+1. `undo` implementation in Implementations section
+2. `Storage` implementation in Implementations section
+3. `UniqueList` implementation in Implementations section
 4. Page Navigation effort in Appendix: Effort section
 5. Storage effort in Appendix: Effort section
 

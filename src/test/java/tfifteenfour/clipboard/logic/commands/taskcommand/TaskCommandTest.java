@@ -37,25 +37,25 @@ public class TaskCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        TaskCommand TaskCommand = new TaskCommand(INDEX_FIRST);
+        TaskCommand taskCommand = new TaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(TaskCommand.MESSAGE_SUCCESS, selectedGroup);
         Model expectedModel = model.copy();
 
-        assertCommandSuccess(TaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(taskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        TaskCommand TaskCommand = new TaskCommand(INDEX_OUT_OF_BOUND);
-        assertThrows(CommandException.class, () -> TaskCommand.execute(model));
+        TaskCommand taskCommand = new TaskCommand(INDEX_OUT_OF_BOUND);
+        assertThrows(CommandException.class, () -> taskCommand.execute(model));
     }
 
     @Test
     public void execute_wrongPage_throwsCommandException() {
         actualSelection.setCurrentPage(PageType.COURSE_PAGE);
-        TaskCommand TaskCommand = new TaskCommand(INDEX_FIRST);
-        assertThrows(CommandException.class, () -> TaskCommand.execute(model));
+        TaskCommand taskCommand = new TaskCommand(INDEX_FIRST);
+        assertThrows(CommandException.class, () -> taskCommand.execute(model));
     }
 
     @Test
