@@ -637,7 +637,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `editevent 0`<br>
        Expected: No event is edited. Error details shown in the status message.
 
-    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X).<br>
        Expected: Similar to previous.
 
 2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
@@ -650,7 +650,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `editevent 0`<br>
       Expected: No event is edited. Error details shown in the status message.
 
-   4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+   4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X).<br>
       Expected: Similar to previous.
 
 ### Finding an event
@@ -678,7 +678,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `delevent 0`<br>
       Expected: No event is deleted. Error details shown in the status message.
 
-   4. Other incorrect delevent commands to try: `delevent`, `delevent x`, ... (where x is larger than the list size)<br>
+   4. Other incorrect delevent commands to try: `delevent`, `delevent x`, ... (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
 2. Deleting an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
@@ -691,7 +691,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delevent 0`<br>
        Expected: No event is deleted. Error details shown in the status message.
 
-    4. Other incorrect delevent commands to try: `delevent`, `delevent x`, ... (where x is larger than the displayed list size)<br>
+    4. Other incorrect delevent commands to try: `delevent`, `delevent x`, ... (where x is larger than the displayed list size).<br>
        Expected: Similar to previous.
 
 ### Listing all persons and events
@@ -732,7 +732,7 @@ For future enhancements, Person names with the same sequence of characters but d
 ### Person name can be more flexible
 
 The current version of this application is not able to accept names that contain non-alphanumeric characters. The non-alphanumeric characters found in most names are `/` and `'`.
-For example, the user is not allowed to enter these 2 commands and create the following Persons in the list of Contacts due to the current constraint:
+For example, the user is not allowed to enter these 2 commands and create the following Persons in the list of contacts due to the current constraint:
 * `add n/John O'neal p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John O'neal**.
 * `add n/John s/o Raju p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 evt/1 evt/2` to add a person called **John s/o Raju**.
 
