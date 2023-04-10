@@ -67,7 +67,6 @@ If you would like to contact the development team, we can be contacted at our [A
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 2. **Design**
 
@@ -212,8 +211,6 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.task.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## 3. **Implementation**
 
@@ -735,8 +732,6 @@ The color of this tag is then decided by looking up the result in an array of co
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 **This section contains some links to the guides that are used when developing Clock-Work. You are highly encouraged to adhere to these guides when working on Clock-Work.**
@@ -748,8 +743,6 @@ The color of this tag is then decided by looking up the result in an array of co
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## 5. **Appendix: Requirements**
 
@@ -793,8 +786,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance             |
 | `*`      | forgetful user  | view my previously generated schedule         | continue working on what i was doing previously  |
 
-
-<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -891,8 +882,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## 6. **Appendix: Instructions for manual testing**
 
@@ -1107,8 +1096,6 @@ testers are expected to do more *exploratory* testing.
 
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## 7. **Appendix: Planned Enhancements**
 
