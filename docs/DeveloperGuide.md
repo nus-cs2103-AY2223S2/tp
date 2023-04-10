@@ -432,7 +432,7 @@ results of the `sub` command return ingredients instead of recipes.
 
 #### Overview
 
-The `import` command allows the user to import another RecipeBook JSON file into the app, and in so doing, import new Recipes to use!.
+The `import` command allows the user to import another RecipeBook JSON file into the app, and in so doing, import new **Recipes** to use.
 
 If the imported file parses correctly into a RecipeBook, the recipes in the JSON file will be successfully imported while ignoring duplicates (with respect to the
 App's current Recipe Book).
