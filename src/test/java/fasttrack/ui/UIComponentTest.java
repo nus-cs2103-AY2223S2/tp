@@ -18,8 +18,7 @@ import fasttrack.model.category.Category;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
-
-public class UIComponentTest {
+public class UiComponentTest {
 
     private Category category;
     private int displayedIndex;
@@ -33,10 +32,10 @@ public class UIComponentTest {
     }
 
     @BeforeAll
-    static void initJfx()  throws InterruptedException {
+    static void initJfx() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-            Platform.startup(latch::countDown);
-            latch.await();
+        Platform.startup(latch::countDown);
+        latch.await();
     }
 
     @Test
@@ -91,4 +90,3 @@ public class UIComponentTest {
         }
     }
 }
-	

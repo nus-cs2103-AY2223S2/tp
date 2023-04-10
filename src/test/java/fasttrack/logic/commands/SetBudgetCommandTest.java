@@ -16,7 +16,7 @@ import fasttrack.testutil.TypicalCategories;
 public class SetBudgetCommandTest {
     private Budget budget = new Budget(1000);
     private Budget differentBudget = new Budget(2000);
-    private Model model = new ModelManager(TypicalCategories.getTypicalExpenseTracker(), 
+    private Model model = new ModelManager(TypicalCategories.getTypicalExpenseTracker(),
         new UserPrefs());
 
     @Test
