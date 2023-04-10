@@ -7,8 +7,9 @@ title: KevinEyo1's Project Portfolio Page
 
 Ultron is a system that assists students in tracking their internship applications by organizing their internships and monitoring the status of each application. With capabilities to add, edit, filter and much more, it is the one-stop solution to any student's internship application organisational needs.
 
+In summary, my main contributions include leading discussions on feature implementations and design choices as the tech lead, as well as adding the status command feature. I have also contributed largely and led the editing and refining of the User Guide. I also added multiple test cases to ensure that the functionality of our code remains up to standard and free of bugs.
+
 * **Code contributed**:
-    * In summary, my main contributions include leading discussions on feature implementations and design choices, as well as adding the status command feature. I have also contributed largely and led the editing and refining of the User Guide. I also added multiple test cases to ensure that the functionality of our code remains up to standard and free of bugs.
     * The link below holds the exact changes to code that I have contributed to this project.
     * https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=kevineyo1&breakdown=true
 
@@ -34,6 +35,7 @@ Ultron is a system that assists students in tracking their internship applicatio
 * **Contributions to team-based tasks**:
     * Refactoring of edit command
     * Maintaining of issue tracker
+    * Discussing of key design and implementation choices
 
 * **Review Contributions**:
     * All reviews done for other team's projects : https://github.com/KevinEyo1/ped
