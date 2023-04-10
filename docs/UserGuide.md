@@ -289,11 +289,9 @@ Examples:
 * `event_create_recur 1 re/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00`
 * `event_create_recur 1 re/CS2103T Lecture d/Friday f/16:00 t/18:00`
 
-**Note:** To create a recurring event that lasts the whole day from `00:00` to `00:00`, the event needs to be split into
-two seperate recurring events as `START_TIME` and `END_TIME` cannot have the same time.
-For example, 
-`event_create_recur 1 re/Studying d/Saturday f/00:00 t/14:00`
-`event_create_recur 1 re/Studying d/Saturday f/14:00 t/00:00`
+<div markdown="span" class="alert alert-warning">:exclamation: **Constrains:**
+Recurring event consisting of the whole day from `00:00` to `00:00` is not allowed. The maximum time period that is allowed is from 00:00 to 23:00.
+</div>
 
 ### Deleting an event:
 Delete either an isolated or a weekly recurring event
