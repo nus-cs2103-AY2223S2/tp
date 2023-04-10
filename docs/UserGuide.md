@@ -632,7 +632,7 @@ Format: `parent find <NAME>  `
 Examples:
 * `parent find Russel`
 * `parent find Joseph`
-*
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 To list back all parent, use the [general list](#listing) command! <br><br>
 </div>
