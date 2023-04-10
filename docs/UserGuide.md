@@ -1,9 +1,9 @@
+# GoodMatch
+
 ---
 layout: page
 title: User Guide
 ---
-
-# GoodMatch
 
 ## **Overview**
 
