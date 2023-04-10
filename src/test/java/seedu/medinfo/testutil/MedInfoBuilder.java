@@ -5,7 +5,7 @@ import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.patient.Patient;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building MedInfo objects.
  * Example usage: <br>
  *     {@code MedInfo ab = new MedInfoBuilder().withPerson("John", "Doe").build();}
  */

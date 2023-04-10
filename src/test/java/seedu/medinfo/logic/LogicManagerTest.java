@@ -73,13 +73,13 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMedInfoIoExceptionThrowingStub
-        JsonMedInfoStorage addressBookStorage = new
-            JsonMedInfoIoExceptionThrowingStub(
-            temporaryFolder.resolve("ioExceptionMedInfo.json"));
+        JsonMedInfoStorage medInfoStorage = new
+        JsonMedInfoIoExceptionThrowingStub(
+        temporaryFolder.resolve("ioExceptionMedInfo.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
-            temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage,
-            userPrefsStorage);
+        temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(medInfoStorage,
+        userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -89,7 +89,8 @@ public class LogicManagerTest {
         try {
             expectedModel.addPatient(expectedPatient);
         } catch (CommandException e) {
-            System.out.println("Caught CommandException error!!!");
+            System.out.println("CommandException at LogicManagerTest: "
+                + "execute_storageThrowsIoException_throwsCommandException()");
         }
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
@@ -172,7 +173,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveMedInfo(ReadOnlyMedInfo addressBook, Path filePath) throws IOException {
+        public void saveMedInfo(ReadOnlyMedInfo medInfo, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -61,8 +61,8 @@ public class JsonMedInfoStorage implements MedInfoStorage {
     }
 
     @Override
-    public void saveMedInfo(ReadOnlyMedInfo addressBook) throws IOException {
-        saveMedInfo(addressBook, filePath);
+    public void saveMedInfo(ReadOnlyMedInfo medInfo) throws IOException {
+        saveMedInfo(medInfo, filePath);
     }
 
     /**
@@ -70,12 +70,12 @@ public class JsonMedInfoStorage implements MedInfoStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveMedInfo(ReadOnlyMedInfo addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMedInfo(ReadOnlyMedInfo medInfo, Path filePath) throws IOException {
+        requireNonNull(medInfo);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMedInfo(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMedInfo(medInfo), filePath);
     }
 
 }

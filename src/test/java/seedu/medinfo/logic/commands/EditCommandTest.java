@@ -1,10 +1,18 @@
 package seedu.medinfo.logic.commands;
 
+import static seedu.medinfo.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.medinfo.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 
+import org.junit.jupiter.api.Test;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
+import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;
 import seedu.medinfo.model.UserPrefs;
+import seedu.medinfo.model.patient.Patient;
+import seedu.medinfo.testutil.EditPatientDescriptorBuilder;
+import seedu.medinfo.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -14,19 +22,19 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
 
-    //    @Test
-    //    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException{
-    //        Patient editedPatient = new PatientBuilder().build();
-    //        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
-    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
-    //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
-    //
-    //        Model expectedModel = new ModelManager(new MedInfo(model.getMedInfo()), new UserPrefs());
-    //        expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+        @Test
+        public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
+            Patient editedPatient = new PatientBuilder().build();
+            EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(editedPatient).build();
+            EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
+
+            Model expectedModel = new ModelManager(new MedInfo(model.getMedInfo()), new UserPrefs());
+            expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
+
+            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        }
     //
     //    @Test
     //    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException{
