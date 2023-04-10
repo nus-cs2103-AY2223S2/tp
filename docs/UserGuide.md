@@ -224,7 +224,7 @@ Format: ```learn [INDEX] [l/LESSON]```
 Example:
 
 * ```learn 1 l/Rational number```
-![learn.png](images/learnExample.png)
+![learn.png](images/learnExample.PNG)
   * The command adds the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh learn Rational Number`.
 
 #### [Back to top](#table-of-content) 
@@ -239,7 +239,7 @@ Format: ```unlearn [INDEX] [l/LESSON]```
 Examples:
 
 * ```unlearn 1 l/Rational number```
-  ![unlearn.png](images/unlearnExample.png)
+  ![unlearn.png](images/unlearnExample.PNG)
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
 #### [Back to top](#table-of-content) 
@@ -255,7 +255,7 @@ Format: `mark/unmark <index> [date...]`
 Examples: 
 * `mark 1` marks the attendance of the first student displayed for the current date
 * `mark 1 2023-03-10` marks the attendance of the first student displayed for the date "2023-03-10" as shown below
-![mark.png](images/mark.PNG)
+![mark.png](images/mark.png)
 
 #### [Back to top](#table-of-content) 
 ### Querying attendance
@@ -268,7 +268,7 @@ Format: `query <index> [date]`
 
 Examples: 
 * `query 1` displays all the marked dates that the first student has as shown below
-![query.png](images/query.PNG)
+![query.png](images/query.png)
 * `query 1 2023-03-10` displays whether the first student was marked present during his lesson on 2023-03-10
 
 #### [Back to top](#table-of-content) 
