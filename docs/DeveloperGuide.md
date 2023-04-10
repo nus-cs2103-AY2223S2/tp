@@ -423,6 +423,25 @@ Use case ends.
 
 <br>
 
+**Use case: Find an event**
+
+**MSS**
+
+1.  User requests to find an event based on a given keyword.
+2.  PlanEase shows the list of filtered events based on the user’s choice of keyword.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. PlanEase detects that no fields are provided for the keyword.
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
 **Use case: Delete an event**
 
 **MSS**
@@ -528,40 +547,22 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect addevent commands to try: `addevent`, `...`<br>
    Expected: Similar to previous.
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-   
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-
-   3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-2. Deleting a person while persons with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
-
-    1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
-
-    2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the displayed list. Details of the deleted contact shown in the status message.
-
-    3. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message.
-
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
-       Expected: Similar to previous.
-
 ### Listing Events
 
 1. No prerequisite.
 
 2. Test case: `listevent`<br>
    Expected: All events are displayed. Details of successful command execution shown in the status message.
+
+### Listing all persons from an event
+
+1. No prerequisite.
+
+2. Test case: `listevcontact 1`<br>
+   Expected: App will display the list of all persons from first event if any.
+
+3. Other incorrect listevcontact commands to try: `listevcontact x`, `...` (where x is not a valid event index).<br>
+   Expected: Error details shown in the status message.
 
 ### Sorting event list
 
@@ -593,16 +594,64 @@ testers are expected to do more *exploratory* testing.
 
 2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
 
-    1. Prerequisites: List all events using the `listevent` command, then find all events with `KEYWORD` using the `findevent KEYWORD [MORE_KEYWORDS]` command. Multiple events in the list.
+   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [MORE_KEYWORDS]` command. Multiple events in the list.
 
-    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+   2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
       Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
 
-    3. Test case: `editevent 0`<br>
+   3. Test case: `editevent 0`<br>
       Expected: No event is edited. Error details shown in the status message.
 
-    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+   4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
       Expected: Similar to previous.
+
+### Finding an event
+
+1. Prerequisites: Current list of events has only one event with the word `Carnival` and no event with the word `Magic`.
+
+2. Test case: `findevent Carnival`<br>
+   Expected: 1 event with the word `Carnival` is found.
+
+3. Test case: `findevent Magic`<br>
+   Expected: No matching event is found.
+
+4. Other incorrect findevent commands to try: `findevent`, `...`.<br>
+   Expected: Error details shown in the status message.
+
+### Deleting a person
+
+1. Deleting a person while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   
+   2. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+
+   3. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+2. Deleting a person while persons with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
+
+    1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the displayed list. Details of the deleted contact shown in the status message.
+
+    3. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the displayed list size)<br>
+       Expected: Similar to previous.
+
+### Listing all persons and events
+
+1. No prerequisite.
+
+2. Test case: `listall`<br>
+   Expected: App will display the list of all persons and events if any.
 
 ### Saving data
 
