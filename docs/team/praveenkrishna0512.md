@@ -13,20 +13,20 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
 ##### Summary of Contributions
 
 - **Project management**
-  - Managed releases under [`v1.3`](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/tag/v1.3.4)
+  - Managed releases under ***[`v1.3`](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/tag/v1.3.4)***
 <br><br>
 - **Code contributed**: To find out more, click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=praveenkrishna0512&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
 
 - **Enhancements implemented**
-  - User Interface
+  - ***User Interface***
     - Implemented the colour scheme of Docedex
     - Implemented a doctors and patients list to show all doctors and patients in Docedex respectively
-      - Find out more about the implementation of these lists and how commands can manipulate them [here](../DeveloperGuide.md#contact-display)
+      - Find out more about the implementation of these lists and how commands can manipulate them ***[here](../DeveloperGuide.md#contact-display)***
     - Implemented a panel to show all information about a doctor or patient, upon user selection
-      - Find out more about the implementation of this panel [here](../DeveloperGuide.md#enlarged-info-card-feature)
-  - Storage
+      - Find out more about the implementation of this panel ***[here](../DeveloperGuide.md#enlarged-info-card-feature)***
+  - ***Storage***
     - Enabled proper saving and loading of Doctor and Patient objects
-      - Find out more about the implementation of storage [here](../DeveloperGuide.md#storage-component)
+      - Find out more about the implementation of storage ***[here](../DeveloperGuide.md#storage-component)***
     - Improved test coverage to >90%
 <br><br>
 - **Contributions to the UG**
@@ -38,7 +38,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
   - Added answers to [FAQs](../UserGuide.md#faq) under the *Using Docedex* subsection
 <br><br>
 - **Contributions to the DG**
-  - Sections
+  - ***Sections***
     - Provided design details and documentation about the [Ui](../DeveloperGuide.md#ui-component)
     and [Storage](../DeveloperGuide.md#storage-component) components.
     - Detailed the implementation of the Enlarged Info Card feature
@@ -47,7 +47,7 @@ Learn more about how Docedex can help you [here](../UserGuide.md)
     - Aided in crafting and formatting of [user stories](../DeveloperGuide.md#appendix-c-user-stories)
     - Aided in crafting and formatting of [use cases](../DeveloperGuide.md#appendix-d-use-cases)
 
-  - UML diagrams
+  - ***UML diagrams***
     - Class diagrams under sections on [Ui](../DeveloperGuide.md#ui-component)
       and [Storage](../DeveloperGuide.md#storage-component) components.
     - Sequence diagrams under sections on [Ui](../DeveloperGuide.md#ui-component) component
