@@ -31,9 +31,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PatientViewCard patientViewCard;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +44,20 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane patientListPanelPlaceholder;
 
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private StackPane calendarPlaceholder;
+    @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane patientCardPLaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +75,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        //patientViewCard = new PatientViewCard();
     }
 
     public Stage getPrimaryStage() {
@@ -110,12 +121,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(), logic.getAddressBook());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        CalendarCard.addAppointmentsToCalendar(logic.getFilteredAppointmentList());
+        CalendarCard calendarCard = new CalendarCard();
+        calendarPlaceholder.getChildren().add(calendarCard.getRoot());
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -151,6 +167,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    void handleView(int index) {
+        patientViewCard = new PatientViewCard(logic.getFilteredPatientList().get(index), new Stage());
+        if (!patientViewCard.isShowing()) {
+            patientViewCard.show();
+        } else {
+            patientViewCard.focus();
+        }
+        //patientViewCard = new PatientViewCard(logic.getFilteredPatientList().get(index));
+        //patientCardPLaceHolder.getChildren().add(patientViewCard.getRoot());
+    }
+
     /**
      * Closes the application.
      */
@@ -163,8 +190,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public PatientListPanel getPatientListPanel() {
+        return patientListPanel;
     }
 
     /**
@@ -184,6 +211,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                handleView(commandResult.getIndex());
             }
 
             return commandResult;

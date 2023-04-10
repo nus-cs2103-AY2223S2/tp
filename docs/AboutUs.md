@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chia Zi Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zxisatree.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/zxisatree)]
+[[portfolio](team/zxisatree.md)]
 
 * Role: Project Advisor
+* Responsibilities: Integration + Testing
 
-### Jane Doe
+### Arkobrata Chaudhuri
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/redhat-arko.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/redHat-arko)]
+[[portfolio](team/redhat-arko.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Integration, Documentation
 
-### Johnny Doe
+### Jayanth Balasubramanian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jayanth-balasubramanian.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Jayanth-Balasubramanian)]
+[[portfolio](team/jayanth-balasubramanian.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: UI, Git expert
 
-### Jean Doe
+### Chua Wen Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/runoutofit.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/runoutofit)]
+[[portfolio](team/runoutofit.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Code Quality, Documentations

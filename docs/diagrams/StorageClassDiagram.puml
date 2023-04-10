@@ -11,33 +11,48 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as iStorage
 Class StorageManager
 
 package "AddressBook Storage" #F4F6F6{
 Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonAdapatedPatient
+Class JsonAdaptedPatientTag
+}
+
+package "AppointmentList Storage" #F4F6F6{
+Class "<<interface>>\nAppointmentListStorage" as AppointmentListStorage
+Class JsonAppointmentListStorage
+Class JsonSerializableAppointmentList
+Class JsonAdapatedAppointment
+Class JsonAdaptedAppointmentTag
 }
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside ..> iStorage
 
-StorageManager .up.|> Storage
+StorageManager .up.|> iStorage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" AppointmentListStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+iStorage -left-|> UserPrefsStorage
+iStorage -right-|> AddressBookStorage
+iStorage -right-|> AppointmentListStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableAddressBook --> "*" JsonAdapatedPatient
+JsonAdapatedPatient --> "*" JsonAdaptedPatientTag
+
+JsonAppointmentListStorage .up.|> AppointmentListStorage
+JsonAppointmentListStorage ..> JsonSerializableAppointmentList
+JsonSerializableAppointmentList --> "*" JsonAdapatedAppointment
+JsonAdapatedAppointment --> "*" JsonAdaptedAppointmentTag
 
 @enduml
