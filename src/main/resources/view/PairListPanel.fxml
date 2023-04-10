@@ -13,9 +13,10 @@
       </font>
    </Label>
    <BorderPane style="-fx-border-color: whitesmoke; -fx-border-width: 1"/>
-   <HBox maxWidth="600" minHeight="-Infinity">
-      <Label text="Elderly" minWidth="200" HBox.hgrow="ALWAYS" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
-      <Label text="Volunteer" minWidth="200" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
+   <HBox minHeight="-Infinity" >
+      <Label text="Elderly" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
+      <Label text="Volunteer"  maxWidth="Infinity" HBox.hgrow="ALWAYS" textAlignment="RIGHT" alignment="CENTER_RIGHT"
+             style=" -fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10; "/>
    </HBox>
    <ListView fx:id="pairListView" VBox.vgrow="ALWAYS"/>
 </VBox>

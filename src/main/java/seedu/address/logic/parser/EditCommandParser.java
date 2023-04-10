@@ -86,11 +86,11 @@ public class EditCommandParser implements Parser <EditCommand> {
             editDescriptor.setRiskLevel(
                     ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get()));
         }
-        parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_TAG), ParserUtil::parseTags)
+        parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_TAG), ParserUtil::parseTags)
                 .ifPresent(editDescriptor::setTags);
-        parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_MEDICAL_TAG), ParserUtil::parseMedicalTags)
+        parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_MEDICAL_TAG), ParserUtil::parseMedicalTags)
                 .ifPresent(editDescriptor::setMedicalTags);
-        parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_AVAILABILITY), ParserUtil::parseDateRanges)
+        parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_AVAILABILITY), ParserUtil::parseDateRanges)
                 .ifPresent(editDescriptor::setAvailableDates);
 
         if (!editDescriptor.isAnyFieldEdited()) {

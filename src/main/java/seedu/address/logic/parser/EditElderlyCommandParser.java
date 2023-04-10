@@ -84,9 +84,9 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
             editDescriptor.setRiskLevel(
                     ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get()));
         }
-        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_TAG), ParserUtil::parseTags)
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_TAG), ParserUtil::parseTags)
                 .ifPresent(editDescriptor::setTags);
-        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllValues(PREFIX_AVAILABILITY),
+        EditCommandParser.parseRepeatableArgumentsForEdit(argMultimap.getAllEntries(PREFIX_AVAILABILITY),
                         ParserUtil::parseDateRanges)
                 .ifPresent(editDescriptor::setAvailableDates);
 
