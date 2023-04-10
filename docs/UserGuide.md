@@ -8,7 +8,7 @@ title: User Guide
 
 - [**Introduction**](#introduction)
   - [What is AIMS?](#what-is-aims)
-  - [Our Target](#our-target)
+  - [Our Mission](#our-mission)
   - [User Guide](#user-guide)
 - [**Legend**](#legend)
 - [**Quick Start**](#quick-start)
@@ -20,8 +20,8 @@ title: User Guide
   - [Listing all persons : `list`](#listing-all-persons--list)
   - [Copying information to clipboard : `copy`](#copying-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
-  - [Locating persons by any field : `find`](#locating-persons-by-any-field--find)
-  - [Locating persons using filters on fields : `filter`](#locating-persons-using-filters-on-fields--filter)
+  - [Searching for persons by any field : `find`](#searching-for-persons-by-any-field--find)
+  - [Searching for persons using filters on fields : `filter`](#searching-for-persons-using-filters-on-fields--filter)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing last modification : `undo`](#undoing-last-modification--undo)
@@ -39,19 +39,21 @@ title: User Guide
 
 ### What is AIMS?
 
-Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis of proper checking and validation of contact information, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
+Army Information Management System (AIMS) is **the** desktop app built for army admin clerks, intended to make your life easier. With an emphasis on proper checking and validation of contact information fields, AIMS eradicates time wasted on dealing with erroneous data and ensures that contact information can be collected properly on the first try. AIMS is optimized for use via a **Command Line Interface** (**CLI**) while still having the benefits of a **Graphical User Interface** (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
 
-### Our Target
+### Our Mission
 
-AIMS was designed to achieve **3 main targets:**
+AIMS was designed to achieve **3 main objectives:**
 
-1. Allow you **conveniently** access information of individual soldiers (With simple to use [find](#locating-persons-by-any-field--find) and [filter](#locating-persons-using-filters-on-fields--filter) commands and a optimally placed [favorites](#toggling-the-favorite-status-of-a-person--favorite) sidebar).
-2. Ensure that your **data is properly and efficiently checked and validated** before storing.
-3. Keep your **transition** from other contact storage applications as **smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
+1. Enable you to **quickly** and **easily** access the personal information of soldiers with simple to use [find](#searching-for-persons-by-any-field--find) and [filter](#searching-for-persons-using-filters-on-fields--filter) commands and an optimally placed [favorites](#toggling-the-favorite-status-of-a-person--favorite) sidebar.
+2. Ensure that your data is **properly checked and validated** before storing it in AIMS.
+3. Make your **transition** from other contact storage applications **as smooth as possible** through our [import CSV feature](#importing-multiple-persons-from-a-csv-file--importcsv).
 
 ### User Guide
 
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. The user guide designed to help all army admin clerks adopt, learn and master AIMS. Mastering the use of AIMS will vastly improve your experience tackling the administrative flow of managing contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
+This user guide shows you how to get started with using AIMS -- it has easy-to-understand explanations and examples to help you grasp its various features.
+
+We hope that this user guide will help you adopt, learn and ultimately master AIMS. Mastering the use of AIMS will vastly improve your experience in tackling the administrative workflow of managing army personnel's contact information. For the best learning experience, we recommend leaving this guide open for reference during your first few uses of AIMS. Let's start your journey with AIMS today!
 
 For a more technical and comprehensive overview of AIMS's codebase, please refer to our [Developer Guide](DeveloperGuide.md).
 
@@ -333,7 +335,7 @@ Edits the phone number and email address of the 1st person in the existing list 
 - `edit 2 n/Betsy Crower t/` <br>
 Edits the name of the 2nd person in the existing list to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by any field : `find`
+### Searching for persons by any field : `find`
 
 Lets you find persons who have any fields that contain any of the given keywords.
 
@@ -361,7 +363,7 @@ Example:
 
 [Back to Top ↑](#table-of-contents)
 
-### Locating persons using filters on fields : `filter`
+### Searching for persons using filters on fields : `filter`
 
 Lets you filter all persons to only show those whose fields contain **all** the given keywords.
 
