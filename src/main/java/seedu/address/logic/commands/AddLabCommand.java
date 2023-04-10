@@ -16,7 +16,7 @@ public class AddLabCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lab to the address book. "
             + "Parameters: "
-            + PREFIX_LAB + "LAB_NAME "
+            + PREFIX_LAB + "LAB_NAME " + "[-date dd/MM/yyyy HH:mm] \n"
             + "Restrictions: Name has a maximum of 20 characters \n"
             + "Example: " + COMMAND_WORD + " Lab/TreeMap -date 10/10/2025 10:00";
 
