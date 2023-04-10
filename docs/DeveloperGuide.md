@@ -949,6 +949,8 @@ is the `user`, unless specified otherwise)
 
 ## Appendix: Requirements
 
+<div style="page-break-after: always;"></div>
+
 ## Appendix: Planned Enhancements
 
 The Wingman app is still a work in progress and there's a lot of
