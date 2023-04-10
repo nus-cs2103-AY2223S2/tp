@@ -101,19 +101,19 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
 
 ## **Prefixes**
 
-| Prefix      | Short form | Description                                                                                  |
-|-------------|------------|----------------------------------------------------------------------------------------------|
-| `name/`     | `n/`       | Name of client/project |
-| `email/`    | `e/`       | Email address |
-| `phone/`    | `p/`       | Phone number |
-| `deadline/` | `d/`       | Deadline for project |
-| `price/`    | `pr/`      | Price of project |
-| `tag/`      | `t/`       | Tag |
+| Prefix      | Short form | Description                                        |
+|-------------|------------|----------------------------------------------------|
+| `name/`     | `n/`       | Name of client/project                             |
+| `email/`    | `e/`       | Email address                                      |
+| `phone/`    | `p/`       | Phone number                                       |
+| `deadline/` | `d/`       | Deadline for project                               |
+| `price/`    | `pr/`      | Price of project                                   |
+| `tag/`      | `t/`       | Tag                                                |
 | `client/`   | `c/`       | Keywords to search for client to link to a project |
-| `option/`   | `o/`       | Option to sort projects with |
-| `start/`    | `s/`       | Start of timeframe for finding projects |
-| `end/`      | `e/`       | End of timeframe for finding projects |
-| `status/`   | `st/`      | Status for finding projects |
+| `option/`   | `o/`       | Option to sort projects with                       |
+| `start/`    | `s/`       | Start of timeframe for finding projects            |
+| `end/`      | `e/`       | End of timeframe for finding projects              |
+| `status/`   | `st/`      | Status for finding projects                        |
 
 <br>
 
@@ -122,27 +122,27 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
 
 ## Command summary
 
-| Action | Command Word | Short Form | Format, Examples |
-|-------------------------------|------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Listing all clients** | `list-client` | `lc` | `list-client` |
-| **Adding a client** | `add-client` | `ac` | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend` |
-| **Editing a client** | `edit-client` | `ec` | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `edit-client 3 name/Alice Risa phone/1234 tag/classmate` |
-| **Deleting a client** | `delete-client` | `dc` | `delete-client <index>`<br> e.g., `delete-client 1` |
-| **Clearing the client list** | `clear-client` | `cc` | `clear-client` |
-| **Finding clients** | `find-client` | `fc` | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend` |
-| **Sorting clients** | `sort-client` | `sc` | `sort-client` |
-| **Listing all projects** | `list-project` | `lp` | `list-project` |
-| **Adding a project** | `add-project` | `ap` | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
-| **Editing a project** | `edit-project` | `ep` | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night` |
-| **Deleting a project** | `delete-project` | `dp` | `delete-project <index>`<br> e.g., `delete-project 1` |
-| **Marking a project as done** | `mark` | `mp` | `mark <index>` <br> e.g., `mark 3` |
-| **Marking a project as not done** | `unmark` | `up` | `unmark <index>` <br> e.g., `unmark 3` |
-| **Clearing the project list** | `clear-project` | `cp` | `clear-project` |
-| **Finding projects** | `find-project` | `fp` | `find-project [name/NAME]* [start/START OF TIMEFRAME] [end/END OF TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
-| **Sorting projects** | `sort-project` | `sp` | `sort-project <option/OPTION>` <br> e.g., `sort-project option/name` |
-| **Listing all tags** | `list-tag` | `lt` | `list-tag` |
-| **Viewing help** | `help` | - | `help` |
-| **Exiting the program** | `exit` | - | `exit` |
+| Action                            | Command Word     | Short Form | Format, Examples                                                                                                                                                                          |
+|-----------------------------------|------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Listing all clients**           | `list-client`    | `lc`       | `list-client`                                                                                                                                                                             |
+| **Adding a client**               | `add-client`     | `ac`       | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend`                                    |
+| **Editing a client**              | `edit-client`    | `ec`       | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `edit-client 3 name/Alice Risa phone/1234 tag/classmate`                                      |
+| **Deleting a client**             | `delete-client`  | `dc`       | `delete-client <index>`<br> e.g., `delete-client 1`                                                                                                                                       |
+| **Clearing the client list**      | `clear-client`   | `cc`       | `clear-client`                                                                                                                                                                            |
+| **Finding clients**               | `find-client`    | `fc`       | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend`                                                                                             |
+| **Sorting clients**               | `sort-client`    | `sc`       | `sort-client`                                                                                                                                                                             |
+| **Listing all projects**          | `list-project`   | `lp`       | `list-project`                                                                                                                                                                            |
+| **Adding a project**              | `add-project`    | `ap`       | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting`                     |
+| **Editing a project**             | `edit-project`   | `ep`       | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                                         |
+| **Deleting a project**            | `delete-project` | `dp`       | `delete-project <index>`<br> e.g., `delete-project 1`                                                                                                                                     |
+| **Marking a project as done**     | `mark`           | `mp`       | `mark <index>` <br> e.g., `mark 3`                                                                                                                                                        |
+| **Marking a project as not done** | `unmark`         | `up`       | `unmark <index>` <br> e.g., `unmark 3`                                                                                                                                                    |
+| **Clearing the project list**     | `clear-project`  | `cp`       | `clear-project`                                                                                                                                                                           |
+| **Finding projects**              | `find-project`   | `fp`       | `find-project [name/NAME]* [start/START OF TIMEFRAME] [end/END OF TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
+| **Sorting projects**              | `sort-project`   | `sp`       | `sort-project <option/OPTION>` <br> e.g., `sort-project option/name`                                                                                                                      |
+| **Listing all tags**              | `list-tag`       | `lt`       | `list-tag`                                                                                                                                                                                |
+| **Viewing help**                  | `help`           | -          | `help`                                                                                                                                                                                    |
+| **Exiting the program**           | `exit`           | -          | `exit`                                                                                                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 [<small>Back to top</small>](#table-of-contents)
@@ -564,8 +564,20 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: [Install](#quick-start) the application in the other computer and overwrite the empty JSON file it creates with the JSON file that contains your previous data.
 
-**Q**: I can't seem to find what I want using the `find commands`. What can I do?<br>
+**Q**: I can't seem to find what I want using the `find` commands. What can I do?<br>
 **A**: Here are some tips for when you can’t find what you’re looking for:
 * If too many results are shown, you can provide more parameters to narrow down the search scope.
 * If what you’re looking for is not among the results shown, you can provide fewer parameters to broaden the search scope.
 
+**Q**: Which parts of the app are case-sensitive?<br>
+**A**: In a command, the prefixes are case-sensitive and need to be in lower case. The command word is not.
+In the details provided for a command, only the names or clients and projects are case-sensitive.
+
+**Q**: How do I edit the data stored in the JSON file directly?<br>
+**A**: You can open up the JSON file found in `./data/` in any text or code editor and follow the existing pattern to input your own data. If the file does not contain any data, you can delete the file to get back the default samples.
+
+**Q**: I don't see all the clients/projects when running the `sort` commands. Why is this?<br>
+**A**: The `sort` commands are designed to only sort the items that are currently visible. If you have narrowed down the visible list by running a `find` command, it will only sort those items.
+
+**Q**: Why doesn't the app recognise the price as a valid amount?<br>
+**A**: If you see an error saying that a valid price needs to be entered even though you have already done so, it may be that the format is incorrect. The app only accepts positive price values to either 0 or 2 decimal places.
