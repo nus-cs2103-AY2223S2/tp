@@ -220,7 +220,7 @@ The following sequence diagram shows how the add operation works:
 
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How add & edit client executes:**
 
@@ -350,7 +350,7 @@ The following sequence diagram shows how the find operation works:
 
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How find executes more than once:**
 
@@ -407,7 +407,7 @@ The following sequence diagram shows how the add exercise operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 
-#### Design considerations:
+#### Design considerations
 
 * **Alternative 1 (current choice):** Adds the exercise into the specific Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
     * Pros: Easy to implement.
@@ -452,7 +452,7 @@ The following sequence diagram shows how the deleteRoutine operation works:
 </div>
 
 
-#### Design considerations:
+#### Design considerations
 
 * **Alternative 1 (current choice):** Delete the Routine from the Routine List and save the entire model into FitBookExerciseRoutine.
     * Pros: Easy to implement.
@@ -499,7 +499,7 @@ The following sequence diagram shows how the find operation works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to export the client details :**
 
@@ -558,7 +558,7 @@ The following sequence diagram shows how the addRoutine operation works:
 
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How add & edit routine executes:**
 
@@ -638,7 +638,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -686,7 +686,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: Fitness trainers tend to write all their clients’ fitness checklist, weight and progress with
 targets in a notebook. Keeping track of so many clients’ routines and progress on a notebook can be tough and
-inefficient. So, our product aims to help solve this by combining the addressbook with additional features such as
+inefficient. Our product aims to help solve this by combining the addressbook with additional features such as
 adding fitness routines to each client with checkboxes for easy access and to check if they have completed their
 routines during their individual sessions. The trainer can also find the clients’ progress such as weight and their
 appointment dates and times they have with their clients.
