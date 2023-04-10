@@ -34,15 +34,15 @@ public class ScoreTest {
         // null -> return false
         assertFalse(SCORE_2.isSameScore(null));
 
-        //same label, all other attributes different -> return false
+        // same label, all other attributes different -> return false
         Score editedScore = new ScoreBuilder(SCORE_2).withDate(VALID_SCORE_DATE).withValue(VALID_SCORE_VALUE).build();
         assertFalse(SCORE_2.isSameScore(editedScore));
 
-        //same date, all other attributes different -> return true
+        // same date, all other attributes different -> return true
         editedScore = new ScoreBuilder(SCORE_2).withValue(VALID_SCORE_VALUE).withLabel(VALID_SCORE_LABEL).build();
         assertTrue(SCORE_2.isSameScore(editedScore));
 
-        //same value, all other attributes different -> return false
+        // same value, all other attributes different -> return false
         editedScore = new ScoreBuilder(SCORE_2).withValue(VALID_SCORE_VALUE).withDate(VALID_SCORE_DATE).build();
         assertFalse(SCORE_2.isSameScore(editedScore));
     }
