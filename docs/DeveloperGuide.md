@@ -83,7 +83,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -189,7 +189,7 @@ The `CommandBox` UI class then integrates the autocomplete feature. It listens f
 
 The public methods of the `AutocompleteEngine` class are:
 
-- `suggestCommand(String userInput)` — Suggests a command _(including it's arguments)_ based on the user input.
+- `suggestCommand(String userInput)` — Suggests a command _(including its arguments)_ based on the user input.
 - `autocompleteCommand(String userInput, String commandSuggestion)` — Returns the new user input when the user autocompletes the command.
 
 New methods in the `Model` interface for the autocomplete feature include:
@@ -614,7 +614,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
 * **Alternative 3:** Adding remark through an in-window text box
   * Pros:
     * Has the same level of flexibility as Alternative 2.
-    * No need for a pop up text window, which could be beneficial for cross-platform support.
+    * No need for a pop-up text window, which could be beneficial for cross-platform support.
   * Cons:
     * Less intuitive for the user as the user could try to input more commands into the application while editing remarks, which would cause bugs due to the 2-step nature of the command.
 
@@ -1114,7 +1114,7 @@ Currently, duplicate Telegram handle and phone fields are allowed. This means th
 However, in reality phone numbers and telegram handles are unique so our future implementations will check that the student list can only contain unique telegram handles and phone numbers.
 
 #### Feature flaw 4
-Currently, the `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks.
+Currently, the `edit` feature allows editing all fields except for remarks and the only way to edit remarks is by using the `remark` feature which may inconvenience users. We planned to improve the `edit` feature to support `edit INDEX r/`, allowing users to edit their remarks directly from the command line.
 
 ### Autocomplete
 #### Feature flaw
@@ -1252,48 +1252,105 @@ testers are expected to do more *exploratory* testing.
    10. Test case: `edit 1 n/???` \\
        Expected: No student in the list is edited. The error message shown details the requirements for a valid name parameter input.
    
-   11. Test case: `edit 1 xxx/INVALID_PARATEMER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
+   11. Test case: `edit 1 xxx/INVALID_PARAMETER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
        Expected: Similar to previous, except error message is specific to the first prefix with an invalid parameter.
 
 ### Find student entries
+
 1. Finding students while all students are being shown
+
    1. Prerequisites: List all students using the `list` command.
+   
    2. Test case: `find` \\
+   
       Expected: All students will be listed.
+      
    3. Test case: `find xxx/` (where xxx is any parameters other than t/ and m/) \\
+   
       Expected: All students will be listed.
+      
    4. Test case: `find x/` (where xxx is parameters t/ or m/) \\
+   
       Expected: No students will be listed.
+      
    5. Test case: `find yyy` (where yyy is anything) \\
+   
       Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+      
    6. Test case: `find xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+   
       Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+      
    7. Test case: `find x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+   
       Expected: Entries in the x field with data that fully matches with yyy will be shown.
+      
    8. Test case: `find xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+   
       Expected: Entries that matches with all fields of aaa will be shown.
+      
    9. Test case: `find INVALID_PREFIX/KEYWORD` \\
+   
       Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
 
 ### Filter student entries
+
 1. Filtering students while all students are being shown
+
   1. Prerequisites: List all students using the `list` command.
+  
   2. Test case: `filter` \\
+  
      Expected: No students will be listed.
+     
   3. Test case: `filter xxx/` (where xxx is any parameters other than t/ and m/) \\
+  
      Expected: All students will be listed.
+     
   4. Test case: `filter x/` (where xxx is parameters t/ or m/) \\
+  
      Expected: No students will be listed.
+     
   5. Test case: `filter yyy` (where yyy is anything) \\
+  
      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     
   6. Test case: `filter xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+  
      Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+     
   7. Test case: `filter x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+  
      Expected: Entries in the x field with data that fully matches with yyy will be shown.
+     
   8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+  
      Expected: Entries that matches with at least one fields of aaa will be shown.
+     
   9. Test case: `filter INVALID_PREFIX/KEYWORD` \\
+  
      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     
+### Showing a student entry
+
+1. Showing a student entry while all students are being shown
+
+   1. Prerequisites:  Prerequisites: List all students using the `list` command. At least 1 student in the list.
+   
+   2. Test case: `show 1` \\
+      Expected: Student entry at position 1 shows up in the `ResultPersonListPanel` on the bottom right of the window. Details shown includes all non-empty fields and the full (non-truncated) remark if any.
+   
+   3. Test case: `show 1 EXTRANEOUS_INPUTS` (where EXTRANEOUS_INPUTS are irrelevant inputs) \\
+      Expected: No student entry is shown. The error message shown details `Invalid command format!` followed by the `show` command format and example.
+
+   4. Test case: `show` \\
+      Expected: Same as previous.
+
+   5. Test case: `show 0` \\
+      Expected: No student entry is shown. The error message shown states `The person index provided is invalid`.
+   
+   6. Other incorrect show commands to try: `show xxx` (where xxx is an invalid number/characters such as -1, or a number greater than the list size) \\
+      Expected: Same as previous.
 
 [↑ Back to top](#table-of-contents)
 

@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,7 @@ import seedu.address.model.Model;
  */
 public class AutocompleteEngine {
 
-    private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(List.of(
+    private static final List<String> COMMAND_LIST = List.of(
             AddCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
@@ -47,8 +46,8 @@ public class AutocompleteEngine {
             ShowRemarkCommand.COMMAND_WORD,
             RedoCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD
-    ));
-    private static final Map<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
+    );
+    private static final Map<String, List<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
             Map.entry(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES),
             Map.entry(ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES),
             Map.entry(DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES),
@@ -172,7 +171,7 @@ public class AutocompleteEngine {
         return userInput + nextAutocomplete;
     }
 
-    private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
+    private Map<Prefix, List<String>> getExistingArgValuesForAutocomplete() {
         return new HashMap<>(Map.of(
                 PREFIX_TAG, model.getExistingTagValues(),
                 PREFIX_MODULE, model.getExistingModuleValues(),
@@ -184,63 +183,42 @@ public class AutocompleteEngine {
      * Suggests prompts for arguments for {@code command} based on the user input.
      *
      * @param command The command to suggest arguments for.
-     * @param commmandBody The command body of the current user input.
+     * @param commandBody The command body of the current user input.
      * @return Suggested arguments.
      * @throws ParseException If the user input is invalid.
      */
-    private String suggestArguments(String command, String commmandBody) throws ParseException {
-        ArrayList<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
+    private String suggestArguments(String command, String commandBody) throws ParseException {
+        List<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
         assert argPrefixes != null;
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(Prefix[]::new));
-        Map<Prefix, ArrayList<String>> existingArgValues = getExistingArgValuesForAutocomplete();
+                ArgumentTokenizer.tokenize(" " + commandBody, argPrefixes.toArray(Prefix[]::new));
+        Map<Prefix, List<String>> existingArgValues = getExistingArgValuesForAutocomplete();
 
-        if (commmandBody.isBlank()) {
-            String allArgs = argPrefixes.stream()
-                    .map(Prefix::toPlaceholderString)
-                    .collect(Collectors.joining(" "));
-            String leadingPadding = commmandBody.isEmpty() ? " " : "";
-            return leadingPadding + allArgs;
+        if (commandBody.isBlank()) {
+            return getFullArgSuggestion(argPrefixes, commandBody);
         }
 
-        String[] splitArr = commmandBody.trim().split(" +");
-        ArrayList<String> words = new ArrayList<>(Arrays.asList(splitArr));
-        int numOfWords = splitArr.length;
-        assert numOfWords > 0 : "'numOfWords' should be > 0";
-        String firstWord = splitArr[0];
+        String[] splitArr = commandBody.trim().split(" +");
+        List<String> words = Arrays.asList(splitArr);
+        assert words.size() > 0 : "number of words should be > 0";
+        assert !words.get(0).isBlank() : "first word should not be blank";
+        assert !words.get(0).contains(" ") : "'first word' should not contain any spaces";
         String lastWord = splitArr[splitArr.length - 1];
-        assert !firstWord.isBlank() : "'firstWord' should not be blank";
-        assert !firstWord.contains(" ") : "'firstWord' should not contain any spaces";
         assert !lastWord.isBlank() : "'lastWord' should not be blank";
         assert !lastWord.contains(" ") : "'lastWord' should not contain any spaces";
 
         boolean isIndexRequired = argPrefixes.contains(INDEX_PLACEHOLDER);
         if (isIndexRequired) {
-            long numOfIndexRequired = argPrefixes.stream().filter(INDEX_PLACEHOLDER::equals).count();
-            boolean areAllValidIndexes = words.stream().limit(numOfIndexRequired)
-                    .allMatch(word -> word.matches("\\d+"));
-
-            if (!areAllValidIndexes) {
-                throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
+            validateIndex(argPrefixes, words);
         }
 
-        boolean hasNoTrailingSpace = !commmandBody.endsWith(" ");
+        boolean hasNoTrailingSpace = !commandBody.endsWith(" ");
         if (hasNoTrailingSpace) {
             Prefix currPrefix = new Prefix(lastWord.replaceAll("[^\\/]*$", ""));
             boolean toAutocompleteArgValue = existingArgValues.containsKey(currPrefix);
 
             if (toAutocompleteArgValue) {
-                String argValue = lastWord.replaceAll("^.*\\/", "");
-                String matchingExistingValues = existingArgValues.get(currPrefix)
-                        .stream()
-                        .filter(value -> value.startsWith(argValue))
-                        .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
-                                .noneMatch(value::equals))
-                        .collect(Collectors.joining(" | "));
-                return matchingExistingValues.isEmpty()
-                        ? ""
-                        : matchingExistingValues.substring(argValue.length());
+                return getExistingArgSuggestion(existingArgValues, argumentMultimap, lastWord, currPrefix);
             }
 
             // Example of filling the value:
@@ -251,29 +229,45 @@ public class AutocompleteEngine {
                 return "";
             }
 
-            String matchingArgs = argPrefixes.stream()
-                    // Excludes prefix-less arguments like index/keywords.
-                    .filter(prefix -> !prefix.isPlaceholder())
-                    // Remove filled non-repeating prefixed arguments.
-                    .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
-                            || prefix.isRepeatable())
-                    .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
-                    .map(Prefix::toPlaceholderString)
-                    .collect(Collectors.joining(" "));
-
-            return matchingArgs.isEmpty()
-                    ? ""
-                    : matchingArgs.replaceFirst("^\\[", "") // If first arg is optional, remove it's opening bracket.
-                            .substring(lastWord.length());
+            return getMatchingArgSuggestion(argPrefixes, argumentMultimap, lastWord);
         }
 
+        return getRemainingArgSuggestion(argPrefixes, argumentMultimap, words);
+    }
+
+    /** Gets the full argument suggestion for the command. (ie. suggest all the arguments) */
+    private static String getFullArgSuggestion(List<Prefix> argPrefixes, String commandBody) {
+        String allArgs = argPrefixes.stream()
+                .map(Prefix::toPlaceholderString)
+                .collect(Collectors.joining(" "));
+        String leadingPadding = commandBody.isEmpty() ? " " : "";
+        return leadingPadding + allArgs;
+    }
+
+    /**
+     * Validate that the index value is valid (but doesn't check if index exist in the list).
+     * Assumes that the command requires index argument(s).
+     */
+    private static void validateIndex(List<Prefix> argPrefixes, List<String> words) throws ParseException {
+        long numOfIndexRequired = argPrefixes.stream().filter(INDEX_PLACEHOLDER::equals).count();
+        boolean areAllValidIndexes = words.stream().limit(numOfIndexRequired)
+                .allMatch(word -> word.matches("\\d+") && !word.matches("0+"));
+
+        if (!areAllValidIndexes) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+    }
+
+    /** Get the suggestion for the remaining unfilled arguments. */
+    private String getRemainingArgSuggestion(List<Prefix> argPrefixes,
+            ArgumentMultimap argumentMultimap, List<String> words) {
         long numOfNonRepeatingPrefixlessArgs = argPrefixes.stream()
                 .filter(Prefix::isPlaceholder)
                 .filter(prefix -> !prefix.isRepeatable())
                 .count();
         String remainingArgs = argPrefixes.stream()
                 // Skip the filled prefix-less arguments.
-                .skip(Math.min(numOfWords, numOfNonRepeatingPrefixlessArgs))
+                .skip(Math.min(words.size(), numOfNonRepeatingPrefixlessArgs))
                 // Remove filled non-repeating prefixed arguments.
                 .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
                         || prefix.isPlaceholder()
@@ -281,6 +275,43 @@ public class AutocompleteEngine {
                 .map(Prefix::toPlaceholderString)
                 .collect(Collectors.joining(" "));
         return remainingArgs;
+    }
+
+    /** Get suggestion for existing arguments. */
+    private String getExistingArgSuggestion(Map<Prefix, List<String>> existingArgValues,
+            ArgumentMultimap argumentMultimap, String lastWord, Prefix currPrefix) {
+        String argValue = lastWord.replaceAll("^.*\\/", "");
+        String matchingExistingValues = existingArgValues.get(currPrefix)
+                .stream()
+                .filter(value -> value.startsWith(argValue))
+                .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
+                        .noneMatch(value::equals))
+                .collect(Collectors.joining(" | "));
+        return matchingExistingValues.isEmpty()
+                ? ""
+                : matchingExistingValues.substring(argValue.length());
+    }
+
+    /**
+     * Get suggestion for arguments starting with what the user is typing.
+     * (eg. "add e" returns the suggestion "add e/EMAIL] [edu/EDUCATION]")
+     */
+    private String getMatchingArgSuggestion(List<Prefix> argPrefixes, ArgumentMultimap argumentMultimap,
+            String lastWord) {
+        String matchingArgs = argPrefixes.stream()
+                // Excludes prefix-less arguments like index/keywords.
+                .filter(prefix -> !prefix.isPlaceholder())
+                // Remove filled non-repeating prefixed arguments.
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
+                        || prefix.isRepeatable())
+                .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
+                .map(Prefix::toPlaceholderString)
+                .collect(Collectors.joining(" "));
+
+        return matchingArgs.isEmpty()
+                ? ""
+                : matchingArgs.replaceFirst("^\\[", "") // If first arg is optional, remove it's opening bracket.
+                        .substring(lastWord.length());
     }
 
 }
