@@ -189,8 +189,10 @@ public interface Model {
     // ===================================================== Calculation ========================================
 
     /** Returns cumulative profits */
+    //@@author changgittyhub
     ItemProfit getTotalProfits();
 
     /** Returns cumulative sales/ revenue */
+    //@@author changgittyhub
     ItemSellingPrice getTotalSales();
 }

@@ -17,6 +17,7 @@ import trackr.model.menu.MenuItemDescriptor;
 /**
  * Edits the details of an existing item in the menu.
  */
+//@@author changgittyhub-reused
 public class EditMenuItemCommand extends EditItemCommand<MenuItem> {
 
     public static final String COMMAND_WORD = "edit_item";

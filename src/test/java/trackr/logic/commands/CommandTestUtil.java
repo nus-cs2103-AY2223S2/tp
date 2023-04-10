@@ -136,6 +136,7 @@ public class CommandTestUtil {
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
     }
 
+    //@@author changgittyhub
     //order fields
     public static final String VALID_ORDER_NAME_CHOCOLATE_COOKIES = "Chocolate Cookies";
     public static final String VALID_ORDER_NAME_CUPCAKES = "Cupcakes";
@@ -250,6 +251,7 @@ public class CommandTestUtil {
             .build();
     }
 
+    //@@author changgittyhub
     //menu item fields
     public static final String VALID_ITEM_NAME_NIKECAP = "Nike Cap";
     public static final String VALID_ITEM_NAME_CUPCAKE = "Cupcake";

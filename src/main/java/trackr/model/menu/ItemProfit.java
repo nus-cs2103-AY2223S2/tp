@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
  * Represents an Item's profit in the Item list.
  * Guarantees: immutable; is valid as declared in {@link #isValidProfit(String)}
  */
+//@@author changgittyhub-reused
 public class ItemProfit {
     public static final String MESSAGE_CONSTRAINTS =
             "Profit should only contain numbers, and it should be at most 2 decimal place";

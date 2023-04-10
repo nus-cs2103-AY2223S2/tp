@@ -319,10 +319,12 @@ public class ModelManager implements Model {
 
     //=========== Menu ===================================================================================
 
+    //@@author changgittyhub-reused
     @Override
     public ReadOnlyMenu getMenu() {
         return menu;
     }
+
 
     //=========== Filtered Menu Accessors ===============================================================
 
@@ -330,6 +332,7 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code MenuItem} backed by the internal list of
      * {@code versionedMenu}
      */
+    //@@author changgittyhub-reused
     @Override
     public ObservableList<MenuItem> getFilteredMenu() {
         return filteredMenuItems;

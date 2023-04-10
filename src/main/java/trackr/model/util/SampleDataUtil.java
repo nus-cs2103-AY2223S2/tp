@@ -97,6 +97,7 @@ public class SampleDataUtil {
     }
     //@@author
 
+    //@@author changgittyhub-reused
     public static MenuItem[] getSampleMenuItems() {
         return new MenuItem[] {
             new MenuItem(new ItemName("Chocolate Cookies"), new ItemSellingPrice("5.00"), new ItemCost("1.20")),
@@ -105,6 +106,7 @@ public class SampleDataUtil {
         };
     }
 
+    //@@author changgittyhub-reused
     public static ReadOnlyMenu getSampleMenu() {
         Menu sampleM = new Menu();
         for (MenuItem sampleMenuItem : getSampleMenuItems()) {

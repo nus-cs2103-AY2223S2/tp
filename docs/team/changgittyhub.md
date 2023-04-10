@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   * Justification: Allow users to view their profit for each item on the menu.This sets up the foundation for the `Homepage Profit` feature that allows to view total profit from all orders.
 * Maintain code quality
   * Refactor methods to obey OOP principles [\#281](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/281)
-* Updated and fixed test cases. [\#288](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/288) [\#140](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/140)
+* Improve test coverage and fixed test cases. [\#288](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/288) [\#140](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/140)
 * Updated and fixed `find_order` related bug [\#291](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/291)
 * Updated and fixed `Menu` related bugs  [\#235](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/235) [\#188](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/188)
 * Contributed to the demo video.
@@ -29,6 +29,9 @@ Given below are my contributions to the project.
   * Highlights: Users are able to see the profit from each menu item without calculating manually.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=changgittyhub&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* All _reused_ code are adapted from the [AB3](https://github.com/nus-cs2103-AY2223S2/tp) code base (both functional and test code).
+  * The code could be refractored out to be a more standard format for repetitive use in our project (i.e. Modifying `UniquePersonList` to `UniqueItemList`).
+  * The code could be adapted to fit the different models that we have. (i.e. Modifying `Person` to be suitable for `Task`)
 
 * **Project management**:
   * Managed project documentation (UG & DG)
