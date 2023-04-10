@@ -297,7 +297,7 @@ Some additions made were the `Education`, `Module` and `Remark` attributes.
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
 2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accommodate module names that are more than one word long as in real life.
 3. Every attribute except `Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
-    * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
+    * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class to encapsulate the optional logic of the attributes.
 4. Every `add` will commit the previous version of the `VersionedAddressBook` to `versionStateHistory`.
 
 When adding a student entry, these were the alternatives considered.
@@ -306,9 +306,9 @@ When adding a student entry, these were the alternatives considered.
         * Improves user convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
     * Cons:
         * A lot of modification for empty/*null* inputs have to be accounted for when saving the data and testing.
-* **Alternative 2:** All parameters have to be filled in
+* **Alternative 2:** All parameters have to be filled in.
     * Pros:
-        * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs
+        * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs.
     * Cons:
         * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
         * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
@@ -330,7 +330,7 @@ Here is a sequence diagram showing the interactions between components when `del
 
 #### Proposed Implementation
 
-The proposed `delete` implementation supports deleting multiple `Person` entries at once. For example, `delete 1 3 5` will delete the `Person` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Person` entries will be deleted.
+The proposed `delete` implementation supports deleting multiple `Person` entries at once. For example, `delete 1 3 5` will delete the `Person` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100` (assuming there is no index 100), none of the `Person` entries will be deleted.
 
 
 #### Design Considerations
@@ -341,7 +341,7 @@ Taking into consideration the fact that users may make a typo, the time cost of 
 
 * **Alternative 1: (Current choice)** Do not execute command, give an error message saying that there're invalid indexes.
   * Pros:
-    * Invalid indexes might mean the command contain other erroneous indexes.
+    * Invalid indexes might mean the command contains other erroneous indexes.
     * Allows user to edit the erroneous command input _(as the command isn't cleared from the input box)_.
   * Cons:
     * Harder for users to find the invalid index and correct it.
@@ -416,7 +416,7 @@ Whether a new `Person` object should be created when editing a student entry.
 ### Find feature
 
 #### Implementation Details
-The implementation of `find` involves searching for entries that matches all the fields specified.
+The implementation of `find` involves searching for entries that match all the fields specified.
 
 The `find` feature supports matching of partial keywords, as well as specifying which field to match the keyword in using [prefixes](#add-feature).
 
@@ -462,7 +462,7 @@ We felt that the default `find` feature was too restrictive.
 Our implementation has some additions such as:
 
 1. Allow matching by partial keyword so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
-2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
+2. `find PREFIX` across the various attributes of a `Person` other than their `Name` _(eg. find in `Education` or `Address` attributes)_.
 
 **Aspect: Command format:**
 * **Alternative 1 (Current choice):** `find [PREFIX KEYWORD/PARTIAL_KEYWORD]...`
@@ -492,10 +492,10 @@ Our implementation has some additions such as:
 The `filter` command involves searching and listing all entries which has a match in at least one field specified. 
 
 Similar to [`find`](#find-feature), `filter` uses `ContainsKeywordsPredicate`, which implements the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Person` contains the specified keyword.
-The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
+The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into Java's `FilteredList`.
 
-Filter was implemented on top of find to allow users to find students with fewer restrictions, as `find` only returns the students that satisfy all the specified criteria.
-This was done to take improve the flexibility of filtering the student list, allowing the categorisation of students to be easier.
+Filter was implemented on top of `find` to allow users to find students with fewer restrictions, as `find` only returns the students that satisfy all the specified criteria.
+This was done to improve the flexibility of filtering the student list, allowing the categorisation of students to be easier.
 
 Here is a sequence diagram showing the interactions between components when `filter n/Alice p/12345678` is run:
 
@@ -513,7 +513,7 @@ This will return all entries that match at least one keyword in any fields speci
 
 
 #### General Design Considerations
-Although the function of `filter` is rather similar to that of `find`, there might be cases say the target user saved the tutorial timeslot of 
+Although the function of `filter` is rather similar to that of `find`, there might be cases where say the target user saved the tutorial timeslot of 
 each student in the `tag` field, and wants to view all students who are either in the 9am class or 1pm class.
 We felt that this is a common scenario that our target user might encounter and in this case, `find` is unable to give the desired outcome.
 Therefore, a `filter` feature is implemented on top of `find` to give users more flexibility in these scenarios.
@@ -540,13 +540,13 @@ such as [`find`](#find-feature) or [`filter`](#filter-feature) which displays a 
 
 #### Implementation Details
 The application provides users with two different methods of entering or editing a remark for a student.
-* Using the pop-up text box implemented in this feature
-* Adding the remark through the [add feature](#add-feature)
+* Using the pop-up text box implemented in this feature.
+* Adding the remark through the [add feature](#add-feature).
 
 #### Feature Details
 1. The remark feature can be facilitated by a pop-up text box using `remark INDEX`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
-3. If the content of the remarks is blank, the command will be treated as a delete command and any existing remarks will be deleted.
+3. If the content of the remarks is blank, the command will be treated as a remark deletion operation and any existing remarks will be deleted.
 
 #### General Design Considerations
 
@@ -557,7 +557,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
 **Aspect: Command input format**
 * **Alternative 1:** Adding the `remark` through the command line.
   * Pros:
-    * Easier to implement
+    * Easier to implement.
   * Cons:
     * Restricts users to a single line or continuous paragraph of remark.
     * Limits formatting options for remark.
@@ -574,22 +574,22 @@ Additionally, we opted for a pop-up text window as the command line only provide
     * Short remarks are instantly visible to users.
     * Easy to implement.
   * Cons:
-    * A short remark which has a length slightly over the character limit for truncation can only be viewed via the [`show`](#show-feature)
+    * A short remark which has a length slightly over the character limit for truncation can only be viewed via the [`show`](#show-feature).
 * **Alternative 2:** If a remark is present, simply display an indicator in `PersonCard`
   * Pros:
     * Easy to implement.
     * Viewing the remark in `ResultDisplay` is supported by the [`show`](#show-feature) command.
     * Supports formatting of `remark` since it is not restricted to the `PersonCard` view.
   * Cons:
-    * An extra step for users may be inconvenient
-    * Inconvenient for short remarks compared to alternative 1.
+    * An extra step for users may be inconvenient.
+    * Inconvenient for short remarks compared to **Alternative 1**.
 * **Alternative 3:** Show the full remark in `PersonCard` beside all the other attributes
   * Pros:
     * Remark is directly visible from the list.
     * Supports formatting in `remark`.
   * Cons:
     * Remarks are limited to the view of `PersonCard` and size of the window.
-    * Remarks that are too long will be cut off and not visible.
+    * Remarks that are too long will be cut off and be not fully visible.
 
 [↑ Back to top](#table-of-contents)
 
@@ -610,20 +610,20 @@ Hence, `show` allows users to view the full remark in the `ResultDisplay` where 
     * Supports the `remark` feature as intended since scrolling is possible.
     * Allows users to view the student details and remarks all at once.
   * Cons:
-    * Harder to implement
+    * Harder to implement.
 * **Alternative 2:** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
   * Pros:
     * Allows users to view the student details and remarks all at once.
-    * Supports the `remark` feature as intended
+    * Supports the `remark` feature as intended.
   * Cons:
     * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
-    * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated everytime `show` is executed.
+    * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated every time `show` is executed.
 
 
 
 [↑ Back to top](#table-of-contents)
 
-### Undo/redo feature
+### Undo/Redo feature
 
 #### Implementation Details
 This feature involves restoring the current address book to its previous version after a command altering the address book is executed.
@@ -634,7 +634,7 @@ Examples of such commands are:
 * [`edit`](#edit-feature)
 * [`remark`](#remark-feature)
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as a `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history as well as the command that was last executed.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -646,15 +646,15 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
+**Step 1**. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
+**Step 2**. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 3**. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -662,26 +662,25 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4**. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#checkUndoable()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#checkUndoable()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the `undo` operation.
 
 </div>
 
-The following sequence diagram shows how the undo operation works (assuming `VersionedAddressBook is undoable`):
+The following sequence diagram shows how the undo operation works (assuming `VersionedAddressBook` is undoable):
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentVersionPointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-The following sequence diagrama shows how the redo operation works (assuming `VersionedAddressBook` is redoable):
+The following sequence diagram shows how the redo operation works (assuming `VersionedAddressBook` is redoable):
 
 ![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
 
@@ -689,7 +688,7 @@ The following sequence diagrama shows how the redo operation works (assuming `Ve
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+**Step 5**. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -706,23 +705,31 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Pros:
+    * Easy to implement.
+  * Cons: 
+    * May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: 
+    * Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: 
+    * We must ensure that the implementation of each individual command is correct.
 
 **Aspect: Command History:**
 
 * **Alternative 1 (current choice):** Only saves the commands that modify the address book.
-  * Pros: Easy to implement.
-  * Cons: Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
+  * Pros: 
+    * Easy to implement.
+  * Cons: 
+    * Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
 
 * **Alternative 2 :** Save every command executed regardless of whether it modifies the address book.
-  * Pros: Improves user experience by improving the quality of the error message for `undo` and `redo`
-  * Cons: Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
+  * Pros:
+    * Improves user experience by improving the quality of the error message for `undo` and `redo`.
+  * Cons: 
+    * Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
 
 [↑ Back to top](#table-of-contents)
 
@@ -744,11 +751,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably are proficient typers.
+* Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably proficient typists.
 
 **Value proposition**:
 
-* TeachMeSenpai acts as an optimised app for tutors to manage their students' data, obtain insights on their students' data.
+* TeachMeSenpai acts as an optimised application for tutors to manage their students' data and obtain insights on their students' data.
 
 ### User stories
 
@@ -758,36 +765,36 @@ The following activity diagram summarizes what happens when a user executes a ne
 - `MED` _(nice to have)_
 - _`Low`_ _(unlikely to have)_
 
-|  Priority  | As a …​ | I want to …​                                                                                                   | So that I can…​                                                             |
-|:----------:|---------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| **`HIGH`** | tutor   | open the app                                                                                                   | begin using the app                                                         |
-| **`HIGH`** | tutor   | close the app                                                                                                  | leave the app                                                               |
-| **`HIGH`** | tutor   | add a student's name                                                                                           | track a student's progress by their name                                    |
-| **`HIGH`** | tutor   | include student's education level when adding the student (eg. P6)                                             | keep track of a student's education level                                   |
-| **`HIGH`** | tutor   | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
-| **`HIGH`** | tutor   | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
-| **`HIGH`** | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
-| **`HIGH`** | tutor   | include the modules I'm teaching a student to their entry (eg. CS2101, CS4243)                                 | keep track of what modules I'm teaching the student                         |
-| **`HIGH`** | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
-| **`HIGH`** | tutor   | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
-| **`HIGH`** | tutor   | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
-| **`HIGH`** | tutor   | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
-| **`HIGH`** | tutor   | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
-| **`HIGH`** | tutor   | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
-| **`HIGH`** | tutor   | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
-| **`HIGH`** | tutor   | find my students by searching their names                                                                      | quickly view that student's details                                         |
-| **`HIGH`** | tutor   | edit a student's name                                                                                          | correct a student's name                                                    |
-| **`HIGH`** | tutor   | edit the modules I'm teaching a particular student                                                             | update or correct a student's records                                       |
-| **`HIGH`** | tutor   | edit a student's education level                                                                               | update or correct a student's records                                       |
-| **`HIGH`** | tutor   | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
-| **`HIGH`** | tutor   | be able to ask for help                                                                                        | learn how to use the app                                                    |
-|   `MED`    | tutor   | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
-|   `MED`    | tutor   | filter my students by modules                                                                                  | view all the student's I'm teaching a particular module to                  |
-|   `MED`    | tutor   | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
-|   `MED`    | tutor   | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
-|   `MED`    | tutor   | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
-|   `MED`    | tutor   | sort my students by their names                                                                                | view my students in a systematic manner                                     |
-|   `MED`    | tutor   | sort my students by their education level                                                                      | view my students according to their education level                         |
+|  Priority  | As a …​ | I want to …​                                                                                                  | So that I can…​                                                             |
+|:----------:|---------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **`HIGH`** | tutor   | open the app                                                                                                  | begin using the app                                                         |
+| **`HIGH`** | tutor   | close the app                                                                                                 | leave the app                                                               |
+| **`HIGH`** | tutor   | add a student's name                                                                                          | track a student's progress by their name                                    |
+| **`HIGH`** | tutor   | include student's education level when adding the student (eg. P6)                                            | keep track of a student's education level                                   |
+| **`HIGH`** | tutor   | include student's phone number when adding the student (eg. 94206942)                                         | keep track of a student's phone number                                      |
+| **`HIGH`** | tutor   | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                               | keep track of a student's email                                             |
+| **`HIGH`** | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                      | keep track of a student's address and go to the place easily                |
+| **`HIGH`** | tutor   | include the modules I'm teaching a student to their entry (eg. CS2101, CS4243)                                | keep track of what modules I'm teaching the student                         |
+| **`HIGH`** | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                        | store information for a particular student such as notes and remarks        |
+| **`HIGH`** | tutor   | include tags on a student about their noteworthy qualities (eg. active)                                       | keep track of a student's qualities.                                        |
+| **`HIGH`** | tutor   | delete a student entry from my list (by index)                                                                | remove all details related to a certain student                             |
+| **`HIGH`** | tutor   | have my changes saved automatically                                                                           | be sure that I won't lose my changes if I crash/close the app               |
+| **`HIGH`** | tutor   | view my list of students                                                                                      | keep track of who I'm currently teaching                                    |
+| **`HIGH`** | tutor   | View the address of a student                                                                                 | know where to go if I need to provide tuition at their house                |
+| **`HIGH`** | tutor   | have my data persist between use sessions                                                                     | continue my session where I left off                                        |
+| **`HIGH`** | tutor   | find my students by searching their names                                                                     | quickly view that student's details                                         |
+| **`HIGH`** | tutor   | edit a student's name                                                                                         | correct a student's name                                                    |
+| **`HIGH`** | tutor   | edit the modules I'm teaching a particular student                                                            | update or correct a student's records                                       |
+| **`HIGH`** | tutor   | edit a student's education level                                                                              | update or correct a student's records                                       |
+| **`HIGH`** | tutor   | receive an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| **`HIGH`** | tutor   | be able to ask for help                                                                                       | learn how to use the app                                                    |
+|   `MED`    | tutor   | filter my students by education level (eg. all P6 students)                                                   | view my students of the same education level                                |
+|   `MED`    | tutor   | filter my students by modules                                                                                 | view all the student's I'm teaching a particular module to                  |
+|   `MED`    | tutor   | filter my students by address (eg. Ang Mo Kio)                                                                | view all the students who live in a particular area                         |
+|   `MED`    | tutor   | filter my students by email (eg. @gmail)                                                                      | view all the students with similar emails                                   |
+|   `MED`    | tutor   | filter my students by tags (eg. active)                                                                       | view all my students with the same qualities                                |
+|   `MED`    | tutor   | sort my students by their names                                                                               | view my students in a systematic manner                                     |
+|   `MED`    | tutor   | sort my students by their education level                                                                     | view my students according to their education level                         |
 
 [↑ Back to top](#table-of-contents)
 
@@ -1026,7 +1033,7 @@ Currently, the `edit` feature allows editing all fields except for remarks and t
 
 ### Autocomplete
 #### Feature flaw
-Currently the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
+Currently, the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autocomplete doesn't check for the presence of the compulsory `n/NAME` input which
 leads users to believe that their input (without `n/NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/NAME`.
 
 ### Find/Filter
@@ -1036,7 +1043,7 @@ Currently, we don't explicitly handle the case of argument-less `find`/`filter` 
 Let's say argument-less `find`/`filter` is allowed, the possible behaviours could be:
 
 * to list all persons _(which is the purpose of `list`)_
-* to list no person _(which is not useful)_
+* to list no persons _(which is not useful)_
 
 Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
 
@@ -1046,7 +1053,7 @@ Currently, all the labels except for remarks are truncated. When the texts are t
 
 ### General
 #### Feature Flaw
-Currently, the user will experience noticeable lagging issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
+Currently, the user will experience noticeable performance issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
 We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future.
 
 ### Error handling
@@ -1084,7 +1091,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    2. Test case: `delete 1`  \\
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First entry is deleted from the list. Details of the deleted contact shown in the status message.
 
    3. Test case: `delete 0` \\
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
@@ -1098,7 +1105,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Go into the (non-empty) data file, and remove the final `}` which should be on the last line. The json object is now invalid.
+   2. Start up TeachMeSenpai again.
+   3. Student list should now be populated with the dummy/default student data, regardless of the data that was in the data file previously. 
 
 [↑ Back to top](#table-of-contents)
 
