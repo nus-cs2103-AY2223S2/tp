@@ -5,14 +5,6 @@ title: Park Kwangjoo's Project Portfolio Page
 
 ### Project: SudoHR
 
-SudoHR is a desktop app specially catered for HR professionals in managing manpower,
-optimized for use via a Command Line Interface (CLI) while still
-having the benefits of a Graphical User Interface (GUI).
-If you can type fast, SudoHR can get your
-management tasks done faster than traditional GUI apps.
-
-Given below are my contributions to the project.
-
 {% include ppp-summary.html %}
 
 Given below are my contributions to the project.
