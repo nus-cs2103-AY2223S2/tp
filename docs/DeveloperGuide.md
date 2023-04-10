@@ -1006,7 +1006,7 @@ We are continuously searching for better pairing algorithms.
 ### Enhance available dates feature
 
 Currently, available dates take in dates and not time of day.
-We should improve it to also allow users to enter time into the availability fields, such as YYYY-MM-DD HH:MM:SS to provide greater flexibility in specifying availability period.
+We should improve it to also allow users to enter time into the availability fields, such as `YYYY-MM-DD HH:MM:SS` to provide greater flexibility in specifying availability period.
 
 ### Enhance name to accept special characters
 
