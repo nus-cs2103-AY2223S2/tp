@@ -372,10 +372,10 @@ Among the two options described below, our team decided to choose the former as 
 ### Mark Attendance
 
 #### Implementation
-Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand` and `Model`
+Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttedanceCommand` and `Model`
 
 * `MarkAttendanceParser`-- Parse the input of users
-* `MarkAttednanceCommand` -- Execute the command given the parsed user input
+* `MarkAttedanceCommand` -- Execute the command given the parsed user input
 * `Model` -- Updates the student list.
 
 Below is the sequence diagram for marking attendance of a student
@@ -403,10 +403,10 @@ Sequence Diagram for Marking Attendance
 ### Unmark Attendance
 
 #### Implementation
-Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
+Unmark Attendance command is facilitated by `UnmarkAttendanceParser`, `UnmarkAttedanceCommand` and `Model`
 
-* `UnarkAttendanceParser`-- Parse the input of users
-* `UnarkAttednanceCommand` -- Execute the command given the parsed user input
+* `UnmarkAttendanceParser`-- Parse the input of users
+* `UnmarkAttendanceCommand` -- Execute the command given the parsed user input
 * `Model` -- Updates the student list.
 
 Below is the sequence diagram for unmarking attendance of a student
@@ -752,9 +752,9 @@ Below is the main success scenario of marking a student's attendance.
     * 1a1. TAA shows an error message.
 
       Use case ends.
-* 3b. The given week's attendance is already marked
+* 1b. The given week's attendance is already marked
 
-    * 3a1. TAA shows message that attendance for that week is already marked.
+    * 1a1. TAA shows message that attendance for that week is already marked.
 
       Use case ends.
 
