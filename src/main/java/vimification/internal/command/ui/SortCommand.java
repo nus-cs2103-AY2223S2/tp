@@ -34,7 +34,7 @@ public class SortCommand extends UiCommand {
         Comparator<Task> comparator = null;
         switch (request.getMode()) {
         case DEADLINE:
-            comparator = Comparator.nullsLast(Comparator.comparing(Task::getDeadline));
+            comparator = Comparator.comparing(Task::getDeadline, Comparator.nullsLast(Comparator.naturalOrder()));
             break;
         case PRIORITY:
             comparator = Comparator.comparing(Task::getPriority);

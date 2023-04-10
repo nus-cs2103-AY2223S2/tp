@@ -453,6 +453,7 @@ Example of command
 5. `:f -a -l "label1" -l "label2"` filter for tasks contain "label1" and "label2"
 6. `:f -o -l "label1" -l "label2"` filter for tasks contain "label1" or "label2"
 
+
 Condition
 
 - If flag `-a` and flag `-o` are not provided, only one flag should be present.
