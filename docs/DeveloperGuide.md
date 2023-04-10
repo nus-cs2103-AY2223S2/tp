@@ -292,6 +292,9 @@ method for any project before setting its status to OVERDUE, DONE, or NOT DONE.
 The OVERDUE status is shown for existing projects in the list that are overdue, and
 if a user adds a project with a deadline with a data that has already past.
 
+The below sequence diagram shows how the various components interact with each other when the isOverdue method is run.
+<img src="images/IsOverdueSequenceDiagram.png" width="600" />
+
 ### Marking projects
 
 Users have the ability to mark a certain project as DONE.
