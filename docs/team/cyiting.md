@@ -67,7 +67,5 @@ Given below are my contributions to the project.
       marking and unmarking tasks.
 
 * **Community**:
-    * Reviewed PRs of peers, including: [\#66](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/66),
-      [\#94](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/94), [\#118](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/118),
-      [\#248](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/248)
+    * Reviewed PRs of peers, including: #66, #79, #94, #111, #118, #123, #186, #248 #253
     * Contributed to discussion of certain aspects of the project through GitHub issues
