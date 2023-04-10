@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import fasttrack.commons.core.index.Index;
 import fasttrack.logic.parser.exceptions.ParseException;
+import fasttrack.model.category.MiscellaneousCategory;
+import fasttrack.model.category.UserDefinedCategory;
 import fasttrack.model.expense.Price;
 import fasttrack.model.expense.RecurringExpenseType;
 
@@ -65,16 +67,16 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parsePrice("0"));
     }
 
-    //@Test
-    //public void parseCategoryWithSummary_validInput_success() throws ParseException {
-    //    // leading and trailing whitespace
-    //    assertEquals(new UserDefinedCategory("category", "abc"), ParserUtil.parseCategory("  category ", "abc"));
-    //    // miscellaneous category
-    //    assertEquals(new MiscellaneousCategory(), ParserUtil.parseCategory("miscellaneous"));
-    //    UserDefinedCategory category = ParserUtil.parseCategory("food", "for dining");
-    //    assertEquals("food", category.getCategoryName());
-    //    assertEquals("for dining", category.getSummary());
-    //}
+    @Test
+    public void parseCategoryWithSummary_validInput_success() throws ParseException {
+        // leading and trailing whitespace
+        assertEquals(new UserDefinedCategory("category", "abc"), ParserUtil.parseCategory("  category ", "abc"));
+        // miscellaneous category
+        assertEquals(new MiscellaneousCategory(), ParserUtil.parseCategory("miscellaneous"));
+        UserDefinedCategory category = ParserUtil.parseCategory("food", "for dining");
+        assertEquals("food", category.getCategoryName());
+        assertEquals("for dining", category.getSummary());
+    }
 
     @Test
     public void parseCategory_invalidInput_throwsParseException() {
