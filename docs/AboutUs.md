@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/cyli133.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: ClassList, Alarm, Tests, Documentation
 
 ### Gu Haiwei
 
