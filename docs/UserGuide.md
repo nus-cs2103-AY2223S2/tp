@@ -135,7 +135,7 @@ Nonetheless, you can always type the following commands to list all customers an
 
 ![result after adding customer](images/addingFirstCustomerResult.png)
 
-#### Your first order, 2 of Banana Cakes
+#### Your first order, 2 x Banana Cakes
 {: .no_toc}
 
 Now that _Lyndon Edwards_ is in LoyaltyLift, we can add an order for him.
@@ -1218,10 +1218,10 @@ Customer and order data are saved in the hard disk automatically after any comma
 
 ### Rewards
 
-|         Action | Format, Examples                                                                       |
-|---------------:|----------------------------------------------------------------------------------------|
-| **Set Points** | `setpoints CINDEX pt/POINTS` <br> e.g. `setpoints 2 pt/100`                            |
-| **Add Points** | `addpoints CINDEX pt/[+/-]POINTS` <br> e.g. `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
+|         Action | Format, Examples                                                                  |
+|---------------:|-----------------------------------------------------------------------------------|
+| **Set Points** | `setpoints CINDEX pt/POINTS` <br> e.g. `setpoints 2 pt/100`                       |
+| **Add Points** | `addpoints CINDEX pt/POINTS` <br> e.g. `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
 
 
 ### Order
@@ -1236,9 +1236,9 @@ Customer and order data are saved in the hard disk automatically after any comma
 |         **Advance Order** | `advo OINDEX`<br> e.g. `advo 1`                                                      |
 |          **Revert Order** | `revo OINDEX`<br> e.g. `revo 2`                                                      |
 |          **Cancel Order** | `cancelo OINDEX`<br> e.g. `cancelo 3`                                                |
-|          **Delete Order** | `deleteo OINDEX`<br> e.g. `deletec 3`                                                |
-|    **Set Note for Order** | `setnoteo OINDEX nt/NOTE` <br> e.g. `setnoteo 2 nt/Very friendly!`                   |
-| **Append Note for Order** | `appendnoteo OINDEX nt/NOTE` <br> e.g. `appendnoteo 2 nt/Very friendly!`             |
+|          **Delete Order** | `deleteo OINDEX`<br> e.g. `deleteo 3`                                                |
+|    **Set Note for Order** | `setnoteo OINDEX nt/NOTE` <br> e.g. `setnoteo 2 nt/no eggs and milk`                 |
+| **Append Note for Order** | `appendnoteo OINDEX nt/NOTE` <br> e.g. `appendnoteo 2 nt/no eggs and milk`           |
 
 ### Miscellaneous
 
