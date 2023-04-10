@@ -84,7 +84,7 @@ public class DeleteAppointmentCommand extends Command {
         model.deleteAppointment(appointmentToDeletePatient);
     }
 
-    private static Doctor createEditedDoctor(Doctor appointmentToDeleteDr) {
+    private Doctor createEditedDoctor(Doctor appointmentToDeleteDr) {
         Doctor editedDoctor = new Doctor(appointmentToDeleteDr.getName(), appointmentToDeleteDr.getPhone(),
                 appointmentToDeleteDr.getEmail(), appointmentToDeleteDr.getNric(), appointmentToDeleteDr.getAddress(),
                 appointmentToDeleteDr.getTags(),
@@ -92,7 +92,7 @@ public class DeleteAppointmentCommand extends Command {
         return editedDoctor;
     }
 
-    private static Patient createEditedPatient(Patient appointmentPatient) {
+    private Patient createEditedPatient(Patient appointmentPatient) {
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
                 appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
@@ -100,7 +100,7 @@ public class DeleteAppointmentCommand extends Command {
         return editedPatient;
     }
 
-    private static void deleteAppmtForDr(Appointment appointmentToDeletePatient, Doctor appointmentToDeleteDr) {
+    private void deleteAppmtForDr(Appointment appointmentToDeletePatient, Doctor appointmentToDeleteDr) {
         Appointment toDeleteDrAppmt = null;
         for (Appointment a : appointmentToDeleteDr.getPatientAppointments()) {
             if (a.isSameAppointment(appointmentToDeletePatient)) {
