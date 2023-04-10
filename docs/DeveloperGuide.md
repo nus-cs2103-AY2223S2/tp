@@ -204,8 +204,48 @@ Activity Diagram for a typical `find` command
 
 ### **Next Command**
 
+To keep track of the next upcoming event, we have opted to keep `Event`s sorted in chronological order.
+
+`Event`s are sorted by:
+1. `Event` was made comparable via a `Comparable<Event>` interface.
+   The comparison criteria are `Event#Date` and `Event#StartTime`.
+2. In `Scheduler`, attached a [`javafx.collections.ListChangeListener`][ListChangeListener] to `UniqueEventList` 
+   (the underlying run-time storage of the list of `Event`s) to know whenever `UniqueEventList` is changed
+   (possibly as a result of `add`, `edit`, `delete`, or even a sorting action).
+3. When a change is detected, we would sort the `Event`s via `FXCollections#sort`.
+
+For _Next_ command, the noteworthy classes are:
+- `ShowNextCommandParser.java` - Parse the arguments for `ShowNextCommand.java`
+- `ShowNextCommand.java` - Execute command
+- `UpcomingEventPredicate.java` - Check if `Event` should be displayed as ongoing/upcoming
+
+During this process, `ParseException` may be thrown for invalid arguments.
+No exception is thrown for no arguments, as there is a default behaviour.
+
+Given below is an example usage scenario of how the `Next` command executes.
+
+-- user input -- <br>
+Step 1. User executes `next` command with valid arguments.
+
+-- `SchedulerParser` -- <br>
+Step 2. Returns new `ShowNextCommandParser`.<br>
+
+-- `ShowNextCommandParser` -- <br>
+Step 3. Verifies that provided argument is valid.<br>
+Step 4. Returns new `ShowNextCommand`.<br>
+
+-- `ShowNextCommand` -- <br>
+Step 5. Creates an `UpcomingEventPredicate` using the provided argument.<br>
+Step 6. Uses the created `UpcomingEventPredicate` to filter for ongoing/upcoming `Event`s.<br>
+Step 7. Updates `EventListPanel` with filtered `Event`s.
+
+Other alternative path of execution can be traced in the activity diagram below.
+
 ![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
 Activity Diagram for a typical `next` command
+
+[ListChangeListener]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.html
+[`ListChangeListener.Change`]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.Change.html
 
 ### **Undo Command**
 
