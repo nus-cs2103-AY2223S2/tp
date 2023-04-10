@@ -31,10 +31,10 @@ public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ModuleTag or GroupTag to a person. \n"
-            + "tag <index> m/<module> : Adds modules to the person of given index. \n"
-            + "tag m/<module> : Adds modules to your own profile instead. \n"
-            + "tag <index> g/<group> : Adds groups to the person of given index \n"
-            + "tag g/<group> : Adds groups to your own profile instead. \n";
+            + "tag INDEX m/MODULE : Adds modules to the person of given index. \n"
+            + "tag m/MODULE : Adds modules to your own profile instead. \n"
+            + "tag INDEX g/GROUP : Adds groups to the person of given index \n"
+            + "tag g/GROUP: Adds groups to your own profile instead. \n";
 
     public static final String MESSAGE_MODULE_TAG_PERSON_SUCCESS = "Module(s) tagged to Person! \n";
     public static final String MESSAGE_MODULE_TAG_USER_SUCCESS = "Module(s) tagged to User! \n";

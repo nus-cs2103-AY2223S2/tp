@@ -24,14 +24,17 @@ public class AddCommand extends Command {
             + Prefix.PHONE + "PHONE "
             + Prefix.EMAIL + "EMAIL "
             + Prefix.STATION + "STATION "
-            + "[" + Prefix.GROUP_TAG + "TAG]...\n"
+            + Prefix.TELEGRAM_HANDLE + "TELEGRAM_HANDLE "
+            + "[" + Prefix.GROUP_TAG + "TAG]... "
+            + "[" + Prefix.MODULE_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + Prefix.NAME + "John Doe "
             + Prefix.PHONE + "98765432 "
+            + Prefix.TELEGRAM_HANDLE + "@johndoe "
             + Prefix.EMAIL + "johnd@example.com "
-            + Prefix.STATION + "311, Clementi Ave 2, #02-25 "
+            + Prefix.STATION + "Serangoon "
             + Prefix.GROUP_TAG + "friends "
-            + Prefix.GROUP_TAG + "owesMoney";
+            + Prefix.MODULE_TAG + "CS3230";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
