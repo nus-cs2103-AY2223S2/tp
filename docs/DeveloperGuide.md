@@ -54,6 +54,8 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 [Back to Top ↑](#table-of-contents)
 
+---
+
 ## **Acknowledgements**
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
@@ -442,7 +444,7 @@ The UI listens to changes to this `favoritedPersons` list and updates the UI acc
 The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 
 - We made the `rank` field compulsory since we are only dealing with army personnel (i.e., everyone should have a `rank`).
-  - `rank` is not a free-response field as `"ABCDEF"` is *not* a valid rank. For now, `rank` can only take on the values `"REC"`, `"PTE"`, `"CPL"`, `"3SG"` or `"2LT"` -- we intend to expand this list to include all valid ranks in the future.
+  - `rank` is not a free-response field as `"ABCDEF"` is *not* a valid rank. For now, `rank` can only take on the values `"REC"`, `"PTE"`, `"CPL"`, `"CFC"`, `"3SG"`, `"2SG"`, `"1SG"`, `"SSG"`, `"MSG"`, `"3WO"`, `"2LT"`, `"LTA"`, `"CPT"`, `"MAJ"` and `"CIV"` -- we intend to expand this list to include all valid ranks in the future.
 - We made the `unit`, `company` and `platoon` fields optional as military personnel might not always be assigned to a unit, company, and/or platoon.
   - If the user omitted the `unit`, `company` and/or `platoon` fields when creating a new contact, they will be automatically set to `"N/A"`.
 
@@ -720,9 +722,13 @@ testers are expected to do more *exploratory* testing.
 
 [Back to Top ↑](#table-of-contents)
 
+---
+
 ## **Appendix: Effort**
 
 [Back to Top ↑](#table-of-contents)
+
+---
 
 ## **Appendix: Planned Enhancements**
 
