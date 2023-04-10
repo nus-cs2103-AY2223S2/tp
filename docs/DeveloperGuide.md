@@ -123,6 +123,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/Ui.java)
