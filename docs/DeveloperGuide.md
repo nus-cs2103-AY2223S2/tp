@@ -504,7 +504,6 @@ The following activity and sequence diagrams shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
-
 The following activity diagram summarizes what happens when a user executes a new command that alters the data (add, delete, edit):
 
 <img src="images/CommitActivityDiagram.png" width="250" />
