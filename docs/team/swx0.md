@@ -13,17 +13,17 @@ Given below are my contributions to the project.
   * Justification:
     * Useful for users to organize their unordered contact list, makes selecting team members easier
     * Allows users to find who has the most or least number of skill tags easily
-  
+
   * Highlights:
-    * Able to sort Person's list using `sort` command 
+    * Able to sort Person's list using `sort` command
     * Implemented sorting by Person's number of tags using `tcount` as the parameter to `sort` command
-    * Able to sort in both orders, descending (`desc` as parameter) or ascending (`asc` as parameter) 
-  
+    * Able to sort in both orders, descending (`desc` as parameter) or ascending (`asc` as parameter)
+
 * **New Feature**: Create/Remove Team and TeamList
   * Justification:
     * For users to create/remove team and assign team members.
     * TeamList for users to track the status/description of all teams created
-    
+
   * Highlights:
     * Allows users to specify Team's name, description and skill requirements (as tags)
     * Able to create teams using `create` command and remove teams using `remove` command

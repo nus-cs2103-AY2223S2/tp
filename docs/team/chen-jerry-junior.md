@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 * **Bug Fixing**:
   * Modified the error message of command `add` `edit` `remove` `show` `sort` to consist with the description in the UserGuide.
-  * Import prefix of TeamTag in add command parser and added comparison of TeamTag in edit command to enable `add` and `edit` on TeamTags. 
+  * Import prefix of TeamTag in add command parser and added comparison of TeamTag in edit command to enable `add` and `edit` on TeamTags.
 
 * **Project management**:
   * Managed TeamBuilder releases for [v1.3.1](https://github.com/AY2223S2-CS2103T-T17-1/tp/releases/tag/v1.3.1) on GitHub.
