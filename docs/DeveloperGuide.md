@@ -50,10 +50,10 @@ develop coNtactUS for yourself, you may feel free to proceed with this guide.
 
 
 If you have any difficulties understanding what some terminologies mean at any point, you may refer 
-to the [glossary](#9-glossary) for that.
+to the [glossary](#10-glossary) for that.
 
-To help you better navigate through our developer guide, the [Return to ToC](#toc) at the end of each section
-allows you return to the Table of Contents. From there, you can quickly access another section by clicking the
+To help you better navigate through our developer guide, the [Return to ToC](#a-idtable-a-table-of-contents) at the end
+of each section allows you return to the Table of Contents. From there, you can quickly access another section by clicking the
 respective header.
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -184,9 +184,9 @@ class which captures the commonalities between classes that represent parts of t
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
 that are in the `src/main/resources/view` folder. For example, the layout of the
-[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+[`MainWindow`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified in
-[`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+[`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W10-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -872,7 +872,7 @@ Timestamp in the status bar is updated.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 11.5 Finding a module/type
+### 11.5 Finding a module/description
 
 1. Test case: `find CS2103T` <br>
    Expected: Module(s) with the name `CS2103T` is (are) found. Details of the found module(s) are shown in the list.
@@ -882,11 +882,12 @@ Timestamp in the status bar is updated.
 Expected: Module(s) with the description `tutorial` Details of the found tutorial(s) are shown in the list. <br>
 
 3. Test case: `find tutorial lab` <br>
-Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in
+Expected: A tutorial or lab description is found on the list. Details of the found tutorials and labs are shown in
 the list. <br>
 
 4. Test case: `find CS` <br>
-Expected: Module(s) with the name or description `CS` is (are) found. Details of the found module(s) are shown in the list.
+Expected: Module(s) with the name or description `CS` is (are) found. Details of the found module(s) are shown in the
+list.
 <br>
 
 5. Test case: `find` <br>
