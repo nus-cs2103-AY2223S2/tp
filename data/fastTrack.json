@@ -1,0 +1,8 @@
+{
+  "categories" : [ ],
+  "expenses" : [ ],
+  "budget" : {
+    "amount" : "4000.0"
+  },
+  "recurringGenerators" : [ ]
+}

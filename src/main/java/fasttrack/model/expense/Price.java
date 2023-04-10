@@ -2,9 +2,11 @@ package fasttrack.model.expense;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import fasttrack.logic.commands.exceptions.CommandException;
 
-import java.util.Objects;
+
 
 /**
  * Represents a Price of an Expense in FastTrack.
@@ -14,7 +16,7 @@ public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Amounts should only contain numbers, and should not be negative or empty.";
-    public static final String VALIDATION_REGEX = "^(-0|\\d*)(\\.\\d+)?$";
+    public static final String VALIDATION_REGEX = "^(0|\\d*)(\\.\\d+)?$";
     private String value;
 
     /**

@@ -80,10 +80,15 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        if (!Price.isValidPrice(trimmedPrice)) {
+        try {
+            if (Price.isValidPrice(trimmedPrice)) {
+                return new Price(trimmedPrice);
+            } else {
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
+        } catch (NumberFormatException e) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return new Price(trimmedPrice);
     }
 
     /**
