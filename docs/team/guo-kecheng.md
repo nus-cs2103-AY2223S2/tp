@@ -33,7 +33,8 @@ Given below are my contributions to the project.
     previously commands.
 - **New Feature**: Light and Dark Theme
   ![Ui](../images/Ui.png)
-  ![Ui](../images/UiDark.png) <div style="page-break-after: always;"></div>
+  ![Ui](../images/UiDark.png) 
+
     * What it does: 
     * Justification: A quality of life improvement. Users would previously be required to delete and add a new task 
     which can now be achieved using the edittask function
