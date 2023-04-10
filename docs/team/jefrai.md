@@ -31,6 +31,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Advised implementation-level interaction between project features
+  * Advised individual feature ad-hoc debugging
   * Handled standard portion of PR review
   * Advised on peer-examination bug triage
 

@@ -21,7 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.StateHistory;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 
 public class UndoCommandTest {
 

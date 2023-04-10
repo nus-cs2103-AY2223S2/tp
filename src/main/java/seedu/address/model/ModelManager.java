@@ -22,8 +22,8 @@ import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.ParticularPersonsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Tag;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the E-Lister data.

@@ -44,7 +44,7 @@ public class InputHistory {
 
     /** Returns the history storage file path */
     public Path getHistoryStoragePath() {
-        return this.historyStorageFilePath;
+        return historyStorageFilePath;
     }
 
     /** Sets the history storage file path */

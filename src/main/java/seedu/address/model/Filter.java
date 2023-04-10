@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 /**
- * This class encapsulates a filtering that user inputted and succesfully executed.
+ * This class encapsulates a Filter that the user entered and successfully executed.
  */
 public class Filter {
     private final String filter;
@@ -12,7 +12,7 @@ public class Filter {
 
     @Override
     public String toString() {
-        return this.filter;
+        return filter;
     }
 
     @Override

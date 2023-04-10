@@ -17,7 +17,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
 import seedu.address.model.person.ParticularPersonsPredicate;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 
 public class FreezeCommandTest {
 
