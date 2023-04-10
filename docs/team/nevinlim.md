@@ -8,32 +8,33 @@
 ## <ins>Code contributed: </ins>
 * RepoSense Link: [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nevinlim&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) 
 
+
 ## <ins>Enhancements implemented: </ins>
 * A summary of the enhancements you implemented.
 * ### Enhancement to Application UI:
   * ***Implementation of Light/Dark Theme:***
     * Added a `lighttheme.css` stylesheet and implemented a toggle theme method `setTheme` within the `MainWindow` class for UI.
-    * Created shortcut keys accelerators which allows users to use shortcut keys combinations to toggle theme: 
+    * Created shortcut keys accelerators which allows users to use shortcut keys combinations to toggle theme:
     **CTRL+SHIFT+L** for light and **CTRL+SHIFT+D** for dark.
     * Created `MenuItem` for the respective Dark and Light theme for additional mode of input to toggle themes.
   * ***Altered the button for Help popup Window:***
-    * Changed the '*CopyURL*' button in the help window to a more user-friendly '*Open URL*' button which opens 
+    * Changed the '*CopyURL*' button in the help window to a more user-friendly '*Open URL*' button which opens
     the address link in a browser on user's computer directly.
 * ### Enhancement to Application Main Features:
   * ***Implementation of Drug command classes for Drug subsystem:***
-    * Created `DeleteCommand`, `FindCommand`, `ListCommand`, `UpdateCommand` and helped implement `AddCommand`, 
+    * Created `DeleteCommand`, `FindCommand`, `ListCommand`, `UpdateCommand` and helped implement `AddCommand`,
     `ClearCommand` in the `drugcommands` directory (located in `commands` in `logic`)
     * Specified the respective message usages for each command
     * Implemented the constructor methods for the aforementioned classes
     * Implemented the `execute` methods for the various classes as well as exception handling in each
-    of these classes 
+    of these classes
   * ***Implementation of Drug command Parser classes for the Drug subsystem:***
     * Created `AddCommandParser`, `DeleteCommandParser`, `FindCommandParser` and `UpdateCommandParser`classes
     in the `drugparser` directory (located in `parser` in `logic`)
     * Implemented the `parse` method for the aforementioned classes to handle the various user inputs for the
     respective commands.
-    * Implemented the various parsing methods for the Drug Parser classes such as `parseTradeName`, 
-    `parseActiveIngredient`, `parseDirection`, `parsePurpose`, `parseSideEffect` and `parseStorageCount` to parse 
+    * Implemented the various parsing methods for the Drug Parser classes such as `parseTradeName`,
+    `parseActiveIngredient`, `parseDirection`, `parsePurpose`, `parseSideEffect` and `parseStorageCount` to parse
     user inputs into the necessary Objects that the respective Drug Command requires.
 
 ## <ins>Contributions to the UG: </ins>
@@ -77,6 +78,7 @@ and `UpdateCommandParserTest` in `drugparser` to improve the code-coverage of ou
 [#171](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/171),
 [#193](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/193),
 [#276](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/276)
+
 
 ## <ins>Contributions beyond the project team: </ins>
 * Bugs reported for another team F10-3 (MODCheck): 

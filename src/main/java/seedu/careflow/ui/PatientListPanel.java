@@ -116,7 +116,22 @@ public class PatientListPanel extends UiPart<Region> {
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
             drugAllergyField, emergencyContactField};
         Label[] details = new Label[]{selectedName, selectedPhone, selectedAddress, selectedEmail, selectedBirthDate,
-                selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+            selectedGender, selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+        setupStyle();
+        setPatientFieldDisplay(fields);
+        updateDisplayedPatientDetail(selectedPatient, details);
+    }
+
+    /**
+     * Update the display inside {@code patientDetailDisplay} in response to view command
+     * @param selectedPatient the patient to be displayed
+     */
+    public void updateViewCommandDisplay(Patient selectedPatient) {
+        patientListView.getSelectionModel().select(patientListView.getItems().indexOf(selectedPatient));
+        Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
+            drugAllergyField, emergencyContactField};
+        Label[] details = new Label[]{selectedName, selectedPhone, selectedEmail, selectedBirthDate, selectedGender,
+            selectedIc, selectedDrugAllergy, selectedEmergencyContact};
         setupStyle();
         setPatientFieldDisplay(fields);
         updateDisplayedPatientDetail(selectedPatient, details);

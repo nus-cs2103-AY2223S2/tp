@@ -161,7 +161,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.careflow.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,7 +203,7 @@ This is the sequence diagram illustrating how different components interact to e
 
 **Step 5.** Upon receiving this `findCommand` instance, `CareFlowLogicManager` goes on to invokes its `FindCommand#execute` method, passing the `CareFlowModelManager` instance as the method argument
 
-**Step 6.** The `FindCommand#execute` method uses `CareFlowModelManager#updateFilteredDrugList` to filter the current list of drugs using the `predicate` set earlier. 
+**Step 6.** The `FindCommand#execute` method uses `CareFlowModelManager#updateFilteredDrugList` to filter the current list of drugs using the `predicate` set earlier.
 
 **Step 7.** The `FilteredDrugList` now only contains drugs whose trade name contains the keyword `"Panadol"`.
 
@@ -527,20 +527,20 @@ testers are expected to do more *exploratory* testing.
    1.  Currently the only way for the user to view the hospital detail is by clicking on the hospital tab using a mouse.
        We recognize that we have overlooked the need for a keyboard-only command to view hospital details, and we will
        make sure to include a h view command as an essential feature in our upcoming implementation.
-   
+
 2. Command to switch from patient records to drug inventory or hospital hotlines and vice versa.
 
-   1.  We considered this as a good-to-have feature because we already have a `p view` and `d view` command for user 
-       to look at patient and drug record respectively, so user still able to view patient and drug record without 
+   1.  We considered this as a good-to-have feature because we already have a `p view` and `d view` command for user
+       to look at patient and drug record respectively, so user still able to view patient and drug record without
        having a mouse.
 
 3. Allow more than one patient to have same name
 
-   1.  Currently our system don't allow patient to have the same name. In future implementation we might consider 
+   1.  Currently our system don't allow patient to have the same name. In future implementation we might consider
        to allow patient to have duplicate name and identify them using NRIC or FIN.
 
 4. Detecting unusual user input value for phone number
 
-   1.  Need to work on phone number validation, i.e: when user input only special character for phone data field, 
-       ex: ()+-, then the system wouldn't able to detect this. In future implementation, we consider to restrict 
+   1.  Need to work on phone number validation, i.e: when user input only special character for phone data field,
+       ex: ()+-, then the system wouldn't able to detect this. In future implementation, we consider to restrict
        user to input telephone numbers only for this data field.

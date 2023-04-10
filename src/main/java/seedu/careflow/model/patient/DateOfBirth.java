@@ -22,7 +22,7 @@ public class DateOfBirth {
             Stream.of("dd.MM.uuuu", "dd/MM/uuuu", "dd-MM-uuuu",
                             "dd.MM.uu", "dd/MM/uu", "dd-MM-uu")
                     .map(DateTimeFormatter::ofPattern)
-                    .map(x -> x.withResolverStyle( ResolverStyle.STRICT ))
+                    .map(x -> x.withResolverStyle(ResolverStyle.STRICT))
                     .toArray(DateTimeFormatter[]::new);
     private static final LocalDate minRangeOfBirth = LocalDate.of(1900, 1, 1);
     private static final LocalDate maxRangeOfBirth = LocalDate.now();
@@ -52,7 +52,7 @@ public class DateOfBirth {
         for (DateTimeFormatter format: FORMATS) {
             try {
                 return LocalDate.parse(test, format);
-            } catch (DateTimeParseException e ) {
+            } catch (DateTimeParseException e) {
                 // do nothing, continue check whether given string input match any other date time format
             }
         }
