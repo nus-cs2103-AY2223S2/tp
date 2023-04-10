@@ -980,7 +980,7 @@ Provides teachers with the ability to manage students administration and academi
     + 2a1. System displays an error message to the user indicating that the `parent/NOK` currently has students attached to him/her and hence **CANNOT** be removed from the system. <br>
       Use case ends.<br><br>
 
-*{More to be added}* <br></br>
+*{More to be added}* 
 
 [Back to Table of Contents](#table-of-contents)
 
