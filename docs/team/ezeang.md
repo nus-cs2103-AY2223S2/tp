@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ezeAng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=ezeAng&tabRepo=AY2223S2-CS2103-F10-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.4` (3 releases) on GitHub
+  * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
   * Managed team's GitHub organisation
   * Managed team's repo's issues tracker
   * Supplied team's repo's issues labels
