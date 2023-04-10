@@ -27,7 +27,7 @@ Are you excited yet? Let's get started!
 ## Quick start
 
 1. Ensure your computer has Java `11` or above installed.
-   * If you need to install Java, the [official website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) provide download links for most computer systems.
+   * If you need to install Java, the [official website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) provides download links for most computer systems.
    * You can verify your computer's Java installation with this [instruction](https://www.java.com/en/download/help/version_manual.html).
 
 2. Download the latest `loyaltylift.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-3/tp/releases).
@@ -730,9 +730,9 @@ addpoints CINDEX pt/POINTS
 * If the points added will result in points or cumulative points being greater than 999999, 
 the command will not be executed.
 
-| Prefix  | Parameter     | Optional | Description                                                                   |
-|---------|---------------|:--------:|-------------------------------------------------------------------------------|
-| `pt/`   | Points        |          | - A positive integer to add points<br>- A negative integer to subtract points |
+| Prefix  | Parameter     | Optional | Description                                                                                           |
+|---------|---------------|:--------:|-------------------------------------------------------------------------------------------------------|
+| `pt/`   | Points        |          | *Either* <br /> A positive integer to add points<br/>*Or*<br /> A negative integer to subtract points |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Addition will also result in an addition of cumulative points, while subtraction will not affect cumulative points.
@@ -1143,7 +1143,7 @@ Customer and order data are saved in the hard disk automatically after any comma
 {: .no_toc}
 
 **Q**: My customer's name includes special characters such as 'Jôse'; how can I add this customer into LoyaltyLift? <br />
-**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name, such as `senotec 1 nt/Jôse`.
+**A**: Currently, LoyaltyLift cannot store a customer’s name with special characters. However, one workaround is to add the customer by replacing the special character with a close equivalent, such as 'Jose', and use the `setnotec` command to type his actual name, such as `setnotec 1 nt/Jôse`.
 
 **Q**: How do I view a customer's order history in LoyaltyLift? <br />
 **A**: The order history of a customer is available when you view the customer's information in the information panel. To do so, you can first use `findc` command to locate the customer, then `viewc` command to display the customer in the information panel. The order history is found under the **History** section.
