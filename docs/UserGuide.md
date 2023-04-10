@@ -448,10 +448,10 @@ MediMate data are saved as a JSON file `[JAR file location]/data/addressbook.jso
 
 * Name allows number as a valid input.
 * No special characters is allowed at the start or end of the email `username`. (username@domain.com)
-* No multiple (More than 1) special characters is allowed at the middle of the email username.
+* No multiple consecutive (More than 1) special characters is allowed at the middle of the email username.
 * Allowed special characters for email are `+` , `_`, `-`, `.`
   e.g. `abc@gmail.com` is allowed
-  e.g. `ab.c@gmail.com` is allowed
+  e.g. `a.b.c@gmail.com` is allowed
   e.g. `ab..c@gmail.com` is not allowed
   e.g. `abc.@gmail.com` is not allowed
   e.g. `.abc@gmail.com` is not allowed
