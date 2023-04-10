@@ -9,28 +9,22 @@ import static java.util.Objects.requireNonNull;
  */
 public class Email {
 
-    private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
-            + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
-            + "separated by periods.\n"
-            + "The domain name must:\n"
-            + "    - end with a domain label at least 2 characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-    // alphanumeric and special characters
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
-    private static final String LOCAL_PART_REGEX = "^" + ALPHANUMERIC_NO_UNDERSCORE + "([" + SPECIAL_CHARACTERS + "]"
-            + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
-            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
-    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
-    public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
-
+            + "The email address must consist of two parts separated by the @ symbol: a local part and a domain part.\n"
+            + "The local part can contain letters, digits, and certain special characters, such as period, hyphen, \n"
+            + "and underscore. However, it cannot begin or end with a period, and it cannot contain \n"
+            + "consecutive periods. The local part cannot exceed 64 characters in length.\n"
+            + "The domain part can contain letters, digits, hyphens, and periods.\n"
+            + "However, it must contain at least one period and cannot begin or end with a hyphen or period.\n"
+            + "Also, each label within the domain name must not exceed 63 characters in length, "
+            + "and the overall length of the domain part cannot exceed 255 characters.\n"
+            + "The domain name must conform to the DNS naming conventions, including restrictions on the characters "
+            + "that can be used and the maximum length of each label.\n"
+            + "The overall length of the email address cannot exceed 256 characters.";
+    //Regex created by reading RFC5322 specification from this site https://www.rfc-editor.org/rfc/rfc5322
+    public static final String VALIDATION_REGEX = "^(?=.{1,256}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]"
+            + "+(\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@([a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$";
     public final String value;
 
     /**

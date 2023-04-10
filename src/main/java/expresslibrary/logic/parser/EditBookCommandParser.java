@@ -1,6 +1,5 @@
 package expresslibrary.logic.parser;
 
-import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_BORROW_DATE;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_DUE_DATE;
@@ -40,7 +39,7 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX, pe);
         }
 
         EditBookDescriptor editBookDescriptor = new EditBookDescriptor();
@@ -60,8 +59,7 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
                 LocalDate borrowDate = DateUtil.parseDate(dateString);
                 editBookDescriptor.setBorrowDate(borrowDate);
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_INVALID_DATE));
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_DATE));
             }
         }
         if (argMultimap.getValue(PREFIX_DUE_DATE).isPresent()) {
@@ -70,8 +68,7 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
                 LocalDate dueDate = DateUtil.parseDate(dateString);
                 editBookDescriptor.setDueDate(dueDate);
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_INVALID_DATE));
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_DATE));
             }
         }
         if (!editBookDescriptor.isAnyFieldEdited()) {

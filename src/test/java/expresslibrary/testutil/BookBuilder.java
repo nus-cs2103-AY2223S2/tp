@@ -96,9 +96,9 @@ public class BookBuilder {
      * Builds the book object.
      */
     public Book build() {
-        Book book;
-        book = new Book(title, author, isbn);
+        Book book = new Book(title, author, isbn);
         if (borrower != null) {
+            borrower.borrowBook(book);
             book.loanBookTo(borrower, borrowDate, dueDate);
         }
         return book;
