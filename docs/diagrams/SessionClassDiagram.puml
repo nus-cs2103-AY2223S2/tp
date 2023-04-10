@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+UniqueSessionList -down-> Session
+
+Session *-> SessionName
+Session *--> AttendanceMap
+Session *--> sessionTime
+Session *---> PayRateMap
+Session *--> Location
+
+@enduml

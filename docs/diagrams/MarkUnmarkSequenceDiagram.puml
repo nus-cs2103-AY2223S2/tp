@@ -1,0 +1,16 @@
+@startuml
+
+actor Coach
+
+Coach -> Session: createSession("Hall")
+Session -> Session: initializeAttendanceMap()
+
+alt Mark Attendance
+Coach -> Session: markAttendance(athleteName: "Bob")
+Session -> Session: markAttendanceInAttendanceMap(athleteName: "Bob", attendance: True)
+else Unmark Attendance
+Coach -> Session: unmarkAttendance(athleteName: "Bob")
+Session -> Session: unmarkAttendanceInAttendanceMap(athleteName: "Bob", attendance: False)
+end
+
+@enduml

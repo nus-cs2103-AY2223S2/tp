@@ -21,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -144,9 +146,79 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Session> getFilteredSessionList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortAddressBook(int attribute) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSession(Session target, Session editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitAddressBook() {
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredSessionList(Predicate<Session> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSession(Session toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSession(Session toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeSession(Session toRemove) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonToSession(Person person, Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removePersonFromSession(Person person, Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Session getSessionFromName(SessionName name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSessionName(SessionName sessionName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

@@ -1,0 +1,18 @@
+@startuml
+
+object Tag {
+    -name: "Hall"
+}
+
+object UniquePersonList {
+}
+
+object hallGroup
+
+object UniqueGroupList
+
+
+hallGroup -down-> Tag
+UniqueGroupList -down-> hallGroup
+hallGroup --> UniquePersonList
+@enduml
