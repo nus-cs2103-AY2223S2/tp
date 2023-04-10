@@ -1068,6 +1068,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `find-client`<br>
       Expected: Error message is shown.
 
+<div style="page-break-after: always;"></div>
+
 ### Finding projects
 
 1. Finding projects
