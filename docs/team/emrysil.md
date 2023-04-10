@@ -15,20 +15,8 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
   - Redesign the overall architecture to accommodate patient and drug subsystems.
     - Created project skeleton files. [#39](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/39)
     - Modified the code structure and organisation of `model` component to allow for the store and access of patient and drug data. [#55](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/55)
-      - Created `ReadOnlyDrugInventory`, `DrugInventory`, `ReadOnlyPatientRecord` and `PatientRecord` to handle drug and patient related operations respectively.
-      - Created `CareFlow` to allow CRUD of patient and drug objects.
-      - Created `CareFlowModel`, `CareFlowModelManager` to proxy manipulation of patient and drug data.
-    - Modified the code structure and organisation of `logic` component to allow for the interpretation and execution of user commands.
-      - Updated parser hierarchy by creating operational command parsers for drug and patient. [#50](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/50)
-        - Updated the command syntax to use '**p**', '**d**' and '**g**' to differentiate between **patient**, **drug** and **general** commands.
-        - Created `CareFlowParser` to handle user commands and further delegate the command to patient, drug and general operational command parsers.
-        - Created `PatientParser`,`DrugParser`, `GeneralParser` to handle patient, drug and general operational commands and further delegate the command to specific command parsers.
-      - Created `CareFlowLogicManager` to proxy command execution. [#55](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/55)
+    - Modified the code structure and organisation of `logic` component to allow for the interpretation and execution of user commands.[#50](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/50) [#55](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/55)
     - Modified the code structure and organisation of `storage` component to allow for the reading and writing of app data from and into the hard disk. [#79](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/79) [#80](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/80)
-      - Created `JsonAdaptedPatient` to adapt the `Patient` model for storage in Json format.
-      - Created `JsonSerializableDrugInventory` and `JsonSerializablePatientRecord` to adapt `DrugInventory` and `PatientRecord` model for storage in Json format. 
-      - Created `JsonDrugInventoryStorage` and `JsonPatientRecordStorage` to facilitate the reading and writing of patient and drug data into the hard disk.
-      - Created the `CareFlowStorageManager` to proxy storage related operations.
 
 ### **New Features**
   - Implemented the drug inventory in-app notification feature [#212](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/212)
@@ -47,37 +35,10 @@ Click [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=emrysil&
 ### **Testing**
   - Created JUnit test cases for storage components. [#133](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/133)
     - Created test methods for `CareFlowStorageManager` to test the reading and saving of
-      - `DrugInventory`
-      - `PatientRecord`
-      - `UserPrefs`
     - Created test methods for `JsonAdaptedDrug` and `JsonAdaptedPatient` to test the conversion of `Patient` and `Drug` objects into json-friendly forms when:
-      <details>
-      <summary>Cases Tested </summary>
-      <ul> 
-        <li>the fields are in order</li>
-        <li>the fields are null</li>
-        <li>the fields are invalid</li>
-      </ul>
-      </details>
     - Created sample files and test methods for `JsonDrugInventoryStorage`, `JsonPatientRecordStorage` and `JsonUserPrefsStorage` to simulate the following scenarios:
-      <details>
-      <summary>Cases Tested </summary>
-      <ul>
-        <li>reading from normal json file</li>
-        <li>reading from non-json format file</li>
-        <li>reading from json file with extra fields</li>
-        <li>reading from json file with missing fields</li>
-        <li>reading from json file with invalid fields</li>
-        <li>reading from json file with both vald and invaild fields</li>
-        <li>reading from json file with null value for compulsory fields</li>
-        <li>saving normal `DrugInventory` and `PatientRecord` objects</li>
-        <li>saving when `DrugInventory` and `PatientRecord` objects are null</li>
-        <li>saving when file path is null</li>
-      </ul>
-      </details> 
     - Created test methods for `JsonSerializableDrugInventory` and `JsonSerializablePatientRecord` to test the conversion of json format `DrugInventory` and `PatientRecord` objects back to java objects.
   - Created sample drug and patient data to be used in testings. [#133](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/133)
-    - Created `DrugBuilder`, `PatientBuilder`, `TypicalDrugs` and `TypicalPatients` testutil classes.
 
 ### **User Guide**
   - Added detailed instruction on how to download and set up java 11 environment. [#176](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/176)
