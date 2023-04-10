@@ -258,7 +258,7 @@ Format: `list`
 
 ### 4.1.3. Editing an employee : `edit`
 
-Edits an existing employee in SudoHR.
+Edits an existing employee in SudoHR. The leave section will be updated to show all leaves. The employee section will be updated to show all employees.
 
 Format: `edit eid/EMPLOYEE_ID [id/NEW_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -317,7 +317,7 @@ Examples:
 
 ### 4.1.6. Deleting an employee : `del`
 
-Deletes the specified employee from SudoHR.
+Deletes the specified employee from SudoHR. The department section will be updated to show all departments. The leave section will be updated to show all leaves.
 
 Format: `del eid/EMPLOYEE_ID`
 
@@ -478,7 +478,7 @@ Examples:
 
 ### 4.3.2. Adding a range of leaves for an employee: `aelr`
 
-Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start and end date. 
+Adds an employee's leave within a range of dates for SudoHr to track. This range is specified by a start date till an end date both inclusive. 
 The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their 
 information will be displayed on the leave section.
 
