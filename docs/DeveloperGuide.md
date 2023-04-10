@@ -816,8 +816,12 @@ required: 9 / 10)
    * However, it is tedious to change the attributes of `AddressBook3` that do not fit `coNtactUS`, as well as adding
    new attributes to the commands.
 
-3. Enhancements of `find` command. (Difficulty: 7 / 10, Effort required: 7 / 10)
-   * Tariq-Droid
+3. Enhancements of `find` command. (Difficulty: 6 / 10, Effort required: 6 / 10)
+   * While transitioning the application from `AddressBook3` to a module tracker, it was essential to modify the `find` command to align with the new theme. The process involved the following steps:
+        * Understanding `JavaFX`
+        * Exploring `FilteredLists`
+        * Implementing the Custom Predicate Test
+    * Although implementing the updated `find` command was not overly difficult, the process was somewhat time-consuming due to the need to learn and understand new aspects of the program.
 
 4. Enhancement of `timeslot` and `deadline` attributes from `String` to `DateTime` format. (Difficulty: 8 / 10,
 Effort required: 8 / 10)
@@ -831,7 +835,8 @@ Effort required: 8 / 10)
 5. Addition of `sort` command. (Difficulty: 9 / 10, Effort required: 8 / 10)
    * Jia Yuan
 
-6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
-   * Tariq
+6. Addition of a `Reminder` window (Difficulty: 7 / 10, Effort required: 7 / 10)
+   * Similar to the `find` command. Much of the time is spent on understanding new concepts and libraries. The `reminder` window goes through all the tasks and extract the `DateTime` and compares it to the current system time. Exceptions are checked and then the string is parsed for output. 
+   * Although implementing the reminder window was not overly difficult, the process took some time due to the need to learn and understand new aspects of the program.
 
 Back to top hyperlink
