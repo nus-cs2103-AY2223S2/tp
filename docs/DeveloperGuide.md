@@ -326,10 +326,6 @@ MasterDeck stores 2 independent lists, a `UniqueCardList` storing all existing u
 
 Each `Card` instance references an existing instance of `Deck`. This reference denotes that the card belongs to a specific deck.
 
-Below is an object diagram representing an example instance of `MasterDeck` under the current implementation.
-
-![MasterDeck Object Diagram](images/MasterDeckObjectDiagram.png)
-
 Why we chose this design:
 - Ease of implementation: The deck behaves similarly to a tag whose purpose is to group the cards together. This allows us to take reference from the source code of the `Tag` class from the AddressBook3 (AB3). 
 - Single Responsibility Principle: The `UniqueDeckList` class's sole responsibility is to store and modify the user-created decks. If we store a `UniqueCardList` inside each deck (similar to the alternative design below), the `UniqueDeckList` has to be responsible for managing the cards inside each deck as well. This can potentially violate Single Responsibility Principle (SRP). 
