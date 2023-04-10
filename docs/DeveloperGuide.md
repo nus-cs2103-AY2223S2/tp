@@ -1234,7 +1234,7 @@ Our organisation primarily utilised `JUnit5` for conducting unit tests. `JUnit5`
 
 Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
-Unit tests were implemented as new features were added in, to ensure that any new changes will have tests to ensure 
+Unit tests were implemented as new features were added in, to ensure that any new chang statues will have tests to ensure 
 older features are working as intended. Unit tests were also changed and added on as the product progressed, to ensure
 that the features were tested more thoroughly as the team learned new testing types and techniques.
 
@@ -1242,9 +1242,9 @@ that the features were tested more thoroughly as the team learned new testing ty
 ### **Stubs**
 
 Stubs were used to test features and classes in isolation, so that any bugs in dependencies will not affect the tests
-that are in place. Use of stubs were most common in testing model, commands and parsers, as they have a lot of dependencies
-that make it difficult to test the entire logic in total. Stubs help to isolate dependencies so that each component's logic
-are tested without being affected by other components.
+that are in place. Use of stubs is common in our testing for models, as they have a lot of dependencies
+that make it difficult to test the entire logic in total. The model stubs are in use when testing other classes like commands. 
+Stubs help to isolate dependencies so that each component's logic are tested without being affected by other components.
 
 ### **Integration Testing**
 
