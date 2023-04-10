@@ -430,14 +430,13 @@ refer to all for simplicity.
 
 This feature is enabled by the following classes in particular:
 
-- `DeleteXYZCommand` - The command that deletes a XYZ from the Wingman app
-- `DeleteXYZCommandFactory` - The factory class that creates a {@code
-  DeleteXYZCommand}
+- `DeleteCommand` - The command that deletes an item from the Wingman app
+- `DeleteCommandFactory` - The factory class that creates a `DeleteCommand`
 
 When a user enters the command:
 
 ```
-delete {XYZ identifier}
+delete {item index}
 ```
 
 the input goes through the UI layer where `logic.execute(input)` is called which
@@ -452,14 +451,14 @@ Pilot, or Plane - should handle the execution of said command.
 The WingmanParser separates the input into tokens, determines what mode the
 command is from, and then returns the
 desired command type. In this case, the input allows the WingmanParser to
-recognize it is a `DeleteXYZCommand` and as a
-result, returns a new `DeleteXYZCommand` with the {XYZ identifier}.
+recognize it is a `DeleteCommand` and as a
+result, returns a new `DeleteCommand` with the {item index}.
 
-The `DeleteXYZCommand` is executed using the corresponding `XYZManager`.
-Firstly, the `XYZManager` uses `getItem(id)`
-to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls
-the `deleteXYZ(id)` method. The
-`deleteXYZ(id)` method uses the `item.removeItem(id)` method in order to remove
+The `DeleteCommand` is executed using the corresponding `Manager`.
+Firstly, the `Manager` uses `getItem(id)`
+to find the corresponding XYZ to be deleted. Secondly, the `Manager` calls
+the `delete(id)` method. The
+`delete(id)` method uses the `item.removeItem(id)` method in order to remove
 the desired XYZ from the Wingman app.
 
 Finally, the `CommandResult` is returned which is the message the user will see
