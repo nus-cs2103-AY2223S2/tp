@@ -101,8 +101,8 @@ public abstract class PilotSyntax extends ModelSyntax {
      * @throws ParseException when the input number is not a valid gender type
      */
     private static PilotRank parseRankFromNumber(int rankIdx) throws ParseException {
-        if (!(Stream.of(0, 1, 2, 3, 4, 5)
-                .anyMatch(validRank -> validRank.equals(rankIdx)))) {
+        if (Stream.of(0, 1, 2, 3, 4, 5)
+                  .noneMatch(validRank -> validRank.equals(rankIdx))) {
             throw new ParseException(String.format(
                     INVALID_PILOT_RANK_MESSAGE,
                     rankIdx
