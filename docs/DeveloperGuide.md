@@ -2331,20 +2331,11 @@ Usability:
 Reliability:
 
 - The app should be reliable and stable, with minimal downtime or disruptions. It should be able to handle a large number of users and requests without crashing or malfunctioning.
-- The app should be able to continue functioning even if a component or service fails, with backup systems or redundancy in place.
 
 Performance:
 
 - The app should respond quickly to user requests, with minimal loading times or delays.
-- The app should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
-
-Security:
-
-- The app should be secure, with measures in place to protect user data and prevent unauthorized access. This may include encryption, authentication, and authorization mechanisms.
-
-Scalability:
-
-- The app should be scalable, with the ability to handle an increasing number of users and data as the user base grows.
+- The app should be able to hold up to 1000 modules, lectures and videos without a noticeable sluggishness in performance for typical usage.
 
 Compatibility:
 
