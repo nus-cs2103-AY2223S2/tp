@@ -23,10 +23,15 @@ This User Guide provides brief documentation on how you can install the applicat
 
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
-3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook.
+3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook. You may create a new folder under any directory.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open a command terminal and navigate into the folder you put the jar file in using `cd`. Then, use the `java -jar fitbook.jar` command to run the application.<br>
+   A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br> 
+   * For example, if your jar file is stored in a folder 'FitBook' located in the desktop directory of your computer, the commands in the command terminal will be:
+     1. `cd Desktop`
+     2. `cd FitBook`
+     3. `java -jar fitbook.jar`
+
    * If you are unsure how to open the command terminal, you may refer to the guide below.
    
      • [Windows](https://www.businessinsider.com/guides/tech/how-to-open-command-prompt)
@@ -62,18 +67,15 @@ This User Guide provides brief documentation on how you can install the applicat
 
 ## User Interface Introduction
 
-This section provides a brief overview of the graphical user interface (GUI) components that are present in FitBook. These components are designed to provide an easy-to-use interface that enables users to track and improve their clients fitness goals.
+This section provides a brief overview of the graphical user interface (GUI) components that are present in FitBook. These components are designed to provide an easy-to-use interface that enables users to track and improve their clients' fitness goals.
 ![User Interface](images/interface.png)
 
 ### Menu Bar
 
-The menu bar is typically located at the top of the user interface and is primarily used for navigation purposes. It provides users with access to various features and functions within the application or dashboard, allowing them to easily move between different sections or pages. The menu bar is commonly used in user guides to help users understand how to navigate and use the different features within the application.
+The menu bar is typically located at the top of the user interface and is primarily used for navigation purposes. It provides users with access to various features and functions within the application or dashboard, allowing them to easily navigate between different tabs. The menu bar is commonly used in user guides to help users understand how to navigate and use the different features within the application.
 
 #### Schedule
-* 'Schedule' menu item allows you to switch to Schedule panel.
-
-#### Exit
-* Directly exits out of the application
+* 'Schedule' menu item allows you to switch to the Schedule panel.
 
 #### Exercise
 * 'Exercise' menu item allows you to switch to Exercise panel.
@@ -89,8 +91,8 @@ The menu bar is typically located at the top of the user interface and is primar
 Panels are _empty_ when the data for that specific panel is _empty_.
 
 #### Schedule
-* Left panel (`Schedule` Panel) displays the list of clients basic information.
-* Right panel (`Schedule` Panel) displays the list of appointments sorted chronologically. (Refresh the page by changing tabs or reopening FitBook to see the appointment get removed after it passes its deadline.)
+* Left panel (`Schedule` tab) displays the list of clients' basic information.
+* Right panel (`Schedule` tab) displays the list of appointments sorted chronologically. (Refresh the page by changing tabs or reopening FitBook to see the appointment get removed after it passes its deadline.)
   
 
   ![Schedule Panel](images/schedule.png)
