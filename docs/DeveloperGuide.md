@@ -15,8 +15,8 @@ title: Developer Guide
     * [2.6 Common Classes](#26-common-classes)
   * [3. Implementation](#3-implementation)
     * [3.1 Add Feature](#31-add-feature)
-      * [3.1.1 Add a subsection](#311-add-a-subsection)
-      * [3.1.2 Delete a subsection](#312-delete-a-subsection)
+      * [3.1.2 Add a subsection](#312-add-a-subsection)
+      * [3.1.4 Delete a subsection](#314-delete-a-subsection)
     * [3.2 Clear Feature](#32-clear-feature)
     * [3.3 Delete Feature](#33-delete-feature)
     * [3.4 Edit Feature](#34-edit-feature)
@@ -245,7 +245,22 @@ The following diagram summarises the sequence of events happening during the exe
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![AddCommandActivityDiagram](images/AddActivityDiagram.png)
 
-#### 3.1.1 Add a Subsection
+#### 3.3.1 Design Consideration
+
+#### Option 1 (current choice):
+* Currently, the user can add multiple tasks with different names but same other fields in the task command.
+* pros: This approach helps user simplify the addition of repetitive tasks, such as lab assignments but for different subjects.In this situation, the user could just enter `n/CS2106 n/CS2109S d/labs`.
+* cons: For events and deadlines, this feature is not that useful because there will rarely any situation where two events share the same start and end time.
+
+Option 1 is chosen as it allows user to still add events and deadlines that happen to be at the same time but with different names.
+
+#### Option 2:
+* We do not allow the addition of multiple deadlines and events in the same command line.
+* pros: This is more realistic to real-life situation where two deadlines are unlikely to be on the exact same time and two events occur at the same time.
+* cons: While few, there are still situations where two events can happen at the same time, such as doing some discussion during a tutorial. In this case, group discussion and tutorial can be added as two events with same duration.
+
+
+#### 3.1.2 Add a Subsection
 Our app supports adding a subsection to a parent task. The command word is `subsection` and the parameters are `index`, `n/name` and `d/description`. Note that the description here is optional.
 A user may wish to add a subsection to a task named "Do homework" with index 1 in the list currently shown to the user, and the user can do so by entering `subsection 1 n/CS2100 d/Lab 1`.
 Note that subsection only contains a name and description, unlike the parent task that contains more fields.
@@ -270,7 +285,21 @@ The following diagram summarises the sequence of events happening during the exe
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![SubsectionActivityDiagram](images/SubsectionActivityDiagram.png)
 
-#### 3.1.2 Delete a Subsection
+#### 3.1.3 Design Consideration
+
+#### Option 1 (current choice):
+* The user can now only add name as subsection into the main tasks.
+* pros: This approach makes subsection very easy to add, in fact, online applications such as Microsoft Todo uses the same approach in adding subsection.
+* cons: User cannot add effort level to the task, and subsections also cannot take the type of deadlines and events. This limits the functionality of subsections. We plan to address this and our enhancements section attempt to address this problem. 
+
+Option 1 is chosen for now as it aligns with the main purpose of subsection which is to give users a general breakdown of tasks.
+
+#### Option 2:
+* Allow the user to add deadlines and events in the subsection, as well as effort levels.
+* pros: This approach allows user to have a clearer plan of doing a huge task, by setting small deadlines and events in the subsections. 
+* cons: This makes the subsection unwieldy to add, and it is harder to develop as well. 
+
+#### 3.1.4 Delete a Subsection
 The user can delete a subsection from a parent task by entering `remove-subsection` command.
 A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of
 the parent task, and the index after the `I` parameter refers to the index of the subsection in the parent task.
@@ -294,6 +323,7 @@ The following diagram summarises the sequence of events happening during the exe
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
 ![RemoveSubsectionCommandActivityDiagram](images/RemoveSubsectionActivityDiagram.png)
+
 
 ### 3.2 Clear Feature
 
@@ -383,6 +413,20 @@ The following sequence diagram summarizes what happens in this example usage sce
 The following activity diagram summarizes what happens when a user executes a new `edit` command:
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### 3.4.1 Design Consideration
+
+#### Option 1 (current choice): 
+* Edit can only edit a single task at a time.
+* Pros: Easy to develop.
+* Cons: It takes more time to edit multiple tasks if they happen to need the same change, e.g. events are postponed to the same date.
+
+Option 1 is chosen as user will be unlikely to edit two or more tasks' fields to be the same.
+
+#### Option 2: 
+* User can edit more than one task in one command line.
+* Pros: User can edit two or more tasks' field to the same.
+* Cons: Harder to develop and not very likely to be used.
 
 ### 3.5 Find Feature
 
