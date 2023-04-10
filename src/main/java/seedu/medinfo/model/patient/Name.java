@@ -22,7 +22,6 @@ public class Name {
 
     /**
      * Constructs a {@code Name}.
-     *
      * @param name A valid name.
      */
     public Name(String name) {
@@ -33,6 +32,7 @@ public class Name {
 
     /**
      * Returns true if a given string is a valid name.
+     * @param test The string to be tested.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);

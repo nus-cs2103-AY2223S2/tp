@@ -19,8 +19,8 @@ import seedu.medinfo.model.ward.WardName;
 public class AddWardCommandParser implements Parser<AddWardCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddWardCommand
-     * and returns an AddWardCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddWardCommand}
+     * and returns an {@code AddWardCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

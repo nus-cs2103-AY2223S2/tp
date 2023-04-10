@@ -5,10 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 /**
- * Represents the result of a command execution.
+ * Represents the result of a {@code Command} execution.
  */
 public class CommandResult {
 
+    /** Result of the executed {@code Command} */
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */

@@ -30,11 +30,12 @@ Given below are my contributions to the project.
 * View Pull Requests I have authored [**here**](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+author%3Adaytona65+) .
 
 
-* **Project management**:
+* **Project management and Contributions**:
     * Led ideation and implementation of new features for my team
     * Managed the review and merging of my  team's PRs
     * Helped assign and delegate some tasks to team members
     * Ensured team vision was aligned
+    * Wrote Javadocs and helped to check code quality.
 
 
 * **Enhancements to existing features**:

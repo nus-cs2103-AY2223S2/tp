@@ -105,40 +105,71 @@ public class Patient {
         this.discharge = discharge;
     }
 
+    /**
+     * Returns the Nric.
+     */
     public Nric getNric() {
         return nric;
     }
 
+    /**
+     * Returns the Name.
+     */
     public Name getName() {
         return name;
     }
 
+    /**
+     * Returns the Name as a String.
+     */
     public String getNameString() {
         return name.fullName;
     }
 
+    /**
+     * Returns the Status.
+     */
     public Status getStatus() {
         return status;
     }
+
+    /**
+     * Returns the Status as a String.
+     */
     public String getStatusDesc() {
         return status.getDesc();
     }
 
+    /**
+     * Returns the Ward for comparison.
+     */
     public Ward getWard() {
         return wardWithName(ward.wardName);
     }
+
+    /**
+     * Returns the WardName.
+     */
     public WardName getWardName() {
         return ward;
     }
+
+    /**
+     * Returns the WardName as a String.
+     */
     public String getWardNameString() {
         return wardWithName(ward.wardName).getNameString();
     }
+
+    /**
+     * Returns the discharge date.
+     */
     public Discharge getDischarge() {
         return discharge;
     }
 
     /**
-     * Returns the discharge date as String.
+     * Returns the discharge date as a String.
      */
     public String getDischargeString() {
         return discharge.value;
@@ -152,16 +183,28 @@ public class Patient {
         return discharge.getDateTime();
     }
 
+    /**
+     * Sets a new Status.
+     * @param newStatus Status to be set.
+     */
     public void setStatus(Status newStatus) {
         requireAllNonNull(newStatus);
         status = newStatus;
     }
 
+    /**
+     * Sets a new Ward.
+     * @param newWard Ward to be set.
+     */
     public void setWard(WardName newWard) {
         requireAllNonNull(newWard);
         ward = newWard;
     }
 
+    /**
+     * Sets a new Discharge.
+     * @param newDischarge Discharge to be set.
+     */
     public void setDischarge(Discharge newDischarge) {
         requireAllNonNull(newDischarge);
         discharge = newDischarge;
@@ -276,7 +319,6 @@ public class Patient {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(nric, name, status, ward, discharge);
     }
 
