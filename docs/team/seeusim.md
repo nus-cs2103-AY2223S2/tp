@@ -127,4 +127,4 @@ Given below are my contributions to the project:
     [\#154](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/154), [\#155](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/155), 
     [\#185](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/185), [\#254](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/254), 
     [\#255](https://github.com/AY2223S2-CS2103T-T13-2/tp/pull/255)
-  * Reported 12 bugs in the Practical Exam dry run: **[Bug Report](https://github.com/SeeuSim/ped/tree/main/files)**
+  * Reported 12 bugs in the Practical Exam dry run: **[Bug Report](https://github.com/SeeuSim/ped/issues)**
