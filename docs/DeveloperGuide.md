@@ -781,21 +781,24 @@ Similar process exist for set of modules.
    within the final set. If the final set is an empty one, it will clear existing set
 
 ```java
-Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved().orElse(new HashSet<>());
-Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded().orElse(new HashSet<>());
-Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills()); // Copy off original
+Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved()
+        .orElse(new HashSet<>());
+Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded()
+        .orElse(new HashSet<>());
+Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills());
 updatedSkills.removeAll(removedSkills); // Remove takes priority
 updatedSkills.addAll(addedSkills);
 Set<Skill> finalSkills = editPersonDescriptor.getSkillsFinal().orElse(updatedSkills);
-Set<Module> removedModules = editPersonDescriptor.getModulesRemoved().orElse(new HashSet<>());
-Set<Module> addedModules = editPersonDescriptor.getModulesAdded().orElse(new HashSet<>());
-Set<Module> updatedModules = new HashSet<>(personToEdit.getModules()); // Copy off original
+Set<Module> removedModules = editPersonDescriptor.getModulesRemoved()
+        .orElse(new HashSet<>());
+Set<Module> addedModules = editPersonDescriptor.getModulesAdded()
+        .orElse(new HashSet<>());
+Set<Module> updatedModules = new HashSet<>(personToEdit.getModules());
 updatedModules.removeAll(removedModules); // Remove takes priority
 updatedModules.addAll(addedModules);
-Set<Module> finalModules = editPersonDescriptor.getModulesFinal().orElse(updatedModules);
+Set<Module> finalModules = editPersonDescriptor.getModulesFinal()
+        .orElse(updatedModules);
 ```
-
-<br>
 
 ##### Design Considerations
 
