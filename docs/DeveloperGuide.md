@@ -142,7 +142,6 @@ The `UI` component,
 
 <div style="page-break-after: always;"></div>
 <br /> 
-<br /> 
 
 **`Page` class**
 
@@ -160,7 +159,6 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 
 <div style="page-break-after: always;"></div>
 
- <br /> 
  <br /> 
 
 **How a `Page` is generated** 
@@ -196,7 +194,6 @@ How the `Logic` component works:
 
 <div style="page-break-after: always;"></div>
 <br /> 
-<br /> 
 
 The *Sequence Diagram* below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -210,7 +207,6 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 </div>
 
 <div style="page-break-after: always;"></div>
-<br /> 
 <br /> 
 
 The *Class Diagram* below outlines classes in `Logic` used for parsing a user command:
@@ -564,6 +560,8 @@ the list of events corresponding to those dates.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -772,7 +770,9 @@ Use case ends.
 * **Position**: The name of the internship position/role.
 * **Company**: This refers to the hiring company for any internship.
 * **Description**: Additional details about the internship. For example, contact details of hiring manager, link to internship webpage, requirements of internship)
-* **Event**: 
+* **Event**: Represents a Deadline or an Interview associated to an Internship.
+  * Deadline: An Event that only has an end timing (E.g. Internship Application Submission Deadline, Offer Acceptance Deadline)
+  * Interview: An Event that has both a start and end timing (E.g. Interview, Online Assessments)
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
