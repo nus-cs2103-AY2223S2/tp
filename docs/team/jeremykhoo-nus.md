@@ -2,17 +2,14 @@
 layout: page
 title: Jeremy Khoo's Project Portfolio Page
 ---
-
 ### Project: QuickContacts
 QuickContacts is a contacts and schedule management system that enables you to track your contacts and manage your schedule with ease! QuickContacts is CLI-focused and designed for efficiency. It is written in Java, and has about 10 kLoC.
-
 Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jeremykhoo&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 ### Commands: Editm
 * Allows editing of meeting details
 #### Reflection:
 Easy to implement. Similar to AB3 edit command for a person. Was a good 1st feature to implement to get use to the code base
-
 ### Commands: Sortm
 * Allows sorting of meeting by their attributes
 #### Reflection:
@@ -21,7 +18,6 @@ in the JavaFX 11, sort was not yet implemented for `FilteredList`
 The work round was to pass comparators down to the `ObservableList` that `FilteredList` inherits and sort the underlying list instead
 Another difficulty was, trying to sort with our custom DateTime object.
 This required me to work close with the teammate that implemented the DateTime object.
-
 ### Bug fix: Editing name of person updates the corresponding name in the meeting panel
 * Before: The meeting Panel would have the old name, even though the person's name was updated
 * Currently: The meeting Panel update the person's name, when person updates his name
