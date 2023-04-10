@@ -1,0 +1,13 @@
+{
+  "persons": [ {
+    "name": "Valid Person",
+    "phone": "94821424",
+    "email": "hans@example.com",
+    "books" : []
+  }, {
+    "name": "Person With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "books" : []
+  } ]
+}

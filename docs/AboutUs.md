@@ -5,55 +5,53 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Jarrett Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jarrett0203.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Jarrett0203)]
+[[portfolio](team/jarrett0203.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Team Lead
 
-### Jane Doe
+### Glen Lim
+<img src="images/glyfy.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/glyfy)]
+[[portfolio](team/glyfy.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Kenz Antonius
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kenzantonius.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/kenzantonius)]
+[[portfolio](team/kenzantonius.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Sanjevi Ravi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sanjevi13.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sanjevi13)]
+[[portfolio](team/sanjevi13.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
+
+### Kynhan Tang
+
+<img src="images/kynhan.png" width="200px">
+
+[[github](http://github.com/kynhan)]
+[[portfolio](team/kynhan.md)]
+
+* Role: Developer
+* Responsibilities: Integration
