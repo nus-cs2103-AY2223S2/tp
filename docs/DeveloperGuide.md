@@ -1455,13 +1455,14 @@ OfficeConnect is a project built upon AB3, which was built out of the SE-EDU ini
 Having written more than **12,000 of LOC cumulatively, coupled with appropriate, concise documentation**, we also have endeavored to abide by the code quality and design patterns that were taught throughout the span of CS2103, and shown in AB3. We have also strived to maintain good code coverage, applying what was taught in the later weeks, resulting in a **code coverage of near 70% in Codecov.**
 
 In the section, we will detail some of the hurdles that we faced through the iterations of our tP, both design and technical wise.
+
+<div style="page-break-after: always;"></div>
+
 ### 8.1 Design Challenges
 Although OfficeConnect is a brownfield project building on the AB3, it was necessary to go over the AB3, identify weak points within AB3's interface, and reflect on which aspects of the interface needed a re-implementation. Some big design changes includes:
 * Inclusion of a quickstart guide: After going through our user stories and reflecting on how the user may experience OfficeConnect, we felt it may be more appropriate to include a guide that gives users a brief rundown on the basics of the app, something that was not considered in AB3.
 * Modifications for the help guide. Instead of just a URL link to the online UserGuide, we felt there was a need for a more "immediate" and quick reference guide that should be available, especially in settings where internet connection may not be available (which is also one of our NFRs.) By including a more detailed but sufficiently concise guide, we aim to ease the user into OfficeConnect more smoothly.
 * Integrating OfficeConnectModel with Model. We wanted to change AB3 to include tasks, but we did not want to modify the old Model component as it was specialised for persons. Hence, we decided to create a new OfficeConnectModel that helps us store tasks. Initially, they existed as two separate entities, which was easier to implement, but was of considerably poorer design as we realised that Model could be contained in OfficeConnectModel. Hence, we decided to include Model into OfficeConenctModel. However, this required changing a lot of test cases, which was very tedious and time consuming.
-
-<div style="page-break-after: always;"></div>
 
 ### 8.2 Technical Challenges
 * As AB3 is quite a big project, it was quite difficult for us to understand the structure and details behind the code initially. To overcome this, we decided to start project meetings on our project early to allow us more time to understand AB3's implementation, and also help each other clarify our doubts regarding AB3. This understanding helped reduce the learning curve when trying to implement OfficeConnect's new features, as some of the features had a similar concept and understanding how it was implemented in AB3 significantly lowered the difficulty level when implementing those methods.
