@@ -95,6 +95,3 @@ Given below are my contributions to the project.
 
     * Enhancement raised:
       * [#131](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/131)
-
-* **Tools**:
-    * to be added soon
