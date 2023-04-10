@@ -1,0 +1,10 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "course": "Computer Science",
+    "year": "1",
+    "github": "9482424",
+    "email": "invalid@email!3e",
+    "linkedin": "linkedin.com/in/hans"
+  } ]
+}

@@ -4,18 +4,25 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+Codoc *-right-> "1" UniquePersonList
+Codoc *-up-> "1" UniqueSkillList
+Codoc *-right-> "1" UniqueModuleList
 
-UniqueTagList -right-> "*" Tag
+UniqueSkillList -[hidden]down- UniquePersonList
+UniqueModuleList -[hidden]down- UniquePersonList
+
+UniqueModuleList -right-> "*" Module
+UniqueSkillList -right-> "*" Skill
 UniquePersonList -right-> Person
 
-Person -up-> "*" Tag
+Person -up-> "*" Skill
+Person -up-> "*" Module
 
+Person *--> ProfilePicture
 Person *--> Name
-Person *--> Phone
+Person *--> Course
+Person *--> Year
+Person *--> Github
 Person *--> Email
-Person *--> Address
+Person *--> Linkedin
 @enduml

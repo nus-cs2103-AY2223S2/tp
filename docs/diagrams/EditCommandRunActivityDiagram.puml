@@ -1,0 +1,32 @@
+@startuml
+sprite $rake [16x16/8] {
+0000000000000000
+0000000jj0000000
+0000000jj0000000
+0005555jj5555000
+000jjeejjeejj000
+000jj00jj00jj000
+000jj00jj00jj000
+0000000000000000
+}
+
+start
+:EditCommandParser parses user command into EditCommand <$rake>;
+:EditCommand checks if command can execute <$rake>;
+:EditCommand executes;
+:Create a person with updated name, GitHub, email, course, year, LinkedIn;
+:Edit a person's skills and modules <$rake>;
+
+if () then ([Edited person had no change])
+    :throw no change made error message;
+else ([else])
+    if () then ([Edited person already exist in database])
+        :throw duplicate person error message;
+    else ([else])
+        :Replace person with edited person;
+        :Set protagonist to edited person in model;
+        :Reset predicate to show all person in the model;
+    endif
+endif
+stop
+@enduml

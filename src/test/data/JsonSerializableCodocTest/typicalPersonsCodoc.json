@@ -1,0 +1,74 @@
+{
+  "_comment": "Codoc save file which contains the same Person values as in TypicalPersons#getTypicalCodoc()",
+  "persons" : [ {
+    "profilePicturePath" : "src/main/resources/images/avataricons/001-bear.png",
+    "name" : "Alice Pauline",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "alice-Pauline",
+    "email" : "alice@example.com",
+    "linkedin" : "linkedin.com/in/alice",
+    "skills" : [ "python" ],
+    "modules" : [ ]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/002-rabbit.png",
+    "name" : "Benson Meier",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "bensonmeier",
+    "email" : "johnd@example.com",
+    "linkedin" : "linkedin.com/in/alice",
+    "skills" : [ "java", "python" ],
+    "modules" : ["AY2223S1 CS1101S", "AY2223S1 CS1231S"]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/003-panda.png",
+    "name" : "Carl Kurz",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "Carl-Kurz",
+    "email" : "heinz@example.com",
+    "linkedin" : "linkedin.com/in/carl123",
+    "skills" : [ ],
+    "modules" : [ ]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/004-sloth.png",
+    "name" : "Daniel Meier",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "d4nielMeier",
+    "email" : "cornelia@example.com",
+    "linkedin" : "linkedin.com/in/daniel-Meier",
+    "skills" : [ "python" ],
+    "modules" : [ "AY2223S2 CS2109S" ]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/005-hen.png",
+    "name" : "Elle Meyer",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "Elle-meyer",
+    "email" : "werner@example.com",
+    "linkedin" : "linkedin.com/in/elle101",
+    "skills" : [ ],
+    "modules" : [ ]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/006-puffer-fish.png",
+    "name" : "Fiona Kunz",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "F1onaKunz",
+    "email" : "lydia@example.com",
+    "linkedin" : "linkedin.com/in/FIONA-kunz",
+    "skills" : [ ],
+    "modules" : [ ]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/007-beaver.png",
+    "name" : "George Best",
+    "course": "Accounting",
+    "year": "1",
+    "github" : "george-b3st",
+    "email" : "anna@example.com",
+    "linkedin" : "linkedin.com/in/GeorGe123",
+    "skills" : [ ],
+    "modules" : [ ]
+  } ]
+}

@@ -1,0 +1,17 @@
+{
+  "persons": [ {
+    "name": "Valid Person",
+    "course": "Computer Science",
+    "year": "1",
+    "github": "9482424",
+    "email": "hans@example.com",
+    "linkedin": "linkedin.com/in/hans"
+  }, {
+    "name": "Person With Invalid Github Field",
+    "course": "Computer Science",
+    "year": "1",
+    "github": "948as--df2424",
+    "email": "hans@example.com",
+    "linkedin": "linkedin.com/in/hans"
+  } ]
+}

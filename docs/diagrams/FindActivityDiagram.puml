@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+
+start
+:User inputs command;
+:CodocParser parses input command;
+:Input command matches Find command;
+:CodocParser creates new FindCommandParser;
+:FindCommandParser parses the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([else])
+    :Create ArgumentMultimap to recognise prefixes;
+    if () then ([else])
+        :Create a combinedPredicate <$rake>;
+        :Create a FindCommand\nbased on combinedPredicate;
+        :LogicManager executes the\nFindCommand on the model;
+        :ModelManager updates the FilteredPersonList\nby setting the combinedPredicate;
+        :UiManager gets the FilteredPersonList\nand displays it to user;
+    else ([preamble not empty])
+        :Throw new ParseException;
+        :Show error message to user;
+    endif
+else ([trimmed arguments is empty])
+    :Throw new ParseException;
+    :Show error message to user;
+endif
+stop
+@enduml

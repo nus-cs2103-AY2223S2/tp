@@ -1,0 +1,20 @@
+{
+  "persons": [ {
+    "profilePicturePath" : "src/main/resources/images/avataricons/001-bear.png",
+    "name": "Alice",
+    "course": "Computer Science",
+    "year": "1",
+    "github": "alice",
+    "email": "alice@example.com",
+    "linkedin": "linkedin.com/in/alice",
+    "skills": [ "python" ]
+  }, {
+    "profilePicturePath" : "src/main/resources/images/avataricons/002-rabbit.png",
+    "name": "Alice Pauline",
+    "course": "Computer Science",
+    "year": "1",
+    "github": "alice-Pauline",
+    "email": "alice@example.com",
+    "linkedin": "linkedin.com/in/alice-pauline"
+  } ]
+}

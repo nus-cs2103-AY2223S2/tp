@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'codoc.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -19,6 +19,11 @@ repositories {
 checkstyle {
     toolVersion = '10.2'
 }
+
+run {
+    enableAssertions = true
+}
+
 
 test {
     useJUnitPlatform()
@@ -66,7 +71,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'codoc.jar'
 }
 
 defaultTasks 'clean', 'test'

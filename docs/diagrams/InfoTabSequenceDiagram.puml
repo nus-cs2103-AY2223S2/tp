@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+box MainWindow MAIN_COLOR_T2
+participant ":MainWindow" as MainWindow MAIN_COLOR
+end box
+
+box InfoTab LOGIC_COLOR_T1
+participant ":InfoTab" as InfoTab LOGIC_COLOR
+end box
+
+box DetailedInfo MODEL_COLOR_T1
+participant ":DetailedContact" as DetailedContact MODEL_COLOR
+participant ":DetailedModule" as DetailedModule MODEL_COLOR
+participant ":DetailedSkill" as DetailedSkill MODEL_COLOR
+end box
+
+create InfoTab
+MainWindow -> InfoTab : new InfoTab(protagonist, tab)
+activate InfoTab
+alt tab == "c"
+    create DetailedContact
+    InfoTab -> DetailedContact
+    activate DetailedContact
+else tab == "m"
+    create DetailedModule
+    InfoTab -> DetailedModule
+    activate DetailedModule
+else tab == "s"
+    create DetailedSkill
+    InfoTab -> DetailedSkill
+    activate DetailedSkill
+end
+
+@enduml
