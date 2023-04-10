@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes subsection command;
+
+:Extracts all the parameters from the command;
+
+:Gets the task at the corresponding index in the task list;
+
+:Creates a new task with the new subsection added to the task's subsection list;
+
+:Set the old task in the task list with the new task;
+
+:Update UI to show the added task(s);
+stop
+@enduml

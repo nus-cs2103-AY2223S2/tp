@@ -1,0 +1,14 @@
+{
+  "tasks": [ {
+    "name": "Alice Pauline",
+    "description": "Alice's description",
+    "tagged": [ "friends" ],
+    "effort": 2,
+    "hasDescription" : "true;"
+  }, {
+    "name": "Alice Pauline",
+    "description": "Alice's description",
+    "effort": 2,
+    "hasDescription" : "true;"
+  } ]
+}

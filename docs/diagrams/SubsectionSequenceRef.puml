@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+
+participant "a:AddSubtaskCommand" as AddSubtaskCommand LOGIC_COLOR
+participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
+participant "l:Deadline" as Deadline LOGIC_COLOR
+participant "v:Event" as Event LOGIC_COLOR
+
+mainframe "sd create task with new subsection"
+
+alt old task is SimpleTask
+
+    AddSubtaskCommand -> SimpleTask
+    activate SimpleTask
+
+    SimpleTask --> AddSubtaskCommand : t (new task)
+    deactivate SimpleTask
+
+else old task is Deadline
+    AddSubtaskCommand -> Deadline
+    activate Deadline
+
+    Deadline --> AddSubtaskCommand : l (new task)
+    deactivate Deadline
+
+else old task is Event
+    AddSubtaskCommand -> Event
+    activate Event
+
+    Event --> AddSubtaskCommand : v (new task)
+    deactivate Event
+end
+@enduml

@@ -1,0 +1,12 @@
+{
+  "plans" : [ {
+    "task" : [ {
+      "name": "Hans Muster",
+      "description": "",
+      "effort": 2
+    } ],
+    "desiredWorkload" : 5,
+    "currentWorkload" : 0,
+    "date" : "2023-04-26"
+  } ]
+}

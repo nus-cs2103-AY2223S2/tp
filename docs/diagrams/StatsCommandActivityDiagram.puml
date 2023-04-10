@@ -1,0 +1,10 @@
+@startuml
+start
+
+:User executes a Stats Command;
+:Instantiate a StatsCommand;
+:Count tags in TaskByTagTracker;
+:Converts findings into String to display to user;
+
+stop
+@enduml

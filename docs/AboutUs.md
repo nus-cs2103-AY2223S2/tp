@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lee Yu Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/huggenguggen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[homepage](https://www.yuhenglee.com)]
+[[github](https://github.com/Huggenguggen)]
+[[portfolio](team/huggenguggen.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Alert/Find Feature + UI
 
-### Jean Doe
+### Ong Chong Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lywich.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lywich)]
+[[portfolio](team/lywich.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Refactoring + Scheduling + Integration
+
+### Hao Zeyu
+
+<img src="images/programmerhao.png" width="200px">
+
+[[github](https://github.com/PROGRAMMERHAO)] [[portfolio](team/programmerhao.md)]
+
+* Role: Developer
+* Responsibilities: Subsection/Remove-subsection feature, Find/Add features enhancements
+
+### Joy Ng Jing Ru
+
+<img src="images/joyngjr.png" width="200px">
+
+[[github](http://github.com/joyngjr)]
+[[portfolio](team/joyngjr.md)]
+
+* Role: Documentation
+* Responsibilities: Delete/Stats/Schedule Feature
