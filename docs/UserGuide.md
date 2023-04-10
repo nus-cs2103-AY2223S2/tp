@@ -122,7 +122,7 @@ yourself with the command format from the notes below.
 
 **:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add nric/NRIC name/NAME`, `NRIC` and `NAME` are parameters which can be used as `add nric/S1234567A name/John Doe`.
 
 - Items in square brackets are optional.<br>
@@ -262,7 +262,7 @@ Format: `delete INDEX`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about `delete`:**<br>
-On entering a `delete` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that the user truly intends to perform that action and is fully aware of its consequences.
+On entering a `delete` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that you truly intend to perform that action and are fully aware of its consequences.
 </div>
 
 Examples:
@@ -328,8 +328,11 @@ Format: `deleteward INDEX`
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about `deleteward`:**<br>
-On entering a `deleteward` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that the user truly intends to perform that action and is fully aware of its consequences.
+- On entering a `deleteward` command, a confirmation window will pop-up requesting for confirmation, regardless of the command's validity. This is to verify that you truly intend to perform that action and are fully aware of its consequences.
+- You will not be able to delete a ward that currently has patients assigned to it.
 </div>
+
+<div markdown="block" class="alert alert-info">
 
 Examples:
 
