@@ -9,24 +9,9 @@ GoodMatch is a desktop application used for managing applicants and job listings
 
 Given below are my contributions to the project.
 
-* Add listing class
-* Added ListingBookParser (main parser body for user inputs)
-  Added AddCommandParser (parser for the add command)
-  Added AddCommand (add command to be executed after being parsed)
-  Added AddCommandTest (test class to test the AddCommand class)
-  Added AddCommandParserTest (test class to test the AddCommandParser class)
-  Editted the CSS for applicants to show up like tags
-  Added some prefixes
-  Added the command to the switch case in ListingBookParser
-* Commented code in CSS files
-  removed unused CSS code
-  changed the colours in a separate file in case we want to add a light and dark theme toggle in future
-  adds other CSS code to change the look of some things like rounding corners
-* Kickstart UG and DG
-* majority of UG and DG
 * **New Feature**: Added Listing class
 
-  * What it does: It is the listing that users will be creating, deleting and editing when they use our app
+  * What it does: It is the listing that users will be creating, deleting and editing when they use our app.
   * Justification: It is the basic building block of our application, a listing is what users are working with.
   * Highlight: Implementation of things at the beginning were mainly handled by Homun, Branda and I. We had to get the ball rolling with though simple features but features that were tough to implement because it was the very first step taken.
   * Credits: This class was implemented without referencing any other sources because our Listing is unique.
@@ -52,15 +37,23 @@ Given below are my contributions to the project.
 * **Documentation**:
 
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `exit`.
+        * Edit according to peer review and comments from CS2101 Prof.
+        * Checked through and edited the next few drafts.
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+      * Implemented first draft.
+      * Implemented second draft.
+        * Front matters.
+        * Acknowledgements.
+        * Setting up.
+        * Design.
+        * Implementation overview, add, and autocomplete.
+        * Appendices.
+      * Everyone helped to edit together.
 
 * **Community**:
 
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other classmates ([1](), [2]())
+    * PRs reviewed (with non-trivial review comments): 23 PRs in total, 22 of them are non-trivial reviews.
+    * Contributed to forum discussions: 4 posts.
+    * Reported bugs and suggestions for other teams in the class: [PED catcher](https://github.com/clevon-w/ped/issues).
 
