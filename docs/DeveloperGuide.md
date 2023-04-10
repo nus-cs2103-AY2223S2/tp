@@ -14,15 +14,16 @@ title: Developer Guide
 - [**Implementation**](#implementation)
   - [Add remark feature](#add-remark-feature)
   - [Show opening details feature](#show-opening-details-feature)
-  - [Upcoming keydates feature](#upcoming-keydates-feature)
-  - [Status filtering feature](#status-filtering-feature)
     - [Design considerations:](#design-considerations)
+  - [Upcoming keydates feature](#upcoming-keydates-feature)
+    - [Design considerations:](#design-considerations-1)
+  - [Status filtering feature](#status-filtering-feature)
+    - [Design considerations](#design-considerations-2)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
   - [Adding an opening](#adding-an-opening)
@@ -43,6 +44,7 @@ title: Developer Guide
   - [**Enhancement 2: Keydates should accept time**](#enhancement-2-keydates-should-accept-time)
   - [**Enhancement 3: Position should allow for special characters**](#enhancement-3-position-should-allow-for-special-characters)
   - [**Enhancement 4: Addition of keydates should be accumulative**](#enhancement-4-addition-of-keydates-should-be-accumulative)
+- [**Glossary**](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,26 +192,30 @@ Classes used by multiple components are in the `seedu.ultron.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Add remark feature
-<!-- Darren -->
-![UI Interaction for the `remark 1 r/2 OAs` Command](images/RemarkSequenceDiagram.png)
 
 The `RemarkCommandParser` class parses the user input and returns a `RemarkCommand` object. The `RemarkCommand` object then accesses the `Model` component to get its filteredOpenings.
 
 The `RemarkCommand` object accesses the filteredOpenings to get the opening at the specified index. It then uses the details of the retrieved opening along with a new remark to create a new opening.
 
+![UI Interaction for the `remark 1 r/2 OAs` Command](images/RemarkSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The `RemarkCommand` object then calls `setOpening()` on `Model`, passing in the openingToEdit and editedOpening. The `Model` will then set the opening at the index specified to be the editedOpening.
 
 Once the opening in the model has been changed, the result indicating the command's success will be returned to `LogicManager` and `MainWindow`
 
-
-
 ### Show opening details feature
-<!-- Yu Fei -->
-![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
 
 The `show` command was outlined with existing commands which take in indexes. It is similar to both the `delete` and `edit` commands, accessing the displayed list in  the `Model` component.
 
 The `ShowCommandParser` class parses the user input and returns a `ShowCommand` object. The `ShowCommand` object then accesses the `Model` component to get the opening at the specified index from the openings list.
+
+![UI Interaction for the `show 1` Command](images/ShowSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 An `Index` is tracked by the model component and updated on every `ShowCommand` execution. A `CommandResult` object is then returned to the `LogicManager`.
 
@@ -219,13 +225,72 @@ A new `OpeningDetailsPanel` is created and displayed to the user. The `OpeningDe
 
 A simplified sequence was employed for mouse clicks. The `OpeningListPanel` class handles the mouse click event and calls the logic component to set the selected opening. The `MainWindow` class then calls the `handleShow` method to recreate the `OpeningDetailsPanel` with the selected opening.
 
+#### Design considerations:
+
+**Aspect:** How show command executes:
+
+* **Alternative 1 (current choice):** Access the opening at the specified index from the displayed list in the `Model` component.
+    * Pros:
+      * Easy to implement.
+      * Meets the basic requirement of the feature.
+      * Simple to understand.
+    * Cons: May not be very useful if the user wants to see the details of an opening that is not displayed in the current list.
+* **Alternative 2:** Access the opening at the specified index from the full list in the `Model` component.
+    * Pros:
+      * More useful as the user can see the details of any opening in the address book.
+      * Flexible usage.
+      * Follows the `find` command which also accesses the full list.
+    * Cons: We must ensure that the index is still valid even if the list is filtered or sorted, which may be difficult to implement.
+
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
+Implementation
+
+The `upcoming` feature takes in a positive integer as the argument. This integer represents the number of days to consider, excluding today. The feature will filter openings based on whether their keydate falls between today and the specified number of days in the future, including today. It also filters out openings without any keydates.
+
+Given below is an example usage scenario and ow the upcoming feature's mechanisms behaves in steps.
+
+Step 1. The user launches the application with pre-existing openings added, each with certain keydates, such as `Interview: 2023-10-10`. The user decides to only want to focus on openings that has key events coming up in the next 5 days. The user executes `upcoming 5` to filter the openings to only show openings with keydates within 5 days.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the execution, the list will not be updated and remain unchanged.
+</div>
+
+The following sequence diagram shows how the status operation works:
 
 ![UI Interaction for the `upcoming 5` Command](images/UpcomingSequenceDiagram.png)
 
+Step 2. The `UltronParser` class parses the user input of `upcoming 5` and returns a `UpcomingCommand` object with a `OpeningsBeforeDaysPredicate` representing the `5` portion of the input.
+
+Step 3. The `LogicManager` then calls the `execute()` of the `UpcomingCommand` object, which accesses the `Model` component to update the current list of openings to be displayed. This new list will be filtered based on the `OpeningsBeforeDaysPredicate`, checking through the full list of openings for openings within `5` days.
+
+Step 4. The `MainWindow` class receives the `CommandResult` object and the new filtered list is displayed for the user.
+
+#### Design considerations:
+
+**Aspect: Allow for inputs in months, weeks and days rather than days**
+
+* The benefit to split inputs might not be so apparent since users would usually only use this command nearer to the event dates. 
+
+
+* **Alternative 1 (current choice):** Allow only input in terms of days.
+    * Pros:
+        * Easier to implement.
+        * Efficient for users since they usually want to look for events close to the current date. 
+    * Cons:
+        * Less efficient if users want to find events which are further into the future. 
+
+
+* **Alternative 2:** Allow for input in terms of months, weeks and days.
+    * Pros:
+        * Users can give inputs without converting the period to days. 
+    * Cons:
+        * Increased complexity in terms of parsing
+        * Longer command line with more fields increases the amount the user has to type to use the command. 
+
+![UI Interaction for the `upcoming 5` Command](images/UpcomingSequenceDiagram.png)
+
+
 ### Status filtering feature
-<!-- Kevin -->
 
 Implementation
 
@@ -235,7 +300,7 @@ Given below is an example usage scenario and how the status feature's mechanisms
 
 Step 1. The user launches the application with pre-existing openings added, each with different status values, such as `APPLIED` or `INTERVIEWING`. The user decides to only want to focus on openings that he has only just applied to. The user executes `status applied` to filter the openings to only show openings with `APPLIED` status.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the exceution, the list will not be updated and remain unchanged.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails the execution, the list will not be updated and remain unchanged.
 </div>
 
 The following sequence diagram shows how the status operation works:
@@ -251,7 +316,7 @@ Step 3. The `LogicManager` then calls the `execute()` of the `StatusCommand` obj
 
 Step 4. The `MainWindow` class receives the `CommandResult` object and the new filtered list is displayed for the user.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How many keywords status command allows:**
 
@@ -304,8 +369,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`  | user                                       | see submission deadlines                                   | check them                                          |
 | `*`    | user | see the total number of accepted applications              | celebrate my success                                |
 | `*` | user | see all the outcomes of my application                     | properly assess my options                          |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -381,31 +444,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     1a1. Ultron informs the user that no openings of that status exist
     Use case ends
 
-**Use case:  UC 6 - Sort openings by deadline**
+**Use case:  UC 6 - List openings with upcoming keydates**
 
 **MSS**
 
-1. User enters a command to sort all openings by deadline in ascending order
-2. Ultron shows the user a list of openings that contain deadlines, sorted by deadlines in ascending order
+1. User enters a command to list all openings by keydates in ascending order, specifying a number of days
+2. Ultron shows the user a list of openings that contain keydates, sorted by keydates in ascending order
    Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+1a. No opening contains relevant keydates
+    1a1. Ultron informs the user that no openings contain keydates
+    Use case ends
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. The app should be fast and respond within 100ms when users input commands.
 3. The app should start up and load the list from a saved file within 1 second of opening.
-
-*{More to be added}*
-
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Opening**: Item representing an internship opening
-* **Keydate**: Item representing a event tied to a particular date or deadline
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
@@ -688,3 +745,11 @@ A large part of the project was spent on refactoring the codebase and ensuring p
 1. The current keydates field can be changed using the `edit` command. This change overwrites the current keydates of the opening being edited. This means that users have to re-enter every single past keydate when adding a new one to maintain the history. For example, a user might already have a keydate `OA@2023-11-11` and wants to add `Interview@2023-11-13`, the user will have to enter the command `edit 1 d/OA@2023-11-11 d/Interview@2023-11-13`.
 
 2. We propose to allow edit to still overwrite the keydates, but we add new commands `addkeydate` and `deletekeydate`. These two commands will take in an index and keydates as parameters to add new keydates or delete existing keydates for the indexed opening. Example usages would be `addkeydate 1 Interview@2023-11-13` and `deletekeydate 1 OA@2023-11-11`. It will also be able to take in multiple keydates and function accordingly (all input keydates for `deletekeydate` must be valid, ie if one of them do not exist, command fails).
+
+## **Glossary**
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Opening**: Item representing an internship opening
+* **Keydate**: Item representing a event tied to a particular date or deadline
+
+--------------------------------------------------------------------------------------------------------------------

@@ -68,6 +68,9 @@ deactivate Model
 RemarkCommand --> LogicManager : commandResult
 deactivate RemarkCommand
 
+RemarkCommand -[hidden]-> LogicManager
+destroy RemarkCommand
+
 LogicManager --> MainWindow : commandResult
 deactivate LogicManager
 
