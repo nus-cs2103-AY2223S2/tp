@@ -686,13 +686,40 @@ testers are expected to do more *exploratory* testing.
       1. Test case 1: `find n/pierce`
           - Testing for: Successful command execution
           - Expected: Command executes, but list does not change as there are no contacts.
-      3. Test case 5: `find 1 n/Pierce`
+      3. Test case 2: `find 1 n/Pierce`
           - Testing for: Index specified results in command failure
           - Expected: List does not update. Error details shown in the status message.
 
 ### Favouriting/Unfavouriting a contact
 
 ### Selecting a contact
+1. Select a contact while no other contact has been selected
+   1. Prerequisites: Non-empty address book with at only 1 contact. Navigate to the `Address book` tab using `tab 1`
+   2. Test Cases
+      1. Test case 1: `select 1`
+         - Testing for: Successful command execution 
+         - Expected: Contact at index 1 on the list is highlighted and
+          corresponding details of the contact is displayed on the details panel.
+      2. Test case 2: `select 2`
+          - Testing for: Index specified results in command failure
+          - Expected: No changes to list and details panel. Error details shown in the status message.
+2. Select a contact while another contact is had already been selected
+   1. Prerequisites: Non-empty address book with at least 2 contact. Navigate to the `Address book` tab using `tab 1` and
+   select contact at index 1 using `select 1`.
+   2. Test Cases
+      1. Test case 1: `select 1`
+         - Testing for: Successful command execution 
+         - Expected: Command executes, but no changes because same index selected
+      2. Test case 2: `select 2`
+         - Testing for: Successful command execution
+         - Expected: Contact at index 1 is no longer highlighted, contact at index 2 is highlighted and details on panel changes to that of contact at index 2
+3. Select an invalid index
+   1. Prerequisites: Empty addressbook. Navigate to the `Address book` tab using `tab 1`.
+   2. Test Cases:
+      1. Test case 1: `select 1`
+         - Testing for: Index specified results in command failure
+         - Expected: No changes to list and details panel. Error details shown in the status message.
+         
 
 
 
@@ -745,7 +772,7 @@ testers are expected to do more *exploratory* testing.
         1. Test case 1: `dark`
             - Testing for: Successful command execution
             - Expected: UI updates to dark mode
-1. Set UI to light mode from light mode
+1. Set UI to dark mode from dark mode
     1. Prerequisites: UI currently in dark mode (can be switched using the `dark` command)
     2. Test Cases
         1. Test case 1: `dark`
@@ -754,6 +781,22 @@ testers are expected to do more *exploratory* testing.
 
 
 ### Moving to another tab in NeoBook
+1. Changing to a different tab
+   1. Prerequisites: NeoBook currently on address book tab.
+   2. Test Cases
+      1. Test case 1: `tab 2`
+         - Testing for: Successful command execution
+         - Expected: Switch to Events tab
+      2. Test case 2: `tab 3`
+       - Testing for: Successful command execution
+       - Expected: Switch to Me tab
+2. Changing to same tab
+   1. Prerequisites: NeoBook currently on address book tab.
+   2. Test Cases
+      1. Test case 1: `tab 1`
+         - Testing for: Successful command execution
+         - Expected: No changes made because Neobook is already on desired tab. Warning message appears in
+         status to remind user that he/she is already on the tab.
 
 
 ### Saving data
