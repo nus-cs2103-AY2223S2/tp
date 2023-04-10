@@ -61,7 +61,7 @@ deactivate Descriptor
 Descriptor -[hidden]-> EditCommand
 destroy Descriptor
 
-EditCommand -> Model : setPerson(target, editedPerson)
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
 activate Model
 
 Model --> EditCommand
