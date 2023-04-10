@@ -54,9 +54,9 @@ Given below are my contributions to the project.
 * **Enhancements implemented:**
     * Added lower case allowance for `variant` names in `edit`, `add` and `find`.
     ([#108](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/108))
-    * Abstracted predicates to check for whether each prefix applies to a `Person`, splitting `FindPredicate` into
-    further abstracted `PersonContainsAgePredicate`, `PersonContainsDatePredicate`, `PersonContainsNamePredicate`,
-    `PersonContainsPostalPrediate`, `PersonContainsVariantsPredicate` and `RangeContainsPersonPredicate`.
+    * Abstracted predicates to check for whether each prefix applies to a Person, creating a `FindPredicate` from
+     further abstracted `PersonContainsAgePredicate`, `PersonContainsDatePredicate`, `PersonContainsNamePredicate`,
+     `PersonContainsPostalPredicate`, `PersonContainsVariantsPredicate` and `RangeContainsPersonPredicate`.
     ([#120](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/120))
     * Abstracted `ParserUtil` further into `PredicateUtil`, which is used in each of the above predicates.
     ([#120](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/120))
@@ -71,6 +71,9 @@ Given below are my contributions to the project.
     ([#120](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/120))
     * Edited `find` to allow for spaces in the name.
     ([#128](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/128))
+    * Added test cases for `FindCommand`, `FindCommandParser`, `SubPostal`, `FindPredicate`, `PersonContainsAgePredicate`, `PersonContainsDatePredicate`,
+    `PersonContainsNamePredicate`, `PersonContainsPostalPredicate`, `PersonContainsVariantsPredicate`,
+    `RangeContainsPersonPredicate` and `Range`.
 
 * **Documentation:**
   * User Guide
