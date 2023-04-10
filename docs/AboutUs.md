@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[homepage](https://ay2223s2-cs2103t-w09-3.github.io/tp/)]
 [[github](https://github.com/Emrysil)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/emrysil.md)]
 
 * Role: Developer
 * Responsibilities: develop drug inventory sub-system

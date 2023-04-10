@@ -1,15 +1,16 @@
-# Nevin's Project Portfolio Page
+## Nevin's Project Portfolio Page
 
-## Overview
+### Overview
 
 ***CareFlow*** is a desktop application for _patient and drug inventory management of medical clinics_, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 ***CareFlow*** can get your patient and drugs management tasks done **faster** than traditional applications.
 
-## <ins>Code contributed: </ins>
+### <ins>Code contributed: </ins>
 * RepoSense Link: [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nevinlim&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) 
 
 
-## <ins>Enhancements implemented: </ins>
+
+### <ins>Enhancements implemented: </ins>
 * ### Enhancement to Application UI:
   * ***Implementation of Light/Dark Theme:***
     * Added a `lighttheme.css` stylesheet and implemented a toggle theme method `setTheme` within the `MainWindow` class for UI.
@@ -33,17 +34,18 @@
     `parseSideEffect` and `parseStorageCount` to parse user inputs into the necessary Objects that the respective Drug 
     Command requires.
 
-## <ins>Contributions to the UG: </ins>
+### <ins>Contributions to the UG: </ins>
 * Contributions to User Guide:
   * Added the sample screenshots for every command
   * Implemented some part of the documentation for `Drug` Commands such as `d add`, `d find`, `d update`
   * Improved the description of most commands in section 4, Commands.
 
-## <ins>Contributions to the DG: </ins>
+### <ins>Contributions to the DG: </ins>
 * Contributions to Documentation Guide:
-  * added UML Sequence diagram for execute("p delete 1") in CareFlowLogic component
+  * added UML Sequence diagram for execute("p delete 1") in CareFlowLogic component.
+  * Did some adjustments on the `DrugFindCommand`Sequence diagram in the CareFlowLogic component. 
 
-## <ins>Contributions to team-based tasks</ins>
+### <ins>Contributions to team-based tasks</ins>
 * Helped fix several bugs
 [#259](https://github.com/AY2223S2-CS2103T-W09-3/tp/issues/259),
 [#253](https://github.com/AY2223S2-CS2103T-W09-3/tp/issues/253),
@@ -57,7 +59,7 @@ and `UpdateCommandParserTest` in `drugparser`.
 
 * Contributed in the brainstorming process for user stories and certain essential features.
 
-## <ins>Review/mentoring contributions: </ins>
+### <ins>Review/mentoring contributions: </ins>
 * PRs reviewed: 
 [#29](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/29), 
 [#34](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/34), 
@@ -75,7 +77,7 @@ and `UpdateCommandParserTest` in `drugparser`.
 [#276](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/276)
 
 
-## <ins>Contributions beyond the project team: </ins>
+### <ins>Contributions beyond the project team: </ins>
 * Bugs reported for another team F10-3 (MODCheck): 
 [#1](https://github.com/nevinlim/ped/issues/1),
 [#2](https://github.com/nevinlim/ped/issues/2),

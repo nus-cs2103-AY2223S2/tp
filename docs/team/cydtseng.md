@@ -2,11 +2,8 @@
 layout: page
 title: Tseng Chen-Yu's Project Portfolio Page
 ---
-
-# Overview
+## Overview
 Careflow is a desktop application for patient and drug inventory management of medical clinics, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
-Careflow can get your patient and drugs management tasks done faster than traditional applications.
 
 ### Summary of Contributions
 * **Code Contributed:** [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=cydtseng&breakdown=true)
@@ -63,11 +60,9 @@ Careflow can get your patient and drugs management tasks done faster than tradit
   * **Project Management:**
     * PRs merged for teammates. (Commits: [\#274](https://github.com/AY2223S2-CS2103T-W09-3/tp/commit/78a41525970f362a62d45848cab4341ae89e179e), [\#297](https://github.com/AY2223S2-CS2103T-W09-3/tp/commit/9a1068f293d455fa03d3560f4baab62ead3f022e), [\#195](https://github.com/AY2223S2-CS2103T-W09-3/tp/commit/89487da795e7c240b1ab8a1455af4f4350a19ec6))
     * Update readme with new product UI image and codecov badge. (Pull request: [\#143](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/143))
-    * Update project description on GitHub.
     * Enable assertions for tp by modifying build.gradle. (Pull request: [\#153](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/153))
     * Release of v1.3 trial. (Release: [v1.3 trial](https://github.com/AY2223S2-CS2103T-W09-3/tp/releases/tag/v1.3.trial))
     * Setting up of milestones and deadlines.
-    * Modifying folder structures to suit CareFlow project organisation. (Pull request: [\#116](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/116))
   * **Review / mentoring contributions:**
     * PRs reviewed for teammates. (Pull request: [\#95](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/97), [\#85](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/85), [\#55](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/55), [\#63](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/63), [\#65](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/65)) 
     * Created skeleton files for test cases for teammates' ease of test case implementation. (Pull request: [\#111](https://github.com/AY2223S2-CS2103T-W09-3/tp/pull/111))
