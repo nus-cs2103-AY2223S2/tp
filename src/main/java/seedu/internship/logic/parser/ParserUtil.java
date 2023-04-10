@@ -1,6 +1,8 @@
 package seedu.internship.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +61,20 @@ public class ParserUtil {
         }
 
         return result;
+    }
+
+    /**
+     * Checks index exception error messages and returns corresponding ParseException
+     * @param pe ParseException from parseIndex or parseIndexes method
+     * @param commandFormatMessage Command format message to be contained in ParseException if to be used
+     * @return New ParseException with the corresponding error message according to message in ParseException given
+     */
+    public static ParseException handleIndexException(ParseException pe, String commandFormatMessage) {
+        if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
+            return new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        }
+        return new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, commandFormatMessage), pe);
     }
 
     /**

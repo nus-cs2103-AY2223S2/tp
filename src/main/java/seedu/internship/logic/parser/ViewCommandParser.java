@@ -1,8 +1,5 @@
 package seedu.internship.logic.parser;
 
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
-
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.ViewCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -18,17 +15,16 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
+        Index index;
+
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new ViewCommand(index);
+            index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
-                throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
-            } else {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
-            }
+            ParseException e = ParserUtil.handleIndexException(pe, ViewCommand.MESSAGE_USAGE);
+            throw e;
         }
+
+        return new ViewCommand(index);
     }
 
 }
