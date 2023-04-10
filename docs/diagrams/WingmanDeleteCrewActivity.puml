@@ -1,0 +1,15 @@
+@startuml
+start
+
+:switch to mode crew;
+
+if () then ([Crew does not exist yet])
+    :Add crew;
+
+else ([Crew already exists])
+endif
+
+:Delete crew;
+
+stop
+@enduml
