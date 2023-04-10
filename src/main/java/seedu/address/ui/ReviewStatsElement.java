@@ -8,8 +8,8 @@ import javafx.util.Pair;
 /**
  * Individual element of the review panel
  */
-public class ReviewStatsPane extends UiPart<Region> {
-    private static final String FXML = "ReviewStatsPane.fxml";
+public class ReviewStatsElement extends UiPart<Region> {
+    private static final String FXML = "ReviewStatsElement.fxml";
 
     @FXML
     private Label title;
@@ -18,9 +18,9 @@ public class ReviewStatsPane extends UiPart<Region> {
     private Label description;
 
     /**
-     * Creates a {@code ReviewStatsPane} with the given {@code pair}.
+     * Creates a {@code ReviewStatsElement} with the given {@code pair}.
      */
-    public ReviewStatsPane(Pair<String, String> pair) {
+    public ReviewStatsElement(Pair<String, String> pair) {
         super(FXML);
         title.setText(pair.getKey());
         description.setText(pair.getValue());

@@ -42,7 +42,7 @@ public class ReviewStatsPanel extends UiPart<Region> {
                     setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
                             + "-fx-background-color:transparent ");
                 } else {
-                    setGraphic(new ReviewStatsPane(pair).getRoot());
+                    setGraphic(new ReviewStatsElement(pair).getRoot());
                     setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
                             + "-fx-background-color:transparent ");
                 }
