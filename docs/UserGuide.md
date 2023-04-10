@@ -88,7 +88,8 @@ you are a seasoned user, you will find something useful here to help you out in 
 <hr style="border:2px solid gray">
 
 ## Understanding the Graphical User Interface (GUI)
-In order to make the most out of your experience in CookHub, let us understand the application's GUI better.
+In order to make the most out of your experience in **CookHub**, let us understand the application's GUI 
+better.
 
 <p align="center" width="100%">
     <img src="images/annotated/GUI.png" width="100%">
@@ -113,6 +114,7 @@ The CLI is a medium in which the application interacts with the user, through te
 As **CookHub** mainly uses the CLI, this tutorial will equip you with the CLI fundamentals required for **CookHub**. However, if you are already familiar with the CLI, you can skip to the [Features](#features)
 section to get started with our features.
 This tutorial will give walk through the most fundamental commands to equip you with basic understanding of our command format.
+
 First, let's look at the most basic command, the `add` command. A sample `add` command is shown below: <br>
 ```
 add t/Cookies d/Yummy s/Mix the batter i/Flour, 30, grams, 0.20 
@@ -352,7 +354,7 @@ Examples:
 Our initial recipe book:
 
 <p align="center" width="100%">
-    <img src="images/AddResult2.png" width="100%">
+    <img src="images/FindInitial.png" width="100%">
 </p>
 
 - `find r/eggs` is valid and the result of the recipe book is as shown below:
