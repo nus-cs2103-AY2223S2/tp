@@ -16,7 +16,7 @@ Given below are my contributions to the project.
         * The first iteration enables users to find internship applications that have exactly the specific fields inputted by the user.  
           [(#114)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/114)
         * The second iteration enables user to find internships as long as they contain a keyword in the specific fields inputted by the user.
-          [(#123)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/123),
+          [(#123)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/123)
     * Justification: This feature is vital for users to use TinS, as it aids users to find internships they are concerned about. 
 
 * **New Feature**: Added the ability to find Internship Events with specific criteria
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
         * The first iteration enables users to find internship events that have exactly the specific fields inputted by the user.  
           [(#123)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/123)
         * The second iteration enables user to find internships events as long as they contain a keyword in the specific fields inputted by the user.
-          [(#137](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/137),
+          [(#137)](https://github.com/AY2223S2-CS2103T-W11-2/tp/pull/137)
     * Justification: This feature is vital for users to use TinS, as it aids users to find internship events they are concerned about.
     
 
