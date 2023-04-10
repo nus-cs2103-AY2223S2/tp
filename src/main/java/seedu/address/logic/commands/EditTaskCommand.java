@@ -222,7 +222,8 @@ public class EditTaskCommand extends Command {
                     && getComment().equals(e.getComment())
                     && getDeadline().equals(e.getDeadline())
                     && getStartDate().equals(e.getStartDate())
-                    && getEndDate().equals(e.getEndDate());
+                    && getEndDate().equals(e.getEndDate())
+                    && getTaskType().equals(e.getTaskType());
         }
 
         public void setStartDate(Date startDate) {

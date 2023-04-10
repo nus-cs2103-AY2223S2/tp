@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskBook;
 import seedu.address.model.task.DeadlineTask;
 
 /**
@@ -19,10 +19,10 @@ public class TypicalDeadlineTasks {
     private TypicalDeadlineTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code TaskBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TaskBook getTypicalTaskBook() {
+        TaskBook ab = new TaskBook();
         for (DeadlineTask task : getTypicalDeadlineTasks()) {
             ab.addTask(task);
         }

@@ -97,7 +97,7 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Name // instanceof handles nulls
+                || (other instanceof seedu.address.model.task.Date // instanceof handles nulls
                 && fullDate.equals(((seedu.address.model.task.Date) other).fullDate)); // state check
     }
 

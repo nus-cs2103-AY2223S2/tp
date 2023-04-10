@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskBook;
 import seedu.address.model.task.EventTask;
 
 /**
@@ -19,10 +19,10 @@ public class TypicalEventTasks {
     private TypicalEventTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical Event Tasks.
+     * Returns an {@code TaskBook} with all the typical Event Tasks.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TaskBook getTypicalTaskBook() {
+        TaskBook ab = new TaskBook();
         for (EventTask task : getTypicalEventTasks()) {
             ab.addTask(task);
         }

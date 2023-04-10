@@ -495,6 +495,37 @@ The following sequence diagram shows how the review operation works:
 
 <div style="page-break-after: always"></div>
 
+### 4.1.7 STATUS feature
+
+The implementation of the status feature is facilitated by the `setTaskStatus` method of `TaskCard`.
+It sets the STATUS UI element to a specific colour depending on the status of the task.
+
+A sequence of steps are followed:
+
+Step 1: **Start**
+
+Step 2: colour is set to it's default value: black.
+
+Step 3: `setTaskStatus` sets the colour to green if the task is marked as done. **End**.
+
+Step 4: Otherwise it sets the colour to orange if the task is due today. **End**.
+
+Step 5: Otherwise it sets the colour to red if the task is over due. **End**.
+
+Step 6: If an error is thrown the colour is set to it's default colour: black. **End**.
+
+
+The following activity diagram shows how the colour is set:
+
+<img src="images/StatusActivityDiagram.png"/>
+
+[↑ Return to start of section](#4-implementation)
+
+[↑ Return to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
+
+
 ## 4.2 Proposed implementation of future features:
 
 **Aspect: How to undo & redo executes:**

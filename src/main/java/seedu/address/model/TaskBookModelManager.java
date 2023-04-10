@@ -70,6 +70,12 @@ public class TaskBookModelManager implements TaskBookModel {
         return userPrefs.getTaskBookFilePath();
     }
 
+    @Override
+    public void setTaskBookFilePath(Path taskBookFilePath) {
+        requireNonNull(taskBookFilePath);
+        userPrefs.setTaskBookFilePath(taskBookFilePath);
+    }
+
 
     //=========== Task Book ================================================================================
 

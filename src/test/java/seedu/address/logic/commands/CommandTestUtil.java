@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -41,11 +42,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ROLE_HUSBAND = "husband";
     public static final String VALID_ROLE_FRIEND = "friend";
-    public static final String VALID_TASK_DESCRIPTION = "Submit assignment";
+    public static final String VALID_TASK_DESCRIPTION = "send out survey";
     public static final String VALID_TASK_TYPE_T = "T";
     public static final String VALID_TASK_TYPE_D = "D";
     public static final String VALID_COMMENT = "Hard assignment";
     public static final String VALID_DATE = "10/10/2024";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,6 +59,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ROLE_DESC_FRIEND = " " + PREFIX_ROLE + VALID_ROLE_FRIEND;
     public static final String ROLE_DESC_HUSBAND = " " + PREFIX_ROLE + VALID_ROLE_HUSBAND;
+    public static final String TASK_DESC_ONE = " " + PREFIX_TASK + VALID_TASK_DESCRIPTION;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -113,6 +117,20 @@ public class CommandTestUtil {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, actualTaskBookModel, expectedCommandResult,
                     expectedModel, expectedTaskBookModel);
+    }
+
+    /**
+     * Checks that {@code command} is successfully executed
+     */
+    public static void assertCommandSuccess(Command command, Model model,
+        TaskBookModel taskBookModel, String expectedMessage) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        try {
+            CommandResult result = command.execute(model, taskBookModel);
+            assertEquals(expectedCommandResult, result);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 
     /**
