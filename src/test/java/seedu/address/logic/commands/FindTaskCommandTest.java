@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSuccess;
 import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
@@ -14,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
@@ -64,16 +64,13 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidKeywords_noTaskFound() {
+    public void execute_invalidKeywords_noTaskFound() throws CommandException {
         String expectedMessage = Messages.MESSAGE_INVALID_TASK;
         TitleContainsKeywordsPredicate predicate = preparePredicate("Project Destroy");
         FindTaskCommand command = new FindTaskCommand(predicate);
-        assertCommandFailure(command, model, expectedMessage);
-        // Does not flush out the GUI when taking in invalid keywords
-        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
-        assertEquals(expectedOfficeConnectModel.getTaskModelManager().getFilteredItemList(),
-                officeConnectModel.getTaskModelManager().getFilteredItemList());
-
+        CommandResult commandResult = command.execute(expectedModel, expectedOfficeConnectModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                officeConnectModel, expectedOfficeConnectModel);
     }
 
     @Test

@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
@@ -14,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
@@ -65,19 +65,17 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_invalidKeywords_noPersonFound() {
+    public void execute_invalidKeywords_noPersonFound() throws CommandException {
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON;
         NameContainsInOrderKeywordsPredicate predicate = preparePredicate("invalidKeyword");
         FindCommand command = new FindCommand(predicate);
-        assertCommandFailure(command, model, expectedMessage);
-        // Does not flush out the GUI when taking in invalid keywords
-        assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
-        assertEquals(expectedOfficeConnectModel.getTaskModelManager().getFilteredItemList(),
-                officeConnectModel.getTaskModelManager().getFilteredItemList());
+        CommandResult commandResult = command.execute(expectedModel, expectedOfficeConnectModel);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel,
+                officeConnectModel, expectedOfficeConnectModel);
     }
     @Test
     public void execute_validKeywords_noTaskAssigned() {
-        String expectedMessage = String.format(FindCommand.MESSAGE_PERSON_FOUND, "1");
+        String expectedMessage = String.format(FindCommand.MESSAGE_PERSON_FOUND_S, "1");
         NameContainsInOrderKeywordsPredicate predicate = preparePredicate("Alice Pauline");
         FindCommand command = new FindCommand(predicate);
 
