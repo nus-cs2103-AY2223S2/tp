@@ -252,6 +252,7 @@ Create events and add it to a specific person in WGT. WGT supports two types of 
 2. Recurring events: weekly events such as tutorials and lectures 
 
 Note that only **hourly** events can be created.
+**Note** You will not be able to create an isolated event or recurring event if there is existing event happening in the same time period. 
 For example, `17:00` is a valid timing and `17:30` is an invalid timing
 
 #### 1) Isolated event: `event_create`
@@ -324,6 +325,9 @@ Examples:
 
 ### Editing an event:
 Edit the attributes of either an isolated event or a weekly recurring event
+
+**Note** You will not be able to edit an isolated event or recurring event time period if there is existing event happening in the particular time period.
+
 #### 1) Edit an isolated event: `ie_edit`
 
 Edit an existing isolated event from person's isolated event list in WGT.

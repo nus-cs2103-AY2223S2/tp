@@ -21,9 +21,8 @@ free time slots within a group of NUS friends, and keep track of personal and fr
     * What it does: Allows users to create, read, update and delete isolated events. 
     * Justification: This allows users to organize Persons' isolated events, and also making implementation of finding of free time slots easier. 
     * Contributions: Implemented command and parser classes for Isolated event related commands.
-
-- **Enhancements implemented**:
-
+  * **Testing**: Wrote user-related tests
+    * Wrote JUnit tests to test for isolated events features for CRUD
 
 - **Contributions to the UG**:
   * Added documentation for the `event_create` feature
@@ -33,9 +32,17 @@ free time slots within a group of NUS friends, and keep track of personal and fr
 - **Contributions to the DG**:
   - Added documentations for user stories in the DeveloperGuide.md
   - Added details for implementation of `event_create` feature 
-  - Added details for implementation of `ie_edit` feature
-  
+  - Made sequence diagram and activity diagram for `event_create` feature in the DG 
+  - Added details for implementation of `ie_edit` feature 
+  - Made sequence diagram and activity diagram for `ie_edit` feature in the DG
+
 - **Contributions to team-based tasks**:
-  - Added documentations for README.md
+  - Added documentations for README.md 
+  - Created a guideline for the suggested workflow to make it easier for the team to follow [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/issues/17)
+  - Reviewed teammates' PR. 
+  - Completed tasks and milestones before the deadline. 
+  - Created issues on the issue tracker to track tasks/bugs, as seen [here](https://github.com/AY2223S2-CS2103T-T09-2/tp/issues?q=is%3Aissue+author%3Agmengqi)
 
 - **Contributions beyond the project team**:
+  - Reviewed peers' tP (CS2103T-T12-1)
+  - Reported bugs/flaws in peers' tp for PED
