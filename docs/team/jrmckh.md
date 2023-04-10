@@ -48,6 +48,7 @@ making it a reliable and efficient tool for organizing events.
             - Any actions related to events, such as adding, deleting, or editing an event, will impact the events \
               that appear in the calendar.
 
+
 - **Enhancements to existing features:**
     - Updated the GUI's components and color scheme:
       [#94](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/94),
@@ -65,6 +66,7 @@ making it a reliable and efficient tool for organizing events.
       [#194](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/194),
       [#201](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/201)
 
+
 - **Documentations:**
     - **User Guide:**
         - Added documentation for the features `edit`, `delete`, `find`, and `GUI`
@@ -81,6 +83,7 @@ making it a reliable and efficient tool for organizing events.
           [#227](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/227)
         - Added Instructions for Manual Testing
           [#212](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/212)
+
 
 - **Reviews / Mentoring:**
     - Milestone nil: [6] [pr-reviewed-no-milestone] PRs reviewed
