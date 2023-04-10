@@ -28,6 +28,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=redHat-arko&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements implemented**:
   * Changed the `Name` field in `Patient` to be non-case sensitive, which could be considered a bug from the original AB3 project.
 
