@@ -85,8 +85,6 @@ You can click on any of the links below to navigate to the respective sections f
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 # 1 Quick start
 
 ## 1.1 Prerequisites
@@ -116,6 +114,8 @@ An example is shown below.
   ```
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 1.1.2 Glossary
 
@@ -409,7 +409,7 @@ Menu Item Card consists of the following components:
 
 * You can find out the constraints for the parameters with their corresponding prefix [here](#61-prefix-summary).
 
-</div><br>
+</div>
 
 ## 2.0 Checking for duplicates
 
@@ -417,18 +417,24 @@ Duplicate data are not allowed. Hence, adding of duplicate data or editing of an
 with another existing data in the data list will not be successful. Here's how we check for duplicates:
 
 | Any two    | are considered to be duplicates if                                          |
-| ---------- | --------------------------------------------------------------------------- |
+|------------|-----------------------------------------------------------------------------|
 | Suppliers  | they have the same phone numbers                                            |
 | Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
 | Tasks      | they have the same task names (case-insensitive) and deadlines.             |
 | Menu items | they have the same item names (with matching cases).                        |
 
+<div style="page-break-after: always;"></div>
+
 ## 2.1 Add
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
-:pencil2: Note<br>
+<div markdown="block" class="alert alert-tip">
+
+:pencil2: **Note**<br>
 Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
+
+</div>
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
@@ -466,8 +472,6 @@ Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
@@ -483,6 +487,8 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   You can find out how to add a menu item [here](#214-adding-a-menu-item-add_item)
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-example">
 
@@ -511,6 +517,8 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * Status: `In Progress`
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1.3 Adding a task: `add_task`
 
@@ -548,6 +556,8 @@ Syntax: `add_task n/TASK_NAME d/DEADLINE [s/STATUS]`
   * Status: `Done`
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1.4 Adding a menu item: `add_item`
 
@@ -593,7 +603,7 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
   * Price: `20.55`
   * Cost: `25.2`
 
-</div><br>
+</div>
 
 ## 2.2 Edit
 
@@ -637,6 +647,8 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command removing tags**
@@ -649,7 +661,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 
 :clipboard: **Example 2: Shortcut command replacing tags**
 
-* `edit_s 3 t/Supplies Flour e/mark@example.com`<br>
+* `edit_s 3 t/flour e/mark@example.com`<br>
   Edits the **third** supplier information (shown on screen) with the following details:
   * Email: `mark@example.com`
   * Tags: `Supplies Flour`
@@ -676,6 +688,8 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
   * For example, if menu item you want edit order name to "chocolate", you should input `edit_o 1 on/chocolate` and not `edit_o 1 on/ChOcolAte`
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-example">
 
@@ -767,13 +781,13 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 
 :clipboard: **Example 2: Shortcut command with decimal values**
 
-* `edit_i 3 d/Signature burger p/8.5 c/2.25`<br>
+* `edit_i 3 d/Signature burger pr/8.5 c/2.25`<br>
   Edits the **third** menu item information with the following details:
   * Item Name: `Signature burger`
   * Price: `8.5`
   * Cost: `2.25`
 
-</div><br>
+</div>
 
 ## 2.3 Find
 
@@ -796,6 +810,8 @@ Syntax: `find_supplier NAME`
   (e.g. `Mark Lee` will return `Mark Tan`, `Lee Chan`)
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-example">
 
@@ -836,6 +852,8 @@ Find orders whose information matches with any of the given parameters.
 
 Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
@@ -866,6 +884,8 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
     (e.g. `Amy Lee` will only match with `Amy Lee` and not with `Amy Lee Tan`).
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-example">
 
@@ -906,6 +926,8 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 Finds tasks with information that matches with any of the given parameters.
 
 Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
@@ -953,6 +975,8 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3.4 Finding a menu item: `find_item`
 
 Find tasks with information that matches with any of the given parameters.
@@ -999,7 +1023,9 @@ Syntax: `find_item ITEM_NAME`
   :x: Example of order item that do not match:
   * `Vanilla Cupcake`
 
-</div><br>
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.4 Delete
 
@@ -1046,6 +1072,8 @@ Syntax: `delete_supplier INDEX`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.4.2 Deleting an order: `delete_order`
 
 Deletes the specified order from the order list.
@@ -1088,6 +1116,8 @@ Syntax: `delete_task INDEX`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.4.4 Deleting a menu item: `delete_item`
 
 Deletes the specified menu item from the menu.
@@ -1115,7 +1145,9 @@ Deleting a menu item does not invalidate the orders with the same order item nam
   * `find_item cupcake` lists all menu items with item names containing `cupcake`
   * `delete_m 1` deletes the **first** menu item with an item name that contains `cupcake` from the visible menu
 
-</div><br>
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.5 Sort
 
@@ -1152,6 +1184,8 @@ Sorting of information in the specific list. Below are the specific sort command
 Sorts tasks according to the criteria specified.
 
 Syntax: `sort_task [c/CRITERIA]`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
@@ -1195,6 +1229,8 @@ Sorts orders according to the criteria specified.
 
 Syntax: `sort_order [c/CRITERIA]`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
@@ -1232,7 +1268,9 @@ Syntax: `sort_order [c/CRITERIA]`
   * `find_order s/N` lists all orders with status as `Not Delievered`
   * `sort_o c/Name` sorts all `Not Delivered` orders found according to their `Name`
 
-</div><br>
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.6 List
 
@@ -1316,7 +1354,9 @@ Syntax: `list_menu`
 * `list_m price`<br>
   Shows all menu items.
 
-</div><br>
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.7 Clear
 
@@ -1357,6 +1397,8 @@ Syntax: `clear_supplier`
 Clears all order entries from the order list.
 
 Syntax: `clear_order`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-example">
 
@@ -1406,6 +1448,8 @@ Clearing all menu items does not invalidate the orders.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -1418,7 +1462,7 @@ Clearing all menu items does not invalidate the orders.
 * `clear_m price`<br>
   Clears all menu item data from menu.
 
-</div><br>
+</div>
 
 ## 2.8 Switch
 
@@ -1446,7 +1490,9 @@ Syntax: `tab t/TAB`
 * `tab t/HOME`<br>
   Navigates you to the home tab
 
-</div><br>
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## 2.9 Others
 
@@ -1502,6 +1548,8 @@ This section will inform you how the data is saved.
 
 All data are saved after any command is executed successfully. There is no need for you to manually save.
 
+<div style="page-break-after: always;"></div>
+
 ## 3.2 Editing the data file
 
 Trackr data are saved as a JSON file at `[JAR file location]/data/trackr.json`.
@@ -1551,6 +1599,9 @@ Here are the respective formats for each of the data types:
     "tagged" : [ "flour" ]
   }
   ```
+  
+  <div style="page-break-after: always;"></div>
+
 * Task<br>
   ```json
   {
@@ -1612,17 +1663,19 @@ Here are the respective formats for each of the data types:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # 6 Summary
 
 # 6.1 Prefix Summary
 
 | Parameter                                  | Prefix | Rules                                                                                                                                                                                                                                         |
-| ------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name (Task, Supplier, Customer, Menu Item) | n/     | - Should only contains alphanumeric characters and spaces                                                                                                                                                                                     |
 | Phone Number (Supplier, Customer)          | p/     | - Should only contain digits<br/> - Should have least 3 digits                                                                                                                                                                                |
 | Email                                      | e/     | - Should only be of the form `local@domain` and only accept alphanumeric characters<br/>- `local` allows for special characters `+`, `_`, `.` and `-` as well.<br/>- `domain` must be at least 2 letters long.<br/> - `.com` is not required. |
 | Address (Supplier, Customer)               | a/     | - Can contain any letters                                                                                                                                                                                                                     |
-| Tag                                        | t/     | - Should only contain alphanumeric characters                                                                                                                                                                                                 |
+| Tag                                        | t/     | - Should only contain alphanumeric characters<br/> - Should not contain spaces                                                                                                                                                                |
 | Deadline (Task, Order)                     | d/     | - Should be of the format `dd/MM/yyyy` - Dates that have passed are allowed                                                                                                                                                                   |
 | Status (Task, Order)                       | s/     | - Should only contain alphanumeric characters                                                                                                                                                                                                 |
 | Order Name                                 | on/    | - Should only contain alphanumeric characters<br/> - Order name should be a valid menu item name                                                                                                                                              |
@@ -1635,9 +1688,9 @@ Here are the respective formats for each of the data types:
 ## 6.2 Command Summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add_supplier` / `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/12345678 t/meat` <br> <br> `add_order` / `add_o` <br> e.g., `add_o n/John Doe l/John Street d/12/12/2023 q/10 on/Cupcakes` <br> <br> `add_task` / `add_t` <br> e.g., `add_t d/Buy a card d/23/12/2024 s/D` <br> <br> `add_item` / `add_i` <br> e.g., `add_i n/Chocolate Cake pr/30 c/10` |
-| **Edit**   | `edit_supplier` / `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` / `edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task` / `edit_t` <br> e.g., `edit_t 1 s/D` <br> <br> `edit_item` / `edit_i` <br/>e.g., `edit_i n/Chocolate Chip Cookie`                                                                                                       |
+| **Edit**   | `edit_supplier` / `edit_s` <br> e.g., `edit_s 3 t/flour e/mark@example.com` <br> <br> `edit_order` / `edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task` / `edit_t` <br> e.g., `edit_t 1 s/D` <br> <br> `edit_item` / `edit_i` <br/>e.g., `edit_i n/Chocolate Chip Cookie`                                                                                                                |
 | **Delete** | `delete_supplier` / `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` / `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` / `delete_t` <br> e.g., `delete_t 4` <br> <br> `delete_item` / `delete_i` <br> e.g., `delete_i 2`                                                                                                                                                  |
 | **Find**   | `find_supplier` / `find_s` <br> e.g., `find_s Pte` <br> <br> `find_order` / `find_o` <br> e.g., `find_order on/Chocolate` <br> <br> `find_task` / `find_t` <br> e.g., `find_t s/N` <br> <br> `find_item` / `find_i` <br> e.g., `find_i Chocolate`                                                                                                                                               |
 | **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline` <br> <br> `sort_order` / `sort_o` <br> e.g., `sort_order c/Deadline`                                                                                                                                                                                                                                                                      |
