@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":Logic Manager" as lm LOGIC_COLOR
 participant ":AddressBookParser" as abp LOGIC_COLOR
 participant ":CreateLessonCommandParser" as clp LOGIC_COLOR
-participant ":c:CreateLessonCommand" as clc LOGIC_COLOR
+participant "c:CreateLessonCommand" as clc LOGIC_COLOR
 participant ":CommandResult" as cr LOGIC_COLOR
 end box
 
@@ -35,16 +35,16 @@ create clc
 clp -> clc
 activate clc
 
-clc --> clp : d
+clc --> clp : c
 deactivate clc
 
-clp --> abp : d
+clp --> abp : c
 deactivate clp
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 clp -[hidden]-> abp
 destroy clp
 
-abp --> lm : d
+abp --> lm : c
 deactivate abp
 
 lm -> clc : execute()
