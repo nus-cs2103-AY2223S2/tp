@@ -776,7 +776,9 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 3. Inside the images' folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
+
     Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX_NUMBER>.png`
+
 ![imagestudent message](images/imagestudent.png)
 
     Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
