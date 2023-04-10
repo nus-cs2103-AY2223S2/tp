@@ -48,7 +48,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -81,7 +81,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -116,7 +116,7 @@ In `DarkTheme.css`, there is a system of reuse. For example,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -144,10 +144,9 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+![Model class diagram](images/ModelClassDiagram.png)
 
 The `Model` component does the following.
 
@@ -161,7 +160,7 @@ The `Model` component does the following.
 
 Within the Model component holds the Person Class.
 
-<img src="images/PersonDiagram.png" width="450" />
+![Person class diagram](images/PersonDiagram.png)
 
 Each field in Person inherits from either the Field abstract class or the SuperField abstract class.
 
@@ -182,7 +181,7 @@ and Tags. The SuperField class contains a set of values that are a subclass of F
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -202,7 +201,7 @@ respective classes in Storage.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,7 +213,7 @@ This section describes some noteworthy details on how certain features are imple
 
 Due to the limited space on most displays, the application uses tabs to switch between various panels, such as the address book, events, and personal information panels.
 
-The tab switching mechanism is facilitated by [`TabUtil`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/docs/dg-tab-command/src/main/java/seedu/address/logic/ui/tab/TabUtil.java), which contains the list of all tabs relevant in the application. Tabs are represented by [`TabInfo`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/docs/dg-tab-command/src/main/java/seedu/address/logic/ui/tab/TabInfo.java), made up of an `Index` (which the user references in the `tab` command) and a [`TabType`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/docs/dg-tab-command/src/main/java/seedu/address/logic/ui/tab/TabType.java) (which defines the possible tabs in the application). Their relationship is shown below:
+The tab switching mechanism is facilitated by [`TabUtil`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/ui/tab/TabUtil.java), which contains the list of all tabs relevant in the application. Tabs are represented by [`TabInfo`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/ui/tab/TabInfo.java), made up of an `Index` (which the user references in the `tab` command) and a [`TabType`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/logic/ui/tab/TabType.java) (which defines the possible tabs in the application). Their relationship is shown below:
 
 ![Structure of `TabUtil`](images/TabClassDiagram.png)
 
@@ -271,7 +270,7 @@ Following the Favourite Contacts Command, we want users to fully manage their fa
 The Unfavourite Command works by having the User entering a "unfav" command and specify the index of that particular contact that is currently in the Favourite List. The index will be displayed on the UI of the AddressBook.
 The Unfavourited Contact will remove the Star Emoji displayed beside the Contact's name and remove the Contact from the Favourite List.
 
-### Command for Add Event Command
+### Command for Adding Events
 
 NeoBook implements an Event Calendar Interface for users to track any notable events. There are 2 types of Events that can be added by the Users. Firstly, a One Time event that occurs only once on the specified date and time.
 Secondly, recurring events that occur periodically e.g. Weekly Lectures, Daily Reminders etc. There are multiple recurrences which can be specified by the users: Daily, Weekly, Monthly and Yearly.
@@ -281,23 +280,23 @@ The Add Event Command works by having the User entering the "addevent" command. 
 End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
 If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of NeoBook.
 
-### Command for Edit Event Command
+### Command for Editing Events
 
 The Edit Event Command allows users to modify any of the specific fields for an existing event in the NeoBook calendar. To use this command, the user will enter "editevent" followed by the index number that corresponds to the event they wish to modify.
 The user can then include multiple field prefix/desired-change arguments in the same command. The field prefixes are as follows: "d" for Description, "s" for Start Date, "e" for End Date, and "r" for Recurrence Type.
-After each field prefix, the user should enter the desired change they would like to make to the corresponding field. For example, to change the Description of an event with index number 1 to "Meeting with clients", the user would enter "editevent 1 /d Meeting with clients".
+After each field prefix, the user should enter the desired change they would like to make to the corresponding field. For example, to change the Description of an event with index number 1 to "Meeting with clients", the user would enter `editevent 1 d/Meeting with clients`.
 
 Once all the desired fields have been updated, the Success Message will prompt to the user that the event has been updated in the Events Calendar UI of NeoBook.
 It is important to note that the index number must be specified in order to edit an event, and at least one field prefix/desired-change argument must be included in the command. If an incorrect index number is entered or if a field prefix is misspelled or not recognized, the command will not work and an error message will be displayed.
 
-### Command for Tagging Person to Event Command
+### Command for Tagging People to Events
 
 The Tag Person to Event command allows users to tag a contact in their NeoBook to an event. Not only does it tag the person to the event, but any changes to the person will also dynamically change the information of the tagged person to the event. Currently, due to how the storage is set up, there is no way to have the same Person object be linked properly to the event. This is because on startup, NeoBook recreates a new Person object in its addressbook while each event essentially just creates a new Person object that it is tagged to. However, it would not make sense if the user had to manually update the tag if anything within the contact changed. So to dynamically pair the Person object being tagged to the event and the Person object in the Contacts list, NeoBook checks through all events on any EditPersonCommand and to look for any event where the person is tagged to. Then it edits those Person objects to its new edited version.
 
 In the future, a more proper implementation would include more coupling with storage. The flow on startup would be:
-1) All Person objects in NeoBook's contact list is loaded up
-2) All events in NeoBook are loaded up
-   1) While loading the events, make a reference to the appropriate Person object within the contact list within the taggedPerson set in events.
+1. All Person objects in NeoBook's contact list is loaded up 
+2. All events in NeoBook are loaded up
+   1. While loading the events, make a reference to the appropriate Person object within the contact list within the taggedPerson set in events.
 
 This would make it such that we would not have to check through every single contact in NeoBook for edits as any changes to the Person object would be reflected in events.
 
@@ -384,9 +383,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-
 ### \[Proposed\] Exporting User information
 
 #### Proposed Implementation
@@ -468,11 +464,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Student who made a new connection                       | I want to be able to add a new contact                                                                                 | So that I can save the person’s details        |
 | `*`      | Student who is in to keeping everything in one place    | I like being able to keep everything I need to see in one place                                                        | So that I dont forget anything                 |
 
-*{More to be added}*
-
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `NeoBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a person**
 
@@ -480,15 +474,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a person
 2.  User enters person details and submits the command
-3.  AddressBook saves the person
+3.  NeoBook saves the person
 
     Use case ends.
 
 **Extensions**
 
-* 2a. AddressBook is unable to save the person.
+* 2a. NeoBook is unable to save the person.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. NeoBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -497,9 +491,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  NeoBook shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  NeoBook deletes the person
 
     Use case ends.
 
@@ -511,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NeoBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -520,7 +514,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters a command to edit an existing person by specifying their index number and new details
-2.  AddressBook updates the person's details
+2.  NeoBook updates the person's details
 
     Use case ends.
 
@@ -528,19 +522,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid command or incorrect details.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. NeoBook shows an error message.
 
       Use case ends.
 
 * 1b. User enters an invalid index number.
 
-    * 1b1. AddressBook shows an error message.
+    * 1b1. NeoBook shows an error message.
 
       Use case ends.
 
-* 2a. AddressBook is unable to update the person's details.
+* 2a. NeoBook is unable to update the person's details.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. NeoBook shows an error message.
 
       Use case ends.
 
@@ -549,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters a command to list all persons
-2.  AddressBook shows a list of all persons with their details
+2.  NeoBook shows a list of all persons with their details
 
     Use case ends.
 
@@ -557,7 +551,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid command.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. NeoBook shows an error message.
 
       Use case ends.
 
@@ -566,8 +560,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters a command to search for persons by specifying one or more keywords for different fields
-2.  AddressBook searches for persons who contain any of the given keywords for the fields specified
-3.  AddressBook returns a list of persons matching the search criteria
+2.  NeoBook searches for persons who contain any of the given keywords for the fields specified
+3.  NeoBook returns a list of persons matching the search criteria
 
     Use case ends.
 
@@ -575,13 +569,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid command or incorrect details.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. NeoBook shows an error message.
 
       Use case ends.
 
 * 3a. No persons are found matching the search criteria.
 
-    * 3a1. AddressBook shows an empty list message.
+    * 3a1. NeoBook shows an empty list message.
 
       Use case ends.
 
@@ -590,8 +584,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters a command to clear all entries
-2.  AddressBook clears all entries from the address book
-3.  AddressBook shows a success message
+2.  NeoBook clears all entries from the address book
+3.  NeoBook shows a success message
 
     Use case ends.
 
@@ -599,17 +593,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters an invalid command or incorrect details.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. NeoBook shows an error message.
 
       Use case ends.
 
-* 2a. AddressBook is unable to clear all entries.
+* 2a. NeoBook is unable to clear all entries.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. NeoBook shows an error message.
 
       Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -620,8 +612,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Should be accessible to users with disabilities, including those who use screen readers or other assistive technologies. The user interface should be highly readable for all users.
 6. Should provide fast response times and minimal resource usage, even when running on lower-end hardware.
 7. Should be able to handle errors and exceptions gracefully, without crashing or losing user data. This could include features such as error logging, fault tolerance mechanisms, and data backup options.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -657,8 +647,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 ## Address-book related
 
@@ -749,23 +737,6 @@ testers are expected to do more *exploratory* testing.
           - Testing for: Index specified results in command failure
           - Expected: List does not update. Error details shown in the status message.
 
-### Favouriting/Unfavouriting a contact
-
-### Selecting a contact
-
-
-
-## Events-related
-
-### Adding an event
-
-### Deleting an event
-
-### Editing an event
-
-### Tagging/Untagging a contact to an event
-
-
 ## User-related
 ### Editing data of User
 1. Edit data of User specified in Me tab.
@@ -811,30 +782,25 @@ testers are expected to do more *exploratory* testing.
             - Testing for: Successful command execution
             - Expected: UI updates to dark mode
 
-
-### Moving to another tab in NeoBook
-
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-2. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
 
 To give evaluators an estimate on the effort put into NeoBook, our team has put together a list of difficulties and challenges faced, effort required, and achievements that should be taken into account when evaluating NeoBook, especially when compared to AB3.
 
 For starters, below are the commands that we have added:
-1) `Light`/`Dark` Command
-2) `Favorite`/`Unfavorite` Command
-3) `Select` Command
-4) `EditUser` Command
-5) `Tab` Command
-6) `AddEvent` Command
-7) `EditEvent` Command
-8) `DeleteEvent` Command
-9) `TagEvent` Command
+1. `Light`/`Dark` Command
+2. `Favorite`/`Unfavorite` Command
+3. `Select` Command
+4. `EditUser` Command
+5. `Tab` Command
+6. `AddEvent` Command
+7. `EditEvent` Command
+8. `DeleteEvent` Command
+9. `TagEvent` Command
 
 All 8 commands have their own respectively complexities, of note are commands 4-8, which allow you to interact with an entirely new section of NeoBook added in, known as Events. We estimate that the effort required to add just commands 4-8 alone were equivalent to the effort required to design the initial commands for AB3 (i.e. add, find, delete, e.t.c.). The tag event command especially is extremely complex. It dynamically links a Person object to an Event such that any changes to the Person would also update the Person in the Event.
 
