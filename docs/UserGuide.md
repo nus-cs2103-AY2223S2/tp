@@ -647,14 +647,10 @@ The `domain` must:
 A date represents a point in time, such as birthdate or starting or ending days when someone is available for meet ups.
 * Date must be in the format `YYYY-MM-DD`
 
-<div markdown="span" class="alert alert-info">:information_source: **Notes on dates**
+<div markdown="block" class="alert alert-info">:information_source: **Notes on dates**
 
 * When a person's available dates have passed, it will not be removed from FriendlyLink.
 * You can enter a person's available date for record keeping purposes, even if the date has already passed
-
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
 </div>
 
