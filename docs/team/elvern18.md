@@ -15,17 +15,17 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**: DeleteMultipleIndexCommand
   * What it does: Allow users to delete contacts by listing multiple indexes.
   * Justification: This new command would help users delete contacts more quickly and conveniently, helping them save time, since users no longer have to delete using a single index multiple times.
-  * Highlights: Have to refactor the original DeleteCommand into a parent class, and create another class DeleteSingleIndexCommand. It was tricky on how to accept valid indexes, and many scenarios have to be carefully thought. 
+  * Highlights: This was challenging as I had to refactor the original DeleteCommand into a parent class, and create another class DeleteSingleIndexCommand. It was tricky on how to accept valid indexes, and many scenarios have to be carefully thought. 
 
 * **Enhancements to existing features**: DeleteByNameCommand
     * What it does: Allow users to delete contacts by their name.
     * Justification: This new command would help users delete contacts more quickly and conveniently, helping them save time, since users no longer have to slowly search for the index that the person is in. This is especially time-consuming when there are a large number of contacts in the list.
-    * Highlights: Apart from having to refactor DeleteCommand, I had to think about how to handle the validity of the parsing of names, as it is no longer integers or indexes that I had to handle.
+    * Highlights: Apart from having to refactor DeleteCommand, I had to think about how to handle the validity of the parsing of names, as it is no longer integers or indexes that I had to handle. I had to carefully think of new different scenarios as by allowing deletion by name, as this meant that almost any string entered would be a valid name.
 
 * **Enhancements to existing features**: EditByNameCommand
     * What it does: Allow users to edit contacts by their name.
     * Justification: This new command would help users edit contacts more quickly and conveniently, helping them save time, since users no longer have to delete using a single index multiple times.
-    * Highlights: Have to refactor the original EditCommand into a parent class, and create another class EditByIndexCommand. It was tricky on how to handle the validity of the parsing of names, as it is no longer integers or indexes that I had to handle.
+    * Highlights: This was challenging as I had to refactor the original EditCommand into a parent class, and create another class EditByIndexCommand. It was tricky on how to handle the validity of the parsing of names, as it is no longer integers or indexes that I had to handle. Thus, I had to carefully think of new different scenarios as by allowing editing by name, as this meant that almost any string entered would be a valid name.
 
 
 * **Documentation**:
@@ -57,7 +57,10 @@ Given below are my contributions to the project.
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/83
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/97
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/156
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/157
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/160
   * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/161
+  * https://github.com/AY2223S2-CS2103-F10-3/tp/pull/170
 
 * **Contributions beyond the project task**:
     * Bugs reported in other team's products

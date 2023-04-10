@@ -315,6 +315,39 @@ Below is an activity diagram that shows what happens when a user logins into Mod
 Below is an activity diagram that shows what happens when a user tries to create a new password
 
 ![CreatePassword](images/CreatePassword.png)
+
+
+### Delete contact
+**Purpose:** Allow user to delete contacts that a user no longer needs.
+
+Formats:
+1. `delete <index>`
+2. `delete <index>,<index>,...`
+3. `delete <name>`
+
+#### Implementation
+
+The implementation of this feature requires `DeleteCommand`, `DeleteCommandParser`, `DeleteSingleIndexCommand`, `DeleteMultipleIndexCommand` and `DeleteByNameCommand`.
+
+Below is an activity diagram that shows what happens when a user executes the `delete` command.
+
+![DeleteActivityDiagram](images/delete/DeleteActivityDiagram.png)
+
+### Edit contact details
+**Purpose:** Allow user to edit contacts that are outdated.
+
+Formats:
+1. `edit <index>`
+2. `edit <name>`
+
+#### Implementation
+
+The implementation of this feature requires `EditCommand`, `EditCommandParser`, `EditByIndexCommand`, and `EditByNameCommand`.
+
+Below is an activity diagram that shows what happens when a user executes the `edit` command.
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
 ### Filtering contacts
 **Purpose:** Allow user to filter contacts based on criteria given.
 
