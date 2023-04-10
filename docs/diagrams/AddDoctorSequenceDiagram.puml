@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddDoctorCommandParser" as AddDoctorCommandParser LOGIC_COLOR
+participant "d:AddDoctorCommand" as AddDoctorCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addDoctor XXX")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addDoctor XXX")
+activate AddressBookParser
+
+create AddDoctorCommandParser
+AddressBookParser -> AddDoctorCommandParser
+activate AddDoctorCommandParser
+
+AddDoctorCommandParser --> AddressBookParser
+deactivate AddDoctorCommandParser
+
+AddressBookParser -> AddDoctorCommandParser : parse("XXX")
+activate AddDoctorCommandParser
+
+create AddDoctorCommand
+AddDoctorCommandParser -> AddDoctorCommand
+activate AddDoctorCommand
+
+AddDoctorCommand --> AddDoctorCommandParser : d
+deactivate AddDoctorCommand
+
+AddDoctorCommandParser --> AddressBookParser : d
+deactivate AddDoctorCommandParser
+
+AddDoctorCommandParser -[hidden]-> AddressBookParser
+destroy AddDoctorCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> AddDoctorCommand : execute()
+activate AddDoctorCommand
+
+AddDoctorCommand -> Model : hasDoctor(XXX)
+activate Model
+
+Model --> AddDoctorCommand
+deactivate Model
+
+alt doctor(XXX) does not exist in MediConnect
+    AddDoctorCommand -> Model : addDoctor(XXX)
+    activate Model
+    Model -> Model: resetData()
+    activate Model
+    Model --> Model
+    deactivate Model
+    Model --> AddDoctorCommand
+    deactivate Model
+end
+
+create CommandResult
+AddDoctorCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddDoctorCommand
+deactivate CommandResult
+
+AddDoctorCommand --> LogicManager : result
+deactivate AddDoctorCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
