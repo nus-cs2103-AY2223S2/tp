@@ -42,7 +42,8 @@ public class EditCardCommand extends Command {
 
     public static final String MESSAGE_EDIT_CARD_SUCCESS = "Edited Card: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the master deck.";
+    public static final String MESSAGE_DUPLICATE_CARD = "A card with the same question "
+            + "already exists in this selected deck.";
 
     private final Index index;
     private final EditCardDescriptor editCardDescriptor;

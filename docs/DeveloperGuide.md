@@ -125,7 +125,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the master deck data i.e., all `Card` objects (which are contained in a `UniqueCardList` object) and all `Deck` objects (which are contained in a `UniqueDeckList` object).
+* stores the MasterDeck data i.e., all `Card` objects (which are contained in a `UniqueCardList` object) and all `Deck` objects (which are contained in a `UniqueDeckList` object).
 * stores the currently 'selected' `Card` objects (e.g., results of selecting a deck) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Card>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Deck` objects (e.g., results of a deck search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Deck>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
@@ -154,7 +154,7 @@ The `Review`
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both master deck data and user preference data in json format, and read them back into corresponding objects.
+* can save both MasterDeck data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `MasterDeckStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -354,7 +354,7 @@ Pros:
 Cons:
 - Requires a complete overhaul of the code base and test cases, which may not be practical considering our limited development time.
 
-While the alternative design seems more appropriate than our current design, we deem it less feasible to implement due to our project's time constraint. Furthermore, the performance difference is negligible as our average user does not have enough flashcards to cause noticeable performance degradation. Nevertheless, we intend to prioritize the implementation of the alternative design in future iterations, as time and resources permit.
+While the alternative design seems more appropriate than our current design, we deem it less feasible to implement due to our project's time constraint. Furthermore, the performance difference is negligible as our average user does not have enough cards to cause noticeable performance degradation. Nevertheless, we intend to prioritize the implementation of the alternative design in future iterations, as time and resources permit.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -380,7 +380,7 @@ While the alternative design seems more appropriate than our current design, we 
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: study various topics using flashcards on the computer
+**Value proposition**: study various topics using cards on the computer
 
 
 ### User stories
@@ -405,13 +405,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user     | add the description of each masterDeck                                | I can check later what this masterDeck is about.       |
 | `Epic`   | user     | **review decks of cards**                                             ||
 | `* * *`  | user     | review a single masterDeck of cards                                   | I can test my knowledge of the topic                   |
-| `* * *`  | user     | mark a flash card to be correct / wrong during review                 ||
+| `* * *`  | user     | mark a card to be correct / wrong during review                       ||
 | `* *`    | user     | see how many cards I have left to review in one masterDeck            ||
 | `Epic`   | user     | **keep track of how effective my learning has been**                  ||
 | `* *`    | user     | record the number of questions I got right                            | I can see my progress                                  |
 | `* *`    | user     | see which are the cards I struggle with / succeed at                  ||
 | `*`      | user     | see which topics (decks) I am stronger / weaker in                    ||
-| `*`      | user     | revise PowerCards that I got wrong for                                | I can see what I’m weak at                             |
+| `*`      | user     | revise cards that I got wrong for                                     | I can see what I’m weak at                             |
 | `* *`    | user     | reset the statistics                                                  ||
 | `Epic`   | user     | **share and receive decks from my friends**                           ||
 | `* * *`  | user     | import decks from other users.                                        ||
@@ -532,7 +532,7 @@ For all use cases below, the **System** is the `Powercards` application and the 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Deck**: A group of PowerCards (flashcards) of a specific topic
+* **Deck**: A group of flashcards (cards) of a specific topic
 *{More to be added}*
    
 
@@ -562,7 +562,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Main Mode
+### Testing Commands for `MAIN_UNSELECTED_MODE`
 
 #### Selecting a deck
 
@@ -625,7 +625,9 @@ testers are expected to do more *exploratory* testing.
 1. Showing all decks in MasterDeck
     1. Prerequisites: User is in the Main Mode and a deck is not selected.
     2. Test case: `showDecks` <br>
-       Expected: All existing decks in MasterDeck will be shown.
+       Expected: All existing decks in MasterDeck are shown.
+
+### Testing Commands for `MAIN_SELECTED_MODE`
 
 #### Unselecting a Deck
 
@@ -686,6 +688,61 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `showCards` <br>
       Expected: Cards in the deck are shown.
 
+### Testing Commands for `REVIEW_MODE`
+
+#### Ending a Review
+
+1. Ending the current review
+    1. Prerequisites: User is in Review Mode.
+
+    2. Test case: `endReview`<br>
+       Expected: User returns to MAIN_SELECTED or MAIN_UNSELECTED mode depending on which mode the user was on previously before entering REVIEW mode.
+
+#### Flipping a Card
+
+1. Flip the current card in review
+    1. Prerequisites: User is in Review Mode.
+
+    2. Test case: `p` (`P` is also a valid command)<br>
+       Expected: The card either reveals or hide the answer.
+
+#### Go to previous card
+1. Go to previous card in review
+    1. Prerequisites: User is in Review Mode and current card is not the first card in the review deck.
+
+    2. Test case: `[`<br>
+       Expected: Right panel displays the previous card.
+
+#### Go to next card
+1. Go to next card in review
+    1. Prerequisites: User is in Review Mode and current card is not the last card in the review deck.
+
+    2. Test case: `]`<br>
+       Expected: Right panel displays the next card.
+
+#### Tagging a card as easy
+1. Tag a card as easy during review
+    1. Prerequisites: User is in Review Mode.
+
+    2. Test case: `l` (`L` is also a valid command)<br>
+       Expected: Tag the card as easy. 
+
+#### Tagging a card as medium
+1. Tag a card as medium during review
+    1. Prerequisites: User is in Review Mode.
+
+    2. Test case: `;`<br>
+       Expected: Tag the card as medium.
+
+#### Tagging a card as hard
+1. Tag a card as hard during review
+    1. Prerequisites: User is in Review Mode.
+
+    2. Test case: `'`<br>
+       Expected: Tag the card as hard.
+
+### Other Testing Commands
+
 #### Starting review
 
 1. Starting review on a deck
@@ -722,65 +779,11 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `exit` <br>
        Expected: Exists the program. Window is closed.
 
-
-### Saving data
+###\# Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
-
-### Ending a Review
-
-1. Ending the current review
-    1. Prerequisites: User is in Review Mode.
-
-    2. Test case: `endReview`<br>
-       Expected: User returns to MAIN_SELECTED or MAIN_UNSELECTED mode depending on which mode the user was on previously before entering REVIEW mode.
-
-### Flipping a Card
-
-1. Flip the current card in review
-    1. Prerequisites: User is in Review Mode.
-
-    2. Test case: `p` (`P` is also a valid command)<br>
-       Expected: The card either reveals or hide the answer.
-
-### Go to previous card
-1. Go to previous card in review
-    1. Prerequisites: User is in Review Mode and current card is not the first card in the review deck.
-
-    2. Test case: `[`<br>
-       Expected: Right panel displays the previous card.
-
-### Go to next card
-1. Go to next card in review
-    1. Prerequisites: User is in Review Mode and current card is not the last card in the review deck.
-
-    2. Test case: `]`<br>
-       Expected: Right panel displays the next card.
-
-### Tagging a card as easy
-1. Tag a card as easy during review
-    1. Prerequisites: User is in Review Mode.
-
-    2. Test case: `l` (`L` is also a valid command)<br>
-       Expected: Tag the card as easy. 
-
-### Tagging a card as medium
-1. Tag a card as medium during review
-    1. Prerequisites: User is in Review Mode.
-
-    2. Test case: `;`<br>
-       Expected: Tag the card as medium.
-
-### Tagging a card as hard
-1. Tag a card as hard during review
-    1. Prerequisites: User is in Review Mode.
-
-    2. Test case: `'`<br>
-       Expected: Tag the card as hard.
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 ### Appendix: Effort
 
@@ -802,17 +805,19 @@ Our application has a total of 26 unique commands, as compared to 8 unique comma
 * `REVIEW_MODE` has a total of 9 accessible commands.
 
 As such, we saw this as a valuable opportunity to conduct extensive testing of our application. We achieved this by writing unit and integration tests for our commands, parsers, and model objects. Through this process, we were able to maintain a coverage level of **~70%**, only slightly less than the original **~72%** coverage in AB3. Additionally, we increased the number of test cases from **248** in AB3 to **356** in PowerCards.
-### Appendix: Planned Enhancement
+
+## Appendix: Planned Enhancement
+
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
 **1. Making the command box scrollable**
 - Currently, the command box is not scrollable - when the user types into the command box, the content does not wrap.
 - Users are likely to type long questions and answers hence it would be more convenient if the command box was scrollable.
 - We plan to make content in the command box wrap and the command box itself scrollable.
 
-#### Figure 1.1 Current: Non Scrollable Command Box
+### Figure 1.1 Current: Non Scrollable Command Box
 ![Current Non Scrollable Command Box](images/current_command_box.png)
 
-#### Figure 1.2 Planned Enhancement: Scrollable Command Box
+### Figure 1.2 Planned Enhancement: Scrollable Command Box
 ![Scrollable Command Box](images/scrollable_command_box_enhancement.png)
 
 **2. Review by untagged cards**
@@ -831,8 +836,9 @@ In order to counter known feature flaws from testing, the following are enhancem
 **4. Setting minimum width for components**
 - Currently, the size of the GUI panels can be shrunk by the user to a large extent as seen in figure 4 below such that the app is messy and essentially unusable.
 - Hence, we intend to fix it by setting a minimum width for each component.
-#### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
+### Figure 4.1 Current: Unusable GUI when shrunk by a large extent
 - ![Unusable GUI](images/unusable_gui.png)
 
-#### Figure 4.2 Planned Enhancement: GUI with minimum width
+### Figure 4.2 Planned Enhancement: GUI with minimum width
 - ![GUI with min width](images/gui_min_width.png)
+

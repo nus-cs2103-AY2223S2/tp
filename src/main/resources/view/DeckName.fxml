@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="deckNamePane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="deckNamePane" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane alignment="CENTER" HBox.hgrow="ALWAYS">
         <VBox alignment="CENTER" prefHeight="85" GridPane.columnIndex="0">
             <padding>
