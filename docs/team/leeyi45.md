@@ -3,9 +3,9 @@ layout: page
 title: LEE YI Project Portfolio Page
 ---
 
-### Project: tuition center admin managing system (TCAMS)
+### Project: Tutee Managing System (TMS)
 
-Tuition center admin managing system (TCAMS) is a desktop application designed for admins working at tuition center managing courses, tutors and students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). TCAMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+Tutee managing system (TMS) is a desktop application designed for admins working at tuition center managing courses, tutors and students, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
