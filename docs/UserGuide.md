@@ -271,6 +271,7 @@ Examples:
 * `addCard q\What is chemical symbol for Oxygen? a\O` adds an untagged card with the given question and answer to the deck.
 * `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` adds a card tagged as "easy" with the given question and answer to the deck.
 
+<div style="page-break-after: always;"></div>
 ### 3.4.2. Deleting a Card : `deleteCard`
 
 You can swiftly delete an existing card from the current selected deck with this command. 
@@ -302,6 +303,7 @@ Examples:
 * `edit 2 q\What is a recursion?` will only edit the question of the 2nd card to `What is a recursion?`. The other fields of the card (answer, tag) remain unchanged.
 * `edit 3 q\What is a recursion? q\What is a loop?` edits the question of the 3rd card to be `What is a loop?`. 
 
+<div style="page-break-after: always;"></div>
 ### 3.4.4. Finding Cards by Keywords in Question : `findCards`
 
 This command allows you to find specific cards you want to interact with based on the keyword(s) you enter.
