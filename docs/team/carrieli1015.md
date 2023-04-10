@@ -43,7 +43,7 @@ Given below are my contributions to the project.
       * Added in missing items.
       * Updated UG with more details.
     * Developer Guide
-      * Helped with generate the Ui chart.
+      * Helped with generate the UML diagram.
       * Tweaked the DG and relevant guides.
 
 * **Contributions to team-based tasks**:
