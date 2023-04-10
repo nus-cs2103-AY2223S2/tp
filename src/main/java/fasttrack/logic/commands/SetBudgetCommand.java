@@ -31,4 +31,11 @@ public class SetBudgetCommand implements Command {
         dataModel.setBudget(budget);
         return new CommandResult(MESSAGE_SUCCESS + this.budget, ScreenType.EXPENSE_SCREEN);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetBudgetCommand // instanceof handles nulls
+                && budget.equals(((SetBudgetCommand) other).budget));
+    }
 }
