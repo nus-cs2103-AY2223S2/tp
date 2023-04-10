@@ -1212,7 +1212,6 @@ Refer to the links below.
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancements**
 
