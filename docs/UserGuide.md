@@ -1030,16 +1030,15 @@ The following commands are drug-related commands that are available in Careflow 
 --------------------------------------------------------------------------------------------------------------------
 # **8. Glossary**
 
-* Command Line Interface (CLI) <br/>
+<span id="1">* Command Line Interface (CLI) <br/>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think
 of it like texting your computer to get it to do things.
-
+</span>
 <br/><br/>
 
-* Graphical User Interface (GUI) <br/>
+<span id="2">* Graphical User Interface (GUI) <br/>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
-
-<br/><br/>
+</span>
 
 [🠉 Back to top](#top)
 
