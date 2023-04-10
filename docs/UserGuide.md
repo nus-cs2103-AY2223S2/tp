@@ -28,7 +28,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 4. Double-click the file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   <img src="images/Ui.png" width="600" />
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
