@@ -17,10 +17,8 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.ModelManager;
-import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.UserPrefs;
 import seedu.calidr.storage.IcsCalendarStorage;
-import seedu.calidr.storage.JsonAddressBookStorage;
 import seedu.calidr.storage.JsonUserPrefsStorage;
 import seedu.calidr.storage.Storage;
 import seedu.calidr.storage.StorageManager;
@@ -54,11 +52,6 @@ public class LogicManagerTest {
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
     /**
@@ -117,19 +110,5 @@ public class LogicManagerTest {
                                       String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
-    }
-
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
     }
 }

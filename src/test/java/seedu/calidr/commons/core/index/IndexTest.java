@@ -53,7 +53,7 @@ public class IndexTest {
         assertNotEquals(null, fifthPersonIndex);
 
         // different types -> returns false
-        assertNotEquals(5.0f, fifthPersonIndex, 0.0);
+        assertNotEquals(5.0f, fifthPersonIndex);
 
         // different index -> returns false
         assertNotEquals(fifthPersonIndex, Index.fromOneBased(1));
