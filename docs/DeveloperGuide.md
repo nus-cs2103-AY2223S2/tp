@@ -529,7 +529,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `* * *` | SoC Student who knows Vim | use my task planner efficiently | reduce time spent on managing my tasks and editing my task planner |
 | `* * *` | SoC Student who knows Vim | list down all the tasks on my to-do list | look at all the things I need to do at one glance |
-| `* * *`  | SoC Student who knows Vim | add entries of task for the things to do into the task planner   | keep track of things to do        |
+| `* * *` | SoC Student who knows Vim | quickly add new tasks that come to my mind | always keep track of all the tasks I need to do especially when many things come to my mind at the same time |
 | `* * *` | SoC Student who knows Vim | keep track of the deadline of a task | always finish my assignments and submissions before their due dates |
 | `* * *` | SoC Student who knows Vim | assign a high priority level to tasks that are more urgent/important | filter/sort the tasks by their priorities later |
  `* *` | SoC Student who knows Vim | mark a task as "in progress" | keep a mental note and come back to the task at a later time if I only halfway done with the task|
