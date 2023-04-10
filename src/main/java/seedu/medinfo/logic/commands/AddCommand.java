@@ -20,7 +20,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
-            + "[optional]" + PREFIX_STATUS + "STATUS \n"
+            + "[" + PREFIX_STATUS + "STATUS] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe " + PREFIX_NRIC + "S1234567A " + PREFIX_STATUS + "GRAY \n";
 
