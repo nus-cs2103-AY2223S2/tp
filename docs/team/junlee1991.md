@@ -16,6 +16,7 @@ Given below are my contributions to the project.
     * Consideration: This feature required numerous design and usability considerations due to how familiar most users are with this feature. In addition, the implementation as well required an in-depth analysis of design alternatives to determine the most optimal solution for this project.
     * Credits: [zhixianggg](https://github.com/zhixianggg) - I reused and adapted some of his code to implement the UndoRedoStack.
                [bakano98](https://github.com/bakano98) - I reused and adapted some of his code to implement the undo redo test.
+               [9fc70c892](https://github.com/9fc70c892) - I reused and adapted some of his code to implement the undo redo test.
 
 * **New Feature**: Added the totalappointment command.
   * What it does: Finds the number of appointments on a specified date.
@@ -33,6 +34,7 @@ Given below are my contributions to the project.
     * Fixed Bugs relating to undo and redo feature (Pull requests [\#91](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/91))
     * Added undo command test (Pull requests [\#139](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/139))
     * Added redo command test (Pull requests [\#141](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/141))
+    * Added undo redo command test with shop api (Pull requests [\#169](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/169))
 
 
 * **Documentation**:
