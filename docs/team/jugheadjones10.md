@@ -30,6 +30,3 @@ Given below are my contributions to the project.
 
 - **Testing contributed**:
     - Conducted some light testing to ensure my features worked correctly.
-
-- **Review/mentoring contributions**:
-    - *to be added soon*
