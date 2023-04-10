@@ -11,7 +11,7 @@ If you're interested in contributing to the Vimification project, this Developer
 
 ---
 
-## Table of Contents
+## **Table of Contents**
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
@@ -19,7 +19,6 @@ If you're interested in contributing to the Vimification project, this Developer
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
 - [Appendix: Instructions for manual testingq](#appendix-instructions-for-manual-testing)
-
 
 ---
 
