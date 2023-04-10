@@ -5,6 +5,7 @@ title: Developer Guide
 
 * Table of Contents
 {:toc}
+
 ---
 
 ## 1. **Acknowledgements**
