@@ -409,6 +409,7 @@ The following sequence diagram shows how the `timetable_completed` operation wor
 
 
 ### Statistics feature
+Allow the user to view summary statistics about the delivery jobs.
 #### Implementation
 
 Given below is an example usage scenario and how the statistics mechanism behaves at each step.
@@ -440,8 +441,6 @@ The following sequence diagram shows how the statistics operation works:
     * Pros: Will use less memory and faster to execute
     * Cons: Will make code longer and increases coupling
 
-
-_{more aspects and alternatives to be added}_
 
 ### Notification feature
 #### Implementation
@@ -550,7 +549,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | busy person                                                     | view list of reminders                                             | keep track of my progress                                                            |
 | `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines                       | plan for my next schedule                                                            |
 | `* * *`  | busy and organised person                                       | view schedule of my tasks in a week                                | organise my timetable/to-do list and keep track/complete everything on time          |
-| `* * *`  | busy  and organised person                                      | view list of completed and unscheduled jobs                        | keep track of my work                                                                |
+| `* * *`  | busy and organised person                                       | view list of completed and unscheduled jobs                        | keep track of my work                                                                |
 | `* * *`  | productive and motivated delivery driver                        | view statistics of my jobs and earnings                            | keep track of my work and get motivated to work harder                               |
 | `* *`    | delivery driver                                                 | hide private contact details                                       | minimize chance of someone else seeing them by accident                              |
 | `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information                                     | track my earnings and other statistics                                               |
@@ -815,10 +814,6 @@ testers are expected to do more *exploratory* testing.
 
 
 ### Delivery Job System
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
 
 1. Add a job by command
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
@@ -839,12 +834,10 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to `1.ii`
    1. Test case: fill in all fields<br>
       Expected: Similar to `1.iii`
-<<<<<<< HEAD
-   1. Other incorrect approach to try:
+   
 
-=======
    1. Other incorrect approach to try:  
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
+
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  
       - date: invalid date.  
@@ -886,10 +879,6 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `select a job` > press `del` key<br>
       Expected: Job selected is removed.
 ### Notifications
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
 
 1. Display a notification for a reminder
    1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
@@ -932,7 +921,11 @@ has been activated.
     3. The output box in the Timetable window should show a message confirming that Timetable window is opened for the specific week which contains the input date.
     4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
 
-
+### Statistics
+1. Display statistics of all jobs from Main Window
+    1. Prerequisites: None.
+    2. Command: `stats`. Alternative, for `stats` command, user can use GUI mode instead: Menu bar > Statistics > Display Statistics.
+    3. The text in the window should show lists of statistics for current week's and previous week's jobs.
 
 ### Appendix: Effort
 As our application contains different windows and features, such as Timetable Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on the structure/design of each window to maintain good design principles. To make sure that Duke Driver is friendly to typing-preferred users, asides from including buttons on GUI mode, we also include commands for users to switch between windows. 
