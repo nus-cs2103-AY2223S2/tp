@@ -25,5 +25,6 @@ public class TypicalCustomer {
             .withCustomerAddress(VALID_ADDRESS_BOB).build();
 
     private TypicalCustomer() {} // prevents instantiation
+    //@@author
 
 }

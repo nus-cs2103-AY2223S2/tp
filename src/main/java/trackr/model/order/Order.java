@@ -15,13 +15,13 @@ import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.person.Customer;
 
-//@@author chongweiguan-reused
 /**
  * Represents an Order in the order list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order extends Item {
 
+    //@@author chongweiguan-reused
     private static final MenuItem INVALID_MENU_ITEM =
             new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
 
@@ -38,7 +38,6 @@ public class Order extends Item {
     // MenuItem
     private final MenuItem orderItem;
 
-    //@@author chongweiguan-reused
     /**
      * Every field must be present and not null
      */
@@ -94,30 +93,26 @@ public class Order extends Item {
         return orderItem;
     }
 
-    //@@author chongweiguan-reused
     public OrderName getOrderName() {
         return orderName;
     }
 
-    //@@author chongweiguan-reused
     public OrderDeadline getOrderDeadline() {
         return orderDeadline;
     }
 
-    //@@author chongweiguan-reused
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    //@@author chongweiguan-reused
     public OrderQuantity getOrderQuantity() {
         return orderQuantity;
     }
 
-    //@@author chongweiguan-reused
     public Customer getCustomer() {
         return customer;
     }
+    //@@author
 
     public LocalDateTime getTimeAdded() {
         return timeAdded;
@@ -229,7 +224,6 @@ public class Order extends Item {
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
     }
 
-    //@@author chongweiguan-reused
     /**
      * Returns true if both orders have the same name, deadline, quantity, customer and status.
      * This defines a stronger notion of equality between two orders.
@@ -254,14 +248,12 @@ public class Order extends Item {
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
     }
 
-    //@@author chongweiguan-reused
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(customer, orderName, orderDeadline, orderStatus, orderQuantity);
     }
 
-    //@@author chongweiguan-reused
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -276,4 +268,5 @@ public class Order extends Item {
                 .append(getCustomer());
         return builder.toString();
     }
+    //@@author
 }

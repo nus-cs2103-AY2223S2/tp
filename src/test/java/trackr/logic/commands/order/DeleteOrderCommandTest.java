@@ -28,12 +28,10 @@ import trackr.model.order.Order;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteOrderCommand}.
  */
-//@@author chongweiguan-reused
 public class DeleteOrderCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
-    //@@author chongweiguan-reused
     @Test
     public void execute_validIndexUnfilteredOrderList_success() throws ParseException {
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
@@ -51,7 +49,6 @@ public class DeleteOrderCommandTest {
         assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void execute_invalidIndexUnfilteredOrderList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
@@ -60,7 +57,6 @@ public class DeleteOrderCommandTest {
         assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void execute_validIndexFilteredOrderList_success() throws ParseException {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
@@ -80,7 +76,6 @@ public class DeleteOrderCommandTest {
         assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void execute_invalidIndexFilteredOrderList_throwsCommandException() {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
@@ -94,7 +89,6 @@ public class DeleteOrderCommandTest {
         assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void equals() {
         DeleteOrderCommand deleteOrderFirstCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
@@ -117,7 +111,6 @@ public class DeleteOrderCommandTest {
         assertFalse(deleteOrderFirstCommand.equals(deleteOrderSecondCommand));
     }
 
-    //@@author chongweiguan-reused
     /**
      * Updates {@code model}'s filtered task list to show no one.
      */
@@ -126,4 +119,5 @@ public class DeleteOrderCommandTest {
 
         assertTrue(model.getFilteredOrderList().isEmpty());
     }
+    //@@author
 }

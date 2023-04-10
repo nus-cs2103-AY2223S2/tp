@@ -15,12 +15,12 @@ public class OrderNameTest {
         assertThrows(NullPointerException.class, () -> new OrderName(null));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidOrderName = "";
         assertThrows(IllegalArgumentException.class, () -> new OrderName(invalidOrderName));
     }
+    //@@author
 
     @Test
     public void isValidOrderName() {
@@ -48,7 +48,6 @@ public class OrderNameTest {
         assertEquals(expectedOrderName, new OrderName("Chocolate Cookies").toString());
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void equals() {
         OrderName orderName = new OrderName("Sort Inventory");
@@ -61,4 +60,5 @@ public class OrderNameTest {
         assertFalse(orderName.equals(differentOrderName)); //different task name
         assertFalse(orderName.equals(1)); //different type
     }
+    //@@author
 }

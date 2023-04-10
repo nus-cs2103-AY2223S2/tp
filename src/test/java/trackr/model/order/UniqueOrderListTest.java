@@ -18,7 +18,6 @@ import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.item.exceptions.ItemNotFoundException;
 import trackr.testutil.OrderBuilder;
 
-//@@author chongweiguan-reused
 public class UniqueOrderListTest {
 
     private final UniqueOrderList uniqueOrderList = new UniqueOrderList();
@@ -28,6 +27,7 @@ public class UniqueOrderListTest {
     public void contains_nullorder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.contains(null));
     }
+    //@@author
 
     @Test
     public void contains_orderNotInList_returnsFalse() {
@@ -45,6 +45,7 @@ public class UniqueOrderListTest {
     public void add_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.add(null));
     }
+    //@@author
 
     @Test
     public void add_duplicateOrder_throwsDuplicateOrderException() {
@@ -80,6 +81,7 @@ public class UniqueOrderListTest {
 
         assertEquals(expectedUniqueOrderList, uniqueOrderList);
     }
+    //@@author
 
     @Test
     public void setOrder_editedOrderHasSameIdentity_success() {
@@ -118,13 +120,11 @@ public class UniqueOrderListTest {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.remove(null));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void remove_orderDoesNotExist_throwsOrderNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniqueOrderList.remove(CHOCOLATE_COOKIES_O));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void remove_existingOrder_removesOrder() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
@@ -134,6 +134,7 @@ public class UniqueOrderListTest {
 
         assertEquals(expectedUniqueOrderList, uniqueOrderList);
     }
+    //@@author
 
     @Test
     public void setOrders_nullUniqueOrderList_throwsNullPointerException() {

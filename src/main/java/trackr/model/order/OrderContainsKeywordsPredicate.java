@@ -20,7 +20,6 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         super();
     }
 
-    //@@author chongweiguan-reused
     /**
      * Constructs a new {@code OrderContainsKeywordsPredicate} object
      * with the same keywords of order details as the
@@ -38,12 +37,10 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         setCustomerPhone(toCopy.getCustomerPhone().isPresent() ? toCopy.getCustomerPhone().get() : null);
     }
 
-    //@@author chongweiguan-reused
     public void setOrderNameKeywords(List<String> orderNameKeywords) {
         this.orderNameKeywords = orderNameKeywords;
     }
 
-    //@@author chongweiguan-reused
     public Optional<List<String>> getOrderNameKeywords() {
         return Optional.ofNullable(orderNameKeywords);
     }
@@ -56,7 +53,6 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         return Optional.ofNullable(customerNameKeywords);
     }
 
-    //@@author chongweiguan-reused
     /**
      * Returns true if any of the fields in the {@code Order} object are present or not.
      *
@@ -66,7 +62,6 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         return isAnyFieldNonNull() || orderNameKeywords != null || customerNameKeywords != null;
     }
 
-    //@@author chongweiguan-reused
     @Override
     public boolean test(Item item) {
         if (!(item instanceof Order)) {
@@ -75,7 +70,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
 
         Order order = (Order) item;
 
-        //@@author chongweiguan-reused
+
         boolean isOrderNameMatch;
         boolean isOrderDeadlineMatch;
         boolean isOrderQuantityMatch;
@@ -134,7 +129,6 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
 
     }
 
-    //@@author chongweiguan-reused
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -155,4 +149,5 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
                 && getOrderStatus().equals(predicate.getOrderStatus())
                 && getOrderDeadline().equals(predicate.getOrderDeadline());
     }
+    //@@author
 }

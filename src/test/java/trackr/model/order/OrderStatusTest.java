@@ -10,32 +10,29 @@ import org.junit.jupiter.api.Test;
 //@@author chongweiguan-reused
 public class OrderStatusTest {
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new OrderStatus(null));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_blankStatus_throwsIllegalArgumentException() {
         String blankOrderStatus = "";
         assertThrows(IllegalArgumentException.class, () -> new OrderStatus(blankOrderStatus));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_invalidStatus_throwsIllegalArgumentException() {
         String invalidTaskStatus = "Z";
         assertThrows(IllegalArgumentException.class, () -> new OrderStatus(invalidTaskStatus));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_noArguments_success() {
         OrderStatus expectedStatus = new OrderStatus("N");
         assertEquals(expectedStatus, new OrderStatus());
     }
+    //@@author
 
     @Test
     public void isValidOrderStatus() {
@@ -75,7 +72,6 @@ public class OrderStatusTest {
         assertEquals("In Progress", inProgress.toString());
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toJsonString() {
         OrderStatus done = new OrderStatus("D");
@@ -88,7 +84,6 @@ public class OrderStatusTest {
         assertEquals("I", inProgress.toJsonString());
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void equals() {
         OrderStatus done = new OrderStatus("D");
@@ -105,6 +100,7 @@ public class OrderStatusTest {
         assertFalse(done.equals(inProgress)); //done vs in progress
         assertFalse(done.equals("N")); //different types
     }
+    //@@author
 
     @Test
     public void compare() {

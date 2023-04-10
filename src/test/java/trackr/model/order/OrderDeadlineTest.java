@@ -17,23 +17,21 @@ public class OrderDeadlineTest {
         assertThrows(NullPointerException.class, () -> new OrderDeadline(null));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_wrongFormat_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("2023/01/01"));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_dateNotInCalendar_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("35/14/2023"));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void constructor_notDate_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new OrderDeadline("Not a Date"));
     }
+    //@@author
 
     @Test
     public void isValidOrderDeadline() {
@@ -75,14 +73,12 @@ public class OrderDeadlineTest {
         assertEquals(expectedDate, new OrderDeadline(todayDate).toString());
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toJsonString() {
         String expectedDate = "10/10/2023";
         assertEquals(expectedDate, new OrderDeadline(expectedDate).toJsonString());
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void equals() {
         OrderDeadline orderDeadline = new OrderDeadline("01/01/2024");
@@ -95,5 +91,6 @@ public class OrderDeadlineTest {
         assertFalse(orderDeadline.equals(differentDeadline)); //different deadlines
         assertFalse(orderDeadline.equals(1)); //different type
     }
+    //@@author
 
 }

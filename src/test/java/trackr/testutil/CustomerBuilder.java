@@ -9,10 +9,8 @@ import trackr.model.person.PersonPhone;
 /**
  * A utility class to help with building Customer objects.
  */
-//@@author chongweiguan-reused
 public class CustomerBuilder {
 
-    //@@author chongweiguan-reused
     public static final String DEFAULT_CUSTOMER_NAME = "John Smith";
     public static final String DEFAULT_CUSTOMER_PHONE = "12345678";
     public static final String DEFAULT_CUSTOMER_ADDRESS = "123 Smith Street";
@@ -30,7 +28,6 @@ public class CustomerBuilder {
         customerAddress = new PersonAddress(DEFAULT_CUSTOMER_ADDRESS);
     }
 
-    //@@author chongweiguan-reused
     /**
      * Initializes the CustomerBuilder with the data of {@code customerToCopy}.
      */
@@ -40,7 +37,6 @@ public class CustomerBuilder {
         customerAddress = customerToCopy.getCustomerAddress();
     }
 
-    //@@author chongweiguan-reused
     /**
      * Sets the {@code CustomerName} of the {@code Customer} that we are building.
      */
@@ -49,7 +45,6 @@ public class CustomerBuilder {
         return this;
     }
 
-    //@@author chongweiguan-reused
     /**
      * Sets the {@code CustomerPhone} of the {@code Customer} that we are building.
      */
@@ -58,7 +53,6 @@ public class CustomerBuilder {
         return this;
     }
 
-    //@@author chongweiguan-reused
     /**
      * Sets the {@code CustomerAddress} of the {@code Customer} that we are building.
      */
@@ -67,9 +61,9 @@ public class CustomerBuilder {
         return this;
     }
 
-    //@@author chongweiguan-reused
     public Customer build() {
         return new Customer(customerName, customerPhone, customerAddress);
     }
+    //@@author
 
 }

@@ -345,7 +345,6 @@ public class ModelManager implements Model {
 
     //=========== Filtered Order List Accessors =============================================================
 
-    //@@author chongweiguan-reused
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
      * {@code versionedOrderList}
@@ -364,6 +363,7 @@ public class ModelManager implements Model {
         requireNonNull(comparator);
         orderList.sortItems(comparator);
     }
+    //@@author
 
     //========================================================================================================
 

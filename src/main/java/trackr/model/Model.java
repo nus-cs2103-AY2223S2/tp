@@ -168,11 +168,11 @@ public interface Model {
      */
     ReadOnlyOrderList getOrderList();
 
-    //@@author chongweiguan-reused
     /**
      * Returns an unmodifiable view of the filtered order list
      */
     ObservableList<Order> getFilteredOrderList();
+    //@@author
 
     // ===================================================== Menu Item ========================================
 

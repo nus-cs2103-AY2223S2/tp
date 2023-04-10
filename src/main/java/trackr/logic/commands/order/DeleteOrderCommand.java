@@ -26,4 +26,5 @@ public class DeleteOrderCommand extends DeleteItemCommand<Order> {
     public DeleteOrderCommand(Index targetIndex) {
         super(targetIndex, ModelEnum.ORDER);
     }
+    //@@author
 }

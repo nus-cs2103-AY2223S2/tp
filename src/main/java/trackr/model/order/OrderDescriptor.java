@@ -26,7 +26,6 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
 
     public OrderDescriptor() {}
 
-    //@@author chongweiguan-reused
     /**
      * Copy constructor.
      */
@@ -40,7 +39,6 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
         setCustomerAddress(toCopy.customerAddress);
     }
 
-    //@@author chongweiguan-reused
     /**
      * Returns true if at least one field is edited.
      */
@@ -49,42 +47,34 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
                 orderStatus, customerAddress, customerName, customerPhone);
     }
 
-    //@@author chongweiguan-reused
     public void setCustomerAddress(PersonAddress customerAddress) {
         this.customerAddress = customerAddress;
     }
 
-    //@@author chongweiguan-reused
     public Optional<PersonAddress> getCustomerAddress() {
         return Optional.ofNullable(customerAddress);
     }
 
-    //@@author chongweiguan-reused
     public void setCustomerName(PersonName customerName) {
         this.customerName = customerName;
     }
 
-    //@@author chongweiguan-reused
     public Optional<PersonName> getCustomerName() {
         return Optional.ofNullable(customerName);
     }
 
-    //@@author chongweiguan-reused
     public void setCustomerPhone(PersonPhone customerPhone) {
         this.customerPhone = customerPhone;
     }
 
-    //@@author chongweiguan-reused
     public Optional<PersonPhone> getCustomerPhone() {
         return Optional.ofNullable(customerPhone);
     }
 
-    //@@author chongweiguan-reused
     public void setOrderDeadline(OrderDeadline orderDeadline) {
         this.orderDeadline = orderDeadline;
     }
 
-    //@@author chongweiguan-reused
     public Optional<OrderDeadline> getOrderDeadline() {
         return Optional.ofNullable(orderDeadline);
     }
@@ -93,42 +83,34 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
         this.orderName = orderName;
     }
 
-    //@@author chongweiguan-reused
     public Optional<OrderName> getOrderName() {
         return Optional.ofNullable(orderName);
     }
 
-    //@@author chongweiguan-reused
     public void setOrderQuantity(OrderQuantity orderQuantity) {
         this.orderQuantity = orderQuantity;
     }
 
-    //@@author chongweiguan-reused
     public Optional<OrderQuantity> getOrderQuantity() {
         return Optional.ofNullable(orderQuantity);
     }
 
-    //@@author chongweiguan-reused
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    //@@author chongweiguan-reused
     public Optional<OrderStatus> getOrderStatus() {
         return Optional.ofNullable(orderStatus);
     }
 
-    //@@author chongweiguan-reused
     public void setOrderItem(MenuItem orderItem) {
         this.orderItem = orderItem;
     }
 
-    //@@author chongweiguan-reused
     public Optional<MenuItem> getOrderItem() {
         return Optional.ofNullable(orderItem);
     }
 
-    //@@author chongweiguan-reused
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -152,5 +134,5 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
                 && getCustomerPhone().equals(orderDescriptor.getCustomerPhone())
                 && getCustomerName().equals(orderDescriptor.getCustomerName());
     }
-
+    //@@author
 }

@@ -23,7 +23,6 @@ public class OrderQuantity {
         value = quantity;
     }
 
-    //@@author chongweiguan-reused
     /**
      * Returns true if a given string matches the validation regex for quantity.
      *
@@ -52,13 +51,11 @@ public class OrderQuantity {
         return value;
     }
 
-    //@@author chongweiguan-reused
     @Override
     public String toString() {
         return value;
     }
 
-    //@@author chongweiguan-reused
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -66,9 +63,9 @@ public class OrderQuantity {
                 && value.equals(((OrderQuantity) other).value)); // state check
     }
 
-    //@@author chongweiguan-reused
     @Override
     public int hashCode() {
         return value.hashCode();
     }
+    //@@author
 }

@@ -163,24 +163,22 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.ORDER));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void hasOrder_orderNotInOrderList_returnsFalse() {
         assertFalse(modelManager.hasItem(CHOCOLATE_COOKIES_O, ModelEnum.ORDER));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void hasOrder_orderInOrderList_returnsTrue() {
         modelManager.addItem(CHOCOLATE_COOKIES_O, ModelEnum.ORDER);
         assertTrue(modelManager.hasItem(CHOCOLATE_COOKIES_O, ModelEnum.ORDER));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
     }
+    //@@author
 
     @Test
     public void equals() {

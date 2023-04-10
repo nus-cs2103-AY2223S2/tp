@@ -107,11 +107,11 @@ public class LogicManager implements Logic {
         return model.getOrderList();
     }
 
-    //@@author chongweiguan-reused
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return model.getFilteredOrderList();
     }
+    //@@author
 
     @Override
     public ItemProfit getTotalProfits() {

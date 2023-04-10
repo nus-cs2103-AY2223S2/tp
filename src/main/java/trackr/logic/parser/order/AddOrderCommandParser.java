@@ -33,7 +33,6 @@ import trackr.model.person.PersonPhone;
  * Parses input arguments and creates a new AddOrderCommand object.
  */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
-    //@@author chongweiguan-reused
     /**
      * Parses the given {@code String} of arguments in the context of the AddOrderCommand
      * and returns an AddOrderCommand object for execution.
@@ -65,7 +64,6 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         return new AddOrderCommand(order);
     }
 
-    //@@author chongweiguan-reused
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -73,4 +71,5 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+    //@@author
 }

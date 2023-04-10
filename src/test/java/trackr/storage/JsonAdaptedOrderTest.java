@@ -57,7 +57,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullCustomerName_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(null, VALID_CUSTOMER_PHONE,
@@ -78,7 +77,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullCustomerPhone_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, null,
@@ -89,7 +87,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_invalidCustomerAddress_throwsIllegalValueException() throws Exception {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME,
@@ -100,7 +97,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullCustomerAddress_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -111,7 +107,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullOrderItem_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -122,7 +117,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_invalidOrderDeadline_throwsIllegalValueException() {
         JsonAdaptedOrder task = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -132,7 +126,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullOrderDeadline_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -143,7 +136,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_invalidOrderQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order =
@@ -154,7 +146,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullOrderQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -165,7 +156,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_invalidOrderStatus_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -175,7 +165,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullOrderStatus_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -186,7 +175,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_invalidTimeAdded_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -196,7 +184,6 @@ public class JsonAdaptedOrderTest {
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void toModelType_nullTimeAdded_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
@@ -205,5 +192,6 @@ public class JsonAdaptedOrderTest {
         String expectedMessage = JsonAdaptedOrder.MESSAGE_PARSE_TIME_ADDED_ERROR;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
+    //@@author
 
 }

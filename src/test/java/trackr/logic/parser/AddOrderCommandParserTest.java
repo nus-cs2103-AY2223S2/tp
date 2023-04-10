@@ -14,7 +14,6 @@ import trackr.testutil.OrderBuilder;
 public class AddOrderCommandParserTest {
     private AddCommandParserTest parser = new AddCommandParserTest();
 
-    //@@author chongweiguan-reused
     @Test
     public void parse_allFieldsPresent_success() {
         Order expectedTask = new OrderBuilder(CHOCOLATE_COOKIES_O).build();
@@ -30,16 +29,15 @@ public class AddOrderCommandParserTest {
         assertTrue(expectedTask.equals(expectedTask));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE);
         assertTrue(expectedMessage.equals(expectedMessage));
     }
 
-    //@@author chongweiguan-reused
     @Test
     public void parse_invalidValue_failure() {
         assertTrue(parser.equals(parser));
     }
+    //@@author
 }

@@ -88,6 +88,7 @@ public class TrackrParser {
         case AddOrderCommand.COMMAND_WORD:
         case AddOrderCommand.COMMAND_WORD_SHORTCUT:
             return new AddOrderCommandParser().parse(arguments);
+        //@@author
 
         case AddSupplierCommand.COMMAND_WORD:
         case AddSupplierCommand.COMMAND_WORD_SHORTCUT:
@@ -133,6 +134,7 @@ public class TrackrParser {
         case DeleteOrderCommand.COMMAND_WORD:
         case DeleteOrderCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteOrderCommandParser().parse(arguments);
+        //@@author
 
         case ClearSupplierCommand.COMMAND_WORD:
         case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
@@ -202,6 +204,7 @@ public class TrackrParser {
         //@@author chongweiguan-reused
         case UploadCsvCommand.COMMAND_WORD:
             return new UploadCsvCommandParser().parse(arguments);
+        //@@author
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
