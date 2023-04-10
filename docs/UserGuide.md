@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Patientist User Guide
+title: User Guide
 ---
 Patientist is command-line interface (CLI) based desktop app that is designed to streamline patient and staff management for 
 small clinics and hospitals. Its intuitive interface is easy to navigate, and its command-based system is straightforward
