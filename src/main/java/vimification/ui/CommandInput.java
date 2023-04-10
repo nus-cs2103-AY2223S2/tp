@@ -80,9 +80,7 @@ public class CommandInput extends UiPart<HBox> {
      * @param input the command string to be executed
      */
     private void executeCommand(String input) {
-
         String commandString = cleanCommandString(input);
-        // System.out.println("Your command is " + input);
         CommandResult result = logic.execute(commandString);
         mainScreen.loadCommandResultComponent(result);
         refreshRightComponent(result);
@@ -94,14 +92,13 @@ public class CommandInput extends UiPart<HBox> {
         if (isRightComponentEmpty) {
             return;
         }
-
         Node rightComponent = mainScreen.getRightComponent().getChildren().get(0);
         boolean isWelcomePanelLoaded = mainScreen.getWelcomePanel().equals(rightComponent);
         boolean isHelpManualPanelLoaded = mainScreen.getHelpManualPanel().equals(rightComponent);
         // Only refresh the TaskDetailPanel
-        boolean shouldRefreshUi =
-                result.getShouldRefreshUi() && !(isHelpManualPanelLoaded || isWelcomePanelLoaded);
-        System.out.println("shouldRefersh" + shouldRefreshUi);
+        boolean shouldRefreshUi = result.shouldRefreshUi()
+                && !isHelpManualPanelLoaded
+                && !isWelcomePanelLoaded;
         if (shouldRefreshUi) {
             mainScreen.getTaskListPanel().loadTaskDetailPanel();
         }

@@ -22,7 +22,7 @@ public class QuitCommand extends UiCommand {
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         Platform.exit();
-        return new CommandResult(SUCCESS_MESSAGE);
+        return new CommandResult(SUCCESS_MESSAGE, false);
     }
 
     @Override

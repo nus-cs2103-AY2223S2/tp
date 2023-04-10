@@ -108,15 +108,12 @@ public class TaskListPanel extends UiPart<VBox> {
             loadTaskDetailPanel();
             break;
         case "j":
-            System.out.println("You've moved down");
             navigateToNextCell();
             break;
         case "k":
-            System.out.println("You've moved up");
             navigateToPrevCell();
             break;
         default:
-            System.out.println("You've pressed: " + event.getText());
             break;
         }
     }
@@ -164,9 +161,6 @@ public class TaskListPanel extends UiPart<VBox> {
         boolean isTaskListEmpty = taskListView.getItems().isEmpty();
         Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
         boolean isNothingSelected = selectedTask == null;
-
-        System.out.println("isNothignSelected " + isNothingSelected);
-
         if (isTaskListEmpty) {
             mainScreen.clearRightComponent();
             return;
