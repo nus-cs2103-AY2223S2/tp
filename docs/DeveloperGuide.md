@@ -126,7 +126,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdateModelClassDiagram.png" width="600" />
+<img src="images/ModelClassDiagram2.png" width="600" />
 
 
 The `Model` component,
@@ -174,9 +174,7 @@ Below shows the activity diagram when the user inputs the add command in the com
 
 ![Activity Diagram for add person command](images/ActivityDiagram_AddPerson.png){:.center}
 
-The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. The subsidiary diagram is as shown below:
-
-![Activity Diagram for parsing command](images/ActivityDiagram_AddCommandParser.png){:.center}
+The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. 
 
 ### Create team feature
 
@@ -191,25 +189,22 @@ The AB3 implementation made it such that you could not add a contact without hav
 
 Thus, we have made it such that the only mandatory field is the persons name.
 
-> This feature has only been added to phone so far.
+#### Implementation
 
-To achieve this, we needed to: 
-1. Allow users to input empty fields.
-2. Allow users to omit field prefixes.
-3. Allow users to edit contacts to empty their field.
+The implementation for the follow fields: Phone, Email, Major, Address have been made optional. The implementation to achieve this is similar across these fields. We use the Phone class as an example. 
 
-This meant that the validation regex in each field class _e.g. Phone class, Email class_ had to allow for empty strings/ white spaces as an input, and the parser for each of these fields should know how to handle theses cases.
+```java
+private static final Phone NO_PHONE = new Phone();
 
-We considered using "java.util.Optional" package to resolve the issue, however in the end since we do need a 'default empty field' to act as a place holder for each of the fields _e.g. a empty_phone instance_, it made the Optional functionality redundant.
+//...
 
-Additionally, storing fields as Optional classes caused many dependencies issues which required wide-spread change. Thus, we opted for the following changes:
+private Phone() {
+    value = "";
+}
+```
 
-1. The value for each Person field classes is now private, e.g. Phone.value is not accessible outside of phone class
-2. Constructor for field class set to private
-3. Public `of()` method created for each class to be called from other classes. `of()` method creates and instance of the class, given the parameters. E.g. `Phone.of(String <Phone_number>)' creates the phone instance with phone number given as argument.
-4. Default instance for empty fields for each field class is created and stored within its own class. E.g. Phone class has a `private static final Phone EMPTY_PHONE` instance.
-5. The default instance mentioned above can be returned by calling a static method in the class.
-
+- The private constructor `Phone()` takes in no arguments and returns a phone instance where the value is an empty string.
+- The private constructor is then used to create a static final `NO_PHONE` phone instance. This will be used as a placeholder when users does not input a phone field/ phone field is empty.
 
 
 ### Undo/Redo feature
@@ -556,3 +551,22 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Planned Enhancements
+
+### Ease of adding/removing persons to/from teams
+Currently, to add a person to a team, one has to use the `edit` command to add a team tag to the contact. There are significant drawbacks to this:
+1. User has to type out the entire team name in the team tag.
+2. User has to input all the teams that the person is already in, else the edit command will remove those tags from the person.
+
+#### Suggested implementation:
+Create two new commands, `add_to_team` and `remove_from_team`, both of which will have the following format:
+
+```add_to_team <PERSON_INDEX> <TEAM_INDEX> [<TEAM_INDEX> ...]```
+
+```remove_from_team <PERSON_INDEX> <TEAM_INDEX> [<TEAM_INDEX> ...]```
+
+- `<PERSON_INDEX>` is the index of the person shown on the person list of the Ui. If there is no person at the given index, the command will throw an error. This field is required.
+- `<TEAM_INDEX>` is the index of a team shown on the team list of the Ui. If there is no team at the given index, the command will throw an error. This field is required.
+- `[<TEAM_INDEX> ...]` is/are additional teams that the user wants to add/remove a person to/from. For example, user can input `remove_from_team 1 1 2 3`, and this will remove the person at index 1 from the teams at index 1, 2, and 3. The additional team(s) are optional.
+
