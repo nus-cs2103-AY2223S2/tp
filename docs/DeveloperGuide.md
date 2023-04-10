@@ -170,7 +170,7 @@ The `Person` added by the user has four compulsory fields and one optional field
 * `Date` of the case
 * `Postal` code of the case
 * `Age` of the person
-* `Variant` of the case (Optional)
+* `Variant` of the case (optional)
 
 The `addPerson` operation is facilitated by `AddCommand` which extends from `Command`. 
 
@@ -192,7 +192,7 @@ The following sequence diagram will illustrate how `addPerson` operation works:
 
 #### Implementation
 
-The implementation for edit is largely similar to that of [Add](#add-feature).
+The implementation for the `edit` command is largely similar to that of the [`add`](#add-feature) command.
 
 ### Multi-index delete feature
 
@@ -492,8 +492,8 @@ Step 2. The user executes the `import sampledata.csv` command to import a list o
 `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `import` command word,
 passes the argument `sampledata.csv` to the `importCommandParser`.
 
-Step 3. `ImportCommandParser#parse()` is called. `sampledata.csv` is checked whether it contains any special characters,
-and ends with `.csv`. `ImportCommand` is constructed, taking in the trimmed filepath `sampledata.csv` as an argument.
+Step 3. `ImportCommandParser#parse()` is called. It checks that `sampledata.csv` does not contain any special characters,
+and that it ends with `.csv`. An `ImportCommand` is constructed, taking in the trimmed filepath `sampledata.csv` as an argument.
 
 Step 4. `ImportCommand#execute()` will get the trimmed filepath and retrieve the list of cases to import from `sampledata.csv`.
 
@@ -504,20 +504,18 @@ The following sequence diagram shows how the import command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
 
-The following activity diagram summarises what happens when a user executes an Import command:
+The following activity diagram summarises what happens when a user executes an import command:
 
 ![ImportActivityDiagram](images/ImportActivityDiagram.png)
 
 #### Design considerations
 
 **Aspect: Filenames and directories accepted**
-* We only currently accept filenames with no special characters and additionally store files in the same directory as
-`dht.jar`.
-* We also do not currently accept additional directory specifications
+* We currently only accept filenames with no special characters.
+* We also do not currently accept additional directory specifications. Files are stored in the same directory as `dht.jar`.
 
 **Future work**
-* We will want to accept directories as part of the accepted input, which wil create the directory if it does not exist,
-or minimally perform checking - i.e. if the directory(s) exist, it will be allowed to same the file there.
+* Instead of having a single default location, we could accept a directory as part of the input, create it if it does not exist, and save the file there instead.
 
 ### Export feature
 
@@ -532,14 +530,14 @@ The following sequence diagram represents the difference in step 5:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
-The following activity diagram summarises what happens when a user executes an Export command:
+The following activity diagram summarises what happens when a user executes an export command:
 
 ![ImportActivityDiagram](images/ExportActivityDiagram.png)
 
 #### Design considerations
 
 **Aspect: Overwrite checking**
-* We currently allow the user to overwrite CSV files stored as long as the IO operations is successful.
+* We currently allow the user to overwrite CSV files stored as long as the IO operations are successful.
   * This is an issue as a user can accidentally override important CSV files.
   
 **Future work**
@@ -554,7 +552,7 @@ Step 5: Model calls `Overview#getOverviewContent()` to obtain the list to export
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
-The activity diagram is similar to that of export.
+The activity diagram is similar to that of the `export` command.
 
 #### Design considerations
 
@@ -811,7 +809,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The filepath is invalid
     * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
 
-* 1a. The filepath contains an empty file or in the incorrect format
+* 1a. The filepath contains an empty file or a file in an incorrect format
     * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
 
 #### Use case: Export/checkout data
