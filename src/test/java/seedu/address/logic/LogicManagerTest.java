@@ -3,7 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.parser.ClassificationTerms.CHAR;
+import static seedu.address.model.entity.Character.CHAR_COMMAND_TERM;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntities.AMY;
 
@@ -51,13 +51,6 @@ public class LogicManagerTest {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
-    /*
-    @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-     */
 
     @Test
     public void execute_validCommand_success() throws Exception {
@@ -76,7 +69,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = "make" + " " + CHAR.label + NAME_DESC_AMY;
+        String addCommand = "make" + " " + CHAR_COMMAND_TERM + NAME_DESC_AMY;
         Entity expectedEntity = new EntityBuilder(AMY).buildChar();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntity(expectedEntity);

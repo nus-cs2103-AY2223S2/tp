@@ -13,6 +13,7 @@ import seedu.address.model.tag.Tag;
 public class Item extends Entity {
     private final Cost cost;
     private final Weight weight;
+    public static String ITEM_COMMAND_TERM = "item";
 
     /**
      * Constructs an item using a given ItemBuilder

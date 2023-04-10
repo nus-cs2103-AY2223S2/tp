@@ -14,6 +14,7 @@ public class Character extends Entity {
     private final Stats stats;
     private final Inventory inventory;
     private final Progression progression;
+    public static String CHAR_COMMAND_TERM = "char";
 
     /**
      * Create a new character using a builder pattern

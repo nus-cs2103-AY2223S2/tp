@@ -4,9 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.parser.ClassificationTerms.CHAR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.entity.Character.CHAR_COMMAND_TERM;
 import static seedu.address.testutil.TypicalEntities.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -28,12 +28,12 @@ public class MakeCommandParserTest {
         Need to update with tests that are more relevant to current app design
          */
         // whitespace only preamble
-        assertParseSuccess(parser, CHAR.label + NAME_DESC_BOB,
+        assertParseSuccess(parser, CHAR_COMMAND_TERM + NAME_DESC_BOB,
                                                                 new MakeCommand(expectedEntity));
 
         // multiple names - last name accepted
         // Apparently this don't work yet
-        //assertParseSuccess(parser, MakeCommand.COMMAND_WORD + " " + CHAR.label + NAME_DESC_AMY + NAME_DESC_BOB,
+        //assertParseSuccess(parser, MakeCommand.COMMAND_WORD + " " + CHAR_COMMAND_TERM + NAME_DESC_AMY + NAME_DESC_BOB,
         //                                                    new MakeCommand(expectedEntity));
     }
 
@@ -41,7 +41,7 @@ public class MakeCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, CHAR.label, expectedMessage);
+        assertParseFailure(parser, CHAR_COMMAND_TERM, expectedMessage);
         assertParseFailure(parser, " ", expectedMessage);
     }
 
@@ -51,7 +51,7 @@ public class MakeCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser,
-                CHAR.label + " " + INVALID_NAME_DESC,
+                CHAR_COMMAND_TERM + " " + INVALID_NAME_DESC,
                 Name.MESSAGE_CONSTRAINTS
         );
 

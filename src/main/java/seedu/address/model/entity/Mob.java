@@ -17,7 +17,7 @@ public class Mob extends Entity {
     private final ChallengeRating challengeRating;
     private final Legend legend;
     private final Inventory inventory;
-
+    public static String MOB_COMMAND_TERM = "mob";
     /**
      * Create a mob using a builder pattern
      * @param builder given MobBuilder
