@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/toh-xinyi.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Storage
 
 ### Gwyneth Guo Bai Ling
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/gwynethguo.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Model
 
 ### Li Yuxuan
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/carrieli1015.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of UI
 
 ### Qiu Qianhui
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/qqh0828.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: In charge of Logic
 
 ### Quek Jing Ling, Brian
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/astraxq.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of UI
