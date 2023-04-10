@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalMockStudents.getTypicalMockStudents;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -73,9 +74,19 @@ class ExportProgressCommandTest {
 
             String studentName = typicalStudentList.get(0).getName().fullName;
             String defaultDir = Paths.get("data").toAbsolutePath().toString();
+            String defaultPath = Paths.get("data", studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
 
             String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                     studentName + "'s Progress Report.pdf");
+
+            Path parentDir = Paths.get(defaultPath).getParent();
+            if (parentDir != null) {
+                try {
+                    Files.createDirectories(parentDir);
+                } catch (IOException e) {
+                    throw new CommandException(e.getMessage());
+                }
+            }
 
             ExportProgressCommand exportProgressCommand = new ExportProgressCommand(validIndex, "");
             CommandResult commandResult = exportProgressCommand.execute(modelStub);
@@ -88,9 +99,19 @@ class ExportProgressCommandTest {
 
             String studentName = typicalStudentList.get(typicalStudentList.size() - 1).getName().fullName;
             String defaultDir = Paths.get("data").toAbsolutePath().toString();
+            String defaultPath = Paths.get("data", studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
 
             String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
                     studentName + "'s Progress Report.pdf");
+
+            Path parentDir = Paths.get(defaultPath).getParent();
+            if (parentDir != null) {
+                try {
+                    Files.createDirectories(parentDir);
+                } catch (IOException e) {
+                    throw new CommandException(e.getMessage());
+                }
+            }
 
             ExportProgressCommand exportProgressCommand = new ExportProgressCommand(validIndex, "");
             CommandResult commandResult = exportProgressCommand.execute(modelStub);
