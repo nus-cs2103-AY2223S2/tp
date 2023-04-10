@@ -6,8 +6,8 @@ title: User Guide
 OfficeConnect is a task management tool designed specifically for managerial role personnels based in Singapore.
 
 As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
-* work overload among subordinates
-* difficulties in coordinating tasks with a large number of employees
+* work overload among subordinates,
+* difficulties in coordinating tasks with a large number of employees.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing
 managers to efficiently delegate tasks in an organised manner. 
