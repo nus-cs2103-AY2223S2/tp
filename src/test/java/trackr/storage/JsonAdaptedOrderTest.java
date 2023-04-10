@@ -20,6 +20,7 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 public class JsonAdaptedOrderTest {
 
     private static final String INVALID_CUSTOMER_NAME = "R@chel";
@@ -45,6 +46,7 @@ public class JsonAdaptedOrderTest {
         assertEquals(CHOCOLATE_COOKIES_O, order.toModelType());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void toModelType_invalidCustomerName_throwsIllegalValueException() throws Exception {
         JsonAdaptedOrder order = new JsonAdaptedOrder(INVALID_CUSTOMER_NAME,
@@ -190,5 +192,6 @@ public class JsonAdaptedOrderTest {
         String expectedMessage = JsonAdaptedOrder.MESSAGE_PARSE_TIME_ADDED_ERROR;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
+    //@@author
 
 }

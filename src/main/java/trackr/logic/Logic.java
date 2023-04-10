@@ -44,6 +44,7 @@ public interface Logic {
      */
     ObservableList<Supplier> getFilteredSupplierList();
 
+    //@@author chongweiguan-reused
     /**
      * Returns the OrderList
      *
@@ -55,6 +56,7 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of orders.
      */
     ObservableList<Order> getFilteredOrderList();
+    //@@author
 
     /**
      * Returns cumulative profits.

@@ -5,6 +5,7 @@ import trackr.logic.commands.DeleteItemCommand;
 import trackr.model.ModelEnum;
 import trackr.model.order.Order;
 
+//@@author chongweiguan-reused
 /**
  * Deletes an order identified using it's displayed index from the order list.
  */
@@ -25,4 +26,5 @@ public class DeleteOrderCommand extends DeleteItemCommand<Order> {
     public DeleteOrderCommand(Index targetIndex) {
         super(targetIndex, ModelEnum.ORDER);
     }
+    //@@author
 }

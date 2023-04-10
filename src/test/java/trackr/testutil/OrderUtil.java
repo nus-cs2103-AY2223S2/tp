@@ -12,7 +12,6 @@ import trackr.logic.commands.order.AddOrderCommand;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
-
 /**
  * utility calss for Order
  */
@@ -48,7 +47,9 @@ public class OrderUtil {
         return sb.toString();
     }
 
-    // Returns the part of command string for the given {@code OrderDescriptor}'s details.
+    /**
+     * Returns the part of command string for the given {@code OrderDescriptor}'s details.
+     */
     public static String getOrderDescriptorDetails(OrderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderName()
@@ -70,7 +71,9 @@ public class OrderUtil {
         return sb.toString();
     }
 
-    // Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
+    /**
+     * Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
+     */
     public static String getOrderPredicateDetails(OrderContainsKeywordsPredicate descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderNameKeywords()
@@ -92,6 +95,6 @@ public class OrderUtil {
                         .append(" "));
         return sb.toString();
     }
-
+    //@@author
 
 }

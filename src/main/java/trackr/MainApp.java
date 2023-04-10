@@ -134,6 +134,7 @@ public class MainApp extends Application {
             initialMenu = new Menu();
         }
 
+        //@@author chongweiguan-reused
         try {
             orderListOptional = storage.readOrderList();
             if (!orderListOptional.isPresent()) {
@@ -147,6 +148,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty OrderList");
             initialOrderList = new OrderList();
         }
+        //@@author
 
         return new ModelManager(initialSupplierList, initialTaskList, initialMenu, initialOrderList, userPrefs);
     }

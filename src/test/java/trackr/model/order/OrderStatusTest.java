@@ -7,6 +7,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author chongweiguan-reused
 public class OrderStatusTest {
 
     @Test
@@ -31,6 +32,7 @@ public class OrderStatusTest {
         OrderStatus expectedStatus = new OrderStatus("N");
         assertEquals(expectedStatus, new OrderStatus());
     }
+    //@@author
 
     @Test
     public void isValidOrderStatus() {
@@ -57,6 +59,7 @@ public class OrderStatusTest {
         assertTrue(OrderStatus.isValidStatus("d", OrderStatus.STATUSES)); // small letter
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void toStringTest() {
         OrderStatus done = new OrderStatus("D");
@@ -97,6 +100,7 @@ public class OrderStatusTest {
         assertFalse(done.equals(inProgress)); //done vs in progress
         assertFalse(done.equals("N")); //different types
     }
+    //@@author
 
     @Test
     public void compare() {

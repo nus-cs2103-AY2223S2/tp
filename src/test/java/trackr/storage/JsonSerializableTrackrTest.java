@@ -79,6 +79,7 @@ public class JsonSerializableTrackrTest {
     }
     //@@author
 
+    //@@author chongweiguan-reused
     @Test
     public void toOrderModelType_typicalOrderFile_success() throws Exception {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_ORDERS_FILE,
@@ -101,4 +102,5 @@ public class JsonSerializableTrackrTest {
         assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_ORDER,
                 dataFromFile::toOrderModelType);
     }
+    //@@author
 }

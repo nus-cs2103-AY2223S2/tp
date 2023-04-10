@@ -114,10 +114,12 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
     }
+    //@@author
 
     @Test
     public void getSupplierList() {
@@ -131,11 +133,13 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getTaskList());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getOrderList() {
         ReadOnlyOrderList expected = model.getOrderList();
         assertEquals(expected, logic.getOrderList());
     }
+    //@@author
 
     public void getFilteredSupplierList() {
         ObservableList<Supplier> expected = model.getFilteredSupplierList();
@@ -148,11 +152,13 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getFilteredTaskList());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList() {
         ObservableList<Order> expected = model.getFilteredOrderList();
         assertEquals(expected, logic.getFilteredOrderList());
     }
+    //@@author
 
     @Test
     public void getTrackrFilePath() {

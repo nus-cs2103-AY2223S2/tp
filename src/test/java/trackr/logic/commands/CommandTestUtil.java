@@ -392,6 +392,7 @@ public class CommandTestUtil {
     }
     //@@author
 
+    //@@author chongweiguan-reused
     /**
      * Updates {@code model}'s filtered order list to show only the order at the given {@code targetIndex} in the
      * {@code model}'s task list.
@@ -407,5 +408,6 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
+    //@@author
 
 }
