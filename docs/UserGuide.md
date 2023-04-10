@@ -265,7 +265,6 @@ Format: `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE]
 Example:
 * `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8` Adds a new student named `John Doe` to TutorPro.
 
-![new-student.png](images/new-student.png)
 
 #### View a Student Profile
 
@@ -301,7 +300,6 @@ Examples:
     And their respective new values.
 * At least one updated parameter has to be present.<br>
 
-![Update Info](images/update-info.png)
 
 :bulb: **Tip:** You can edit multiple fields in a student's profile at once by using several of the above prefixes.
 
@@ -318,7 +316,6 @@ Format: `delete [index/STUDENT_INDEX]`
 Examples:
 * `delete index/1` Deletes the first profile in the student list.
 
-![Delete Student](images/delete.png)
 
 ### Homework Commands
 #### Assign Homework to a Student
@@ -337,7 +334,6 @@ Examples:
 * `new-homework name/Donald homework/english essay deadline/2023-05-14 2359` adds the assignment `English Essay` to the student named `Donald`. The deadline is 14 May 2023 at 23:59.
 * `new-homework name/Kai Ze name/Muhammad homework/math ex1 deadline/2023-05-23 2359` adds the assignment `math ex1` to the students named `Kai Ze` and `Muhammad`. The deadline is 23 May 2023 at 23:59.
 
-![New Homework](images/new-homework.jpg)
 
 :bulb: **Tip:** You can use the `view-homework` command or click on the `Homework` button next to their name to view the list of homework the student currently has.
 
@@ -395,7 +391,6 @@ Examples:
 * `delete-homework name/John index/1` deletes the first homework for the student named John.
 * `delete-homework name/Susan index/3` deletes the third homework for the student named Susan.
 
-![Delete Homework](images/delete-homework.jpg)
 
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
@@ -467,7 +462,6 @@ Examples:
 * `update-homework name/Susan index/3 deadline/2023-05-12 23:59` updates the deadline of homework 3 of Susan to be `2023-05-12 23:59`.
 * `update-homework name/Donald index/2 homework/Math Assignment 1 deadline/2023-05-12 23:59` updates the name of homework 2 of Donald to be `Math Assignment 1` and updates the deadline of homework 2 of Donald to be `2023-05-12 23:59`.
 
-![Update Homework](images/update-homework.jpg)
 
 :bulb: **Tip:** You can use the `view-homework` command to view the list of homework the student currently has.
 
@@ -499,7 +493,6 @@ Examples:
 * `new-lesson name/John Doe lesson/The Water Cycle start/2025-03-23 1300 end/2025-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `23 Mar 2025 13:00` and ending at `23 Mar 2025 15:00`.
 * `new-lesson name/David Li name/John Doe lesson/Metamorphic Rocks start/2025-04-23 1300 end/2025-04-23 1500` creates a new lesson for the students named `David Li` and `John Doe`  with the lesson title `Metamorphic Rocks` starting at `23 Apr 2025 13:00` and ending at `23 Apr 2025 15:00`.
 
-![New Lesson](images/new-lesson.jpg)
 
 :bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
 
@@ -559,7 +552,6 @@ Example:
 * `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
 * `delete-lesson name/Bernice Yu index/2` deletes the second lesson for the student named Bernice Yu.
 
-![Delete Lesson](images/delete-lesson.jpg)
 
 :bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
 
@@ -588,7 +580,6 @@ Example:
 * `update-lesson name/John Doe index/1 start/2025-03-23 1300` updates the first lesson for the student named John Doe to have the start time `23 Mar 2025 13:00`.
 * `update-lesson name/Bernice Yu index/2 end/2025-03-23 1500` updates the second lesson for the student named Bernice Yu to have the end time `23 Mar 2025 15:00`.
 
-![Update Lesson](images/update-lesson.jpg)
 
 :bulb: **Tip:** You can use the `view-lesson` command to view the list of lessons the student currently has.
 
@@ -677,6 +668,8 @@ Examples:
 * `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01'
   with description 'MYE' which are undone.
 
+![view-exam.png](images/view-exam.png)
+
 :bulb: **Tip:** You can view the supported date and time formats [here](#supported-date-time-formats).
 
 :exclamation: **Caution:** STUDENT_NAME is case-insensitive and supports partial matching.
@@ -724,7 +717,7 @@ Format: `help`
 
 * Opens the help window where you can copy the link to TutorPro's support site.
 
-Example
+Example:
 * `help` Opens the help window.
 
 #### Clear All TutorPro Data
