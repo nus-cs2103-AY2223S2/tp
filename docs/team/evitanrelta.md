@@ -17,18 +17,23 @@ Given below are my contributions to the project.
   * Added autocompletion feature _([#130], [#136], [#137])_
   * Enhanced the `Prefix` class to include more info like placeholder text _(eg. `NAME`)_, whether is optional/repeatable, and example values _(eg. `Shaun` for `n/` prefix)_
   * Improved our undo/redo code by removing unnecessary class `CommandHistory` _([#265])_
+  * Fixed all test cases _([#260])_
+  * Refactored various error messages _([#252], [#254], [#259])_
 
 * **Bugs fixed** _([#278], [#264], [#255], [#251], [#250], [#248], [#239], [#234], [#229], [#216], [#214], [#197], [#190], [#174], [#165], [#141], [#60], [#57])_
 
 * **Documentation**:
   * User Guide:
-    * Added autocompletion section _([#155])_
+    * Added autocompletion section _([#155], [#287])_
+    * Fix various formatting various _([#219], [#220])_
   * Developer Guide:
     * Added [autocomplete section][ac-dg] _([#292])_
     * Updated [acknowledgement section][dg-acknowledgement] _([#310])_
+    * Fix various formatting errors _([#282], [#293], [#311])_
   * Others:
     * Update the [AboutUs page] _([#21])_
     * Added profile pics for all my team members _([#5])_
+    * Managed Git related operations for the entire team
 
 * **Community**:
   * PRs reviewed with non-trivial review comments: _([#309], [#303])_
@@ -38,6 +43,8 @@ Given below are my contributions to the project.
   * Responded to [forum posts]
   * Reported bugs found in other team's products _([AY2223S2-CS2103T-W12-4/tp#142])_
 
+[#219]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/219
+[#220]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/220
 [#5]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/5
 [#21]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/21
 [#130]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/130
@@ -50,6 +57,14 @@ Given below are my contributions to the project.
 [#310]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/310
 [#56]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/56
 [#265]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/265
+[#260]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/260
+[#282]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/282
+[#293]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/293
+[#311]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/311
+[#287]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/287
+[#252]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/252
+[#254]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/254
+[#259]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/259
 
 
 [#278]: https://github.com/AY2223S2-CS2103T-W12-2/tp/pull/278

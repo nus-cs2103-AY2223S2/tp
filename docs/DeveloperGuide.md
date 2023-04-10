@@ -25,7 +25,7 @@ If you're eager to get started with TeachMeSenpai, head over to [Setting up, get
 * All icons used are taken from [flaticon]
 * The autocompletion feature was inspired by a similar feature in [AY2223S1-CS2103T-T12-2's tp][T12-2]. We started out with their code, and slowly _(and almost completely)_ overhauled, including refactoring, bug-fixing, adding asserts, and changing the behaviour of the feature to suit our needs.
 * The idea of adding the placeholder text _(eg. the `NAME` in `n/NAME`)_ to the `Prefix` class also came from [AY2223S1-CS2103T-T12-2's tp][T12-2], which gave us the idea to further add more things to the prefix _(like whether the prefix is optional)_, although that was our idea.
-* The undo and redo features were reused with minor modifications from [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG]. The changes include renaming, some different implementation, and modification to include of a variable to track the undone/redone commands in the `VersionedAddressBook` class.
+* The undo and redo features were reused with modifications from [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG]. The changes include renaming, some different implementation, and modification to include of a variable to track the undone/redone commands in the `VersionedAddressBook` class.
 
 [SE-EDU initiative]: https://se-education.org/
 [JavaFX]: https://openjfx.io/
@@ -1086,6 +1086,25 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
 ## **Appendix: Effort**
 
+Evolving AB3 into TeachMeSenpai had a set of challenges and obstacles our team had to work around.
+
+The initial difficulty faced involved getting used to the forking workflow of the project as Git was still new to most of the group.
+There were also concerns around `remark` feature as our team initially intended for it to be a text box within TeachMeSenpai's MainWindow.
+However, as our team was not familiar with JavaFX, it was not as feasible as the pop-up text box window our team settled on. We also included keyboard shortcuts for exiting the pop-up window to not compromise our goal of creating an app targeted at fast-typists.
+
+One challenge we ran into during the project surfaced after an initial testing of our app where we discovered some inconsistent error handling. However, due to time constraints, we were not able to enhance the specificity of our error messages.
+If given more time, this would be an aspect our team would not have compromised. The time constraint also resulted in the inability to refactor a large portion of AB3's code to be specific to our app (Student, and StudentBook instead of Person, and AddressBook).
+However, since our priority was to evolve AB3 to meet the needs of teaching assistants, we prioritised the functionality of our app over the backend details. If given more time, we would definitely have refactored the code.
+
+Lastly, TeachMeSenpai was no easy feat and a portion of the app contains code adapted and reused from past semester's projects.
+
+Our autocomplete feature was inspired by a similar feature in [AY2223S1-CS2103T-T12-2's tp][T12-2]. We started our with their code, and slowly but surely revamped the code.
+This included refactoring, bug-fixing, adding asserts and changing the behaviour of the feature to suit our needs such as prefixes, commands, and parameters specific to our app.
+The idea of adding the placeholder text to the `Prefix` class also came from [AY2223S1-CS2103T-T12-2's tp][T12-2], which gave us the idea to add onto the prefix (like whether the prefix is optional), although the initial idea for optional prefixes was our idea.
+
+Finally, the undo and redo features were reused with modifications from  [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG] as well. The changes include renaming, some different implementation, bug fixing, and modification to include a variable to track the undone/redone commands in the `VersionedAddressBook` class.
+We also encapsulated the `CommandHistory` within the `VersionedAddressBook`.
+
 
 
 ## **Appendix: Planned enhancements**
@@ -1144,14 +1163,17 @@ Currently, all the labels except for remarks are truncated. When the texts are t
 
 ### General
 #### Feature Flaw
-Currently, the user will experience noticeable performance issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
-We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future to fulfil our non-functional requirements.
+Currently, the user will experience noticeable performance issues starting from around ten entries, with the lag becoming more significant the more entries there are.
+We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient, as well as optimise the commands to be more efficient 
+to tackle this issue in the future.
 
 [↑ Back to top](#table-of-contents)
 
 ### Error handling
 #### Feature flaw
-Currently, the error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message detailing the requirements for a telegram handle so users can reference the error message and improve their input.
+Currently, the error message for an invalid telegram handle is "Telegram handle can take any valid telegram handle, and it should not be blank." We plan to replace it with a more helpful error message 
+such as "A telegram handle should be in the form @abc_hi." in addition to the current message.
+There the requirements for a telegram handle can be detailed so users can reference the error message and improve their input.
 
 [↑ Back to top](#table-of-contents)
 
@@ -1177,20 +1199,35 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.  \\
       Expected: The most recent window size and location is retained.
 
-### Deleting a student
+### Deleting a student / multiple students
 
 1. Deleting a student while all students are being shown
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    2. Test case: `delete 1`  \\
-      Expected: First entry is deleted from the list. Details of the deleted contact shown in the status message.
+      Expected: First entry is deleted from the list. Details of the deleted student shown in the status message.
 
    3. Test case: `delete 0` \\
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) \\
       Expected: Similar to previous.
+2. Deleting multiple students while all students are being shown
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   2. Test case: `delete 1 2`  \\
+      Expected: First and second entries are deleted from the list. Details of the deleted students shown in the status message.
+   3. Test case: `delete 0 1`  \\
+      Expected: No students are deleted. Error details shown in the status message. Status bar remains the same.
+3. Deleting one / multiple student(s) while on a filtered list
+   1. Prerequisites: Filter the students using the `find` or `filter` command such that there are at least **2** students in the filtered list.
+   2. Test case: `delete 1`  \\
+      Expected: First entry is deleted from the list. Details of the deleted student shown in the status message.
+   3. Test case: `delete 1 2`  \\
+      Expected: First and second entries deleted from the list. Details of the deleted students shown in the status message.
+   4. Test case: `delete 0 1`  \\
+      Expected: No students are deleted. Error details shown in the status message. Status bar remains the same.
+
 
 ### Adding a student
 
@@ -1198,16 +1235,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List any existing students using the `list` command.
 
-   2. Test case: `add n/Shaun` \\
+   2. Test case: `add n/Shaun`  \\
       Expected: New student is added to the bottom of the student list. Details shown only include the name.
    
-   3. Test case: `add n/Shaun n/Benny` \\
+   3. Test case: `add n/Shaun n/Benny`  \\
       Expected: New student is added to the bottom of the student list. Details shown only includes the last parameter specified, `Benny`.
 
    4. Test case: `add n/Shaun xxx/PARAMETER...` (where xxx is any of the valid prefixes, PARAMETER is any valid input for the respective prefix and ... indicates any number of optional prefixes etc.) \\
       Expected: Similar to previous, details included in the entry are the valid inputs specified.
 
-   5. Test case: `add p/999` \\
+   5. Test case: `add p/999`  \\
       Expected: No student is added to the list. The error message shown details `Invalid command format!` followed by the `add` command format and example.
 
    6. Test case: `add` \\
@@ -1255,6 +1292,82 @@ testers are expected to do more *exploratory* testing.
    11. Test case: `edit 1 xxx/INVALID_PARAMETER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
        Expected: Similar to previous, except error message is specific to the first prefix with an invalid parameter.
 
+### Find student entries
+
+1. Finding students while all students are being shown
+
+   1. Prerequisites: List all students using the `list` command.
+   
+   2. Test case: `find` \\
+   
+      Expected: All students will be listed.
+      
+   3. Test case: `find xxx/` (where xxx is any parameters other than t/ and m/) \\
+   
+      Expected: All students will be listed.
+      
+   4. Test case: `find x/` (where xxx is parameters t/ or m/) \\
+   
+      Expected: No students will be listed.
+      
+   5. Test case: `find yyy` (where yyy is anything) \\
+   
+      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+      
+   6. Test case: `find xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+   
+      Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+      
+   7. Test case: `find x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+   
+      Expected: Entries in the x field with data that fully matches with yyy will be shown.
+      
+   8. Test case: `find xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+   
+      Expected: Entries that matches with all fields of aaa will be shown.
+      
+   9. Test case: `find INVALID_PREFIX/KEYWORD` \\
+   
+      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+
+### Filter student entries
+
+1. Filtering students while all students are being shown
+
+  1. Prerequisites: List all students using the `list` command.
+  
+  2. Test case: `filter` \\
+  
+     Expected: No students will be listed.
+     
+  3. Test case: `filter xxx/` (where xxx is any parameters other than t/ and m/) \\
+  
+     Expected: All students will be listed.
+     
+  4. Test case: `filter x/` (where xxx is parameters t/ or m/) \\
+  
+     Expected: No students will be listed.
+     
+  5. Test case: `filter yyy` (where yyy is anything) \\
+  
+     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     
+  6. Test case: `filter xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+  
+     Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+     
+  7. Test case: `filter x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+  
+     Expected: Entries in the x field with data that fully matches with yyy will be shown.
+     
+  8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+  
+     Expected: Entries that matches with at least one fields of aaa will be shown.
+     
+  9. Test case: `filter INVALID_PREFIX/KEYWORD` \\
+  
+     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     
 ### Showing a student entry
 
 1. Showing a student entry while all students are being shown
@@ -1271,10 +1384,26 @@ testers are expected to do more *exploratory* testing.
       Expected: Same as previous.
 
    5. Test case: `show 0` \\
-      Expected: No student entry is showN. The error message shown states `The person index provided is invalid`.
+      Expected: No student entry is shown. The error message shown states `The person index provided is invalid`.
    
    6. Other incorrect show commands to try: `show xxx` (where xxx is an invalid number/characters such as -1, or a number greater than the list size) \\
       Expected: Same as previous.
+
+### Editing a student's remarks
+
+1. Editing a student's remarks while all students are being shown
+   1. Prerequisites: List all students using the `list` command. At least 1 student in the list.
+   2. Test case: `remark 1` followed by entering `This is a test remark`, then `CTRL` + `S` to save \
+      Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". Upon pressing `CTRL` + `S`, pop up window closes and remarks for first entry edited to become "This is a test remark".
+   3. Test case: `remark 0` \
+      Expected: No pop-up box appears. The error message shown states `The person index provided is invalid`.
+   4. Prerequisites: Student at index 1 has some remarks written.
+   5. Test case: `remark 1` followed by removing all existing remarks, then `CTRL` + `S` to save \
+      Expected: Pop up window appears for the entering of remarks. Status message is "Editing remarks...". The remarks for the first entry is displayed in the text box. After pressing `CTRL` + `S` after removing all existing remarks, pop up window closes and remarks for first entry is deleted.
+   6. Test case: `remark 1 This is a test remark` \
+      Expected: No pop up window appears. Status message displays details of first entry, with the remark changed to `This is a test remark`.
+   7. Other incorrect remark commands to try: `remark`, `remark x`, `remark -1`. \
+      Expected: Pop up window does not appear. No remarks are edited. Error details shown in the status message. Status bar remains the same.
 
 [↑ Back to top](#table-of-contents)
 
