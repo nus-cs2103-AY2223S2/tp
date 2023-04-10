@@ -2759,7 +2759,7 @@ Some incorrect commands to try from root context:
 |---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1. `export hello.json` <br/> 2. `delete CS2040S, ST2334` <br/> 3. `import hello.json` | **Message:**<br/> `Modules imported to Le Tracker` <br/> **List updates:** `CS2040S` and `ST2334` should be deleted and imported back into Le Tracker           |
 | 1. `export ha.json` <br/> 2. `delete CS2040S` <br/> 3. `import ha.json`               | **Message:**<br/>`ST2334 already exist in tracker. If you want to overwrite data in this module, insert /overwrite in the command` <br/> **List updates:** None |
-| 1. `export he.json` <br/> 2. `delete CS2040S` </br> 3. `import he.json /mod CS2040S`  | **Message:**<br/> `Modules imported to Le Tracker` <br/> **List updates:** `CS2040S` should be deleted and imported back into Le Tracker                        |
+| 1. `export he.json` <br/> 2. `delete CS2040S` <br/> 3. `import he.json /mod CS2040S`  | **Message:**<br/> `Modules imported to Le Tracker` <br/> **List updates:** `CS2040S` should be deleted and imported back into Le Tracker                        |
 
 ### Clear
 
