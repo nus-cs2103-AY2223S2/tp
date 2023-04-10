@@ -32,6 +32,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
 
     * Revamped the GUI by changing the entire CSS.
+      * Implemented a completely new theme, new scrollbars, and even transitions and animations.
+      * Fixed all UI related bugs from that were found from PED and our own testings.
     * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
