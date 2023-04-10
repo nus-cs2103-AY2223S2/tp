@@ -1434,7 +1434,7 @@ of the tags is truncated and cannot be viewed by the user.
 These examples are not exhaustive. The same issue also applies for the other application fields.
 </div>
 
-Potential Enhancement and Suggested Implementation: <br>
+**Potential Enhancement and Suggested Implementation:** <br>
 In the future, we plan to have the parameter Label's wrap around (i.e. continue on a second line) if it goes beyond the
 ApplicationCard boundaries, to provide better readability for Users.
 
