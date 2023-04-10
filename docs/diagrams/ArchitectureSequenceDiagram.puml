@@ -36,7 +36,8 @@ deactivate logic
 ui--[UI_COLOR]> user
 deactivate ui
 
-model -[MODEL_COLOR]> files : new Files()
+create files
+model -[MODEL_COLOR]> files :
 activate files FILES_COLOR
 
 files -[FILES_COLOR]> files : deleteAll()
