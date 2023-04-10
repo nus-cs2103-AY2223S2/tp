@@ -99,6 +99,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Patient` and `Appointment` objects
 * residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W12-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
