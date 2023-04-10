@@ -30,7 +30,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenFileCommand;
 import seedu.address.logic.commands.PerformanceCommand;
-import seedu.address.logic.commands.PhotoCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
