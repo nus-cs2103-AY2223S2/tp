@@ -894,13 +894,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. DengueHotspotTracker shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 * 1b. No previous states are detected, and an undo is not possible.
 
     * 1b1. DengueHotspotTracker shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 * 1c. There is no argument supplied.
 
