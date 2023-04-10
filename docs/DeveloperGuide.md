@@ -110,7 +110,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Employee` object residing in the `Model`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -153,12 +153,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the ExecutivePro data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the ExecutivePro data i.e., all `Employee` objects (which are contained in a `UniqueEmployeeList` object).
+* stores the currently 'selected' `Employee` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExecutivePro`, which `Person` references. This allows `ExecutivePro` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ExecutivePro`, which `Employee` references. This allows `ExecutivePro` to only require one `Tag` object per unique tag, instead of each `Employee` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -210,7 +210,7 @@ Step 3. The `execute` method of `AddCommand` will be called, it returns a `Comma
 
 Step 4. This adds the `employee` from the list to the model. The `employeeId` will be set and if there
 currently exists an `employee` object with the same field data, a `CommandException` will be thrown and
-a message indicating duplicate person will be shown.
+a message indicating duplicate employee will be shown.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to contain the new `employee`.
 
@@ -256,9 +256,9 @@ into a `List<AddCommand>`.
 Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
 Step 4. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
-If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
+If there is any duplicate Employee found, the function call will be aborted and the database will be reverted to its original state.
 
-Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, updates the database to contain the new persons added.
+Step 5. `storage#saveExecutiveProDb` is then called on the current `database`, updates the database to contain the new employees added.
 
 <h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
 
@@ -412,7 +412,7 @@ Step 3. The `execute` method of `DeleteCommand` will be called, it returns a `Co
 
 Step 4. This finds the `employee` with an Employee ID of 1. If there is no employee with the Employee ID 1, a
 `CommandException` will be thrown and a message indicating invalid Employee ID will be returned. However,
-if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted
+if there is an employee with the given employee ID, then using `model#deleteEmployee()`, the employee will be deleted
 from the database.
 
 Step 5. `storage#saveExecutiveProDb()` is then called, and updates the storage to remove the employee.

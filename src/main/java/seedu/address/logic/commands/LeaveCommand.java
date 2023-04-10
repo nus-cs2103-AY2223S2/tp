@@ -34,7 +34,9 @@ public class LeaveCommand extends Command {
     private final int numberOfDaysLeave;
 
     /**
-     * Creates an LeaveCommand for an employee to take leave
+     * Creates an LeaveCommand for an employee to take leave.
+     * @param employeeId of the employee.
+     * @param numberOfDaysLeave to take.
      */
     public LeaveCommand(EmployeeId employeeId, int numberOfDaysLeave) {
         this.employeeId = employeeId;
