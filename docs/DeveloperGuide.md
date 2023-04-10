@@ -154,13 +154,13 @@ The `Model` component,
 * A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
 * Note that only the `Nric` uniquely identifies each `Person`
 
-<div style="page-break-after: always;"></div>
-
 #### Appointment
 
 * The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
 * Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
   * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
+
+<div style="page-break-after: always;"></div>
 
 #### Prescription
 
@@ -326,6 +326,8 @@ Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete t
 The sequence diagram below shows how the DeleteAppointmentCommand works:
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 * When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
     * Any invalid inputs will throw a `ParseException`
 * Otherwise, it creates a `DeleteAppointmentCommand`. The `LogicManager` then executes the `DeleteAppointmentCommand`, upon which the `Appointment` to be deleted is retrieved and removed from the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#deleteAppointment()`.
@@ -346,6 +348,8 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
     * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
     * Cons: More tedious to implement and less convenient for the user to input command.
 
+<div style="page-break-after: always;"></div>
+
 ## Prescribe Feature
 `Prescription` refers to a `Medication` being sold at a `Cost`. Each `Patient` can have one or more `Prescriptions`
 which can help generate their bill. There are a few ways to implement connecting these 4 classes, and we opted for
@@ -364,6 +368,8 @@ the one simplest for the User to use as our Users could be not tech-savvy.
   * Cons: Most challenging design. Does not allow prescribing `Medication` at a different `Cost`, such as if the prices rise.
 
 ![PrescriptionImplementationAlternative.png](images/PrescriptionImplementationAlternative.png)
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -445,6 +451,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -471,6 +479,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**: manage patient/doctor details faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -499,6 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | healthcare provider                       | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
 | `*`      | healthcare provider                       | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -539,6 +549,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC02 - Add doctor’s information**
 
 **Actor: Healthcare administrator**
@@ -574,6 +586,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC03 - Retrieve patient’s information**
 
 **Actor: Doctor**
@@ -603,6 +617,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. MC denies the request.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - Delete patient's information**
 
@@ -648,6 +664,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC05 - List all patients**
 
 **Actor: Hospital administrator**
@@ -659,6 +677,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. MC displays the list of patients' names and NRIC numbers that was retrieved.
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC06 - List all doctors**
 
@@ -726,6 +746,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 - Cancel patient's appointment**
 
 **Actor: Healthcare administrator**
@@ -761,6 +783,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC09 - Prescribing medication to a Patient**
 
 **Actor: Healthcare administrator**
@@ -788,6 +812,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case restarts from step 3.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC10 - Removing prescribed medication from Patient**
 
 **Actor: Healthcare administrator**
@@ -811,6 +837,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. MC shows the user the Bill.
    Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -829,6 +856,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Administrator**: Define as admin staff of the hospital and has write-access
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -854,6 +883,8 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a person
 
 1. Adding a patient to the existing list.
@@ -876,6 +907,8 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T765 a/Sarah Rd t/Pediatrician` (Wrong NRIC format)<br>
        Expected: No doctor is added to the list. Error details are shown in the status message.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -890,6 +923,8 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `DELETE`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Prescribe, Unprescribe, Bill
 1. Prescribing medication to someone with existing medication
@@ -907,6 +942,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Bill is $6.00
    7. Test case: `unprescribe ic/S1234567A m/drugA c/2`<br>
       Expected: Patient has 1 prescription.
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancements**
 
