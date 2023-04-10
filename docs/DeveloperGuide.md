@@ -744,7 +744,7 @@ We plan to include the same input validation that we used in the `add` feature f
 
 ### Feature Flaw 4: Slashes can be used in the `unit`, `platoon`, and `company` fields
 
-**Brief description:** Slashes can be used in the `unit`, `platoon`, and `company` fields although the invalid input message says that it only accepts alphanumeric characters. However, slashes should not be allowed in these fields as it is a special character used to delimit command parameters.
+**Brief description:** Slashes can be used in the `unit`, `platoon`, and `company` although it should not be allowed in these fields as it is a special character used to delimit command parameters.
 
 **Example:** `edit 1 u/n/pl/alpha`<br>
 Edit command for unit works even though the unit field contains slashes.
