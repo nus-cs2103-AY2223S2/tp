@@ -82,6 +82,7 @@ The guide will walk you through the process of creating and managing tasks, sett
 4. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
 <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
+<br><br><p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Navigating Vimification
 
@@ -146,7 +147,7 @@ In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` w
 Similiar to Vim, you can quit Vimification by typing `:quit` or `:q!` on your keyboard while in Vimification.
 
 <img class="ui-img" src="images/ug-images/8.quit.png">
-
+<br><br>
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Trying out the commands
@@ -215,6 +216,8 @@ In Vimification, a task can has the following attributes:
 | 1      | In progress |
 | 2      | Completed   |
 
+<p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ## Information on commands' parameters
 
 _Take note of how the command format is being interpretted, to know what parameters it requires._
@@ -263,6 +266,8 @@ Show a manual page on the right hand side of Vimification.
 
 Format: `:help`
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Adding task
 
 Add a task to the current task list.
@@ -286,6 +291,8 @@ Example of command
 
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
 2. `:a "Play Touhou Project" --priority 1`
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Inserting parameters to a task
 
@@ -316,6 +323,8 @@ Condition
 - The index must be a positive integer, i.e 1, 2, 3, etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Deleting task
 
 Delete a task from the current task list by specifying the task number.
@@ -335,6 +344,8 @@ Condition
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Deleting parameters of a task
 
@@ -363,6 +374,8 @@ Condition
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Editing task
 
@@ -402,6 +415,8 @@ Condition
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Filtering task
 
 Filter by the parameters as specified by the flag.
@@ -440,6 +455,8 @@ Condition
 - If flag `-a` is provided, the conditions are combined with **and** operator. If there is no other flag, all tasks will be selected.
 - If flag `-o` is provided, the conditions are combined with **or** operator. If there is no other flag, no task will be selected.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Sorting task
 
 Sort by the parameters as specified by the flag.
@@ -461,6 +478,8 @@ Example of command
 Condition
 
 - Only one flag should be present.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Undoing the previous command
 
@@ -484,6 +503,8 @@ Format: `:macro -a <macro> <command_string>`
 Note:
 
 - If the macro is already defined, this command will replaced the old mapping with the new one.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Deleting a macro
 
