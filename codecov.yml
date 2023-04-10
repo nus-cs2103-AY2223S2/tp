@@ -1,0 +1,4 @@
+name: codecov
+
+ignore:
+  -  "src/main/java/seedu/address/ui"

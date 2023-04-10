@@ -1,14 +1,28 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
+    "gender": "female",
     "phone": "94351253",
     "email": "alice@example.com",
+    "company": "company",
+    "location": "Singapore",
+    "occupation": "occupation",
+    "jobTitle": "job title",
     "address": "123, Jurong West Ave 6, #08-111",
+    "remark": "",
+    "task": "",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
+    "gender":  "female",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "company": "company",
+    "location": "Singapore",
+    "occupation": "occupation",
+    "jobTitle": "job title",
+    "address": "4th street",
+    "remark" : "",
+    "task": ""
   } ]
 }

@@ -1,0 +1,7 @@
+@startuml
+start
+:User executes sort command;
+:Sort AddressBook by attribute;
+:Save AddressBook to addressBookStateList;
+stop
+@enduml

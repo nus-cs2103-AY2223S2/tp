@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalTransactions.COFFEE_MACHINES_A;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,9 +15,12 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+
 
 public class ModelManagerTest {
 
@@ -78,8 +82,19 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTxn_nullTxn_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTransaction(null));
+    }
+
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasTxn_txnNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTransaction(COFFEE_MACHINES_A));
     }
 
     @Test
@@ -89,8 +104,31 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTxn_txnNotInAddressBook_returnsTrue() {
+        modelManager.addTransaction(COFFEE_MACHINES_A);
+        assertTrue(modelManager.hasTransaction(COFFEE_MACHINES_A));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTxnList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTransactionList().remove(0));
+    }
+
+    @Test
+    public void sortPersonList_validAttribute() {
+        ObservableList<Person> personList = modelManager.getFilteredPersonList();
+        modelManager.sortPersonList("name");
+        assertEquals(personList, modelManager.getFilteredPersonList());
+    }
+
+    @Test
+    public void sortPersonList_nullAttribute_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.sortPersonList(null));
     }
 
     @Test

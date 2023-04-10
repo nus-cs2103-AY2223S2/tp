@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":LogicManager" as LM LOGIC_MANAGER_COLOR
+Participant ":AddressBookParser" as ABP ADDRESS_BOOK_PARSER_COLOR
+Participant ":SortCommandParser" as SCP SORT_COMMAND_PARSER_COLOR
+Participant ":SortCommand" as SC SORT_COMMAND_COLOR
+Participant "model:ModelManager" as MM MODEL_MANAGER_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
+
+user -[USER_COLOR]> ui : "sort name"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> LM : execute("sort name")
+activate LM LOGIC_MANAGER_COLOR
+
+LM -[LOGIC_MANAGER_COLOR]> ABP : parseCommand("sort name")
+activate ABP ADDRESS_BOOK_PARSER_COLOR
+
+ABP -[ADDRESS_BOOK_PARSER_COLOR]> SCP : parse("name")
+activate SCP SORT_COMMAND_PARSER_COLOR
+
+create SC
+SCP -[SORT_COMMAND_PARSER_COLOR]> SC : SortCommand("name")
+activate SC SORT_COMMAND_COLOR
+
+SC -[SORT_COMMAND_COLOR]-> SCP
+deactivate SC
+
+SCP -[SORT_COMMAND_PARSER_COLOR]-> ABP
+deactivate SCP
+
+ABP --[ADDRESS_BOOK_PARSER_COLOR]> LM : command
+deactivate ABP
+
+LM -[LOGIC_MANAGER_COLOR]> SC : execute(model)
+activate SC SORT_COMMAND_COLOR
+
+SC -[SORT_COMMAND_COLOR]> MM : sortPersonList("name")
+activate MM MODEL_MANAGER_COLOR
+deactivate MM
+
+SC --[SORT_COMMAND_COLOR]> LM : commandResult
+deactivate SC
+
+LM -[LOGIC_MANAGER_COLOR]> storage : saveAddressBook(addressBook)
+activate storage STORAGE_COLOR
+storage -[STORAGE_COLOR]> storage : Save to file
+activate storage STORAGE_COLOR_T1
+storage --[STORAGE_COLOR]> storage
+deactivate storage
+storage --[STORAGE_COLOR]> LM
+deactivate storage
+
+LM --[LOGIC_MANAGER_COLOR]> ui
+deactivate LM
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml

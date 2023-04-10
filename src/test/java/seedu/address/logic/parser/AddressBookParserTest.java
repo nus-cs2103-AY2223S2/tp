@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
+//import seedu.address.logic.commands.ClearTaskCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -22,12 +26,23 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.txncommands.AddTxnCommand;
+//import seedu.address.logic.commands.txncommands.DeleteTxnCommand;
+import seedu.address.logic.commands.txncommands.EditTxnCommand;
+import seedu.address.logic.commands.txncommands.EditTxnCommand.EditTxnDescriptor;
+import seedu.address.logic.commands.txncommands.ListTxnCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Task;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTxnDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TransactionBuilder;
+import seedu.address.testutil.TransactionUtil;
+
 
 public class AddressBookParserTest {
 
@@ -38,6 +53,13 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addtxn() throws Exception {
+        Transaction transaction = new TransactionBuilder().build();
+        AddTxnCommand command = (AddTxnCommand) parser.parseCommand(TransactionUtil.getAddTxnCommand(transaction));
+        assertEquals(new AddTxnCommand(transaction), command);
     }
 
     @Test
@@ -52,6 +74,13 @@ public class AddressBookParserTest {
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
+    //
+    //    @Test
+    //    public void parseCommand_deletetxn() throws Exception {
+    //        DeleteTxnCommand command = (DeleteTxnCommand) parser.parseCommand(
+    //                DeleteTxnCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased());
+    //        assertEquals(new DeleteTxnCommand(INDEX_FIRST_TRANSACTION), command);
+    //    }
 
     @Test
     public void parseCommand_edit() throws Exception {
@@ -60,6 +89,16 @@ public class AddressBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_edittxn() throws Exception {
+        Transaction transaction = new TransactionBuilder().build();
+        EditTxnDescriptor descriptor = new EditTxnDescriptorBuilder(transaction).build();
+        EditTxnCommand command = (EditTxnCommand) parser.parseCommand(EditTxnCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + TransactionUtil.getEditTxnDescriptorDetails(descriptor));
+        assertEquals(new EditTxnCommand(INDEX_FIRST_TRANSACTION, descriptor), command);
     }
 
     @Test
@@ -89,6 +128,12 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_listtxn() throws Exception {
+        assertTrue(parser.parseCommand(ListTxnCommand.COMMAND_WORD) instanceof ListTxnCommand);
+        assertTrue(parser.parseCommand(ListTxnCommand.COMMAND_WORD + " 3") instanceof ListTxnCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
@@ -98,4 +143,19 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        final Task task = new Task("Some task.");
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(AddTaskCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_TASK + task.value);
+        assertEquals(new AddTaskCommand(INDEX_FIRST_PERSON, task), command);
+    }
+
+    //    @Test
+    //    public void parseCommand_clearTask() throws Exception {
+    //        ClearTaskCommand command = (ClearTaskCommand) parser.parseCommand(
+    //                ClearTaskCommand.COMMAND_WORD + "" + INDEX_FIRST_PERSON.getOneBased());
+    //        assertEquals(new ClearTaskCommand(INDEX_FIRST_PERSON), command);
+    //    }
 }
