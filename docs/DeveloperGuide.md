@@ -644,14 +644,35 @@ Sequence Diagram for listing the alarms
       particular alarm)
     
 ### Import CSV files Feature
-Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`
+Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`. See more at the [CSV Format](#Loading/Saving data in CSV format) section below. 
 #### Implementation
+* `ImportCommandParser` -- Parses the import command.
+* `ImportCommand` -- Executes the command given the parsed user input.
+* `Model` -- Adds (and delete if needed) students.
+Below is the sequence diagram for importing a CSV file.
 #### Design Considerations
+**Aspect: Dealing with duplicated students**
+1. **Alternative 1:** If a student already exists, ignore the data of that name in incoming CSV file.
+    * Pros: Simplify the software design and comply with constraints of other parts of the software.
+    * Cons: User may want to overwrite data.
+2. **Alternative 2 (Chosen):** Implement option for user to decide whether to override or not.
+    * Pros: Gives user more choice.
+    * Cons: Data overwriting is irreversible and can be dangerous.
 
 ### Export CSV files Feature
-Import CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`
+Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`. See more at the [CSV Format](#Loading/Saving data in CSV format) section below.
 #### Implementation
+* `ExportCommandParser` -- Parses the export command.
+* `ExportCommand` -- Executes the command given the parsed user input.
+* `Model` -- Provides the list of students.
 #### Design Considerations
+**Aspect: Dealing with writing to an existing file**
+1. **Alternative 1:** Always overwrite the user-designated file if possible.
+    * Pros: Command is simpler to implement and to use.
+    * Cons: Data overwriting is irreversible and users can make mistakes.
+2. **Alternative 2 (Chosen):** Implement option for user to decide whether to override or not.
+    * Pros: Gives user more choice and room for mistake.
+    * Cons: User may get used to using the -force flag, reducing the case to alternative 1.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -812,7 +833,7 @@ Below is the main success scenario of Insert Participation
       Use case ends.
 * 1b. The given week's attendance is not marked
 
-    * 1bTAA shows message that attendance must be marked first before adding participation points.
+    * 1b1. TAA shows message that attendance must be marked first before adding participation points.
 
       Use case ends.
 
