@@ -7,12 +7,6 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -171,10 +165,12 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
   for the day specified
 
 After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
-The following sequence diagrams illustrates the description for adding meeting:
+The following sequence diagrams illustrates the description for adding meeting. Diagram 1 is a continuation of Diagram 2:
 
+**Diagram 1**
 ![AddMeetingSequenceDiagram](images/AddMeetingParseSequenceDiagram.PNG)
 
+**Diagram 2**
 ![AddMeetingExecuteSequenceDiagram](images/AddMeetingExecuteSequenceDiagram.PNG)
 
 #### 2.2 Design Consideration
@@ -249,12 +245,12 @@ Just like other commands, the `Command#execute()` method of `UpdateMeetingComman
 information on how the `Logic` component handles a command.
 
 The parsing and execution of updateMeeting command can be shown with the following
-sequence diagrams. Note that Diagram 2 is a continuation of Diagram 1. <br>
+sequence diagrams. Note that Diagram 3 is a continuation of Diagram 4. <br>
 
-**Diagram 1**
+**Diagram 3**
 ![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram1.png)
 
-**Diagram 2**
+**Diagram 4**
 ![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram2.png)
 
 ### 6. Find Meeting Feature
@@ -301,10 +297,12 @@ The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which p
   * updates list of `Person` objects with a filtered list of `Person` objects with matching policy names
 
 After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
-policy names are displayed. The following sequence diagram illustrates the description for finding policy:
+policy names are displayed. The following sequence diagram illustrates the description for finding policy. Diagram 5 is followed by Diagram 6:
 
+**Diagram 5**
 ![FindPolicyParseSequenceDiagram](images/FindPolicyParseSequenceDiagram.png)
 
+**Diagram 6**
 ![FindPolicyExecuteSequenceDiagam](images/FindPolicyExecuteSequenceDiagram.PNG)
 
 #### 8.2 Design consideration
