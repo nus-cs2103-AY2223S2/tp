@@ -555,7 +555,7 @@ Unlike other commands, the GUI display of the overview is maintained by the `Ove
 
 Given below is an example usage scenario for the active functionality and how the overview mechanism behaves at each step.
 
-It would be helpful to note that `DengueHotspotTrackerParser#parseCommand()` is called from `LogicManager#execute()`, which is in turn called from `MainWindow#executeCommand()` when the user inputs a command via the CLI. Many other mechanisms occur in these methods but , for the sake of brevity, we will only focus on the paths and parts of interest.
+It would be helpful to note that `DengueHotspotTrackerParser#parseCommand()` is called from `LogicManager#execute()`, which is in turn called from `MainWindow#executeCommand()` when the user inputs a command via the CLI. Many other mechanisms occur in these methods, but for the sake of brevity, we will only focus on the paths and parts of interest.
 
 Step 1. The user executes the `overview a/` command to change the overview to split the data based on age group.
 
