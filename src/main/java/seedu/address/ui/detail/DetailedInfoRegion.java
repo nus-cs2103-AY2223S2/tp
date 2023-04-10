@@ -19,7 +19,6 @@ public class DetailedInfoRegion extends UiPart<Region> {
 
     @FXML
     private StackPane headerBarPlaceholder;
-
     @FXML
     private StackPane detailedContentPlaceholder;
 

@@ -5,63 +5,28 @@ title: Niu Boqian's Project Portfolio Page
 
 ### Project: TutorPro
 
-TutorPro is a desktop app designed to help private tutors manage their student information effectively. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimised for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
+TutorPro is a desktop app designed to help private tutors manage their student information effectively. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. Its ability to keep track of a student's lessons and exams makes it especially useful for tutors to plan their lessons to prepare his/her students for their exams.
+
 Given below are my contributions to the project.
 
-* **New Feature**: Adds the ability to add a lesson for a particular student (new-lesson)
-    - What it does: Allows user to add a lesson to a particular student, including details such as the title of the lesson, it's start time, and it's end time.
-    - Justification: This feature enables tutors to effectively plan future lessons for a particular student, keeping track of when he should be teaching which student.
-    - Highlights: This feature required the new class `CreateLessonCommand` and various modifications to handle the addition of lessons.
-    -Credits: N/A
+* **New Feature**: Lesson Feature and Lesson Related commands (new-lesson, view-lesson, delete-lesson, update-lesson)
+  * What it does: Allows the user to add, view, delete, and update lessons for a student.
+  * Justification: This feature improves the product significantly because a tutor can manage the lessons of a student more efficiently.
+  * Highlights: 
+    * The commands are simple to use. The view-lesson command is especially flexible as the user can filter by date, name of student, subject, or any combination of these.
+    * I created a storage for the lesson list, so that now each json file of a student will have a lesson list.
+    * I created relevant helper classes to help with the implementation of the lesson feature. This include various predicate and exception classes.
+    * I create test classes for various classes in the lesson feature.
+  * Credits: N/A
 
-
-* **New Feature**: Adds the ability to view a student's lessons (view-lessons)
-    - What it does: Enables users to view lessons of students by typing in the command `view-lessons`, with parameters such as the student's name and the lesson's title, lesson name, date of lesson, and whether the lesson has been completed or not.
-    - Justification: This feature provides users with quick access to lessons planned for a student so what the tutor can know how many lessons he has taught the student, how many upcoming lessons there are, and when is the next lesson going to take place, so that he can better plan his schedule.
-    - Highlights: This feature required modification to the existing codebase to add the `ViewLessonCommand` command and implement the functionality to display the lessons associated with a student. The command is highly flexible, allowing users to view lessons by student name, lesson title, lesson name, date of lesson, and whether the lesson has been completed or not. Each of these fields can be left blank, in which case the command will display all lessons associated with all students.
-    - Credits: N/A
-
-
-* **New Feature**: Adds the ability to delete a student's lessons (delete-lessons)
-  - What it does: Enables users to delete a student's lessons by typing in the command `delete-lesson`, with index of the lesson to be deleted.
-  - Justification: This feature allows users to delete lessons planned for a student so that they can remove lessons that have already taken place or that they no longer need to plan for.
-  - Highlights: This feature required modification to the existing codebase to add the `DeleteLessonCommand` command and implement the functionality to delete lessons associated with a student.
-  - Credits: N/A
-
-
-* **New Feature**: Adds the ability to update a student's lessons' details (update-lessons)
-  - What it does: Enables users to update a student's lessons' details by typing in the command `update-lesson`, with parameters such as the student's name and the updated lesson's title, lesson name, start time, and end time.
-  - Justification: This feature allows users to update lessons planned for a student so that they can modify the details of a lesson without needing to delete and re-add it.
-  - Highlights: This feature required modification to the existing codebase to add the `UpdateLessonCommand` command and implement the functionality to update the lessons associated with a student.
-  - Credits: N/A
-
-
-* **New Feature**: Adds the ability to add an exam for a particular student (new-exam)
-  - What it does: Allows user to add an exam to a particular student, including details such as the title of the exam, it's start time, and it's end time.
-  - Justification: This feature enables tutors to effectively plan future lessons for a particular student based on what exams the student needs to prepare for.
-  - Highlights: This feature required the new class `CreateExamCommand` and various modifications to handle the addition of exams.
-    -Credits: N/A
-
-
-* **New Feature**: Adds the ability to view a student's exams (view-exams)
-  - What it does: Enables users to view all exams planned for a student by using the `view-exam` command.
-  - Justification: This feature provides users with quick access to exams planned for a student so what the tutor can know how many exams a student needs to prepare for, and and plan his lessons to prepare the student for the exams.
-  - Highlights: This feature required modification to the existing codebase to add the `ViewExamCommand` command and implement the functionality to display the exams associated with a student. The command is highly flexible, allowing users to view exams by student name, exam title, exam name, date of exam, and whether the exam has been completed or not. Each of these fields can be left blank, in which case the command will display all exams associated with all students.
-  - Credits: N/A
-
-
-* **New Feature**: Adds the ability to delete a student's exams (delete-exams)
-  - What it does: Enables users to delete a student's exams by typing in the command `delete-exam`, with index of the exam to be deleted.
-  - Justification: This feature allows users to delete exams planned for a student so that they can remove exams that have already taken place or that they no longer need to plan for.
-  - Highlights: This feature required modification to the existing codebase to add the `DeleteExamCommand` command and implement the functionality to delete exams associated with a student.
-  - Credits: N/A
-
-
-* **New Feature**: Adds the ability to update a student's exams' details (update-exams)
-  - What it does: Enables users to update a student's exams' details by typing in the command `update-exam`, with parameters such as the exam's title, start time, and end time.
-  - Justification: This feature allows users to update exams planned for a student so that they can modify the details of an exam without needing to delete and re-add it.
-  - Highlights: This feature required modification to the existing codebase to add the `UpdateExamCommand` command and implement the functionality to update the exams associated with a student.
-  - Credits: N/A
+* **New Feature**: Exam Related Commands (view-exam, delete-exam, update-exam)
+  * What it does: Allows the user to view, delete, and update exams for a student.
+  * Justification: This feature improves the product significantly because a tutor can be aware of the exams of a student and can plan the lessons accordingly.
+  * Highlights: 
+    * The commands are simple to use. The view-exam command is especially flexible as the user can filter by date, name of student, exam name, or any combination of these.
+    * I created a storage for the exam list, so that now each json file of a student will have a exam list.
+    * I created relevant helper classes to help with the implementation of the exam feature. This include various predicate and exception classes.
+  * Credits: N/A
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nbqian&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -71,6 +36,7 @@ Given below are my contributions to the project.
     * Created labels and categorized issues on GitHub
 * **Enhancements to existing features**:
     * Changed the find, edit, delete command such that they now require the user to use prefixes to specify the fields to search for, edit, or delete
+    * Changed the add command such that when a new student is created, his/her name cannot be part of any existing students' names, and vice versa.
     * Added lesson unique lists in teh application, added, and updated relevant methods in a logical model, storage, and other classes ot fit the change.
 * **Documentation**:
   * User Guide:
@@ -78,6 +44,7 @@ Given below are my contributions to the project.
     * Added Glossary, List of Commands, and List of Prefixes as 3 separate tables: [#117](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/117)
   * Developer Guide:
     * Added implementation for `CreateLessonCommand` [#89](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/89)
+    * Added Glossary and changed the table of contents [#198](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/198)
   
 * **Community**:
   * Reported bugs and suggestions for other teams in the class:

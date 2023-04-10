@@ -12,7 +12,6 @@ import seedu.address.model.student.Homework.Status;
  * Jackson-friendly version of {@link Homework}.
  */
 public class JsonAdaptedHomework {
-
     private final String description;
     private final LocalDateTime deadline;
     private final Status status;
@@ -56,7 +55,7 @@ public class JsonAdaptedHomework {
     /**
      * Converts this Jackson-friendly adapted homework object into the model's {@code Homework} object.
      */
-    public Homework toModelType() {
+    public Homework toModelType() throws IllegalArgumentException {
         Homework homework = new Homework(description, deadline);
         if (status == Status.COMPLETED) {
             homework.markAsDone();
@@ -76,7 +75,7 @@ public class JsonAdaptedHomework {
     }
 
     @Override
-public int hashCode() {
+    public int hashCode() {
         return description.hashCode() + deadline.hashCode() + status.hashCode();
     }
 }

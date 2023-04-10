@@ -5,10 +5,8 @@ skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
-Class "<<interface>>\nUi" as Ui
+
 Class "{abstract}\nUiPart" as UiPart
-Class UiManager
-Class MainWindow
 
 Class DetailedInfoSection
 Class DetailedContent
@@ -16,55 +14,42 @@ Class HeaderBar
 
 Class WelcomeContent
 Class ProfileContent
-Class GeneralHomeworkContent
-Class GeneralLessonContent
-Class GeneralExamContent
+Class "{abstract}\nGeneralHomework" as GeneralHomework
+Class "{abstract}\nGeneralLessons" as GeneralLessons
+Class "{abstract}\nGeneralExams" as GeneralExams
 
-Class EmptyHomeworkContent
-Class EmptyLessonsContent
-Class EmptyExamsContent
-Class FilledHomeworkContent
-Class FilledLessonsContent
-Class FilledExamsContent
+Class EmptyHomework
+Class EmptyLessons
+Class EmptyExams
+Class FilledHomework
+Class FilledLessons
+Class FilledExams
 }
 
 package Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
 }
 
-package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
-}
-
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
 
-
-UiManager .left.|> Ui
-UiManager -down-> "1" MainWindow
 DetailedInfoSection *-down-> "1" HeaderBar
 DetailedInfoSection *-down-> "1" DetailedContent
-MainWindow *-down-> "1" DetailedInfoSection
 
-MainWindow -left-|> UiPart
 DetailedInfoSection --|> UiPart
 HeaderBar --|> UiPart
 DetailedContent --|> UiPart
 
 DetailedInfoSection ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
-WelcomeContent -up-|> DetailedContent
-ProfileContent -up-|> DetailedContent
-GeneralHomeworkContent -up-|> DetailedContent
-GeneralLessonContent -up-|> DetailedContent
-GeneralExamContent -up-|> DetailedContent
-EmptyExamsContent -up-|> GeneralExamContent
-EmptyHomeworkContent -up-|> GeneralHomeworkContent
-EmptyLessonsContent -up-|> GeneralLessonContent
-FilledExamsContent -up-|> GeneralExamContent
-FilledHomeworkContent -up-|> GeneralHomeworkContent
-FilledLessonsContent -up-|> GeneralLessonContent
+WelcomeContent -down-|> DetailedContent
+ProfileContent -down-|> DetailedContent
+GeneralHomework -up-|> DetailedContent
+GeneralLessons -up-|> DetailedContent
+GeneralExams -up-|> DetailedContent
+EmptyExams -up-|> GeneralExams
+EmptyHomework -down-|> GeneralHomework
+EmptyLessons -up-|> GeneralLessons
+FilledExams -up-|> GeneralExams
+FilledHomework -down-|> GeneralHomework
+FilledLessons -up-|> GeneralLessons
 
-MainWindow -[hidden]-|> UiPart
 @enduml

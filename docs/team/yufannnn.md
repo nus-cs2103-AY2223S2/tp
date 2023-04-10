@@ -13,10 +13,10 @@ Whether tutoring a few or many students, TutorPro can streamline workflow.
 
 Given below are my contributions to the project.
 
-*  **Idea**: Come up with the idea of enhancing AB3 to a student management application for private tutors.
+*  **Idea**: Came up with the idea of enhancing AB3 to a student management application for private tutors.
 
-*  **New Feature**: Homework Feature and Homework Related commands (new-homework, view-homework, delete-homework, make-homework, unmark-homework, and update-homework commands)
-    - what it does: The Homework Feature and Homework related commands are designed to help tutors manage their student homework tasks more efficiently. It allows tutors to create, view, update, and delete homework tasks using a set of commands. The new commands include:
+*  **New Feature**: Homework Feature and Six New Homework Related commands
+    - what it does: The Homework Feature and Homework related commands are designed to help tutors manage their student homework tasks more efficiently. It allows tutors to create, view, update, and delete homework tasks using a set of commands. The new commands include: new-homework, view-homework, delete-homework, make-homework, unmark-homework, and update-homework commands.
     - Justification: The Homework Feature is aimed at addressing the common problem of managing multiple homework tasks for private tutors. With this feature, users can easily keep track of their students' assignments and deadlines, prioritize their work, and avoid missing important submission dates.
     - Highlights: The Homework Feature is easy to use and can be accessed through a set of simple commands. The feature helps tutors stay organized and on top of the students' homework tasks, reducing the risk of missing important deadlines.
     - Credit: N/A
@@ -34,26 +34,29 @@ Given below are my contributions to the project.
   - Credit: N/A
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=Yufannnn&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=zoom&zA=Yufannnn&zR=AY2223S2-CS2103T-W13-4%2Ftp%5Bmaster%5D&zACS=247.67299412915852&zS=2023-02-17&zFS=&zU=2023-04-05&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+
 * **Project management**:
     * Set up Team Repo
     * Updated Workflow: [#1](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/1)
     * Created and assigned issues to team members on GitHub and kept track of their progress
     * Created labels and categorized issues on GitHub
     * Created and manages milestones on GitHub, changed their due dates, and closed them to wrap-up.
-    * Managed releases `v1.3.Trail` on GitHub ([Link to v1.3 release](https://github.com/AY2223S2-CS2103T-W13-4/tp/releases/tag/v1.3.trial))
-* **Enhancements to existing features**:
+    * Managed releases `v1.3.Trail` on GitHub ([Link to v1.3 trail release](https://github.com/AY2223S2-CS2103T-W13-4/tp/releases/tag/v1.3.trial))
 
+* **Enhancements to existing features**:
     * Refactor the Person model to a Student model and added relevant methods in a logic model, storage and other class to fit the change: [#1](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/1)
     * Added homework unique lists in the application, added, and updated relevant methods in logic, model, storage and other class to fit the changes: [#13](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/13)
     * Redesign the GUI to make it more aesthetically appealing and add more sections on the GUI: [#56](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/13)
+
 * **Documentation**:
   * User Guide:
     * Updated the `Quick Start` section and update TOC: [#170](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/170)
     * Added documentation for the new GUI I redesigned: [#124](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/124)
     * Added documentation for the new six homework commands I created: [#170](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/170)
+    * Added documentation for the Unique Mechanism Section I created: [#186](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/186), [#193](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/193)
   * Developer Guide:
     * Added implementation for `Detailed Information Section and Quick Access Button`: [#80](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/80), [#81](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/81)
-    * Updated `UI component Section`: [#80](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/80), [#81](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/81)
+    * Updated `UI component Section`:[#80](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/80), [#81](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/81)
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
     [#44](https://github.com/AY2223S2-CS2103T-W13-4/tp/pull/44),

@@ -37,10 +37,10 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down-> "1" DetailedInfoSection
 DetailedInfoSection *-down-> "1" HeaderBar
 DetailedInfoSection *-down-> "1" DetailedContent
-ProfileContent *-right-> "1" Name
-ProfileContent *-right-> "1" Email
-ProfileContent *-right-> "1" Phone
-ProfileContent *-right-> "1" Address
+ProfileContent *-down-> "1" Name
+ProfileContent *-down-> "1" Email
+ProfileContent *-down-> "1" Phone
+ProfileContent *-down-> "1" Address
 
 MainWindow -left-|> UiPart
 DetailedInfoSection --|> UiPart

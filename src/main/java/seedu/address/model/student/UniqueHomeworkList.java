@@ -90,17 +90,6 @@ public class UniqueHomeworkList implements Iterable<Homework> {
      * Replaces the contents of this list with {@code homeworks}.
      * {@code homeworks} must not contain duplicate homeworks.
      *
-     * @param replacement the homeworks to be added to the list
-     */
-    public void setHomeworks(UniqueHomeworkList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code homeworks}.
-     * {@code homeworks} must not contain duplicate homeworks.
-     *
      * @param homeworks the homeworks to be added to the list
      */
     public void setHomeworks(List<Homework> homeworks) {

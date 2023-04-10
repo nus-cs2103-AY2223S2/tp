@@ -57,6 +57,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
     + [Duplicate Homework Detection Mechanism](#duplicate-homework-detection-mechanism)
     + [Duplicate Lesson Detection Mechanism](#duplicate-lesson-detection-mechanism)
     + [Duplicate Exam Detection Mechanism](#duplicate-exam-detection-mechanism)
+  * [Storage Mechanism](#storage-mechanism)
 - [FAQ](#faq)
 - [Summary](#summary)
   * [List of Commands](#list-of-commands)
@@ -64,7 +65,6 @@ TutorPro is a **desktop app designed to help private tutors manage their student
   * [Supported date-time formats](#supported-date-time-formats)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -111,6 +111,9 @@ The following table provides clarification of the terms commonly used in TutorPr
 ## GUI
 When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**. 
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The current version of the window is not resizable. Resizability will be added in future versions!
+</div>
+
 ![Starting Display Window](images/GUI.jpg)
 
 * The **Command Box** on the left bottom refers to the text field where you can type in all your commands.
@@ -128,9 +131,10 @@ You may also click the quick access buttons one each student card to see how the
 Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section. 
 Each Student card has four buttons, which are profile, homework, lessons, and exams. When a user clicks on any of the buttons, the corresponding information will be presented in the Detailed Information Section.
 
-:information_source: **Why is the date and time displayed in two different formats?**
+<div markdown="span" class="alert alert-info">:information_source: **Why is the date and time displayed in two different formats?**<br>
 The date and time format in the Detailed Information Section is different from the one used in the `view` commands.
 This is purposely done to make the information more distinct and make sure you never get confused.
+</div>
 
 #### Profile Page
 Upon clicking the Profile Button, the Detailed Information section will be refreshed and show the detailed particulars of the student, including the student's full name, phone number, address, and email.
@@ -227,8 +231,11 @@ It has a name, a start time, an end time, and a status, an optional weightage, a
 
 
 ### Profile Commands
+
+<div markdown="span" class="alert alert-info">
 :information_source: **Why TutorPro uses search by index for all the Profile Commands instead of the unique search by name mechanism?**<br>
 For profile commands, especially `delete` and `update-info` command, that may potentially change the name of the student, TutorPro uses search by index instead of search by name to avoid any confusion that may be caused by the name change. 
+</div>
 
 #### Create a new Student Profile
 
@@ -643,7 +650,7 @@ Format: `view-exam (optional)[name/STUDENT_NAME].. (optional)[date/DATE] (option
 * Lists exams TutorPro is currently tracking, while filtering for the specified predicates
 * All predicates are optional, leaving all parameters blank will list all currently tracked exams
 * Field `[IS_DONE]` when filled with parameter 'done' `eg. done/done` will list all completed exams. Leave this field 
-blank `eg. done/` when filtering for upcoming exams -> CHANGED BY BOQIAN
+blank `eg. done/` when filtering for upcoming exams
 * There can be multiple `STUDENT_NAME`s provided to this command, and each name provided will attempt to match with only
  one student. eg. `view-exam name/John name/Faye` will attempt to match each name to a student being tracked, and will
 result in exams of students 'John' and 'Faye' being listed.
@@ -761,12 +768,25 @@ This is a carefully crafted feature that will be explained in the following sect
   * if you have an exam named `Math Exam` for `John Doe` on `2023-05-21` from `12:00` to `14:00` 
   * you then try to add another exam with the same name but on `2023-05-24` from `13:00` to `15:00`, TutorPro will not detect that there is a duplicate exam and will add the exam.
 
+### Storage Mechanism
+:biohazard: This section is for advanced users who are interested in learning about the storage mechanism of TutorPro. If you are new to TutorPro, we recommend that you skip this section and do not edit the JSON file directly.
+
+* TutorPro stores all the data in a JSON file.
+* The JSON file is located in the `data` folder of the TutorPro home folder.
+* If it is your first time using TutorPro, the TutorPro home folder will be created in the same directory as the TutorPro JAR file and a sample student list will be created for your to quickly get started.
+* We discourage you from editing the JSON file directly as the content you edited may not be in the correct format and may not be able to be parsed by TutorPro. 
+* If the storage file is corrupted, TutorPro will create a new storage file and an empty student list.
+
+:warning: **Warning**<br>
+If what you edit in the JSON file is in the correct format but violates the constraint of TutorPro, TutorPro can parse the data file but may not be able to function as expected. For example, if you edit the end time of an exam to be earlier than the start time of the exam.
+Therefore, we strongly discourage you from editing the JSON file directly unless you are absolutely sure of what you are doing.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How can I transfer my data to another computer in TutorPro? <br>
-**A**: You can transfer your data to another computer by installing TutorPro on the new computer and replacing its empty data file with the one that contains the data from your previous TutorPro home folder.
+**A**: You can transfer your data to another computer by installing TutorPro on the new computer and replacing its empty data file with the one that contains the data from your previous TutorPro home folder. Refer to [Storage Mechanism](#storage-mechanism) for more details.
 
 **Q**: My students' full information is not shown on the student list.
 How can I view the full information of a student?

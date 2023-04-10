@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Lesson}'s date matches the given date.
+ * Tests that a {@code Exam}'s date matches the given date.
  */
 public class ExamDatePredicate implements Predicate<Exam> {
     private final LocalDate targetDate;
 
     /**
-     * Creates a predicate to test if a {@code Homework}'s {@code isCompleted} matches the given boolean.
+     * Creates a predicate to test if a {@code Exam}'s {@code isCompleted} matches the given boolean.
      * @param targetDate The LocalDate to test against.
      */
     public ExamDatePredicate(LocalDate targetDate) {

@@ -4,28 +4,14 @@
 box Ui UI_COLOR_T1
 participant ":StudentLisCard" as StudentListCard UI_COLOR
 participant ":MainWindow" as MainWindow UI_COLOR
-participant ":HeaderBar" as HeaderBar UI_COLOR
 participant ":DetailedInfoSection" as DetailedInfoSection UI_COLOR
 participant ":FilledLessonsContent" as FilledLessonsContent UI_COLOR
 participant ":EmptyLessonsContent" as EmptyLessonsContent UI_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Student" as Student MODEL_COLOR
-participant ":Name" as Name MODEL_COLOR
-end box
-
 [-> StudentListCard : handleViewLessonsButtonClick()
 activate StudentListCard
 
-StudentListCard -> Student : getFullName()
-activate Student
-
-Student --> Name : getFirstName()
-activate Name
-return firstName
-
-return firstName
 
 StudentListCard -> MainWindow : setDetailedHeaderBar(firstName)
 activate MainWindow
@@ -35,13 +21,6 @@ activate DetailedInfoSection
 
 DetailedInfoSection -> DetailedInfoSection : setHeaderBar(firstName)
 activate DetailedInfoSection
-
-create HeaderBar
-DetailedInfoSection -> HeaderBar
-activate HeaderBar
-
-HeaderBar --> DetailedInfoSection
-deactivate HeaderBar
 
 DetailedInfoSection --> DetailedInfoSection
 deactivate DetailedInfoSection
@@ -57,42 +36,14 @@ alt student has lessons
     StudentListCard -> FilledLessonsContent : new FilledLessonsContent(student)
     activate FilledLessonsContent
 
-    FilledLessonsContent -> Student : getName()
-    activate Student
-
-    Student --> Name : getFirstName()
-    activate Name
-    return firstName
-
-    return firstName
-
-    FilledLessonsContent -> Student : getPastLessonsList()
-    activate Student
-    return pastLessonsList
-
-    FilledLessonsContent -> Student : getUpcomingLessonsList()
-    activate Student
-    return upcomingLessonsList
-
-    FilledLessonsContent --> StudentListCard
-    deactivate FilledLessonsContent
+    return FilledLessonsContent
 
 else student has no lessons
     create EmptyLessonsContent
     StudentListCard -> EmptyLessonsContent : new EmptyLessonsContent(student)
     activate EmptyLessonsContent
 
-    EmptyLessonsContent -> Student : getName()
-    activate Student
-
-    Student --> Name : getFirstName()
-    activate Name
-    return firstName
-
-    return firstName
-
-    EmptyLessonsContent --> StudentListCard
-    deactivate EmptyLessonsContent
+    return EmptyLessonsContent
 
 end
 
