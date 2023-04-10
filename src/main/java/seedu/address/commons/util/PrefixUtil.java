@@ -35,7 +35,7 @@ public class PrefixUtil {
             if (prefix == CliSyntax.PREFIX_ADDRESS) {
                 return false;
             }
-            return entry.getValue().get(0).contains("/");
+            return entry.getValue().stream().anyMatch(s -> s.contains("/"));
         });
     }
 
