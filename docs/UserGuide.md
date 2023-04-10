@@ -256,7 +256,7 @@ Examples:
 
    <div style="text-align: center;">
      <img src="images/copy2_noclipboard.png">
-     <p style="font-style: italic;"><br>Warning screen when the AIMS detects that the clipboard is not accessible</p>
+     <p style="font-style: italic;"><br>Screen when the AIMS detects that the clipboard is not accessible</p>
      <br>
    </div>
 
@@ -412,6 +412,7 @@ Format: `favorite INDEX`
 - If the command is run on a person who is already in the favorite list, he will be removed from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- The favorites list on the sidebar is sorted according to the index number of the persons that is shown after running the list command.
 
 Example:
 
