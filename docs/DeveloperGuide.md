@@ -364,7 +364,7 @@ The following activity diagram summarizes what happens when a user executes `Nex
 Users are allowed to tag the cards in the review session with 3 different difficulty tags (e.g., Easy, Medium and Hard).
 The tags will be saved and displayed on each card even after they end the review.
 
-There are three commands that allows card to be tagged during a review. They are `TagEasyCommand`, `TagMediumCommand` and `TagHardCommand`.
+There are three commands that allow a card to be tagged during a review. They are `TagEasyCommand`, `TagMediumCommand` and `TagHardCommand`.
 
 Below is the sequence diagram that shows how `TagEasyCommand` behaves when it is executed. The remaining two commands behave similarly.
 

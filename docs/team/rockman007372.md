@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **Feature 4**: Create a confirmation box whenever Clear command is executed.
   * What it does: When users execute `clear` command to delete all data, a confirmation box appears to ask for double confirmation from users.
   * Justification: This prevents users from accidentally deleting all data, as this command is irreversible at this point.
-  * Highlights: I learned to use JavaFX components and practice event handling.
+  * Highlights: I learned how to use JavaFX components and practice event handling.
 
 * **Feature 4**: Tag the cards dynamically during a review.
   * What it does: Allows users to tag a card with a difficulty during a review. The new tag will be dynamically modified in UI, and saved in the `MasterDeck`.
@@ -47,20 +47,20 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Refactor and rename many classes to follow naming consistency (e.g., `Person` to `Card`).
-    * Add and modify exising test cases to increase code coverage.
+    * Add and modify exising test cases to increase code coverage (e.g. create the test cases in ReviewTest).
     * Refactor many classes to follow OOP and design patterns, e.g., `MasterDeckParser` was refactored to follow Don't Repeat Yourself (DRY) principle.
 
 * **Documentation**:
     * User Guide:
-        * Contribute to the documentation of all Main Mode commands [#319](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/319).
+        * Contribute to the majority of the documentation of all Main Mode commands [#319](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/319).
+        * Create a comprehensive table to explain the different components of a Command. 
         * Add indices for all headers [#319](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/319).
         * Vet the User Guide thoroughly to fix bugs, e.g., [#346](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/346), [#335](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/335), [#322](https://github.com/AY2223S2-CS2103T-W11-3/tp/pull/322).
     * Developer Guide:
-        * Add UML class diagram for Model component and Review.
-        * Add documentation for the MasterDeck Implementation.
+        * Add documentation and UML class diagrams under `Model` [component](https://ay2223s2-cs2103t-w11-3.github.io/tp/DeveloperGuide.html#model-component), `Review` [component](https://ay2223s2-cs2103t-w11-3.github.io/tp/DeveloperGuide.html#review), `MasterDeck` [component](https://ay2223s2-cs2103t-w11-3.github.io/tp/DeveloperGuide.html#implementation-of-masterdeck). 
+        * Add documentation and UML sequence diagram for `TagEasyCommand` [feature](https://ay2223s2-cs2103t-w11-3.github.io/tp/DeveloperGuide.html#tag-cards-during-the-review-feature).
+        * Contribute to the documentation of [use cases](https://ay2223s2-cs2103t-w11-3.github.io/tp/DeveloperGuide.html#use-cases).
 
 * **Community**:
     * PRs reviewed: [58](https://github.com/AY2223S2-CS2103T-W11-3/tp/pulls?q=is%3Apr+reviewed-by%3Arockman007372) 
     * Reported bugs and suggestions for other teams during Mock PE.
-
-* **Tools**: NA
