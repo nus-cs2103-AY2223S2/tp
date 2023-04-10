@@ -3,9 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternships.BANK_OF_AMERICA;
 import static seedu.address.testutil.TypicalInternships.LINKEDIN;
-import static seedu.address.testutil.TypicalInternships.META;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -18,8 +16,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.application.InternshipApplication;
-import seedu.address.testutil.InternshipBuilder;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -59,8 +55,8 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () ->
+                readAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
