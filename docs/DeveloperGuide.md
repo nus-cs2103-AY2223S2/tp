@@ -226,11 +226,13 @@ Steps involved and interactions between components when a valid add bookmark com
 5. `execute()` method of `AddCommand` is then called by the `LogicManager` 
    1. This adds the newBookmark to the library
    2. And returns a `CommandResult` object to the `LogidManager`.
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows the interaction between the objects when a user executes the Add command.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### GoTo Feature
 
@@ -387,6 +389,7 @@ books in the `Library`.
 - Alternative 2(current choice): Representing it with 5 star icons in the BookmarkList Panel
   - Pros: User can view ratings of books without having to click on the Bookmark Card
   - Cons: Harder to implement in the UI
+<div style="page-break-after: always;"></div>
 
 ### Progress Field
 
@@ -449,7 +452,7 @@ The main reason is to simplify the logic for parsing user input.
 A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
 then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
 prefixes to differentiate them, but parsing becomes more complex.
-
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -532,9 +535,8 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the bookmark being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -738,6 +740,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. MyLib shows an error message.
 
       Use case resumes at step 2.
+<div style="page-break-after: always;"></div>
 
 **Use case: View a bookmark**
 
@@ -959,7 +962,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
     2. `delete 1`
 
    **Expected**: The first bookmark of title `Solo Leveling` is deleted. A success message is displayed in the Result Display.
-
+<div style="page-break-after: always;"></div>
 
 ### Going to bookmarks' url
 Prerequisites: List all bookmarks using the `list` command. Multiple bookmarks are present in the list.
@@ -1027,6 +1030,7 @@ Assumptions: The default tags provided by MyLib is used.
 3. `addtag t/Novel`
 
     **Expected**: No new tag added to the tag list. An error message is displayed in the Result Display. This is because the tag "Novel" already exists in the tag list.
+<div style="page-break-after: always;"></div>
 
 ### Deleting tags from the tag list
 Assumptions: The sample data provided by MyLib is used, where there is a total of 4 bookmark entries. The default tags provided by MyLib is used.
@@ -1068,7 +1072,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
 2. `exit hello`
 
    **Expected**: MyLib closes.
-
+<div style="page-break-after: always;"></div>
 
 ### Save Data
 
@@ -1083,6 +1087,7 @@ Assumptions: The sample data provided by MyLib is used, where there is a total o
    **Expected**: MyLib launches with the sample bookmark data shown in the List Panel. There
    is a total of 4 bookmark entries.
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: Planned Enhancements**
 Currently, there a few feature flaws with the application. These are some proposed fixes to address them and improve functionality for the user:
@@ -1110,7 +1115,7 @@ while `edit` with any positive index and missing prefix causes an error message 
 It would be great to streamline this error message by perhaps having a separate error message of "index cannot be less 
 than 1 0" since the bookmarklist index starts from 1. And keep the current error message for indexes more than 0
 
-In the `parse` command  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
+In the `parse` method  of `EditCommandParser` class ,  change the message thrown to "index cannot be less than 1" when 
 ParseException is thrown.
-
+--------------------------------------------------------------------------------------------------------------------
 
