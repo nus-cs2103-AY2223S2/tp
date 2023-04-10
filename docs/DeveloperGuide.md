@@ -325,8 +325,9 @@ Could provide more readable and/or less text for copying.
 Benefit: can directly copy-paste to and from the data files that already exist in the system.
 
 #### Implementation
-Here we only describe the Export command. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
+Here we only describe the `ExportCommand`. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
 Control flow is as follows.
+
 1. The user queries the `UI` to export using a [export command](#command-summary).
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
 3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
@@ -844,6 +845,7 @@ MSS:
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
 * **LinkedList**: Data structure that consists of nodes that contain data and a reference to the next node
+* **JSON**: Stands for JavaScript Object Notation and it is a file format used for storing and transmitting data in attribute-value pairs and arrays.
 
 --------------------------------------------------------------------------------------------------------------------
 
