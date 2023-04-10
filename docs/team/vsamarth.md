@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lavanya's Portfolio Page
+title: Samarth's Portfolio Page
 ---
 
 ### Project: ConnectUS
