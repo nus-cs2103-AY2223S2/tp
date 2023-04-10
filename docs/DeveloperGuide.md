@@ -266,9 +266,8 @@ they should make sense on their own without depending on other components)
 model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module` references. This allows `ModuleTracker`
 to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
-<p align="center">
-    <img src="images/BetterModelClassDiagram.png" width="650">
-</p>
+
+<img src="images/BetterModelClassDiagram.png" width="650">
 
 <div align="center"> A more OOP model of the Model component. </div>
 
@@ -421,8 +420,6 @@ type. The title of the alert is "Work Today."
 
 ------------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## **7. \[Proposed\] Planned Enhancements**
 
 ### 7.1 Reminder command.
@@ -447,7 +444,7 @@ to resize the software window (e.g: Extremely long website names)
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **7. Documentation, logging, testing, configuration, dev-ops**
+## **8. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -459,9 +456,9 @@ to resize the software window (e.g: Extremely long website names)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **8. Appendix: Requirements**
+## **9. Appendix: Requirements**
 
-### 8.1 Product scope
+### 9.1 Product scope
 
 **Target user profile**
 
@@ -485,7 +482,7 @@ they may not be able to remember them
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 8.2 User stories
+### 9.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -504,7 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 8.3 Use cases
+### 9.3 Use cases
 
 (For all use cases below, the **System** is the `coNtactUS` and the **Actor** is an `NUS computing student`, unless
 specified otherwise)
@@ -740,7 +737,7 @@ Use case ends.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 8.4 Non-Functional Requirements
+### 9.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 modules without a noticeable sluggishness in performance for typical usage.
@@ -755,9 +752,9 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 <div style="page-break-after: always;"></div>
 
-## **9. Glossary**
+## **10. Glossary**
 
-### 9.1 coNtactUS related terminology
+### 10.1 coNtactUS related terminology
 
 * **Module Tracker**: The coNtactUS application
 * **Private module detail**: A module detail that is not meant to be shared with others
@@ -773,7 +770,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 9.2 Miscellaneous
+### 10.2 Miscellaneous
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command-Line Interface
@@ -791,7 +788,7 @@ be able to accomplish most of the tasks faster using commands than using the mou
 
 <div style="page-break-after: always;"></div>
 
-## **10. Appendix: Instructions for manual testing**
+## **11. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -801,7 +798,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 10.1 Launch and shutdown
+### 11.1 Launch and shutdown
 
 1. Initial launch
 
@@ -819,7 +816,7 @@ testers are expected to do more *exploratory* testing.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 10.2 Deleting a module
+### 11.2 Deleting a module
 
 1. Test case: `delete 1`<br>
       Expected: First module is deleted from the list. Details of the deleted module shown in the status message.
@@ -833,7 +830,7 @@ Timestamp in the status bar is updated.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 10.3 Adding a module
+### 11.3 Adding a module
  1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>
      Expected: A new module is added to the list with name being `CS2103T` and description being `Tutorial`. Details of
      the added module is shown in the status message. Empty optional fields are left as "None.".
@@ -853,7 +850,7 @@ Timestamp in the status bar is updated.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 10.4 Editing a module
+### 11.4 Editing a module
   1. Test case: `edit 1 n/CS1101S` <br>
    Expected: The name of the first module in the list is edited, and is now `CS1101S`. Details of the updated module
    is shown in the status message.
@@ -881,7 +878,7 @@ Timestamp in the status bar is updated.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 10.5 Finding a module/type
+### 11.5 Finding a module/type
 
 1. Test case: `find CS2103T` <br>
    Expected: Module(s) with the name `CS2103T` is (are) found. Details of the found module(s) are shown in the list.
@@ -908,7 +905,7 @@ Expected: No modules are found, because the keyword does not exist in the existi
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 10.6 Sorting a module by `timeslot` or `deadline`
+### 11.6 Sorting a module by `timeslot` or `deadline`
 
 1. Test case: `sort timeslot` <br>
 Expected: If there are modules with different `timeslot`, the modules will be sorted by earliest first and latest last.
@@ -923,7 +920,7 @@ Expected: The modules will not be sorted.
 
 <p align="right"><a style="text-align:right" href="#table">Return to ToC</a></p>
 
-### 10.7 Saving data
+### 11.7 Saving data
 
 1. Dealing with missing/corrupted data files
 
@@ -936,7 +933,7 @@ Expected: The modules will not be sorted.
 
 <div style="page-break-after: always;"></div>
 
-## 11. Appendix: Effort
+## 12. Appendix: Effort
 
 **Overall Difficulty level: 7 / 10**
 
