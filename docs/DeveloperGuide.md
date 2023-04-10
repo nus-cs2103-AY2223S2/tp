@@ -552,6 +552,7 @@ below.
 When the command box is in `CommandMode`, the user can enter commands to perform various operations in Mycelium. The following sequence diagram shows how the command is handled.
 
 ![CommandHandling Sequence Diagram](images/commandbox/CommandHandling.png)
+![CommandHandling Sequence Diagram](images/commandbox/ExecuteCommand.png)
 
 When the user enters a command, the command box calls `Mode#onInputSubmit(String)` on its current `CommandMode`.
 The input from the command box is then propagated down to the `MainWindow`, the `Logic` and finally the `Parser` to be parsed.
