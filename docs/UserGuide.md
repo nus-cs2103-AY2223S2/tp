@@ -429,7 +429,7 @@ ___
       </p>
       <br/>
 <div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate patient 
-information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as <span style="border-inline-style: solid; border-radius: 30%;">NAME</span>, `NRIC`, `PHONE`, etc).
+information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as <span style="border-inline-style: solid;">NAME</span>, `NRIC`, `PHONE`, etc).
 </div>
 <div markdown="block" class="alert alert-success">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as `DATE_OF_BIRTH` and `EMAIL` are prone to error, so be careful with those when you enter patient information.
 </div>
