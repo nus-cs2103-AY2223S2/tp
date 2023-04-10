@@ -466,9 +466,9 @@ undo deletions.
 
 ### Updating a project: `up`
 
-Updating a project allows you to update the target project using
+Updating a project allows you to partially update the target project using
 optional arguments. You must specify the project name, and each additional
-argument, if specified, will be used to update the project.
+argument, if specified, will be used to partially update the project.
 
 **Compulsory Arguments**
 
