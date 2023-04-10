@@ -398,13 +398,13 @@ Note:
 * If used when a subset of projects is visible (e.g. due to a previous `find-project` command), the index provided is based on the currently displayed subset only.
 * A project list needs to be shown for this command to be executed successfully.
 
-Example:
-* `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
-* `dp 3` deletes the third project in the currently visible project list (if there is one).
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command cannot be undone. A deleted project cannot be restored.
 </div>
+
+Example:
+* `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
+* `dp 3` deletes the third project in the currently visible project list (if there is one).
 
 ### Marking a project as done
 #### Format: `mark <index>`
