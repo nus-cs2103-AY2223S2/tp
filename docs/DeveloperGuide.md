@@ -311,7 +311,7 @@ The following sequence diagram shows how the `edit` command works with appointme
     automatically remove them after switching tabs.
       * pros: This allows users to focus only on upcoming appointment dates and times, which can help them stay organized and avoid confusion.
       * cons: Expired date and time information cannot be removed immediately unless the user switches tabs within the application, which could potentially lead to confusion appointments.
-
+<div style="page-break-after: always;"></div>
 ### Find feature
 
 #### Implementation
