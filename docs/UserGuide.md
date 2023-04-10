@@ -76,6 +76,11 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 4. Open the `medimeet.jar` file by double clicking on it. If a dialog box opens asking 'How do you want to open this file?', choose 'Java(TM) Platform SE binary'. A window similar to the picture below should appear in a few seconds. Note how the app contains some sample data.<br>
     * If you are familiar with terminals and command lines, you can choose to open the file from a command line instead. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medimeet.jar` command to run the application.<br>
    ![Ui](images/Ui.png)
+    * As you can see from the screenshot of the application, we have four primary parts in the UI. They are:
+      * **Command box**: This is where the user types in their commands.
+      * **Patient list**: This is the currently shown list of patients with the numbers representing patient index numbers.
+      * **Appointment list**: This is the currently shown list of appointments with the numbers representing appointment index numbers.
+      * **Calendar**: Gives a calendar view of appointments on the given date when a specified date is clicked.
 
 5. Maximize the app for the best user experience with viewing appointments.
 
