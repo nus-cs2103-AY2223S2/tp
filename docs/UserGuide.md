@@ -219,7 +219,7 @@ e.g. For the command `add CS2040S /name DSAG`, "CS2040S" is the value of the unn
 
 - <div id="module-code-format"><strong>Module Code</strong></div>
 
-  Module codes should begin with uppercase alphabetcal characters (A-Z), followed by numeric characters, optionally followed by more uppercase alphabetical characters (A-Z).\
+  Module codes should begin with uppercase alphabetical characters (A-Z), followed by numeric characters, optionally followed by more uppercase alphabetical characters (A-Z).\
   e.g. CS2040S
 
 - <div id="module-name-format"><strong>Module Name</strong></div>
