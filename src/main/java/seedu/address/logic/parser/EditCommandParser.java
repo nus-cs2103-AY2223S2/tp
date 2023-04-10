@@ -39,8 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_MODULE, PREFIX_TAG,
                 PREFIX_TELEGRAM);
 
-        if (argMultimap.getPreamble().isEmpty() | argMultimap.getPreamble().contains(" ")
-                | argMultimap.getValue(PREFIX_REMARK).isPresent()) {
+        if (argMultimap.getPreamble().isEmpty() | argMultimap.getPreamble().contains(" ")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
