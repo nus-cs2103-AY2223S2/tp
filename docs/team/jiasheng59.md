@@ -27,14 +27,13 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jiasheng59&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
+  * Set up the GitHub team org and repo
+  * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
 
 * **Enhancements to existing features**: Enhanced the find command that allows the user to find internship application by the company name, job title, application status and interview date(s).
   * What it does: allows the user to find an internship application by matching keyword for the company name and job title, by a specified application status, and by specifying a range of dates where the interview date falls within.
   * Justification: This feature makes the product more user-friendly as the user is able to search through the list with huge number of applications efficiently and makes subsequent changes.
   * Highlights: This enhancement is challenging to implement as to make the command format as `defensive` as it could be, the checking in parser is somewhat exponential.
-
-*--------------below are to be updated-------------------*
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
