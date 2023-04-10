@@ -51,7 +51,8 @@ Without further ado, let's get started!
 9. [Command Summary](#command-summary)
    1. [Command Summary for Student](#command-summary-for-student-student-class)
    2. [Command Summary for Parent](#command-summary-for-parent--nok-parent)
-   3. [Prefix Summary](#prefix-summary)
+   3. [General Command Summary](#general-command-summary)
+   4. [Prefix Summary](#prefix-summary)
 
 <div style="page-break-after: always;"></div>
 
@@ -256,6 +257,8 @@ Examples:
   *Above is a situation where some of the student's information is not given!
 * `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
 
+<div style="page-break-after: always;"></div>
+
 **Expected Outcome:**
 * `New student added:`
   ![add image](images/add.png)
@@ -308,6 +311,8 @@ Examples:
 * `Attendance marked as present`
   ![attendance image](images/attendance.png)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 Date is in DD/MM/YYYY format. <br>
 This date can be set to: <br>
@@ -344,6 +349,8 @@ Format:
 Examples:
 * `student 1A grade in/13 test/CA1 score/75 weightage/10`
 * `student 1A grade in/13 hw/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
+
+<div style="page-break-after: always;"></div>
 
 **Expected Outcome:**
 * `New test added:`
@@ -391,11 +398,15 @@ Format:
 Examples:
 * `student 1A gradedelete in/13 hw/Chapter 1`
 
+<div style="page-break-after: always;"></div>
+
 **Expected Outcome:**
 * `Homework deleted successfully`
 ![delete homework image](images/deletehomework.png)
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -558,6 +569,8 @@ Examples of Full Command:
 * `parent add n/TanAhNiu pnP/91234567`
 * `parent add n/Tan Ah Niu pnP/91234567 ageP/30 e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
 
+<div style="page-break-after: always;"></div>
+
 **Expected outcome:**
 * `New parent added:`
 
@@ -591,6 +604,8 @@ Examples of Full Command:
 * `parent edit n/TanAhNiu pnP/91234567 npnP/65656565`
 * `parent edit n/Tan Ah Niu pnP/91234567 nn/Tan Ah Seng npnP/91274444 ageP/31 e/tanahcow@gmail.com a/Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)`
 
+<div style="page-break-after: always;"></div>
+
 **Expected Outcome:**
 * `Edited Parent: TanAhNiu; Phone number: 65656565;`
 * `Edited Parent: Tan Ah Niu; Phone number: 91234567;` <br><br>
@@ -617,10 +632,12 @@ Format: `parent find <NAME>  `
 Examples:
 * `parent find Russel`
 * `parent find Joseph`
-*
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
-To list back all parent, use the [general list](#listing)command! <br><br>
+To list back all parent, use the [general list](#listing) command! <br><br>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **Expected Outcome:**
 * 1 parent listed!
@@ -652,6 +669,8 @@ Examples:
 * `Deleted Parent: Tan Ah Niu; Phone Number: 91234567;`
 
 ![parent_delete_success](images/parentDeleteSuccess.png)
+
+<div style="page-break-after: always;"></div>
 
 **Note:**
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BOUND* to him/her. System will display an error message for this. <br><br>
@@ -833,10 +852,10 @@ Need to add **student** and **class** before each command!
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [ s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                                     |
 | **Attendance** | `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`                                                                                                                                                                                                                                                                            |
-| **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                                    |
+| **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[COMPLETION STATUS] ]`                                                                                                                                                                       |
 | **Comment**    | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                                                                                                                                    |
 | **List**       | `list`                                                                                                                                                                                                                                                                                                                       |
-| **Edit**       | `edit in/<INDEX_NUMBER> [nn/[NEW_NAME] nin/[NEW_INDEX_NUMBER] nc/[NEW_CLASS] s/[SEX] ageS/[STUDENT_AGE] id/[INDEX_NUMBER] imgS/[ABSOLUTE_PATH_TO_IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT_PHONE_NUMBER] eS/[STUDENT_EMAIL] a/[ADDRESS] pn/[PARENT_NAME] pnP/[PARENT_PHONE_NUMBER] rls/[RELATIONSHIP] ]` |
+| **Edit**       | `edit in/<INDEX_NUMBER> [nn/[NEW_NAME] nin/[NEW_INDEX_NUMBER] nc/[NEW_CLASS] s/[SEX] ageS/[STUDENT_AGE] id/[INDEX_NUMBER] imgS/[ABSOLUTE_PATH_TO_IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT_PHONE] eS/[STUDENT_EMAIL] a/[ADDRESS] pn/[PARENT_NAME] pnP/[PARENT_PHONE] rls/[RELATIONSHIP] ]` |
 | **Find**       | `find <NAME> `                                                                                                                                                                                                                                                                                                               |
 | **Delete**     | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                                   |
 
@@ -859,6 +878,8 @@ Need to add parent before each command!!
 | **Delete** | `delete n/<NAME> pnP/<PHONE>`                                                                                                                                                              |
 
 [Back to Table of Contents](#table-of-contents)
+
+<a name = "general-command-summary"/>
 
 ### General Command Summary
 
