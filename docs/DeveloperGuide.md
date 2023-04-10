@@ -154,6 +154,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Add feature
+
+#### Current Implementation
+
+Adding a person is a feature that uses the command `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`.
+
+The following activity diagram shows how the add operation works when given valid parameters or invalid parameters and with or without the optional event tag parameter.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Every person object has a set of events, denoted by `eventSet`. If event tag parameter `evt/EVENT_INDEX` is present, the event at the displayed list's `EVENT_INDEX`, denoted as `eventToAdd`, will be added to the `eventSet` of the person. Otherwise, the person object will have an empty `eventSet`.
+
+This operation is similar to that of adding an event. Adding a person involves calling `Model#addPerson(Person)`, which in turn calls `AddressBook#addPerson(Person)` to add the Person object to the existing `AddressBook`.
+
+
 ### \[Implemented] Add event feature
 
 #### Current Implementation
@@ -170,7 +185,7 @@ This operation is similar to that of adding a person. Adding an event involves c
 
 #### Current Implementation
 
-Finding an event is a feature that uses the command `findevent [EVENT_NAME]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Finding an event is a feature that uses the command `findevent KEYWORD [MORE_KEYWORDS]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
 Below is the sequence diagram detailing how the `findevent` operation works.
 
 ![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
@@ -178,6 +193,22 @@ Below is the sequence diagram detailing how the `findevent` operation works.
 Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
 This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
 The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+
+### \[Implemented] Edit event feature
+
+#### Current Implementation
+
+Editing an event is a feature that uses the command `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`. The following activity diagram shows how the edit event operation works when given valid parameters or invalid parameters.
+
+![EditEventActivityDiagram](images/EditEventActivityDiagram.png)
+
+The event at the displayed list's `EVENT_INDEX` is denoted as `eventToEdit`. The edited version is denoted as `editedEvent`. 
+
+Editing an event involves calling `Model#setEvent(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEvent(eventToEdit, editedEvent)` to edit the specified event, `eventToEdit`, in the `AddressBook`.
+
+Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and editing the specified event, `eventToEdit`. This is done by calling `Model#setEventFromPersonList(eventToEdit, editedEvent)`, which in turn calls `AddressBook#setEventFromPersonList(eventToEdit, editedEvent)`.
+
+The `setEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely edit the specified event in the `AddressBook`.
 
 ### \[Implemented] Delete event feature
 
@@ -191,7 +222,7 @@ This operation is similar to that of deleting a person. Deleting an event involv
 
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
-The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
+The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display, if it is filtered) in order to completely remove the specified event from the `AddressBook`.
 
 ### \[Implemented] Sort events feature
 
@@ -407,6 +438,25 @@ Use case ends.
 
 <br>
 
+**Use case: Find an event**
+
+**MSS**
+
+1.  User requests to find an event based on a given keyword.
+2.  PlanEase shows the list of filtered events based on the user’s choice of keyword.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. PlanEase detects that no fields are provided for the keyword.
+
+    - 1a1. PlanEase shows an error message.
+
+  Use case ends.
+
+<br>
+
 **Use case: Delete an event**
 
 **MSS**
@@ -530,6 +580,77 @@ testers are expected to do more *exploratory* testing.
 4. Other incorrect addevent commands to try: `addevent`, `...`<br>
    Expected: Similar to previous.
 
+### Listing Events
+
+1. No prerequisite.
+
+2. Test case: `listevent`<br>
+   Expected: All events are displayed. Details of successful command execution shown in the status message.
+
+### Listing all persons from an event
+
+1. No prerequisite.
+
+2. Test case: `listevcontact 1`<br>
+   Expected: App will display the list of all persons from first event if any.
+
+3. Other incorrect listevcontact commands to try: `listevcontact x`, `...` (where x is not a valid event index).<br>
+   Expected: Error details shown in the status message.
+
+### Sorting event list
+
+1. Prerequisite: Current list of events has at least 2 events.
+
+2. Test case: `sortevent a`<br>
+   Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
+
+3. Test case: `sortevent`<br>
+   Expected: Event list is not sorted. Error details shown in the status message.
+
+4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
+   Expected: Similar to previous.
+
+### Editing an Event
+
+1. Editing an event while all events are being shown
+
+    1. Prerequisites: List all events using the `listevent` command. Multiple events in the list.
+
+    2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+       Expected: First event is edited from the event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+    3. Test case: `editevent 0`<br>
+       Expected: No event is edited. Error details shown in the status message.
+
+    4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+       Expected: Similar to previous.
+
+2. Editing an event while events with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
+
+   1. Prerequisites: Find all events with `KEYWORD` using the `findevent KEYWORD [MORE_KEYWORDS]` command. Multiple events in the list.
+
+   2. Test case: `editevent 1 ev/Lana Del Rey Concert`<br>
+      Expected: First event is edited from the displayed event list, such that it now has the new event name. All person(s) with the specified event in their event tags will have that event edited accordingly as well. Details of the edited event shown in the status message.
+
+   3. Test case: `editevent 0`<br>
+      Expected: No event is edited. Error details shown in the status message.
+
+   4. Other incorrect editevent commands to try: `editevent`, `editevent x` (where x is larger than the displayed list size), `editevent 1 from/DATETIME_X to/DATETIME_Y` (where DATETIME_Y is earlier than DATETIME_X)<br>
+      Expected: Similar to previous.
+
+### Finding an event
+
+1. Prerequisites: Current list of events has only one event with the word `Carnival` and no event with the word `Magic`.
+
+2. Test case: `findevent Carnival`<br>
+   Expected: 1 event with the word `Carnival` is found.
+
+3. Test case: `findevent Magic`<br>
+   Expected: No matching event is found.
+
+4. Other incorrect findevent commands to try: `findevent`, `...`.<br>
+   Expected: Error details shown in the status message.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -545,7 +666,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. Deleting a person while persons with a specified keyword, i.e., `[KEYWORD]` of the user's choice, are being shown
+2. Deleting a person while persons with a specified keyword, i.e., `KEYWORD` of the user's choice, are being shown
 
     1. Prerequisites: List all persons using the `list` command, then find all persons with `[KEYWORD]` using the `find [KEYWORD]` command. Multiple persons in the list.
 
@@ -565,11 +686,12 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `sortevent a`<br>
    Expected: Current list of events is sorted according to their names in ascending order. Sorting details is shown in the status message.
 
-3. Test case: `sortevent`<br>
-   Expected: Event list is not sorted. Error details shown in the status message.
+### Listing all persons and events
 
-4. Other incorrect sortevent commands to try: `sortevent x`, `...` (where x is not a, b, c, or d).<br>
-   Expected: Similar to previous.
+1. No prerequisite.
+
+2. Test case: `listall`<br>
+   Expected: App will display the list of all persons and events if any.
 
 ### Finding an event
 
@@ -650,3 +772,17 @@ In this version of the application, events are not assigned an overall-in-charge
 
 For future enhancements, the user should be able to set an overall-in-charge to the events. This is to identify specific individuals that are linked to a particular event and make them more prominent in the application.
 A possible way to design this implementation is to make the event keep track of the person who represents the overall-in-charge, that way we can safely restrict the number of overall-in-charge to just one contact or no contacts.
+
+## **Appendix:** Planned Features
+
+### Ability to set up a checklist of event's requirements
+
+In this version of application, users are not able to set up a checklist of event's requirements.
+
+For future enhancements, users should be able to set up a checklist of event's requirements. This is to ensure that every need for the event is being accounted for. 
+Additionally, users are able to check-off and uncheck the requirements of the event to indicate whether the requirements have been satisfied or not. 
+
+A possible way to implement this is to let every event object contains a `requirementList` attribute, users can add in the requirements to the list by modifying the existing `addevent` and `editevent` command to accept the requirements. 
+Two new commands, `mark EVENT_INDEX r/REQUIREMENT_INDEX` and `unmark EVENT_INDEX r/REQUIREMENT_INDEX`, may be required to implement the checking-off and unchecking of a requirement, specified by the `REQUIREMENT_INDEX`, of an event, specified by the `EVENT_INDEX`.
+The UI will also display the list of requirements of each event and their statuses (checked or unchecked).  
+
