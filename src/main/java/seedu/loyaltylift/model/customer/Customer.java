@@ -2,17 +2,13 @@ package seedu.loyaltylift.model.customer;
 
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Represents a Customer in the address book.
@@ -36,7 +32,6 @@ public class Customer {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
 
     // Optional fields
     private final Points points;
@@ -47,8 +42,8 @@ public class Customer {
      * Every field except note must be present and not null.
      */
     public Customer(CustomerType customerType, Name name, Phone phone, Email email,
-            Address address, Set<Tag> tags) {
-        this(customerType, name, phone, email, address, tags,
+            Address address) {
+        this(customerType, name, phone, email, address,
                 new Points(0, 0),
                 new Marked(false),
                 new Note(""));
@@ -58,14 +53,13 @@ public class Customer {
      * Every field must be present and not null.
      */
     public Customer(CustomerType customerType, Name name, Phone phone, Email email,
-            Address address, Set<Tag> tags, Points points, Marked marked, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, points);
+            Address address, Points points, Marked marked, Note note) {
+        requireAllNonNull(name, phone, email, address, points);
         this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
         this.points = points;
         this.marked = marked;
         this.note = note;
@@ -93,14 +87,6 @@ public class Customer {
 
     public Marked getMarked() {
         return marked;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     public Points getPoints() {
@@ -152,7 +138,6 @@ public class Customer {
                 && otherCustomer.getPhone().equals(getPhone())
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())
-                && otherCustomer.getTags().equals(getTags())
                 && otherCustomer.getCustomerType().equals(getCustomerType())
                 && otherCustomer.getPoints().equals(getPoints())
                 && otherCustomer.getMarked().equals(getMarked())
@@ -162,7 +147,7 @@ public class Customer {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(customerType, name, phone, email, address, tags);
+        return Objects.hash(customerType, name, phone, email, address);
     }
 
     @Override
@@ -182,11 +167,6 @@ public class Customer {
                 .append("; Bookmarked: ")
                 .append(getMarked());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 

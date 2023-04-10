@@ -5,7 +5,6 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_CUSTOMER_D
 import static seedu.loyaltylift.logic.commands.CommandResult.ListViewGuiAction.LIST_AND_SHOW_CUSTOMER;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
@@ -19,7 +18,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Bookmarks an existing customer in the address book.
@@ -81,12 +79,11 @@ public class MarkCustomerCommand extends Command {
         Phone phone = customerToMark.getPhone();
         Email email = customerToMark.getEmail();
         Address address = customerToMark.getAddress();
-        Set<Tag> tags = customerToMark.getTags();
         Points points = customerToMark.getPoints();
         Note note = customerToMark.getNote();
         Marked marked = new Marked(true);
 
-        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
+        return new Customer(customerType, name, phone, email, address, points, marked, note);
     }
 
     @Override

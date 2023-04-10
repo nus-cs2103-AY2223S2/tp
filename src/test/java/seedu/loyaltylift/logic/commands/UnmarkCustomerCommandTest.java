@@ -12,8 +12,6 @@ import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBoo
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.core.index.Index;
@@ -29,7 +27,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
-import seedu.loyaltylift.model.tag.Tag;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -46,10 +43,9 @@ public class UnmarkCustomerCommandTest {
         Phone phone = customerToUnmark.getPhone();
         Email email = customerToUnmark.getEmail();
         Address address = customerToUnmark.getAddress();
-        Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
         Note note = customerToUnmark.getNote();
-        Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
+        Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, points,
                 new Marked(false), note);
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_SECOND);
 
@@ -90,10 +86,9 @@ public class UnmarkCustomerCommandTest {
         Phone phone = customerToUnmark.getPhone();
         Email email = customerToUnmark.getEmail();
         Address address = customerToUnmark.getAddress();
-        Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
         Note note = customerToUnmark.getNote();
-        Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
+        Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, points,
                 new Marked(false), note);
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_SECOND);
 
