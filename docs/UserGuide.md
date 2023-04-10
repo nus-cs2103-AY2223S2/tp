@@ -16,6 +16,8 @@ This guide is meant for the average Computer Science student, who is interested 
 
 With basic commands like `add`, `delete`, `edit`, and special commands like `alert`, `find`, `schedule`, Clock-Work is your one-stop application to organise your busy Computing life :computer:.
 
+<div style="page-break-after: always;"></div>
+
 **Get started with Clock-Work with this guide!**
 
 Table of Contents
@@ -47,7 +49,8 @@ Table of Contents
 
 If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -80,7 +83,8 @@ If you like our product and want to contribute to it, consider looking at the [D
 
 9. Refer to the [Features and Commands](#4-features-and-commands) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 2. The Layout of Clock-Work
 
 Now that you've opened up the app, let's start by introducing you to the basic GUI of Clock-Work.
@@ -96,7 +100,8 @@ This is a visual breakdown of the different components in the GUI.
 
 ![Ui](images/UiBreakdown.png)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 3. A Task in Clock-Work
 
 The life of a student is busy, but also vibrant and filled with a variety of activities. Clock-Work helps students manage their diverse task-management needs by supporting 3 types of tasks.
@@ -117,6 +122,8 @@ This is what a task looks like in Clock-Work.
 
 ![Sample Task](images/SampleTask.png)
 
+<div style="page-break-after: always;"></div>
+
 This is what each component mean:
 
 | Component | Meaning | How to use it | Usage Specifications                                                                       |
@@ -128,10 +135,10 @@ This is what each component mean:
 | [Description](#q8-what-is-a-valid-description)** | Good-to-know | Useful things to remember | Text with at least 1 character                                                             |
 | [Subsection](#q9-what-is-a-valid-subsection) | Smaller tasks to complete | Split a larger task into more manageable pieces | Has its own name and description                                                           |
 
-\* Must be alphanumeric and must not contain special characters
+\* Must be alphanumeric and must not contain special characters <br>
 \*\* Allowed to contain special characters, but it should not be used alongside [reserved keywords](#inputs-into-clock-work)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4. Features and Commands
 
@@ -177,6 +184,8 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 4.1 Adding a task : `add`
 
 :man_technologist: **Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task!**
@@ -211,6 +220,7 @@ Add multiple tasks with the same parameters except for name with this command:`a
 
 :bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q10-why-does-two-different-tags-have-the-same-tag-color)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Editing a task : `edit`
 
@@ -237,6 +247,7 @@ Examples:
 
 e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Deleting a task : `delete`
 
@@ -256,6 +267,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the task book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Listing all tasks : `list`
 
@@ -267,6 +279,7 @@ Format: `list`
 
 :bulb: **PRO TIP**: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
+<div style="page-break-after: always;"></div>
 
 ### 4.5 Sorting tasks : `sort`
 
@@ -294,6 +307,7 @@ Sorts the list using the following format:
 
 Format: `sort`
 
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Locating tasks by name : `find`
 
@@ -328,6 +342,7 @@ e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/N
 
 :warning: **IMPORTANT** Our application currently does not support find by subsections' names or descriptions, the functionality will be implemented in future versions.
 
+<div style="page-break-after: always;"></div>
 
 ### 4.7 Getting statistics : `stats`
 
@@ -337,6 +352,7 @@ Prints the top 10 tags (if applicable) from the list of tasks currently shown, a
 
 Format: `stats`
 
+<div style="page-break-after: always;"></div>
 
 ### 4.8 Get alerts : `alert [ALERT WINDOW]`
 
@@ -350,6 +366,7 @@ Examples:
 - `alert` followed by `48` will show the alert window with all tasks which **start or end** within 48 hours.
 - `alert` alone will show the alert window with all tasks which **start or end** within 24 hours.
 
+<div style="page-break-after: always;"></div>
 
 ### 4.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
 
@@ -372,6 +389,8 @@ Examples:
 :warning: If an empty plan is shown, it could mean that a plan has not yet been generated. Please enter `schedule D/SHORTDATE E/EFFORT` to generate a new plan. If the plan is still empty after generating a new plan, it means that there are no tasks allocated to that day.
 <br>
 
+<div style="page-break-after: always;"></div>
+
 #### 4.9.1 How are my plans generated?
 
 When the schedule command is ran with an <code>E/EFFORT</code> flag, a new 30-day plan is generated, starting from the day the command is run.
@@ -386,12 +405,14 @@ Task book allocates tasks as such:
 3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).<br>
 
 
-#### Displaying Daily Plans
+#### 4.9.2 Displaying Daily Plans
 <br>
 <br>
 Daily Plans can be viewed by entering <code>schedule D/SHORT_DATE</code> or <code>schedule D/SHORT_DATE E/EFFORT</code>, with the former showing an old plan, and the latter showing a newly generated plan.<br>
 As plans are only valid for 30 days from the last time it was generated, you are encouraged to regenerate a plan with an <code>E/EFFORT</code> flag if they do not remember when they last generated their plan.<br>
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ## 4.10 Subsections
 
@@ -413,6 +434,7 @@ Note that the `index` must come before `I` prefixes.
 Examples:
 - Assuming your current task list has a task with index 1, which in turn contains a subsection with index 1. You can delete it with `remove-subsection 1 I/1`. The newly updated task will be shown.
 
+<div style="page-break-after: always;"></div>
 
 ### 4.11 Viewing help : `help`
 
@@ -441,6 +463,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 ## 5. Storage
 
 ### 5.1 Saving the data
@@ -459,7 +483,7 @@ If your changes to the data file make its format invalid, taskBook will discard 
 
 _Details coming soon ..._
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 6. FAQ
 
@@ -497,7 +521,7 @@ _Details coming soon ..._
 ### Q11 What is a free day?
 **A**: The sum of allocated effort in a free day does not exceed the user preferred workload.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. Command summary
 <table>
@@ -664,6 +688,8 @@ _Details coming soon ..._
         </tr>
     </tbody>
 </table>
+
+<div style="page-break-after: always;"></div>
 
 ## 8. Glossary
 1. Command line Interface (CLI): A program that accepts text inputs to execute.
