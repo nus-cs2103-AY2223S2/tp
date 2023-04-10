@@ -37,7 +37,7 @@ public class ParserUtil {
             return new HashSet<>();
         }
 
-        String[] arrayOfTags = tags.split(",");
+        String[] arrayOfTags = tags.split(",", -1);
 
         List<String> listOfInvalidTagName = Arrays.stream(arrayOfTags)
                 .map(tag -> tag.trim())
