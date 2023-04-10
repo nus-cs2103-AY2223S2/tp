@@ -256,13 +256,13 @@ Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 The following table details the [parameters](#parameter) to be used with the `add-app` command:
 
-| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                                                                                                                                                                 | 
-|--------|----------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                              |
-| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                              |
-| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. </br> local-part consists of only alphanumeric and the special characters `+`, `_`, `.`, `-`. Special characters cannot be consecutive, and cannot be the first or last character in local-part. </br> Cannot be empty. |
-| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive.                                                                                                                                    |
-| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                                                                                                                                                            |
+| Prefix | Parameter      | Compulsory | Parameter constraints                                                                                                                                                                                                                                            | 
+|--------|----------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `r/`   | Role           | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                         |
+| `c/`   | Company Name   | Yes        | Must be **alphanumeric** characters or **spaces** only. Cannot be empty.                                                                                                                                                                                         |
+| `e/`   | Company Email  | Yes        | Must be of the format: **local-part@domain**. <br/> local-part consists of only alphanumeric and the special characters `+`, `_`, `.`, `-`. Special characters cannot be consecutive, and cannot be the first or last character in local-part. <br/> Cannot be empty. |
+| `s/`   | Status         | Yes        | Must be one of the four available statuses: **interested**, **applied**, **offered**, **rejected**.<br/>Input is case-insensitive.                                                                                                                               |
+| `t/`   | Tag            | No         | Must be **alphanumeric** characters only. Cannot be empty.                                                                                                                                                                                                       |
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -717,22 +717,22 @@ sprINT can process your data more quickly!
 
 ## **7. Command Summary**
 
-| Action                      | Can undo?          | Format, Examples                                                                                                                                                         |
-|-----------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action                      | Can undo?          | Format, Examples                                                                                                                                                       |
+|-----------------------------|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** <br/> Application   | :heavy_check_mark: | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@gmail.com`                         |
-| **Delete**<br/> Application | :heavy_check_mark: | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
-| **Add** <br/> Task          | :heavy_check_mark: | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                    |
-| **Edit** <br/> Task         | :heavy_check_mark: | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
-| **Delete** <br/> Task       | :heavy_check_mark: | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                           |
-| **List**                    | :x:                | `list`                                                                                                                                                                   |
-| **Find**                    | :x:                | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
-| **Sort**                    | :x:                | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                              |
-| **Help**                    | :x:                | `help`                                                                                                                                                                   |
-| **Undo**                    | :x:                | `undo`                                                                                                                                                                   |
-| **Redo**                    | :heavy_check_mark: | `redo`                                                                                                                                                                   |
-| **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                  |
-| **Exit**                    | :x:                | `exit`                                                                                                                                                                   |
+| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@gmail.com`                       |
+| **Delete**<br/> Application | :heavy_check_mark: | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                           |
+| **Add** <br/> Task          | :heavy_check_mark: | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                  |
+| **Edit** <br/> Task         | :heavy_check_mark: | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                  |
+| **Delete** <br/> Task       | :heavy_check_mark: | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                         |
+| **List**                    | :x:                | `list`                                                                                                                                                                 |
+| **Find**                    | :x:                | `find keyword(s)` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
+| **Sort**                    | :x:                | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                            |
+| **Help**                    | :x:                | `help`                                                                                                                                                                 |
+| **Undo**                    | :x:                | `undo`                                                                                                                                                                 |
+| **Redo**                    | :heavy_check_mark: | `redo`                                                                                                                                                                 |
+| **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                |
+| **Exit**                    | :x:                | `exit`                                                                                                                                                                 |
 
 #### *Return to the [Table of Contents](#table-of-contents).*
 
