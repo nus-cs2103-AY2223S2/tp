@@ -582,6 +582,21 @@ This reduces repeated lines of code and improves ease of implementation for futu
 
 ## 3.8 TabCommand
 
+`TabCommand` switches tabs on the application through CLI commnads. The user can switch tabs with the `TabCommand` or any of `ListXYZCommand` or `FindXYZCommand` which brings the user to the relevant `XYZ` tab.
+
+The following activity diagram summarizes what happens when the user executes the `tab` command.
+
+<p align="center">
+  <img src="images/TabCommandActivityDiagram.svg">
+  <br>Figure 23: Tab Command Activity Diagram
+</p>
+
+
+
+**Why is it implemented this way**
+
+An `Observable` property of `JavaFx` is used so that an `ObservableTabIndex` class can be created. This reduces the coupling between `Logic` which executes the command and `Ui` components. The `Ui` listens for changes in the `ObservableTabIndex`. As `Ui` is only aware of `ObservableTabIndex` but not `Logic`, this also enforces principle of least knowledge.
+
 ## 3.9 HelpCommand
 
 The `help` command brings up a [HelpWindow](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/HelpWindow.java), where there is a link to the User Guide of Trackr. The user can also press `F1` or click `Help` the menu bar to bring it up.
