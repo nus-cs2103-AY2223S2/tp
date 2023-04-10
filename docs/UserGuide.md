@@ -30,7 +30,7 @@ The following subsections detail the functionality of ***RIZZ***ipe and explain 
 
 ***RIZZ***ipe is a **command-based recipe database** that operates primarily on commands and behaves like a Command Line Interface (CLI).
 
-***RIZZ***ipe comes equipped with numerous features, but particularly love these **three**:
+***RIZZ***ipe comes equipped with numerous features, but we particularly love these **three**:
 1. Versatile **tagging** and powerful **search** function
 2. Recipe **sharing**
 3. **Ingredient substitution** searching
