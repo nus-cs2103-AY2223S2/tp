@@ -212,7 +212,7 @@ This section helps you to understand the format of the commands listed above and
 
 ## Valid data field inputs
 This section describes the requirements of the specified data fields.
-Aside from Variants, data fields must contain at least one non-whitespace character (i.e. blank inputs are not accepted).
+Data fields must contain at least one non-whitespace character (i.e. blank inputs are not accepted).
 
 ### Name
 * Names must only contain letters and spaces.
@@ -374,7 +374,7 @@ Format: `list`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip:**
-As `list` removes all active filters, one of it's most common uses is to reset the currently displayed list to show all the cases in DHT.
+As `list` removes all active filters, one of its most common uses is to reset the currently displayed list to show all the cases in DHT.
 You might like to use `list` in conjunction with the following commands:
 * [`delete`](#deleting-cases-delete)
 * [`overview`](#changing-the-overview-type-overview)
