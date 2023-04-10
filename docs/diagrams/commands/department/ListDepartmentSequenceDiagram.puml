@@ -28,7 +28,7 @@ deactivate ListDepartmentCommand
 SudoHrParser --> LogicManager : d
 deactivate SudoHrParser
 
-LogicManager -> ListDepartmentCommand : execute()
+LogicManager -> ListDepartmentCommand : execute(model)
 activate ListDepartmentCommand
 
 ListDepartmentCommand -> Model : updateFilteredDepartmentList
