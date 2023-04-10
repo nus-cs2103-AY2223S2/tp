@@ -600,21 +600,15 @@ generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlacehold
 Controller class for Info Panel which holds detailed contact information about a person. Shows contact information such
 as GitHub user ID, email address and LinkedIn profile URL.
 
-<br>
-
 #### **DetailedModule**
 
 Controller class for Info Panel which holds detailed module information about a person. Shows a list of modules taken
 by a person that is created as a ListView, similar to the [PersonListPanel](#personlistpanel).
 
-<br>
-
 #### **DetailedSkill**
 
 Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
 by a person that is created as a ListView.
-
-<br>
 
 ### **Theme**
 
@@ -691,6 +685,8 @@ Lastly, if the application has an empty contact list, the [Info Panel](#info-pan
 However, when the person list is not empty, the [Info Panel](#info-panel) will not display the newly added person as we did not to change the state of other panels within the application with the execution of this `add command`.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### **Edit Command**
 
@@ -794,6 +790,8 @@ using edit command in a poor way.
 
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 #### **Find Command**
 
