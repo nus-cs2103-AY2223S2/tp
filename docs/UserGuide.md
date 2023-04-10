@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-E-Lister is **a comprehensive desktop app**, **specially designed** for **insurance agents and other financial professionals** to **streamline the management of their customers' contact information**.  This powerful tool provides a simple and intuitive interface, allowing users to not only easily **add, edit, tag and filter out** for contact information via Graphical User Interface (GUI) but also **see the history of commands that the users keyed in and executed** so that they can keep **a record of their workflow progress**, hence improving productivity.
+E-Lister is a comprehensive **desktop app**, specially designed for **insurance agents and other financial professionals** to **streamline the management of their customers' contact information**.  This powerful tool provides a simple and intuitive interface, allowing users to:
+- easily operate with the contact information via CLI (Command Line Interface)
+- **see the history of commands that the users keyed in and executed** so that they can keep **a record of their workflow progress**, hence improving productivity.
 
 * Table of Contents
 {:toc}
