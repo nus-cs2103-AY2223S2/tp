@@ -1,5 +1,6 @@
 package seedu.medinfo.testutil;
 
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.patient.Patient;
 
@@ -24,7 +25,11 @@ public class MedInfoBuilder {
      * Adds a new {@code Patient} to the {@code MedInfo} that we are building.
      */
     public MedInfoBuilder withPerson(Patient patient) {
-        medInfo.addPatient(patient);
+        try {
+            medInfo.addPatient(patient);
+        } catch (CommandException e) {
+            System.out.println("Caught CommandException error!!!");
+        }
         return this;
     }
 

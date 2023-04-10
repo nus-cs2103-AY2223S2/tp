@@ -13,7 +13,6 @@ import seedu.medinfo.model.patient.Name;
 import seedu.medinfo.model.patient.Nric;
 import seedu.medinfo.model.patient.Status;
 import seedu.medinfo.model.ward.Capacity;
-import seedu.medinfo.model.ward.Ward;
 import seedu.medinfo.model.ward.WardName;
 
 /**
@@ -94,8 +93,8 @@ public class ParserUtil {
     public static WardName parseWardName(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
-        if (!Ward.isValidWard(trimmedWard)) {
-            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        if (!WardName.isValidWardName(trimmedWard)) {
+            throw new ParseException(WardName.MESSAGE_CONSTRAINTS);
         }
         return new WardName(trimmedWard);
     }

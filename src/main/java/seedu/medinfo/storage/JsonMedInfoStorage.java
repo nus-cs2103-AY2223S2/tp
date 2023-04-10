@@ -12,6 +12,7 @@ import seedu.medinfo.commons.exceptions.DataConversionException;
 import seedu.medinfo.commons.exceptions.IllegalValueException;
 import seedu.medinfo.commons.util.FileUtil;
 import seedu.medinfo.commons.util.JsonUtil;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 
 /**
@@ -32,7 +33,7 @@ public class JsonMedInfoStorage implements MedInfoStorage {
     }
 
     @Override
-    public Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException {
+    public Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, CommandException {
         return readMedInfo(filePath);
     }
 
@@ -42,7 +43,7 @@ public class JsonMedInfoStorage implements MedInfoStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException, CommandException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableMedInfo> jsonMedInfo = JsonUtil.readJsonFile(

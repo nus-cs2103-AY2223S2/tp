@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.medinfo.commons.core.LogsCenter;
 import seedu.medinfo.commons.exceptions.DataConversionException;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.ReadOnlyUserPrefs;
 import seedu.medinfo.model.UserPrefs;
@@ -54,12 +55,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException {
+    public Optional<ReadOnlyMedInfo> readMedInfo() throws DataConversionException, IOException, CommandException {
         return readMedInfo(medInfoStorage.getMedInfoFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMedInfo> readMedInfo(Path filePath) throws DataConversionException, IOException,
+            CommandException {
         logger.fine("Attempting to read data from file: " + filePath);
         return medInfoStorage.readMedInfo(filePath);
     }

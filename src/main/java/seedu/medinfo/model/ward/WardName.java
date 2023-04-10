@@ -5,7 +5,7 @@ import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Ward's name in MedInfo.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidWardName(String)}
  */
 public class WardName {
 
@@ -27,14 +27,14 @@ public class WardName {
      */
     public WardName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidWardName(name), MESSAGE_CONSTRAINTS);
         wardName = name;
     }
 
     /**
      * Returns true if a given string is a valid ward name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidWardName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

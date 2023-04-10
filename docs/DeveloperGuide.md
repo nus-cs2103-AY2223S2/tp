@@ -49,6 +49,7 @@ You can use this guide to maintain, upgrade, and evolve **MedInfo**.
   * [**Launch and shutdown**](#launch-and-shutdown)
   * [**Delete a patient**](#delete-a-patient)
   * [**Save data**](#save-data)
+* [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 
 ---
@@ -397,14 +398,14 @@ Use case resumes at step 2.
 - 2c. If the input field is invalid.
 
   - 2c1. the user is informed of this, and correct format for the command is displayed.
-  
+
   Use case resumes at step 2.
 
 
 - 2d. If the entered ward is not present in the system.
-    
+
   - 2d1. the user is informed that the ward does not exist in the system.
-  
+
   Use case resumes at step 2.
 
 
@@ -446,7 +447,7 @@ Use case resumes at step 2.
 
 1.  User requests to list filtered patients
 2.  MedInfo shows a list of filtered patients
-3.  User requests to edit a specific patient in the list by index number 
+3.  User requests to edit a specific patient in the list by index number
     1. The following can be edited:
        - Status
        - Ward
@@ -481,13 +482,13 @@ Use case resumes at step 2.
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
-  
+
 - 3b. The Ward entered is invalid.
 
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
-  
+
 - 3b. The Discharge Date entered is invalid.
 
     - 3b1. MedInfo shows an error message.
@@ -529,7 +530,7 @@ Use case resumes at step 2.
   - 1c1. MedInfo does not list any patients.
 
     Use case ends.
-  
+
 - 1d. The requested patient's Ward does not exist in the system.
 
 - 1d1. MedInfo does not list any patients.
@@ -639,12 +640,12 @@ Use case resumes at step 2.
     Use case ends.
 - 3a. The requested sorting order is invalid
   - 3a1. MedInfo shows an error message.
-  
+
     Use case resumes at step 2.
 
 - 3b. The requested sorting field is invalid
     - 3b1. MedInfo shows an error message.
-  
+
       Use case resumes at step 2.
 
 
@@ -722,3 +723,79 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+
+---
+
+## **Appendix: Planned Enhancements**
+
+Given below are a few enhancements we hope to bring into future iterations of MedInfo:
+
+### Date-time validation:
+Currently, MedInfo allows the user to input dates in the past (e.g.`01/01/1000 1000`). While there may be reason to
+input past date-times, such as if the user forgot to enter dates previously, MedInfo is meant to be a **current**
+patient tracking system. As such, inputting dates from the past would not make sense as the patients would have been
+discharged already (and hence have no reason to be recorded in MedInfo).
+
+Possible Implementation:
+- This could be implemented by adding a method in `Discharge.java` to check if a given date is a valid future
+discharge date (by comparing to the current date)
+- The method created above would then be called within `parseDischarge()` in `ParserUtil.java` to ensure that a
+valid future discharge date-time was entered
+
+### Strict NRIC validation:
+Currently, MedInfo checks whether a valid NRIC has been entered based on a validaton regex within
+`Nric.java` (`^[STFG]\d{7}[A-Z]$`). This regex restricts the NRIC to be a capital letter (either
+S/F/T/G) followed by 7 numbers and a capital letter. True valid NRICs make use of stronger validation
+logic, involving check digits. Such validation would need to be added before using MedInfo in a
+real-life scenario. However, due to the constraints it would place on testing during development,
+it shall be implemented in the future instead.
+
+### UI component behaviour on window resizing
+On resizing, the status bar maintains its centered location as from the full-size window. As a result,
+the information in it gets truncated. As this information is critical, future enhancements should address this, and
+other UI components that get cut off on window resizing.
+
+Possible implementations:
+- adjusting padding
+- setting position constraint
+- setting a higher minimum window width
+
+### Multiple parameter search
+Currently, MedInfo only allows finding patients by **onw** of four parameters:
+1. name (`name/`)
+2. NRIC (`nric/`)
+3. status (`s/`)
+4. ward name (`w/`)
+
+The `find` command does not allow multiple parameters to be used at once. For example, attempting to find critical
+patients in ward 'ER1' with the command `find s/red w/ER1` would result in an error. However, as a hospital
+staff, finding patients matching multiple criteria is a valid use-case. Hence, this is planned as a future enhancement.
+
+### Find by ward
+Currently, the `find` command in MedInfo finds patients by wards as it does patients by name, i.e. by displaying
+all patients that match any of the keywords supplied. As a result, the logic is slightly flawed. Consider the
+scenario of trying to find patients in a ward named 'Class A', when the other wards in the system include 'Class B'
+and 'Class C'. Entering `find w/Class A` would also display patients in the other 2 wards due to the common keyword
+'Class'. This should be addressed in future iterations of MedInfo by making the `find` command match ward name
+exactly.
+
+
+### Handling long names
+Currently, long names are truncated (with `...`) once they go past the maximum displayable length. This makes it
+impossible to get long patient names after entry into the system. This would need to be addressed in the future.
+
+Possible implementation:
+- limit name input to 40 characters: While simple to implement (change validation regex in `Name.java` to
+`[\\p{Alnum}][\\p{Alnum} ]{0,39}`, it is not recommended, as it does not handle the case of patients with names
+longer than 40 characters
+- text wrapping to display the whole name within the patient card in the UI
+
+### Expand `help` command
+Currently, entering the `help` command in MedInfo opens a small dialog box with a link to MedInfo's website. While
+the user can read the user guide from the website to learn how to use the commands, perhaps a quick command summary
+could be added to this window for returning users who do not wish to open the website but just need a quick refresher
+on the commands.
+
+Possible implementation:
+- add command summary in text to help window display

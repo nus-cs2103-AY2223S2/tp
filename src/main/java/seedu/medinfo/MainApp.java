@@ -15,6 +15,7 @@ import seedu.medinfo.commons.util.ConfigUtil;
 import seedu.medinfo.commons.util.StringUtil;
 import seedu.medinfo.logic.Logic;
 import seedu.medinfo.logic.LogicManager;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.MedInfo;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.ModelManager;
@@ -22,8 +23,12 @@ import seedu.medinfo.model.ReadOnlyMedInfo;
 import seedu.medinfo.model.ReadOnlyUserPrefs;
 import seedu.medinfo.model.UserPrefs;
 import seedu.medinfo.model.util.SampleDataUtil;
-import seedu.medinfo.storage.*;
 import seedu.medinfo.storage.JsonMedInfoStorage;
+import seedu.medinfo.storage.JsonUserPrefsStorage;
+import seedu.medinfo.storage.MedInfoStorage;
+import seedu.medinfo.storage.Storage;
+import seedu.medinfo.storage.StorageManager;
+import seedu.medinfo.storage.UserPrefsStorage;
 import seedu.medinfo.ui.Ui;
 import seedu.medinfo.ui.UiManager;
 
@@ -77,8 +82,16 @@ public class MainApp extends Application {
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MedInfo");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleMedInfo);
-        } catch (DataConversionException e) {
+            Optional<ReadOnlyMedInfo> sampleData = Optional.ofNullable(SampleDataUtil.getSampleMedInfo());
+            initialData = addressBookOptional.orElseGet(() -> {
+                try {
+                    return SampleDataUtil.getSampleMedInfo();
+                } catch (CommandException e) {
+                    logger.warning("Data file not in the correct format. Will be starting with an empty MedInfo");
+                    return new MedInfo();
+                }
+            });
+        } catch (CommandException | DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty MedInfo");
             initialData = new MedInfo();
         } catch (IOException e) {

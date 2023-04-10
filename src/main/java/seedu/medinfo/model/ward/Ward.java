@@ -1,30 +1,18 @@
 package seedu.medinfo.model.ward;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.medinfo.model.patient.Patient;
 import seedu.medinfo.model.patient.UniquePatientList;
+import seedu.medinfo.model.ward.exceptions.WardFullException;
 
 /**
  * Represents a ward which stores patients.
  */
 public class Ward {
-
-    public static final String MESSAGE_CONSTRAINTS = "Wards should only contain alphanumeric characters and spaces, "
-            + "and it should not be blank";
-
-    public static final String WARD_FULL_MESSAGE_CONSTRAINTS = "The ward cannot be assigned to more patients "
-            + "than its capacity.";
-
-    /*
-     * The first character of the ward must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final WardName value;
 
@@ -39,7 +27,6 @@ public class Ward {
      */
     public Ward(WardName name) {
         requireNonNull(name);
-        checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
         this.value = name;
         this.capacity = new Capacity(10);
         patients = new UniquePatientList();
@@ -53,7 +40,6 @@ public class Ward {
      */
     public Ward(WardName name, Capacity capacity) {
         requireNonNull(name);
-        checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
         this.value = name;
         this.capacity = capacity;
         patients = new UniquePatientList();
@@ -61,7 +47,7 @@ public class Ward {
 
     /**
      * Ward factory constructor with string for comparisons
-     * 
+     *
      * @param name
      * @return placeholder Ward
      */
@@ -72,7 +58,7 @@ public class Ward {
 
     /**
      * Edit capacity of this ward
-     * 
+     *
      * @param capacity
      * @return Ward with edited capacity
      */
@@ -81,17 +67,6 @@ public class Ward {
         return this;
     }
 
-    /**
-     * Returns true if a given string is a valid ward.
-     */
-    public static boolean isValidWard(String name) {
-        return name.matches(VALIDATION_REGEX);
-
-    }
-
-    public static boolean isValidWard(WardName name) {
-        return name.toString().matches(VALIDATION_REGEX);
-    }
 
     /**
      * Returns true if a given occupany can fit in the
@@ -101,9 +76,12 @@ public class Ward {
         return capacity.getValue() >= occupancy;
     }
 
-    // public String getName() {
-    // return name;
-
+    public boolean isFull() {
+        return patients.size() == capacity.getValue();
+    }
+    public static boolean isValidWardName(String test) {
+        return WardName.isValidWardName(test);
+    }
     public WardName getName() {
         return value;
     }
@@ -122,10 +100,6 @@ public class Ward {
 
     public int getOccupancy() {
         return patients.size();
-    }
-
-    public boolean isFull() {
-        return getOccupancy() >= capacity.getValue();
     }
 
     public String getOccupancyString() {
@@ -170,7 +144,11 @@ public class Ward {
      * Adds a patient to the ward.
      * The patient must not already exist in the medinfo book.
      */
-    public void addPatient(Patient p) {
+    public void addPatient(Patient p) throws WardFullException {
+        requireNonNull(p);
+        if (patients.size() == capacity.getValue()) {
+            throw new WardFullException(value.toString());
+        }
         patients.add(p);
     }
 
@@ -194,7 +172,7 @@ public class Ward {
         patients.remove(key);
     }
 
-    //// util methods
+    //// Util methods
 
     @Override
     public String toString() {
