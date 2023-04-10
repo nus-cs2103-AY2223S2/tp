@@ -394,15 +394,16 @@ Ends the review and returns to the main mode. You can use this when you reach th
 
 Format: `endReview`
 
-### 3.6.3. Review Keystrokes
+### 3.6.3. Review Command Keys
 
-![ReviewKeystrokes](images/ReviewKeystrokes.png)
+![Review Command Keys](images/ReviewCommandKeys.png)
 
-The diagram above shows the keystrokes you will use to interact with the cards in the Review mode. 
+The diagram above shows the commands you will use to interact with the cards during a Review. 
+You must press the Enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card.
+
 Notice that the keys are all close to the Enter key so that you can breeze through decks of cards ergonomically!
 - The top row of keys are commands to flip cards, or move to the previous/next cards. 
 - The bottom row of keys are commands to tag the difficulty of the current card.
-- You must press the Enter key after typing in the command to execute it, e.g., pressing the key `p` alone will not flip the card. 
 
 ### 3.6.4. Flipping the Card: `p`
 
