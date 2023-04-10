@@ -961,7 +961,7 @@ revo OINDEX
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**<br>
+**:bulb: Tip:**<br>
 
 * If the order is "Pending", the status cannot be reverted further.
 
