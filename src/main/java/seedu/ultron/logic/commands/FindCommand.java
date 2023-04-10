@@ -30,6 +30,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOpeningList(predicate);
+        model.setSelectedIndex(null);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getFilteredOpeningList().size()));
     }

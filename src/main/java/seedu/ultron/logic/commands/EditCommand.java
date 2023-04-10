@@ -5,7 +5,6 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_KEYDATE;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
@@ -42,7 +41,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_KEYDATE + "KEYDATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY + "Microsoft "
@@ -85,6 +83,7 @@ public class EditCommand extends Command {
 
         model.setOpening(openingToEdit, editedOpening);
         model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
+        model.setSelectedIndex(null);
         return new CommandResult(String.format(MESSAGE_EDIT_OPENING_SUCCESS, editedOpening));
     }
 
