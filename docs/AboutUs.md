@@ -26,7 +26,7 @@ We are the Docedex team! We are undergraduates based in the [School of Computing
 
 <img src="images/bobfree546.png" width="200px">
 
-[[github](http://github.com/Bobfree546)] [[portfolio](team/amos.md)]
+[[github](http://github.com/Bobfree546)] [[portfolio](team/bobfree546.md)]
 
 * Role: Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time.
