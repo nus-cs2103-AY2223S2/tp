@@ -490,6 +490,8 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command without status**
@@ -1448,6 +1450,8 @@ Clearing all menu items does not invalidate the orders.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -1635,8 +1639,6 @@ Here are the respective formats for each of the data types:
     "timeAdded" : "2023-04-04T16:35:55.864688500"
   }
   ```
-
-<div style="page-break-after: always;"></div>
 
 # 4 Upcoming features `[coming soon]`
 
