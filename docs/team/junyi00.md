@@ -41,7 +41,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added `viewc` command [#82](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/82) 
+        * Added `viewc` and `viewo` command [#82](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/82),  [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
         * Added and updated _Introduction_, _Tutorials_ & _Frequently Asked Questions_ [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
         * Updated language to be more user-friendly [#180](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/180)
         * Organised _Features_ & _Command Summary_ into sections for improved readability [#102](https://github.com/AY2223S2-CS2103T-T09-3/tp/pull/102)
