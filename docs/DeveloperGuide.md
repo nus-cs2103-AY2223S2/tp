@@ -52,6 +52,7 @@ Before reading, it is recommended that developers read the [User Guide](https://
   - [Non-Functional Requirements](#non-functional-requirements)
   - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Effort](#appendix-effort)
 - [Appendix: Planned enhancements](#appendix-planned-enhancements)
 
 ---
@@ -2715,6 +2716,24 @@ Some incorrect commands to try from root context:
 | `clear`   | All modules deleted from Le Tracker |
 | 1. `nav CS2040S` <br> 2. `clear` | Same as previous |
 | 1. `nav CS2040S` <br> 2. `nav Week 1` <br> 3. `clear` | Same as previous |
+
+---
+
+## Appendix: Effort
+
+### Adapting Model Component
+
+The main difficulty with developing Le Tracker was adapting the **Model** component to support a hierarchical structure. In the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp) codebase that Le Tracker is forked from, the **Model** component is non-hierarchical, utilising `Person` objects to store person contact details. As Le Tracker requires `Module`s to contain `Lecture`s which in turn contains `Video`s, a hierarchical structure was needed.
+
+This required a large amount of change to the codebase of the **Model** component. It also pushed us to consider the pros and cons of breaking immutability of the various classes in the component. By breaking immutability, updating of fields would be much easier and the impacts on the **UI** component could be minimised. However, this introduces a risk of making bugs more difficult to diagnose. We ultimately decided to have `Module` and `Lecture` be immutable such that `Lecture` objects and `Video` objects can be added to them respectively. However, we limited the access to these immutable methods through the use of `ReadOnlyModule` and `ReadOnlyLecture` interfaces.
+
+### Adapting Commands
+
+Due to the use of a hierarchical structure in the **Model** component, we had to reconsider how commands should behave and how they should be parsed. The code for each command is no longer as straightforward as in [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S2/tp). Command parsing must now determine the intent of the user via specific arguments in the user's input (specifically `/mod` and `/lec`). This is necessary to determine for a command such as `add`, is the user attempting to add a module, a lecture, or a video.
+
+By introducing the `/mod` and `/lec` arguments, user commands are now much longer and usability has taken a hit as a result. To counter this issue, we introduced a navigation system which auto injects the `/mod` and `/lec` arguments depending on the context. More information about what the navigation system does can be found in the [User Guide](https://ay2223s2-cs2103-f10-2.github.io/tp/UserGuide.html#navigation).
+
+---
 
 ## Appendix: Planned enhancements
 
