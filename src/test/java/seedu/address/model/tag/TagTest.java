@@ -23,4 +23,10 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
 
+    @Test
+    public void isMoreThanMaxLetters() {
+        String moreThanMaxLetterTagName = "AliceIsALittleGirlInPrimarySchool";
+        assertThrows(IllegalArgumentException.class, () -> new Tag(moreThanMaxLetterTagName));
+    }
+
 }

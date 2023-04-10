@@ -15,7 +15,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ * A UI component that displays information of a {@code Student}.
  */
 public class StudentCard extends UiPart<Region> {
 
@@ -66,11 +66,10 @@ public class StudentCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Student} and index to display.
+     * Creates a {@code StudentCard} with the given {@code Student} and index to display,
+     * together with the import information.
      */
-
     public StudentCard(Student student, int displayedIndex, ExportProgressWindow exportProgressWindow) {
-
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
@@ -79,16 +78,20 @@ public class StudentCard extends UiPart<Region> {
         parentPhone.setText(student.getParentPhone().value + " (P)");
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
-        phoneIcon1.setImage(new Image(this.getClass().getResourceAsStream("/images/Phone.png")));
-        phoneIcon2.setImage(new Image(this.getClass().getResourceAsStream("/images/Phone.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Address.png")));
-        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Email.png")));
+        phoneIcon1.setImage(getPic("/images/Phone.png"));
+        phoneIcon2.setImage(getPic("/images/Phone.png"));
+        addressIcon.setImage(getPic("/images/Address.png"));
+        emailIcon.setImage(getPic("/images/Email.png"));
+
         student.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         studentCardImage(student);
         this.exportProgressWindow = exportProgressWindow;
+    }
 
+    private Image getPic(String picName) {
+        return new Image((this.getClass().getResourceAsStream(picName)));
     }
 
     /**
@@ -97,27 +100,28 @@ public class StudentCard extends UiPart<Region> {
      * @param student a given student
      */
     private void studentCardImage(Student student) {
-        if (student.getTags() != null) {
-            boolean isMale = false;
-            boolean isFemale = false;
+        boolean isMale = false;
+        boolean isFemale = false;
+        String lowerCaseTagNameGender = "";
 
-            for (Tag tag : student.getTags()) {
-                if (tag.tagName.toLowerCase().equals("male")) {
-                    isMale = true;
-                } else if (tag.tagName.toLowerCase().equals("female")) {
-                    isFemale = true;
-                }
-            }
+        for (Tag tag : student.getTags()) {
+            lowerCaseTagNameGender = tag.tagName.toLowerCase();
 
-            if (isMale && isFemale) {
-                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
-            } else if (isMale) {
-                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
-            } else if (isFemale) {
-                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
-            } else {
-                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+            if (lowerCaseTagNameGender.equals("male")) {
+                isMale = true;
+            } else if (lowerCaseTagNameGender.equals("female")) {
+                isFemale = true;
             }
+        }
+
+        if (isMale && isFemale) {
+            avatar.setImage(getPic("/images/unisex.png"));
+        } else if (isMale) {
+            avatar.setImage(getPic("/images/male.png"));
+        } else if (isFemale) {
+            avatar.setImage(getPic("/images/female.png"));
+        } else {
+            avatar.setImage(getPic("/images/unisex.png"));
         }
     }
 
