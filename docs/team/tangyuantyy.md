@@ -33,16 +33,17 @@ Given below are my contributions to the project.
 
 
 * **Code
-  contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tangyuantyy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=BoAi01&tabRepo=AY2223S2-CS2103T-W11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+  contributed
+  **: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tangyuantyy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=BoAi01&tabRepo=AY2223S2-CS2103T-W11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 
 * **Project management**:
     * Added and managed issues
       ([#3](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/3),
-       [#33](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/33),
-       [#62](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/62),
-       [#71](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/71),
-       [#119](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/119))
+      [#33](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/33),
+      [#62](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/62),
+      [#71](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/71),
+      [#119](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/119))
 
 
 * **Enhancements to existing features**:
@@ -54,7 +55,7 @@ Given below are my contributions to the project.
     * User Guide:
         * Added UI display picture ([#133](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/133))
         * Updated Table of Contents ([#133](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/133))
-        
+
     * Developer Guide:
         * Added User stories and use cases related to crew ([#25](https://github.com/AY2223S2-CS2103T-W11-1/tp/pull/25))
         * Added implementation details of the Scrollable panel

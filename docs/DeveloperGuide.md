@@ -165,7 +165,7 @@ optional
 positional `String` value. The optional positional value will allow the user
 to input something right after the command's first keyword. For example:
 
-``` 
+```
 keyword something /someparam somevalue /someotherparam someothervalue
         ^^^^^^^^^ <- this is the positional value
 ```
