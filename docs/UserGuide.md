@@ -163,7 +163,7 @@ learn more about new features.
 #### 3.1.1 Quickstart Guide: `quickstart`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The keyboard shortcut for the help function is assigned to the F5 key.
+The keyboard shortcut for the quickstart function is assigned to the F5 key.
 </div>
 
 Gives you a simple and brief initial run-through of the OfficeConnect app.
@@ -185,9 +185,9 @@ Format: `quickstart`
 The keyboard shortcut for the help function is assigned to the F4 key.
 </div>
 
-Displays a comprehensive window detailing the outline of executable commands by user.
+Displays a comprehensive window detailing the outline of commands executable by user.
 
-Presents a hierarchical view which lists the different available commands, along with the description of each of the commands.
+Presents a hierarchical view which lists the different available commands, along with the description of each command.
 
 Format: `help`
 
@@ -253,7 +253,7 @@ Format: `listp`
 #### 3.2.5 Locating Persons by Name: `findp`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-* Upon entering the `findp` command, all persons and tasks would be listed together with the message "Listed all persons and tasks"
+Upon entering the `findp` command, all persons and tasks would be listed together with the message "Listed all persons and tasks"
 </div>
 
 Finds persons whose name contains any of the given keywords.
@@ -328,7 +328,7 @@ Format: `listt`
 #### 3.3.5 Locating Tasks by Title: `findt`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-* Upon entering the `findt` command, all persons and tasks would be listed together with the message "Listed all persons and tasks"
+Upon entering the `findt` command, all persons and tasks would be listed together with the message "Listed all persons and tasks"
 </div>
 
 Finds persons whose name contains any of the given keywords.
@@ -409,13 +409,13 @@ Format: `listall`
 
 #### 3.5.2 Viewing Assigned Persons: `viewassignedp`
 
-Displays a list of all persons who have been assigned to a task.
+Displays a list of all persons who have been assigned to any task.
 
 Format: `viewassignedp`
 
 #### 3.5.3 Viewing Assigned Tasks: `viewassignedt`
 
-Displays a list of all tasks that have been assigned to a person.
+Displays a list of all tasks that have been assigned to any person.
 
 Format: `viewassignedt`
 
@@ -435,8 +435,8 @@ Format: `viewunassignedt`
 
 #### 3.5.6 Viewing Assigned Persons and Tasks: `viewassignedall`
 
-Displays a list of all persons who have been assigned to one or more tasks and a list of all tasks that have been 
-assigned to one or more persons.
+Displays a list of all persons who have been assigned to any task and a list of all tasks that have been 
+assigned to any person.
 
 Format: `viewassignedall`
 
@@ -504,7 +504,7 @@ There is no need to save manually.
 #### 3.6.3 Editing the data file
 
 Data for OfficeConnect is stored in JSON format within the `[JAR file location]/data/` directory. 
-Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
+Please do not tamper with the data as it might cause corruption of the data. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, OfficeConnect will discard all data and start with an empty data file at the next run.
@@ -553,16 +553,16 @@ _Details coming soon ..._
 ## 4. Frequently Asked Questions (FAQ)
 
 1. **What is OfficeConnect?**
-   OfficeConnect is a productivity app designed to help you manage tasks, team members, and assignments more efficiently. It offers a variety of features to improve organization and collaboration within your team.
+   OfficeConnect is a productivity app designed to help you manage tasks, persons, and assignments more efficiently. It offers a variety of features to improve organization and collaboration within your team.
 
-2. **How can I view all tasks and team members in OfficeConnect?**
-   OfficeConnect provides various filter and list commands to display tasks and team members based on different criteria, such as assigned, unassigned, or by specific tags.
+2. **How can I view all tasks and persons in OfficeConnect?**
+   OfficeConnect provides various filter and list commands to display tasks and persons based on different criteria, such as assigned, unassigned, or by specific tags.
 
-3. **Can I edit task and team member details after they have been added?**
-   Yes, OfficeConnect allows you to edit the details of tasks and team members after they have been added to the system. This helps to ensure that your information is always up-to-date and accurate.
+3. **Can I edit task and person details after they have been added?**
+   Yes, OfficeConnect allows you to edit the details of tasks and person after they have been added to the system. This helps to ensure that your information is always up-to-date and accurate.
 
-4. **How do I assign a task to a team member?**
-   You can assign tasks to team members using the assignment commands. This feature helps to distribute work efficiently and track the progress of each task.
+4. **How do I assign a task to a person?**
+   You can assign tasks to persons using the assignment commands. This feature helps to distribute work efficiently and track the progress of each task.
 
 5. **What if I accidentally delete or modify data in the OfficeConnect data file?**
    Please exercise caution when editing the data file, as any changes to the data file might cause data corruption and lead to the app malfunctioning. If the data file becomes corrupted, OfficeConnect will start with an empty data file on the next run.
