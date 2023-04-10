@@ -222,6 +222,29 @@ A simplified sequence was employed for mouse clicks. The `OpeningListPanel` clas
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
 
+
+#### Design considerations:
+
+**Aspect: Allow for inputs in months, weeks and days rather than days**
+
+* The benefit to split inputs might not be so apparent since users would usually only use this command nearer to the event dates. 
+
+
+* **Alternative 1 (current choice):** Allow only input in terms of days.
+    * Pros:
+        * Easier to implement.
+        * Efficient for users since they usually want to look for events close to the current date. 
+    * Cons:
+        * Less efficient if users want to find events which are further into the future. 
+
+
+* **Alternative 2:** Allow for input in terms of months, weeks and days.
+    * Pros:
+        * Users can give inputs without converting the period to days. 
+    * Cons:
+        * Increased complexity in terms of parsing
+        * Longer command line with more fields increases the amount the user has to type to use the command. 
+
 ### Status filtering feature
 <!-- Kevin -->
 
