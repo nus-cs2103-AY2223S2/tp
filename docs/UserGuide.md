@@ -62,6 +62,8 @@ Below are the prefixes and parameters we use in commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Tutorial
 
 Welcome to OfficeConnect! 
@@ -118,6 +120,8 @@ learn more about new features.
 </p><br/>
 
 ----------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -520,12 +524,16 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?  
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OfficeConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
