@@ -188,7 +188,7 @@ We write in a general so that we cover breadth, and that we may adhere to
 #### Adding
 
 ##### Description
-The `AddCommand` handles the addition of `Object` into QuickContacts. See the syntax for `AddCommand`
+The `AddXYZCommand` handles the addition of `Object` into QuickContacts. See the syntax for `AddXYZCommand`
 [here](#command-summary).
 
 ##### Implementation
@@ -197,10 +197,10 @@ When adding an `Object` the control flow is as follows:
 1. The user queries the `UI` to add using the [`add` or `addm` command](#command-summary).
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate an `AddParser` object.
 3. `QuickContactsParser` then passes the arguments to the `AddParser` object.
-4. `AddParser` initiates an `AddCommand` object.
-5. `AddCommand` object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on `AddCommand`.
-7. `AddCommand` updates the model and returns a `CommandResult` to `LogicManager`.
+4. `AddParser` initiates an `AddXYZCommand` object.
+5. `AddXYZCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on `AddXYZCommand`.
+7. `AddXYZCommand` updates the model and returns a `CommandResult` to `LogicManager`.
 8. `LogicManager` updates the `UniqueList`.
 
 Below is the Sequence Diagram as a concrete example for a `Person`:
@@ -214,8 +214,8 @@ no person in the address book has a matching name). The name must match exactly 
 
 #### Editing
 ##### Description
-The `EditCommand` is responsible for handling the editing of an `Object` in QuickContacts. It allows users to modify the
-details of a specific `Object`. See the syntax for `EditCommand` [here](#command-summary).
+The `EditXYZCommand` is responsible for handling the editing of an `Object` in QuickContacts. It allows users to modify the
+details of a specific `Object`. See the syntax for `EditXYZCommand` [here](#command-summary).
 
 ##### Implementation
 When editing a meeting, the control flow is as follows:
@@ -223,10 +223,10 @@ When editing a meeting, the control flow is as follows:
 1. The user queries the UI to edit a `Object` using the [`edit` or `editm` command](#command-summary).
 2. The UI calls the `QuickContactsParser` through `LogicManager` to initiate an `EditParser` object.
 3. `QuickContactsParser` then passes the arguments to the `EditParser` object.
-4. `EditParser` initiates an `EditCommand` object.
-5. `EditCommand` object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on the `EditCommand`.
-7. `EditCommand` updates the model with the edited `Object` details and returns a `CommandResult` to `LogicManager`.
+4. `EditParser` initiates an `EditXYZCommand` object.
+5. `EditXYZCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on the `EditXYZCommand`.
+7. `EditXYZCommand` updates the model with the edited `Object` details and returns a `CommandResult` to `LogicManager`.
 8. `LogicManager` updates the `UniqueList` with the new information by replacing the old with the new object.
 
 Below is the Sequence Diagram as a concrete example for a `Person`:
@@ -234,12 +234,12 @@ Below is the Sequence Diagram as a concrete example for a `Person`:
 ![Interactions Inside the Logic Component for the `edit` Command](images/EditSequenceDiagram.png)
 
 ##### Exceptions
-The `EditCommand` throws a `CommandException` if any of the object's names is not found in QuickContacts. The name
-must match exactly (**case-sensitive**) or else a `CommandException` will be thrown.
+`EditMeetingCommand` throws a `CommandException` if any one of the `Person`'s name is not found in QuickContacts. The
+name must match exactly (**case-sensitive**).
 
 #### Deleting
 ##### Description
-The `DeleteCommand` handles the deletion of an `Object` from QuickContacts. See the syntax for `DeleteCommand`
+The `DeleteXYZCommand` handles the deletion of an `Object` from QuickContacts. See the syntax for `DeleteXYZCommand`
 [here](#command-summary).
 
 ##### Implementation
@@ -248,10 +248,10 @@ When deleting an `Object`, the control flow is as follows:
 1. The user queries the UI to delete using the [`delete` or `delm` command](#command-summary).
 2. The UI calls the `QuickContactsParser` through LogicManager to initiate a `DeleteParser` object.
 3. `QuickContactsParser` then passes the arguments to the `DeleteParser` object.
-4. `DeleteParser` initiates a `DeleteCommand` object.
-5. `DeleteCommand` object is passed all the way back to `LogicManager`.
-6. `LogicManager` calls `execute()` on `DeleteCommand`.
-7. `DeleteCommand` updates the model and returns a `CommandResult` to `LogicManager`.
+4. `DeleteParser` initiates a `DeleteXYZCommand` object.
+5. `DeleteXYZCommand` object is passed all the way back to `LogicManager`.
+6. `LogicManager` calls `execute()` on `DeleteXYZCommand`.
+7. `DeleteXYZCommand` updates the model and returns a `CommandResult` to `LogicManager`.
 8. `LogicManager` updates the `UniquePersonList` by deleting the `Person` from it.
 
 Below is the Sequence Diagram:
@@ -259,7 +259,7 @@ Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
 ##### Exceptions
-The `DeleteCommand` throws a CommandException if the specified index is not found in quickbook.
+The `DeleteXYZCommand` throws a CommandException if the specified index is not found in QuickContacts.
 
 ### Finding `Person`
 
@@ -269,25 +269,33 @@ The `FindCommand` finds persons in the address book. See the syntax for `FindCom
 ##### Implementation
 When finding meetings, the control flow is as follows:
 
-1. The user queries the `UI` to find using a [`find`](#command-summary) prefix.
+1. The user queries the `UI` to find using a [`find`](#command-summary) command.
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `FindCommandParser` object.
 3. `FindCommandParser` takes in a list of names and creates a `FindCommand` object.
-4. `FindCommand` is executed, and a `MeetingContainsNamesPredicate` is passed to the `updateFilteredMeetingList` method in the `Model` component.
-5. `LogicManager` creates a `ContainsNamesPredicate`, passing it to the `updateFilteredMeetingList()` method in the `Model` component.
+4. `FindCommand` is executed, and a `NameContainsKeywordsPredicate` is passed to the `updateFilteredPersonList` method in the `Model` component.
+5. `LogicManager` creates a `NameContainsKeywordsPredicate`, passing it to the `updateFilteredPersonList()` method in the `Model` component.
 6. `UI` displays the filtered meetings to the user.
 
 Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
 
 #### Exceptions
-The `FindMeetingCommand` throws a `CommandException` if no names are provided and there is trailing whitespace.
-The names no need to match exactly (**case-INsensitive**) but the Meetings are only filtered by one of the contact's names,
-as *space* is used as a delimiter. The command can be used **without arguments** to get back the original view of all meetings.
+The `FindCommand` throws a `CommandException` if no names are provided.
+The names no need to match exactly (**case-INsensitive**) but the contacts are only filtered by one of the contact's names,
+as *space* is used as a delimiter.
+
+#### Difference in Meetings
+##### Implementation
+For meetings, the usage and implementation is similar, but the `FindMeetingCommand` will search for matching names in the
+meetings list similar to `FindMeeting` and returns meetings that satisfy the search criteria
+(i.e. if the meeting has at least one contact that matches the input name).
+However, `findm` can be used without arguments to list all meetings. Thus, unlike `find`, `findm` will not throw `exceptions` if not given 
+any arguments.
 
 ### Exporting and importing of contacts
 #### Description
 Exporting generates a JSON for the contacts at the indices given.
-For example, `export p/ 1 p/2` generates a JSON for the first and second contacts.
+For example, `export p/1 p/2` generates a JSON for the first and second contacts.
 Example JSON:
 ```json
 [ {
@@ -304,7 +312,7 @@ Example JSON:
   "tagged" : [ "owesMoney", "friends" ]
 } ]
 ```
-The JSON is generated using the Jackson library, through the use of the JsonUtil utility class. The JSON can be pasted in again proceeding the import command to import the information in the export command
+The JSON is generated using the Jackson library, through the use of the `JsonUtil` utility class. The JSON can be pasted in again proceeding the import command to import the information in the export command
 
 #### Design Considerations
 
@@ -317,29 +325,30 @@ Could provide more readable and/or less text for copying.
 Benefit: can directly copy-paste to and from the data files that already exist in the system.
 
 #### Implementation
-Here we only describe the Export command. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
+Here we only describe the `ExportCommand`. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
 Control flow is as follows.
-1. The user queries the `UI` to export using a [export command](#command-summary) prefix.
-2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
-3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
-4. <u>`ExportCommand`</u> is returned to `LogicManager`
-5. `LogicManager` executes <u>`ExportCommand`</u>
-6. <u>`ExportCommand`</u> queries `ModelManager` for Json string
-7. <u>`ExportCommand`</u> returns Json string to `LogicManager` and `ModelManager`
-8. `UI` outputs the JSON string
+
+1. The user queries the `UI` to export using a [export command](#command-summary).
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `ExportCommandParser` object.
+3. `ExportCommandParser` creates a `ExportCommand` object.
+4. `ExportCommand` is returned to `LogicManager`.
+5. `LogicManager` executes `ExportCommand`.
+6. `ExportCommand` queries `ModelManager` for JSON string.
+7. `ExportCommand` returns JSON string to `LogicManager` and `ModelManager`.
+8. `UI` outputs the JSON string.
 
 Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `export` Command](images/ExportSequenceDiagram.png)
 
-### Difference in Meetings
-#### Implementation
-meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a
+#### Difference in Meetings
+##### Implementation
+Meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a
 `isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the
 corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then
 only the other date is considered.
 
-#### Exceptions
-Using the exported JSON, one can then import it using `import THE_JSON`.
+##### Exceptions
+Using the exported JSON, one can then import it using `import VALID_JSON`.
 
 Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing
 to ensure we do not have "half imports".
@@ -389,7 +398,7 @@ command to better the user experience.
 
 Traversal of commands is facilitated by `CommandHistory` model in addition to `KeyPressedHandler` in the `CommandBox` UI component.
 
-Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Note that `LinkedList` is a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) and this allows us to traverse the list of commands forward and backward in O(1) [time complexity](https://en.wikipedia.org/wiki/Time_complexity). Traversal of the list is facilitated by a `static` pointer.
+Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Traversal of the list is facilitated by a `static` pointer.
 
 `CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
@@ -836,7 +845,7 @@ MSS:
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
 * **LinkedList**: Data structure that consists of nodes that contain data and a reference to the next node
-* **Time complexity**: Amount of time taken by an algorithm to run, as a function of the length of the input
+* **JSON**: Stands for JavaScript Object Notation and it is a file format used for storing and transmitting data in attribute-value pairs and arrays.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -946,6 +955,7 @@ testers are expected to do more *exploratory* testing.
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
 | **List all contacts**        | `list`                                                                                                                                                                                                               |
 | **Help**                     | `help [COMMAND_WORD]`                                                                                                                                                                                                |
+| **Exit the app**             | `exit`                                                                                                                                                                                                               |
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
@@ -955,7 +965,7 @@ testers are expected to do more *exploratory* testing.
 | **View pending Meetings**    | `pending`                                                                                                                                                                                                            |
 | **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
 | **Export a contact**         | `export p/INDEX [p/MORE_INDEXES]...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                                                 |
-| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
+| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]` <br> e.g., `exportm m/1 m/2 m/3`                                                                               |
 | **Import a contact**         | `import VALID_JSON`                                                                                                                                                                                                  |
 | **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
 | **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
