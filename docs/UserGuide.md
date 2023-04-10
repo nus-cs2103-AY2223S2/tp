@@ -510,10 +510,10 @@ information in any order that you wish. But do make sure that you have entered a
     <li>
     The index of a patient can change depending on the filter you currently apply on the patient list.</li>
     <li>
-    For example, if you execute the <code><span style="background-color:#C8EAB3 ;">p list</span></code> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
+    For example, if you execute the <code style="background-color:#C8EAB3;"><span>p list</span></code> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
     </li>
     <li>
-    However, if you execute a <code><span style="background-color:#C8EAB3 ;">p find PATIENT_NAME</span></code> command, the patient's index will be his or her position in the **filtered** patient list.
+    However, if you execute a <code style="background-color:#C8EAB3;"><span>p find PATIENT_NAME</span></code> command, the patient's index will be his or her position in the **filtered** patient list.
     </li>
     <li>
     Subsequent deletion by index will be with respect to the list you're currently viewing.
@@ -656,7 +656,7 @@ Use this with command with caution!
   &nbsp;
 * **Format:** `p list`
 \
-&nbsp; 
+&nbsp;
 * <div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <code><span style="background-color:#C8EAB3;">p list hellothere</span></code> or <code><span style="background-color:#C8EAB3;">p list 1234</span></code> will not cause errors in the system</div>
   &nbsp;
 * **Example:**
