@@ -45,7 +45,7 @@ You can reach us at our following emails:
 <img src="images/stefanosav.png" width="200px">
 
 [[github](https://github.com/StefanosAv)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/stefanosav.md)]
 
-
-
+* Role: Developer
+* Responsibilities: Implementation/Testing
