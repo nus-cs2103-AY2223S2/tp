@@ -252,7 +252,7 @@ Format: `listp`
 #### 3.2.5 Locating Persons by Name: `findp`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-Upon entering the `findp` command, all persons and tasks would be listed together with the message "Listed all persons and tasks"
+Upon entering the `findp` command, all persons and tasks would be listed together with the message "Listed all persons and tasks".
 </div>
 
 Finds persons whose name contains any of the given keywords.
@@ -327,7 +327,7 @@ Format: `listt`
 #### 3.3.5 Locating Tasks by Title: `findt`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-Upon entering the `findt` command, all persons and tasks would be listed together with the message "Listed all persons and tasks"
+Upon entering the `findt` command, all persons and tasks would be listed together with the message "Listed all persons and tasks".
 </div>
 
 Finds persons whose name contains any of the given keywords.
