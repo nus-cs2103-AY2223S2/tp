@@ -372,7 +372,7 @@ Among the two options described below, our team decided to choose the former as 
 ### Mark Attendance
 
 #### Implementation
-Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand` and `Model`
+Mark Attendance command is facilitated by `MarkAttendanceParser`, `MarkAttednanceCommand`, and `Model`
 
 * `MarkAttendanceParser`-- Parse the input of users
 * `MarkAttednanceCommand` -- Execute the command given the parsed user input
@@ -403,7 +403,7 @@ Sequence Diagram for Marking Attendance
 ### Unmark Attendance
 
 #### Implementation
-Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand` and `Model`
+Unmark Attendance command is facilitated by `UnarkAttendanceParser`, `UnarkAttednanceCommand`, and `Model`
 
 * `UnarkAttendanceParser`-- Parse the input of users
 * `UnarkAttednanceCommand` -- Execute the command given the parsed user input
@@ -434,7 +434,7 @@ Sequence Diagram for Unmarking Attendance
 ### Insert Participation
 
 #### Implementation
-Insert Participation command is facilitated by `InsertParticipationParser`, `InsertParticipationCommand` and `Model`
+Insert Participation command is facilitated by `InsertParticipationParser`, `InsertParticipationCommand`, and `Model`
 
 * `InsertParticipationParser`-- Parse the input of users
 * `InsertParticipationCommand` -- Execute the command given the parsed user input
@@ -463,7 +463,7 @@ Sequence Diagram for Inserting Participation
 ### Add Assignment
 
 #### Implementation
-AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand` and `Model`
+AddAssignment command is facilitated by `AddAssignmentCommandParser`, `AddAssignmentCommand`, and `Model`
 
 * `AddAssignmentCommandParser`-- Parse the input of users
 * `AddAssignmentCommand` -- Execute the command given the parsed user input
@@ -493,7 +493,7 @@ Sequence Diagram for Adding Assignment
 ### Delete Assignment
 
 #### Implementation
-DeleteAssignment command is facilitated by `DeleteAssignmentCommandParser`, `DeleteAssignmentCommand` and `Model`
+DeleteAssignment command is facilitated by `DeleteAssignmentCommandParser`, `DeleteAssignmentCommand`, and `Model`
 
 * `DeleteAssignmentCommandParser`-- Parse the input of users
 * `DeleteAssignmentCommand` -- Execute the command given the parsed user input
@@ -523,7 +523,7 @@ Sequence Diagram for Deleting Assignment
 ### Grade Assignment
 
 #### Implementation
-Grade command is facilitated by `GradeCommandParser`, `GradeCommand` and `Model`
+Grade command is facilitated by `GradeCommandParser`, `GradeCommand`, and `Model`
 
 * `GradeCommandParser`-- Parse the input of users
 * `GradeCommand` -- Execute the command given the parsed user input
@@ -553,7 +553,7 @@ Sequence Diagram for grading a student submission
 ### Ungrade Assignment
 
 #### Implementation
-Ungrade command is facilitated by `UngradeCommandParser`, `UngradeCommand` and `Model`
+Ungrade command is facilitated by `UngradeCommandParser`, `UngradeCommand`, and `Model`
 
 * `UngradeCommandParser`-- Parse the input of users
 * `UngradeCommand` -- Execute the command given the parsed user input
@@ -583,7 +583,7 @@ Sequence Diagram for ungrading a student submission
 ### Add Alarm
 
 #### Implementation
-Grade command is facilitated by `AddAlarmCommandParser`, `AddAlarmCommand` and `Model`
+Grade command is facilitated by `AddAlarmCommandParser`, `AddAlarmCommand`, and `Model`
 
 * `AddAlarmCommandParser`-- Parse the input of users
 * `AddAlarmCommand` -- Execute the command given the parsed user input
@@ -641,12 +641,33 @@ Sequence Diagram for listing the alarms
     * Cons: Add complexity to the code structure unnecessarily, as the parser does not need to do anything (not for the
       current functions of the list_alarms command, though may be extended in the future to allow listing of a 
       particular alarm)
+    
+### Import CSV files Feature
+Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`
+#### Implementation
+#### Design Considerations
 
-### Data archiving
+### Export CSV files Feature
+Import CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`
+#### Implementation
+#### Design Considerations
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
+
+### Data Archiving
+TAA application data only contains a list of students and a list of assignments. It is automatically stored in JSON
+format at each successful command execution.
 
 #### Implementation
-TAA application data only contains a list of students and a list of assignments. It is automatically stored in JSON
-format at each successful command execution. It is handled by `JsonTaaStorage`.
+TAA data saving is handled by `JsonTaaStorage`.
 
 Reading data from JSON:
 
@@ -668,15 +689,8 @@ by
 `JsonSerializableTaaData` which supports [Jackson](https://github.com/FasterXML/jackson) data conversion between Java
 objects and JSON objects.
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+#### Design Considerations
+Inherited from AB3. The Jackson framework is easy to use.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -716,7 +730,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user           | have CSV files storing my data                                           | make backups to guard against data loss                                                                      |
 | `* * *`  | user           | load in CSV files to restore data                                        | avoid having to do manual data entry when using the app from scratch                                         |
 | `* * *`  | user           | exit the app gracefully                                                  | avoid data corruption                                                                                        |
-| `* *`  | forgetful TA   | track valid reasons for a student's absence                              | record attendance for those with valid reasons                                                               |
+| `* *`    | forgetful TA   | track valid reasons for a student's absence                              | record attendance for those with valid reasons                                                               |
 | `* *`    | TA             | assign individual assignment grades to students                          | track the specific grade each student has obtained for each assignment                                       |
 | `* *`    | forgetful TA   | track questions asked by students                                        | answer them on time                                                                                          |
 | `* *`    | forgetful TA   | keep a timeline/lesson plan for each lesson                              | complete the lessons on time without missing out on any content                                              |
@@ -1097,8 +1111,8 @@ Acceptable CSV format example: (suppose assignment x, y, and z is already added 
 
 ```
 Technoblade,1;0;0;1;1;1;0;1;0;0;0;0,-1;0;-1;2;-1;-1;-1;-1;200;-1;-1;-1,"x,0,0,1;y,0,0,2;z,0,0,3;",Tut1;Tut2;
- Dream Was Taken,    1  ;0;0 ; 1;1;1; 0;1  ;0;0;0;0,-1;0; -1;2;-1;-1;-1  ;-1;200;-1;-1;-1,"  x ,0, 0,2;y,0 ,0,100 ; z,0  ,  0,0 ;  ", Tut2   ;Tut3;
-Tommy In It,,-1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1,"x,0,0,15;z,0,0,0;",Lab
+ Dream Was Taken,    1  ;0;0 ; 1;1;1; 0;1  ;0;0;0;0,-1;0; -1;2;-1;-1;-1  ;-1;200;-1;-1;-1,"  x ,0, 0,2;y,1 ,0,100 ; z,0  ,  0,0 ;  ", Tut2   ;Tut3;
+Tommy In It,,-1;0;-1;2;-1;-1;-1;-1;2;-1;-1;-1,"x,1,0,15;z,1,1,180;",Lab
 Wilbur Soot,1;0;0;1;1;1;0;1;0;0;0;0, ,"y,0,0,0", ;Tut2;
 Ph1LzA,,,,
 ```

@@ -55,8 +55,8 @@ public class Student {
     }
 
     /**
-     * @return an immutable class tag set, which throws {@code UnsupportedOperationException} if modification is
-     * attempted.
+     *  @return an immutable class tag set, which throws {@code UnsupportedOperationException} if modification is
+     *      attempted.
      */
     public Set<Tag> getClassTags() {
         return Collections.unmodifiableSet(classTags);
@@ -137,8 +137,8 @@ public class Student {
     }
 
     /**
-     * @return true if both persons have the same identity and data fields. This defines a stronger notion of equality
-     * between two persons.
+     *  @return true if both persons have the same identity and data fields. This defines a stronger notion of equality
+     *      between two persons.
      */
     @Override
     public boolean equals(Object other) {
