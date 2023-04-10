@@ -11,7 +11,7 @@ participant ":WeekJobListPanel" as WeekJobListPanel UI_COLOR_T2
 end box
 
 box Logic LOGIC_COLOR
-participant ":Logic" as Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR_T4
 participant "filteredDeliveryJobList:FilteredList" as FilteredList LOGIC_COLOR_T2
 end box
 
