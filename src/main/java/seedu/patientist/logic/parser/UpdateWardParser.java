@@ -15,7 +15,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 import java.util.stream.Stream;
 
 import seedu.patientist.commons.core.index.Index;
-import seedu.patientist.logic.commands.UpdatePatientWardCommand;
+import seedu.patientist.logic.commands.UpdateWardCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.ward.Ward;
 
@@ -23,19 +23,19 @@ import seedu.patientist.model.ward.Ward;
 /**
  * Parses input arguments and creates a new UpdatePatientWardCommand object
  */
-public class UpdatePatientWardParser implements Parser<UpdatePatientWardCommand> {
+public class UpdateWardParser implements Parser<UpdateWardCommand> {
     private Index index;
     /**
      * Parses the given {@code String} of arguments in the context of the UpdatePatientWardCommand
      * and returns a UpdatePatientWardCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public UpdatePatientWardCommand parse(String args) throws ParseException {
+    public UpdateWardCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_WARD);
         if (!arePrefixesPresent(argMultimap, PREFIX_WARD) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UpdatePatientWardCommand.MESSAGE_USAGE));
+                    UpdateWardCommand.MESSAGE_USAGE));
         }
         ArgumentMultimap argMultimap2 =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_STATUS, PREFIX_PHONE,
@@ -43,22 +43,22 @@ public class UpdatePatientWardParser implements Parser<UpdatePatientWardCommand>
         if (areAnyPrefixesPresent(argMultimap2, PREFIX_NAME, PREFIX_ID, PREFIX_STATUS, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PRIORITY, PREFIX_TODO)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UpdatePatientWardCommand.MESSAGE_USAGE));
+                    UpdateWardCommand.MESSAGE_USAGE));
         }
 
         if (argMultimap.getAllValues(PREFIX_WARD).size() != 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UpdatePatientWardCommand.MESSAGE_USAGE));
+                    UpdateWardCommand.MESSAGE_USAGE));
         }
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble().trim());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdatePatientWardCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateWardCommand.MESSAGE_USAGE), pe);
         }
 
         Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).get());
-        return new UpdatePatientWardCommand(index, ward.getWardName());
+        return new UpdateWardCommand(index, ward.getWardName());
     }
 
     /**
