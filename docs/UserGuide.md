@@ -587,16 +587,16 @@ Format: `findm`
 ### Export Meetings : `exportm`
 
 Exports the meetings at the specified `INDEX`'s and between `start` and `end` dates.
-* If only START_DATE provided, meetings after START_DATE, inclusive, will be exported
-* If only END_DATE is provided, meetings after END_DATE, inclusive, will be exported
+* If only `MEETING_EXPORT_START_DATE` provided, meetings after `MEETING_EXPORT_START_DATE`, inclusive, will be exported
+* If only `MEETING_EXPORT_END_DATE` is provided, meetings after `MEETING_EXPORT_END_DATE`, inclusive, will be exported
 * If both are provided, meetings between the two dates, inclusive, will be exported
 * Regardless of the above, meetings at provided INDEXes will be provided
 * At least one of the parameters must be provided
-* The indexes refer to the index numbers shown in the displayed meetings list.
-* The indexes **must be positive integers** 1, 2, 3
-* The start and end dates must be valid dates in the DD/MM/YY format
+* The indexes refer to the index numbers shown in the displayed meetings list
+* The indexes **must be positive integers** 1, 2, 3...
+* The start and end dates must be valid dates in the format as defined [here](#date-and-time-formats).
 
-Format: `exportm p/INDEX [p/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]`
+Format: `exportm m/INDEX [p/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]`
 
 Example: `exportm start/01/01/23 m/1` will export the first meeting and any meetings starting from 01/01/23
 
@@ -784,19 +784,19 @@ the data of your previous QuickContacts home folder.
 
 ### Meeting Commands
 
-| Action                       | Format, Examples                                                                                                                                                                                                     |
-|:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
-| **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
-| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                                                                                                        |
-| **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
-| **List all meetings**        | `findm`                                                                                                                                                                                                              |
-| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                                               |
-| **Import a meeting**         | `importm VALID_JSON`                                                                                                                                                                                                 |
-| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                                                                     |
-| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                   |
-| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                                                                                                 |
-| **View pending Meetings**    | `pending`                                                                                                                                                                                                            |                                                                                                                                                                                                           
+| Action                       | Format, Examples                                                                                                                       |
+|:-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                     |
+| **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`          |
+| **Sort meetings**            | `sortm SORT_FIELD [r]` <br> e.g., `sortm dt/`                                                                                          |
+| **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                           |
+| **List all meetings**        | `findm`                                                                                                                                |
+| **Export a meeting**         | `exportm m/INDEX [m/MORE_INDEXES]... [start/MEETING_EXPORT_START_DATE] [end/MEETING_EXPORT_END_DATE]` <br> e.g., `exportm m/1 m/2 m/3` |
+| **Import a meeting**         | `importm VALID_JSON`                                                                                                                   |
+| **Delete a meeting**         | `delm INDEX` <br> e.g., `delm 3`                                                                                                       |
+| **Mark meeting as done**     | `mark m/INDEX [m/MORE_INDEXES]...`                                                                                                     |
+| **Mark meeting as not done** | `unmark m/INDEX [m/MORE_INDEXES]...`                                                                                                   |
+| **View pending Meetings**    | `pending`                                                                                                                              |                                                                                                                                                                                                           
 
 <div style="page-break-after: always;"></div>
 
