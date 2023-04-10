@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# Table of contents:
+* Table of Contents
 {:toc}
 
 ---
