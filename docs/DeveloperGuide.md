@@ -63,7 +63,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the five main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -77,7 +77,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagramNew.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `DetailDisplay`etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of various parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `DetailDisplay` and etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class, which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -154,12 +154,12 @@ The `Storage` component,
 <img src="images/FilesClassDiagram.png" width="550" />
 
 The `Files` component,
-* Multiple file handling capabilities: The Files component is designed to handle various file types, such as PDF and images. 
+* Multiple files handling capabilities: The `Files` component is designed to handle various file types, such as PDF and images. 
 * It is capable of processing these files, rendering them for display, and managing their storage.
 * Inheritance: By implementing both `FileReader` and `FileGenerator` interfaces, 
-* the Files component provides a flexible foundation for specialized file handling classes, such as `PdfReader` and `ImageReader`. 
+* the `Files` component provides a flexible foundation for specialized file handling classes, such as `PdfReader` and `ImageReader`. 
 * This modular design allows the component to extend its functionality when needed.
-* Dependency on `FileReaderManager` and `FileManager`: The Files component relies on the `FileReaderManager` class to determine which specialized file handler to use based on the input file type. 
+* Dependency on `FileReaderManager` and `FileManager`: The `Files` component relies on the `FileReaderManager` class to determine which specialized file handler to use based on the input file type. 
 * The `FileManager` class, in turn, utilizes the `FileReaderManager` to manage and process different file types effectively.
 * Interaction with the UI component: The `PdfReader` and `ImageReader` classes are responsible for rendering the files in a format suitable for display. 
 * They return the rendered files to the UI component, which then presents the content to the user.
@@ -174,13 +174,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 1. Making appointment
-This feature servers as one of the core features of Medimate, so how is it implemented?
+This feature servers as one of the core features of MediMate, so how is it implemented?
 
 This feature is achieved by the following classes:
-* `AddAppointmentCommand` - when executed, will add a new appointment to a specified patient
+* `AddAppointmentCommand` - when executed, it will add a new appointment to a specified patient
 * `AddAppointmentCommandParser` - will parser user's input and return a valid `AddAppointmentCommand` for execution
 
-The format of commandline input is as follows:
+The format of command line input is as follows:
 `makeApp {patientIndex} /from {startTime} /to {endTime}`
 
 Initially, when the input is received, it is processed by the UI layer, which calls the
@@ -194,34 +194,34 @@ Then, inside this parser, there are mainly three information being parsed:
 * startTime - parsed by `parserDate` methond in `ParserUtil` class
 * endTime - parsed by `parserDate` methond in `ParserUtil` class
 
-After all these pieces of information is being parserd, the parser class will create a new `AddAppointmentCommand` class
+After all these pieces of information are being parserd, the parser class will create a new `AddAppointmentCommand` class
 and transfer all information to it for further execution.
 
-Then inside this command class, it will use all the information input by user to create a new patient with all other 
-details the same and only change in its `appointment` and calls model manager to substitute previous patient
+Then inside this command class, it will use all the information inputted by user to create a new patient with all other 
+details remaining the same while the only change in its `appointment` and then it calls model manager to substitute previous patient
 with the new one by calling `model.setPerson(previousPerson, newPerson)`
 
-Finally, `ModelManager` will be connected to storage and save this change accordingly. Also, UI will detect this change
-and refresh the whole patient list with new appointment added.
+Finally, `ModelManager` will connect to storage and save this change accordingly. Also, UI will detect this change
+and refresh the whole patient list with the new appointment added.
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 ### 2. Uploading Medical file for a Patient
-This feature servers as one of the core features of Medimate, so how is it implemented?
+This feature servers as one of the core features of MediMate, so how is it implemented?
 
 * There are two ways to upload medical files for a patient within the application. 
 * Users can either utilize a command (similar to 1.Marking Appointment using UploadFileCommand) or click the `upload button` in the user interface.
 * Medical files should be in PDF, JPG, or PNG format, and can contain additional information about the patient, such as medical history, test results, or treatment plans.
-* This section will delve deeper into the implementation of the file uploading functionality when the user click `upload button` and calling the `FileManager` object.
+* This section will delve deeper into the implementation of the file uploading functionality when the user click `upload button` which calls the `FileManager` object.
 
 This feature is achieved by the following classes:
 * `FileManager` - offers an `addFile` method that is invoked by `UploadFileCommand` and the `upload button`
 * `FileStorage` - offers an `uploadFile` method that is invoked by `addFile` method in `FileManager`
 
 
-Initially when user click the `upload button`, FileManger is initialised with the given `Person` Object and `addFile` method is called invoking `uploadFile` method.
+Initially, when user clicks the `upload button`, FileManger is initialised with the given `Person` Object and `addFile` method is called thus invoking `uploadFile` method.
 * The uploadFile() method uses the `SwingUtilities.invokeLater()` method to ensure that it runs on the `Event Dispatch Thread (EDT)` for proper GUI interaction.
-* Within the `invokeLater()` method, a `JFileChooser` object is created and configured using the `configFileChooser()` method. The file chooser is set to allow multiple file selections and filter files based on their extensions: PDF, JPG, JPEG, and PNG.
+* Within the `invokeLater()` method, a `JFileChooser` object is created and configured using the `configFileChooser()` method. The file chooser is set to allow multiple files selections and filter files based on their extensions: PDF, JPG, JPEG, and PNG.
 * The file chooser dialog is displayed, and the user can select multiple files. The method then checks if the user has approved the file selection.
 * If the user has approved the file selection, an array of selected files is obtained. The target directory path is created using the `"reports/{username}/"` format, where `{username}` is replaced with the username of the current user.
 * If the file meets the requirements, it is copied to the target directory. `Existing files with the same name in the target directory are replaced`. If a file has an `unsupported extension` or `exceeds the maximum file size`, an `IOException` is thrown with a relevant error message.
@@ -230,19 +230,19 @@ Initially when user click the `upload button`, FileManger is initialised with th
 <img src="images/uploadFile.png" width="600" />
 
 ### 3. Create medical certificate PDF file
-This feature servers as one of the core features of Medimate, so how is it implemented?
+This feature servers as one of the core features of MediMate, so how is it implemented?
 
 * There are two ways to create medical certificate for a patient within the application.
   Users can either utilize a command (similar to 1.Marking Appointment using CreateCommand ) or click the `create button` in the user interface.
 * PDF file generated will be a copy of [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
-* External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/) used to read and write [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
+* External API: [`pdfbox-app-2.027`](https://pdfbox.apache.org/) is used to read and write [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
 * This section will delve deeper into the implementation of the medical certificate creation functionality when the user click `create button` filling up with correct information and called the `FileManager` object.
 
 This feature is achieved by the following classes:
 * `FileManager` - offers an `generateMc` method that is invoked by `CreateCommand` and the `create button`
 * `PdfGenerator` - offers an `generate` method that is invoked by `generateMC` method in `FileManager`
 
-After the user click `create button` and filled up with the correct information (doctor name, medical condition, and days), FileManger is initialised with the given `Person` Object and `generateMc` method is called invoking `generate` method.
+After the user click `create button` and filled up with the correct information (doctor name, medical condition, and days), `FileManger` is initialised with the given `Person` Object and `generateMc` method is called invoking `generate` method.
 * The generate method creates a customized Medical Certificate (MC) PDF for a patient by loading a template, filling in the form fields, saving the filled form with a unique filename, updating the patient's medical condition, and displaying a success message.
 
 <img src="images/createMc.png" width="600" />
@@ -321,9 +321,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list patients.
-2.  Medimate shows a list of patients.
+2.  MediMate shows a list of patients.
 3.  User requests to delete a specific patient in the list.
-4.  Medimate deletes the patient.
+4.  MediMate deletes the patient.
 
     Use case ends.
 
@@ -334,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. Medimate shows an error message.
+  * 3a1. MediMate shows an error message.
 
     Use case resumes at step 2.
 
@@ -353,19 +353,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User enters wrong input format. 
-  * 1a1. Medimate gives correct format and asks user to input again.
+  * 1a1. MediMate gives correct format and asks user to input again.
   * 1a2. User enters the input with correct format.
     
     Use Case ends.
   
 * 1b. Patient does not exist.
-    * 1b1. Medimate reminds user to check for patient name.
+    * 1b1. MediMate reminds user to check for patient name.
     * 1b2. User enters the input with correct format
       
       Use Case ends.
       
 * 3a. User enters Invalid type.
-    * 3a1. Medimate gives the available types and asks user to input again.
+    * 3a1. MediMate gives the available types and asks user to input again.
       
       Use Case ends.
 
@@ -374,21 +374,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to find a patient using her/his name.
-2. Medimate searches the patient.
-3. Medimate displays the patient.
+2. MediMate searches the patient.
+3. MediMate displays the patient.
    
    Use case ends.
 
 **Extensions**
 
 * 1a. User enters wrong input format.
-    * 1a1. Medimate gives correct format and asks user to input again.
+    * 1a1. MediMate gives correct format and asks user to input again.
     * 1a2. User enters the input with correct format.
       
       Use Case resumes at step 2.
 
 * 2a. Patient does not exist.
-    * 2a1. Medimate reminds user to check for patient name.
+    * 2a1. MediMate reminds user to check for patient name.
     * 2a2. User enter the input with existing patient name in correct format. 
 
       Use Case resumes at step 2.
@@ -402,7 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new patient.
 2. user enters the required patient information, including name, phone number, email, and address.
 3. user submits the patient information.
-4. Medimate adds a patient and stores the information in the database.
+4. MediMate adds a patient and stores the information in the database.
 
    Use Case ends.
 
@@ -410,12 +410,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. user enters medical condition, age, appointment time, NRIC fields optionally.
     * 2a1. user submits the patient information.
-    * 2a2. Medimate adds a patient and stores the information in the database.
+    * 2a2. MediMate adds a patient and stores the information in the database.
 
       Use case ends.
 
 * 3a. User input format is wrong.
-    * 3a1. Medimate asks User for another correct input of the patient’s information.
+    * 3a1. MediMate asks User for another correct input of the patient’s information.
     * 3a2. User inputs patient’s information with the correct format.
 
       Use Case resumes at step 2.
@@ -425,27 +425,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view patient's file.
-2. Medimate retrieves the correspondent PDF document.
-3. Medimate displays the PDF document to the user in a new window.
+2. MediMate retrieves the correspondent PDF document.
+3. MediMate displays the PDF document to the user in a new window.
 
    Use case ends.
 
 * 1a. User enters wrong input format.
-    * 1a1. Medimate gives correct format and ask user to input again.
+    * 1a1. MediMate gives correct format and ask user to input again.
     * 1a2. User inputs a new line of correct format.
 
       Use Case resumes at step 2.
 
 
 * 1b. Patient does not exist.
-    * 1b1. Medimate gives error message to remind user to check for patient index.
+    * 1b1. MediMate gives error message to remind user to check for patient index.
     * 1b2. User inputs valid patient index with correct format.
   
       Use Case resumes at step 2.
 
 
 *  2a. File does not exist.
-    * 2a1. Medimate gives error message to remind user to check for file index.
+    * 2a1. MediMate gives error message to remind user to check for file index.
     * 2a2. User inputs valid file index with correct patient index and format.
      
       Use Case resumes at step 3.
@@ -455,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all patients based on their names.
-2. Medimate displays a list of all patients sorted in order based on names.
+2. MediMate displays a list of all patients sorted in order based on names.
    
    Use case ends.
 
@@ -470,22 +470,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to upload reports for given patient.
-2. Medimate allows user to choose files.
+2. MediMate allows user to choose files.
 3. User uploads those selected files.
-4. Medimate stores the uploaded files at patient's directory.
+4. MediMate stores the uploaded files at patient's directory.
 
    Use Case ends.
 
 **Extensions**
 
 * 1a. User input format is wrong.
-    * 1a1.  Medimate asks User for another correct input upload.
+    * 1a1.  MediMate asks User for another correct input upload.
     * 1a2. User inputs a new line of upload format.
 
       Use Case resumes at step 2.
   
 * 3a. User uploads unacceptable types of files
-    * 3a1. Medimate informs the user invalid file type can not be uploaded.
+    * 3a1. MediMate informs the user invalid file type can not be uploaded.
   
       Use Case ends.
 
@@ -494,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to generate MC for given patients.
-2. Medimate generates MC with user desired information and stores at patient directory.
+2. MediMate generates MC with user desired information and stores at patient directory.
 
    Use case ends.
 
@@ -505,13 +505,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 1b. User enters the wrong input format (eg: doctor name/medical condition exceeds length, invalid duration...)
-    * 1b1. Medimate informs the user the use of incorrect format.
+    * 1b1. MediMate informs the user the use of incorrect format.
     * 1b2. user inputs valid format.
     
       Use case resumes at step 2.
 
 * 1c. User request to generate a new MC without finishing previous MC generation.
-    * 1c1. Medimate informs the user can not do multiple MC generation at the same time.
+    * 1c1. MediMate informs the user can not do multiple MC generation at the same time.
     * 1c2. user finishes previous MC generation with correct format successfully.
 
     Use case ends.
@@ -521,14 +521,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to display a specific patient's detailed information.
-2. Medimate displays the patient's detailed information in the detail display pane.
+2. MediMate displays the patient's detailed information in the detail display pane.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. Index of the User input is out of bound of the current Person List.
-  * 1a1.  Medimate asks the user for another correct input of the index.
+  * 1a1.  MediMate asks the user for another correct input of the index.
   * 1a2.  User inputs a new valid index.
 
     Use Case resumes at step 2.
@@ -538,26 +538,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to make an appointment for the selected patient.
-2. Medimate asks for the date, starting time and ending time for the appointment.
+2. MediMate asks for the date, starting time and ending time for the appointment.
 3. User inputs the date, starting time and ending time for the appointment.
-4. Medimate makes the appointment for the patient.
+4. MediMate makes the appointment for the patient.
 
    Use case ends.
 
 **Extensions**
 
 * 3a. Starting time is before current time.
-  * 3a1. Medimate asks User for new valid appointment time.
+  * 3a1. MediMate asks User for new valid appointment time.
   * 3a2. User inputs valid appointment time.
     Use Case resumes at step 4.
 
 * 3b. Starting time is after ending time.
-  * 3b1. Medimate asks User for new valid appointment time.
+  * 3b1. MediMate asks User for new valid appointment time.
   * 3b2. User inputs valid appointment time.
     Use Case resumes at step 4.
 
 * 3c. User input appointment time has clash with the doctor's schedule.
-  * 3c1. Medimate asks User for new valid appointment time.
+  * 3c1. MediMate asks User for new valid appointment time.
   * 3c2. User inputs valid appointment time.
     Use Case resumes at step 4.
 
@@ -565,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to check the doctor's availability on the given date.
-2. Medimate lists all the doctor's current appointments on this day.
+2. MediMate lists all the doctor's current appointments on this day.
 
    Use case ends.
 
@@ -576,7 +576,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User requests to mark the appointment as done.
-2. Medimate marks the appointment as done and resets to no-appointment status.
+2. MediMate marks the appointment as done and resets to no-appointment status.
 
    Use case ends.
 
@@ -681,14 +681,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with corrupted data files
 
-   1. Open data/addressbook.json in the directory where Medimate is located at.
+   1. Open data/addressbook.json in the directory where MediMate is located at.
    2.  On line 4, edit the word phone to phon.
-   3.  Relaunch Medimate.jar.
-       Expected: Data is corrupted and the system will recognise the mismatch. Medimate starts with an empty data file.
+   3.  Relaunch MediMate.jar.
+       Expected: Data is corrupted and the system will recognise the mismatch. MediMate starts with an empty data file.
 
 
 2. Dealing with missing data files
 
-   1. Delete the file addressbook.json in the data directory where Medimate is located at.
-   2. Relaunch Medimate.jar.
-   3. Expected: Data file is missing. Medimate starts with an initial data file.
+   1. Delete the file addressbook.json in the data directory where MediMate is located at.
+   2. Relaunch MediMate.jar.
+   3. Expected: Data file is missing. MediMate starts with an initial data file.
