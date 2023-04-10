@@ -82,6 +82,8 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 1.2 App overview
 
 ### 1.2.1 Types of interfaces
@@ -93,6 +95,8 @@ The person list can be viewed using the [list](#214-viewing-persons-view) comman
 The task list can be viewed using the [view](#213-listing-tasks-list) command.<br>![taskViewExample](images/ViewExample.PNG)
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### 1.2.2 Layout
 
@@ -108,6 +112,8 @@ display error messages if you input the wrong commands.
 currently stored persons or tasks.
 
 [↑ Back to table of contents](#table-of-contents)
+
+<div style="page-break-after: always"></div>
 
 ### 1.2.3 Key definitions
 
@@ -163,6 +169,8 @@ currently stored persons or tasks.
 
 [↑ Back to table of contents](#table-of-contents)
 
+<div style="page-break-after: always"></div>
+
 ## 2.1 Adding a person: `add`
 
 Adds a person.
@@ -179,6 +187,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.2 Creating a regular task: `todo`
 
 Creates a new task.
@@ -192,6 +202,8 @@ Example:
 **After**:<br>![todoExampleAfter](images/TodoExampleAfter.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.3 Creating a task with a deadline: `deadline`
 
@@ -207,6 +219,8 @@ Example:
 **After**:<br>![deadlineExampleAfter](images/DeadlineExampleAfter.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.4 Creating a task that is an event: `event`
 
@@ -226,6 +240,8 @@ Example:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.5 Commenting on a task: `comment`
 
 Adds a comment to a task that exists in the task list. The task index follows <br>
@@ -238,6 +254,8 @@ Example:
 ![commentExample](images/CommentExample.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.6 Editing a person: `edit`
 
@@ -255,6 +273,8 @@ Example:
 **After**:<br>![editExampleAfter](images/EditExampleAfter.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.7 Editing a task: `edittask`
 
@@ -283,6 +303,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.8 Assigning task to member: `assign`
 
 Assign a task to a person. The indexes used follows the index on the task and person list respectively.<br>
@@ -299,6 +321,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.9 Marking a task: `mark`
 
 Marks the target task as completed and give a score to the marked task.<br>
@@ -312,6 +336,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.10 Unmarking a task: `unmark`
 
 Sets the target task's status as incomplete and remove any given score.<br>
@@ -324,6 +350,8 @@ Examples:
 ![unmarkExample](images/UnmarkExample.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.11 Deleting a person: `delete`
 
@@ -349,6 +377,8 @@ Examples:
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.13 Listing tasks: `list`
 
 Shows all tasks.
@@ -365,6 +395,8 @@ Format: `view`
 
 [↑ Back to list of features](#2-features)
 
+<div style="page-break-after: always"></div>
+
 ## 2.15 Viewing statistics: `review`
 
 Shows task and score statistics of all persons in the persons list.
@@ -374,6 +406,8 @@ Format: `review`
 ![reviewExample](images/ReviewCommandExample.PNG)
 
 [↑ Back to list of features](#2-features)
+
+<div style="page-break-after: always"></div>
 
 ## 2.16 Getting help: `help`
 
