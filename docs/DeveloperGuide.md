@@ -262,7 +262,7 @@ We use GitHub Issues as our issue tracker, and here is how to use the issue labe
 
 ## **Sample Data**
 
-Sample data for **EduMate** can be found [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/util/sampleData.txt). It is a set of 100 persons with procedurally-generated fields.
+Sample data for **EduMate** can be found [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt). It is a set of 100 persons with procedurally-generated fields.
 
 <div markdown="span" class="alert alert-info">
 
