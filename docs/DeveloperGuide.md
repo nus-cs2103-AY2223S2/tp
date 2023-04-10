@@ -186,7 +186,7 @@ This section describes some noteworthy details on how certain features are imple
 [AddCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/AddCommandParser.java
 
 For _Add_ command, the noteworthy classes are:
-- [`AddCommandParser.java`][AddCommandParser.java] - For parsing the arguments to [`AddCommand.java`][AddCommand.java].
+- [`AddCommandParser.java`][AddCommandParser.java] - For parsing the arguments to `AddCommand`.
 - [`AddCommand.java`][AddCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
@@ -226,7 +226,7 @@ _Activity Diagram for a typical `add` command_
 [RecurCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/RecurCommandParser.java
 
 For _Recur_ command, the noteworthy classes are:
-- [`RecurCommandParser.java`][RecurCommandParser.java] - For parsing the arguments to [`RecurCommand.java`][RecurCommand.java].
+- [`RecurCommandParser.java`][RecurCommandParser.java] - For parsing the arguments to `RecurCommand`.
 - [`RecurCommand.java`][RecurCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
@@ -271,7 +271,7 @@ _Activity: Check for time clash for all recurring dates._
 [EditCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/EditCommandParser.java
 
 For _Edit_ command, the noteworthy classes are:
-- [`EditCommandParser.java`][EditCommandParser.java] - For parsing the arguments to [`EditCommand.java`][EditCommand.java].
+- [`EditCommandParser.java`][EditCommandParser.java] - For parsing the arguments to `EditCommand`.
 - [`EditCommand.java`][EditCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
@@ -350,7 +350,7 @@ _Activity Diagram for a typical `delete` command_
 [FindCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/FindCommandParser.java
 
 For _Find_ command, the noteworthy classes are:
-- [`FindCommandParser.java`][FindCommandParser.java] - For parsing the arguments to [`FindCommand.java`][FindCommand.java].
+- [`FindCommandParser.java`][FindCommandParser.java] - For parsing the arguments to `FindCommand`.
 - [`FindCommand.java`][FindCommand.java] - For execution.
 
 The following exceptions may be thrown during this process, namely:
