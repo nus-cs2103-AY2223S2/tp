@@ -294,8 +294,11 @@ It is important to note that the index number must be specified in order to edit
 The Tag Person to Event command allows users to tag a contact in their NeoBook to an event. Not only does it tag the person to the event, but any changes to the person will also dynamically change the information of the tagged person to the event. Currently, due to how the storage is set up, there is no way to have the same Person object be linked properly to the event. This is because on startup, NeoBook recreates a new Person object in its addressbook while each event essentially just creates a new Person object that it is tagged to. However, it would not make sense if the user had to manually update the tag if anything within the contact changed. So to dynamically pair the Person object being tagged to the event and the Person object in the Contacts list, NeoBook checks through all events on any EditPersonCommand and to look for any event where the person is tagged to. Then it edits those Person objects to its new edited version.
 
 In the future, a more proper implementation would include more coupling with storage. The flow on startup would be:
+
 1. All Person objects in NeoBook's contact list is loaded up 
+
 2. All events in NeoBook are loaded up
+
    1. While loading the events, make a reference to the appropriate Person object within the contact list within the taggedPerson set in events.
 
 This would make it such that we would not have to check through every single contact in NeoBook for edits as any changes to the Person object would be reflected in events.
@@ -656,14 +659,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
    
    2. Test Cases
-      1. **Test case 1**: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
+      1. Test case 1: `add n/Pierce a/Serangoon Central t/Friend t/Genius` 
          - Testing for: Command successful execution
          - Expected: A contact is added to the contact list with Pierce as its name, Serangoon Central as its address, and Friend and Genius as its tags.
       
-      2. **Test case 2**: `add p/91238917 a/Serangoon Central` 
+      2. Test case 2: `add p/91238917 a/Serangoon Central` 
          - Testing for: No name specified
          - Expected: No contact is added. Error details show in the status message.
-      3. **Test case 3**: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
+      3. Test case 3: `add n/@`, `add n/pierce p/words`, `add n/Stanley e/notanemail`, ...
          - Testing for: Invalid fields
          - Expected: Same as test case 2
 
@@ -674,15 +677,15 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Navigate to the `Address book` tab using `tab 1`
 
    2. Test Cases
-      1. **Test case 1**: `delete 1`
+      1. Test case 1: `delete 1`
          - Testing for: Command successful execution
          - Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-      2. **Test case 2**: `delete 0`
+      2. Test case 2: `delete 0`
          - Testing for: Erroneous index results in command failure
          - Expected: No person is deleted. Error details shown in the status message.
 
-      3. **Other test cases**: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
+      3. Other test cases: `delete`, `delete x`(where x is larger than the list size), `delete -1` 
          - Testing for: Erroneous index results in command failure
          - Expected: Similar to test case 2.
 
@@ -718,21 +721,18 @@ testers are expected to do more *exploratory* testing.
          - Testing for: Command successful execution 
          - Expected: Shows all contacts with `Pi` in their names show up in the contacts list.
       2. Test case 2: `find n/Stan n/Pierce`
-        
          - Testing for: Command successful execution
          - Expected: Shows all contacts with `Stan` **or** `Pierce` in their names will show up in the contacts list
       3. Test case 3: `find n/Pie m/Comp`
-        
          - Testing for: Command successful execution
          - Expected: Shows all contacts with `Pie` in their name field **and** have `Comp` in their major field.
       4. Test case 4: `find`
-        
          - Testing for: No fields specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
       5. Test case 5: `find 1 n/Pi`
-         
          - Testing for: Index specified results in command failure
          - Expected: List does not update. Error details shown in the status message.
+
 
 2. Find a contact when there are no contacts
 
@@ -761,6 +761,7 @@ testers are expected to do more *exploratory* testing.
       3. Test case 3: `fav 1` when Contact at Index 1 is already favourited 
           - Testing for: Successful Command Execution
           - Expected: Contact at index 1 on the list will remain favourited and will pass as Successful Command Execution. Same result as Test Case 1.
+
 
 2. Unfavouriting a contact
 
@@ -823,22 +824,22 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
    
    2. Test Cases
-      1. **Test Case 1** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+      1. Test Case 1 `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
          - Testing for: Command Successful Execution
          - Expected: A Weekly Event is added to the Events Tab.
-      2. **Test Case 2** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600`
+      2. Test Case 2 `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600`
          - Testing for: Command Successful Execution
          - Expected: An One-Time Event is added to the Events Tab.
-      3. **Test Case 3** `addevent d/CS2103T Lecture e/2023-03-10 1600 r/Weekly`
+      3. Test Case 3 `addevent d/CS2103T Lecture e/2023-03-10 1600 r/Weekly`
          - Testing for: No Start Date and Time Specified
          - Expected: No Event is added. Error details show in the status message.
-      4. **Test Case 4** `addevent d/CS2103T Lecture s/2023-03-10 1400 r/Weekly`
+      4. Test Case 4 `addevent d/CS2103T Lecture s/2023-03-10 1400 r/Weekly`
          - Testing for: No End Date and Time Specified
          - Expected: No Event is added. Error details show in the status message.
-      5. **Test Case 5** `addevent s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
+      5. Test Case 5 `addevent s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
          - Testing for: No Description Specified
          - Expected: No Event is added. Error details show in the status message.
-      6. **Test Case 6** `addevent d/CS2103T Lecture s/2023-03-10 1800 e/2023-03-10 1600 r/Weekly`
+      6. Test Case 6 `addevent d/CS2103T Lecture s/2023-03-10 1800 e/2023-03-10 1600 r/Weekly`
          - Testing for: Start Date Time is after End Date Time
          - Expected: No Event is added. Error details show in the status message.
 
@@ -849,13 +850,13 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
    
    2. Test Cases
-      1. **Test Case 1**: `delevent 1`
+      1. Test Case 1: `delevent 1`
          - Testing for: Command successful execution
          - Expected: Event at Index 1 will be deleted from the list. Details of the event will be shown in the status message. Existing Events Index will be updated.
-      2. **Test Case 2**: `delevent 0`
+      2. Test Case 2: `delevent 0`
          - Testing for: Erroneous index results in command failure
          - Expected: No event is deleted. Error details shown in the status message.
-      3. **Other test cases**: `delevent`, `delevent x` (where x is larger than the list size), `delevent -1`
+      3. Other test cases: `delevent`, `delevent x` (where x is larger than the list size), `delevent -1`
           - Testing for: Erroneous index results in command failure
           - Expected: Similar to test case 2
 
@@ -1020,8 +1021,8 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with missing/corrupted data files (Can be simulated by edited `addressbook.json` or `userdata.json` to have erroneous values)
+   1. When this happens, just delete the files and start on a fresh file, or you can try to salvage it by trying to ascertain the bug.
 
 ## **Appendix: Effort**
 
