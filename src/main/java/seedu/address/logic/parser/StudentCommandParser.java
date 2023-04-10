@@ -245,7 +245,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @return A StudentAddCommand
      * @throws ParseException
      */
-    private StudentAddCommand parseStudentAddCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
+    private StudentAddCommand parseStudentAddCommand(String studentClass, ArgumentMultimap argMultimap)
+            throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME,
                 PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP)
                 || !argMultimap.getPreamble().isEmpty()
@@ -344,7 +345,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @return A StudentDeleteCommand
      * @throws ParseException
      */
-    public StudentDeleteCommand parseStudentDeleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
+    public StudentDeleteCommand parseStudentDeleteCommand(String studentClass, ArgumentMultimap argMultimap)
+            throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
