@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added *ClientAppointmentComparator* and enhanced *Appointment* class to client.
     * What it does: Allows the user to view sorted appointments of clients.
     * Justification: This feature significantly improves the product by providing users with an easy way to keep track of appointment dates and times for their clients, making it easier to manage client relationships and ensure appointments are scheduled effectively.
-    * Highlights: This enhancement affects existing commands and commands to be added in the future. The implementation was challenging as it required changes to existing commands and an in-depth analysis of design alternatives to determine the most effective and user-friendly approach. 
+    * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   
 * **New Feature**: Added **view** Command.
     * What it does: Allows users to view detailed information about a selected client, including their basic information, as well as any attached exercises and routines.
