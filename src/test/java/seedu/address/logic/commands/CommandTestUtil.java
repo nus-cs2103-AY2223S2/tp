@@ -41,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_BORROWED_TEXTBOOK = "Borrowed Textbook";
     public static final String VALID_GROUP_CS2103 = "CS2103";
 
+    public static final String VALID_GROUP_CS0000 = "CS0000";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;

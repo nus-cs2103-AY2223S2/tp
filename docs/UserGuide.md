@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events and plan out your meetings with your friends and family. It is developed for university student, who can type fast to efficiently keep track of all of their events and their friends' events **via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WGT can help you find a date that all your friends are free to meet instead of having to manually compare timetables with each other.
+Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events and plan out your meetings with your friends and family. It is developed for university student, who can type fast, to efficiently keep track of all of their events and their friends' events **via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, WGT can help you find a date that all your friends are free to meet instead of having to manually compare timetables with each other.
 
 * Table of Contents
 {:toc}
@@ -56,7 +56,9 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 ## Features
 
-**WARNING: Directly editing the saved json file which cause the app to malfunction**
+**WARNING: Directly editing the saved json file may cause the app to malfunction**
+
+[Demo video](https://drive.google.com/file/d/1XuYsu0c8_bqnjhY5ssS_eBkieym1VlTC/view?usp=sharing) for the features.
 
 <div markdown="block" class="alert alert-info">
 
