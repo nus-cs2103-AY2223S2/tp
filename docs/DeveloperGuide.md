@@ -634,6 +634,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+<br>
 
 **Use case: UC05 - Exit CookHub**
 
