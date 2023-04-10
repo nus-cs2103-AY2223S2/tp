@@ -493,7 +493,7 @@ objects which is then used elsewhere in the codebase.
 `HourBlock` is an object which represents an hour of time.
 
 #### **TimeBlock**
-`TimeBlock` is an object which can represent any (non-negative) hour of time.
+`TimeBlock` is an object which can represent any positive hour of time.
 
 #### **TimePeriod**
 `TimePeriod` is the parent class of both `HourBlock` and `TimeBlock`. Hence, we often use `TimePeriod` when passing arguments around.
@@ -810,12 +810,12 @@ Similar to the `tag` command, the `untag` command allows user to remove `ModuleT
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ViewCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/ViewCommandParser.java)
 
-The view command allows users to view their information or their contact's information on the profile panel on the lower right side of the application, above the command box. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
-a contact's information appending their assigned `ContactIndex` or by adding `n/NAME` behind the `view` command.
+The `view` command allows users to view their information or their contact's information on the Profile Panel on the lower right side of the application, above the Command Box. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
+a contact's information appending their assigned `ContactIndex` or by adding `n/FULL_NAME` behind the `view` command.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info:** The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
+:information_source: **Info:** The last viewed profile will remain displayed on the Profile Panel should there be any exceptions thrown during the parsing process.
 
 </div>
 
@@ -823,11 +823,11 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 :information_source: **Command Formats:** <br>
 
-* `view` : Displays user's profile on the display panel.
+* `view` : Displays user's profile on the Profile Panel.
 
-* `view n/XYZ` : Display XYZ's profile on the display panel.
+* `view n/XYZ` : Display XYZ's profile on the Profile Panel.
 
-* `view INDEX` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+* `view INDEX` : Display the contact's whose `ContactIndex` is `INDEX` on the Profile Panel.
 
 </div>
 
