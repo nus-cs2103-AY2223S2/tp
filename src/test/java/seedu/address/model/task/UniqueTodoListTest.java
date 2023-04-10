@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -63,8 +64,11 @@ public class UniqueTodoListTest {
     }
 
     @Test
-    public void equals_uniqueTodoList_returnsTrue() {
+    public void equals() {
         UniqueTodoList replacement = new UniqueTodoList();
-        assertTrue(replacement.equals(uniqueTodoList));
+        replacement.addTodo(new InternshipTodoBuilder().withJobTitle("Different").build());
+
+        assertTrue(replacement.equals(replacement));
+        assertFalse(replacement.equals(uniqueTodoList));
     }
 }

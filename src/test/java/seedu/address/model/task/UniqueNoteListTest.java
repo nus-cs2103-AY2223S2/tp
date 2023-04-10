@@ -73,8 +73,10 @@ public class UniqueNoteListTest {
     }
 
     @Test
-    public void equals_uniqueNoteList_returnsTrue() {
+    public void equals() {
         UniqueNoteList replacement = new UniqueNoteList();
-        assertTrue(replacement.equals(uniqueNoteList));
+        replacement.addNote(new NoteBuilder().withNote("Different").build());
+        assertTrue(replacement.equals(replacement));
+        assertFalse(replacement.equals(uniqueNoteList));
     }
 }

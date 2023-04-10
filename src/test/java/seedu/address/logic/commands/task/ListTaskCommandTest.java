@@ -36,6 +36,15 @@ public class ListTaskCommandTest {
     }
 
     @Test
+    public void execute_nullTodo_successTaskList() {
+        Model todoNullModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new TodoList(),
+                getTypicalNoteList());
+        Model expectedTodoModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new TodoList(),
+                getTypicalNoteList());
+        assertCommandSuccess(new ListTaskCommand(), todoNullModel, ListTaskCommand.MESSAGE_SUCCESS, expectedTodoModel);
+    }
+
+    @Test
     public void execute_nullLists_alertNullLists() {
         Model newNullModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new TodoList(), new NoteList());
         Model expectedNullModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
