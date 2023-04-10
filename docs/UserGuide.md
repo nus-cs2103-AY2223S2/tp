@@ -352,6 +352,8 @@ Examples:
 * `add-project name/Oil Painting` adds a project with the name `Oil Painting`.
 * `ap n/Sky Painting d/tomorrow` adds a project with the name `Sky Painting` and a deadline of `tomorrow`.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a project
 #### Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
 
