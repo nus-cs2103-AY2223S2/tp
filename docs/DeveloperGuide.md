@@ -1183,7 +1183,8 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder.
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and sample tasks. The window size may not be
+   2. Double-click the jar file <br>
+      Expected: Shows the GUI with a set of sample contacts and sample tasks. The window size may not be
       optimum.
 
 2. Saving window preferences
@@ -1200,9 +1201,8 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `listp` command. Multiple persons in the list.
    2. Test case: `deletep 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-      Timestamp in the status bar is updated.
    3. Test case: `deletep 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
