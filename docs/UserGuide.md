@@ -133,13 +133,13 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
 | **Finding clients**               | `find-client`    | `fc`       | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend`                                                                                             |
 | **Sorting clients**               | `sort-client`    | `sc`       | `sort-client`                                                                                                                                                                             |
 | **Listing all projects**          | `list-project`   | `lp`       | `list-project`                                                                                                                                                                            |
-| **Adding a project**              | `add-project`    | `ap`       | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting`                     |
-| **Editing a project**             | `edit-project`   | `ep`       | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                                         |
+| **Adding a project**              | `add-project`    | `ap`       | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [client/CLIENT]* [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 client/alice tag/painting`                     |
+| **Editing a project**             | `edit-project`   | `ep`       | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]* [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                                         |
 | **Deleting a project**            | `delete-project` | `dp`       | `delete-project <index>`<br> e.g., `delete-project 1`                                                                                                                                     |
 | **Marking a project as done**     | `mark`           | `mp`       | `mark <index>` <br> e.g., `mark 3`                                                                                                                                                        |
 | **Marking a project as not done** | `unmark`         | `up`       | `unmark <index>` <br> e.g., `unmark 3`                                                                                                                                                    |
 | **Clearing the project list**     | `clear-project`  | `cp`       | `clear-project`                                                                                                                                                                           |
-| **Finding projects**              | `find-project`   | `fp`       | `find-project [name/NAME]* [start/START OF TIMEFRAME] [end/END OF TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
+| **Finding projects**              | `find-project`   | `fp`       | `find-project [name/NAME]* [start/START_OF_TIMEFRAME] [end/END_OF_TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
 | **Sorting projects**              | `sort-project`   | `sp`       | `sort-project <option/OPTION>` <br> e.g., `sort-project option/name`                                                                                                                      |
 | **Listing all tags**              | `list-tag`       | `lt`       | `list-tag`                                                                                                                                                                                |
 | **Viewing help**                  | `help`           | -          | `help`                                                                                                                                                                                    |
@@ -326,9 +326,9 @@ Note that an OVERDUE project is also considered as a NOT DONE project.
 <div style="page-break-after: always;"></div>
 
 ### Adding a project
-#### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
+#### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [client/CLIENT]* [tag/TAG]* `
 
-Short form: `ap <n/NAME> [d/DEADLINE] [pr/PRICE] [t/TAG]* [c/CLIENT]*`
+Short form: `ap <n/NAME> [d/DEADLINE] [pr/PRICE] [c/CLIENT]* [t/TAG]*`
 
 Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
@@ -355,9 +355,9 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 ### Editing a project
-#### Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
+#### Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]* [tag/TAG]*`
 
-Short form: `ep <index> [n/NAME] [d/DEADLINE] [pr/PRICE] [c/CLIENT]`
+Short form: `ep <index> [n/NAME] [d/DEADLINE] [pr/PRICE] [c/CLIENT]* [t/TAG]*`
 
 Edits the project at the given index of the **currently visible** client list, changing only the given details. Any prefixes that are provided but left empty will delete the corresponding detail of the project (apart from the name).
 
