@@ -1,6 +1,5 @@
 ---
-layout: page
-title: BagDownB3nny's Project Portfolio Page
+BagDownB3nny's Project Portfolio Page
 ---
 
 ### Project: Ultron
