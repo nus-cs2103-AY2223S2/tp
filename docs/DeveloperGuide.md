@@ -16,21 +16,31 @@ If you're interested in contributing to the Vimification project, this Developer
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-  * [Architecture](#architecture)
-  * [UI component](#ui-component)
-  * [Logic component](#logic-component)
-  * [Model component](#model-component)
-  * [Storage component](#storage-component)
-  * [Common classes](#common-classes)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
 - [Implementation](#implementation)
+  - [ApplicativeParser\<T\>](#applicativeparsert)
+  - [Command parser](#command-parser)
+  - [Command implementation](#command-implementation)
+  - [Atomic data modification](#atomic-data-modification)
+  - [Undo feature](#undo-feature)
+  - [Macro feature](#macro-feature)
+  - [Syncing view with internal logic](#syncing-view-with-internal-logic)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
-  * [Product scope](#product-scope)
-  * [User stories](#user-stories)
-  * [Use cases](#use-cases)
-  * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a task](#deleting-a-task)
+  - [Saving data](#saving-data)
 
 ---
 
@@ -600,13 +610,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1. Vimification shows an error message.
 
     Use case ends.
- 
+
 - 1d. The priority level is invalid.
 
   - 1d1. Vimification shows an error message.
 
     Use case ends.
-    
+
 - 1e. The status is invalid.
    - 1e1. Vimification shows an error message.
 
@@ -633,14 +643,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. Vimification shows an error message.
 
   Use case ends.
-  
+
 **Use case 3: Delete an attribute (deadline and/or label) of a task**
 
 **MSS**
 
-1.  User indicates which task he is referring to by specifying the index of the task. 
-2.  User input the attribute's flag. 
-3.  If user is deleting a label, user input the name of the label to be deleted. 
+1.  User indicates which task he is referring to by specifying the index of the task.
+2.  User input the attribute's flag.
+3.  If user is deleting a label, user input the name of the label to be deleted.
 4.  Vimification uses this index to remove the deadline of the chosen task from the current list of tasks.
 
     Use case ends.
@@ -668,22 +678,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1d. The attribute does not exist.
 
     - 1d1. Vimification shows an error message.
-   
+
   Use case ends.
-  
-  
+
+
  - 1e. The attribute (only for label) does not exist.
 
     - 1e1. Vimification shows an error message.
-   
+
   Use case ends.
- 
+
 
 **Use case 4: Inserting an attribute (deadline and/or label) to a task**
 
 **MSS**
 
-1.  User indicates which task he is referring to by specifying the index of the task. 
+1.  User indicates which task he is referring to by specifying the index of the task.
 2.  User input the attribute's flag and the attribute to be inserted.
 3.  Vimification uses this index to insert the deadline to the chosen task.
 
@@ -714,7 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1d1. Vimification shows an error message.
 
   Use case ends.
-  
+
 - 1e. The attribute is empty.
 
     - 1e1. Vimification shows an error message.
@@ -771,13 +781,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1f1. Vimification shows an error message.
 
   Use case ends.
-  
-  
+
+
 **Use case 6: Filter for tasks based on certain conditions**
 
 **MSS**
 
-1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search. 
+1.  User specifies the attribute. The attribute can be either keyword, priority, status, label or before/after a date. User also specifies the conditions for the search.
 3.  Vimification converts the conditions into a predicate.
 4.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
 
@@ -845,8 +855,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1 Vimification shows an error message.
 
     Use case ends.
-    
-    
+
+
 **Use case 8: Adds a macro command**
 
 **MSS**
@@ -876,7 +886,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1 Vimification shows an error message.
 
     Use case ends.
-    
+
 **Use case 9: Use a macro command**
 
 **MSS**
@@ -894,12 +904,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-    
+
 **Use case 10: Refresh the task list**
 
 **MSS**
 
-1.  User input the command word. 
+1.  User input the command word.
 2.  Vimification displays the original list, without any filtering or sorting, to the user.
 
     Use case ends.
@@ -911,12 +921,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1 Vimification shows an error message.
 
     Use case ends.
-    
+
 **Use case 11: Undo an action**
 
 **MSS**
 
-1.  User input the command word. 
+1.  User input the command word.
 2.  Vimification displays the previous state of the task list to the user.
 
     Use case ends.
