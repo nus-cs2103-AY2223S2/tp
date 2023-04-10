@@ -15,14 +15,14 @@ students***. It is optimised for use via typing instead of clicking, which has b
 who are familiar with the problems that the students face on a daily basis, **coNtactUS** is here to **make module
 tracking an effortless process**.
 
-
-<div style="page-break-after: always;"></div>
-
-
 ### My contribution to the project
 
 coNtactUS is written in **Java**. The development team consists of 4 intermediate student developers, including myself. 
 Given below are my contributions to the project.
+
+
+<div style="page-break-after: always;"></div>
+
 
 #### Feature and enhancements
 
@@ -107,6 +107,6 @@ Given below are my contributions to the project.
   [#152](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/152),
   [#156](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/156)
 
-#### Community contribution outside current project
+#### Contribution beyond the project team
 
 * Reported bugs and suggestions for [other teams](https://github.com/tingyic/ped/issues) in the class
