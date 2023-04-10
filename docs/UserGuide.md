@@ -129,7 +129,7 @@ Here are some symbols used throughout the user guide to inform you of additional
   e.g. `[t/TAG]…​` can be used as <code>&nbsp;</code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 - You can give parameters in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
@@ -159,7 +159,7 @@ Format: `help`
 
 Lets you add a person to AIMS.
 
-Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-info">
 
@@ -169,7 +169,7 @@ Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EM
 
 Examples:
 
-- `add r/3SG n/Lawrence Tay u/1 GDS e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 t/PlatoonSergeant t/AllergySeafood`<br>
+- `add r/3SG n/Lawrence Tay u/1 GDS p/91649723 e/lawrencetay@gmail.com a/124 Drummond Street t/PlatoonSergeant t/AllergySeafood`<br>
   Adds a new person named `Lawrence Tay` to AIMS with the information seen in the message box below. Optional fields that are left blank are recorded as `N/A`.<br>
   <div style="text-align: center;">
     <img src="images/addLawrenceSuccess.png">
@@ -261,7 +261,7 @@ Format: `list`
 
 Copies the information of a person to your clipboard.
 
-Format: `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`
+Format: `copy INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 - Copies the required information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed person list.
@@ -322,7 +322,7 @@ If your clipboard is not accessible, the information will be displayed in the me
 
 Lets you edit an existing person in AIMS.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​`
+Format: `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -370,7 +370,7 @@ Example:
 
 Lets you filter all persons to only show those whose fields contain **all** the given keywords.
 
-Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [p/PLATOON] [t/TAG]…​`
+Format: `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [p/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 - The search is case-insensitive. (e.g. `hanS` will match `Hans`)
 - The order of the keywords does not matter. (e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`)
@@ -522,18 +522,21 @@ the data of your previous AIMS home folder.
 
 ## **Command Summary**
 
-| Action              | Format, Examples                                                                                                                                                                                                                           |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/3SG u/9 SIR c/Charlie pl/1 t/friend t/colleague` |
-| **Clear**           | `clear`                                                                                                                                                                                                                                    |
-| **Copy**            | `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                |
-| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                        |
-| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
-| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                 |
-| **Favorite**        | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                                    |
-| **Undo**            | `undo`                                                                                                                                                                                                                                     |
-| **Command history** | `↑` / `↓`                                                                                                                                                                                                                                  |
-| **List**            | `list`                                                                                                                                                                                                                                     |
-| **Help**            | `help`                                                                                                                                                                                                                                     |
+| Action              | Format, Examples                                                                                                                                                                                                                    |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**            | `help`                                                                                                                                                                                                                              |
+| **Add**             | `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add r/3SG n/James Ho u/9 SIR c/Charlie pl/1 p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **ImportCsv**       | `importcsv PATH_TO_CSV_FILE` <br> e.g., `importcsv C:\Users\myUsername\files\convertedExcel.csv`                                                                                                                                    |
+| **List**            | `list`                                                                                                                                                                                                                              |
+| **Copy**            | `copy INDEX [r/] [n/] [u/] [c/] [pl/] [p/] [e/] [a/] [t/]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                                                              |
+| **Edit**            | `edit INDEX [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                          |
+| **Filter**          | `filter [r/RANK] [n/NAME] [u/UNIT] [c/COMPANY] [pl/PLATOON] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g., `filter n/john e/example.com`                                                                                       |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
+| **Clear**           | `clear`                                                                                                                                                                                                                             |
+| **Undo**            | `undo`                                                                                                                                                                                                                              |
+| **Command history** | `↑` / `↓`                                                                                                                                                                                                                           |
+| **Favorite**        | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                             |
+| **Exit**            | `exit`                                                                                                                                                                                                                              |
 
 [Back to Top ↑](#table-of-contents)
