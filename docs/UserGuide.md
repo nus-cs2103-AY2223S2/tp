@@ -269,7 +269,7 @@ Related: [Adding a person: `add`](#2-adding-a-person--add)
 
 #### 2. Viewing a person
 
-Now that you have added Bob into CoDoc, you can view his details by using the [View command](#2-viewing-a-person).
+Now that you have added Bob into CoDoc, you can view his details by using the [View command](#3-viewing-a-personchanging-tabs--view).
 This will load Bob's details into the [**Info Panel**](#navigating-codoc).
 
 To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigating-codoc), we can tell that Bob is
@@ -318,7 +318,7 @@ First make sure that Bob is shown in the right panel using the View command. In 
 do so.
 
 >**Why is this step necessary?:** Editing only works on the person shown in the info panel. Make sure you are viewing
-> the correct person with the [View command](#2-viewing-a-person) (or with a click) before you enter
+> the correct person with the [View command](#3-viewing-a-personchanging-tabs--view) (or with a click) before you enter
 > the [Edit command](#4-editing-a-person--edit).
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
@@ -339,7 +339,7 @@ As the name suggests, [Edit command](#4-editing-a-person--edit) is capable of ed
 _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update your database as you progress your studies!
 
 **Related:** [Adding a person: `add`](#2-adding-a-person--add),
-[Viewing a person: `view`](#2-viewing-a-person),
+[Viewing a person: `view`](#3-viewing-a-personchanging-tabs--view),
 [Editing a person: `edit`](#4-editing-a-person--edit)
 
 <br>
@@ -397,7 +397,7 @@ If you need more info on the usage of each command, refer to the relevant sectio
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-[Scroll back to top](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ---
 
