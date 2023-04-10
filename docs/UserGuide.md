@@ -270,7 +270,7 @@ Related: [Adding a person: `add`](#2-adding-a-person--add)
 
 #### 2. Viewing a person
 
-Now that you have added Bob into CoDoc, you can view his details by using the [View command](#2-viewing-a-person).
+Now that you have added Bob into CoDoc, you can view his details by using the [View command](#3-viewing-a-personchanging-tabs--view).
 This will load Bob's details into the [**Info Panel**](#navigating-codoc).
 
 To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigating-codoc), we can tell that Bob is
