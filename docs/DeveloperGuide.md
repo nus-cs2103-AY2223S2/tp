@@ -248,7 +248,7 @@ The meaning of each prefix is as shown below:
 5. The `CookHubParser` then passes the string input to the `FindCommandParser` via the `parse()` method.
 6. The `FindCommandParser` then identifies the different prefixes in the string and creates a list of keywords.
 7. `FindCommandParser` will then call the respective methods responsible for parsing the predicate related to the current
-command flags (i.e. `parseTitlePredicate`, `parseIngredientsPredicate`, etc.)) in `ParserUtil`.
+command flags (i.e. `parseTitlePredicate`, `parseIngredientsPredicate`, etc.) in `ParserUtil`.
 8. `ParserUtil` creates an instance of `ContainsKeywordsPredicate`.
 9. `FindCommandParser` will instantiate an instance of `FindCommand` with the previously obtained predicate as the parameter.
 10. The `LogicManager` then calls the `execute()` method of the `FindCommand`.
@@ -493,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                               | I want to …​                                                                                           | So that I can…​                                                                                                                                           |
 |----------|---------------------------------------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `* `     | cook                                  | easily view the recipes that I viewed recently                                                         | have easy access to my favourite recipes                                                                                                                  |
+| `* `     | cook                                  | easily view the recipes that I viewed recently                                                         | have easy access to my favorite recipes                                                                                                                       |
 | `* * `   | cook                                  | assign difficulty tags                                                                                 | easily search up easy recipes when I am busy                                                                                                              |
 | `* `     | cook on a limited budget              | filter recipes by cost                                                                                 | so I can use recipes that costs less                                                                                                                      |
 | `* * `   | student who wants to stay fit         | assign healthy tags                                                                                    | make meals that are healthy                                                                                                                               |
@@ -509,7 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | cook                                  | duplicate recipes                                                                                      | easily add variations                                                                                                                                     |
 | `* * `   | consumer of food                      | rate the recipes                                                                                       | know which ones are worth cooking again                                                                                                                   |
 | `* * * ` | cook                                  | edit all parts of the recipe                                                                           | update and improve on the recipe after trying it out                                                                                                      |
-| `* * `   | cook                                  | save my favourite recipes                                                                              | easily find them again                                                                                                                                    |
+| `* * `   | cook                                  | save my favorite recipes                                                                               | easily find them again                                                                                                                                    |
 | `* * `   | cook                                  | categorize my recipes with labels                                                                      | easily sort and filter them                                                                                                                               |
 | `* * * ` | cook                                  | delete recipes                                                                                         ||
 | `* * `   | cook with limited ingredients         | search up on recipes that contain only the ingredients I have in my fridge                             |                                                                                                                                                           |
@@ -701,12 +701,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC09 - Favourite a recipe**
+**Use case: UC09 - Favorite a recipe**
 
 **MSS**
 
-1. User requests to add a specific recipe to favourites.
-2. CookHub adds the recipe to favourites and displays the updated recipe list.
+1. User requests to add a specific recipe to favorites.
+2. CookHub adds the recipe to favorites and displays the updated recipe list.
 
    Use case ends.
 
