@@ -561,7 +561,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Main Mode
+### Testing Commands for Main Mode
 
 #### Selecting a deck
 
@@ -722,15 +722,10 @@ testers are expected to do more *exploratory* testing.
        Expected: Exists the program. Window is closed.
 
 
-### Saving data
+### Testing Commands for Review Mode
 
-1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
-
-### Ending a Review
+#### Ending a Review
 
 1. Ending the current review
     1. Prerequisites: User is in Review Mode.
@@ -738,7 +733,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `endReview`<br>
        Expected: User returns to MAIN_SELECTED or MAIN_UNSELECTED mode depending on which mode the user was on previously before entering REVIEW mode.
 
-### Flipping a Card
+#### Flipping a Card
 
 1. Flip the current card in review
     1. Prerequisites: User is in Review Mode.
@@ -746,40 +741,47 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `p` (`P` is also a valid command)<br>
        Expected: The card either reveals or hide the answer.
 
-### Go to previous card
+#### Go to previous card
 1. Go to previous card in review
     1. Prerequisites: User is in Review Mode and current card is not the first card in the review deck.
 
     2. Test case: `[`<br>
        Expected: Right panel displays the previous card.
 
-### Go to next card
+#### Go to next card
 1. Go to next card in review
     1. Prerequisites: User is in Review Mode and current card is not the last card in the review deck.
 
     2. Test case: `]`<br>
        Expected: Right panel displays the next card.
 
-### Tagging a card as easy
+#### Tagging a card as easy
 1. Tag a card as easy during review
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `l` (`L` is also a valid command)<br>
        Expected: Tag the card as easy. 
 
-### Tagging a card as medium
+#### Tagging a card as medium
 1. Tag a card as medium during review
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `;`<br>
        Expected: Tag the card as medium.
 
-### Tagging a card as hard
+#### Tagging a card as hard
 1. Tag a card as hard during review
     1. Prerequisites: User is in Review Mode.
 
     2. Test case: `'`<br>
        Expected: Tag the card as hard.
+
+###\# Saving data
+
+1. Dealing with missing/corrupted data files
+
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
 
 ### Appendix: Planned Enhancement
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
