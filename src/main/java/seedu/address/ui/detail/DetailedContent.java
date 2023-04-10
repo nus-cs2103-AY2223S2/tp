@@ -7,7 +7,7 @@ import seedu.address.ui.UiPart;
  * An abstract class that represents the detailed content of a student.
  */
 public abstract class DetailedContent extends UiPart<Region> {
-    protected static final int MAX_LINE_LENGTH = 40;
+    protected static final int MAX_LINE_LENGTH = 35;
 
     public DetailedContent(String fxml) {
         super(fxml);

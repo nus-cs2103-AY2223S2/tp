@@ -20,19 +20,17 @@ public class FilledExamsContent extends GeneralExamsContent {
     private static final String PAST_EXAMS_LIST_NAME = "Past Exams: ";
     private static final String UPCOMING_EXAMS_LIST_NAME = "Upcoming Exams: ";
     private static final String FXML = "ExamsContent.fxml";
+
     private final Name studentName;
 
     @FXML
     private Label name;
     @FXML
     private Label pastExamsListName;
-
     @FXML
     private StackPane pastExamsListPlaceholder;
-
     @FXML
     private Label upcomingExamsListName;
-
     @FXML
     private StackPane upcomingExamsListPlaceholder;
 
