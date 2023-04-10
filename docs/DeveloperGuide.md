@@ -78,6 +78,8 @@ meaningful connections and engaging in productive work.
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Navigating the Developer Guide
 
 The Developer Guide is divided into the following sections :
@@ -112,6 +114,8 @@ The [Potential Enhancement](#potential-enhancement) section shows some features 
 1. A description of the proposed implementation
 2. Relevant UML diagrams
 3. Details about the design considerations
+
+<div style="page-break-after: always;"></div>
 
 The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
 provides the links to the aforementioned documents. In this section, you will be provided with the links to:
@@ -271,11 +275,12 @@ It    It is a better alternative than creating user interfaces using procedural 
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <br>
-<br>
 
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design Architecture**
 <div markdown="span" class="alert alert-info">
@@ -331,6 +336,8 @@ A collection of classes used by multiple other components located in the [`codoc
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/ui/Ui.java)
@@ -349,6 +356,8 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Logic Component
 
@@ -380,6 +389,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 * all `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Model Component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/model/Model.java)
@@ -428,6 +439,8 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
