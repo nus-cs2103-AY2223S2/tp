@@ -270,6 +270,7 @@ The following diagram shows the structure of the implementation of Statuses, as 
 ![](images/StatusDiagram.png)
 
 #### Lead Status feature
+By: Jing Jie
 
 The Lead Status feature aims to provide information about the contact based on when the status was last set.
 It is represented by the `LeadStatus status` attribute in a `Person`, which contains a `LeadStatusName` and
@@ -559,6 +560,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Find a person**
+
+**MSS**
+
+1.  User searches for person/s based on an attribute
+2.  SalesPunch shows a list of person/s that match
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 1a. SalesPunch detects an error in the entered data.
+
+  - 1a1. SalesPunch requests for the correct data.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered is correct.
+  - Use case resumes from step 2.
+
+  Use case ends.
+
 **Use case: Delete a person**
 
 **MSS**
@@ -720,21 +745,48 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. To simulate corrupted file, do not follow the JSON syntax by deleting several curly braces 
+   2. To simulate missing file, directly remove the storage file from the project directory
+   3. To resolve these issues, remove the storage file and restart the application. Then the application will reload with the sample data provided.
 
 ## **Appendix: Effort**
 
 <!-- Explain the difficulty level, challenges faced, effort required, and achievements of the project. -->
+The project aims to build a useful tool for salespersons to keep track of their leads, this includes basic features such
+as adding, deleting, updating, and sorting leads. The leads have attributes associated to them such as gender, company,
+industry, occupation, and status to capture the nature of the contacts. While they may be simple to implement, it was
+tedious to ensure the correctness of these features as they are the building blocks for upcoming add-on enhancements.
+Unit testing was crucial in this part to make sure that they were correctly implemented and worked as expected.
+<br/>
+<br/>
+Additionally, advanced features were added to further cater to the needs of a salesperson. Transaction and task
+recording features complement the contact list by extending the lead's details to include dealings and reminders. These
+features were implemented with a certain level of difficulty as they each require a level of complexity akin to the 
+original contact list which requires a list to capture the sequence of data for each lead together with complementary 
+features to add and delete.
 
 ### Challenges Faced
 
-Find and Searching Features: There was a medium challenge faced when implementing the different searching features as there was several abstraction layers for the basic find feature already implemented.
+**Find and Searching Features**: There was a medium challenge faced when implementing the different searching features as one had to work within the several abstraction layers for the already implemented basic `find` feature to further extend it. Additionally, there were added difficulty learning to manipulate the different data types such as `Set<>`, `Person` and `Transaction`. Learning to manipulate using higher order functions and streams to manipulate the data in the correct data type and return the correct data type.   
+
+**Statuses**: Restricting the domain of possible statuses to a fixed number, while implementing timestamps, meant that 
+statuses are more complex than simple descriptive `String`s that are implemented in other attributes, such as Tasks and 
+Company, for example. A validation regex cannot be used directly for the names of each status, since each status has 
+as timestamp component, thus the use of enums and mappings to each name was required, increasing the complexity of 
+the implementation of statuses.
 
 ## **Appendix: Planned Enhancements**
 
 <!-- This section may contain up to team_size x 2 enhancements e.g., a 5-person team can have up to 10 enhancements. -->
 
 1. The user should be able to have autocomplete suggestions on the command line when they press tab so that the user can do faster data entry.
-2. The user should be able to have basic natural language processing and processing in the command line so that the commands are less restrictive, then the user would have a better experience and easier to use on a daily basis. For e.g. "create a new contact named Alex" may be a valid contact name insertion versus using the standard add n/Name command.
+2. The user should be able to have basic natural language processing and processing in the command line so that the commands are less restrictive, then the user would have a better experience and easier to use on a daily basis. For e.g. `create a new contact named Alex` may be a valid contact name insertion versus using the standard `add n/Name ...` command.
+3. Each transaction and contacts are intended to share a tight relationship. Enforcing references from transactions to 
+    contacts and vice versa can be encapsulated in a PersonTransactionRelation class, and manipulation of both the list of
+    persons and transactions can be handled by the relation. This allows the implementation of more complex commands that
+    involve both classes:
+   - deleting a Person should delete all of their Transactions
+   - maintaining a count of the number of Past Transactions with each Person within the Person
+   - merging commands such as `list` and `listtxn` into a single command to show both lists.
+   - manipulating both ListPanels in the UI for Persons and Transactions for these merged commands
+   
