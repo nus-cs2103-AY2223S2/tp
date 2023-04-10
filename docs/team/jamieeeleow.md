@@ -3,7 +3,7 @@ layout: page
 title: Jamie's Project Portfolio Page
 ---
 
-## coNtactUS   
+## **coNtactUS**   
 
 #### Overview
 
@@ -16,7 +16,7 @@ making this module tracker simple and easy for use.
 
 ***
 
-### Contributions
+### **Contributions**
 
 coNtactUS is written in Java. Given below are my contributions to the project.  
 
@@ -28,8 +28,11 @@ coNtactUS is written in Java. Given below are my contributions to the project.
   * Justification: This feature improves the module tracker significantly because a user can make mistakes while 
   entering their input and the app should provide a convenient way to rectify them.
   User should also be able to add information to an existing module and the app
-  should have a command allowing additional details to be added.
+  should have a command allowing additional details to be added.  
 
+<br>  
+
+<div style="page-break-after: always;"></div>
   
 * **Feature Enhancement**: Modify Deadline and TimeSlot attributes to store LocalDateTime rather than a String.
 [#53](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/53) [#56](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/56)
@@ -39,7 +42,9 @@ coNtactUS is written in Java. Given below are my contributions to the project.
   making it necessary for deadlines and timeslots to be comparable.
   * Highlights: This enhancement affects existing commands, specifically the command of adding and editing
   modules. It required an in-depth analysis of how the LocalDateTime will affect the user input and how the commands
-  are being parsed. The implementation was challenging as it required changes to existing commands.  
+  are being parsed. The implementation was challenging as it required changes to existing commands.   
+
+<br>  
 
 
 * **Feature Enhancement**: Improve help command. [#69](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/69)
@@ -64,16 +69,19 @@ My code contributions can be accessed via: [RepoSense link](https://nus-cs2103-a
 
 #### Project management
   * Contributed to the releases `v1.3 trial` - `v1.4` (3 releases) on GitHub.  
-  * Managed the release of `v1.3 trial`.
-  
+  * Managed the release of `v1.3 trial`.  
+
+<div style="page-break-after: always;"></div>  
+
 #### Documentation
 
 * **User Guide**
   * Contributed to glossary and other details in the user guide.  
   * Wrote the user guide based on HTML code.
   * Uploaded images to be used in the user guide as well as aligned and labeled them.
-  * Format the user guide for a neater document upon conversion to PDF version.  
-  
+  * Format the user guide for a neater document upon conversion to PDF version.   
+
+<br>  
 
 * **Developer Guide**
   * Contributed to the user stories in the guide.
