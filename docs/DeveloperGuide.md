@@ -20,9 +20,21 @@ If you're eager to get started with TeachMeSenpai, head over to [Setting up, get
 
 ## **Acknowledgements**
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/)
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-* All icons used are taken from [flaticon](https://www.flaticon.com/)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative]
+* Libraries used: [JavaFX], [Jackson], [JUnit5]
+* All icons used are taken from [flaticon]
+* The autocompletion feature was inspired by a similar feature in [AY2223S1-CS2103T-T12-2's tp][T12-2]. We started out with their code, and slowly _(and almost completely)_ overhauled, including refactoring, bug-fixing, adding asserts, and changing the behaviour of the feature to suit our needs.
+* The idea of adding the placeholder text _(eg. the `NAME` in `n/NAME`)_ to the `Prefix` class also came from [AY2223S1-CS2103T-T12-2's tp][T12-2], which gave us the idea to further add more things to the prefix _(like whether the prefix is optional)_, although that was our idea.
+* The undo and redo features were reused with minor modifications from [AY2223S1-CS2103T-W17-4's tp][W17-4], which was adapted from the proposed implementation in AB3's Developer Guide [DG][DG]. The changes include renaming, some different implementation, and modification to include of a variable to track the undone/redone commands in the `VersionedAddressBook` class.
+
+[SE-EDU initiative]: https://se-education.org/
+[JavaFX]: https://openjfx.io/
+[Jackson]: https://github.com/FasterXML/jackson
+[JUnit5]: https://github.com/junit-team/junit5
+[flaticon]: https://www.flaticon.com/
+[T12-2]: https://github.com/AY2223S1-CS2103T-T12-2/tp
+[W17-4]: https://github.com/AY2223S1-CS2103T-W17-4/tp
+[DG]: https://se-education.org/addressbook-level3/DeveloperGuide.html
 
 --------------------------------------------------------------------------------------------------------------------
 
