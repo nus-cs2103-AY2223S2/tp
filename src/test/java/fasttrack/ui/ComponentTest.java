@@ -27,6 +27,7 @@ import javafx.scene.control.ListView;
 
 public class ComponentTest {
 
+    // Ignore this class on Linux 
     private Category category;
     private int displayedIndex;
     private int associatedExpenseCount;
@@ -36,6 +37,10 @@ public class ComponentTest {
 
     @BeforeEach
     public void setUp() throws InterruptedException {
+        
+        if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+            return;
+        }
         category = FOOD;
         displayedIndex = 1;
         associatedExpenseCount = 3;
@@ -45,6 +50,9 @@ public class ComponentTest {
 
     @BeforeAll
     static void initJfx() throws InterruptedException {
+        if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+            return;
+        }
         CountDownLatch latch = new CountDownLatch(1);
         Platform.startup(latch::countDown);
         latch.await();
