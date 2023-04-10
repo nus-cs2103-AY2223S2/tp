@@ -23,7 +23,9 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setMedInfo(new MedInfo());
+        MedInfo newMedInfo = new MedInfo();
+        newMedInfo.newMedInfo();
+        model.setMedInfo(newMedInfo);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

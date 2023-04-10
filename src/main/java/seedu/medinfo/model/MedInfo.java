@@ -41,7 +41,6 @@ public class MedInfo implements ReadOnlyMedInfo {
     }
 
     public MedInfo() {
-        wards.NewUniqueWardList();
     }
 
     /**
@@ -50,6 +49,13 @@ public class MedInfo implements ReadOnlyMedInfo {
     public MedInfo(ReadOnlyMedInfo toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Adds Waiting room for clear command.
+     */
+    public void newMedInfo() {
+        wards.newUniqueWardList();
     }
 
     //// List overwrite operations ====================================================================================
@@ -75,17 +81,7 @@ public class MedInfo implements ReadOnlyMedInfo {
      * {@code wards} must not contain duplicate wards.
      */
     public void setWards(List<Ward> wards) {
-        List<Ward> wardsCopy = new ArrayList<>();
-        for (Ward ward : wards) {
-            Ward toCopy = new Ward(ward.getName(), ward.getCapacity());
-            wardsCopy.add(toCopy);
-        }
-        this.wards.setWards(wardsCopy);
-
-        for (Patient patient : patients) {
-            Ward target = this.wards.getWard(patient.getWardNameString());
-            target.addPatient(patient);
-        }
+        this.wards.setWards(wards);
     }
 
     /**
@@ -93,8 +89,8 @@ public class MedInfo implements ReadOnlyMedInfo {
      */
     public void resetData(ReadOnlyMedInfo newData) {
         requireNonNull(newData);
-        setPatients(newData.getPatientList());
         setWards(newData.getWardList());
+        setPatients(newData.getPatientList());
     }
 
     //// Patient operations ===========================================================================================
