@@ -308,9 +308,12 @@ _Activity Diagram for a typical `edit` command_
 
 ### **Delete Command**
 
+[DeleteCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/DeleteCommandParser.java
+[DeleteCommandClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/DeleteCommand.java
+
 For _Delete_ command, the noteworthy classes are:
-- `DeleteCommandParser.java` - Parse the arguments for `DeleteCommand`
-- `DeleteCommand.java` - Execute command
+- [`DeleteCommandParser.java`][DeleteCommandParserClass] - Parse the arguments for `DeleteCommand`
+- [`DeleteCommand.java`][DeleteCommandClass] - Execute command
 
 The following exceptions may be thrown during this process, namely:
 - `ParseException` for missing arguments
@@ -382,6 +385,10 @@ _Activity Diagram for a typical `find` command_
 
 ### **Next Command**
 
+[ShowNextCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/ShowNextCommandParser.java
+[ShowNextCommandClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/ShowNextCommand.java
+[UpcomingEventPredicateClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/UpcomingEventPredicate.java
+
 To keep track of the next upcoming event, we have opted to keep `Event`s sorted in chronological order.
 
 `Event`s are kept chronologically sorted by:
@@ -396,9 +403,9 @@ Sequence Diagram for how `UniqueEventList` maintains a chronological order of `E
 ![SortSequenceDiagram.png](images/SortSequenceDiagram.png)
 
 For _Next_ command, the noteworthy classes are:
-- `ShowNextCommandParser.java` - Parse the arguments for `ShowNextCommand`
-- `ShowNextCommand.java` - Execute command
-- `UpcomingEventPredicate.java` - Check if `Event` should be displayed as ongoing/upcoming
+- [`ShowNextCommandParser.java`][ShowNextCommandParserClass] - Parse the arguments for `ShowNextCommand`
+- [`ShowNextCommand.java`][ShowNextCommandClass] - Execute command
+- [`UpcomingEventPredicate.java`][UpcomingEventPredicateClass] - Check if `Event` should be displayed as ongoing/upcoming
 
 During this process, `ParseException` may be thrown for invalid arguments.
 No exception is thrown for no arguments, as there is a default behaviour.
