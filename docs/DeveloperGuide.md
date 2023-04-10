@@ -936,12 +936,12 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `dark` <br>
    The theme changes to dark theme as shown below.
    <br>
-    <img src="images/command_result/dark.png" width="500" height="auto" />
+    <img src="images/command_result/Dark.png" width="500" height="auto" />
 
     3. Test case: `light` <br>
        The theme changes to light theme.
        <br>
-       <img src="images/command_result/light.png" width="500" height="auto" />
+       <img src="images/command_result/Light.png" width="500" height="auto" />
        
 
    
