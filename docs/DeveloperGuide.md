@@ -1058,8 +1058,8 @@ entities and relationships involved.
 ### Challenges Faced
 One of the main challenges we faced was establishing dependencies between the various object types in a way that 
 ensured consistency and minimized data duplication. This required careful consideration of the various use cases and 
-edge cases that could arise during the management of the student roster. 
-[Detailed implementation is described here](#student-roster-object-types)
+edge cases that could arise during the management of the student roster. Detailed implementation is described under [Implementation](#student-roster-object-types).
+
 
 ### Effort Required
 The effort required for our project can be broken down into the following components:
