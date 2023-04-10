@@ -15,7 +15,6 @@ public class RemarkTest {
         assertThrows(NullPointerException.class, () -> new Remark(null));
     }
 
-
     @Test
     public void isValidRemark() {
         // null tag name
