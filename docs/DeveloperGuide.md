@@ -215,7 +215,7 @@ counted as overdue. For example, if the current date is 11/04/2023, projects wit
 will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue
 project list**.
 
-Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates.
+Both **Due and Overdue project lists** utilise the `java.time` package to perform various operations on dates.
 
 For Progress Overview Pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
@@ -228,21 +228,23 @@ label.
 
 #### Updating the UI
 
-For **Due soon project lists**, **Overdue project lists** and **Pie chart**, `FilteredList` retrieved by
+For **Due soon project lists**, **Overdue project lists** and **Pie chart**, the `FilteredList` retrieved by
 using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides,
 all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`.
 Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener`
-will be attached to the original list of projects. Whenever there is a change in the project list (e.g.
+will be attached to the original list of projects.
+
+Whenever there is a change in the project list (e.g.
 a new project is added), all the statistics will be updated as well. These changes could be due to
-increased number of projects (e.g. a new project is created), or an existing project is modified.
+an increase in the number of projects (i.e. a new project is created), or a modification to an existing project.
 Moreover, when there are no projects available matching the requirements of Due soon and Overdue project lists,
-there will be messages displayed under the tab heading.
+there will be messages displayed under the tab heading to indicate this.
 
 ![NoOverdueProjectsMessage](images/NoOverdueProjectsMessage.png)
 
-The diagram following shows us that the MainWindow is responsible for instantiating the StatisticsBox.
-The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
-will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data
+The diagram below shows us that the `MainWindow` is responsible for instantiating the `StatisticsBox`.
+The `fillInnerParts()` method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
+will be called to listen for changes in project list. During the initialization of the `StatisticsBox` instance, data
 for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded.
 
 ![StatisticsBoxActivityDiagram](images/statisticsbox/StatisticsBoxActivityDiagram.png)
@@ -251,14 +253,14 @@ for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded.
 ### Tabs panel
 In Mycelium, there are four main tabs: **Projects**, **Clients**, **Due soon** and **Overdue**.
 The **Projects** tab will be responsible for displaying all projects created while the **Clients** tab
-will display all clients created. Each of these two tabs is a `EntityTab` object and contains a `EntityList` of
-`Project` for **Projects** tab and `Client` for **Clients** tab. Both will be in the same
+will display all clients created. Each of these two tabs is an `EntityTab` object and contains an `EntityList` of
+`Project`s for the **Projects** tab and `Client`s for the **Clients** tab. Both will be in the same
 panel `EntityPanel` on the left side of the application view.
 
 The **Due soon** tab will be responsible for displaying all projects that are due soon while the **Overdue** tab
 will display all projects that are overdue as mentioned in the [Statistics Dashboard](#statistics-dashboard) section.
 Each of these two tabs is a `StatisticsTab` object and contains a `EntityList` of `Project`. Both of these two
-tabs will be in the same panel `StatisticsPanel` on the right side of the application view.
+tabs will be in the same `StatisticsPanel` on the right side of the application view.
 
 ![Tabs](images/Tabs.png)
 
@@ -276,7 +278,7 @@ For more information about interacting with the tabs using hotkeys, please refer
 ### Hotkeys with UiEvents
 
 UiEvents is an abstraction of keyboard events that can trigger changes in
-user interface or perform some action. These keyboard events are handled by
+the user interface or perform some action. These keyboard events are handled by
 UiEvent handlers that are bundled together within the `UiEventManager` class.
 
 <div markdown="span" class="alert alert-info">
@@ -288,7 +290,9 @@ The following is the class diagram of the
 
 ![UiEventManager class diagram](images/uievent/UiEventManager.png)
 
-There are currently 10 registered event handlers, namely:
+The diagram above shows 4 keys for conciseness, but there are currently 10
+registered event handlers, namely:
+
 * `HelpKey` Help (F1)
 * `QuitKey` Quit (CTRL+Q)
 * `StartOfLineKey` Start of Line (CTRL+W)
@@ -1240,7 +1244,7 @@ implement the shortcuts in a way that was extensible for new shortcuts. This led
 with the `UiEvent` class as a single place to add new shortcuts.
 
 By supporting two types of entities, we would need to have commands related to each entity.
-We wanted Mycelium to have the intuitive behaviour of automatically switching between the 
+We wanted Mycelium to have the intuitive behaviour of automatically switching between the
 project tab and the client tab depending on which tab is relevant to the command. To solve this problem,
 we came up with the `UiAction` class which allowed us to hook actions such as switching the tab
 onto the response of a command execution.
@@ -1264,7 +1268,7 @@ To do this, we created another panel to display
 
 * a pie chart to show the proportions of projects in each status, and
 * a table to show which projects are overdue and which projects are due soon.
- 
+
 This was a challenge as it was adding complexity to the UI and required us to learn
 how to use the `PieChart` class. With another panel, we now also need an additional
 keyboard shortcut to switch focus between the 2 main panels to ensure Mycelium
