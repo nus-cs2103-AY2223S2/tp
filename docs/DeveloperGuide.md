@@ -722,15 +722,26 @@ person.
 
 <div style="page-break-after: always;"></div>
 
+Given below is an activity diagram to illustrate the behaviour when user calls the `Edit` command.
+
+![EditCommandActivity](images/EditCommandRunActivity.png)
+
 The EditCommandParser parses the passed command and create a EditPersonDescriptor for the EditCommand to execute
 on. It checks if prefix are present in the command to update the EditPersonDescriptor.
+
+![EditParserCheck](images/EditParserActivity.png)
+
+*Refer to the EditCommandParser code for more information on the relationship between each prefix and attributes.
 
 One notable thing about EditPersonDescriptor are its sets to handle : skillsAdded, skillsRemoved and skillsFinal. Similar sets
 were implemented for modules as well. Parser handles all entries and get them assigned to EditPersonDescriptor.
 
-As the EditCommand executes, it will look into these sets and create editedPerson accordingly:
+Before EditCommand executes, it will look into these sets to check if command is valid to run, illustrated by the
+activity diagram below:
 
-1. If skillsRemoved or modulesRemoved are not empty, it will look through existing skills and modules of protagonist to
+![EditCommandCheck](images/EditCommandCheckActivity.png)
+
+If skillsRemoved or modulesRemoved are not empty, it will look through existing skills and modules of protagonist to
 ensure all of them are present (using containsAll method for Set). If any one of them does not exist in protagonist,
 it will throw CommandException with respective error messages. This can be improved by using contains method instead
 for every element then throwing the exception with specific skill/module that caused the exception.
@@ -752,7 +763,13 @@ if (editPersonDescriptor.getModulesRemoved().isPresent()) {
     }
 }
 ```
-2. When creating edited person:
+As EditCommand executes, it creates a new EditedPerson. Other attributes are simply updated, but modules and skills are
+sets to be updated following a sequence of activity below:
+
+![EditCommandUpdateSkills](images/EditSkillsActivity.png)
+
+Similar process exist for set of modules.
+
    1. It will first look into original skills and modules.
    2. Entries to be removed are first removed, then entries to be added are added.
    3. If any final set of an attribute exists, the updates above are ignored and new set will be created with entries
@@ -875,6 +892,49 @@ We also chose to make our find command case-insensitive to increase the speed of
   - Cons:
     User must retype `find` command with the applied filters if he/she wants to find by an additional filter, i.e. if user entered `find y/1` and realised that he/she wants to find people that are year 1 and have python skills, he/she would have to call `find y/1 s/python` instead of just `find s/python` as proposed in Alternative 1. The more the applied filters, the more time-consuming it is for the user to retype them when adding a filter.
 - Decision: We chose Alternative 1 as it is commonly used. Websites like Shopee and GitHub remember existing filters and allow users to add more filters if they want to. They also have a reset/clear filters feature/button to clear filters. To inform users of what filters they have applied, we display them in the `ResultDisplay` UI, with the latest filter at the top denoted after `>`. 
+
+[Scroll back to top](#table-of-contents)
+
+
+#### **View Command**
+
+Command that handles interaction with the Info Panel. It is designed to handle two types of parameters:
+- Integer that represents the index of contact to load to Info Panel.
+- Character that represents the specific tab of the Info Panel to view (`c`/`m`/`s`).
+
+**Implementation Flow**
+
+The following sequence diagram summarizes what happens when the user executes a `view` command with an Index:
+
+![Find Command Sequence Diagram](images/ViewSequenceDiagram.png)
+
+If command is executed with a tab character instead, `setCurrentTab` will be called instead of `setProtagonist`. 
+
+Given below is the activity diagram to illustrate what happens when the user calls the `View` command:
+
+![View Activity Diagram](images/ViewCommandActivity.png)
+
+
+##### Design Considerations
+
+View Command is a primary way for users to interact with the Info Panel. Since both switching between person and tabs
+serve a similar purpose to update the Info Panel, the two commands `ViewIndex` and `ViewTab` has been merged under one
+`View` command.
+
+This means that it must be able to parse user inputs correctly to handle the two different parameters mentioned above.
+To do so, `isNumeric` method has been implemented which tries to parse given parameter as an Index.
+- If successful, return True (parameter is a valid integer)
+- If an exception is caught, there are two possible cases:
+  - Parameter is not an integer (Character which represents the tab to view)
+  - Number is too big to be parsed to an integer.
+
+To handle these cases separately and return a correct error message, this method will try to parse the parameter into
+a `BigInteger` again to confirm that the given parameter is definitely not a numeric.
+
+Once the command has been parsed and a ViewCommand has been instantiated, it just updates `Model`'s tab or protagonists
+appropriately. This is to adhere to Separation of Concerns principle, where only the UI component is responsible of how
+the Info Panel gets updated to the users. Refer to [Info Panel](#info-panel) for more information. 
+
 
 [Scroll back to top](#table-of-contents)
 

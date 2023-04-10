@@ -1,0 +1,28 @@
+@startuml
+start
+:User inputs View command;
+:CodocParser reads user input and recognises the view command;
+:ViewCommandParser reads the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([parameter is numeric])
+    :Parse user input integer to Index;
+    :Return ViewCommand with Index;
+else ([else])
+    if () then ([parameter is c, m, or s])
+    :Return ViewCommand with tab character;
+    else ()
+    :throw invalid command format error message;
+    endif
+endif
+
+:ViewCommand executes;
+if () then ([Viewing tab])
+    :Set model's tab;
+else ([Viewing index])
+    :Set model's protagonist;
+endif
+stop
+@enduml
