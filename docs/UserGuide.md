@@ -49,7 +49,7 @@ E-Lister is **a comprehensive desktop app**, **specially designed** for **insura
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Words separated by `|` indicate that you should only pick one of the keywords.<br>
-  e.g. `all|shown` indicates that you may enter either `all` or `shown`.
+  e.g. `shown|all` indicates that you may enter either `shown` or `all`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -320,9 +320,8 @@ Format: `import [combine|reset]`
 * If neither keyword is entered, the behaviour will be the same as `combine`.
 
 **Note: Your CSV file must have the following headers in this order: `Name, Phone, Email, Address, Income, Tags`**
-**Note: Each row corresponds to a single person**
 
-![CSV headers example](https://user-images.githubusercontent.com/55232476/230785869-dd530813-1753-4d59-b7bf-18fa12a20894.png)
+![CSV headers example](images/importExample.png)
 
 
 ### Export data to CSV : `export`
@@ -393,7 +392,8 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/INCOME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Export** | `export`
+**Import** | `import [combine|reset]`
+**Export** | `export [shown|all]`
 **Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Freeze** | `freeze`
