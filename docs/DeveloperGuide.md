@@ -1,16 +1,29 @@
 ---
 layout: page
 title: Developer Guide
+toc: true
 ---
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
 
 ## 1. **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+SudoHR is a brownfield software project based off [AddressBook Level-3](https://se-education.org/addressbook-level3/), created under the module CS2103 for the School
+of Computing in the National University of Singapore
+
+Java dependencies:
+
+* Jackson for JSON data storage
+* JavaFX for our GUI
+* JUnit5 for testing
+
+Documentation dependencies:
+
+* Jekyll
+* PlantUML for creating UML diagrams
 
 ---
 
@@ -169,7 +182,7 @@ Under this design, SudoHR supports having several employees with the same name f
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
 each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files
 where employee objects are separately created for department's and leave's employee lists.
-Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
+Hence, any editing of an employee's fields after SudoHR is initialized from storage needs to be cascaded down to leaves and departments to modify the equivalent employee object.
 
 Further, we need to ensure the UI correctly refreshes for any changes made to an employee.
 For instance, if an employee has been deleted, he/she should be removed from their department and the department count should drop. The same can be said for leaves.
@@ -177,13 +190,25 @@ This consistency is crucial to avoid confusing the user, especially since severa
 
 #### 4.1.2. Departments
 
-[//]: # (To be done by Kenneth)
+An important design consideration for Department is that it must not contain duplicate employees. This is to ensure simplicity and
+clarity when adding and removing employees from a department, as well as for the cascading process.
+
+Each department is uniquely identified by its name, as a department should not share the same name with another department.
+
+In the future, it would be possible to add more fields to a department, such as manager, parent department, etc.
 
 #### 4.1.3. Leaves
 
-[//]: # (To be done by Jer En)
+An important design consideration for Leave is that it must not contain duplicate employees. This is to ensure simplicity and
+clarity when adding and removing employees from a Leave object, as well as for the cascading process.
 
+Each leave is uniquely identified by its LeaveDate which represent the date on which the leave is on and tracks all
+the employees that have taken leave on that specific day. We tracked all the leaves using the UniqueLeaveList which
+follows a similar implementation as UniqueEmployeeList except that it enforces the constraints that each Leave's
+LeaveDate must be unique.
 
+In the future, it would be possible to modify SudoHR to track different types of leaves
+(eg. Medical) by adding a new type field to the Leave class.
 
 ### 4.2. Employee-related features
 
@@ -203,8 +228,7 @@ The attributes of an Employee are:
 1. For the commands in this section, the order in which the prefixes (if any) are placed does not matter.
    1. `edit eid/37 a/ntu p/8461 4872` will invoke the same result as `edit eid/37 p/8461 4872 a/ntu`
 2. If duplicated prefixes are provided, only the argument associated with last instance of the same prefix will be processed by the parser.
-3. We make a distinction between the prefixes `id/` and `eid/`. 
-The former is used when initializing or editing an Id field whereas the latter is used to reference an employee that exists in SudoHR.
+3. We make a distinction between the prefixes `id/` and `eid/`. The former is used in commands during adding of an employee or editing of an employee’s Id field whereas the latter is used in commands that references an employee that exists in SudoHR.
 
 
 
@@ -219,16 +243,16 @@ Sequence Diagram:
 ![AddEmployeeCommand](./images/commands/employee/AddEmployeeSequenceDiagram.png)
 
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
-2. The parser will parse the argument and instantiate several fields: Id, name, phone, email, address, and tags, respective with the prefixes.
+2. The parser will parse the argument and instantiates several fields: Id, name, phone, email, address, and tags, respectively with the prefixes.
 3. An `Employee` object is constructed and handed over to the `AddCommand`.
 4. The command is executed. It first checks if there exists an employee with the same Id field as specified, followed by phone number, and lastly email address.
 5. If none of the fields are duplicated, the model adds the employee to SudoHR.
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 When checking for duplicated fields across employees, the `Id`, `Phone`, and `Email` fields are checked.
 This is because `Id` is meant to be the unique identifier for an employee and `Phone` and `Email` fields are understood
 to be unique fields as well.
@@ -246,9 +270,9 @@ Sequence Diagram:
 ![EditEmployeeCommand](./images/commands/employee/EditEmployeeSequenceDiagram.png)
 
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `edit eid/37 p/8461 4872 a/ntu`. The employee with Id 37 will be identified and will have its phone and address fields updated as specified, if it exists in SudoHR.
-2. The parser will instantiate a new `Phone` and `Address` object constructed from the arguments associated with `/p` and `/n`, which represent the new phone number and address fields respectively.
+2. The parser will instantiate a new `Phone` and `Address` object constructed from the arguments associated with `/p` and `/n`, which represents the new phone number and address fields respectively.
 3. A `EditEmployeeDescriptor` object is constructed with the updated fields and alongside the employee's Id, are handed over to `EditCommand`.
 4. The command is executed. It first verifies that there is an employee with Id 37. 
 5. If such an employee exists, the command will then check if any of the 3 identities fields - Id, phone number, and email - have duplicated instances between the proposed changes and employees in SudoHR.
@@ -257,7 +281,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 The `EditEmployeeDescriptor` is used to store the details to be edited. This abstraction is used as not all fields
 may be edited for the `EditCommand`. So, this class ensures that fields are not edited will be unaffected and correctly initialized for the new edited employee. 
 This modularity in design will prove useful in the future if more employee-level details are added, as per the open-closed principle.
@@ -277,7 +301,7 @@ Sequence Diagram:
 ![DeleteEmployeeCommand](./images/commands/employee/DeleteEmployeeSequenceDiagram.png)
 
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `del eid/37` where employee with Id 37 is to be removed from SudoHR.
 2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
 3. The command is executed. It first verifies that an employee with the specified Id exists.
@@ -286,8 +310,7 @@ Sequence Diagram:
 After that, the command result is returned.
 
 #### Feature considerations
-We need to ensure that if an employee is deleted, it is also removed from being tracked by other entities such as `Department` and `Leave`.
-
+We need to ensure that if an employee is deleted, it is also removed from being tracked by other entities such as `Department` and `Leave`. More details are explained [here](https://github.com/AY2223S2-CS2103T-T17-2/tp/blob/master/docs/DeveloperGuide.md#cascading-employee-updates-and-deletion-to-department-and-leave).
 
 #### 4.2.4 Listing all employees
 The `list` command lists all the employees in SudoHR.
@@ -306,7 +329,7 @@ The `feid` command finds and displays an employee with the specified Id in SudoH
 #### Flow
 1. The user enters the command, eg. `feid eid/37` where employee with Id 37 is to be found.
 2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
-3. A predicate checking for the specified Id is initialized and the command is executed with the predicate.
+3. A predicate checking for the specified Id is instantiated and the command is executed with the predicate.
 4. It first verifies that an employee with the specified Id exists.
 5. If the employee exists, the `filteredEmployeeList` is updated to only contain the employee with Id of 37 and the UI will display only the employee.
 
@@ -422,19 +445,24 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### 4.3.4. Listing all departments
+[//]: # (#### 4.3.4. Listing all departments)
 
-The `listdep` command lists all the departments in SudoHR.
+[//]: # ()
+[//]: # (The `listdep` command lists all the departments in SudoHR.)
 
-![ListDepartmentCommand](./images/commands/department/ListDepartmentSequenceDiagram.png)
+[//]: # ()
+[//]: # (![ListDepartmentCommand]&#40;./images/commands/department/ListDepartmentSequenceDiagram.png&#41;)
 
-The call stack is the same as a typical command except that it has no specified parser. Instead, `SudoHrParser` directly returns the command containing the required predicate.
+[//]: # ()
+[//]: # (The call stack is the same as a typical command except that it has no specified parser. Instead, `SudoHrParser` directly returns the command containing the required predicate.)
 
-Upon execution, it updates the `filteredDepartmentList` in SudoHR.
+[//]: # ()
+[//]: # (Upon execution, it updates the `filteredDepartmentList` in SudoHR.)
 
-After that, the command result is returned.
+[//]: # ()
+[//]: # (After that, the command result is returned.)
 
-#### 4.3.5. Adding an employee to a department
+#### 4.3.4. Adding an employee to a department
 
 The `aetd` command adds an existing `Employee` to an existing `Department` in SudoHR.
 
@@ -467,7 +495,7 @@ reused in `Leaves` as well.
 It should be noted that we still used defensive checks such as `department.hasEmployee` despite the
 `UniqueEmployeeList` having such checks internally already.
 
-#### 4.3.6. Removing an employee from a department
+#### 4.3.5. Removing an employee from a department
 
 The `refd` command removes an `Employee` from an existing `Department` in SudoHR.
 
@@ -490,7 +518,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### 4.3.7. Listing an employee's departments
+#### 4.3.6. Listing an employee's departments
 
 The `led` command
 
@@ -519,16 +547,19 @@ After that, the command result is returned.
 ### 4.4. Leave-related features
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
+![LeaveModelClassDiagram](./images/commands/leave/LeaveModelClassDiagram.png)
+
+
 The attributes of a leave are:
 
-- `date`: The date of the leave, which is also the unique identifier for a leave
-- `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
-
+- `LeaveDate`: The date of the leave, which is also the unique identifier for a leave
+- `UniqueEmployeeList` : The employees who applied for this leave, the list must not contain duplicate employees. 
 
 #### 4.4.1. Adding an employee's leave
-The `aetd` command adds an employee's leave on a specific day:
+The `aetl` command adds an employee's leave on a specific day:
 
 Activity Diagram:
+
 ![AddEmployeeToLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
@@ -538,12 +569,13 @@ Sequence Diagram:
 ##### Flow
 
 1. The user enters the command `aetl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
-2. The parser would initialise a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
+2. The parser instantiates a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
 3. The `Id` and `LeaveDate` are passed down to the command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Leave` does not exist, a new one is created and added to `SudoHR`. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee already exists in `Leave`, an error message will be displayed.
 6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
+8. `FilteredLeaveList` will be updated to only display the leave on the added date.
 
 ##### Feature considerations
 
@@ -554,6 +586,7 @@ We decided to throw an exception when the employee has already taken leave on th
 The `defl` command delete an employee's leave on a specific day:
 
 Activity Diagram:
+
 ![RemoveEmployeeFromLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
@@ -563,18 +596,20 @@ Sequence Diagram:
 ##### Flow
 
 1. The user types and enters the command `defl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
-2. The parser would initialise a new `Id` and `LeaveDate` constructed from the input of argument `eid/` and `d/` respectively
+2. The parser would instantiate a new `Id` and `LeaveDate` constructed from the input of argument `eid/` and `d/` respectively
 3. The `Id` and `LeaveDate` are passed down to the newly created command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee does not exists in `Leave` (The employee has yet take leave on the input date), an error will be thrown too.
 6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
+8. `FilteredLeaveList` will be updated to only display the leave on the delete date.
 
 
 #### 4.4.3. Adding an employee's leave in a range
 The `aelr` command adds an employee's leave on all the days between the range of a start date to an end date inclusive.
 
 Activity Diagram:
+
 ![AddEmployeeLeaveFromTo Activity Diagram](./images/commands/leave/AddEmployeeToLeaveActivityDiagram.png)
 
 Sequence Diagram:
@@ -585,32 +620,32 @@ Sequence Diagram:
 
 1. The user types and enters the command `aelr eid/1 s/2022-03-04 e/2022-03-06` where 1 is the employee id, 2022-03-04 is the start date and 2022-03-06 is the end date.
 2. The parser checks that the end date `e/` is after the start date represented by `s/`.The end date `e/` also must be less than 7 days away from the start date `s/`. If both conditions are not satisfied, an error message will be shown.
-3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive.
+3. The parser would instantiate a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive.
 4. The `Id` and list of `LeaveDate` are passed down to the newly created command.
 5. The command is executed. The command first tries to find the `Employee` with ID 1. If the `Employee` does not exist, an error message will be displayed.
 6. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown.
 7. Assuming step 6 completes with no exception, `Employee` is added to `Leave` on all the days in the range of the start day to end date inclusive
-8. SudoHr will show all the days on which the employee has successfully taken leave.
+8. `FilteredLeaveList` will be updated to show all the days on which the employee has successfully taken leave.
 
 ##### Feature considerations
 We intentionally limited the range of days to be added to 1 week. This is to avoid excessively large ranges that are likely to be an error or typo rather than intended, such as taking leaves over multiple years. Hence, we decided that 1 week would be the most appropriate duration as it is the typical length of leave taken when people go on vacation.
 
 Should an employee indeed have more than 1 week of leave applied, the leave will be registered as different commands.
 
-We also decided guarding against adding the range of leaves dates if even one of the days have already been indicated as leave. This is to be consistent with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands and hence, is likely of minimal inconvenience to the user.
+We also decided to guard against adding the range of leaves dates if even one of the days have already been indicated as leave. This is to be consistent with AddEmployeeToLeave command. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands and hence, is likely of minimal inconvenience to the user.
 
 #### 4.4.4. Listing all employees taking leave on a specific day
 
 The `leol` command lists employees taking leave on a specific date.
 
-#### Flow 
+##### Flow 
 1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
-2. The parser would initialise a `LeaveDate` object constructed from the input argument.
-3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
+2. The parser would instantiate a `LeaveDate` object constructed from the input argument.
+3. The command is executed. It instantiates a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
 4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
 
-#### 4.4.5 Listing all leaves 
+#### 4.4.5. Listing all leaves 
 The `llve` command lists all leaves taken by employees in SudoHR.
 
 The call stack is the same as a typical command except that it has no specified parser.
@@ -620,7 +655,7 @@ Upon execution, it updates the `filteredLeaveList` in SudoHR.
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 Only leaves that have at least 1 employee will be displayed.
 
 
@@ -651,25 +686,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​      | I want to …​                                                   | So that I can…​                                                            |
 | -------- | ------------ | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `* * *`  | new user     | see usage instructions                                         | refer to instructions when I forget how to use the App                     |
-| `* * *`  | HR personnel | add a new employee                                             | ensure consolidation of information when an employee is hired              |
-| `* * *`  | HR personnel | edit a new employee                                            | ensure consolidation of information when an employee has new details       |
-| `* * *`  | HR personnel | delete an employee                                             | ensure consolidation of information when an employee left the company      |
-| `* * *`  | HR personnel | find an employee by name                                       | locate details of employees without having to go through the entire list   |
-| `* *`    | HR personnel | hide private contact details                                   | minimize chance of someone else seeing them by accident                    |
-| `* * *`  | HR personnel | add an employee’s leave to SudoHR                              | ensure consolidation of information                                        |
-| `* * *`  | HR personnel | remove an employee’s leave for SudoHR                          | ensure consolidation of information                                        |
-| `* * *`  | HR personnel | view all leaves an employee has applied for                    | access an employee's availability easily                                   |
-| `* * *`  | HR personnel | view all employees on leave today                              | know today's headcount                                                     |
-| `* * *`  | HR personnel | view all leaves applied for a given day                        | better plan company events                                                 |
-| `* * *`  | HR personnel | view all leaves applied for a given day for a given department | better plan depeartment events                                             |
-| `* * *`  | HR personnel | add a department                                               | ensure consolidation of information when a new department is formed        |
-| `* * *`  | HR personnel | edit a department                                              | ensure consolidation of information when a department's detail is changed  |
-| `* * *`  | HR personnel | delete a department                                            | ensure consolidation of information when a department is disbanded         |
-| `* * *`  | HR personnel | find a department by name                                      | locate details of departments without having to go through the entire list |
-| `* * *`  | HR personnel | add an employee to a department                                | ensure consolidation of information when a department has a new employee   |
-| `* * *`  | HR personnel | remove an employee from a department                           | ensure consolidation of information when an employee leaves a department   |
+| `* * *`  | HR personnel | add a new employee                                             | keep track of the personal details of a newly hired employee             |
+| `* * *`  | HR personnel | edit a new employee                                            | update an employee's personal details when it has changed       |
+| `* * *`  | HR personnel | delete an employee                                             | stop tracking the personal details of an employee that has left the company      |
+| `* *`  | HR personnel | find an employee by name                                       | locate details of an employee without having to go through the entire list   |
+| `* `    | HR personnel | hide private contact details                                   | minimize chance of someone else seeing them by accident                    |
+| `* * *`  | HR personnel | add an employee’s leave to SudoHR                              | keep track of when an employee is on leave                                        |
+| `* * *`  | HR personnel | remove an employee’s leave from SudoHR                          | stop tracking the leave of an employee that is wrongly added                                        |
+| `* * *`  | HR personnel | view all leaves an employee has applied for                    | determine when an employee will no be present in the company                                   |
+| `* `  | HR personnel | view all employees on leave today                              | know the number of employees absent today                                                     |
+| `* * *`  | HR personnel | view all employees on leave for a given day                        | know which employees that will be absent from the company on a specific day                                                 |
+| `* * `  | HR personnel | view all employees on leave for a given day for a given department | know which employees are absent from a department on a specific day                                              |
+| `* * *`  | HR personnel | add a department                                               | keep track of the details of a department and the employees inside        |
+| `* * *`  | HR personnel | edit a department                                              | update the details of a department if it is incorrect  |
+| `* * *`  | HR personnel | delete a department                                            | stop tracking the details of a department that is disbanded         |
+| `* * `  | HR personnel | find a department by name                                      | locate details of departments without having to go through the entire list |
+| `* * *`  | HR personnel | add an employee to a department                                | keep track of which employees are part of a department   |
+| `* * *`  | HR personnel | remove an employee from a department                           | keep track that an employee no longer belongs to a department   |
 | `* * *`  | HR personnel | list all departments an employee is in                         |                                                                            |
-| `* * *`  | HR personnel | list all employees in a department                             | view manpower size of a department                                         |
+| `* * *`  | HR personnel | list all employees in a department                             | view manpower size of a department
+| `* *`    | HR presonnel | list all employees that are present in the company for a department on a specific day | know who will be avaliable to contact in a department on a specific day  |
 
 _{More to be added}_
 
@@ -969,6 +1005,8 @@ _{More to be added}_
    Use case ends.
 
 **Use case: UC14 - Finding a department using a keyword**
+
+**MSS**
 
 1. User requests to show the list of departments containing specified keywords
 2. SudoHr shows the list of all departments with name that contains any of the keywords.
@@ -1430,20 +1468,18 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `exit x` (where x is any string) <br>
    Expected: Should exit SudoHR.
 
-#### Saving data
+### 7.6. Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-   
-   
-1. _{ more test cases …​ }_
+When there are violation of constraints in the data files, SudoHR will not start. The specific error will be logged
+in the system output.
 
-### Planned Enhancements
+## 8. **Planned Enhancements**
 
 Here are a list of fixes we plan to add in the near future to counter known feature flaws.
 
-#### 1. Department name constraints
+### 8.1. Department name constraints
 
 * Department name will be case-insensitive as case sensitivity does not create ambiguity between department names.
 For example, 'Marketing' and 'marketing' are clearly the same department.
@@ -1451,13 +1487,36 @@ For example, 'Marketing' and 'marketing' are clearly the same department.
 * Department names will also allow special characters such as '(', ')' and ',' to account for department names with
 labels. For example, 'Sales, Singapore' can be a valid department name.
 
-#### 2. Employee name field constraints
+### 8.2. Employee name field constraints
 * `Employee` name field will also allow special characters such as '/', which are often used as an abbreviation in 's/o', in subsequent iterations.
 
-#### 3. Employee phone field constraints
+### 8.3. Employee phone field constraints
 * Currently, the phone field is restrictive in that it only accepts 8-digit phone numbers for an employee's phone field. While registered local numbers will not face any issues, registered numbers outside of Singapore likely will if they do not adhere to 8-digits. 
 We understand this is far from ideal, since it is perfectly reasonable for businesses to hire foreign talents who may not have a locally registered number. Hence, subsequent iterations will improve the parsing of phone fields to account for foreign phone numbers that are not necessarily 8 digits.
 
-#### 4. Employee email field constraints
+### 8.4. Employee email field constraints
 * Currently, SudoHR treats email addresses as case-sensitive which we acknowledge shouldn't be as it fails to reflect real world behavior as well. We plan to ensure email addresses are case-insensitive in subsequent iterations.
 Under which, `JOHN@NUS.COM` and `john@nus.com` will be treated as one and the same.
+
+### 8.5. Filtering of employee window when searching details for a specific employee
+* Employee window should be filtered to a specific employee when viewing that employee's details. For example, the `led` lists
+all the departments the employee is in. It would also be more intuitive to display that single employee in the employee window
+as well after invoking the command, so that the user will know which employee's departments is being displayed in the department
+window if he forgets.
+
+### 8.6. Filtering of department window when searching details for a specific department
+* Department window should be filtered to a specific department when viewing that department's details. For example, the `leid` lists
+all the employees in the specific department. It would also be more intuitive to display that single department in the department window
+as well after invoking the command, so that the user will know which department's employees is being displayed in the employee
+window if he forgets.
+
+### 8.7. Filtering of leave window when searching details for a specific leave date
+* Leave window should be filtered to a specific leaved ate when viewing that leave date's details. For example, the `leol` lists
+all the employees taking leave on a specific day. It would also be more intuitive to display that single leave date in the leave window
+as well after invoking the command, so that the user will know for which date the employees filtered in the employee list are taking
+leave on.
+
+## 9. **Glossary**
+
+- **Mainstream OS** :Windows, Linux, Unix, OS-X
+- **Private contact detail** : A contact detail that is not meant to be shared with others
