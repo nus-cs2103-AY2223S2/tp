@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model{
+Package "Overview" as OverviewPackage #F4F6F6{
+Class "{abstract}\nOverview" as Overview
+Class XYZOverview
+}
+
+Class Person
+Class XYZ
+
+note top of XYZ {
+XYZ = Age, Postal,
+       or Variant
+}
+}
+
+Package "Analyst" as AnalystPackage <<Rectangle>>{
+Class "{abstract}\nAnalyst" as Analyst
+Class XYZAnalyst
+Class DataBin
+}
+
+Overview -[hidden]down- Analyst
+
+XYZOverview -right|> Overview
+
+Overview .down.> Analyst
+XYZOverview -right-> XYZAnalyst
+
+XYZAnalyst -right|> Analyst
+
+Analyst .down.> DataBin
+XYZAnalyst -down-> "~* " DataBin
+
+XYZAnalyst .down.> XYZ
+
+Person -down-> XYZ
+
+XYZOverview ---> "~*   " Person
+XYZAnalyst ..> Person
+DataBin ...> Person
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User enters import csv command;
+if () then ([filename is valid])
+if () then ([file is in correct format])
+    :Update Person List;
+    :Displays success message;
+    stop
+else ([else])
+endif
+else ([else])
+endif
+:Displays error message;
+stop
+
+@enduml
+

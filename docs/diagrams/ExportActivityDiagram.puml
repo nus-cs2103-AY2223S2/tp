@@ -1,0 +1,15 @@
+@startuml
+
+start
+:User enters export csv command;
+if () then ([filename is valid])
+    :Update Person List;
+    :Displays success message;
+    stop
+else ([else])
+endif
+:Displays error message;
+stop
+
+@enduml
+

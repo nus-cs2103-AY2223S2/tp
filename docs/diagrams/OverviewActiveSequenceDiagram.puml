@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+hide footbox
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DengueHotspotTrackerParser" as DengueHotspotTrackerParser LOGIC_COLOR
+participant ":OverviewCommandParser" as OverviewCommandParser LOGIC_COLOR
+participant ":OverviewCommand" as OverviewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "ao:AgeOverview" as AgeOverview MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute("overview a/")
+activate LogicManager
+
+LogicManager -> DengueHotspotTrackerParser : parseCommand("overview a/")
+activate DengueHotspotTrackerParser
+
+create OverviewCommandParser
+DengueHotspotTrackerParser -> OverviewCommandParser
+activate OverviewCommandParser
+
+OverviewCommandParser --> DengueHotspotTrackerParser
+deactivate OverviewCommandParser
+
+DengueHotspotTrackerParser -> OverviewCommandParser : parse("a/")
+activate OverviewCommandParser
+
+create AgeOverview
+OverviewCommandParser -> AgeOverview
+activate AgeOverview
+
+AgeOverview --> OverviewCommandParser : ao
+deactivate AgeOverview
+
+create OverviewCommand
+OverviewCommandParser -> OverviewCommand : OverviewCommand(ao, "AGE")
+activate OverviewCommand
+
+OverviewCommand --> OverviewCommandParser : oc
+deactivate OverviewCommand
+
+OverviewCommandParser --> DengueHotspotTrackerParser : oc
+deactivate OverviewCommandParser
+
+DengueHotspotTrackerParser --> LogicManager : oc
+deactivate DengueHotspotTrackerParser
+
+LogicManager -> OverviewCommand : execute()
+activate OverviewCommand
+
+OverviewCommand -> ModelManager : setOverview(ao)
+activate ModelManager
+
+deactivate ModelManager
+
+create CommandResult
+OverviewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> OverviewCommand : res
+deactivate CommandResult
+
+OverviewCommand --> LogicManager : res
+deactivate OverviewCommand
+
+LogicManager -->[ : res
+deactivate LogicManager
+@enduml

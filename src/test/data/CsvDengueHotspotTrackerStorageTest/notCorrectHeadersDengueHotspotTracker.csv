@@ -1,0 +1,8 @@
+"PatientName","Age","Date","Postal Code","Variants"
+"Alice Pauline","21","2023-03-05","S123456","[DENV1]"
+"Benson Meier","85","2022-03-05","S234567","[DENV2, DENV4]"
+"Carl Kurz","35","2023-02-02","654321","[]"
+"Daniel Meier","143","2023-01-01","816253","[DENV3]"
+"Elle Meyer","65","2022-12-31","012345","[]"
+"Fiona Kunz","5","2022-01-05","432156","[]"
+"George Best","12","2023-01-05","321235","[]"

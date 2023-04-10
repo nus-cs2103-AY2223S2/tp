@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+hide footbox
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":OverviewDisplay" as OverviewDisplay UI_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant "ao:AgeOverview" as AgeOverview MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":AgeAnalyst" as AgeAnalyst LOGIC_COLOR
+participant ":DataBin" as DataBin LOGIC_COLOR
+end box
+
+[-> LogicManager : getOverview()
+activate LogicManager
+
+LogicManager -> ModelManager : getOverview()
+activate ModelManager
+
+ModelManager -> AgeOverview : update(filteredPersons)
+activate AgeOverview
+
+create AgeAnalyst
+AgeOverview -> AgeAnalyst : AgeAnalyst(filteredPersons)
+activate AgeAnalyst
+
+loop 20 times (the number of age bins)
+    create DataBin
+    AgeAnalyst -> DataBin
+    activate DataBin
+
+    DataBin --> AgeAnalyst
+    deactivate DataBin
+end
+
+loop size of filteredPersons
+    AgeAnalyst -> DataBin : addPerson()
+    activate DataBin
+
+    deactivate DataBin
+end
+
+AgeAnalyst --> AgeOverview
+deactivate AgeAnalyst
+
+deactivate AgeOverview
+
+ModelManager --> LogicManager : ao
+deactivate ModelManager
+
+LogicManager -->[ :ao
+deactivate LogicManager
+
+[-> OverviewDisplay : updateOverviewDisplay(ao)
+activate OverviewDisplay
+
+OverviewDisplay -> AgeOverview : getOverviewTitle()
+activate AgeOverview
+
+AgeOverview --> OverviewDisplay : title
+deactivate AgeOverview
+
+OverviewDisplay -> OverviewDisplay : setOverviewTitle(title)
+
+OverviewDisplay -> AgeOverview : getOverviewSubtitle()
+activate AgeOverview
+
+AgeOverview --> OverviewDisplay : subtitle
+deactivate AgeOverview
+
+OverviewDisplay -> OverviewDisplay : setOverviewSubtitle(subtitle)
+
+OverviewDisplay -> AgeOverview : getOverviewContent()
+activate AgeOverview
+
+AgeOverview --> OverviewDisplay : content
+deactivate AgeOverview
+
+OverviewDisplay -> OverviewDisplay : setOverviewContent(content)
+@enduml
