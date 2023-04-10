@@ -57,11 +57,11 @@ MasterDeck *---> "1" UniqueDeckList
 MasterDeck *---> "1" UniqueCardList
 
 UniqueCardList o--> "~* all" Card
-UniqueDeckList o--> "~* all" Deck
+UniqueDeckList o---> "~* all" Deck
 
 Card *--> "1" Question
 Card *--> "1" Answer
-Card --> "0..1" Tag
+Card --> "1" Tag
 Card -r> "1" Deck
 Tag --> TagName
 
@@ -70,6 +70,7 @@ Question -right[hidden]- Answer
 Answer -right[hidden]- Tag
 
 ModelManager -->"~* filtered" Card
+ModelManager -->"0..1 selected" Deck
 ModelManager -->"~* filtered" Deck
 
 @enduml

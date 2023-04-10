@@ -133,7 +133,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 Each `Card` object,
-* stores one `Question`, one `Answer`, one `Deck` which the `Card` object references from the `Deck` list, and one optional difficulty `Tag`.
+* stores one `Question`, one `Answer`, one `Deck` which the `Card` object references from the `Deck` list, and one TagName `Tag` (cards initialized without tags will have an untagged tag).
 * belongs to the `Deck` it references.
 
 ##### Review 
