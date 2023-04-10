@@ -58,9 +58,9 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_EVENT_EXIST_AT_TIME);
         } else {
             model.clearRecent();
-            model.recentCommands().add(this);
+            model.addRecentCommand(this);
             model.addEvent(toAdd);
-            model.recentEvent().add(toAdd);
+            model.addRecentEvent(toAdd);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

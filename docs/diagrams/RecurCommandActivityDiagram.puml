@@ -1,0 +1,52 @@
+@startuml
+skinparam defaultTextAlignment center
+
+sprite $rake <svg width="16" height="16" viewBox="0 0 16 16">
+<path
+    style="fill:#000000"
+    d="M 7,1 H 9 V 7 H 15 V 15 H 13 V 9 H 9 V 15 H 7 V 9 H 3 V 15 H 1 V 7 H 7 Z"
+/>
+</svg>
+
+start
+:User executes recur command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([missing
+arguments])
+    :Response Box shows
+    invalid command
+    format message;
+stop
+else if () then ([invalid
+arguments])
+    :Response Box
+    shows invalid
+    arguments message;
+stop
+else if () then ([index
+out of range])
+    :Response Box
+    shows invalid
+    index message;
+stop
+else if () then ([end date
+has past])
+    :Response Box
+    shows end date
+    has past message;
+stop
+else if () then ([recur factor exceeds
+max allowable])
+    :Response Box
+    shows recur factor
+    exceeds max
+    allowable message;
+stop
+else ([else])
+:Check for time clash
+for all recurring dates <$rake>;
+stop
+@enduml

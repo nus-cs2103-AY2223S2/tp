@@ -82,9 +82,9 @@ public class Scheduler implements ReadOnlyScheduler {
     /**
      * Returns true if another event exists at the given date and time in the Scheduler.
      */
-    public boolean hasEventAtTime(Event event) {
-        requireNonNull(event);
-        return events.existsAtTime(event);
+    public boolean hasEventAtTime(Event currentEvent, Event eventToCheck) {
+        requireNonNull(eventToCheck);
+        return events.existsAtTime(currentEvent, eventToCheck);
     }
 
     /**

@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as modelManager MODEL_COLOR
+participant ":Scheduler" as scheduler MODEL_COLOR
+participant ":UniqueEventList" as uniqueEventList MODEL_COLOR
+end box
+
+[-> modelManager
+activate modelManager
+
+create scheduler
+modelManager -> scheduler : Scheduler()
+activate scheduler
+
+scheduler -> uniqueEventList : addListChangeListener(listener)
+activate uniqueEventList
+
+uniqueEventList -> uniqueEventList : addListener(listener)
+
+uniqueEventList -> scheduler
+deactivate uniqueEventList
+
+scheduler -> modelManager
+deactivate scheduler
+
+[<--modelManager
+deactivate modelManager
+
+[-> uniqueEventList : ListChangeListener(changes)
+activate uniqueEventList
+
+    loop [["has changes"]]
+        alt [["not permutation"]]
+            uniqueEventList -> uniqueEventList : sortByChronologicalOrder()
+        end
+    end
+
+[<--uniqueEventList
+deactivate uniqueEventList
+
+@enduml

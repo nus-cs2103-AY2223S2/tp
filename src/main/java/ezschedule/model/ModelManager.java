@@ -118,7 +118,14 @@ public class ModelManager implements Model {
     @Override
     public boolean hasEventAtTime(Event event) {
         requireNonNull(event);
-        return scheduler.hasEventAtTime(event);
+        return scheduler.hasEventAtTime(null, event);
+    }
+
+    @Override
+    public boolean hasEventAtTime(Event current, Event toCheck) {
+        requireNonNull(current);
+        requireNonNull(toCheck);
+        return scheduler.hasEventAtTime(current, toCheck);
     }
 
     @Override
@@ -157,6 +164,10 @@ public class ModelManager implements Model {
     @Override
     public void addRecentEvent(Event event) {
         recentEvent.add(event);
+    }
+    @Override
+    public void addRecentCommand(Command command) {
+        recentCommand.add(command);
     }
 
     @Override

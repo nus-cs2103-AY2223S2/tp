@@ -127,6 +127,15 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_eventExistsAtTime_failure() {
+        // edit event overlaps with first event of typical events
+        EditEventDescriptor descriptor = new EditEventDescriptorBuilder()
+                .withDate("2023-05-01").withStartTime("00:00").withEndTime("23:59").build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_EVENT, descriptor);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_EVENT_EXIST_AT_TIME);
+    }
+
+    @Test
     public void execute_invalidEventIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_B).build();

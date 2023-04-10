@@ -5,40 +5,58 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## **Introduction**
 
-## **Acknowledgements**
+-------------------------------------------------------------------------------------------------------------------
+_Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a CLI**
+while still providing an easy way to visualize all events through a GUI.
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+_Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
---------------------------------------------------------------------------------------------------------------------
+### **Acknowledgements**
 
-## **Setting up, getting started**
+* This project is based on the AddressBook Level 3 (AB3) project created by the SE-EDU initiative.
+* Libraries used: JavaFX, JUnit5
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+### **Setting Up, Getting Started**
 
---------------------------------------------------------------------------------------------------------------------
+Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+--------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** 
+The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/docs/diagrams/) folder. 
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+<div style="page-break-after: always;"></div>
+
+[MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
+[MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
+[UiClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java
+[MainWindowClass]:https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/MainWindow.java
+[MainWindowView]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/resources/view/MainWindow.fxml
+[LogicClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java
+[ModelClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/Model.java
+[StorageClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/storage/Storage.java
+
+
+### **Architecture**
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java)
-and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java).
- It is responsible for,
+**`Main`** has two classes called [`Main`][MainClass] and [`MainApp`][MainAppClass].
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -51,39 +69,43 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
 
-**How the architecture components interact with each other**
+### **How the Architecture Components Interact With Each**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues 
+the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* defines its _API_ in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding 
+  API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using 
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component 
+through its interface rather than the concrete class(reason: to prevent outside component's being coupled to the 
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
-### UI component
+### **UI Component**
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java)
+**API** : [`Ui.java`][UiClass]
 
-![Structure of the UI Component](images/UiClassDiagram.png)
-
-[//]: <> (TODO: UiClassDiagram.png need to be updated; "PersonListPanel"-->"EventListPanel")
+<img src="images/UiClassDiagram.png" width="1000"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, 
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
+the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. 
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/MainWindow.java) 
-is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+For example, the layout of the [`MainWindow`][MainWindowClass] is specified in [`MainWindow.fxml`][MainWindowView].
 
 The `UI` component,
 
@@ -92,9 +114,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
 
-### Logic component
+<div style="page-break-after: always;"></div>
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java)
+### **Logic Component**
+
+**API** : [`Logic.java`][LogicClass]
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -108,24 +132,31 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram-new.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600" />
 
 How the parsing works:
 * When called upon to parse a user command, the `SchedulerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+<div style="page-break-after: always;"></div>
+
+### **Model Component**
+
+**API** : [`Model.java`][ModelClass]
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -138,16 +169,11 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, 
   they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Scheduler`, which `Event` references. This allows `Scheduler` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
+<div style="page-break-after: always;"></div>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+### **Storage Component**
 
-</div>
-
-
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`][StorageClass]
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -157,186 +183,351 @@ The `Storage` component,
   functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### **Common Classes**
 
 Classes used by multiple components are in the `ezschedule.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
+--------------------------------------------------------------------------------------------------------------------
+EZ-Schedule mainly follows the Command design pattern. Elaboration on how the application parses commands is given in the
+_Architecture_ section above.
+
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sort events feature
+### **Add Command**
 
-Sort all events in the scheduler in chronological order by entering `sort` as a command.
-A chronological order can help user to prioritise and focus on the more urgent events.
+[AddCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/AddCommand.java
+[AddCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/AddCommandParser.java
 
-#### How it is currently implemented
+For _Add_ command, the noteworthy classes are:
+- [`AddCommandParser.java`][AddCommandParser.java] - For parsing the arguments to `AddCommand`.
+- [`AddCommand.java`][AddCommand.java] - For execution.
 
-A `SortCommand` was added to allow user to initiate the sorting of events.
-The sorting is handled by `FXCollections#sort()`.
-The method calls by `SortCommand` is similar to the other `XXXCommand`.
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+- CommandException for identical events
+- CommandException for events with clashing time
 
-#### Proposed enhancement
+Given below is an example usage scenario of how the _Add_ command executes.
 
-Remove `SortCommand`. Instead, automatically sort the events whenever an event is changed
-(for example: added, deleted, edited).
+-- user input --  
+Step 1. User executes add command with correct and valid arguments.  
 
-##### Pros over existing implementation
+-- `SchedulerParser` --  
+Step 2. Returns new `AddCommandParser`.  
 
-- Provide convenience for user
-- Allow smoother implementation for showing the next arbitrary number of upcoming events
+-- `AddCommandParser` --   
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.  
+Step 5. Verify that the given event start time is before end time.  
+Step 6. Returns new `AddCommand`.  
 
-##### Cons over existing implementation
+-- `AddCommand` --   
+Step 7. Verify that the same event has not already been added.  
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.  
+Step 9. Event is added.  
 
-- Repeated sorting of events whenever events are changed might introduce lag,
-  especially if there is a large number of events
-    - Possible to resolve via threads
-- Implementation may be complicated if completed/old events are still in the schedule
+The execution can be seen in the activity diagram given below.
 
-After reviewing the following pros and cons, we have decided that the pros outweighs the cons,
-and shall implement the enhancement in the future.
+_Activity Diagram for a typical `add` command_  
+![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
-#### Alternatives Considered
+<div style="page-break-after: always;"></div>
 
-Implement our own insertion sort to use when adding events.\
-This ensures the chronological order of the events is always correct when adding.
-However, other ways of managing the chronological order is required in case of an event being edited.
+### **Recur Command**
 
+[RecurCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/RecurCommand.java
+[RecurCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/RecurCommandParser.java
 
-### \[Proposed\] Undo/redo feature
+For _Recur_ command, the noteworthy classes are:
+- [`RecurCommandParser.java`][RecurCommandParser.java] - For parsing the arguments to `RecurCommand`.
+- [`RecurCommand.java`][RecurCommand.java] - For execution.
 
-#### Proposed Implementation
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- ParseException for index out of range
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+- CommandException for end dates in the past
+- CommandException for recur factor exceeding max allowable
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Scheduler` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Given below is an example usage scenario of how the _Recur_ command executes.
 
-* `VersionedAddressBook#commit()` — Saves the current scheduler state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous scheduler state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone scheduler state from its history.
+-- user input --   
+Step 1. User executes Recur command with correct and valid arguments.  
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+-- `SchedulerParser` --  
+Step 2. Returns new `RecurCommandParser`.  
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+-- `RecurCommandParser` --  
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.  
+Step 5. Returns new `RecurCommand`.  
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial scheduler state, and the `currentStatePointer` pointing to that single scheduler state.
+-- `RecurCommand` --  
+Step 6. Verify that the given index exist in Ez-Schedule.  
+Step 7. Verify that the given recurring end time is not in the past.  
+Step 8. For the given recur factor, verify that it is valid.  
+Step 9. Check all dates for event to be recurred on for any event clash.  
+Step 10. Add event into Ez-Schedule on all dates to be recurred.  
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
 
-Step 2. The user executes `delete 5` command to delete the 5th event in the scheduler. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the scheduler after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted scheduler state.
+_Activity Diagram for a typical `recur` command_  
+![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+_Activity: Check for time clash for all recurring dates._  
+![RecurCommandRecurringAddActivityDiagram.png](images/RecurCommandRecurringAddActivityDiagram.png)
 
-Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitAddressBook()`, causing another modified scheduler state to be saved into the `addressBookStateList`.
+<div style="page-break-after: always;"></div>
 
-![UndoRedoState2](images/UndoRedoState2.png)
+### **Edit Command**
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the scheduler state will not be saved into the `addressBookStateList`.
+[EditCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/EditCommand.java
+[EditCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/EditCommandParser.java
 
-</div>
+For _Edit_ command, the noteworthy classes are:
+- [`EditCommandParser.java`][EditCommandParser.java] - For parsing the arguments to `EditCommand`.
+- [`EditCommand.java`][EditCommand.java] - For execution.
 
-Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous scheduler state, and restores the scheduler to that state.
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
+- CommandException for index out of range
+- CommandException for identical events
+- CommandException for events with clashing time
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Given below is an example usage scenario of how the _Edit_ command executes.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Scheduler state, then there are no previous Scheduler states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+-- user input --  
+Step 1. User executes edit command with correct and valid arguments.
 
-</div>
+-- `SchedulerParser` --  
+Step 2. Returns new `EditCommandParser`.
 
-The following sequence diagram shows how the undo operation works:
+-- `EditCommandParser` --   
+Step 3. Verify that at least one of the argument prefixes is present.  
+Step 4. Verify that provided arguments are valid.     
+Step 5. Returns new `EditCommand`.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+-- `EditCommand` --   
+Step 6. Verify that the given index exist in Ez-Schedule.  
+Step 7. Verify that the same event has not already been added.  
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.  
+Step 9. Event is edited.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The execution can be seen in the activity diagram given below.
 
-</div>
+_Activity Diagram for a typical `edit` command_  
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the scheduler to that state.
+<div style="page-break-after: always;"></div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest scheduler state, then there are no undone Scheduler states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+### **Delete Command**
 
-</div>
+[DeleteCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/DeleteCommandParser.java
+[DeleteCommandClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/DeleteCommand.java
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the scheduler, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+For _Delete_ command, the noteworthy classes are:
+- [`DeleteCommandParser.java`][DeleteCommandParserClass] - Parse the arguments for `DeleteCommand`
+- [`DeleteCommand.java`][DeleteCommandClass] - Execute command
 
-![UndoRedoState4](images/UndoRedoState4.png)
+The following exceptions may be thrown during this process, namely:
+- `ParseException` for missing arguments
+- `ParseException` for invalid arguments
+- `CommandException` for index exceeding list size
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all scheduler states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Given below is an example usage scenario of how the _Delete_ command executes.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+-- user input --  
+Step 1. User executes `delete` command with multiple valid arguments.  
 
-The following activity diagram summarizes what happens when a user executes a new command:
+-- `SchedulerParser` --  
+Step 2. Returns new `DeleteCommandParser`.  
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+-- `DeleteCommandParser` --  
+Step 3. Verifies that provided arguments is valid.  
+Step 4. Parses provided arguments into `List<Index>`.  
+Step 5. Returns new `DeleteCommand`.  
 
-#### Design considerations:
+-- `DeleteCommand` -- <br>
+Step 6: Sorts and Reverses provided `List<Index>`.  
+Step 7: Verifies that none of the `Index` exceeds size of list of `Event`.  
+Step 8: Delete the `Event`(s) according the `List<Index>`.  
 
-**Aspect: How undo & redo executes:**
+Other alternative path of execution can be traced in the activity diagram below.
 
-* **Alternative 1 (current choice):** Saves the entire scheduler.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+_Activity Diagram for a typical `delete` command_  
+![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the event being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+<div style="page-break-after: always;"></div>
 
-_{more aspects and alternatives to be added}_
+### **Find Command**
 
-### \[Proposed\] Data archiving
+[FindCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/FindCommand.java
+[FindCommandParser.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/FindCommandParser.java
 
-_{Explain here how the data archiving feature will be implemented}_
+For _Find_ command, the noteworthy classes are:
+- [`FindCommandParser.java`][FindCommandParser.java] - For parsing the arguments to `FindCommand`.
+- [`FindCommand.java`][FindCommand.java] - For execution.
 
-### \[Proposed\] Calendar view feature
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
 
-#### Proposed Implementation
+Given below is an example usage scenario of how the _Find_ command executes.
 
-The proposed calendar view user interface implements the following operations:
+-- user input --  
+Step 1. User executes find command with correct and valid arguments.
 
-1. Provides an overview of all saved events in the scheduler to the user
-2. onClick() of calendar date (boxes) - List all the saved events the user have for that day
+-- `SchedulerParser` --  
+Step 2. Returns new `FindCommandParser`.
 
-The feature is going to be implemented by
-1. Creating the GUI of a calendar via JavaFX (Calendar.fxml and CalendarBox.fxml)
-2. When the program starts, it first fetches the existing events
-3. The calendar will next be "drawn" with the events for the current month
-4. The calendar includes button that allow users to go to either the next or previous month, each time the button is called, the calendar is "redrawn" with that particular month's events
-5. When a user were to click a date in the calendar (CalendarBox.fxml), it will list all existing events of that day to the user
-6. When a user were to add, edit or update an event, the calendar will be updated as well
+-- `FindCommandParser` --  
+Step 3. Verify that at least one of the argument prefixes is present.  
+Step 4. Verify that provided arguments are valid.  
+Step 5. Creates a `FindEventDescriptor`  
+Step 6. Returns new `FindCommand.java` using `FindEventDescriptor`.
 
-#### Design considerations:
-* **Alternative 1 (current choice):** Update the Calendar GUI whenever add/edit/delete an event.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+-- `FindCommand` --  
+Step 7. Determine if `Name`, `Date` or both are present from `FindEventDescriptor`.  
+Step 8. Create one of the following predicates, depending on the arguments provided: 
+`EventMatchesKeywordsAndDatePredicate`, `EventContainsKeywordsPredicate` or`EventMatchesDatePredicate`.  
+Step 9. Updates the `ObservableList` using the predicate.
 
-* **Alternative 2:** Update the Calendar GUI on if the month of the event is what the Calendar is current showing
-  itself.
-    * Pros: Will have better performance (e.g. for `add event`, no need to update the GUI if it is not what I am currently showing, if I were to click next).
-    * Cons: Implementation will become much more complex.
+The execution can be seen in the activity diagram given below.
 
-#### Additional Feature
-1. onDoubleClick() of a calendar date (boxes) - Shows a popup GUI of user schedule, similar to that of a timetable for either that day or week
+_Activity Diagram for a typical `find` command_  
+![FindCommandActivityDiagram.png](images/FindCommandActivityDiagram.png)  
 
+<div style="page-break-after: always;"></div>
+
+### **Next Command**
+
+[ShowNextCommandParserClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/parser/ShowNextCommandParser.java
+[ShowNextCommandClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/ShowNextCommand.java
+[UpcomingEventPredicateClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/event/UpcomingEventPredicate.java
+
+To keep track of the next upcoming event, we have opted to keep `Event`s sorted in chronological order.
+
+`Event`s are kept chronologically sorted by:
+1. `Event` was made comparable via a `Comparable<Event>` interface.
+   The comparison criteria are `Event#Date` and `Event#StartTime`.
+2. In `Scheduler`, attached a [`javafx.collections.ListChangeListener`][ListChangeListener] to `UniqueEventList` 
+   (the underlying run-time storage of the list of `Event`s) to know whenever `UniqueEventList` is changed
+   (possibly as a result of `add`, `edit`, `delete`, or even a sorting action).
+3. When a change is detected, we would sort the `Event`s via `FXCollections#sort`.
+
+Sequence Diagram for how `UniqueEventList` maintains a chronological order of `Event`
+![SortSequenceDiagram.png](images/SortSequenceDiagram.png)
+
+For _Next_ command, the noteworthy classes are:
+- [`ShowNextCommandParser.java`][ShowNextCommandParserClass] - Parse the arguments for `ShowNextCommand`
+- [`ShowNextCommand.java`][ShowNextCommandClass] - Execute command
+- [`UpcomingEventPredicate.java`][UpcomingEventPredicateClass] - Check if `Event` should be displayed as ongoing/upcoming
+
+During this process, `ParseException` may be thrown for invalid arguments.
+No exception is thrown for no arguments, as there is a default behaviour.
+
+Given below is an example usage scenario of how the `Next` command executes.
+
+-- user input --  
+Step 1. User executes `next` command with valid arguments.  
+
+-- `SchedulerParser` --  
+Step 2. Returns new `ShowNextCommandParser`.  
+
+-- `ShowNextCommandParser` --  
+Step 3. Verifies that provided argument is valid.  
+Step 4. Returns new `ShowNextCommand`.  
+
+-- `ShowNextCommand` --  
+Step 5. Creates an `UpcomingEventPredicate` using the provided argument.  
+Step 6. Uses the created `UpcomingEventPredicate` to filter for ongoing/upcoming `Event`(s).  
+Step 7. Updates `EventListPanel` with filtered `Event`(s).  
+
+Other alternative path of execution can be traced in the activity diagram below.
+
+_Activity Diagram for a typical `next` command_  
+![NextCommandActivityDiagram.png](images/NextCommandActivityDiagram.png)  
+
+[ListChangeListener]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.html
+[`ListChangeListener.Change`]: https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ListChangeListener.Change.html
+
+<div style="page-break-after: always;"></div>
+
+### **Undo Command**
+
+[UndoCommand.java]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/commands/UndoCommand.java
+
+For _Undo_ command, the noteworthy classes are:
+- [`UndoCommand.java`][UndoCommand.java] - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- CommandException for attempting to execute undo when recent command is empty
+
+Given below is an example usage scenario of how the _Undo_ command executes.
+
+-- user input --  
+Step 1. User executes a valid `add` command.
+
+-- `AddCommand` --  
+Step 2. Adds the `add` command as recent command.  
+Step 3. Adds the added `Event` as recent event.
+
+-- user input --  
+Step 4. User executes `undo` command.
+
+-- `UndoCommand` --  
+Step 5. Verify that recent command is not empty.  
+Step 6. Undo the recent command (deletes the recent event).
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `undo` command_  
+![UndoCommandActivityDiagram.png](images/UndoCommandActivityDiagram.png)  
+
+<div style="page-break-after: always;"></div>
+
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+
+## **Glossary**
+
+--------------------------------------------------------------------------------------------------------------------
+* **Clashing Events**: One or more events where any duration of the event overlaps with the another event
+* **CLI**: Command Line Interface
+* **Event**: A task with a starting time and an ending time
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **GUI**: Graphical User Interface
+* **Ongoing Event**: An event that has started, but not ended
+* **Upcoming Event**: An event that has not started
+
+<div style="page-break-after: always;"></div>
+
+## **Appendices**
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+### **Appendix A: Project Requirements**
 
-### Product scope
+#### **Product Scope**
 
 **Target user profile**:
-
 * has a need to manage a significant number of events
 * prefer desktop apps over other types
 * prefers visual representation of output
@@ -346,199 +537,585 @@ The feature is going to be implemented by
 **Value proposition**: manage events at high-level, provides faster event analysis with graphical outputs.
 
 
-### User stories
+#### **User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                               | So that I can…​                                                         |
-|----------|------------------|--------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | new user         | see usage instructions                     | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user             | easily save events after closing the app   | generate it again when I start the app                                  |
-| `* * *`  | user             | add a event's schedule into the app       | see their schedules                                                     |
-| `* * *`  | user             | delete an event from the app               | remove events that are no longer scheduled                              |
-| `* *`    | forgetful user   | find my next event                         | see the upcoming event without having to check every events myself      |
-| `* *`    | user             | undo accidental deletions                  | easily restore accidents in scheduling                                  |
-| `* *`    | teacher          | find a free timeslot in my schedule        | schedule a timeslot for student consultations                           |
-| `* *`    | user             | find an event by name                      | locate details of events without having to go through the entire list   |
-| `* *`    | user             | edit my schedule                           | make last minute changes to events                                      |
-| `* *`    | user             | be able to schedule many events            | schedule as many events as I want                                       |
-| `* *`    | user             | be able to have more than one scheduler    | generate different schedules for differnt events                        |
-| `*`      | unmotivated user | have motivational quotes                   | feel motivated in my day                                                |
+| Priority | As a …         | I want to …                                   | So that I can…                                                          |
+|----------|----------------|-----------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user       | see usage instructions                        | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user           | add a event's schedule into the app           | see their schedules                                                     |
+| `* * *`  | user           | delete an event from the app                  | remove events that are no longer scheduled                              |
+| `* * *`  | user           | list all events                               | have a high-level overview of all events that I currently have          |
+| `* * *`  | regular user   | save my scheduler on exit                     | reload them again next time                                             |
+| `* * *`  | regular user   | load my events in the scheduler on start      | use the scheduler immediately without having to reenter all events      |
+| `* *`    | clumsy user    | undo a command                                | reset the scheduler to the previous state before I made a mistake       |
+| `* *`    | forgetful user | see my next event clearly                     | readily see what is upcoming for me without having to type any commands |
+| `* *`    | user           | sort my events based on date and time         | readily see my upcoming events chronologically                          |
+| `* *`    | regular user   | repeat an event over a certain period of time | easily repeated events in my scheduler for the same type of events      |
+| `* *`    | long term user | see my monthly schedule easily                | readily see which days I am more available, or which are my busier days |
+| `* *`    | forgetful user | find my next event                            | check on the next event in the scheduler                                |
+| `* *`    | clumsy user    | undo accidental deletions                     | easily restore accidents in scheduling                                  |
+| `* *`    | user           | find an event by name                         | locate details of events without having to go through the entire list   |
+| `* *`    | user           | find an event by date                         | locate details of events without having to go through the entire list   |
+| `* *`    | user           | edit my schedule                              | make changes to events                                                  |
+| `* *`    | busy user      | be able to schedule many events               | schedule as many events as I want                                       |
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
-### Use cases
+#### **Use Cases**
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an event**
+<details open markdown="block">
+<summary markdown="span">**Use case: Add an event**</summary>
+
+**MSS**
+1. User requests to add an event
+2. System adds the event<br> 
+   Use case ends.
+
+**Extensions**
+* 1a. The event already exist.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given event format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+* 1c. The given end time of the event is before start time.
+    * 1c1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Recur an event**</summary>
 
 **MSS**
 
-1. User requests to add an event
-2. System adds the event
+1. User requests to recur an event over a period of time
+2. System repeatedly adds the event<br>
+   Use case ends.
 
-    Use case ends.
+**Extensions**
+
+* 1a. The length of time to recur is not appropriate.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+* 1b. The given event format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
+
+* 1c. The given end date of recur is in the past.
+    * 1c1. System shows an error message.<br>
+      Use case ends.
+
+* 1d. There is a clash of events in an upcoming day.
+    * 1d1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Edit an event**</summary>
+
+**MSS**
+
+1. User requests to edit an event
+2. System edits the event<br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. The event already exist.
-
-    * 1a1. System shows an error message.
-
+    * 1a1. System shows an error message.<br>
       Use case ends.
 
-* 2a. The given event format invalid.
-
-    * 2a1. System shows an error message.
-
+* 1b. The given format invalid.
+    * 1b1. System shows an error message.<br>
       Use case ends.
 
-**Use case: Delete an event**
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Delete an event**</summary>
 
 **MSS**
 
-1.  User requests to list events
-2.  System shows a list of events
-3.  User requests to delete a specific event in the list
-4.  System deletes the event
-
-    Use case ends.
+1. User requests to delete an event/ events
+2. System deletes the event(s)<br>
+   Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-
-  Use case ends.
-
-* 2a. The given index is invalid.
-
-    * 2a1. System shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Undo a delete**
-
-**MSS**
-
-1. User requests to undo the recent delete
-2. System restores the most recent delete
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. New event added duplicate of recent deleted event.
-
-    * 1a1. System shows an error message.
-
+* 1a. The given index/ indices is invalid.
+    * 1a1. System shows an error message.<br>
       Use case ends.
 
-* 2a. The list is empty.
+* 1b. The given format invalid.
+    * 1b1. System shows an error message.<br>
+      Use case ends.
 
-  Use case ends.
+</details>
 
-**Use case: Find event by name**
+<details open markdown="block">
+<summary markdown="span">**Use case: Find an event by name**</summary>
 
 **MSS**
 
 1. User requests to find an event by name
-2. System shows a list of events matching the name
-
+2. System finds events with matching name
+3. System displays events with matching name<br>
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
 
-  Use case ends.
+</details>
 
-**Use case: Find next event**
+<details open markdown="block">
+<summary markdown="span">**Use case: Show next event(s) by name**</summary>
 
 **MSS**
 
-1. User requests for next upcoming event
-2. System shows the next upcoming event
-
+1. User requests to show next x number of event(s)
+2. System displays the next x number of events in chronological order<br>
    Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
+* 1a. The given event format invalid.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
 
-  Use case ends.
+</details>
 
-*{More to be added}*
+<details open markdown="block">
+<summary markdown="span">**Use case: Undo a delete**</summary>
 
-### Non-Functional Requirements
+**MSS**
+1. User requests to undo the recent delete
+2. System restores the most recent delete<br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. Undo is the first command given to the scheduler.
+    * 1a1. System shows an error message.<br>
+      Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: List all events**</summary>
+
+**MSS**
+
+1. User requests to list all events
+2. System shows all events in the scheduler<br>
+   Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Get help instructions**</summary>
+
+**MSS**
+
+1. User requests for help instructions
+2. System shows help instructions<br>
+   Use case ends.
+
+</details>
+
+<details open markdown="block">
+<summary markdown="span">**Use case: Exit the application**</summary>
+
+**MSS**
+
+1. User requests to exit the application
+2. System saves all events
+3. System exits the application<br>
+   Use case ends.
+
+</details>
+
+<div style="page-break-after: always;"></div>
+
+#### **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
 
-*{More to be added}*
+### **Appendix B: Planned Enhancements**
 
-### Glossary
+To resolve certain known feature flaws, we have planned to add some enhancements in the near future:
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Event**: A task with a starting time and an ending time
+**Data Verification when loading save files**
 
---------------------------------------------------------------------------------------------------------------------
+Currently, the program reads and loads the data from the save files directly.
+As long as the data is in the correct format, the data can be loaded successfully.
+We plan to enhance this by verifying the validity of the data, 
+that is making sure the saved events does not violate constraints such as overlapping time.
 
-## **Appendix: Instructions for manual testing**
+This will help to prevent errors made by advanced user who decided to modify the save files directly.
+While the advanced user may be aware of the structure of the file,
+knowing if the event added has conflict with any existing events can be hard,
+especially if there are many existing events.
 
-Given below are instructions to test the app manually.
+**Increasing the minimum size of the windowed screen**
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+Currently, if a user sets their windowed screen to the minimum size,
+it can potentially cut off access to the local storage path where all event data is stored.
+
+![windowedScreenCutOff.png](images/windowedScreenCutOff.png)
+
+We plan to increase the minimum size of the windowed screen to ensure that the path to the local storage is always visible.
+This will provide convenience to users who wish to modify the event data from the local storage
+
+**Reformatting the display in events panel and upcoming events panel**
+
+Currently, if the event names are too long, they may overflow onto the date portion,
+which can make it difficult to view both the full event name and date.
+
+![eventsPanelNotFullyDisplayingName.png](images/eventsPanelNotFullyDisplayingName.png)
+
+We plan to improve the display of event names by wrapping the text and continuing it on the next line.
+This will prevent the issue of long event names overflowing onto the date portion
+
+**Changing the display of events in calendar date boxes**
+
+Currently, if event names exceed 5 characters in length, 
+the characters beyond the fifth are replaced with "..." in the display.
+
+![calendarBoxesNotFullyDisplayingName.png](images/calendarBoxesNotFullyDisplayingName.png)
+
+The original purpose was to give users a quick overview and inform them of the presence of events on certain dates. 
+However, this truncated display does not provide much value to users as it fails to show the full event name.
+
+We plan to change the way calendar date boxes display events.
+Rather than showing event names, we will use dots to represent events. 
+Each dot will have a different color within the same day to represent different events. 
+This approach will allow users to quickly see an overview of the number of events on a given day.
+An example is given below.
+
+![calendarBoxesPlannedEnhancement.png](images/calendarBoxesPlannedEnhancement.png)
+
+If users are interested in knowing more about the events, 
+they can use the `find` command or click on the calendar date box to view the event details.
+
+<div style="page-break-after: always;"></div>
+
+**Increase flexibility in event names**
+
+Currently, event names only support alphanumeric characters and spaces. 
+This may cause inconvenience to users as we anticipate that event names may include 
+special characters such as brackets, colons, and dashes.
+
+We plan to increase the number of characters supported in event names. 
+However, certain characters such as `/` and `\` will not be supported as they may potentially cause conflicts
+
+<div style="page-break-after: always;"></div>
+
+### **Appendix C: Instructions for Manual Testing**
+
+Presented below are a series of instructions, organized in **Context, Action, Result (CAR)** format, 
+that can be followed to perform manual testing of the application.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
-### Launch and shutdown
 
-1. Initial launch
+#### **Launch and Shutdown**
 
-   1. Download the jar file and copy into an empty folder
+#### Scenario 1  
+{: .no_toc}  
+**Context:** Initial launch
 
-   1. Double-click the jar file Expected: Shows the GUI with 3 components (The window size may not be
-      optimum):
-      1. A calendar of the month of present time 
-      2. An input bar for user commands
-      3. A container showing the next upcoming event.
+**Action:**
+1. Download the jar file and copy into an empty folder
+2. Double-click the jar file
+3. Ensure that it is launched in `Java 11`
 
-2. Saving window preferences
+**Result:**  Displays the GUI with the application opened to full-screen
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+#### Scenario 2
+{: .no_toc}  
+**Context:** Normal launch
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+**Action:** Launch the application again (follow from scenario 1 step 2)
 
-1. _{ more test cases …​ }_
+**Result:**  Displays the GUI with the application opened to full-screen
 
-### Deleting a event
+#### Scenario 3
+{: .no_toc}  
+**Context:**  Restarting the application with existing data
 
-1. Deleting a event while all events are shown
+**Action:**
+1. Click on the 'X' button located in the top-right corner of the screen
+2. Double-click the jar file
 
-   1. Prerequisites: List all events using the `list` command. Multiple events in the list.
+**Result:**  The existing data should remain unchanged
 
-   1. Test case: `delete 1`<br>
-      Expected: First event is deleted from the list. Details of the deleted event shown in the status message. 
-      Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
+#### **Adding an Event**
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Scenario 1
+{: .no_toc}  
+**Context:** The `Event` has not yet been added to _Ez-Schedule_
 
-1. _{ more test cases …​ }_
+**Action:** Execute the command `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
 
-### Saving data
+**Result:** 
+* The `Event` has been successfully added to _Ez-Schedule_
+* Details of the `Event` is also added to the Events Panel and the Calendar
 
-1. Dealing with missing/corrupted data files
+#### Scenario 2
+{: .no_toc}  
+**Context:** An identical `Event` to the one being added, already exists in _Ez-Schedule_
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+**Action:**  Execute the command `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
 
-1. _{ more test cases …​ }_
+**Result:** The Response Box will display the message "This event already exists in the scheduler"
+
+#### Scenario 3
+{: .no_toc}  
+**Context:** The selected time slot is already occupied by another `Event` in _Ez-Schedule_
+
+**Action:**  Execute the command `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
+
+**Result:** The Response Box will display the message "Another event already exists at the chosen time"
+
+
+#### **Recurring an Event**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** No conflicting `Event` scheduled during the recurring time frame specified
+
+**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`
+
+**Result:**
+* The `Event` will be added repeatedly until the specified end date
+* Details of all the `Event` is also added to the Events Panel and the Calendar
+
+<div style="page-break-after: always;"></div>
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** Another `Event` already exist in the recurring time frame specified by the `Event` being added
+
+**Action:** Execute the command: `recur 1 d/2023-05-10 every/day`
+
+**Result:** The Response Box will display the message "Unable to recur. 10 May has a clashing event."
+
+
+#### **Editing an Event**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** There exists an `Event` with the index 1 in _Ez-Schedule_
+
+**Action:** Execute the command: `edit 1 n/Basketball`
+
+**Result:** The name of the `Event` has been updated to Basketball
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** Modify an `Event` to make it identical to another `Event` already present in _Ez-Schedule_
+
+**Action:** Execute `edit` command with arguments identical to another existing `Event`
+
+**Result:** The Response Box will display the message "This event already exists in the scheduler"
+
+
+#### **Deleting Events**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** There exists an `Event` with the index 1 in _Ez-Schedule_
+
+**Action:** Execute the command: `delete 1`
+
+**Result:** 
+* The `Event` is removed from _Ez-Schedule_
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** There exists multiple `Event` with the indexes 1, 2 and 3 in _Ez-Schedule_
+
+**Action:** Execute the command: `delete 1 2 3`
+
+**Result:** 
+* All the `Event` is removed from _Ez-Schedule_
+* Details of the `Event` is also removed from the Events Panel, Upcoming Events Panel, and the Calendar
+
+#### Scenario 3
+{: .no_toc}  
+**Context:** One of the specified indexes, index 10, does not exist in _Ez-Schedule_
+
+**Action:** Execute the command: `delete 1 2 3 10`
+
+**Result:** 
+* The Response Box will display the message "The event index 10 provided is invalid"
+* None of the `Event` with valid index will be removed from _Ez-Schedule_
+
+
+#### **Finding Events**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** There exists at least one `Event` whose `Name` includes the word Tennis
+
+**Action:** Execute the command: `find n/Tennis`
+
+**Result:** 
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis
+* The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
+
+<div style="page-break-after: always;"></div>
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** There exists at least one `Event` whose `Name` partially matches the word 'Ten'
+
+**Action:** Execute the command: `find n/Ten`
+
+**Result:**
+* The Events Panel will be updated to display only `Event` whose `Name` includes Ten, which may include `Name` such as Tennis
+* The Calendar will highlight all the date boxes that correspond to days on which the found `Event` are scheduled
+
+#### Scenario 3
+{: .no_toc}  
+**Context:** There exists at least 1 `Event` whose `Date` correspond to May 1, 2023
+
+**Action:** Execute the command: `find d/2023-05-01`
+
+**Result:**
+* The Events Panel will be updated to display only those `Event` whose `Date` are May 1, 2023
+* The date box for May 1, 2023 will be highlighted on the Calendar
+
+#### Scenario 4
+{: .no_toc}  
+**Context:** There exists at least one `Event` whose `Name` includes the word Tennis and `Date` corresponds to May 1, 2023
+
+**Action:** Execute the command: `find n/Tennis d/2023-05-01`
+
+**Result:**
+* The Events Panel will be updated to display only those `Event` whose `Name` includes the word Tennis and `Date` are May 1, 2023
+* The date box for May 1, 2023 will be highlighted on the Calendar
+
+
+#### **Show Next Events**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** None needed
+
+**Action:** Execute the command: `next`
+
+**Result:**
+* The Response Box will display the message "1 events listed!"
+* The Upcoming Events Panel will display the next upcoming or ongoing event that you have
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** There exists at least two upcoming or ongoing `Event`
+
+**Action:** Execute the command: `next 2`
+
+**Result:**
+* The Response Box will display the message "2 events listed!"
+* The Upcoming Events Panel will display the next 2 upcoming or ongoing event that you have
+
+
+#### **Undo a Command**
+
+#### Scenario 1
+{: .no_toc}  
+**Context:** None needed
+
+**Action:**
+1. Execute the command: `add n/Tennis d/2023-05-01 s/10:00 e/12:00`
+2. Execute the command: `undo`  
+
+**Result:** 
+* The Response Box will display the message "Action undone: add"
+* The Tennis `Event` that was added will be removed from _Ez-Schedule_
+
+#### Scenario 2
+{: .no_toc}  
+**Context:** No conflicting `Event` scheduled during the recurring time frame specified
+
+**Action:**
+1. Execute the command: `recur 1 d/2023-05-10 every/recur`
+2. Execute the command: `undo`
+
+**Result:**
+* The Response Box will display the message "Action undone: recur"
+* All the `Event` that was added will be removed from _Ez-Schedule_
+
+#### Scenario 3
+{: .no_toc}  
+**Context:** There exists an `Event` with an index 1 and a `Name` of Tennis in _Ez-Schedule_
+
+**Action:**
+1. Execute the command: `edit 1 n/Basketball`
+2. Execute the command: `undo`
+
+**Result:**
+* The Response Box will display the message "Action undone: edit"
+* The Tennis `Event` that was edited to Basketball will be changed back to Tennis
+
+#### Scenario 4
+{: .no_toc}  
+**Context:** There exists an `Event` with an index 1 in _Ez-Schedule_
+
+**Action:**
+1. Execute the command: `delete 1`
+2. Execute the command: `undo`
+
+**Result:**
+* The Response Box will display the message "Action undone: delete"
+* The `Event` with index 1 that was deleted is added back into _Ez-Schedule_
+
+<div style="page-break-after: always;"></div>
+
+### **Appendix D: Effort**
+
+**Difficulty Level:** Overall _Medium_ difficulty (averaged total votes by all members)
+
+**Challenges Faced:**
+- During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
+  We would copy over whichever code we deem relevant. Halfway through the milestone, one of us realised that doing this
+  possibly violated [`Constraint-Brownfield`][tp constraints brownfield]. After checking with our tutor/prof, we had to
+  restart again, effectively wasting our effort and restricting our duration for `milestone 1` by half.
+- During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
+  required a lot of careful checking. Despite using IDE features like refactor and find-and-replace, there were
+  still variable name and comments which we had to change, and we had to painstakingly double-check everything.
+- Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
+  Java CI failing for a prolonged period. We spend a lot of time in `milestone 2` changing/fixing the broken test 
+  cases, which left us with not a lot of time to implement new features in `milestone 2` and `milestone 3`.
+
+**Effort Required:** High effort for the morphing process.
+
+**Achievements of Project:**
+- Created a working product
+- Experienced using GitHub Issues and PRs
+- Experienced making UML diagrams digitally
+- Practiced debugging & testing skills taught
+- Practiced workflows & design approaches taught
+- Collaborated with a group on a huge project (~13kLoC)
+
+[tp constraints brownfield]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-brownfield
