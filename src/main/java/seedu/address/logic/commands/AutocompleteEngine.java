@@ -211,13 +211,7 @@ public class AutocompleteEngine {
 
         boolean isIndexRequired = argPrefixes.contains(INDEX_PLACEHOLDER);
         if (isIndexRequired) {
-            long numOfIndexRequired = argPrefixes.stream().filter(INDEX_PLACEHOLDER::equals).count();
-            boolean areAllValidIndexes = words.stream().limit(numOfIndexRequired)
-                    .allMatch(word -> word.matches("\\d+"));
-
-            if (!areAllValidIndexes) {
-                throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
+            validateIndex(argPrefixes, words);
         }
 
         boolean hasNoTrailingSpace = !commandBody.endsWith(" ");
@@ -285,6 +279,20 @@ public class AutocompleteEngine {
                 .collect(Collectors.joining(" "));
         String leadingPadding = commandBody.isEmpty() ? " " : "";
         return leadingPadding + allArgs;
+    }
+
+    /**
+     * Validate that the index value is valid (but doesn't check if index exist in the list).
+     * Assumes that the command requires index argument(s).
+     */
+    private static void validateIndex(List<Prefix> argPrefixes, List<String> words) throws ParseException {
+        long numOfIndexRequired = argPrefixes.stream().filter(INDEX_PLACEHOLDER::equals).count();
+        boolean areAllValidIndexes = words.stream().limit(numOfIndexRequired)
+                .allMatch(word -> word.matches("\\d+"));
+
+        if (!areAllValidIndexes) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
     }
 
 }
