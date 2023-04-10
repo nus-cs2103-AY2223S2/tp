@@ -492,7 +492,7 @@ Step 3. The user executes `add n/Hobbit …​` to add a new bookmark. The `add`
 
 </div>
 
-Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibraryk()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
+Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibrary()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
