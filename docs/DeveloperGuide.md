@@ -518,3 +518,4 @@ increasingly difficult to scroll. We plan to add a command `wipelog` to clear th
 it is no longer required. We plan to add a command to delete such shortcuts: `delete_shortcut SHORTCUT`. To avoid making
 commands inaccessible, shortcuts will only be deletable when more than one alias exists for the
 command in question; an error message shall be raised otherwise.
+6. Fix the filters display to work properly after some commands like "undo". For example, after 2 input "filter t/abc t/cde" and "filter t/mnb", the Ui display the applying filters are "t/mnb", but after a "redo" the Ui display no filters that are being applied while it supposes to show "t/abc" and "t/cde" to user.
