@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 <!-- omit from toc -->
-## Table of Contents
+## **Table of Contents**
 
 - [**Legend**](#legend)
 - [**Acknowledgements**](#acknowledgements)
@@ -62,6 +62,8 @@ Here are some symbols used throughout the user guide to inform you of additional
 
 [Back to Top ↑](#table-of-contents)
 
+---
+
 ## **Acknowledgements**
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
@@ -83,7 +85,7 @@ Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W10-3/tp/tree/master/docs/diagrams/) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -99,7 +101,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 
@@ -135,13 +137,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -154,7 +156,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -190,7 +192,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -213,7 +215,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -450,7 +452,7 @@ The UI listens to changes to this `favoritedPersons` list and updates the UI acc
 The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
 
 - We made the `rank` field compulsory since we are only dealing with army personnel (i.e., everyone should have a `rank`).
-  - `rank` is not a free-response field as `"ABCDEF"` is *not* a valid rank. For now, `rank` can only take on the values `"REC"`, `"PTE"`, `"CPL"`, `"3SG"` or `"2LT"` -- we intend to expand this list to include all valid ranks in the future.
+  - `rank` is not a free-response field as `"ABCDEF"` is *not* a valid rank. For now, `rank` can only take on the values `"REC"`, `"PTE"`, `"CPL"`, `"CFC"`, `"3SG"`, `"2SG"`, `"1SG"`, `"SSG"`, `"MSG"`, `"3WO"`, `"2LT"`, `"LTA"`, `"CPT"`, `"MAJ"` and `"CIV"` -- we intend to expand this list to include all valid ranks in the future.
 - We made the `unit`, `company` and `platoon` fields optional as military personnel might not always be assigned to a unit, company, and/or platoon.
   - If the user omitted the `unit`, `company` and/or `platoon` fields when creating a new contact, they will be automatically set to `"N/A"`.
 
@@ -732,6 +734,8 @@ testers are expected to do more *exploratory* testing.
 
 [Back to Top ↑](#table-of-contents)
 
+---
+
 ## **Appendix: Effort**
 
 - While adding new features, we realized that we needed to rethink some of the existing features. For example, when adding the `filter` feature, we needed to re-think the `find` feature as well since `find` originally only supports full word match (as opposed to partial word match) and only searches for name. To ensure consistency with `filter`, we augmented `find` to support partial word match and enabled it to search through all fields.
@@ -739,6 +743,8 @@ testers are expected to do more *exploratory* testing.
 - Effort in implementing the `importcsv` command was reduced by reusing a library called Opencsv. Our work on adapting Opencsv to our product is contained in class Csv.java.
 
 [Back to Top ↑](#table-of-contents)
+
+---
 
 ## **Appendix: Planned Enhancements**
 
