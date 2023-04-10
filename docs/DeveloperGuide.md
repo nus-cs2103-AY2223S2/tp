@@ -917,8 +917,8 @@ In the near future, we hope to be able to enhance our application as stated belo
    ingredient. As such, we hope to increase the intuitiveness of our application by allowing users to 
    enter an additional input of the price of such ingredients with everyday quantities (e.g. $7 for a bottle of olive oil).
 
-8. Currently, our `find` by *tag* command restricts to only **one** tag. We hope to allow the command to 
-   search for **more than one** tag for more flexibility.
+8. Currently, our `find` command restricts to only **one** command flag. We hope to allow the command to 
+   search through **more than one** command flag for more flexibility.
 
 9. Currently, duplicate ingredients are allowed to be entered into a recipe. We hope to 
    modify this. In the case when a duplicate recipe is entered by the user, the result display will 
