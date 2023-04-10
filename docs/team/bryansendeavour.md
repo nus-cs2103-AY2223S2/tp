@@ -30,6 +30,8 @@ Given below are my contributions to the project.
     * Design and implementation of improved GUI (Pull Request [#117](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/117))
     * Enhance `clear` command (Pull Request [#159](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/159))
     * Bug fixes Pull Request [#125](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/125) (Pull Request [#145](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/145)) 
+  * Release of `v1.4` on GitHub.
+    * Bug fixes Pull Request [#228](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/228)
 
 * **Enhancements to existing features**:
   * Enhanced the `clear` command
@@ -69,5 +71,3 @@ Given below are my contributions to the project.
     * [#126](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/126)
     * [#144](https://github.com/AY2223S2-CS2103T-T11-3/tp/issues/144)
 
-* **Tools**:
-  * to be added soon
