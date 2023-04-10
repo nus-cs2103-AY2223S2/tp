@@ -686,6 +686,10 @@ Examples:
 - add_alarm t/5 c/finish question one
 - The above command adds an alarm that rings in 5 minutes, with comment "finish question 1"
 
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** Parameter for time has to be an integer.
+</div>
+
 #### Remove a scheduled alarm : `delete_alarm`
 
 Delete a scheduled alarm from the current alarm list. It will not ring on the scheduled time after deletion.
