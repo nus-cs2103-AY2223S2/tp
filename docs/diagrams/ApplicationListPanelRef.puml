@@ -7,7 +7,8 @@ skinparam classBackgroundColor UI_COLOR
 package UI <<Rectangle>>{
 Class "{abstract}\nUiPart" as UiPart
 Class ControlBox
-Class Popup
+Class PopupAddInternship
+Class PopupEditInternship
 Class ApplicationListPanel #CF2765
 Class ApplicationCard
 }
@@ -18,15 +19,18 @@ Class HiddenModel #FFFFFF
 
 ApplicationListPanel --|> UiPart
 ControlBox --|> UiPart
-Popup --|> UiPart
+PopupAddInternship --|> UiPart
+PopupEditInternship --|> UiPart
 ApplicationCard --|> UiPart
 
 ApplicationListPanel -down-> ControlBox
 ApplicationListPanel -down-> ApplicationCard
-ControlBox -down-> Popup
+ApplicationCard -down-> PopupEditInternship
+ControlBox -down-> PopupAddInternship
 
 ApplicationCard .right.> Model
-Popup .right.> Model
+PopupAddInternship .right.> Model
+PopupEditInternship .right.> Model
 
 ApplicationCard -[hidden]right- ControlBox
 
