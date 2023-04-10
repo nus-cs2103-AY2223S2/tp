@@ -955,34 +955,33 @@ Proposed behaviour:
 ### Display birthdate in person cards
 
 When users provide a birthdate for an Elderly or Volunteer profile, only the person's current age is displayed in the app. To view the specific birthdate, users must refer to the respective JSON file.
-We should display the birthdate in FriendlyLink as well.
+We should include birthdate in each person's information card as well.
 
 ### Enhance display of large number of tags
 
 There are no limits on the number of tags or the character limit for each tag. If large number of tags or tags with excessively long names are used, it affects the UI display and impact user experience.
-<Insert proposed solution>
+We plan to limit each tag within 50 characters, with the total number of tags being less than 20.
+This would ensure decent degree of input flexibility, while not severely clogging up the UI display.
 
 ### Enhance display of pair information
 
-Currently, users need to mouse over the pair card to view information of each pair. This reduces the efficiency of FriendlyLink, which is intended to be optimised for typing. A command to view pairing details, instead of hovering over the pair item, and reading from the popover card would improve efficiency.
-<Insert proposed solution>
+Currently, users need to mouse over the pair card to view information of each pair. This reduces the efficiency of FriendlyLink, which is intended to be optimised for typing.
+We plan to add a command to view pairing details directly as information cards. This would help to improve efficiency of display.
 
 ### Enhance effectiveness of autoPair feature
 
 autoPair algorithm for pairing up volunteers and elderly users employs a greedy approach, which may not always be the most optimal in terms of time efficiency or number of pairings we can automatically pair.
-<Insert proposed solution>
+We are continuously searching for better pairing algorithms.
 
 ### Enhance available dates feature
 
 Currently, available dates take in dates and not time of day.
-We should improve it to allow users to enter time into the availability fields to provide greater flexibility in specifying availability period.
+We should improve it to also allow users to enter time into the availability fields, such as YYYY-MM-DD HH:MM:SS to provide greater flexibility in specifying availability period.
 
 ### Enhance name to accept special characters
 
 Currently, names do not accept `.` and `\\`. This may cause some problems where a person's legal name contains these special characters.
 We should modify the name to accept these special characters.
-
-1. Depending on whether or not any record is present in the section, the width of the Elderly, Volunteer and Pair UI may vary slighly.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
