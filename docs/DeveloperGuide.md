@@ -33,6 +33,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -319,6 +321,8 @@ The today command updates the appointment list to show appointments that occur t
 
 The command is equivalent to running the `find_appt` command with the start time being `00:00` of the current date, and the end time being `23:59` of the current date. For more implementation details, refer to the [`find_appt` command](#find-appointment--findappt--command).
 
+<div style="page-break-after: always;"></div>
+
 ### Delete patient (`delete_patient`) command
 
 **Overview**
@@ -379,6 +383,8 @@ Creates popup message to assist help.
 **Implementation**
 
 The help command creates a pop up window message redirecting the user to the user guide. This is executed by passing a boolean `showHelp = true` into `CommandResult`. In `MainWindow`, the boolean `CommandResult.isShowHelp()` is set to true and will execute the `handleHelp()` method. This method will check if the help window is already showing. If it is not, it will open the window for the user.
+
+<div style="page-break-after: always;"></div>
 
 ### View patient card (`view`) command
 
