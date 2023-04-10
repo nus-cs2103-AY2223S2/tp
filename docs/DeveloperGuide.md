@@ -1255,6 +1255,27 @@ testers are expected to do more *exploratory* testing.
    11. Test case: `edit 1 xxx/INVALID_PARATEMER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
        Expected: Similar to previous, except error message is specific to the first prefix with an invalid parameter.
 
+### Showing a student entry
+
+1. Showing a student entry while all students are being shown
+
+   1. Prerequisites:  Prerequisites: List all students using the `list` command. At least 1 student in the list.
+   
+   2. Test case: `show 1` \\
+      Expected: Student entry at position 1 shows up in the `ResultPersonListPanel` on the bottom right of the window. Details shown includes all non-empty fields and the full (non-truncated) remark if any.
+   
+   3. Test case: `show 1 EXTRANEOUS_INPUTS` (where EXTRANEOUS_INPUTS are irrelevant inputs) \\
+      Expected: No student entry is shown. The error message shown details `Invalid command format!` followed by the `show` command format and example.
+
+   4. Test case: `show` \\
+      Expected: Same as previous.
+
+   5. Test case: `show 0` \\
+      Expected: No student entry is showm. The error message shown states `The person index provided is invalid`.
+   
+   6. Other incorrect show commands to try: `show xxx` (where xxx is an invalid number/characters such as -1, or a number greater than the list size) \\
+      Expected: Same as previous.
+
 [↑ Back to top](#table-of-contents)
 
 ### Saving data
