@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant "c:TagCommand" as TagCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"tag CS2040S /tags fun")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand(\n"tag CS2040S /tags fun")
+activate TrackerParser
+
+create TagCommandParser
+TrackerParser -> TagCommandParser
+activate TagCommandParser
+
+TagCommandParser --> TrackerParser
+deactivate TagCommandParser
+
+TrackerParser -> TagCommandParser : parse(\n"CS2040S /tags fun")
+activate TagCommandParser
+
+TagCommandParser -> TagCommandParser : isTaggingMod(\npresent prefix: "/tags")
+activate TagCommandParser
+
+TagCommandParser --> TagCommandParser : true
+deactivate TagCommandParser
+
+create TagCommand
+TagCommandParser -> TagCommand : tag, module code
+activate TagCommand
+
+TagCommand --> TagCommandParser : c
+deactivate TagCommand
+
+TagCommandParser --> TrackerParser : c
+destroy TagCommandParser
+
+TrackerParser --> LogicManager : c
+deactivate TrackerParser
+
+LogicManager -> TagCommand : execute(model)
+activate TagCommand
+
+TagCommand -> Model : hasModule(module code)
+activate Model
+
+Model --> TagCommand : true
+deactivate Model
+
+TagCommand -> Model : getModule(module code)
+activate Model
+
+Model --> TagCommand : original module
+deactivate Model
+
+TagCommand -> Model : setModule(original module, tagged module)
+activate Model
+
+Model --> TagCommand
+deactivate Model
+
+create CommandResult
+TagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagCommand : r
+deactivate CommandResult
+
+TagCommand --> LogicManager : r
+deactivate TagCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+
+@enduml

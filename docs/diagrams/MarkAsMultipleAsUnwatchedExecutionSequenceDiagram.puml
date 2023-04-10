@@ -1,0 +1,106 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ": LogicManager" LOGIC_COLOR
+participant "MultipleEventsParser" LOGIC_COLOR
+participant ": MarkMultipleAsUnwatchedCommand" LOGIC_COLOR
+participant ": MarkAsUnwatchedCommand" LOGIC_COLOR
+participant "r: CommandResult" LOGIC_COLOR
+endbox
+
+box Model MODEL_COLOR_T1
+participant "m: Model" MODEL_COLOR
+participant "v: Video" MODEL_COLOR
+participant "w: Video" MODEL_COLOR
+end box
+
+
+": LogicManager" -> ": MarkMultipleAsUnwatchedCommand": execute(Model m)
+activate ": LogicManager"
+
+activate ": MarkMultipleAsUnwatchedCommand"
+
+loop for each video specified
+
+create ": MarkAsUnwatchedCommand"
+": MarkMultipleAsUnwatchedCommand" -> ": MarkAsUnwatchedCommand"
+activate ": MarkAsUnwatchedCommand"
+
+": MarkAsUnwatchedCommand" -> "m: Model": hasVideo(ModuleCode, \nLectureName, VideoName)
+
+activate "m: Model"
+
+": MarkAsUnwatchedCommand" <-- "m: Model": true
+
+deactivate "m: Model"
+
+": MarkAsUnwatchedCommand" -> "m: Model": getVideo(ModuleCode, \nLectureName, VideoName)
+
+note right
+implementation details of how the model
+gets the video are not included
+end note
+
+activate "m: Model"
+
+": MarkAsUnwatchedCommand" <-- "m: Model": v
+
+deactivate "m: Model"
+
+": MarkAsUnwatchedCommand" -> "v: Video": hasWatched()
+
+activate "v: Video"
+
+": MarkAsUnwatchedCommand" <-- "v: Video"
+
+deactivate "v: Video"
+
+create "w: Video"
+": MarkAsUnwatchedCommand" -> "w: Video"
+
+activate "w: Video"
+
+": MarkAsUnwatchedCommand" <-- "w: Video"
+
+deactivate "w: Video"
+
+": MarkAsUnwatchedCommand" -> "m: Model": setVideo(Video v, Video w)
+
+activate "m: Model"
+
+": MarkAsUnwatchedCommand" <-- "m: Model"
+
+deactivate "m: Model"
+
+": MarkMultipleAsUnwatchedCommand" <-- ": MarkAsUnwatchedCommand"
+
+deactivate ": MarkAsUnwatchedCommand"
+
+end
+
+": MarkMultipleAsUnwatchedCommand" -> "MultipleEventsParser": convertArrayList\nToString(ArrayList)
+activate "MultipleEventsParser"
+
+": MarkMultipleAsUnwatchedCommand" <-- "MultipleEventsParser"
+deactivate "MultipleEventsParser"
+
+
+create "r: CommandResult"
+": MarkMultipleAsUnwatchedCommand" -> "r: CommandResult"
+
+activate "r: CommandResult"
+
+": MarkMultipleAsUnwatchedCommand" <-- "r: CommandResult"
+
+deactivate "r: CommandResult"
+
+": LogicManager" <-- ": MarkMultipleAsUnwatchedCommand": r
+
+deactivate ": MarkMultipleAsUnwatchedCommand"
+
+<-- ": LogicManager"
+
+deactivate ": LogicManager"
+
+@enduml

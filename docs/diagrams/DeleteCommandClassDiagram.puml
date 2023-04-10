@@ -1,0 +1,59 @@
+@startuml
+
+
+package logic {
+    Class Command <<interface>> {
+        {method} + execute(Model): CommandResult
+    }
+    note bottom: Every command implements Command
+
+    package delete {
+        Class DeleteCommand <<abstract>> {
+            {field} + COMMAND_WORD: String
+        }
+        DeleteModuleCommand --|> DeleteCommand
+        DeleteCommand <|-- DeleteMultipleModulesCommand
+        DeleteLectureCommand --|> DeleteCommand
+        DeleteCommand <|-- DeleteMultipleLecturesCommand
+        DeleteVideoCommand --|> DeleteCommand
+        DeleteCommand <|-- DeleteMultipleVideosCommand
+    }
+
+}
+
+Command <|.. DeleteCommand
+
+package parser {
+    Class TrackerParser {
+        {method} + parseCommand(String): Command
+    }
+
+    TrackerParser ..> Command
+
+    Class DeleteCommandParser {
+        {method} + parse(String): DeleteCommand
+    }
+
+    TrackerParser ..> DeleteCommandParser
+
+    Class MultipleEventsParser <<interface>> {
+        {method} + convertArrToString(Object[]): String
+        {method} + parseModuleCodes(String): ModuleCode[]
+        {method} + parseLectureNames(String): LectureName[]
+        {method} + parseVideoNames(String): VideoName[]
+        {method} - containsDuplicates(Object[], Object): boolean
+    }
+
+    DeleteCommandParser ..> MultipleEventsParser
+}
+
+hide circle
+
+note as N1
+ModuleCode, LectureName and VideoName are the basic data types in Le Tracker.
+They are illustrated as primitive data types in this diagram for simplicity.
+endnote
+
+parser ---[hidden]--> N1
+logic -[hidden]-> N1
+@enduml

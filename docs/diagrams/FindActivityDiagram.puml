@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes find command;
+:Parse input;
+if () then ([hasModuleCode])
+    if () then ([hasLectureName])
+        :Update video filtered list;
+        :Hide module and lecture list;
+    else ([else])
+        :Update lecture filtered list;
+        :Hide module and video list;
+    endif
+else ([else])
+    :Update module filtered list;
+    :Hide lecture and video list;
+endif
+:Display filtered list;
+stop
+@enduml

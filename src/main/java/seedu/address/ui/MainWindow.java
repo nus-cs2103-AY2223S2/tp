@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +18,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.DisplayListLevel;
+import seedu.address.model.ReadOnlyNavigation;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.video.Video;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+
+    private CommandBox commandBox;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -109,17 +117,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
+    void fillInnerParts(DisplayListLevel level) {
+        setListPanelPlaceholder(level);
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -132,6 +138,32 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Sets the list displayed on UI based on {@code level} type.
+     */
+    private void setListPanelPlaceholder(DisplayListLevel level) {
+        ObservableList<Node> listChildren = listPanelPlaceholder.getChildren();
+        listChildren.clear();
+
+        Node panelRoot = getPanelRoot(level);
+        if (panelRoot != null) {
+            listChildren.add(panelRoot);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private Node getPanelRoot(DisplayListLevel level) {
+        if (level.equals(DisplayListLevel.MODULE)) {
+            return new ModuleListPanel((ObservableList<ReadOnlyModule>) logic.getFilteredModuleList()).getRoot();
+        } else if (level.equals(DisplayListLevel.LECTURE)) {
+            return new LectureListPanel((ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList()).getRoot();
+        } else if (level.equals(DisplayListLevel.VIDEO)) {
+            return new VideoListPanel((ObservableList<Video>) logic.getFilteredVideoList()).getRoot();
+        } else {
+            return null;
         }
     }
 
@@ -163,10 +195,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -175,8 +203,10 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            updateListPanel(commandResult);
+            displayResult(commandResult);
+            updateContextLabel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -192,5 +222,25 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void updateListPanel(CommandResult commandResult) {
+        DisplayListLevel listLevel = commandResult.getLevel();
+
+        if (listLevel == null) {
+            listLevel = logic.getLastListLevel();
+        }
+
+        setListPanelPlaceholder(listLevel);
+    }
+
+    private void updateContextLabel() {
+        ReadOnlyNavigation nav = logic.getNavigation();
+        commandBox.setContextLabel(nav.getCurrentContext().getCommandPrefixes());
+    }
+
+    private void displayResult(CommandResult commandResult) {
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
     }
 }

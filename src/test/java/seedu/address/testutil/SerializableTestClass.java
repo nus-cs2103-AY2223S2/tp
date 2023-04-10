@@ -21,6 +21,18 @@ public class SerializableTestClass {
             + "  }%n"
             + "}");
 
+    public static final String TYPE_MISMATCH_JSON_STRING_REPRESENTATION = String.format("{%n"
+            + "  \"name\" : \"This is a test class\",%n"
+            + "  \"listOfLocalDateTimes\" : "
+            + "[ \"-999999999-01-01T00:00:00\", \"+999999999-12-31T23:59:59.999999999\", "
+            + "\"0001-01-01T01:01:00\" ],%n"
+            + "  \"mapOfIntegerToString\" : {%n"
+            + "    \"One\" : \"One\",%n"
+            + "    \"Two\" : \"Two\",%n"
+            + "    \"Three\" : \"Three\"%n"
+            + "  }%n"
+            + "}");
+
     private static final String NAME_TEST_VALUE = "This is a test class";
 
     private String name;

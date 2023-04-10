@@ -5,55 +5,57 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `ay2223s2-cs2103-f10-2.zhzgv@aleeas.com`
 
 ## Project team
 
-### John Doe
+### Lee Shao Wee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shaowi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://leeshaowee.netlify.app/)]
+[[github](https://github.com/shaowi)]
+[[portfolio](team/shaowi.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Deliverables, deadlines, scheduling and tracking
 
-### Jane Doe
+### Hing Zi Yang Benedict
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hingen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hingen)]
+[[portfolio](team/hingen.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Code Quality + Integration
 
-### Johnny Doe
+### Khang Tran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lennoxtr.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/lennoxtr)]
+[[portfolio](team/lennoxtr.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: File I/O
 
-### Jean Doe
+### Joy Tan QiaoTong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joytqt-1202.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/joytqt-1202)]
+[[portfolio](team/joytqt-1202.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Documentation + Testing
 
-### James Doe
+### Jedidiah Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jedidiahc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jedidiahC)]
+[[portfolio](team/jedidiahc.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI

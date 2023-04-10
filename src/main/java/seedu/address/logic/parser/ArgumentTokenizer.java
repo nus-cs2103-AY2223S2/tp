@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
  */
 public class ArgumentTokenizer {
 
+    private static final String WHITESPACE_OR_STRING_END_REGEX = "( |$)";
+
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -60,19 +62,78 @@ public class ArgumentTokenizer {
     /**
      * Returns the index of the first occurrence of {@code prefix} in
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
-     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
-     * such occurrence can be found.
+     * is valid if:<p>
      *
-     * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns -1 as there are no valid
-     * occurrences of "p/" with whitespace before it. However, if
-     * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns 5.
+     * (1) there is a whitespace before and after {@code prefix}; or<p>
+     *
+     * (2) there is a whitespace before {@code prefix} and the occurrence is
+     * at the end of {@code argsString}.<p>
+     *
+     * Returns -1 if no such occurrence can be found.<p>
+     *
+     * E.g. Suppose {@code prefix} = "/bar" and {@code fromIndex} = 0. If
+     * {@code argsString} = "/foo 1/bar 2", this method returns -1 as
+     * there are no valid occurrences of "/bar" with whitespace before it.
+     * However, if {@code argsString} = "/foo 1 /bar 2" or
+     * {@code argsString} = "/foo 1 /bar", this method returns 7.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
-        int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
+        int prefixIndex = findPrefixPositionWithWhitespaceBeforeAndAfter(argsString, prefix, fromIndex);
+
+        if (prefixIndex == -1) {
+            prefixIndex = findPrefixPositionAtEndOfString(argsString, prefix, fromIndex);
+        }
+
         return prefixIndex == -1 ? -1
                 : prefixIndex + 1; // +1 as offset for whitespace
+    }
+
+    /**
+     * Returns the index of the first occurrence of {@code prefix} in
+     * {@code argsString} starting from index {@code fromIndex}. An occurrence
+     * is valid if there is a whitespace before and after {@code prefix}.<p>
+     *
+     * Returns -1 if no such occurrence can be found.<p>
+     *
+     * E.g. Suppose {@code prefix} = "/bar" and {@code fromIndex} = 0. If
+     * {@code argsString} = "/foo 1/bar 2" or
+     * {@code argsString} = "/foo 1 /bar2", this method returns -1 as
+     * there are no valid occurrences of "/bar" with whitespace before and
+     * after it. However, if {@code argsString} = "/foo 1 /bar 2" , this
+     * method returns 7.
+     */
+    private static int findPrefixPositionWithWhitespaceBeforeAndAfter(String argsString, String prefix, int fromIndex) {
+        return argsString.indexOf(" " + prefix + " ", fromIndex);
+    }
+
+    /**
+     * Returns the index of the occurrence of {@code prefix} which occurs
+     * at the end of the {@code argsString}. An occurrence is valid if
+     * there is a whitespace before {@code prefix}.<p>
+     *
+     * Returns -1 if no such occurrence can be found.<p>
+     *
+     * E.g. Suppose {@code prefix} = "/bar" and {@code fromIndex} = 0. If
+     * {@code argsString} = "/foo 1/bar" or
+     * {@code argsString} = "/foo 1 /bar 2", this method returns -1 as
+     * there are no valid occurrences of "/bar" which occurs at the end of
+     * {@code argsString} with whitespace before it. However, if
+     * {@code argsString} = "/foo 1 /bar", this method returns 7.
+     */
+    private static int findPrefixPositionAtEndOfString(String argsString, String prefix, int fromIndex) {
+        String toMatch = " " + prefix;
+
+        int minLength = toMatch.length();
+        int matchableLength = argsString.length() - fromIndex;
+
+        if (matchableLength < minLength) {
+            return -1;
+        }
+
+        int substringToCheckBeginIndex = argsString.length() - minLength;
+        String toCheck = argsString.substring(substringToCheckBeginIndex);
+
+        return toCheck.equals(toMatch) ? substringToCheckBeginIndex : -1;
     }
 
     /**
@@ -111,7 +172,8 @@ public class ArgumentTokenizer {
 
     /**
      * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
-     * The end position of the value is determined by {@code nextPrefixPosition}.
+     * The end position of the value is determined by {@code nextPrefixPosition} or the first character of a valid
+     * prefix (detected by a match with {@code Prefix#VALIDATION_REGEX}) whichever comes first.
      */
     private static String extractArgumentValue(String argsString,
                                         PrefixPosition currentPrefixPosition,
@@ -121,7 +183,17 @@ public class ArgumentTokenizer {
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
+        value = removeArgumentsFromValue(value);
+
         return value.trim();
+    }
+
+    /**
+     * Returns a substring of {@code value} containing all characters up to the first character of a valid prefix.
+     */
+    private static String removeArgumentsFromValue(String value) {
+        String[] substrs = value.split(" " + Prefix.VALIDATION_REGEX + WHITESPACE_OR_STRING_END_REGEX);
+        return substrs.length == 0 ? "" : substrs[0];
     }
 
     /**

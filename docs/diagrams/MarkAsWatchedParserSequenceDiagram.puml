@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ": LogicManager" LOGIC_COLOR
+participant ": TrackerParser" LOGIC_COLOR
+participant ": MarkAsWatchedCommandParser" LOGIC_COLOR
+participant "MultipleEventsParser" LOGIC_COLOR
+participant ": MarkAsWatchedCommand" LOGIC_COLOR
+endbox
+
+
+-> ": LogicManager": parseComamnd("mark Vid 1\n/mod CS2040S /lec Week 1")
+
+activate ": LogicManager"
+
+": LogicManager" -> ": TrackerParser": parse("Vid 1 /mod\nCS2040S /lec Week 1")
+
+activate ": TrackerParser"
+
+create ": MarkAsWatchedCommandParser"
+": TrackerParser" -> ": MarkAsWatchedCommandParser"
+
+activate ": MarkAsWatchedCommandParser"
+
+": MarkAsWatchedCommandParser" -> "MultipleEventsParser": parseVideoNames("Vid 1")
+activate "MultipleEventsParser"
+
+": MarkAsWatchedCommandParser" <-- "MultipleEventsParser": VideoName[]
+deactivate "MultipleEventsParser"
+
+create ": MarkAsWatchedCommand"
+": MarkAsWatchedCommandParser" -> ": MarkAsWatchedCommand"
+
+activate ": MarkAsWatchedCommand"
+
+": MarkAsWatchedCommandParser" <-- ": MarkAsWatchedCommand"
+
+deactivate ": MarkAsWatchedCommand"
+
+": TrackerParser" <-- ": MarkAsWatchedCommandParser"
+
+deactivate ": MarkAsWatchedCommandParser"
+
+": LogicManager" <-- ": TrackerParser"
+
+deactivate ": TrackerParser"
+
+@enduml

@@ -7,13 +7,18 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.DisplayListLevel;
+import seedu.address.model.ReadOnlyNavigation;
+import seedu.address.model.ReadOnlyTracker;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.video.Video;
 
 /**
  * API of the Logic component
  */
 public interface Logic {
+
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
@@ -24,19 +29,38 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Tracker.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ReadOnlyTracker getTracker();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns Navigation.
+     *
+     * @see seedu.address.model.Model#getNavigation()
      */
-    Path getAddressBookFilePath();
+    ReadOnlyNavigation getNavigation();
+
+    /** Returns an unmodifiable view of the filtered list of modules */
+    ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of lectures if a lecture list is selected. Otherwise,
+     * returns null.
+     */
+    ObservableList<? extends ReadOnlyLecture> getFilteredLectureList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of videos if a video list is selected. Otherwise,
+     * returns null.
+     */
+    ObservableList<? extends Video> getFilteredVideoList();
+
+    /**
+     * Returns the user prefs' tracker file path.
+     */
+    Path getTrackerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +71,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the last list type to displayed to user.
+     */
+    DisplayListLevel getLastListLevel();
+
 }

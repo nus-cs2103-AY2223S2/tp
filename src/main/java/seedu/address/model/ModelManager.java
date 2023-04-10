@@ -11,40 +11,61 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.navigation.NavigationContext;
+import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Tracker tracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final Navigation navigation;
+    private ReadOnlyModule listedLecturesByModule;
+    private ReadOnlyLecture listedVideosByLecture;
+    private FilteredList<? extends ReadOnlyModule> filteredModules;
+    private FilteredList<? extends ReadOnlyLecture> filteredLectures;
+    private FilteredList<? extends Video> filteredVideos;
+    private DisplayListLevel lastListLevel;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Constructs a {@code ModelManager} using the provided {@code tracker} and {@code userPrefs}.
+     *
+     * @param tracker The tracker.
+     * @param userPrefs The user prefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTracker tracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(tracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with tracker: " + tracker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.tracker = new Tracker(tracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.navigation = new NavigationStack();
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
+        lastListLevel = DisplayListLevel.MODULE;
     }
 
+    /**
+     * Constructs a {@code ModelManager}.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Tracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
@@ -60,72 +81,288 @@ public class ModelManager implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTrackerFilePath() {
+        return userPrefs.getTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTrackerFilePath(Path trackerFilePath) {
+        userPrefs.setTrackerFilePath(trackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Tracker ====================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTracker(ReadOnlyTracker tracker) {
+        this.tracker.resetData(tracker);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyTracker getTracker() {
+        return tracker;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void clearTracker() {
+        tracker.clear();
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasModule(ReadOnlyModule module) {
+        return tracker.hasModule(module);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public boolean hasModule(ModuleCode moduleCode) {
+        return tracker.hasModule(moduleCode);
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ReadOnlyModule getModule(ModuleCode moduleCode) {
+        return tracker.getModule(moduleCode);
+    }
+
+    @Override
+    public void deleteModule(ReadOnlyModule target) {
+        tracker.removeModule(target);
+    }
+
+    @Override
+    public void addModule(Module module) {
+        tracker.addModule(module);
+    }
+
+    @Override
+    public void setModule(ReadOnlyModule target, Module editedModule) {
+        tracker.setModule(target, editedModule);
+    }
+
+    @Override
+    public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+        return getLecture(moduleCode, lectureName) != null;
+    }
+
+    @Override
+    public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        return mod == null ? null : mod.getLecture(lectureName);
+    }
+
+    @Override
+    public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
+        requireNonNull(module);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Module) module).removeLecture(target);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void addLecture(ReadOnlyModule module, Lecture lecture) {
+        requireNonNull(module);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Module) module).addLecture(lecture);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
+        requireNonNull(module);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Module) module).setLecture(target, editedLecture);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+        return getVideo(moduleCode, lectureName, videoName) != null;
+    }
+
+    @Override
+    public Video getVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+        requireAllNonNull(moduleCode, lectureName, videoName);
+
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        if (mod == null) {
+            return null;
+        }
+
+        ReadOnlyLecture lec = mod.getLecture(lectureName);
+        if (lec == null) {
+            return null;
+        }
+
+        return lec.getVideo(videoName);
+    }
+
+    @Override
+    public void deleteVideo(ReadOnlyLecture lecture, Video video) {
+        requireNonNull(lecture);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Lecture) lecture).removeVideo(video);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void addVideo(ReadOnlyLecture lecture, Video video) {
+        requireNonNull(lecture);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Lecture) lecture).addVideo(video);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    @Override
+    public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
+        requireNonNull(lecture);
+        //CHECKSTYLE.OFF: SeparatorWrap
+        ((Lecture) lecture).setVideo(target, editedVideo);
+        //CHECKSTYLE.ON: SeparatorWrap
+    }
+
+    //=========== Filtered List Accessors =============================================================
+
+    @Override
+    public void updateAllFilteredListAsHidden() {
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    @Override
+    public DisplayListLevel getLastListLevel() {
+        return lastListLevel;
+    };
+
+    private DisplayListLevel setLastListLevel(DisplayListLevel listLevel) {
+        return lastListLevel = listLevel;
+    };
+
+    @Override
+    public ReadOnlyModule getListedLecturesByModule() {
+        return listedLecturesByModule;
+    };
+
+    @Override
+    public ReadOnlyLecture getListedVideosByLecture() {
+        return listedVideosByLecture;
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+
+    @Override
+    public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
+        filteredModules.setPredicate(predicate);
+        setLastListLevel(DisplayListLevel.MODULE);
+
+        // Hide other list components
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    //=========== Filtered Lecture List Accessors =============================================================
+
+    @Override
+    public ObservableList<? extends ReadOnlyLecture> getFilteredLectureList() {
+        return filteredLectures;
+    }
+
+    @Override
+    public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module) {
+        requireNonNull(predicate);
+        listedLecturesByModule = module;
+        filteredLectures = new FilteredList<>(module.getLectureList());
+        filteredLectures.setPredicate(predicate);
+        setLastListLevel(DisplayListLevel.LECTURE);
+
+        // Hide other list components
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    //=========== Filtered Video List Accessors =============================================================
+
+    @Override
+    public ObservableList<? extends Video> getFilteredVideoList() {
+        return filteredVideos;
+    }
+
+    @Override
+    public void updateFilteredVideoList(Predicate<Video> predicate, ModuleCode moduleCode,
+            ReadOnlyLecture lecture) {
+        requireNonNull(predicate);
+        listedLecturesByModule = this.tracker.getModule(moduleCode);
+        listedVideosByLecture = lecture;
+        filteredVideos = new FilteredList<>(lecture.getVideoList());
+        filteredVideos.setPredicate(predicate);
+        setLastListLevel(DisplayListLevel.VIDEO);
+
+        // Hide other list components
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+    }
+
+    //=========== Navigation =================================================================================
+
+    @Override
+    public ReadOnlyNavigation getNavigation() {
+        return navigation;
+    }
+
+    @Override
+    public NavigationContext getCurrentNavContext() {
+        return navigation.getCurrentContext();
+    }
+
+    @Override
+    public void navigateTo(ModuleCode moduleCode) {
+        navigation.navigateTo(moduleCode);
+    }
+
+    @Override
+    public void navigateTo(ModuleCode moduleCode, LectureName lectureName) {
+        navigation.navigateTo(moduleCode, lectureName);
+    }
+
+    @Override
+    public void navigateToModFromRoot(ModuleCode moduleCode) {
+        navigation.navigateToModFromRoot(moduleCode);
+    }
+
+    @Override
+    public void navigateToLecFromMod(LectureName lectureName) {
+        navigation.navigateToLecFromMod(lectureName);
+    }
+
+    @Override
+    public void navigateBack() {
+        navigation.back();;
+    }
+
+    @Override
+    public void navigateToRoot() {
+        navigation.goToRoot();
     }
 
     @Override
@@ -142,9 +379,29 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+
+        boolean isTrackerEqual = tracker.equals(other.tracker);
+        boolean isUserPrefsEqual = userPrefs.equals(other.userPrefs);
+        boolean isNavigationEqual = navigation.equals(other.navigation);
+        boolean isLastListEqual = lastListLevel.equals(other.lastListLevel);
+        boolean isFilteredModulesEqual = filteredModules.equals(other.filteredModules);
+        boolean isFilteredLecturesEqual = filteredLectures == null
+                ? other.filteredLectures == null
+                : filteredLectures.equals(other.filteredLectures);
+        boolean isFilteredVideosEqual = filteredVideos == null
+                ? other.filteredVideos == null
+                : filteredVideos.equals(other.filteredVideos);
+        boolean isListedLecturesByModuleEqual = listedLecturesByModule == null
+                ? other.listedLecturesByModule == null
+                : listedLecturesByModule.equals(other.listedLecturesByModule);
+        boolean isListedVideosByLectureEqual = listedVideosByLecture == null
+                ? other.listedVideosByLecture == null
+                : listedVideosByLecture.equals(other.listedVideosByLecture);
+
+        return isTrackerEqual && isUserPrefsEqual && isNavigationEqual && isLastListEqual
+                && isFilteredModulesEqual && isFilteredLecturesEqual && isFilteredVideosEqual
+                && isListedLecturesByModuleEqual && isListedVideosByLectureEqual;
+
     }
 
 }
