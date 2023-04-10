@@ -82,9 +82,10 @@ public class ParserUtil {
     }
 
     /**
-     * Simulates retriving student photo from NUS backend / database
-     * @return Photo
-     * @throws ParseException
+     * Simulates retrieving student photo from NUS backend / database.
+     *
+     * @return Photo          the photo to be returned.
+     * @throws ParseException if the photo is invalid.
      */
     public static Photo parsePhoto() throws ParseException {
         GuiSettings guiSettings = new GuiSettings();
@@ -325,11 +326,12 @@ public class ParserUtil {
     }
 
     /**
-     * Ensures a user cannot create a conflicting event when the TA is already busy during the new event's timeslot
-     * @param newDateStart LocalDateTime
-     * @param newDateEnd LocalDateTime
-     * @param newRange LocalDateTime[]
-     * @throws ParseException Already Busy Exception
+     * Ensures a user cannot create a conflicting event when the TA is already busy during the new event's timeslot.
+     *
+     * @param newDateStart the LocalDateTime of the start date.
+     * @param newDateEnd the LocalDateTime of the end date.
+     * @param newRange the range LocalDateTime[].
+     * @throws ParseException the Already Busy Exception.
      */
     public static void eventDateException(LocalDateTime newDateStart, LocalDateTime newDateEnd,
                                                LocalDateTime[] newRange) throws ParseException {
@@ -362,6 +364,7 @@ public class ParserUtil {
      * Removes the current event date that is to be eddited. Thereafter, check if there is still conflicting
      * timings. If there is, add the current event date back. If there is no conflicting schedule, then leave the
      * current event date as removed, and add the new date range.
+     *
      * @param oldDateStart          LocalDateTime.
      * @param newDateStart          LocalDateTime.
      * @param plus                  int.
@@ -436,9 +439,10 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if a new event can be added by checking if the TA already has a scheduled event
-     * @param range LocalDateTime[]
-     * @return whether the TA is busy or not
+     * Checks if a new event can be added by checking if the TA already has a scheduled event.
+     *
+     * @param range the range LocalDateTime[].
+     * @return whether the TA is busy or not.
      */
     public static boolean isBusy(LocalDateTime[] range) {
         LocalDateTime start = range[0];
@@ -476,7 +480,8 @@ public class ParserUtil {
 
     /**
      * Parses localDateTime of an event and add it into MASTER_TIME
-     * to ensure even if the user does not input a date field, the timing is registered as busy
+     * to ensure even if the user does not input a date field, the timing is registered as busy.
+     *
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static void parseDefaultEventDate(LocalDateTime time, int hours) throws ParseException {
