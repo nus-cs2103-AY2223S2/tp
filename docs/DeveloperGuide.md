@@ -284,6 +284,17 @@ The following sequence diagram shows how the argument parsing for the `edit` com
 
 ![Edit Command Parse Args Sequence Diagram](images/EditCommandParseArgsSequenceDiagram.png)<br>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
 ### Delete Command
 
 The `delete` command is used to delete the information of an existing role in TechTrack. The command takes in
