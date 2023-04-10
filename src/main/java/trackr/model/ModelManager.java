@@ -397,6 +397,7 @@ public class ModelManager implements Model {
 
     //=========== Calculation =============================================================
 
+    //@@author arkarsg
     @Override
     public ItemProfit getTotalProfits() {
         ObservableList<Order> allOrders = this.getFilteredOrderList();
@@ -406,6 +407,7 @@ public class ModelManager implements Model {
         return new ItemProfit(total);
     }
 
+    //@@author arkarsg
     @Override
     public ItemSellingPrice getTotalSales() {
         ObservableList<Order> allOrders = this.getFilteredOrderList();

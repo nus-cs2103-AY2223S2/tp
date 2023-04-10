@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import trackr.model.task.Task;
 import trackr.ui.UiPart;
 
+//@@author arkarsg-reused
 /**
  * An UI component that displays information of a {@code Task}.
  */

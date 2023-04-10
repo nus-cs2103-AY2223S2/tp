@@ -32,7 +32,9 @@ public class JsonAdaptedOrder {
     private final String customerName;
     private final String customerPhone;
     private final String customerAddress;
+    //@@author arkarsg
     private final JsonAdaptedMenuItem menuItem;
+    //@@author
     private final String orderDeadline;
     private final String orderQuantity;
     private final String orderStatus;
@@ -46,7 +48,9 @@ public class JsonAdaptedOrder {
     public JsonAdaptedOrder(@JsonProperty("customerName") String customerName,
                            @JsonProperty("customerPhone") String customerPhone,
                            @JsonProperty("customerAddress") String customerAddress,
+                           //@@author arkarsg
                            @JsonProperty("menuItem") JsonAdaptedMenuItem menuItem,
+                           //@@author
                            @JsonProperty("orderDeadline") String orderDeadline,
                            @JsonProperty("orderQuantity") String orderQuantity,
                            @JsonProperty("orderStatus") String orderStatus,
@@ -109,6 +113,7 @@ public class JsonAdaptedOrder {
         }
         final PersonAddress modelAddress = new PersonAddress(customerAddress);
 
+        //@@author arkarsg
         if (menuItem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderName.class.getSimpleName()));
@@ -116,6 +121,7 @@ public class JsonAdaptedOrder {
 
         // Guaranteed validity
         final MenuItem modelMenuItem = menuItem.toModelType();
+        //@@author
 
         if (orderDeadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
