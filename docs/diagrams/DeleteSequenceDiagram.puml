@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("del eid/1")
 activate LogicManager
 
-LogicManager -> SudoHrParser : parseCommand("delete 1")
+LogicManager -> SudoHrParser : parseCommand("del eid/1")
 activate SudoHrParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> SudoHrParser
 deactivate DeleteCommandParser
 
-SudoHrParser -> DeleteCommandParser : parse("1")
+SudoHrParser -> DeleteCommandParser : parse("eid/1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -48,7 +48,8 @@ deactivate SudoHrParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model: getEmployee(Id)
+DeleteCommand -> Model : deleteEmployee(e)
 activate Model
 
 Model --> DeleteCommand

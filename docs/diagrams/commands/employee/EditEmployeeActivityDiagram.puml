@@ -22,9 +22,8 @@ if () then ([else])
    stop
 
 else ([New email address does not clash with existing employees in SudoHR])
-
-endif
-  :edit command successfully executes.;
+  :edit command successfully executes;
+  endif
 stop
 
 @enduml

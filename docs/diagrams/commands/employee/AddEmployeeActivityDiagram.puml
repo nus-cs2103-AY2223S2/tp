@@ -16,9 +16,8 @@ if () then ([else])
   stop
 
 else ([No employee in SudoHR with the same email address])
-
-endif
   :add command successfully executes;
+  endif
 stop
 
 @enduml
