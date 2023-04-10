@@ -98,9 +98,7 @@ public class StudentBuilder {
         comment = new Comment(DEFAULT_COMMENT);
         studentClass = Class.of(DEFAULT_CLASS);
         parent = new Parent(parentName, parentAge, parentImage, parentEmail, parentPhone, parentAddress, tags);
-        //student = new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
-        // studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
-        // tags, comment);
+
     }
 
     /**
