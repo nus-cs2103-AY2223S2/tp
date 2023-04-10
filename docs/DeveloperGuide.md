@@ -187,6 +187,8 @@ This is facilitated by [JavaFX's `SortedList`](https://docs.oracle.com/javase/8/
 
 There are a set of Comparators defined inside the `ModelManager` class, that are supplied to the sorted list depending on how the user wants to sort clients or projects. Example Comparators include comparing names of `Client` objects.
 
+<div style="page-break-after: always;"></div>
+
 Whenever the user executes a sort command, the model updates the sorted list with the corresponding `Comparator<T>`. The below diagram shows what occurs when a user executes a `sort-client` command, which sorts the client list by name.
 
 <img src="images/SortingSequenceDiagram.png" width="700" />
