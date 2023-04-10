@@ -28,6 +28,14 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 
    A GUI similar to the below should appear in a few seconds. This shows the **session list**, which is currently empty.<br>
    Below that is the income analytics, which tabulates how much you've earned through your sessions.<br><br>
+    
+<div markdown="block" class="alert alert-info">
+   **:information_source: Notes about the window size:**<br>
+   * The window size may not be optimum for viewing the sessions and contacts, depending on your screen size. In which case, resize the SportSync window to your liking.<br>
+     SportSync will save these preferences and reload them upon startup.
+</div>
+
+   <br><br>
    ![EmptySessionUi](images/EmptySessionUi.png)<br><br>
    Click the `Contacts` tab, or press the shortcut `CTRL + 2`.<br> You have just navigated to the **contact list**.<br>
    Note how the app contains some sample data.<br><br>
@@ -48,7 +56,7 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 * `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
-<div style="page-break-after: always;"></div>
+
 5.Click the `Calendar` tab, or press the shortcut `CTRL + 3`. You have just navigated to the **calendar**, which is currently empty.<br>
    All future scheduled sessions will automatically show up on the calendar.<br><br>
    ![Ui](images/EmptyCalendarUi.png)<br>
@@ -412,10 +420,12 @@ Removes the athlete at index 1 of the contact list from the session `Hall`.
 <div style="page-break-after: always;"></div>
 
 ## **Calendar**
-The **Calendar** includes various functions that enable you to manage your schedule effectively. These features are designed to simplify the process of tracking sessions.
+The **Calendar** includes various functions that enable you to manage your schedule effectively.<br>
+These features are designed to simplify the process of tracking sessions.
 
 ### How to view
-You can access the Calendar Features by interacting with the Calendar tab. 
+You can access the Calendar features by interacting with the Calendar tab.<br>
+Click the `Calendar` tab, or press the shortcut `CTRL + 3` . <br>
 <br> You can click on the `Prev` and `Next` buttons to navigate through the months. 
 
 ### Features
@@ -433,13 +443,14 @@ The Calendar features allow you to view your schedule on a monthly basis.<br>You
 The **Income Analytics** Panel is an automated feature that tracks and displays your coaching income based on athlete attendance and pay rates.
 
 ### How to view
-The panel is automatically updated based on athlete attendance and pay rates.<br>
-It displays income earned on the current day, week, month, and lifetime.
+Click the `Sessions` tab, or press the shortcut `CTRL + 1` . <br>
+
 
 ### Features
-The displayed income is based on the athlete's pay rate per hour and the duration of the session(s) the athletes belong to.<br>
-An athlete only contributes to your income if they are marked as present.
-<br>
+* The panel is automatically updated based on athlete attendance and pay rates.<br>
+* It displays income earned on the current day, week, month, and lifetime.<br>
+* The displayed income is based on the athlete's pay rate per hour and the duration of the session(s) the athletes belong to.<br>
+* An athlete only contributes to your income if they are marked as present.<br><br>
 ![IncomeAnalytics](images/incomeAnalytics.png)
 
 --------------------------------------------------------------------------------------------------------------------
