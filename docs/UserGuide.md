@@ -169,7 +169,7 @@ Examples:
 * `add_elderly n/Sarah Zest ic/S3334567C bd/1933-02-03` adds an elderly named `Sarah Zest` with [NRIC](#nric)
   `S3334567C` to FriendlyLink, with [birth date](#birthdate) `1933-02-03`.
 
-![](images/userGuide/addElderly.png)
+    ![](images/userGuide/addElderly.png)
 
 #### Adding a volunteer: `add_volunteer`
 
@@ -193,7 +193,7 @@ Examples:
 * `add_volunteer n/Sally White bd/1989-03-11 ic/S8957677H` adds a volunteer named `Sally White` with [NRIC](#nric)
   `S8957677H` to FriendlyLink, with [birth date](#birthdate) `1989-03-11`.
 
-![](images/userGuide/addVolunteer.png)
+    ![](images/userGuide/addVolunteer.png)
 
 #### Pair volunteer and elderly: `pair`
 
