@@ -27,8 +27,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Refactor and rename many traces of AB3.
-    * Enhanced JavaDocs.
-    * Modify existing test cases.
+    * Modify existing test cases to work with PowerCards.
 
 * **Documentation**:
     * User Guide:
