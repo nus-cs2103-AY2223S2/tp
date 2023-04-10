@@ -13,6 +13,7 @@ import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.client.Client;
 
+//@@author
 /**
  * An Immutable FitBook that is serializable to JSON format.
  */
@@ -22,7 +23,8 @@ class JsonSerializableFitBook {
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
-
+    
+    //@@author
     /**
      * Constructs a {@code JsonSerializableFitBook} with the given clients.
      */
@@ -30,7 +32,8 @@ class JsonSerializableFitBook {
     public JsonSerializableFitBook(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
         this.clients.addAll(clients);
     }
-
+    
+    //@@author
     /**
      * Converts a given {@code ReadOnlyFitBook} into this class for Jackson use.
      *
@@ -39,7 +42,8 @@ class JsonSerializableFitBook {
     public JsonSerializableFitBook(ReadOnlyFitBook source) {
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
     }
-
+    
+    //@@author
     /**
      * Converts this FitBook into the model's {@code FitBook} object.
      *
