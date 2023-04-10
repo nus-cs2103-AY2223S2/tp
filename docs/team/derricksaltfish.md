@@ -37,7 +37,9 @@ My code contributions can be found on:
   * Update site-wide settings in `[JAR file location]\docs\_config.yml` and `[JAR file location]\docs\index.md` [#19](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/19)
 * User Guide:
   * Initial update of command `exit`, Save data and Load data contents [#28](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/28)
-  * Update descriptions for Load data, Edit data and Clearing all Internship entries [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
+  * Update descriptions for Load data [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
+  * Update descriptions for Edit data [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
+  * Update descriptions for Clearing all Internship entries [#51](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/51)
 * Developer Guide:
   * Update content in common classes and AddressBook related content to InternBuddy [#99](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/99)
   * Update of `copy` command with inclusion of UML sequence diagrams [#205](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/205)
