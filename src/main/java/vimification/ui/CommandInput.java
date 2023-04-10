@@ -2,6 +2,7 @@ package vimification.ui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -89,11 +90,11 @@ public class CommandInput extends UiPart<HBox> {
     }
 
     private void refreshRightComponent(CommandResult result) {
-        boolean isHelpManualPanelLoaded = mainScreen.getRightComponent().getChildren()
-                .contains(new HelpManualPanel().getRoot());
+        Node rightComponent = mainScreen.getRightComponent().getChildren().get(0);
+        boolean isWelcomePanelLoaded = mainScreen.getWelcomePanel().equals(rightComponent);
+        boolean isHelpManualPanelLoaded = mainScreen.getHelpManualPanel().equals(rightComponent);
 
-        boolean isWelcomePanelLoaded = mainScreen.getRightComponent().getChildren()
-                .contains(new WelcomePanel().getRoot());
+        System.out.println("welcomepanelloaded:" + isWelcomePanelLoaded);
 
         // Only refresh the TaskDetailPanel
         boolean shouldRefreshUi =

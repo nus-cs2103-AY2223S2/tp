@@ -41,6 +41,8 @@ public class MainScreen extends UiPart<VBox> {
     private Logic logic;
 
     private TaskListPanel taskListPanel;
+    private final HelpManualPanel helpManualPanel = new HelpManualPanel();
+    private final WelcomePanel welcomePanel = new WelcomePanel();
 
     @FXML
     private VBox leftComponent;
@@ -76,8 +78,8 @@ public class MainScreen extends UiPart<VBox> {
      * Initialize the components of the main screen.
      */
     private void setupComponents() {
-        initializeTaskListPanel();
-        loadRightComponent(new WelcomePanel());
+        loadTaskListPanel();
+        loadRightComponent(welcomePanel);
     }
 
     /**
@@ -98,7 +100,7 @@ public class MainScreen extends UiPart<VBox> {
     /**
      * Initialize the task list panel.
      */
-    public void initializeTaskListPanel() {
+    public void loadTaskListPanel() {
         taskListPanel = new TaskListPanel(logic.getUiTaskList(), this);
         loadLeftComponent(taskListPanel);
         taskListPanel.requestFocus();
@@ -199,7 +201,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public Logic getLogic() {
-        return this.logic;
+        return logic;
     }
 
     public void setLogic(Logic logic) {
@@ -211,7 +213,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public VBox getLeftComponent() {
-        return this.leftComponent;
+        return leftComponent;
     }
 
     public void setLeftComponent(VBox leftComponent) {
@@ -220,6 +222,14 @@ public class MainScreen extends UiPart<VBox> {
 
     public VBox getRightComponent() {
         return rightComponent;
+    }
+
+    public HelpManualPanel getHelpManualPanel() {
+        return helpManualPanel;
+    }
+
+    public WelcomePanel getWelcomePanel() {
+        return welcomePanel;
     }
 
     public void setRightComponent(VBox rightComponent) {

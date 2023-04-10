@@ -48,7 +48,7 @@ public class SortCommand extends UiCommand {
         mainScreen.getTaskListPanel()
                 .getUiTaskList()
                 .setComparator(comparator);
-        return new CommandResult(SUCCESS_MESSAGE);
+        return new CommandResult(SUCCESS_MESSAGE, true);
     }
 
     @Override

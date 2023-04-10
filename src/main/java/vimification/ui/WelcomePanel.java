@@ -3,6 +3,7 @@ package vimification.ui;
 import java.net.URISyntaxException;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -37,9 +38,8 @@ public class WelcomePanel extends UiPart<VBox> {
         webView.prefHeightProperty().bind(this.getRoot().heightProperty());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof HelpManualPanel;
+    public boolean equals(Node obj) {
+        return getRoot().equals(obj);
     }
 
 }
