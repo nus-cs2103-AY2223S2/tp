@@ -46,9 +46,9 @@ The following callouts can be found throughout our user guide:
 
 <div markdown="span" class="alert alert-info">:information_source: **Information:** This provides some additional information that you are recommended to know.  </div> 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink. </div>
-<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Danger zone! Do pay attention to the information here carefully. </div> 
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:** Do pay attention to the information here carefully. </div> 
 
-The following icons are found in FriendLink: 
+The following icons are found in our application: 
 
 | **Icons**                                                        | **Meaning**            |
 |------------------------------------------------------------------|------------------------|
@@ -63,17 +63,6 @@ The following icons are found in FriendLink:
 | <img src="images/userGuide/icons/medical-tags.png" width="20"/>  | Medical Qualifications |
 
 For more information about what they represent, refer to the [Fields](#fields) section.
-
-### Terminology
-
-The following terms are commonly used in this guide.
-
-#### Duplicate Entry
-* Person (Elderly and Volunteers)
-  * Two persons having the same [NRIC](#nric) are considered the same person and therefore a duplicate entry in FriendlyLink, and is not allowed.
-  * The same person in FriendlyLink cannot be both an elderly and a volunteer at the same time.
-* Pair
-  * Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink, and is not allowed.
 
 [Back to top](#table-of-contents)
 
@@ -127,16 +116,13 @@ Opening multiple instances may result in unexpected behaviours.
 
 -------------------------------------------
 
-### Commands
+### Command Format
 
-A command is an instruction given by you to FriendlyLink to perform a specific task.
+A command is an instruction given by you to FriendlyLink to perform a specific task. In general, the following command 
+format is adopted in FriendlyLink.
 
-#### Interpreting the command format
-
-In general, the following command format is adopted in FriendlyLink.
-
-<pre style="color: #28a745">
-    command <[PREAMBLE]> pre/FIELD [pre/FIELD] [pre/FIELD]…
+<pre style="color: #457C51">
+    command <[PREAMBLE]> prefix/FIELD [prefix/FIELD] [prefix/FIELD]…
 </pre>
 
 * Words that are `CAPITALISED` are placeholders that should be replaced by you.
@@ -176,7 +162,8 @@ Preamble is a special piece of information specified for certain commands that a
 
 ### Adding records
 
-Adds an elderly, a volunteer, or a pairing between one elderly and one volunteer to FriendlyLink.
+Adds an elderly, a volunteer, or a pairing between one elderly and one volunteer to FriendlyLink. [Duplicate pairs and 
+persons](#non-technical) are not allowed in FriendlyLink.
 
 #### Adding an elderly: `add_elderly`
 
@@ -234,7 +221,6 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 * After pairing, the newly added pairs appear in the pair list in the window.
 * Only elderly members and volunteers existing in FriendlyLink's data can be paired.
-* [Duplicate pairs](#duplicate-entry) will fail to be added to FriendlyLink.
 
 <div markdown="block" class="alert alert-info">
    
@@ -288,6 +274,7 @@ starting point.
 ### Editing records
 
 Edits the information of an existing elderly or volunteer in FriendlyLink, based on their [index](#index) or [NRIC](#nric).
+[Duplicate pairs and persons](#non-technical) are not allowed in FriendlyLink.
 
 #### Editing an elderly by index : `edit_elderly`
 
@@ -296,8 +283,7 @@ Edits an existing elderly based on their [index](#index) in the elderly list.
 Format: `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Edits the elderly at the specified `INDEX` in the displayed elderly list.
-* Any combination of the optional fields is possible but **at least one** optional field must be specified. 
-* Existing values will be updated to the input values.
+* Any combination of the optional fields is possible but **at least one** optional field must be specified.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
@@ -323,7 +309,6 @@ Format: `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a
 
 * Edits the volunteer at the specified `INDEX` in the displayed volunteer list. 
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
-* Existing values will be updated to the input values.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
@@ -347,14 +332,15 @@ Edits an existing elderly or volunteer identified by their [NRIC](#nric).
 
 Format: `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
-* Edits the person identified by `NRIC`. As [duplicate records](#duplicate-entry) of people are not allowed in FriendlyLink, one `NRIC` uniquely identifies one elderly or volunteer.
+* Edits the person identified by `NRIC`. As [duplicate persons](#non-technical) are not allowed in FriendlyLink, one `NRIC` uniquely 
+identifies one elderly or volunteer.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
-* Existing values will be updated to the input values.
-* When editing elderly or volunteer-specific fields, if such fields do not match the identity of the target person, the change will be ignored. Example: `edit S1234567A r/LOW` will ignore the change of `RISK_LEVEL` to be `LOW` if `S1234567A` identifies a volunteer 
-(as volunteers do not have a [Risk Level](#risk-level)).
+* When editing elderly or volunteer-specific fields, if such fields do not match the identity of the target person, the 
+change will be ignored. Example: `edit S1234567A r/LOW` will ignore the change of `RISK_LEVEL` to be `LOW` if `S1234567A` 
+identifies a volunteer (as volunteers do not have a [Risk Level](#risk-level)).
 
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
 When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of [tags](#tags), [medical qualifications](#medical-qualification) or [available dates](#available-dates) will overwrite previous ones instead of being cumulative. 
 </div>
 
