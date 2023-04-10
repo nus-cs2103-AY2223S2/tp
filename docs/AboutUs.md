@@ -55,4 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/jinnieshin.md)]
 
 * Role: Team member
-* Responsibilities: ??
+* Responsibilities: In charge of updating UI components.
