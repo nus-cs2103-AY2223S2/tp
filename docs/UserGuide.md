@@ -132,11 +132,13 @@ Similarly, pressing `k` brings us up the task list.
   </tr>
 </table>
 
-In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right and display the task detail.
+In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right-side panel and display the task detail.
 
 <img class="ui-img" src="images/ug-images/6.before-l.png">
 
 <img class="ui-img" src="images/ug-images/7.after-l.png">
+
+In Vim, pressing `h` moves you to the left, but in Vimification, pressing `l` would move you back to the task list(and hence clear out the right-side panel!).
 
 **NOTE: If at any point when you are unable to navigate the task list, pressing `j` or `k` multiple times will cause Vimification to refocus onto the task-list and work again.**
 
