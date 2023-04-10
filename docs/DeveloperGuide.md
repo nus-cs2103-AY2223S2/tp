@@ -262,20 +262,9 @@ The `Person` object is composed of attributes:
 * `Remark`: Remarks/notes the TA has about the student.
 * `Tags`: Categories a student belong to.
 
-The `add` command has the following fields, each representing an attribute:
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** (COMPULSORY) indicates that the field is cannot be omitted when using `add`. Unless stated as (COMPULSORY), the field is optional.
+To add details into an attribute, [prefixes](#prefix-summary) that represent the attributes can be specified. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the `Name` field is compulsory for the user to add a new entry. Other fields are optional and can be added at a later time.
 </div>
-
-* Prefix `n/` followed by the name of the student (COMPULSORY).
-* Prefix `p/` followed by the phone number of the student.
-* Prefix `e/` followed by the student's email.
-* Prefix `a/` followed by the student's address.
-* Prefix `edu/` followed by the student's education level.
-* Prefix `tele/` followed by the student's telegram handle.
-* Prefix `m/` followed by the module name.
-* Prefix `r/` followed by the remarks/notes on the student.
-* Prefix `t/` followed by the tags a student has.
 
 The [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class was utilised to encapsulate the optional logic of the attributes.
 
@@ -364,20 +353,12 @@ Taking into consideration that users might make a typo as well as the time cost 
 The implementation of `edit` involves creating a new `Person` object with updated details to replace the previous `Person` object.
 This is done using the `EditPersonDescriptor` class, which creates the new `Person` object.
 
-`edit` has similar fields to the [add feature](#add-feature), but with an additional `INDEX` parameter.
+The `edit` command has similar input fields represented by [prefixes](#prefix-summary) to the [`add`](#add-feature) command, with an additional `INDEX` parameter.
+`INDEX` represents the index number of the student to be edited in the list.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** While all the fields are optional, at least 1 needs to be given.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** While all the fields are optional, at least one needs to be given.
 </div>
 
-* `INDEX` which represents the index number of the student to be edited in the list.
-* Prefix `n/` followed by the name of the student.
-* Prefix `p/` followed by the phone number of the student.
-* Prefix `e/` followed by the student's email.
-* Prefix `a/` followed by the student's address.
-* Prefix `edu/` followed by the student's education level.
-* Prefix `m/` followed by the module name.
-* Prefix `t/` followed by the tag name.
-* Prefix `r/` followed by the remarks/notes on the student.
 
 Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Year 2` is run.:
 
@@ -429,7 +410,7 @@ Here is a sequence diagram showing the interactions between components when `fin
 > Take a person's name to be `Michelle Yeoh`.  \\
 > An example of finding by partial keyword is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh".
 
-2. Users are allowed to specify the field that they want to find in by using the default [prefixes](#add-feature) given to them.
+2. Users are allowed to specify the field that they want to find in by using the default [prefixes](#prefix-summary) given to them.
    This then returns the entry that matches all the fields specified.
 
 > The prefixes refer to those that the user input in the `Add` command, eg.
@@ -557,7 +538,7 @@ such as [`find`](#find-feature) or [`filter`](#filter-feature) which displays a 
 #### Implementation Details
 The application provides users with two different methods of entering or editing a remark for a student.
 * Using the pop-up text box implemented in this feature
-* Adding the remark through the [add feature](#add-feature)
+* Adding the remark through the [`add`](#add-feature) command
 
 Similar to [`edit`](#edit-feature), this feature makes use of the `EditPersonDescriptor` to create a new `Person` object with the updated remarks. Then, the previous `Person` object is replaced.
 
@@ -616,7 +597,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
 
 #### Implementation Details
 
-The implementation of `show` retrieves and shows the information from the [`Remark`](#add-feature) field of the entry with the specified index.
+The implementation of `show` retrieves and shows the information from the [`Remark` field](#add-feature) of the entry with the specified index.
 
 
 #### Feature Details
@@ -624,7 +605,7 @@ The implementation of `show` retrieves and shows the information from the [`Rema
 2. If there are no remarks, a message indicating such is shown in the `ResultDisplay`.
 
 #### General Design Considerations
-The `show` feature was implemented to support the [`remark`](#remark-feature) feature,
+The `show` command was implemented to support the [`remark`](#remark-feature) command,
 where this provides a way to view the remarks of an entry other than bringing up the pop-up text box.
 
 Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible.
@@ -633,14 +614,14 @@ Hence, `show` allows users to view the full remark in the `ResultDisplay` where 
 **Aspect: Display output**
 * **Alternative 1: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
   * Pros:
-    * Supports the `remark` feature as intended since scrolling is possible.
+    * Supports the `remark` command as intended since scrolling is possible.
     * Allows users to view the student details and remarks all at once.
   * Cons:
     * Harder to implement
 * **Alternative 2:** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
   * Pros:
     * Allows users to view the student details and remarks all at once.
-    * Supports the `remark` feature as intended
+    * Supports the `remark` command as intended
   * Cons:
     * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
     * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated everytime `show` is executed.
@@ -1027,6 +1008,23 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
 [↑ Back to top](#table-of-contents)
 
+### Prefix summary
+
+| Prefix | Meaning                                 | Example                               |
+|--------|-----------------------------------------|---------------------------------------|
+| n/     | Name of student                         | `n/Shao Hong`                         |
+| p/     | Phone number of student                 | `p/81234567`                          |
+| e/     | Email of student                        | `e/e07123456@u.edu.sg`                |
+| a/     | Address of student                      | `a/16 Bukit Timah Road, S156213`      |
+| edu/   | Education level of student              | `edu/P6`                              |
+| r/     | Remark for student                      | `r/Good in German`                    |
+| t/     | Tag of student                          | `t/active` or `t/hardworking ...`     |
+| m/     | Module that the student is being taught | `m/CS2101` or `m/CS2101 m/CS4243 ...` |
+| tele/  | Telegram handle of the student          | `tele/@chuuchuu` or `tele/@sO_m4nY`   |
+
+
+[↑ Back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -1122,17 +1120,17 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.  \\
       Expected: The most recent window size and location is retained.
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    2. Test case: `delete 1`  \\
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
 
    3. Test case: `delete 0` \\
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) \\
       Expected: Similar to previous.
