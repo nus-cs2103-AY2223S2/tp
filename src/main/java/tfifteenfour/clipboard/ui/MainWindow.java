@@ -575,7 +575,7 @@ public class MainWindow extends UiPart<Stage> {
             closeSessionTab();
             closeTaskTab();
             showGroupTab();
-            
+
         } else if (prevCommand instanceof SelectCommand) {
             handleBackCommand();
 
