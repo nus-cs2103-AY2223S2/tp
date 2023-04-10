@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.entity.Character.CharacterBuilder;
+import static seedu.address.model.entity.Item.ItemBuilder;
+import static seedu.address.model.entity.Mob.MobBuilder;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,13 +13,18 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.ChallengeRating;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Cost;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Legend;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Progression;
 import seedu.address.model.entity.Stats;
+import seedu.address.model.entity.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -90,12 +98,17 @@ public class EditValueCommand extends Command {
 
         Name updatedName = editCharacterDescriptor.getName().orElse(charToEdit.getName());
         Stats updatedStats = editCharacterDescriptor.getStats().orElse(charToEdit.getStats());
-        Integer updatedLevel = editCharacterDescriptor.getLevel().orElse(charToEdit.getLevel());
-        Integer updatedXp = editCharacterDescriptor.getXp().orElse(charToEdit.getXP());
+        Progression updatedProgression = editCharacterDescriptor.getProgression().orElse(charToEdit.getProgression());
         Set<Tag> updatedTags = editCharacterDescriptor.getTags().orElse(charToEdit.getTags());
         Inventory updatedInventory = editCharacterDescriptor.getInventory().orElse(charToEdit.getInventory());
 
-        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedInventory, updatedTags);
+        CharacterBuilder builder = new CharacterBuilder(updatedName)
+                .setStats(updatedStats)
+                .setProgression(updatedProgression)
+                .setInventory(updatedInventory)
+                .setTags(updatedTags);
+
+        return builder.build();
     }
 
     /**
@@ -106,13 +119,20 @@ public class EditValueCommand extends Command {
 
         Name updatedName = editMobDescriptor.getName().orElse(mobToEdit.getName());
         Stats updatedStats = editMobDescriptor.getStats().orElse(mobToEdit.getStats());
-        Float updatedChallengeRating = editMobDescriptor.getChallengeRating().orElse(mobToEdit.getChallengeRating());
-        Boolean updatedIsLegendary = editMobDescriptor.getWeight().orElse(mobToEdit.getLegendaryStatus());
+        ChallengeRating updatedChallengeRating = editMobDescriptor.getChallengeRating()
+                .orElse(mobToEdit.getChallengeRating());
+        Legend updatedLegend = editMobDescriptor.getLegend().orElse(mobToEdit.getLegend());
         Set<Tag> updatedTags = editMobDescriptor.getTags().orElse(mobToEdit.getTags());
         Inventory updatedInventory = editMobDescriptor.getInventory().orElse(mobToEdit.getInventory());
 
-        return new Mob(updatedName, updatedStats, updatedChallengeRating, updatedIsLegendary,
-                                                                    updatedInventory, updatedTags);
+        MobBuilder builder = new MobBuilder(updatedName)
+                .setStats(updatedStats)
+                .setChallengeRating(updatedChallengeRating)
+                .setLegend(updatedLegend)
+                .setInventory(updatedInventory)
+                .setTags(updatedTags);
+
+        return builder.build();
     }
 
     /**
@@ -122,11 +142,16 @@ public class EditValueCommand extends Command {
     private static Entity createEditedItem(Item charToEdit, EditItemDescriptor editItemDescriptor) {
 
         Name updatedName = editItemDescriptor.getName().orElse(charToEdit.getName());
-        Integer updatedCost = editItemDescriptor.getCost().orElse(charToEdit.getCost());
-        Float updatedWeight = editItemDescriptor.getWeight().orElse(charToEdit.getWeight());
+        Cost updatedCost = editItemDescriptor.getCost().orElse(charToEdit.getCost());
+        Weight updatedWeight = editItemDescriptor.getWeight().orElse(charToEdit.getWeight());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(charToEdit.getTags());
 
-        return new Item(updatedName, updatedCost, updatedWeight, updatedTags);
+        ItemBuilder builder = new ItemBuilder(updatedName)
+                .setCost(updatedCost)
+                .setWeight(updatedWeight)
+                .setTags(updatedTags);
+
+        return builder.build();
     }
 
     @Override
@@ -224,8 +249,7 @@ public class EditValueCommand extends Command {
     public static class EditCharacterDescriptor extends EditEntityDescriptor {
 
         private Stats stats;
-        private Integer level;
-        private Integer xp;
+        private Progression progression;
         private Inventory inventory;
 
         /**
@@ -240,8 +264,7 @@ public class EditValueCommand extends Command {
         public EditCharacterDescriptor(EditCharacterDescriptor toCopy) {
             super(toCopy);
             setStats(toCopy.stats);
-            setLevel(toCopy.level);
-            setXp(toCopy.xp);
+            setProgression(toCopy.progression);
             setInventory(toCopy.inventory);
         }
 
@@ -253,20 +276,20 @@ public class EditValueCommand extends Command {
             return Optional.ofNullable(stats);
         }
 
-        public void setLevel(int level) {
-            this.level = level;
+        public void setProgression(Progression progression) {
+            this.progression = progression;
+        }
+
+        public Optional<Progression> getProgression() {
+            return Optional.ofNullable(progression);
         }
 
         public Optional<Integer> getLevel() {
-            return Optional.ofNullable(level);
-        }
-
-        public void setXp(int xp) {
-            this.xp = xp;
+            return Optional.of(this.progression.getLevel());
         }
 
         public Optional<Integer> getXp() {
-            return Optional.ofNullable(xp);
+            return Optional.of(this.progression.getXP());
         }
 
         public Optional<Inventory> getInventory() {
@@ -302,8 +325,8 @@ public class EditValueCommand extends Command {
     public static class EditMobDescriptor extends EditEntityDescriptor {
 
         private Stats stats;
-        private Float challengeRating;
-        private Boolean isLegendary;
+        private ChallengeRating challengeRating;
+        private Legend legend;
         private Inventory inventory;
 
         /**
@@ -319,7 +342,7 @@ public class EditValueCommand extends Command {
             super(toCopy);
             setStats(toCopy.stats);
             setChallengeRating(toCopy.challengeRating);
-            setIsLegendary(toCopy.isLegendary);
+            setLegend(toCopy.legend);
             setInventory(toCopy.inventory);
         }
 
@@ -331,20 +354,20 @@ public class EditValueCommand extends Command {
             return Optional.ofNullable(stats);
         }
 
-        public void setChallengeRating(float challengeRating) {
+        public void setChallengeRating(ChallengeRating challengeRating) {
             this.challengeRating = challengeRating;
         }
 
-        public Optional<Float> getChallengeRating() {
-            return Optional.ofNullable(challengeRating);
+        public Optional<ChallengeRating> getChallengeRating() {
+            return Optional.ofNullable(this.challengeRating);
         }
 
-        public void setIsLegendary(boolean isLegendary) {
-            this.isLegendary = isLegendary;
+        public void setLegend(Legend legend) {
+            this.legend = legend;
         }
 
-        public Optional<Boolean> getWeight() {
-            return Optional.ofNullable(isLegendary);
+        public Optional<Legend> getLegend() {
+            return Optional.ofNullable(this.legend);
         }
 
         public void setInventory(Inventory inventory) {
@@ -369,7 +392,7 @@ public class EditValueCommand extends Command {
             EditMobDescriptor e = (EditMobDescriptor) other;
 
             return getChallengeRating().equals(e.challengeRating)
-                    && getWeight().equals(e.getWeight());
+                    && getLegend().equals(e.getLegend());
         }
 
     }
@@ -380,8 +403,8 @@ public class EditValueCommand extends Command {
      */
     public static class EditItemDescriptor extends EditEntityDescriptor {
 
-        private Integer cost;
-        private Float weight;
+        private Cost cost;
+        private Weight weight;
 
         /**
          * Creates an Item detail storage container to be edited.
@@ -398,19 +421,19 @@ public class EditValueCommand extends Command {
             setWeight(toCopy.weight);
         }
 
-        public void setCost(int cost) {
+        public void setCost(Cost cost) {
             this.cost = cost;
         }
 
-        public Optional<Integer> getCost() {
+        public Optional<Cost> getCost() {
             return Optional.ofNullable(cost);
         }
 
-        public void setWeight(float weight) {
+        public void setWeight(Weight weight) {
             this.weight = weight;
         }
 
-        public Optional<Float> getWeight() {
+        public Optional<Weight> getWeight() {
             return Optional.ofNullable(weight);
         }
 

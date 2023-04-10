@@ -49,7 +49,7 @@ public class ItemListPanel extends UiPart<Region> {
 
         int totalCost = 0;
         for (Item item : itemList) {
-            totalCost += item.getCost();
+            totalCost += item.getCost().getGoldCost();
         }
         inventoryValueLabel.setText("Total Value: " + totalCost + "g");
     }

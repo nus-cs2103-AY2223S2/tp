@@ -15,7 +15,9 @@ import seedu.address.model.entity.Name;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete|d";
+    public static final String COMMAND_WORD = "delete";
+
+    public static final String SHORT_FORM_COMMAND = "d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an entity from Reroll.";
 
@@ -37,7 +39,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Entity> listByClassification = model.getListByClassification(classification.toString());
+        ObservableList<Entity> listByClassification = model.getListByClassification(classification);
         Entity toDelete = listByClassification.stream()
                 .filter(entity -> entity.getName().equals(entityName))
                 .findFirst()

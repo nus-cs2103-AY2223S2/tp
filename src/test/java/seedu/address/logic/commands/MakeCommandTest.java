@@ -215,12 +215,12 @@ public class MakeCommandTest {
         }
 
         @Override
-        public ObservableList<Entity> getListByClassification(String classification) {
+        public ObservableList<Entity> getListByClassification(Classification classification) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Character createFromTemplate(Name entityName, Name templateName) {
+        public Character createFromTemplate(Name entityName, String templateName) {
             throw new AssertionError("This method should not be called.");
         }
 

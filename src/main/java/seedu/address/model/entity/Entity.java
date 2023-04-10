@@ -15,7 +15,7 @@ import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book. Guarantees: details are present and not null, field values are validated,
+ * Represents an Entity in Reroll. Guarantees: details are present and not null, field values are validated,
  * immutable.
  */
 public abstract class Entity {
@@ -71,9 +71,6 @@ public abstract class Entity {
         }
 
         Entity otherEntity = (Entity) other;
-        if (other == this) {
-            return true;
-        }
         boolean isBothCharacter = (otherEntity instanceof Character) && (this instanceof Character);
         boolean isBothItem = (otherEntity instanceof Item) && (this instanceof Item);
         boolean isBothMob = (otherEntity instanceof Mob) && (this instanceof Mob);
@@ -100,3 +97,5 @@ public abstract class Entity {
 
     public abstract boolean isSameEntity(Entity otherEntity);
 }
+
+
