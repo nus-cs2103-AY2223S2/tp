@@ -232,7 +232,7 @@ if the various lists.
 
 #### Design considerations:
 * Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
-  * Pros: user can update Reminders without opening the app
+  * Pros: user can update Reminders with commands like other features
   * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
 command, the reminders likely do not need to be updated.
 <div style="page-break-after: always;"></div>
