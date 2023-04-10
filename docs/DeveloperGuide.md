@@ -97,7 +97,6 @@ The `UI` component,
 
 ### Logic component
 
-
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -144,6 +143,23 @@ The `Model` component,
 
 </div>
 
+#### Person
+
+* The `Person` object under the `Model` component, stores information of a generic person
+* A `Person` object extends a `Patient` or a `Doctor`, which stores information specific to a patient and a doctor respectively
+* Note that only the `Nric` uniquely identifies each `Person`
+
+#### Appointment
+
+* The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
+* Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
+  * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
+
+#### Prescription
+
+* The `Prescription` object is stored within the `Prescription` package, under the `Model` component.
+* Stores the required information of a prescription, including `Cost`, and `Medication`
+    * Note that `Prescription` can only be created for an existing `Patient` in `MediConnect`
 
 ### Storage component
 
@@ -210,17 +226,17 @@ The delete mechanism is facilitated by `MediConnect`. It extends `MediConnect` w
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial list state, with a sample list of names.
 
 ![deleteState0](images/deleteState0.png)
 
-Step 2. The user executes addDoctor n/David Tan …​ to add a new doctor. The add command also calls Model#commitAddressBook(), causing another modified address book state to be saved into the addressBookStateList.
+Step 2. The user executes addDoctor n/David …​ to add a new doctor. The NRIC of the doctor is also included.
 
 ![deleteState1](images/deleteState1.png)
 
 Step 3. The user now wants to delete the person, and decides to carry out the delete operation by executing the `delete` command.
 
-Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command removes the person with the corresponding `NRIC` from the current list.
 
 ![deleteState2](images/deleteState2.png)
 
@@ -233,25 +249,88 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
 
-### Adding an appointment
+### Display feature
 
-The add appointment mechanism is facilitated by `MediConnect`.
+The display feature is to allow the user to view all detailed particulars of a `Patient` or `Doctor`. Note that the `Person` has to exist in `MediConnect`.  This feature is intended to complement the `Edit`, `Appointment` and `Prescription` features, allowing users to access all of the `Person`'s information when updating records.
+
+Given below is an example usage scenario and how the display mechanism behaves at each step.
+
+Scenario: Mary Smith is a patient (already registered in the system) who has just arrived at the clinic for her appointment. She is required to register her visit before consulting the doctor.
+
+Step 1. The healthcare administrative staff wishes to verify that Mary has an appointment scheduled at this time. The staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X`. As seen from Mary's appointment list, an appointment is indeed scheduled for today, and the staff proceeds to register her visit.
+
+The sequence diagram below shows how the DisplayCommand works:
+![DisplaySequenceDiagram](images/DisplaySequenceDiagram.png)
+
+* When the user inputs `display ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the person's `Nric` through `ParserUtil`
+    * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person`
+    * `CommandException` is thrown
+        * if `Patient` or `Doctor` retrieved by `Nric` does not exist
+
+### Appointment feature
+
+`Appointment` represents a scheduled meeting between a `Patient` and a `Doctor`. When a `Patient` is scheduled an appointment with a `Doctor`, that corresponding `Doctor` will have an appointment scheduled with that particular `Patient`. Each `Appointment` consists of the following:
+* Patient's `Nric` of the `Patient` scheduled for an appointment
+* `Booking` consisting the date of the appointment
+* Doctor's `Nric` of the `Doctor` that the `Patient` is scheduled with in the appointment
+
+#### Adding an appointment
 
 Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Scenario: Mary Smith is an outpatient (already registered in the system) due for her medical check-up with Dr. Paul West (already registered in the system) in 2 weeks, on 01-02-2023 10:00. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
-Step 2. The user executes `appointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to add an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `appointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `appointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `appointment ic/S1234567X d/01-02-2023 10:00 dric/S7654321R` command to add an appointment for Mary Smith at the specified date, with Dr Paul West. This adds an `Appointment` to Mary, an`Appointment` to Dr. Paul, and an `Appointment` to the `HospitalAppointmentList`. The successful execution of the command confirms that both Mary Smith does not have any prior booking on this date and that Dr. Paul West is not scheduled to meet any other patients on the same date.
 
-### \[Proposed\] Deleting an appointment
+The sequence diagram below shows how the AppointmentCommand works:
+![AppointmentSequenceDiagram](images/AppointmentSequenceDiagram.png)
 
-The delete appointment mechanism is facilitated by `MediConnect`.
+* When the user inputs `appointment ic/[NRIC] d/[DATE] dric/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates an `AppointmentCommandParser` to parse the patient's `Nric`, `Booking`, and doctor's `Nric` inputs through `ParserUtil`
+  * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates an `AppointmentCommand` with the new `Appointment` created. The `LogicManager` then executes the `AppointmentCommand`, upon which the `Appointment` is added to the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#bookAppointment()`.
+  * `CommandException` is thrown
+    * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
+    * if `Appointment` already exists in `Model`
+* Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
+
+
+#### Deleting an appointment
+
+The sequence diagram below shows how the `DeleteAppointmentCommand` is parsed:
+{add a sequence diagram}
 
 Given below is an example usage scenario and how the delete appointment mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Scenario: Mary Smith already has a medical check-up scheduled with Dr. Paul West (already registered in the system) on 01-02-2023 10:00. However, she realizes that she cannot make it and wishes to cancel the appointment. (Note: This scenario assumes that there is currently no existing appointment data that has been created or stored in MediConnect.)
 
-Step 2. The user executes `deleteAppointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to delete an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `deleteAppointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deleteAppointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 1. The healthcare administrative staff first verifies Mary Smith's `Nric` with her, and executes `display ic/S1234567X` to view all her existing appointment bookings. This displays Mary's list of appointments, and the appointment that needs to be cancelled is located at index 1.
+
+Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete the appointment at index 1 of Mary's list of appointments. This removes the `Appointment` from Mary's and Dr. Paul's appointment list, and from `HospitalAppointmentList`.
+
+The sequence diagram below shows how the DeleteAppointmentCommand works:
+![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+
+* When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
+    * Any invalid inputs will throw a `ParseException`
+* Otherwise, it creates a `DeleteAppointmentCommand`. The `LogicManager` then executes the `DeleteAppointmentCommand`, upon which the `Appointment` to be deleted is retrieved and removed from the `Patient` and `Doctor`'s appointment list, as well as the `Model` by calling `ModelManager#deleteAppointment()`.
+    * `CommandException` is thrown
+        * if `Patient` or `Doctor` retrieved by `Nric` does not exist, or
+        * if `INDEX` is invalid
+* Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
+
+#### Design considerations:
+
+**Aspect: Command format:**
+
+* **Alternative 1 (current choice):** Delete appointment specified by the `INDEX`.
+    * Pros: User can input a shorter command.
+    * Cons: Can be tedious to find the appointment to delete if the appointment list gets very long.
+
+* **Alternative 2:** Delete appointment specified by the `Booking` and doctor's `Nric`.
+    * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
+    * Cons: More tedious to implement and less convenient for the user to input command.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -331,13 +410,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -401,8 +473,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |           | healthcare administrator                    | view and manage patient's bills and medication through the application                                                      | I can keep track of patient bills and medical records.                                  |
 |           | tech illiterate healthcare administrator    | navigate through the app easily without help.                                                                               |                                                                                         |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is `MediConnect (MC)`, unless specified otherwise)
@@ -431,6 +501,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 3a1-3a2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
+  
+* 3b. MC detects that the patient already exists in the list.
+
+  * 3b1. MC informs user that the patient already exists.
+
+  * 3b2. User enters new data.
+
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
 
 **Use case: UC02 - Add doctor’s information**
 
@@ -457,6 +537,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+* 3b. MC detects that the doctor already exists in the list.
+
+  * 3b1. MC informs user that the doctor already exists.
+
+  * 3b2. User enters new data.
+
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
 **Use case: UC03 - Retrieve patient’s information**
 
 **Actor: Doctor**
@@ -466,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User chooses to retrieve patient’s information.
 2. MC retrieves the patient’s information
 3. MC displays the patient information that was retrieved.
-   
+
     Use case ends.
 
 **Extensions**
@@ -496,7 +586,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User choose to delete patient information.
 2. MC request for the patient's NRIC number.
 3. User enters the requested details
-4. MC displays the confirmation of the deleted patient.
+4. MC displays the confirmation of the deleted patient..
+
    Use case ends.
 
 **Extensions**
@@ -554,6 +645,95 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: UC07 - Book patient's appointment**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User chooses to book patient’s appointment.
+2. MC requests for details of the information.
+3. User enters the requested details.
+4. MC displays the updated appointment information for the patient and the doctor.
+
+    Use case ends.
+
+**Extensions**
+* 3a. MC detects that the patient already has an appointment scheduled for that appointment slot.
+
+  * 3a1. MC informs the user that the appointment has been booked
+
+  * 3a2. User enters another appointment slot.
+
+    Steps 3a1-3a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3b. MC detects that the doctor has already scheduled an appointment with another patient at this particular time slot.
+
+  * 3b1. MC informs the user that the appointment has been booked
+
+  * 3b2. User enters another appointment slot.
+
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3c. MC detects that the patient's nric does not exist.
+
+  * 3c1. MC informs the user that the patient's nric is invalid
+
+  * 3c2. User enters another patient nric
+
+    Steps 3c1-3c2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3d. MC detects that the doctor's nric does not exist.
+
+    * 3d1. MC informs the user that the doctor's nric is invalid
+
+    * 3d2. User enters another doctor nric
+
+      Steps 3d1-3d2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+**Use case: UC08 - Cancel patient's appointment**
+
+**Actor: Healthcare administrator**
+
+**MSS**
+
+1. User chooses to cancel patient’s appointment.
+2. MC requests for details of the information.
+3. User enters the requested details.
+4. MC displays the updated appointment information for the patient and the doctor.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. MC detects that an invalid index is entered.
+
+    * 3a1. MC informs the user that the specified index is invalid
+
+    * 3a2. User enters another index.
+
+      Steps 3a1-3a2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
+* 3b. MC detects that the patient's nric does not exist.
+
+    * 3b1. MC informs the user that the patient's nric is invalid
+
+    * 3b2. User enters another patient nric
+
+      Steps 3b1-3b2 are repeated until the data entered are correct.
+
+      Use case resumes from step 4.
+
 ### Non-Functional Requirements
 
 1. Users cannot view information of unassigned patients
@@ -562,7 +742,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. The system should be usable by a novice who is tech illiterate
 5. **Any other noteworthy points:** Confidential information is hidden, requires access rights
 
-*{More to be added}*
 
 ### Glossary
 
@@ -634,12 +813,9 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2._{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
