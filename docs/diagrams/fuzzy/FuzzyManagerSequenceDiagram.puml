@@ -6,7 +6,7 @@ participant ":MainWindow" as MainWindow UI_COLOR_T3
 
 -> SearchMode : onInputChanged(input)
 
-ref over SearchMode, MainWindow : fuzzy ranking
+ref over SearchMode : fuzzy ranking
 
 SearchMode -> MainWindow : set clients
 SearchMode -> MainWindow : set projects
