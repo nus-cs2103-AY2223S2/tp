@@ -38,8 +38,7 @@ this user guide has everything you need. Head over to the [Getting started](#get
 
 <div style="page-break-after: always;"></div>
 
-## Table of Contents
-
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -77,6 +76,7 @@ Notes are general information that gives you a better understand of QuickContact
 Cautions are warnings for you to note when using QuickContacts.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Installation
 
