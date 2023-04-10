@@ -56,7 +56,7 @@ Representation of important dates or deadlines of key events such as an Online A
 1. Ensure you have Java version `11` or above installed in your Computer. Instructions to check or download Java version `11` can be found [here](#java-instructions).
 
 
-2. Download the latest `ultron.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
+2. Download the latest `ultron.jar` [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Ultron.
@@ -343,9 +343,25 @@ Ultron data are saved in the hard disk automatically after any command that chan
 
 **A**: Remarks will only be displayed when `show` command is used.
 
+---
 **Q**: How do I transfer my data to another Computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the JSON file 'data/ultron.json'.
+**A**: 
+Make sure the other system is compatible with `java 11`. Install ultron.jar in to the system and navigate to the `data` folder. 
+Afterwards, copy the `ultron.json` file from the old system and replace it with
+the `ultron.json` file in the new system. 
+
+
+---
+**Q**: What if I want to delete all openings from a specific company?
+
+**A**: Filter the list by the company of interest using the find command. e.g `find Google`.
+Then you can delete each opening one by one based on the filtered list by using the `delete` command. 
+---
+**Q**: I cannot open my ultron.jar file as it is from an unidentified developer. How do I solve that? 
+
+**A**: Your system might have security settings in place to block access to potentially malicious files. 
+For macOS users, you might want to refer [here](https://www.macworld.com/article/672947/how-to-open-a-mac-app-from-an-unidentified-developer.html) for troubleshooting. 
 
 ---
 
