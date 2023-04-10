@@ -40,6 +40,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * added relevant user stories to user guide regarding social media and open and chat commands and optional fields
+    * edited description of search command
   * Developer Guide:
     * added implementation of Search command
     * added user stories related to social media and open and chat commands
