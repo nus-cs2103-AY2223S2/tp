@@ -255,6 +255,7 @@ Example:
 
 ![View command example](images/viewExample.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Adding an appointment: `add_appt` or `ap`
 
