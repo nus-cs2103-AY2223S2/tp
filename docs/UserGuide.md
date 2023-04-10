@@ -52,13 +52,15 @@ The following callouts can be found throughout our user guide:
 In general, the following command format is adopted in FriendlyLink.
 
 <pre style="color: #457C51">
-    command <[PREAMBLE]> prefix/FIELD [prefix/OPTIONAL_FIELD] [prefix/OPTIONAL_FIELD]…
+
+command <[PREAMBLE]> prefix/FIELD [prefix/OPTIONAL_FIELD] [prefix/OPTIONAL_FIELD]…
+
 </pre>
 
-| Name      | Meaning                                                                | Notes | Examples       |
-|-----------|------------------------------------------------------------------------|-------|----------------|
-| Command   | An instruction given by you to FriendlyLink to perform a specific task |       | `add_elderly`  | 
-
+| Name     | Meaning                                                                                                         | Notes                                                                                                                                                                                                                       | Examples                                                                                                                     |
+|----------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| Command  | An instruction given by you to FriendlyLink to perform a specific task.                                         |                                                                                                                                                                                                                             | `add_elderly`                                                                                                                | 
+| Prefix   | Refers to characters appearing before a slash in a command. Prefixes label the information that they represent. | <ul> <li> Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`. </li> <li> Fields after prefixes have leading and trailing whitespaces removed e.g. `n/ Mary` is trimmed to `n/Mary`. </li> | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.   |
 
 <div markdown="block" class="alert alert-info">:information_source: **Notes**
 
@@ -71,12 +73,6 @@ For example, given a command `example_command <[AGE]> n/NAME [bd/DATE] [t/TAGS]�
 `example_command 29 n/John Doe t/Hello t/World`. Notice that the prefix `bd` is not specified here, because it is optional.
 
 </div> 
-
-### Prefix
-Prefix refers to characters appearing before a slash in a command. Prefixes label the information that they represent.
-For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
-* Prefixes should be entered in all **lower case** e.g. `n/Abdul` instead of `N/Abdul`.
-* Fields after prefixes have leading and trailing whitespaces removed e.g. `n/ Mary` is trimmed to `n/Mary`.
 
 ### Field
 Field refers to information following a slash in a command, providing information to the relevant prefix, such as indicating a volunteer's name, phone number, email and other information.
