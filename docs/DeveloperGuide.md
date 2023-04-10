@@ -305,6 +305,10 @@ The command execution flow is as given below
 6. Based on the filtered elderly and volunteers a predicate to get the related pairs is created and ```updateFilteredPairList``` of ```Model``` is called.
 7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
 
+The class diagram below shows the relation of predicates to ```FindCommandParser``` and ```FindCommand```.
+
+<img src="images/developerGuide/FindCommandClassDiagram.png" width="900" />
+
 Design decisions:
 - Name, address, email, phone, tags and medical qualification attributes allow substring searching.
   - Easier to search with only partial information available.
