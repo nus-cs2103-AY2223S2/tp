@@ -41,7 +41,7 @@ public class MakeCommandTest {
         CommandResult commandResult = new MakeCommand(validEntity).execute(modelStub);
 
         assertEquals(String.format(MakeCommand.MESSAGE_SUCCESS, validEntity), commandResult.getFeedbackToUser());
-        assertEquals(Collections.singletonList(validEntity), modelStub.personsAdded);
+        assertEquals(Collections.singletonList(validEntity), modelStub.entitiesAdded);
     }
 
     @Test
@@ -252,18 +252,18 @@ public class MakeCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingEntityAdded extends ModelStub {
-        final ArrayList<Entity> personsAdded = new ArrayList<>();
+        final ArrayList<Entity> entitiesAdded = new ArrayList<>();
 
         @Override
         public boolean hasEntity(Entity entity) {
             requireNonNull(entity);
-            return personsAdded.stream().anyMatch(entity::isSameEntity);
+            return entitiesAdded.stream().anyMatch(entity::isSameEntity);
         }
 
         @Override
         public void addEntity(Entity entity) {
             requireNonNull(entity);
-            personsAdded.add(entity);
+            entitiesAdded.add(entity);
         }
 
         @Override
