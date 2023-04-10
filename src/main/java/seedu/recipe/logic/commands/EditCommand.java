@@ -76,7 +76,6 @@ public class EditCommand extends Command {
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
         Recipe editedRecipe = recipeDescriptor.toRecipe(recipeToEdit);
 
-        // TODO: ensure that these model methods work properly
         if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
@@ -101,7 +100,11 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && recipeDescriptor.equals(e.recipeDescriptor);
+            && recipeDescriptor.equals(e.recipeDescriptor);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s|%s", index.getOneBased(), recipeDescriptor.toRecipe());
+    }
 }

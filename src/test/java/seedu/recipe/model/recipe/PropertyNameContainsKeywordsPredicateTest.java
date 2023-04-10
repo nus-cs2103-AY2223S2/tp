@@ -22,7 +22,6 @@ public class PropertyNameContainsKeywordsPredicateTest {
         // testing equals for Name
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
-        List<String> thirdPredicateKeywordList = Arrays.asList("first", "third");
 
         PropertyNameContainsKeywordsPredicate<Name> firstPredicate = new
             PropertyNameContainsKeywordsPredicate<Name>(

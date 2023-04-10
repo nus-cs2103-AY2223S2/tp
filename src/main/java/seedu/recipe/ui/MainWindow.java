@@ -5,6 +5,7 @@ import static seedu.recipe.ui.events.EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -127,6 +128,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles the import file action for importing an existing Recipe Book JSON file into the app.
+     * This is done by prompting the user to select an existing Recipe Book JSON file and importing its contents
+     * into the application.
      */
     @FXML
     private void handleImport() {
@@ -140,6 +143,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles the export file action for exporting the current Recipe Book JSON file.
+     * This is done by prompting the user to select an existing directory and exporting the current Recipe Book data
+     * in the form of a JSON file there.
      */
     @FXML
     private void handleExport() {
@@ -185,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList(), this::executeCommand);
+        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
         recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -196,6 +201,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        // Request focus for the CommandBox
+        Platform.runLater(() -> commandBox.getRoot().requestFocus());
     }
 
     /**

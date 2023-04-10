@@ -10,6 +10,7 @@ import seedu.recipe.ui.util.FieldsUtil;
  */
 public class AddRecipeForm extends RecipeForm {
     private static final String title = "Add New Recipe";
+    private static final String INGREDIENT_PROMPT = "(i.e. `-a 100 g -n parmesan cheese -r grated -s mozzarella`)";
 
     /**
      * Creates a new AddRecipeForm.
@@ -26,8 +27,10 @@ public class AddRecipeForm extends RecipeForm {
      */
     private void init() {
         TextArea emptyIngredientField = FieldsUtil.createDynamicTextArea("");
+        emptyIngredientField.setPromptText("Add an ingredient " + INGREDIENT_PROMPT);
         ingredientsBox.getChildren().add(emptyIngredientField);
         TextArea emptyStepField = FieldsUtil.createDynamicTextArea("");
+        emptyStepField.setPromptText("Add a step");
         stepsBox.getChildren().add(emptyStepField);
     }
 
