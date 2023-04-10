@@ -11,9 +11,10 @@ import seedu.address.model.tag.Tag;
  * Represents an item, which is a child class of Entity
  */
 public class Item extends Entity {
+
+    public static final String ITEM_COMMAND_TERM = "item";
     private final Cost cost;
     private final Weight weight;
-    public static String ITEM_COMMAND_TERM = "item";
 
     /**
      * Constructs an item using a given ItemBuilder

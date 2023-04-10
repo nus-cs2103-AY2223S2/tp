@@ -11,10 +11,11 @@ import seedu.address.model.tag.Tag;
  * Represents a Character, which is a child class of Entity
  */
 public class Character extends Entity {
+
+    public static final String CHAR_COMMAND_TERM = "char";
     private final Stats stats;
     private final Inventory inventory;
     private final Progression progression;
-    public static String CHAR_COMMAND_TERM = "char";
 
     /**
      * Create a new character using a builder pattern
