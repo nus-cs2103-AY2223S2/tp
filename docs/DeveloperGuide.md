@@ -208,7 +208,6 @@ and refresh the whole patient list with new appointment added.
 ### 2. Uploading Medical file for a Patient
 This feature servers as one of the core features of Medimate, so how is it implemented?
 
-#### Note:
 * There are two ways to upload medical files for a patient within the application. 
 * Users can either utilize a command (similar to 1.Marking Appointment using UploadFileCommand) or click the `upload button` in the user interface.
 * Medical files should be in PDF, JPG, or PNG format, and can contain additional information about the patient, such as medical history, test results, or treatment plans.
@@ -230,8 +229,8 @@ Initially when user click the `upload button`, FileManger is initialised with th
 <img src="images/uploadFile.png" width="600" />
 
 ### 3. Create medical certificate PDF file
+This feature servers as one of the core features of Medimate, so how is it implemented?
 
-#### Note:
 * There are two ways to create medical certificate for a patient within the application.
   Users can either utilize a command (similar to 1.Marking Appointment using CreateCommand ) or click the `create button` in the user interface.
 * PDF file generated will be a copy of [`MC.pdf`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/resources/MC.pdf).
