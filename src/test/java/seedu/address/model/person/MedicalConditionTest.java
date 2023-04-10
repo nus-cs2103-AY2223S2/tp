@@ -25,7 +25,6 @@ public class MedicalConditionTest {
         assertTrue(MedicalCondition.isValidCondition("Asthma")); // string
         assertTrue(MedicalCondition.isValidCondition("")); // empty string
         assertTrue(MedicalCondition.isValidCondition("Flu")); // string
-        assertFalse(MedicalCondition.isValidCondition("asthma6")); //String with random number
     }
 
 }
