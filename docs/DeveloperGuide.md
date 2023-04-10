@@ -14,16 +14,16 @@ title: Developer Guide
 - [**Implementation**](#implementation)
   - [Add remark feature](#add-remark-feature)
   - [Show opening details feature](#show-opening-details-feature)
-  - [Upcoming keydates feature](#upcoming-keydates-feature)
-      - [Design considerations:](#design-considerations)
-  - [Status filtering feature](#status-filtering-feature)
     - [Design considerations:](#design-considerations)
+  - [Upcoming keydates feature](#upcoming-keydates-feature)
+    - [Design considerations:](#design-considerations-1)
+  - [Status filtering feature](#status-filtering-feature)
+    - [Design considerations](#design-considerations-2)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
   - [Use cases](#use-cases)
   - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
   - [Adding an opening](#adding-an-opening)
@@ -44,6 +44,7 @@ title: Developer Guide
   - [**Enhancement 2: Keydates should accept time**](#enhancement-2-keydates-should-accept-time)
   - [**Enhancement 3: Position should allow for special characters**](#enhancement-3-position-should-allow-for-special-characters)
   - [**Enhancement 4: Addition of keydates should be accumulative**](#enhancement-4-addition-of-keydates-should-be-accumulative)
+- [**Glossary**](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -745,7 +746,7 @@ A large part of the project was spent on refactoring the codebase and ensuring p
 
 2. We propose to allow edit to still overwrite the keydates, but we add new commands `addkeydate` and `deletekeydate`. These two commands will take in an index and keydates as parameters to add new keydates or delete existing keydates for the indexed opening. Example usages would be `addkeydate 1 Interview@2023-11-13` and `deletekeydate 1 OA@2023-11-11`. It will also be able to take in multiple keydates and function accordingly (all input keydates for `deletekeydate` must be valid, ie if one of them do not exist, command fails).
 
-### Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Opening**: Item representing an internship opening
