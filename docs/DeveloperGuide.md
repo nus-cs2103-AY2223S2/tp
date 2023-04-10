@@ -316,7 +316,7 @@ diagrams to depict the processes at each layer in greater detail.
 </p>
 
 <p align="center">
-<img src="images/WingmanUnLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
+<img src="images/WingmanUnlinkFlightActivity.png" width="231" alt="Unlink Flight activity diagram">
 </p>
 
 <p align="center">
