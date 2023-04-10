@@ -130,8 +130,6 @@ After ensuring you have Java version `11`, you can return to [Quick Start](#quic
 
 **:information_source: Notes about the command format:**<br>
 
-- Internship applications are represented as openings, By using clean and optimized representation of important dates or deadlines as *keydates*,
-
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
   e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
@@ -236,14 +234,12 @@ Format: `show INDEX`
 
 ### Listing upcoming dates : `upcoming`
 
-Lists openings which has events today or within the next `DAYS` days, 
+Got too many dates or events to track? Ultron allows you to focus on only the most upcoming and urgent dates or deadlines, by filtering the displayed list to only show openings with keydates within a specific time frame.
 
 Format: `upcoming DAYS`
 
-- Lists all openings which has events today or within the next `DAYS` days.
+- Lists all openings which has events within the time frame, i.e. today or within the next `DAYS` days, sorted in order of most urgent events.
 - `DAYS` **must be a positive integer** 1, 2, 3, …​
-
-**Display order** : All relevant 
 
 Examples:
 
@@ -336,7 +332,21 @@ Ultron data are saved in the hard disk automatically after any command that chan
 
 ## FAQ
 
-**Q**: Why does the remarks not show up after editing?
+**Display order of filtered list** : Sorted in ascending order of the date for earliest keydates of each opening within the time range.
+
+**Q**: For the `upcoming` command, how is the filtered list sorted?
+
+**A**: It is displayed and sorted in ascending order, based on the date for the earliest keydates of each opening within the time range.
+
+---
+
+**Q**: I have too many keydates for my opening, and it is not displaying properly on the left panel. How do I view them properly?
+
+**A**: You can use the `show` command with the index of the opening of interest, shown [here](#showing-full-details-of-opening--show), or you can also directly click on the opening of interest. The full information will then be displayed on the right panel.
+
+---
+
+**Q**: Why do details such as emails or remarks not show up after editing?
 
 **A**: Remarks will only be displayed when `show` command is used.
 
