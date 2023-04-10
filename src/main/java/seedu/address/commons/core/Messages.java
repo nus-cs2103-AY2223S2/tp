@@ -83,4 +83,14 @@ public class Messages {
             + "whose name is contained in \"%s\".";
     public static final String MESSAGE_CONFLICTING_LESSON_TIME = "You already have a lesson during this time!";
     public static final String MESSAGE_CONFLICTING_EXAM_TIME = "This student has an exam during this time!";
+    public static final String MESSAGE_ONLY_ONE_LESSON = "Only one lesson title is allowed";
+    public static final String MESSAGE_ONLY_ONE_DATE = "Only one lesson date is allowed";
+    public static final String MESSAGE_ONLY_ONE_STARTTIME = "Only one lesson start time is allowed";
+    public static final String MESSAGE_ONLY_ONE_ENDTIME = "Only one lesson end time is allowed";
+    public static final String MESSAGE_ONLY_ONE_EMAIL = "Only one email is allowed";
+    public static final String MESSAGE_ONLY_ONE_ADDRESS = "Only one address is allowed";
+    public static final String MESSAGE_ONLY_ONE_PHONE = "Only one phone number is allowed";
+    public static final String MESSAGE_ONLY_ONE_DONE = "Only one DONE keyword is allowed";
+
+
 }

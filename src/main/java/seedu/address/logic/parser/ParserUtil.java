@@ -2,10 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.time.LocalDate;
@@ -332,6 +340,56 @@ public class ParserUtil {
         if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Messages.MESSAGE_EMPTY_INDEX));
+        }
+    }
+
+    public static void checkMaxOneLesson(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_LESSON).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_LESSON));
+        }
+    }
+
+    public static void checkMaxOneEmail(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_EMAIL).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_EMAIL));
+        }
+    }
+    public static void checkMaxOneStartTime(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_STARTTIME).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_STARTTIME));
+        }
+    }
+    public static void checkMaxOneEndTime(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_ENDTIME).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_ENDTIME));
+        }
+    }
+    public static void checkMaxOneAddress(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_ADDRESS).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_ADDRESS));
+        }
+    }
+    public static void checkMaxOnePhone(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_PHONE).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_PHONE));
+        }
+    }
+    public static void checkMaxOneDone(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_DONE).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_DONE));
+        }
+    }
+    public static void checkMaxOneDate(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getAllValues(PREFIX_DATE).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_ONLY_ONE_DATE));
         }
     }
 

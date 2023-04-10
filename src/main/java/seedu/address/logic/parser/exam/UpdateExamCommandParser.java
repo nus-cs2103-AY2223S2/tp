@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNullIndex;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,6 +56,9 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UpdateExamCommand.MESSAGE_USAGE));
         }
+
+        checkUniqueNotNUllName(argMultimap);
+        checkUniqueNotNullIndex(argMultimap);
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
