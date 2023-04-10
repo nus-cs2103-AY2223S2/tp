@@ -13,10 +13,10 @@ Given below are my contributions to the project.
     * Group member
         * Attended weekly meetings and scheduled additional ones as required
         * Contributed to design decisions regarding features & bugs
-        * Maintained a [Github Project](https://github.com/orgs/AY2223S2-CS2103T-T14-1/projects/1/views/1) to keep track of tasks
-    * Reviewed PRs for team members
+        * Maintained a [GitHub Project](https://github.com/orgs/AY2223S2-CS2103T-T14-1/projects/1/views/1) to keep track of tasks
+    * Reviewed [PRs](https://github.com/AY2223S2-CS2103T-T14-1/tp/pulls?q=is%3Apr+reviewed-by%3Ammaimer33+) for team members
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=mmaimer33&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=mmaimer33&tabRepo=AY2223S2-CS2103T-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=mmaimer33&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements implemented**:
     * Created a `Project` and support classes
