@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":QuickBookParser" as QuickBookParser LOGIC_COLOR
+participant ":QuickContactsParser" as QuickContactsParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "d:FindCommand" as FindCommand LOGIC_COLOR
 participant ":ContainsNamesPredicate" as ContainsNamesPredicate LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("find n/Bob")
 activate LogicManager
 
-LogicManager -> QuickBookParser : parseCommand("find n/bob")
-activate QuickBookParser
+LogicManager -> QuickContactsParser : parseCommand("find n/bob")
+activate QuickContactsParser
 
 create FindCommandParser
-QuickBookParser -> FindCommandParser
+QuickContactsParser -> FindCommandParser
 activate FindCommandParser
 
-FindCommandParser --> QuickBookParser
+FindCommandParser --> QuickContactsParser
 deactivate FindCommandParser
 
-QuickBookParser -> FindCommandParser : parse("n/bob")
+QuickContactsParser -> FindCommandParser : parse("n/bob")
 activate FindCommandParser
 
 create FindCommand
@@ -42,14 +42,14 @@ deactivate ContainsNamesPredicate
 FindCommand --> FindCommandParser : d
 deactivate FindCommand
 
-FindCommandParser --> QuickBookParser : d
+FindCommandParser --> QuickContactsParser : d
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> QuickBookParser
+FindCommandParser -[hidden]-> QuickContactsParser
 destroy FindCommandParser
 
-QuickBookParser --> LogicManager : d
-deactivate QuickBookParser
+QuickContactsParser --> LogicManager : d
+deactivate QuickContactsParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
