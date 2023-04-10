@@ -16,7 +16,7 @@ streamline your hospital management processes.
 - Assign patients to doctors upon triaging
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ### Summary of Contributions
 
@@ -45,6 +45,7 @@ Here are my contributions to the UG.
   - Created a [tutorial section](../UserGuide.md#docedex-tutorial--for-new-users-) for new users to get started with Docedex
   - Created a [FAQ section](../UserGuide.md#faq) to address common user queries
   - Created a [quick start](../UserGuide.md#quick-start) section to help users get started with Docedex
+  - Added answers to [FAQs](../UserGuide.md#faq) under the *Launching Docedex* and *Checking Java Version* subsections
 
 
 
@@ -56,6 +57,7 @@ Here are my contributions to the DG
     - UC1: Add a doctor, UC2: Delete a doctor
   - Detailed implementation details of [`AddDoctorCommand`](../DeveloperGuide.md#add-doctor-feature), [`AddPatientCommand`](../DeveloperGuide.md#add-patient-feature), [`DeleteDoctorComand`](../DeveloperGuide.md#delete-doctor-feature) and [`DeletePatientCommand`](../DeveloperGuide.md#delete-patient-feature).
   - Detailed implementation details of [Logic](../DeveloperGuide.md#logic-component) and [Model](../DeveloperGuide.md#model-component) components.
+  - Aided in the creation of [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a--planned-enhancements) to document planned enhancements for future versions of Docedex.
 - UML diagrams
     - Class Diagrams: Created class diagrams for Logic and Model classes
     - Sequence Diagrams: Created sequence diagrams for `AddDoctorCommand`, `AddPatientCommand`, `DeleteDoctorComand`, `DeletePatientCommand`
