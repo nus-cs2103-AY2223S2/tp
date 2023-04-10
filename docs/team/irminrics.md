@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 
 * **Project Management**:
   * Released [v1.3](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3) on GitHub.
+  * Released [v1.4](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.4) on GitHub.
 
 * **Contributions to the Developer Guide**
   * Updated Product Scope, User Stories, NFRs and Glossary ([#15](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/15))
