@@ -22,8 +22,6 @@ _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming ev
 
 Refer to the guide [_Setting Up and Getting Started_](SettingUp.md).
 
-<div style="page-break-after: always;"></div>
-
 ## **Design**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -35,6 +33,8 @@ Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/gui
 to learn how to create and edit diagrams.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 [MainClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/Main.java
 [MainAppClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/MainApp.java
 [UiClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/ui/Ui.java
@@ -43,6 +43,7 @@ to learn how to create and edit diagrams.
 [LogicClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/logic/Logic.java
 [ModelClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/model/Model.java
 [StorageClass]: https://github.com/AY2223S2-CS2103-W17-3/tp/blob/master/src/main/java/ezschedule/storage/Storage.java
+
 
 ### **Architecture**
 
@@ -138,6 +139,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -558,6 +561,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user           | edit my schedule                              | make changes to events                                                  |
 | `* *`    | busy user      | be able to schedule many events               | schedule as many events as I want                                       |
 
+<div style="page-break-after: always;"></div>
+
 #### **Use Cases**
 
 (For all use cases below, the **System** is the `EZ-Schedule` and the **Actor** is the `user`, unless specified otherwise)
@@ -747,8 +752,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user with colour blindness may require a high-contrast setting for graphical outputs.
-
-<div style="page-break-after: always;"></div>
 
 ### **Appendix B: Planned Enhancements**
 
