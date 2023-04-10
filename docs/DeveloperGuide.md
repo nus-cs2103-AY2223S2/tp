@@ -34,7 +34,6 @@ title: Developer Guide
     - [Retrieving Data](#retrieving-data)
 - [Potential Enhancement](#potential-enhancement)
   - [Undo and Redo Feature](#proposed-undo-and-redo-feature)
-  - [Data Archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
@@ -108,7 +107,11 @@ implemented. In this section, you will be provided with:
 6. An Object Diagram to model relationships between objects of the same components where applicable.
 7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature.
 
-The [Potential Enhancement](#potential-enhancement) section outlines how 
+The [Potential Enhancement](#potential-enhancement) section shows some features that could be useful for CoDoc's functionality as a contact management app. In this section, you will be provided with:
+
+1. A description of the proposed implementation
+2. Relevant UML diagrams
+3. Details about the design considerations
 
 The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
 provides the links to the aforementioned documents. In this section, you will be provided with the links to:
@@ -1075,13 +1078,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-[Scroll back to top](#table-of-contents)
-
-
-#### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 [Scroll back to top](#table-of-contents)
 
