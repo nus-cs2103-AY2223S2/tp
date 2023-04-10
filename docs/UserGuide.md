@@ -29,9 +29,10 @@ such as flight scheduling and management of crew, pilot, plane and location.
         - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
     - **[Mode-Specific Commands](#mode-specific-commands)**
         - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
-        - *
-          *[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)
-          **
+        -
+            *
+        *[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)
+        **
         - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
         - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
 - **[Prefix Summary](#prefix-summary)**

@@ -193,10 +193,10 @@ command:
 
 ```java
 @Override
-public DeleteCommand<T> createCommand(CommandParam param) throws ParseException{
-    int index = param.getUnnamedIntOrThrow(); // Look at here
-    return new DeleteCommand<>(index, getManagerFunction, deleteFunction);
-}
+public DeleteCommand<T> createCommand(CommandParam param)throws ParseException{
+        int index=param.getUnnamedIntOrThrow(); // Look at here
+        return new DeleteCommand<>(index,getManagerFunction,deleteFunction);
+        }
 ```
 
 The `param.getUnnamedIntOrThrow()` will return the positional value as an
@@ -245,17 +245,17 @@ The `Model` component,
   `UniqueList` objects).
 * stores the currently 'selected' `Flight`, `Pilot`, `Plane`, `Location` and `Crew` objects
   as separate _filtered_ lists (one for each resource type).
-  * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
-  For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
-  lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
+    * These lists are exposed to outsiders as unmodifiable `ObservableList<XYZ>` objects that can be 'observed'.
+      For instance, the UI can be bound to these lists so that the UI automatically updates when the data in the
+      lists change. (XYZ here can again be Flight, Pilot, Plane, Crew or Location)
 * stores in memory a `UserPref` object that represents the user’s preferences.
   This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
   (as the `Model` represents data entities of the domain,
   they should make sense on their own without depending on other components)
-  * Essentially, the `Model` component could be considered as the **domain**
-    layer of the application. It contains core application logic that should not
-    be altered even if we completely swap out the UI or storage components.
+    * Essentially, the `Model` component could be considered as the **domain**
+      layer of the application. It contains core application logic that should not
+      be altered even if we completely swap out the UI or storage components.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> In the diagram above, we have used the Pilot class to give specific examples of the relations
@@ -284,7 +284,6 @@ The `Storage` component,
   and read them back into corresponding objects.
 * depends on some classes in the `Model` component (e.g. `UserPref`)
   because the `Storage` component's job is to save/retrieve objects that belong to the `Model`
-
 
 <div style="page-break-after: always;"></div>
 
@@ -786,7 +785,6 @@ unlikely to have) - `*`
 | `* *`    | airline manager | unlink pilots from locations                                    | change where a pilot is located                            |
 | `* *`    | airline manager | unlink crew from locations                                      | change where a crew is located                             |
 
-
 <div style="page-break-after: always;"></div>
 
 ### Use cases
@@ -955,12 +953,13 @@ is the `user`, unless specified otherwise)
 
 1. **Feature flaw:** A resource entity can currently be linked to one flight through multiple links at once.
    (e.g. Crew Member Ben can be linked to Flight SQ312 as both a Cabin Service Director and a Trainee)
-  - **Feature tweak:** We plan to change the crew entity to be linked to one flight through only one appointment
-    at a time. This can be done by adding a new field labelled availability to the different resource classes
-    in the model layer to prevent the same resource from being assigned to multiple flights at the same time.
-    The linkXYZtoFlight command will also be changed to check this additional field before creating the link if the
-    resource entity is available or returning an error message if the resource entity is not available. Upon creation
-    of the link, this command will also update the availability field of the resource entity to false.
-    The unlinkXYZtoFlight command will also be changed to update the availability field of the resource entity
-    to true when the unlinking is successful.
-  - **Sample Error Message:** The resource entity is not available for the specified flight.
+
+- **Feature tweak:** We plan to change the crew entity to be linked to one flight through only one appointment
+  at a time. This can be done by adding a new field labelled availability to the different resource classes
+  in the model layer to prevent the same resource from being assigned to multiple flights at the same time.
+  The linkXYZtoFlight command will also be changed to check this additional field before creating the link if the
+  resource entity is available or returning an error message if the resource entity is not available. Upon creation
+  of the link, this command will also update the availability field of the resource entity to false.
+  The unlinkXYZtoFlight command will also be changed to update the availability field of the resource entity
+  to true when the unlinking is successful.
+- **Sample Error Message:** The resource entity is not available for the specified flight.
