@@ -736,10 +736,12 @@ Currently, MedInfo allows the user to input dates in the past (e.g.`01/01/1000 1
 input past date-times, such as if the user forgot to enter dates previously, MedInfo is meant to be a **current**
 patient tracking system. As such, inputting dates from the past would not make sense as the patients would have been
 discharged already (and hence have no reason to be recorded in MedInfo).
+Also, MedInfo currently allows entering time in non HHmm format (e.g. '210.4'). This shall be looked into while
+improving validation overall.
 
 Possible Implementation:
-- This could be implemented by adding a method in `Discharge.java` to check if a given date is a valid future
-discharge date (by comparing to the current date)
+- Future validation could be implemented by adding a method in `Discharge.java` to check if a given date is a valid
+future discharge date (by comparing to the current date)
 - The method created above would then be called within `parseDischarge()` in `ParserUtil.java` to ensure that a
 valid future discharge date-time was entered
 
