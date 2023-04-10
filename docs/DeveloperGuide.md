@@ -1035,17 +1035,10 @@ The following is a description of the code execution flow:
   - Possibly falling behind on lecture materials
   - Possibly feeling overwhelmed by large number of lectures per week
 
-**Value proposition**: fast and stress-free way to organise and track module progress and lecture material
+**Value proposition**:
 
-- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a
-  stress-free learning environment
-- Tailored to needs of students: provides additional information specific to lecture media such as watch progress,
-  topics, and tags
-- Allow students to track progress of all modules
-- Offer the users great control over their current modules progress
-- Allow the users to back up their current progress, as well as import progress from backed up files
-- Faster than a typical mouse/GUI driven app
-- Intuitive, easy to navigate GUI
+- Track lecture watch progress by recorded videos
+- Get an overall glance of one's watch progress on a module by module or lecture by lecture basis
 
 ### User stories
 
