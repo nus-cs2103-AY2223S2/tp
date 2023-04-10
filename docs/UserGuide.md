@@ -66,7 +66,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * Parameters can be in any order.<br>
   E.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. (With the exception to the `evt/EVENT_INDEX` parameter)<br>
   E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command.<br>
