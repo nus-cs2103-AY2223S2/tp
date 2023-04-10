@@ -9,6 +9,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
+// Implementation below adapted from https://github.com/Charles1026/tp/blob/7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/
+// src/main/java/seedu/address/logic/commands/ViewCommand.java
 /**
  * Displays detailed person card.
  */

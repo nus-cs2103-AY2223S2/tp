@@ -43,9 +43,10 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
 
-        displayedPerson = filteredPersons.size() > 0
-                ? filteredPersons.get(0)
-                : null;
+        displayedPerson = null;
+        if (!filteredPersons.isEmpty()) {
+            displayedPerson = filteredPersons.get(0);
+        }
     }
 
     public ModelManager() {
@@ -161,8 +162,9 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
-        // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files#diff-7bd09b3a54ed83a93060f9d5e74302f5af
-        // fc224dd83cb8ae73eafa10a999930d
+
+        // Implementation below adapted from https://github.com/Charles1026/tp/blob/
+        // 7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/model/ModelManager.java
         if (target.isSamePerson(displayedPerson)) {
             displayedPerson = editedPerson;
         }
@@ -173,10 +175,12 @@ public class ModelManager implements Model {
         requireAllNonNull(doctor, editedDoctor);
 
         addressBook.setDoctor(doctor, editedDoctor);
-        if (doctor.isSameDoctor(editedDoctor)) {
+
+        // Implementation below adapted from https://github.com/Charles1026/tp/blob/
+        // 7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/model/ModelManager.java
+        if (doctor.isSamePerson(displayedPerson)) {
             displayedPerson = editedDoctor;
         }
-        //todo fix update display
     }
 
     @Override
@@ -184,10 +188,12 @@ public class ModelManager implements Model {
         requireAllNonNull(patient, editedPatient);
 
         addressBook.setPatient(patient, editedPatient);
-        if (patient.isSamePatient(editedPatient)) {
+
+        // Implementation below adapted from https://github.com/Charles1026/tp/blob/
+        // 7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/model/ModelManager.java
+        if (patient.isSamePerson(displayedPerson)) {
             displayedPerson = editedPatient;
         }
-        //todo fix update display
     }
 
     //=========== Filtered Person List Accessors =============================================================
