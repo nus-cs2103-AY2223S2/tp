@@ -53,7 +53,7 @@ destroy AddCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> AddCommand : execute()
+LogicManager -> AddCommand : execute(model)
 activate AddCommand
 
 AddCommand -> Model : hasEmployee(toAdd)

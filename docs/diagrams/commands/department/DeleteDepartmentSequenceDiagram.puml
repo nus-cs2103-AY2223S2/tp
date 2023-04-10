@@ -53,7 +53,7 @@ destroy DeleteDepartmentCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> DeleteDepartmentCommand : execute()
+LogicManager -> DeleteDepartmentCommand : execute(model)
 activate DeleteDepartmentCommand
 
 DeleteDepartmentCommand -> Model : getDepartment(targetDepartment)

@@ -46,7 +46,7 @@ destroy DeleteCommandParser
 SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
 DeleteCommand -> Model : getEmployee(targetId)
