@@ -4,14 +4,13 @@
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W11-3/tp/branch/master/graph/badge.svg?token=OXR3WZBSBR)](https://codecov.io/gh/AY2223S2-CS2103T-W11-3/tp)
 
 ![Ui](docs/images/Ui.png)
-1. Main Screen - add new flashcards or decks, edit existing flashcards or decks
-2. Review Screen - study a particular masterDeck of cards
+
 
 ### Target user profile: University Students
+Welcome to PowerCards, a lightweight flashcard application that helps you streamline your learning process, enabling faster mastery of course materials through the use of flashcards (which we will simply refer as cards from now on). As a university student, you can capitalise on our powerful card management system and minimalist interface to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
 ### Value proposition: 
 - Enable users to input a pool of information (question-answer pairs) of their desired topic and utilize the application to practice active recall of this information.
 - The application will present the question to the user which the user can respond to with their guess. 
-- The application can track the learning of the user through the number of errors made.
 
 # Links
 
