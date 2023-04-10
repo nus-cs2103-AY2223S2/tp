@@ -7,8 +7,10 @@ title: Sum Hung Yee's Project Portfolio Page
 
 DengueHotspotTracker (DHT) is a desktop app for managing dengue cases. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 Given below are my technical contributions to the project:
-Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=sumhungyee)
-Summary of Contributions:
+
+* Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=sumhungyee)
+
+* Summary of Contributions:
 
 * Refactoring:
    * Refactored phone numbers from AB3. Postal Codes are now part of a person's data.
