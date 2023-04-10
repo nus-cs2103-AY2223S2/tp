@@ -186,7 +186,7 @@ The sequence diagram below shows how `AddPatientCommand` works:
 
 ![Sequence diagram for add patient](images/AddPatientSequenceDiagram.png)
 
-Design considerations:
+**Design considerations**
 
 Instead of having separate commands for adding patients and appointments, we could have a single add command and use it
 to add both patients and appointments as well as any other things we could add to the application in future. However, we
@@ -238,7 +238,7 @@ The sequence diagram below shows how `AddAppointmentCommand` works:
 
 ![Sequence diagram for add patient](images/AddAppointmentSequenceDiagram.png)
 
-Design considerations:
+**Design considerations**
 
 Similar to add patient, instead of having separate commands for adding patients and appointments, we could have a single add command and use it
 to add both patients and appointments as well as any other things we could add to the application in future.
