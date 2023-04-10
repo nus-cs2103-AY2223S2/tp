@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[homepage](https://ay2223s2-cs2103t-w09-3.github.io/tp/)]
 [[github](https://github.com/Emrysil)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/emrysil.md.md)]
 
 * Role: Developer
 * Responsibilities: develop drug inventory sub-system
@@ -24,7 +24,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/cydtseng.png" width="200px">
 
 [[github](http://github.com/cydtseng)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/cydtseng.md)]
 
 * Role: Developer
 * Responsibilities: Working on Patient subsystem
@@ -33,7 +33,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/cshuwen.png" width="200px">
 
-[[github](https://github.com/CShuwen)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/CShuwen)] 
+[[portfolio](team/cshuwen.md)]
 
 * Role: Developer
 * Responsibilities: Working on Patient Subsystem
