@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+show members
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+class Course {
+  courseCode:String
+}
+
+class Group {
+  groupName : String
+}
+
+class Session {
+ sessionName : String
+ attendance : Map<Student, Integer>
+}
+
+class Task {
+ taskName : String
+ gradeList : Map<Student, Integer>
+}
+
+class Student {
+ name : Name
+ phone : Phone
+ email : Email
+ remark : Remark
+ studentId : StudentId
+}
+
+Course -> "*" Group
+Group --> "*" Student
+Group --> "*" Session
+Group --> "*" Task
+'Task --> "*" Student
+'Session --> "*" Student
+
+@enduml

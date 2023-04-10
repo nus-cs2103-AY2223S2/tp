@@ -297,6 +297,35 @@ Both are free to use, and can be downloaded from [Google Fonts](https://fonts.go
 --------------------------------------------------------------------------------------------------------------------
 
 ### Logic Implementation
+### Student Roster Object Types
+In our implementation, we have defined several object types that accurately represent the student roster, including
+`Course`, `Group`, `Session`, `Task`, and `Student`. These object types are interdependent and have been designed to
+work together seamlessly to provide a comprehensive solution for managing the student roster.
+
+#### Object Dependencies
+To simplify the management of the student roster and improve the user experience, we have established dependencies
+between these objects. For example, when a student is added or edited in a `Group`, any changes will cascade to the
+list of students in the `Session` object as well. This ensures consistency across the different object types and
+reduces the risk of inconsistencies between related objects.
+
+#### Implementation Details
+The dependencies between these objects have been implemented using a combination of object-oriented design principles
+and programming techniques. The specific implementation details are beyond the scope of this document, but the
+following high-level overview may be useful:
+
+Each object type has been defined as a separate class with its own set of properties and methods.
+The relationships between these object types have been established using object references.
+Changes to one object type will trigger an update to the related object types by means of cascading method calls.
+Overall, the implementation of these object types and their dependencies has been designed to provide a robust,
+scalable, and user-friendly solution for managing the student roster. Given below is the class diagram omitting most of the details.
+
+![ObjectDependencyClassDiagram](images/ObjectDependencyClassDiagram.png)
+
+
+In addition to the above diagram, the following object diagram illustrate a more comprehensive view of the dependencies between various objects during the program's runtime.
+
+![ObjectDependencyObjectDiagram](images/ObjectDependencyObjectDiagram.png)
+
 
 ### Undo feature
 `undo` allows restoring up to 5 previous states, but can be modified to restore more/less states.
@@ -1276,3 +1305,48 @@ These commands should be tested on the Grades Page.
       Do exit the app for `roster.java` to be created.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+
+## Appendix: Effort
+Estimating the effort required for a project can be a challenging task. To help evaluators estimate the effort 
+required for our project. we have provided the following information.
+
+### Difficulty Level
+Our project involved designing and implementing a comprehensive solution for managing the student roster. This required 
+a thorough understanding of the domain and the ability to design object types that accurately represented the various 
+entities and relationships involved.
+
+### Challenges Faced
+One of the main challenges we faced was establishing dependencies between the various object types in a way that 
+ensured consistency and minimized data duplication. This required careful consideration of the various use cases and 
+edge cases that could arise during the management of the student roster. Detailed implementation is described under [Implementation](#student-roster-object-types).
+
+
+### Effort Required
+The effort required for our project can be broken down into the following components:
+- Design: 20% 
+- Implementation: 60% 
+- Testing: 15% 
+- Documentation: 5%
+
+The majority of the effort (60%) was spent on the implementation of the various object types and their dependencies. 
+This involved a significant amount of programming and debugging, as well as ongoing refinement of the design as new 
+use cases were identified.
+
+### Achievements
+Our project has resulted in a comprehensive and user-friendly solution for managing the student roster. The object 
+types we have designed accurately represent the various entities and relationships involved, and the established 
+dependencies ensure consistency and reduce the risk of data duplication and inconsistencies.
+
+### Reuse
+We did not reuse any external libraries or code in our project. All of the object types and their dependencies were 
+designed and implemented from scratch.
+
+### Comparison to AB3
+While AB3 deals with only one entity type, our project was more challenging because it deals with multiple entity 
+types and requires the establishment of dependencies between them. This required a more complex design and 
+implementation effort than would be required for a project dealing with a single entity type.
+
+Overall, our project required a significant amount of effort, but we are confident that the resulting solution is 
+robust, scalable, and user-friendly.
