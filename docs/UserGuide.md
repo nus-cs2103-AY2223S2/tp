@@ -385,7 +385,7 @@ Menu Item Card consists of the following components:
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
