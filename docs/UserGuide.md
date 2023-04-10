@@ -319,12 +319,6 @@ Shows all athletes who have the tag `Hockey`, the tag `Tennis`, or both.
 
 ## **Session Management**
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about session-related commands:**<br>
-* When editing a session, the changes may not get reflected in the side panel in real time.<br> Manually update the panel by clicking on the session again.
-</div>
-
 ### Creating a new session : `create-session`
 
 Creates a new session and adds it to the session list.
