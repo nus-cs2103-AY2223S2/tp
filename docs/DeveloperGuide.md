@@ -122,6 +122,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
+<div style="page-break-after: always;"></div>
+
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddDoctorCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddDoctorCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddDoctorCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
@@ -131,6 +133,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
@@ -156,6 +159,8 @@ The `Model` component,
 * The `Appointment` object is stored within the `Appointment` package, under the `Model` component.
 * Stores the required information of an appointment, including patient's `Nric`, `Booking`, and doctor's `Nric`
   * Note that the patient's `Nric` and doctor's `Nric` has to exist in `MediConnect`
+
+<div style="page-break-after: always;"></div>
 
 #### Prescription
 
@@ -222,6 +227,8 @@ Command Format:
    * Pros: Easy to remember
    * Cons: Harder to implement, The command would be too long
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a Person
 
 The delete mechanism is facilitated by `MediConnect`. It extends `MediConnect` with a delete function.
@@ -250,6 +257,7 @@ Step 4. The user executes `delete ic/S9876543K` command to delete the person wit
     * Pros: Easy to implement. No need to worry about multiple people with same name, since everyone has a unique nric number.
     * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
 
+<div style="page-break-after: always;"></div>
 
 ### Display feature
 
@@ -269,6 +277,8 @@ The sequence diagram below shows how the DisplayCommand works:
 * Otherwise, it creates an `DisplayCommand`. The `LogicManager` then executes the `DisplayCommand`, upon which the `Person` is retrieved by `Nric` before calling `Model#updatePersonView()` to display the detailed view of the retrieved `Person`
     * `CommandException` is thrown
         * if `Patient` or `Doctor` retrieved by `Nric` does not exist
+
+<div style="page-break-after: always;"></div>
 
 ### Appointment feature
 
@@ -296,6 +306,7 @@ The sequence diagram below shows how the AppointmentCommand works:
     * if `Appointment` already exists in `Model`
 * Since the `Patient` and `Doctor`'s `Appointment` attributes have been updated, new instances of `Patient` and `Doctor` are created, and saved with `Model#setPerson()`
 
+<div style="page-break-after: always;"></div>
 
 #### Deleting an appointment
 
@@ -312,6 +323,8 @@ Step 2. The user executes `deleteAppointment 1 ic/S1234567X` command to delete t
 
 The sequence diagram below shows how the DeleteAppointmentCommand works:
 ![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 * When the user inputs `deleteAppointment INDEX ic/[NRIC]`, the `LogicManager` calls `AddressBookParser` to parse the command. This creates a `DeleteAppointmentCommandParser` to parse the patient's `Nric`, and `INDEX` through `ParserUtil`
     * Any invalid inputs will throw a `ParseException`
@@ -333,6 +346,8 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
     * Pros: User does not have to search through the patient's appointment list to identify which appointment to delete.
     * Cons: More tedious to implement and less convenient for the user to input command.
 
+<div style="page-break-after: always;"></div>
+
 ## Prescribe Feature
 `Prescription` refers to a `Medication` being sold at a `Cost`. Each `Patient` can have one or more `Prescriptions`
 which can help generate their bill. There are a few ways to implement connecting these 4 classes, and we opted for
@@ -351,6 +366,8 @@ the one simplest for the User to use as our Users could be not tech-savvy.
   * Cons: Most challenging design. Does not allow prescribing `Medication` at a different `Cost`, such as if the prices rise.
 
 ![PrescriptionImplementationAlternative.png](images/PrescriptionImplementationAlternative.png)
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -432,6 +449,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -458,6 +477,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**: manage patient/doctor details faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -486,6 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | healthcare provider                       | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
 | `*`      | healthcare provider                       | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -526,6 +547,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC02 - Add doctor’s information**
 
 **Actor: Healthcare administrator**
@@ -561,6 +584,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC03 - Retrieve patient’s information**
 
 **Actor: Doctor**
@@ -590,6 +615,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3b1. MC denies the request.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - Delete patient's information**
 
@@ -634,6 +661,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 3c1-3c2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - List all patients**
 
@@ -713,6 +742,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 - Cancel patient's appointment**
 
 **Actor: Healthcare administrator**
@@ -748,6 +779,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 4.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC09 - Prescribing medication to a Patient**
 
 **Actor: Healthcare administrator**
@@ -775,6 +808,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case restarts from step 3.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC10 - Removing prescribed medication from Patient**
 
 **Actor: Healthcare administrator**
@@ -798,6 +833,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. MC shows the user the Bill.
    Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -816,6 +852,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Administrator**: Define as admin staff of the hospital and has write-access
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -841,6 +879,8 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a person
 
 1. Adding a patient to the existing list.
@@ -863,6 +903,8 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T765 a/Sarah Rd t/Pediatrician` (Wrong NRIC format)<br>
        Expected: No doctor is added to the list. Error details are shown in the status message.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -877,6 +919,8 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `DELETE`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Prescribe, Unprescribe, Bill
 1. Prescribing medication to someone with existing medication
@@ -894,6 +938,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Bill is $6.00
    7. Test case: `unprescribe ic/S1234567A m/drugA c/2`<br>
       Expected: Patient has 1 prescription.
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Planned Enhancements**
 
