@@ -1025,12 +1025,12 @@ so the corresponding error message will be displayed in the same text box (repla
 
 1. Adding records:
   1. This task is of medium difficulty. We managed to implement a variety of attribute fields, such as available dates as date ranges, medical qualifications as tags, and regions as enums. 
-  2. Given the different attribute data type, transferring these fields into formats adaptable for JSON storage become the main challange.
+  2. Given the different attribute data types, transferring these fields into formats adaptable for JSON storage become the main challenge.
   3. Furthermore, as we made many of the fields optional, making the tracking and recording of fields with `NULL` values compatible with JSON, given the various data types, becomes another challenge.
   4. Despite these challenges, we successfully added comprehensive and flexible record-keeping capabilities to the system.
 
 2. Deleting records: 
-  1. This task is of medium difficulty. We managed to implement logic checks ensuring the logical correctness of deletion. For example, when deleting an elderly record, we also had to delete all of its existing pairs. To ensure the accuracy  and correctness, we wrote many unit test cases. 
+  1. This task is of medium difficulty. We managed to implement logic checks ensuring the logical correctness of deletion. For example, when deleting an elderly record, we also had to delete all of its existing pairs. To ensure the accuracy and correctness, we wrote many unit test cases. 
   2. Through careful testing and debugging, we successfully implemented a reliable and robust deletion feature.
 
 3. Pairing feature: 
@@ -1038,7 +1038,7 @@ so the corresponding error message will be displayed in the same text box (repla
 
 4. Editing records:
   1. This task is of medium difficulty. We had to correctly handle all possible correct and incorrect inputs, particularly when we had an 'edit' command that was usable by both elderly and volunteer users.
-  2. Through careful unit testing and debugging, we successfully implemented a feature that automatically ignored inapplicable edit fields and update all applicable information.
+  2. Through careful unit testing and debugging, we successfully implemented a feature that automatically ignored non-applicable edit fields and update all applicable information.
 
 5. Finding records:
   1. Finding information was of high difficulty. We had to correctly handle different possible situations, such as when a user entered a wrong field format or a field that was not applicable to the person or when different searching formats were used for enums, date tags, etc. 
