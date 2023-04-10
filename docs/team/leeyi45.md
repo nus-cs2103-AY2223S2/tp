@@ -22,13 +22,12 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [link](https://github.com/AY2223S2-CS2103T-W10-4/tp/pulls?q=is%3Apr+author%3Aleeyi45)
 
-* **Project management**:
-  * to be added
-
 * **Enhancements to existing features**:
-  * Made field validation on loading more robust and modular
-  * Made command parsing more modular
-  * Several bug fixes
+  * Refactored code for validating fields on load to remove repetition
+  * Made command parsing more modular (moved from switch statement to map)
+  * Fixed tutee being able to have a start time later than an end time
+  * Changed schedule parser to be able to accept valid days of the week while being case insensitive
+  * Changed subject parser to be able to accept valid subjects while being case insensitive.
 
 * **Documentation**:
   * UserGuide.md
@@ -38,3 +37,6 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reported bugs for other teams during PE-Dry run
+
+* **Tools**:
+  * Set up CI for the master branch for the team repository.
