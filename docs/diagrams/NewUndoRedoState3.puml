@@ -16,7 +16,7 @@ State2 -[hidden]right-> State3
 
 package redoFuture {
     class State5 as "__null:Memento__"
-    class State6 as "__<color:blue>m1:Memento</color>__"
+    class State6 as "__<color:blue>m2:Memento</color>__"
     class State7 as "__null:Memento__"
 }
 State5 -[hidden]right-> State6
