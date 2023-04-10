@@ -29,14 +29,10 @@ public class TabCommandParser implements Parser<TabCommand> {
         return new TabCommand(targetTab);
     }
 
-    //@@author HmuuMyatMoe-reused
-    //Reused from
-    // https://github.com/nus-cs2103-AY2223S2/tp/blob/master/src/main/java/seedu/address/logic/parser/AddCommandParser.java
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    //@@author
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
     }
