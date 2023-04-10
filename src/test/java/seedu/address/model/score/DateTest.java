@@ -35,4 +35,16 @@ public class DateTest {
         // valid date
         assertTrue(Date.isValidDate("2020-03-22")); // correct format
     }
+
+    @Test
+    public void isFutureDate() {
+        // null date
+        assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
+
+        // Future date
+        assertFalse(Date.isFutureDate("2023-09-08")); // future date
+
+        // valid date
+        assertTrue(Date.isFutureDate("2020-03-22")); // correct format
+    }
 }

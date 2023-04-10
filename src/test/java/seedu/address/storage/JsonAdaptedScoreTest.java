@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalScores.SCORE_1;
@@ -15,10 +16,18 @@ public class JsonAdaptedScoreTest {
     private static final String INVALID_LABEL = "Midt@erm";
     private static final String INVALID_VALUE = "99.99";
     private static final String INVALID_DATE = "12-12-2019";
+    private static final String INVALID_FUTURE_DATE = "2023-08-09";
 
     private static final String VALID_LABEL = SCORE_1.getLabel().toString();
     private static final String VALID_VALUE = SCORE_1.getValue().toString();
     private static final String VALID_DATE = SCORE_1.getDate().toString();
+
+    @Test
+    public void toModelType_validScoreDetails_returnsScore() throws Exception {
+        JsonAdaptedScore score = new JsonAdaptedScore(SCORE_1);
+        assertEquals(SCORE_1, score.toModelType());
+    }
+
 
     @Test
     public void toModelType_invalidLabel_throwsIllegalValueException() {
@@ -61,6 +70,14 @@ public class JsonAdaptedScoreTest {
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedScore score = new JsonAdaptedScore(VALID_LABEL, VALID_VALUE, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, score::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidFutureDate_throwsIllegalValueException() {
+        JsonAdaptedScore score =
+                new JsonAdaptedScore(VALID_LABEL, VALID_VALUE, INVALID_FUTURE_DATE);
+        String expectedMessage = Date.MESSAGE_INVALID_DATE;
         assertThrows(IllegalValueException.class, expectedMessage, score::toModelType);
     }
 }

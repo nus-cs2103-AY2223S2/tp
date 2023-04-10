@@ -24,10 +24,6 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_PARENT_PHONE = "12";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_SCORE_LABEL = "Mid@term";
-    private static final String INVALID_SCORE_VALUE = "99.99";
-    private static final String INVALID_SCORE_DATE = "12-12-2019";
-
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
