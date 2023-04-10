@@ -45,5 +45,6 @@ public class ListRecurringExpensesCommandTest {
         assertEquals(
                 Arrays.asList(GRAPE, DURIAN, BANANA, APPLE, CHERRY, FIG, ELDERBERRY),
                 model.getFilteredExpenseList());
+
     }
 }
