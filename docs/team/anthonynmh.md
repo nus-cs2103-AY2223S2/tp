@@ -35,6 +35,39 @@ Check it out [here](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=a
   * Functional code
     * [#48 Update code to support Event](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/48)
       * Wrote initial code for Model to support Event instead of Person
+  * Bug Fixes
+    * [#83 Enhance events duplicate checker to check all fields](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/83)
+      * Previously, events are defined as equal only if two Event objects' name are the same.
+      * Now, events are only defined as equal if all fields of the two Event objects' are the same.
+    * [#84 Fix bug in AutoMarkDone](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/84)
+      * Previously, AutoMarkDone only checks for endTime of events. 
+      * Now, AutoMarkDone checks for both date and endTime of events.
+    * [#109 Fix broken image links in UG](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/109)
+      * Fix broken image links in UG
+    * [#111 Fix exception catching for Recur](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/111)
+      * Previously, Recur does not catch exception for: 
+        * wrong index
+        * invalid prefixes 
+      * Now, Recur will catch exceptions for:
+        * index not in scheduler 
+        * non-positive index 
+        * invalid format
+    * [#172 Enhance SchedulerParser](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/172)
+      * Previously, these are valid commands:
+        * `help test` - should only be `help`
+        * `list test` - should only be `list`
+        * `exit test` - should only be `exit`
+        * `undo test` - should only be `undo`
+      * Now, enhanced SchedulerParser to be stricter for commands that do not require arguments.
+    * [#173 Update RecurCommand](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/173)
+      * Previously, recurring an event on day 31 monthly will not throw an error.
+      * Now, recur will: 
+        * scan through all days to be recurred, ensuring the day of the month exists.
+        * ensure ending date of recur is not in the past.
+    * [#178 Update RecurCommand](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/178)
+      * Previously, recur will add all events up until a clashing event, with no error/warnings on the clash.
+      * Now, recur will:
+        * scan through all days to be recurred, ensuring no clashing event on days to be recurred.
   * Test code
     * [#193 Add RecurCommand tests](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/193)
       * `RecurCommandTest`
