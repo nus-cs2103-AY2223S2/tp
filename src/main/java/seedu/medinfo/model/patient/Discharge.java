@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class Discharge {
 
-    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time" +
-            " of the format dd/MM/yyyy HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time"
+            + " of the format dd/MM/yyyy HHmm";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
     public static final String DATE_FORMAT = "dd/MM/yyyy HHmm";
 
