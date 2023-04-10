@@ -1,8 +1,5 @@
 package vimification.ui;
 
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
@@ -24,20 +21,18 @@ public class HelpManualPanel extends UiPart<VBox> {
      */
     public HelpManualPanel() {
         super(FXML);
-        Path manualHtml = Path.of(FXML_FILE_FOLDER, "HelpManualPanel.html");
-        System.out.println(manualHtml.toString());
         WebEngine webEngine = webView.getEngine();
-        webEngine.load(manualHtml.toString());
-        String manualHtmlPath;
-        try {
-            manualHtmlPath =
-                    getClass().getResource(FXML_FILE_FOLDER + "HelpManualPanel.html").toURI()
-                            .toString();
-            webEngine.load(manualHtmlPath);
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        webEngine.load("https://ay2223s2-cs2103t-t15-3.github.io/tp/UserGuide.html");
+        // String manualHtmlPath;
+        // try {
+        // manualHtmlPath =
+        // getClass().getResource(FXML_FILE_FOLDER + "HelpManualPanel.html").toURI()
+        // .toString();
+        // webEngine.load(manualHtmlPath);
+        // } catch (URISyntaxException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
 
         webView.prefWidthProperty().bind(this.getRoot().widthProperty());
         webView.prefHeightProperty().bind(this.getRoot().heightProperty());
