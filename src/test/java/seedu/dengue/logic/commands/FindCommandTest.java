@@ -71,7 +71,7 @@ public class FindCommandTest {
         this.testSubPostal = Optional.of(new SubPostal("s12"));
         this.testAge = Optional.of(new Age("21"));
         this.testDate = Optional.of(new Date("2023-03-05"));
-        this.testVariants = new HashSet<Variant>();
+        this.testVariants = new HashSet<>();
         testVariants.add(new Variant("DENV1"));
         this.testDateRange = ContinuousData.generateRange(
                 new StartDate(Optional.of(new Date("2023-03-04"))),
@@ -134,7 +134,7 @@ public class FindCommandTest {
     @Test
     public void execute_prefixMultipleVariants_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        HashSet<Variant> testVariants = new HashSet<Variant>();
+        HashSet<Variant> testVariants = new HashSet<>();
         testVariants.add(new Variant("DENV4"));
         testVariants.add(new Variant("DENV3"));
         FindPredicate predicate = new FindPredicate(
@@ -194,7 +194,7 @@ public class FindCommandTest {
     @Test
     public void execute_prefixMultipleVariants_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        HashSet<Variant> testVariants = new HashSet<Variant>();
+        HashSet<Variant> testVariants = new HashSet<>();
         testVariants.add(new Variant("DENV2"));
         testVariants.add(new Variant("DENV1"));
         FindPredicate predicate = new FindPredicate(
@@ -310,7 +310,7 @@ public class FindCommandTest {
     @Test
     public void execute_prefixMultipleVariants_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        HashSet<Variant> testVariants = new HashSet<Variant>();
+        HashSet<Variant> testVariants = new HashSet<>();
         testVariants.add(new Variant("DENV2"));
         testVariants.add(new Variant("DENV1"));
         FindPredicate predicate = new FindPredicate(

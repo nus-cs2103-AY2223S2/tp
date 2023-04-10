@@ -34,11 +34,11 @@ public class SubPostal {
 
     /**
      * Formats the subpostal such that it also contains the s.
-     * @param string
-     * @return
+     * @param string The subpostal to format.
+     * @return The formatted subpostal.
      */
     public String formatSubPostal(String string) {
-        boolean hasStart = string.substring(0, 1).toUpperCase().equals("S");
+        boolean hasStart = string.substring(0, 1).equalsIgnoreCase("S");
         if (hasStart) {
             return string.toUpperCase();
         } else {

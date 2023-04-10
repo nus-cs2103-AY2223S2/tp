@@ -58,19 +58,17 @@ We have some general guidelines on what user input is considered as valid. You s
 
 ### Conventions
 
-Symbols | Meaning
---------|------------------
-:information_source: | This is general information that improves your background understanding of this guide as well as DengueHotspotTracker.
-:bulb: | This is additional information/tips that may help you to use DengueHotspotTracker more effectively.
-:exclamation: | This is something important that you should be aware of.
+| Symbols              | Meaning                                                                                                                |
+|----------------------|------------------------------------------------------------------------------------------------------------------------|
+| :information_source: | This is general information that improves your background understanding of this guide as well as DengueHotspotTracker. |
+| :bulb:               | This is additional information/tips that may help you to use DengueHotspotTracker more effectively.                    |
+| :exclamation:        | This is something important that you should be aware of.                                                               |
 
-
-Formatting | Meaning
---------|------------------
-*italics* | This is used to give slight emphasis to certain words.
-**boldface** | This is used to emphasise certain words. The degree of emphasis is stronger than *italics*.
-`code` | This is used to denote user input or special text.
-
+| Formatting   | Meaning                                                                                     |
+|--------------|---------------------------------------------------------------------------------------------|
+| *italics*    | This is used to give slight emphasis to certain words.                                      |
+| **boldface** | This is used to emphasise certain words. The degree of emphasis is stronger than *italics*. |
+| `code`       | This is used to denote user input or special text.                                          |
 
 ## Quick Start
 

@@ -47,10 +47,7 @@ public class ImportCommandTest {
                 filePath);
         try {
             expectedModel.importCsv(filePath);
-        } catch (DataConversionException e) {
-            assert false;
-            return;
-        } catch (IOException e) {
+        } catch (DataConversionException | IOException e) {
             assert false;
             return;
         }

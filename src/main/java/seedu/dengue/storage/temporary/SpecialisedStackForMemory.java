@@ -18,12 +18,12 @@ public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
     private final Stack<T> undoHistory;
 
     /**
-     * Creates a specialised stack that stores {@Code T} objects.
+     * Creates a specialised stack that stores {@code T} objects.
      * @param latest A {@link T} object.
      */
     protected SpecialisedStackForMemory(T latest) {
         this.undoHistory = new Stack<>();
-        this.redoHistory = new ArrayDeque<T>(MAX_SIZE + 1);
+        this.redoHistory = new ArrayDeque<>(MAX_SIZE + 1);
         this.redoHistory.push(latest);
     }
 
@@ -32,7 +32,7 @@ public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
      */
     public SpecialisedStackForMemory() {
         this.undoHistory = new Stack<>();
-        this.redoHistory = new ArrayDeque<T>(MAX_SIZE + 1);
+        this.redoHistory = new ArrayDeque<>(MAX_SIZE + 1);
     }
 
     /**

@@ -83,7 +83,7 @@ The `UI` component
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` objects residing in the `Model`.
 
 ### Logic component
 
@@ -111,10 +111,11 @@ How the parsing works:
 * When called upon to parse a user command, the `DengueHotspotTrackerParser` class will do one of the following:
   * create an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) that the `DengueHotspotTrackerParser` returns back as a `Command` object.
   * create an `XYZCommand`.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * Similarly, all `XYZCommand` classes inherit from the `Command` abstract class and are executable.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/model/Model.java)
 
 Here is a (partial) class diagram of the `Model` component:
@@ -123,10 +124,34 @@ Here is a (partial) class diagram of the `Model` component:
 
 The `Model` component
 
-* stores the Dengue Hotspot Tracker data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Dengue Hotspot Tracker data, i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores an `Overview` object that manages the histogram-like data of the current `UniquePersonList`. It is updated whenever the `Model` is updated with a command execution.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Variant` list in the `DengueHotspotTracker`, which `Person` references. This allows `DengueHotspotTracker` to only require one `Variant` object per unique dengue variant, instead of each `Person` needing their own `Variant` objects.<br>
+
+<img src="images/BetterModelClassDiagram.png" width="450" />
+
+Here are some more details on how `Overview` is designed:
+
+<img src="images/OverviewClassDiagram.png" width="450" />
+
+How the `Overview` component works:
+* There are 3 implementations of `Overview`: `AgeOverview`, `PostalOverview` and `VariantOverview`. Only one is active in a `Model` at a time.
+* Each of these implementations has a respective `Analyst` class, which sorts `Person` objects into groups and counts the number in each.
+  * The way a `Person` is sorted depends on the type of `Analyst` employed.
+  * e.g. for `AgeAnalyst`, `Person` instances who fall in the same age group will be placed in the same bin.
+* This sorting and counting is aided with the use of simple `DataBin` objects, which store only a count and a group name. 
+
+Overall, we have this flow:
+1. An `XYZOverview` is instantiated or updated with a list of `Person` objects.
+1. Doing so will create a new `XYZAnalyst` object with the given `Person` list as the input.
+1. Upon instantiation of `XYZAnalyst`, the input list is sorted into `DataBin` objects.
+1. The summary of the data can then be obtained.
+
+</div>
 
 ### Storage component
 
@@ -138,7 +163,7 @@ The `Model` component
 The `Storage` component can be divided into two main components, one for `temporary` storage, and one for permanent storage of the file.
 The permanent storage component
 * can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
-* inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `DengueHotspotStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,

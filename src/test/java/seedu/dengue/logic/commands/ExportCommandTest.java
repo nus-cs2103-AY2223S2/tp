@@ -13,7 +13,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.commons.util.FileUtil;
-import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
@@ -31,7 +30,6 @@ public class ExportCommandTest {
 
     @TempDir
     public Path testFolder;
-
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
         return prefsFileInTestDataFolder != null
@@ -56,7 +54,7 @@ public class ExportCommandTest {
     }
 
     @Test
-    public void execute_exportEmptyCsv_success() throws CommandException, IOException {
+    public void execute_exportEmptyCsv_success() throws IOException {
         Path filePath = testFolder.resolve("TempEmptyDengueHotspotTracker.csv");
         Model model = new ModelManager(new DengueHotspotTracker(), new UserPrefs());
         Model expectedModel = new ModelManager(new DengueHotspotTracker(), new UserPrefs());
@@ -68,7 +66,6 @@ public class ExportCommandTest {
         String tempRead = FileUtil.readFromFile(filePath);
         if (tempRead.startsWith(EMPTY_PERSONS_HEADER)) {
             assert true;
-            return;
         } else {
             assert false;
         }
