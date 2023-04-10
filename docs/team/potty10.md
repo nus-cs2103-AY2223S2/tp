@@ -32,6 +32,8 @@ My code contributions can be found on
   * Worked with my teammate, Eugene, to implement this.
   * GUI testing improved code coverage for InternBuddy.
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements to existing features**:
   * Added date labels to UI, so that users understand what the dates mean. [\#57](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/57), [\#138](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/138)
   * Added a feature where clicking on an internship entry updates the right panel with the selected internship. [\#150](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/150)
