@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## **Welcome to PetPal**!
+# **Welcome to PetPal**!
 
 ![Logo](images/UI/AlternateLogo.png)
 
@@ -15,10 +15,10 @@ PetPal can help get your pet's administrative tasks done without needing to be t
 
 This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet-administrative duties**.
 
-## **Table of Contents**
+# **Table of Contents**
 
-* **Table of Contents**
-{:toc}
+* Table of Contents
+  {:toc}
 
 ---
 
@@ -286,8 +286,8 @@ Other examples:
 
 * `edit 2 p/91234567 a/21 Beach Road` Updates the second pet entry's phone number to`91234567`
   and address to `21 Beach Rd`
-* `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag,
-  the edit will override the existing tag
+* `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag, the
+  edit will override the existing tag
 
 #### **Amount indication**
 
