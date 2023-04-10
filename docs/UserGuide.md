@@ -15,14 +15,15 @@ TMS is a **desktop application designed for private tutors managing students, op
 [Features](#features)
 1. [Viewing help](#help)
 2. [Add student](#add)
-3. [Delete student](#delete)
-4. [List student](#list)
-5. [Filter student](#filter)
-6. [Add a lesson](#learn)
-7. [Remove a lesson](#unlearn)
-8. [Local save](#save)
-9. [Local load](#load)
-10. [Exit program](#exit)
+3. [Copy student](#copy)
+4. [Delete student](#delete)
+5. [List student](#list)
+6. [Filter student](#filter)
+7. [Add a lesson](#learn)
+8. [Remove a lesson](#unlearn)
+9. [Local save](#save)
+10. [Local load](#load)
+11. [Exit program](#exit)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,12 +96,27 @@ Format: `help`
 Adds a student to the managing system.
 
 Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
+
+*Subject supported: {`Math`, `Physics`, `English`}
+*Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
+*The added student must have a unqique name, phone number and email address
+
+Examples:
+
+* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
+
+
+## Copy student <a name="copy"></a>
+
+Copies an existing student to the managing system with a different subject or schedule.
+
+Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
 Subject supported: {`Math`, `Physics`, `English`}
 Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
 
 Examples:
 
-* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
+* ```copy 2 s/Math sch/monday st/09:30 et/11:30```
 
 
 ## Delete student <a name="delete"></a>
