@@ -190,7 +190,7 @@ The `Model` component,
 The Storage Component reads data from, and writes data to, the hard disk.
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/library/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="510" />
+<img src="images/StorageClassDiagram.png" width="475" />
 
 The `Storage` component,
 * can save both Library data and user preference data in json format, and read them back into corresponding objects.
