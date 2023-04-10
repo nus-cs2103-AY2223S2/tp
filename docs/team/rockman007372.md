@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **Feature 1**: Make `Card` and `Deck` class immutable.
     * What it does: Make cards' and decks' attributes `final`. 
-    * Justification: Immutable classes are simpler to use and reason about. Because their state cannot change, we don't need to worry about unexpected side effects or hidden state changes.
+    * Justification: Immutable classes are simpler to use and reason about (no unexpected side effects or hidden state changes).
     * Highlights: Since a card is referenced in many internal lists, changing its state leads to unexpected behaviours and produced many bugs. The refactoring was heavy, but it was worth the effort as bugs were reduced significantly.   
 
 * **Feature 2**: Refactor `Review` class extensively to follow more OOP principles.
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 
 * **Feature 3**: Tag the cards dynamically during a review.
   * What it does: Allows users to tag a card with a difficulty during a review. The new tag will be dynamically modified in UI, and saved in the `MasterDeck`.
-  * Justifications: Users usually only know how difficult a card is during review, not when they create a card. It is much more convenient to tag cards during review, instead of using the `editCard` command in Main Mode.
+  * Justifications: It is much more convenient to tag cards during review, instead of using the `editCard` command in Main Mode.
   * Highlights: I studied and understood the behavior of Javafx `ObservableList` class better, and practiced the Observer pattern. This also taught me how the UI components worked in tandem with Model component. 
 
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=rockman007372&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
