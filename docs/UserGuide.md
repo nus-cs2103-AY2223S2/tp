@@ -1,9 +1,9 @@
-# GoodMatch
-
 ---
 layout: page
 title: User Guide
 ---
+
+# GoodMatch
 
 ## **Overview**
 
@@ -14,28 +14,28 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 ## Table of Contents
 
 - [User Guide Information](#user-guide-information)
-  - [Purpose of this guide](#purpose-of-this-guide)
-  - [How to use this guide](#how-to-use-this-guide)
-  - [Legends](#legends)
+    - [Purpose of this guide](#purpose-of-this-guide)
+    - [How to use this guide](#how-to-use-this-guide)
+    - [Legends](#legends)
 - [Quick Start](#quick-start)
 - [Get to know GoodMatch](#get-to-know-goodmatch)
 - [Features](#features)
-  - [Viewing help: `help`](#viewing-help-help)
-  - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
-  - [Adding a job listing: `add`](#adding-a-job-listing-add)
-  - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
-  - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
-  - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
-  - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
-  - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
-  - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
-  - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
-  - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
-  - [Sorting job listings: `sort`](#sorting-job-listings-sort)
-  - [Undo latest command: `undo`](#undo-latest-command-undo)
-  - [Exit the application: `exit`](#exit-the-application-exit)
-  - [Saving data](#saving-the-data)
-  - [Editing data file](#editing-the-data-file)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+    - [Adding a job listing: `add`](#adding-a-job-listing-add)
+    - [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+    - [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+    - [Adding an applicant to listing: `add_app`](#adding-an-applicant-to-listing-add_app)
+    - [Editing an applicant of a listing: `edit_app`](#editing-an-applicant-of-a-listing-edit_app)
+    - [Deleting an applicant from a listing: `del_app`](#deleting-an-applicant-from-a-listing-del_app)
+    - [Adding a platform: `add_plat`](#adding-a-platform-add_plat)
+    - [Deleting a platform: `del_plat`](#delete-a-platform-from-a-listing-del_plat)
+    - [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+    - [Sorting job listings: `sort`](#sorting-job-listings-sort)
+    - [Undo latest command: `undo`](#undo-latest-command-undo)
+    - [Exit the application: `exit`](#exit-the-application-exit)
+    - [Saving data](#saving-the-data)
+    - [Editing data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -235,13 +235,23 @@ Shows a message explaining how to access the help page.
 
 ✏️ **Format:** `help`
 
+You can access the help page by these 3 methods:
+1. You can run the `help` command
+2. You can press **F1** button
+3. You can click the **Help** menu button located on the top left of the application
+
+<p>
+  <img class="diagram" src="images/HelpButton.png" />
+  <em>GoodMatch Help button</em>
+</p>
+
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
 --- 
 
 ### Viewing all job listings: `view`
 
-Lists out all the jobs that are currently in the listing book.
+You can list out all the jobs that are currently in the listing book.
 
 ✏️ **Format:** `view`
 
@@ -263,7 +273,7 @@ Listed all listings
 
 ### Adding a job listing: `add`
 
-Adds a listing to the listing book.
+You can add a listing to the listing book.
 
 ✏️ **Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT] [p/PLATFORM]...`
 
@@ -312,7 +322,7 @@ This listing already exists in the listing book
 
 ### Editing a job listing: `edit`
 
-Edits the details of a job listing.
+You can edit the details of a job listing.
 
 ✏️ **Format:** `edit INDEX [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]... [p/PLATFORM]...`
 
@@ -384,7 +394,7 @@ A listing with the given title already exists!
 
 ### Deleting a job listing: `delete`
 
-Deletes a job listing from the listing book.
+You can delete a job listing from the listing book.
 
 ✏️ **Format:** `delete INDEX`
 
@@ -428,7 +438,7 @@ The listing index provided exceeded the number of listings shown!
 ---
 ### Adding an applicant to listing: `add_app`
 
-Adds an applicant to a specified listing.
+You can add an applicant to a specified listing.
 
 ✏️ **Format:** `add_app INDEX a/APPLICANT`
 
@@ -466,7 +476,7 @@ Example: add_app 1 a/John Doe
 
 ### Editing an applicant of a listing: `edit_app`
 
-Edits the name of an applicant in a specified listing.
+You can edit the name of an applicant in a specified listing.
 
 ✏️ **Format:** `edit_app INDEX id/APPLICANT a/APPLICANT`
 
@@ -518,7 +528,7 @@ Example: edit_app 1 id/John Doe#2103 a/Sam
 
 ### Deleting an applicant from a listing: `del_app`
 
-Deletes an applicant from a specified listing.
+You can delete an applicant from a specified listing.
 
 ✏️ **Format:** `del_app INDEX id/APPLICANT`
 
@@ -577,7 +587,7 @@ Example: del_app 1 id/John Doe#2103
 
 ### Adding a platform: `add_plat`
 
-Adds a new platform to the specified job listing.
+You can add a new platform to the specified job listing.
 
 ✏️ **Format:** `add_plat INDEX p/PLATFORM`
 
@@ -630,7 +640,7 @@ Example: add_plat 1 p/LinkedIn
 --- 
 ### Delete a platform from a listing: `del_plat`
 
-Deletes a platform from a specified job listing.
+You can delete a platform from a specified job listing.
 
 ✏️ **Format:** `del_plat INDEX p/PLATFORM`
 
@@ -678,7 +688,7 @@ Example: del_plat 1 p/LinkedIn
 
 ### Locating job listings by title: `find`
 
-Finds job listings whose titles contain any of the given keywords.
+You can find job listings whose titles contain any of the given keywords.
 
 ✏️ **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
