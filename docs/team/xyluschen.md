@@ -31,9 +31,7 @@ Please refer to this [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-d
   identify which applications require their attention. 
   * **Benefits**: By providing users with this information, they can easily determine if they need to follow up on 
   any applications or if they need to adjust their job search strategies. Additionally, by tracking their application statistics,
-  students can better evaluate their job search performance and identify areas for improvement. For example, they may discover that
-  they have applied to many positions but not receiving many offers. This information can help them improve their application materials
-  and refine their job search strategies, ultimately increasing their chances of securing a placement.
+  students can better evaluate their job search performance and identify areas for improvement.
   * **Challenges**: This feature was the first that involved significant modifications to the existing GUI, as it was necessary
   to create a Statistics Panel that displays a User's application statistics. It also involved the creation of a `Statistics` entity
   as part of the `Model` component. It required changes as to how `Commands` were processed by the `LogicManager`, specifically commands
