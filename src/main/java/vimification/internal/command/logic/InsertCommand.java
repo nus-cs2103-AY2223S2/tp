@@ -51,7 +51,8 @@ public class InsertCommand extends UndoableLogicCommand {
         request.getInsertedLabels().forEach(newTask::addLabel);
         taskList.set(actualIndex, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()),
+                true);
     }
 
     /**
@@ -60,7 +61,7 @@ public class InsertCommand extends UndoableLogicCommand {
     @Override
     public CommandResult undo(LogicTaskList taskList) {
         taskList.set(actualIndex, oldTask);
-        return new CommandResult(UNDO_MESSAGE);
+        return new CommandResult(UNDO_MESSAGE, true);
     }
 
     @Override

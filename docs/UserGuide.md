@@ -6,6 +6,38 @@ title: User Guide
 <img class="ui-img" src="images/ug-images/vimification.png" alt="Logo" title="Vimification Logo">
 
 ## Table of Contents
+- [Introduction](#introduction)
+- [Purpose of this User Guide](#purpose-of-this-user-guide)
+- [Quick Start](#quick-start)
+  - [Installation](#installation)
+  - [For Windows](#for-windows)
+  - [For Mac](#for-mac)
+  - [Navigating Vimification](#navigating-vimification)
+  - [Exiting Vimification](#exiting-vimification)
+  - [Trying out the commands](#trying-out-the-commands)
+- [Using the commands](#using-the-commands)
+- [General information on a task's attributes](#general-information-on-a-tasks-attributes)
+- [Information on commands' parameters](#information-on-commands-parameters)
+- [Features and commands](#features-and-commands)
+  - [Viewing help](#viewing-help)
+  - [Adding task](#adding-task)
+  - [Inserting parameters to a task](#inserting-parameters-to-a-task)
+  - [Deleting task](#deleting-task)
+  - [Deleting parameters of a task](#deleting-parameters-of-a-task)
+  - [Editing task](#editing-task)
+  - [Filtering task](#filtering-task)
+  - [Sorting task](#sorting-task)
+  - [Undoing the previous command](#undoing-the-previous-command)
+  - [Using macro](#using-macro)
+  - [Defining new macro](#defining-new-macro)
+  - [Deleting a macro](#deleting-a-macro)
+  - [View all macros defined in the application](#view-all-macros-defined-in-the-application)
+  - [Exiting the application](#exiting-the-application)
+  - [Saving the task list data](#saving-the-task-list-data)
+  - [Editing existing task list data](#editing-existing-task-list-data)
+  - [Editing existing macro data](#editing-existing-macro-data)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 ## Introduction
 
@@ -50,6 +82,7 @@ The guide will walk you through the process of creating and managing tasks, sett
 4. The application should launch, and a GUI similar to the below should appear in a few seconds.
 
 <img class="ui-img" src="images/ug-images/1.bootup.png" alt="Ui Image" title="Overall User Interface">
+<br><br><p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Navigating Vimification
 
@@ -114,7 +147,7 @@ In Vim, pressing `l` moves you to the right, but in Vimification, pressing `l` w
 Similiar to Vim, you can quit Vimification by typing `:quit` or `:q!` on your keyboard while in Vimification.
 
 <img class="ui-img" src="images/ug-images/8.quit.png">
-
+<br><br>
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Trying out the commands
@@ -157,10 +190,10 @@ In Vimification, a task can has the following attributes:
 
 | Attribute | Its meaning & purpose                                | Flag | The range of values it accepts |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------ |
-| Title     | Name or general description of a task.               | `-t` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*.  |
-| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of `yyyy-MM-dd`, `yyyy-MM-dd HH:mm`, `EEE` or `EEE HH:mm`^.   |
-| Labels    | The labels that the task has.                        | `-l` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*.  |
-| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, or 2. See below for more details.   |
+| Title     | Name or general description of a task.               | `-t` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*. |
+| Deadline  | The date (and time) the task is due at.              | `-d` | In the format of `yyyy-MM-dd`, `yyyy-MM-dd HH:mm`, `EEE` or `EEE HH:mm`^. |
+| Labels    | The labels that the task has.                        | `-l` | One single word, or any phrase enclosed in quotation marks (`""` or `''`)\*. |
+| Status    | Status of a task, indicating that is it done or not. | `-s` | 0, 1, or 2. See below for more details. |
 | Priority  | How important/urgent a task is.                      | `-p` | 0, 1, 2 or 3. See below for more details. |
 
 ^`EEE` format accepts the first 3 letters of a day of week (`Mon`, `Tue`, etc.), case insensitive.
@@ -182,6 +215,8 @@ In Vimification, a task can has the following attributes:
 | 0      | Not done    |
 | 1      | In progress |
 | 2      | Completed   |
+
+<p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Information on commands' parameters
 
@@ -231,6 +266,8 @@ Show a manual page on the right hand side of Vimification.
 
 Format: `:help`
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Adding task
 
 Add a task to the current task list.
@@ -254,6 +291,8 @@ Example of command
 
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
 2. `:a "Play Touhou Project" --priority 1`
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Inserting parameters to a task
 
@@ -284,6 +323,8 @@ Condition
 - The index must be a positive integer, i.e 1, 2, 3, etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Deleting task
 
 Delete a task from the current task list by specifying the task number.
@@ -303,6 +344,8 @@ Condition
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Deleting parameters of a task
 
@@ -331,6 +374,8 @@ Condition
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Editing task
 
@@ -370,6 +415,8 @@ Condition
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Filtering task
 
 Filter by the parameters as specified by the flag.
@@ -408,6 +455,8 @@ Condition
 - If flag `-a` is provided, the conditions are combined with **and** operator. If there is no other flag, all tasks will be selected.
 - If flag `-o` is provided, the conditions are combined with **or** operator. If there is no other flag, no task will be selected.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ### Sorting task
 
 Sort by the parameters as specified by the flag.
@@ -429,6 +478,8 @@ Example of command
 Condition
 
 - Only one flag should be present.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Undoing the previous command
 
@@ -452,6 +503,8 @@ Format: `:macro -a <macro> <command_string>`
 Note:
 
 - If the macro is already defined, this command will replaced the old mapping with the new one.
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ### Deleting a macro
 
@@ -499,19 +552,19 @@ If your changes to the data file makes its format invalid, Vimification will dis
 
 ## Command summary
 
-| Action               | Format                                                       |
-| -------------------- | ------------------------------------------------------------ |
-| View help            | `:help`                                                      |
-| Add task             | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>]...` |
-| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label>]...`            |
-| Delete task          | `:d <task_index>`                                            |
-| Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                       |
-| Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...` |
-| Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...`     |
-| Sort                 | `:s [-s] [-d] [-p]`                  |
-| Define macro         | `:macro -a <macro> <command_string>` |
-| Delete macro         | `:macro -d <macro>`                  |
-| List macro           | `:macro -l`                          |
-| Exit the application | `:quit`, `:q!`                       |
+| Action               | Format                                                                                                         |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- |
+| View help            | `:help`                                                                                                        |
+| Add task             | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>]...`                                                   |
+| Insert parameter     | `:i <task_index> [-d <deadline>] [-l <label>]...`                                                              |
+| Delete task          | `:d <task_index>`                                                                                              |
+| Delete parameter     | `:d <task_index> [-d] [-l <label>]...`                                                                         |
+| Edit parameter       | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <old_label> <new_label>]...`   |
+| Filter               | `:f [-a\|-o] [-w <keywords>] [--before <date>] [--after <date>] [-s <status>] [-p <priority>] [-l <label>]...` |
+| Sort                 | `:s [-s] [-d] [-p]`                                                                                            |
+| Define macro         | `:macro -a <macro> <command_string>`                                                                           |
+| Delete macro         | `:macro -d <macro>`                                                                                            |
+| List macro           | `:macro -l`                                                                                                    |
+| Exit the application | `:quit`, `:q!`                                                                                                 |
 
 <p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
