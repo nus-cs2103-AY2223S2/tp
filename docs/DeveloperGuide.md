@@ -154,6 +154,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a fish).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("fish delete 1")` API call.
 
@@ -161,6 +162,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FishDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -185,6 +187,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * the `Task` and `Tank` model is implemented similarly to the `Fish` part of the model.
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Fish` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Fish` needing their own `Tag` objects.<br>
 
@@ -197,7 +200,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="500" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -410,8 +413,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | fish keeper | know nitrate levels in fish tanks | adjust the amount at the end of every week |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is `*Fish Ahoy!*` and the **Actor** is the `user`, unless specified otherwise)
@@ -472,16 +473,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-    *{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 fish, tanks and tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user with average experience of CLI should be able to use the system.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -501,7 +498,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
