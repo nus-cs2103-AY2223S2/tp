@@ -389,6 +389,7 @@ Format: `only INGREDIENT...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
 - One or more ingredients can be provided. e.g. *only egg cheese*
+- Each ingredient needs to be separated by a whitespace.
 </div>
 
 Examples:
