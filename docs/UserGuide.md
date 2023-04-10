@@ -59,6 +59,7 @@ Is it hard for private tutor such as yourself to keep track of the students' inf
 
 1. Refer to the [Features](#features) below for details of each command.
 
+#### [Back to top](#table-of-content) 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FEATURES <a name="features"></a>
@@ -98,6 +99,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+#### [Back to top](#table-of-content) 
 ### Adding student <a name="add"></a>
 
 Adds a student to the managing system.
@@ -114,7 +116,7 @@ Examples:
 * ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/09:30 et/11:30``` adds a student named `John Doe` with a phone number `98765432`, email `johnd@example.com`, address as `311, Clementi Ave 2, #02-25` and records him as taking math lessons on monday `09:30` to `11:30`
 * ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/08:30 et/10:30 t/JC1 t/SonOfJerry``` adds the same student with two tags, `JC1` and `SonOfJerry`
 
-
+#### [Back to top](#table-of-content) 
 ## Copy student <a name="copy"></a>
 
 Copies an existing student to the managing system with a different subject or schedule.
@@ -127,7 +129,7 @@ Examples:
 
 * ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd person in the address book and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
-
+#### [Back to top](#table-of-content) 
 ### Deleting student <a name="delete"></a>
 
 Removes a student from the managing system.
@@ -138,7 +140,7 @@ Examples:
 
 * ```delete 1```
 
-
+#### [Back to top](#table-of-content) 
 ### Listing students <a name="list"></a>
 
 Lists students in the managing system.
@@ -149,7 +151,7 @@ Examples:
 
 * ```list``` 
 
-
+#### [Back to top](#table-of-content) 
 ### Editing a student : `edit`
 
 Edits an existing person in the address book.
@@ -167,6 +169,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+#### [Back to top](#table-of-content) 
 ### Locating students by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -185,6 +188,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+#### [Back to top](#table-of-content) 
 ### Filtering students by any fields <a name='filter'></a>
 
 Filter and list students whose fields contain any of the given keywords.
@@ -206,6 +210,7 @@ Examples:
 - `filter a/clementi s/math` returns tutees whose address are in `clementi` and being tutored `math` subject.
 ![img.png](images/filterExampleResult.png)
 
+#### [Back to top](#table-of-content) 
 ### Adding a new lesson <a name="learn"></a>
 
 You can add a lesson taught to a student.
@@ -218,6 +223,7 @@ Example:
 ![learn.png](images/learnExample.PNG)
   * The command adds the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh learn Rational Number`.
 
+#### [Back to top](#table-of-content) 
 ### Removing a lesson <a name="unlearn"></a>
 
 You can remove a lesson taught to a student.
@@ -230,7 +236,7 @@ Examples:
   ![unlearn.png](images/unlearnExample.PNG)
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
-
+#### [Back to top](#table-of-content) 
 ### Marking/Unmarking attendance
 Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
 they were absent. If a date is not specified, the current date is used.\
@@ -238,18 +244,21 @@ If the tutee was already absent or present, the command will have no effect.
 
 Format: `mark/unmark <index> [date...]`
 
+#### [Back to top](#table-of-content) 
 ### Querying attendance
 Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
 Otherwise, the command will return if the tutee was present on the given date.
 
 Format: `query <index> [date]`
 
+#### [Back to top](#table-of-content) 
 ### Saving locally <a name="save"></a>
 
 Saves the current state of the program on the hard disk upon exit.
 
 Done automatically.
 
+#### [Back to top](#table-of-content) 
 ### Loading locally <a name="load"></a>
 
 Loads the saved state of the program (if there is any) on the hard disk.
@@ -258,18 +267,21 @@ Creates an empty file if there is none.
 
 Done automatically.
 
+#### [Back to top](#table-of-content) 
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
+#### [Back to top](#table-of-content) 
 ### Exiting program <a name="exit"></a>
 
 Exit the program.
 
 Format: ```exit```
 
+#### [Back to top](#table-of-content) 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -277,6 +289,7 @@ Format: ```exit```
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Follow [quick start](#quickstart) on the new computer and overwrite the empty data file it creates with the file that contains the data of your previous data file.
 
+#### [Back to top](#table-of-content) 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -301,3 +314,4 @@ Format: ```exit```
 | **** |                                     |
 | **Help** | `help`                              |
 
+#### [Back to top](#table-of-content) 
