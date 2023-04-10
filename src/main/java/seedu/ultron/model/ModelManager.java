@@ -156,6 +156,7 @@ public class ModelManager implements Model {
         if (selectedIndex == null) {
             return null;
         }
+        System.out.println(selectedIndex);
         return filteredOpenings.get(selectedIndex.getZeroBased());
     }
 

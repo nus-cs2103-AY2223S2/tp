@@ -222,6 +222,8 @@ A simplified sequence was employed for mouse clicks. The `OpeningListPanel` clas
 ### Upcoming keydates feature
 <!-- Anton, Alex -->
 
+![UI Interaction for the `upcoming 5` Command](images/UpcomingSequenceDiagram.png)
+
 ### Status filtering feature
 <!-- Kevin -->
 
