@@ -17,7 +17,7 @@ public class TemplateCommand extends Command {
     public static final String COMMAND_WORD = "template";
     public static final String SHORT_FORM_COMMAND = "t";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a character using a template. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " TEMPLATE NAME : Creates a character using a template. ";
 
     public static final String MESSAGE_SUCCESS = "New character added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTITY = "This character name already exists in Reroll";
