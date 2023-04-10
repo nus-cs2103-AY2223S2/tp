@@ -1045,7 +1045,7 @@ The following is a description of the code execution flow:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Implemented | Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                                |
-| ------------ | -------- | ---------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| :----------: | -------- | ---------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | :white_check_mark: | `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                                       |
 | :white_check_mark: | `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                               |
 | :white_check_mark: | `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                         |
