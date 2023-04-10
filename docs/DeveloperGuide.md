@@ -310,6 +310,22 @@ The sequence diagram shows how the various components interact with each other w
 
 Users have the ability to delete a particular client.
 
+#### Implementation
+
+The sequence diagram shows how the various components interact with each other when `delete-client 1` is entered by the user.
+<br>
+<img src="images/DeleteClientSequenceDiagram.png" width="600">
+
+### Deleting a Project
+
+Users have the ability to delete a particular project.
+
+#### Implementation
+
+The sequence diagram shows how the various components interact with each other when `delete-project 1` is entered by the user.
+<br>
+<img src="images/DeleteProjectSequenceDiagram.png" width="600">
+
 ### Clearing Clients
 
 Users have the ability to clear all their clients.
