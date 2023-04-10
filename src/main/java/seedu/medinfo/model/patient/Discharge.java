@@ -3,9 +3,9 @@ package seedu.medinfo.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -13,12 +13,13 @@ import java.util.Date;
  */
 public class Discharge {
 
-    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time"
-            + " of the form dd/MM/yyyy HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time" +
+            " of the format dd/MM/yyyy HHmm";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
-    public static final String DATE_FORMAT = "dd/MM/yyyy HHmm";
+
     public final String value;
 
+    final static String DATE_FORMAT = "dd/MM/yyyy HHmm";
 
     /**
      * Constructs a {@code Discharge}.
@@ -71,9 +72,9 @@ public class Discharge {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Discharge // instanceof handles nulls
-                && value.equals(((Discharge) other).value)); // state check
+        return other == this
+                || (other instanceof Discharge
+                && value.equals(((Discharge) other).value));
     }
 
     @Override

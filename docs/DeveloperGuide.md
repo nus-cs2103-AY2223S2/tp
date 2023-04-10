@@ -358,7 +358,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | staff member | view the current occupancy of a ward               | see the number of patients currently admitted to a ward, and to know if a ward is full      |
 | `* *`    | staff member | confirm a deletion of a patient                    | avoid accidentally deleting a patient, which cannot be undone                               |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -648,9 +647,6 @@ Use case resumes at step 2.
 
       Use case resumes at step 2.
 
-
-_{More to be added}_
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -659,8 +655,6 @@ _{More to be added}_
 4.  Should mask the NRIC of patients when listing (e.g. XXXXX264G).
 5.  The product is not required to validate the medical records.
 
-_{More to be added}_
-
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -668,8 +662,6 @@ _{More to be added}_
 - **Use case**: It describes an interaction between the user and the system for a specific functionality of the system.
 - **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
 - **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
-
-_{More to be added}_
 
 ---
 
@@ -697,7 +689,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
 
 ### Delete a patient
 
@@ -714,15 +705,13 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
 
 ### Save data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. MedInfo will clear the current data if the data files are corrupted or modified invalidly.
 
-2. _{ more test cases …​ }_
 
 
 ---
@@ -736,10 +725,12 @@ Currently, MedInfo allows the user to input dates in the past (e.g.`01/01/1000 1
 input past date-times, such as if the user forgot to enter dates previously, MedInfo is meant to be a **current**
 patient tracking system. As such, inputting dates from the past would not make sense as the patients would have been
 discharged already (and hence have no reason to be recorded in MedInfo).
+Also, MedInfo currently allows entering time in non HHmm format (e.g. '210.4'). This shall be looked into while
+improving validation overall.
 
 Possible Implementation:
-- This could be implemented by adding a method in `Discharge.java` to check if a given date is a valid future
-discharge date (by comparing to the current date)
+- Future validation could be implemented by adding a method in `Discharge.java` to check if a given date is a valid
+future discharge date (by comparing to the current date)
 - The method created above would then be called within `parseDischarge()` in `ParserUtil.java` to ensure that a
 valid future discharge date-time was entered
 
