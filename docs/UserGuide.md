@@ -86,11 +86,45 @@ The guide will walk you through the process of creating and managing tasks, sett
 Similar to `Vim`, you can use the `j` and `k` (or `↓` and `↑`) key to move down and up the task-list respectively.
 
 Assuming we have already have some tasks loaded in Vimification(we'll show you how to add tasks later), pressing `j` brings us down.
-<img class="ui-img" src="images/ug-images/2.before-j.png">
-<img class="ui-img" src="images/ug-images/3.after-j.png">
+
+<table>
+  <tr>
+    <th>
+      Before
+    </th>
+    <th>
+      After
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img class="ui-img" src="images/ug-images/2.before-j.png">
+    </td>
+    <td>
+      <img class="ui-img" src="images/ug-images/3.after-j.png">
+    </td>
+  </tr>
+</table>
 Similarly, pressing `k` brings us up the task-list.
-<img class="ui-img" src="images/ug-images/4.before-k.png">
-<img class="ui-img" src="images/ug-images/5.after-k.png">
+
+<table>
+  <tr>
+    <th>
+      Before
+    </th>
+    <th>
+      After
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img class="ui-img" src="images/ug-images/4.before-k.png">
+    </td>
+    <td>
+      <img class="ui-img" src="images/ug-images/5.after-k.png">
+    </td>
+  </tr>
+</table>
 
 Just like `Vim`, pressing `l` moves you to the right, but in Vimification, pressing `l` would move you to the right and display the task detail.
 <img class="ui-img" src="images/ug-images/6.before-l.png">
