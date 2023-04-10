@@ -182,7 +182,7 @@ Diagram below shows an example of a client called `c0` after using the `add` com
 The `Client` consists of these objects after adding. Objects that are a `Set` can contain 0 or more objects. Goal object can contain a String `client has not added a goal` to represent that there is no goal. Calorie object can contain `0000` value to represent there is no recommended calorie input.
 All objects must contain non-null attributes. All objects must be present after adding/editing the client other than objects in the `Set` objects.
 
-<img src="images/ClientObject.png" height = "300"/>
+<img src="images/ClientObject.png" height = "200"/>
 <div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
 
