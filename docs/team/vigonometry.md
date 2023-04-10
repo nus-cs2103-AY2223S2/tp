@@ -20,19 +20,16 @@ streamline your hospital management processes.
 
 ### Summary of Contributions
 
-Given below are my contributions to the project.
-- Created various Command classes (`AddDoctorCommand`, `AddPatientCommand`, `DeleteDoctorCommand`, `DeletePatientCommand`, `SelectPatientCommand`) and associated Parser classes.
-- Updated Command handlers in ParserUtil
-- Created a LightTheme for Docedex Users to be used in future ThemeSelector
-- Created various testing classes to improve code coverage of commands to 67% (including Exceptions).
+#### Project management
+- Managed releases under `v1.4`
 
 #### Code contributed
 My code contributions can be visualised through [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=vigonometry&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=vigonometry&tabRepo=AY2223S2-CS2103T-F12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
 
 #### Enhancements implemented
 - Created various Command classes (`AddDoctorCommand`, `AddPatientCommand`, `DeleteDoctorCommand`, `DeletePatientCommand`, `SelectPatientCommand`) and associated Parser classes.
-- Updated Command handlers in ParserUtil
-- Created a LightTheme for Docedex Users to be used in future ThemeSelector
+- Updated `Command` handlers in `ParserUtil`
+- Created a `LightTheme.css` for Docedex Users to be used in future `ThemeSelector`
 
 
 #### Contributions to the UG
@@ -60,7 +57,7 @@ Here are my contributions to the DG
   - Aided in the creation of [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a--planned-enhancements) and associated format to document planned enhancements for future versions of Docedex.
   - Detailed problems 3 and 4 under [Appendix A: Planned Enhancements](../DeveloperGuide.md#appendix-a--planned-enhancements).
 - UML diagrams
-    - Class Diagrams: Created class diagrams for Logic and Model classes
+    - Class Diagrams: Created class diagrams for `Logic` and `Model` classes
     - Sequence Diagrams: Created sequence diagrams for `AddDoctorCommand`, `AddPatientCommand`, `DeleteDoctorComand`, `DeletePatientCommand`
 
 #### Contributions to team-based tasks
