@@ -70,7 +70,7 @@ run {
 }
 
 shadowJar {
-    archiveFileName = 'HMHero.jar'
+    archiveFileName = 'hmhero.jar'
 }
 
 run {
