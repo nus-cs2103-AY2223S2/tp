@@ -56,13 +56,13 @@ Model --> EditCommand
 deactivate Model
 
 create Employee
-EditCommand --> Employee
+EditCommand -> Employee
 activate Employee
 
 Employee --> EditCommand : editedEmployee
 deactivate Employee
 
-EditCommand --> Model : setEmployee()
+EditCommand -> Model : setEmployee()
 activate Model
 Model --> EditCommand
 deactivate Model
