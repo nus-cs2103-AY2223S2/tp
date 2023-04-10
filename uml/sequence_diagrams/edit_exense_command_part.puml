@@ -17,7 +17,7 @@ skinparam Sequence {
     ReferenceBackgroundColor #FFFFFF
 }
 
-loop until matching category is found 
+loop until matching category is found
     create Category
     Command -> Category
     activate Category #Brown
@@ -25,12 +25,12 @@ loop until matching category is found
     deactivate Category
 
     Command-[hidden]->Category
-     activate Category #Brown 
+     activate Category #Brown
     Category -> Category :equals(newExpenseCategoryInString)
     opt if equals check is true
        Category -[hidden]> Category
        Category --> Command
     end
-    deactivate Category 
+    deactivate Category
 end
 @enduml

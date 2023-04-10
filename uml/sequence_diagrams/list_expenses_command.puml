@@ -22,11 +22,11 @@ participant ":CommandResult" as CommandResult order 2
 activate ListExpenseCommand #LightBlue
 alt category predicate \nis present
     ListExpenseCommand -> filterModel : filter.getCategory()
-    activate filterModel 
+    activate filterModel
     filterModel --> ListExpenseCommand : category
     deactivate filterModel
     ListExpenseCommand -> Model: updateCategoryFilter(category)
-    activate Model 
+    activate Model
     deactivate Model
 else else
     ListExpenseCommand -> Model: updateCategoryFilter(null)
@@ -44,7 +44,7 @@ alt timespan predicate \nis present
     deactivate Model
 else else
     ListExpenseCommand -> Model: updateTimespanFilter(timespan)
-    activate Model 
+    activate Model
     deactivate Model
 end
 
@@ -59,11 +59,11 @@ opt timespan \nis present
 end
 
 
-ListExpenseCommand -> Model : updateFilteredExpenseList(combinedPredicate) 
-activate Model 
+ListExpenseCommand -> Model : updateFilteredExpenseList(combinedPredicate)
+activate Model
 deactivate Model
 create CommandResult
-ListExpenseCommand -> CommandResult 
+ListExpenseCommand -> CommandResult
 
 activate CommandResult #SpringGreen
 CommandResult --> ListExpenseCommand

@@ -8,7 +8,7 @@ skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
 box Model #F97181
-participant "newExpense: Expense" as Expense order 2 
+participant "newExpense: Expense" as Expense order 2
 participant "dataModel: Model" as Model order 3
 participant "expenseTracker: ExpenseTracker" as ExpenseTracker order 4
 participant "expenses: ExpenseList" as ExpenseList order 5
@@ -32,30 +32,30 @@ activate Expense
 Expense --> Command: newCategory
 deactivate Expense
 Command -> Model : getCategoryInstance(newCategory)
-ref over Model, ExpenseTracker 
-    : get existing category 
+ref over Model, ExpenseTracker
+    : get existing category
 end ref
 Model --> Command: existingCategory
 alt existingCategory != null
     Command -> Expense: setCategory(existingCategory)
     activate Expense
-    Expense -> Model 
-    ref over Model 
+    Expense -> Model
+    ref over Model
         : sets category to
         : link to existing one.
     end ref
     Model --> Expense
-    Expense --> Command 
+    Expense --> Command
     deactivate Expense
 else else
     Command -> Model
     activate Model
-    Model -> ExpenseTracker : addCategory(toAdd) 
+    Model -> ExpenseTracker : addCategory(toAdd)
     activate ExpenseTracker
-    
+
     ExpenseTracker -> ExpenseList
     ref over ExpenseList
-        : add newCategory to 
+        : add newCategory to
         : ObervableList<Expense>
     end ref
     ExpenseList --> ExpenseTracker
@@ -86,7 +86,7 @@ deactivate Model
 Model --> Command
 deactivate Model
 create ":CommandResult" as CommandResult order 1
-Command -> CommandResult 
+Command -> CommandResult
 activate CommandResult #SpringGreen
 CommandResult --> Command
 deactivate CommandResult

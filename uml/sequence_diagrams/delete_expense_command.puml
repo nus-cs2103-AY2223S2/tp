@@ -34,8 +34,8 @@ deactivate Model
 
 Command -> Model
 ref over Model
-    : get expense from 
-    : lastShownList using parsed index 
+    : get expense from
+    : lastShownList using parsed index
 end ref
 Model --> Command
 
@@ -61,7 +61,7 @@ deactivate Model
 Model --> Command
 deactivate Model
 create ":CommandResult" as CommandResult order 1
-Command -> CommandResult 
+Command -> CommandResult
 activate CommandResult #SpringGreen
 CommandResult --> Command
 deactivate CommandResult
