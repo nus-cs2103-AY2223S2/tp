@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   
 
 * **Community**:
-  * Made [forum comment](https://github.com/nus-cs2103-AY2223S2/forum/issues/266#issuecomment-1477310179) to help others facing trouble wiht PlantUML.
+  * Made [forum comment](https://github.com/nus-cs2103-AY2223S2/forum/issues/266#issuecomment-1477310179) to help others facing trouble with PlantUML.
   * PRs reviewed (with non-trival review comments): [\#101](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/101),
   [\#140](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/140),
   [\#163](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/163)
@@ -60,7 +60,7 @@ Given below are my contributions to the project.
   * User Guide
     * Create initial draft of UserGuide.md for CookHub. [\#43](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/43)
     * Add documentation for `fp` and `sort` feature, and add glossary table. [\#154](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/154)
-    * Write description of CookHub, add separate section for new user and returning user. [\#160](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/160)
+    * Write description of CookHub, and add separate section for new user and returning user. [\#160](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/160)
     * Fix UG bugs, improve readability and improve navigability. [\#238](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/238)
     * Add tips, warnings and constraints for all commands. [\#254](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/254) 
     * Add summary table for all commands. [\#255](https://github.com/AY2223S2-CS2103T-W09-1/tp/pull/255)
