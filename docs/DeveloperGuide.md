@@ -698,7 +698,7 @@ To be added
 - **Potential issue**: User has to guess which parameter/section of the command is invalid.
 - **Why did it happen**: Implementation of feature freeze prior to resolution
 
-**Solution**: Allow Command classes to throw error messages of parameter/section of command that is invalid.
+**Solution**: Allow Command classes and associated parser utils to throw error messages of parameter/section of command that is invalid.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
