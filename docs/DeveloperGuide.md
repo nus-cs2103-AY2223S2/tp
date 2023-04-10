@@ -130,7 +130,7 @@ How the parsing works:
 
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
 
-<img src="images/ModelClassDiagram.png" height = "500">
+<img src="images/ModelClassDiagram.png" height = "400">
 
 
 The `FitBookModel` component,
