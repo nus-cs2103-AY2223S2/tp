@@ -781,22 +781,27 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
-### User-friendly UI
+### Challenges
+
+#### User-friendly UI
 The original AB3 program's list view of persons is not practical for a flashcard application where users need to manage/review decks and cards. In addition, our PowerCards application requires two interfaces for the user: one for managing cards and decks and another for review sessions.
-
 To address these issues, we implemented a dual panel layout that allows users to view useful information side by side, helping them keep track of their progress and execute commands efficiently. In main mode (deck selected or unselected), the left panel is dedicated to decks while the right panel is dedicated to cards, enabling users to manage both easily.
-
 During review mode, the left panel displays review statistics while the right panel shows the current card being reviewed.
-
 Regarding the color scheme, we felt that AB3's dark theme was uninspiring, so we designed and implemented our own light theme. This new theme gives the app a warm, welcoming feel that enhances the user's experience.
 
-### Extensive testing
+#### Extensive testing
 Our application has a total of 26 unique commands, as compared to 8 unique commands in AB3. With the increased number of commands, along with the increased number of classes to support these commands, means that code coverage is likely to decrease and more testing had to be done.
 * `MAIN_SELECTED_MODE` has a total of 11 accessible commands. 
 * `MAIN_UNSELECTED_MODE` has a total of 11 accessible commands.
 * `REVIEW_MODE` has a total of 9 accessible commands.
 
 As such, we saw this as a valuable opportunity to conduct extensive testing of our application. We achieved this by writing unit and integration tests for our commands, parsers, and model objects. Through this process, we were able to maintain a coverage level of **~70%**, only slightly less than the original **~72%** coverage in AB3. Additionally, we increased the number of test cases from **248** in AB3 to **356** in PowerCards.
+
+### Achievements
+- Successfully built a simple and efficient CLI flashcard application.
+- Improved a lot from AB3 with a number of new features and a better UI.
+- Drew clear and correct different styles of diagram for DG.
+- Made a concrete OOP structure through discussions. 
 
 ## Appendix: Planned Enhancement
 
