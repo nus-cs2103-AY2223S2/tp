@@ -52,6 +52,8 @@ public class JsonRosterStorage implements RosterStorage {
     public Optional<ReadOnlyRoster> readRoster(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
+        logger.info("Reading Roster from " + filePath.toString());
+
         File jsonFile = new File(filePath.toString());
 
         try {
@@ -80,6 +82,8 @@ public class JsonRosterStorage implements RosterStorage {
     public void saveRoster(ReadOnlyRoster roster, Path filePath) throws IOException {
         requireNonNull(roster);
         requireNonNull(filePath);
+
+        logger.info("Saving Roster to file at: " + filePath.toString());
 
         FileUtil.createIfMissing(filePath);
 
