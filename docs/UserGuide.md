@@ -571,7 +571,7 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 
 **Q**: Which parts of the app are case-sensitive?<br>
 **A**: In a command, the prefixes are case-sensitive and need to be in lower case. The command word is not.
-In the details provided for a command, only the names or clients and projects are case-sensitive.
+In the details provided for a command, only the names of clients and projects are case-sensitive.
 
 **Q**: How do I edit the data stored in the JSON file directly?<br>
 **A**: You can open up the JSON file found in `./data/` in any text or code editor and follow the existing pattern to input your own data. If the file does not contain any data, you can delete the file to get back the default samples.
@@ -579,5 +579,5 @@ In the details provided for a command, only the names or clients and projects ar
 **Q**: I don't see all the clients/projects when running the `sort` commands. Why is this?<br>
 **A**: The `sort` commands are designed to only sort the items that are currently visible. If you have narrowed down the visible list by running a `find` command, it will only sort those items.
 
-**Q**: Why doesn't the app recognise the price as a valid amount?<br>
+**Q**: Why doesn't the app recognise the price I've entered as a valid amount?<br>
 **A**: If you see an error saying that a valid price needs to be entered even though you have already done so, it may be that the format is incorrect. The app only accepts positive price values to either 0 or 2 decimal places.
