@@ -46,19 +46,24 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
      4. Features in coNtactUS
      5. Format restrictions for input values by the user
      6. Product limitations
-     7.  Coming soon
+     7. Coming soon
+  
 --------------------------------------------------------------------------------------------------------------------
+
 #### Contributions to the Developer Guide (DG) 
   * Developer Guide:
     * Added and improved documentation for the following sections: 
       1. High level details of the overall architecture for coNtactUS
       2. Implemtation details for SortCommand
       3. Evaluation of effort for SortCommand
+      
 --------------------------------------------------------------------------------------------------------------------
+
 #### See my code contribution in detail
 * Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jayhee3&breakdown=true)
 
  --------------------------------------------------------------------------------------------------------------------
+
 #### Contributions to team-based tasks
 My contributions to team-based tasks include but are not limited to the following: 
 1. Creating of issues and project milestones
@@ -68,11 +73,14 @@ My contributions to team-based tasks include but are not limited to the followin
 5. Organising internal project documents to make them cleaner and better structured 
 
  --------------------------------------------------------------------------------------------------------------------
+
 #### Review/ Mentoring contributions 
 1. Reviewing pull requests from team members [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
 2. Helping team members to better understand the code base and assisting them with difficulties they faced implementing features or bug fixing 
 
  --------------------------------------------------------------------------------------------------------------------
+
 #### Contributions beyond the project team
 1. Participated in software testing of other project teams to catch bugs and help them improve their product 
+
  --------------------------------------------------------------------------------------------------------------------
