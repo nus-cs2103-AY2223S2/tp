@@ -69,8 +69,9 @@ Here are some descriptions of the words we use throughout the User Guide:
 - **Parameter**: Parameters are like fields in a form you are required to fill up.
 They include details you would include about the doctor/patient.
 - **Command**: An input from the user that tells Docedex to perform an action (ie. add a doctor).
-- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see
-- **GUI component**: A subsection of the Graphical User Interface
+- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
+- **GUI component**: A subsection of the Graphical User Interface.
+- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
 - **Doctors List**: A scrollable GUI component that displays a list of doctors.
   Each doctor in the doctors list is encapsulated within a doctor card.
 - **Doctor Card**: A small rectangular GUI component that displays key information about
@@ -584,7 +585,7 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
 
 ### Using Docedex
-**Q**: I entered a command and my doctor/patient list was cleared. What happenned?<br>
+**Q**: I entered a command and my doctor/patient list was cleared. What happened?<br>
 **A**: Within the [Notes about the GUI](#notes-about-the-gui) section, refer to the
 subsection titled _"Selecting doctors or patients through commands"_ for an explanation of why this occurs.
 
