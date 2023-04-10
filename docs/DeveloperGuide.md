@@ -975,7 +975,7 @@ patients. In the future, we will ensure tha the scroll bar remains in position e
 generated in the result display box. In the future, we will inform the user of the missing prefix in the result display
 box.
 
-7. Currently, users are only able to use the undo/redo functions for actions that modify data, except commands relating to data archiving and theme changes.
+7. Currently, users are only able to use the undo/redo functions for actions that modify data. This excludes commands `light`, `dark`, `backup` and `deletebackup`.
 In the future, we plan to extend the capabilities of the undo/redo functions to encompass all commands in the future.
 
 8. Currently, the error message of falsely deleting a backup file is too generic and doesn't provide any indication.
