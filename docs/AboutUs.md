@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shin Jin
 
-<img src="Desktop/NUS/Y2S2/CS2103T/tp/docs/images/jinnieshin.png" width="200px">
+<img src="images/jinnieshin.png" width="200px">
 
 [[github](http://github.com/jinnieshin)]
 [[portfolio](team/jinnieshin.md)]
