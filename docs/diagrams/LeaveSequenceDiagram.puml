@@ -47,14 +47,15 @@ activate LeaveCommand
 
 LeaveCommand -> EditCommand :
 activate EditCommand
-deactivate EditCommand
 
 EditCommand --> LeaveCommand : e
+deactivate EditCommand
 
 LeaveCommand -> EditCommand : execute()
 activate EditCommand
-deactivate EditCommand
+
 EditCommand --> LeaveCommand
+deactivate EditCommand
 
 create CommandResult
 LeaveCommand -> CommandResult
