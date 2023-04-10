@@ -95,7 +95,7 @@ public class MathutoringParser {
             return new AddTaskCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteTaskParserCommand().parse(arguments);
+            return new DeleteTaskCommandParser().parse(arguments);
 
         case MarkTaskInProgressCommand.COMMAND_WORD:
             return new MarkTaskInProgressParserCommand().parse(arguments);

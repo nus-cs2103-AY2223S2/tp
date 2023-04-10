@@ -6,7 +6,9 @@ title: User Guide
 ## Table of Contents
 *  **[Overview](#overview)**
 *  **[Quick start](#quick-start)**
+*  **[User input restrictions](#user-input-restrictions)**
 *  **[Features](#features)**
+*  **[GUI display restrictions](#gui-display-restrictions)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
 
@@ -33,7 +35,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `mathutoring.jar` (Stay tuned for our release!).
+2. Download the latest `mathutoring.jar`. 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
@@ -46,7 +48,7 @@ If you need to switch to a new device, you can also export and import your previ
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all students in the student list.
+   * `list` : Lists all students in the student list.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/87849999 t/female t/primary` : Adds a student named `John Doe` to the student list in MATHUTORING with two tags attached.
 
@@ -56,7 +58,17 @@ If you need to switch to a new device, you can also export and import your previ
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Recommended minimum screen size: 740 x 700.
+
+7. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## User input restrictions
+To achieve the best performance, we have set a few restrictions regarding the user input.
+
+* Phone number must have at least 3 digits and no more than 15 digits.
+* A tag should not have more than 20 letters.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,10 +90,10 @@ If you need to switch to a new device, you can also export and import your previ
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.<br>
+* __Extraneous parameters for commands that do not take in parameters (including `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.<br>__
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Command words are case-insensitive.<br>
@@ -89,13 +101,16 @@ If you need to switch to a new device, you can also export and import your previ
 
 </div>
 
+
 ### 1. Viewing help: `help`
 
-Prompts the help page link.
+Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING. 
+For more detailed information such as how to use the syntax, please refer to the help page.
 
 <img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
 Format: `help`
+
 
 ### 2. Adding a student's contact: `add`
 
@@ -103,20 +118,29 @@ Adds a student to the student list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: Tip:
-   A student can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+
+:bulb: Tips:<br>
+* A student is allowed to have alphanumeric or numeric names, however, special characters (e.g. `à`, `_`) are not allowed.
+* If a student does not have a phone number, their parent's contact number can be used as the student's phone number.
+* A student can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
+<div markdown="span" class="alert alert-warning">:exclamation:
+Caution: </div> 
+
+* In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider adding a number after the student's name to distinguish them.  e.g. Emily and Emily 2 are acceptable names.
 
 ### 3. Viewing student contacts as a list: `list`
 
 Lists all the students in the student list.
 
 Format: `list`
+
 
 ### 4. Editing a student: `edit`
 
@@ -127,9 +151,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CONTACT_PARENT] 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, all the existing tags of the student will be removed. i.e. adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without specifying any tags after it.
+* We allow you to edit the `PHONE_NUMBER` and `CONTACT_PARENT` to be the same.
+* You are not allowed to change the name of a student to be the same as any existing student in the list.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -142,7 +167,7 @@ Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -152,7 +177,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
 ### 6. Deleting a student: `delete`
@@ -166,8 +190,9 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the student list.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student (if the student exists) in the student list.
+* `find Betsy` followed by `delete 1` deletes the 1st student (if the student exists) in the results of the `find` command.
+* `filter female` followed by `delete 3` deletes the 3rd student (if the student exists) in the results of the `filter` command.
 
 
 ### 7. Checking a student: `check`
@@ -181,7 +206,8 @@ Format: `check INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `check 2` checks the 2nd student in the student list.
+* `check 2` checks the 2nd student in the student list, the respective task list and score list will show on the right side of the application window.
+
 
 ### 8. Adding a task for a student: `addtask`
 
@@ -219,6 +245,7 @@ Examples:
 * `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
 * `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
 
+
 ### 10. Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`
 
 Marks the specified task from the task list of a student as complete, in progress, or late.
@@ -232,6 +259,7 @@ Format:
 * The first index refers to the index number shown in the displayed student list and
   the second index refers to the index of the task in the displayed task list of the student.
 * Both indexes **must be positive integers** 1, 2, 3, …​
+* The default status for a newly added task is in progress.
 
 Examples:
 
@@ -251,6 +279,8 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The given `VALUE_OF_SCORE` can be **any number from 0 to 100**.
 * The given `VALUE_OF_SCORE` can either be **an integer or a number with one decimal place**
+* Exams on different dates can have the same `Label`.
+* No two exams can have the same `Date`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -284,34 +314,41 @@ Examples:
 * `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
 * `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
+
 ### 13. Clearing all entries: `clear`
 
-Clears all entries from the address book.
+Clears all entries from the MATHUTORING.
 
 Format: `clear`
 
+
 ### 14. Exiting the program: `exit`
 
-Exits the program.
+Exits from MATHUTORING.
 
 Format: `exit`
 
+
 ### 15. Filtering students by tag: `filter`
 
-Filters students whose tags contain any of the given keywords.
+Filters students whose tags match with any of the given keywords.
 
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
-* The filter is case-insensitive. e.g `primary` will match `Primary`
+* The filter is case-insensitive. e.g. `primary` will match `Primary`
 * The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
 * Students whose tag matches at least one keyword will be returned (i.e. `OR` search).
-  e.g. `primary primary4` will return `primary`, `primary4`
+  e.g. `primary primary4` will return `primary`, `primary4`, and `primary primary4`.
 
 Examples:
-* `filter primary` returns `primary`, `Primary`
-* `filter primary primary4` returns `primary`, `primary4`
+* `filter primary` returns tag `primary`, `Primary`.
+* `filter secondary secondary2` returns tag `secondary`, `secondary2`, and `secondary secondary2`.
+
+Addition:
+* The avatar will change if the student has a "gender" tag. 
+* The "gender" tag include male and female (case-insensitive). If a student does not have any gender tag or have both gender tags (male and female), the avatar will stay as default.
 
 
 ### 16. Switch between tabs: `switch`
@@ -319,21 +356,24 @@ Examples:
 Switches between the score list and score chart tabs.
 
 Format: There we support using CLI or mouse.
-CLI - `switch`
-Mouse - click the tab.
+**CLI**<br> `switch`
+
+**Mouse**<br> click the tab.
+
 
 ### 17. Export the student data out: `export`
 
 Exports all the student's data out. Users can export with or without specifying the path.
-The default exported position for CLI will be under the _home folder_.
+The default exported position for CLI will be under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 The exported file name is `data.json`.
 
 Format: There we support using CLI or mouse.
-CLI - `export [FILE_PATH]`
-Mouse - Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+**CLI**<br> `export [FILE_PATH]`
+
+**Mouse**<br> Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
 
 Examples:
-* `export` will export the file under the _home folder_.
+* `export` will export the file under the _home folder_ (the folder that contains the "mathutoring.jar" file).
 * For Windows users
   * `export` p/C:\bin export `data.json` to bin folder under C disk.
 * For Mac users
@@ -347,9 +387,10 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
+
 
 ### 18. Import the student data in: `import`
 
@@ -357,8 +398,8 @@ Imports student data into the application. Users can import the file by dragging
 The imported file must be in `.json` format.
 
 Format: There we support using CLI or mouse.
-CLI - `import FILE_PATH`
-Mouse - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+**CLI**<br> - `import FILE_PATH`
+**Mouse**<br> - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
 
 Examples:
 * For Windows users
@@ -374,9 +415,10 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
+
 
 ### 19. Export student progress out as a PDF file: `exportp`
 
@@ -389,7 +431,6 @@ Format: We support CLI or mouse.
 
 **Mouse**<br>Click the "Export Progress Report" button of a student in the student list. An export progress window will pop
 up, the user is required to specify which folder to store the exported file.
-
 
 * Exports the score list and task list of the specified student `INDEX` in the form of a PDF file.
 * The `INDEX` **must be a positive integer** 1, 2, 3, ...
@@ -414,7 +455,7 @@ Examples:
 
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
@@ -425,11 +466,19 @@ MATHUTORING data is saved in the hard disk automatically after any command that 
 
 ### Editing the data file
 
-MATHUTORING data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MATHUTORING data are saved as a JSON file `[JAR file location]/data/mathutoring.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
 If your changes to the data file make its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## GUI display restrictions
+We have set up a few GUI display restrictions in order to avoid the GUI being affect by extreme inputs (e.g. super long name) or small screen size, and thus hinder the user experience.
+* If the student name is more than 29 letters, we will display the full student name inside student list. However, the task list will only display at most the first 29 letters, the remaining letters will show as ellipsis.
+
+* If the exam label is more than 11 letters, we will display the full exam label inside score list, text panel. However, the chart tooltip will only display at most the first 11 letters, the remaining letters will show as ellipsis.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -455,11 +504,11 @@ If your changes to the data file make its format invalid, MATHUTORING will disca
 | **Add Task**       | `addtask INDEX t/TITLE`<br> e.g `addtask 2 t/Homework Assignment 1`                                                                                                                           |
 | **Delete Task**    | `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deletetask 2 1`                                                                                                                          |
 | **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markcomplete`, `marklate` or `markinprogress`)<br> e.g. `markComplete 1 2`<br>                                   |
-| **Add Score**      | `addscore l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore l/CA2 A Math v/70 d/2022-03-03`                                                                                                  |
+| **Add Score**      | `addscore INDEX_OF_STUDENT l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addscore l/CA2 A Math v/70 d/2022-03-03`                                                                                 |
 | **Delete Score**   | `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deletescore 3 4`                                                                                                                      |
-| **Import Data**   | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                                |
-| **Export Data**   | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
-| **Export Progress**   | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
+| **Import Data**    | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                                |
+| **Export Data**    | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                                        |
+| **Export Progress** | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                               |
 | **Help**           | `help`                                                                                                                                                                                        |
-
-
+| **Switch**         | `switch`                                                                                                                                                                                      |
+| **Exit**           | `exit`                                                                                                                                                                                        |
