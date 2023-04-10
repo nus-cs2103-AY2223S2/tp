@@ -8,7 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CheckedFunction;
 import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.AddElderlyCommandParser;
@@ -48,8 +51,10 @@ public class CommandRecommendationEngine {
      * A map containing the command registry with command word as key and CommandInfo as value.
      */
     private static final CommandInfoMap commandRegistry = new CommandInfoMap();
+    private static final Logger logger = LogsCenter.getLogger(CommandRecommendationEngine.class);
 
     static {
+        logger.log(Level.INFO, "Registering commands to recommendation engine...");
         registerCommandParser(new DeleteVolunteerCommandParser());
         registerCommandParser(new DeleteElderlyCommandParser());
         registerCommandParser(new AddVolunteerCommandParser());
@@ -167,6 +172,7 @@ public class CommandRecommendationEngine {
      * @throws RecommendationException if there is an error generating recommendations
      */
     public String autocompleteCommand(String userInput) throws RecommendationException {
+        logger.log(Level.INFO, "Generating command recommendations...");
         String recommendation = generateCommandRecommendations(userInput);
         String cmdWord = recommendation.split(" ")[0];
         CommandInfo cmdInfo = findMatchingCommandInfo(cmdWord, true);
@@ -182,6 +188,9 @@ public class CommandRecommendationEngine {
         String command = recommendation.substring(0, commandIdx == -1
                 ? recommendation.length()
                 : commandIdx);
+
+        logger.log(Level.INFO, "Autocompleting command recommendations...");
+
         if (!isCompleteCommand && !userInput.equals(command)) {
             return command;
         } else if (!preamble.isEmpty() && suggestedCommand.contains(preamble)) {
@@ -237,13 +246,9 @@ public class CommandRecommendationEngine {
         String[] userInputArray = userArgs.split(" ");
         String currPrefixString = userInputArray[userInputArray.length - 1];
         boolean isCompletePrefix = isCommandPrefixComplete(userInputArray[userInputArray.length - 1], "/");
-        Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, isCompletePrefix
+        Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, isCompletePrefix && currPrefixString.length() > 1
                 ? currPrefixString.split("/")[0]
                 : currPrefixString);
-
-        if (isCompletePrefix && matchingPrefix == null) {
-            throw new RecommendationException("Invalid prefix.");
-        }
 
         if (!isCompletePrefix && matchingPrefix != null && userArgs.stripTrailing().length() == userArgs.length()) {
             argumentRecommendation.append(matchingPrefix.getPrefix().substring(currPrefixString.length()));

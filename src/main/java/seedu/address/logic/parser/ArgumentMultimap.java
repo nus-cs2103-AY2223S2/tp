@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -28,7 +29,7 @@ public class ArgumentMultimap {
      * @param argValue Argument value to be associated with the specified prefix key.
      */
     public void put(Prefix prefix, String argValue) {
-        List<String> argValues = getAllValues(prefix);
+        List<String> argValues = getAllEntries(prefix);
         argValues.add(argValue);
         argMultimap.put(prefix, argValues);
     }
@@ -40,7 +41,7 @@ public class ArgumentMultimap {
      * @return Last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {
-        List<String> values = getAllValues(prefix);
+        List<String> values = getAllEntries(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
@@ -52,7 +53,7 @@ public class ArgumentMultimap {
      * @param prefix Prefix of the values.
      * @return All values of {@code prefix}.
      */
-    public List<String> getAllValues(Prefix prefix) {
+    public List<String> getAllEntries(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
@@ -64,8 +65,8 @@ public class ArgumentMultimap {
      *
      * @return All values inside the argMultiMap
      */
-    public List<List<String>> getAllValues() {
-        return new ArrayList<>(argMultimap.values());
+    public Set<Map.Entry<Prefix, List<String>>> getAllEntries() {
+        return argMultimap.entrySet();
     }
 
     /**
