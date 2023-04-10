@@ -285,6 +285,7 @@ Throughout this user guide, you may come across different formatting styles and 
      <i>Figure 14. Dark mode user interface with Hospital Hotlines tab opened. </i>
    </p>
 
+
 7. You can now start typing some command into the command box at the bottom and hit <span style="background-color: #6E7373">Enter</span> to execute it. e.g. type in **`g help`** and hit <span style="background-color: #6E7373">Enter</span> will open the help window.<br/>
    <details>
    <summary>Click here for  Some example commands you can try</summary>
