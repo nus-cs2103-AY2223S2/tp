@@ -96,9 +96,9 @@ open the help window.<br>
 
     * `delete 1`: Deletes the third case shown in the current list.
 
-    * `undo 1`: Undoes one actions.
+    * `undo 1`: Undoes one action.
 
-    * `redo 1`: Redoes one actions.
+    * `redo 1`: Redoes one action.
 
     * `clear`: Deletes all cases shown in the current list.
 
