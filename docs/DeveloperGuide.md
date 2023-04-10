@@ -53,7 +53,7 @@ Here are some symbols used throughout the user guide to inform you of additional
 ## **Acknowledgements**
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [Opencsv](https://opencsv.sourceforge.net).
 
 ---
 
@@ -630,35 +630,13 @@ testers are expected to do more *exploratory* testing.
     Tags: [friends]
    ```
    
-   2. Test case:
-   ``` text
-   add n/Jack Wang
-   r/3SG
-   c/Alpha
-   u/2 SIR
-   p/98310925
-   e/jackywang@gmail.com
-   a/Blk 19 Ghim Moh Rd, #04-10
-   ```
-   Expected: A person with the following information will be added to the list and displayed in the main panel of the GUI.
+   2. Test case: `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10`<br>
+   Expected: A person with the specified information will be added and displayed in the main list of the GUI.
    
-   3. Test case:
-   ``` text
-   add n/Alex Yeoh
-   r/CPL
-   c/Bravo
-   u/1 SIR
-   p/89043761
-   e/alexyeoh@example.com
-   a/Blk 21 Buona Vista Rd, #11-01
-   ```
+   3. Test case: `add n/Alex Yeoh r/CPL c/Bravo u/1 SIR p/89043761 e/alexyeoh@example.com a/Blk 21 Buona Vista Rd, #11-01`<br>
    Expected: Error details shown in the message box, indicating that duplicate emails or phones are not allowed.
    
-   4. Test case:
-   ``` text
-   add n/Zachary Tan
-   r/CPL
-   ```
+   4. Test case: `add n/Zachary Tan r/CPL`<br>
    Expected: Error details shown in the message box, indicating that the command entered is invalid.
 
 [Return to Top](#table-of-contents)
@@ -702,11 +680,11 @@ testers are expected to do more *exploratory* testing.
 ### Toggling the favorite status of a person
 
 1. Toggling the favorite status of a person while all persons are being shown
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No current favorited persons in the favorites list.
    2. Test case: `favorite 1`<br>
       Expected: First person is added to the favorites list. Person is pinned in the favorites list on the left.
    3. Test case: `favorite 1` followed by `favorite 1`<br>
-      Expected: First person is added to the favorites list and then removed. Person is pinned in the favorites list on the left after the first command and then unpinned after the second command. 
+      Expected: First person is added to the favorites list and then removed. Person is pinned in the favorites list on the left after the first command and then unpinned after the second command.
    4. Test case: `favorite 0`<br>
       Expected: No person is toggled as favorite. Error details shown in the message box.
 
@@ -715,8 +693,9 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   1. Prerequisite: Delete the `aims.json` file in `./data` folder and launch AIMS again.<br>
-      Expected: AIMS loads a default list of persons and the data file is created again.
+   1. Prerequisite: The current data file `aims.json` exists in the `./data` folder.
+   2. Test case: Delete the `aims.json` file in the `./data` folder and launch AIMS again.<br>
+      Expected: AIMS loads a default list of persons upon launch and a new data file `aims.json` will be created and saved in the `./data` folder after exiting AIMS.
 
 [Return to Top](#table-of-contents)
 
@@ -725,5 +704,39 @@ testers are expected to do more *exploratory* testing.
 [Return to Top](#table-of-contents)
 
 ## **Appendix: Planned Enhancements**
+
+### Feature Flaw 1: Tags are case-sensitive
+**Brief description:** When using the `add` or `edit` feature in AIMS, tags that are provided with the same names but in different cases (e.g. 1 in lowercase and 1 in uppercase), are treated as different tags which should not be the case.
+
+**Example:** `add n/Jack Wang r/3SG c/Alpha u/2 SIR p/98310925 e/jackywang@gmail.com a/Blk 19 Ghim Moh Rd, #04-10 t/friends t/Friends` <br>
+    In this command, the tags given are `friends` and `Friends` which have the same tag name but treated as 2 different tags because of an uppercase letter in `Friends`.
+
+    ![featureflaw1](./images/featureflaw1.png)
+
+**Proposed Enhancement:** We plan on improving the validation by making sure that tags are case-insensitive so that when 2 tags of same name and different cases are provided, an error message will be displayed to the user: `Duplicate tags are provided!`.
+
+
+### Feature flaw 2: Error message for invalid `add` command is not specific
+**Brief description:** Our [`add`](./UserGuide.md#adding-a-person--add) command requires the user to provide several compulsory fields (rank, name, phone, email, address) in order to add a person to AIMS. However, in the case where the user happens to miss out on any fields, a generic invalid command format error message is displayed to them, not specifying which field is missing. As a result, this can cause inconvenience for the user as they may need to carefully look through the provided example to identify which field(s) is/are needed.
+
+**Example:**
+`add n/James Lee p/99190258 e/jameslee@email.com r/CPL c/Charlie` <br>
+Upon entering the command above, a generic error message is displayed to the user, not specifying which field(s) is/are missing.
+![featureflaw2](./images/featureflaw2.png)
+
+**Proposed enhancement:**
+Instead of just showing a valid example, we plan to change the error message such that it tells the user which specific field(s) is/are missing so that they can know at one glance what is further required.
+
+### Feature flaw 3: Lack of input validation in `filter` feature
+
+**Brief description:** The `filter` feature allow users to search invalid values. For instance, for the phone number field, we have an input validation in the `add` feature which checks that the provided phone number is **valid** with only numbers and at least 3 digits long. However, the user can search for a phone number `abcd` using the `filter` command which is illogical and does not align with our implementation of the `add` feature. 
+
+**Example:** `filter p/abcd`<br>
+Even though AIMS does give a correct result that there are 0 persons with the phone number `abcd` but this will always be the case since AIMS will never allow a person with phone number `abcd` to be added, so we should include the input validation in `filter` as well. 
+![featureflaw3](./images/featureflaw3.png)
+
+**Proposed enhancement:**
+We plan to include the same input validation that we used in the `add` feature for the `filter` feature. This will ensure that the user is informed when they are filtering using an invalid value.
+
 
 [Return to Top](#table-of-contents)
