@@ -61,6 +61,19 @@ than current GUI apps in the industry.
 
 ---
 
+## **Glossary**
+
+### Definitions
+
+Here are some descriptions of the words we use throughout the User Guide:
+- **Parameter**: Parameters are like fields in a form you are required to fill up.
+They include details you would include about the doctor/patient.
+- **Command**: An input from the user that tells Docedex to perform an action (ie. add a doctor).
+- **GUI**: Graphical User Interface (GUI) represents the visual display of Docedex that users can see.
+- **GUI component**: A subsection of the Graphical User Interface. For more information on specific GUI
+components, refer to [this section](#navigating-the-graphical-user-interface-gui).
+- **CLI**: Command Line Interface (CLI) represents a text-based user interface to interact with the application.
+
 ### Parameter Information
 
 *Parameter: Parameters are like fields in a form you are required to fill up. They include details you would include about the doctor/patient.*
