@@ -272,21 +272,6 @@ Examples:
 * `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
   '91234567'
 
-#### Listing all clients : `listClients`
-
-{% include information.html content="
-
-Displays a list of all clients in the FitBook under the Client panel.
-
-" %}
-
-Format: `listClients`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
-
-* Initiate the command with `listClients`
-* All clients in FitBook has been listed once again!
-
 <div style="page-break-after: always;"></div>
 
 #### Deleting a client : `delete`
@@ -330,6 +315,21 @@ Examples:
 * `find n/Alex` followed by `view 1` views the summary of the 1st client in the results of the `view` command.
 
 <div style="page-break-after: always;"></div>
+
+#### Listing all clients : `listClients`
+
+{% include information.html content="
+
+Displays a list of all clients in the FitBook under the Client panel.
+
+" %}
+
+Format: `listClients`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
+
+* Initiate the command with `listClients`
+* All clients in FitBook has been listed once again!
 
 #### Clearing all entries : `clear`
 {% include information.html content="
