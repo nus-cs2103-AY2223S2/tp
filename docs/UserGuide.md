@@ -403,7 +403,7 @@ can then edit over later!
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
-E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
+E.g. `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
@@ -412,7 +412,7 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 <div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
-E.g `tag g/SoC g/Sailing`
+E.g. `tag g/SoC g/Sailing`
 
 </div>
 
@@ -624,7 +624,7 @@ As you may have already see above, when adding a contact with some fields presen
 missing information. <br>
 
 <br>
-Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Zen Qing results in `@zenqing0000`).
+Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g. Zen Qing results in `@zenqing0000`).
 This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
 </div>
