@@ -44,8 +44,9 @@ Given below are my contributions to the project.
 
   * Developer Guide:
     * Added use cases [\#31](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/31)
-    * Added UML Class Diagram and updated documentation for Order and Menu [\#142](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/142)
+    * Added UML Class Diagram and updated documentation for Order and Menu [\#142](https://github.com/AY2223S2-CS2103T-W15-2/tp/issues/142) 
     * Added documentation and activity diagram for "Add" functionality features [\#168](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/168)
+    * Introduced a "Why we implemented this way" portion for features [\#176](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/176)
   * Update Javadocs [\#287](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/287)
 
 * **Community**:
