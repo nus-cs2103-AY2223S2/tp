@@ -25,7 +25,7 @@ import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.menu.ItemNameContainsKeywordsPredicate;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */

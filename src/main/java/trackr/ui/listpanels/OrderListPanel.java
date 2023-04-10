@@ -12,7 +12,7 @@ import trackr.model.order.Order;
 import trackr.ui.UiPart;
 import trackr.ui.cards.OrderCard;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Panel containing the list of orders.
  */

@@ -18,7 +18,7 @@ import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */

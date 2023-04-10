@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import trackr.model.menu.MenuItemDescriptor;
 import trackr.testutil.MenuItemDescriptorBuilder;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 public class EditMenuItemDescriptorTest {
 
     @Test

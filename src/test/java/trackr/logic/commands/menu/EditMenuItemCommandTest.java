@@ -33,7 +33,7 @@ import trackr.model.menu.MenuItemDescriptor;
 import trackr.testutil.MenuItemBuilder;
 import trackr.testutil.MenuItemDescriptorBuilder;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMenuItemCommand.
  */

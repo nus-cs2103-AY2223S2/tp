@@ -21,7 +21,7 @@ import trackr.model.menu.MenuItem;
 import trackr.testutil.MenuItemBuilder;
 import trackr.testutil.TestUtil.ModelStub;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 public class AddMenuItemCommandTest {
 
     @Test

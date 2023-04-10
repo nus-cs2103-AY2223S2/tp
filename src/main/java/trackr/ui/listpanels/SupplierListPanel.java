@@ -12,7 +12,7 @@ import trackr.model.person.Supplier;
 import trackr.ui.UiPart;
 import trackr.ui.cards.SupplierCard;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Panel containing the list of suppliers.
  */

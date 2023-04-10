@@ -23,7 +23,7 @@ import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.menu.MenuItem;
 
-//@@author arkarsg
+//@@author arkarsg-reused
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteMenuItemCommand}.
