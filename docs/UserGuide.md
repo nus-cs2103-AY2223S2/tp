@@ -462,7 +462,7 @@ Given one or more recipes, displays a list of all the groceries the user needs t
 
 Format: `groceries RECIPE_NUMBER, ...`
 - If two or more recipes share ingredients, their quantities will be automatically added together.
-- The `indices` have to be separated by a comma (`,`).
+- The `RECIPE_NUMBER`s have to be separated by a comma (`,`).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
 - The ellipses means you can input multiple recipe numbers! 
@@ -674,26 +674,26 @@ Format meanings:
 
 - Words in lower_case are commands or flags to be typed as-is
 - Words in UPPER_CASE are values of parameters to be supplied by the user
-- Words in [Square brackets] are optional parameters (Note:ls can stack filters)
-- Words that are followed by * are parameters that can be used multiple times
+- Words in [Square brackets] are optional parameters
+- Words that are followed by `...` are parameters that can be used multiple times
 
 
-| Action                         | Format                  | Examples  |
-|--------------------------------|-------------------------|-----------|
-| Add Recipe                     | `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`    | `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`  |
-| Edit Recipe                    | `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`    | `edit 1 t/Corndog`  |
-| Delete Recipe                  | `delete RECIPE_NUMBER`   | `delete 1`  |
-| List Recipe                    | `list`   | `list`  |
-| Clear Recipe                   | `clear`   | `clear`  |
-| Find Recipe                    | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`   | `find r/eggs`  |
-| Search Recipe with limited ingredients | `only INGREDIENT...`   | `only eggs flour`  |
-| Sort Recipes by price          | `sort ORDER`             | `sort asc`  |
-| Get list of groceries          | `groceries RECIPE_NUMBER, ...` | `groceries 1, 3, 4` |
-| Filter Recipes by price        | `filter COMPARATOR PRICE` | `fp < 4.20` |
-| Add Recipe to favorites        | `star RECIPE_NUMBER` | `star 1` |
-| Remove Recipe from favorites   | `unstar RECIPE_NUMBER` | `unstar 1` |
-| List Recipes in favorites      | `favorites` | `favorites` |
-| Provide link to User Guide     | `help` | `help` |
+| Action                         | Format                                                                              | Examples  |
+|--------------------------------|-------------------------------------------------------------------------------------|-----------|
+| Add Recipe                     | `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`                  | `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange`  |
+| Edit Recipe                    | `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...` | `edit 1 t/Corndog`  |
+| Delete Recipe                  | `delete RECIPE_NUMBER`                                                              | `delete 1`  |
+| List Recipe                    | `list`                                                                              | `list`  |
+| Clear Recipe                   | `clear`                                                                             | `clear`  |
+| Find Recipe                    | `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`                       | `find r/eggs`  |
+| Search Recipe with limited ingredients | `only INGREDIENT...`                                                                | `only eggs flour`  |
+| Sort Recipes by price          | `sort ORDER`                                                                        | `sort asc`  |
+| Get list of groceries          | `groceries RECIPE_NUMBER, ...`                                                      | `groceries 1, 3, 4` |
+| Filter Recipes by price        | `fp COMPARATOR PRICE`                                                          | `fp < 4.20` |
+| Add Recipe to favorites        | `star RECIPE_NUMBER`                                                                | `star 1` |
+| Remove Recipe from favorites   | `unstar RECIPE_NUMBER`                                                              | `unstar 1` |
+| List Recipes in favorites      | `favorites`                                                                         | `favorites` |
+| Provide link to User Guide     | `help`                                                                              | `help` |
 
 
 [Back to top](#top)
