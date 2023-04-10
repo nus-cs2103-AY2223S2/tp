@@ -86,8 +86,6 @@ We will introduce each of these components below.
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java).
-**API**
-[`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <p align="center">
 <img src="images/WingmanUiClassDiagram.png" width="1021" alt="UI Class diagram">
@@ -244,7 +242,7 @@ it does not differ significantly from the command pattern in AB3.
 ### Model Component
 
 **API** :
-[`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+[`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/model/Model.java)
 <p align="center">
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
 </p>
@@ -337,20 +335,19 @@ diagrams to depict the processes at each layer in greater detail.
 <img src="images/WingmanLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
 
+This activity diagram represents the path a user will take when trying to link an XYZ type resource to flight. 
+
 <p align="center">
 <img src="images/WingmanUnlinkFlightActivity.png" width="231" alt="Unlink Flight activity diagram">
 </p>
+
+This activity diagram represents the path a user will take when trying to unlink an XYZ type resource from a flight.
 
 <p align="center">
 <img src="images/WingmanDeleteCrewActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
 
-These activity diagrams represent the paths a user will take when trying to
-link/unlink a
-resource entity, XYZ
-to a flight, as well as deleting a `Crew` entity. XYZ can be
-a `Flight`, `Plane`, `Location`, `Pilot` or `Crew`
-entity.
+This activity diagram represents the path a user will take when trying to delete a `Crew` entity.
 
 <div style="page-break-after: always;"></div>
 
@@ -939,7 +936,7 @@ unlikely to have) - `*`
 (For all use cases below, the **System** is the `Wingman` and the **Actor**
 is the `user`, unless specified otherwise)
 
-**Use case: Manipulate locations **
+**Use case: Manipulate locations**
 
 **MSS**
 
@@ -1218,7 +1215,7 @@ Below, are the details of the planned enhancements:
 
 <div style="page-break-after: always;"></div>
 
-## Appendix: Effort
+## Appendix: Efforts
 
 If the effort required to implement the full AB3 from scratch, we believe our
 effort in this project is 20.
