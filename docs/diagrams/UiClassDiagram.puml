@@ -15,6 +15,7 @@ Class XYZListPanel
 Class XYZCard
 Class StatusBarFooter
 Class CommandBox
+Class ListType
 }
 
 package Model <<Rectangle>> {
@@ -35,9 +36,10 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> XYZListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" ListType
 XYZListPanel -down-> "*" XYZCard
-note right of XYZListPanel: XYZListPanel = ClientListPanel, \nProjectListPanel, etc
-note right of XYZCard: XYZCard = ClientCard, \nProjectCard, etc
+note right of XYZListPanel: XYZListPanel = ClientListPanel, \nProjectListPanel, etc.
+note right of XYZCard: XYZCard = ClientCard, \nProjectCard, etc.
 
 MainWindow -left-|> UiPart
 
