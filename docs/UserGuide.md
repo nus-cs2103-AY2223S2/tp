@@ -291,7 +291,7 @@ Example: `removeappointmenttech t/1 a/2`
 
 Undoes certain previously typed command
 
-_See below for a list of commands that `undo` applies to_
+_See above for a list of commands that `undo` applies to_
 
 Format: `undo`
 
