@@ -28,7 +28,7 @@ public class OrderNameContainsKeywordPredicateTest {
                         .withOrderStatus("N")
                         .withOrderQuantity("10")
                         .withCustomerAddress("123 smith street")
-                        .withCustomerName("John Doe")
+                        .withCustomerNameKeywords("John Doe")
                         .withCustomerPhone("12345678")
                         .build();
 
@@ -45,7 +45,7 @@ public class OrderNameContainsKeywordPredicateTest {
                                 .withOrderStatus("N")
                                 .withOrderQuantity("10")
                                 .withCustomerAddress("123 smith street")
-                                .withCustomerName("John Doe")
+                                .withCustomerNameKeywords("John Doe")
                                 .withCustomerPhone("12345678")
                                 .build();
 
@@ -73,7 +73,7 @@ public class OrderNameContainsKeywordPredicateTest {
                         .withOrderStatus("N")
                         .withOrderQuantity("10")
                         .withCustomerAddress("123 smith street")
-                        .withCustomerName("John Doe")
+                        .withCustomerNameKeywords("John Doe")
                         .withCustomerPhone("12345678")
                         .build();
 
@@ -126,7 +126,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(predicate.test(new OrderBuilder().withOrderQuantity("10").build()));
 
         predicate =
-                new OrderPredicateBuilder().withCustomerName("JohnDoe").build();
+                new OrderPredicateBuilder().withCustomerNameKeywords("JohnDoe").build();
         assertTrue(predicate.test(new OrderBuilder().withCustomerName("JohnDoe").build()));
 
         predicate =

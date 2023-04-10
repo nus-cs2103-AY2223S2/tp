@@ -28,72 +28,75 @@ You can click on the respective links below to read up on the relevant sections.
 # Table of Contents
 
 <!-- TOC -->
-* [1 Introduction](#1-introduction)
-  * [1.1 Setting up, getting started](#11-setting-up-getting-started)
-  * [1.2 About Us](#12-about-us)
-  * [1.3 Acknowledgements](#13-acknowledgements)
-* [2 Design](#2-design)
-  * [2.1 Architecture](#21-architecture)
-    * [2.1.1 Main components of the architecture](#211-main-components-of-the-architecture)
-    * [2.1.2 How the architecture components interact with each other](#212-how-the-architecture-components-interact-with-each-other)
-  * [2.2 UI component](#22-ui-component)
-  * [2.3 Logic component](#23-logic-component)
-  * [2.4 Model component](#24-model-component)
-    * [2.4.1 Item](#241-item)
-    * [2.4.2 Supplier & Customer](#242-supplier--customer)
-    * [2.4.3 Task](#243-task)
-    * [2.4.4 Menu](#244-menu)
-    * [2.4.5 Order](#245-order)
-  * [2.5 Storage component](#25-storage-component)
-  * [2.6 Common classes](#26-common-classes)
-* [3 Implementation](#3-implementation)
-  * [3.1 AddXYZCommand](#31-addxyzcommand)
-  * [3.2 DeleteXYZCommand](#32-deletexyzcommand)
-  * [3.3 EditXYZCommand](#33-editxyzcommand)
-  * [3.4 FindXYZCommand](#34-findxyzcommand)
-  * [3.5 ListXYZCommand](#35-listxyzcommand)
-  * [3.6 SortXYZCommand](#36-sortxyzcommand)
-  * [3.7 ClearXYZCommand](#37-clearxyzcommand)
-  * [3.8 TabCommand](#38-tabcommand)
-  * [3.9 HelpCommand](#39-helpcommand)
-  * [3.10 ExitCommand](#310-exitcommand)
-* [4 Appendix](#4-appendix)
-  * [4.1 Documentation, logging, testing, configuration, dev-ops](#41-documentation-logging-testing-configuration-dev-ops)
-  * [4.2 Product scope](#42-product-scope)
-  * [4.3 User stories](#43-user-stories)
-  * [4.4 Use cases](#44-use-cases)
-  * [4.5 Non-Functional Requirements](#45-non-functional-requirements)
-  * [4.6 Glossary](#46-glossary)
-  * [4.7 Planned Enhancements](#47-planned-enhancements)
-  * [4.7 Instructions for manual testing](#47-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Adding a supplier](#adding-a-supplier)
-    * [Adding a task](#adding-a-task)
-    * [Adding an order](#adding-an-order)
-    * [Adding a menu item](#adding-a-menu-item)
-    * [Editing supplier](#editing-supplier)
-    * [Editing task](#editing-task)
-    * [Editing order](#editing-order)
-    * [Editing menu item](#editing-menu-item)
-    * [Find supplier](#find-supplier)
-    * [Find task](#find-task)
-    * [Find order](#find-order)
-    * [Find menu item](#find-menu-item)
-    * [Delete supplier](#delete-supplier)
-    * [Delete task](#delete-task)
-    * [Delete order](#delete-order)
-    * [Delete menu item](#delete-menu-item)
-    * [Sort task](#sort-task)
-    * [Sort order](#sort-order)
-    * [List all suppliers](#list-all-suppliers)
-    * [List all tasks](#list-all-tasks)
-    * [List all orders](#list-all-orders)
-    * [List all menu items](#list-all-menu-items)
-    * [Clear all suppliers](#clear-all-suppliers)
-    * [Clear all tasks](#clear-all-tasks)
-    * [Clear all orders](#clear-all-orders)
-    * [Clear all menu items](#clear-all-menu-items)
-    * [Switch tabs](#switch-tabs)
+- [Overview](#overview)
+- [About This Guide](#about-this-guide)
+- [Table of Contents](#table-of-contents)
+- [1 Introduction](#1-introduction)
+  - [1.1 Setting up, getting started](#11-setting-up-getting-started)
+  - [1.2 About Us](#12-about-us)
+  - [1.3 Acknowledgements](#13-acknowledgements)
+- [2 Design](#2-design)
+  - [2.1 Architecture](#21-architecture)
+    - [2.1.1 Main components of the architecture](#211-main-components-of-the-architecture)
+    - [2.1.2 How the architecture components interact with each other](#212-how-the-architecture-components-interact-with-each-other)
+  - [2.2 UI component](#22-ui-component)
+  - [2.3 Logic component](#23-logic-component)
+  - [2.4 Model component](#24-model-component)
+    - [2.4.1 Item](#241-item)
+    - [2.4.2 Supplier \& Customer](#242-supplier--customer)
+    - [2.4.3 Task](#243-task)
+    - [2.4.4 Menu](#244-menu)
+    - [2.4.5 Order](#245-order)
+  - [2.5 Storage component](#25-storage-component)
+  - [2.6 Common classes](#26-common-classes)
+- [3 Implementation](#3-implementation)
+  - [3.1 AddXYZCommand](#31-addxyzcommand)
+  - [3.2 DeleteXYZCommand](#32-deletexyzcommand)
+  - [3.3 EditXYZCommand](#33-editxyzcommand)
+  - [3.4 FindXYZCommand](#34-findxyzcommand)
+  - [3.5 ListXYZCommand](#35-listxyzcommand)
+  - [3.6 SortXYZCommand](#36-sortxyzcommand)
+  - [3.7 ClearXYZCommand](#37-clearxyzcommand)
+  - [3.8 TabCommand](#38-tabcommand)
+  - [3.9 HelpCommand](#39-helpcommand)
+  - [3.10 ExitCommand](#310-exitcommand)
+- [4 Appendix](#4-appendix)
+  - [4.1 Documentation, logging, testing, configuration, dev-ops](#41-documentation-logging-testing-configuration-dev-ops)
+  - [4.2 Product scope](#42-product-scope)
+  - [4.3 User stories](#43-user-stories)
+  - [4.4 Use cases](#44-use-cases)
+  - [4.5 Non-Functional Requirements](#45-non-functional-requirements)
+  - [4.6 Glossary](#46-glossary)
+  - [4.7 Planned Enhancements](#47-planned-enhancements)
+  - [4.7 Instructions for manual testing](#47-instructions-for-manual-testing)
+    - [Launch and shutdown](#launch-and-shutdown)
+    - [Adding a supplier](#adding-a-supplier)
+    - [Adding a task](#adding-a-task)
+    - [Adding an order](#adding-an-order)
+    - [Adding a menu item](#adding-a-menu-item)
+    - [Editing supplier](#editing-supplier)
+    - [Editing task](#editing-task)
+    - [Editing order](#editing-order)
+    - [Editing menu item](#editing-menu-item)
+    - [Find supplier](#find-supplier)
+    - [Find task](#find-task)
+    - [Find order](#find-order)
+    - [Find menu item](#find-menu-item)
+    - [Delete supplier](#delete-supplier)
+    - [Delete task](#delete-task)
+    - [Delete order](#delete-order)
+    - [Delete menu item](#delete-menu-item)
+    - [Sort task](#sort-task)
+    - [Sort order](#sort-order)
+    - [List all suppliers](#list-all-suppliers)
+    - [List all tasks](#list-all-tasks)
+    - [List all orders](#list-all-orders)
+    - [List all menu items](#list-all-menu-items)
+    - [Clear all suppliers](#clear-all-suppliers)
+    - [Clear all tasks](#clear-all-tasks)
+    - [Clear all orders](#clear-all-orders)
+    - [Clear all menu items](#clear-all-menu-items)
+    - [Switch tabs](#switch-tabs)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -317,16 +320,17 @@ Here is how `Menu` works:
 
 * Each `MenuItem` contains their name, selling price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
-* The`ItemProfit` is obtained using `ItemPrice` and `ItemCost`, meaning that `ItemProfit` depends on `ItemPrice` and `ItemCost`.
+* The`ItemProfit` is obtained using `ItemSellingPrice` and `ItemCost`(i.e. `ItemProfit` depends on `ItemSellingPrice` and `ItemCost`).
+* `ItemSellingPrice` and `ItemCost` class inherits off the `ItemPrice` class.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`.
 
 **Aspect: Choice to provide a menu package:**
 
 * **Option 1 (our choice):** Separating it into a separate `menu` package.
-  * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively when you add an order.
-  * Advantage 2: Less repeated code
-  * Disadvantage: More time required to implement.
+    * Advantage 1: Ensure that the Order name added is a valid item on the menu, which prevents users from accidentally keying in a wrong order name.
+    * Advantage 2: Allows user to see more details of the menu item in a separate tab (e.g. users can see a selling price, cost price and profit for each item)
+    * Disadvantage: More time required to implement.
 
 * **Option 2:** Add item name as an attribute in the `Order` class.
   * Advantage: Convenient to implement.
@@ -596,7 +600,7 @@ The `exit` command allows the users to exit Trackr via the command line.
 
 The `ExitCommand` is the same original command as from _AB3_.
 
--------------------------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------------------------------
 
 # 4 Appendix
 
@@ -637,7 +641,7 @@ Our application:
 **High Priority (Must Have)**
 
 | As a / an …​ | I want to …​                | So that I can…​                                                        |
-|--------------|-----------------------------|------------------------------------------------------------------------|
+| ------------ | --------------------------- | ---------------------------------------------------------------------- |
 | new user     | have an instruction guide   | understand how to use the application                                  |
 | user         | add new orders              | have a consolidated place to keep track of my orders                   |
 | user         | view all my orders          | track my progress in dealing with the orders                           |
@@ -656,7 +660,7 @@ Our application:
 **Medium Priority (Nice to Have)**
 
 | As a / an …​   | I want to …​           | So that I can…​                                           |
-|----------------|------------------------|-----------------------------------------------------------|
+| -------------- | ---------------------- | --------------------------------------------------------- |
 | business owner | add my menu items      | add orders based on my menu items                         |
 | business owner | edit my menu items     | update my price and cost based on current rates           |
 | business owner | delete menu items      | remove unpopular items that are not sold anymore          |
@@ -667,7 +671,7 @@ Our application:
 **Low Priority (Upcoming)**
 
 | As a / an …​ | I want to …​                | So that I can…​                                   |
-|--------------|-----------------------------|---------------------------------------------------|
+| ------------ | --------------------------- | ------------------------------------------------- |
 | expert user  | be able to import past data | use the application easily when transferring data |
 
 ## 4.4 Use cases
@@ -678,26 +682,27 @@ Our application:
 
 **MSS**
 
-1. Actor requests to add a new supplier.
-2. Actor enters a command to add a supplier with the required information.
+1. Actor chooses to add a supplier
+2. Actor enters the command to add a supplier with the required information.
 3. Trackr saves the new supplier to the system.
-4. Trackr shows the new supplier added to the list.
+4. Trackr display success message that a new supplier added to the list
+5. Actor can see the new supplier information in the contacts list.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The Actor does not enter all required information.
+* 2a. Not all the required information was given.
 
-  * 2a1. Trackr shows an error message.
+    * 2a1. Trackr shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 2.
 
 * 2b. The Actor adds a supplier that already exists in the list.
 
-  * 2b1. Trackr shows an error message.
+    * 2b1. Trackr shows an error message.
 
-    Use case resumes at step 1.
+      Use case ends.
 
 **Use case: UC11 - Add a new task**
 
@@ -705,7 +710,36 @@ Our application:
 
 **Use case: UC21 - Add a new order**
 
-(Similar to UC01 except it is for order)
+**MSS**
+
+1. Actor chooses to add an order.
+2. Actor enters the command to add an order with the required information.
+3. Trackr saves the new order to the system.
+4. Trackr display success message that a new order added to the list
+5. Actor can see the new order information in the orders list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Not all the required information was given.
+
+  * 4a1. Trackr shows an error message.
+
+    Use case resumes at step 2.
+
+* 2b. The Actor adds an order that already exists in the list.
+
+  * 4b1. Trackr shows an error message.
+  
+    Use case ends.
+
+* 2c. The item does not exist in menu
+  * 2c1. Trackr displays error message.
+  * 2c2. Actor <u>adds a new menu item(UC31)</u>.
+
+  Use case resumes at step 2.
+
 
 **Use case: UC31 - Add a new menu item**
 
@@ -715,10 +749,11 @@ Our application:
 
 **MSS**
 
-1. Actor requests to list contacts.
-2. Trackr shows a list of contacts.
-3. Actor requests to delete a specific contact from the list.
-4. Trackr deletes the contact.
+1. Actor chooses to delete a supplier.
+2. Actor enters the command to list contacts.
+3. Trackr shows a list of contacts.
+4. Actor enters the command to delete a specific indexed contact from the list.
+5. Trackr deletes the contact.
 
    Use case ends.
 
@@ -728,11 +763,17 @@ Our application:
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 4a. The given index is invalid.
 
-  * 3a1. Trackr shows an error message.
+  * 4a1. Trackr shows an error message.
 
-    Use case resumes at step 3.
+    Use case resumes at step 4.
+
+* 4b. No index was given.
+  * 4b1. Trackr shows an error message.
+
+    Use case resumes at step 4.
+
 
 **Use case: UC12 - Delete a task**
 
@@ -750,10 +791,11 @@ Our application:
 
 **MSS**
 
-1. Actor requests to list contacts.
-2. Trackr shows a list of contacts.
-3. Actor enters an edit contact command for a specific contact and the updated information.
-4. Trackr updates the contact details with the new information.
+1. Actor chooses to edit a supplier
+2. Actor enters the command to list contacts.
+3. Trackr shows a list of contacts.
+4. Actor enters an edit contact command for a specific contact and the updated information.
+5. Trackr updates the contact details with the new information.
 
    Use case ends.
 
@@ -775,6 +817,12 @@ Our application:
 
     Use case resumes at step 3.
 
+* 3c. The Actor does not enter any information.
+
+  * 3c1. Trackr displays an error message.
+
+    Use case resumes at step 3.
+
 **Use case: UC13 - Edit a task**
 
 (Similar to UC03 except it is for task)
@@ -791,8 +839,8 @@ Our application:
 
 **MSS**
 
-1. Actor requests to find a supplier.
-2. Actor enters the command with the desired search criteria.
+1. Actor chooses to find a supplier
+2. Actor enter the command to find a supplier with the desired search criteria.
 3. Trackr searches for suppliers that match the given criteria.
 4. Trackr displays a list of suppliers that match the criteria.
 
@@ -800,15 +848,17 @@ Our application:
 
 **Extensions**
 
-* 2a. The Actor does not enter any search criteria.
+* 2a. No search criteria was given.
 
   * 2a1. Trackr displays an error message.
 
   * Use case resumes at step 2.
 
 * 4a. No supplier matches the given search criteria.
+  
+  * 4a1. Trackr display an empty list.
 
-  Use case ends.
+    Use case ends.
 
 **Use case: UC14 - Find a task**
 
@@ -826,7 +876,7 @@ Our application:
 
 **MSS**
 
-1. Actor requests to sort tasks.
+1. Actor chooses to sort tasks.
 2. Actor enters the command with the desired sorting criteria.
 3. Trackr sorts tasks according to the criteria.
 4. Trackr displays a list of tasks that are sorted.
@@ -835,11 +885,15 @@ Our application:
 
 **Extensions**
 
-* 2a. The Actor does not enter any search criteria.
+* 2a. No sorting criteria was given.
 
-  * 2a1. Trackr uses the default sorting criteria based on status and deadline.
+  * 2a1. Trackr sorts tasks based on default criteria.
 
-  * Use case resumes at step 3.
+  * Use case ends.
+* 2b. Invalid sorting criteria was given.
+  * 2b1. Trackr displays error message.
+
+  Use case resumes at step 2.
 
 **Use case: UC25 - Sort orders**
 
@@ -849,7 +903,7 @@ Our application:
 
 **MSS**
 
-1. Actor requests to switch to another tab.
+1. Actor enters the command to switch to another tab.
 2. Actor interacts with the tab menu.
 3. Trackr switches to the target tab.
 

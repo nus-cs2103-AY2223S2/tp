@@ -5,7 +5,7 @@ title: Liu Muchen's Project Portfolio Page
 
 ### Project: Trackr
 
-Trackr is a desktop tracking application used to keep track of order, suppliers and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Trackr is a desktop tracking application used to keep track of order, menu, suppliers and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * Abstracted out common models (such as `Name` and `Deadline`). [\#138](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/138)
     * Justification: There are repeated use of similar classes with the same functionality. Hence, this reduces duplicate code.
   * Add in missing test cases. [\#283](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/283)
-    * Justification: Improve test coverage 
+    * Justification: Improve test coverage
 
 * **Contributions to the User Guide**:
   * Drafted initial documentation for `tab`, `delete_task`, `delete_supplier`, `find_task`, `find_supplier`, `edit_task`. [\#47](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/47)
@@ -55,4 +55,4 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#89](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/89), [\#97](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/97), [\#105](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/105), [\#120](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/120)
 
 * **Tools**:
-  * Java 11, JavaFX, Grade, JUnit 
+  * Java 11, JavaFX, Grade, JUnit
