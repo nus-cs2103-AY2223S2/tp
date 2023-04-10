@@ -35,6 +35,8 @@ Given below are my contributions to the project.
         * Add Command
         * Light/Dark Mode
     * Developer Guide:
+        * Add Command
+        * Light/Dark Mode
         * User stories
         * Glossary
         * Non-functional requirements

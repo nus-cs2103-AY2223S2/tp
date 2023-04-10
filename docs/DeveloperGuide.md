@@ -162,6 +162,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Command
+**Purpose:** Allow users to add contact details
+
+**Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL d/DESCRIPTION [t/TAG]…​ [m/MODULE_TAG]…​`
+
+**Fields:**
+
+`n/` : name of the person (COMPULSORY)
+
+`d/` : description of the person
+
+`e/` : email
+
+`p/` : phone number
+
+`t/` : tags
+
+`m/` : module tags
+
+**Constraints:**
+
+n/ : Alphanumeric characters and spaces, and it should not be blank
+
+e/ : Emails should be of the format `local-part@domain`. 
+  *  The local-part should only contain alphanumeric characters and these special characters, `+_.-`
+  *  The local-part may not start or end with any special characters.
+     This is followed by a `@` and then a domain name.
+  *  The domain name is made up of domain labels separated by periods. 
+  *  The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters, have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+p/ : Phone numbers should contain only numbers, and it should be at least 3 digits long.
+
+t/ or m/ : Alphanumeric characters
+
+:information_source: Not allowed to create new person if name already exist in ModCheck
+
+#### Implementation
+
+The implementation of this feature requires 'AddCommand' and 'AddCommandParser'.
+
+Below is an activity diagram that shows what happens when a user executes the `add` command
+
+![AddActivityDiagram](images/addcommandActivityDiagram.png)
+
 ### Undo/redo feature
 
 #### Implementation
@@ -344,6 +388,24 @@ the FileChooser window. This is done so the [architecture](#architecture) of Mod
 The possible paths of the `load` command is shown in the activity diagram below.
 
 ![LoadCommandActivityDiagram.png](images/LoadCommand/LoadCommandActivityDiagram.png)
+
+
+### Dark/Light mode
+**Purpose**: Allows users to change to their favourite theme
+
+Formats: 
+1. `light`
+2. `dark`
+
+**Implementation**:
+
+The implementation of this feature requires `LightCommand` and `DarkCommand`.
+
+ModCheck will save the user's favorite theme automatically. When the user exits the app, the handleExit() method in the MainWindow class will save the user last used theme to preferences.json so that when the user returns to the app. The favorite theme will still remain.
+
+Below is an activity diagram that shows what happens when a user executes the `light or dark` command
+
+![AddActivityDiagram](images/lightdarkactivitydiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -716,7 +778,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+* 1a. Already in the selected theme.
+    * 1a1. ModCheck shows an error message.
+   
+      Use case ends.
 
 ### Non-Functional Requirements
 
