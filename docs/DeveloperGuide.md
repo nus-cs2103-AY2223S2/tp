@@ -189,6 +189,7 @@ For _Add_ command, the noteworthy classes are:
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
 - ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
 - ParseException for invalid time
 - CommandException for identical events
 - CommandException for events with clashing time
@@ -267,6 +268,7 @@ For _Edit_ command, the noteworthy classes are:
 The following exceptions may be thrown during this process, namely:
 - ParseException for missing arguments
 - ParseException for invalid arguments
+- InvalidDateException for correct syntax but invalid (do not exist) dates
 - CommandException for index out of range
 - CommandException for identical events
 - CommandException for events with clashing time
@@ -280,8 +282,8 @@ Step 1. User executes add command with correct and valid arguments.
 Step 2. Returns new `EditCommandParser`.
 
 -- `EditCommandParser` --   
-Step 3. Verify that all argument prefixes are present.  
-Step 4. Verify that all argument format is valid.    
+Step 3. Verify that at least one of the argument prefixes is present.  
+Step 4. Verify that provided arguments are valid.     
 Step 5. Returns new `EditCommand`.
 
 -- `EditCommand` --   
