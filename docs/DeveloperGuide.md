@@ -142,7 +142,6 @@ The `FitBookModel` component,
 <img src="images/BetterFitBookModelClassDiagram.png"/>
 
 </div>
-<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Exercise` list in the `FitBookExerciseRoutine`, which `Routine` references. This allows `FitBookExerciseRoutine` to only require one `Exercise` object per unique exercise, instead of each `Routine` needing their own `Exercise` objects.<br>
 
 <img src="images/BetterFitBookExerciseRoutineModelClassDiagram.png" height = "400"/>
@@ -178,12 +177,12 @@ The proposed add client mechanism is facilitated by `FitBook`. It extends `FitBo
 * `EditCommand#execute()` — Edits the target routine in the FitBook storage of the FitBook.
 
 These operations are exposed in the `Command` interface as `Command:execute()`.
-
+<div style="page-break-after: always;"></div>
 Diagram below shows an example of a client called `c0` after using the `add` command to add `c0`.
 The `Client` consists of these objects after adding. Objects that are a `Set` can contain 0 or more objects. Goal object can contain a String `client has not added a goal` to represent that there is no goal. Calorie object can contain `0000` value to represent there is no recommended calorie input.
 All objects must contain non-null attributes. All objects must be present after adding/editing the client other than objects in the `Set` objects.
 
-![ClientObject](images/ClientObject.png)
+<img src="images/ClientObject.png" height = "300"/>
 <div style="page-break-after: always;"></div>
 Given below is an example usage scenario and how the add/edit mechanism behaves at each step.
 
