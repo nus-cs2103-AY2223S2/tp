@@ -106,7 +106,7 @@ open the help window.<br>
 
    * `redo 5`: Redoes up to five actions.
 
-6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command-summary).
+6. To learn more about DengueHotspotTracker, refer to the [Commands](#commands) section below for details of each command, or the [Command Summary](#command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -153,25 +153,25 @@ Item | Description
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-Please refer to the list of [commands](#Commands) for a full explanation.
+Please refer to the list of [commands](#commands) for a full explanation.
 
-| Action       | Format, Examples                                                                                                                                                                                                       |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                        |
-| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                             |
-| **Delete**   | `delete INDEX...` or <code>delete d/DATE</code> or <code>delete [sd/START_DATE] [ed/END_DATE] (at least 1)</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                           |
-| **Clear**    | `clear`                                                                                                                                                                                                                |
-| **List**     | `list`                                                                                                                                                                                                                 |
-| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... [a/AGE] [d/DATE] (at least 1, a/ and d/ tags can be replaced by sa/,ea/ or sd/,ed/ tags)</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                         |
-| **Undo**     | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                     |
-| **Redo**     | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                     |
-| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                |
-| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                 |
-| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                   |
-| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                   |
-| **Help**     | `help`                                                                                                                                                                                                                 |
-| **Exit**     | `exit`                                                                                                                                                                                                                 |
+| Action                                                             | Format, Examples                                                                                                                                                                                                       |
+|--------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **![Add](#adding-a-case-add)**                                     | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g. `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                        |
+| **![Edit](#editing-a-case-edit)**                                  | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.`edit 2 n/James Lee d/2001-11-11`                                                                                                             |
+| **![Delete](#deleting-cases-delete)**                              | `delete INDEX...` or <code>delete d/DATE</code> or <code>delete [sd/START_DATE] [ed/END_DATE] (at least 1)</code><br> e.g. `delete 3`, `delete d/2023-03-10`                                                           |
+| **![Clear](#clearing-all-entries-clear)**                          | `clear`                                                                                                                                                                                                                |
+| **![List](#listing-all-cases-list)**                               | `list`                                                                                                                                                                                                                 |
+| **![Find](#finding-cases-by-prefix-find)**                         | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... [a/AGE] [d/DATE] (at least 1, a/ and d/ tags can be replaced by sa/,ea/ or sd/,ed/ tags)</code><br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **![Sort](#sorting-cases-sort)**                                   | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                         |
+| **![Undo](#undoingredoing-an-action-undo-or-redo)**                | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                     |
+| **![Redo](#undoingredoing-an-action-undo-or-redo)**                | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                     |
+| **![Overview](#changing-the-overview-type-overview)**              | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                |
+| **![Checkout](#checking-out-the-overview-to-a-csv-file-checkout)** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                 |
+| **![Import](#importing-data-from-a-csv-file-import)**              | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                   |
+| **![Export](#exporting-data-to-a-csv-file-export)**                | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                   |
+| **![Help](#viewing-help-help)**                                    | `help`                                                                                                                                                                                                                 |
+| **![Exit](#exiting-the-program-exit)**                             | `exit`                                                                                                                                                                                                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -366,9 +366,9 @@ Format: `list`
 
 As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in `DengueHotspotTracker`.
 You might like to use `list` in conjunction with the following commands:
-* [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
+* [`delete`](#deleting-cases--delete) to show all the cases as delete follows the index of the current list
 * [`overview`](#changing-the-overview-type--overview), which shows an overview of the cases in the current list view
-* [`find`](#finding-cases-by-prefixes-find) which filters the current list view
+* [`find`](#finding-cases-by-prefixes--find) which filters the current list view
 
 You may wish to use `list` **before** any of these commands in order to process the *full* list of data within `DengueHotspotTracker`.
 
@@ -427,7 +427,7 @@ Format: `sort { n/ | a/ | p/ | d/ }`
 
 <br>
 
-### Undoing/Redoing an action : `undo` or `redo`
+### Undoing/Redoing an action: `undo` or `redo`
 
 Undoes/redoes an action that resulted in the change of DengueHotspotTracker data.
 
@@ -451,7 +451,7 @@ Example:
 
 <br>
 
-### Changing the overview type : `overview`
+### Changing the overview type: `overview`
 
 Switches between the three overview options to summarise the data based on location by postal code (default), age group, or dengue variant.
 
@@ -463,7 +463,7 @@ Format: `overview { p/ | a/ | v/ }`
 
 <br>
 
-### Checking out overview to CSV file : `checkout`
+### Checking out the overview to a CSV file: `checkout`
 
 Exports the currently displayed overview to a CSV file.
 
@@ -486,7 +486,7 @@ You can view and open this csv in Excel or any other spreadsheet editor!
 
 <br>
 
-### Importing data from CSV file : `import`
+### Importing data from a CSV file: `import`
 
 Imports cases from a CSV file. Imported items will be added to the front of the list.
 
@@ -497,6 +497,7 @@ Format: `import [FILENAME]`
     * All data fields must be [valid](#valid-data-field-inputs)
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
+* The CSV must exist in the same directory as `dht.jar`.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -521,9 +522,9 @@ See [below](#exporting-data-to-csv-file--export) for example CSV files.
 
 <br>
 
-### Exporting data to CSV file : `export`
+### Exporting data to a CSV file: `export`
 
-Exports the currently displayed cases to a CSV file.
+Exports the currently displayed cases to a CSV file, in the same directory as `dht.jar`.
 
 Format: `export [FILENAME]`
 
@@ -540,7 +541,7 @@ Example CSV output of  `export sampledata.csv`
 <div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:**
-Try copying these to a .csv file. Then import them as sample inputs!
+Try copying these to a CSV file. Then import them as sample inputs!
 
 </div>
 
