@@ -339,12 +339,11 @@ Examples:
 Below are the steps to use this command:
 
 **Step 1 (Inputting the edit command) :**
-You can use the command syntax to edit an employee's fields, just like the image below.
+You can use the command syntax to edit an employee's fields, the image below demonstrates the command `edit 1 p/91234567`.
 ![](images/UserGuide/editBefore.png)
 
 **Step 2 (Results displayed) :**
-The employee with the stated employeeId input would have their fields edited accordingly,
-in this example, employee with employeeId 1, would have his phone number edited to 91234567.
+The employee with the provided employee ID would have their fields edited accordingly, in this example, `Alex Yeoh` with employee ID `1` his phone number edited to `91234567`.
 ![](images/UserGuide/editAfter.png)
 
 
