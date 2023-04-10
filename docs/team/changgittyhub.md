@@ -50,9 +50,11 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):  [\#193](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/193) [\#267](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/267)
-  * Raise and clarify questions during team meetings and in the Team group chat
+  * Raise and clarify doubts during team meetings and in the Team group chat
   * Communicate professionally with Professor Damith on Outlook to change UG details
   * Clarify questions on behalf of the team on MSTeams with Tutor.
+  * Community thoroughly with team members.
+
 
 
 
