@@ -501,6 +501,8 @@ file for export.
 The JSON formatting and export operations are performed by the parse methods in
 `seedu.recipe.commons.util.JsonUtil` class.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** If the user clicks the <kbd>Cancel</kbd> button or 
