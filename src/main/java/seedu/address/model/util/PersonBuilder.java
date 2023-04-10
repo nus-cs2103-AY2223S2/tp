@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -10,6 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class to help with building Person objects.
@@ -27,6 +30,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private List<Task> tasks = new ArrayList<>();
     private Id id;
 
     /**
@@ -102,7 +106,13 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, id);
+        return Person.ofUpdateTasks(new Person(name, phone, email, address, tags, id), tasks) ;
     }
-
+    /**
+     * Sets tasks of person.
+     */
+    public PersonBuilder withTask(List<Task> tasks) {
+        this.tasks= tasks;
+        return this;
+    }
 }
