@@ -453,7 +453,7 @@ Examples:
 ### 4.2.10 List department headcount: `ldhc`
 
 List all employees present in the given department on a given date. The department window will display only the given
-department and the leave window will display only the given date.
+department.
 
 Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
 * If the date is not specified, employees present on the current date of inputting
