@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUICK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalTuteeManagingSystem;
@@ -46,7 +46,7 @@ public class TuteeManagingSystemTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two tutees with the same identity fields
-        Tutee editedAlice = new TuteeTestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutee editedAlice = new TuteeTestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_QUICK)
                 .build();
         List<Tutee> newTutees = Arrays.asList(ALICE, editedAlice);
         TuteeManagingSystemStub newData = new TuteeManagingSystemStub(newTutees);
@@ -73,7 +73,7 @@ public class TuteeManagingSystemTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         tuteeManagingSystem.addPerson(ALICE);
-        Tutee editedAlice = new TuteeTestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Tutee editedAlice = new TuteeTestBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_QUICK)
                 .build();
         assertTrue(tuteeManagingSystem.hasPerson(editedAlice));
     }

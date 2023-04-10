@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutee.Tutee;
@@ -77,9 +78,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ).withAttendance(new Attendance())
         .withLessons(new Lesson());
 
-        Tutee tutee = builder.build();
+        try {
+            Tutee tutee = builder.build();
+            return new AddCommand(tutee);
+        } catch (IllegalValueException e) {
+            throw new ParseException("Invalid values for start and end time: end time must be after start time", e);
+        }
 
-        return new AddCommand(tutee);
     }
 
     /**

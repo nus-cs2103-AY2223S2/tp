@@ -48,6 +48,10 @@ public class EndTime {
         }
     }
 
+    public LocalTime getTimeValue() { 
+        return time;
+    }
+
     @Override
     public String toString() {
         return time.format(TIME_FORMATTER);

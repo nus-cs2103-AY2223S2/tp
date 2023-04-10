@@ -127,8 +127,10 @@ Examples:
 
 Copies an existing student to the managing system with a different subject or schedule.
 
+
 Format: ```copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
  * Copies the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+
  * All of the fields must be provided.
 
 Examples:
@@ -181,7 +183,7 @@ Examples:
 
 Finds students whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -222,9 +224,11 @@ Examples:
 
 You can add a lesson taught to a student.
 
+
 Format: ```learn <index> [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must be in alphanumeric characters.
+
 
 Example:
 
@@ -237,9 +241,11 @@ Example:
 
 You can remove a lesson taught to a student.
 
+
 Format: ```unlearn <index> [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must match an existing lesson displayed
+
 
 Examples:
 
@@ -248,6 +254,7 @@ Examples:
   * The command removes the lesson `Rational number` to student 1 (Alex Yeoh) and display successful message `Edit Alex Yeoh have not learned Rational Number`.
 
 #### [Back to top](#table-of-content) 
+
 ### Marking attendance : `mark` <a name="mark"></a>
 Use `mark` to indicate that the tutee was present on the given dates
 
@@ -304,6 +311,7 @@ Creates an empty file if there is none.
 
 Done automatically.
 
+
 #### [Back to top](#table-of-content) 
 ### Clearing all entries : `clear`
 
@@ -331,6 +339,23 @@ Format: ```exit```
 
 ## Command summary
 
+Commands that take in fields (i.e. `et/` or `sch/`) can all be used with the following parameters:
+- `n/NAME`
+- `p/PHONE`
+- `e/EMAIL`
+- `a/ADDRESS` 
+- `s/SUBJECT` 
+- `sch/SCHEDULE`
+- `st/START TIME`
+- `et/END TIME`
+- `t/TAG`
+
+### Sidenote:
+- `r/REMARK` can only be used with the `edit` command.
+
+The table below lists only some of the fields that can be used with the command.
+To see the full list, refer to the entry for that command in the guide above.
+
 | Action | Format and Examples                 |
 |------|-------------------------------------|
 | **Add Student** | `add n/NAME p/PHONE e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/STARTTIME et/ENDTIME [t/TAG]...` <br> e.g., add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/09:30 et/11:30 |
@@ -348,5 +373,6 @@ Format: ```exit```
 | **Clear** | `clear`|
 | **Exit program** |`Exit`|
 | **Help** | `help` |
+
 
 #### [Back to top](#table-of-content) 

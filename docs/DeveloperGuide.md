@@ -6,10 +6,15 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+Tutee Managing System (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Tutee Managing System (TMS) is adapted from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,19 +194,17 @@ The `Attendance` field uses a hashset internally to store all the dates on which
 immutable, which means updating a tutee's absence or presence will create a new attendance field instance.
 
 #### Mark and Unmark Command
-The mark and unmark commands are implemented similarly: both follow the format of `<mark|unmark> <index> [date]`. The
+The mark and unmark commands are implemented similarly: both follow the format of `mark|unmark INDEX [DATES...]`. The
 user's input is parsed by its respective parser (`MarkCommandParser` and `UnmarkCommandParser`) and then those arguments
 are passed to the command.\
 If the user does not specify a date, then the command will use the default value as returned by `LocalDate.now()`.\
-If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add that
-date to the attendance field, thereby marking them as present on that date. Unmark will remove it, thereby marking them as absent on that date.\
-If tutee has already been marked present or absent on the specified date, the commands will have no effect.
+If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add the given
+dates to the attendance field, thereby marking them as present. Unmark will remove them, thereby marking them as absent.\
+If tutee has already been marked present or absent on the specified date, the corresponding command will have no effect.
 
 #### Query Command
 The date is represented as an `Optional<LocalDate>`. When the command is executed, if this optional is empty, then the command will return all the dates in which the tutee was present. Otherwise, the command will return whether the tutee was present by calling the
 `didAttend()` method on the attendance field.
-
-### \[Proposed\] Undo/redo feature
 
 ### Learn\Unlearn feature
 
@@ -245,10 +248,6 @@ The learn\unlearn mechanism is storing the `lessons` in a `Set`, adding\removing
 
 _{more aspects and alternatives to be added}_
 
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Filter feature
 
@@ -328,14 +327,24 @@ All of the fields are required to be filled in order for the command to make a c
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                            | So that I can…​                                         |
-|----------|--------------------------------------------|-----------------------------------------|---------------------------------------------------------|
-| `* * *`  | tutor user managing students               | add students                            | add students that I am tutoring                         |
-| `* * *`  | tutor user  managing students              | delete students                         | remove students that I no longer tutor                  |
-| `* * *`  | tutor user managing students               | list students                           | display all students that are tutored by me             |
-| `* * *`  | user                                       | save my work locally                    | come back to view or edit it in the future              |
-
-*{More to be added}*
+| Priority | As a …​               | I want to …​                                                                | So that I can…​                                                                                           |
+|----------|-----------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `* * *`  | tutor                 | add students                                                                | add students that I am tutoring                                                                           |
+| `* * *`  | tutor                 | delete students                                                             | remove students that I no longer tutor                                                                    |
+| `* * *`  | tutor                 | list students                                                               | display all students that are tutored by me                                                               |
+| `* * *`  | tutor                 | save my work locally                                                        | come back to view or edit it in the future                                                                |
+| `* *  `  | tutor                 | edit students                                                               | change my student's information easily                                                                    |
+| `* *  `  | tutor                 | find students by name                                                       | quickly locate my student by name                                                                         |
+| `* *  `  | tutor                 | filter students by their fields                                             | quickly locate students that fit the criteria that I want to look for (e.g. filter s/math sch/saturday    |
+| `* *  `  | first time tutor user | clear managing system                                                       | clear the samples student information and input my own students                                           |
+| `* *  `  | tutor                 | add a student with the same personal information and with new edited fields | quickly add the same student with different a different subject and schedule                              |
+| `* *  `  | new tutor user        | look at the user guide                                                      | look at the commands that are available to use                                                            |
+| `* *  `  | tutor                 | keep track of my students learning progress                                 | plan my lessons better for each individual student                                                        |
+| `* *  `  | tutor                 | mark my students attendance                                                 | keep track of the number of lessons I have given to each student for uses such as payment                 |
+| `* *  `  | tutor                 | undo the mark of my students attendance                                     | undo the attendance of a student on a particular date                                                     |
+| `* *  `  | tutor                 | find the students that were taught on a given date                          | quickly find out which student I taught on a date to calculate information such as payment of the student |
+| `* *  `  | tutor                 | write a remark for my student                                               | keep track of the individual remarks of each of my student                                                |
+| `*   `   | tutor                 | be reminded of my next lesson and the time                                  | remember to go for all of my lessons on time                                                              |
 
 ### Use cases
 
@@ -348,6 +357,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User is prompted to enter student’s details.
 2. Student is added to the list of students.
    Use case ends.
+
+**Extensions:**
+* 1a. User does not provide input for mandatory fields (i.e. name, phone, email, address, subject, schedule, start time, end time)
+  * 1a1. An error message is displayed with instructions and example of how to use the command
+  Use case ends.
+* 1b. User inputs an invalid field
+  * 1b1. An error message is displayed with instructions and example of how to use the command
+  Use case ends.
 
 **Use case: Delete a student**
 
@@ -362,7 +379,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-Extensions:
 * 2a. The list is empty.
   Use case ends.
 * 3a. The given index is invalid.
@@ -371,7 +387,17 @@ Extensions:
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: filter a student**
+
+**MSS:**
+
+1. User is prompted to enter student’s details to filter.
+2. List of students that fit the user input is displayed.
+   
+**Extensions:**
+* 1a. User inputs an invalid field
+    * 1a1. An error message is displayed with instructions and example of how to use the command
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -397,7 +423,6 @@ Extensions:
 * **CLI**: command line interface.
 * **GUI**: graphical user interface.
 * **JAR**: Java ARchive.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -444,10 +469,23 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
+## **Appendix: Effort**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+All of our team members put in an equal amount of effort into this project, with each team member implementing at least one feature.
+The difficulty and number of features implemented were divided based on each of our coding level hence all members contributed equally in terms of effort.
 
-1. _{ more test cases …​ }_
+Some challenges faced:
+* Refactoring the initial code to work with students 
+* Bugs appearing when editing start time and end time, where the end time must be after the start time.
+
+Our team worked together to overcome these challenges by having regular meetings and coordinating on messaging platforms.
+
+## **Appendix: Planned enhancement**
+
+* We plan to add a reminder feature to remind tutors about their upcoming lessons
+* We plan to enhance the learn feature such that it can be colour coded on the gui based on the importance of the lesson
+* We plan to enhance the mark feature so that it can display all the dates that a student has attended
+* We plan to add a payment feature to track the students that have paid and the amount of money they owe
+
+

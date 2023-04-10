@@ -11,6 +11,7 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
@@ -56,7 +57,11 @@ public class UnmarkCommand extends Command {
         }
 
         modified.withAttendance(attendance);
-        model.setTutee(toMarkAttendance, modified.build());
+        try {
+            model.setTutee(toMarkAttendance, modified.build());
+        } catch (IllegalValueException e) {
+            throw new RuntimeException("Start time and end time aren't edited here, this should never throw");
+        }
 
         StringJoiner joiner = new StringJoiner("\n");
 

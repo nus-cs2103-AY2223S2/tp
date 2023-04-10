@@ -20,7 +20,7 @@ Given below are my contributions to the project.
       * Added attendance field to Tutee
       * Added attendance commands (mark, unmark, query)
 
-* **Code contributed**: [link](https://github.com/leeyi45/tp)
+* **Code contributed**: [link](https://github.com/AY2223S2-CS2103T-W10-4/tp/pulls?q=is%3Apr+author%3Aleeyi45)
 
 * **Project management**:
   * to be added
@@ -31,10 +31,10 @@ Given below are my contributions to the project.
   * Several bug fixes
 
 * **Documentation**:
-  * Updated documentation for the attendance commands (mark, unmark, query)
+  * UserGuide.md
+    * Updated documentation for the attendance commands (mark, unmark, query)
+  * DeveloperGuide.md
+    * Added implementation details for the attendance commands, and also for field validation
 
 * **Community**:
-  * to be added
-
-* **Tools**:
-  * to be added
+  * Reported bugs for other teams during PE-Dry run

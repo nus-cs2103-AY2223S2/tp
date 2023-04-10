@@ -48,7 +48,7 @@ public class FilterCommand extends Command {
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
             + PREFIX_ENDTIME + "10:30 "
-            + PREFIX_TAG + "friends ";
+            + PREFIX_TAG + "GoodEffort ";
 
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 

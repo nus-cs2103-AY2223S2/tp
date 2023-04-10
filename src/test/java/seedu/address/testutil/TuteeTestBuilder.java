@@ -11,6 +11,7 @@ import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.Name;
 import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tutee.fields.Remark;
@@ -141,6 +142,15 @@ public class TuteeTestBuilder {
      */
     public TuteeTestBuilder withAttendance(Attendance attendance) {
         builder.withAttendance(attendance);
+        return this;
+    }
+
+    /**
+     * Change the stored value of the tutee's lessons field
+     * to the given value
+     */
+    public TuteeTestBuilder withLesson(Lesson lesson) {
+        builder.withLessons(lesson);
         return this;
     }
 

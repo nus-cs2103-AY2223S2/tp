@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zhongli5712.md)]
 
 * Role: Developer
-* Responsibilities: new courses
+* Responsibilities: manage github, develop lesson feature, document.
 
 ### LEE YI
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/leeyi45.md)]
 
 * Role: Team Lead
-* Responsibilities: display and storage
+* Responsibilities: manage github, develop attendance feature, attendance
 
 ### LIAO ZE LI, JACQUES
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jugsliao.md)]
 
 * Role: Developer
-* Responsibilities: add tutors
+* Responsibilities: develop copy feature, document
 
 ### JETHRO SIM SHENG YANG
 
@@ -47,4 +47,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/gekhro.md)]
 
 * Role: Developer
-* Responsibilities: add students
+* Responsibilities: tutee model, filter feature, document
