@@ -330,11 +330,32 @@ The Tag mechanism is facilitated by `ELister`. It extends `ELister` with an Tag 
 
 These operations are exposed in the `Model` interface as `Model#addTag()`
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the tag mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedELister` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 Step 2. The user executes `Tag 5 good` command to Tag the 5th person in the address book with a new Tag `good`. The `Tag` command calls `Model#addTag()`, causing the modified state of the address book after the `Tag 5 good` command executes to be saved in the `eListerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+### MassOp feature
+
+#### Implementation
+
+This MassOp helps to enable `Elister` with an ability to do mass operations on the current filtered
+list. 
+
+It parses the input and finds whether the command is either `Tag`, `Edit`, `delete_tag`, `delete` command.
+After which it applies the command to everyone in the given list.
+For example, "mass tag verynice"
+
+Step 1. The addressbook parser will parse the input into MassOpCommandParser "tag verynice"
+
+Step 2. MassOpCommandParser will call ElisterParser.parseCommandWithIndex() to figure out which command does it belong to.
+         (Tag, Edit, delete_tag, delete). In this case it will return a TagCommandParser
+
+Step 3. The respective CommandParser will parse the command and return the command to be executed. In this case
+         TagCommand with "verynice" will be executed.
+
+Step 4. Loop through the list and execute the command.
 
 --------------------------------------------------------------------------------------------------------------------
 
