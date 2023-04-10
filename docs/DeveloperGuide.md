@@ -533,6 +533,58 @@ Step 2. User executes `unassign-ptn ptn/1 doc/1` to unassign the patient at inde
 
 Step 3. If the indexes provided are valid and patient is assigned to doctor, the patient at index 1 is replaced with a patient without doctor reference and the doctor at index 1 is replaced with a doctor without patient reference.
 
+### Find Doctor Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a doctor with the specified parameters. 
+
+Example Use: `find-doc n/Alice`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find doctor command, a `FindDoctorCommand` class is created. The `FindDoctorCommand` class takes a predicate created by `DoctorContainsKeywordsPredicate` class. The `FindDoctorCommand` class extends the abstract `Command` class and implements the `execute()` method which updates the model's list of filtered doctors.
+
+Given below is an example usage scenario of how the find doctor command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-doc n/Alice` to find a doctor with the name Alice.
+
+Step 3. The model's list of filtered doctors is updated.
+
+The following sequence diagram illustrates how the find doctor operation works:
+
+![](images/FindDoctorSequenceDiagram.png)
+
+### Find Patient Feature
+
+#### What it does
+{: .no_toc}
+
+Finds a patient with the specified parameters.
+
+Example Use: `find-ptn n/Bob`
+
+#### Implementation
+{: .no_toc}
+
+Upon entry of the find patient command, a `FindPatientCommand` class is created. The `FindPatientCommand` class takes a predicate created by `PatientContainsKeywordsPredicate` class. The `FindPatientCommand` class extends the abstract `Command` class and implements the `execute()` method which updates the model's list of filtered patients.
+
+Given below is an example usage scenario of how the find patient command behaves at each step.
+
+Step 1. User launches the application
+
+Step 2. User executes `find-ptn n/Bob` to find a patient with the name Bob.
+
+Step 3. The model's list of filtered patients is updated.
+
+The following sequence diagram illustrates how the find patient operation works:
+
+![](images/FindPatientSequenceDiagram.png)
+
 ### GUI Features
 
 #### Enlarged Info Card feature
