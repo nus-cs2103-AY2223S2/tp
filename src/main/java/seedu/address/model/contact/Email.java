@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.person.InternshipApplicationAttribute;
 
+// @@author SE-EDU
+// with minor modifications
 /**
  * Represents a company's email in the internship application.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}

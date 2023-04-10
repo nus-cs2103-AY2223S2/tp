@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.person.InternshipApplicationAttribute;
 
+// @@author SE-EDU
+// with minor modifications
 /**
  * Represents a company's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
