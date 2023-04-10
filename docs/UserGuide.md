@@ -502,10 +502,10 @@ ___
     <li>
     The index of a patient can change depending on the filter you currently apply on the patient list.</li>
     <li>
-    For example, if you execute the <code><span style="background-color:#C8EAB3 ;">p list</span></code> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
+    For example, if you execute the <code style="background-color:#C8EAB3;"><span>p list</span></code> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
     </li>
     <li>
-    However, if you execute a <code><span style="background-color:#C8EAB3 ;">p find PATIENT_NAME</span></code> command, the patient's index will be his or her position in the **filtered** patient list.
+    However, if you execute a <code style="background-color:#C8EAB3;"><span>p find PATIENT_NAME</span></code> command, the patient's index will be his or her position in the **filtered** patient list.
     </li>
     <li>
     Subsequent deletion by index will be with respect to the list you're currently viewing.
@@ -649,7 +649,7 @@ Use this with command with caution!
 * **Format:** `p list`
 \
 &nbsp; 
-* <div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <code><span style="background-color:#C8EAB3;">p list hellothere</span></code> or <code><span style="background-color:#C8EAB3;">p list 1234</span></code> will not cause errors in the system</div>
+* <div markdown="block" class="alert alert-info">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <code style="background-color:#C8EAB3;"><span>p list hellothere</span></code> or <code style="background-color:#C8EAB3;"><span>p list 1234</span></code> will not cause errors in the system</div>
   &nbsp;
 * **Example:**
     <p align="center">
@@ -1030,15 +1030,16 @@ The following commands are drug-related commands that are available in Careflow 
 --------------------------------------------------------------------------------------------------------------------
 # **8. Glossary**
 
-<span id="1">* Command Line Interface (CLI) <br/>
+* Command Line Interface (CLI) <br/>
 A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think
 of it like texting your computer to get it to do things.
-</span>
+
 <br/><br/>
 
-<span id="2">* Graphical User Interface (GUI) <br/>
+* Graphical User Interface (GUI) <br/>
 A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
-</span>
+
+<br/><br/>
 
 [🠉 Back to top](#top)
 
