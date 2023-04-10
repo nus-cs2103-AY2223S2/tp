@@ -2,6 +2,7 @@ package fasttrack.ui;
 
 import static fasttrack.testutil.TypicalCategories.FOOD;
 import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
+import static fasttrack.ui.JavaFxTestHelper.setUpHeadlessMode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -34,6 +35,7 @@ public class CategoryCardTest {
 
     @BeforeAll
     static void initJfx() throws InterruptedException {
+        setUpHeadlessMode();
         initJavaFxHelper();
     }
 

@@ -2,6 +2,7 @@ package fasttrack.ui;
 
 import static fasttrack.testutil.TypicalExpenses.APPLE;
 import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
+import static fasttrack.ui.JavaFxTestHelper.setUpHeadlessMode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -31,6 +32,7 @@ class ExpenseCardTest {
 
     @BeforeAll
     static void initJfx() throws InterruptedException {
+        setUpHeadlessMode();
         initJavaFxHelper();
     }
 
