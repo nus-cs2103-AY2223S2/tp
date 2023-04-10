@@ -133,8 +133,6 @@ class CareFlowLogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, CareFlowModel)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
-        System.out.println("inputCommand" + inputCommand);
-        System.out.println("Expected" + expectedMessage);
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
     }
 
@@ -167,8 +165,6 @@ class CareFlowLogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, CareFlowModel expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
-        System.out.println(expectedModel.getPatientRecord().getPatientList().toString());
-        System.out.println(model.getPatientRecord().getPatientList().toString());
         assertEquals(expectedModel.getPatientRecord(), model.getPatientRecord());
         assertEquals(expectedModel.getDrugInventory(), model.getDrugInventory());
         assertEquals(expectedModel.getHospitalList(), model.getHospitalList());
