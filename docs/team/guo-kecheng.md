@@ -63,5 +63,4 @@ Given below are my contributions to the project.
 
 - **Community**:
   * PRs reviewed: #64, #93, #94, #114, #120, #121, #129, #137, #146
-
-- **Tools**:
+ 
