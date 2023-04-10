@@ -20,13 +20,6 @@ title: <Merrick Neo> Project Portfolio Page
 - HMHero helps Hiring Managers track the statuses of candidates' applications
 
 (**Summary of Contributions**)
-
-(**This part can change according to your contributions**)
-
-(**Code contributions**)
-
-Example
-
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=merrickneo&breakdown=true)
 
 - **Project management**:
