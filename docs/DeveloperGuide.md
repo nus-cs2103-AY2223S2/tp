@@ -28,13 +28,15 @@ title: Developer Guide
 
 ## Acknowledgements
 
-Wingman was built atop the codebase for AB3. Hence, it retains the 4 layers of
-UI, Logic, Model, and Storage,
-albeit involving different implementations and classes.
+Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/). 
+Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
+albeit involving different implementations and classes. 
+
+For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.  
 
 ## Setting up, Getting started
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started](SettingUp.md).
 
 <div style="page-break-after: always;"></div>
 
@@ -62,18 +64,22 @@ Main has two classes called Main and MainApp. It is responsible for,
 
 The rest of the App consists of four components.
 
-* UI: The UI of the App. The UI of Wingman is built using JavaFX with FXML.
-* Logic: The command executor. This layer is responsible for parsing user
+* [**`UI`**](#ui-component): The UI of the App. The UI of Wingman is built using JavaFX with FXML.
+* [**`Logic`**](#logic-component): The command executor. This layer is responsible for parsing user
   input into executable commands, and executing them. It adopts the command
   pattern, the facade pattern, and the factory pattern.
-* Model: Holds the data of the App in memory and defines the different
+* [**`Model`**](#model-component): Holds the data of the App in memory and defines the different
   entities.
-* Storage: Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 <div style="page-break-after: always;"></div>
 
+We will introduce each of these components below. 
+
 ### UI Component
 
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java). 
 **API**
 [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
