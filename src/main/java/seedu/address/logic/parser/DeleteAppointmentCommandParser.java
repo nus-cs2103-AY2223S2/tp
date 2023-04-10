@@ -25,17 +25,21 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC);
 
         Index index;
+        index = parseIndex(argMultimap);
 
+        Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+
+        return new DeleteAppointmentCommand(index, patientNric);
+    }
+
+    private Index parseIndex(ArgumentMultimap argMultimap) throws ParseException {
+        Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteAppointmentCommand.MESSAGE_USAGE), ive);
-            // todo handle 0 index with specific error message
         }
-
-        Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-
-        return new DeleteAppointmentCommand(index, patientNric);
+        return index;
     }
 }

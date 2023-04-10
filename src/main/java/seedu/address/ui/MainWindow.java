@@ -117,7 +117,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        //handleView();
         personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
         personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
 
@@ -143,18 +142,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
+    // @@Charles1026 mandykqh-reused
+    // reused from
+    // https://github.com/Charles1026/tp/blob/7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/main/java/seedu/address/
+    // ui/MainWindow.java
+    // with minor modifications
     /**
      * Displays the detailed person window.
      */
     @FXML
-    public void handleView() {
+    public void handleDisplay() {
         PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
         personViewPanelPlaceholder.getChildren().clear();
         personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
-        //personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
-
     }
+    // @@Charles1026
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -205,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            handleView();
+            handleDisplay();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

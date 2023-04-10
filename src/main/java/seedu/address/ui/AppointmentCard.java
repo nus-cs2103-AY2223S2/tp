@@ -41,6 +41,11 @@ public class AppointmentCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         this.appointment = appointment;
+
+        setLabels(person, appointment, displayedIndex);
+    }
+
+    private void setLabels(Person person, Appointment appointment, int displayedIndex) {
         id.setText(displayedIndex + ". ");
         if (person.isPatient()) {
             nric.setText(appointment.getDrNric().nric);
