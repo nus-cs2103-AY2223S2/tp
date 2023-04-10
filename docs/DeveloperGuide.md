@@ -38,15 +38,15 @@ Throughout this guide, you might encounter certain boxes which like the ones
 below. Here is what each of them means.
 
 <div markdown="span" class="alert alert-success">
-:bulb: This box signifies a tip or suggestion.
+:bulb: This signifies a tip or suggestion.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: This box signifies a general note.
+:information_source: This signifies a general note.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:warning: This box indicates a warning or caution.
+:warning: This indicates a warning or caution.
 </div>
 
 ### Content overview
@@ -291,7 +291,7 @@ For more information about interacting with the tabs using hotkeys, please refer
 ### Hotkeys with UiEvents
 
 UiEvents is an abstraction of keyboard events that can trigger changes in
-user interface or perform some action. These keyboard events are handled by
+user interface or perform some actions. These keyboard events are handled by
 UiEvent handlers that are bundled together within the `UiEventManager` class.
 
 <div markdown="span" class="alert alert-info">
@@ -585,10 +585,11 @@ Upon being executed, `UiAction` instance calls the appropriate method in `MainWi
 **Target user profile**:
 **Freelance Devs**
 
-Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects and clients easily while tracking their contract terms and hours spent per project.
+Freelance web developers with postings on multiple online marketplaces for digital services (e.g. Fiverr) who want to manage projects 
+and clients easily. 
 
 **Value proposition**:
-Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
+Mycelium strives to be a one-stop shop for freelance web developers to consolidate projects and clients from multiple sources. Manage descriptive yet concise information about each client, all through an intuitive console-first interface. Mycelium is tailored for the modern web developer, enabling you to build strong and trusted relationships with clients.
 
 ### User stories
 
@@ -670,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 1.
 
-* 1b. Some project details are invalid.
+* 1b. Some client details are invalid.
    * 1b1. Mycelium shows an error message.
 
    Use case resumes at step 1.
@@ -1264,5 +1265,5 @@ and gave us confidence in adding more advanced features.
 By splitting up the work and specialising in different parts of the codebase, each of us
 gain a stake in the project and were more motivated constantly improve the project.
 We also reviewed each other's code, helped each other out when we encountered problems, and
-hold weekly meetings to discuss our progress and to plan out the next week's work.
+held weekly meetings to discuss our progress and to plan out the next week's work.
 
