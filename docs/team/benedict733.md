@@ -36,6 +36,8 @@ UG for tasks feature
   * Managed releases `v1.1` to `v1.4` on GitHub
   * Released `v1.3b` on GitHub ([v1.3b](https://github.com/AY2223S2-CS2103-W16-4/tp/releases/tag/v1.3b-final))
 
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
   * **User Guide:**
     * Edited documentation to remove traces of AB3 and fit description for SalesPunch
