@@ -178,8 +178,8 @@ The <u>`AddCommand`</u> handles the addition of Objects into quickbook. See the 
 
 When adding an `Object` the control flow is like the [main sequence diagram](#interaction-between-architecture-components)
 1. The user queries the `UI` to add using an [add command](#command-summary) prefix
-2. `UI` calls the QuickBookParser through `LogicManager` to initiate an <u>`AddParser`</u> object
-3. QuickBookParser then passes the arguments to the <u>`AddParser`</u> object
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate an <u>`AddParser`</u> object
+3. `QuickContactsParser` then passes the arguments to the <u>`AddParser`</u> object
 4. <u>`AddParser`</u> initiates an <u>`AddCommand`</u> object
 5. <u>`AddCommand`</u> object is passed all the way back to `LogicManager`
 6. `LogicManager` calls execute on <u>`AddCommand`</u>
@@ -202,8 +202,8 @@ The `EditCommand` is responsible for handling the editing of `Objects` in QuickB
 When editing a meeting, the control flow is as follows:
 
 1. The user queries the UI to edit a meeting using the "edit" command prefix.
-2. The UI calls the `QuickBookParser` through `LogicManager` to initiate an <u>`EditParser`</u> object.
-3. The `QuickBookParser` then passes the arguments to the <u>`EditParser`</u> object.
+2. The UI calls the `QuickContactsParser` through `LogicManager` to initiate an <u>`EditParser`</u> object.
+3. The `QuickContactsParser` then passes the arguments to the <u>`EditParser`</u> object.
 4. The <u>`EditParser`</u> initiates an <u>`EditCommand`</u> object.
 5. The <u>`EditCommand`</u> object is passed all the way back to `LogicManager`.
 6. `LogicManager` calls `execute()` on the <u>`EditCommand`</u>.
@@ -225,8 +225,8 @@ The `DeleteCommand` handles the deletion of Objects from quickbook. See the synt
 
 When deleting an `Object`, the control flow is as follows
 1. The user queries the UI to delete using a delete command prefix.
-2. The UI calls the QuickBookParser through LogicManager to initiate a <u>`DeleteParser`</u> object.
-3. QuickBookParser then passes the arguments to the <u>`DeleteParser`</u> object.
+2. The UI calls the `QuickContactsParser` through LogicManager to initiate a <u>`DeleteParser`</u> object.
+3. `QuickContactsParser` then passes the arguments to the <u>`DeleteParser`</u> object.
 4. <u>`DeleteParser`</u> initiates a <u>`DeleteCommand`</u> object.
 5. <u>`DeleteCommand`</u> object is passed all the way back to LogicManager.
 6. LogicManager calls execute on <u>`DeleteCommand`</u>.
@@ -245,7 +245,7 @@ The `FindCommand` finds persons in the address book. See the syntax here [find c
 ##### Implementation
 When finding meetings, the control flow is as follows:
 1. The user queries the `UI` to find using a [find command](#command-summary) prefix.
-2. `UI` calls the QuickBookParser through `LogicManager` to initiate a `FindCommandParser` object.
+2. `UI` calls the QuickContactsParser through `LogicManager` to initiate a `FindCommandParser` object.
 3. `FindCommandParser` takes in a list of names and creates a `FindCommand` object.
 4.`FindCommand` is executed, and a `MeetingContainsNamesPredicate` is passed to the `updateFilteredMeetingList` method in the `Model` component.
 5. `LogicManager` creates a  `ContainsNamesPredicate`
@@ -296,7 +296,7 @@ Benefit: can directly copy-paste to and from the data files that already exist i
 Here we only describe the Export command. Import is the same, besides step 5. where it instead calls add on the model to add the specified objects in JSON (similar to how storage loads the save file)
 Control flow is as follows.
 1. The user queries the `UI` to export using a [export command](#command-summary) prefix.
-2. `UI` calls the QuickBookParser through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
+2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a <u>`ExportCommandParser`</u> object.
 3. `ExportCommandParser` creates a <u>`ExportCommand`</u> object.
 4. <u>`ExportCommand`</u> is returned to `LogicManager`
 5. `LogicManager` executes <u>`ExportCommand`</u>
@@ -369,6 +369,10 @@ Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/jav
 
 `CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
+The activity diagram below provides a visual representation of the flow of actions when the `UP` and `DOWN` keys are pressed.
+
+![Activity Diagram for Command Traversal](images/CommandTraversalActivityDiagram.png)
+
 ### DateTime parsing
 
 Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`.
@@ -402,7 +406,7 @@ The `SortMeetingCommand` is a Java class that allows the user to sort meetings s
 
 When sorting meetings, the control flow is as follows:
 1. The user issues a sort command with the desired attribute and optional reverse flag.
-2. The `UI` calls the `QuickBookParser` through `LogicManager` to initiate a `SortMeetingCommandParser` object.
+2. The `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `SortMeetingCommandParser` object.
 3. The `SortMeetingCommandParser` parses the command and creates a `SortMeetingCommand` object.
 4. The `SortMeetingCommand` is executed, and the correct `Comparator` for the specified attribute is applied to the `Model` object's `sortFilteredMeetingList` method.
 5. `LogicManager` returns a `CommandResult` to the `UI` with a success message indicating the attribute by which the meetings have been sorted.
@@ -917,7 +921,7 @@ testers are expected to do more *exploratory* testing.
 | **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
 | **List all contacts**        | `list`                                                                                                                                                                                                               |
-| **Help**                     | `help`                                                                                                                                                                                                               |
+| **Help**                     | `help [COMMAND_WORD]`                                                                                                                                                                                                |
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
