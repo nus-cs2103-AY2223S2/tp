@@ -41,6 +41,8 @@ public class SelectCommand extends Command {
      */
     public SelectCommand(Index targetIndex) {
         super(true);
+
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

@@ -149,11 +149,9 @@ The `Model` component,
 * stores the `Command` object that was last executed, as well as its corresponding command string input, for purposes of accessing previous states (i.e like in the case of `undo` command)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Course` list in the `CLIpboard`. This allows `CLIpboard` to only require one `Course` object.<br>
+Detailed implementation of `Course` can be found under [Implementation section](#logic-implementation).
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
 
 
 ### Storage component
@@ -297,100 +295,141 @@ Both are free to use, and can be downloaded from [Google Fonts](https://fonts.go
 --------------------------------------------------------------------------------------------------------------------
 
 ### Logic Implementation
+### Student Roster Object Types
+In our implementation, we have defined several object types that accurately represent the student roster, including
+`Course`, `Group`, `Session`, `Task`, and `Student`. These object types are interdependent and have been designed to
+work together seamlessly to provide a comprehensive solution for managing the student roster.
+
+#### Object Dependencies
+To simplify the management of the student roster and improve the user experience, we have established dependencies
+between these objects. For example, when a student is added or edited in a `Group`, any changes will cascade to the
+list of students in the `Session` object as well. This ensures consistency across the different object types and
+reduces the risk of inconsistencies between related objects.
+
+#### Implementation Details
+The dependencies between these objects have been implemented using a combination of object-oriented design principles
+and programming techniques. The specific implementation details are beyond the scope of this document, but the
+following high-level overview may be useful:
+
+Each object type has been defined as a separate class with its own set of properties and methods.
+The relationships between these object types have been established using object references.
+Changes to one object type will trigger an update to the related object types by means of cascading method calls.
+Overall, the implementation of these object types and their dependencies has been designed to provide a robust,
+scalable, and user-friendly solution for managing the student roster. Given below is the class diagram omitting most of the details.
+
+![ObjectDependencyClassDiagram](images/ObjectDependencyClassDiagram.png)
+
+
+In addition to the above diagram, the following object diagram illustrate a more comprehensive view of the dependencies between various objects during the program's runtime.
+
+![ObjectDependencyObjectDiagram](images/ObjectDependencyObjectDiagram.png)
+
 
 ### Undo feature
-`undo` allows restoring up to 5 previous states, but can be modified to better suit performance needs. It is important to note that allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
+`undo` allows restoring up to 5 previous states, but can be modified to restore more/less states.
 
-If new commands are to be added, it's interaction with `undo` must be kept in mind.
-For typical commands that do CRUD operations on roster data, `undo` can handle them.
-
-For navigating and UI related commands, some extra handling may be needed to also restore and refresh the UI to the previous state (e.g `back` command).
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:**  Allowing more states to be saved, or adding more information to be tied to a state, will deteriorate CLIpboard's performance.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
+If new commands are to be added, it's interaction with `undo` must be kept in mind:
+* For typical commands that do CRUD operations on roster data, `undo` can handle them.
+* For navigating and UI related commands, some extra handling may be needed to also restore and refresh the UI to the previous state (e.g `undo` of `select` command has special handling to refresh GUI elements).
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How undo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire `Roster`.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Unique list of items
+Represented by the `UniqueList<T>` class, where `T` is the type of the item to be contained.
 
-_{Explain here how the data archiving feature will be implemented}_
+`UniqueList` is an abstract class that was created to accommodate the storing of different types of items which require list operations. This class provides a generalized solution that can be applied to various scenarios where a list of unique items is needed.
+
+While `UniqueList<T>` provides some basic list operations, a child class has to be extended from it to override the more intricate operations that require different types of handling for different types of objects. Only the methods that are `abstract` need to be overriden.
+
+The `UniqueList`'s in CLIpboard are:
+1. `UniqueCoursesList`
+2. `UniqueGroupsList`
+3. `UniqueStudentsList`
+4. `UniqueSessionsList`
+5. `UniqueTaskslist`
+
+#### Proposed Future Improvement
+
+The extra work of creating child classes of `UniqueList` can be tedious.
+
+A possible improvement would be allowing `UniqueList` to be an instantiable class, and at the same time create an interface `ListableItem` to represent objects to be contained in `UniqueList`.
+
+The `ListableItem` interface would require that its classes also support the handling of list operations that were previously handled by a child class of `UniqueList`. This would then allow `UniqueList` to be generalisable to any `ListableItem` object, without the need of creating child classes of `UniqueList`.
+
+### Serialized Objects for `Storage`
+Found in `src/main/storage/serializedclasses`, these classes are for serializing a `Roster` and its containing objects into `json` objects, or vice versa.
+This serves to store/load data to/from a plaintext json file.
+
+##### During loading of data
+Loading in of data (if a data file exists) is done once during the initialization of the program. The sequence diagram below illustrates how `MainApp` creates a `Model` containing the saved data, through interactions with `Storage`.
+![LoadingStorageSequenceDiagram](images/LoadingStorageSequenceDiagram.png)
+
+##### During saving of data
+Saving of data is done every time a command is executed. The sequence diagram below illustrates how a `Roster` is saved into storage.
+![SavingStorageSequenceDiagram](images/SavingStorageSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Save the `Roster` every time a command is executed.
+  * Pros: Easy to implement.
+  * Cons: Redundant saving operations executed on commands that don't modify any data.
+
+* **Alternative 2:** Save the `Roster` only when data has been modified.
+  * Pros: Optimized performance as saving is only done when needed.
+  * Cons: Need to maintain an extra flag in `Command` or `CommandResult` on whether a command has modified data.
 
 
 --------------------------------------------------------------------------------------------------------------------
+## **Planned Enhancements**
 
+### Unable to see long texts
+Currently CLIpboard's UI automatically truncates very long strings, however the whole string is unable to be seen.
+#### Proposed Changes:
+* Alternative 1: Show full text when mouse hovers over the long string
+    * Pros: Provides a solution without potentially cluttering the UI.
+    * Cons: Involving mouse action might diminish our selling point as a CLI app optimised for keyboard users.
+* Alternative 2: Text wrapping
+    * Pros: Easy to implement.
+    * Cons: Could clog up the UI.
+
+### After executing `find`, the list cannot be refreshed
+After the user calls `find student` in the Students page, they are unable to display the original unfiltered list again.
+#### Proposed Changes:
+* Alternative 1 (current choice): Get the user to use the `undo` command
+    * Pros: No need to implement a new command.
+    * Cons: Does not feel intuitive.
+* Alternative 2: Implement a `list` command that displays the unfiltered list
+    * Pros: Intuitive for the user.
+    * Cons: We are unable to implement it in v1.4 due to the feature freeze.
+
+### Orderings of students in Attendance Page and Students Page are not standardised
+Currently, the ordering of the student list in Students Page is not consistent with that in the Attendance Page.
+#### Proposed Changes:
+* Alternative 1: Save the student list from the Students Page to transfer it to the Attendance Page
+    * Pros: Ordering is standardised everytime.
+    * Cons: Might slow the performance down.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -400,6 +439,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+
 
 ## **Appendix: Requirements**
 
@@ -445,8 +486,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user           | see notifications/alert of upcoming events                                            | be reminded of assignments that are due soon                                                      |
 | `*`      | expert user    | see a graph with the students’ performances from this semester and previous semesters | compare the overall performance of my students from this semester and last semester               |
 | `*`      | expert user    | have an export function that allows me to export data from the app to an excel sheet  | easily transfer student data from the app to excel sheet if my higher ups require it              |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -572,16 +611,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * Similar to UC2 extension, for student index
 
-
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -718,7 +752,7 @@ These commands should be tested on the Course Page.
 1. Selecting a course while on the Course Page.
 
     1. Test case: `select 1`<br>
-       Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the 
+       Expected: First course is selected. Details of the selected course shown in the log box. Page redirected to the
        corresponding Group Page.
 
     1. Test case: `select x` (where x is larger than the list size)<br>
@@ -788,7 +822,7 @@ These commands should be tested on the Group Page.
 
 1. Editing a group which exists in the group list.
 
-    1. Test case: `edit group 1 T02`<br> 
+    1. Test case: `edit group 1 T02`<br>
        Expected: First group is edited to the new group name. Details of the edited group shown in the log box.
 
     1. Test case: `edit group 0 T02`<br>
@@ -857,6 +891,93 @@ These commands should be tested on the Group Page.
 ### Students Page Commands
 These commands should be tested on the Students Page.
 
+#### Adding a student
+
+1. Adding a student while the student list is empty or the student does not exist in the course list.
+
+   1. Test case: `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`<br>
+      Expected: New student is added into the list. Details of the added student shown in the log box.
+
+   2. Other incorrect `add student` commands to try: `add`, `add student` (where the name, phone number, email or student ID is not specified)<br>
+      Expected: No student is added. Error details shown in the log box.
+
+2. Adding a student whose student ID already exists in the list.<br>
+
+    1. Test case: `add student n/John p/98765432 e/johnd@example.com sid/A1234567X`, where another student with student ID A1234567X already exists in the student list<br>
+       Expected: No student is added. Error details shown in the log box.
+
+3. Adding a student whose name already exists in the list.
+   1. Test case: `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`, where John Doe with a different student ID exists in the student list.
+   Expected: New student is added into the list. Duplicate names are allowed as long as the student ID is different. Details of the added student shown in the log box.
+
+#### Deleting a student
+
+1. Deleting a student while all students are being shown from the Student Page. At least 1 student exists in the list.
+
+   1. Test case: `delete student 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
+
+   2. Test case: `delete student 0`<br>
+          Expected: No student is deleted. Error details shown in the log box.
+
+   3. Other incorrect `delete student` commands to try: `delete`, `delete student x` (where x is larger than the list size)<br>
+          Expected: Similar to previous step 1.2 under `Deleting a student`.
+
+2. Deleting a student while the student list is empty in the Student Page.
+
+    1. Incorrect `delete student` commands to try: `delete`, `delete student x` (where x is any number)<br>
+       Expected: No student is deleted. Error details shown in the log box.
+
+#### Editing a student
+
+1. Editing a student which exists in the course list.
+
+    1. Test case: `edit student 1 n/John p/98765432 e/John@gmail.com sid/A2345678X` where at least one of the fields
+   `n/<NAME>`, `p/<PHONE_NUMBER>`, `e/<EMAIL>` or `sid/<STUDENT_NUMBER>` must be provided<br>
+       Expected: First student is edited to have the new field details provided. Details of the edited student shown in the log box.
+
+   2. Test case: `edit student 0 n/John`<br>
+       Expected: No student is edited. Error details shown in the log box.
+
+   3. Other incorrect `edit student` commands to try: `edit`, `edit student`, `edit student x` (where x is any number), `edit student x n/John` (where x is larger than the list size) <br>
+       Expected: Similar to previous step 1.2 under `Editing a student`.
+
+2. Editing a student while the student list is empty in the Student Page.
+
+    1. Refer to step 1.3 above under `Editing a student`.
+
+#### Selecting a student
+
+1. Selecting a student while on the Student Page.
+
+    1. Test case: `select 1`<br>
+       Expected: First student is selected. Details of the selected student shown in the log box. Displays the student's information on the view panel on the right.
+
+   2. Test case: `select x` (where x is larger than the list size)<br>
+       Expected: No student is selected. Error details shown in the log box.
+
+
+#### Finding a student
+
+1. Finding a student while on the Student Page, with the following students - `John Doe`, `Johnny Yu`, `Alice Yeoh` in the list,
+with respective student IDs `A1234567X`, `A123`, `A98765432X`.
+
+   1. Test case: `find student John`<br>
+   Expected: `John Doe` and `Johnny Yu` is displayed. Details of the found students shown in the log box.
+
+   2. Test case: `find student A123`<br>
+   Expected: students with student ID `A1234567X` and `A123` are displayed. Details of the found students shown in the log box.
+
+   3. Test case: `find student Alice Yu`<br>
+   Expected: `Alice Yeoh` and `Johnny Yu` are displayed. Details of the found students shown in the log box.
+
+   4. Test case: `find student Alex Tan` (this student does not exist in the list)<br>
+   Expected: The list is not filtered. Details of no found students shown in the log box.
+
+   5. Other incorrect `find student` commands to try: `find`, `find student`<br>
+   Expected: The list is not filtered. Error details shown in the log box.
+
+
 #### Deleting a student
 
 1. Deleting a student while all students are being shown from the Students Page.
@@ -864,13 +985,66 @@ These commands should be tested on the Students Page.
     1. Test case: `delete student 1`<br>
        Expected: First student is deleted from the list. Details of the deleted student shown in the log box.
 
-    1. Test case: `delete student 0`<br>
+    2. Test case: `delete student 0`<br>
        Expected: No student is deleted. Error details shown in the log box.
 
-    1. Other incorrect `delete student` commands to try: `delete`, `delete student x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+   3. Other incorrect `delete student` commands to try: `delete`, `delete student x`, (where x is larger than the list size)<br>
+          Expected: No student is deleted. Error details shown in the log box.
 
-2. _{ more test cases …​ }_
+2. Deleting a student while the student list is empty on the Students Page.
+    1. Test case: `delete student 1`<br>
+    Expected: No student is deleted. Error details shown in the log box.
+
+#### Copying a student's email
+1. Copying a student's email to your clipboard, while there is more than one student on the Students Page.
+    1. Test case: `copy 1`<br>
+    Expected: First student's email is copied to your clipboard. Successful command message shown in the log box.
+   2. Test case: `copy 0`<br>
+   Expected: No student email is copied. Error details shown in the log box.
+   3. Other incorrect `copy` commands to try: `copy`, `copy x`, (where x is larger than the student list)<br>
+   Expected: No student email is copied. Error details shown in the log box.
+2. Copying a student's email while the student list is empty on the Students Page.
+    1. Test case: `copy 1`<br>
+    Expected: Nothing is copied to your clipboard. Error details shown in the log box.
+
+#### Sorting students by their name or student ID
+1. Sorting student list by their name
+    1. Test case: `sort name`<br>
+   Expected: Student list sorted by name in alphabetical order.
+2. Sorting student list by their student IDs
+    1. Test case: `sort id`<br>
+   Expected: Student list sorted by student ID.
+
+#### Adding or deleting a remark
+1. Adding a remark to a student that does not have an existing remark.
+    1. Test case: `remark 1 Loves photography`<br>
+   Expected: Adds a remark `Loves photography` to the first student on the student list. Details of the new remark displayed in the log box.
+   2. Test case: `remark 0 Loves sci-fi movies`<br>
+   Expected: Displays error message on the log box.
+   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student list)<br>
+   Expected: Displays error message on the log box.
+2. Adding a remark to a student that already has a remark.
+   1. Test case: `remark 1 Plays football` <br>
+      Expected: Replaces the previous remark that the first student has with `Plays football`. Details of the new remark displayed in the log box.
+   2. Test case: `remark 0 Loves sci-fi movies`<br>
+     Expected: Displays error message on the log box.
+   3. Other incorrect `remark` commands to try: `remark`, `remark x`, (where x is larger than the student list)<br>
+      Expected: Displays error message on the log box.
+   4. Test case: `remark 1` where the first student already has a remark. <br>
+      Expected: Deletes the remark from the first student listed in the student list.
+
+#### Uploading a student's photo
+1. Uploads a student's photo to be displayed in the student roster.
+    1. Test case: `upload <LOCAL_FILE_PATH>`, where file path can be either relative or absolute file path <br>
+    Example: `upload C:/Users/AlexYeoh/Desktop/A0123456X.png` <br>
+    Expected: Image `A0123456X.png` will be uploaded to the CLIpboard data folder and the photo will be displayed in the profile of student with student ID `A0123456X`.
+    2. Test case: `upload <INVALID_FILE_PATH>`, where file path does not exist. <br>
+    Expected: Error message displayed on the log box.
+
+#### Viewing a student's attendance throughout the course after selecting him/her
+1. View a student's attendance throughout the course after using `select` command on the Students Page.
+    1. Test case: `attendance` <br>
+    Expected: Displays the student's attendance throughout the course on the log box and the view panel on the right.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
@@ -879,12 +1053,136 @@ These commands should be tested on the Students Page.
 ### Session Page Commands
 These commands should be tested on the Session Page.
 
+#### Adding a session
+1. Adding a session while the session list is empty, or the session does not exist in the session list.
+
+    1. Test case: `add session Tutorial1`<br>
+       Expected: New session is added into the list. Details of the added session shown in the log box.
+
+    1. Other incorrect `add session` commands to try: `add`, `add session` (where the session name is empty)<br>
+       Expected: No session is added. Error details shown in the log box.
+
+2. Adding a session into the list containing the following sessions - `Tutorial1`, `Tutorial2`, `Lab1`.
+
+    1. Test case: `add session Tutorial3`<br>
+       Expected: New session is added. Details of the added session shown in the log box.
+
+    1. Test case: `add session Tutorial1`<br>
+       Expected: No session is added. Error details shown in the log box.
+
+#### Deleting a session
+
+1. Deleting a session while all sessions are being shown from the Session Page. At least 1 session exists in the list.
+
+    1. Test case: `delete session 1`<br>
+       Expected: First session is deleted from the list. Details of the deleted session shown in the log box.
+
+    1. Test case: `delete session 0`<br>
+       Expected: No session is deleted. Error details shown in the log box.
+
+    1. Other incorrect `delete session` commands to try: `delete`, `delete session x` (where x is larger than the list size)<br>
+       Expected: Similar to previous step 1.2 under `Deleting a session`.
+
+2. Deleting a session while the session list is empty in the Session Page.
+
+    1. Incorrect `delete session` commands to try: `delete`, `delete session x` (where x is any number)<br>
+       Expected: No session is deleted. Error details shown in the log box.
+
+#### Editing a session
+
+1. Editing a session which exists in the Session list.
+
+   1. Test case: `edit session 1 Tutorial4`<br>
+      Expected: First session is edited to the new session name. Details of the edited session shown in the log box.
+
+   2. Test case: `edit session 0 Tutorial4`<br>
+      Expected: No session is edited. Error details shown in the log box.
+
+   3. Other incorrect `edit session` commands to try: `edit`, `edit session x` (where x is any number), `edit session x Tutorial4`
+      (where x is larger than the list size) <br>
+      Expected: Similar to previous step 1.2 under `Editing a session`.
+
+2. Editing a session while the session list is empty in the Session Page.
+
+    1. Refer to step 1.3 above under `Editing a session`.
+
+#### Selecting a session
+
+1. Selecting a session while on the Session Page.
+
+   1. Test case: `select 1`<br>
+      Expected: First session is selected. Details of the selected session shown in the log box. Page redirected to the
+      corresponding Attendance Page.
+
+   2. Test case: `select x` (where x is larger than the list size)<br>
+      Expected: No session is selected. Error details shown in the log box.
+
+2. Selecting a session while the session list is empty in the Session Page.
+    1. Refer to step 1.2 above under `Selecting a session`
+
+#### Finding a session
+
+1. Finding a session while on the Session Page, with the following sessions - `Tutorial1`, `Tutorial2`, `Lab1` in the list.
+
+    1. Test case: `find session 1`<br>
+       Expected: `Tutorial1` and `Lab1` is displayed. Details of the found sessions shown in the log box.
+
+    1. Test case: `find session tutorial`<br>
+       Expected: `Tutorial1` and `Tutorial2` is displayed. Details of the found sessions shown in the log box.
+
+    1. Test case: `find session Tutorial3` (this session does not exist in the list)<br>
+       Expected: The list is not filtered. Details of no found session(s) shown in the log box.
+
+    1. Other incorrect `find session` commands to try: `find`, `find session`<br>
+       Expected: The list is not filtered. Error details shown in the log box.
+
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 ---
 
 ### Attendance Page Commands
 These commands should be tested on the Attendance Page.
+
+#### Marking selected student(s) as present
+
+1. Marking selected student as present, with at least one student in the list.
+
+   1. Test case: `mark 1`<br>
+      Expected: First student is marked as present. Details of the student marked as present shown in the log box.
+
+   2. Other incorrect `mark` commands to try: `mark`, `mark x` (where x is larger than the student list size, `mark -1` <br>
+      Expected: No student is marked as present. Error details shown in the log box.
+
+2. Marking selected students as present, with 6 students in the list.
+    1. Test case: `mark 1, 4, 6`<br>
+        Expected: First, fourth and sixth students are marked as present. Details of the students marked as present shown in the log box.
+    2. Test case: `mark 2, 3, 5, 7` (where there is no student in the seventh index) <br>
+        Expected: No student is marked as present. Error details shown in the log box.
+    3. Other incorrect `mark` commands to try: `mark`, `mark 0` <br>
+       Expected: No student is marked as present. Error details shown in the log box.
+
+#### Marking selected student(s) as absent
+1. Marking selected student as absent, with at least one student in the list.
+
+    1. Test case: `unmark 1`<br>
+       Expected: First student is marked as absent. Details of the student marked as absent shown in the log box.
+
+    2. Other incorrect `unmark` commands to try: `unmark`, `unmark x` (where x is larger than the student list size), `unmark -1`<br>
+       Expected: No student is marked as absent. Error details shown in the log box.
+
+2. Marking selected students as absent, with 6 students in the list.
+    1. Test case: `unmark 1, 4, 6`<br>
+       Expected: First, fourth and sixth students are marked as absent. Details of the students marked as absent shown in the log box.
+    2. Test case: `unmark 2, 3, 5, 7` (where there is no student in the seventh index) <br>
+       Expected: No student is marked as absent. Error details shown in the log box.
+    3. Other incorrect `unmark` commands to try: `unmark`, `unmark 0` <br>
+       Expected: No student is marked as absent. Error details shown in the log box.
+
+
+#### Viewing the overall attendance of the session
+1. Viewing the overall attendance of the session.
+    1. Test case: `attendance`<br>
+    Expected: Overall attendance of the session is displayed in the log box.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
@@ -939,7 +1237,7 @@ These commands should be tested on the Task Page.
     1. Test case: `edit task 0 CA4`<br>
        Expected: No task is edited. Error details shown in the log box.
 
-    1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4` 
+    1. Other incorrect `edit task` commands to try: `edit`, `edit task x` (where x is any number), `edit task x CA4`
        (where x is larger than the list size) <br>
        Expected: Similar to previous step 1.2 under `Editing a task`.
 
@@ -1009,3 +1307,24 @@ These commands should be tested on the Grades Page.
       Do exit the app for `roster.java` to be created.
 
 [Back to Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+---
+## Appendix: Effort
+##### Multiple Object Types
+One of the main challenges we faced was establishing dependencies between the various object types in a way that
+ensured consistency and minimized data duplication. This is in contrast to AB3 which has only 1 main object type (`Person`) to manipulate in the `AddressBook`.
+Detailed implementation is described under [Implementation](#student-roster-object-types).
+
+##### Page Navigation
+As CLIpboard has multiple different pages to display different types of objects at a given time. So, we needed to keep track of the current page, and the possible pages to navigate to.
+
+Additionally, navigating a page also meant traversing the object hierarchy, and we had to store a pointer to the objects selected by the user. All these were done through the `CurrentSelection` class.
+
+Adding page navigation added more factors to be considered. These include restricting certain commands to only be allowed on certain pages, commands executing differently depending on the current page, and handling the loading of appropriate GUI elements respective to the page.
+
+##### Storage
+As compared to AB3, CLIpboard maintains several more types of objects to store. These added types of objects needed their own respective classes to serialize them into `json` objects.
+
+The added types also had a specific hierarchy (e.g `Roster` -> `Course` -> `Group` -> `Student`), different data fields, as well as a deeper serialization depth than AB3, which required further modification to the storage classes to handle.
+
+[Back to Appendix: Effort](#appendix-effort)

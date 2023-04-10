@@ -17,14 +17,14 @@ import tfifteenfour.clipboard.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private RosterStorage addressBookStorage;
+    private RosterStorage rosterStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code Roster} and {@code UserPrefStorage}.
      */
-    public StorageManager(RosterStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(RosterStorage rosterStorage, UserPrefsStorage userPrefsStorage) {
+        this.rosterStorage = rosterStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,29 +50,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getRosterFilePath() {
-        return addressBookStorage.getRosterFilePath();
+        return rosterStorage.getRosterFilePath();
     }
 
     @Override
     public Optional<ReadOnlyRoster> readRoster() throws DataConversionException, IOException {
-        return readRoster(addressBookStorage.getRosterFilePath());
+        return readRoster(rosterStorage.getRosterFilePath());
     }
 
     @Override
     public Optional<ReadOnlyRoster> readRoster(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readRoster(filePath);
+        return rosterStorage.readRoster(filePath);
     }
 
     @Override
     public void saveRoster(ReadOnlyRoster roster) throws IOException {
-        saveRoster(roster, addressBookStorage.getRosterFilePath());
+        saveRoster(roster, rosterStorage.getRosterFilePath());
     }
 
     @Override
     public void saveRoster(ReadOnlyRoster roster, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveRoster(roster, filePath);
+        rosterStorage.saveRoster(roster, filePath);
     }
 
 }

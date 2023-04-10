@@ -31,7 +31,6 @@ public class UndoCommand extends Command {
             Command prevCommandExecuted = prevModel.getCommandExecuted();
             if (prevCommandExecuted instanceof UploadCommand) {
                 UploadCommand uploadCmd = (UploadCommand) prevCommandExecuted;
-                System.out.println("undo upload ###########");
                 uploadCmd.deleteUploadedFile();
             }
         } else {

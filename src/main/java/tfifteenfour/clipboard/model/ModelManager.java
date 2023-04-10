@@ -104,9 +104,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setRosterFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setRosterFilePath(addressBookFilePath);
+    public void setRosterFilePath(Path rosterFilePath) {
+        requireNonNull(rosterFilePath);
+        userPrefs.setRosterFilePath(rosterFilePath);
     }
 
     //=========== Roster ================================================================================
