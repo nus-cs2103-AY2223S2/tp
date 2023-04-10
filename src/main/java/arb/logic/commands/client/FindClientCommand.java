@@ -29,7 +29,7 @@ public class FindClientCommand extends Command {
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all clients whose names contain any of "
             + "the specified keywords (case-insensitive) and contains any of the given tags (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: name/NAME tag/TAG [MORE KEYWORDS]...\n"
+            + "Parameters: [name/NAME]* [tag/TAG]*\n"
             + "Example: " + MAIN_COMMAND_WORD + " name/alice name/bob name/charlie tag/friend";
 
     private final Predicate<Client> predicate;

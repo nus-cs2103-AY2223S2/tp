@@ -139,8 +139,8 @@ In the example above, `[tag/TAG]*` can be used as `‎` (i.e. 0 times), `tag/fri
 | **Marking a project as done** | `mark` | `mp` | `mark <index>` <br> e.g., `mark 3` |
 | **Marking a project as not done** | `unmark` | `up` | `unmark <index>` <br> e.g., `unmark 3` |
 | **Clearing the project list** | `clear-project` | `cp` | `clear-project` |
-| **Finding projects** | `find-project` | `fp` | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
-| **Sorting projects** | `sort-project` | `sp` | `sort-project option/Option` <br> e.g., `sort-project option/name` |
+| **Finding projects** | `find-project` | `fp` | `find-project [name/NAME]* [start/START OF TIMEFRAME] [end/END OF TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
+| **Sorting projects** | `sort-project` | `sp` | `sort-project <option/OPTION>` <br> e.g., `sort-project option/name` |
 | **Listing all tags** | `list-tag` | `lt` | `list-tag` |
 | **Viewing help** | `help` | - | `help` |
 | **Exiting the program** | `exit` | - | `exit` |
@@ -320,7 +320,7 @@ Lists out all projects and shows the project list.
 ### Adding a project
 #### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
 
-Short form: `ap <n/NAME> [d/DEADLINE] [p/PRICE] [t/TAG]* [c/CLIENT]*`
+Short form: `ap <n/NAME> [d/DEADLINE] [pr/PRICE] [t/TAG]* [c/CLIENT]*`
 
 Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
@@ -347,7 +347,7 @@ Examples:
 ### Editing a project
 #### Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
 
-Short form: `ep <index> [n/NAME] [d/DEADLINE] [p/PRICE] [c/CLIENT]`
+Short form: `ep <index> [n/NAME] [d/DEADLINE] [pr/PRICE] [c/CLIENT]`
 
 Edits the project at the given index of the **currently visible** client list, changing only the given details. Any prefixes that are provided but left empty will delete the corresponding detail of the project (apart from the name).
 
@@ -441,9 +441,9 @@ This command cannot be undone. All deleted projects cannot be restored.
 </div>
 
 ### Finding projects
-#### Format: `find-project [name/NAME]* [start/START] [end/END] [price/PRICE] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
+#### Format: `find-project [name/NAME]* [start/START_OF_TIMEFRAME] [end/END_OF_TIMEFRAME] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
 
-Short form: `fp [n/NAME]* [s/START] [e/END] [p/PRICE] [st/STATUS] [t/TAG]* [c/CLIENT]*`
+Short form: `fp [n/NAME]* [s/START_OF_TIMEFRAME] [e/END_OF_TIMEFRAME] [st/STATUS] [t/TAG]* [c/CLIENT]*`
 
 Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, tags, the client the project is linked to, and the status of the project.
 
@@ -466,7 +466,7 @@ Examples:
 * `fp st/nd` finds any project that is not done, including overdue ones.
 
 ### Sorting projects
-#### Format: `sort-project <option/Option>`
+#### Format: `sort-project <option/OPTION>`
 
 Short form: `sp <o/OPTION>`
 
