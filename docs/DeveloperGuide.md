@@ -1155,7 +1155,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Isolated event not created. Status message indicates that event has conflict with Isolated Event List followed by
    the index of the isolated event that it conflicted with and 'Swimming from: 10/04/2024 14:00 to: 10/04/2025 16:00'.
 
-### Creating an Recurring event
+### Creating a Recurring event
 1. Prerequisities: The preloaded data for person are not modified.
 
 2. Test case: `event_create_recur 1 re/CS2103 Lecture d/Friday f/14:00 t/16:00`<br>
