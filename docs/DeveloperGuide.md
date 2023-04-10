@@ -736,8 +736,10 @@ testers are expected to do more *exploratory* testing.
 
 ### Favouriting/Unfavouriting a contact
 1. Favourite a contact or unfavourite a contact
+
    1. Prerequisites: Non-empty address book with at only 1 contact. Navigate to the `Address book` tab using `tab 1`
-   2. Test Cases
+
+      2. Test Cases
       1. Test case 1: `fav 1`
          - Testing for: Successful Command Execution
          - Expected: Contact at index 1 on the list will be favourited and a Star emoji will appear on their Person Card and their Person Card will appear in a Favourite List.
