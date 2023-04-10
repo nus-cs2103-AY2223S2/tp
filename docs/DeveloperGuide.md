@@ -290,12 +290,13 @@ However, a parent can only be deleted if no student is attached to that parent.
 3. PowerConnect displays an error saying `"The parent you are trying to delete has a student attached! You can't delete the parent!"`.
 4. The user then tries to delete that student using `student 1A delete in/1`.
 5. `PowerConnectParser` and `StudentCommandParser` will check if command format provided by the user is valid before `StudentDeleteCommand#execute()` is called.
-6. It will check if the student to be deleted exists in `UniqueStudentList` of `Class`. 
-7. If the student exists, he/she will then be deleted and their parent will be updated if their parent can be found.
-8. The result of the command execution is encapsulated as a `CommandResult` object which is returned to `Logic`.
-9. The user tries deleting the parent again, it follows `step 5 & 6` in a similar way to just that it is now for parent instead of student.
-10. It will then check if the parent has no students attached before deleting the parent
-11. Afterwards, `step 8` happens for `parent delete`.
+6. PowerConnect will check if the student to be deleted exists in `UniqueStudentList` of `Class`. 
+7. If the student exists, PowerConnect will then check if the parent of the student to be deleted exists.
+8. If the parent exists, the student will be deleted and their parent will be updated.
+9. The result of the command execution is encapsulated as a `CommandResult` object which is returned to `Logic`.
+10. The user tries deleting the parent with `parent delete n/Bob pnP/91234567` again, PowerConnect carries out `step 5 & 6` just that it is now for parent instead of student.
+11. If the parent exists, PowerConnect will then check that the parent to be deleted has no students attached before deleting the parent.
+12. Afterwards, PowerConnect will carry out `step 9` for `parent delete`.
 
 **Activity diagram for Student Delete**
 ![Sequence Diagram](images/StudentDeleteActivityDiagram.png)

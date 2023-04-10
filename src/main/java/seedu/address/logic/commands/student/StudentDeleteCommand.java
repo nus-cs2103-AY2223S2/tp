@@ -54,7 +54,6 @@ public class StudentDeleteCommand extends StudentCommand {
         if (studentToDelete == null) {
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
-        model.deleteStudent(studentToDelete);
 
         Parent parentToUnbind = model.getParent(studentToDelete.getParentName(), studentToDelete.getParentNumber());
 
@@ -63,6 +62,7 @@ public class StudentDeleteCommand extends StudentCommand {
         }
         //@@author
 
+        model.deleteStudent(studentToDelete);
         Parent updatedParent = parentToUnbind;
         updatedParent.removeStudent(studentToDelete); //unbind student from parent
         model.setParent(parentToUnbind, updatedParent); //update parent in parentList
