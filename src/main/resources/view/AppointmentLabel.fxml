@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="clientLabel" fx:id="appointmentLabel" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER_LEFT" spacing="4.0" HBox.hgrow="ALWAYS">
+        <children>
+         <Label fx:id="appointmentName1" styleClass="cell_big_label" text="Next Appointment: " textFill="WHITE">
+            <font>
+               <Font name="SansSerif Bold" size="14.0" />
+            </font>
+         </Label>
+            <Label fx:id="appointmentName" styleClass="cell_big_label" text="\$first" textFill="WHITE">
+                <font>
+                    <Font name="SansSerif Bold" size="14.0" />
+                </font>
+            </Label>
+         <StackPane HBox.hgrow="ALWAYS" />
+         <Label fx:id="appointmentName11" styleClass="cell_big_label" text="Date: " textFill="WHITE">
+            <font>
+               <Font name="SansSerif Bold" size="14.0" />
+            </font>
+         </Label>
+            <Label fx:id="appointmentMeetUpDate" styleClass="cell_big_label" text="\\$date" textFill="WHITE">
+                <font>
+                    <Font name="SansSerif Bold" size="14.0" />
+                </font>
+            </Label>
+        </children>
+    </HBox>
+    <padding>
+        <Insets bottom="20.0" left="28.0" right="28.0" top="20.0" />
+    </padding>
+</HBox>

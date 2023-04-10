@@ -3,57 +3,60 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are team Advis.io based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0725448@comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Titus Lowe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tituswe.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/tituswe)]
+[[portfolio](team/tituswe.md)]
 
-* Role: Project Advisor
+* Role: Developer (Co-Team Lead)
+* Responsibilities: Front-end, UI. In charge of `select` command. Assigns GitHub issues, took charge of handling
+  milestones and managed merged requests.
 
-### Jane Doe
+### Pang Rui Wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pangrwa.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/pangrwa)]
+[[portfolio](team/pangrwa.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer (Co-team lead)
+* Responsibilities: Back-end, storage. In charge of `deletePolicy`, `editPolicy`, `addApt`, `deleteApt` commands. In
+  charge of User Guide and Developer Guide. Handles GitHub releases and managed merged requests.
 
-### Johnny Doe
+### Ang Yuze
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yzmunchmunch.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yzmunchmunch)]
+[[portfolio](team/yzmunchmunch.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: In charge of `Policy` class.
 
-### James Doe
+### Lu Chenyu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adam07018.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/adam07018)]
+[[portfolio](team/adam07018.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: In charge of `undo`, `redo`, `sortClientEmail`, `sortClientName`, `sortClientPhone` commands.
+
+### Anunaya Joshi
+
+<img src="images/anunayajoshi.png" width="200px">
+
+[[github](http://github.com/anunayajoshi)]
+[[portfolio](team/anunayajoshi.md)]
+
+* Role: Developer
+* Responsibilities: In charge of `addPolicy` command and refactoring.

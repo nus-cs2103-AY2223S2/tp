@@ -2,18 +2,19 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.AppointmentName;
+import seedu.address.model.client.appointment.MeetupDate;
+import seedu.address.model.client.policy.CustomDate;
+import seedu.address.model.client.policy.Frequency;
+import seedu.address.model.client.policy.PolicyName;
+import seedu.address.model.client.policy.Premium;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -25,6 +26,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -32,6 +34,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+        assert Integer.parseInt(trimmedIndex) > 0;
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -96,29 +99,103 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String appointmentName} into an {@code AppointmentName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static AppointmentName parseAppointmentName(String appointmentName) throws ParseException {
+        requireNonNull(appointmentName);
+        String trimmedAppointmentName = appointmentName.trim();
+        if (!AppointmentName.isValidName(trimmedAppointmentName)) {
+            throw new ParseException(AppointmentName.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new AppointmentName(trimmedAppointmentName);
+    }
+
+
+    /**
+     * Parses a {@code String meetupDate} into an {@code MeetupDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static MeetupDate parseMeetupDate(String meetupDate) throws ParseException {
+        requireNonNull(meetupDate);
+        String trimmedMeetupDate = meetupDate.trim();
+        if (!MeetupDate.isValidDate(trimmedMeetupDate)) {
+            throw new ParseException(MeetupDate.MESSAGE_CONSTRAINTS);
+        }
+        if (!MeetupDate.isFutureDate(trimmedMeetupDate)) {
+            throw new ParseException(MeetupDate.MESSAGE_PAST_DATE);
+        }
+        return new MeetupDate(trimmedMeetupDate);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String policyName} into a {@code PolicyName}.
+     *
+     * @param policyName String to be parsed
+     * @return PolicyName
+     * @throws ParseException if the given {@code policyName} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static PolicyName parsePolicyName(String policyName) throws ParseException {
+        requireNonNull(policyName);
+        String trimmedPolicyName = policyName.trim();
+        if (!PolicyName.isValidName(trimmedPolicyName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        if (!PolicyName.isValidNameEnum(trimmedPolicyName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS_ENUM);
+        }
+        return new PolicyName(trimmedPolicyName);
+    }
+
+    /**
+     * Parses a {@code String customDate} into a {@code CustomDate}.
+     *
+     * @param customDate
+     * @return CustomDate
+     * @throws ParseException if the given {@code customDate} is invalid.
+     */
+    public static CustomDate parseCustomDate(String customDate) throws ParseException {
+        requireNonNull(customDate);
+        String trimmedCustomDate = customDate.trim();
+        if (!CustomDate.isValidDate(trimmedCustomDate)) {
+            throw new ParseException(CustomDate.MESSAGE_CONSTRAINTS);
+        }
+        return new CustomDate(trimmedCustomDate);
+    }
+
+    /**
+     * Parses a {@code String premium} into a {@code Premium}.
+     *
+     * @param premium String to be parsed
+     * @return Premium
+     * @throws ParseException if the given {@code premium} is invalid.
+     */
+    public static Premium parsePremium(String premium) throws ParseException {
+        requireNonNull(premium);
+        String trimmedPremium = premium.trim();
+        if (!Premium.isValidPremium(trimmedPremium)) {
+            throw new ParseException(Premium.MESSAGE_CONSTRAINTS);
+        }
+        return new Premium(trimmedPremium);
+    }
+
+    /**
+     * Parses a {@code String frequency} into a {@code Frequency}.
+     *
+     * @param frequency String to be parsed
+     * @return Frequency
+     * @throws ParseException if the given {@code frequency} is invalid.
+     */
+    public static Frequency parseFrequency(String frequency) throws ParseException {
+        requireNonNull(frequency);
+        String trimmedFrequency = frequency.trim();
+        if (!Frequency.isValidFrequency(trimmedFrequency)) {
+            throw new ParseException(Frequency.MESSAGE_CONSTRAINTS);
+        }
+        return new Frequency(trimmedFrequency);
     }
 }

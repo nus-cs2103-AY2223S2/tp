@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="clientLabel" fx:id="clientLabel" minHeight="88.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <HBox spacing="4.0">
+      <children>
+             <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE">
+            <font>
+               <Font name="SansSerif Bold" size="16.0" />
+            </font>
+         </Label>
+             <Label fx:id="id" styleClass="cell_big_label" text="#0000" textFill="WHITE">
+                 <minWidth>
+                     <!-- Ensures that the label text is never truncated -->
+                     <Region fx:constant="USE_PREF_SIZE" />
+                 </minWidth>
+            <font>
+               <Font name="SansSerif Regular" size="14.0" />
+            </font>
+            <padding>
+               <Insets top="1.0" />
+            </padding>
+             </Label>
+      </children>
+   </HBox>
+   <StackPane HBox.hgrow="ALWAYS" />
+     <VBox alignment="TOP_RIGHT">
+         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="13.0" />
+         </font>
+      </Label>
+         <Label fx:id="address" styleClass="cell_small_label" text="\$address" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="13.0" />
+         </font>
+      </Label>
+         <Label fx:id="email" styleClass="cell_small_label" text="\$email" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="13.0" />
+         </font>
+      </Label>
+     </VBox>
+   <padding>
+      <Insets bottom="20.0" left="28.0" right="28.0" top="20.0" />
+   </padding>
+</HBox>

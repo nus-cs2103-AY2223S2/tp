@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddAppointmentCommandParser" as AddAppointmentCommandParser LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addApt 1 an/Review goals\n ad/01.01.2024")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addApt 1 an/Review goals\n ad/01.01.2024")
+activate AddressBookParser
+
+create AddAppointmentCommandParser
+AddressBookParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
+
+AddAppointmentCommandParser --> AddressBookParser
+deactivate AddAppointmentCommandParser
+
+AddressBookParser -> AddAppointmentCommandParser : parse("1 an/Review goals\n ad/01.01.2024")")
+activate AddAppointmentCommandParser
+
+create AddAppointmentCommand
+AddAppointmentCommandParser -> AddAppointmentCommand
+activate AddAppointmentCommand
+
+AddAppointmentCommand --> AddAppointmentCommandParser : a
+deactivate AddAppointmentCommand
+
+AddAppointmentCommandParser --> AddressBookParser : a
+deactivate AddAppointmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddAppointmentCommandParser -[hidden]-> AddressBookParser
+destroy AddAppointmentCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddAppointmentCommand : execute()
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> Model : getFilteredClientList()
+activate Model
+
+Model --> AddAppointmentCommand
+deactivate Model
+
+AddAppointmentCommand -> Model : setClient(client, editedClient)
+activate Model
+
+Model --> AddAppointmentCommand
+deactivate Model
+
+AddAppointmentCommand -> Model : updateFilteredClientList(predicate)
+activate Model
+
+Model -> AddAppointmentCommand
+deactivate Model
+
+create CommandResult
+AddAppointmentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddAppointmentCommand
+deactivate CommandResult
+
+AddAppointmentCommand --> LogicManager : result
+deactivate AddAppointmentCommand
+
+AddAppointmentCommand -[hidden]-> AddressBookParser
+destroy AddAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
