@@ -11,7 +11,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [OpenCSV](https://opencsv.sourceforge.net/)
-* Adapted from: [AddressBook Level 3](https://github.com/nus-cs2103-AY2223S2/tp)
+* Adapted from: [AddressBook Level 3](https://github.com/nus-cs2103-AY2223S2/tp), [ay2223s1-f09-2](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ Here is a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `DengueHotspotTrackerParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a case).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -104,15 +104,15 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSingleIndexSequenceDiagram.png)
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+<br> Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 ![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `DengueHotspotTrackerParser` class will do one of the following:
-  * create an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) that the `DengueHotspotTrackerParser` returns back as a `Command` object.
+  * create an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g. `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g. `AddCommand`) that the `DengueHotspotTrackerParser` returns back as a `Command` object.
   * create an `XYZCommand`.
-* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 * Similarly, all `XYZCommand` classes inherit from the `Command` abstract class and are executable.
 
 ### Model component
@@ -123,13 +123,13 @@ Here is a (partial) class diagram of the `Model` component:
 
 ![ModelClassDiagram](images/ModelClassDiagram.png)
 
-The `Model` component
+<br> The `Model` component
 
 * stores the Dengue Hotspot Tracker data, i.e. all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores an `Overview` object that manages the histogram-like data of the current `UniquePersonList`. It is updated whenever the `Model` is updated with a command execution.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <div markdown="block" class="alert alert-info">
 
@@ -167,11 +167,11 @@ The `Storage` component can be divided into two main components, one for `tempor
 The permanent storage component:
 
 * can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
-* inherits from both `DengueHotspotStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `DengueHotspotStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 The `temporary` component temporarily saves `DengueHotspotTracker` data while the app is running to support `undo` and `redo` commands. To prevent taking up too much memory,
-only up to 10 states of the `DengueHotspotTracker`. This component supports:
+only up to 10 states of the `DengueHotspotTracker` are stored. This component supports:
 
 * undoing and redoing up to a maximum of 10 steps.
 * multiple undo and redo operations at once.
@@ -336,7 +336,7 @@ in this `FindPredicate`.
 Step 6. `FindCommand#execute()` will get the most updated list of filtered cases based on the `FindPredicate#test()`
 and displays it on the User Interface along with a success message.
 
-The following sequence diagram summarises what happens when a user executes a Prefix find operation:
+The following sequence diagram summarises what happens when a user executes a find-by-prefix operation:
 
 ![PrefixFindSequenceDiagram](images/PrefixFindSequenceDiagram.png)
 
@@ -345,14 +345,14 @@ The following sequence diagram summarises what happens when a user executes a Pr
 **Aspect: How find-by-prefix handles inputs that do not make sense (e.g. numerics in names, non-existent postal codes)**
 
 * **Alternative 1:** Accepts the user input and executes the find command as per usual.
-  * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
+  * Pros: Allows for user freedom in cases that there may be people with numerics in names, and the underlying code
   would not have to change if new postal codes were to be implemented.
-  * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
-    what they keyed in.
+  * Cons: In the case of the input being erroneous, there is no indication for the user that it may be due to
+  what they keyed in.
 
 * **Alternative 2 (current choice):** Displays a message indicating that the input is erroneous for the first erroneous
   prefix detected.
-  * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their
+  * Pros: In the case of the input being erroneous, there would be an indication for the user that their
   input may be unintended.
   * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
 
@@ -493,20 +493,15 @@ The following activity and sequence diagrams shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div> 
-
 The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
-The following activity diagram summarizes what happens when a user executes a new command that alters the data (add, delete, edit):
+The following activity diagram summarises what happens when a user executes a new command that alters the data (add, delete, edit):
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 #### Design considerations
 
-**Aspect: How undo & redo executes**
+**Aspect: How undo/redo executes**
 
 * **Alternative 1 (current choice):** Saves 10 previous iterations of the entire dengue case list temporarily while the app is running.
     * Pros: Saves memory as all tracker iterations are deleted when the app closes. Deleting older tracker iterations also helps to improve performance.
@@ -525,16 +520,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** List of `DengueHotspotTracker` states, with pointers to support switching of states.
     * Pros: Very intuitive and easy to think of.
     * Cons: Not easy to implement, and keeping tracker of list indices may cause bugs.
-
-**Aspect: Support deletion of old `DengueHotspotTracker` states in undo/redo**
-
-* **Alternative 1 (current choice):** Modified stack consisting of Deque and Stack.
-    * Pros: `Stack` and `ArrayDeque` can already be used.
-    * Cons: None
-
-* **Alternative 2:** List of DengueHotspotTracker states, with pointers to support switching of states.
-    * Pros: Solution is easy.
-    * Cons: Potentially buggy.
 
 ### Overview feature
 
@@ -641,7 +626,7 @@ characters.
 
 * **Alternative 2:** Allows a wider range of filename inputs including subdirectories.
     * Pros: More flexibility as to where the user can import their files from.
-    * Cons: Harder to implement. Refer to planned enhancements.
+    * Cons: Harder to implement. Refer to [Planned Enhancements](#check-the-validity-of-filenames-which-include-subdirectories).
 
 ### Export feature
 
@@ -669,12 +654,12 @@ Same as import command design considerations for what filenames are accepted.
 **Aspect: Overwrite checking**
 
 * **Alternative 1 (current choice):** We currently allow the user to overwrite CSV files stored as long as the IO operations are successful.
-    * Cons: This is an issue as a user can accidentally override important CSV files.
     * Pros: It is easier to implement.
-
+    * Cons: This is an issue as a user can accidentally override important CSV files.
+    
 * **Alternative 2:**
     * Pros: Adds an additional layer of check so that the user does not override previously stored CSV files.
-    * Cons: Harder to implement. Look at future work.
+    * Cons: Harder to implement. Refer to [Planned Enhancement](#do-an-existence-check-on-the-files-before-export).
 
 ### Checkout feature
 
@@ -688,7 +673,7 @@ The activity diagram is similar to that of the `export` command.
 
 #### Design considerations
 
-The design considerations and future are the same of that as [export](#export-feature)
+The design considerations and Planned Enhancements are the same as that of [export](#export-feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -750,63 +735,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `DengueHotspotTracker` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `DengueHotspotTracker` and the **Actor** is the `user`, unless specified otherwise.
 
 #### Use case: Add a case
 
 **MSS**
 
-1. User requests to add a case
-2. DengueHotspotTracker adds the case
+1. User requests to add a case.
+2. DengueHotspotTracker adds the case.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The case to be added is missing a required field, or has invalid input for a field.
-  * 1a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 1.
-
-* 1a. The proposed case to be added results in a duplicate case.
     * 1a1. DengueHotspotTracker shows an error message.
       Use case resumes at step 1.
+
+    * 1a. The proposed case to be added results in a duplicate case.
+        * 1a1. DengueHotspotTracker shows an error message.
+
+    Use case resumes at step 1.
 
 #### Use case: Edit a case
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to edit a case at a particular index in the list
-4.  DengueHotspotTracker edits the case
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to edit a case at a particular index in the list.
+4.  DengueHotspotTracker edits the case.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+
+    Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 * 3a. The user does not provide a field to edit.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 * 3a. The proposed edit results in a duplicate case.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Delete a single case by index
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to delete a single case by index in the list
-4.  DengueHotspotTracker deletes the case
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to delete a single case by index in the list.
+4.  DengueHotspotTracker deletes the case.
 
     Use case ends.
 
@@ -814,62 +804,66 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
 
     * 3a1. DengueHotspotTracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 #### Use case: Delete multiple cases by index
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to delete multiple cases by index in the list
-4.  DengueHotspotTracker deletes cases
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to delete multiple cases by index in the list.
+4.  DengueHotspotTracker deletes cases.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+  
+    Use case ends.
 
 * 3a. Any of the given indexes are invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Delete multiple cases by date
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to delete multiple cases by date in the list
-4.  DengueHotspotTracker deletes cases
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to delete multiple cases by date in the list.
+4.  DengueHotspotTracker deletes cases.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+
+    Use case ends.
 
 * 3a. The given date is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Delete multiple cases by date range
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to delete multiple cases by date range in the list
-4.  DengueHotspotTracker deletes cases
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to delete multiple cases by date range in the list.
+4.  DengueHotspotTracker deletes cases.
 
     Use case ends.
 
@@ -880,7 +874,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given date range is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Find cases by name
 
@@ -896,11 +891,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+  
+    Use case ends.
 
 * 3a. The given name is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Find cases by age range
 
@@ -920,7 +917,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given age range is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Find cases by name, age and date range
 
@@ -936,11 +934,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  Use case ends.
+  
+    Use case ends.
 
 * 3a. The given name, age or date range is invalid.
     * 3a1. DengueHotspotTracker shows an error message.
-      Use case resumes at step 2.
+      
+    Use case resumes at step 2.
 
 #### Use case: Sort the case list
 
@@ -963,37 +963,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. DengueHotspotTracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 #### Use case: Undo an action
 
 **MSS**
 
-1. User requests to undo one action by executing `undo`. 
-2. DengueHotspotTracker is restored to a state before step 1, performing an undo operation a certain number of times, according to the specified argument.
+1. User requests to undo one action. 
+2. DengueHotspotTracker is restored to a state before step 1.
 3. A list of persons is reflecting the previous state is displayed.
 
 **Extensions**
 
-* 1a. An invalid argument is supplied.
+* 1a. No previous states are detected, and an undo is not possible.
 
     * 1a1. DengueHotspotTracker shows an error message.
 
     Use case resumes at step 1.
-
-* 1b. No previous states are detected, and an undo is not possible.
-
-    * 1b1. DengueHotspotTracker shows an error message.
-
-    Use case resumes at step 1.
-
-* 1c. There is no argument supplied.
-
-    Use case resumes at step 2 with argument set to 1.
-
-* 1d. The argument specified is a positive integer, and at least 1 previous state is detected, but there are not enough previous states available.
-
-    Use case resumes at step 2 with argument set to the maximum number of possible undo operations possible.
 
 * 2a. The DengueHotspotTracker is displaying a filtered list instead of the full list of cases.
 
@@ -1018,41 +1004,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. DengueHotspotTracker shows an error message.
 
-    Use case resumes at step 2.
+  Use case resumes at step 2.
 
 #### Use case: Import data
 
 **MSS**
 
-1. User requests to import list of cases from filepath
-2. DengueHotspotTracker updates case list with new list of cases
+1. User requests to import list of cases from filepath.
+2. DengueHotspotTracker updates case list with new list of cases.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The filepath is invalid
+* 1a. The filepath is invalid.
   * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
 
-* 1a. The filepath contains an empty file or a file in an incorrect format
+* 1a. The filepath contains an empty file or a file in an incorrect format.
   * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 1.
 
 #### Use case: Export/checkout data
 
 **MSS**
 
-1.  User requests to list cases
-2.  DengueHotspotTracker shows a list of cases
-3.  User requests to export list of cases or checkout overview
+1.  User requests to list cases.
+2.  DengueHotspotTracker shows a list of cases.
+3.  User requests to export list of cases or checkout overview.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The filepath is invalid
+* 1a. The filepath is invalid.
   * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
-* 1a. The file at given filepath is used by another application
+* 1a. The file at given filepath is used by another application.
   * 1a1. DengueHotspotTracker shows an error message. Use case resumes at step 2.
 
 ### Non-Functional Requirements
@@ -1063,10 +1049,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Case**: A person who has contracted Dengue fever.
   * Can be used interchangeably with **Person**.
-* **CSV file**: Comma-separated values file
+* **CSV file**: Comma-separated values file.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1082,13 +1068,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+1. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -1097,16 +1083,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding cases
 
-1. Adding a case
+1. Adding a case.
    1. Test case: `add n/Betty Tan p/123456 a/12 d/2023-03-23`<br>
       Expected: A case with the name `Betty Tan`, postal code `123456`, date `2023-03-23`
       and age `12` is added into DengueHotspotTracker.
-   1. Test case: `add n/River Lee`<br>
+   
+   2. Test case: `add n/River Lee`<br>
       Expected: No case is added. Error details shown in the status message.
 
 ### Deleting cases
 
-1. Deleting a single case while all cases are being shown
+1. Deleting a single case while all cases are being shown.
    1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
    
    2. Test case: `delete 1` <br>
@@ -1118,28 +1105,31 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect single-index delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) <br>
        Expected: Similar to previous.
    
-2. Deleting multiple cases while all cases are being shown
+2. Deleting multiple cases while all cases are being shown.
    
    3. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
    
-   4. Test case: `delete 1 2` <br>
+   4. Test case: `delete 1 2`. <br>
       Expected: First and second cases are deleted from the list. Number of cases deleted shown in the status message.
    
-   5. Test case: `delete 0 1` <br>
+   5. Test case: `delete 0 1`. <br>
       Expected: No case is deleted as at least one of the given indexes is out of range. Error details shown in the status message.
 
 ### Sorting cases
 
-1. Sorting cases
+1. Sorting cases.
+
     1. Prerequisites: List all cases using the `list` command. Multiple cases in the list.
-    1. Test case: `sort n/`<br>
+   
+    2. Test case: `sort n/`. <br>
        Expected: Cases are sorted by name.
-    1. Test case: `sort v/`<br>
+   
+    3. Test case: `sort v/`. <br>
        Expected: List does not change. Error details shown in the status message.
 
 ### Exporting/Importing data
 
-1. Testing import CSV
+1. Testing import CSV.
    
    1. Remove `denguehotspottracker.csv` file in the /data folder.
    
@@ -1155,7 +1145,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
    
    1. Ensure that `DengueHotspotTracker` is currently not running.
    
@@ -1228,6 +1218,10 @@ within which the cases were found:
 
 ![FindDateRangeSuccess](images/FindDateRangeSuccess.png)
 
+<br>
+
+![DeleteDateRangeSuccess](images/DeleteDateRangeSuccess.png)
+
 While minor, the discrepancy may cause confusion to users. We plan to standardise the
 success message, mentioning in both cases the date or date range within which the cases were found for greater clarity.
 
@@ -1236,7 +1230,7 @@ success message, mentioning in both cases the date or date range within which th
 We will implement a checker that will prompt the user asking if they're sure they want to override the CSV file
 currently at the filename location.
 
-We did not implement this due to the difficulty as well as not having thought about it prior to `v1.3`.
+We did not implement this due to the difficulty as well as not having thought about it prior to `v1.4`.
 
 ### Check the validity of filenames which include subdirectories
 
