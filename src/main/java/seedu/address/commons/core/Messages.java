@@ -15,7 +15,7 @@ public class Messages {
     public static final String MESSAGE_NO_HOMEWORK_FOUND = "No homework found";
     public static final String MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX = "The homework index provided is invalid";
     public static final String MESSAGE_HOMEWORK_DELETED_SUCCESS = "Homework : %s. %s\n"
-            + "Deleted from the %s\n";
+            + "Deleted from the student %s\n";
     public static final String MESSAGE_LESSON_ADDED_SUCCESS = "New lesson added: \n%s \n"
             + "To the following students: \n%s";
     public static final String MESSAGE_HOMEWORK_ALREADY_MARKED_AS_DONE =
@@ -29,11 +29,11 @@ public class Messages {
     public static final String MESSAGE_ALL_LESSONS_LISTED_OVERVIEW = "%d lessons from all students listed:\n%s";
     public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%d lessons from %d students listed: \n%s";
     public static final String MESSAGE_LESSON_DELETED_SUCCESS = "Lesson: %s, %s\n"
-            + "Deleted from the %s\n";
+            + "Deleted from the student %s\n";
     public static final String MESSAGE_INVALID_LESSON_DISPLAYED_INDEX = "The lesson index provided is invalid";
     public static final String MESSAGE_INVALID_EXAM_DISPLAYED_INDEX = "The exam index provided is invalid";
     public static final String MESSAGE_EXAM_DELETED_SUCCESS = "Exam: %s, %s\n"
-            + "Deleted from the %s\n";
+            + "Deleted from the student %s\n";
     public static final String MESSAGE_EXAM_ADDED_SUCCESS = "New exam added: \n%s \n"
             + "To the following students: \n%s";
     public static final String MESSAGE_EXAMS_LISTED_OVERVIEW = "%d exams from %d students listed: \n%s";

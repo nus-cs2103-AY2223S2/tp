@@ -3,7 +3,6 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -219,10 +218,6 @@ public class UniqueExamList implements Iterable<Exam> {
             if (!exam.isPastExam()) {
                 upcomingExams.add(exam);
             }
-        }
-        upcomingExams.sort(Comparator.comparing(Exam::getStartTime));
-        if (upcomingExams.size() > 3) {
-            upcomingExams = upcomingExams.subList(0, 3);
         }
         return FXCollections.observableArrayList(upcomingExams);
     }

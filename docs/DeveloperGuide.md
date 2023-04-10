@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+
 TutorPro is a **desktop app designed to help private tutors manage their student information effectively**. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimized for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -35,7 +36,7 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 - [**Appendix: Requirements**](#appendix-requirements)
   * [Product scope](#product-scope)
   * [User stories](#user-stories)
-- [Use cases](#use-cases)
+- [**Use cases**](#use-cases)
   * [Add a new student](#add-a-new-student)
   * [Delete a student](#delete-a-student)
   * [Update a student's particulars](#update-a-students-particulars)
@@ -50,8 +51,8 @@ TutorPro is a **desktop app designed to help private tutors manage their student
   * [Add Exam](#add-exam)
   * [View a particular Student's Exams](#view-a-particular-students-exams)
   * [View all Students' Exams](#view-all-students-exams)
-- [Non-Functional Requirements](#non-functional-requirements)
-- [Glossary](#glossary)
+- [**Non-Functional Requirements**](#non-functional-requirements)
+- [**Glossary**](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
   * [Deleting a student](#deleting-a-student)
@@ -63,13 +64,13 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is built from the AddressBook-Level3 project created by the SE-EDU initiative.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,7 +173,6 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="700" />
 
-
 The `Model` component,
 
 * stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
@@ -245,6 +245,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
 
 `GeneralHomeworkContent`,  `GeneralLessonsContent`, `GeneralExamsContent` are further extended by subclasses:
 
+
 * `EmptyHomeworkContent` and `FilledHomeworkContent` extend `GeneralHomeworkContent`, representing the situation where the `Student` has `Homework` and where the `Student` has no `Homework` respectively. 
 
   Specifically, `FilledHomeworkContent` has `HomeworkListPanel` with `HomeworkCard` on it, showing all homework of a `Student` and a `HomeworkPieChart`, reflecting the ratio of completed and pending `Homework` of  a `Student.`
@@ -291,6 +292,7 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
   7. `StudentCard` then calls `DetailedInfoSection#SetDeatiledContent()`, which then calls `DetailedInfoSection#SetDeatiledContent()`, with the `EmptyLessonsContent`  or `FilledLessonsContent`created from the previous calls. 
   8. `DetailedInfoSection` sets it to be the new `DetailedContent` to be displayed.
 
+
 * `EmptyExamsContent` and `FilledExamsContent` extend `GeneralExamsContent`, representing the situation where the `Student` has `Exams` and where the `Student` has no `Exams` respectively. 
 
   Specifically, `FilledExamsContent` has `AllExamsListPanel` with `ExamCard` on it, showing all past `Exams` of a `Student` and `UpcomingLessonsListPanel` with `ExamCard` on it, showing the most recent three upcoming `Exams` of a `Student`
@@ -304,7 +306,6 @@ Given below is the sequence diagram showing how the action of clicking the `Prof
   <img src="images/ExamsClickSequenceDiagram.png" width="1300" height="500" />
 
   **How the Filled Exams Section is created when the Exam Button is Clicked**
-
   1. Based on the graph above, after the user clicks the view exams button, `StudentCard` calls `Student#getFullName()`, which then calls `Name#getFirstName()`.
   2. `StudentCard` then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, which then calls `DetailedInfoSection#SetDeatiledHeaderBar()`, with the `FirstName` returned from the previous calls. 
   3. `DetailedInfoSection` creates a new `HeaderBar` and sets it to be the new `DetailedHeaderBar` to be displayed.
@@ -334,6 +335,17 @@ While designing the Quick Access Buttons on the Student Card, several alternativ
     * It Can lead to a cluttered user interface if multiple pop-up windows are open at the same time.
     * It Can require additional resources and time to design and implement compared to other alternatives.
 
+* **Alternative 2 :** Another alternative that was considered was to have a separate panel for each button click event. However, this alternative was ultimately rejected due to its potential drawbacks.
+  * Pros: 
+    * Provides a clear and separate panel to display the detailed information for each button.
+    * It Can be designed to provide a consistent layout and structure for displaying the detailed information.
+    * It Can be a good choice if there is a need to provide a lot of detailed information for each button click.
+    * It Can be helpful in providing a larger viewing area for the detailed information.
+  * Cons: 
+    * It Requires additional user interaction to close the panel, which can be cumbersome and time-consuming.
+    * It Can be less optimized for a command-line interface (CLI), where users prefer quick and direct access to information.
+    * It Can lead to a cluttered user interface if multiple panels are open at the same time.
+    * It Can require additional resources and time to design and implement compared to other alternatives.
 
 ### Create Lesson feature
 the `new-lesson` command adds a Lesson (specified with student name, lesson name, start time, and end time) to a particular Student. Given below is an example usage scenario and how the command works:
@@ -457,13 +469,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -831,6 +837,71 @@ Priorities:
 * **Homework**: A task given to the Student by the Tutor.
 * **TutorPro**: The name of the application.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Planned Enhancements
+
+### Properly Handle Long Names
+* Issue: Currently, if the student's name are too long, on the student card, the name will be truncated. The full name can only be seen by view-profile command, and via the Clicking the profile button on the student card.
+* Possible Solution to Implement in the Future: 
+    * Truncate the name to a certain length, and add an ellipsis at the end.
+    * Add a tooltip to the name label, so that the full name can be seen when the user hovers over the name label.
+
+### Properly Handle Long Tags
+* Issue: Currently, TutorPro disallows the user to add tags that exceeds 30 characters in length.
+* Possible Solution to Implement in the Future: 
+    * Truncate the tag to a certain length, and add an ellipsis at the end.
+    * Add a tooltip to the tag label, so that the full tag can be seen when the user hovers over the tag label.
+
+### Resizable Main Window
+* Issue: Currently, the main window is not resizable.
+* Possible Solution to Implement in the Future: 
+    * Make the main window resizable.
+    * Make the main window resizable, but with a minimum size.
+    * Properly handle the proportion of the different components in the main window when the main window is resized.
+
+### Storage Encryption
+* Issue: Currently, the data is stored in plain text and can be easily modified by the users. If the user make a change that can be parsed by the parser to the data, the application will not detect it but can cause unexpected behaviour.
+* Possible Solution to Implement in the Future: 
+    * Encrypt the data before storing it.
+    * Encrypt the data before storing it, and allow the user to set a password to decrypt the data.
+    * Make the data unmodifiable by the user.
+
+### Synchronized Commands and Detailed Information Section
+* Issue: Currently, the commands are not synchronized with the detailed information section. For example, if the user updates the name of a student, the Detailed Information Section will refresh to the Welcome Page, and the user will have to click on the student card again to see the updated name.
+* Possible Solution to Implement in the Future:
+  * Make the Detailed Information Section refresh to the corresponding profile, homework, lesson, or exam page that the user is operating on.
+
+### Better Error Message
+* Issue: Currently, the error message is not very descriptive. For example, if the user enters an invalid command, the error message will be "Invalid command format! + [the correct format of the command]".
+* Possible Solution to Implement in the Future:
+  * Make the error message more descriptive. For example, if the user enters an invalid command, the error message will be "Invalid command format! + [the correct format of the command] + [the reason why the command is invalid]".
+  * Use color to highlight the invalid part of the command.
+
+### Customizable Color Theme
+* Issue: Currently, the color theme of the application is fixed.
+* Possible Solution to Implement in the Future:
+  * Allow the user to customize the color theme of the application.
+  * Allow the user to choose from a few pre-defined color themes.
+
+### Customizable Font
+* Issue: Currently, the font of the application is fixed.
+* Possible Solution to Implement in the Future:
+  * Allow the user to customize the font of the application.
+  * Allow the user to choose from a few pre-defined fonts.
+
+### Empty Data File Handling
+* Issue: Currently, if the user opens the application for the first time, TutorPro will show a set of sample students. However, if the user's data file is somehow corrupted, TutorPro will show an empty student list. This can be confusing for the user.
+* Possible Solution to Implement in the Future:
+  * Show a set of sample students if the data file is corrupted, and allow the user to import the sample students into the data file.
+  * Show where the data file is located and how is the data file corrupted, and allow the user to fix the data file.
+
+### Memo for Lessons
+* Issue: Currently, the user cannot add any remarks to a lesson.
+* Possible Solution to Implement in the Future:
+  * Allow the user to add a memo to a lesson.
+  * Allow the user to add a memo to a lesson, and allow the user to view the memo in the Detailed Information Section.
 
 --------------------------------------------------------------------------------------------------------------------
 
