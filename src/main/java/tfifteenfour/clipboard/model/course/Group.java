@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.student.Student;
-import tfifteenfour.clipboard.model.student.UniqueStudentList;
+import tfifteenfour.clipboard.model.student.UniqueStudentsList;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.model.task.UniqueTasksList;
 
@@ -19,12 +19,12 @@ public class Group {
     public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}]+$";
 
     private String groupName;
-    private final UniqueStudentList students;
+    private final UniqueStudentsList students;
     private final UniqueSessionsList sessions;
     private final UniqueTasksList tasks;
 
     {
-        students = new UniqueStudentList();
+        students = new UniqueStudentsList();
     }
 
     {
@@ -50,7 +50,7 @@ public class Group {
      */
     public Group copy() {
         Group copy = new Group(this.groupName);
-        UniqueStudentList studentsCopy = new UniqueStudentList();
+        UniqueStudentsList studentsCopy = new UniqueStudentsList();
         UniqueSessionsList sessionsCopy = new UniqueSessionsList();
         UniqueTasksList tasksCopy = new UniqueTasksList();
 
@@ -65,7 +65,7 @@ public class Group {
 
     }
 
-    public void setStudents(UniqueStudentList students) {
+    public void setStudents(UniqueStudentsList students) {
         this.students.setInternalList(students.asUnmodifiableObservableList());;
     }
 
