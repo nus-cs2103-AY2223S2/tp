@@ -648,23 +648,23 @@ Use case ends.
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of their tasks faster using commands than using the mouse.
 4. The final product should be a result of evolving/enhancing/morphing the given code base.
 5. The product should be targeting users who can type fast and prefer typing over other means of input.
 6. The product should be for a single user i.e. (not a multi-user product).
 7. The product needs to be developed in a breadth-first incremental manner over the project duration.
 8. Data of the product should be stored locally and should be in a human-editable text file.
 9. The software should not use a DBMS to store data.
-10. The software should follow the Object-oriented paradigm primarily
+10. The software should follow the Object-oriented paradigm primarily.
 11. The software should work on the Windows, Linux, and OS-X platforms.
 13. The software should work without requiring an installer.
 14. The software should not depend on our remote server.
 15. Any third-party frameworks/libraries/services used in the product should be free and open-source (this doesn't apply to services), have permissive license terms, and should not require any installation by users.
 16. The GUI of the product should work well (i.e., should not cause any resolution-related inconveniences to the user) for standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%.
-17. Tge GUI of the product should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%.
+17. The GUI of the product should be usable (i.e., all functions can be used even if the user experience is not optimal) for resolutions 1280x720 and higher, and for screen scales 150%.
 18. The entire product needs to be packaged into a single JAR file.
 19. The file sizes of the product should be reasonable and not exceed the limit of 100MB.
-20. The developer guide and user guide of the product should be PDF-friendly. Don't use expandable panels, embedded videos, animated GIFs etc.
+20. The developer guide and user guide of the product should be PDF-friendly. They shouldn't use expandable panels, embedded videos, animated GIFs etc.
 22. The product should be testable.
 
 
