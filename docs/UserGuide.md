@@ -17,7 +17,6 @@ managers to efficiently delegate tasks in an organised manner.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## 1. Getting started
 
 #### 1.1 Accessing the app
@@ -59,7 +58,6 @@ Below are the prefixes and parameters we use in commands.
 - After entering a prefix and its parameter, there should be a space before the next prefix and its parameter.
   (e.g `addp n/Peterp/95748483e/pter@gmail.coma/Sims Drive 6` is an invalid command format. The valid command format should be `addp n/Peter p/95748483 e/pter@gmail.com a/Sims Drive 6`)
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -86,7 +84,7 @@ added.
 ![add_whitebackground.jpg](images%2Fproduct-screenshots%2Fadd_whitebackground.jpg)
 <p align="center">
 <em>New contact added!</em>
-</p><br/>
+</p>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 With OfficeConnect, you can experience a real-time search functionality where the search results update dynamically
@@ -98,7 +96,9 @@ should be able to see the list being updated as such:
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
 <p align="center">
 <em>Alice found not slacking;)</em>
-</p><br/>
+</p>
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may notice that there are progress bars of different 
@@ -117,7 +117,7 @@ learn more about new features.
 ![help_whitebackground.jpg](images%2Fproduct-screenshots%2Fhelp_whitebackground.jpg)
 <p align="center">
 <em>Help sent</em>
-</p><br/>
+</p>
 
 ----------------------------------------------------------------
 
@@ -172,7 +172,9 @@ Format: `quickstart`
 ![quickstart_whitebackground.jpg](images%2Fproduct-screenshots%2Fquickstart_whitebackground.jpg)
 <p align="center">
 <em>Virtual guide to app mastery</em>
-</p><br/>
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.2 Viewing help : `help`
 
@@ -189,7 +191,7 @@ Format: `help`
 ![help_whitebackground.jpg](images%2Fproduct-screenshots%2Fhelp_whitebackground.jpg)
 <p align="center">
 <em>Assistance at your fingertips</em>
-</p><br/>
+</p>
 
 ### 3.2 Person Commands
 
@@ -263,7 +265,7 @@ Examples:
 ![find_whitebackground.jpg](images%2Fproduct-screenshots%2Ffind_whitebackground.jpg)
 <p align="center">
 <em>Find Alice's assigned tasks</em>
-</p><br/>
+</p>
 
 ### 3.3 Task Commands
 
@@ -500,7 +502,7 @@ Sets the overall theme of OfficeConnect to light mode. This mode is chosen as th
 ![startup_whitebackground.jpg](images%2Fproduct-screenshots%2Fstartup_whitebackground.jpg)
 <p align="center">
 <em>The Days</em>
-</p><br/>
+</p>
 
 #### 3.6.5  Dark theme support
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -512,7 +514,7 @@ Sets the overall theme of OfficeConnect to dark mode.
 ![darktheme_whitebackground.jpg](images%2Fproduct-screenshots%2Fdarktheme_whitebackground.jpg)
 <p align="center">
 <em>The Nights</em>
-</p><br/>
+</p>
 
 ### 3.7 Archiving data files `[coming in v1.5]`
 
