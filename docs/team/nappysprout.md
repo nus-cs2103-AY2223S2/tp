@@ -9,6 +9,11 @@ CoDoc is a desktop contact management application. The user interacts with it us
 
 ##### Summary of Contributions
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=nappysprout&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
+These following new features were simple but very tedious to implement as simply adding new attribute required adding new files all
+over the code, Logic, parser, model and storage were all touched. I had to update the test cases as well to ensure the new 
+test cases include the newly added attributes. Despite the tediousness, it was an important role as my peers were about to 
+build upon the foundations I made to build greater implementations like, filtering based on module or courses.
 * **New Feature**: Module
     * What it does: Provide Module field for Person in Codoc
     * Justification: Codoc is an address book for Students and Module is an important aspect of student
