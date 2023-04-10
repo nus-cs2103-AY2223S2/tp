@@ -577,11 +577,10 @@ similar to the ones described in the
 layer.
 
 Subsequently, the control is passed to the storage layer through the `logicManager.save()` method.
-This method calls `storage.saveXYZManager(model.getXYZManager())`,
-`storage.saveLocationManager(model.getLocationManager())` and
-`storage.saveFlightManager(model.getFlightManager());`, to save the updated XYZ, location and flight objects
-in storage. Since these 3 method calls work in the same way, we shall focus on just the latter to keep
-the diagram simple.
+This method calls the `storage.saveXYZManager(model.getXYZManager())` for all resource types
+(i.e. `Flight`, `Pilot`, `Plane`, `Location` and `Crew`) to save all the updates made across all objects
+in storage. Since these method calls work in the same way for each resource type, we shall focus on just the
+method call to save the updated flight objects in storage, to keep the diagram simple.
 
 <img src="images/WingmanUnlinkXYZSequenceDiagram.png" width="966" alt="Sequence diagram at Storage layer">
 
