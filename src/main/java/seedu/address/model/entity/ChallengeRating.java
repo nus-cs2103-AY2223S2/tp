@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class ChallengeRating {
     public static final String CONSTRAINTS = "Challenge rating should be a number!";
 
-    private static final double BASE_RATING = 0.0;
+    public static final double BASE_RATING = 0.0;
 
     private final Double rating;
 

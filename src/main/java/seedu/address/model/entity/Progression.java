@@ -9,8 +9,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Progression {
     public static final String CONSTRAINTS = "Levels and experience points should be integers";
 
-    private static final int BASE_LEVEL = 1;
-    private static final int BASE_XP = 0;
+    public static final int BASE_LEVEL = 1;
+    public static final int BASE_XP = 0;
 
     private final Integer level;
     private final Integer xp;
