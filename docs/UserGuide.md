@@ -1120,7 +1120,7 @@ What you should see:<br>
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Examples**<br>
-* `meet 12 32 8 4` : Recommends some meeting times and locations for a potential meetup with friends with the following indices `12, 32, 4, 8`.
+* `meet 12 32 8 4` : Recommends some meeting times and locations for a potential meet ups with friends with the following indices `12, 32, 4, 8`.
 * `eat 5 2 8 1 3` : Recommends some meeting times and eating spots for friends with the following indices `5, 2, 8, 1, 3`
 * `study 6 2` : Recommends some meeting times and study spots for friends with the following indices `6 and 2`.
 
@@ -1186,7 +1186,7 @@ What you should see:<br>
 
 #### Unorganise a meet up `unorganise`
 
-If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
+If you wish to remove a scheduled meet ups from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
 
 <div markdown="block" class="alert alert-info">
 
