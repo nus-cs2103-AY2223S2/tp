@@ -71,9 +71,7 @@ Welcome to OfficeConnect!
 
 This section is designed specifically for newcomers who are looking to get started with our platform. 
 Here, you'll find all the essential information you need to start using OfficeConnect and make the most out of 
-its features.
-
-So without any further ado, let's dive in!
+its features. So without any further ado, let's dive in!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 OfficeConnect comes with preloaded data that aims to help you get familiar with the platform when you first launch it.
