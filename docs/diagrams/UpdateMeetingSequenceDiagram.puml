@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("meetingUpdate 1 2 md/ Policy discussion \n ms/ 30-03-2020 20:10 me/ 22:10")
+[-> LogicManager : execute("meetingUpdate 1 2 \n md/ Policy discussion \n ms/ 30-03-2020 20:10 \n me/ 22:10")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("meetingUpdate 1 2 md/ Policy discussion \n ms/ 30-03-2020 20:10 me/ 22:10")
+LogicManager -> AddressBookParser : parseCommand("meetingUpdate 1 2 \n md/ Policy discussion \n ms/ 30-03-2020 20:10 \n me/ 22:10")
 activate AddressBookParser
 
 create UpdateMeetingCommandParser
@@ -27,7 +27,7 @@ activate UpdateMeetingCommandParser
 UpdateMeetingCommandParser --> AddressBookParser
 deactivate UpdateMeetingCommandParser
 
-AddressBookParser -> UpdateMeetingCommandParser : parse(1 2 md/ Policy discussion \n ms/ 30-03-2020 20:10 me/ 22:10)
+AddressBookParser -> UpdateMeetingCommandParser : parse(1 2 \n md/ Policy discussion \n ms/ 30-03-2020 20:10 \n me/ 22:10)
 activate UpdateMeetingCommandParser
 
 create EditMeetingDescriptor

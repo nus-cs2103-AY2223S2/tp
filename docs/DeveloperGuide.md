@@ -243,7 +243,7 @@ information on how the `Logic` component handles a command.
 The parsing and execution of updateMeeting command can be shown with the following
 sequence diagram:
 
-![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram.png)
+![UpdateMeetingSequenceDiagram](images/UpdateMeetingSequenceDiagram1.png)
 
 ### 6. Find Meeting Feature
 
