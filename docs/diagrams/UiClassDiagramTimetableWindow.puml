@@ -32,6 +32,7 @@ CommandBox -[hidden]down- ResultDisplay
 ResultDisplay -[hidden]down- StatusBarFooter
 
 TimetableWindow *-down-> "1" TimetableDetailPanel
+TimetableDetailPanel --> Logic
 
 DayOfWeekPanel -[hidden]down- DayOfMonthPanel
 WeekJobListPanel -[hidden]left- DayOfWeekPanel

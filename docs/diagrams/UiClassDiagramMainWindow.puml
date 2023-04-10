@@ -33,8 +33,6 @@ package Timetable <<Rectangle>> {
 Class TimetableWindow
 Class CompleteWindow
 Class UnscheduleWindow
-Class UnscheduledDeliveryJobListPanel
-Class DeliveryJobCard
 }
 
 package Reminder <<Rectangle>> {
@@ -64,11 +62,7 @@ MainWindow *-down-> "1" Statistics
 TimetableWindow -[hidden]- CompleteWindow
 CompleteWindow -[hidden]- UnscheduleWindow
 
-CompleteWindow *-down-> "1" UnscheduledDeliveryJobListPanel
-UnscheduledDeliveryJobListPanel *-down-> "*" DeliveryJobCard
 
-UnscheduleWindow *-down-> "1" UnscheduledDeliveryJobListPanel
-UnscheduledDeliveryJobListPanel *-down-> "*" DeliveryJobCard
 
 JobSystem *-down-> "1" AddressBook
 Statistics -[hidden]down- Reminder
