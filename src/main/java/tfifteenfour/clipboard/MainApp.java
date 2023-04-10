@@ -78,19 +78,19 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyRoster> addressBookOptional;
+        Optional<ReadOnlyRoster> rosterOptional;
         Path sampleFilePath = userPrefs.getSampleFilePath();
         InputStream sampleResourceStream = this.getClass().getResourceAsStream("/assets/sampleRoster.json");
 
 
         ReadOnlyRoster initialData;
         try {
-            addressBookOptional = storage.readRoster();
-            if (addressBookOptional.isEmpty()) {
+            rosterOptional = storage.readRoster();
+            if (rosterOptional.isEmpty()) {
                 logger.info("Data file not found. " + MESSAGE_SAMPLE);
                 new File("data").mkdir();
             }
-            initialData = addressBookOptional.orElseGet(() ->
+            initialData = rosterOptional.orElseGet(() ->
                     SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. " + MESSAGE_SAMPLE);

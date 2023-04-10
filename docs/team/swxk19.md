@@ -7,6 +7,7 @@ title: Kelvin's Project Portfolio Page
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=swxk19&tabRepo=AY2223S2-CS2103T-T15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ## Enhances Implemented&nbsp;
+### Features
 1. Remodelling of AB3's `Model`, `Logic`, and `Storage` interfaces
 2. Implemented `undo`, `find`, `sort`, and navigation commands
 3. Contributed to `add`, `edit`, `delete` commands
@@ -21,6 +22,9 @@ title: Kelvin's Project Portfolio Page
 
 ## Contributions to DG&nbsp;
 1. `undo` implementation in Implementations section
+2. `Storage` implementation in Implementations section
+3. `UniqueList` implementation in Implementations section
+4. "Appendix: Effort" section
 
 ## Contributions to Team-Based Tasks&nbsp;
 1. Participated in drafting [UI mockup (v1.1)](https://docs.google.com/presentation/d/1zS7pX0cm-4faiwjN71NLIgvmkHgRCETdZZtLpKHsn38/edit?usp=share_link)
