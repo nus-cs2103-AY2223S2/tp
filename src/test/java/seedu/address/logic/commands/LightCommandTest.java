@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.LightCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.LightCommand.MESSAGE_ERROR;
+import static seedu.address.logic.commands.LightCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserData;
@@ -20,7 +21,7 @@ public class LightCommandTest {
     //Default Start up Dark Theme
     //Expected Behaviour to change from Dark Theme -> Light Theme
     @Test
-    public void execute_default_light_success() {
+    public void execute_defaultlight_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false);
         assertCommandSuccess(new LightCommand(), model, expectedCommandResult, expectedModel);
     }
