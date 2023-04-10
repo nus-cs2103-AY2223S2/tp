@@ -494,7 +494,8 @@ Below is a sequence diagram that illustrates how a user unassign a tasks from a 
 
 #### 3.8.1 Implementation
 
-The implementation of this feature is supported by `UnassignTaskCommand` and `UnassignTaskCommandParser`.
+The implementation of this feature is supported by `UnassignTaskCommand`, `UnassignTaskCommandParser`, `ListCommand`, `ListAssignment`
+`ListTaskCommand`, `ListAllCommand`, `FindCommand` and `FindTaskCommand`.
 
 #### 3.8.2 Design Considerations
 
