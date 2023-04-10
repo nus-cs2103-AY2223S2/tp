@@ -150,34 +150,19 @@ How the parsing works:
 
 ![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)
 
-The `Model` box is the central component of the Mycelium's data. It contains
-the entities `Client` and `Project` which are used to store the data of each
-entity.
+The `Model` is the central component of the Mycelium's data. It contains the
+`Client`s and `Project`s which are used to store the data of each entity. Note
+the attributes of the `Client` and `Project` classes are never allowed to be
+`null`. The optional attributes are correspondingly wrapped in an `Optional`.
 
-The `Client` class contains the attributes for a client's `Name`, `Email`,
-`YearOfBirth`, source and `Phone` number, where the name and email are
-compulsory fields. The rest of the attributes are optional, and hence stored in
-`Optional` objects. The source attribute is a `String`.
+Operations related to `Client`s and `Project`s are separately defined in the
+`ClientModel` and `ProjectModel` interfaces, to improve separation of concerns.
+The `Model` interface then extends these two interfaces.
 
-The `Project` class contains the attributes for a project's `Name`,
-`ProjectStatus`, `Email`, source, description, acceptedOn and deadline, where
-the project name and email are compulsory fields. The rest of the attributes
-are optional, where source, description and deadline are wrapped in `Optional`
-objects. These optional attributes are typed:
-
-- source: String
-- projectStatus: `ProjectStatus`
-- description: String
-- acceptedOn: `LocalDate`
-- deadline: `LocalDate`
-
-Each entity uses different methods, which they inherit from `ClientModel` and
-`ProjectModel` interface via the `Model` interface respectively.
-
-Moreover, each entity is also stored in a `UniqueList`, which ensures that the
-list do not contain duplicates. `UniqueList` from each entity is then stored in
-`AddressBook`, which contains the overarching methods for handling each type of
-list.
+Moreover, each client or project is also stored in a generic `UniqueList` which
+ensures that the list does not contain duplicates. The `UniqueList`s are then
+stored in `AddressBook`, which contains the overarching methods for handling
+each type of list.
 
 ### Storage component
 
