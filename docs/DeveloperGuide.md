@@ -116,6 +116,7 @@ The `UI` component,
 <div style="page-break-after: always;"></div>
 
 **`Page` class**
+
 The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user.
 
 Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
@@ -126,7 +127,7 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 
 <img src="images/PageClasses.png" width="650" />
 
- </p>
+<br /> 
 
 <div style="page-break-after: always;"></div>
 
