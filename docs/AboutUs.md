@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/saha9616.png" width="200px">
 
 [[github](http://github.com/Saha9616)]
-[[portfolio](team/salty-flower.md)]
+[[portfolio](team/saha9616.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality, Storage
