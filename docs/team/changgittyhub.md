@@ -54,7 +54,7 @@ Given below are my contributions to the project.
   * Raise and clarify doubts during team meetings and in the Team group chat
   * Communicate professionally with Professor Damith on Outlook to change UG details
   * Clarify questions on behalf of the team on MSTeams with Tutor.
-  * Community thoroughly with team members.
+  * Communicate thoroughly with team members to reduce double work and fix bugs together when help is needed.
 
 
 
