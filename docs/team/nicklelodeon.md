@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Participated actively during group discussions, through providing help and opinions to my group mates when necessary, as well as seeking help from them.
 
 - **Enhancements to existing features**:
-  * Added a command to filter persons according to their tag, as described above. Previously, there was no way for users to search for tags, which meant that they had to scroll through all the persons individually to find out which persons had a specified tag. This would be especially time-consuming if there were many persons stored in OfficeConnect. Hence, I decided to add a filter function for tag to improve the convenience of tag searching and provide more purpose for the tag label, which will in turn encourage more users to add tags when necessary. With the addition of this command, tags are evolved from a mere cosmetic feature to a powerful filtering feature. 
+  * Added a command to filter persons according to their tag, as described above. Previously, there was no way for users to search for tags, which meant that they had to scroll through all the persons individually to find out which persons had a specified tag. This would be especially time-consuming if there were many persons stored in OfficeConnect. Hence, I decided to add a filter function for tag to improve the convenience of tag searching and provide more purpose for the tag label, which will evolve tags from a mere cosmetic feature to a powerful filtering feature. 
 
 - **Documentation**:
 - Developer Guide:
@@ -50,7 +50,6 @@ Given below are my contributions to the project.
   * Contributed to documentation of group discussions in the group collaborative docs. 
   * Assisted in PR reviews and suggested improvements on documentation where necessary. 
   * Updated README to include links to our UserGuide, DeveloperGuide and provide feature overview of the features in OfficeConnect. 
-  * Added details on myself in AboutUs. 
 
 - **Community**:
   * Reviewed PRs of peers: [\#57](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/57), [\#59](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/59), [\#75](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/75), [\#83](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/83), [\#110](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/110), [\#114](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/114), [\#131](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/131), [\#133](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/133).
