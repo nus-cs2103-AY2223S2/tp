@@ -39,7 +39,7 @@ To help you navigate the guide, we've divided it into several sections, each cov
 2. Section [2. Quick Start](#2-quick-start)
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
-3. Section [3. Overview of features](#3-overview-of-features)
+3. Section [3. Overview of Features](#3-overview-of-features)
     - If you want to get a better understanding of CareFlow's main features, head to Section 3, "Overview of
       features". This section provides a explanation of three main feature of CareFlow and how to use them.
 
@@ -59,8 +59,7 @@ To help you navigate the guide, we've divided it into several sections, each cov
     - If you come across a term you're not familiar with, the glossary in section 8 is a useful resource. It
       provides clear definitions and explanations for all the terminology used in the user guide.
 
-To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of
-CareFlow and working your way through each section. You can also use the [table of contents](#top) to jump to specific
+To make the most of this user guide, we recommend reading through it in order, starting with the [Overview of Features](#3-overview-of-features) and working your way through each section. You can also use the [table of contents](#top) to jump to specific
 sections as needed.
 
 ## 1.2 Note on symbols and formatting used
