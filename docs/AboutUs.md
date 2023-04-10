@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at any of the following emails:
 * [Afiq Zuhairi Bin Sahri](mailto:afiqzuhairi@gmail.com)
-* [Chong Yijing Isabel](mailto:e0775756@u.nus.edu)
+* [Chong Yijing Isabel](mailto:isabelchong.cyji@gmail.com)
 * [Seow Wen Xuan, Kelvin](mailto:s.wxk19@gmail.com)
 * [Pearl Twe](mailto:pearltwe23@gmail.com)
 * [Ting Yi Xin](mailto:yxting1109@gmail.com)
