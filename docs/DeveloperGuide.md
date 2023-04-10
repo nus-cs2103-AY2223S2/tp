@@ -11,7 +11,7 @@ title: Developer Guide
     * **[Logic component](#logic-component)**
     * **[Model component](#model-component)**
         * [Task Model](#task-model)
-        * [Score Model](#score-model)
+        * [UniqueScoreList Model](#uniquescorelist-model)
     * **[Storage component](#storage-component)**
     * **[Common classes](#common-classes)**
 * **[Appendix: Requirements](#appendix-requirements)**
