@@ -341,6 +341,8 @@ The delete patient command allows the user to delete an existing patient from Me
 
 Deletes an appointment from the appointment list. Calendar is updated accordingly.
 
+<div style="page-break-after: always;"></div>
+
 **Implementation**
 
 ![Sequence diagram for delete appointment](images/DeleteApptSequenceDiagram-0.png)
@@ -434,6 +436,8 @@ The clear command deletes all patients and appointments from the patient and app
 The exit command exits the application.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
