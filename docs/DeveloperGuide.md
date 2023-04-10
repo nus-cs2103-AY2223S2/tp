@@ -300,14 +300,13 @@ Some additions made to the original AB3 attributes are the `Education`, `Module`
 2. `Module` is implemented similarly to `Tags` but has been modified to accommodate module names that are more than one word long.
 3. Every attribute except `Name` has been made optional during the inputting of the command in case the student's details are unknown at the time of entry.
 
-
 **Aspect: Optional fields**
 * **Alternative 1 (current choice):** Only `Name` has to be specified to add a new `Person` entry.
     * Pros:
         * Improves the user's convenience by allowing them to add a `Person` entry even with limited knowledge about their details.
     * Cons:
         * Many cases of empty/*null* inputs in the optional fields have to be accounted for when saving the data and testing.
-* **Alternative 2:** All parameters have to be filled in
+* **Alternative 2:** All parameters have to be filled in.
     * Pros:
         * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs among the optional fields
     * Cons:
@@ -332,11 +331,10 @@ Here is a sequence diagram showing the interactions between components when `del
 #### Feature Details
 
 1. The `delete` command supports deleting multiple entries at once by specifying multiple indexes. 
->For example, `delete 1 3 5` will delete the entries at indexes 1, 3 and 5 in the `AddressBook`. 
+> For example, `delete 1 3 5` will delete the entries at indexes 1, 3 and 5 in the `AddressBook`. 
 2. If any of the indexes given is not a positive integer or is out of bounds of the current list of entries, none of the entries will be deleted and an error will be shown.
 3. If duplicate indexes are given, none of the entries will be deleted and an error will be shown.
 4. If the command is valid, the entries at the specified indexes will be deleted from the `VersionedAddressBook`.
-
 
 #### Design Considerations
 
@@ -354,7 +352,7 @@ Taking into consideration that users might make a typo as well as the time cost 
     * If command only has minor typos, this might save the user time by not needing to editing their command.
   * Cons:
     * The index of the intended entry to delete might be invalid, so after the other entries with valid indexes are deleted, the user needs to run `delete` again anyway to fully delete their desired entries.
-    * Reduces the defensiveness of the application, making it more susceptible to bugs and unexpected behaviours.ee
+    * Reduces the defensiveness of the application, making it more susceptible to bugs and unexpected behaviours.
 
 [↑ Back to top](#table-of-contents)
 
@@ -403,7 +401,7 @@ Whether a new `Person` object should be created when editing a student entry.
 ### Find feature
 
 #### Implementation Details
-The implementation of `find` involves searching for entries that matches all the fields specified.
+The implementation of `find` involves searching for entries that match all the fields specified.
 
 The `find` feature supports matching of partial keywords using the `StringUtil::containsPartialIgnoreCase`, as well as specifying which field to match the keyword in using [prefixes](#add-feature).
 
@@ -451,7 +449,7 @@ Our implementation has some modifications such as:
 2. Specifying fields to search in by inputting the corresponding prefixes.
 
 **Aspect: Command format:**
-* **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
+* **Alternative 1 (Current choice):** `find [PREFIX KEYWORD/PARTIAL_KEYWORD]...`
   * Pros:
     * Improves the user's convenience as they do not have to type the full keyword everytime.
     * Extensible across other attributes.
@@ -459,7 +457,7 @@ Our implementation has some modifications such as:
   * Cons:
     * Adds complexity to the implementation as this implementation introduces a lot of potential errors in parsing the user's input.
     * Might be slightly challenging for new users to enter `PREFIX`.
-* **Alternative 2:** `find KEYWORD/PARTIAL_KEYWORD` (With no `PREFIX`)
+* **Alternative 2:** `find [KEYWORD/PARTIAL_KEYWORD]...` (With no `PREFIX`)
   * Pros:
     * Easier to implement as there is lesser validating done by the app.
     * Provides the user flexibility in searching across all attributes by default.
@@ -549,8 +547,8 @@ such as [`find`](#find-feature) or [`filter`](#filter-feature) which displays a 
 
 #### Implementation Details
 The application provides users with two different methods of entering or editing a remark for a student.
-* Using the pop-up text box implemented in this feature
-* Adding the remark through the [`add`](#add-feature) command
+* Using the pop-up text box implemented in this feature.
+* Adding the remark through the [`add`](#add-feature) command.
 
 Similar to [`edit`](#edit-feature), this feature makes use of the `EditPersonDescriptor` to create a new `Person` object with the updated remarks. Then, the previous `Person` object is replaced.
 
@@ -564,7 +562,7 @@ Here is a sequence diagram showing the interactions between components when `rem
 #### Feature Details
 1. The remark feature is facilitated by a pop-up text box brought up by using the command `remark INDEX`.
 2. The contents of the pop-up text box are saved by pressing `Ctrl + S` on the keyboard.
-3. If the content of the remarks is blank, the command will be treated as a delete command and any existing remarks will be deleted.
+3. If the content of the remarks is blank, the command will be treated as a remark deletion operation and any existing remarks will be deleted.
 4. Similar to [`edit`](#edit-feature), a new `Person` object is created with the new remarks and replaces the old `Person` object in the `VersionedAddressBook`
 
 #### General Design Considerations
@@ -576,7 +574,7 @@ Additionally, we opted for a pop-up text window as the command line only provide
 **Aspect: Command input format**
 * **Alternative 1:** Adding the `remark` through the command line.
   * Pros:
-    * Easier to implement
+    * Easier to implement.
   * Cons:
     * Restricts users to a single line or continuous paragraph of remark.
     * Limits formatting options for remark.
@@ -593,22 +591,22 @@ Additionally, we opted for a pop-up text window as the command line only provide
     * Short remarks are instantly visible to users.
     * Easy to implement.
   * Cons:
-    * A short remark which has a length slightly over the character limit for truncation can only be viewed via the [`show`](#show-feature)
+    * A short remark which has a length slightly over the character limit for truncation can only be viewed via the [`show`](#show-feature).
 * **Alternative 2:** If a remark is present, simply display an indicator in `PersonCard`
   * Pros:
     * Easy to implement.
     * Viewing the remark in `ResultDisplay` is supported by the [`show`](#show-feature) command.
     * Supports formatting of `remark` since it is not restricted to the `PersonCard` view.
   * Cons:
-    * An extra step for users may be inconvenient
-    * Inconvenient for short remarks compared to alternative 1.
+    * An extra step for users may be inconvenient.
+    * Inconvenient for short remarks compared to **Alternative 1**.
 * **Alternative 3:** Show the full remark in `PersonCard` beside all the other attributes
   * Pros:
     * Remark is directly visible from the list.
     * Supports formatting in `remark`.
   * Cons:
     * Remarks are limited to the view of `PersonCard` and size of the window.
-    * Remarks that are too long will be cut off and not visible.
+    * Remarks that are too long will be cut off and be not fully visible.
 
 [↑ Back to top](#table-of-contents)
 
@@ -636,20 +634,20 @@ Hence, `show` allows users to view the full remark in the `ResultDisplay` where 
     * Supports the `remark` command as intended since scrolling is possible.
     * Allows users to view the student details and remarks all at once.
   * Cons:
-    * Harder to implement
+    * Harder to implement.
 * **Alternative 2:** Display the entire `PersonCard` of the student chosen in `PersonListPanel`.
   * Pros:
     * Allows users to view the student details and remarks all at once.
-    * Supports the `remark` command as intended
+    * Supports the `remark` command as intended.
   * Cons:
     * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
-    * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated everytime `show` is executed.
+    * Harder to implement as the size of the `PersonCard` for the `Person` has to be updated every time `show` is executed.
 
 
 
 [↑ Back to top](#table-of-contents)
 
-### Undo/redo feature
+### Undo/Redo feature
 
 #### Implementation Details
 This feature involves restoring the current address book to its previous version after a command altering the address book is executed.
@@ -660,7 +658,7 @@ Examples of such commands are:
 * [`edit`](#edit-feature)
 * [`remark`](#remark-feature)
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as a `versionStateHistory` and `currentVersionPointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history as well as the command that was last executed.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -672,15 +670,15 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
+**Step 1**. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentVersionPointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
+**Step 2**. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentVersionPointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 3**. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -688,26 +686,25 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+**Step 4**. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentVersionPointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#checkUndoable()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersionPointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#checkUndoable()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the `undo` operation.
 
 </div>
 
-The following sequence diagram shows how the undo operation works (assuming `VersionedAddressBook is undoable`):
+The following sequence diagram shows how the undo operation works (assuming `VersionedAddressBook` is undoable):
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentVersionPointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-The following sequence diagrama shows how the redo operation works (assuming `VersionedAddressBook` is redoable):
+The following sequence diagram shows how the redo operation works (assuming `VersionedAddressBook` is redoable):
 
 ![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
 
@@ -715,7 +712,7 @@ The following sequence diagrama shows how the redo operation works (assuming `Ve
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+**Step 5**. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -732,23 +729,31 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Pros:
+    * Easy to implement.
+  * Cons: 
+    * May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: 
+    * Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: 
+    * We must ensure that the implementation of each individual command is correct.
 
 **Aspect: Command History:**
 
 * **Alternative 1 (current choice):** Only saves the commands that modify the address book.
-  * Pros: Easy to implement.
-  * Cons: Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
+  * Pros: 
+    * Easy to implement.
+  * Cons: 
+    * Reduces user experience as keeping track of all commands will also allow us to improve the error messages by specifying the specific recent command which does not allow `undo` or `redo`
 
 * **Alternative 2 :** Save every command executed regardless of whether it modifies the address book.
-  * Pros: Improves user experience by improving the quality of the error message for `undo` and `redo`
-  * Cons: Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
+  * Pros:
+    * Improves user experience by improving the quality of the error message for `undo` and `redo`.
+  * Cons: 
+    * Slightly more complicated to implement as a separate `currentStatePointer` for the command history will have to be added.
 
 [↑ Back to top](#table-of-contents)
 
@@ -770,11 +775,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably are proficient typers.
+* Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably proficient typists.
 
 **Value proposition**:
 
-* TeachMeSenpai acts as an optimised app for tutors to manage their students' data, obtain insights on their students' data.
+* TeachMeSenpai acts as an optimised application for tutors to manage their students' data and obtain insights on their students' data.
 
 ### User stories
 
@@ -1080,7 +1085,7 @@ Currently, the `edit` feature allows editing all fields except for remarks and t
 
 ### Autocomplete
 #### Feature flaw
-Currently, the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autcomplete doesn't check for the presence of the compulsory `n/NAME` input which
+Currently, the autocomplete simply checks that the given prefixes and its parameters are valid, however for the `add` feature, the autocomplete doesn't check for the presence of the compulsory `n/NAME` input which
 leads users to believe that their input (without `n/NAME`) is valid. Following the requirements of the `add` feature, we plan to improve autocomplete by ensuring it checks for `n/NAME`.
 
 [↑ Back to top](#table-of-contents)
@@ -1092,7 +1097,7 @@ Currently, we don't explicitly handle the case of argument-less `find`/`filter` 
 Let's say argument-less `find`/`filter` is allowed, the possible behaviours could be:
 
 * to list all persons _(which is the purpose of `list`)_
-* to list no person _(which is not useful)_
+* to list no persons _(which is not useful)_
 
 Both behaviours don't add value to the app. Thus, we plan to disallow argument-less `find`/`filter` commands and give an error message encouraging users to add arguments if they use `find`/`filter` without any arguments.
 
@@ -1106,7 +1111,7 @@ Currently, all the labels except for remarks are truncated. When the texts are t
 
 ### General
 #### Feature Flaw
-Currently, the user will experience noticeable lagging issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
+Currently, the user will experience noticeable performance issues starting from around 10 entries, with the lag becoming more significant the more entries there are.
 We plan to optimise the application by making saving, reading and writing data to and from the local save file more efficient to tackle this issue in the future to fulfil our non-functional requirements.
 
 [↑ Back to top](#table-of-contents)
@@ -1146,7 +1151,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    2. Test case: `delete 1`  \\
-      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
+      Expected: First entry is deleted from the list. Details of the deleted contact shown in the status message.
 
    3. Test case: `delete 0` \\
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
@@ -1160,7 +1165,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Go into the (non-empty) data file, and remove the final `}` which should be on the last line. The json object is now invalid.
+   2. Start up TeachMeSenpai again.
+   3. Student list should now be populated with the dummy/default student data, regardless of the data that was in the data file previously. 
 
 [↑ Back to top](#table-of-contents)
 
