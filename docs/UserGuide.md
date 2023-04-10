@@ -104,6 +104,8 @@ Examples:
 
 ![AddPatient](images/AddPatient.png)
 
+![AddDoctor](images/AddDoctor.png)
+
 ### Deleting a person by NRIC : `delete`
 
 Deletes the specified person from MediConnect.
@@ -114,6 +116,9 @@ Format: `delete ic/NRIC`
 
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
+
+![DeleteBefore](images/Delete_before.png)
+![DeleteAfter](images/Delete_after.png)
 
 ### Editing a person : `edit`
 
@@ -158,6 +163,8 @@ Format: `find ic/NRIC`
 Examples:
 * `find ic/S1234567A` returns the details for the person with NRIC number S1234567A.
 
+![Find](images/Find.png)
+
 ### Book appointment : `appointment`
 
 Schedules an appointment with a specific doctor for the specified person.
@@ -186,6 +193,8 @@ Format: `deleteAppointment INDEX ic/NRIC`
 Examples:
 * `deleteAppointment 2 ic/S1234567A` deletes the 2nd appointment as displayed the list for person with NRIC number S1234567A.
 
+![DeleteAppointment](images/DeleteAppointment.png)
+
 ### Prescribing patient’s medication : `prescribe`
 
 * Prescribes medication to a patient, noting the medication's name and cost.
@@ -209,6 +218,8 @@ Examples:
 *  `unprescribe ic/S1234567X m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567X.
 *  `unprescribe m/Cough Syrup ic/S1234567X` removes Cough Syrup prescription from patient with NRIC number S1234567X.
 
+![Unprescribe](images/Unprescribe.png)
+
 ### Bill : `bill`
 
 Calculates the cost of all medication given a Patient's prescription.
@@ -226,17 +237,23 @@ Shows a list of all persons in MediConnect.
 
 Format: `list`
 
+![List](images/List.png)
+
 ### Retrieve doctors information : `listDoctors`
 
 Shows a list of all doctors in MediConnect.
 
 Format: `listDoctors`
 
+![ListDoctors](images/ListDoctors.png)
+
 ### Retrieve patients information : `listPatients`
 
 Shows a list of all patients in MediConnect.
 
 Format: `listPatients`
+
+![ListPatients](images/ListPatients.png)
 
 ### Clearing all entries : `clear`
 
@@ -248,6 +265,8 @@ Format: `clear`
 
 Example:
 * `clear` permanently deletes all data stored in the system.
+
+![Clear](images/Clear.png)
 
 ### Requesting help : `help`
 
