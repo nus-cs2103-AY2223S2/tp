@@ -7,6 +7,7 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_QUANTITY_B;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.commands.AddOrderCommand.AddOrderDescriptor;

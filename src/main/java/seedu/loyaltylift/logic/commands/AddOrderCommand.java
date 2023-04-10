@@ -120,6 +120,9 @@ public class AddOrderCommand extends Command {
             setAddress(toCopy.address);
         }
 
+        /**
+         * Extract order descriptor from order for testing purposes.
+         */
         public AddOrderDescriptor(Order toCopy) {
             setName(toCopy.getName());
             setQuantity(toCopy.getQuantity());

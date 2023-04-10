@@ -6,11 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.DESC_ADD_ORDER_B;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.model.order.StatusUpdate.DATE_FORMATTER;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
@@ -28,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.loyaltylift.commons.core.GuiSettings;
-import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
@@ -57,8 +52,8 @@ public class AddOrderCommandTest {
         Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
         Order validOrder = new OrderBuilder().withCustomer(customerToAdd)
                 .withCreatedDate(formattedDate).withInitialStatus(formattedDate).build();
-        AddOrderCommand.AddOrderDescriptor validAddOrderDescriptor = new AddOrderCommand.
-                AddOrderDescriptor(validOrder);
+        AddOrderCommand.AddOrderDescriptor validAddOrderDescriptor = new AddOrderCommand
+                .AddOrderDescriptor(validOrder);
         AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, validAddOrderDescriptor);
 
         CommandResult commandResult = addOrderCommand.execute(modelStub);
@@ -67,45 +62,6 @@ public class AddOrderCommandTest {
                 String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }
-
-/*
-    @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
-        Order validOrder = new OrderBuilder().build();
-
-        LocalDate dateToday = LocalDate.now();
-        String formattedDate = dateToday.format(DATE_FORMATTER);
-        Order orderToAdd =
-        Order addedOrder = new OrderBuilder(orderToAdd).withNextStatus(formattedDate).build();
-
-        Order validOrder = new OrderBuilder().build();
-        AddOrderCommand.AddOrderDescriptor validAddOrderDescriptor = new AddOrderDescriptorBuilder(validOrder).build();
-        AddOrderCommand validAddOrderCommand = new AddOrderCommand(INDEX_FIRST, validAddOrderDescriptor);
-
-        String expectedMessage = String.format(AddOrderCommand.MESSAGE_SUCCESS, validAddOrderCommand);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        CommandResult commandResult = new AddOrderCommand(INDEX_FIRST, addOrderCommandDescriptor).execute(modelStub);
-
-        assertCommandSuccess(addOrderCommand, model, expectedMessage, expectedModel);
-
-        assertEquals(
-                String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validOrder), modelStub.orderAdded);
-    }
-
-    @Test
-    public void execute_duplicateOrder_addSuccessful() {
-        Order validOrder = new OrderBuilder().build();
-        AddOrderCommand.AddOrderDescriptor validOrderDescriptor = new AddOrderDescriptorBuilder(validOrder).build();
-        AddOrderCommand addOrderCommand = new AddOrderCommand(INDEX_FIRST, validOrderDescriptor);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addOrder();
-        assertThrows(CommandException.class,
-                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addOrderCommand.execute(modelStub));
-    }
-    */
 
     @Test
     public void equals() {
@@ -259,7 +215,7 @@ public class AddOrderCommandTest {
      */
 
     private class ModelStubAcceptingOrderAdded extends ModelStub {
-        Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
+        final Customer customerToAdd = new CustomerBuilder().withName(VALID_NAME_AMY).build();
         final ArrayList<Customer> customers = new ArrayList<>(
                 Arrays.asList(customerToAdd));
         final ArrayList<Order> ordersAdded = new ArrayList<>();
