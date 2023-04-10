@@ -98,7 +98,7 @@
     -fx-background-color: derive(#EFEEFC, 100%);
 }
 
-/*List*/
+/*List start*/
 .list-view {
     -fx-background-insets: 0;
     -fx-background-color: white;
@@ -159,7 +159,9 @@
     -fx-border-color: transparent;
     -fx-wrap-text: true;
 }
+/*List Ends*/
 
+/*Tab*/
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -191,6 +193,7 @@
     -fx-text-fill: white;
     -fx-alignment: CENTER;
 }
+/*Tab Ends*/
 
 /*Score Chart*/
 .chart-content {
@@ -237,11 +240,9 @@
 .default-color0.chart-series-line {
     -fx-stroke: #FF94B4;
 }
-
 /*Score Chart Ends*/
 
-/*table view starts*/
-
+/*Table View starts*/
 .table-view {
      -fx-base: #EFEEFC;
      -fx-control-inner-background: #EFEEFC;
@@ -303,9 +304,9 @@
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
+/*Table View ends*/
 
-/*table view ends*/
-
+/*Cell Label*/
 .cell_big_label {
     -fx-font-family: "SansSerif";
     -fx-font-weight: bold;
@@ -340,6 +341,7 @@
     -fx-padding: 0 0 0 12;
     -fx-wrap-text: true;
 }
+/*Cell Label Ends*/
 
 .title_label {
     -fx-font-family: "SansSerif";
@@ -428,6 +430,7 @@
     -fx-text-fill: white;
 }
 
+/*Menu Items*/
 /*Menu bar content background color*/
 .context-menu {
     -fx-background-color: #DAD8FF;
@@ -467,6 +470,7 @@
 .menu .left-container {
     -fx-background-color: black;
 }
+/*Menu Ends*/
 
 .button {
     -fx-text-fill: white;
@@ -514,6 +518,7 @@
     -fx-text-fill: white;
 }
 
+/*Scroll bar*/
 .scroll-bar {
     -fx-background-color: transparent;
     -fx-focus-color: transparent;
@@ -565,6 +570,7 @@
     -fx-background-insets: 0, 1;
     -fx-padding: 1;
 }
+/*Scroll bar Ends*/
 
 .labelWithImage {
     -fx-padding: 8 0 2 0

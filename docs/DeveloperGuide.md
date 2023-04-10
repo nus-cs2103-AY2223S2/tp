@@ -145,7 +145,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/DG-images/ModelClassDiagram.png" width="450" />
+<img src="images/DG-images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -161,12 +161,12 @@ The `Model` component,
 
 </div>
 
-<img src="images/DG-images/BetterModelClassDiagram.png" width="450" />
+<img src="images/DG-images/BetterModelClassDiagram.png" width="600" />
 
 #### Task model
 **API** : [`Task.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/task/Task.java)
 
-<img src="images/DG-images/TaskClassDiagram.png" width="280" />
+<img src="images/DG-images/TaskClassDiagram.png" width="400" />
 
 * A `Student` has a `UniqueTaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
@@ -176,9 +176,9 @@ The `Model` component,
 #### UniqueScoreList model
 **API** : [`UniqueScoreList.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/score/UniqueScoreList.java)
 
-<img src="images/DG-images/ScoreClassDiagram.png" width="280" />
+<img src="images/DG-images/ScoreClassDiagram.png" width="400" />
 
-* A `Student` has only one `UniqueScoreList` object which holds all his/her `Score` objects.
+* A `Student` has only one `UniqueScoreList` object which holds all their `Score` objects.
 * `UniqueScoreList` is a separate filtered list with recent score at front which is exposed to outsiders as an unmodifiable ObservableList<Student> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * There is an inner class `ScoreSummary` inside `UniqueScoreList` class which holds the summary of recent five scores.
 
@@ -215,7 +215,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 **Target user profile**:
 
-* Private math tuition teachers
+* Private Math tuition teachers
 * Has a need to manage a number of students' contacts and performance
 * Prefer desktop apps over other types
 * Prefers typing to mouse interactions
@@ -606,7 +606,7 @@ Use case ends.
    
   * 1a1. MATHUTORING shows an error message.
    
-  Use case resumes at step 1.
+    Use case resumes at step 1.
    
 **14. Use case: Switch panel via GUI**
 
@@ -636,13 +636,13 @@ Use case ends.
    
   * 1a1. MATHUTORING shows an error message.
    
-  Use case resumes at step 1.
+    Use case resumes at step 1.
    
 * 1b. The given command argument(s) are invalid.
    
   * 1b1. MATHUTORING shows an error message.
    
-  Tutor case resumes at step 1.
+    Tutor case resumes at step 1.
    
 **16. Use case: Check a student**
 
@@ -661,19 +661,19 @@ Use case ends.
 **Extensions**
 * 2a. The student list is empty.
    
-  Use case ends.
+    Use case ends.
    
 * 3a. The given command is invalid.
    
   * 3a1. MATHUTORING shows an error message.
    
-  Use case resumes at step 2.
+    Use case resumes at step 2.
    
 * 3b. The given index is invalid.
    
   * 3b1. MATHUTORING shows an error message.
    
-  Use case resumes at step 2.
+    Use case resumes at step 2.
    
 ### Non-Functional Requirements
 
@@ -1083,3 +1083,12 @@ There is an inconsistency for score color between score chart and PDF:
 **Solution proposed:**
 
 * To solve this issue, the criteria for the score color in the PDF file can be changed to follow the criteria of score color in the score chart.
+
+
+#### 8. Change the tags of the sample data
+
+Currently, the sample data contains tags, like `colleagues` and `friends`, that do not really fit the purpose of our application.
+
+**Solution proposed:**
+
+* To solve this issue, the tag can be changed to grade (primary, secondary, etc.) and gender.
