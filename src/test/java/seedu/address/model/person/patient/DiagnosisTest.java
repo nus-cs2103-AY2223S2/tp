@@ -1,6 +1,8 @@
 package seedu.address.model.person.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,5 +37,28 @@ public class DiagnosisTest {
         assertTrue(Diagnosis.isValidDiagnosis("Diabetes")); // alphanumeric only
         assertTrue(Diagnosis.isValidDiagnosis("Asthma and allergies")); // alphanumeric and spaces
         assertTrue(Diagnosis.isValidDiagnosis("Acute Upper Respiratory Infection")); // long diagnosis
+    }
+
+    @Test
+    public void equals() {
+        Diagnosis diagnosis = new Diagnosis("diagnosis");
+        Diagnosis diagnosisCopy = new Diagnosis("diagnosis");
+        Diagnosis diagnosis2 = new Diagnosis("diagnosis2");
+
+        // same object -> returns true
+        assertEquals(diagnosis, diagnosis);
+
+        // same values -> returns true
+        assertEquals(diagnosis, diagnosisCopy);
+
+        // different diagnosis -> returns false
+        assertNotEquals(diagnosis, diagnosis2);
+    }
+
+    @Test
+    public void getValue_validDiagnosis_returnsDiagnosis() {
+        String diagnosis = "diagnosis";
+        Diagnosis validDiagnosis = new Diagnosis(diagnosis);
+        assertEquals(validDiagnosis.getValue(), diagnosis);
     }
 }

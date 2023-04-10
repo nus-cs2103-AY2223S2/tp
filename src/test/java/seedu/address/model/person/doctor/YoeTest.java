@@ -45,4 +45,12 @@ public class YoeTest {
         assertTrue(Yoe.isValidYoe("1")); // exactly 1 numbers
         assertTrue(Yoe.isValidYoe("000012")); // leading 0s with 2 digits
     }
+
+    @Test
+    public void getValue_validYoe_returnsYoe() {
+        String validYoe = "00005";
+        String expectedYoe = "5";
+        Yoe yoe = new Yoe(validYoe);
+        assertEquals(yoe.getValue(), expectedYoe);
+    }
 }

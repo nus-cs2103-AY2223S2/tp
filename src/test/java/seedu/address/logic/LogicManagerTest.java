@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -22,6 +23,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.DoctorBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -68,6 +71,54 @@ public class LogicManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
+
+    @Test
+    public void getFilteredDoctorList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDoctorList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredDoctorList_modifyList_throwsUnsupportedOperationException() {
+        assertDoesNotThrow(() -> logic.updateFilteredDoctorList(p -> true));
+    }
+
+    @Test
+    public void updateFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
+        assertDoesNotThrow(() -> logic.updateFilteredPatientList(p -> true));
+    }
+
+    @Test
+    public void updateFilteredDoctorListBasedOnPatient_modifyList_throwsUnsupportedOperationException() {
+        assertDoesNotThrow(() -> logic.updateFilteredDoctorListBasedOnPatient(new PatientBuilder().build()));
+    }
+
+    @Test
+    public void updateFilteredPatientListBasedOnDoctor_modifyList_throwsUnsupportedOperationException() {
+        assertDoesNotThrow(() -> logic.updateFilteredPatientListBasedOnDoctor(new DoctorBuilder().build()));
+    }
+
+    @Test
+    public void getAddressBookFilePath_success() {
+        Path expectedPath = java.nio.file.Paths.get("data/docedex.json");
+        assertEquals(logic.getAddressBookFilePath(), expectedPath);
+    }
+
+    @Test
+    public void getGuiSettings_success() {
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_success() {
+        logic.setGuiSettings(model.getGuiSettings());
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
+    }
+
 
     /**
      * Executes the command and confirms that

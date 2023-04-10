@@ -72,14 +72,14 @@ public class EnlargedPatientInfoCard extends EnlargedInfoCard {
             return;
         }
 
-        name.setText(selectedPatient.getName().toString());
-        phone.setText(selectedPatient.getPhone().toString());
-        email.setText(selectedPatient.getEmail().toString());
-        height.setText(selectedPatient.getHeight().toString());
-        weight.setText(selectedPatient.getWeight().toString());
-        diagnosis.setText(selectedPatient.getDiagnosis().toString());
-        status.setText(selectedPatient.getStatus().toString());
-        remark.setText(selectedPatient.getRemark().toString());
+        name.setText(selectedPatient.getName().getValue());
+        phone.setText(selectedPatient.getPhone().getValue());
+        email.setText(selectedPatient.getEmail().getValue());
+        height.setText(selectedPatient.getHeight().getValue());
+        weight.setText(selectedPatient.getWeight().getValue());
+        diagnosis.setText(selectedPatient.getDiagnosis().getValue());
+        status.setText(selectedPatient.getStatus().getValue());
+        remark.setText(selectedPatient.getRemark().getValue());
         selectedPatient.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
                 .forEach(this::addTagToFlowPane);
