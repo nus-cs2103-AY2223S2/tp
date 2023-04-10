@@ -104,8 +104,8 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command. 
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDoctorCommand`) which is executed by the `LogicManager`. 
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddDoctorCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a doctor).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -333,12 +333,12 @@ The sequence diagram below shows how the DeleteAppointmentCommand works:
 
 ## Prescribe Feature
 `Prescription` refers to a `Medication` being sold at a `Cost`. Each `Patient` can have one or more `Prescriptions`
-which can help generate their bill. There are a few ways to implement connecting these 4 classes, and we opted for 
+which can help generate their bill. There are a few ways to implement connecting these 4 classes, and we opted for
 the one simplest for the User to use as our Users could be not tech-savvy.
 
 #### Design considerations:
 * **Alternative 1 (Current Choice):** Allow `Patient` to have direct access to `Prescription`, which encapsulates `Medication` and `Cost`.
-  * Pros: Simpler to implement as it reuses existing code. 
+  * Pros: Simpler to implement as it reuses existing code.
   * Cons: Duplicated information, if multiple `Patient` have the same `Prescription`.
 
 ![PrescriptionImplementationCurrent.png](images/PrescriptionImplementationCurrent.png)
@@ -347,7 +347,7 @@ the one simplest for the User to use as our Users could be not tech-savvy.
 `Medication` and `Cost` in a separate table.
   * Pros: This is the most object-oriented, and thus intuitive design. `Patient` is less coupled to `Cost`.
   * Cons: Most challenging design. Does not allow prescribing `Medication` at a different `Cost`, such as if the prices rise.
-  
+
 ![PrescriptionImplementationAlternative.png](images/PrescriptionImplementationAlternative.png)
 
 ### \[Proposed\] Undo/redo feature
@@ -474,7 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | healthcare administrator                  | access patient's test results and medical records through the application                                                   | I can provide doctors with the patient's health history.                                |
 | `* *`    | healthcare provider                       | access and view patient insurance information and make necessary updates                                                    | I can accurately bill patients and manage healthcare costs.                             |
 | `* *`    | healthcare provider                       | send appointment confirmations and reminders to patients                                                                    | they can arrive prepared for their appointments.                                        |
-| `* *`    | healthcare provider                       | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       | 
+| `* *`    | healthcare provider                       | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       |
 | `*`      | healthcare administrator                  | access analytics and metrics on patient engagement, appointment booking, and resource utilization                           | I can make data-driven decisions to improve the hospital's operations.                  |
 | `*`      | healthcare administrator                  | manage the hospital staff and workload better using the app                                                                 | there are sufficient people during each shift.                                          |
 | `*`      | healthcare administrator                  | provide feedback and rate my experience with the application                                                                | I can improve the application to better suit my needs.                                  |
@@ -513,7 +513,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 3a1-3a2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
-  
+
 * 3b. MC detects that the patient already exists in the list.
 
   * 3b1. MC informs user that the patient already exists.
@@ -764,11 +764,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. User enters the wrong information, but is a valid command accepted by MC
 
   * 3a1. MC prescribes the incorrect patient medication.
-  
+
   * 3a2. MC shows the User the result.
-  
+
   * 3a3. User notices the wrong result.
-  
+
   * 3a4. User removes the wrong medication (UC10).
 
     Use case restarts from step 3.
@@ -860,7 +860,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No doctor is added to the list. Error details are shown in the status message.
     4. Test case: `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T765 a/Sarah Rd t/Pediatrician` (Wrong NRIC format)<br>
        Expected: No doctor is added to the list. Error details are shown in the status message.
-   
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -868,7 +868,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    2. Test case: `delete ic/S1234567A`<br>
-      Expected: Contact with the `NRIC S1234567A` is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: Contact with the `NRIC S1234567A` is deleted from the list. Details of the deleted contact shown in the status message.
 
    3. Test case: `delete ic/0`<br>
       Expected: No person is deleted. Error details shown in the status message. No change made to the list.
@@ -878,7 +878,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Prescribe, Unprescribe, Bill
 1. Prescribing medication to someone with existing medication
-   1. Prerequisites: Have a patient with no existing medication as the current display. This can be achieved by adding 
+   1. Prerequisites: Have a patient with no existing medication as the current display. This can be achieved by adding
    a patient using `addPatient`. Then `display`. We will assume the Patient has an IC of S1234567A.
    2. Test case: `prescribe ic/S1234567A m/drugA c/1`<br>
       Expected: Patient has gained 1 prescription.
@@ -892,7 +892,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Bill is $6.00
    7. Test case: `unprescribe ic/S1234567A m/drugA c/2`<br>
       Expected: Patient has 1 prescription.
-    
+
 ## **Appendix: Planned Enhancements**
 
 Given below are the current known feature flaws and the plans the team have for them in the future versions.

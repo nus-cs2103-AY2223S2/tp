@@ -16,7 +16,7 @@ Given below are my contributions to the project.
     * Justification:
       * Helps staff remember a patient's medication at checkout, especially if the receptionist and dispensary staff are different.
       * Allows doctor to access part of a patient's medical history in subsequent visits.
-      
+
 * **New Feature**: Added the ability to calculate the bill for a patient's visit.
   * What it does: Shows the cost of all prescribed medication of a selected patient.
   * Justification: This feature will be used for every patient visit.
