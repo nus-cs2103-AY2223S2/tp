@@ -91,9 +91,11 @@ making it a reliable and efficient tool for organizing events.
     - Added all the images in User Guide
       [#210](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/210)
 - #### Developer Guide:
-    - Updated the existing `Class Diagrams`, `Sequence Diagrams` and added all the `Activity Diagrams` 
+    - Updated the existing `Class Diagrams`, `Sequence Diagrams` and added the draft `Activity Diagrams`
       [#211](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/211),
       [#221](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/221)
+    - Added documentation for `find` and `undo` under Implementation
+      [#227](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/227)
     - Added Instructions for Manual Testing
       [#212](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/212)
 
@@ -113,5 +115,5 @@ making it a reliable and efficient tool for organizing events.
 | v1.1      |              [1] [pr-reviewed-v1.1]               |
 | v1.2      |              [2] [pr-reviewed-v1.2]               |
 | v1.3/b    | [9] [pr-reviewed-v1.3] + [11] [pr-reviewed-v1.3b] |                                                                               
-| v1.4      |              [23] [pr-reviewed-v1.4]              |                                                                             
-| Total:    |             [52] [pr-reviewed-total]              |
+| v1.4      |              [25] [pr-reviewed-v1.4]              |                                                                             
+| Total:    |             [54] [pr-reviewed-total]              |
