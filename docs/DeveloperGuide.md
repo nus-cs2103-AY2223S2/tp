@@ -533,10 +533,6 @@ Step 2. User executes `unassign-ptn ptn/1 doc/1` to unassign the patient at inde
 
 Step 3. If the indexes provided are valid and patient is assigned to doctor, the patient at index 1 is replaced with a patient without doctor reference and the doctor at index 1 is replaced with a doctor without patient reference.
 
-The following sequence diagram illustrates how the unassign patient operation works:
-
-![](images/UnassignPatientSequenceDiagram.png)
-
 ### GUI Features
 
 #### Enlarged Info Card feature
