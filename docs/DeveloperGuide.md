@@ -1199,6 +1199,28 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.  \\
       Expected: The most recent window size and location is retained.
 
+### Command suggestion and autocompletion
+
+1. Suggesting and autocompleting a command
+
+   1. Test case: Type `a`, then press `TAB` key  \\
+      Expected: It displays the suggestion for the `add` command along with all its arguments, then autocompletes the word "add" upon pressing `TAB`.
+
+1. Suggesting and autocompleting arugment prefixes
+
+   1. Test case: Type `add`, then press `TAB` key  \\
+      Expected: It displays the suggestion for the `add` command's arguments, then autocompletes first argument `n/` upon pressing `TAB`.
+
+   1. Test case: Type `add e`, then press `TAB` key  \\
+      Expected: It displays the suggestion for the `add` command's arguments that start with "e", then autocompletes first such argument `e/` upon pressing `TAB`.
+
+1. Suggesting and autocompleting existing arugment values
+
+   1. Prerequisites: A student in the list has the tag `tag1`, and another having the tag `tag2`, and no other student has tags other than `tag1` and `tag2`.
+
+   1. Test case: Type `add t/`, then press `TAB` key  \\
+      Expected: It displays the suggestion for the 2 existing tags as `tag1 | tag2`, then autocompletes first existing tag `tag1` upon pressing `TAB`.
+
 ### Deleting a student / multiple students
 
 1. Deleting a student while all students are being shown
