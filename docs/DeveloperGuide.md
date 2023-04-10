@@ -1198,16 +1198,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List any existing students using the `list` command.
 
-   2. Test case: `add n/Shaun` \\
+   2. Test case: `add n/Shaun`  \\
       Expected: New student is added to the bottom of the student list. Details shown only include the name.
    
-   3. Test case: `add n/Shaun n/Benny` \\
+   3. Test case: `add n/Shaun n/Benny`  \\
       Expected: New student is added to the bottom of the student list. Details shown only includes the last parameter specified, `Benny`.
 
    4. Test case: `add n/Shaun xxx/PARAMETER...` (where xxx is any of the valid prefixes, PARAMETER is any valid input for the respective prefix and ... indicates any number of optional prefixes etc.) \\
       Expected: Similar to previous, details included in the entry are the valid inputs specified.
 
-   5. Test case: `add p/999` \\
+   5. Test case: `add p/999`  \\
       Expected: No student is added to the list. The error message shown details `Invalid command format!` followed by the `add` command format and example.
 
    6. Test case: `add` \\
@@ -1255,6 +1255,82 @@ testers are expected to do more *exploratory* testing.
    11. Test case: `edit 1 xxx/INVALID_PARAMETER...` (where xxx is a valid prefix and INVALID_PARAMETER is an invalid parameter input for the respective prefix) \\
        Expected: Similar to previous, except error message is specific to the first prefix with an invalid parameter.
 
+### Find student entries
+
+1. Finding students while all students are being shown
+
+   1. Prerequisites: List all students using the `list` command.
+   
+   2. Test case: `find` \\
+   
+      Expected: All students will be listed.
+      
+   3. Test case: `find xxx/` (where xxx is any parameters other than t/ and m/) \\
+   
+      Expected: All students will be listed.
+      
+   4. Test case: `find x/` (where xxx is parameters t/ or m/) \\
+   
+      Expected: No students will be listed.
+      
+   5. Test case: `find yyy` (where yyy is anything) \\
+   
+      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+      
+   6. Test case: `find xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+   
+      Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+      
+   7. Test case: `find x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+   
+      Expected: Entries in the x field with data that fully matches with yyy will be shown.
+      
+   8. Test case: `find xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+   
+      Expected: Entries that matches with all fields of aaa will be shown.
+      
+   9. Test case: `find INVALID_PREFIX/KEYWORD` \\
+   
+      Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+
+### Filter student entries
+
+1. Filtering students while all students are being shown
+
+  1. Prerequisites: List all students using the `list` command.
+  
+  2. Test case: `filter` \\
+  
+     Expected: No students will be listed.
+     
+  3. Test case: `filter xxx/` (where xxx is any parameters other than t/ and m/) \\
+  
+     Expected: All students will be listed.
+     
+  4. Test case: `filter x/` (where xxx is parameters t/ or m/) \\
+  
+     Expected: No students will be listed.
+     
+  5. Test case: `filter yyy` (where yyy is anything) \\
+  
+     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     
+  6. Test case: `filter xxx/KEYWORD` (where xxx is any valid prefix except t/ and m/ and yyy is any keyword) \\
+  
+     Expected: Entries in the field of xxx with data partially matching with the whole of yyy will be shown.
+     
+  7. Test case: `filter x/KEYWORD` (where xxx is either t/ or m/, yyy is any keyword) \\
+  
+     Expected: Entries in the x field with data that fully matches with yyy will be shown.
+     
+  8. Test case: `filter xxx/KEYWORD...` (where aaa is any valid prefix, xxx is any keyword, ... refers to multiple aaa/xxx) \\
+  
+     Expected: Entries that matches with at least one fields of aaa will be shown.
+     
+  9. Test case: `filter INVALID_PREFIX/KEYWORD` \\
+  
+     Expected: Error message shows `Invalid command format!` followed by the `find` command format and example.
+     
 ### Showing a student entry
 
 1. Showing a student entry while all students are being shown
@@ -1271,7 +1347,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Same as previous.
 
    5. Test case: `show 0` \\
-      Expected: No student entry is showN. The error message shown states `The person index provided is invalid`.
+      Expected: No student entry is shown. The error message shown states `The person index provided is invalid`.
    
    6. Other incorrect show commands to try: `show xxx` (where xxx is an invalid number/characters such as -1, or a number greater than the list size) \\
       Expected: Same as previous.
