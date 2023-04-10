@@ -797,25 +797,41 @@ Expected: The modules will not be sorted.
 
 **Overall effort required: 8 / 10**
 
+In general, our team members have contributed equal effort to turn `coNtactUS` into a functional, intuitive software.
+We strived to meet weekly project deadlines, making sure that all the important features of our module tracker
+were completed and implemented perfectly by each specified milestones.
+
 ### 11.1 Challenges faced:
 
 1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
 required: 9 / 10)
-   * Bla bla 
+   * Function names such as `AddressBook`, `addressbook` and `ab` have to be refactored to fit `coNtactUS`. 
+   * It is not difficult, but highly tedious to refactor, as there were different forms of `addressbook`, hence it is
+   not possible to refactor everything in one go.
 
 2. Implementation of `add`, `edit`, `delete` command for `Module`. (Difficulty: 6 / 10, Effort required: 9 / 10)
-   * Bla bla
+   * More attributes were added to fit `coNtactUS`, such as `Timeslot`, `Deadline` and `Teacher`.
+   * The difficulty is moderate, since we do not have to code out the said commands ourselves from scratch, as they
+   are already implemented in `AddressBook3`.
+   * However, it is tedious to change the attributes of `AddressBook3` that do not fit `coNtactUS`, as well as adding
+   new attributes to the commands.
 
 3. Enhancements of `find` command. (Difficulty: 7 / 10, Effort required: 7 / 10)
-   * Bla bla
+   * Tariq-Droid
 
 4. Enhancement of `timeslot` and `deadline` attributes from `String` to `DateTime` format. (Difficulty: 8 / 10,
 Effort required: 8 / 10)
-   * Bla bla
+   * When refactoring from `AddressBook3`'s attributes, `timeslot` and `deadline` were parsed as `String`. However, to
+   allow users to `sort` these attributes based on whichever modules come first (and thus improve their time-keeping
+   ability in NUS), we further developed them to take in `DateTime` as user inputs.
+   * It is not highly arduous and tough, but we decided to use different `DateTime` formats for both `timeslot` and
+   `deadline` (more specifically, `Day HH:mm /*START_TIME*/ HH:mm /**END_TIME*/` for `timeslot`, `ddMMyy HH:mm` for
+   `deadline`) because it does not really make sense to store date for weekly-recurring `timeslot`.
 
 5. Addition of `sort` command. (Difficulty: 9 / 10, Effort required: 8 / 10)
-   * Bla bla
+   * Jia Yuan
 
 6. Addition of a Reminder window (Difficulty: 7 / 10, Effort required: 7 / 10)
-   * Bla bla
+   * Tariq
 
+Back to top hyperlink
