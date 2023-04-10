@@ -11,13 +11,11 @@ import com.calendarfx.view.YearMonthView;
 import com.calendarfx.view.popover.DatePopOver;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.appointment.Appointment;
 
 /**
