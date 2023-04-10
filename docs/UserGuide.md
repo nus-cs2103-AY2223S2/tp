@@ -202,6 +202,8 @@ The **Fish Icon** is matched to the [Species](#species-sspecies) of the fish!
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # *Fish Ahoy!* Commands
 
 In general, the command format is as follows:<br>
@@ -336,6 +338,8 @@ In general, the command format is as follows:<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # Features
 
 ## Tanks
@@ -360,8 +364,6 @@ Currently, there are seven command actions of type tank:
 * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
 * [Adding a set of readings to a tank `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
 * [Deleting a most recent set of readings of a tank `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
-
-<div style="page-break-after: always;"></div>
 
 ### Adding a tank: `tank add`
 
