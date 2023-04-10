@@ -19,7 +19,7 @@ Class Company
 Class Email
 Class Status
 Class Remark
-Class Date
+Class Keydate
 
 }
 
@@ -42,7 +42,7 @@ Opening *--> Company
 Opening *--> Email
 Opening *--> Status
 Opening *--> "0..1"Remark
-Opening *--> "*" Date
+Opening *--> "*" Keydate
 
 ModelManager -->"~* filtered" Opening
 @enduml
