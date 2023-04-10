@@ -349,7 +349,7 @@ are committed to constantly improving our software to meet your needs.
 
 ## 4.1 General Commands
 
-This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
+This section introduces the two general commands, `g help` and `g exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
 <h3>View help</h3>
