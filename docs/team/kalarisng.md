@@ -6,7 +6,7 @@ title: Kalaris Ng's Project Portfolio Page
 ### Project: FitBook
 
 Fitbook is a desktop tracking book application used by gym or personal fitness trainers to track the progress and information
-of their clients. With FitBook, trainers are able to efficiently manage their clients' information in a centralised database. 
+of their clients. With FitBook, trainers are able to efficiently manage their clients' information in a centralised database.
 FitBook is written in Java and features a combination of both CLI and GUI applications.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to add new weights to a client tagged with a date and time.
   * Justification: This feature improves the product significantly as it allows modification of a client's current weight and stores a client's old weight in their weight history. This weight history can then be converted into a line graph to view a client's progress.
   * Highlights: The implementation of this enhancement was challenging as it required an in-depth analysis of the existing classes. The implementation was challenging as it required modifications to the existing weight class.
-  
+
 * **New Feature**: Added the ability to view a weight history graph of a client.
   * What it does: allows the user to view their weight history using a line graph with a single command.
   * Justification: This feature improves the product significantly as it allows the user to generate a weight history graph that can show their client's progress throughout their time with them.
