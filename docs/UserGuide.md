@@ -87,7 +87,7 @@ The menu bar is typically located at the top of the user interface and is primar
 #### Help
 * Provides a new tab outside FitBook with the link to the User Guide.
 
-### Result Display
+### Result Panel
 
 Panels are _empty_ when the data for that specific panel is _empty_.
 
@@ -112,7 +112,7 @@ Panels are _empty_ when the data for that specific panel is _empty_.
 
   ![Summary Panel](images/summary.png)
 
-### Feedback Box
+### Result Display
 When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you have entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or the specific error encountered.
 ### Command Box
 The Command Box is where you can type in your commands. It is found below the Feedback Box. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
