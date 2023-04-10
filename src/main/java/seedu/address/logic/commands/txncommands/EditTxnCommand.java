@@ -24,7 +24,7 @@ import seedu.address.model.transaction.Value;
 import seedu.address.model.transaction.status.TxnStatus;
 
 /**
- * Edits the details of an existing transaction in the sales book.
+ * Edits the details of an existing transaction in the transaction list.
  */
 public class EditTxnCommand extends Command {
     public static final String COMMAND_WORD = "edittxn";
@@ -39,10 +39,11 @@ public class EditTxnCommand extends Command {
             + "[" + PREFIX_TXN_STATUS + "STATUS]";
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TRANSACTION = "This transaction already exists in the sales book.";
+    public static final String MESSAGE_DUPLICATE_TRANSACTION = "This transaction already exists in the transaction "
+            + "list.";
 
     public static final String MESSAGE_INVALID_OWNER_TRANSACTION =
-            "This transaction record has to be assigned to a existing person in the sales book";
+            "This transaction record has to be assigned to a existing person in the contact list";
 
     private final Index index;
     private final EditTxnCommand.EditTxnDescriptor editTxnDescriptor;

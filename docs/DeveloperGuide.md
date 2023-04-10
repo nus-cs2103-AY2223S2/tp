@@ -16,6 +16,10 @@ title: Developer Guide
   - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
+  - [Add transaction feature](#add-transaction-feature)
+    - [About](#a-idtxn-abt-a-about)
+    - [Implementation](#a-idtxn-imple-a-implementation)
+    - [Design considerations](#a-idtxn-design-a-design-considerations-)
   - [Find by Tag Feature](#find-by-tag-feature)
     - [About](#about)
     - [Implementation](#implementation-1)
@@ -33,9 +37,6 @@ title: Developer Guide
   - [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     - [Proposed Implementation](#proposed-implementation)
     - [Design considerations:](#design-considerations)
-  - [Add transaction feature](#add-transaction-feature)
-    - [Proposed Implementation](#proposed-implementation-1)
-    - [Design considerations:](#design-considerations-1)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -83,7 +84,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -116,13 +117,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -133,7 +134,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -164,7 +165,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -183,7 +184,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -202,6 +203,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### Add transaction feature
+
+#### <a id="txn-abt"></a> About
+The `addtxn` feature allows the sales person to add a transaction record in the transaction list.
+
+#### <a id="txn-imple"></a> Implementation
+
+The proposed add transaction mechanism is facilitated by `UniqueTransactionList`. It is similar to `UniquePersonList` which stores a list of unique transaction records.
+
+Given below is an example scenario and how to add transaction mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Storage` will check if there are existing transaction records in local storage. If transaction records are found, a `UniqueTransactionList` is created with existing transaction records. Else, an empty `UniqueTransactionList` is created.
+
+Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new transaction record. the `addtxn` command will be parsed by `AddTxnCommandParser` and a `AddTxnCommand` will be created. `AddTxnCommand#exexute()` add the input transaction record if it has a valid owner and it's not a duplicate of existing record, then it creates a `CommandResult` to provide feedback to the user.
+
+![AddTxnCommandSequenceDiagram](images/AddTxnCommandSequenceDiagram.png)
+
+#### <a id="txn-design"></a> Design considerations:
+
+**Aspect: How add transaction executes:**
+
+- **Alternative 1 (current choice):** Saves all transaction records in a separate list, each transaction has a non-null owner attribute indicates the other party involved in this transaction.
+
+    - Pros: Easy to implement, easy to search through all transaction records.
+    - Cons: May need long time to list down all transaction records under the save name.
+
+- **Alternative 2:** Each Person object has a transaction list attribute, to store transactions belong to him or her.
+    - Pros: Less time taken to identify transactions with the same person as no need to search through the whole transaction list.
+    - Cons: Difficult to carry out operations on all transactions.
+
 
 ### Find by Tag Feature
 
@@ -233,11 +264,11 @@ The following activity diagram shows what happens when a user executes a find ta
 
 #### About
 
-The sort feature is an inbuilt element of `SalesPunch` where it allows the sales person to sort the address book according to a certain attribute.
+The sort feature is an inbuilt element of `SalesPunch` where it allows the sales person to sort the contact list according to a certain attribute.
 
 #### Implementation
 
-The sort mechanism is facilitated by `SortCommandParser` where it parses sort commands, triggering and associating the given attribute to a `SortCommand` class which extends `Command`. When `SortCommand` gets executed, `ModelManager#sortPersonList()` sorts the address book according to the given attribute.
+The sort mechanism is facilitated by `SortCommandParser` where it parses sort commands, triggering and associating the given attribute to a `SortCommand` class which extends `Command`. When `SortCommand` gets executed, `ModelManager#sortPersonList()` sorts the contact list according to the given attribute.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the given input is not a valid attribute of a `Person` class, it will throw an error indicating invalid attribute.
 
@@ -411,32 +442,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Add transaction feature
-
-#### Proposed Implementation
-
-The proposed add transaction mechanism is facilitated by `UniqueTransactionList`. It is similar to `UniquePersonList` which stores a list of unique transaction records.
-
-Given below is an example scenario and how to add transaction mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `Storage` will check if there are existing transaction records in local storage. If transaction records are found, a `UniqueTransactionList` is created with existing transaction records. Else, an empty `UniqueTransactionList` is created in `AddressBook`.
-
-Step 2. The user excutes `addtxn td/1 Venti Cold Brew  …​` to add a new transaction record. the `addtxn` command will be parsed by `AddTxnCommandParser` and a `AddTxnCommand` will be created. `AddTxnCommand#exexute()` add the input transaction record if it has a valid owner and it's not a duplicate of existing record, then it creates a `CommandResult` to provide feedback to the user.
-
-![AddTxnCommandSequenceDiagram](images/AddTxnCommandSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How add transaction executes:**
-
-- **Alternative 1 (current choice):** Saves all transaction records in a separate list, each transaction has a non-null owner attribute indicates the other party involved in this transaction.
-
-  - Pros: Easy to implement, easy to search through all transaction records.
-  - Cons: May need long time to list down all transaction records under the save name.
-
-- **Alternative 2:** Each Person object has a transaction list attribute, to store transactions belong to him or her.
-  - Pros: Less time taken to identify transactions with the same person as no need to search through the whole transaction list.
-  - Cons: Difficult to carry out operations on all transactions.
 
 ---
 
@@ -650,6 +655,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  SalesPunch clears the tasklist to be empty for the person in the contact list
 
     Use case ends.
+
+
+**Use case: Add a transaction**
+
+**MSS**
+
+1.  User adds a transaction
+2.  SalesPunch adds the transaction to transaction list
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. SalesPunch detects an error in the entered data
+
+    - 1a1. SalesPunch requests for the correct data
+    - 1a2. User enters new data
+    - Steps 1a1-1a2 are repeated until the data entered is correct
+    - Use case resumes from step 2
+
+  Use case ends.
+
+**Use case: Edit a transaction**
+
+**MSS**
+
+1.  User requests to list transactions
+2.  SalesPunch shows a list of transactions
+3.  User requests to edit a specific transaction in the list
+4.  SalesPunch edits the transaction
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The transaction list is empty
+
+  Use case ends.
+
+- 3a. SalesPunch detects an error in the entered data
+
+    - 3a1. SalesPunch requests for the correct data
+    - 3a2. User enters new data
+    - Steps 3a1-3a2 are repeated until the data entered is correct
+    - Use case resumes from step 4
+
+  Use case ends.
+
+
+**Use case: Find a transaction**
+
+**MSS**
+
+1.  User searches for transactions based on a contact's name
+2.  SalesPunch shows a list of transactions that match the input name
+
+    Use case ends.
+
+**Extensions**
+- 1a. The input name is not an existing contact
+
+    - SalesPunch shows an empty contact list and empty transaction list
+
+  Use case ends.
+
+- 2a. The list is empty.
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 

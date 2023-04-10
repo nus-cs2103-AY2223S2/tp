@@ -17,7 +17,7 @@ import seedu.address.model.transaction.Transaction;
  */
 public class AddTxnCommand extends Command {
     public static final String COMMAND_WORD = "addtxn";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a transaction to the sales book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a transaction to the transaction list. "
             + "Parameters: "
             + PREFIX_TXN_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TXN_VALUE + "VALUE "
@@ -26,10 +26,10 @@ public class AddTxnCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New transaction record added: %1$s";
     public static final String MESSAGE_DUPLICATE_TRANSACTION =
-            "This transaction record already exists in the sales book";
+            "This transaction record already exists in the transaction list";
 
     public static final String MESSAGE_INVALID_OWNER_TRANSACTION =
-            "This transaction record has to be assigned to a existing person in the sales book";
+            "This transaction record has to be assigned to a existing person in the transaction list";
 
     private final Transaction toAdd;
 
