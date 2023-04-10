@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=changgittyhub&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * All _reused_ code are adapted from the [AB3](https://github.com/nus-cs2103-AY2223S2/tp) code base (both functional and test code).
-  * The code could be refractored out to be a more standard format for repetitive use in our project (i.e. Modifying `UniquePersonList` to `UniqueItemList`).
+  * The code could be refractored out to be a more standard format for repeated use.
 
 * **Project management**:
   * Managed project documentation (UG & DG)
@@ -52,10 +52,9 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):  [\#193](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/193) [\#267](https://github.com/AY2223S2-CS2103T-W15-2/tp/pull/267)
-  * Raise and clarify doubts during team meetings and in the Team group chat
   * Communicate professionally with Professor Damith on Outlook to change UG details
   * Clarify questions on behalf of the team on MSTeams with Tutor.
-  * Communicate thoroughly with team members to reduce double work and fix bugs together when help is needed.
+  * Communicate thoroughly with team members to reduce double work, fix bugs together when needed and raise doubt in group chat.
 
 * **Tools**:
   * Java 11, JavaFx, Jekyll
