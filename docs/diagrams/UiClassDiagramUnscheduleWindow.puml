@@ -10,10 +10,10 @@ Class UnscheduleWindow
 Class UnscheduledDeliveryJobListPanel
 Class DeliveryJobCard
 
-package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
 }
 
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
 }
 
 Class TimetableWindow

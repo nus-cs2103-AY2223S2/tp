@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+**Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -9,8 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* ControlsFX [https://github.com/controlsfx/controlsfx](https://github.com/controlsfx/controlsfx)
-* AddressBook 3
+* Libraries: [JavaFX](https://openjfx.io/), [ControlsFX](https://github.com/controlsfx/controlsfx)
+* Evolved and forked from [AddressBook 3](https://github.com/nus-cs2103-AY2223S2/tp) 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -97,30 +98,44 @@ On start, the `UIManager` will display the `MainWindow` that is made up of parts
 
 Timetable Window displays timetable of the specific week - which is specified by user. The "main" timetable window only contains scheduled jobs (jobs that are scheduled and not yet completed). However, we also have separated windows for completed and unscheduled jobs (`UnscheduleWindow` and `CompleteWindow`). Timetable Window helps users to stay organized and structure their plans for the week.
 
-`Timetable Window`:
+1. `Timetable Window`:
 
 ![Structure of the Timetable Window](images/UiClassDiagramTimetableWindow.png)
 
 * displays the corresponding job list with the correct date and slot 
 * returns command execution result.
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
-* `TimetableDetailPanel` gets the sorted job list by date and slot using `Logic` component: `Logic#getDayofWeekJob()` - and fills in the timetable. 
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` on `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+* `TimetableWindow` gets the sorted job list by date and slot using `Logic` component and fills in the timetable. 
 
-`Unschedule Window`:
+Upon calling `MainWindow#handleTimetable()`, the diagram below shows how `TimetableWindow` is being instantiated by calling `TimetableWindow#fillInnerParts()` to initialize the UI, and fill in the job list/detail for the corresponding parts. 
+
+![Sequence Diagram of initialization the Timetable Window](images/UiSequenceDiagramTimetableWindow.png)
+
+
+2. `Unschedule Window`:
 
 ![Structure of the Unscheduled Window](images/UiClassDiagramUnscheduleWindow.png)
 
 * displays the list of unscheduled jobs
 * gets the unscheduled job list using `Logic` component: `Logic#getUnscheduledDeliveryJobList()`
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` on `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
 
-`Complete Window`:
+Upon calling `MainWindow#handleUnscheduledTimetable()`, the diagram below shows how `UnscheduleWindow` is being instantiated by calling `UnscheduleWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+
+![Sequence Diagram of initialization the Unschedule Window](images/UiSequenceDiagramUnscheduledTimetableWindow.png)
+
+
+3. `Complete Window`:
 
 ![Structure of the Completed Window](images/UiClassDiagramCompleteWindow.png)
 
 * displays the list of completed jobs
 * gets the completed job list using `Logic` component: `Logic#getCompletedDeliveryJobList()`
-* remains up-to-date with the job list by adding `addListener` to `Logic#getFilteredDeliveryJobList()`.
+* remains up-to-date with the job list by using `ObservableList<DeliveryJob>#addListener()` on `Logic#getFilteredDeliveryJobList()` - which will listen to changes made to the delivery job list.
+
+Upon calling `MainWindow#handleCompletedTimetable()`, the diagram below shows how `CompleteWindow` is being instantiated by calling `CompleteWindow#fillInnerParts()` to initialize the UI, and fill in the job list for the corresponding parts.
+
+![Sequence Diagram of initialization the Complete Window](images/UiSequenceDiagramCompleteWindow.png)
 
 
 #### Create Job Window
@@ -409,6 +424,7 @@ The following sequence diagram shows how the `timetable_completed` operation wor
 
 
 ### Statistics feature
+Allow the user to view summary statistics about the delivery jobs.
 #### Implementation
 
 Given below is an example usage scenario and how the statistics mechanism behaves at each step.
@@ -440,8 +456,6 @@ The following sequence diagram shows how the statistics operation works:
     * Pros: Will use less memory and faster to execute
     * Cons: Will make code longer and increases coupling
 
-
-_{more aspects and alternatives to be added}_
 
 ### Notification feature
 #### Implementation
@@ -550,7 +564,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | busy person                                                     | view list of reminders                                             | keep track of my progress                                                            |
 | `* * *`  | organised user                                                  | be prepared for upcoming tasks and deadlines                       | plan for my next schedule                                                            |
 | `* * *`  | busy and organised person                                       | view schedule of my tasks in a week                                | organise my timetable/to-do list and keep track/complete everything on time          |
-| `* * *`  | busy  and organised person                                      | view list of completed and unscheduled jobs                        | keep track of my work                                                                |
+| `* * *`  | busy and organised person                                       | view list of completed and unscheduled jobs                        | keep track of my work                                                                |
 | `* * *`  | productive and motivated delivery driver                        | view statistics of my jobs and earnings                            | keep track of my work and get motivated to work harder                               |
 | `* *`    | delivery driver                                                 | hide private contact details                                       | minimize chance of someone else seeing them by accident                              |
 | `* *`    | delivery driver who wants to learn how to maximise his earnings | view my aggregated information                                     | track my earnings and other statistics                                               |
@@ -566,11 +580,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 _**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to view overall statistics.
-3. System shows total earnings, statistics on jobs completed/pending in total and in the previous week.
+3. System shows total earnings, statistics on jobs completed/pending in total and in the previous week.  
    Use case ends.
 
 _**Extensions**_
-* 2a. The list is empty.
+* 2a. The list is empty.  
       Use case ends.
 
 
@@ -579,14 +593,18 @@ _**MSS**_
 1. User opens the system.
 2. System list all pending jobs.
 3. User selects the job for details.
-4. System displays the full detail of the delivery job.
+4. System displays the full detail of the delivery job.  
+   Use case ends.
 
+_**Extensions**_
+* 2a. The list is empty.  
+      Use case ends.
 
 #### [DE2] Add a delivery job
 _**MSS**_
 1. User is on homepage of list of jobs.
 2. User requests to add a job in the list.
-3. System adds job and job appears in list of jobs.
+3. System adds job and job appears in list of jobs.  
    Use case ends.
 
 #### [DE3] Delete a delivery job
@@ -594,14 +612,14 @@ _**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests to delete a specific job in the list.
-4. System deletes the job.
+4. System deletes the job.  
    Use case ends.
 
 _**Extensions**_
-* 2a. The list is empty.
-  Use case ends.
+* 2a. The list is empty.  
+      Use case ends.
 * 3a. The given index is invalid.
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message.  
       Use case resumes at step 2.
 
 #### [DE4] Edit a delivery job
@@ -611,14 +629,14 @@ _**MSS**_
 2. System shows a list of jobs.
 3. User requests to edit a specific job in the list.
 4. User fill in and submit the changes.
-4. System update the job and list the new information.
+4. System update the job and list the new information.  
    Use case ends.
 
 _**Extensions**_
-* 2a. The list is empty.
-  Use case ends.
+* 2a. The list is empty.  
+      Use case ends.
 * 3a. The given index is invalid.
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message.  
       Use case resumes at step 2.
 
 #### [DE5] Find a delivery job
@@ -626,35 +644,35 @@ _**MSS**_
 1. User is on homepage of list of jobs.
 2. System shows a list of jobs.
 3. User requests search for a job with options.
-4. System displays search results that matches the query.
+4. System displays search results that matches the query.  
    Use case ends.
 
 _**Extensions**_
 * 3a. Invalid search option given.
-    * 3a1. System shows an error message.
+    * 3a1. System shows an error message.  
       Use case resumes at step 2.
 * 4a. No item matches the query options.
-    * 4a. System shows empty list.
+    * 4a. System shows empty list.  
       Use case resumes at step 2.
 
 #### [TT1] Display timetable of scheduling tasks of current week
 
 _**MSS**_
 1. User requests to display timetable by selecting Timetable option on homepage.
-2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.
+2. System displays timetable of uncompleted/upcoming jobs in current week in Timetable Window.  
    Use case ends.
 
 #### [TT2] Display timetable of scheduling tasks of week containing a specific date
 _**MSS**_
 1. User requests to display timetable of specific week containing a specific date.
-2. System displays timetable of uncompleted/upcoming jobs in the week in Timetable Window.
+2. System displays timetable of uncompleted/upcoming jobs in the week in Timetable Window.  
    Use case ends.
 
 #### [TT3] Display list of unscheduled/completed jobs
 
 _**MSS**_
 1. User requests to display list of unscheduled/completed jobs.
-2. System displays list of unscheduled/completed jobs in Unscheduled/Completed Window.
+2. System displays list of unscheduled/completed jobs in Unscheduled/Completed Window.  
    Use case ends.
 
 #### [RE1] Alert scheduled jobs
@@ -666,7 +684,7 @@ _**MSS**_
 3. If the current timing falls more than 20 mins before a timetable slot, System will check if there is any current job. 
 If yes, it will count and alert the user through the notification feature.
 4. System runs in the background to only check the timetable for upcoming jobs.
-   System will repeat step 2 every hour, 20 mins before the next timetable slot.
+   System will repeat step 2 every hour, 20 mins before the next timetable slot.  
    Use case ends.
 
 _**Extensions**_
@@ -677,7 +695,7 @@ _**Extensions**_
     * 3b1. System will check in the first timetable slot and count number of upcoming jobs.
     * 3b2. Alert the user through the notification feature.
 * 3c. If the current time is after the last timetable slot
-    * 3c1. System will not check for any or upcoming scheduled jobs.
+    * 3c1. System will not check for any or upcoming scheduled jobs.  
       Use case resumes from step 4.
 
 #### [RE2] Alert reminders
@@ -688,26 +706,26 @@ _**MSS**_
 specified in a reminder, System will count it as an active reminder. 
 4. System will display the number of active notifications.
 5. System runs in the background to check against the list of reminders after every minute.
-   System will repeat the check at step 3.
+   System will repeat the check at step 3.  
    Use case ends.
 
 _**Extensions**_
 * 4a. User can dismiss the reminder. Doing will prevent the app from showing anymore notifications.
-    * 4a1. A new reminder is activated.
+    * 4a1. A new reminder is activated.  
       Use case resumes from step 4.
-    * 4a2. No new reminder is activated.
+    * 4a2. No new reminder is activated.  
       Use case resumes from step 5
 
 #### [RE3] Add reminders
 _**MSS**_
 
 1. User details the description, date and time of a reminder to the System.
-2. System adds the reminder into the reminder list.
+2. System adds the reminder into the reminder list.  
    Use case ends.
 
 _**Extensions**_
 * 2a. date and time of reminder is not provide.
-    * 2a1. System will prompt user again.
+    * 2a1. System will prompt user again.  
            Use case resumes from step 1.
 
 #### [RE4] Delete reminders
@@ -715,12 +733,12 @@ _**Extensions**_
 _**MSS**_
 
 1. User specifies a reminder to be deleted based on its index number.
-2. System finds the corresponding reminder, and deletes it from the reminder list.
+2. System finds the corresponding reminder, and deletes it from the reminder list.  
    Use case ends.
 
 _**Extensions**_
 * 2a. Index provided by user is not found in reminder list.
-    * 2a1. System will prompt user again.
+    * 2a1. System will prompt user again.  
       Use case resumes from step 1.
 
 #### [RE5] List reminders
@@ -728,7 +746,7 @@ _**Extensions**_
 _**MSS**_
 
 1. User request System to show all reminders in reminder list.
-2. System displays all reminders.
+2. System displays all reminders.   
    Use case ends.
 
 
@@ -745,7 +763,7 @@ _**MSS**_
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Customer/Client**: Those who placed orders and created work for delivery men.
 * **GUI**: Graphical User Interface
-* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to plantuml.com.
+* **PlantUML**: An open-source tool allowing users to create diagrams from a plain text language. Refer to [PlantUML](https://plantuml.com/).
 * **CLI**: Command Line Interface
 
 --------------------------------------------------------------------------------------------------------------------
@@ -754,9 +772,8 @@ _**MSS**_
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;    
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -764,7 +781,6 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
    1. Download the jar file and copy into an empty folder
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
 1. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by double-clicking the jar file.<br>
@@ -803,7 +819,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect format to try:  
       - `not found query`:  `find abc`  
       Expected: 0 persons listed.
-
 1. Deleting a person while all persons are being shown
    1. Prerequisites: List all persons in Customers Window using the `list` command. Multiple persons in the list.
    1. Test case: `delete 1`<br>
@@ -815,10 +830,6 @@ testers are expected to do more *exploratory* testing.
 
 
 ### Delivery Job System
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
 
 1. Add a job by command
    1. Prerequisites: User is in the main window. Valid recipient and sender id. 
@@ -836,15 +847,10 @@ testers are expected to do more *exploratory* testing.
 1. Add a job by GUI
    1. Prerequisites: User have access to GUI. Select `menu` > `Delivery Job System` > `Create Job`.  
    1. Test case: fill in mandatory fields only (recipient/sender/earning)<br>
-      Expected: Similar to `1.ii`
+      Expected: Similar to `1.2`
    1. Test case: fill in all fields<br>
-      Expected: Similar to `1.iii`
-<<<<<<< HEAD
-   1. Other incorrect approach to try:
-
-=======
+      Expected: Similar to `1.3`
    1. Other incorrect approach to try:  
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
       - sender/recipient: invalid person id.
       - earning: multiple decimal points.  
       - date: invalid date.  
@@ -865,7 +871,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The changes made is reflected in the detail pane after submission.
    1. Other incorrect approach to try:  
       - Similar to create job GUI.
-1. Find a job by command
+1. Find a job
    1. Prerequisites: Target job is valid.
    1. Test case: `find_job ji/BECHE8833A`<br>
       Expected: Job with id `BECHE8833A` displayed in the list.
@@ -874,10 +880,12 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect format to try:  
       - Invalid command: `find_job`  
       Expected: Error message displayed in result box.
-1. Delete a job by command
+1. Delete a job
    1. Prerequisites: Job to delete is valid.
    1. Test case: `delete_job DAIR765586`<br>
       Expected: Job with id `DAIR765586` removed from the list.
+   1. Test case: `select a job` > press `del` key<br>
+      Expected: Job selected is removed.
    1. Other incorrect format to try:  
       - Invalid command: `delete_job`  
       Expected: Error message displayed in result box.
@@ -903,24 +911,19 @@ testers are expected to do more *exploratory* testing.
          4. missingelements.csv (incorrect format to try)
             1. Missing elements in import. Check if there are empty cells.
    
-    
-### Notifications
-<<<<<<< HEAD
-=======
+  
 
->>>>>>> 8f703e8565e36c173d90becc7dcfc1ca0a53ecda
+### Notifications
 
 1. Display a notification for a reminder
    1. Prerequisites: Added a reminder using the `add_reminder` command. Make sure the `time/` field is set to an appropriate time.
    2. Test case: Current time has pass indicated time for Reminder <br> Expected: After adding reminder, notification for that reminder should pop up at the next clock minute.
    3. Test case: Current time has not pass indicated time for Reminder <br> Expected: No notification should show, unless clock minute has pass time indicated for reminder.
-
 2. Snooze reminder notification
     1. Prerequisites: Reminder has been added, current time has pass time indicated in reminder, and notification is showing.
    2. Test case: Clicking on body of notification should open up the Reminder List Window, and dismiss the notification. Notification should not show up again at next clock minute, unless a new reminder
 has been activated. 
    3. Due to the in-built nature of ControlsFX's notification and how reminders are checked at every minute, expect the notification to disappear and appear again every minute.
-
 3. Display a notification for next Scheduled slot
    1. Prerequisites: Assign a job to an appropriate timetable slot.
    2. Test case: Once current time is 20 minutes before the next timetable slot (e.g. 10:40 to 10:59), a notification would pop up for the number of jobs assigned to the next timetable slot.
@@ -928,30 +931,32 @@ has been activated.
 ### Timetable
 
 1. Display timetable for specific week containing a specific date from Main Window
-    1. Prerequisites: None.
+    1. Prerequisites: User is at the main window.
     2. Command: `timetable` (Show timetable of current week - LocalDate.now()) or `timetable date date/YYYY-mm-DD`. The date should not be left empty. Alternative, for `timetable` command, user can use GUI mode instead: Menu bar > Timetable > Scheduled jobs.
     3. The output box in the window should show a message confirming that Timetable window is opened for the specific week containing the input date.
     4. The system should open Timetable for the specific week, showing job list in respective day and slot (if there are any jobs for that day - else, the column for the day will be empty).
-
 2. Display list of unscheduled jobs (i.e. jobs with invalid date and slot)
-    1. Prerequisites: None.
+    1. Prerequisites: User is at the main window.
     2. Command: `timetable_unscheduled` or GUI mode: Menu bar > Timetable > Unscheduled jobs.
     3. The output box in the Main window should show a message confirming that Unscheduled job is opened for the specific week.
     4. The system should open the Unscheduled Window, showing list of unscheduled jobs and total number of unscheduled jobs.
-
 3. Display list of completed jobs 
-    1. Prerequisites: None.
+    1. Prerequisites: User is at the main window.
     2. Command: `timetable_completed` or GUI mode: Menu bar > Timetable > Completed jobs.
     3. The output box in the Main window should show a message confirming that Completed job is opened for the specific week.
     4. The system should open the Completed Window, showing list of completed jobs and total number of completed jobs.
-
 4. Display timetable for specific week containing a specific date from Timetable Window
-    1. Prerequisites: Opened Timetable window using `timetable` command from Main Window. Timetable of current week is shown in current Timetable Window.
+    1. Prerequisites: User is at Timetable window - user may open this window by using `timetable` command or GUI Mode: Menu bar > Timetable > Scheduled jobs from Main Window. Timetable of current week is shown in current Timetable Window.
     2. Command: `timetable date date/YYYY-mm-DD`. The date should not be left empty. 
     3. The output box in the Timetable window should show a message confirming that Timetable window is opened for the specific week which contains the input date.
     4. The system should display Timetable for the specific week, showing job list in respective day in the week and slot (if there are any jobs for that day - else, the column for the day will be empty).
 
+### Statistics
 
+1. Display statistics of all jobs from Main Window
+    1. Prerequisites: None.
+    2. Command: `stats`. Alternative, for `stats` command, user can use GUI mode instead: Menu bar > Statistics > Display Statistics.
+    3. The text in the window should show lists of statistics for current week's and previous week's jobs.
 
 ### Appendix: Effort
 As our application contains different windows and features, such as Timetable Window, Reminder Window,.. - one challenge that we had to face was deciding on the UI and design of our app. We learnt to work with JavaFX to open different windows when needed, and decide on the structure/design of each window to maintain good design principles. To make sure that Duke Driver is friendly to typing-preferred users, asides from including buttons on GUI mode, we also include commands for users to switch between windows. 

@@ -48,7 +48,7 @@ LogicManager -> TimetableDateCommand : execute()
 
 activate TimetableDateCommand
 
-TimetableDateCommand -> Model : updateFocusDate(LocalDate.now())
+TimetableDateCommand -> Model : updateFocusDate(2023-03-03)
 TimetableDateCommand -> Model : updateSortedDeliveryJobList(new SortbyTimeAndEarn())
 TimetableDateCommand -> Model : updateSortedDeliveryJobListByDate()
 TimetableDateCommand -> Model : updateWeekDeliveryJobList(LocalDate.now())

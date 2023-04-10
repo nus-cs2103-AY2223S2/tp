@@ -27,7 +27,7 @@ Given below are my contributions to the project.
     * Highlights: This feature worked in conjunction with the timetable feature done by fellow programmer, Ha Duong. It required the extraction of the daily job listing that have been scheduled for that day. Also, with the help of the notification abstraction, creating this feature went really smooth.
     * Credits: Ha Duong for her implementation of the timetable feature, and the notification function.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=chinjunan&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed releases v1.3 - v1.4 (2 releases) on GitHub

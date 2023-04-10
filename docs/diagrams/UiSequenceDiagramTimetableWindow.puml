@@ -1,0 +1,101 @@
+@startuml
+!include style.puml
+
+box UI
+participant ":MainWindow" as MainWindow UI_COLOR_T1
+participant ":TimetableWindow" as TimetableWindow UI_COLOR_T2
+participant "detail:TimetableDetailPanel" as TimetableDetailPanel UI_COLOR_T3
+participant "weekDate:DayOfWeekPanel" as DayOfWeekPanel UI_COLOR_T4
+participant "monthDate:DayOfMonthPanel" as DayOfMonthPanel UI_COLOR
+participant ":WeekJobListPanel" as WeekJobListPanel UI_COLOR_T2
+end box
+
+box Logic LOGIC_COLOR
+participant ":Logic" as Logic LOGIC_COLOR_T4
+participant "filteredDeliveryJobList:FilteredList" as FilteredList LOGIC_COLOR_T2
+end box
+
+[-> MainWindow : handleTimetable()
+
+MainWindow -> TimetableWindow : fillInnerParts()
+
+
+activate TimetableWindow
+
+create TimetableDetailPanel
+TimetableWindow -> TimetableDetailPanel
+activate TimetableDetailPanel
+
+
+TimetableWindow -> FilteredList : addListener()
+activate FilteredList
+FilteredList --> TimetableWindow
+deactivate FilteredList
+
+TimetableDetailPanel -> TimetableDetailPanel : fillInnerParts()
+activate TimetableDetailPanel
+TimetableDetailPanel -> Logic : getFocusDate()
+activate Logic
+Logic --> TimetableDetailPanel : focusDate
+TimetableDetailPanel -> Logic : updateSortedDeliveryJobListByDate()
+Logic --> TimetableDetailPanel
+TimetableDetailPanel -> Logic : setWeekDeliveryJobList(focusDate)
+Logic --> TimetableDetailPanel
+
+
+
+create WeekJobListPanel
+TimetableDetailPanel -> WeekJobListPanel
+
+activate WeekJobListPanel
+
+WeekJobListPanel -> WeekJobListPanel : addAllPlaceholderJobs();
+
+
+activate WeekJobListPanel
+WeekJobListPanel -> Logic : getDayofWeekJob()
+Logic --> WeekJobListPanel
+deactivate Logic
+
+
+
+
+deactivate WeekJobListPanel
+
+create DayOfMonthPanel
+TimetableDetailPanel -> DayOfMonthPanel
+activate DayOfMonthPanel
+DayOfMonthPanel --> TimetableDetailPanel : monthDate
+deactivate DayOfMonthPanel
+DayOfMonthPanel -[hidden]-> TimetableDetailPanel : monthDate
+destroy DayOfMonthPanel
+
+create DayOfWeekPanel
+TimetableDetailPanel -> DayOfWeekPanel
+activate DayOfWeekPanel
+DayOfWeekPanel --> TimetableDetailPanel : weekDate
+deactivate DayOfWeekPanel
+DayOfWeekPanel -[hidden]-> TimetableDetailPanel : weekDate
+destroy DayOfWeekPanel
+
+WeekJobListPanel --> TimetableDetailPanel
+deactivate WeekJobListPanel
+WeekJobListPanel -[hidden]-> TimetableDetailPanel
+destroy WeekJobListPanel
+deactivate TimetableDetailPanel
+
+
+
+
+TimetableDetailPanel --> TimetableWindow : detail
+deactivate TimetableDetailPanel
+TimetableDetailPanel -[hidden]-> TimetableWindow : detail
+destroy TimetableDetailPanel
+
+TimetableWindow --> MainWindow
+deactivate TimetableWindow
+
+[<--MainWindow
+deactivate MainWindow
+
+@enduml
