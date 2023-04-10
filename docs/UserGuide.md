@@ -58,7 +58,7 @@ In general, the following command format is adopted in FriendlyLink.
 | Prefix     | Characters appearing before a slash in a command. Prefixes label the information that they represent.         | `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.                                                                    |
 | Preamble   | Preamble is a special piece of information specified for certain commands that are entered without prefixes.  | `edit_elderly S1234567A n/John Doe` has the preamble `S1234567A` but `edit_elderly n/John Doe S1234567A` is invalid as the preamble `S1234567A` has to come before all other fields.          |
 
-<div markdown="span" class="alert alert-info">:information_source: **Notes on Command Format**
+<div markdown="block" class="alert alert-info">:information_source: **Notes on Command Format**
 
 * Words that are `CAPITALISED` are placeholders that should be replaced by you.
 * Items in `[square brackets]` are optional.
@@ -554,18 +554,13 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 ## Preamble
 
-### NRIC
-NRIC is a unique identifier given to all Singaporeans.
-* NRIC is case-insensitive.
-* The structure of the NRIC should be `@XXXXXXX#`, where:
-    * `@` is a letter that can be "S", "T", "F", "G", "M"
-    * `XXXXXXX` is a 7-digit serial number
-    * `#` is a letter from A to Z
-* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC).
-
 ### Index
 Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
 * An index must be a positive integer e.g. 1, 2, 3, …​.
+
+[Back to top](#table-of-contents)
+
+---------------------
 
 ## Prefix
 
@@ -582,6 +577,10 @@ Indexes are natural numbers (numbers used for counting) that are used for number
 | `re/`  | Region                | 
 | `t/`   | Tags                  | 
 
+[Back to top](#table-of-contents)
+
+-------------------------------------------------
+
 ## Fields
 This section describes the format and specifications of each field.
 
@@ -596,6 +595,15 @@ We recommend using entering fields of length at most 100.
 The name of a person.
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
 * Particularly, non-alphanumeric characters or special characters like `/`, `@` and `?` are disallowed.
+
+### NRIC
+NRIC is a unique identifier given to all Singaporeans.
+* NRIC is case-insensitive.
+* The structure of the NRIC should be `@XXXXXXX#`, where:
+    * `@` is a letter that can be "S", "T", "F", "G", "M"
+    * `XXXXXXX` is a 7-digit serial number
+    * `#` is a letter from A to Z
+* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC).
 
 ### Address
 The home address of a person.
@@ -742,6 +750,8 @@ The following icons are found in our application:
 
 For more information about what they represent, refer to the [Fields](#fields) section.
 
+[Back to top](#table-of-contents)
+
 -------------------------------------------
 
 ## Glossary
@@ -777,9 +787,9 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 
 | Term     | Meaning                                                                                                                                                                                  |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
-| JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
 | Java     | Java is a programming language that FriendlyLink is written in. It is required to run the application.                                                                                   |
+| JAR      | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
+| JSON     | JavaScript Object Notation. A lightweight data format that is easy for both humans and computers to read and write.                                                                      |
 | Terminal | The terminal is an interface that lets you access the command line.                                                                                                                      |
 
 [Back to top](#table-of-contents)
