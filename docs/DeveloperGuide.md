@@ -12,7 +12,11 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Our in-app calendar display makes use JavaFX controls from the [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX) library, an open source calendar framework for JavaFX 8. 
+* The Intern's Ship is written in Java 11.
+* The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5),
+  [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX)
+* The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +98,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <p align="center">
 
-<img src="images/UiClassDiagram.png" width="400" />
+<img src="images/UiClassDiagram.png" width="650" />
 
  </p>
  
@@ -117,7 +121,7 @@ The *Class Diagram* below outlines the different concrete subclasses of `Page` a
 
 <p align="center">
 
-<img src="images/PageClasses.png" width="350" />
+<img src="images/PageClasses.png" width="650" />
 
  </p>
 
@@ -127,7 +131,7 @@ When the user executes a command, `Page` factory method `of` will be called and 
 
 <p align="center">
 
- <img src="images/PageSequenceDiagram.png" width="400" />
+ <img src="images/PageSequenceDiagram.png" width="800" />
 
  </p>
  
@@ -156,7 +160,7 @@ The *Sequence Diagram* below illustrates the interactions within the `Logic` com
 
 <p align="center">
 
-<img src="images/DeleteSequenceDiagram.png" width="550"/>
+<img src="images/DeleteSequenceDiagram.png" width="700"/>
 
  </p>
 
@@ -167,7 +171,7 @@ The *Class Diagram* below outlines classes in `Logic` used for parsing a user co
 
 <p align="center">
 
-<img src="images/ParserClasses.png" width="300"/>
+<img src="images/ParserClasses.png" width="400"/>
 
  </p>
  
@@ -243,6 +247,10 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Selecting an `Internship`: `select` command
 
+#### Purpose of `select` command
+
+In TinS, for all `Internship`-related commands (e.g. `add`, `event add`, `delete` and etc.), the user has to select an existing `Internship` as the target of the command. This selection action is done through the `select` command.   
+
 #### Implementation
 
 The `select` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
@@ -271,7 +279,7 @@ The following *Sequence Diagram* shows how the `select` command works:
 
 <p align="center">
 
-<img src="images/SelectSequenceDiagram.png" width="550" />
+<img src="images/SelectSequenceDiagram.png" width="700" />
 
 </p>
  
@@ -280,17 +288,21 @@ lifeline reaches the end of diagram.
 
 ### Adding `Event` to an `Internship`: `event add` command
 
-The `event add` command allows users to add instances of `Event` to a selected `Internship`.
+#### Purpose of `event add` command
+
+An `Internship` may contain 1 or more `Event`. Some examples of `Event` include interviews, deadline for submissions and etc. The `event add` command allows users to add instances of `Event` to a selected `Internship`.
 
 #### Implementation
 
-Below is an example usage. 
+`event add` command is a `Event`-related command that extends `Command` and returns a `CommandResult` in the `execute()` method. `Event`-related command refers to 2-word commands that has `event` as the first word. These commands are additionally parsed by `EventCatalogueParser` after being parsed by `InternshipCatalogueParser`.
+
+Below is an example usage of `event add`. 
 
 Step 1. User selects the `Internship` they want to add the event to by executing `select <id>`, where `<id>` refers to the index of the `Internship` on the list.
 
 Step 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an `Event` to the selected `Internship`.
 
-  * User executes ` event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
+  * User executes `event add na/<event name> en/<event end datetime> de/<event description>` instead if they want to add a deadline to their selected internship. A deadline is simply an `Event` with only the end date.
 
 The *Activity Diagram* for the above logic flow is below: 
 
@@ -300,7 +312,7 @@ The *Activity Diagram* for the above logic flow is below:
 
   </p>
 
-Step 3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+Step 3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an `Event`-related command and sends the remainder of the command (i.e. ` add na/... `) to `Logic#EventCatalogueParser`
 
 Step 4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
 
@@ -308,7 +320,7 @@ Step 5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` O
 
 Step 6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
 
-Step 7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+Step 7. `EventAddCommand` instance uses the model object to find the `selectedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
 
 Step 8. `Event` object is then added to the `UniqueEventList` using the `addEvent` method of `model`.
 
@@ -316,15 +328,19 @@ The *Sequence Diagram* for the adding the `Event` is below:
 
 <p align="center">
  
-<img src="images/EventAddSequenceDiagram.png" width="550" />
+<img src="images/EventAddSequenceDiagram.png" width="700" />
 
 </p>
 
 ### Viewing all `Event` on a calendar: `calendar` command
 
+#### Purpose of `calendar` command
+
 The `calendar` command displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
 
 #### Implementation
+
+The `calendar` command is a standard command that extends `Command` and returns a `CommandResult` in the `execute()` method.
 
 Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
 
@@ -367,6 +383,8 @@ To learn more about CalendarFX, you may visit its Developer Guide [here](https:/
 
 ### View useful `Statistics`: `stats` command
 
+#### Purpose of `stats` command
+
 The `stats` command displays useful statistics based on `Internship` and `Event` data.
 
 #### Design considerations:
@@ -405,12 +423,16 @@ Step 5. Finally, a `CommandResult` is created containing that `Statistics` insta
 
 The following sequence diagram shows how the `stats` command works:
 
-![StatsSequenceDiagram](images/StatsSequenceDiagram.png)
+<p align="center">
+
+<img src="images/StatsSequenceDiagram.png" width="700" />
+
+</p>
 
 
 ### View all clashing `Event`: `clash` command
 
-#### Purpose of `clash` Function
+#### Purpose of `clash` command
 
 The purpose of the `clash` command is for users to find events with clashing timings, enabling them to reschedule
 clashing events. 
@@ -476,7 +498,11 @@ in the list. If there is a clash in the two events, `clashingTimings(Event)` is 
 dates on which the events clash. These dates are added to the `HashMap`, and the clashing events are appended to
 the list of events corresponding to those dates.
 
-![Clash](diagrams/ClashSequenceDiagram.png)
+<p align="center">
+
+<img src="images/ClashSequenceDiagram.png" width="700" />
+
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -532,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit eventDescription of an Internship Application**
+#### Use case: Edit eventDescription of an Internship Application
 
 **MSS**
 
@@ -564,7 +590,7 @@ Use Case ends.
 
       Use case resumes at step 4.
 
-**Use Case: Add an Internship Listing**
+#### Use Case: Add an Internship Listing
 
 **MSS**
 
@@ -581,7 +607,7 @@ Use Case ends.
     
     
 
-**Use case: List all internship applications**
+#### Use case: List all internship applications
 
 **MSS**
 
@@ -597,7 +623,7 @@ Use case ends.
     Use Case ends.
   
 
-**Use Case: Delete Internship Listing**
+#### Use Case: Delete Internship Listing
 
 **MSS**
 
@@ -615,7 +641,7 @@ Use case ends.
     
        Use Case resumes at Step 3
 
-**Use case: List all internship events with a deadline on a particular date**
+#### Use case: List all internship events on a particular date
 
 **MSS**
 
@@ -635,7 +661,7 @@ Use case ends.
   Use case ends.
 
 
-**Use case: List internships by desired criteria**
+#### Use case: List internships by desired criteria
 
 **MSS**
 
@@ -656,7 +682,7 @@ Use case ends.
     * 3a1. TinS shows an error message.
     
 
-**Use case: View all clashes of internship Events.**
+#### Use case: View all clashes of internship Events.
 
 **MSS**
 
@@ -671,6 +697,7 @@ Use case ends.
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -679,8 +706,6 @@ Use case ends.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user should be able to navigate the application solely using the keyboard (i.e. input new internships, scroll through
    internship listing via keyboard).
-
-*{More to be added}*
 
 <div style="page-break-after: always;"></div>
 
