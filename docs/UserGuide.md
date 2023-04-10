@@ -72,16 +72,15 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.4).
 3. Copy the file to the folder you want to use as the _home folder_ for your GoodMatch.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
-
-A GUI similar to the one below should appear in a few seconds.
-
-![Mock Up](./images/Ui.png)
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.</br>A GUI similar to the one below should appear in a few seconds.</br>
+<p>
+  <img class="diagram" src="images/Ui.png" />
+  <em>Example of GUI</em>
+</p>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
-
+</br></br>
 Some example commands you can try:
-
 - `view`: Lists all listings.
 - `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom`: Adds a listing called `Chicken Rice Uncle` into the Listing Book.
 - `delete 1`: Deletes the 1st listing shown in the current list.
