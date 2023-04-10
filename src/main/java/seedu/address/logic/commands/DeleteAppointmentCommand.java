@@ -77,7 +77,7 @@ public class DeleteAppointmentCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentToDeletePatient));
     }
 
-    private static void updateModel(Model model, Patient appointmentPatient, Appointment appointmentToDeletePatient,
+    private void updateModel(Model model, Patient appointmentPatient, Appointment appointmentToDeletePatient,
                                     Doctor appointmentToDeleteDr, Patient editedPatient, Doctor editedDoctor) {
         model.setPatient(appointmentPatient, editedPatient);
         model.setDoctor(appointmentToDeleteDr, editedDoctor);
@@ -112,7 +112,7 @@ public class DeleteAppointmentCommand extends Command {
         appointmentToDeleteDr.deletePatientAppointment(toDeleteDrAppmt);
     }
 
-    private static Doctor retrieveDrOfAppmtToDelete(List<Person> persons, Nric appointmentToDeleteDrNric) {
+    private Doctor retrieveDrOfAppmtToDelete(List<Person> persons, Nric appointmentToDeleteDrNric) {
         Doctor appointmentToDeleteDr = null;
         for (Person pp : persons) {
             if (pp.getNric().equals(appointmentToDeleteDrNric)) {
