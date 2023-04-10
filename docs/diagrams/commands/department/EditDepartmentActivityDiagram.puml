@@ -5,19 +5,16 @@ start
 :User enters edep command;
 if () then ([else])
   :Error: Invalid command format;
-  stop
 ([Command format is valid])elseif () then ([else])
   :Error: At least one field to edit must be provided;
-   stop
 ([Department name argument exists])elseif () then ([else])
   :Error: The department to edit does not exist in SudoHR.;
-   stop
 ([Department to edit exists])elseif () then ([else])
    :Error: Edited department already exists in SudoHr;
-   stop
- else ([Edited department does not exist in SudoHr])
-endif
+ else ([Edited department does not
+ exist in SudoHr])
   :edep command successfully executes.;
+  endif
 stop
 
 @enduml

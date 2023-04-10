@@ -36,14 +36,14 @@ create DepartmentName
 EditDepartmentCommandParser -> DepartmentName
 activate DepartmentName
 
-DepartmentName -> EditDepartmentCommandParser
+DepartmentName --> EditDepartmentCommandParser
 deactivate
 
 create EditDepartmentDescriptor
 EditDepartmentCommandParser -> EditDepartmentDescriptor
 activate EditDepartmentDescriptor
 
-EditDepartmentDescriptor -> EditDepartmentCommandParser
+EditDepartmentDescriptor --> EditDepartmentCommandParser
 deactivate
 
 create EditDepartmentCommand
@@ -77,10 +77,11 @@ activate EditDepartmentCommand
 create Department
 EditDepartmentCommand -> Department
 activate Department
-Department -> EditDepartmentCommand
+
+Department --> EditDepartmentCommand
 deactivate
 
-EditDepartmentCommand -> EditDepartmentCommand
+EditDepartmentCommand --> EditDepartmentCommand
 deactivate EditDepartmentCommand
 
 EditDepartmentCommand -> Model : hasDepartment(editedDepartment)

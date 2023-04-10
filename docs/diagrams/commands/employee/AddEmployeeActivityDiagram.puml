@@ -1,0 +1,23 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters add command;
+if () then ([else])
+  :Error: Invalid command format;
+
+([Command format is valid]) elseif () then ([else])
+  :Error: This employee already exists in SudoHR;
+
+([No employee in SudoHR with the same Id]) elseif () then ([else])
+  :Error: There already exists someone with this phone number;
+
+([No employee in SudoHR with the same phone number]) elseif () then ([else])
+  :Error: There already exists someone with this email;
+
+else ([No employee in SudoHR with the same email address])
+  :add command successfully executes;
+
+endif
+stop
+
+@enduml

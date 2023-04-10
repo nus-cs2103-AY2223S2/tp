@@ -12,11 +12,11 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/4ndrelim.png" width="200px">
 
 [[github](https://github.com/4ndrelim)]
-[[portfolio](team/andre.md)]
+[[portfolio](team/4ndrelim.md)]
 
-- Role: Developer
-- Responsibilities: Integration & Tracking
-- In-charge of: Leave features
+- Role: Developer, PR Reviewer
+- Responsibilities: Integration, Testing & Bug Fixing
+- In-charge of: Employee class and related features
 
 ### Kenneth Kiang
 
@@ -26,6 +26,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/kennethk-1201.md)]
 
 - Role: Team Lead
+- Responsibilities: Integration and Testing
+- In-charge of: Department class and related features
 
 ### Park Kwangjoo
 
@@ -36,7 +38,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Developer
 - Responsibilities: Integration
-- In-charge of: Performance review features
+- In-charge of: Department and Leave features.
 
 ### Chee Jer En
 
@@ -47,6 +49,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Code reviewer
 - Responsibilities: Review Code
+- In-charge of: Leave class and related features
 
 
 ### Johnathan Wee
@@ -58,4 +61,4 @@ We are a team based in the [School of Computing, National University of Singapor
 
 - Role: Developer
 - Responsibilities: Secretary
-- In-charge of: Department features
+- In-charge of: UI
