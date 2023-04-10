@@ -18,7 +18,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 ## **Table of Contents**
 
 * **Table of Contents**
-  {:toc}
+{:toc}
 
 ---
 
