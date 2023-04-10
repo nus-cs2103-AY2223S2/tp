@@ -586,7 +586,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
 1.  User <u>gets list of customers (UC C1)</u>.
 2.  User enters note for a customer.
-3.  LL adds/appends note to the customer and displays the customer information.
+3.  LL sets/appends note to the customer and displays the customer information.
 
     Use case ends.
 
@@ -758,7 +758,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 
 1.  User <u>gets list of orders (UC O1)</u>.
 2.  User enters note for an order.
-3.  LL adds/appends note to the order and displays the order information.
+3.  LL sets/appends note to the order and displays the order information.
 
     Use case ends.
 
@@ -776,7 +776,7 @@ For all use cases below, the **System** is `LoyaltyLift (LL)` and the **Actor** 
 2. Should be able to hold up to 1000 customers and orders without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to handle incorrect user input without crashing, and instruct the user on correct input format.
-5. Should have a quick startup time and launch without any noticeable delays.
+5. Should work in both offline and online environments.
 6. Should have a response time of 5 seconds or less.
 
 ### Glossary
@@ -868,7 +868,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `listc f/ind`<br>
       Expected: Only individual customers are shown in the list. Success message shown in the status message.
 
-   1. Test case: `listc s/points f/filtered`<br>
+   1. Test case: `listc s/points f/ind`<br>
       Expected: Only individual customers are shown in the list sorted by points. Success message shown in the status message.
 
    1. Other valid test cases to try: `listc s/x`, `listc f/y`, `listc s/x f/y`, `...`
