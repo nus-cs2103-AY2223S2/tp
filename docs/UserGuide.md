@@ -317,7 +317,7 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#42-patient-commands">4.2 
+<div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#42-patient-commands" style="color:#0000FF;">4.2 
 Patient Commands</a> for more information on how to manage patient data in CareFlow.
 </div>
 
@@ -328,7 +328,7 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#43-drug-commands">4.3 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
+<div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#43-drug-commands" style="color:#0000FF;">4.3 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
 </div>
 
 
@@ -338,7 +338,7 @@ If you encounter an emergency or serious medical issue that your clinic can't ha
 
 <div markdown="block" class="alert alert-success">:information_source: Please note that you are not allowed to edit or
 change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please
-feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html">contact us</a> and let us know. We
+feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html" style="color:#0000FF;">contact us</a> and let us know. We
 are committed to constantly improving our software to meet your needs.
 </div>
 
@@ -429,9 +429,9 @@ ___
       </p>
       <br/>
 <div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate patient 
-information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as <span style="border-style: solid;"> NAME </span>,  <span style="border-style: solid;"> NRIC </span>, <span style="border-style: solid;"> PHONE </span>, etc).
+information in any order that you wish. But do make sure that you have entered all compulsory parameters (ie. those not in square bracket, such as <span style="border-style: solid;"> &nbsp;NAME </span>,  <span style="border-style: solid;"> &nbsp;NRIC </span>, <span style="border-style: solid;"> &nbsp;PHONE </span>, etc).
 </div>
-<div markdown="block" class="alert alert-success">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as <span style="border-style: solid;"> DATE_OF_BIRTH </span> and <span style="border-style: solid;"> EMAIL </span> are prone to error, so be careful with those when you enter patient information.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** In the event of unsuccessful addition, please check through the parameter constaints in the table [above](#patient-constraints) to make sure that all parameters comply with the constraints. Parameters such as <span style="border-style: solid;"> &nbsp;DATE_OF_BIRTH </span> and <span style="border-style: solid;"> &nbsp;EMAIL </span> are prone to error, so be careful with those when you enter patient information.
 </div>
 
 <br/>
@@ -510,10 +510,10 @@ information in any order that you wish. But do make sure that you have entered a
     <li>
     The index of a patient can change depending on the filter you currently apply on the patient list.</li>
     <li>
-      For example, if you execute the <span style="border-style: solid;"> p list </span> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
+      For example, if you execute the <span style="border-style: solid;"> &nbsp;p list </span> command, all filter will be removed and the patient's index will be his or her position in the main patient list.
     </li>
     <li>
-    However, if you execute a <span style="border-style: solid;"> p find PATIENT_NAME </span> command, the patient's index will be his or her position in the **filtered** patient list.
+    However, if you execute a <span style="border-style: solid;"> &nbsp;p find PATIENT_NAME </span> command, the patient's index will be his or her position in the **filtered** patient list.
     </li>
     <li>
     Subsequent deletion by index will be with respect to the list you're currently viewing.
@@ -582,7 +582,7 @@ information in any order that you wish. But do make sure that you have entered a
       <br/>
     * You can click on either record to see detailed information.
 
-<div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter <span style="border-style: solid;"> p find Yu Yeoh <span>, both <span style="border-style: solid;"> Bernice Yu </span> and <span style="border-style: solid;"> Alex Yeoh </span> will be shown.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** You can indicate multiple patient names, and a patient will be shown as long as the patient's name matches any of the names. So if you enter <span style="border-style: solid;"> &nbsp;p find Yu Yeoh </span>, both <span style="border-style: solid;"> &nbsp;Bernice Yu </span> and <span style="border-style: solid;"> &nbsp;Alex Yeoh </span> will be shown.
 </div>
 
 <br/>
@@ -657,7 +657,7 @@ Use this with command with caution!
 * **Format:** `p list`
 \
 &nbsp;
-* <div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> p list hellothere </span> or <span style="border-style: solid;"> p list 1234 </span>  will not cause errors in the system</div>
+* <div markdown="block" class="alert alert-success">:information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For Example, commands such as <span style="border-style: solid;"> &nbsp;p list hellothere </span> or <span style="border-style: solid;"> &nbsp;p list 1234 </span>  will not cause errors in the system</div>
   &nbsp;
 * **Example:**
     <p align="center">
@@ -764,7 +764,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:100%">
       </p>
-<div markdown="block" class="alert alert-success">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the <span style="border-style: solid;"> d list </span> command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a <span style="border-style: solid;"> d find TRADE_NAME </span> command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.
+<div markdown="block" class="alert alert-success">:information_source: **Note:** The index of a drug can change depending on the filter you currently apply on the drug list. For example, if you execute the <span style="border-style: solid;"> &nbsp;d list </span> command, all filter will be removed and the drug's index will be its position in the main drug list. However, if you execute a <span style="border-style: solid;"> &nbsp;d find TRADE_NAME </span> command, the drug's index will be its position in the **filtered** drug list. Subsequent deletion by index will be with respect to the list you're currently viewing.
 </div>
 
 <br/>
@@ -890,7 +890,7 @@ by specifying the trade name.
       </p>
       <br/>
 <div markdown="block" class="alert alert-success">
-  :information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as <span style="border-style: solid;"> d list hellothere </span> or <span style="border-style: solid;"> d list 1234?! </span> will not cause any errors in the system.
+  :information_source: **Note:** In order to maximise user-friendliness, we do not prohibit extra input appended to the command. For example: commands such as <span style="border-style: solid;"> &nbsp;d list hellothere </span> or <span style="border-style: solid;"> &nbsp;d list 1234?! </span> will not cause any errors in the system.
 </div>
 <br />
 
