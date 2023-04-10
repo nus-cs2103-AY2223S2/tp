@@ -16,10 +16,12 @@ class Group {
 
 class Session {
  sessionName : String
+ attendance : Map<Student, Integer>
 }
 
 class Task {
  taskName : String
+ gradeList : Map<Student, Integer>
 }
 
 class Student {
@@ -31,10 +33,10 @@ class Student {
 }
 
 Course -> "*" Group
-Group -> "*" Student
-Group -> "*" Session
-Group -> "*" Task
-Task ..> Student
-Session ..> Student
+Group --> "*" Student
+Group --> "*" Session
+Group --> "*" Task
+'Task --> "*" Student
+'Session --> "*" Student
 
 @enduml
