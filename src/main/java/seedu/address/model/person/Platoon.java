@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Platoon {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Platoon should be alphanumeric phrase or word";
+            "Platoon should consist of alphanumeric characters and/or slashes";
 
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 /]+$";
 

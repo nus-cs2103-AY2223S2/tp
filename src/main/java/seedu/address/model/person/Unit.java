@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Unit {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Unit should be alphanumeric phrase or word";
+            "Unit should consist of alphanumeric characters and/or slashes";
 
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9 /]+$";
 
