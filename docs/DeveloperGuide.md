@@ -201,7 +201,7 @@ t/ or m/ : Alphanumeric characters
 The implementation of this feature requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
 Below is an activity diagram that shows what happens when a user executes the `filter` command
 
-![AddActivityDiagram](images/add/addcommandActivityDiagram.png)
+![AddActivityDiagram](images/addcommandActivityDiagram.png)
 
 ### Undo/redo feature
 
