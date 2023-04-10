@@ -40,26 +40,6 @@ The difficulty was, implementing new attributes for Person and dealing with immu
     * Overviewed the development of the Guides
     * Reviewed Code for all Command related features
 
-* **Documentation**:
-  ## User Guide:
-* Add preliminary information to User guide
-* Described Sortm
-* Described Editm
-
-Below is the description for sortm
-![sortm description](../images/sortmUG.png)
-## Developer Guide:
-* Wrote all the MSS
-* Wrote all the User Stories
-* Add preliminary information to Developer guide
-* Wrote Implementation for CRUD operations, sort and find operation
-* Drew all the sequence diagram for each CRUD, sort and find operation
-
-Below is example of one of such page
-![CRUD page](../images/CRUD.png)
-
-
-
 * **Community**:
   PR reviewed:
   [#178](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/178)
@@ -82,3 +62,25 @@ Below is example of one of such page
         * Used as package builder
     * IntelliJ
         * Used to edit markdown and PLANTUML extension
+
+<div style="page-break-after: always;"></div>
+
+* **Documentation**:
+  ## User Guide:
+* Add preliminary information to User guide
+* Described Sortm
+* Described Editm
+
+Below is the description for sortm
+![sortm description](../images/sortmUG.png)
+
+
+## Developer Guide:
+* Wrote all the MSS
+* Wrote all the User Stories
+* Add preliminary information to Developer guide
+* Wrote Implementation for CRUD operations, sort and find operation
+* Drew all the sequence diagram for each CRUD, sort and find operation
+
+Below is example of one of such page
+![CRUD page](../images/CRUD.png)
