@@ -438,8 +438,8 @@ This section describes some noteworthy details on how certain features are imple
 
 This section describes implementation of features within `ui` package.
 
-On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into two
-sides, the left side [Main Section](#main-section) which handles user input and executes command, the right side
+On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into three
+parts, the left [Course List Panel](#course-list-panel) which shows all available courses, the middle [Main Section](#main-section) which handles user input and executes command, the right side
 [Info Panel](#info-panel) which shows more details about a specific person.
 
 ![ui-main-sections](images/ui-diagrams/ui-main-sections.PNG)
@@ -450,6 +450,13 @@ explained under [Theme](#theme) section.
 <br>
 
 Refer to [UI Component](#ui-component) for more information about this package.
+
+#### **Course List Panel**
+The course list panel shows all the available courses and their corresponding numbers.
+
+![ui-main-sections](images/ui-diagrams/ui-course-list-panel.PNG)
+
+The content with the 13 courses are stored in `CourseList` class as an `ArrayList` of `String`.
 
 #### **Main section**
 
