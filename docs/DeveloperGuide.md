@@ -707,7 +707,36 @@ Our application:
 
 **Use case: UC21 - Add a new order**
 
-(Similar to UC01 except it is for order)
+**MSS**
+
+1. Actor chooses to add an order. 
+2. Actor enters the command to add an order with the required information.
+3. Trackr saves the new order to the system.
+4. Trackr display success message that a new order added to the list
+5. Actor can see the new order information in the orders list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Not all the required information was given.
+
+  * 4a1. Trackr shows an error message.
+
+    Use case resumes at step 2.
+
+* 2b. The Actor adds an order that already exists in the list.
+
+  * 4b1. Trackr shows an error message.
+  
+    Use case ends.
+
+* 2c. An item does not exist in menu
+  * 2c1. Trackr displays error message.
+  * 2c2. Actor <u>adds a new menu item(UC31)</u>.
+
+  Use case resumes at step 2.
+
 
 **Use case: UC31 - Add a new menu item**
 
