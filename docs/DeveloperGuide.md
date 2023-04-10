@@ -1069,11 +1069,11 @@ ensure that your sprINT application is launched and opened on your device.
 Prerequisites: sprINT's main window is launched and opened.
 
 1. Test case 1: `add-app c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
-    Expected: A new application is added to sprINT. Details of the newly added application shown in the status message.
+    Expected: A new application is added to sprINT. Details of the newly added application shown in the Command Result Box.
 
 2. Test case 2: `add-app 1 c/NUS r/Teaching Assistant e/tahiring@nus.com s/offered t/school t/nsws`<br>
    Expected: No application is added due to **Invalid Command Format**. Add application command does not accept an 
-`INDEX` parameter. Error details shown in the status message.
+`INDEX` parameter. Error details shown in the Command Result Box.
    
 3. Test case 3: `add-app c/NUS r/Teaching Assistant s/offered t/school t/nsws` <br>
      Expected: No application is added due to **Invalid Command Format**. The `Company Email` prefix and input is missing
@@ -1085,13 +1085,13 @@ from the command. `Company Email` is a compulsory input parameter for the add ap
 Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
 1. Test case 1: `edit-app 1 c/NTU`<br>
-   Expected: First application is edited from the list. Details of the edited application shown in the status message. 
+   Expected: First application is edited from the list. Details of the edited application shown in the Command Result Box. 
 
 2. Test case 2: `edit-app 2 c/HelloCompany s/Rejected`<br>
-   Expected: Second application is edited from the list. Details of the edited application shown in the status message. Pie chart changes accordingly.
+   Expected: Second application is edited from the list. Details of the edited application shown in the Command Result Box. Pie chart changes accordingly.
 
 3. Test case 3: `edit-app 0 c/HelloCompany`<br>
-   Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the status message.
+   Expected: No application is edited due to **Invalid Command Format**.`INDEX` parameter provided must be positive for edit-app commands. Error details shown in the Command Result Box.
 
 4. Other incorrect delete commands to try: `edit-app`, `edit-app x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to the above test case for `delete-app 0`.
@@ -1102,19 +1102,19 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
 Prerequisites: List of applications is displayed through means like `list` or `sort`.
 
 1. Test case 1: `find r/SWE`<br>
-   Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the status message.
+   Expected: Finds all the applications with the role containing SWE. The number of applications found is shown in the Command Result Box.
 
 2. Test case 2: `find c/Google`<br>
-   Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the status message.
+   Expected: Finds all the applications with the company name containing Google. The number of applications found is shown in the Command Result Box.
 
 3. Test case 3: `find s/Offered`<br>
-   Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the status message.
+   Expected: Finds all the applications with the `Offered` status. The number of applications found is shown in the Command Result Box.
 
 4. Test case 4: `find r/SWE c/Google s/Offered`<br>
-   Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the status message.
+   Expected: Finds all the applications with the role of `SWE`, company name containing `Google` and `Offered` status. Number of applications found is shown in the Command Result Box.
 
 5. Test case 5: `find`<br>
-   Expected: No application is found. Invalid command error is shown in the status message. Status bar remains the same, with the input command highlighted in red.
+   Expected: No application is found. Invalid command error is shown in the Command Result Box. Status bar remains the same, with the input command highlighted in red.
 
 ### Help
 
@@ -1123,26 +1123,26 @@ Opening the help window for a summary of commands and their formats.
 Prerequisites: sprINT's main window is open.
 
 1. Test case 1: Enter `help` command<br>
-   Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the status message.
+   Expected: Pop-up window for a summary of help commands and their formats is shown, and `Opened Help window.` is shown in the Command Result Box.
 
 2. Test case 2: Manually clicking on the help button on the Toolbar<br>
    Expected: Pop-up window for a summary of help commands and their formats is shown.
 
 3. Test case 3: Enter `help [keyword]` command, where keyword can comprise some characters.<br>
-   Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the status message.
+   Expected: Pop-up window for a summary of help commands and their formats is shown, because the first word is recognised as the command by design, and `Opened Help window.` is shown in the Command Result Box.
 
 4. Test case 4: Enter `help123` command<br>
-   Expected: No Pop-up window is shown, `Unknown command` is displayed in the status message as the word is recognised to be an invalid command.
+   Expected: No Pop-up window is shown, `Unknown command` is displayed in the Command Result Box as the word is recognised to be an invalid command.
 
 ### Deleting an application
 
 Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
 1. Test case 1: `delete-app 1`<br>
-   Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
+   Expected: First application is deleted from the list. Details of the deleted application shown in the Command Result Box. Timestamp in the status bar is updated.
 
 2. Test case 2: `delete-app 0`<br>
-   Expected: No application is deleted. Error details shown in the status message. 
+   Expected: No application is deleted. Error details shown in the Command Result Box. 
 
 3. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to the above test case for `delete-app 0`.
@@ -1171,7 +1171,7 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
    
    5. Other incorrect sort commands to try: `sort a` (without the order specified), `sort deadline` (without the sequence specified),
       `sort` (nothing specified), `...` <br>
-      Expected: No sorting is done and application list remains the same. Error details shown in the status message.
+      Expected: No sorting is done and application list remains the same. Error details shown in the Command Result Box.
       
 2. Sorting the application list when it is a **filtered** state, due to a previously executed `find` command
 
@@ -1182,7 +1182,7 @@ Prerequisites: List all applications using the `list` command. Multiple applicat
       shows up after sorting.
 
    2. Other incorrect sort commands to try:  Same as the invalid test cases mentioned in step 6 for sorting while all applications are being shown <br>
-      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the status message.
+      Expected: No sorting is done and the currently displayed list of applications remains the same. Error details shown in the Command Result Box.
 
 ### Listing all applications
 
@@ -1229,7 +1229,7 @@ Prerequisites: There is **at least 1** application present in sprINT.
 as the command. In this case, it is `clear`.
 3. Test case 3: `clear1234`. <br>
    Expected: Applications will not be deleted. In this case, the first expression is recognised as `clear1234`, which is an invalid command.
-Error message `Unknown command` will be displayed in the status message.
+Error message `Unknown command` will be displayed in the Command Result Box.
 
 
 ### Adding a task
@@ -1239,17 +1239,17 @@ do not have a task.
 1. Test case 1: `add-task 1 d/Interview by/31-03-2023` 
 
    Expected: A new task is added to the first application on the list. Details of the newly added task shown in the 
-   status message.
+   Command Result Box.
 
 2. Test case 2: `add-task 2`
 
    Expected: No task is added due to **Invalid Command Format**. The `Description` and `Deadline` prefixes and inputs
    are missing from the command. `Description` and `Deadline` are compulsory input parameters for the add task command. 
-   Error details shown in the status message. 
+   Error details shown in the Command Result Box. 
 
 3. Test case 3: `add-task 2 d/Online Assessment by/33-05-2023`
 
-   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the status message.
+   Expected: No task is added due to invalid date input (non-existent date). Error details shown in the Command Result Box.
 
 ### Editing a task
 
@@ -1269,7 +1269,7 @@ have an existing task.
 3. Test case 3: `edit-task 2 by/20042023`
 
    Expected: The task for the second application is not edited due to invalid date input (incorrect format). Error 
-   details shown in the status message.
+   details shown in the Command Result Box.
 
 ### Deleting a task
 
@@ -1278,12 +1278,12 @@ an existing task and the second application does not have an existing task.
 
 1. Test case 1: `delete-task 1`
 
-   Expected: The task for the first application is deleted. Details of the deleted task shown in the status message.
+   Expected: The task for the first application is deleted. Details of the deleted task shown in the Command Result Box.
    Timestamp in the status bar is updated.
 
 2. Test case 2: `delete-task 2`
 
-   Expected: No task is deleted (no existing task). Error details shown in the status message. 
+   Expected: No task is deleted (no existing task). Error details shown in the Command Result Box. 
 
 3. Test case 3: `delete-task 0`
 
@@ -1324,7 +1324,7 @@ Prerequisites: sprINT's main window is launched and opened.
 it is `exit`.
 3. Test case 3: `exit1234`. <br>
    Expected: sprINT application remains open. In this case, the first expression is recognised as `exit1234`, which is an invalid command.
- Error message `Unknown command` will be displayed in the status message.
+ Error message `Unknown command` will be displayed in the Command Result Box.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -1348,10 +1348,10 @@ In the future, we plan to inform the user through the Command Result Box that th
 In the `execute` function of `SortCommand`, check for the size of the currently displayed application list. Craft an appropriate message
 as part of the `CommandResult` to inform the user that they have no applications with deadlines to display and sort.
 
-#### 2. Edit operations display misleading status message when edited values are the same as the original values 
+#### 2. Edit operations display misleading message when edited values are the same as the original values 
 
 At present, the application treats any edit made by the user to a task or application as a modification, **regardless of 
-whether the new value is identical to the original value**. As a result, the status message displayed after a user 
+whether the new value is identical to the original value**. As a result, the message displayed in the Command Result Box after a user 
 carries out such an operation suggests that the task or application was edited, even though the fields remain the same 
 in reality. While this does not affect the functionality of the commands themselves, it could potentially confuse 
 the user.
