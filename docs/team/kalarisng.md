@@ -46,6 +46,7 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the features `find` [\#106](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/106)
         * Added documentation for the features `addWeight` and `graph` [\#151](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/151)
+        * Handled cosmetic tweaks to existing documentation [\#212](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/212)
     * Developer Guide:
         * Added implementation details of the `find` feature with the usage of UML diagrams [\#130](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/130)
         * Added Use cases for `find`, `addWeight` and `graph`. [\#201](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/201/files)
