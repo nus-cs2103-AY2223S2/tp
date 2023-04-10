@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 FAid is a **client and schedule management** application made for financial advisors!
-Financial advisors can use FAid to easily **save their client information** and **organise meetings**. 
+Financial advisors can use FAid to easily **save their client information** and **organise meetings**.
 With FAid, financial advisors will no longer have to worry about missing a meeting or forgetting a client!
 
 ## Table of Contents
@@ -47,7 +47,7 @@ Otherwise, refer to the following steps to get started.
 1. Double click the `faid.jar` file you downloaded and the app should launch automatically.<br>
    If this is your first time using a .jar file, see the [Troubleshooting section](#troubleshooting) for help.
 
-1. The application should look like this. To begin, type in any command in the command box 
+1. The application should look like this. To begin, type in any command in the command box
 and press Enter to execute it.
 ![Ui](images/UiAnnotated.png)
 
@@ -131,10 +131,10 @@ Required Information:
 
 Examples:
 
-* `add n/Cindy Lim p/98765432 e/cindyl@gmail.com a/Bishan, block 24, #04-01` adds a client named Cindy Lim with 
+* `add n/Cindy Lim p/98765432 e/cindyl@gmail.com a/Bishan, block 24, #04-01` adds a client named Cindy Lim with
 her phone number, email and address
-* `add n/Betsy Crowe e/betsycrowe@outlook.com a/Ang Mo Kio p/99766389 t/Insurance` adds a client named 
-Betsy Crowe with her phone number, email and address, as well as the financial policy she is under, Insurance. 
+* `add n/Betsy Crowe e/betsycrowe@outlook.com a/Ang Mo Kio p/99766389 t/Insurance` adds a client named
+Betsy Crowe with her phone number, email and address, as well as the financial policy she is under, Insurance.
 
 Note:
 * The tag used to add a person into the contact list will be used in the findPolicy method, e.g. using the above example, doing a findPolicy Insurance will show Betsy Crowe
@@ -258,7 +258,7 @@ Required Information:
 
 Examples:
 * `meetingUpdate 1 2 md/ Policy signing` Edits the meeting description of the 1st meeting belonging to the 1st client
-  to `Policy signing` 
+  to `Policy signing`
 * `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end
   of the 3rd meeting belonging to the 2nd client to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10`
   respectively
@@ -314,7 +314,7 @@ Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
 
 Required information:
 
-* Name of policy to search for, which is in the client's tags 
+* Name of policy to search for, which is in the client's tags
 
 Examples:
 
@@ -329,7 +329,7 @@ Clears all entries from FAid.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Caution:</b>
-Executing clear will result in all of your client information and meetings to be cleared permanently! 
+Executing clear will result in all of your client information and meetings to be cleared permanently!
 </div>
 
 ### Exiting the program : `exit`

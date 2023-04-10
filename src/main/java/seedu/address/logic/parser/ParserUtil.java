@@ -261,6 +261,9 @@ public class ParserUtil {
         return LocalDate.of(year, month, day);
     }
 
+    /**
+     * Parses an index string into an {@code Index}
+     */
     public static Index parsePersonIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
