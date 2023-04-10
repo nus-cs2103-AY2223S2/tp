@@ -31,15 +31,14 @@ Without further ado, let's get started!
          4. [Deletes students' grade: `gradedelete`](#deleting-a-grade-for-student--student-class-gradedelete)
          5. [Add comments to students: `comment`](#adding-comments-for-student--student-class-comment)
          6. [Listing all students in a particular class: `list`](#listing-all-students-in-the-selected-class-student-class-list)
-         7. [Editing a student's particulars: `edit`](#edit-student-student-class-edit)
-         8. [Searching students: `find`](#locating-students-by-name-student-class-find)
+         7. [Editing a student's particulars: `edit`](#edit-student--student-class-edit)
+         8. [Searching students: `find`](#locating-students-by-name--student-class-find)
          9. [Deleting a student: `delete`](#deleting-student-student-class-delete)
     3. [Parent Features: `parent`](#parent)
         1. [Add Parent/Next-of-Kin: `add`](#adding-a-parentnok-parent-add)
-        2. [Listing all Parents/Next-of-Kins: `list`](#listing-all-parentsnoks--parent-list)
-        3. [Editing a Parent/Next-of-Kin particulars: `edit`](#edit-parent-parent-edit)
-        4. [Searching Parents/Next-of-Kins: `find`](#locating-parent-by-name-parent-find)
-        5. [Deleting a Parent/Next-of-Kin: `delete`](#deleting-parent-parent-delete)
+        2. [Editing a Parent/Next-of-Kin particulars: `edit`](#edit-parent-parent-edit)
+        3. [Searching Parents/Next-of-Kins: `find`](#locating-parent-by-name--parent-find)
+        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleting-parent-parent-delete)
     4. [General Features](#general)
        1. [List all students / parents](#listing-students--parents-list)
        2. [Viewing help: `help`](#viewing-help--help)
@@ -52,7 +51,8 @@ Without further ado, let's get started!
 9. [Command Summary](#command-summary)
    1. [Command Summary for Student](#command-summary-for-student-student-class)
    2. [Command Summary for Parent](#command-summary-for-parent--nok-parent)
-   3. [Prefix Summary](#prefix-summary)
+   3. [General Command Summary](#general-command-summary)
+   4. [Prefix Summary](#prefix-summary)
 
 <div style="page-break-after: always;"></div>
 
@@ -257,6 +257,8 @@ Examples:
   *Above is a situation where some of the student's information is not given!
 * `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
 
+<div style="page-break-after: always;"></div>
+
 **Expected Outcome:**
 * `New student added:`
   ![add image](images/add.png)
@@ -281,7 +283,7 @@ It is recommended to store the images using the folder instead. <br>
 6.You **SHOULD** choose **VALID** values (positive numbers) for `Age` although you are **NOT LIMITED** to setting it to **0** or other non-conventional values like **999**.<br>
 7.PowerConnect does not verify if the input phone number is valid for the country (e.g. Singapore), please ensure that you input the phone number correctly.<br>
 8.Phone numbers should only contain numbers and must be at least 3 digits long. <br>
-9. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
+9. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that `CCAs` could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
 10. By default, `Attendance` is set to `F`, representing **ABSENT**. <br>
 11. Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (midnight at 0000 hours).
 </div>
@@ -309,17 +311,19 @@ Examples:
 * `Attendance marked as present`
   ![attendance image](images/attendance.png)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 Date is in DD/MM/YYYY format. <br>
 This date can be set to: <br>
 * T (Indicates that the student was present today) <br>
-* F (Default when adding student) <br>
+* F (Default when adding student) <br> 
 * Specific date (Used when you want to update the attendance of the student in the past)<br><br>
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (0000 hours). Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will further improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
-Future release of PowerConnect will also provide you with a wider range of attendance **TYPES* to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
+Future release of PowerConnect will also provide you with a wider range of attendance **TYPES** to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -346,13 +350,15 @@ Examples:
 * `student 1A grade in/13 test/CA1 score/75 weightage/10`
 * `student 1A grade in/13 hw/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
 
+<div style="page-break-after: always;"></div>
+
 **Expected Outcome:**
 * `New test added:`
 ![add test image](images/addtest.png)
 * `New homework added:`
 ![add homework image](images/addhomework.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 * Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.<br>
    * Duplicate test/homework is checked through having the same name. <br>
 * hwdone is compulsory for homework.<br>
@@ -392,11 +398,15 @@ Format:
 Examples:
 * `student 1A gradedelete in/13 hw/Chapter 1`
 
+<div style="page-break-after: always;"></div>
+
 **Expected Outcome:**
 * `Homework deleted successfully`
 ![delete homework image](images/deletehomework.png)
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -494,7 +504,7 @@ Examples:
 * `student 3B find Joseph`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
-To list back all students, use the [general list](#listing)command! <br><br>
+To list back all students, use the [general list](#listing) command! <br><br>
 </div>
 
 **Expected Outcome:**
@@ -559,6 +569,8 @@ Examples of Full Command:
 * `parent add n/TanAhNiu pnP/91234567`
 * `parent add n/Tan Ah Niu pnP/91234567 ageP/30 e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
 
+<div style="page-break-after: always;"></div>
+
 **Expected outcome:**
 * `New parent added:`
 
@@ -580,26 +592,6 @@ It is recommended to store the images using the folder [method](#images) instead
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name = "listparent" />
-
-### Listing all Parents/NOKs : `parent list`
-
-Shows a list of all Parents/[NOKs](#glossary) in the database with their corresponding particulars.
-
-Format: `list`
-
-Examples of Full Command:
-* `list parent` <br>
-
-**Expected Outcome:**
-![list message](images/listParent.png)
-
-[Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
-
-----------------------------------------------------------------------------------------------------------------
-
 <a name = "editparent" />
 
 ### Edit Parent: `parent edit`
@@ -611,6 +603,8 @@ Format: `Format: parent edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NE
 Examples of Full Command:
 * `parent edit n/TanAhNiu pnP/91234567 npnP/65656565`
 * `parent edit n/Tan Ah Niu pnP/91234567 nn/Tan Ah Seng npnP/91274444 ageP/31 e/tanahcow@gmail.com a/Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)`
+
+<div style="page-break-after: always;"></div>
 
 **Expected Outcome:**
 * `Edited Parent: TanAhNiu; Phone number: 65656565;`
@@ -640,8 +634,10 @@ Examples:
 * `parent find Joseph`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
-To list back all parent, use the [general list](#listing)command! <br><br>
+To list back all parent, use the [general list](#listing) command! <br><br>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **Expected Outcome:**
 * 1 parent listed!
@@ -661,7 +657,7 @@ To list back all parent, use the [general list](#listing)command! <br><br>
 
 Deletes parent with corresponding `NAME` and `PHONE_NUMBER` from the database.
 
-Format: `parent delete n/NAME pnP/PHONE_NUMBER`
+Format: `parent delete n/<NAME> pnP/<PHONE_NUMBER>`
 
 Examples:
 * `parent delete n/TanAhCow pnP/91234566` <br>
@@ -674,9 +670,13 @@ Examples:
 
 ![parent_delete_success](images/parentDeleteSuccess.png)
 
-**Note:**
+<div style="page-break-after: always;"></div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BOUND* to him/her. System will display an error message for this. <br><br>
    ![parent_delete_attach_fail](images/parentdeleteattach.png)
+</div>
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -746,7 +746,6 @@ PowerConnect data are saved in the [hard disk](#glossary) automatically after an
 ## Editing the data file
 
 PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/data/parents.json` and `[JAR file location]/data/pcclass.json` for respectively parents/NOKs and students. <br>
-Advanced users are welcome to update data directly by editing that data file.addressbook.json`. <br>
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -787,7 +786,7 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 
 1. In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
-2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
+2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX_NUMBER>.png` <br>
 
     Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
@@ -797,7 +796,9 @@ You should also locate the folder `images`, and **REMOVE** all images within the
 3. Inside the images' folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
-    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
+
+    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS><STUDENT_INDEX_NUMBER>.png`
+
 ![imagestudent message](images/imagestudent.png)
 
     Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
@@ -853,10 +854,10 @@ Need to add **student** and **class** before each command!
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                                      |
 | **Attendance** | `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`                                                                                                                                                                                                                                                                            |
-| **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                                    |
+| **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[COMPLETION STATUS] ]`                                                                                                                                                                       |
 | **Comment**    | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                                                                                                                                    |
 | **List**       | `list`                                                                                                                                                                                                                                                                                                                       |
-| **Edit**       | `edit in/<INDEX_NUMBER> [nn/[NEW_NAME] nin/[NEW_INDEX_NUMBER] nc/[NEW_CLASS] s/[SEX] ageS/[STUDENT_AGE] id/[INDEX_NUMBER] imgS/[ABSOLUTE_PATH_TO_IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT_PHONE_NUMBER] eS/[STUDENT_EMAIL] a/[ADDRESS] pn/[PARENT_NAME] pnP/[PARENT_PHONE_NUMBER] rls/[RELATIONSHIP] ]` |
+| **Edit**       | `edit in/<INDEX_NUMBER> [nn/[NEW_NAME] nin/[NEW_INDEX_NUMBER] nc/[NEW_CLASS] s/[SEX] ageS/[STUDENT_AGE] id/[INDEX_NUMBER] imgS/[ABSOLUTE_PATH_TO_IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT_PHONE] eS/[STUDENT_EMAIL] a/[ADDRESS] pn/[PARENT_NAME] pnP/[PARENT_PHONE] rls/[RELATIONSHIP] ]` |
 | **Find**       | `find <NAME> `                                                                                                                                                                                                                                                                                                               |
 | **Delete**     | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                                   |
 
@@ -875,11 +876,12 @@ Need to add parent before each command!!
 | Action     | Format, Examples                                                                                                                                                                           |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`                                                      |
-| **List**   | `list`                                                                                                                                                                                     |
 | **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
 | **Delete** | `delete n/<NAME> pnP/<PHONE>`                                                                                                                                                              |
 
 [Back to Table of Contents](#table-of-contents)
+
+<a name = "general-command-summary"/>
 
 ### General Command Summary
 
