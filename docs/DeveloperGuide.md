@@ -196,7 +196,7 @@ went with the separate command implementation since:
 * Having a general add command would add too many prefixes to the command, which would be troublesome for both the user and the developer to handle.
 
 Drawbacks of the current implementation:
-* Remembering the different commands for addition might be troublesome for the user. 
+* Remembering the different commands for addition might be troublesome for the user.
 
 ### Edit patient (`edit_patient`) command
 
@@ -241,7 +241,7 @@ The sequence diagram below shows how `AddAppointmentCommand` works:
 Design considerations:
 
 Similar to add patient, instead of having separate commands for adding patients and appointments, we could have a single add command and use it
-to add both patients and appointments as well as any other things we could add to the application in future. 
+to add both patients and appointments as well as any other things we could add to the application in future.
 
 More details have already been discussed in the `add_patient` section.
 
