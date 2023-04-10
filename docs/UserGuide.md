@@ -420,7 +420,7 @@ with another existing data in the data list will not be successful. Here's how w
 |------------|-----------------------------------------------------------------------------|
 | Suppliers  | they have the same phone numbers                                            |
 | Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
-| Tasks      | they have the same task names (case-insensitive) and deadlines.             |
+| Tasks      | they have the same task names (case-sensitive) and deadlines.               |
 | Menu items | they have the same item names (with matching cases).                        |
 
 <div style="page-break-after: always;"></div>
