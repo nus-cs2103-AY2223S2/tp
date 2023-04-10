@@ -1287,13 +1287,6 @@ testers are expected to do more *exploratory* testing.
       
 
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-
 
 ## **Appendix: Planned Enhancements**
 
@@ -1309,7 +1302,7 @@ testers are expected to do more *exploratory* testing.
 * Feature flaw: Exporting a person includes the exact names for all events. This is undesirable for users as they may only want to share which date and time they are unavaliable and not share what event they have.
 * Future plan: We plan to only export date and time of an event while the event name would be a fixed name. (e.g Events).
 
-### 3. Recurring Event Time
+### Recurring Event Time
 * Feature flaw: Users cannot add a recurring event that last the whole day due to hourly basis implementation. ie: from today 00:00 to tomorrow 23:59
 * Feature plan: We plan to allow users to enter recurring events that spans over more than one day to solve so that it will be more flexible.
 
