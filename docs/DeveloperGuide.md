@@ -352,8 +352,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | tutor                 | write a remark for my student                                               | keep track of the individual remarks of each of my student                                                |
 | `*   `   | tutor                 | be reminded of my next lesson and the time                                  | remember to go for all of my lessons on time                                                              |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `TMS` and the **Actor** is the `user`, unless specified otherwise)
@@ -366,6 +364,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Student is added to the list of students.
    Use case ends.
 
+**Extensions:**
+* 1a. User does not provide input for mandatory fields (i.e. name, phone, email, address, subject, schedule, start time, end time)
+  * 1a1. An error message is displayed with instructions and example of how to use the command
+  Use case ends.
+* 1b. User inputs an invalid field
+  * 1b1. An error message is displayed with instructions and example of how to use the command
+  Use case ends.
 **Use case: Delete a student**
 
 **MSS:**
@@ -379,7 +384,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 
-Extensions:
 * 2a. The list is empty.
   Use case ends.
 * 3a. The given index is invalid.
@@ -388,7 +392,11 @@ Extensions:
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: filter a student**
+
+**MSS:**
+
+1. User is prompted to enter student’s details to filter
 
 ### Non-Functional Requirements
 
