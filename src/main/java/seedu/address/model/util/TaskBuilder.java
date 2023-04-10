@@ -133,8 +133,16 @@ public class TaskBuilder {
     /**
      * Sets the {@code CreateTime} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDCreateTime(String createTime) {
+    public TaskBuilder withCreateTime(String createTime) {
         this.createTime = new Datetime(createTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code persons} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withPerson(List<Person> persons) {
+        this.persons = persons;
         return this;
     }
 

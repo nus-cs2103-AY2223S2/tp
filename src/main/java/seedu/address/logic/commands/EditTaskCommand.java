@@ -24,6 +24,7 @@ import seedu.address.model.task.Content;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.util.TaskBuilder;
 
 
 /**
@@ -78,8 +79,9 @@ public class EditTaskCommand extends Command {
         if (!taskToEdit.isSame(editedTask) && taskModelManager.hasItem(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        officeConnectModel.setTask(taskToEdit, editedTask);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        Task copyEditedTask = new TaskBuilder(editedTask).withPerson(taskToEdit.getPersons()).build();
+        officeConnectModel.setTask(taskToEdit, copyEditedTask);
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, copyEditedTask));
     }
 
     /**
@@ -102,6 +104,7 @@ public class EditTaskCommand extends Command {
                 throw new InvalidDeadlineException();
             }
         }
+
         return new Task(updatedTitle, updatedContent, updatedStatus, updateCreateDate, updateDeadline, updateId);
     }
 
