@@ -186,6 +186,14 @@ ensures that the list does not contain duplicates. The `UniqueList`s are then
 stored in `AddressBook`, which contains the overarching methods for handling
 each type of list.
 
+Duplicates are handled through the `IsSame` generic interface, which provides
+an `isSame` method somewhat analogous to `equals` in Java, but for different
+semantics. It allows us to differentiate the concept of *equality* (e.g. two
+clients with exactly the same attributes) from *real-world identity* (e.g. two
+clients with the same emails). Two clients are considered the same if they have
+the same email, and two projects are considered the same if they have the same
+name.
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/storage/Storage.java)
