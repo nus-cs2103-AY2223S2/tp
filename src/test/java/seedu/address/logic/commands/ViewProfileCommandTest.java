@@ -1,25 +1,24 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.student.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Lesson;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-
 
 class ViewProfileCommandTest {
     private class ModelStub implements Model {
@@ -131,7 +130,6 @@ class ViewProfileCommandTest {
         /**
          * Replaces the given person {@code target} with {@code editedPerson}.
          * {@code target} must exist in the address book.
-         * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
          *
          * @param target
          * @param editedPerson
@@ -200,13 +198,13 @@ class ViewProfileCommandTest {
             return false;
         }
     }
-    private class noSuchStudent extends ModelStub {
+    private class NoSuchStudent extends ModelStub {
         @Override
         public boolean noSuchStudent(String name) {
             return true;
         }
     }
-    private class namesExistButDuplicate extends ModelStub{
+    private class NamesExistButDuplicate extends ModelStub {
         public boolean hasDuplicateName(String name) {
             return true;
         }
@@ -222,8 +220,8 @@ class ViewProfileCommandTest {
         }
     }
 
-    List<String> names = List.of("name 1", "name 2", "name 3");
-    Predicate<Student> returnTrue = (x)->true;
+    private List<String> names = List.of("name 1", "name 2", "name 3");
+    private Predicate<Student> returnTrue = (x)->true;
     @Test
     void constructor_validParams_success() {
         new ViewProfileCommand(names, returnTrue);
@@ -232,25 +230,25 @@ class ViewProfileCommandTest {
     @Test
     void execute_noSuchStudentCheck_commandExceptionThrown() {
         ViewProfileCommand command = new ViewProfileCommand(names, returnTrue);
-        assertThrows(CommandException.class, ()->command.execute(new noSuchStudent()));
+        assertThrows(CommandException.class, ()->command.execute(new NoSuchStudent()));
     }
 
     @Test
     void execute_duplicateNames_commandExceptionThrown() {
         ViewProfileCommand command = new ViewProfileCommand(names, returnTrue);
-        assertThrows(CommandException.class, ()->command.execute(new namesExistButDuplicate()));
+        assertThrows(CommandException.class, ()->command.execute(new NamesExistButDuplicate()));
     }
 
     @Test
     void execute_singleStudentMatchedToOneName_success() throws CommandException {
-        String correctCommandResult = "1 students listed!\n" +
-                "--------------------------------------------------\n" +
-                "Amy Bee:\n" +
-                "Phone: 85355255\n" +
-                "Address: 123, Jurong West Ave 6, #08-111\n" +
-                "Email: amy@gmail.com\n" +
-                "Tags: \n" +
-                "--------------------------------------------------\n";
+        String correctCommandResult = "1 students listed!\n"
+                + "--------------------------------------------------\n"
+                + "Amy Bee:\n"
+                + "Phone: 85355255\n"
+                + "Address: 123, Jurong West Ave 6, #08-111\n"
+                + "Email: amy@gmail.com\n"
+                + "Tags: \n"
+                + "--------------------------------------------------\n";
         ViewProfileCommand command = new ViewProfileCommand(List.of(StudentBuilder.DEFAULT_NAME), returnTrue);
         CommandResult cr = command.execute(new ContainsDefaultStudent());
         assertEquals(cr.getFeedbackToUser(), correctCommandResult);
