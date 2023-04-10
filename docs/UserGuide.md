@@ -109,7 +109,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GROUP]…​`
 
 * A person can only be added to an **existing** group
-* Tags can only contain alphanumeric and spaces
+* Tags can only contain alphanumeric characters and spaces
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and groups (including 0)
@@ -117,7 +117,7 @@ A person can have any number of tags and groups (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/study buddy e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -132,12 +132,12 @@ Edits an existing person in the address book.
 Format: `edit INDEX [m/] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional fields (e.g. `NAME`, `PHONE` etc.) must be provided.
 * Existing values will be updated to the input values.
 * When editing tags/groups, the existing tags/groups of the person will be removed i.e adding of tags/groups is not cumulative.
 * To add on to existing groups/tags without overwriting it, include the prefix `m/` (merge).
 * When using prefix `m/`, groups/tags added cannot be empty.
-* Groups can only be added if it has been created.
+* Groups can only be added if they have been created.
 * You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
   specifying any tags/groups after it.
 * Adding duplicate groups/tags to a `Person` would not result in multiple groups/tags created.
@@ -190,7 +190,6 @@ Format: `group_create g/GROUP_NAME`
 * Creates a group with the specified group name `GROUP_NAME`.
 * The group name cannot be empty and must be alphanumeric!
 * **NOTE: The group name cannot contain spaces**
-* The group name cannot be empty
 * Only one group can be created
 * If more than one group is specified, only the last occurrence of a group will be taken
 
