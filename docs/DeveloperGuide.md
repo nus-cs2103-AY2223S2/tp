@@ -109,8 +109,9 @@ How the `Logic` component works:
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
+<a id="delete"/>
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -168,13 +169,15 @@ This section describes some noteworthy details on how certain features are imple
 
 The add person feature allows for some fields to be optional. However, the person must have a name, and their name cannot be the same as another existing contact in TeamBuilder.
 
-The interactions between components for the `add` command is similar to the `delete` command shown [above](#logic-component).
+The interactions between components for the `add` command is similar to the `delete` command shown [above](#delete).
 
 Below shows the activity diagram when the user inputs the add command in the command box:
 
 ![Activity Diagram for add person command](images/ActivityDiagram_AddPerson.png){:.center}
 
-The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram.
+The _rake_ symbol in the `AddCommandParser parses input` actions is used to indicate that the action is describes in another subsidiary activity diagram. The activity diagram is as shown below: 
+
+![Activity Diagram for add person parser](images/ActivityDiagram_AddCommandParser.png){:.center}
 
 ### Create team feature
 

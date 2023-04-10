@@ -433,7 +433,7 @@ of skills first.
 * The ORDER and SORT_BY are case-insensitive. e.g `tcount` will match `tCount`
 * The ORDER can only be either ascending (`asc`) or descending (`desc`)
 * The following SORT_BY are available:
-    * `tcount` Sorts by person's tag count
+* `tcount` Sorts by person's tag count (this applies to the **blue skill tags** only, not including team tags)
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -457,7 +457,9 @@ reach out to him to form your team for Hack&Roll.
 
 **Result**:
 
-<img class="center" alt="result for 'edit 1'" src="images/FindReact.png" width="50%" />
+
+<img class="center" alt="result for 'edit 1'" src="images/Alex_NUSMeets.png" />
+
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note:**
@@ -486,7 +488,7 @@ NUSMeets team.
 
 **Result**:
 
-<img class="center" alt="result for 'edit 1'" src="images/ShowNUSMeets.png" width="50%" />
+<img class="center" alt="result for 'show'" src="images/ShowNUSMeets.png" width="50%" />
 
 ## Removing a teammate from a team : `edit`
 
