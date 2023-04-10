@@ -85,9 +85,15 @@ The sections below give more details of each component.
 
 **API** : [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
+<img src="images/DG-images/UiClassDiagram.png" width="350" />
+
+More detailed Class diagram for Ui component
+
+<img src="images/DG-images/BetterUiClassDiagram.png" width="500" />
+
 The UI consists of a MainWindow that is made up of different parts.
 For instance, `CommandBox`, `ResultDisplay`, `StudentListPanel`, `ScoreListPanel`,
-`TaskListPanel`, `StatusBarFooter` etc. All theses, including the MainWindow,
+`TaskListPanel`, `StatusBarFooter`, `HelpWindow`, `ImportWindow`, `ExportWindow` and `ExportProgressWindow` etc. All theses, including the MainWindow,
 inherit from the abstract UiPart class which captures the commonalities between
 classes that represent parts of visible GUI.
 
@@ -190,25 +196,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Implementation**
-
-This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-#### Design considerations:
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -716,17 +703,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a task for a student in the student list when the student is being checked
 
-   2. Prerequisites: Check a student using `check` command.
+   1. Prerequisites: Check a student using `check` command.
 
-   3. Test case: `addtask x t/Complete Math Exercise` (where x is the index of the student being checked)<br>
+   2. Test case: `addtask x t/Complete Math Exercise` (where x is the index of the student being checked)<br>
    Expected: The task is added to the task list of the student. Student's name and details of the added task shown in the status message.
    The displayed task list of the checked student is updated with the added task.
 
 2. Adding a task for a student in the student list when the student is not being checked
 
-   3. Prerequisites: Student with index x is not being checked.
+   1. Prerequisites: Student with index x is not being checked.
 
-   4. Test case: `addtask x t/Complete Math Exercise` (where x is the index of student not being checked)<br>
+   2. Test case: `addtask x t/Complete Math Exercise` (where x is the index of student not being checked)<br>
    Expected: The task in added to the task list of the student. Student's name and details of the added task shown in the status message.
    The displayed task list is not updated since the student is not being checked.
 
@@ -734,40 +721,40 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a task for a student in the student list when the student is being checked
 
-   2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+   1. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
    
-   3. Test case: `deletetask x 1`<br>
+   2. Test case: `deletetask x 1`<br>
    Expected: The first task is deleted from the task list of the checked student. Student's name and details of the deleted task shown in the status message.
       The deleted task is removed from the displayed task list of the checked student.
    
-   4. Test case: `deletetask x 0`
+   3. Test case: `deletetask x 0`
    Expected: No task is deleted from the task list of the checked student. Error details shown in the status message.
    
-   5. Test case: Other incorrect delete commands to try:`deletetask`, `deletetask x`, `deletetask x y`, `...` (where y is larger than the checked student's task list size)<br>
+   4. Test case: Other incorrect delete commands to try:`deletetask`, `deletetask x`, `deletetask x y`, `...` (where y is larger than the checked student's task list size)<br>
    Expected: Similar to previous.
 
 ### Marking a task of a student
 
 1. Marking a task of a student as late, in progress or complete
 
-   2. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
+   1. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
    
-   3. Test case: `markinprogress x 1`<br>
+   2. Test case: `markinprogress x 1`<br>
    Expected: The first task in the task list of the checked student is marked as in progress. Student's name and details of the marked task shown in the status message.
       The symbol representing the status of the task selected to be marked is yellow.
 
-   4. Test case: `marklate x 1`<br>
+   3. Test case: `marklate x 1`<br>
    Expected: The first task in the task list of the checked student is marked as late. Student's name and details of the marked task shown in the status message.
       The symbol representing the status of the task selected to be marked is red.
 
-   5. Test case: `markcomplete x 1`<br>
+   4. Test case: `markcomplete x 1`<br>
    Expected: The first task in the task list of the checked student is marked as complete. Student's name and details of the marked task shown in the status message.
       The symbol representing the status of the task selected to be marked is green.
 
-   6. Test case: `markinprogress x 0`, `marklate x 0` or `markcomplete x 0`
+   5. Test case: `markinprogress x 0`, `marklate x 0` or `markcomplete x 0`
    Expected: No task in the task list of the checked student is marked. Error details shown in the status message.
 
-   7. Test case: Other incorrect delete commands to try:`markinprogress`, `marklate x`, `markcomplete x y`, `...` (where y is larger than the checked student's task list size)<br>
+   6. Test case: Other incorrect delete commands to try:`markinprogress`, `marklate x`, `markcomplete x y`, `...` (where y is larger than the checked student's task list size)<br>
       Expected: Similar to previous.
 
 ### Adding a score for a student
@@ -836,7 +823,7 @@ testers are expected to do more *exploratory* testing.
 1. Checking a student for his/her task list and score list
    
    1. Test case: `check x 1`<br>
-   The first student in the student list will be checked. Student's task list and score list will then be displaied on the right side of the windows.
+   Expected: The first student in the student list will be checked. Student's task list and score list will then be displaied on the right side of the windows.
    
    2. Test case: `check x 0`<br>
    Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
@@ -856,6 +843,59 @@ testers are expected to do more *exploratory* testing.
    
    1. Prerequisites: Check a student with index x using `check` command. Checked student have one or more tasks.
    Expected: Similar to checking a student for his/her task list and score list, just that the check command is now working on the filtered student list prodcued by the find command.
+   
+### Filtering student list
+   
+1. Filtering out a group of students based on the keyword/s given
+   
+   1. Test case: `filter x primary`<br>
+   Expected: All students that has `primary` tag will be filtered out.
+   
+   2. Test case: `filter x primary secondary`<br>
+   Expected: All students that has `primary` or `secondary` or both tag will be filtered out.
+   
+   3. Test case: Other incorrect check commands to try:`filter`, `filter x`, `...`
+   Expected: The student list will not be filtered. Error details shown in the status message.
+
+### Switching between score text panel and score chart panel
+   
+1. Switching between score text panel and score chart panel using CLI
+   
+   1. Test case: `switch`<br>
+   Expected: The panel will be switched.
+   
+2. Switching between score text panel and score chart panel through mouse click
+   
+   1. Test case: Click on either the "text" or "chart" tab under score list<br>
+   Expected: The panel will be switched.
+
+### Exporting out student(s) data
+
+1. Exporting student data using CLI
+   1. Test case (Windows): `export p/data`
+   Expected: `data` directory stored in the home folder containing the `data.json` file.
+
+   2. Test case (Mac): `export p/data`
+   Expected: `data` directory stored in the home folder containing the `data.json` file.
+
+2. Exporting student data using GUI
+
+   1. Test case: Click on the `File` Menu on the top left, followed by `Export`. Subsequently select a folder directory to export on then after click the export button.
+   Expected: `data.json` should appear in the folder you have selected.
+
+### Importing in student(s) data
+
+1. Importing student data using CLI
+   1. Test case (Windows): `import p/data\data.json`
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
+   2. Test case (Mac): `import p/data/data.json`
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
+
+2. Importing student data using GUI
+
+   1. Test case: Click on the `File` Menu on the top left, followed by `Import`. Subsequently select the `data.json` from the file explorer **OR** drag and drop the file used to import in then after click the import button.
+   Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
 
 ### Saving data
 The data will be automatically saved by MATHUTORING.
@@ -865,6 +905,8 @@ The data will be automatically saved by MATHUTORING.
 ## **Appendix: Effort**
 
 ### Difficulty level
+
+This is the first time our team has worked on a Brownfield project where the AB3 codebase was the largest we have encountered in our careers. At the beginning, everyone was overwhelmed by the sudden increase in the number of classes compared to our previous projects, including our most recent project (referred to as "IP"). It took us quite a while to slowly digest the purpose of each class. Additionally, for most of us, this is one of the first projects where we have had to collaborate with team members using version control tools such as Github or SourceTree.
 
 ### Challenges faced
 
@@ -876,10 +918,24 @@ we had to take some time to learn from how AB3 works, such as how the user input
 specific structures when designing the GUI.
 * We also had to spend time searching CSS format in order to tweak the GUI to meet our requirements.
 * Thinking how to design the structure of our application based on existing AB3 structure to make it follow Object-oriented programming.
+* Making use of a new library to export PDF files.
 
 ### Effort required
 
+As a result, the development of this application required a significant amount of effort due to the challenges mentioned above where we have to:
+
+* Debugging and looking up on both Java and JavaFX documentations.
+* Researching on the usage of the new library (PDFBox).
+* Reading on guides such as tweaking the GUI to fulfil our requirements and an overall better user experience (Drag-and-Drop/CSS).
+
 ### Achievements
+
+We were able to produce a complete application that fulfills our user requirements as well as overcame the challenges we have faced. With MATHUTORING, private Math tuition teachers can:
+
+* Manage student contact details and track their performance with task and score records.
+* View score charts and statistics to easily evaluate student progress.
+* Generate PDF reports containing a student's tasks and scores for easy sharing.
+* Export and import data to easily transfer to a new device.
 
 --------------------------------------------------------------------------------------------------------------------
 
