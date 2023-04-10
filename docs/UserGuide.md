@@ -149,7 +149,7 @@ However, this function could fail (and ExecutivePro simply does not add any empl
 and email
 
 
-Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -396,7 +396,7 @@ Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 * The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
 * The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
-* The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
+* The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
 
 Examples:
 * `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
