@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +11,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -94,6 +100,81 @@ public class ParserUtil {
         }
         return new Email(trimmedEmail);
     }
+
+    /**
+     * Parses a {@code String subject} into an {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String schedule} into an {@code schedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code schedule} is invalid.
+     */
+    public static Schedule parseSchedule(String schedule) throws ParseException {
+        requireNonNull(schedule);
+        String trimmedSchedule = schedule.trim();
+        if (!Schedule.isValidSchedule(trimmedSchedule)) {
+            System.out.println(trimmedSchedule);
+            throw new ParseException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        return new Schedule(trimmedSchedule);
+    }
+
+    /**
+     * Parses a {@code String startTime} into an {@code StartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param startTime A valid start time in the format of HH:mm.
+     * @return A new {@code StartTime} object representing the parsed start time.
+     * @throws ParseException If the given {@code startTime} is invalid.
+     */
+    public static StartTime parseStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!StartTime.isValidStartTime(trimmedStartTime)) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new StartTime(trimmedStartTime);
+    }
+
+    /**
+     * Parses a {@code String endTime} into an {@code EndTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param endTime A valid end time in the format of HH:mm.
+     * @param startTime The start time to compare against.
+     * @return A new {@code EndTime} object representing the parsed end time.
+     * @throws ParseException If the given {@code endTime} is invalid or before the start time.
+     */
+    public static EndTime parseEndTime(String endTime, String startTime) throws ParseException {
+        requireNonNull(endTime);
+        requireNonNull(startTime);
+        String trimmedEndTime = endTime.trim();
+        if (!EndTime.isValidEndTime(trimmedEndTime)) {
+            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
+        }
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedEndTime = LocalTime.parse(endTime, timeFormatter);
+        LocalTime parsedStartTime = LocalTime.parse(startTime, timeFormatter);
+        if (parsedEndTime.isBefore(parsedStartTime)) {
+            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS_AFTER_START_TIME);
+        }
+        return new EndTime(trimmedEndTime);
+    }
+
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

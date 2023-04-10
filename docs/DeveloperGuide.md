@@ -6,10 +6,16 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+Tutee Managing System (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+<br/>This guide helps developers understand the design of the product and some significant features. 
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Tutee Managing System (TMS) is adapted from the [AddressBook-Level3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -95,7 +101,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a tutee).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -144,6 +150,13 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+### Lesson model
+**API** : [`Lesson.java`](https://github.com/AY2223S2-CS2103T-W10-4/tp/blob/master/src/main/java/seedu/address/model/tutee/fields/Lesson.java)
+
+<img src="images/LessonClassDiagram.png" width="90" height = 250 />
+
+* Each `Student` has a list of `Lesson` which contains String representation of the name.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -154,90 +167,142 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Field Validation
+Each `Tutee` has various fields (i.e. name, phone...). Validation from user input is done at the `Parser` level, but
+when loading from a JSON file field validation is performed differently.\
+The automatic validation of a tutee field requires the following three elements to be defined,
+an example implementation of a tutee field is shown below:
+```java
+public class Phone {
+   // Need at least one constructor with this signature
+   public Phone(String value) {
+      // ...
+   }
 
-#### Proposed Implementation
+   // Message to display to the user if the stored JSON data is invalid for the given field
+   public static final String MESSAGE_CONSTRAINT = "Invalid phone number!";
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+   // Validation method that will return true if the value is valid for the field, false otherwise
+   // If your field is named differently this method is named differently too, e.g. isValidRemark
+   public static boolean isValidPhone(String value) {
+      // ... details
+   }
+}
+```
+This automatic validation relies on Java reflection and will raise `RuntimeExceptions` if the automatic validation fails
+for reasons other than the user input being invalid. The process is as follows:
+1. The JSON file is read
+1. The `isValid` method is called with the given input
+1. If `isValid` returns false, the `MESSAGE_CONSTRAINT` is displayed to the user
+1. Otherwise, the input is passed to the constructor to create an instance of the field
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+### Attendance Management
+#### The Attendance Field
+The `Attendance` field uses a hashset internally to store all the dates on which the tutee was present. The field is designed to be
+immutable, which means updating a tutee's absence or presence will create a new attendance field instance.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+#### Mark and Unmark Command
+The mark and unmark commands are implemented similarly: both follow the format of `mark|unmark INDEX [DATES...]`. The
+user's input is parsed by its respective parser (`MarkCommandParser` and `UnmarkCommandParser`) and then those arguments
+are passed to the command.\
+If the user does not specify a date, then the command will use the default value as returned by `LocalDate.now()`.\
+If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add the given
+dates to the attendance field, thereby marking them as present. Unmark will remove them, thereby marking them as absent.\
+If tutee has already been marked present or absent on the specified date, the corresponding command will have no effect.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+#### Query Command
+The date is represented as an `Optional<LocalDate>`. When the command is executed, if this optional is empty, then the command will return all the dates in which the tutee was present. Otherwise, the command will return whether the tutee was present by calling the
+`didAttend()` method on the attendance field.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+### Learn\Unlearn feature
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The learn\unlearn mechanism is storing the `lessons` in a `Set`, adding\removing a `lesson` is editing this `Set`. It implements the following classes and operations:
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+* `Lesson`  —  Representing lesson fields, containting a `Set` of lessons .
+* `Lesson#learn()`  —  Adds the new lesson to the Set.
+* `Lesson#unlearn()` —  Removes a lesson from the Set.
+* `LearnCommand`  —  Adds new lesson to the Index specified Tutee.
+* `UnlearnCommand`  —  Removes lesson from the Index specified Tutee.
 
-![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+[//]: # (The following sequence diagram shows how the undo operation works:)
 
-![UndoRedoState2](images/UndoRedoState2.png)
+[//]: # ()
+[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
-</div>
+[//]: # ()
+[//]: # (</div>)
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+[//]: # ()
+[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+[//]: # ()
+[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How learn & unlearn executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** add/remove lesson to the `Set`.
+  * Pros: Easy to implement, don't allow duplicates.
+  * Cons: Does not show the learning order.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Combine Attendance and Learning.
+  * Pros: Easier for user to keep track of time and lesson.
+  * Cons: Harder to implement.
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### Filter feature
 
+#### Filter Implementation
+
+The logic of the filter implementation is found in `FilterCommand` class. The constructor of `FilterCommand` takes in 
+a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
+`FilterTuteeDescription`.  
+
+`FilterTuteeDescription` encapsulates the fields of a tutee that the user wants to filter. 
+The class contains all the fields of a tutee including: `name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
+By default, `name`, `address`, `tags` are empty lists while the rest of the fields are empty strings. 
+
+`FilterCommandParser` will set the appropriate fields in `FilterTuteeDescription` for the
+fields that are to be filtered in.  Once `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), 
+`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
+
+`FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
+given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
+command. 
+
+Finally, `FilterCommand` will execute which will call the method `model.updateFilteredTuteeList(predicate)` using the 
+`FieldContainsKeywordPredicate` object as the predicate. The feature will filter and display the tutees which have fields 
+that are equal to what the user has provided. 
+
+#### Design considerations
+
+#### How filter executes
+
+- Alternative 1 (current choice): Use prefix to filter what to search for.
+  - Pros: More precise when filtering time (e.g. `filter st/10:30` will only return tutees whose lesson starting time is at
+  10:30)
+  - Cons: Harder to implement.
+
+- Alternative 2: Extend find feature and filter any field without specifying prefix.
+  - Pros: Easier to implement.
+  - Cons: Could cause confusion when filtering time (e.g. `filter 10:30` will return all tutees whose lesson start time and
+  end time are at 10:30)
+
+### Copy feature
+
+#### Copy Implementation
+The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in
+an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in
+`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including:
+`subject`, `schedule`, `start time`, `end time` of a tutee.
+All of the fields are required to be filled in order for the command to make a copy of a tutee with a different lesson and schedule.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,71 +322,115 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of tutees
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage tutees faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​               | I want to …​                                                                | So that I can…​                                                                                           |
+|----------|-----------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `* * *`  | tutor                 | add students                                                                | add students that I am tutoring                                                                           |
+| `* * *`  | tutor                 | delete students                                                             | remove students that I no longer tutor                                                                    |
+| `* * *`  | tutor                 | list students                                                               | display all students that are tutored by me                                                               |
+| `* * *`  | tutor                 | save my work locally                                                        | come back to view or edit it in the future                                                                |
+| `* *  `  | tutor                 | edit students                                                               | change my student's information easily                                                                    |
+| `* *  `  | tutor                 | find students by name                                                       | quickly locate my student by name                                                                         |
+| `* *  `  | tutor                 | filter students by their fields                                             | quickly locate students that fit the criteria that I want to look for (e.g. filter s/math sch/saturday    |
+| `* *  `  | first time tutor user | clear managing system                                                       | clear the samples student information and input my own students                                           |
+| `* *  `  | tutor                 | add a student with the same personal information and with new edited fields | quickly add the same student with different a different subject and schedule                              |
+| `* *  `  | new tutor user        | look at the user guide                                                      | look at the commands that are available to use                                                            |
+| `* *  `  | tutor                 | keep track of my students learning progress                                 | plan my lessons better for each individual student                                                        |
+| `* *  `  | tutor                 | mark my students attendance                                                 | keep track of the number of lessons I have given to each student for uses such as payment                 |
+| `* *  `  | tutor                 | undo the mark of my students attendance                                     | undo the attendance of a student on a particular date                                                     |
+| `* *  `  | tutor                 | find the students that were taught on a given date                          | quickly find out which student I taught on a date to calculate information such as payment of the student |
+| `* *  `  | tutor                 | write a remark for my student                                               | keep track of the individual remarks of each of my student                                                |
+| `*   `   | tutor                 | be reminded of my next lesson and the time                                  | remember to go for all of my lessons on time                                                              |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TMS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student**
 
-**MSS**
+**MSS:**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User is prompted to enter student’s details.
+2. Student is added to the list of students.
+   Use case ends.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
+**Extensions:**
+* 1a. User does not provide input for mandatory fields (i.e. name, phone, email, address, subject, schedule, start time, end time)
+  * 1a1. An error message is displayed with instructions and example of how to use the command
+  Use case ends.
+* 1b. User inputs an invalid field
+  * 1b1. An error message is displayed with instructions and example of how to use the command
   Use case ends.
 
+**Use case: Delete a student**
+
+**MSS:**
+
+1. User requests to list students.
+2. System shows a list of students.
+3. User requests to edit a specific student in the list.
+4. System prompts the user to choose an attribute to edit.
+5. User chooses an attribute to edit and inputs new information about the student.
+   Use case ends.
+
+**Extensions:**
+
+* 2a. The list is empty.
+  Use case ends.
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. System shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Filter a student**
+
+**MSS:**
+
+1. User is prompted to enter student’s details to filter.
+2. List of students that fit the user input is displayed.
+   
+**Extensions:**
+* 1a. User inputs an invalid field
+    * 1a1. An error message is displayed with instructions and example of how to use the command
+      Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should be standalone on Windows, Linux, and OS-X platforms, requiring only Java '11' or above to be installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be usable without an installer.
+5. GUI Should work well (i.e., should not cause any resolution-related inconveniences to the user) for
+   1. standard screen resolutions 1920x1080 and higher, and,
+   2. for screen scales 100% and 125%.
+6. GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
+   1. resolutions 1280x720 and higher, and,
+   2. for screen scales 150%.
+7. The application should be packed into a JAR file or include jar file and other files into one zip file.
+8. The product size should not exceed 100MB.
+
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **TMS**: Tutee managing system.
+* **CLI**: command line interface.
+* **GUI**: graphical user interface.
+* **JAR**: Java ARchive.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -351,27 +460,38 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a tutee
 
-1. Deleting a person while all persons are being shown
+1. Deleting a tutee while all tutees are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tutees using the `list` command. Multiple tutees in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No tutee is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
-### Saving data
 
-1. Dealing with missing/corrupted data files
+## **Appendix: Effort**
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+All of our team members put in an equal amount of effort into this project, with each team member implementing at least one feature.
+The difficulty and number of features implemented were divided based on each of our coding level hence all members contributed equally in terms of effort.
 
-1. _{ more test cases …​ }_
+Some challenges faced:
+* Refactoring the initial code to work with students 
+* Bugs appearing when editing start time and end time, where the end time must be after the start time.
+
+Our team worked together to overcome these challenges by having regular meetings and coordinating on messaging platforms.
+
+## **Appendix: Planned enhancement**
+
+* We plan to add a reminder feature to remind tutors about their upcoming lessons
+* We plan to enhance the learn feature such that it can be colour coded on the gui based on the importance of the lesson
+* We plan to enhance the mark feature so that it can display all the dates that a student has attended
+* We plan to add a payment feature to track the students that have paid and the amount of money they owe

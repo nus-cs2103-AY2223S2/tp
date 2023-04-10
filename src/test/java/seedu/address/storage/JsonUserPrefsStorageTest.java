@@ -73,7 +73,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setAddressBookFilePath(Paths.get("TMS.json"));
         return userPrefs;
     }
 
@@ -95,7 +95,7 @@ public class JsonUserPrefsStorageTest {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
                     .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
-            throw new AssertionError("There should not be an error writing to the file", ioe);
+            throw new AssertionError("There should not be an error writing EndTime the file", ioe);
         }
     }
 

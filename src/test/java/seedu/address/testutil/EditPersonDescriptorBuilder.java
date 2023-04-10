@@ -5,15 +5,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.Subject;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class EndTime help with building EditPersonDescriptor objects.
  */
 public class EditPersonDescriptorBuilder {
 
@@ -28,15 +30,17 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code tutee}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Tutee tutee) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(tutee.getName());
+        descriptor.setPhone(tutee.getPhone());
+        descriptor.setEmail(tutee.getEmail());
+        descriptor.setAddress(tutee.getAddress());
+        descriptor.setSubject(tutee.getSubject());
+        descriptor.setSchedule(tutee.getSchedule());
+        descriptor.setTags(tutee.getTags());
     }
 
     /**
@@ -72,7 +76,23 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Sets the {@code Subject} of the {@code Tutee} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSubject(String subject) {
+        descriptor.setSubject(new Subject(subject));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Schedule} of the {@code Tutee} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSchedule(String schedule) {
+        descriptor.setSchedule(new Schedule(schedule));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it EndTime the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {

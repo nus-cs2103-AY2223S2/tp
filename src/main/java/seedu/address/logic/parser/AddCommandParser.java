@@ -3,21 +3,24 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.TuteeBuilder;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Lesson;
+import seedu.address.model.tutee.fields.Remark;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -31,22 +34,57 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                    PREFIX_SUBJECT, PREFIX_SCHEDULE, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SUBJECT,
+                PREFIX_SCHEDULE, PREFIX_STARTTIME, PREFIX_ENDTIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        TuteeBuilder builder = new TuteeBuilder();
+        builder.withName(
+            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get())
+        )
+        .withPhone(
+            ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get())
+        )
+        .withEmail(
+            ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
+        )
+        .withAddress(
+            ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
+        )
+        // add command does not allow adding remarks straight away
+        .withRemark(new Remark(""))
+        .withSubject(
+            ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get())
+        )
+        .withSchedule(
+            ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get())
+        )
+        .withStartTime(
+            ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get())
+        )
+        .withEndTime(
+            ParserUtil.parseEndTime(
+                argMultimap.getValue(PREFIX_ENDTIME).get(),
+                argMultimap.getValue(PREFIX_STARTTIME).get()
+            )
+        )
+        .withTags(
+            ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
+        ).withAttendance(new Attendance())
+        .withLessons(new Lesson());
 
-        Person person = new Person(name, phone, email, address, tagList);
+        try {
+            Tutee tutee = builder.build();
+            return new AddCommand(tutee);
+        } catch (IllegalValueException e) {
+            throw new ParseException("Invalid values for start and end time: end time must be after start time", e);
+        }
 
-        return new AddCommand(person);
     }
 
     /**

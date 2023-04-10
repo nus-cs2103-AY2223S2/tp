@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class String
+Class Student
+Class Lesson
+Class Set
+
+Student *--> Lesson
+
+Lesson --> "1 " Set
+
+Set *--> "~* "String
+@enduml
