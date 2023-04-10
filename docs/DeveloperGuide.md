@@ -978,7 +978,7 @@ box.
 7. Currently, users are only able to use the undo/redo functions for actions that modify data, except commands relating to data archiving and theme changes.
 In the future, we plan to extend the capabilities of the undo/redo functions to encompass all commands in the future.
 
-8. Currently, the backup file message is too generic and doesn't provide any indication.
-In the future, a more specific and informative backup file message will be provided to guide the user clearly.
+8. Currently, the error message of falsely deleting a backup file is too generic and doesn't provide any indication.
+In the future, a more specific and informative error message related to the backup file will be provided to guide the user clearly.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
