@@ -1,6 +1,7 @@
 package fasttrack.ui;
 
 import static fasttrack.testutil.TypicalExpenses.APPLE;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -8,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
 import fasttrack.model.expense.Expense;
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Label;
 
 class ExpenseCardTest {
@@ -26,8 +27,11 @@ class ExpenseCardTest {
     public void setUp() {
         expense = APPLE;
         displayedIndex = 1;
-        // Initialise fake JavaFX environment
-        new JFXPanel();
+    }
+
+    @BeforeAll
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
     }
 
     @Test

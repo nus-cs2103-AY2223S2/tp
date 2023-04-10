@@ -3,12 +3,14 @@ package fasttrack.ui;
 import static fasttrack.testutil.TypicalRecurringExpenses.GYM_MEMBERSHIP;
 import static fasttrack.testutil.TypicalRecurringExpenses.NETFLIX_SUBSCRIPTION;
 import static fasttrack.testutil.TypicalRecurringExpenses.RENT;
+import static fasttrack.ui.JavaFxTestHelper.initJavaFxHelper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
@@ -17,7 +19,6 @@ import fasttrack.model.expense.RecurringExpenseManager;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.ListView;
 
 
@@ -29,8 +30,11 @@ class RecurringExpensePanelTest {
     @BeforeEach
     public void setUp() {
         recurringExpenses = FXCollections.observableArrayList(GYM_MEMBERSHIP, NETFLIX_SUBSCRIPTION, RENT);
-        // Initialise fake JavaFX environment
-        new JFXPanel();
+    }
+
+    @BeforeAll
+    static void initJfx() throws InterruptedException {
+        initJavaFxHelper();
     }
 
     @Test
@@ -76,5 +80,4 @@ class RecurringExpensePanelTest {
             fail("Assertion error thrown in Platform.runLater thread: " + e.getMessage());
         }
     }
-
 }
