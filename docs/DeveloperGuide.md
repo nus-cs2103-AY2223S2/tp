@@ -320,6 +320,13 @@ The `find` command works by taking in keywords (can be a single keyword or multi
 These listings are filtered out and displayed as a separate list. 
 GoodMatch currently supports finding listings that contain the entire keyword inside, that is, listings that contain only part of the keyword will not be considered. For example, if the keyword is `pillow`, a listing with the title `pill` will not be identified.
 
+Refer to the activity diagram below for a typical `find` command.
+<p>
+  <img class="diagram" src="images/FindActivityDiagram.png" />
+  <em>Activity Diagram for the `find` command</em>
+</p>
+
+
 #### Feature Implementation Details
 
 1. The user will be specifying the `keyword(s)` in the find command.
