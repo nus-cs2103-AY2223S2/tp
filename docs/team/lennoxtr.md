@@ -23,17 +23,17 @@ You can refer to my individual code contribution at this [link](https://nus-cs21
 
 #### Tag/ Untag Feature
 
-**Originally**, the user could only apply tags to a newly added person, as well as removing tags by editing that person. As AB3 is adapted to a lecture content tracker, the old tagging system is no longer suitable. Students may label modules, lectures, or videos according to their own needs as they study.
+**Originally**, the user could only apply tags to a newly added person and remove tags by editing that person. As AB3 is adapted to a content tracker, the old system is no longer suitable. Users may label contents according to their own needs as they study.
 
-**Enahancements** made were modification to the tagging feature of AB3 to allow the user to add and remove multiple tags at the same time from modules, lectures, and video, while making sure that each tag is only applied once. Tagging and untagging can be done after the module/ lecture/ video is added to the tracker so that user can use the tag to categorize and organize the studying content effectively.
+**Enahancements** made were modification to the tagging feature of AB3 to allow the user to add and remove multiple tags at the same time from modules, lectures, and video, while making sure that each tag is only applied once. Tagging and untagging can be done after the content is added to the tracker so that user can use the tag to categorize and organize the studying content effectively.
 
 #### Export/ Import Feature
 
 I implemented the exporting and importing features of Le Tracker:
 
-- **Exporting modules**, so that students can enjoy a stress-free learning environment without worrying about losing the data. Student may also want to export modules to a file, which serves as an archive, so that they can keep track of the productivity level and learning process after the semester ends.
+- **Exporting modules**, so that users don't have to worry about losing the data. Users may also want to export modules to a file, which serves as an archive, so that they can keep track of the productivity level and learning process after the semester ends.
 
-- `**Importing modules**, so that students may revise specific concepts from the modules they previously took. Student can also use the feature to track productivity level during a semester. 
+- `**Importing modules**, so that users may revise specific concepts from the modules they previously took. user can also use the feature to track productivity level during a semester. 
 
 To implement said features, an `Archive` class was adapted from AB3's JSONStorage.
 
