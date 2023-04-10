@@ -53,7 +53,7 @@ By using MM, medical professionals can manage patient data more efficiently and 
    from [here](https://github.com/AY2223S2-CS2103T-W11-4/tp/releases/tag/v1.3b).
 3. Copy the downloaded file to the desired folder on your computer that will be used as the home folder for MediMate.
 4. To open a command terminal on Windows, click the Start button, type `cmd` in the search bar, and press Enter.
-   On Mac, open the Terminal application. Navigate to the folder where you saved the MediMate-v1.3b.jar file using the `cd` command.
+   On Mac, open the Terminal application. Navigate to the folder where you saved the MediMate.jar file using the `cd` command.
    For example, if the file is saved in the `Downloads` folder, you would enter the command `cd Downloads` in the terminal. Then, use the command `java -jar MediMate-v1.3b.jar` to run the application.
    The graphical user interface (GUI) will appear in a few seconds with sample data included.<br>
    ![Ui](images/userGuide/Ui.png)
