@@ -29,11 +29,11 @@ title: Developer Guide
 
 ## Acknowledgements
 
-Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/). 
+Wingman was built atop the codebase for [AB3](https://se-education.org/addressbook-level3/).
 Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
-albeit involving different implementations and classes. 
+albeit involving different implementations and classes.
 
-For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.  
+For unit testing, we use [Mockito](https://site.mockito.org/) to generate stubs.
 
 ## Setting up, Getting started
 
@@ -75,12 +75,12 @@ The rest of the App consists of four components.
 
 <div style="page-break-after: always;"></div>
 
-We will introduce each of these components below. 
+We will introduce each of these components below.
 
 ### UI Component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java). 
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/wingman/ui/Ui.java).
 **API**
 [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
