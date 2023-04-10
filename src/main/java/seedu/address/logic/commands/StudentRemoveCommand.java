@@ -56,24 +56,32 @@ public class StudentRemoveCommand extends Command {
 
         Person studentToRemove = lastShownList.get(index.getZeroBased());
 
+        checkSessionExists(model);
+
+        //Find session
+        Session session = model.getSessionFromName(sessionName);
+
+        checkStudentExists(session, studentToRemove);
+
+        model.removePersonFromSession(studentToRemove, session);
+        model.commitAddressBook();
+        return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));
+    }
+
+    private void checkStudentExists(Session session, Person studentToRemove) throws CommandException {
+        if (!session.contains(studentToRemove
+                .getName().formattedName)) {
+            throw new CommandException(STUDENT_NOT_FOUND_FAILURE);
+        }
+    }
+
+    private void checkSessionExists(Model model) throws CommandException {
         if (!model.hasSessionName(sessionName)) {
             throw new CommandException(String.format(
                     SESSION_NOT_FOUND_FAILURE,
                     sessionName
             ));
         }
-
-        //Find session
-        Session session = model.getSessionFromName(sessionName);
-
-        if (!session.contains(studentToRemove
-                .getName().formattedName)) {
-            throw new CommandException(STUDENT_NOT_FOUND_FAILURE);
-        }
-
-        model.removePersonFromSession(studentToRemove, session);
-        model.commitAddressBook();
-        return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));
     }
 
     @Override
