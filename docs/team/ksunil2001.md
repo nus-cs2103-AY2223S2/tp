@@ -24,7 +24,7 @@ Given below are my contributions to the project.
     - Updated json files for test cases
     - Refactored Person to Patient throughout the code
     - Fixed the display of ward name when editing a patient's details
-    - Created a help.txt file to summarise the list of commands and their syntax 
+    - Created a help.txt file to summarise the list of commands and their syntax
 
 
 - **Documentation**:
