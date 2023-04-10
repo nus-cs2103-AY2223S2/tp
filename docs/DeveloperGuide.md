@@ -165,7 +165,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The add feature is accessed through the `addPerson` operation that allows users to add a new case to the `Person` class of the application.
 
-The `Person` added by the user will have 4 compulsory fields and 1 optional field.
+The `Person` added by the user has four compulsory fields and one optional field.
 * `Name` of the person
 * `Date` of the case
 * `Postal` code of the case
