@@ -76,10 +76,6 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CreateExamCommand.MESSAGE_USAGE));
             }
-            //            int spaceIndex = name.indexOf(" ");
-            //            if (spaceIndex != -1) {
-            //                name = name.substring(0, spaceIndex);
-            //            }
             nameKeywords.set(i, name);
         }
         names = nameKeywords;

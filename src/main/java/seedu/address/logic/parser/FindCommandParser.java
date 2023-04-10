@@ -43,19 +43,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ViewExamCommand.MESSAGE_USAGE));
             }
-            int spaceIndex = name.indexOf(" ");
-            //                if (spaceIndex != -1) {
-            //                    name = name.substring(0, spaceIndex);
-            //                }
             nameKeywords.set(i, name);
         }
-        //        String trimmedArgs = args.trim();
-        //        if (trimmedArgs.isEmpty()) {
-        //            throw new ParseException(
-        //                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        //        }
-        //
-        //        String[] nameKeywords = trimmedArgs.split("\\s+");
         return new FindCommand(new NamePredicate(nameKeywords));
     }
 

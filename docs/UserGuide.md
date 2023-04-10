@@ -223,6 +223,7 @@ This is because the status of `Homework` is determined by the user, (using mark 
 Therefore, we use different terms to avoid confusion.
 </div>
 
+
 <div style="page-break-after: always;"></div>
 
 ## Commands
@@ -847,6 +848,9 @@ This is a carefully crafted feature that will be explained in the following sect
 * However, adding lessons with the duplicate name but without `clashes` with other lessons are allowed. For example:
   * if you have a lesson named `Math Lesson` for `John Doe` on `2023-05-21` from `12:00` to `14:00`
   * you then try to add another lesson with the same name but on `2023-05-24` from `13:00` to `15:00`, TutorPro will not detect that there is a duplicate lesson and will add the lesson.
+
+
+<div style="page-break-after: always;"></div>
 
 #### Duplicate Exam Detection
 * TutorPro identifies an exam by its start time and end time, since we assume that a student can have multiple exams with the same name, but they can't have two exams at the same time.

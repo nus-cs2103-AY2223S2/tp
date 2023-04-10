@@ -32,6 +32,6 @@ public class LessonBelongsToDatePredicate implements Predicate<Lesson> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof LessonBelongsToDatePredicate // instanceof handles nulls
-            && targetDate == ((LessonBelongsToDatePredicate) other).targetDate); // date check
+            && targetDate.isEqual(((LessonBelongsToDatePredicate) other).targetDate)); // date check
     }
 }

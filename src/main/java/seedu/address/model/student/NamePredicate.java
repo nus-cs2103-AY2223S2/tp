@@ -36,7 +36,6 @@ public class NamePredicate implements Predicate<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof NamePredicate // instanceof handles nulls
-            && names.equals(((NamePredicate) other).names)); // date check
+            || (other instanceof NamePredicate && names.equals(((NamePredicate) other).names));
     }
 }
