@@ -14,7 +14,8 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.prescription.Prescription;
 
-//code reuse https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
+// Implementation adapted from https://github.com/Charles1026/tp/blob/7f3cc48fb35418f1f6f6f4c1dc5e8a4a037d29d8/src/
+// main/java/seedu/address/ui/PersonViewPanel.java
 /**
  * Panel containing the detailed info of person.
  */
@@ -55,9 +56,6 @@ public class PersonViewPanel extends UiPart<Region> {
     private Label medication;
 
     @FXML
-    private Label date;
-
-    @FXML
     private Label appmtWith;
 
     /**
@@ -73,32 +71,32 @@ public class PersonViewPanel extends UiPart<Region> {
             prescriptionBox.setVisible(false);
             return;
         }
-        /*
+
         this.person = person;
-        setPersonalDetails();
+
+        setParticulars(person);
         setAppointmentDetails();
-         */
+        setMedicationDetails();
+    }
+
+    private void setParticulars(Person person) {
         String sname = "";
-        this.person = person;
-        if (person.isDoctor()) {
-            sname = "[Dr] " + person.getName().toString();
-        } else {
-            sname = person.getName().toString();
-        }
+        sname = getNameWithSalutation(person);
         name.setText(sname);
         phone.setText(person.getPhone().toString());
         email.setText(person.getEmail().toString());
         nric.setText(person.getNric().toString());
         address.setText(person.getAddress().toString());
+    }
 
-        //PersonInfoCard personInfoCard = new PersonInfoCard(person);
-
-        /*if (person.getMedications().size() > 0) {
-            medications.getChildren().add(new Label(person.getMedicationString()));
+    private static String getNameWithSalutation(Person person) {
+        String sname;
+        if (person.isDoctor()) {
+            sname = "[Dr] " + person.getName().toString();
+        } else {
+            sname = person.getName().toString();
         }
-         */
-        setAppointmentDetails();
-        setMedicationDetails();
+        return sname;
     }
 
     private void setAppointmentDetails() {
@@ -118,7 +116,6 @@ public class PersonViewPanel extends UiPart<Region> {
             Patient pt = (Patient) person;
             this.patient = pt;
             prescriptionBox.setVisible(true);
-            //medication.setText(patient.getMedication().toString());
             StringBuilder prescriptionText = new StringBuilder();
 
             int i = 1;
@@ -126,19 +123,6 @@ public class PersonViewPanel extends UiPart<Region> {
                 prescriptionText.append(String.format("%d.  %s\n", i++, prescription.toString()));
             }
             medication.setText(prescriptionText.toString());
-
-            /*
-            ArrayList<Prescription> p = new ArrayList<>();
-            for (Prescription prescription: patient.getPrescriptions()) {
-                p.add(prescription);
-            }
-            ObservableList<Prescription> prescriptionObservableList =
-                    new ObservableListWrapper<>(p);
-            prescriptions.setItems(prescriptionObservableList);
-            prescriptions.setCellFactory(item -> new PrescriptionListViewCell());
-
-             */
-
         }
         if (person.isDoctor()) {
             prescriptionBox.setVisible(false);
@@ -154,19 +138,6 @@ public class PersonViewPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new AppointmentCard(person, appointment, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
-    class PrescriptionListViewCell extends ListCell<Prescription> {
-        @Override
-        protected void updateItem(Prescription prescription, boolean empty) {
-            super.updateItem(prescription, empty);
-            if (empty || prescription == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new PrescriptionCard(patient, prescription).getRoot());
             }
         }
     }
