@@ -24,7 +24,7 @@ title: User Guide
 
 ## INTRODUCTION <a name="introduction"></a>
 
-It is hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the Tutee managing system (TMS). TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+Is it hard for private tutor such as yourself to keep track of the students' information and their progress? Fret not, we present to you our revolutionary solution for managing your tutees, the Tutee managing system (TMS). TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ It is hard for private tutor such as yourself to keep track of the students' inf
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
+[Back to top](#table-of-content)
 ### Viewing help <a name="help"></a>
 
 Shows a message explaning how to access the help page.
@@ -104,24 +104,26 @@ Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st
 
   * Subject supported: {`Math`, `Physics`, `English`}  
   * Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}  
-  * The added student must have a unqique name, phone number and email address  
+  * The added student must have a unqique name, phone number and email address and all the fields in the format present  
+  * You may add an extra tag to the student by adding t/[tag] at the end of the command.
 
 Examples:
 
-* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
+* ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/09:30 et/11:30``` adds a student named `John Doe` with a phone number `98765432`, email `johnd@example.com`, address as `311, Clementi Ave 2, #02-25` and records him as taking math lessons on monday `09:30` to `11:30`
+* ```add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/Math sch/monday st/08:30 et/10:30 t/JC1 t/SonOfJerry``` adds the same student with two tags, `JC1` and `SonOfJerry`
 
 
 ## Copy student <a name="copy"></a>
 
 Copies an existing student to the managing system with a different subject or schedule.
 
-Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
-Subject supported: {`Math`, `Physics`, `English`}
-Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
+Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
+ * Copies the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+ * All of the fields must be provided.
 
 Examples:
 
-* ```copy 2 s/Math sch/monday st/09:30 et/11:30```
+* ```copy 2 s/Math sch/monday st/09:30 et/11:30``` copies the 2nd person in the address book and adds a copy of the tutee with math lessons on monday 09:30 to 11:30
 
 
 ### Deleting student <a name="delete"></a>
