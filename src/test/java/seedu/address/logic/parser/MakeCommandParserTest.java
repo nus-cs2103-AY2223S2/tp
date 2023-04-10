@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalEntities.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.MakeCommand;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
 import seedu.address.testutil.EntityBuilder;
@@ -41,11 +42,8 @@ public class MakeCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE);
-        // missing classification
-        // Currently also very barebones; need implementation
-        assertParseFailure(parser, MakeCommand.COMMAND_WORD + " " + VALID_NAME_BOB, expectedMessage);
-
-        assertParseFailure(parser, MakeCommand.COMMAND_WORD + " " + CHAR.label, expectedMessage);
+        assertParseFailure(parser, CHAR.label, expectedMessage);
+        assertParseFailure(parser, " ", expectedMessage);
     }
 
 
@@ -53,11 +51,16 @@ public class MakeCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, MakeCommand.COMMAND_WORD + " " + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                CHAR.label + " " + INVALID_NAME_DESC,
+                Name.MESSAGE_CONSTRAINTS
+        );
 
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB, String.format(
-                                                    MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE));
+        // invalid classification
+        assertParseFailure(parser,
+                PREAMBLE_NON_EMPTY + NAME_DESC_BOB,
+                Classification.MESSAGE_CONSTRAINTS
+        );
     }
 }
 
