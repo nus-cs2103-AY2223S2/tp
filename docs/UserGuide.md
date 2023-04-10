@@ -326,7 +326,7 @@ Patient Commands</a> for more information on how to manage patient data in CareF
 
 If you struggle to keep track of your drug inventory, CareFlow is here to help.
 
-With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
+CareFlow makes it simple to manage your drug inventory and reduce the chance of running low on critical medicines. By adopting CareFlow, you can effortlessly add or remove medications and check inventory levels through the clear pie chart display, forever freeing yourself from the chore of manually monitoring inventory levels or interpreting illegible notes.
 
 <div markdown="block" class="alert alert-success">:information_source: Visit Section <a href="#43-drug-commands" style="color:#0000FF;">4.3 Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
 </div>
