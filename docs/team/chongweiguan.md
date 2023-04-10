@@ -5,7 +5,7 @@ title : Wei Guan's Portfolio Page
 
 ### Project: AddressBook Level 3
 
-Trackr is a desktop application used to keep track of order, suppliers and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Trackr is a desktop application used to keep track of order, menu, suppliers and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
