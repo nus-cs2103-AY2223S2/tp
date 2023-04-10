@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECHNICIAN_ID;
 
@@ -16,10 +17,10 @@ public class RemoveTechnicianFromAppointmentCommand extends Command {
             COMMAND_WORD + ": Unassigns an existing technician from an existing appointment. "
                     + "Parameters: "
                     + PREFIX_TECHNICIAN_ID + "TECHNICIAN_ID "
-                    + PREFIX_SERVICE_ID + "SERVICE_ID "
+                    + PREFIX_APPOINTMENT_ID + "APPOINTMENT_ID "
                     + "Example Usage: "
                     + PREFIX_TECHNICIAN_ID + "2 "
-                    + PREFIX_SERVICE_ID + "3";
+                    + PREFIX_APPOINTMENT_ID + "3";
 
     private final int techId;
     private final int appointmentId;
