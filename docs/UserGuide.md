@@ -356,7 +356,7 @@ Examples:
 
 As your database gets larger, scrolling and finding a certain employee becomes harder. However, ExecutivePro will ease this process
 through the `find` command. By following the format below, ExecutivePro will show
-a list of all employees in ExecutivePro whose names match the keyword provided.
+a list of all employees in ExecutivePro whose names or departments match the keyword provided.
 
 Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
@@ -374,14 +374,15 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### Filtering out employees: `filter`
 
-As your database gets larger, finding employees based on certain conditions become more and more tedious.
-However, ExecutivePro has just the right thing for you! `filter` will list out all the employees
+As your database gets larger, searching through the whole database to find employees who satisfy a certain condition
+becomes extremely tedious.
+However, ExecutivePro has just the right feature for you! The `filter` command will list out all the employees
 satisfying the given condition.
 
 Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 
 
-* The filtering condition can be based on Payroll(`pr`) or the number of leaves remaining for an employee(`l`)
+* The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
 * The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
 * The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
@@ -390,6 +391,15 @@ Examples:
 * `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
 * `filter l = 1` displays list of all employees who have only 1 leave left
 
+Below are the steps to use this command:
+
+**Step 1 (Creating the criteria) :**
+You can use the command syntax to create the criteria, just like the image below.
+![](images/UserGuide/filterInterface.png)
+
+**Step 2 (Results displayed) :**
+All the employees who satisfy the criteria will be listed.
+![](images/UserGuide/filterResults.png)
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting an employee : `delete`
 
@@ -556,7 +566,7 @@ This table describes the requirements for the input format of the fields.
 | **List**        | `list`                                                                                                                                                                                                                                                                                                          |
 | **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                                          |
 | **Leave**       | `leave EMPLOYEE_ID l/LEAVE_COUNT`<br> e.g.,`leave 1 l/3`                                                                                                                                                                                                                                                        |
-| **Find**        | `find [*] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                  |
+| **Find**        | `find [*] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find * James Jake`                                                                                                                                                                                                                                                |
 | **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                       |
 | **Theme**       | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                                                                                                                     |
 | **SetPicture**  | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                                                                                                                               |
