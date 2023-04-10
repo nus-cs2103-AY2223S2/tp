@@ -997,7 +997,7 @@ We will now teach you how to effectively use the `sort` command.
 
 ##### Scenario (Continuation from previous scenario):
 
-Suppose you want to arrange contacts such from those that take the most number of common modules as you to the least. 
+Suppose you want to arrange contacts such from those that take the most number of common modules with you to the least. 
 
 If there is a tie in the number of common modules shared with you, you decide to just rank the name lexicographically.
 
@@ -1015,7 +1015,7 @@ What you should see:<br>
 
 The command `sort m/d n/a` would mean that EduMate would first sort contacts by decreasing number of common modules with you, and tie-break by its lexicographical ordering.
 
-Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules as you.
+Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same number of common modules with you.
 
 ##### More Examples of Usage:
 
@@ -1299,18 +1299,18 @@ suggest new features, and it is easily extensible!
 
 ### Prefixes
 
-| Prefix | Representation  |
-|--------|-----------------|
-| `n/`   | Name            |
-| `s/`   | Station         | 
-| `p/`   | Telegram Handle | 
-| `e/`   | Email           | 
-| `g/`   | Group           | 
-| `m/`   | Module          | 
-| `d/`   | Day             |
-| `l/`   | Location        |
-| `T/`   | Time Period     |
-| ` `    | Empty           | 
+| Prefix         | Representation  |
+|----------------|-----------------|
+| `n/`           | Name            |
+| `s/`           | Station         | 
+| `p/`           | Telegram Handle | 
+| `e/`           | Email           | 
+| `g/`           | Group           | 
+| `m/`           | Module          | 
+| `d/`           | Day             |
+| `l/`           | Location        |
+| `T/`           | Time Period     |
+| <code> </code> | Empty           | 
 
 ### Command Summary
 

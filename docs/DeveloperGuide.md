@@ -126,7 +126,7 @@ title: Developer Guide
 ---
 
 ## **Software Overview**
-EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If you type quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
+EduMate is a desktop app designed for NUS students to manage their academic and social lives. It is optimised for use through a Command Line Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). If the user can quickly, EduMate can complete contact and module management tasks faster than traditional GUI apps.
 
 ---
 
@@ -1505,21 +1505,21 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 2.
 
-**Use case: UC02 - Get a help message using a command**
+**Use case: UC02 - Display a help window using a command**
 
 **MSS**
 
 1. User requests for help.
-2. EduMate shows a help message containing usages for commands.
+2. EduMate shows a help window containing usages for commands.
 
    Use case ends.
 
-**Use case: UC03 - Get a help message using a button**
+**Use case: UC03 - Display a help window using a button**
 
 **MSS**
 
 1. User clicks the help button.
-2. EduMate shows a help message containing usages for commands.
+2. EduMate shows a help window containing usages for commands.
 
    Use case ends.
 
@@ -1756,7 +1756,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 6.
 * 4c. The module and lesson exist in the contact's module set.
-    * 4c1. EduMate throws an error message.
+    * 4c1. EduMate shows an error message.
 
 **Use case: UC15 - Untag a module from a contact**
 
@@ -2261,7 +2261,7 @@ Context: None needed.
 
 Command executed: `delete`
 
-Expected Output in the Command Output Box: Invalid command format!
+Expected Output in the Command Response Box: Invalid command format!
 `delete`: Deletes the person identified by the index number used in the displayed person list.
 
 #### **_Scenario 4_**
