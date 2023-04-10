@@ -508,6 +508,17 @@ The following activity diagram summarises what happens when a user executes an I
 
 ![ImportActivityDiagram](images/ImportActivityDiagram.png)
 
+#### Design considerations
+
+**Aspect: Filenames and directories accepted**
+* We only currently accept filenames with no special characters and additionally store files in the same directory as
+`dht.jar`.
+* We also do not currently accept additional directory specifications
+
+**Future work**
+* We will want to accept directories as part of the accepted input, which wil create the directory if it does not exist,
+or minimally perform checking - i.e. if the directory(s) exist, it will be allowed to same the file there.
+
 ### Export feature
 
 #### Implementation
@@ -525,6 +536,16 @@ The following activity diagram summarises what happens when a user executes an E
 
 ![ImportActivityDiagram](images/ExportActivityDiagram.png)
 
+#### Design considerations
+
+**Aspect: Overwrite checking**
+* We currently allow the user to overwrite CSV files stored as long as the IO operations is successful.
+  * This is an issue as a user can accidentally override important CSV files.
+  
+**Future work**
+  * We will implement a checker that will prompt the user asking if they're sure they want to override the CSV file
+currently at the filename location.
+
 ### Checkout feature
 
 This feature is largely similar to the [export](#export-feature) up to step 4.
@@ -534,6 +555,10 @@ Step 5: Model calls `Overview#getOverviewContent()` to obtain the list to export
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
 The activity diagram is similar to that of export.
+
+#### Design considerations
+
+The design considerations and future are the same of that as [export](#export-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
