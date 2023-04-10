@@ -113,15 +113,19 @@ public class LogicManager implements Logic {
     }
     //@@author
 
+    //@@author arkarsg
     @Override
     public ItemProfit getTotalProfits() {
         return model.getTotalProfits();
     }
+    //@@author
 
+    //@author arkarsg
     @Override
     public ItemSellingPrice getTotalSales() {
         return model.getTotalSales();
     }
+    //@@author
 
     //@@author liumc-sg-reused
     @Override

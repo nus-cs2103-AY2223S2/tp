@@ -12,6 +12,7 @@ import trackr.model.menu.MenuItem;
 import trackr.ui.UiPart;
 import trackr.ui.cards.MenuCard;
 
+//@@author arkarsg-reused
 /**
  * Panel containing the list of suppliers.
  */
