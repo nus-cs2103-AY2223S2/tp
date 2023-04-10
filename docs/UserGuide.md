@@ -32,9 +32,7 @@ such as flight scheduling and management of crew, pilot, plane and location.
         - **[Deleting a resource: `delete`](#2-deleting-a-resource-delete)**
     - **[Mode-Specific Commands](#mode-specific-commands)**
         - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location-linklocation)**
-        - *
-          *[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)
-          **
+        - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location-unlinklocation)**
     - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight-linkflight)**
     - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight-unlinkflight)**
 - **[Prefix Summary](#prefix-summary)**
@@ -340,7 +338,7 @@ This commands deletes an entity of the current resource mode from Wingman's data
 if you are currently in the `plane` mode, then this command will delete the specified `plane` from the database.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
-Note: Please make sure the program is under the correct mode before performing deletion. &#128515
+Note: Please make sure the program is under the correct mode before performing deletion.
 </div>
 
 This command has **NO** variation across the modes.
@@ -400,7 +398,7 @@ the command is valid, Wingman will return a response confirming the link that ha
 
 We detail the format for different modes below.
 
-###### Crew mode: `linklocation /lo location-index /cr {crew-index}`
+###### Crew mode: `linklocation /lo {location-index} /cr {crew-index}`
 
 Required prefixes:
 
@@ -610,7 +608,7 @@ Output:
 Linked Cabin Service Director John Smith to SQ230.
 ```
 
-###### Pilot mode: `linkflight /fl flight-index /p{x} pilot-index`
+###### Pilot mode: `linkflight /fl {flight-index} /p{x} {pilot-index}`
 
 Here `x` is either `f` or `m`. See below details.
 
@@ -788,8 +786,8 @@ Unlinked A380 from SQ230.
 | **Action**      | **Format**                                                                | **Examples**                   |
 |-----------------|---------------------------------------------------------------------------|--------------------------------|
 | Add             | `add /{prefix_A} {value_A} /{prefix_B} {value_B}`                         | `add /n Bob /r 2`              |
-| Delete          | `delete resource-index`                                                   | `delete 1`                     |
-| Link location   | `linklocation /lo location-index /{resource-prefix} {resource-index}`     | `linklocation /lo 1 /cr 1`     |
+| Delete          | `delete {resource-index}`                                                 | `delete 1`                     |
+| Link location   | `linklocation /lo {location-index} /{resource-prefix} {resource-index}`   | `linklocation /lo 1 /cr 1`     |
 | Unlink location | `unlinklocation /lo {location-index} /{resource-prefix} {resource-index}` | `unlinklocation /lo 1 /fl 1`   |
 | Link flight     | `linkflight /fl {flight-index} /{resource-prefix} {resource-index}`       | `linkflight /fl 1 /pf 1 /pm 2` |
 | Unlink flight   | `unlinkflight /fl {flight-index} /{resource-prefix} {resource-index}`     | `unlinkflight /fl 1 /pu 1`     |
