@@ -41,14 +41,14 @@ Given below are my contributions to the project.
 
 
 * **New Feature**: Updated the `help` command pop-out. [#120](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/120)
-    * What it does: Updated the list of commands on the `help` command pop-out window for users who require help
+    * What it does: Updated the list of commands on the `help` command pop-out window for users who require help.
     * Justification: This feature allows for users get quick access to information should they struggle with any syntax of the commands.
 
 
 * **New Feature**: Added `DateOfBirth` field in patient records. [#125](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/125)
     * What it does: Allows users to store `DateOfBirth` attribute of patients.
     * Justification: This feature allows for identification of the date of birth of patient.
-    * Highlights: By inputting in date in the format `DD/MM/YYYY`, the date of birth shown in the record will be `DD MONTH YYYY`
+    * Highlights: By inputting in date in the format `DD/MM/YYYY`, the date of birth shown in the record will be `DD MONTH YYYY`.
 
 
 * **Code contributed**:
