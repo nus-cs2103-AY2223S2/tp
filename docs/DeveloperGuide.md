@@ -1405,7 +1405,7 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `pi 7` <br>
         Expected: No person details are displayed, error message is displayed instead.
 
-### 7.13 Edit Task 
+### 7.13 Editing Task 
 
   1. Task to be edited is available in OfficeConnect
      1. Prerequisites: There is at least 1 task in the list.
@@ -1414,7 +1414,7 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `editt 0`
      <br>Expected: "The task index provided is invalid" shown in feedback message.
 
-### 7.14 Find Persons by Name
+### 7.14 Finding Persons by Name
 
   1. There are persons in OfficeConnect with the specified name.
      1. Prerequisites: Only one person can be specified.
@@ -1434,7 +1434,7 @@ testers are expected to do more *exploratory* testing.
      4. Other incorrect find persons commands to try: `findp !@#`)<br>
         Expected: No persons are displayed. "No such person found" shown in feedback message.
 
-### 7.15 Find Tasks by Title
+### 7.15 Finding Tasks by Title
 
   1. There are tasks in OfficeConnect with the specified title.
      1. Prerequisites: Only one title can be specified.
