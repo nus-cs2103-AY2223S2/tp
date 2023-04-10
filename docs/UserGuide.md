@@ -47,8 +47,21 @@ than current GUI apps in the industry.
   ![DownloadDocedexWindows](images/DocedexInFileWin.png)
 4. Launch Docedex
 - For Mac Users:
+  - Open a new Terminal window (Command + Space > type Terminal > Enter).
+  - Navigate to the folder where you have stored the jar file using the `cd` command.
+    - For example, if you have stored the jar file in a folder called Docedex, you can type `cd Docedex` and press Enter.
+  - Type `java -jar docedex.jar` and press Enter.
+  
+  <div markdown="span" class="alert alert-danger">
+  **WARNING TO ALL MAC USERS**
+  Performing these instructions may result in non-deterministic behaviour of data loading in Docedex. This was tested on multiple
+  MacOS Systems:<br />
+  
   - Right-click `docedex.jar` > Open With > JavaLauncher.app
   - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
+  
+  </div>
+
 - For Windows Users:
   - Double-click `docedex.jar` to launch the application.
 - If this still does not work follow the instructions listed [here.](#launching-docedex)
