@@ -17,8 +17,8 @@ public class EditWardCommandParser implements Parser<EditWardCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * EditWardCommand
-     * and returns an EditWardCommand object for execution.
+     * {@code EditWardCommand}
+     * and returns an {@code EditWardCommand} object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

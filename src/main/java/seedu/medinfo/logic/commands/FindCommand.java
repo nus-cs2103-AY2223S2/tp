@@ -10,6 +10,7 @@ import static seedu.medinfo.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import java.util.function.Predicate;
 
 import seedu.medinfo.commons.core.Messages;
+import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.Model;
 import seedu.medinfo.model.patient.Patient;
 
@@ -46,10 +47,20 @@ public class FindCommand extends Command {
 
     private final Predicate<Patient> predicate;
 
+    /**
+     * Constructs a {@code FindCommand} to display {@code Patients} which meet the given predicate.
+     * @param predicate Condition to be met by the displayed {@code Patients}.
+     */
     public FindCommand(Predicate<Patient> predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the {@code FindCommand} on the given model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult which is the result of the operation.
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

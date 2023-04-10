@@ -40,7 +40,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nric} into a {@code Nric}.
+     * Parses a {@code String} nric into a {@code Nric}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code nric} is invalid.
@@ -55,7 +55,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String} name into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -70,7 +70,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code Status}.
+     * Parses a {@code String} status into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code status} is invalid.
@@ -85,7 +85,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String ward} into a {@code Ward}.
+     * Parses a {@code String} ward into a {@code WardName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code ward} is invalid.
@@ -100,7 +100,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String ward} into a {@code Ward}.
+     * Parses a {@code String} capacity into a {@code Capacity}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code ward} is invalid.
@@ -115,7 +115,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String discharge} into a {@code Discharge}.
+     * Parses a {@code String} discharge into a {@code Discharge}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code discharge} is invalid.
@@ -131,26 +131,13 @@ public class ParserUtil {
 
 
     /**
-     * Parses {@code String arg} into a {@code Order}.
+     * Parses {@code String} order into a {@code Order}.
      *
-     * @throws ParseException if the given {@code arg} is invalid.
+     * @throws ParseException if the given {@code order} is invalid.
      */
-    public static Order parseSortOrder(String arg) throws ParseException {
+    public static Order parseSortOrder(String order) throws ParseException {
         try {
-            return Order.valueOf(arg.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
-        }
-    }
-
-    /**
-     * Parses {@code String arg} into a {@code Type}.
-     *
-     * @throws ParseException if the given {@code arg} is invalid.
-     */
-    public static Field parseSortType(String arg) throws ParseException {
-        try {
-            return Field.valueOf(arg.toUpperCase());
+            return Order.valueOf(order.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
         }

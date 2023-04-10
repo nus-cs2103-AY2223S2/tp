@@ -4,12 +4,12 @@ import seedu.medinfo.logic.commands.exceptions.CommandException;
 import seedu.medinfo.model.Model;
 
 /**
- * Represents a command with hidden internal logic and the ability to be executed.
+ * Represents a {@code Command} with hidden internal logic and the ability to be executed.
  */
 public abstract class Command {
 
     /**
-     * Executes the command and returns the result message.
+     * Executes the {@code Command} and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display
