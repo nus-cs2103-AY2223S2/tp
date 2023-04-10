@@ -127,7 +127,7 @@ Examples:
 
 Copies an existing student to the managing system with a different subject or schedule.
 
-Format: ```copy [index] s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
+Format: ```copy <index> s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```  
  * Copies the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
  * All of the fields must be provided.
 
@@ -140,7 +140,7 @@ Examples:
 
 Removes a student from the managing system.
 
-Format: ```delete INDEX```
+Format: ```delete <index>```
 * Deletes the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 
 Examples:
@@ -163,7 +163,7 @@ Examples:
 
 Edits an existing student in the managing system.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit <index> [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -222,7 +222,7 @@ Examples:
 
 You can add a lesson taught to a student.
 
-Format: ```learn [INDEX] [l/LESSON]```
+Format: ```learn <INDEX> [l/LESSON]```
 * The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 * The lesson must be in alphanumeric characters.
 
