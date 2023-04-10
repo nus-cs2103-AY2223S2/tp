@@ -678,7 +678,6 @@ Given below is an activity diagram to illustrate the behaviour of adding Person 
 <img src="images/createAttributes.png" width="170">
 
 
-
 ##### Design Considerations
 
 To add more skills and modules, the user will have to specify the prefix. E.g. to add python and java as a skill, the user will need to input `s/python` and `s/java` instead of `s/python java`.
