@@ -757,7 +757,7 @@ specified otherwise)
   * 1a1. Advis.io requests for the user to input the correct data format.
   * 1a2. User inputs correct data
 
-    Steps 1a1-1b are repeated until the data entered are correct.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
 
     Use case resumes from step 2. 
 
@@ -825,7 +825,7 @@ specified otherwise)
   * 1a1. Advis.io requests for the user to input the correct data format.
   * 1a2. User inputs correct data
 
-    Steps 1a1-1b are repeated until the data entered are correct.
+    Steps 1a1-1a2 are repeated until the data entered are correct.
 
     Use case resumes from step 2.
 
@@ -937,7 +937,7 @@ specified otherwise)
   * 1a1. Advis.io displays a message indicating that the appointment name and date are required.
   * 1a2. The user enters a new appointment name and date.
 
-  Steps 1a1-1b are repeated until the data entered are correct.
+  Steps 1a1-1a2 are repeated until the data entered are correct.
 
   Use case resumes from step 2.
 
