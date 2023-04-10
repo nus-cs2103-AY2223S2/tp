@@ -25,7 +25,7 @@ create ListDepartmentHeadcountCommandParser
 SudoHrParser -> ListDepartmentHeadcountCommandParser
 activate ListDepartmentHeadcountCommandParser
 
-ListDepartmentHeadcountCommandParser -> SudoHrParser
+ListDepartmentHeadcountCommandParser --> SudoHrParser
 deactivate ListDepartmentHeadcountCommandParser
 
 SudoHrParser -> ListDepartmentHeadcountCommandParser: parse("d/2023-04-10 n/Human Resources")
@@ -35,7 +35,7 @@ create DepartmentName
 ListDepartmentHeadcountCommandParser -> DepartmentName
 activate DepartmentName
 
-DepartmentName -> ListDepartmentHeadcountCommandParser
+DepartmentName --> ListDepartmentHeadcountCommandParser
 deactivate DepartmentName
 
 create ListDepartmentHeadcountCommand
@@ -60,20 +60,20 @@ activate ListDepartmentHeadcountCommand
 ListDepartmentHeadcountCommand -> Model : getDepartment(departmentName)
 activate Model
 
+Model --> ListDepartmentHeadcountCommand
+deactivate Model
+
 create LeaveDate
 ListDepartmentHeadcountCommand -> LeaveDate
 activate LeaveDate
 
-LeaveDate -> ListDepartmentHeadcountCommand
+LeaveDate --> ListDepartmentHeadcountCommand
 deactivate LeaveDate
-
-Model --> ListDepartmentHeadcountCommand
-deactivate Model
 
 ListDepartmentHeadcountCommand -> Model: getLeave(leaveDate)
 activate Model
 
-Model -> ListDepartmentHeadcountCommand
+Model --> ListDepartmentHeadcountCommand
 deactivate Model
 
 
