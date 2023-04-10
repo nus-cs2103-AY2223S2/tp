@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lukkesreysandeur.md)]
 
 * Role: Team member
-* Responsibilities: ??
+* Responsibilities: In charge of staff class and related commands, User Guide
 
 ### Glenn Ong JunJie
 
