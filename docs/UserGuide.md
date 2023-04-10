@@ -28,7 +28,10 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 4. Double-click the file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Ui.png" width="450" />
+   
+    <p align="center">
+        <img src="images/Ui.png" width="450" />
+    </p>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -45,7 +48,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 
 6. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -106,10 +109,12 @@ Examples:
 * `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` adds the patient `Ben Smith` to the list.
 * `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician` adds the doctor `Sarah Tan` to the list.
 
-<img src="images/AddPatient.png" width="450" />
+
+<p align="center">
+    <img src="images/AddPatient.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
-
 ### Deleting a person by NRIC : `delete`
 
 Deletes the specified person from MediConnect.
@@ -140,8 +145,9 @@ Format `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…
 
 Examples:
 * `edit 9 n/John Smith` will edit the name of the 9th person listed to "John Smith".
-
-<img src="images/Edit.png" width="450" />
+    <p align="center">
+        <img src="images/Edit.png" width="450" />
+    </p>
 
 <div style="page-break-after: always;"></div>
 
@@ -162,8 +168,9 @@ Restrictions:
 Examples:
 * `display ic/S1234567A` displays the information for the patient with NRIC number `S1234567A`.
 
-<img src="images/Display.png" width="450" />
-
+<p align="center">
+    <img src="images/Display.png" width="450" />
+</p>
 <div style="page-break-after: always;"></div>
 
 ### Finding a person (patient or doctor) by NRIC : `find`
@@ -180,7 +187,9 @@ Format: `find ic/NRIC`
 Examples:
 * `find ic/S1234567A` returns the details for the person with NRIC number S1234567A.
 
-<img src="images/Find.png" width="450" />
+<p align="center">
+    <img src="images/Find.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -208,7 +217,9 @@ Restrictions:
 Examples:
 * `appointment ic/S1234567A d/18-04-2023 10:00 dric/S3523567R` schedules an appointment for the patient with the NRIC number `S1234567A` and the doctor with the NRIC number `S3523567R` on `18-04-2023 10:00`.
 
-<img src="images/Appointment.png" width="450" />
+<p align="center">
+    <img src="images/Appointment.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -245,7 +256,9 @@ Examples:
 *  `prescribe m/paracetamol ic/S1234567A c/0.7` prescribes paracetamol at a cost of $0.7 to the patient with NRIC number S1234567A.
 *  `prescribe m/Cough Syrup ic/S1234567A c/10.7` prescribes Cough Syrup at a cost of $10.7 to the patient with NRIC number S1234567A.
 
-<img src="images/Prescribe.png" width="450" />
+<p align="center">
+    <img src="images/Prescribe.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -268,7 +281,9 @@ Format: `bill ic/NRIC`
 Examples:
 * `bill ic/S1234567A` calculates the cost of all medication for patient with NRIC S1234567A.
 
-<img src="images/Bill.png" width="450" />
+<p align="center">
+    <img src="images/Bill.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -284,7 +299,9 @@ Shows a list of all doctors in MediConnect.
 
 Format: `listDoctors`
 
-<img src="images/ListDoctors.png" width="450" />
+<p align="center">
+    <img src="images/ListDoctors.png" width="450" />
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -293,9 +310,9 @@ Format: `listDoctors`
 Shows a list of all patients in MediConnect.
 
 Format: `listPatients`
-
-<img src="images/ListPatients.png" width="450" />
-
+    <p align="center">
+        <img src="images/ListPatients.png" width="450" />
+    </p>
 ### Clearing all entries : `clear`
 
 Deletes all patients' and doctors' data from the system.
@@ -319,8 +336,9 @@ Format: `help`
 Examples:
 * `help` opens a mini window with a url link of this user guide which can be copied by the user.
 
-<img src="images/helpMessage.png"/>
-
+    <p align="center">
+        <img src="images/helpMessage.png"/>
+    </p>
 ### Exiting the program : `exit`
 
 Closes the `MediConnect` application.
