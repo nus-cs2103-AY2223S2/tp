@@ -322,6 +322,8 @@ Below is an activity diagram that illustrates the control flow for the Find feat
   * Pros: It provides a consistent user experience, as users can expect the same behavior when searching for people throughout the application.
   * Cons: An empty list can sometimes appear visually unappealing and may give the impression that the application is not functioning correctly.
 
+<div style="page-break-after: always;"></div>
+
 * **Alternative 2:** Displays most recent valid search result list when no persons are found.
   * Pros: Saves time for users who may have previously searched for similar or related information and want to quickly access those results again.
   * Cons: Could lead to frustration or confusion if users don't understand why they're seeing old results instead of new ones.
@@ -330,7 +332,6 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 Syntax: `findt TASKNAME` 
 
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
-<div style="page-break-after: always;"></div>
 
 #### 3.4.1 Implementation
 The implementation of this feature is supported by `FindTaskCommand` and `FindTaskCommandParser`.
@@ -347,6 +348,8 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
     * Pros: More intuitive as users do not have to keep track of the list index of the tasks.
       Able to query for tasks that are already logged in OfficeConnect using the title of the task.
     * Cons: Length of commands are dependent on length of title. Users have to remember the name of the tasks.
+
+<div style="page-break-after: always;"></div>
 
 * **Alternative 2:** Query using `INDEX`
     * Pros: Shorter command to type out.
