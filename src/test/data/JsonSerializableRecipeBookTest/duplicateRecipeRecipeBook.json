@@ -1,0 +1,27 @@
+{
+  "recipes" : [ {
+    "title" : "corndogs",
+    "desc" : "corndog recipes",
+    "ingredients" : [ {
+      "name" : "egg",
+      "quantity" : 2.0,
+      "unitOfMeasurement" : "unit",
+      "pricePerUnit" : 1.0
+    } ],
+    "steps" : [ "step 1", "step 2", "step 3" ],
+    "tags" : [ ],
+    "isStar" : false
+  }, {
+    "title" : "corndogs",
+    "desc" : "corndog recipes",
+    "ingredients" : [ {
+      "name" : "egg",
+      "quantity" : 2.0,
+      "unitOfMeasurement" : "unit",
+      "pricePerUnit" : 1.0
+    } ],
+    "steps" : [ "step 1", "step 2", "step 3" ],
+    "tags" : [ ],
+    "isStar" : false
+  } ]
+}

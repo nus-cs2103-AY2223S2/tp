@@ -1,0 +1,29 @@
+@startuml
+start
+:User executes sort command;
+:Parse order string;
+if () then ([asc])
+    :Add all Recipes to ArrayList;
+    :Use Collections.sort to sort
+    in ascending order of price;
+    :Add sorted recipes to ObservableList;
+    :Set the recipe book in model
+    to the sorted ObservableList;
+else ([not asc])
+if () then ([desc])
+    :Add all Recipes to ArrayList;
+    :Use Collections.sort to sort
+    in descending order of price;
+    :Add sorted recipes to ObservableList;
+    :Set the recipe book in model
+    to the sorted ObservableList;
+else ([not desc])
+    :Throw ParseException with
+    message that sort order
+    must be either asc or desc;
+endif
+endif
+:UI displays sorted list of Recipes
+or ParseException message;
+stop
+@enduml

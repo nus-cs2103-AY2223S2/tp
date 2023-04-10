@@ -1,0 +1,15 @@
+{
+  "recipes" : [ {
+    "title" : "Corndogs",
+    "desc" : "Homemade corndogs",
+    "ingredients" : [ {
+      "name" : "flour",
+      "quantity" : -2,
+      "unitOfMeasurement" : "cup",
+      "pricePerUnit" : 0.8
+    } ],
+    "steps" : [ "step 1" ],
+    "tags" : [ "easy" ],
+    "isStar" : false
+  } ]
+}

@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Kang Yue Ran
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kyueran.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kyueran)]
+[[portfolio](team/kyueran.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Model
 
-### Johnny Doe
+### Ding Chiyu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mr-teal.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Mr-Teal)]
+[[portfolio](team/mr-teal.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Logic
 
-### James Doe
+### Ryan Jansen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanjansen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ryanjansen)]
+[[portfolio](team/ryanjansen.md)]
+
+* Role: Developer
+* Responsibilities: Storage
+
+### Germaine Lee
+
+<img src="images/germainelee02.png" width="200px">
+
+[[github](http://github.com/germainelee02)]
+[[portfolio](team/germainelee02.md)]
+
+* Role: Developer
+* Responsibilities: Parser
+
+### Bernice Toh
+
+<img src="images/bernicetoh.png" width="200px">
+
+[[github](http://github.com/bernicetoh)]
+[[portfolio](team/bernicetoh.md)]
 
 * Role: Developer
 * Responsibilities: UI
