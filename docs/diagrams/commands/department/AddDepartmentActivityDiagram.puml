@@ -7,7 +7,8 @@ if () then ([else])
   :Error: Invalid command format;
 ([Command format is valid])elseif () then ([else])
   :Error: Department already exists in SudoHr;
- else ([Department does not exist in SudoHr])
+ else ([Department does not
+  exist in SudoHr])
   :adep command successfully executes.;
  endif
 stop

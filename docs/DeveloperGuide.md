@@ -235,7 +235,7 @@ Activity Diagram:
 
 Sequence Diagram:
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `add id/37 n/John p/9861 7251 e/John@nus.com a/nus t/Vegetarian`
 2. The parser will parse the argument and instantiate several fields: Id, name, phone, email, address, and tags, respective with the prefixes.
 3. An `Employee` object is constructed and handed over to the `AddCommand`.
@@ -244,7 +244,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 When checking for duplicated fields across employees, the `Id`, `Phone`, and `Email` fields are checked.
 This is because `Id` is meant to be the unique identifier for an employee and `Phone` and `Email` fields are understood
 to be unique fields as well.
@@ -259,7 +259,7 @@ Activity Diagram:
 
 Sequence Diagram:
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `edit eid/37 p/8461 4872 a/ntu`. The employee with Id 37 will be identified and will have its phone and address fields updated as specified, if it exists in SudoHR.
 2. The parser will instantiate a new `Phone` and `Address` object constructed from the arguments associated with `/p` and `/n`, which represent the new phone number and address fields respectively.
 3. A `EditEmployeeDescriptor` object is constructed with the updated fields and alongside the employee's Id, are handed over to `EditCommand`.
@@ -270,7 +270,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 The `EditEmployeeDescriptor` is used to store the details to be edited. This abstraction is used as not all fields
 may be edited for the `EditCommand`. So, this class ensures that fields are not edited will be unaffected and correctly initialized for the new edited employee. 
 This modularity in design will prove useful in the future if more employee-level details are added, as per the open-closed principle.
@@ -287,7 +287,7 @@ Activity Diagram:
 
 Sequence Diagram:
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `del eid/37` where employee with Id 37 is to be removed from SudoHR.
 2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
 3. The command is executed. It first verifies that an employee with the specified Id exists.
@@ -295,7 +295,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 We need to ensure that if an employee is deleted, it is also removed from being tracked by other entities such as `Department` and `Leave`.
 
 
@@ -321,7 +321,7 @@ Activity Diagram:
 
 Sequence Diagram:
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `feid eid/37` where employee with Id 37 is to be found.
 2. The parser will instantiate the corresponding `Id` object constructed from the argument associated with the prefix `eid/`.
 3. A predicate checking for the specified Id is initialized and the command is executed with the predicate.
@@ -336,7 +336,7 @@ Activity Diagram:
 
 Sequence Diagram:
 
-#### Flow
+##### Flow
 1. The user enters the command, eg. `find alex` to look for employees whose name contains 'alex'.
 2. The parser will instantiate a predicate that looks for the specified keyword, constructed from the argument provided, in employee's name field.
 3. The command is executed with the predicate and the `filteredEmployeeList` is updated to contain all of such employees, with the UI displaying the employees to the user.
@@ -630,14 +630,14 @@ We also decided guarding against adding the range of leaves dates if even one of
 
 The `leol` command lists employees taking leave on a specific date.
 
-#### Flow 
+##### Flow 
 1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
 2. The parser would initialise a `LeaveDate` object constructed from the input argument.
 3. The command is executed. It initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
 4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
 
-#### 4.4.5 Listing all leaves 
+#### 4.4.5. Listing all leaves 
 The `llve` command lists all leaves taken by employees in SudoHR.
 
 The call stack is the same as a typical command except that it has no specified parser.
@@ -647,7 +647,7 @@ Upon execution, it updates the `filteredLeaveList` in SudoHR.
 
 After that, the command result is returned.
 
-#### Feature considerations
+##### Feature considerations
 Only leaves that have at least 1 employee will be displayed.
 
 
