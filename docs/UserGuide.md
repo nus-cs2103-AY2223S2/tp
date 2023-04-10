@@ -305,9 +305,9 @@ Examples:
 
 **:information_source: Note:**<br>
 
-Autocomplete only works for command words and prefixes that expect a corresponding input data. You may refer to the
-[Prefx](#prefix) section for more details on prefixes.
-
+* Autocomplete only works for command words and prefixes that expect a corresponding input data. You may refer to the
+[Prefix](#prefix) section for more details on prefixes.<br>
+* If input matches a command, Autocomplete will autocomplete the [prefixes](#prefix) for the command. If command requires no prefix, autocomplete will not do anything else.
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -527,8 +527,9 @@ Format: `sortm ATTRIBUTE [r]`
 
 * If the `r` option is included, the meetings will be sorted in reverse(descending) order.
 * Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
-* Example: `sortm m/` sorts meetings by title in ascending order.
-* Example: `sortm dt/r` sorts meetings by date/time in descending order.
+* Examples:
+  * `sortm m/` sorts meetings by title in ascending order.
+  * `sortm dt/r` sorts meetings by date/time in descending order.
 
 <div markdown="block" class="alert alert-info">
 
@@ -570,7 +571,7 @@ Format: `findm`
 
 ### Export Meetings : `exportm`
 
-Exports the meetings at the specified `INDEX`es and between `start` and `end` dates.
+Exports the meetings at the specified `INDEX`'s and between `start` and `end` dates.
 * If only START_DATE provided, meetings after START_DATE, inclusive, will be exported
 * If only END_DATE is provided, meetings after END_DATE, inclusive, will be exported
 * If both are provided, meetings between the two dates, inclusive, will be exported
@@ -697,7 +698,13 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+If used with a command word, shows a message explaining how to use the command in the output box.
+
+Examples:
+* `help add` shows a message explaining how to use the `add` command.
+* `help delm` shows a message explaining how to use the `delm` command.
+
+Format: `help [COMMAND_WORD]`
 
 ### Clearing all entries : `clear`
 
@@ -747,7 +754,7 @@ the data of your previous QuickContacts home folder.
 | **Edit a contact**           | `edit INDEX [n/CONTACT_NAME] [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
 | **Find a contact**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                           |
 | **List all contacts**        | `list`                                                                                                                                                                                                               |
-| **Help**                     | `help`                                                                                                                                                                                                               |
+| **Help**                     | `help [COMMAND_WORD]`                                                                                                                                                                                                |
 | **Create a meeting**         | `addm m/MEETING_TITLE dt/MEETING_DATE_TIME [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                                   |
 | **Edit a meeting**           | `editm INDEX [m/MEETING_TITLE] [dt/MEETING_DATE_TIME] [p/MEETING_ATTENDEE]... [l/MEETING_LOCATION] [des/MEETING_DESCRIPTION]`                                                                                        |
 | **Find a meeting**           | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                                                                         |
