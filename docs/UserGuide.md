@@ -112,10 +112,11 @@ that you should pay attention to. </div>
 to [how to check the version of Java on my computer](https://blog.hubspot.com/website/check-java-verison).
 
 2. Download the latest release of coNtactUS from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
-The file is named `coNtactUS.jar`
+The file is named `coNtactUS.jar`  
 
-<div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
-on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>
+    <div markdown="span" class="alert alert-primary"> :exclamation: Make sure to remember the destination folder
+    on your computer that you download the coNtactUS.jar file onto. This is relevant for the next step. </div>  
+
 
 3. Run the `coNtactUS.jar` file. If you are unsure of how to do so, you may refer to
 [how to run a jar file](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Run-JAR-file-example-windows-linux-ubuntu).
@@ -123,8 +124,8 @@ on your computer that you download the coNtactUS.jar file onto. This is relevant
 4. You should now see a window similar to the one shown below. There will be a reminder pop-up window upon
 launching the application. The [reminder window](#reminder) will be further discussed later.
 
-  <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application
-for your reference. </div>
+    <div markdown="span" class="alert alert-primary"> :bulb: Note how sample data is already loaded into the application
+    for your reference. </div>
 
 
 <p align="center">
@@ -497,7 +498,7 @@ occurs every Tuesday, starting at 12 noon and ending at 3pm. It cannot be blank.
 * `[a/VENUE]` -  It cannot be blank.
 
 
-* `[s/TEACHER]` -  It cannot be blank.
+* `[s/TEACHER]` -  It should only contain alphabets, spaces, periods, and commas. It cannot be blank.  
 
 
 * `[d/DEADLINE]` - It must be of the format `DDMMYY`. For example, for a deadline that falls on the 23rd February 2023, 
@@ -599,7 +600,7 @@ know what information are considered valid and what are not.<br>
     </td>
     <td>
       <code> </code>
-      <code>Assignment 2</code>
+      <code>Assignment_2</code>
       <code>l@b</code>
     </td>
   </tr>
@@ -632,11 +633,13 @@ know what information are considered valid and what are not.<br>
     <td>
       <code>Prof Damyth.</code>
       <code>Mr. John Lee</code>
-      <code>Dr Ch'ng</code>
+      <code>Dr Chng</code>
       <code>anderson</code>
     </td>
     <td>
       <code> </code>
+      <code>Mr Goh (Phd)</code>
+      <code>Mdm-Tan</code>
     </td>
   </tr>
   <tr>
