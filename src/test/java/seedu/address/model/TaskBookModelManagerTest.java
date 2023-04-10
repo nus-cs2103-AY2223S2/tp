@@ -118,7 +118,8 @@ public class TaskBookModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ONE.getDescription().fullTaskDescription.split("\\s+");
-        taskBookModelManager.updateFilteredTaskList(new TaskDescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        taskBookModelManager.updateFilteredTaskList(new
+            TaskDescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(taskBookModelManager.equals(new TaskBookModelManager(taskBook, userPrefs)));
 
         // resets taskBookModelManager to initial state for upcoming tests

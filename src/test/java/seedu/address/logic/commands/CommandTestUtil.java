@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
-
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -60,7 +59,6 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ROLE_DESC_FRIEND = " " + PREFIX_ROLE + VALID_ROLE_FRIEND;
     public static final String ROLE_DESC_HUSBAND = " " + PREFIX_ROLE + VALID_ROLE_HUSBAND;
-    
     public static final String TASK_DESC_ONE = " " + PREFIX_TASK + VALID_TASK_DESCRIPTION;
 
 
@@ -122,6 +120,20 @@ public class CommandTestUtil {
     }
 
     /**
+     * Checks that {@code command} is successfully executed
+     */
+    public static void assertCommandSuccess(Command command, Model model,
+        TaskBookModel taskBookModel, String expectedMessage) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        try {
+            CommandResult result = command.execute(model, taskBookModel);
+            assertEquals(expectedCommandResult, result);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
@@ -141,16 +153,6 @@ public class CommandTestUtil {
         assertEquals(expectedTaskBook, actualTaskBookModel.getTaskBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
         assertEquals(expectedTaskFilteredList, actualTaskBookModel.getFilteredTaskList());
-    }
-
-    public static void assertCommandSuccess(Command command, Model model, TaskBookModel taskBookModel, String expectedMessage) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        try {
-            CommandResult result = command.execute(model, taskBookModel);
-            assertEquals(expectedCommandResult, result);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
     }
 
 
