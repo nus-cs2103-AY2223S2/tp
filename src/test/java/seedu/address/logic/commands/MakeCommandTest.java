@@ -215,7 +215,7 @@ public class MakeCommandTest {
         }
 
         @Override
-        public ObservableList<Entity> getListByClassification(String classification) {
+        public ObservableList<Entity> getListByClassification(Classification classification) {
             throw new AssertionError("This method should not be called.");
         }
 
