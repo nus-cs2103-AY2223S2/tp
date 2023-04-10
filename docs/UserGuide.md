@@ -345,11 +345,11 @@ Edits the details of a job listing.
 
 📚 **Examples:**
 
-- `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson`
+- `edit 1 t/Noodle seller d/Cooks tasty noodles a/Johnson p/Glints`
 - `edit 2 t/Videographer d/Films videos`
 - `edit 1 a/` (clears all applicants from the listing)
 - `edit 3 p/` (clears all platforms from the listing)
-- `edit 1 t/Photographer p/`
+- `edit 1 t/Photographer p/Glints`
 
 🎯 **Expected Output:**
 
@@ -361,6 +361,7 @@ Edited listing:
 Job Title: Noodle seller
 Job Description: Cooks tasty noodles
 Applicants: Johnson
+Platforms: Glints
 ```
 
 ❌ **Possible Errors:**
@@ -413,6 +414,7 @@ Deleted listing:
 Job Title: Chicken farmer
 Job Description: farms chickens
 Applicants: Tommy, Connor
+Platforms: Glints
 ```
 
 ❌ **Possible Errors:**
