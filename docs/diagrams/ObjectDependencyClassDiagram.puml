@@ -1,33 +1,28 @@
 @startuml
 !include style.puml
+show members
+
+skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
-'skinparam objectBackgroundColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
-
-object Course
-object Group
-object Student
-object Session
-object Task
-
-
-object Course {
+class Course {
   courseCode:String
 }
 
-object Group {
+class Group {
   groupName : String
 }
 
-object Session {
+class Session {
  sessionName : String
 }
 
-object Task {
+class Task {
  taskName : String
 }
 
-object Student {
+class Student {
  name : Name
  phone : Phone
  email : Email
@@ -39,8 +34,7 @@ Course -> "*" Group
 Group -> "*" Student
 Group -> "*" Session
 Group -> "*" Task
-
-
-
+Task ..> Student
+Session ..> Student
 
 @enduml
