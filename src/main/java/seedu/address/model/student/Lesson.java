@@ -44,24 +44,6 @@ public class Lesson {
     }
 
     /**
-     * Returns the start time of the lesson in a String format.
-     *
-     * @return The start time of the lesson in a String format.
-     */
-    public String getStartTimeString() {
-        return startTime.format(formatter);
-    }
-
-    /**
-     * Returns the end time of the lesson in a String format.
-     *
-     * @return
-     */
-    public String getEndTimeString() {
-        return endTime.format(formatter);
-    }
-
-    /**
      * Returns true if the 2 lessons' timeslot conflict with each other.
      * @param otherLesson The other lesson to compare with.
      * @return True if the lessons' timeslots overlap each other.

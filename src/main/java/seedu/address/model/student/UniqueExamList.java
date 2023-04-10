@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,7 +90,6 @@ public class UniqueExamList implements Iterable<Exam> {
             throw new EntryNotFoundException();
         }
     }
-
 
     /**
      * Replaces the contents of this list with {@code replacement}.
@@ -191,16 +189,6 @@ public class UniqueExamList implements Iterable<Exam> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Updates the list of exams to only contain exams that fufil a predicate.
-     *
-     * @param examStatusPredicate predicate object encapsulating qualifier
-     */
-    public void updateFilteredExamList(Predicate<Exam> examStatusPredicate) {
-        requireNonNull(examStatusPredicate);
-        internalList.removeIf(examStatusPredicate.negate());
     }
 
     /**
