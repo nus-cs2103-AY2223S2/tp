@@ -373,7 +373,7 @@ Examples:
 
 Below are the steps to use this command:
 
-**Step 1 (Creating the criteria) :**
+**Step 1 (Inputting the search keywords) :**
 You can use the command syntax to input the search keywords, just like the image below.
 ![](images/UserGuide/findInterface.png)
 
