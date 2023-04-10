@@ -404,29 +404,6 @@ The following sequence diagram shows how the `totalAppointmentCommand` operation
 
 The `totalAppointmentCommand` feature mainly involves iterating through the appointment list and checking if the specified date falls on the same date as the appointment. The way that the validation check is done is by setting the previous day to be the start date and the next day to be the end date. Finally, we check if the current appointment is within the start and end date.
 
-### \[Proposed\] Data archiving
-
-1. If impact of loading save file:
-    * Save file leads to complete file loss, warn user and attempt to load save backup.
-    * If that fails, warn user that data is not recoverable and advice not to perform any action.
-2. Archive after every few saves, so that the user can revert to a specific save.
-3. Upon exit, save backup should be made.
-
-
-### Planned Enhancements
-
-**Mitigating the effects of malicious save file edit**
-
-* Issue 1: An malicious user is able to modify the save file
-  * Proposed solution: encrypting the save file and storing hash
-
-
-* Issue 2: An malicious user is able to modify the save file such that running a command may have adverse effects on other parts of the program.
-  * Example: Malicious user edits save file and adds `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
-  * Effects: Command `Deletecustomer` will delete the vehicle with id 5
-  * Proposed solution: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
-  * Note: This is applicable for all entries that have some form of mapping.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -910,4 +887,10 @@ For example, a single customer could have multiple appointments, services, and v
 1. Less general error messages, especially those for invalid indexes. The current error message is too general for the user to understand that the error comes from invalid indexes. (E.g. Command format may be correct except index but error message show is `Input is not a number` instead of a more intuitive error message like `Invalid vehicle index input` to help the user correct the command format entered)
 2. Enabling `Find` for Parts. As of v1.4, the find command works for all entities except parts, we plan to implement this to ensure the feature consistency of the app for all entities.
 3. `View` command should not filter the list panel, to allow users to continuously use the view command instead of needing to use the `list` command first to refer to the entity id, before using `view` again.
-
+4. Data Archiving. To allow user to revert to a previous save (possibly max 5 or user settable). 
+5. Save file checks, to reduce the effects of malicious edit impacting program operations. 
+    * Example: Malicious user edits save file by adding `vehicle id` (i.e. vehicle id 5) to a customer, but the `vehicle` (with id 5) does not belong to the user.
+    * Impact rating: CWE-20 with CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:L (6.8 Medium)
+    * Impact: Due to how delete operations are cascades, this edit can cause a user to delete vehicles that are not originally assigned to the customer. 
+    * Plan: Implement post load save checks to ensure that vehicle to customer mapping is 1:1 on both vehicle and customer end.
+    * Note: This is applicable for all entries that have some form of mapping.
