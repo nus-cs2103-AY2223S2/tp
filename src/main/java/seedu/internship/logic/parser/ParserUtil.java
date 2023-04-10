@@ -64,6 +64,12 @@ public class ParserUtil {
         return result;
     }
 
+    /**
+     * Checks index exception error messages and returns corresponding ParseException
+     * @param pe ParseException from parseIndex or parseIndexes method
+     * @param commandFormatMessage Command format message to be contained in ParseException if to be used
+     * @return New ParseException with the corresponding error message according to message in ParseException given
+     */
     public static ParseException handleIndexException(ParseException pe, String commandFormatMessage) {
         if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
             return new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
