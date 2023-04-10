@@ -79,6 +79,7 @@ public class LogicManager implements Logic {
         return model.getFilteredSupplierList();
     }
 
+    //@@author liumc-sg-reused
     @Override
     public ReadOnlyTaskList getTaskList() {
         return model.getTaskList();
@@ -88,6 +89,7 @@ public class LogicManager implements Logic {
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
     }
+    //@@author
 
     @Override
     public ReadOnlyMenu getMenu() {
@@ -99,6 +101,7 @@ public class LogicManager implements Logic {
         return model.getFilteredMenu();
     }
 
+    //@@author chongweiguan-reused
     @Override
     public ReadOnlyOrderList getOrderList() {
         return model.getOrderList();
@@ -108,6 +111,7 @@ public class LogicManager implements Logic {
     public ObservableList<Order> getFilteredOrderList() {
         return model.getFilteredOrderList();
     }
+    //@@author
 
     @Override
     public ItemProfit getTotalProfits() {
@@ -119,10 +123,12 @@ public class LogicManager implements Logic {
         return model.getTotalSales();
     }
 
+    //@@author liumc-sg-reused
     @Override
     public Path getTrackrFilePath() {
         return model.getTrackrFilePath();
     }
+    //@@author
 
     @Override
     public GuiSettings getGuiSettings() {

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.TaskBuilder;
 
+//@@author hmuumyatmoe-reused
 public class TaskTest {
 
     @Test
@@ -89,6 +90,7 @@ public class TaskTest {
         assertNotEquals(SORT_INVENTORY_N, editedTask);
     }
 
+    //@@author liumc-sg
     @Test
     public void hashCode_success() {
         TaskName taskName = new TaskName("Task");

@@ -306,6 +306,7 @@ public class ModelManager implements Model {
 
     //=========== Filtered Task List Accessors ===============================================================
 
+    //@@author liumc-sg-reused
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedTaskList}
@@ -314,6 +315,7 @@ public class ModelManager implements Model {
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
     }
+    //@@author
 
     //=========== Menu ===================================================================================
 
@@ -338,6 +340,7 @@ public class ModelManager implements Model {
 
     //=========== OrderList ===================================================================================
 
+    //@@author chongweiguan-reused
     @Override
     public ReadOnlyOrderList getOrderList() {
         return orderList;
@@ -363,6 +366,7 @@ public class ModelManager implements Model {
         requireNonNull(comparator);
         orderList.sortItems(comparator);
     }
+    //@@author
 
     //========================================================================================================
 

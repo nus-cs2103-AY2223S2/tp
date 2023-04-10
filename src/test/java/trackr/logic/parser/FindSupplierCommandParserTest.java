@@ -12,6 +12,7 @@ import trackr.logic.commands.supplier.FindSupplierCommand;
 import trackr.logic.parser.supplier.FindSupplierCommandParser;
 import trackr.model.person.PersonNameContainsKeywordsPredicate;
 
+//@@author arkarsg-reused
 public class FindSupplierCommandParserTest {
 
     private FindSupplierCommandParser parser = new FindSupplierCommandParser();

@@ -17,6 +17,7 @@ import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
+//@@author liumc-sg-reused
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
@@ -98,6 +99,7 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
+    //@@author arkarsg-reused
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);

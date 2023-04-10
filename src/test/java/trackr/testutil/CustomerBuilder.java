@@ -5,6 +5,7 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 /**
  * A utility class to help with building Customer objects.
  */
@@ -63,5 +64,6 @@ public class CustomerBuilder {
     public Customer build() {
         return new Customer(customerName, customerPhone, customerAddress);
     }
+    //@@author
 
 }

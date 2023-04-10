@@ -38,6 +38,7 @@ import trackr.testutil.SupplierBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditSupplierCommand.
  */
+//@@author liumc-sg-reused
 public class EditSupplierCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),

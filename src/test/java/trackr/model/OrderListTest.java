@@ -111,6 +111,7 @@ public class OrderListTest {
         assertThrows(UnsupportedOperationException.class, () -> orderList.getItemList().remove(0));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void equals() {
         orderList.addItem(CHOCOLATE_COOKIES_O);

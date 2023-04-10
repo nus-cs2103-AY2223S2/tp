@@ -25,6 +25,7 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_STATUS = SORT_INVENTORY_N.getTaskStatus().toJsonString();
     private static final String VALID_TIME_ADDED = LocalDateTime.now().toString();
 
+    //@@author liumc-sg-reused
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(SORT_INVENTORY_N);
@@ -75,6 +76,7 @@ public class JsonAdaptedTaskTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
+    //@@author
 
     @Test
     public void toModelType_invalidTimeAdded_throwsIllegalValueException() {

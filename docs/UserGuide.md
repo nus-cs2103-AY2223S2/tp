@@ -23,7 +23,6 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
-
 * [1 Quick start](#1-quick-start)
   * [1.1 Prerequisites](#11-prerequisites)
     * [1.1.1 Java](#111-java)
@@ -82,10 +81,10 @@ You can click on any of the links below to navigate to the respective sections f
 * [6 Summary](#6-summary)
 * [6.1 Prefix Summary](#61-prefix-summary)
   * [6.2 Command Summary](#62-command-summary)
-
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 # 1 Quick start
@@ -346,6 +345,8 @@ Menu Item Card consists of the following components:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 # 2 Commands
 
 <div markdown="block" class="alert alert-info">
@@ -382,6 +383,8 @@ Menu Item Card consists of the following components:
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-tip">
 
 :bulb: **Tip**
@@ -414,7 +417,7 @@ Duplicate data are not allowed. Hence, adding of duplicate data or editing of an
 with another existing data in the data list will not be successful. Here's how we check for duplicates:
 
 | Any two    | are considered to be duplicates if                                          |
-|------------|-----------------------------------------------------------------------------| 
+| ---------- | --------------------------------------------------------------------------- |
 | Suppliers  | they have the same phone numbers                                            |
 | Orders     | all the parameters (excluding `STATUS`) are the same (with matching cases). |
 | Tasks      | they have the same task names (case-insensitive) and deadlines.             |
@@ -424,13 +427,12 @@ with another existing data in the data list will not be successful. Here's how w
 
 Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
-:pencil2: Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
+:pencil2: Note<br>
+Adding of duplicate data is not allowed. Refer to this [table](#20-checking-for-duplicates) to see how duplicates are checked for.
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
-
-:information_source: **Information**
 
 Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -463,6 +465,8 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-tip">
 
@@ -838,7 +842,7 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
 
 * At least one of the optional fields must be keyed in.<br>
 
-* For `ORDER_ITEM`:
+* For `ORDER_ITEM` and `CUSTOMER_NAME`:
   * Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
   * Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
   * Only full words will match (e.g. `Chocolate` will not match with `Choco`).
@@ -853,23 +857,14 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
     * `N` or `n` for `Not delivered`.
     * e.g. `find_o s/D` will return orders marked as `Delivered`.<br>
 
-* For `CUSTOMER_NAME` and `CUSTOMER_ADDRESS`:
-<<<<<<< HEAD
-  * Search is case-insensitive for `CUSTOMER_NAME` but case-sensitive for `CUSTOMER_ADDRESS` 
+* For `CUSTOMER_ADDRESS`:
+  * Search is case-sensitive.
   (e.g. The search for orders with customer address `smith` will match with `smith` but not with `Smith`).
-=======
-  * Search is case-insensitive (e.g. The search for orders with customer name `amy` will match with `Amy` and with `amy`).
->>>>>>> master
   * Order of the keywords matter (e.g. `Amy Lee` will not match with `Lee Amy`).
   * Only full words will match.
   * Order's respective parameter must fully match with the given parameter.<br>
     (e.g. `Amy Lee` will only match with `Amy Lee` and not with `Amy Lee Tan`).
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
 </div>
 
 <div markdown="block" class="alert alert-example">
@@ -1622,7 +1617,7 @@ Here are the respective formats for each of the data types:
 # 6.1 Prefix Summary
 
 | Parameter                                  | Prefix | Rules                                                                                                                                                                                                                                         |
-|--------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name (Task, Supplier, Customer, Menu Item) | n/     | - Should only contains alphanumeric characters and spaces                                                                                                                                                                                     |
 | Phone Number (Supplier, Customer)          | p/     | - Should only contain digits<br/> - Should have least 3 digits                                                                                                                                                                                |
 | Email                                      | e/     | - Should only be of the form `local@domain` and only accept alphanumeric characters<br/>- `local` allows for special characters `+`, `_`, `.` and `-` as well.<br/>- `domain` must be at least 2 letters long.<br/> - `.com` is not required. |
@@ -1640,7 +1635,7 @@ Here are the respective formats for each of the data types:
 ## 6.2 Command Summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**    | `add_supplier` / `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/12345678 t/meat` <br> <br> `add_order` / `add_o` <br> e.g., `add_o n/John Doe l/John Street d/12/12/2023 q/10 on/Cupcakes` <br> <br> `add_task` / `add_t` <br> e.g., `add_t d/Buy a card d/23/12/2024 s/D` <br> <br> `add_item` / `add_i` <br> e.g., `add_i n/Chocolate Cake pr/30 c/10` |
 | **Edit**   | `edit_supplier` / `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` / `edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task` / `edit_t` <br> e.g., `edit_t 1 s/D` <br> <br> `edit_item` / `edit_i` <br/>e.g., `edit_i n/Chocolate Chip Cookie`                                                                                                       |
 | **Delete** | `delete_supplier` / `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` / `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` / `delete_t` <br> e.g., `delete_t 4` <br> <br> `delete_item` / `delete_i` <br> e.g., `delete_i 2`                                                                                                                                                  |

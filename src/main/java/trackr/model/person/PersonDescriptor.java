@@ -13,6 +13,7 @@ import trackr.model.item.ItemDescriptor;
  * Stores the details to edit the supplier with. Each non-empty field value will replace the corresponding field
  * value of the person.
  */
+//@@author liumc-sg-reused
 public class PersonDescriptor implements ItemDescriptor<Person> {
     private PersonName name;
     private PersonPhone personPhone;

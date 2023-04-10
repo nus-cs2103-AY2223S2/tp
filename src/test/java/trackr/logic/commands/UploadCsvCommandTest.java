@@ -37,6 +37,7 @@ public class UploadCsvCommandTest {
 
     private ModelStubWithItems model;
 
+    //@@author chongweiguan-reused
     @Test
     public void constructor_nullCommand_throwsNullException() {
         assertThrows(NullPointerException.class, () -> new UploadCsvCommand(null));
@@ -105,6 +106,20 @@ public class UploadCsvCommandTest {
                         AddSupplierCommand.MESSAGE_USAGE), () -> command.execute(model));
     }
 
+    @Test
+    public void execute_uploadCsvWithDuplicate_addsOtherValidItemsSuccess() throws Exception {
+        model = new ModelStubWithItems();
+        model.addItem(CUPCAKE_M, ModelEnum.MENUITEM);
+
+        // first item is a duplicate
+        List<String> csvInput = SampleCommands.withMultipleValidCommand(SampleCommands.VALID_ADD_M,
+                                                                        SampleCommands.VALID_ADD_O);
+
+        CommandResult result = new UploadCsvCommand(csvInput).execute(model);
+
+        assertEquals(UploadCsvCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
+        assertEquals(Arrays.asList(CUPCAKE_M, CHOCOLATE_COOKIES_O), model.itemsAdded);
+    }
     /**
      * A Model stub that always accept Orders, Suppliers, Task and MenuItems being added.
      */

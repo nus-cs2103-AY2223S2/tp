@@ -47,62 +47,83 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    //@@author liumc-sg-reused
     /**
      * Returns the user prefs' trackr file path.
      */
+    //@@author liumc-sg-reused
     Path getTrackrFilePath();
+    //@@author
 
     /**
      * Sets the user prefs' trackr file path.
      */
+    //@@author liumc-sg-reused
     void setTrackrFilePath(Path trackrFilePath);
+    //@@author
 
     // =================================================== Item =======================================================
 
     /**
      * Sets the item list for the specified {@code ModelEnum}.
      */
+    //@@author liumc-sg-reused
     <T extends Item> void setItemList(ModelEnum modelEnum);
+    //@@author
 
     /**
      * Returns an unmodifiable view of the item list for the specified {@code ModelEnum}.
      * @return an unmodifiable view of the item list for the specified {@code ModelEnum}.
      */
+    //@@author liumc-sg-reused
     ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum);
+    //@@author
 
     /**
      * Returns true if the specified item exists in the item list for the specified {@code ModelEnum}.
      * @return true if the specified item exists in the item list for the specified {@code ModelEnum}, false otherwise.
      */
+    //@@author liumc-sg-reused
     <T extends Item> boolean hasItem(T item, ModelEnum modelEnum);
+    //@@author
 
     /**
      * Deletes the specified item from the item list for the specified {@code ModelEnum}.
      */
+    //@@author liumc-sg-reused
     <T extends Item> void deleteItem(T item, ModelEnum modelEnum);
+    //@@author
 
     /**
      * Adds the specified item to the item list for the specified {@code ModelEnum}.
      */
+    //@@author liumc-sg-reused
     <T extends Item> void addItem(T item, ModelEnum modelEnum);
+    //@@author
 
     /**
      * Replaces the specified item in the item list for the specified {@code ModelEnum} with the edited item.
      */
+    //@@author liumc-sg-reused
     <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum);
+    //@@author
 
     /**
      * Returns an {@code ObservableList} of items that have been filtered based on the specified criteria for the
      * specified {@code ModelEnum}.
      */
+    //@@author liumc-sg-reused
     ObservableList<? extends Item> getFilteredItemList(ModelEnum modelEnum);
+    //@@author
 
     /**
      * Updates the filtered list of items according to the given {@code predicate}.
      *
      * @throws NullPointerException If {@code predicate} or {@code modelEnum} is {@code null}.
      */
+    //@@author liumc-sg-reused
     void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum);
+    //@@author
 
 
     // =================================================== Supplier ===================================================
@@ -141,6 +162,7 @@ public interface Model {
 
     // ================================================= Order =================================================
 
+    //@@author chongweiguan-reused
     /**
      * Returns the OrderList
      */
@@ -150,6 +172,7 @@ public interface Model {
      * Returns an unmodifiable view of the filtered order list
      */
     ObservableList<Order> getFilteredOrderList();
+    //@@author
 
     // ===================================================== Menu Item ========================================
 

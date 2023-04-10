@@ -41,7 +41,7 @@ public class AddOrderCommandTest {
 
         CommandResult commandResult = new AddOrderCommand(validOrder).execute(modelStub);
 
-        assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, ModelEnum.ORDER),
+        assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, validOrder),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }

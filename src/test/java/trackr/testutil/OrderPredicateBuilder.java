@@ -11,6 +11,7 @@ import trackr.model.order.OrderStatus;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 /**
  * OrderPredicateBuilder class
  */
@@ -96,6 +97,7 @@ public class OrderPredicateBuilder {
         }
         return this;
     }
+    //@@author
 
     /**
      * Sets the {@code OrderNameKeywords} of the {@code OrderContainsKeywordsPredicate} that we are building.
@@ -107,6 +109,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code orderStatus} of the {@code orderContainsKeywordsPredicate} that we are building.
      */
@@ -130,4 +133,5 @@ public class OrderPredicateBuilder {
     public OrderContainsKeywordsPredicate build() {
         return orderPredicate;
     }
+    //@@author
 }

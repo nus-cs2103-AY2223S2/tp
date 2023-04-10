@@ -17,6 +17,7 @@ import trackr.model.person.PersonPhone;
 /**
  * A utility class to help with building Order objects.
  */
+//@@author chongweiguan-reused
 public class OrderBuilder {
 
     public static final MenuItem DEFAULT_ORDER_ITEM = CHOCOLATE_COOKIE_M;
@@ -137,6 +138,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * builds the order
      */
@@ -144,5 +146,6 @@ public class OrderBuilder {
         Customer c = new Customer(customerName, customerPhone, customerAddress);
         return new Order(orderItem, orderDeadline, orderStatus, orderQuantity, c, timeAdded);
     }
+    //@@author
 
 }

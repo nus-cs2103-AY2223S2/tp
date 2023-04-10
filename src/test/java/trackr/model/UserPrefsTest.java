@@ -20,6 +20,7 @@ public class UserPrefsTest {
         assertThrows(NullPointerException.class, () -> userPref.setGuiSettings(null));
     }
 
+    //@@author liumc-sg-reused
     @Test
     public void setTrackrFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
@@ -55,6 +56,7 @@ public class UserPrefsTest {
         assertNotEquals(userPrefs, userPrefsDiffGui);
     }
 
+    //@@author liumc-sg
     @Test
     public void hashCode_success() {
         UserPrefs userPrefs = new UserPrefs();
