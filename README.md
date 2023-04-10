@@ -3,7 +3,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-# This is coNtactUs.<br>
+# This is coNtactUS.<br>
 
 ## Target User:
 #### NUS Computing Students who need a powerful desktop application to keep track of their modules as they go about their hectic university life.
