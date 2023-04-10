@@ -83,7 +83,7 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
 
-        @Override 
+        @Override
         public void resetIndex() {
             throw new AssertionError("This method should not be called.");
         }
