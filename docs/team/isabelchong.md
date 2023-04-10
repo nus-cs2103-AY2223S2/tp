@@ -47,14 +47,9 @@ View my code contribution here: [Code Dashboard](https://nus-cs2103-ay2223s2.git
 * Contributed to DG for v1.4 ([#221](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/221),
   [#254](https://github.com/AY2223S2-CS2103T-T15-4/tp/pull/254))
   * Refactored mentions of `AB3` to `CLIpboard`, including descriptions and links
-  * Added instructions for `Manual Testing` section for the following commands or actions:
-      * Launch and Shutdown
-      * General Commands
-      * Course Page Commands
-      * Group Page Commands
-      * Task Page Commands
-      * Grades Page Commands
-      * Saving Data
+  * Added instructions for `Manual Testing` section for the following commands or sections - `Launch and Shutdown`, 
+    `General Commands`, `Course Page Commands`, `Group Page Commands`, `Task Page Commands`, `Grades Page Commands`,
+    `Saving Data`
 * Helped to review PRs about DG [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/pulls?q=is%3Apr+commenter%3A%40me+DG+-author%3A%40me)
 
 ## Contributions to Team-Based Tasks
