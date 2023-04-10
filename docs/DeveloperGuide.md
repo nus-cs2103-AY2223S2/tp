@@ -1737,3 +1737,7 @@ Currently when a vaccination has been added, there is no way to update its histo
 We plan to enhance this by adding an additional flag to vaccination's edit <code>--empty <var>SHOULD_EMPTY</var></code> where <code><var>SHOULD_EMPTY</var></code> is of `boolean` type with a default value of `false`. The presence of this argument in the vaccination `edit` command will cause the history requirement of the vaccination to be emptied.
 
 The enhancement will also be implemented such that if both `--h` and `--empty` argument were to appear in the same `edit` command, the command will not be processed and an error message will be shown. This is the protect the user's data from unintended changes.
+
+### Stricter date validation fo days of month
+
+We plan to implement a stricter date validation checks for dates. The stricter check will disallow dates fo months that exceeds the number of days in that month. For example 2023-2-31 (2023 Feb 31 as February does not have 31 days) will be disallowed. These invalid dates will show an error message, informing the user that the date is invalid.
