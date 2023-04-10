@@ -38,7 +38,7 @@ public class Score {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Name // instanceof handles nulls
+                || (other instanceof seedu.address.model.task.Score // instanceof handles nulls
                 && score == ((seedu.address.model.task.Score) other).score); // state check
     }
 

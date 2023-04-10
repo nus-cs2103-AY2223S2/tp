@@ -47,7 +47,7 @@ public class TaskDescription {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.Name // instanceof handles nulls
+                || (other instanceof seedu.address.model.task.TaskDescription // instanceof handles nulls
                 && fullTaskDescription.equals(((seedu.address.model.task.TaskDescription) other).fullTaskDescription));
     }
 
