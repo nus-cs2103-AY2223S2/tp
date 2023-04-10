@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import vimification.common.core.LogsCenter;
+import vimification.common.util.StringUtil;
 import vimification.internal.command.Command;
 import vimification.internal.command.CommandResult;
 import vimification.internal.command.logic.LogicCommand;
@@ -70,15 +71,15 @@ public class LogicManager implements Logic {
                 storage.saveMacroMap(macroMap);
             } else {
                 LOGGER.warning("Unknown command type: " + command.getClass().getSimpleName());
-                result = new CommandResult("Nothing happened!");
+                result = new CommandResult("Nothing happened!", false);
             }
         } catch (ParserException ex) {
-            result = new CommandResult(ex.getMessage());
+            result = new CommandResult(ex.getMessage(), false);
         } catch (RuntimeException ex) {
-            ex.printStackTrace();
-            result = new CommandResult(LIST_OPS_ERROR_MESSAGE);
+            LOGGER.info(StringUtil.getDetails(ex));
+            result = new CommandResult(LIST_OPS_ERROR_MESSAGE, false);
         } catch (IOException ex) {
-            result = new CommandResult(FILE_OPS_ERROR_MESSAGE);
+            result = new CommandResult(FILE_OPS_ERROR_MESSAGE, false);
         }
         return result;
     }

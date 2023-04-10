@@ -50,8 +50,8 @@ public class DeleteFieldsCommand extends DeleteCommand {
         request.getDeletedLabels().forEach(newTask::removeLabel);
         taskList.set(actualIndex, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()),
-                true);
+        return new CommandResult(
+                String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()), true);
     }
 
     /**

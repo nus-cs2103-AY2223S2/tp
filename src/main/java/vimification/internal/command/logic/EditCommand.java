@@ -48,7 +48,7 @@ public class EditCommand extends UndoableLogicCommand {
             newTask.setTitle(request.getEditedTitle());
         }
         if (request.getEditedDeadline() != null) {
-            newTask.setDeadline(request.getEditedDeadline());
+            newTask.editDeadline(request.getEditedDeadline());
         }
         if (request.getEditedPriority() != null) {
             newTask.setPriority(request.getEditedPriority());
@@ -62,8 +62,8 @@ public class EditCommand extends UndoableLogicCommand {
         });
         taskList.set(actualIndex, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()),
-                true);
+        return new CommandResult(
+                String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()), true);
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.Optional;
  */
 public enum Status {
 
-    NOT_DONE, IN_PROGRESS, COMPLETED;
+    IN_PROGRESS, COMPLETED, NOT_DONE;
 
     /**
      * Possible helper function used by the parser. Help parser processes Integer input (as an

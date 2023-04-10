@@ -30,7 +30,7 @@ public class JumpCommand extends UiCommand {
     @Override
     public CommandResult execute(MainScreen mainScreen) {
         mainScreen.getTaskListPanel().scrollToTaskIndex(jumpIndex.getOneBased());
-        return new CommandResult(SUCCESS_MESSAGE);
+        return new CommandResult(SUCCESS_MESSAGE, false);
     }
 
     @Override
