@@ -265,7 +265,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `MATHUTORING` and the **Actor** is the `Tutor`, unless specified otherwise)
 
-**Use case: Delete a student**
+**1. Use case: Delete a student**
 
 **MSS**
 
@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Update a student**
+**2. Use case: Update a student**
 
 **MSS**
 
@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a task**
+**3. Use case: Delete a task**
 
 **MSS**
 
@@ -332,7 +332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**Use case: Update a task**
+**4. Use case: Update a task**
 
 **MSS**
 
@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**Use case: Add a score**
+**5. Use case: Add a score**
 
 **MSS**
 
@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete a score**
+**6. Use case: Delete a score**
 
 **MSS**
 
@@ -421,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Export a student's progress**
+**7. Use case: Export a student's progress**
 
 **MSS**
 
@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 5.
 
-**Use case: Import application data via CLI**
+**8. Use case: Import application data via CLI**
 
 **MSS**
 
@@ -467,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: Import application data via GUI**
+**9. Use case: Import application data via GUI**
 
 **MSS**
 
@@ -486,7 +486,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 3.
 
-**Use case: Export application data via CLI**
+**10. Use case: Export application data via CLI**
 
 **MSS**
 
@@ -500,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: Export application data via GUI**
+**11. Use case: Export application data via GUI**
 
 **MSS**
 
@@ -520,7 +520,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Export student's progress via CLI**
+**12. Use case: Export student's progress via CLI**
 
 **MSS**
 
@@ -538,7 +538,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Export student's progress via GUI**
+**13. Use case: Export student's progress via GUI**
 
 **MSS**
 
@@ -578,7 +578,90 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened.
 
     Use case ends.
+   
+**14. Use case: Switch panel via CLI**
 
+**MSS**
+   
+1. Tutor requests to switch panel.
+2. MATHUTORING switch the panel.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given command is invalid.
+   
+  * 1a1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 1.
+   
+**15. Use case: Switch panel via GUI**
+
+**MSS**
+
+1. Tutor requests to switch panel.
+
+   Use case ends.
+
+**Extensions**
+* 1a. GUI not able to render.
+   
+   Use case ends.
+   
+**16. Use case: Filter student list by student tag/s**
+
+**MSS**
+   
+1. Tutor requests to filter the student/s by student tag/s.
+2. MATHUTORING shows the filtered result.
+
+   Use case ends.
+
+**Extensions**
+   
+* 1a. The given command is invalid.
+   
+  * 1a1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 1.
+   
+* 1b. The given command argument(s) are invalid.
+   
+  * 1b1. MATHUTORING shows an error message.
+   
+  Tutor case resumes at step 1.
+   
+**17. Use case: Check a student**
+
+**MSS**
+   
+1. Tutor requests to list students.
+   
+2. MATHUTORING shows a list of students.
+   
+3. Tutor requests to check a student.
+   
+2. MATHUTORING shows the repsective student's task list and score list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The student list is empty.
+   
+  Use case ends.
+   
+* 3a. The given command is invalid.
+   
+  * 3a1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 2.
+   
+* 3b. The given index is invalid.
+   
+  * 3b1. MATHUTORING shows an error message.
+   
+  Use case resumes at step 2.
+   
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -606,7 +689,7 @@ of the student's scores as well as a progress chart of the latest 5 scores.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: Note: These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
