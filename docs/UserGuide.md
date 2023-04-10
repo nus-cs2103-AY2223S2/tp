@@ -154,7 +154,7 @@ To check whether your Java version is compatible with EduMate, please refer to [
 
 After a few seconds, a GUI resembling the one shown below will appear. Please take note that the application already includes some sample data.<br>
    ![Ui](images/Ui.png)
-<center>Diagram 1: The GUI upon start up.</center>
+<center>Diagram 1: The GUI upon start up</center>
 
 <br>
 
@@ -231,7 +231,7 @@ The following diagram shows the layout of components numbered exactly as above.
 
 <img src="images/UG_ui_pictures/ui_labelled.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 3: Labelled layout of EduMate's UI components.</center>
+<center>Diagram 3: Labelled layout of EduMate's UI components</center>
 
 ### Person List
 
@@ -241,7 +241,7 @@ When viewing your contacts in EduMate, you will notice an index assigned to each
 
 <img src="images/UG_ui_pictures/PersonList.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 4: Person List with some contacts displayed.</center>
+<center>Diagram 4: Person List with some contacts displayed</center>
 <br>
 <div markdown="block" class="alert alert-info">
 
@@ -251,7 +251,7 @@ Not all modules that are tagged to the contact are shown on the Person List. If 
 
 <img src="images/UG_ui_pictures/PersonListCommonMods.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 5: Person List (in red) with common modules boxed in green.</center>
+<center>Diagram 5: Person List (in red) with common modules boxed in green</center>
 </div>
 
 ### Meet Up Recommendation Panel
@@ -289,7 +289,7 @@ The Profile Panel will display basic information such as:
 
 <img src="images/UG_ui_pictures/Profile.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 8: Sample user profile displayed on Profile Panel.</center>
+<center>Diagram 8: Sample user profile displayed on Profile Panel</center>
 
 ### Scheduled Meet Up Panel
 
@@ -297,7 +297,7 @@ The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#p
 
 <img src="images/UG_ui_pictures/ScheduledMeetUpPanel.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 9: Sample scheduled meet ups displayed.</center>
+<center>Diagram 9: Sample scheduled meet ups displayed</center>
 <br>
 <div markdown="block" class="alert alert-info">
 
@@ -589,7 +589,7 @@ What you should see:
 
 <img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 14: A new contact: Weixiang is added to EduMate.</center>
+<center>Diagram 14: A new contact: Weixiang is added to EduMate</center>
 
 ##### More Examples of Usage:
 
@@ -702,7 +702,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/EditCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 16: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code> command.</center>
+<center>Diagram 16: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code> command</center>
 
 <br>
 
@@ -739,7 +739,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/DeleteCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 17: Astrid's contact deleted after execution of the <code>delete</code> command.</center>
+<center>Diagram 17: Astrid's contact deleted after execution of the <code>delete</code> command</center>
 
 ##### More Examples of Usage:
 
@@ -834,7 +834,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/UntagCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 19: Amirul after removing the MA2101 Module Tag.</center>
+<center>Diagram 19: Amirul after removing the MA2101 Module Tag</center>
 
 <br>
 
@@ -910,7 +910,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/FindCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 20: Only contacts tagged with CCA and CS2100 are shown.</center>
+<center>Diagram 20: Only contacts tagged with CCA and CS2100 are shown</center>
 
 <br>
 
@@ -1165,7 +1165,7 @@ Command entered: `organise 2`
 What you should see:<br>
 
 <img src="images/ug_cmds_pics/OrganiseCommand.svg" style="width:80%;margin:0 10%">
-<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to EduMate's Scheduled Meet Up Panel.</center>
+<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to EduMate's Scheduled Meet Up Panel</center>
 
 ##### More Examples of Usage:
 
@@ -1208,7 +1208,7 @@ What you should see: <br>
 
 <img src="images/ug_cmds_pics/UnorganiseCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from EduMate's Scheduled Meet Up Panel.</center>
+<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from EduMate's Scheduled Meet Up Panel</center>
 
 
 ### Other Commands
