@@ -374,7 +374,7 @@ Example: edit 1 t/Cool job title a/John a/Sam p/LinkedIn
 The listing index provided exceeded the number of listings shown!
 ```
 
-If there is an attempt to edit the title to an existing title, the following error message will be shown.
+If there is an attempt to edit the title to an existing title in the listing book, the following error message will be shown.
 
 ```ignorelang
 A listing with the given title already exists!
