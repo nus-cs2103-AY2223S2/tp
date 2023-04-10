@@ -802,6 +802,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding an Event to the Events Tab.
 
    1. Prerequisites: Navigate to the Events Tab using `tab 2` or clicking it.
+   
    2. Test Cases
       1. **Test Case 1** `addevent d/CS2103T Lecture s/2023-03-10 1400 e/2023-03-10 1600 r/Weekly`
          - Testing for: Command Successful Execution
