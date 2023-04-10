@@ -17,7 +17,7 @@ By using MM, medical professionals can manage patient data more efficiently and 
 
 ## Table of Contents
 
-- [Quick Start](#Quick-Start)
+- [Quick Start](#quick-start)
 - [Features](#features)
   - [Help](#Help)
   - [Add a patient](#add-a-patient--add)
