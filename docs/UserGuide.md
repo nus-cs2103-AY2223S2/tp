@@ -52,7 +52,7 @@ We also use symbols to indicate useful information. The following table shows wh
 |----------------------|-------------------------------------------------------------|
 | :bulb:               | Contains a tip that may be useful when using MediMeet.      |
 | :information_source: | Contains important information that you should be aware of. |
-| :exclamation:        | Warning that you should take note of.                       |
+| :exclamation:        | Contains a warning that you should take note of.            |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can use the glossary to quickly look up the meaning of any unfamiliar technical term. Just search for the term you want to look up!
@@ -73,16 +73,16 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MediMeet.
 
-4. Open the `medimeet.jar` file by double clicking on it. If a dialog box opens asking 'How do you want to open this file?', choose 'Java(TM) Platform SE binary'. A window similar to the picture below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open the `medimeet.jar` file by double clicking on it. (On Windows, if a dialog box opens asking 'How do you want to open this file?', choose 'Java(TM) Platform SE binary'.) A window similar to the picture below should appear in a few seconds. Note how the app contains some sample data.<br>
     * If you are familiar with terminals and command lines, you can choose to open the file from a command line instead. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medimeet.jar` command to run the application.<br>
    ![Ui](images/Ui.png)
     * As you can see from the screenshot of the application, we have four primary parts in the UI. They are:
       * **Command box**: This is where the user types in their commands.
       * **Patient list**: This is the currently shown list of patients with the numbers representing patient index numbers.
       * **Appointment list**: This is the currently shown list of appointments with the numbers representing appointment index numbers.
-      * **Calendar**: Gives a calendar view of appointments on the given date when a specified date is clicked.
+      * **Calendar**: Shows a calendar view of the current month. When a date is clicked, it will show a popup detailing the appointments for that day.
 
-5. Maximize the app for the best user experience with viewing appointments.
+5. Maximise the app for the best user experience with viewing appointments. If the app is not maximised, some parts of the application may not be shown on your screen.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -111,7 +111,7 @@ Before you dive into the features, we would like to give you some pointers about
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -145,7 +145,7 @@ A patient can have any number of tags (including 0).
 MediMeet does not support phone numbers longer than 15 digits. Although MediMeet will still accept phone numbers longer than 15 digits, the application might display the patient list strangely.
 </div>
 
-<div markdown="span" class="alert alert-primary">:exclamation: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Tags should be limited to 30 characters or less. If you want to record information longer than that, use the `remark` command instead.
 </div>
 
@@ -170,7 +170,7 @@ Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Editing of names are not allowed.
 * Existing values will be updated to the input values.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 </div>
 
 * You can remove all the patient’s tags by typing `t/` without
