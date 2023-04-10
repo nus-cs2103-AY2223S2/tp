@@ -34,6 +34,7 @@ import seedu.address.model.user.UserData;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    // The following sample people are adapted from ChatGPT-generated content.
     public static final Person SAMPLE_PERSON = new Person(new Name("John Doe"), new Phone("98765432"),
             new Email("john.doe@example.com"), new Address("123 Main St, Anytown"), new Gender("Male"),
             new Major("Computer Science"),
@@ -121,6 +122,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a nusmod set containing the list of strings given.
+     */
+    public static Set<NusMod> getModsSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(NusMod::new)
                 .collect(Collectors.toSet());
     }
 

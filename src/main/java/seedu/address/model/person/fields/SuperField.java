@@ -1,6 +1,7 @@
 package seedu.address.model.person.fields;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -10,7 +11,12 @@ import java.util.Set;
 public abstract class SuperField<T extends Field> {
     public final Set<T> values;
 
+    /**
+     * Constructor for SuperField
+     * @param values
+     */
     public SuperField(Set<T> values) {
+        Objects.requireNonNull(values);
         this.values = values;
     }
 
