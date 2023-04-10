@@ -645,7 +645,7 @@ Sequence Diagram for listing the alarms
     
 ### Import CSV Files Feature
 
-Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`. See more at the [CSV Format](#Loading/Saving data in CSV format) section below. 
+Import CSV command is facilitated by `ImportCommandParser`, `ImportCommand`, and `Model`. See more at the _**Loading/Saving Data in CSV Format**_ section below. 
 
 #### Implementation
 
@@ -666,7 +666,7 @@ Below is the sequence diagram for importing a CSV file.
 
 ### Export CSV Files Feature
 
-Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`. See more at the [CSV Format](#Loading/Saving data in CSV format) section below.
+Export CSV command is facilitated by `ExportCommandParser`, `ExportCommand`, and `Model`. See more at the **_Loading/Saving Data in CSV Format_** section below.
 
 #### Implementation
 
@@ -1133,7 +1133,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Loading/Saving data in CSV format
+### Loading/Saving Data in CSV Format
 
 Our CSV files follow the following format:
 
