@@ -849,15 +849,12 @@ testers are expected to do more *exploratory* testing.
 1. Filtering out a group of students based on the keyword/s given
    
    1. Test case: `filter x primary`<br>
-   
    Expected: All students that has `primary` tag will be filtered out.
    
    2. Test case: `filter x primary secondary`<br>
-   
    Expected: All students that has `primary` or `secondary` or both tag will be filtered out.
    
    3. Test case: Other incorrect check commands to try:`filter`, `filter x`, `...`
-   
    Expected: The student list will not be filtered. Error details shown in the status message.
 
 ### Switching between score text panel and score chart panel
@@ -865,13 +862,11 @@ testers are expected to do more *exploratory* testing.
 1. Switching between score text panel and score chart panel using CLI
    
    1. Test case: `switch`<br>
-   
    Expected: The panel will be switched.
    
 2. Switching between score text panel and score chart panel through mouse click
    
    1. Test case: Click on either the "text" or "chart" tab under score list<br>
-   
    Expected: The panel will be switched.
 
 ### Saving data
