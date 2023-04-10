@@ -149,7 +149,7 @@ Information on the Java version installed should appear in the command terminal.
 
 5. In the command terminal, `cd` into the folder you put the jar file in, and use the `java -jar teambuilder.jar` command to run the application.<br>
    A GUI (seen below) should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/ui_startup.png)<br>
+<img class="center" src="images/ui_startup.png" width="500" ><br>
     As you can see there are two main panels. The left panels shows your contacts, and the right panel shows the teams that you have in TeamBuilder.<br>
     
     - The _blue_ tags are the **skill tags** of a person, to denote the skills or specialisation of the person.

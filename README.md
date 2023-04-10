@@ -1,7 +1,7 @@
 [![Java CI](https://github.com/AY2223S2-CS2103T-T17-1/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2223S2-CS2103T-T17-1/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-T17-1/tp/branch/master/graph/badge.svg?token=9DLYEI4IMS)](https://codecov.io/gh/AY2223S2-CS2103T-T17-1/tp)[![pages-build-deployment](https://github.com/AY2223S2-CS2103T-T17-1/tp/actions/workflows/pages/pages-build-deployment/badge.svg?branch=master)](https://github.com/AY2223S2-CS2103T-T17-1/tp/actions/workflows/pages/pages-build-deployment)
 
-![Ui](docs/images/TeamBuilderUi.png)
+<img class="center" src="docs/images/TeamBuilderUi.png" width="500">
 
 
 # Team builder
