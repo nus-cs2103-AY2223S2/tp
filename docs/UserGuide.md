@@ -8,7 +8,6 @@ Artistic AddressBook (ArB) is a **desktop application for freelance artists, mea
 ## **Table of Contents**
 {:toc}
 * [Quick Start](#quick-start)
-* [Detailed Setup Guide](#detailed-setup)
 * [Command Format](#command-format)
 * [Prefixes](#prefixes)
 * [Command Summary](#command-summary)
@@ -313,7 +312,8 @@ The available project-related commands are:
 
 Short form: `lp`
 
-Lists out all projects and shows the project list.
+Lists out all projects and shows the project list. A summary of how many OVERDUE, DONE, and NOT DONE projects is also displayed. 
+Note that an OVERDUE project is also considered as a NOT DONE project.
 
 ![ListProjectExample](images/ListProjectExample.png)
 
