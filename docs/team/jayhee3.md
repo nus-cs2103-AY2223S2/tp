@@ -11,7 +11,7 @@ instead of clicking, which has been shown to be faster. This helps NUS computing
 ## Summary of my contributions
 coNtactUS is written in Java, and has about 10 kLoC. The development team consists of 4 members, including myself. Given below are my contributions to this project.
 
-#### Features and enhancements implemented
+#### Features and enhancements implemented by me
 1. New Feature: Added the ability to add a deadline to a module in the module tracker. 
    * What it does: allows the user to add a deadline to a module. 
    * Justification: Computing students have numerous deadlines that they have to keep track of for each module. Such a feature would help them to always be ahead of their tasks.
@@ -35,10 +35,22 @@ coNtactUS is written in Java, and has about 10 kLoC. The development team consis
 
 --------------------------------------------------------------------------------------------------------------------
 #### Contributions to the User Guide (UG) 
-
+  * User Guide: [\#158](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/158)
+  * Added and improved documentation for the following sections: 
+     1. About the User Guide
+     2. How to use the User Guide
+     3. Familiarising with a module
+     4. Features in coNtactUS
+     5. Format restrictions for input values by the user
+     6. Product limitations
+     7.  Coming soon
 --------------------------------------------------------------------------------------------------------------------
 #### Contributions to the Developer Guide (DG) 
-
+  * Developer Guide:
+    * Added and improved documentation for the following sections: 
+      1. High level details of the overall architecture for coNtactUS
+      2. Implemtation details for SortCommand
+      3. Evaluation of effort for SortCommand
 --------------------------------------------------------------------------------------------------------------------
 #### See code contribution in detail
 * Code contributed: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jayhee3&breakdown=true)
@@ -54,23 +66,10 @@ My contributions to team-based tasks include but are not limited to the followin
 
  --------------------------------------------------------------------------------------------------------------------
 #### Review/ Mentoring contributions 
-1. Reviewing pull requests from team members (Example: [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
+1. Reviewing pull requests from team members [\#153](https://github.com/AY2223S2-CS2103T-W10-1/tp/pull/153)
 2. Helping team members to better understand the code base and assisting them with difficulties they faced implementing features or bug fixing 
 
  --------------------------------------------------------------------------------------------------------------------
 #### Contributions beyond the project team
 1. Participated in software testing of other project teams to catch bugs and help them improve their product 
  --------------------------------------------------------------------------------------------------------------------
-* Documentation:
-  * User Guide:
-    * Added documentation for the features delete and find [\#72]()
-    * Did cosmetic tweaks to existing documentation of features clear, exit: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the delete feature.
-
-* Community:
-  * PRs reviewed (with non-trivial review comments): \#12, \#19
-  * Contributed to forum discussions (examples: 1, 3)
-  * Reported bugs and suggestions for other teams in the class (examples: 1, 3
-  * Some parts of the history feature I added was adopted by several other class mates (1)
-
