@@ -55,7 +55,7 @@ This guide has been divided into five main parts.
 
 * [Design](#design) discusses the high level architecture of Mycelium
 * [User Interface](#user-interface) discusses GUI concerns
-* [Command Handling](#command-handling) discusses the parsing and executing of commands
+* [Command Handling](#command-handling) discusses the execution of commands
 * [Storage](#storage) briefly explains Mycelium's approach to persisting data
 * [Keyboard Interaction](#keyboard-interaction) discusses hotkeys and fuzzy search
 
