@@ -692,6 +692,7 @@ Use case resumes at step 4.
    * **Proposed solution** : limit the length of each field to reasonable numbers. For example, addresses and emails can be limited to 300 characters, and phone numbers can be limited to 20 characters.
 3. Calendar related bugs:
    * The popup displayed when a date is clicked does not disappear when the user clicks outside the calendar.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
