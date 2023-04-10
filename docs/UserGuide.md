@@ -149,7 +149,7 @@ However, this function could fail (and ExecutivePro simply does not add any empl
 and email
 
 
-Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -393,7 +393,7 @@ Format: `filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT`
 * The filtering condition can be based on Payroll(`pr`) value or the number of leaves remaining for an employee(`l`)
 * The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
 * The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT`
-* The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
+* The `COMPARISON_AMOUNT` must be _non-negative_ and an _integer_
 
 Examples:
 * `filter pr > 1000` displays list of all employees whose payroll value is greater than 1000
@@ -408,6 +408,8 @@ You can use the command syntax to create the criteria, just like the image below
 **Step 2 (Results displayed) :**
 All the employees who satisfy the criteria will be listed.
 ![](images/UserGuide/filterResults.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting an employee : `delete`
 
@@ -435,6 +437,7 @@ The `light` theme (black text on light background) improves readability in well-
 
 The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
 ![](images/UserGuide/ThemeCommandDark.png)
+
 Format: `theme THEME_NAME`
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
@@ -504,7 +507,9 @@ ExecutivePro data are saved in the hard disk automatically after any command tha
 
 ### Editing the data file
 
-ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. Advanced users are welcome to update data directly by editing that data file.
+ExecutivePro data are saved as a JSON file `[JAR file location]/data/executivepro.json`. 
+Advanced users are discouraged from updating data directly by editing that data file due to possible 
+inconsistent behaviour.
 
 <div markdown="span" class="alert alert-warning">
 
