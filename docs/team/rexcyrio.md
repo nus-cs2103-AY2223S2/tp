@@ -46,6 +46,8 @@ Given below are my contributions to the project.
     - [\#78](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/78)
     - [\#81](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/81)
     - [\#142](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/142)
+    - [\#166](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/166)
+    - [\#176](https://github.com/AY2223S2-CS2103T-W10-3/tp/pull/176)
   - Contributed to forum discussions:
     - [\#20](https://github.com/nus-cs2103-AY2223S2/forum/issues/20#issuecomment-1396326000)
     - [\#131](https://github.com/nus-cs2103-AY2223S2/forum/issues/131#issuecomment-1416895604)
