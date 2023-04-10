@@ -56,15 +56,11 @@ Given below are my contributions to the project.
     ([#108](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/108))
     * Abstracted predicates to check for whether each prefix applies to a Person, creating a `FindPredicate` from
      further abstracted `PersonContainsAgePredicate`, `PersonContainsDatePredicate`, `PersonContainsNamePredicate`,
-     `PersonContainsPostalPredicate`, `PersonContainsVariantsPredicate` and `RangeContainsPersonPredicate`.
-    ([#120](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/120))
-    * Abstracted `ParserUtil` further into `PredicateUtil`, which is used in each of the above predicates.
+     `PersonContainsPostalPredicate`, `PersonContainsVariantsPredicate` and `RangeContainsPersonPredicate`, and further abstracted `ParserUtil` to include `PredicateUtil`.
     ([#120](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/120))
     * Edited the help window to contain more than a link to the User Guide.
     ([#66](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/66))
-    * Edited the help window's UI to be more appealing and appropriate to our application.
-    ([#156](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/156))
-    * Edited the help window's application icon.
+    * Edited the help window's UI to be more appealing and appropriate to our application and change application icon.
     ([#156](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/156))
     * Edited `find` to match all inputs given instead of any matching to better match the functionality of our
     application.
@@ -82,12 +78,8 @@ Given below are my contributions to the project.
       ([#151](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/151))
     * Added more pictures for each of the available DHT commands. ([#171](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/171))
   * Developer Guide
-    * Added UML sequence diagram for`find`-by-prefix command.
-      ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104))
-    * Added UML activity diagram for`find`-by-prefix command.
-      ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104))
-    * Added UML activity diagram for`find`-by-range command.
-      ([#280](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/280))
+    * Added UML sequence diagram for`find`-by-prefix command and activity diagram for `find`-by-range command.
+      ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104)), ([#280](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/280))
     * Added use cases for `find`.
 
 * **Community:**
