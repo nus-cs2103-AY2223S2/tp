@@ -432,6 +432,8 @@ assigned to one or more persons.
 
 Format: `viewassignedall`
 
+<div style="page-break-after: always;"></div>
+
 #### 3.5.7 View Unassigned: `viewunassignedall`
 
 Displays a list of all persons who have not been assigned to any task and a list of all tasks that have not been 
@@ -533,6 +535,8 @@ _Details coming soon ..._
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 4. FAQ
 
