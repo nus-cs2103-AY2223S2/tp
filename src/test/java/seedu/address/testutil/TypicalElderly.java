@@ -77,7 +77,6 @@ public class TypicalElderly {
             .withNric(VALID_NRIC_BOB).withBirthDate(VALID_BIRTH_DATE_BOB).withRegion(VALID_REGION_BOB)
             .withRiskLevel(VALID_RISK_LEVEL_BOB).build();
 
-    // TODO: Replace magic strings
     public static final Elderly CHARLIE = new ElderlyBuilder().withName("Charlie Kurz")
             .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street")
             .withBirthDate("1950-01-01").withNric(VALID_NRIC_CHARLIE).withRegion("NORTHEAST").build();

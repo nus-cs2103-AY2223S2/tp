@@ -36,7 +36,6 @@ public class PairTest {
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).build();
         Pair editedPair1 = new PairBuilder(PAIR1).withElderly(editedAlice).build();
         assertTrue(PAIR1.isSamePair(editedPair1));
-        // TODO: check that a different name returns true if nric is the same.
 
         // different nric, all other attributes same -> returns false
         editedAlice = new ElderlyBuilder(ALICE).withNric(VALID_NRIC_BOB).build();

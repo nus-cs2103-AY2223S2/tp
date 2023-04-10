@@ -287,8 +287,6 @@ public class ModelManagerTest {
                 .withUserPrefs(userPrefs)
                 .build());
 
-        // TODO: different filteredPairList -> returns false
-
         // resets modelManager to initial state for upcoming tests
         modelManager.updateAllFilteredLists((Predicate<Elderly>) PREDICATE_SHOW_ALL,
                 (Predicate<Volunteer>) PREDICATE_SHOW_ALL, (Predicate<Pair>) PREDICATE_SHOW_ALL);
