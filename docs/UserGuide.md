@@ -130,7 +130,7 @@ Examples:
 2. The second example contains more information relevant to that patient.
 3. The third example demonstrates how using an invalid prefix can cause the add command to fail or produce unexpected results.
    This will cause MediMate to assume that `A/John street, block 123, #01-01` is part of the email address, rather than the address.
-   This will cause the add command not to be recognized correctly.
+   This will cause the add command not recognized correctly.
    To avoid this issue, make sure that you use the correct prefixes and follow the correct format when using the add command.
 
 Adds a patient to MediMate through button method:
