@@ -3,19 +3,16 @@ layout: page
 title: User Guide
 toc: true
 ---
-Are you an _avid chef_ with too many delicious recipes to handle? Or ever just have
-the desire to **store**, **access** and **share** your recipes easily? 
+Are you an _avid chef_ with an overwhelming collection of delicious recipes? Or perhaps you just want a convenient way to **store**, **access** and **share** your recipes easily? 
 
 We understand that for brilliant and creative individuals like yourself, it is essential to properly manage your recipes,
 which is why [***RIZZ***ipe](#what-is-rizzipe) is designed and built just for chefs like ***YOU*** to organize your recipes at the touch of a finger!
 
 ## Using this Guide
 * If you want to run ***RIZZ***ipe for the first time, check out our handy [Quick Start guide](#quick-start).
-* If you want to learn how to use ***RIZZ***ipe, refer to our [Features](#features) section for a detailed guide on 
-* how to run each different command.
-* If you are an experienced developer and want to learn more about our design decisions, refer to our Developer Guide.
-
-For **experienced users**, you may refer to the [Command summary](#command-summary) and [Keyboard shortcuts summary](#keyboard-shortcuts-summary) 
+* If you want to learn how to use ***RIZZ***ipe, refer to our [Features](#features) section for a detailed guide on how to run each command.
+* For experienced developers interested in our design decisions, please refer to our Developer Guide.
+* For **experienced users**, you may refer to the [Command summary](#command-summary) and [Keyboard shortcuts summary](#keyboard-shortcuts-summary) 
 for a summarised table of all the commands and keyboard shortcuts available.
 
 <div style="page-break-after: always;"></div>
@@ -31,14 +28,14 @@ The following subsections detail the functionality of ***RIZZ***ipe and explain 
 
 ### What is ***RIZZ***ipe?
 
-***RIZZ***ipe is a **command-based recipe database** that works mostly by commands and behaves like a Command Line Interface (CLI).
+***RIZZ***ipe is a **command-based recipe database** that operates primarily on commands and behaves like a Command Line Interface (CLI).
 
-***RIZZ***ipe comes equipped with multiple features, but we love these **3** the most:
-1. Versatile **tagging** and powerful **searching** function
+***RIZZ***ipe comes equipped with numerous features, but particularly love these **three**:
+1. Versatile **tagging** and powerful **search** function
 2. Recipe **sharing**
-3. Search function for **ingredient substitutions**
+3. **Ingredient substitution** searching
 
-Give it a try and make use of ***RIZZ***ipe's many features to achieve your **culinary rizz** today!
+Give ***RIZZ***ipe a try and utilise its many features to achieve your **culinary rizz** today!
 
 ### Common colour codes in this guide
 <div markdown="block" class="alert alert-success">
@@ -74,7 +71,7 @@ This is used to display :exclamation: **warnings** for you to heed in order for 
 
 Let's get you _rizzed_ up in the fastest way possible!
 
-1. Ensure you have [Java](https://www.oracle.com/sg/java/technologies/downloads/) `11` or above installed in your computer.
+1. Ensure you have [`Java 11`](https://www.oracle.com/sg/java/technologies/downloads/) or above installed in your computer.
 2. Download the latest `rizzipe.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
 4. Open a [command terminal](#glossary), [`cd`](#glossary) into the folder you put the jar file in, and input the `java -jar
@@ -107,14 +104,14 @@ Let's get you _rizzed_ up in the fastest way possible!
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   i.e. in `add n/RECIPE_NAME`, `RECIPE_NAME` is a parameter which can be used as `add Grilled Salmon`.
 
-* Parameters in square brackets `[]` refer to optional parameters that can be excluded.
+* Parameters in square brackets `[]` refer to optional parameters that can be omitted.
   i.e. `n/RECIPE_NAME [d/RECIPE_DURATION]` can be used as `n/Cheese Sandwich d/10 minutes` or `n/Cheese Sandwich`.
 
 * Parameters with `...` behind them can be used multiple times, including 0.
   i.e. `[t/TAGS]...` can be used as `<nothing>` (zero times), `t/HALAL`, `t/HALAL t/BREAKFAST` etc.
 
 * Parameters can be in any order
-  i.e. if a command specifies `n/RECIPE_NAME d/RECIPE_DURATION`, `d/RECIPE_DURATION n/RECIPE_NAME` is also acceptable.
+  i.e. if a command specifies `n/RECIPE_NAME d/RECIPE_DURATION`, then `d/RECIPE_DURATION n/RECIPE_NAME` is also acceptable.
 
 * Excess parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -124,9 +121,9 @@ Let's get you _rizzed_ up in the fastest way possible!
 <div markdown="block" class="alert alert-success">
 :bulb: **Tip**:<br>
 
-For increased readability, we have included an optional multi-line command format for commands
+For better readability, we have included an optional multi-line command format for commands
 that may require multiple inputs (add, edit). After each input,
-you can include a line break just by simply entering a backslash <kbd>\</kbd> to move on to the next line to continue
+you can include a line break by simply entering a backslash <kbd>\</kbd> to move on to the next line to continue
 writing the next part of your command input! Note that you will not have to delete the backslash that appears
 before continuing to type!
 
@@ -135,7 +132,7 @@ before continuing to type!
 ### Attributes
 
 #### What is a recipe?
-Recipes are the building blocks of ***RIZZ***ipe! Each recipe comprises multiple attributes, which are listed in the [recipe attributes table](#recipe-attributes-table).<br>
+Recipes are the building blocks of ***RIZZ***ipe! Each recipe consists of multiple attributes, which are listed in the [recipe attributes table](#recipe-attributes-table).<br>
 
 Pay close attention to these attributes, for they are crucial inputs to some of our [features](#features) mentioned below!
 
@@ -223,7 +220,7 @@ Format:
 
 * Tab to move on to the next input field, and shift+tab to go to the previous field!
 
-* A new row automatically pops up when you reach the last row for ingredients and steps, and once you're done just click to the next field!
+* A new row automatically pops up when you reach the last row for ingredients and steps. Once you're done just click to the next field!
 
 * Note that multiple tags can be added with commas separators. (e.g. `Vegetarian, Halal`)
  
@@ -262,7 +259,7 @@ The `list` command can be used to reset the most recently searched list to the f
 :computer: **Keyboard Shortcut**:<br>
 
 To navigate the list, you can use the <kbd>↑ Up</kbd> and <kbd>↓ Down</kbd> arrow keys (as previously mentioned in the QuickStart).
-While the recipe to that you want to zoom in to is being selected, simply type <kbd>P</kbd> to view that particular recipe's details! 
+While the recipe you want to zoom in on is selected, simply press <kbd>P</kbd> to view that particular recipe's details! 
 
 </div>
 
@@ -305,8 +302,8 @@ Format:
 
 :computer: **Keyboard shortcut**:<br>
 
-As an alternate means to typing the full command, we provide a popup form to edit a recipe!
-While the recipe to that you want to edit is being selected, simply press <kbd>F</kbd> to display the popup form for that particular recipe!
+As an alternative to typing the full command, we provide a popup form to edit a recipe!
+While the recipe you want to edit is being selected, simply press <kbd>F</kbd> to display the popup form for that particular recipe!
 
 <!-- have to do this nonsense bc markdown wouldnt render the whitespace properly -->
 <img style="margin-top:20px" src="images/EditForm.png" width="1100"/>  
@@ -363,7 +360,7 @@ Format:
 
 Example(s) of usage:
 * `list` followed by `delete 2` deletes the 2nd item stored in the recipe book.
-*  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
+*  `find chicken`, followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Additional information**:
@@ -377,7 +374,7 @@ Example(s) of usage:
 <div markdown="span" class="alert alert-warning">
 
 :computer: **Keyboard shortcut**:<br>
-While the recipe you want to delete is being selected, simply hit the <kbd>Delete</kbd> or 
+While the recipe you want to delete is selected, simply press the <kbd>Delete</kbd> or 
 <kbd>Backspace</kbd> key and click on confirm to delete that particular recipe!
 
 </div>
@@ -478,7 +475,7 @@ command is executed, so any changes to your recipes will be saved immediately!
 
 Recipe data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-Recipe data are saved as a [JSON file](#glossary) `[JAR file location]/data/recipebook.json`
+Recipe data is saved as a [JSON file](#glossary) `[JAR file location]/data/recipebook.json`
 
 For advanced users, you can change the default location which the recipebook data file is saved to. This can be done by creating a `preferences.json` file in the base directory where the app is stored, and specifying `userPrefsFilePath` in `preferences.json` with the desired file path.
 
@@ -487,13 +484,13 @@ For advanced users, you can change the default location which the recipebook dat
 Advanced users are welcome to update data directly by editing that data file located at the address above. 
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
+If your changes to the data file result in an invalid format, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
 </div>
 
 <div style="page-break-after: always;"></div>
 ### Importing data
 
-The keyboard input <kbd>F3</kbd> will open an import window from the main window (as shown in the image below). From there, select the JSON
+Pressing <kbd>F3</kbd> will open an import window from the main window (as shown in the image below). From there, select the JSON
 file to be imported using the selector.
 
 ![ImportDataWindow](images/ImportWindow.png)
@@ -530,8 +527,8 @@ Alternatively, like the import function, you can access the export function via 
 ---
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous recipe home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Export the current recipe book with our `Export` function and send the JSON file to the other computer. On the other computer, run ***RIZZ***ipe and use the `Import` function to import all previously saved recipe files!
 
 ---
 <div style="page-break-after: always;"></div>
