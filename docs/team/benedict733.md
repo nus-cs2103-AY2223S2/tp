@@ -41,7 +41,8 @@ UG for tasks feature
     * Edited documentation to remove traces of AB3 and fit description for SalesPunch
       [#46](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/46/files)
     * Added documentation for `addtask` and `cleartask` command
-      ([193](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/193))
+      ([#89](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/89/files),
+      [193](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/193))
     * Updated the other parts to be consistent with the functionality of our product
       ([#33](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/33/files),
       [#94](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/94/files))
@@ -52,18 +53,22 @@ UG for tasks feature
     * Added implementation details for Task and TaskList, including UML diagram
       ([#75](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/75/files),
       [#190](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/190))
-    * Added user stories and use cases ([#89](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/89/files))
+    * Added user stories and use cases 
+      ([#190](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/190),
+      [#197](https://github.com/AY2223S2-CS2103-W16-4/tp/pull/197))
+
   * **Code:**
     * Added JavaDoc comments for test and java files 
 
 * **Community**:
   * Conceptualized and developed the idea and functionality behind SalesPunch.
   * Created bug reports for internal product testing: (examples: 
-    [1](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/164),
-    [2](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/155))
+    [#157](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/157),
+    [#159](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/159),
+    [#162](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/162))
   * Assisted team in classifying and allocating bugs identified in the cross-team product testing (all bugs listed
     [here](https://github.com/AY2223S2-CS2103-W16-4/tp/issues?q=is:issue+is:closed+%5BPE-D%5D))
-  * General code enhancements for the team product ()
+  * Raised issues for when our documentation was inconsistent or misleading
+    ([#167](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/167),
+    [#169](https://github.com/AY2223S2-CS2103-W16-4/tp/issues/169))
   * Reported bugs and suggestions for other teams in the class: [bug issues link](https://github.com/benedict733/ped/issues)
-
-* **Tools**:
