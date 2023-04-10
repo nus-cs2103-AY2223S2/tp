@@ -194,6 +194,35 @@ Activity Diagram for a typical `edit` command
 
 ### **Delete Command**
 
+For _Delete_ command, the noteworthy classes are:
+- `DeleteCommandParser.java` - Parse the arguments for `DeleteCommand`
+- `DeleteCommand.java` - Execute command
+
+The following exceptions may be thrown during this process, namely:
+- `ParseException` for missing arguments
+- `ParseException` for invalid arguments
+- `CommandException` for index exceeding list size
+
+Given below is an example usage scenario of how the _Delete_ command executes.
+
+-- user input -- <br>
+Step 1. User executes `delete` command with multiple valid arguments.
+
+-- `SchedulerParser` -- <br>
+Step 2. Returns new `DeleteCommandParser`.<br>
+
+-- `DeleteCommandParser` -- <br>
+Step 3. Verifies that provided arguments is valid.<br>
+Step 4. Parses provided arguments into `List<Index>`.<br>
+Step 5. Returns new `DeleteCommand`.<br>
+
+-- `DeleteCommand` -- <br>
+Step 6: Sorts and Reverses provided `List<Index>`.<br>
+Step 7: Verifies that none of the `Index` exceeds size of list of `Event`.<br>
+Step 8: Delete the `Event`(s) according the `List<Index>`.<br>
+
+Other alternative path of execution can be traced in the activity diagram below.
+
 ![DeleteCommandActivityDiagram.png](images/DeleteCommandActivityDiagram.png)  
 Activity Diagram for a typical `delete` command
 
@@ -215,7 +244,7 @@ To keep track of the next upcoming event, we have opted to keep `Event`s sorted 
 3. When a change is detected, we would sort the `Event`s via `FXCollections#sort`.
 
 For _Next_ command, the noteworthy classes are:
-- `ShowNextCommandParser.java` - Parse the arguments for `ShowNextCommand.java`
+- `ShowNextCommandParser.java` - Parse the arguments for `ShowNextCommand`
 - `ShowNextCommand.java` - Execute command
 - `UpcomingEventPredicate.java` - Check if `Event` should be displayed as ongoing/upcoming
 
@@ -842,23 +871,24 @@ testers are expected to do more *exploratory* testing.
 
 ### **Appendix D: Effort**
 
-**Difficulty Level:** 
+**Difficulty Level:** Overall _Medium_ difficulty (averaged total votes by all members)
 
 **Challenges Faced:**
-* During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
+- During the first milestone, we decided to "morph" by creating a parallel package and using AB3 as code reference.
   We would copy over whichever code we deem relevant. Halfway through the milestone, one of us realised that doing this
   possibly violated [`Constraint-Brownfield`][tp constraints brownfield]. After checking with our tutor/prof, we had to
   restart again, effectively wasting our effort and restricting our duration for `milestone 1` by half.
-* During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
+- During morphing, the refactor of `Person` to `Event`, as well as `AddressBook` to `Scheduler` was tedious and
   required a lot of careful checking. Despite using IDE features like refactor and find-and-replace, there were
   still variable name and comments which we had to change, and we had to painstakingly double-check everything.
-* Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
+- Furthermore, the morphing process also invalidated many of the existing test cases (from AB3) resulting in the 
   Java CI failing for a prolonged period. We spend a lot of time in `milestone 2` changing/fixing the broken test 
   cases, which left us with not a lot of time to implement new features in `milestone 2` and `milestone 3`.
 
 **Effort Required:** High effort for the morphing process.
 
 **Achievements of Project:**
-
+- Created a working product
+- Experienced making UML diagrams digitally
 
 [tp constraints brownfield]: https://nus-cs2103-ay2223s2.github.io/website/admin/tp-constraints.html#constraint-brownfield
