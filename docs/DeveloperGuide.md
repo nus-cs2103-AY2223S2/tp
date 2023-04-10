@@ -251,8 +251,6 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.wife.commons` package.
 
 ---
-<div style="page-break-after: always;"></div>
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
