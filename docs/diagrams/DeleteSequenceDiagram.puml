@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TrackrParser" as TrackrParser LOGIC_COLOR
-participant ":DeleteOrderCommandParser" as DeleteOrderCommandParser LOGIC_COLOR
-participant "d:DeleteOrderCommand" as DeleteOrderCommand LOGIC_COLOR
+participant ":DeleteOrder\nCommandParser" as DeleteOrderCommandParser LOGIC_COLOR
+participant "d:DeleteOrder\nCommand" as DeleteOrderCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -48,7 +48,7 @@ deactivate TrackrParser
 LogicManager -> DeleteOrderCommand : execute()
 activate DeleteOrderCommand
 
-DeleteOrderCommand -> Model : deleteItem(1, ModelEnum.ORDER)
+DeleteOrderCommand -> Model : deleteItem(1,\nModelEnum.ORDER)
 activate Model
 
 Model --> DeleteOrderCommand
