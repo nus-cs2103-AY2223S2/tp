@@ -636,9 +636,10 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 3. **Segeo UI**: for system-related texts (such as [CommandBox](#commandbox), [ResultDisplay](#resultdisplay) or
 [StatusBarFooter](#statusbarfooter)).
 
-<br>
-
 [Scroll back to UI Implementation](#ui-implementation)
+
+<div style="page-break-after: always;"></div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -646,8 +647,6 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 
 This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
 for more information about this package.
-
-<br>
 
 #### **Add Command**
 
@@ -882,8 +881,6 @@ We also chose to make our find command case-insensitive to increase the speed of
 [Scroll back to top](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
-
-[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Model Implementation**
