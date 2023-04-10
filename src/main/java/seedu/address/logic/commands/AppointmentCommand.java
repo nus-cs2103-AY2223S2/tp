@@ -14,6 +14,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
+
 /**
  * Creates an appointment.
  */
@@ -44,6 +45,103 @@ public class AppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        checkInputs(model);
+
+        Person[] retrievedPersons = retrievePersonsFromAppointment(model);
+        Patient appointmentPatient = (Patient) retrievedPersons[0];
+        Doctor appointmentDoctor = (Doctor) retrievedPersons[1];
+
+        updateAppointments(model, appointmentPatient, appointmentDoctor);
+
+        Patient editedPatient = createdEditedPatient(appointmentPatient);
+        Doctor editedDoctor = createEditedDoctor(appointmentDoctor);
+
+        updateModel(model, appointmentPatient, appointmentDoctor, editedPatient, editedDoctor);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AppointmentCommand)) {
+            return false;
+        }
+
+        // state check
+        AppointmentCommand e = (AppointmentCommand) other;
+        return appointment.equals(e.appointment);
+    }
+
+    /**
+     * Updates model with the edited persons.
+     * @param model
+     * @param appointmentPatient
+     * @param appointmentDoctor
+     * @param editedPatient
+     * @param editedDoctor
+     */
+    private void updateModel(Model model, Patient appointmentPatient, Doctor appointmentDoctor,
+                                    Patient editedPatient, Doctor editedDoctor) {
+        model.setPerson(appointmentPatient, editedPatient);
+        model.setPerson(appointmentDoctor, editedDoctor);
+
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    /**
+     * Creates edited doctor based on updated appointment details.
+     * @param appointmentDoctor
+     * @return Doctor
+     */
+    private Doctor createEditedDoctor(Doctor appointmentDoctor) {
+        Doctor editedDoctor = new Doctor(appointmentDoctor.getName(), appointmentDoctor.getPhone(),
+                appointmentDoctor.getEmail(), appointmentDoctor.getNric(), appointmentDoctor.getAddress(),
+                appointmentDoctor.getTags(),
+                appointmentDoctor.getPatientAppointments(), appointmentDoctor.getRole());
+        return editedDoctor;
+    }
+
+    /**
+     * Creates edited patient based on updated appointment details.
+     * @param appointmentPatient
+     * @return Patient
+     */
+    private Patient createdEditedPatient(Patient appointmentPatient) {
+        Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
+                appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
+                appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
+                appointmentPatient.getPatientAppointments(), appointmentPatient.getRole());
+        return editedPatient;
+    }
+
+    /**
+     * Adds appointment to persons and model.
+     * @param model
+     * @param appointmentPatient
+     * @param appointmentDoctor
+     */
+    private void updateAppointments(Model model, Patient appointmentPatient, Doctor appointmentDoctor) {
+        try {
+            model.bookAppointment(appointment);
+            appointmentPatient.addPatientAppointment(appointment);
+            appointmentDoctor.addPatientAppointment(appointment);
+        } catch (DuplicateAppointmentException e) {
+            throw new DuplicateAppointmentException();
+        }
+    }
+
+    /**
+     * Checks for invalid appointment persons and duplicate appointments.
+     * @param model
+     * @throws CommandException
+     */
+    private void checkInputs(Model model) throws CommandException {
         if (!model.hasPatientByNric(appointment.getPatientNric())) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
@@ -55,7 +153,15 @@ public class AppointmentCommand extends Command {
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
+    }
 
+    /**
+     * Retrieves patient and doctor from the appointment.
+     * @param model
+     * @return person array containing patient and doctor
+     */
+    private Person[] retrievePersonsFromAppointment(Model model) {
+        Person[] retrievedPersons = new Person[2];
         Nric patientNricAppointment = appointment.getPatientNric();
         List<Person> persons = model.getFilteredPersonList();
 
@@ -75,31 +181,10 @@ public class AppointmentCommand extends Command {
                 }
             }
         }
-        try {
-            model.bookAppointment(appointment);
-            appointmentPatient.addPatientAppointment(appointment);
-            appointmentDoctor.addPatientAppointment(appointment);
-        } catch (DuplicateAppointmentException e) {
-            throw new DuplicateAppointmentException();
-        }
-
-        Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
-                appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
-                appointmentPatient.getPrescriptions(), appointmentPatient.getTags(),
-                appointmentPatient.getPatientAppointments(), appointmentPatient.getRole());
-
-        Doctor editedDoctor = new Doctor(appointmentDoctor.getName(), appointmentDoctor.getPhone(),
-                appointmentDoctor.getEmail(), appointmentDoctor.getNric(), appointmentDoctor.getAddress(),
-                appointmentDoctor.getTags(),
-                appointmentDoctor.getPatientAppointments(), appointmentDoctor.getRole());
-        model.setPerson(appointmentPatient, editedPatient);
-        model.setPerson(appointmentDoctor, editedDoctor);
-
-        //todo confirm
-        //model.updatePersonView(editedPatient);
-        //model.updatePersonView(editedDoctor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
+        retrievedPersons[0] = appointmentPatient;
+        retrievedPersons[1] = appointmentDoctor;
+        return retrievedPersons;
     }
+
 }
+

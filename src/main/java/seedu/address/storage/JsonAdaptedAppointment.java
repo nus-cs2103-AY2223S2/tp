@@ -47,32 +47,33 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
-        if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Nric.isValidNric(nric)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-
+        checkNric(nric);
         final Nric modelPatientNric = new Nric(nric);
 
+        checkBooking();
+        final Booking modelBooking = new Booking(booking);
+
+        checkNric(drNric);
+        final Nric modelDrNric = new Nric(drNric);
+
+        return new Appointment(modelPatientNric, modelBooking, modelDrNric);
+    }
+
+    private void checkBooking() throws IllegalValueException {
         if (booking == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Booking.class.getSimpleName()));
         }
         if (!Booking.isValidBookingFormat(booking)) {
             throw new IllegalValueException(Booking.MESSAGE_CONSTRAINTS);
         }
+    }
 
-        final Booking modelBooking = new Booking(booking);
-
-        if (drNric == null) {
+    private void checkNric(String nric) throws IllegalValueException {
+        if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Nric.isValidNric(drNric)) {
+        if (!Nric.isValidNric(nric)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Nric modelDrNric = new Nric(drNric);
-
-        return new Appointment(modelPatientNric, modelBooking, modelDrNric);
     }
 }

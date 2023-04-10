@@ -5,7 +5,6 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
@@ -27,25 +26,15 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
-    @FXML
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
+
     @FXML
     private Label nric;
-    @FXML
-    private Label email;
-    @FXML
-    private Label prescriptions;
+
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label appointments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -53,8 +42,19 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
 
+        setId(displayedIndex);
+        setNric(person);
+        setTags(person);
+    }
+
+    private void setTags(Person person) {
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setNric(Person person) {
         if (person.isDoctor()) {
             name.setText("[Dr] " + person.getName().fullName);
         } else {
@@ -62,33 +62,10 @@ public class PersonCard extends UiPart<Region> {
         }
 
         nric.setText(person.getNric().nric);
-        //phone.setText(person.getPhone().value);
-        //address.setText(person.getAddress().value);
-        //email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
 
-        /*
-        if (person.isPatient()) {
-            // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
-            Patient patient = (Patient) person;
-
-            StringBuilder prescriptionText = new StringBuilder("Prescription:\n");
-
-            int i = 1;
-            for (Prescription prescription: patient.getPrescriptions()) {
-                prescriptionText.append(String.format("%d. %s\n", i++, prescription.toString()));
-            }
-            prescriptions.setText(prescriptionText.toString());
-
-            appointments.setText("Appointments: \n" + patient.patientAppointmentstoString());
-        }
-        if (person.isDoctor()) {
-            Doctor doctor = (Doctor) person;
-            appointments.setText("Appointments: \n" + doctor.drAppointmentsToString());
-        }
-        */
+    private void setId(int displayedIndex) {
+        id.setText(displayedIndex + ". ");
     }
 
     @Override

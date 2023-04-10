@@ -46,53 +46,67 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> personsToDelete = model.getFilteredPersonList();
 
-        if (personsToDelete.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
-        } else {
-            int index = 0;
-            for (int i = 0; i < personsToDelete.size(); i++) {
-                if (personsToDelete.get(i).getNric().equals(nric)) {
-                    index = i;
-                    break;
+        checkIfPersonFound(personsToDelete);
+
+        int index = retrievePersonToDeleteIndex(personsToDelete);
+        CommandResult commandResult = handleDeleteAppmts(model, personsToDelete, index);
+        return commandResult;
+    }
+
+    private CommandResult handleDeleteAppmts(Model model, List<Person> personsToDelete, int index)
+            throws CommandException {
+        if (personsToDelete.get(index).getNric().equals(this.nric)) {
+            Person deletedPerson = personsToDelete.get(index);
+
+            if (deletedPerson.isPatient()) {
+                Patient deletedPatient = (Patient) deletedPerson;
+                ArrayList<Appointment> patientAppmts = deletedPatient.getPatientAppointments();
+                int patientAppmtsSize = patientAppmts.size();
+                for (int i = 0; i < patientAppmtsSize; i++) {
+                    Appointment a = patientAppmts.get(0);
+                    model.deleteAppointment(a);
+                    deletedPatient.deletePatientAppointment(a);
+                    Nric drIc = a.getDrNric();
+                    Doctor d = (Doctor) model.retrievePersonByNric(drIc);
+                    d.deletePatientAppointment(a);
                 }
             }
-            if (personsToDelete.get(index).getNric().equals(this.nric)) {
-                Person deletedPerson = personsToDelete.get(index);
-
-                if (deletedPerson.isPatient()) {
-                    Patient deletedPatient = (Patient) deletedPerson;
-                    ArrayList<Appointment> patientAppmts = deletedPatient.getPatientAppointments();
-                    int patientAppmtsSize = patientAppmts.size();
-                    for (int i = 0; i < patientAppmtsSize; i++) {
-                        Appointment a = patientAppmts.get(i);
-                        model.deleteAppointment(a);
-                        deletedPatient.deletePatientAppointment(i);
-                        Nric drIc = a.getDrNric();
-                        Doctor d = (Doctor) model.retrievePersonByNric(drIc);
-                        d.deletePatientAppointment(a);
-                    }
+            if (deletedPerson.isDoctor()) {
+                Doctor deletedDoctor = (Doctor) deletedPerson;
+                ArrayList<Appointment> drAppmts = deletedDoctor.getPatientAppointments();
+                int drAppmtsSize = drAppmts.size();
+                for (int i = 0; i < drAppmtsSize; i++) {
+                    Appointment a = drAppmts.get(0);
+                    model.deleteAppointment(a);
+                    deletedDoctor.deletePatientAppointment(a);
+                    Nric drIc = a.getPatientNric();
+                    Patient p = (Patient) model.retrievePersonByNric(drIc);
+                    p.deletePatientAppointment(a);
                 }
-                if (deletedPerson.isDoctor()) {
-                    Doctor deletedDoctor = (Doctor) deletedPerson;
-                    ArrayList<Appointment> drAppmts = deletedDoctor.getPatientAppointments();
-                    int drAppmtsSize = drAppmts.size();
-                    for (int i = 0; i < drAppmtsSize; i++) {
-                        Appointment a = drAppmts.get(0);
-                        model.deleteAppointment(a);
-                        deletedDoctor.deletePatientAppointment(a);
-                        Nric drIc = a.getPatientNric();
-                        Patient p = (Patient) model.retrievePersonByNric(drIc);
-                        p.deletePatientAppointment(a);
-                    }
-                }
+            }
 
-                model.deletePerson(deletedPerson);
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPerson.getName()));
-            } else {
-                throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+            model.deletePerson(deletedPerson);
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPerson.getName()));
+        } else {
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+        }
+    }
+
+    private int retrievePersonToDeleteIndex(List<Person> personsToDelete) {
+        int index = 0;
+        for (int i = 0; i < personsToDelete.size(); i++) {
+            if (personsToDelete.get(i).getNric().equals(nric)) {
+                index = i;
+                break;
             }
         }
+        return index;
+    }
 
+    private static void checkIfPersonFound(List<Person> personsToDelete) throws CommandException {
+        if (personsToDelete.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+        }
     }
 
     @Override
