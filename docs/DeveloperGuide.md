@@ -644,4 +644,15 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+## Appendix: Planned/Proposed Enhancements to known Feature Flaws
+
+1. Currently, the meetings in Meeting List Panel is unsorted as it can affect other commands adversely. We plan to sort meetings in Meeting List Panel in chronological order without affecting other commands.
+2. Currently, meetingRemove and meetingUpdate has `CLIENT_INDEX` and `MEETING_INDEX` as inputs. `MEETING_INDEX` refers to the the index of meeting list given by `meetingFind CLIENT_INDEX`. Rework meetingRemove and meetingUpdate to take in only one index instead of two indexes - the sole index will refer to 
+the list shown by `listMeeting`.
+3. Currently, PolicyTag accepts any keywords to be set as the name. We plan to rework PolicyTag to only allow a set of PolicyTag names to accept only financial policies
+4. Currently there is no way to manually set the region of a person, and addresses that the detector doesn't recognise will be
+   defaulted to Unknown. One possible enhancement is to allow a `setRegion` command that allows users to set region manually 
+   and also edit regions that the detector has detected wrongly.
+
