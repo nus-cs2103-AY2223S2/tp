@@ -77,7 +77,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 1. Have Java `11` or above installed in local laptop or Computer.
 
-2. Download the latest version (InternEase v1.3) of `internease.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
+2. Download the latest version (InternEase v1.4) of `internease.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
@@ -201,6 +201,61 @@ GUI alternative:
 2. A popup window similar to the image below will appear. <br/>
 <img align="center" src = "images/ui/popups/edit-internship-popup.png" alt="Edit Internship Popup">
 3. You can fill in the fields accordingly and press the `Edit` button to execute the `edit` command.
+
+[↑ Back to Features Menu](#features-menu)
+
+### Display a list of ongoing internship applications : `list`
+
+Displays a list of applied internships which are ongoing
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the ongoing internship applications for with 1 indexing.
+* If there are no ongoing internship applications at the moment,
+  "No applications at the moment" will be shown.
+
+[↑ Back to Features Menu](#features-menu)
+
+### Sort all internship applications : `sort`
+
+Sorts internship applications according to either company name, job title, status or interview date in ascending order.
+
+Format: `sort PREFIX`
+1. Sort by company name: `sort n/`
+2. Sort by job title: `sort j/`
+3. Sort by status: `sort s/`
+4. Sort by interview date `sort d/`
+
+Example:
+* `sort d/` sorts all applications with their interview date in ascending order, those without interview date available
+  yet will be placed at the end of the list.
+
+[↑ Back to Features Menu](#features-menu)
+
+### Find internship applications by the company name, job title, status, or interview date : `find`
+
+Find all internship applications (including those that have been archived) by its company name, job title,
+status and/or interview date.
+
+Format:
+There are three use cases for the `find` command:
+1. Find by the application's company name and/or job title: `find KEYWORD [MORE KEYWORDS]`
+2. Find by the current status of the application: `find s/STATUS`
+3. Find by upcoming interview date: `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2`
+
+- The search for company name, job title, and status are case-insensitive.
+- The order of KEYWORD doesn't matter.
+- In use case 1, as long as a single word in company name and/or job title matches one of the KEYWORD's, it
+  will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword in `find JP Morgan Goldman Sachs`.
+- Only full word will be matched. E.g. `goldman Sachs` won't match `find GOLD`.
+
+Examples:
+* `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
+* `find s/PENDING` searches for all application that are pending.
+* `find after/2023-12-02 12:30 PM` searches for all application that are having interview after
+  2023-12-02 12:30 PM (inclusive).
 
 [↑ Back to Features Menu](#features-menu)
 
@@ -432,61 +487,6 @@ Examples:
 * `clear_by n/Meta` Clears all application with COMPANY_NAME as Meta.
 * `clear_by j/Software engineer` Clears all application with JOB_TITLE as Software Engineer.
 * `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
-
-[↑ Back to Features Menu](#features-menu)
-
-### Display a list of ongoing internship applications : `list`
-
-Displays a list of applied internships which are ongoing
-
-Format: `list`
-
-Examples:
-
-* `list` shows all the ongoing internship applications for with 1 indexing.
-* If there are no ongoing internship applications at the moment,
-  "No applications at the moment" will be shown.
-
-[↑ Back to Features Menu](#features-menu)
-
-### Sort all internship applications : `sort`
-
-Sorts internship applications according to either company name, job title, status or interview date in ascending order.
-
-Format: `sort PREFIX`
-1. Sort by company name: `sort n/`
-2. Sort by job title: `sort j/`
-3. Sort by status: `sort s/`
-4. Sort by interview date `sort d/`
-
-Example:
-* `sort d/` sorts all applications with their interview date in ascending order, those without interview date available
-  yet will be placed at the end of the list.
-
-[↑ Back to Features Menu](#features-menu)
-
-### Find internship applications by the company name, job title, status, or interview date : `find`
-
-Find all internship applications (including those that have been archived) by its company name, job title,
-status and/or interview date.
-
-Format:
-There are three use cases for the `find` command:
-1. Find by the application's company name and/or job title: `find KEYWORD [MORE KEYWORDS]`
-2. Find by the current status of the application: `find s/STATUS`
-3. Find by upcoming interview date: `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2`
-
-- The search for company name, job title, and status are case-insensitive. 
-- The order of KEYWORD doesn't matter.
-- In use case 1, as long as a single word in company name and/or job title matches one of the KEYWORD's, it 
-will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword in `find JP Morgan Goldman Sachs`.
-- Only full word will be matched. E.g. `goldman Sachs` won't match `find GOLD`.
-
-Examples:
-* `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
-* `find s/PENDING` searches for all application that are pending.
-* `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
-2023-12-02 12:30 PM (inclusive).
 
 [↑ Back to Features Menu](#features-menu)
 
