@@ -1,0 +1,14 @@
+@startuml
+title Sort Activity Diagram
+
+start
+:User inputs the sort command into the command box;
+if () then ([Valid field provided])
+  :GoodMatch sorts listings
+  according to provided field;
+else ([else])
+  :Error: Invalid command format;
+endif
+:GoodMatch shows listings in the sorted order;
+stop
+@enduml
