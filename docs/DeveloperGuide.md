@@ -185,7 +185,7 @@ This consistency is crucial to avoid confusing the user, especially since severa
 
 Each leave can be uniquely identified by its LeaveDate which represent the date on which the leave is on and tracks all the employees that have taken leave on that specific day. We tracked all the leaves using the UniqueLeaveList which follows a similar implementation as UniqueEmployeeList except that it enforces the constraints that each Leave's LeaveDate must be unique. In the future it would be possible to modify SudoHR to track different types of leaves (eg.Medical) by adding a new type field to the Leave class.
 
-There was a major design decision, which is to use UniqueEmployeeList for the employee list inside a Leave. The idea is that a leave should not contain duplicate employees. Hence, we made use of the existing UniqueEmployeeList class in SudoHr, instead of creating a new employee list class for Leaves. This logic is reused in Departments as well.
+There was a major design decision, which is to use UniqueEmployeeList for the employee list inside a Leave. The idea is that a leave should not contain duplicate employees. Hence, we made use of the existing UniqueEmployeeList class in SudoHr, instead of creating a new employee list class for Leaves. 
 
 ### 4.2. Employee-related features
 
