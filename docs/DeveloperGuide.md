@@ -1021,3 +1021,46 @@ is the `user`, unless specified otherwise)
 * **Plane**: A unit plane which can be assigned to be used in flights.
 * **Flight**: An activity with start and end locations, to which pilots, planes
   and crew can be assigned.
+
+## **Appendix: Effort**
+If the efforts required to implement the full AB3 from scratch, we believe our effort 
+in this project is almost 20.
+
+Firstly, we refactored the codebase of AB3. We abstract away unnecessary abstractions, and add new 
+ones needed. 
+
+Second, we adopt a `modal` design, and we have different object classes, i.e., `crew`, `plane`, 
+`flight`, `pilot`, and `location`. For each of these classes, we need to implement basic commands such 
+as adding and deleting, and also handle the display of these objects. Moreover, as we want to minimize code 
+duplication, we need more abstractions to abstract out their commonalities. This is already `5x` of the 
+number of classes in AB3, though we have fewer command features for each class.
+
+Third, we need to handle the relation between these different objects. These classes are not standalone, 
+but also connected to each other. For this, we implemented the `link` command. The efforts required here 
+are huge, because we need to implement the data structure for the link, while considering how to store the 
+link (which is not a primitive type, but a data structure class) on the disk and load it when
+start-up. Think about it, assuming `A`is linked to `B`, when we load `A` from the disk, `B` may have been
+instantiated, then the `Link` between `A` and `B` cannot be instantiated. To address this, we implemented
+the `Link` in a lazy-evaluation manner, such that it does not require both `A` and `B` to be instantiated
+before the `Link` can be read from the disk. There are other corner cases, such as
+* Assuming `A` is linked to `B`, what should happen if one of them is deleted?
+* How many `A`s can we link to `B`? This number may differ for different `A` and `B`. 
+How to implement it in systematic manner?
+* How to display the link information on the GUI?
+
+These are all additional complexities when we capture the associations between
+these classes. The efforts here would be much larger, compared to implementing features that are only
+dependent on one class only. Also note that, we need to implement this `Link` for many class pairs, i.e.,
+between all other classes and `Flight`, and between all other classes and `Location`. Also, we need to link
+`Flight` to `Location`. These are probably equivalent to at least 10 features on one standalone class.
+
+Last by not least, we also spent a lot of time refining the UG and DG. Due to the large number
+of classes we have, it is not easy to teach readers how to use/develop it in a succinct manner. These efforts
+are significantly higher than that of AB3. 
+
+Overall, our team really scaled up AB3 in terms of models and features, which we believe way exceed
+what is required for this class. Roughly speaking, we should be able to claim that we took 2x of the 
+efforts needed to create AB3 from scratch. We wish graders to take this into account when grading our
+efforts and product quality. 
+
+Thank you!
