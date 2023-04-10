@@ -40,4 +40,5 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation for `import` and `export` features
     * Added information on CSV-format conversion
+    * Added ExportSequenceDiagram.puml to illustrate the export command process
     * Updated UML diagrams such as StorageClassDiagram.puml
