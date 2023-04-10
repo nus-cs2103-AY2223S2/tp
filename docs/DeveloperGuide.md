@@ -214,6 +214,7 @@ Step 9. Event is added.
 
 The execution can be seen in the activity diagram given below.
 
+_Activity Diagram for a typical `add` command_
 ![AddCommandActivityDiagram.png](images/AddCommandActivityDiagram.png)
 
 ### **Recur Command**
@@ -251,7 +252,7 @@ Step 10. Add event into Ez-Schedule on all dates to be recurred.
 
 The execution, with Step 9 in further detail, can be seen in the activity diagrams given below.
 
-_Activity: Command to recur events_
+_Activity Diagram for a typical `recur` command_
 ![RecurCommandActivityDiagram.png](images/RecurCommandActivityDiagram.png)
 
 _Activity: Check for time clash for all recurring dates._
@@ -259,8 +260,40 @@ _Activity: Check for time clash for all recurring dates._
 
 ### **Edit Command**
 
-![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)  
-Activity Diagram for a typical `edit` command
+For _Edit_ command, the noteworthy classes are:
+- `EditCommandParser.java` - For parsing the arguments to `EditCommand.java`.
+- `EditCommand.java` - For execution.
+
+The following exceptions may be thrown during this process, namely:
+- ParseException for missing arguments
+- ParseException for invalid arguments
+- CommandException for index out of range
+- CommandException for identical events
+- CommandException for events with clashing time
+
+Given below is an example usage scenario of how the _Edit_ command executes.
+
+-- user input --  
+Step 1. User executes add command with correct and valid arguments.
+
+-- `SchedulerParser` --  
+Step 2. Returns new `EditCommandParser`.
+
+-- `EditCommandParser` --   
+Step 3. Verify that all argument prefixes are present.  
+Step 4. Verify that all argument format is valid.    
+Step 5. Returns new `EditCommand`.
+
+-- `EditCommand` --   
+Step 6. Verify that the given index exist in Ez-Schedule.  
+Step 7. Verify that the same event has not already been added.  
+Step 8. Verify that the new event to be added does not have time conflict with another event on the same day.  
+Step 9. Event is edited.
+
+The execution can be seen in the activity diagram given below.
+
+_Activity Diagram for a typical `edit` command_
+![EditCommandActivityDiagram.png](images/EditCommandActivityDiagram.png)
 
 ### **Delete Command**
 
@@ -283,10 +316,6 @@ Activity Diagram for a typical `next` command
 Activity Diagram for a typical `undo` command
 
 ### **List Command**
-
-### **Help Command**
-
-### **Exit Command**
 
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**
