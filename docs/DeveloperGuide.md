@@ -473,7 +473,7 @@ Preconditions: Elderly and Volunteer is already in FL.
 
 1. User enters the details of elderly and volunteer to be paired into the application.
 2. FL feedbacks the successful addition of the pair, and shows the new pair.
-3. User see the new pair in FL.
+3. User sees the new pair in FL.
 
     Use case ends.
 
@@ -505,7 +505,7 @@ Preconditions: Elderly and Volunteer is already in FL.
 
 1. User enters the details of elderly to be added into the application.
 2. FL feedbacks the successful addition of the elderly, and shows the new elderly.
-3. User see the new elderly in FL.
+3. User sees the new elderly in FL.
 
     Use case ends.
 
@@ -527,7 +527,7 @@ Preconditions: Elderly and Volunteer is already in FL.
 
 1. User enters the details of volunteer to be added into the application.
 2. FL feedbacks the successful addition of the volunteer and shows the new volunteer.
-3. User see the new volunteer in FL.
+3. User sees the new volunteer in FL.
 
     Use case ends.
 
@@ -847,7 +847,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Show summary statistics
 
-1. View the statistics of of the displayed elderly, volunteers and pairs
+1. View the statistics of the displayed elderly, volunteers and pairs
     * Type the following stats command into the text field.<br>
       `stats`
     * Press enter.
