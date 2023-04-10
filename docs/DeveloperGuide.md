@@ -163,37 +163,36 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-Step 1. placeholder
+The add feature is accessed through the `addPerson` operation that allows users to add a new case to the `Person` class of the application.
 
-#### Design considerations
+The `Person` added by the user will have 4 compulsory fields and 1 optional field.
+* `Name` of the person
+* `Date` of the case
+* `Postal` code of the case
+* `Age` of the person
+* `Variant` of the case (Optional)
 
-**Aspect: xxx**
+The `addPerson` operation is facilitated by `AddCommand` which extends from `Command`. 
 
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+Step 1. `DengueHotspotTracker#parseCommand()` checks that the user input matches that the `COMMAND_WORD` of `AddCommand`
 
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+Step 2. `AddPersonParse#parse()` will process the additional inputs and return an `AddCommand`.
+
+Step 3. `AddCommand` is executed and `AddCommand#execute()` triggers the `Model` interface's `Model#addCommand()`.
+
+Step 4. `DengueHotspotTracker#addPerson` will add a person to a `uniquePersonList` via the `uniquePersonList#add()` command.
+
+Step 5. Additionally `StorageManager#saveDengueHotspotTracker()` is called every time after a command to save the event to `data/denguehotspottracker.csv`.
+
+The following sequence diagram will illustrate how `addPerson` operation works:
+
+[!AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
 ### Edit feature
 
 #### Implementation
 
-Step 1. placeholder
-
-#### Design considerations
-
-**Aspect: xxx**
-
-* **Alternative 1 (current choice):** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
-
-* **Alternative 2:** placeholder
-    * Pros: placeholder
-    * Cons: placeholder
+The implementation for edit is largely similar to that of [Add](#add-feature).
 
 ### Multi-index delete feature
 
