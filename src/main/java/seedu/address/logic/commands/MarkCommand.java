@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
@@ -55,7 +56,11 @@ public class MarkCommand extends Command {
             attendance = attendance.markAttendance(date);
         }
         modified.withAttendance(attendance);
-        model.setTutee(toMarkAttendance, modified.build());
+        try {
+            model.setTutee(toMarkAttendance, modified.build());
+        } catch (IllegalValueException e) {
+            throw new RuntimeException("Start time and end time aren't edited here, this should never throw");
+        }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(EXPECTED_DATE_FORMAT);
         return new CommandResult(

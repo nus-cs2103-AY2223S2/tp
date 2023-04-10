@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
@@ -47,9 +48,14 @@ public class LearnCommand extends Command {
         Lesson lessons = tuteeToEducate.getLessons();
         Lesson newLessons = lessons.learn(lesson);
         builder.withLessons(newLessons);
-        model.setTutee(tuteeToEducate, builder.build());
-        return new CommandResult(
-            String.format("Edit %s learn %s", tuteeToEducate.getName(), lesson));
+        
+        try {
+            model.setTutee(tuteeToEducate, builder.build());
+            return new CommandResult(
+                String.format("Edit %s learn %s", tuteeToEducate.getName(), lesson));
+        } catch (IllegalValueException e) {
+            throw new RuntimeException("Start time and end time aren't edited here, this should never throw");
+        }
     }
 
 }

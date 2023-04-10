@@ -11,6 +11,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
@@ -59,12 +60,17 @@ public class CopyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Tutee tuteeToCopy = lastShownList.get(targetIndex.getZeroBased());
-        Tutee copiedTutee = createEditedPerson(tuteeToCopy, editPersonDescriptor);
+        try {
+            Tutee copiedTutee = createEditedPerson(tuteeToCopy, editPersonDescriptor);
+    
+    
+            model.addTutee(copiedTutee);
+            model.updateFilteredTuteeList(Model.PREDICATE_SHOW_ALL_TUTEES);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, copiedTutee));
+        } catch (IllegalValueException e) {
+            throw new RuntimeException("Start time and end time aren't edited here, this should never throw");
+        }
 
-
-        model.addTutee(copiedTutee);
-        model.updateFilteredTuteeList(Model.PREDICATE_SHOW_ALL_TUTEES);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, copiedTutee));
     }
 
     @Override
