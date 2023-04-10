@@ -4,16 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Tutee;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -62,8 +61,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setStartTime(ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
-            editPersonDescriptor.setEndTime(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(),
-                    argMultimap.getValue(PREFIX_STARTTIME).get()));
+            try {
+                editPersonDescriptor.setEndTime(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(),
+                        argMultimap.getValue(PREFIX_STARTTIME).get()));
+            } catch (NoSuchElementException e) {
+                throw new ParseException(EditCommand.MESSAGE_END_TIME_CONSTRAINT);
+            }
+
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

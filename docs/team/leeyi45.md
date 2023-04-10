@@ -15,18 +15,23 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}* -->
 
-* **New Feature**: add, delete tutor feature (to be added)
+* **New Features**: 
+  * Added attendance tracking
+      * Added attendance field to Tutee
+      * Added attendance commands (mark, unmark, query)
 
-* **Code contributed**: [link](https://github.com/AY2223S2-CS2103T-W10-4/tp)
+* **Code contributed**: [link](https://github.com/leeyi45/tp)
 
 * **Project management**:
   * to be added
 
 * **Enhancements to existing features**:
-  * to be added
+  * Made field validation on loading more robust and modular
+  * Made command parsing more modular
+  * Several bug fixes
 
 * **Documentation**:
-  * Readme.md
+  * Updated documentation for the attendance commands (mark, unmark, query)
 
 * **Community**:
   * to be added
