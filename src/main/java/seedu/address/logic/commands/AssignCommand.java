@@ -29,10 +29,10 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Assigned: %1$s to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This person is already assigned to this task.";
 
+    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
+
     private final Index personIndex;
     private final Index taskIndex;
-
-    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     /**
      * Creates AssignCommand object with given personIndex and taskIndex.
