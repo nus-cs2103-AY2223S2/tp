@@ -517,8 +517,6 @@ The following sequence diagram shows how the review operation works:
 
 ---
 
-<div style="page-break-after: always"></div>
-
 # 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
@@ -578,8 +576,6 @@ The following sequence diagram shows how the review operation works:
 [↑ Return to start of section](#6-appendix-requirements)
 
 [↑ Return to table of contents](#table-of-contents)
-
-<div style="page-break-after: always"></div>
 
 ## 6.3 Use cases
 
@@ -688,8 +684,6 @@ The following sequence diagram shows how the review operation works:
 [↑ Return to start of section](#6-appendix-requirements)
 
 [↑ Return to table of contents](#table-of-contents)
-
-<div style="page-break-after: always"></div>
 
 ## 6.4 Non-Functional Requirements
 
