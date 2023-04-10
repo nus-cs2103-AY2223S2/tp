@@ -1,0 +1,9 @@
+{
+  "fishes": [ {
+    "name": "Hans Muster",
+    "lastFedDate": "in/valid/date",
+    "species": "invalid@species",
+    "feedingInterval": "1d1h",
+    "tank": "tank 1"
+  } ]
+}

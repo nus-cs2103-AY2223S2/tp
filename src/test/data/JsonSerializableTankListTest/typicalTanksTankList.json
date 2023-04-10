@@ -1,0 +1,10 @@
+{
+  "_comment": "TankList save file which contains the same Tank values as in TypicalTanks#getTypicalTankList()",
+  "tanks" : [ {
+    "tank_name" : "Tank A"
+  }, {
+    "tank_name" : "Tank B"
+  }, {
+    "tank_name" : "Tank C"
+  }]
+}

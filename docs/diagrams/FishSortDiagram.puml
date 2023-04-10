@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":FishSortCommand" as FishSortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":SortedList" as SortedList MODEL_COLOR
+participant ":FilteredFish" as FilteredFish MODEL_COLOR
+end box
+
+[-> FishSortCommand : execute
+activate FishSortCommand
+
+FishSortCommand -> Model : sortFilteredFishList
+activate Model
+
+Model -> SortedList : setComparator
+activate SortedList
+
+SortedList -> FilteredFish : Updates
+
+SortedList --> Model
+deactivate SortedList
+
+Model --> FishSortCommand
+deactivate Model
+
+FishSortCommand -> Model : getFilteredTankList
+activate Model
+
+Model --> FishSortCommand
+deactivate Model
+
+FishSortCommand -> Model : updateFilteredFishList
+activate Model
+
+Model -> FilteredFish : setPredicate
+activate FilteredFish
+
+FilteredFish --> Model
+deactivate FilteredFish
+
+Model --> FishSortCommand
+deactivate Model
+
+[<--FishSortCommand
+deactivate FishSortCommand
+@enduml

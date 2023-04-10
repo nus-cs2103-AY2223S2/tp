@@ -1,0 +1,7 @@
+{
+  "tanks": [ {
+    "tankName": "Valid Tank"
+  }, {
+    "tankName": "Tank With Invalid T@nk name"
+  } ]
+}

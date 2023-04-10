@@ -19,15 +19,30 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTankList;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TankList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.model.util.SampleReadingsUtil;
+import seedu.address.model.util.SampleTankUtil;
+import seedu.address.model.util.SampleTaskUtil;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.fish.AddressBookStorage;
+import seedu.address.storage.fish.JsonAddressBookStorage;
+import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.tank.TankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
+import seedu.address.storage.task.JsonTaskListStorage;
+import seedu.address.storage.task.TaskListStorage;
+import seedu.address.storage.userprefs.JsonUserPrefsStorage;
+import seedu.address.storage.userprefs.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +72,12 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        TankListStorage tankListStorage = new JsonTankListStorage(userPrefs.getTankListFilePath());
+        FullReadingLevelsStorage fullReadingLevelsStorage = new JsonFullReadingLevelsStorage(userPrefs
+                .getFullReadingsLevelsPath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
+                fullReadingLevelsStorage);
 
         initLogging(config);
 
@@ -74,23 +94,79 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyTaskList initialTaskList;
+        ReadOnlyTankList initialTankList;
+        ReadOnlyReadingLevels initialFullReadings;
+
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = readAddressBookFromStorage(storage);
+            initialTaskList = readTaskListFromStorage(storage);
+            initialTankList = readTankListFromStorage(storage);
+            initialFullReadings = readReadingLevelsFromStorage(storage);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Files");
             initialData = new AddressBook();
+            initialTaskList = new TaskList();
+            initialTankList = new TankList();
+            initialFullReadings = new FullReadingLevels();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Files");
             initialData = new AddressBook();
+            initialTaskList = new TaskList();
+            initialTankList = new TankList();
+            initialFullReadings = new FullReadingLevels();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList, initialFullReadings);
+    }
+
+    private ReadOnlyAddressBook readAddressBookFromStorage(Storage storage) throws DataConversionException,
+            IOException {
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
+        addressBookOptional = storage.readAddressBook();
+        if (!addressBookOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample AddressBook");
+        }
+        initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        return initialData;
+    }
+
+    private ReadOnlyTaskList readTaskListFromStorage(Storage storage) throws DataConversionException,
+            IOException {
+        Optional<ReadOnlyTaskList> taskListOptional;
+        ReadOnlyTaskList initialData;
+        taskListOptional = storage.readTaskList();
+        if (!taskListOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample Task List");
+        }
+        initialData = taskListOptional.orElseGet(SampleTaskUtil::getSampleTaskList);
+        return initialData;
+    }
+
+    private ReadOnlyTankList readTankListFromStorage(Storage storage) throws DataConversionException,
+            IOException {
+        Optional<ReadOnlyTankList> tankListOptional;
+        ReadOnlyTankList initialData;
+        tankListOptional = storage.readTankList();
+        if (!tankListOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample Tank List");
+        }
+        initialData = tankListOptional.orElseGet(SampleTankUtil::getSampleTankList);
+        return initialData;
+    }
+
+    private ReadOnlyReadingLevels readReadingLevelsFromStorage(Storage storage) throws DataConversionException,
+            IOException {
+        Optional<ReadOnlyReadingLevels> readingLevelsOptional;
+        ReadOnlyReadingLevels initialData;
+        readingLevelsOptional = storage.readFullReadingLevels();
+        if (!readingLevelsOptional.isPresent()) {
+            logger.info("Data file not found. Will be starting with a sample Reading levels");
+        }
+        initialData = readingLevelsOptional.orElseGet(SampleReadingsUtil::getSampleFullReadingLevels);
+        return initialData;
     }
 
     private void initLogging(Config config) {
@@ -165,10 +241,20 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    private void executeAutoInitActions() {
+        executeFeedingReminderFeature();
+    }
+
+    private void executeFeedingReminderFeature() {
+        ui.executeFeedingReminderInitUi();
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        logger.info("Checking for feeding reminders " + MainApp.VERSION);
+        executeAutoInitActions();
     }
 
     @Override

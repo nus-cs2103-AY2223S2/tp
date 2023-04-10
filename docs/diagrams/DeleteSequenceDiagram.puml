@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":FishDeleteCommandParser" as FishDeleteCommandParser LOGIC_COLOR
+participant "d:FishDeleteCommand" as FishDeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,56 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("fish delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("fish delete 1")
 activate AddressBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create FishDeleteCommandParser
+AddressBookParser -> FishDeleteCommandParser
+activate FishDeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+FishDeleteCommandParser --> AddressBookParser
+deactivate FishDeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+AddressBookParser -> FishDeleteCommandParser : parse("1")
+activate FishDeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create FishDeleteCommand
+FishDeleteCommandParser -> FishDeleteCommand
+activate FishDeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+FishDeleteCommand --> FishDeleteCommandParser : d
+deactivate FishDeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+FishDeleteCommandParser --> AddressBookParser : d
+deactivate FishDeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+FishDeleteCommandParser -[hidden]-> AddressBookParser
+destroy FishDeleteCommandParser
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> FishDeleteCommand : execute()
+activate FishDeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+FishDeleteCommand -> Model : deleteFish(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> FishDeleteCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+FishDeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> FishDeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+FishDeleteCommand --> LogicManager : result
+deactivate FishDeleteCommand
 
 [<--LogicManager
 deactivate LogicManager

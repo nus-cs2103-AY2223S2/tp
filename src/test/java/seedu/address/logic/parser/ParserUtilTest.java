@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FISH;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,23 +14,23 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.fish.FeedingInterval;
+import seedu.address.model.fish.LastFedDateTime;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_LAST_FED_DATE = "20 Mar 2023 00:00";
+    private static final String INVALID_FEEDING_INTERVAL = " ";
+    private static final String INVALID_SPECIES = "asd123 @!";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_LAST_FED_DATE = "04/01/2022 00:00";
+    private static final String VALID_FEEDING_INTERVAL = "5d0h";
+    private static final String VALID_SPECIES = "Guppy";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_FISH, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_FISH, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -80,72 +80,72 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseLastFedDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLastFedDate((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseLastFedDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLastFedDate(INVALID_LAST_FED_DATE));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseLastFedDate_validValueWithoutWhitespace_returnsLastFedDate() throws Exception {
+        LastFedDateTime expectedLastFedDate = new LastFedDateTime(VALID_LAST_FED_DATE);
+        assertEquals(expectedLastFedDate, ParserUtil.parseLastFedDate(VALID_LAST_FED_DATE));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseLastFedDate_validValueWithWhitespace_returnsTrimmedLastFedDate() throws Exception {
+        String lastFedDateWithWhitespace = WHITESPACE + VALID_LAST_FED_DATE + WHITESPACE;
+        LastFedDateTime expectedLastFedDate = new LastFedDateTime(VALID_LAST_FED_DATE);
+        assertEquals(expectedLastFedDate, ParserUtil.parseLastFedDate(lastFedDateWithWhitespace));
     }
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFeedingInterval((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFeedingInterval(INVALID_FEEDING_INTERVAL));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        FeedingInterval expectedFeedingInterval = new FeedingInterval(VALID_FEEDING_INTERVAL);
+        assertEquals(expectedFeedingInterval, ParserUtil.parseFeedingInterval(VALID_FEEDING_INTERVAL));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        String addressWithWhitespace = WHITESPACE + VALID_FEEDING_INTERVAL + WHITESPACE;
+        FeedingInterval expectedFeedingInterval = new FeedingInterval(VALID_FEEDING_INTERVAL);
+        assertEquals(expectedFeedingInterval, ParserUtil.parseFeedingInterval(addressWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseSpecies_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSpecies((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseSpecies_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSpecies(INVALID_SPECIES));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseSpecies_validValueWithoutWhitespace_returnsSpecies() throws Exception {
+        Species expectedSpecies = new Species(VALID_SPECIES);
+        assertEquals(expectedSpecies, ParserUtil.parseSpecies(VALID_SPECIES));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseSpecies_validValueWithWhitespace_returnsTrimmedSpecies() throws Exception {
+        String speciesWithWhitespace = WHITESPACE + VALID_SPECIES + WHITESPACE;
+        Species expectedSpecies = new Species(VALID_SPECIES);
+        assertEquals(expectedSpecies, ParserUtil.parseSpecies(speciesWithWhitespace));
     }
 
     @Test

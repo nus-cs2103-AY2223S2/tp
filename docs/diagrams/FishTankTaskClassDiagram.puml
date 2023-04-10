@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyTankList" as ReadOnlyTankList
+Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
+Class "<<interface>>\nModel" as Model
+Class AddressBook
+Class TankList
+Class TaskList
+Class ModelManager
+Class UserPrefs
+
+Class UniqueFishList
+Class Fish
+Class Species
+Class LastFedDate
+Class Name
+Class FeedingInterval
+Class Tag
+
+Class UniqueTankList
+Class Tank
+Class TankName
+
+Class UniqueTaskList
+Class Task
+Class Description
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+AddressBook .up.|> ReadOnlyAddressBook
+TankList .up.|> ReadOnlyTankList
+TaskList .up.|> ReadOnlyTaskList
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyAddressBook
+Model .left.> ReadOnlyTankList
+Model .left.> ReadOnlyTaskList
+ModelManager -left-> "1" AddressBook
+ModelManager -left-> "1" TankList
+ModelManager -left-> "1" TaskList
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+AddressBook *--> "1" UniqueFishList
+TankList *--> "1" UniqueTankList
+TaskList *--> "1" UniqueTaskList
+
+UniqueFishList --> "~* all" Fish
+UniqueTankList --> "~* all" Tank
+UniqueTaskList --> "~* all" Task
+
+Fish *--> Name
+Fish *--> FeedingInterval
+Fish *--> LastFedDate
+Fish *--> Species
+Fish *--> "*" Tag
+Fish *-left-> Tank
+
+Tank *--> TankName
+Tank *-up-> "1" AddressBook
+
+Task *--> Description
+Task -right-> "0..1" Tank
+
+Name -[hidden]right-> FeedingInterval
+FeedingInterval -[hidden]right-> Species
+Species -[hidden]right-> LastFedDate
+
+ModelManager -->"~* filtered" Fish
+@enduml

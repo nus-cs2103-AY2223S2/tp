@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+
+box Ui UI_COLOR_T1
+Participant ":UI" as ui UI_COLOR
+Participant ":MainWindow" as mainwindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":TaskFeedingReminderCommand" LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+Participant ":Model" as model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+Participant ":Storage" as storage STORAGE_COLOR
+end box
+
+user -> ui : Starts app
+activate ui
+
+ui -> mainwindow : signal to create reminders
+activate mainwindow
+
+mainwindow -> logic : getTaskFeedingReminderList()
+activate logic
+
+logic -> model : executeFeedingReminderInitModel()
+activate model
+
+
+model --> logic : feedingReminders
+deactivate model
+logic --> mainwindow : feedingReminders
+deactivate logic
+logic -[hidden]-> logic
+
+loop for each feedingReminder
+
+        mainwindow -> logic : create and execute reminder
+        activate logic
+        logic -> ":TaskFeedingReminderCommand"  ** : new
+        activate ":TaskFeedingReminderCommand"
+        ":TaskFeedingReminderCommand" --> logic
+        deactivate ":TaskFeedingReminderCommand"
+        logic -[hidden]-> ":TaskFeedingReminderCommand"
+        logic -> ":TaskFeedingReminderCommand" : execute(model)
+        activate ":TaskFeedingReminderCommand"
+        ":TaskFeedingReminderCommand" --> logic : CommandResult
+        deactivate ":TaskFeedingReminderCommand"
+
+        logic -> storage : saveAddressBook(addressBook)
+        activate storage
+        storage -> storage : Save to file
+        activate storage
+        storage --> storage
+        deactivate storage
+        storage --> logic
+        deactivate storage
+        logic -> storage : saveTaskList(tasklist)
+        activate storage
+        storage -> storage : Save to file
+        activate storage
+        storage --> storage
+        deactivate storage
+        storage --> logic
+        deactivate storage
+        logic -> storage : saveTankList(tanklist)
+        activate storage
+        storage -> storage : Save to file
+        activate storage
+        storage --> storage
+        deactivate storage
+        storage --> logic
+        deactivate storage
+
+        logic --> mainwindow : CommandResult
+        deactivate logic
+        mainwindow -> mainwindow : handleGuiChange()
+        activate mainwindow
+        deactivate mainwindow
+end
+mainwindow --> ui
+deactivate mainwindow
+ui --> user
+deactivate ui
+deactivate user
+
+@enduml
