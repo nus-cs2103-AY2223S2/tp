@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,6 +41,8 @@ public class SessionListPanel extends UiPart<Region> {
     @FXML
     private VBox sessionDetailContainer;
 
+    @FXML
+    private Label message;
     @FXML
     private Label selectedSession;
     @FXML
@@ -102,15 +105,14 @@ public class SessionListPanel extends UiPart<Region> {
         sessionListView.setItems(sessionList);
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
-        //        if (sessionListView.getItems() != null) {
-        //            updateDisplay(sessionListView.getItems().get(0));
-        //        }
         getStatistics(sessionList);
         setClickEventListener();
         setUpdateEventListener(logic);
 
         sessionList.addListener((ListChangeListener<Session>) change -> {
             getStatistics(logic.getFilteredSessionList());
+            sessionListView.getSelectionModel().clearSelection();
+            updateDisplay(null);
         });
     }
 
@@ -259,6 +261,7 @@ public class SessionListPanel extends UiPart<Region> {
             if (selectedSession != null) {
                 updateDisplay(selectedSession);
             }
+            sessionListView.getSelectionModel().clearSelection();
         });
     }
 
@@ -268,6 +271,11 @@ public class SessionListPanel extends UiPart<Region> {
      * @param selectedSession the session to be displayed
      */
     public void updateDisplay(Session selectedSession) {
+        if (selectedSession == null) {
+            Label[] details = new Label[]{message};
+            updateDisplayedSessionDetail(null, details);
+        }
+
         Label[] fields = new Label[]{dateField, locationField, studentsField, earningsField};
         Label[] details = new Label[]{selectedName, selectedDate, selectedLocation, selectedEarnings};
         setupStyle();
@@ -298,6 +306,15 @@ public class SessionListPanel extends UiPart<Region> {
      * @param details the Labels to hold the information of the selected Session
      */
     private void updateDisplayedSessionDetail(Session selectedSession, Label[] details) {
+        if (selectedSession == null) {
+            message.setText("Click on a session to view");
+            selectedName.setText("");
+            selectedDate.setText("");
+            selectedLocation.setText("");
+            attendanceChart.setData(FXCollections.observableArrayList());
+            selectedEarnings.setText("");
+
+        }
         selectedName.setText(selectedSession.getName());
         selectedName.setPadding(new Insets(0, -10, 0, -10));
         selectedDate.setText(selectedSession.getStartDateTime());
@@ -326,6 +343,10 @@ public class SessionListPanel extends UiPart<Region> {
     private void setupStyle() {
         sessionDetailContainer.setSpacing(10);
         sessionDetailContainer.setPadding(new Insets(10, 0, 0, 20));
+    }
+
+    public void handleOnMouseClick() {
+        updateDisplay(null);
     }
 
     /**
