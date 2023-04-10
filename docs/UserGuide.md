@@ -124,10 +124,10 @@ It is recommended that you switch to this resolution before using FriendlyLink.
 1. Type the command in the command box and press Enter to execute it e.g. typing `help` and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
-    * `add_elderly n/John Doe ic/S1234567A bd/1959-09-09 re/WEST r/LOW` : [Adds an elderly](#adding-an-elderly--addelderly) named `John Doe`with [NRIC](#nric) 
+    * `add_elderly n/John Doe ic/S1234567A bd/1959-09-09 re/WEST r/LOW` : [Adds an elderly](#adding-an-elderly-add_elderly) named `John Doe`with [NRIC](#nric) 
 `S1234567A` to FriendlyLink, whose birthday is `1959-09-09`, lives in the `WEST` [region](#region) and has `LOW` [risk level](#risk-level).
 
-    * `delete_elderly S1234567A` : [Deletes the elderly](#deleting-an-elderly--deleteelderly) with [NRIC](#nric) `S1234567A`.
+    * `delete_elderly S1234567A` : [Deletes the elderly](#deleting-an-elderly-delete_elderly) with [NRIC](#nric) `S1234567A`.
 
     * `exit` : [Exits](#exiting-the-program--exit) the app.
 
@@ -149,7 +149,7 @@ Opening multiple instances may result in unexpected behaviours.
 ### Adding records
 
 Adds an elderly, a volunteer, or a pairing between one elderly and one volunteer to FriendlyLink. [Duplicate pairs and 
-persons](#non-technical) are not allowed in FriendlyLink.
+persons](#non-technical) are not **allowed** in FriendlyLink.
 
 #### Adding an elderly: `add_elderly`
 
@@ -158,7 +158,7 @@ Adds an elderly to FriendlyLink.
 Format: `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [re/REGION] [r/RISK_LEVEL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Every elderly must have a unique [NRIC](#nric).
-* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the [dates](#date) that the elderly is available.
+* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the [dates](#dates) that the elderly is available.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 
@@ -181,7 +181,7 @@ Adds a volunteer to FriendlyLink.
 Format: `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [re/REGION] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​`
 
 * Every volunteer must have a unique [NRIC](#nric).
-* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the [dates](#available-dates) that the volunteer is available.
+* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the [dates](#dates) that the volunteer is available.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 
@@ -259,12 +259,12 @@ starting point.
 
 ### Editing records
 
-Edits the information of an existing elderly or volunteer in FriendlyLink, based on their [index](#index) or [NRIC](#nric).
+Edits the information of an existing elderly or volunteer in FriendlyLink, based on their [index](#interpreting-our-command-format) or [NRIC](#nric).
 [Duplicate pairs and persons](#non-technical) are not allowed in FriendlyLink.
 
 #### Editing an elderly by index : `edit_elderly`
 
-Edits an existing elderly based on their [index](#index) in the elderly list.
+Edits an existing elderly based on their [index](#interpreting-our-command-format) in the elderly list.
 
 Format: `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
