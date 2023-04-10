@@ -6,6 +6,11 @@ title: Khang Tran's Project Portfolio Page
 #### Table of Contents
 - [Project: Le Tracker](#project-le-tracker)
 - [Summary of Contributions](#summary-of-contributions)
+  - [Code Contribution](#code-contribution)
+  - [Tag/ Untag Feature](#tag-untag-feature)
+  - [Export/ Import Feature](#export-import-feature)
+  - [Documentation](#documentation)
+  - [Team-based Tasks](#team-based-tasks)
 
 ### Project: Le Tracker
 
@@ -13,26 +18,35 @@ title: Khang Tran's Project Portfolio Page
 
 ### Summary of Contributions
 
+#### Code Contribution
+You can refer to my individual code contribution at this [link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lennoxtr&breakdown=true).
 
+#### Tag/ Untag Feature
 
-* **New Feature**: TBA
+**Originally**, the user could only apply tags to a newly added person, as well as removing tags by editing that person. As AB3 is adapted to a lecture content tracker, the old tagging system is no longer suitable. Students may label modules, lectures, or videos according to their own needs as they study. They may also want to have a separate tag and untag command for fear of making unwanted change to the module, lecture, or video 
 
+**Enahancements** made were modification to the tagging feature of AB3 to allow the user to add and remove multiple tags at the same time from modules, lectures, and video, while making sure that each tag is only applied once. Tagging and untagging can be done after the module/ lecture/ video is added to the tracker so that user can use the tag to categorize and organize the studying content effectively.
 
-* **Code contributed**: TBA 
+#### Export/ Import Feature
 
+I implemented the exporting and importing features of Le Tracker:
 
-* **Documentation**:
-  * User Guide: TBA
+- **Exporting modules**, so that students can enjoy a stress-free learning environment without worrying about losing the data. Student may also want to export modules to a file, which serves as an archive, so that they can keep track of the productivity level and learning process after the semester ends.
 
+- `**Importing modules**, so that students may revise specific concepts from the modules they previously took. Student can also use the feature to track productivity level during a semester. 
 
-  * Developer Guide: TBA
+To implement said features, an `Archive` class was adapted from AB3's JSONStorage to read and write module data.
 
+#### Documentation
 
+- **User Guide**
+  - Update the UG documentation for the `tag`, `untag` commands 
+- **Developer Guide**
+  - Update the DG "Implementation" section for the `tag`, `untag`, `export`, `import` commands
+  - Update the DG user stories, use cases, and manual testing instructions for the `tag`, `untag`, `export`, `import` commands
 
+#### Team-Based Tasks
 
-* **Team-Based Tasks**: TBA
-
-
-
-
-* **Others**: TBA
+- Created v1.4 Issues
+- Bugs Reported: [link](https://github.com/AY2223S2-CS2103-F10-2/tp/issues?q=is%3Aissue+author%3Alennoxtr+label%3Atype.Bug+)
+- PRs reviewed: [#393](https://github.com/AY2223S2-CS2103-F10-2/tp/pull/393)
