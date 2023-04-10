@@ -279,7 +279,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Current Implementation
 PowerConnect allows users to delete:
 * Student from `UniqueStudentList` of `Class` using their class and index number.
-* Parent from `UniqueParentList` of `parents` using their name and phone number.
+* Parent from `UniqueParentList` of `Parents` using their name and phone number.
 
 However, a parent can only be deleted if no student is attached to that parent.
 
@@ -289,38 +289,44 @@ However, a parent can only be deleted if no student is attached to that parent.
 2. The user tries deleting the parent first using `parent delete n/Bob pnP/91234567`.
 3. PowerConnect displays an error saying `"The parent you are trying to delete has a student attached! You can't delete the parent!"`.
 4. The user then tries to delete that student using `student 1A delete in/1`.
-5. `PowerConnectParser` and `StudentCommandParser` will check if command provided by the user is valid before `StudentDeleteCommand#execute(Model)` is called.
-6. This would call `Model#deleteStudent(Student)` method to delete the student.
-7. It will then check if the student to be deleted exists in `UniqueStudentList` of `Class` before deleting the student.
-8. The deleted student will also be removed from its parent's list of children.
-9. The success message and resulting list of students will be displayed via the dashboard.
-10. The user tries deleting the parent again, it follows `step 5-7` in a similar way to just that it is now for parent instead of student.
-11. After step 7, it will check that `Bob` has no students attached before deleting him and showing the success message.
+5. `PowerConnectParser` and `StudentCommandParser` will check if command format provided by the user is valid before `StudentDeleteCommand#execute()` is called.
+6. It will check if the student to be deleted exists in `UniqueStudentList` of `Class`. 
+7. If the student exists, he/she will then be deleted and their parent will be updated if their parent can be found.
+8. The result of the command execution is encapsulated as a `CommandResult` object which is returned to `Logic`.
+9. The user tries deleting the parent again, it follows `step 5 & 6` in a similar way to just that it is now for parent instead of student.
+10. It will then check if the parent has no students attached before deleting the parent
+11. Afterwards, `step 8` happens for `parent delete`.
 
+**Activity diagram for Student Delete**
+![Sequence Diagram](images/StudentDeleteActivityDiagram.png)
+
+**Sequence diagram for Student Delete**
+![Sequence Diagram](images/StudentDeleteSequentialDiagram.png)
+
+**Activity diagram for Parent Delete**
+![Sequence Diagram](images/ParentDeleteActivityDiagram.png)
 
 **Sequence diagram for Parent Delete**
 ![Sequence Diagram](images/ParentDeleteSequentialDiagram.png)
 
-**Sequence diagram for Student Delete**
-![Sequence Diagram](images/StudentDeleteSequentialDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 ### Design considerations
 
-#### Aspect 1: How to delete students
+#### Aspect 1: Where to delete the students from
 
 * **Alternative 1 (current choice):** Delete student from their class's student list.
     * Pros: Provides flexibility in adding new features. e.g. deleting all students in a class
     * Cons: Harder to implement
 
-* **Alternative 2:** Delete student from a student list containing all students.
+* **Alternative 2:** Delete student from a student list containing all students in PowerConnect.
     * Pros: Uses less memory
     * Cons: Time performance will be worse when there are a lot of students
 
 #### Aspect 2: Whether parent can be deleted if there is a student attached
 
-Current implementation allows a parent can have any number of students attached.
+Current implementation allows a parent to have any number of students attached.
 
 * **Alternative 1 (current choice):** Parent cannot be deleted if there is a student attached to ensure that every student always have one parent.
     * Pros: Easier to implement, since we do not have to update multiple students when a parent is deleted
