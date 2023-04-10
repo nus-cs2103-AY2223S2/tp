@@ -27,8 +27,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jinbesan)]
 [[portfolio](team/jinbesan.md)]
 
-* Role: Developer
-* Responsibilities: Feature Implementation
+* Role: Developer, Technical Writer
+* Responsibilities: Feature Implementation and maintenance of documentation.
 
 ### Randall Ng Hong Rong
 
@@ -58,6 +58,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/gitsac)]
 [[portfolio](team/gitsac.md)]
 
-* Role: Deliverables
-* Responsibilities: Deliver deliverables
+* Role: Developer and Task-keeper`
+* Responsibilities: Logic and keep the team repository clean.
 

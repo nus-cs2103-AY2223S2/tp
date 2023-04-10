@@ -2,7 +2,6 @@
 layout: page
 title: FastTrack User Guide
 
-![FastTrack logo](images/fasttrack_logo.png)
 ---
 
 ---
