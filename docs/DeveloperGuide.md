@@ -781,7 +781,7 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Effort
+## **Appendix: Effort**
 
 ### Challenges
 
@@ -807,7 +807,7 @@ As such, we saw this as a valuable opportunity to conduct extensive testing of o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix: Planned Enhancement
+## **Appendix: Planned Enhancement**
 
 In order to counter known feature flaws from testing, the following are enhancements to be implemented in future.
 **1. Making the command box scrollable**
