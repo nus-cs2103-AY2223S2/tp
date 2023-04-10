@@ -17,7 +17,7 @@ Class StorageManager
 package "MedInfo Storage" #F4F6F6{
 Class "<<interface>>\nMedInfoStorage" as MedInfoStorage
 Class JsonMedInfoStorage
-Class JsonSerializableAMedInfo
+Class JsonSerializableMedInfo
 Class JsonAdaptedPerson
 }
 
@@ -35,7 +35,7 @@ Storage -right-|> MedInfoStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonMedInfoStorage .up.|> MedInfoStorage
-JsonMedInfoStorage ..> JsonSerializableAMedInfo
-JsonSerializableAMedInfo --> "*" JsonAdaptedPerson
+JsonMedInfoStorage ..> JsonSerializableMedInfo
+JsonSerializableMedInfo --> "*" JsonAdaptedPerson
 
 @enduml
