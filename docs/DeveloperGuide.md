@@ -324,8 +324,6 @@ Each of the four core components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class, as illustrated in the (partial) class diagram below.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Implementing the core component's API through an interface prevents outside component from being coupled to it.
 </div>
@@ -445,8 +443,6 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 <br>
 
 [Scroll back to top](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
