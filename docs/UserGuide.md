@@ -185,6 +185,8 @@ with a preferred stat distribution. Templates are pre-determined and cannot be c
 
 * Entities in Reroll are identified by classification and name. Entities with the same name but different classification are valid.
 
+* After creation, entities are modified via the edit mode.
+
 </div>
 
 ### Viewing help : `help`
@@ -213,17 +215,6 @@ Format: `list CLASSIFICATION`
 
 Examples:
 * `list char` shows a list of all characters
-
-### View an entity's details: `view`
-
-A detailed view of a single entity which shows all fields.
-
-Examples:
-* `view char John Cena` shows a detailed view of the character named John Cena.
-
-Format: `view CLASSIFICIATION NAME`
-
-Detailed view may be left by entering the command: `back` or `b` while in detailed view.
 
 ### Editing an entity : `edit`
 
@@ -370,7 +361,6 @@ Example: `make char John Cena` -> `m c John Cena`
 | **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`               |
 | **Show templates**            | `show`                                                              |
 | **Template**                  | `template TEMPLATE_NAME NAME` <br> e.g. `template orc John Cena`    |
-| **View**                      | `view CLASSIFICATION NAME` <br> e.g. `view char John Cena`          |
 | **List entities**             | `list CLASSIFICATION` <br> e.g., `list item`                        |
 | **Help**                      | `help`                                                              |
 | **Filter**                    | `filter TAG [MORE_TAG]` <br> e.g., `filter elite`                   |
