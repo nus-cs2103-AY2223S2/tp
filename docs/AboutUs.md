@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/mmaimer33.png" width="200px">
 
-[[github](http://github.com/mmaimer33]
+[[github](http://github.com/mmaimer33)]
 [[portfolio](team/mmaimer33.md)]
 
 * Role: Team Member
