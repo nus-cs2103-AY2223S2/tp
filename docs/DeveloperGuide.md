@@ -99,7 +99,6 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainContent`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from a generic abstract `UiPart` class (not shown above) which captures the commonalities between classes that represent parts of the visible GUI.
 
-![Breakdown of MainWindow](images/UiMainWindowLabelled.png)
 <img src="images/UiMainWindowLabelled.png" width="600" />
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
