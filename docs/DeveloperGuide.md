@@ -87,7 +87,7 @@ The sections below give more details of each component.
 
 <img src="images/DG-images/UiClassDiagram.png" width="350" />
 
-More detailed Class diagram for Ui component
+More detailed Class diagram for Ui component:
 
 <img src="images/DG-images/BetterUiClassDiagram.png" width="500" />
 
@@ -171,7 +171,7 @@ The `Model` component,
 * A `Student` has a `UniqueTaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
 * The `creationDate` will be hidden from the user and only be used for sorting the `UniqueTaskList`.
-* The `UniqueTaskList` is sorted according to `TaskStatus`, and if two tasks have the same `TaskStatus`, they will be compared using their creation date.
+* The `UniqueTaskList` is sorted according to `TaskStatus`, and if two tasks have the same `TaskStatus`, they will be compared using their `creationDate`.
 
 #### UniqueScoreList model
 **API** : [`UniqueScoreList.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/score/UniqueScoreList.java)
@@ -309,35 +309,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**3. Use case: Delete a task**
+**3. Use case: Add a task**
 
 **MSS**
 
-*{More to be added}*
+1.  Tutor requests to list students.
+2.  MATHUTORING shows a list of students.
+3.  Tutor requests to add a task with a task name to a specific student in the list.
+4.  MATHUTORING creates the task with given task name, task status and creation date.
+
+   Use case ends.
 
 **Extensions**
 
-*{More to be added}*
+* 2a. The list is empty.
 
-**4. Use case: Update a task**
+  Use case ends.
+
+* 3a. The given student index or task name is missing.
+
+    * 3a1. MATHUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given student index is invalid.
+
+    * 3b1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3c. The given command argument is invalid.
+
+    * 3c1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3d. The given task is a duplicate of a task already in the task list of the specific student.
+
+    * 3d1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+**4. Use case: Delete a task**
 
 **MSS**
 
-*{More to be added}*
+1.  Tutor requests to list students.
+2.  MATHUTORING shows a list of students.
+3.  Tutor requests to delete a specific task from a specific student in the list.
+4.  MATHUTORING deletes the task from the task list of the specific student.
+
+Use case ends.
 
 **Extensions**
 
-*{More to be added}*
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given student index or task index is missing.
+
+    * 3a1. MATHUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given student index is invalid.
+
+    * 3b1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3c. The given task index is invalid.
+
+    * 3c1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+**5. Use case: Mark a task as late**
 
 **MSS**
 
-*{More to be added}*
+1.  Tutor requests to list students.
+2.  MATHUTORING shows a list of students.
+3.  Tutor requests to mark a specific task from a specific student in the list as late.
+4.  MATHUTORING marks the task from the task list of the specific student as late.
+
+Use case ends.
 
 **Extensions**
 
-*{More to be added}*
+* 2a. The list is empty.
 
-**5. Use case: Add a score**
+  Use case ends.
+
+* 3a. The given student index or task index is missing.
+
+    * 3a1. MATHUTORING shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given student index is invalid.
+
+    * 3b1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+* 3c. The given task index is invalid.
+
+    * 3c1. MATHUTORING shows an error message.
+
+      Use case ends.
+
+**6. Use case: Add a score**
 
 **MSS**
 
@@ -363,11 +446,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. MATHUTORING detects that the score has already exited.
 
-    * 1c1. MATHUTORING informs the tutor that the score has already exited.
+    * 1c1. MATHUTORING informs the tutor that the score already exists.
 
       Use case ends.
 
-**6. Use case: Delete a score**
+**7. Use case: Delete a score**
 
 **MSS**
 
@@ -408,7 +491,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**7. Use case: Export a student's progress**
+**8. Use case: Export a student's progress**
 
 **MSS**
 
@@ -436,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 5.
 
-**8. Use case: Import application data via CLI**
+**9. Use case: Import application data via CLI**
 
 **MSS**
 
@@ -454,7 +537,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**9. Use case: Import application data via GUI**
+**10. Use case: Import application data via GUI**
 
 **MSS**
 
@@ -473,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 3.
 
-**10. Use case: Export application data via CLI**
+**11. Use case: Export application data via CLI**
 
 **MSS**
 
@@ -487,7 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**11. Use case: Export application data via GUI**
+**12. Use case: Export application data via GUI**
 
 **MSS**
 
@@ -507,7 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**12. Use case: Export student's progress via CLI**
+**13. Use case: Export student's progress via CLI**
 
 **MSS**
 
@@ -525,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**13. Use case: Export student's progress via GUI**
+**14. Use case: Export student's progress via GUI**
 
 **MSS**
 
@@ -566,7 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
    
-**14. Use case: Switch panel via CLI**
+**15. Use case: Switch panel via CLI**
 
 **MSS**
    
@@ -582,7 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
   Use case resumes at step 1.
    
-**15. Use case: Switch panel via GUI**
+**16. Use case: Switch panel via GUI**
 
 **MSS**
 
@@ -595,7 +678,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case ends.
    
-**16. Use case: Filter student list by student tag/s**
+**17. Use case: Filter student list by student tag/s**
 
 **MSS**
    
@@ -618,7 +701,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
   Tutor case resumes at step 1.
    
-**17. Use case: Check a student**
+**18. Use case: Check a student**
 
 **MSS**
    
@@ -805,7 +888,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `deletescore x 0`
       Expected: No score is deleted from the score list of the checked student. Error details shown in the status message.
 
-   4. Test case: Other incorrect delete commands to try:`deletescore`, `deletescore x`, `deletescore x y`, `...` (where y is larger than the checked student's score list size)<br>
+   4. Test case: Other incorrect delete commands to try: `deletescore`, `deletescore x`, `deletescore x y`, `...` (where y is larger than the checked student's score list size)<br>
       Expected: Similar to previous.
 
 2. Deleting a score which is not one of the recent five scores for a student in the student list when the student is being checked
@@ -823,7 +906,7 @@ testers are expected to do more *exploratory* testing.
 1. Checking a student for his/her task list and score list
    
    1. Test case: `check x 1`<br>
-   Expected: The first student in the student list will be checked. Student's task list and score list will then be displaied on the right side of the windows.
+   Expected: The first student in the student list will be checked. Student's task list and score list will then be displayed on the right side of the windows.
    
    2. Test case: `check x 0`<br>
    Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
@@ -831,7 +914,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `check x -10`<br>
    Expected: No student will be checked, the task list and score list will not be updated. Error details shown in the status message.
    
-   4. Test case: Other incorrect check commands to try:`check`, `check x`, `check x y`, `...` (where y is larger than the checked student's task list size)<br>
+   4. Test case: Other incorrect check commands to try: `check`, `check x`, `check x y`, `...` (where y is larger than the checked student's task list size)<br>
    Expected: Similar to previous.
    
 2. Check a student for his/her task list and score list after filter
@@ -854,7 +937,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `filter x primary secondary`<br>
    Expected: All students that has `primary` or `secondary` or both tag will be filtered out.
    
-   3. Test case: Other incorrect check commands to try:`filter`, `filter x`, `...`
+   3. Test case: Other incorrect check commands to try: `filter`, `filter x`, `...`
    Expected: The student list will not be filtered. Error details shown in the status message.
 
 ### Switching between score text panel and score chart panel
@@ -897,6 +980,31 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Click on the `File` Menu on the top left, followed by `Import`. Subsequently select the `data.json` from the file explorer **OR** drag and drop the file used to import in then after click the import button.
    Expected: New dataset should be reflected in the application under Student List. Tasklist and Scorelist panels should be resetted as well.
 
+### Exporting a student's progress
+
+1. Exporting a student's progress using CLI
+
+    1. Test case: `exportp x` (where x is the index of the student being checked) <br>
+       Expected: The student's progress will be exported into a PDF file in the default directory:
+       `<JAR file location>/data`.
+
+    2. Test case: `exportp x p/<CUSTOM_DIRECTORY>` (where x is the index of the student being checked) <br>
+       Expected: The student's progress will be exported into a PDF file in the `<CUSTOM_DIRECTORY>`.
+
+    3. Test case: Other incorrect check commands to try: `exportp`, `...` <br>
+       Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
+
+2. Exporting a student's progress through mouse click
+
+    1. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Click the "Save" button to save the file.<br>
+       Expected: The student's progress will be exported in the selected folder using the default file name `<STUDENT_NAME>'s Progress Report.pdf`.
+
+    2. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change the file name. Click the "Save" button to save the file.<br>
+       Expected: The student's progress will be exported in the selected folder using the specified file name.
+
+    3. Test case: Click on the "Export Student's Progress" button in the student card. An export progress window will pop up. Click the "Click to select folder" button to select a folder to export the PDF file. Change to an invalid file name. Click the "Save" button to save the file.<br>
+       Expected: The student's progress will not be exported. Error details shown in the status message of export progress window.
+
 ### Saving data
 The data will be automatically saved by MATHUTORING.
    
@@ -905,6 +1013,8 @@ The data will be automatically saved by MATHUTORING.
 ## **Appendix: Effort**
 
 ### Difficulty level
+
+This is the first time our team has worked on a Brownfield project where the AB3 codebase was the largest we have encountered in our careers. At the beginning, everyone was overwhelmed by the sudden increase in the number of classes compared to our previous projects, including our most recent project (referred to as "IP"). It took us quite a while to slowly digest the purpose of each class. Additionally, for most of us, this is one of the first projects where we have had to collaborate with team members using version control tools such as Github or SourceTree.
 
 ### Challenges faced
 
@@ -916,10 +1026,24 @@ we had to take some time to learn from how AB3 works, such as how the user input
 specific structures when designing the GUI.
 * We also had to spend time searching CSS format in order to tweak the GUI to meet our requirements.
 * Thinking how to design the structure of our application based on existing AB3 structure to make it follow Object-oriented programming.
+* Making use of a new library to export PDF files.
 
 ### Effort required
 
+As a result, the development of this application required a significant amount of effort due to the challenges mentioned above where we have to:
+
+* Debugging and looking up on both Java and JavaFX documentations.
+* Researching on the usage of the new library (PDFBox).
+* Reading on guides such as tweaking the GUI to fulfil our requirements and an overall better user experience (Drag-and-Drop/CSS).
+
 ### Achievements
+
+We were able to produce a complete application that fulfills our user requirements as well as overcame the challenges we have faced. With MATHUTORING, private Math tuition teachers can:
+
+* Manage student contact details and track their performance with task and score records.
+* View score charts and statistics to easily evaluate student progress.
+* Generate PDF reports containing a student's tasks and scores for easy sharing.
+* Export and import data to easily transfer to a new device.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1000,3 +1124,19 @@ part of the displayed score table.<br>
 
 * To solve this issue, at least two more commands can be created which are `addtag` and `deletetag`.
 * With these new commands, the user will no longer be required to input the existing tags when adding a new tag.
+
+#### 7. Inconsistency in score color in Score Chart and PDF file
+
+There is an inconsistency for score color between score chart and PDF:
+* Score chart:
+  * Green color is used to indicate score values that are greater than or equal to 80.
+  * Yellow color is used to indicate score values that are greater than or equal to 50.
+  * Red color is used to indicate score values that are smaller than 50.
+* PDF:
+  * Green color is used to indicate score values of 100.
+  * Yellow color is used to indicate score values that are smaller than 80.
+  * Red color is used to indicate score values that are smaller than 50.
+
+**Solution proposed:**
+
+* To solve this issue, the criteria for the score color in the PDF file can be changed to follow the criteria of score color in the score chart.
