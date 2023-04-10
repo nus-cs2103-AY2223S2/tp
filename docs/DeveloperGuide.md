@@ -803,6 +803,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Bookmark**: Tracker for a book that contains information about the book and a user's reading progress
+* **Library**: A collection of stored Bookmarks
+* **GUI**: Graphical User Interface. The visual display that the user interacts with for MyLib.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
