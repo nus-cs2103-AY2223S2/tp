@@ -24,12 +24,14 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Improved UI/UX by designing and implementing a form for user to type in details when using the `add` and `edit` command.
     * Implemented buttons for `add`, `edit`, `delete`, `archive` and `unarchive` command.
+    * Wrote additional tests for existing features to increase coverage from 49% to 69% (Pull requests [#326](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/326), [#330](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/330), [#331](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/331), [#333](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/333))
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `add` and `edit` command in [#211](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/211).
     * Developer Guide:
         * Added use cases for `add` command in [#143](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/143)
+        * Added use cases for `edit` command in [#298](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/298)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [262](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/262)
