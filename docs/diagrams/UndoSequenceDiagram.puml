@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ElisterParser" as ElisterParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -15,18 +15,18 @@ end box
 [-> LogicManager : execute(undo 5)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo 5)
-activate AddressBookParser
+LogicManager -> ElisterParser : parseCommand(undo 5)
+activate ElisterParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+ElisterParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> ElisterParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+ElisterParser --> LogicManager : u
+deactivate ElisterParser
 
 LogicManager -> UndoCommand : setHistory(hist)
 
@@ -48,13 +48,13 @@ deactivate PreviousModel
 StateHistory --> UndoCommand : prev
 deactivate StateHistory
 
-UndoCommand -> PreviousModel : getAddressBook()
+UndoCommand -> PreviousModel : getElister()
 activate PreviousModel
 
 PreviousModel --> UndoCommand : ab
 deactivate PreviousModel
 
-UndoCommand -> Model : setAddressBook(ab)
+UndoCommand -> Model : setElister(ab)
 activate Model
 
 Model --> UndoCommand

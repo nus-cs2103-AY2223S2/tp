@@ -55,6 +55,10 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
         }
 
         String[] nameKeywords = trimmedArgs.split("[\\n\\r\\s]+");
+        if (nameKeywords.length != 2) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShortcutCommand.MESSAGE_USAGE));
+        }
         String commandWord = nameKeywords[COMMAND_INDEX];
         String shortForm = nameKeywords[SHORT_FORM_INDEX];
 
@@ -101,7 +105,7 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
             commandToChange = CommandType.UNFREEZE;
         } else {
             throw new ParseException(
-                    String.format(ShortcutCommand.MESSAGE_INVALID_SHORTCUT, ShortcutCommand.MESSAGE_USAGE));
+                    String.format(ShortcutCommand.MESSAGE_INVALID_COMMAND, commandWord));
         }
 
         return new ShortcutCommand(commandToChange, shortForm);

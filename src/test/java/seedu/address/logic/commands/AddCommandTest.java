@@ -19,15 +19,15 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Elister;
 import seedu.address.model.Filter;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyElister;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 
@@ -107,12 +107,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getElisterFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setElisterFilePath(Path elisterFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -122,17 +122,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public String addPersonsFromAddressBook(ReadOnlyAddressBook person) {
+        public String addPersonsFromElister(ReadOnlyElister person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setElister(ReadOnlyElister newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyElister getElister() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -290,8 +290,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyElister getElister() {
+            return new Elister();
         }
 
     }

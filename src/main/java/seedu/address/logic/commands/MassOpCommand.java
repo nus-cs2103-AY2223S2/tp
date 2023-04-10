@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ElisterParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -54,7 +54,7 @@ public class MassOpCommand extends Command {
         // lastShownList gets updated every iteration
         for (int i = end; i >= 0; i--) {
             try {
-                Command subcommand = AddressBookParser.parseCommandWithIndex(subcommandInput, Index.fromZeroBased(i));
+                Command subcommand = ElisterParser.parseCommandWithIndex(subcommandInput, Index.fromZeroBased(i));
                 subcommand.execute(model);
                 successes++;
             } catch (ParseException pe) {
@@ -85,10 +85,10 @@ public class MassOpCommand extends Command {
         }
         try {
             Command thisSubcommand =
-                    AddressBookParser.parseCommandWithIndex(
+                    ElisterParser.parseCommandWithIndex(
                             subcommandInput, Index.fromZeroBased(0));
             Command otherSubcommand =
-                    AddressBookParser.parseCommandWithIndex((
+                    ElisterParser.parseCommandWithIndex((
                             (MassOpCommand) other).subcommandInput, Index.fromZeroBased(0));
             return thisSubcommand.equals(otherSubcommand);
         } catch (ParseException ex) {

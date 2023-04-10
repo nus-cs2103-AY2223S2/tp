@@ -6,23 +6,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.Elister;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the E-Lister.
  */
 public class ClearCommand extends Command {
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("clear", "c"));
     //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "E-Lister has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setElister(new Elister());
         return new CommandResult(MESSAGE_SUCCESS, true, true);
     }
 }

@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import seedu.address.model.Model;
-import seedu.address.storage.CsvAddressBookStorage;
+import seedu.address.storage.CsvElisterStorage;
 
 /**
  * Exports to a csv file at a location specified by the user.
@@ -59,11 +59,11 @@ public class ExportCommand extends Command {
         String errorMsg = String.format(ERROR_WHILE_EXPORTING, fileToSave);
 
         try {
-            CsvAddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
+            CsvElisterStorage elisterStorage = new CsvElisterStorage(fileToSave.toPath());
             if (isAllEnabled) {
-                addressBookStorage.saveAddressBook(model.getAddressBook());
+                elisterStorage.saveElister(model.getElister());
             } else {
-                addressBookStorage.saveAddressBook(model.getFilteredPersonList());
+                elisterStorage.saveElister(model.getFilteredPersonList());
             }
             showAlert(successMsg, Alert.AlertType.INFORMATION);
         } catch (IOException e) {

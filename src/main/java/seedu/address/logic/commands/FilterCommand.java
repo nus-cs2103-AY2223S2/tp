@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
 
 /**
- * Finds and lists all persons in the address book whose field entries each match at least one of the provided regexes.
+ * Finds and lists all persons in the E-Lister whose field entries each match at least one of the provided regexes.
  */
 public class FilterCommand extends Command {
     //CHECKSTYLE.OFF: VisibilityModifier

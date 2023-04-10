@@ -7,32 +7,32 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyElister;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.history.InputHistory;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Elister data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private ElisterStorage elisterStorage;
     private UserPrefsStorage userPrefsStorage;
     private InputHistoryStorage inputHistoryStorage;
 
     /**
      * Creates a {@code StorageManager} with the given
-     * {@code AddressBookStorage}, {@code UserPrefStorage} and {@code HistoryStorage}.
+     * {@code ElisterStorage}, {@code UserPrefStorage} and {@code HistoryStorage}.
      *
-     * @param addressBookStorage An object represents storage of address book.
+     * @param elisterStorage An object represents storage of E-Lister.
      * @param userPrefsStorage An object represents storage of user preferences.
      * @param inputHistoryStorage An object represents storage of executed commands.
      */
-    public StorageManager(AddressBookStorage addressBookStorage,
+    public StorageManager(ElisterStorage elisterStorage,
             UserPrefsStorage userPrefsStorage, InputHistoryStorage inputHistoryStorage) {
-        this.addressBookStorage = addressBookStorage;
+        this.elisterStorage = elisterStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.inputHistoryStorage = inputHistoryStorage;
     }
@@ -42,11 +42,11 @@ public class StorageManager implements Storage {
      * This constructors will initialize the {@code StorageManager} historyStorage
      * with a {@code TxtHistoryStorage} with default history file Path.
      *
-     * @param addressBookStorage An object represents storage of address book.
+     * @param elisterStorage An object represents storage of E-Lister.
      * @param userPrefsStorage An object represents storage of user preferences.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(ElisterStorage elisterStorage, UserPrefsStorage userPrefsStorage) {
+        this.elisterStorage = elisterStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.inputHistoryStorage = new TxtInputHistoryStorage();
     }
@@ -69,33 +69,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Elister methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getElisterFilePath() {
+        return elisterStorage.getElisterFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyElister> readElister() throws DataConversionException, IOException {
+        return readElister(elisterStorage.getElisterFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyElister> readElister(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return elisterStorage.readElister(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveElister(ReadOnlyElister elister) throws IOException {
+        saveElister(elister, elisterStorage.getElisterFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveElister(ReadOnlyElister elister, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        elisterStorage.saveElister(elister, filePath);
     }
 
 

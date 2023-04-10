@@ -3,8 +3,8 @@
 !include style.puml
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":<<class>> AddressBookParser" as classAddressBookParser LOGIC_COLOR
+participant ":ElisterParser" as ElisterParser LOGIC_COLOR
+participant ":<<class>> ElisterParser" as classAddressBookParser LOGIC_COLOR
 participant ":MassOPCommandParser" as MassOpCommandParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
 participant ":MassOpCommand" as MassOpCommand LOGIC_COLOR
@@ -22,27 +22,27 @@ participant ":<<class>> Index" as Index STORAGE_COLOR
 [-> LogicManager : execute("mass tag gay")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("mass tag gay")
-activate AddressBookParser
+LogicManager -> ElisterParser : parseCommand("mass tag gay")
+activate ElisterParser
 
 create MassOpCommandParser
-AddressBookParser -> MassOpCommandParser :
+ElisterParser -> MassOpCommandParser :
 activate MassOpCommandParser
 
-MassOpCommandParser --> AddressBookParser
+MassOpCommandParser --> ElisterParser
 deactivate
 
-AddressBookParser --> MassOpCommandParser: parse(tag gay)
+ElisterParser --> MassOpCommandParser: parse("tag gay")
 activate MassOpCommandParser
 
 create Index
-MassOpCommandParser --> Index : fromZeroBased(0)
+MassOpCommandParser -> Index : fromZeroBased(0)
 activate Index
 
 Index --> MassOpCommandParser :
 deactivate Index
 
-MassOpCommandParser --> classAddressBookParser : parseCommandWithIndex(args, Index.fromZeroBased(0))
+MassOpCommandParser -> classAddressBookParser : parseCommandWithIndex(args, Index.fromZeroBased(0))
 activate classAddressBookParser
 
 create TagCommandParser
@@ -60,14 +60,14 @@ activate MassOpCommand
 MassOpCommand --> MassOpCommandParser : command
 deactivate MassOpCommand
 
-MassOpCommandParser --> AddressBookParser : command
+MassOpCommandParser --> ElisterParser : command
 deactivate MassOpCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-MassOpCommandParser -[hidden]-> AddressBookParser
+MassOpCommandParser -[hidden]-> ElisterParser
 destroy MassOpCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+ElisterParser --> LogicManager : command
+deactivate ElisterParser
 
 LogicManager -> MassOpCommand : execute()
 activate MassOpCommand
@@ -78,39 +78,40 @@ activate Model
 Model --> MassOpCommand : lastShownList
 deactivate
 loop for i in lastShownList.size()
-    create Index
-    MassOpCommand --> Index : fromZeroBased(i)
-    activate Index
+create Index
+MassOpCommand -> Index : fromZeroBased(i)
+activate Index
 
-    Index --> MassOpCommand
-    deactivate Index
+Index --> MassOpCommand
+deactivate Index
 
-    MassOpCommand --> classAddressBookParser : parseCommandWithIndex(args, Index.fromZeroBased(0))
-    activate classAddressBookParser
+MassOpCommand -> classAddressBookParser : parseCommandWithIndex(args, Index.fromZeroBased(0))
+activate classAddressBookParser
 
-    create TagCommandParser
-    classAddressBookParser -> TagCommandParser
-    activate TagCommandParser
+create TagCommandParser
+classAddressBookParser -> TagCommandParser
+activate TagCommandParser
 
-    create TagCommand
-    TagCommandParser --> TagCommand
-    activate TagCommand
+create TagCommand
+TagCommandParser --> TagCommand
+activate TagCommand
 
-    TagCommand --> TagCommandParser
-    deactivate TagCommand
+TagCommand --> TagCommandParser
+deactivate TagCommand
 
-    TagCommandParser --> classAddressBookParser
-    deactivate TagCommandParser
+TagCommandParser --> classAddressBookParser
+deactivate TagCommandParser
 
-    classAddressBookParser --> MassOpCommand
-    deactivate classAddressBookParser
+classAddressBookParser --> MassOpCommand
+deactivate classAddressBookParser
 
-    MassOpCommand --> TagCommand : execute(model)
-    activate TagCommand
-    TagCommand --> Model : addTag()
-    activate Model
-    deactivate Model
-    deactivate TagCommand
+MassOpCommand -> TagCommand : execute(model)
+activate TagCommand
+TagCommand -> Model : addTag()
+activate Model
+deactivate Model
+deactivate TagCommand
+
 end
 
 create CommandResult
