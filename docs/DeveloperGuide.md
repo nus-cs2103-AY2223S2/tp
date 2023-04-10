@@ -690,23 +690,23 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. [Download the jar file](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases) and copy into an empty folder.
+   1. [Download the jar file](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases) and copy it into an empty folder.
 
-   1. Double-click the jar file.<br>
+   1. Launch the app using the CLI command `java -jar arb.jar`.<br>
       Expected: Shows the GUI with a set of sample clients and projects. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app using the CLI command `java -jar arb.jar`.<br>
        Expected: The most recent window size and location is retained.
 
 1. Saving data
 
    1. Delete a client from the client list. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app using the CLI command `java -jar arb.jar`.<br>
       Expected: The client should remain deleted.
 
 ### Listing all clients
@@ -778,7 +778,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Specifying only compulsory details
 
-   1. Enter the command: `add-project name/Sky Painting`<br>
+   1. Enter the command: `add-project name/Porcelain Vase`<br>
       Expected: Same as previous.
 
 1. Adding a duplicate project
@@ -790,7 +790,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Linking added project to client
 
-   1. Prerequisites: Add a client by the name `Alice Leong` to the client list. Enter the command: `add-project name/Self Portrait client/alice`<br>
+   1. Prerequisites: Add a client by the name `Alice Leong` to the client list. Enter the command: `add-project name/Clay Cup client/alice`<br>
       Expected: Details of added project shown in status message. Filtered client list shown.
 
    1. Test case: `1`<br>
@@ -808,7 +808,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all clients using the `list-client` command. There should be multiple clients in the list.
 
-   1. Test case: `edit-client 1 name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+   1. Test case: `edit-client 1 name/Jane Doe phone/87654321 email/jane@example.com tag/friends`<br>
       Expected: First client's details are edited. Details of edited client shown in status message.
 
    1. Test case: `edit-client 0 name/John Doe`<br>
@@ -821,7 +821,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Filter the client list using the `find-client` command such that only some clients are visible.
 
-   1. Test case: `edit-client 1 name/John Doe phone/12345678 email/john@example.com tag/friends`<br>
+   1. Test case: `edit-client 1 name/Hans phone/12345678 email/hans@example.com tag/friends`<br>
       Expected: First client's details are edited. Details of edited client shown in status message.
 
    1. Test case: `edit-client 0 name/John Doe`<br>
@@ -846,7 +846,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all projects using the `list-project` command. There should be multiple projects in the list.
 
-   1. Test case: `edit-project 1 name/Sky Painting deadline/next week price/50 tag/friends`<br>
+   1. Test case: `edit-project 1 name/Watercolour Drawing deadline/next week price/50 tag/friends`<br>
       Expected: First project's details are edited. Details of edited project shown in status message.
 
    1. Test case: `edit-project 0 name/Sky Painting`<br>
@@ -859,7 +859,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Filter the project list using the `find-project` command such that only some projects are visible.
 
-   1. Test case: `edit-project 1 name/Sky Painting deadline/next week price/50 tag/friends`<br>
+   1. Test case: `edit-project 1 name/Digital Art deadline/next week price/50 tag/friends`<br>
       Expected: First project's details are edited. Details of edited project shown in status message.
 
    1. Test case: `edit-project 0 name/Sky Painting`<br>
@@ -975,7 +975,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Add a client by the name of `Alice Lim` to the client list.
 
    1. Test case: `find-client name/Alice`<br>
-      Expected: Client list with one client is shown. Status message states that one client was found.
+      Expected: Client list with at least one client is shown. Status message states how many clients were found.
 
    1. Test case: `find-client`<br>
       Expected: Error message is shown.
@@ -984,10 +984,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding projects
 
-   1. Prerequisites: Add a project by the name of `Self Portrait` to the project list.
+   1. Prerequisites: Add a project by the name of `Crayon Drawing` to the project list.
 
-   1. Test case: `find-project name/self`<br>
-      Expected: Project list with one project is shown. Status message states that one project was found.
+   1. Test case: `find-project name/crayon`<br>
+      Expected: Project list with at least one project is shown. Status message states how many projects were found.
 
    1. Test case: `find-project`<br>
       Expected: Error message is shown.
@@ -1029,7 +1029,7 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. Test case: delete the data file<br>
-      Delete the JSON file in the `data` folder that is found in the same folder the jar file before launching the app.<br>
+      Delete the JSON file in the `data` folder that is found in the same folder as the jar file. Launch the app.<br>
       Expected: Status message should state that a data file could not be found. The app should be filled with sample data.
 
    1. Test case: corrupt the data file<br>
@@ -1049,7 +1049,7 @@ testers are expected to do more *exploratory* testing.
 ## **Appendix: Effort**
 
 ### Difficulty Level
-* The project was somewhat challenging. The initial code base was quite large and complicated. It took us some time to fully understand it and how each component interacted, especially considering there were frameworks used that our team did not have any experience with, such as JavaFX.
+* The project was moderately challenging. The initial code base was quite large and complicated. It took us some time to fully understand it and how each component interacted, especially considering there were frameworks used that our team did not have any experience with, such as JavaFX.
 * It took longer to get started on implementing some of our features because we had to decide on the internal structure and how we wanted to proceed considering there was no one best way to do things. For example, the issue of linking projects to clients was complicated and required us to take time to consider a solution that did not introduce too much complexity but still delivered all the functionality we wanted.
 
 ### Challenges Faced
