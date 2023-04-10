@@ -369,6 +369,10 @@ Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/jav
 
 `CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
+The activity diagram below provides a visual representation of the flow of actions when the `UP` and `DOWN` keys are pressed.
+
+![Activity Diagram for Command Traversal](images/CommandTraversalActivityDiagram.png)
+
 ### DateTime parsing
 
 Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`.
