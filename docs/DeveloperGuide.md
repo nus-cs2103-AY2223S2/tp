@@ -386,7 +386,7 @@ Step 2. The user executes `addExercise 2 ex/push ups...` command to add the exer
 The `addExercise` command calls `AddExerciseCommandParser`, causing the command to be parsed and checked for any errors before executing the command
 which thereafter calls `AddExerciseCommand#execute()` which calls `FitBookModel#addExercise()` to add the exercise to the routine in `FitBookExerciseRoutine`.
 
-<img src="images/AddExerciseState1.png" height = "300">
+<img src="images/AddExerciseState1.png" height = "200">
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `AddExerciseCommand:execute()` so the updated Routine will not be saved in the FitBookExerciseRoutine .
 </div>
 
