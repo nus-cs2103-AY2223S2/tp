@@ -56,7 +56,14 @@ Given below are my contributions to the project.
     * **What it does**: ensures that the refactoring is done correctly.
     * **Justification**: to ensure that the refactoring is done correctly.
 
+There are also many miscellaneous things that I did, but compared to the
+ones list above, they are relatively minor. Hence, I will not list them there.
+
 * **Project Management**:
     * Joined in discussions about where the project is going.
     * Reviewed several pull requests and gave feedback to my teammates.
 
+* **Documentation**:
+    * Updated the User Guide to discuss the underlying logic for the
+      new parser that I wrote.
+    * Miscellaneous documentation updates.
