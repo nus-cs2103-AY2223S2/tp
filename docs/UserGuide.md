@@ -111,6 +111,10 @@ The following table provides clarification of the terms commonly used in TutorPr
 ## GUI
 When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**. 
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The current version of the window is not resizable. Resizability will be added in future versions!
+</div>
+
 ![Starting Display Window](images/GUI.jpg)
 
 * The **Command Box** on the left bottom refers to the text field where you can type in all your commands.
@@ -128,9 +132,11 @@ You may also click the quick access buttons one each student card to see how the
 Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section. 
 Each Student card has four buttons, which are profile, homework, lessons, and exams. When a user clicks on any of the buttons, the corresponding information will be presented in the Detailed Information Section.
 
-:information_source: **Why is the date and time displayed in two different formats?**
+<div markdown="span" class="alert alert-info">
+:information_source: **Why is the date and time displayed in two different formats?**<br>
 The date and time format in the Detailed Information Section is different from the one used in the `view` commands.
 This is purposely done to make the information more distinct and make sure you never get confused.
+</div>
 
 #### Profile Page
 Upon clicking the Profile Button, the Detailed Information section will be refreshed and show the detailed particulars of the student, including the student's full name, phone number, address, and email.
@@ -227,8 +233,11 @@ It has a name, a start time, an end time, and a status, an optional weightage, a
 
 
 ### Profile Commands
+
+<div markdown="span" class="alert alert-info">
 :information_source: **Why TutorPro uses search by index for all the Profile Commands instead of the unique search by name mechanism?**<br>
 For profile commands, especially `delete` and `update-info` command, that may potentially change the name of the student, TutorPro uses search by index instead of search by name to avoid any confusion that may be caused by the name change. 
+</div>
 
 #### Create a new Student Profile
 
