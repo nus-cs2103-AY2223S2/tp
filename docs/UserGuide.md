@@ -123,8 +123,8 @@ applied for leave. Each leave date would contain the number of employees who app
 
 ### 3.2.1. Employee
 
-Employees can be added to SudoHR to better
-track their data, such as their leaves and the departments that they belong to. 
+Employees can be added to SudoHR to better track their data, such as their leaves and the departments that they 
+belong to,  as well as easy retrieval of information.
 
 An employee possesses the following attributes:
 1. Employee ID
