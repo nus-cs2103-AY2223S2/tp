@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
@@ -16,7 +14,7 @@ import java.util.Date;
 public class Discharge {
 
     public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid future date-time" +
-            " of the form dd/MM/yyyy HHmm";
+            " of the format dd/MM/yyyy HHmm";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
 
     public final String value;
@@ -60,10 +58,8 @@ public class Discharge {
      */
     public Date getDateTime() {
         try {
-            // DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             DateFormat df = new SimpleDateFormat(DATE_FORMAT);
             df.setLenient(false);
-            // return LocalDateTime.parse(value, format);
             return df.parse(value);
         } catch (ParseException e) {
             return new Date();
@@ -77,9 +73,9 @@ public class Discharge {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Discharge // instanceof handles nulls
-                && value.equals(((Discharge) other).value)); // state check
+        return other == this
+                || (other instanceof Discharge
+                && value.equals(((Discharge) other).value));
     }
 
     @Override
