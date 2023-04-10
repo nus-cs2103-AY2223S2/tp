@@ -13,6 +13,7 @@ import trackr.model.menu.MenuItem;
 /**
  * A utility class containing a list of {@code MenuItem} objects to be used in tests.
  */
+//@@author changgittyhub
 public class TypicalMenuItems {
 
     public static final MenuItem CHOCOLATE_COOKIE_M = new MenuItemBuilder()

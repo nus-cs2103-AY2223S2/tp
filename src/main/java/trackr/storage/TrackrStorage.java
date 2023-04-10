@@ -65,6 +65,7 @@ public interface TrackrStorage {
     /**
      * @see #getTrackrFilePath()
      */
+    //@@author changgittyhub-reused
     Optional<ReadOnlyMenu> readMenu(Path filePath) throws DataConversionException, IOException;
 
     /**
@@ -73,6 +74,7 @@ public interface TrackrStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
+    //@@author changgittyhub-reused
     Optional<ReadOnlyMenu> readMenu() throws DataConversionException, IOException;
 
     /**

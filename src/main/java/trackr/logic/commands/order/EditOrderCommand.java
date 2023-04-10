@@ -26,6 +26,7 @@ import trackr.model.person.PersonPhone;
 /**
  * Edits the details of an existing order in the order list.
  */
+//@@author changgittyhub-reused
 public class EditOrderCommand extends EditItemCommand<Order> {
     public static final String COMMAND_WORD = "edit_order";
     public static final String COMMAND_WORD_SHORTCUT = "edit_o";
@@ -56,10 +57,12 @@ public class EditOrderCommand extends EditItemCommand<Order> {
      * @param index The index of the order to be edited.
      * @param editOrderDescriptor The details to edit the order with.
      */
+    //@@author changgittyhub-reused
     public EditOrderCommand(Index index, OrderDescriptor editOrderDescriptor) {
         super(index, new OrderDescriptor(editOrderDescriptor), ModelEnum.ORDER);
     }
 
+    //@@author changgittyhub-reused
     @Override
     protected Order createEditedItem(Order itemToEdit, ItemDescriptor<? super Order> itemDescriptor) {
         assert itemToEdit != null;

@@ -12,6 +12,7 @@ import trackr.model.menu.MenuItem;
 /**
  * Jackson-friendly version of {@link MenuItem}.
  */
+//@@author changgittyhub-reused
 class JsonAdaptedMenuItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Menu Item's %s field is missing!";
