@@ -272,17 +272,25 @@ When finding meetings, the control flow is as follows:
 1. The user queries the `UI` to find using a [`find`](#command-summary) prefix.
 2. `UI` calls the `QuickContactsParser` through `LogicManager` to initiate a `FindCommandParser` object.
 3. `FindCommandParser` takes in a list of names and creates a `FindCommand` object.
-4. `FindCommand` is executed, and a `MeetingContainsNamesPredicate` is passed to the `updateFilteredMeetingList` method in the `Model` component.
-5. `LogicManager` creates a `ContainsNamesPredicate`, passing it to the `updateFilteredMeetingList()` method in the `Model` component.
+4. `FindCommand` is executed, and a `NameContainsKeywordsPredicate` is passed to the `updateFilteredPersonList` method in the `Model` component.
+5. `LogicManager` creates a `NameContainsKeywordsPredicate`, passing it to the `updateFilteredPersonList()` method in the `Model` component.
 6. `UI` displays the filtered meetings to the user.
 
 Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `find` Command](images/FindSequenceDiagram.png)
 
 #### Exceptions
-The `FindMeetingCommand` throws a `CommandException` if no names are provided and there is trailing whitespace.
-The names no need to match exactly (**case-INsensitive**) but the Meetings are only filtered by one of the contact's names,
-as *space* is used as a delimiter. The command can be used **without arguments** to get back the original view of all meetings.
+The `FindCommand` throws a `CommandException` if no names are provided.
+The names no need to match exactly (**case-INsensitive**) but the contacts are only filtered by one of the contact's names,
+as *space* is used as a delimiter.
+
+#### Difference in Meetings
+##### Implementation
+For meetings, the usage and implementation is similar, but the `FindMeetingCommand` will search for matching names in the
+meetings list similar to `FindMeeting` and returns meetings that satisfy the search criteria
+(i.e. if the meeting has at least one contact that matches the input name).
+However, `findm` can be used without arguments to list all meetings. Thus, unlike `find`, `findm` will not throw `exceptions` if not given 
+any arguments.
 
 ### Exporting and importing of contacts
 #### Description
@@ -331,14 +339,14 @@ Control flow is as follows.
 Below is the Sequence Diagram:
 ![Interactions Inside the Logic Component for the `export` Command](images/ExportSequenceDiagram.png)
 
-### Difference in Meetings
-#### Implementation
-meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a
+#### Difference in Meetings
+##### Implementation
+Meetings  has additional functionality of returning meetings between two dates. This is implemented through the use of a
 `isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the
 corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then
 only the other date is considered.
 
-#### Exceptions
+##### Exceptions
 Using the exported JSON, one can then import it using `import THE_JSON`.
 
 Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing
