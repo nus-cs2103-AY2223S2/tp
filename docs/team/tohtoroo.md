@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   the case list beyond just the name and postal code.
   * Highlights: This enhancement affects existing commands. It required an in-depth analysis of design alternatives
   especially on how to check for each prefix as they are optional. The implementation required some workaround with the
-  postal code especially as we needed to keep the original functionality of find, which allowed for substrings of the
+  postal code as we needed to keep the original functionality of find, which allowed for substrings of the
   original postal, but our check for validity for all postal codes allowed only valid 6 digits postal codes.
 
 * **New Feature**: Added the ability to find by date and age ranges to find people in the dengue case list.
@@ -40,7 +40,7 @@ Given below are my contributions to the project.
   * Facilitated task assignment to be completed before milestone deadlines.
 
 * **Enhancements implemented:**
-    * Added lower case allowance for `variant` names in `edit`, `add` and `find`.
+    * Added lower case allowance for `Variant` names in `edit`, `add` and `find`.
     ([#108](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/108))
     * Abstracted predicates to check for whether each prefix applies to a Person, creating a `FindPredicate` from
      further abstracted `PersonContainsAgePredicate`, `PersonContainsDatePredicate`, `PersonContainsNamePredicate`,
@@ -69,6 +69,7 @@ Given below are my contributions to the project.
     * Added UML sequence diagram for`find`-by-prefix command and activity diagram for `find`-by-range command.
       ([#104](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/104)), ([#280](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/280))
     * Added use cases for `find`.
+      ([#290](https://github.com/AY2223S2-CS2103-W17-2/tp/pull/290))
 
 * **Community:**
   * PRs reviewed (with non-trivial review comments):
