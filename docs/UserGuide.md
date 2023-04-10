@@ -378,7 +378,7 @@ If the project is added successfully, a message confirming the addition will be 
     - **Default:** *'No description given'*
 - `-ad accepted_date`
     - The date that the project was accepted, in the format dd/MM/yyyy.
-    - **Default**: the current date
+    - **Default**: *the current date*
 - `-dd deadline_date`
     - The deadline of the project, in the format dd/MM/yyyy.
     - **Default:** *'No Deadline'*
@@ -492,7 +492,7 @@ argument, if specified, will be used to partially update the project.
     * **Default:** *Existing source or 'Unknown'*
 * `-d description`
     * A new description for the project.
-    * **Default:** *'Existing description or 'No description given'*
+    * **Default:** *Existing description* or *'No description given'*
 * `-ad accepted_date`
     * A new accepted-on date for the project.
     * **Default:** *Existing accepted-on date*
