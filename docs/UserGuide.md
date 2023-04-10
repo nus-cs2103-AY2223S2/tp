@@ -313,7 +313,7 @@ manage patient information and medicine inventory. That is why we have designed 
 
 ## 3.1 Patient Information Management
 
-If you are a busy clinic receptionist who finds it challenging to manage patient information, CareFlow is the
+If you are a busy clinic receptionist who find it challenging to manage patient information, CareFlow is the
 solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
