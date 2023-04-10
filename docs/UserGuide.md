@@ -66,7 +66,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * Parameters can be in any order.<br>
   E.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. (With the exception to the `evt/EVENT_INDEX` parameter)<br>
   E.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command.<br>
@@ -341,7 +341,7 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX]…​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
 **Add Event** | `addevent ev/EVENT_NAME from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
@@ -353,7 +353,7 @@ Action | Format, Examples
 **List All Contacts and Events** | `listall`
 **List Contact** | `list`
 **List Event** | `listevent`
-**List Contact From Event** | `listevcontact`
+**List Contact From Event** | `listevcontact EVENT_INDEX`
 **Help** | `help`
 **Sort Event** | `sortevent SORT_KEY` <br> e.g., `sortevent c`
 
