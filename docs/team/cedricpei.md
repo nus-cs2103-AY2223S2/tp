@@ -61,12 +61,15 @@ Given below are my contributions to the project.
         * Added documentation for the feature `view`: [\#131](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/131)
         * Added screenshots and captions for all features: [\#131](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/131)
         * Corrected grammar mistakes and polished sentences: [\#64](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/64)
+        * Adjusted formats for the PDF version: [\#242](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/242)
 
     * Developer Guide:
         * Added implementation details of the `dark` and `light` feature: [\#64](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/64)
+        * Added implementation details of the `view` feature: [\#227](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/227)
         * Integrated and added all user stories.
+        * Added "Return to Table of Contents" links: [\#240](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/240)
 
 
 * **Community**:
-    * PRs reviewed (with non-trivial comments):[\#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [\#58](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/58)
+    * PRs reviewed (with non-trivial comments):[\#42](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/42), [\#58](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/58), [\#238](https://github.com/AY2223S2-CS2103T-T11-4/tp/pull/238)
     * Reported a total of [12](https://github.com/CedricPei/ped) bugs and issues for PE-D.
