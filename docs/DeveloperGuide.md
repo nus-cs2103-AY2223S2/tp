@@ -32,9 +32,8 @@ title: Developer Guide
   - [Storage](#storage-implementation)
     - [Saving Data](#saving-data)
     - [Retrieving Data](#retrieving-data)
-- [Viable Enhancement](#viable-enhancement)
+- [Potential Enhancement](#potential-enhancement)
   - [Undo and Redo Feature](#proposed-undo-and-redo-feature)
-  - [Data Archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
@@ -58,9 +57,9 @@ title: Developer Guide
 ## **Introduction**
 
 ### Intended Audience
-The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
+As future contributors to CoDoc, we hope this Developer Guide is sufficient in documenting and illustrating the underlying architecture of CoDoc. This guide provides
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
-in the deciding the implementation of various features offered by CoDoc.
+in deciding the implementation of various features offered by CoDoc.
 
 You are recommended to read the [Navigating the Developer Guide](#navigating-the-developer-guide) and [Glossary](#glossary)
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
@@ -84,6 +83,7 @@ meaningful connections and engaging in productive work.
 The Developer Guide is divided into the following sections :
 - [Design Architecture](#design-architecture)
 - [Implementation](#implementation)
+- [Potential Enhancement](#potential-enhancement)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
@@ -100,12 +100,18 @@ The [Implementation](#implementation) section outlines how the features offered 
 implemented. In this section, you will be provided with:
 
 1. A description of the feature.
-2. Some example commands to execute to use the feature.
+2. Some example commands to execute to use the feature where applicable.
 3. A Class Diagram or screenshot to illustrate and explain the implementation of each feature where applicable.
 4. A Sequence Diagram to give an example of the implementation flow of the feature where applicable.
 5. An Activity Diagram to show all possible behaviours of the feature where applicable.
 6. An Object Diagram to model relationships between objects of the same components where applicable.
-7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature.
+7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature where applicable.
+
+The [Potential Enhancement](#potential-enhancement) section shows some features that could be useful for CoDoc's functionality as a contact management app. In this section, you will be provided with:
+
+1. A description of the proposed implementation
+2. Relevant UML diagrams
+3. Details about the design considerations
 
 The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
 provides the links to the aforementioned documents. In this section, you will be provided with the links to:
@@ -118,7 +124,8 @@ provides the links to the aforementioned documents. In this section, you will be
 
 The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating CoDoc
 and how we intend for users to use CoDoc.
-In this section, you will be provided with
+In this section, you will be provided with:
+
 1. Product Scope.
 2. User Stories.
 3. Use Cases.
@@ -126,6 +133,7 @@ In this section, you will be provided with
 
 The [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
 on how you can perform testing on the features in CoDoc. In this section, you will be provided with:
+
 1. An overview of the command to execute to test the feature.
 2. Sample test cases to be executed.
 3. The expected behaviour of the test command.
@@ -247,6 +255,12 @@ It    It is a better alternative than creating user interfaces using procedural 
       Describes an interaction between the user and the system for a specific functionality of the system.
     </td>
   </tr>
+  <tr>
+    <td><div markdown="span" class="alert alert-info"><strong>:information_source: Note</strong></div></td>
+    <td>
+      To inform you of relevant information that might be useful to take note of as a developer.
+    </td>
+  </tr>
 </table>
 
 [Scroll back to top](#table-of-contents)
@@ -264,9 +278,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design Architecture**
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:information_source: **Note:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -313,7 +327,7 @@ The sections below give more details of each component.
 
 ### Commons Component
 
-A collection of classes used by multiple other components located in the `codoc.commons` package.
+A collection of classes used by multiple other components located in the [`codoc.commons`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/codoc/commons) package.
 
 [Scroll back to top](#table-of-contents)
 
@@ -325,7 +339,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts such as `InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `CourseListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 **The `UI` component:**
 
@@ -521,7 +535,7 @@ information.
 
 ### **Info Panel**
 
-Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
+Info Panel is controlled by classes under [`codoc.ui.infopanel`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/codoc/ui/infopanel) package. It is initialized by the primary component `InfoTab`
 which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
 
 Info Panel consists of the following components:
@@ -568,7 +582,7 @@ creates a new `InfoTab` at the end of every execution by referring to the `prota
 
 #### **DetailedInfo**
 
-Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
+This is the parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
 `DetailedSkill`.
 
 <br>
@@ -600,9 +614,6 @@ by a person that is created as a ListView, similar to the [PersonListPanel](#per
 Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
 by a person that is created as a ListView.
 
-The implementation are very similar to its counterpart, hence refer to the [DetailedModule](#detailedmodule) for more
-information.
-
 <br>
 
 ### **Theme**
@@ -625,12 +636,10 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 3. **Segeo UI**: for system-related texts (such as [CommandBox](#commandbox), [ResultDisplay](#resultdisplay) or
 [StatusBarFooter](#statusbarfooter)).
 
-<br>
-
-{More to be added}
-
-
 [Scroll back to UI Implementation](#ui-implementation)
+
+<div style="page-break-after: always;"></div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -638,8 +647,6 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 
 This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
 for more information about this package.
-
-<br>
 
 #### **Add Command**
 
@@ -667,8 +674,9 @@ person.
 <div style="page-break-after: always;"></div>
 
 Given below is an activity diagram to illustrate the behaviour of adding Person within `Logic`.
-
 ![Add Activity Diagram](images/AddActivityDiagram.png)
+<img src="images/createAttributes.png" width="170">
+
 
 ##### Design Considerations
 
@@ -710,7 +718,7 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
 person.
 
-![Edit Command Sequence Diagram](images/NewEditSequenceDiagram.png)
+![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -824,6 +832,9 @@ Given below is the activity diagram to illustrate what happens when the user cal
 
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
+<img src="images/createCombinedPredicate.png" width="300">
+
+
 ##### Design Considerations
 
 We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
@@ -868,8 +879,6 @@ We also chose to make our find command case-insensitive to increase the speed of
 [Scroll back to top](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
-
-[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ### **Model Implementation**
@@ -983,7 +992,7 @@ for more information about this package.
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Viable Enhancement**
+### **Potential Enhancement**
 
 #### \[Proposed\] Undo and Redo Feature
 
@@ -1066,13 +1075,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-[Scroll back to top](#table-of-contents)
-
-
-#### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 [Scroll back to top](#table-of-contents)
 
