@@ -78,7 +78,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     /**
-     * Check if a given argument is empty
+     * Checks if a given argument is empty
      * @param trimmedArgs if the argument is empty
      */
     private void checkArgsEmpty(String trimmedArgs) throws ParseException {
