@@ -33,10 +33,10 @@ Use this guide as a tutorial to get started with DHT.
 
 This guide is:
 * A summary of all the *features* offered by DHT, and provides a high-level overview on how it operates.
-* An overview of what user *input* is considered as valid so you can quickly get started with tracing cases on DHT.
+* An overview of what user *inputs* are considered valid so you can quickly get started with tracking cases on DHT.
 
 This guide is not:
-* An exhaustive case study of every single way to use DHT as well as its features.
+* An exhaustive list of every single way to use DHT as well as its features.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,8 +160,8 @@ Please refer to the list of [Commands](#commands) for a full explanation.
 | **[Delete](#deleting-cases-delete)**                              | `delete INDEX...`<br>or `delete d/DATE`<br>or `delete [sd/START_DATE] [ed/END_DATE]` (at least one of the two must be included)<br>e.g. `delete 3`, `delete d/2023-03-10`                                                                                                             |
 | **[Clear](#clearing-all-entries-clear)**                          | `clear`                                                                                                                                                                                                                                                                               |
 | **[List](#listing-all-cases-list)**                               | `list`                                                                                                                                                                                                                                                                                |
-| **[Find](#finding-cases-by-prefixes-find)**                         | <code>find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...</code><br>(`[a/AGE]` can be replaced with `[sa/START_AGE] [ea/END_AGE]`)<br>(`[d/DATE]` can be replaced with `[sd/START_DATE] [ed/END_DATE]`)<br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **[Sort](#sorting-cases-sort)**                                   | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.`sort d/`                                                                                                                                                                                                                        |
+| **[Find](#finding-cases-by-prefixes-find)**                       | <code>find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...</code><br>(`[a/AGE]` can be replaced with `[sa/START_AGE] [ea/END_AGE]`)<br>(`[d/DATE]` can be replaced with `[sd/START_DATE] [ed/END_DATE]`)<br> e.g. `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **[Sort](#sorting-cases-sort)**                                   | <code>sort { n/ &#124; a/ &#124; p/ &#124; d/ }</code><br> e.g. `sort d/`                                                                                                                                                                                                             |
 | **[Undo](#undoingredoing-an-action-undo-or-redo)**                | `undo [INTEGER]`<br> e.g. `undo 5`                                                                                                                                                                                                                                                    |
 | **[Redo](#undoingredoing-an-action-undo-or-redo)**                | `redo [INTEGER]`<br> e.g. `redo 2`                                                                                                                                                                                                                                                    |
 | **[Overview](#changing-the-overview-type-overview)**              | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g. `overview v/`                                                                                                                                                                                                               |
@@ -271,7 +271,7 @@ Aside from Variants, data fields must contain at least one non-whitespace charac
 
 ### Indexes
 * Indexes must be a positive integer. Index values can be up to ~2 billion, specifically 2147483647.
-* Index will always refer to the index number shown in the current displayed case list.
+* Each index will always refer to the index number shown in the current displayed case list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -373,8 +373,7 @@ Format: `list`
 
 <div markdown="block" class="alert alert-primary">
 
-**:bulb: Tip:**<br>
-
+**:bulb: Tip:**
 As `list` resets all active filters, one of the most common uses of the `list` command to reset the display lists to display all the cases in DHT.
 You might like to use `list` in conjunction with the following commands:
 * [`delete`](#deleting-cases-delete) to show all the cases as delete follows the index of the current list
@@ -404,18 +403,22 @@ Format: `find [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`
 
 <div markdown="block" class="alert alert-primary">
 
-**:bulb: Tip:**<br>
-
+**:bulb: Tip:**
 The prefixes for age (`a/AGE`) and date (`d/DATE`) can be replaced with ranges instead to find cases which fall within that range. Use:
 * `[sa/START_AGE] [ea/END_AGE]` for a range of ages
 * `[sd/START_DATE] [ed/END_DATE]` for a range of dates
 
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Caution:**
 Be careful not to use both the 'specific' prefix and 'range' prefixes for the same property in one command! e.g. `find a/25 sa/20` will not be accepted.
 
 </div>
 
 * The search is case-insensitive for all prefixes.
-  * e.g. `n/hans` will match `Hans` or `hAns`
+  * e.g. `n/hans` will match `Hans` and `hAns`.
 * Cases matching **all** given prefixes will be returned.
     * e.g. `find n/Alex p/s101` will only match cases whose names contain `alex` and whose postal codes begin with `s101`.
 * For names, partial words will be matched.
@@ -484,7 +487,7 @@ Example:
 
 ![UndoCommandExample](images/UndoCommandExample.png)
 
-* `redo` after the undo:
+* `redo` after the `undo`:
 
 ![RedoCommandExample](images/RedoCommandExample.png)
 
@@ -565,7 +568,7 @@ DHT only supports import from CSV files, and other file formats are to be used a
 If you are using Microsoft Excel, you can easily export your data to a CSV file and import it into DHT!
 </div>
 
-See [below](#exporting-data-to-csv-file--export) for example CSV files.
+See [below](#exporting-data-to-csv-file-export) for example CSV files.
 
 <br>
 
@@ -612,10 +615,12 @@ Format: `exit`
 
 ### Saving the data
 
-DHT data are saved in the hard disk automatically after any command that changes
+DHT data is saved to the hard disk automatically after any command that changes
 the data. There is no need to save manually.
 
 <br>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Advanced features
 
