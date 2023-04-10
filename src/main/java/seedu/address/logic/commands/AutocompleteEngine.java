@@ -202,7 +202,8 @@ public class AutocompleteEngine {
         List<String> words = Arrays.asList(splitArr);
         int numOfWords = splitArr.length;
         assert numOfWords > 0 : "'numOfWords' should be > 0";
-        String firstWord = splitArr[0];
+        assert !splitArr[0].isBlank() : "first word should not be blank";
+        assert !splitArr[0].contains(" ") : "'first word' should not contain any spaces";
         String lastWord = splitArr[splitArr.length - 1];
         assert !firstWord.isBlank() : "'firstWord' should not be blank";
         assert !firstWord.contains(" ") : "'firstWord' should not contain any spaces";
