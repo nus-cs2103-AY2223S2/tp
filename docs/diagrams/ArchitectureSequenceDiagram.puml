@@ -15,7 +15,9 @@ activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : deletePerson(p)
 activate model MODEL_COLOR
-
+model -[MODEL_COLOR]> storage : Save DengueHotspotTracker state
+activate storage STORAGE_COLOR
+deactivate storage
 model -[MODEL_COLOR]-> logic
 deactivate model
 
