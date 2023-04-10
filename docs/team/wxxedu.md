@@ -3,7 +3,7 @@ layout: page
 title: Wang Xiuxuan's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: Wingman
 
 Wingman is an application designed to help airline managers efficiently manage
 the allocation of their resources.
