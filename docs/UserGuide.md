@@ -74,8 +74,9 @@ This section provides a brief overview of the graphical user interface (GUI) com
 
 The menu bar is typically located at the top of the user interface and is primarily used for navigation purposes. It provides users with access to various features and functions within the application or dashboard, allowing them to easily navigate between different tabs. The menu bar is commonly used in user guides to help users understand how to navigate and use the different features within the application.
 
-#### Schedule
-* 'Schedule' menu item allows you to switch to the Schedule panel.
+#### FitBook
+* 'Schedule' item allows you to switch to the Schedule panel.
+* 'Exit' item directly exits out of the application.
 
 #### Exercise
 * 'Exercise' menu item allows you to switch to Exercise panel.
@@ -97,22 +98,22 @@ Panels are _empty_ when the data for that specific panel is _empty_.
 
   ![Schedule Panel](images/schedule.png)
 #### Exercise
-* Left panel (`Exercise` Panel) displays the list of clients basic information including weight, average calories, goal, any unique routines and exercises.
-* Right panel (`Exercise` Panel) displays the list of routines added.
+* Left panel (`Exercise` tab) displays the list of clients' basic information including weight, average calories, goal, any unique routines and exercises.
+* Right panel (`Exercise` tab) displays the list of routines added.
 
 
   ![Exercise Panel](images/exercise.png)
 #### Summary
-* Left panel (`Sumamary` Panel) displays the list of clients basic information including name and schedule appointments.
-* Right panel (`Summary` Panel) displays all information about the selected client. (Using the view command)
+* Left panel (`Summary` tab) displays the list of clients' basic information including name and scheduled appointments.
+* Right panel (`Summary` tab) displays all information about the selected client. (Using the view command)
 
 
   ![Summary Panel](images/summary.png)
 
 ### Feedback Box
-When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or any other relevant details.
+When you enter a command into the Command Box of the application, the system will provide a feedback message to you through the display. This feedback message is designed to inform you of the status of the command you have entered, such as whether it was executed successfully or encountered an error. The feedback message may also include additional information related to the command, such as the results of the command's execution or the specific error encountered.
 ### Command Box
-The Command Box is where you can type in your commands. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
+The Command Box is where you can type in your commands. It is found below the Feedback Box. To execute the command, simply press the "Enter" button on your keyboard. This will send the command to the system for processing.
 
 
 ---
@@ -148,28 +149,28 @@ The Command Box is where you can type in your commands. To execute the command, 
 
 ### Prefixes for Client Commands
 
-| Prefix   | Compulsory field for adding client | Multiple allowed? | Prefix Meaning                                   | Characters restrictions                                     |
-|----------|------------------------------------|-------------------|--------------------------------------------------|-------------------------------------------------------------|
-| `n/`     | Yes                                | No                | Name of Client                                   | AlphaNumeric and spaces                                     |
-| `p/`     | Yes                                | No                | Phone number                                     | At least 3 digits                                           |
-| `e/`     | Yes                                | No                | Email                                            | local-part@domain                                           |
-| `a/`     | Yes                                | No                | Address                                          | Any characters except blank                                 |
-| `w/`     | Yes                                | No                | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place |
-| `g/`     | Yes                                | No                | Gender                                           | M or F (not case sensitive)                                 |
-| `c/`     | No                                 | No                | Recommended Calories                             | At least 4 digits long                                      |
-| `gl/`    | No                                 | No                | Goal for Client                                  | Any characters except blank                                 |
-| `r/`     | No                                 | Yes               | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion             |
-| `t/`     | No                                 | Yes               | Tag                                              | AlphaNumeric                                                |
-| `app/`   | No                                 | Yes               | Appointment                                      | dd-mm-yyyy HH:mm format that is after current date time     |
-| `d/`     | NA                                 | No                | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before current date time    |
+| Prefix   | Compulsory field for adding client | Multiple allowed? | Prefix Meaning                                   | Characters restrictions                                          |
+|----------|------------------------------------|-------------------|--------------------------------------------------|------------------------------------------------------------------|
+| `n/`     | Yes                                | No                | Name of Client                                   | Alphabets, numbers and spaces                                    |
+| `p/`     | Yes                                | No                | Phone number                                     | At least 3 digits                                                |
+| `e/`     | Yes                                | No                | Email                                            | local-part@domain                                                |
+| `a/`     | Yes                                | No                | Address                                          | Any characters except blank                                      |
+| `w/`     | Yes                                | No                | Weight                                           | Positive number from 0.1 to 999.9 with 0 or 1 decimal place      |
+| `g/`     | Yes                                | No                | Gender                                           | M or F (not case sensitive)                                      |
+| `c/`     | No                                 | No                | Recommended Calories                             | At least 4 digits long                                           |
+| `gl/`    | No                                 | No                | Goal for Client                                  | Any characters except blank                                      |
+| `r/`     | No                                 | Yes               | Routines for Client (Must be in Exercise Routine | Valid routine names in exercise routine portion                  |
+| `t/`     | No                                 | Yes               | Tag                                              | Alphabets and numbers                                            |
+| `app/`   | No                                 | Yes               | Appointment                                      | dd-mm-yyyy HH:mm format that is after the current date and time  |
+| `d/`     | NA                                 | No                | Date used for adding weight                      | dd-mm-yyyy HH:mm format that is before the current date and time |
 
 ### Prefixes for Routine Commands
 
-| Prefix   | Compulsory field for adding routine | Multiple allowed? | Prefix Meaning | Characters restrictions |
-|----------|-------------------------------------|-------------------|----------------|-------------------------|
-| `r/`     | Yes                                 | No                | Routine Name   | AlphaNumeric and spaces |
-| `ex/`    | No                                  | Yes               | Exercise Name  | AlphaNumeric and spaces |
-| `exno/`  | NA                                  | No                | Exercise index | Numeric                 |
+| Prefix   | Compulsory field for adding routine | Multiple allowed? | Prefix Meaning | Characters restrictions       |
+|----------|-------------------------------------|-------------------|----------------|-------------------------------|
+| `r/`     | Yes                                 | No                | Routine Name   | Alphabets, numbers and spaces |
+| `ex/`    | No                                  | Yes               | Exercise Name  | Alphabets, numbers and spaces |
+| `exno/`  | NA                                  | No                | Exercise index | Numbers                       |
 
 ---
 
@@ -179,7 +180,7 @@ The Command Box is where you can type in your commands. To execute the command, 
 
 {% include information.html content="
 
-Adds a client to the FitBook.
+Adds a new client into FitBook's client list and storage.
 
 " %}
 
@@ -187,7 +188,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
 * A client can have any number of `tags`, `appointments` and `exercise routines` (including 0).
-* A user cannot add an exercise routine to client that does not exist in the exercise routine list in the `Exercise` tab.
+* A user cannot add an exercise routine to a client that does not exist in the exercise routine list in the `Exercise` tab.
 * `APPOINTMENT` needs to be later than the current time, or it will get deleted.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Gender` should be either M or F (not case-sensitive). </div>
