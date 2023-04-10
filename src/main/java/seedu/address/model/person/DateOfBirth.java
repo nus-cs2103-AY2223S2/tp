@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 /**
- * Represents a Person's date of birth in the address book.
+ * Represents a Person's date of birth in the patient records.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class DateOfBirth {
