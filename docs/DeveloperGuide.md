@@ -12,7 +12,6 @@ You can use this guide to maintain, upgrade, and evolve **MedInfo**.
 
 ## Table of contents
 
-* [Acknowledgements](#acknowledgements)
 * [Getting Started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
@@ -51,12 +50,6 @@ You can use this guide to maintain, upgrade, and evolve **MedInfo**.
   * [**Save data**](#save-data)
 * [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
-
----
-
-## Acknowledgements
-
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ---
 

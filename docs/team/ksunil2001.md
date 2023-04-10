@@ -41,9 +41,8 @@ Given below are my contributions to the project.
 
 - **Contributions to Team-based tasks**:
     - Refactored Person to Patient throughout the code
-    - Fixed checkstyle issues
+    - Fixed checkstyle issues <br>
 
-<div style="page-break-after: always;"></div>
 
 - **Review/mentoring contributions**:
     - This link lists all the PRs I have reviewed: [Reviewed PRs](https://github.com/AY2223S2-CS2103T-T12-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aksunil2001)

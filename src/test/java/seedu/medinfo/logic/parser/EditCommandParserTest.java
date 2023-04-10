@@ -29,8 +29,6 @@ import seedu.medinfo.model.patient.Status;
 import seedu.medinfo.testutil.EditPatientDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
         EditCommand.MESSAGE_USAGE);
 
@@ -118,20 +116,4 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-    //    @Test
-    //    public void parse_invalidValueFollowedByValidValue_success() {
-    //        // no other valid values specified
-    //        Index targetIndex = INDEX_FIRST_PERSON;
-    //        String userInput = targetIndex.getOneBased() + INVALID_STATUS_DESC;
-    //        EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().build();
-    //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-    //        assertParseSuccess(parser, userInput, expectedCommand);
-    //
-    //        // other valid values specified
-    //        userInput = targetIndex.getOneBased() + DISCHARGE_DESC_AMY;
-    //        descriptor = new EditPatientDescriptorBuilder().withDischarge(VALID_DISCHARGE_AMY).build();
-    //        expectedCommand = new EditCommand(targetIndex, descriptor);
-    //        assertParseSuccess(parser, userInput, expectedCommand);
-    //    }
 }

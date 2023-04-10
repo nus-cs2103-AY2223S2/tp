@@ -44,19 +44,6 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    //    @Test
-    //    public void medInfoReadSave() throws Exception {
-    //        /*
-    //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonMedInfoStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonMedInfoStorageTest} class.
-    //         */
-    //        MedInfo original = getTypicalMedInfo();
-    //        storageManager.saveMedInfo(original);
-    //        ReadOnlyMedInfo retrieved = storageManager.readMedInfo().get();
-    //        assertEquals(original, new MedInfo(retrieved));
-    //    }
-
     @Test
     public void getMedInfoFilePath() {
         assertNotNull(storageManager.getMedInfoFilePath());
