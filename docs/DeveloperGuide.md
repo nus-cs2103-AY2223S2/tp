@@ -560,7 +560,7 @@ the list of events corresponding to those dates.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
+<br />
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -773,6 +773,7 @@ Use case ends.
 * **Event**: Represents a Deadline or an Interview associated to an Internship.
   * Deadline: An Event that only has an end timing (E.g. Internship Application Submission Deadline, Offer Acceptance Deadline)
   * Interview: An Event that has both a start and end timing (E.g. Interview, Online Assessments)
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
