@@ -91,8 +91,8 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
     }
 
     /**
-     * Adds an employee to the address book.
-     * The employee must not already exist in the address book.
+     * Adds an employee to ExecutivePro.
+     * The employee must not already exist in ExecutivePro.
      */
     public void addEmployee(Employee p) {
         employees.add(p);
@@ -101,9 +101,9 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
 
     /**
      * Replaces the given employee {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the ExecutivePro.
      * The employee identity of {@code editedPerson} must not be the same as another
-     * existing employee in the address book.
+     * existing employee in ExecutivePro.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
@@ -113,7 +113,7 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
 
     /**
      * Removes {@code key} from this {@code ExecutiveProDb}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the ExecutivePro.
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);

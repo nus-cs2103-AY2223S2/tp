@@ -56,7 +56,7 @@ public interface Model {
     ReadOnlyExecutiveProDb getExecutiveProDb();
 
     /**
-     * Returns true if an employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if an employee with the same identity as {@code employee} exists in ExecutivePro.
      */
     boolean hasEmployee(Employee employee);
 
@@ -67,27 +67,27 @@ public interface Model {
 
     /**
      * Deletes the given employee.
-     * The employee must exist in the address book.
+     * The employee must exist in ExecutivePro.
      */
     void deleteEmployee(Employee target);
 
     /**
      * Adds the given employee.
-     * {@code employee} must not already exist in the address book.
+     * {@code employee} must not already exist in ExecutivePro.
      */
     void addEmployee(Employee employee);
 
     /**
      * Batch Adds the employees from the user input.
-     * {@code fileName} must not already exist in the address book.
+     * {@code fileName} must not already exist in ExecutivePro.
      */
     void batchAddEmployees(String fileName);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the ExecutivePro.
      * The employee identity of {@code editedPerson} must not be the same as another
-     * existing employee in the address book.
+     * existing employee in the ExecutivePro.
      */
     void setEmployee(Employee target, Employee editedEmployee);
 

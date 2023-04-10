@@ -13,7 +13,7 @@ import seedu.address.model.employee.EmployeeId;
 import seedu.address.model.employee.LeaveCounter;
 
 /**
- * Takes leave for an existing employee in the address book.
+ * Takes leave for an existing employee in ExecutivePro database
  */
 public class LeaveCommand extends Command {
 
