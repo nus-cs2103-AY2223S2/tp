@@ -233,6 +233,8 @@ In future, projects could be linked to multiple clients. This could be implement
 
 <img src="images/LinkingAlternateClassDiagram.png" width="400" />
 
+<div style="page-break-after: always;"></div>
+
 ### Better filtering
 
 Users now have the ability to find clients and projects using a greater number of parameters, such as tags and deadlines.
@@ -246,6 +248,8 @@ When parsing find commands, the parser parses each possible parameter one-by-one
 The `CombinedPredicate` object `c` is then used to update the filtered client list, as shown in the sequence diagram below.
 
 <img src="images/FindUpdateFilteredClientListSequenceDiagram.png" width="800" height="300" />
+
+<div style="page-break-after: always;"></div>
 
 `CombinedPredicate<T>` is a generic class that inherits from the generic class `Predicate<T>` and tests all predicates that were passed to it when it was initialised. The `FindClientCommand` and `FindProjectCommand` objects are unaware of what predicates it is specifically testing, since they only know that they are testing a `Predicate<T>` object, making use of the `Command` design pattern. This is shown by the class diagram below, where a `FindClientCommand` and `FindProjectCommand` stores a `Predicate<T>` object.
 
