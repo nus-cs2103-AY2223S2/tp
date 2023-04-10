@@ -27,6 +27,7 @@ This command helps to give the user a starting point for how the unpaired elderl
 * **Documentation**:
     * User Guide:
         * Added documentation for the command `add_volunteer`.
+        * Added images for the `add_volunteer`, `add_elderly` and `edit` commands for better illustration.
     * Developer Guide:
         * Added implementation details of the edit feature.
         * Modified the "Logic component" section under "Design" to better describe FriendlyLink's architecture. 
