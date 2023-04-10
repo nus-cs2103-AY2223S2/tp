@@ -1151,6 +1151,7 @@ These instructions only provide a starting point for testers to work on; testers
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
 
 ### Adding an applicant
 <div style="page-break-after: always;"></div>
@@ -1341,6 +1342,8 @@ of an old applicant (who has changed his/her phone number). Hence, we shall not 
 manually into HMHero at the start.
 7. Enhancing the `summary` command to produce useful charts and graphs for Hiring Managers to have a better visualisation of the hiring process.
 8. Enhancing the checking of emails to have a valid domain name such as `@gmail.com` or `@nus.edu.sg` instead of just checking for the presence of `@` in the email.
+9. Advancing of applicants should apply for cases where there are multiple rounds of interview. So we should also allow for multiple stages of `SHORTLISTED`.
+Hence when advancing a `SHORTLISTED` applicant, the applicant can be advanced into the next stage of `SHORTLISTED` instead of immediately to `ACCEPTED`.
 
 [Back to Table of Contents](#table-of-contents)
 

@@ -336,7 +336,7 @@ have a default value based on the commands. These are documented in the [Command
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 The <a href="#placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
-the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+for the format of Phone, only numeric characters can be used and there is a mimimal length of at least 3 numbers to be provided. 
 </div>
 
 **Let's try an example!**
@@ -481,8 +481,8 @@ What you should see:
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li>This command is useful to view all applicants again after using the 
-[Find Command](#search-for-an-applicant-find).</li>
+    <li>This command is useful to view all applicants again after using the <a href="#search-for-an-applicant-find">
+Find Command</a></li>
 </ul> </div>
 
 
@@ -631,8 +631,8 @@ Applicants with the status <code>REJECTED</code> cannot be rejected again!
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
 <ul>
-    <li>This command is useful to view all applicants again after using the [Advance Command]
-(#615-advance-an-applicant-advance).</li>
+    <li>This command is useful to view all applicants again after using the
+<a href="#advance-an-applicant-advance">Advance Command</a>.</li>
 </ul> </div>
 
 **Example:**
