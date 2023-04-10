@@ -20,9 +20,8 @@ This User Guide provides brief documentation on how you can install the applicat
 
 1. Before using FitBook, make sure to install **Java** `11` or later version in your Computer. This is required to ensure proper functionality of the application. Please install the correct Java version to use FitBook.
    * To check Java version, please follow the instructions [here](https://blog.hubspot.com/website/check-java-verison).
-   * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
-
-
+   * If your computer does not have java installed, or if the version is older than Java 11, you may refer to the guide [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).  
+   
 2. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
 3. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook. You may create a new folder under any directory.
@@ -554,6 +553,8 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first routine in the exercise routine list in FitBook.
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting an exercise : `deleteExercise`
 
 {% include information.html content="
@@ -586,6 +587,8 @@ Clears all routine entries in FitBook under the `Exercise` Tab.
 
 
 Format: `clearRoutines`
+
+<div style="page-break-after: always;"></div>
 
 #### Exporting routine details : `exportRoutines`
 
