@@ -48,7 +48,7 @@ Given below are my contributions to the project.
       * Enhanced first-time-user story (Pull Request [#142](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/142)).
       * Added additional command guides and examples (Pull Request [#151](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/151)).
       * Sorted UG and added callouts (Pull Request [#165](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/165), [#177](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/177), [#242](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/242)).
-      * Improved overall friendliness of User Guide (Pull Request [#245](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/254)).
+      * Improved overall friendliness of User Guide (Pull Request [#245](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/245)).
     * Developer Guide:
       * Added implementation details of the `linkcontact` feature
       (Pull Request [#137](https://github.com/AY2223S2-CS2103T-T11-3/tp/pull/137)).
