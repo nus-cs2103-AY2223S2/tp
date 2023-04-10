@@ -334,7 +334,7 @@ CareFlow makes it simple to manage your drug inventory and reduce the chance of 
 
 ## 3.3 Hospital Information Directory
 
-If you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
+If you encounter any emergencies or serious medical issues that your clinic can't handle, our software provides you with the contact information of a list of public hospitals. This allows you to quickly locate and contact nearby hospitals for further medical attention.
 
 <div markdown="block" class="alert alert-success">:information_source: Please note that you are not allowed to edit or
 change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please
