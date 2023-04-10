@@ -27,8 +27,6 @@ SportSync is a desktop address book application used for coaching student athlet
 - Justification: This feature enables users to track the attendance of participating athletes in every session.
 - Highlight: Required understanding the right data structures to use, such as a HashMap to store the attendance field.
 
-<div style="page-break-after: always;"></div>
-
 #### Basic UI for Session List Panel [\#76](https://github.com/AY2223S2-CS2103T-W13-2/tp/pull/76)
 
 - Implemented the baseline UI for a session list panel.
@@ -42,8 +40,6 @@ SportSync is a desktop address book application used for coaching student athlet
 - Added the ability to add and remove tags from an existing athlete.
 - Justification: This feature provides greater convenience to users who would like to add or remove a single tag.
 - Highlight: Involved a good understanding of the already-implemented edit-command.
-
-<div style="page-break-after: always;"></div>
 
 ### Code Contributions
 
