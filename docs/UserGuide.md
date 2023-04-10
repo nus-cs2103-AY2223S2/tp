@@ -388,7 +388,7 @@ This command searches for recipes that can be made with only those ingredients.
 Format: `only INGREDIENT...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
-- One or more ingredients can be provided. e.g. *only egg cheese*
+- One or more ingredients can be provided. e.g. *only egg cheese* <br/>
 - Each ingredient needs to be separated by a whitespace.
 </div>
 
