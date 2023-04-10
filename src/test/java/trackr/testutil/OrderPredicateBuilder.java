@@ -11,6 +11,7 @@ import trackr.model.order.OrderStatus;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 /**
  * OrderPredicateBuilder class
  */
@@ -18,14 +19,17 @@ public class OrderPredicateBuilder {
 
     private OrderContainsKeywordsPredicate orderPredicate;
 
+    //@@author chongweiguan-reused
     public OrderPredicateBuilder() {
         orderPredicate = new OrderContainsKeywordsPredicate();
     }
 
+    //@@author chongweiguan-reused
     public OrderPredicateBuilder(OrderContainsKeywordsPredicate orderPredicate) {
         this.orderPredicate = new OrderContainsKeywordsPredicate(orderPredicate);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderNameKeywords} of the {@code OrderContainsKeywordsPredicate} that we are building.
      */
@@ -36,6 +40,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderNameKeywords} of the {@code OrderContainsKeywordsPredicate} that we are building.
      */
@@ -46,6 +51,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderNameKeywords} of the {@code OrderContainsKeywordsPredicate} that we are building.
      */
@@ -56,6 +62,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code orderDeadline} of the {@code orderContainsKeywordsPredicate} that we are building.
      */
@@ -66,6 +73,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code orderStatus} of the {@code orderContainsKeywordsPredicate} that we are building.
      */
@@ -76,6 +84,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code orderQuantity} of the {@code orderContainsKeywordsPredicate} that we are building.
      */
@@ -107,6 +116,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code orderStatus} of the {@code orderContainsKeywordsPredicate} that we are building.
      */
@@ -117,6 +127,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code orderStatus} of the {@code orderContainsKeywordsPredicate} that we are building.
      */
@@ -127,6 +138,7 @@ public class OrderPredicateBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     public OrderContainsKeywordsPredicate build() {
         return orderPredicate;
     }

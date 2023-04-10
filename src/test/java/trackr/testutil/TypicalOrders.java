@@ -18,12 +18,13 @@ import java.util.List;
 import trackr.model.OrderList;
 import trackr.model.order.Order;
 
-
+//@@author chongweiguan-reused
 /**
  * A utility class containing a list of {@code Order} objects to be used in tests.
  */
 public class TypicalOrders {
 
+    //@@author chongweiguan-reused
     public static final Order CHOCOLATE_COOKIES_O = new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M)
             .withOrderDeadline("01/01/2024")
             .withOrderStatus("N")
@@ -32,6 +33,7 @@ public class TypicalOrders {
             .withCustomerPhone("98765432")
             .withCustomerAddress("123 Main Street").build();
 
+    //@@author chongweiguan-reused
     public static final Order CUPCAKE_O = new OrderBuilder().withOrderItem(CUPCAKE_M)
             .withOrderDeadline("12/12/2024")
             .withOrderStatus("N")
@@ -40,6 +42,7 @@ public class TypicalOrders {
             .withCustomerPhone("12345678")
             .withCustomerAddress("321 Jurong Street").build();
 
+    //@@author chongweiguan-reused
     public static final Order CARGO_PANTS_O = new OrderBuilder().withOrderItem(CARGO_PANTS)
             .withOrderDeadline("31/12/2024")
             .withOrderStatus("D")
@@ -48,6 +51,7 @@ public class TypicalOrders {
             .withCustomerPhone("24681357")
             .withCustomerAddress("456 Bedok Street").build();
 
+    //@@author chongweiguan-reused
     public static final Order NIKE_CAP_O = new OrderBuilder().withOrderItem(NIKE_CAP)
             .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
             .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
@@ -58,8 +62,10 @@ public class TypicalOrders {
 
     public static final String KEYWORD_MATCHING_BUY = "Buy"; // A keyword that matches BUY
 
+    //@@author chongweiguan-reused
     public TypicalOrders() {} //prevents instantiation
 
+    //@@author chongweiguan-reused
     /**
      * Returns an {@code OrderList} with all the typical orders.
      */

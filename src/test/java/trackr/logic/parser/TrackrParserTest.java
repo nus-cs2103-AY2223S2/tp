@@ -150,6 +150,7 @@ public class TrackrParserTest {
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_OBJECT), command);
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void parseCommand_deleteOrder() throws Exception {
         DeleteOrderCommand command = (DeleteOrderCommand) parser.parseCommand(
@@ -157,6 +158,7 @@ public class TrackrParserTest {
         assertEquals(new DeleteOrderCommand(INDEX_FIRST_OBJECT), command);
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void parseCommand_deleteOrderShortcut() throws Exception {
         DeleteOrderCommand command = (DeleteOrderCommand) parser.parseCommand(

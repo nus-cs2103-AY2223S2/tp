@@ -18,10 +18,12 @@ import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.item.exceptions.ItemNotFoundException;
 import trackr.testutil.OrderBuilder;
 
+//@@author chongweiguan-reused
 public class UniqueOrderListTest {
 
     private final UniqueOrderList uniqueOrderList = new UniqueOrderList();
 
+    //@@author chongweiguan-reused
     @Test
     public void contains_nullorder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.contains(null));
@@ -38,14 +40,7 @@ public class UniqueOrderListTest {
         assertTrue(uniqueOrderList.contains(CHOCOLATE_COOKIES_O));
     }
 
-    //    @Test
-    //    public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
-    //        uniqueOrderList.add(CHOCOLATE_COOKIES_O);
-    //        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES_O)
-    //                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
-    //        assertTrue(uniqueOrderList.contains(editedOrder));
-    //    }
-
+    //@@author chongweiguan-reused
     @Test
     public void add_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.add(null));
@@ -74,6 +69,7 @@ public class UniqueOrderListTest {
                                                                   CHOCOLATE_COOKIES_O));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void setOrder_editedOrderIsSameOrder_success() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);
@@ -116,16 +112,19 @@ public class UniqueOrderListTest {
         assertThrows(DuplicateItemException.class, () -> uniqueOrderList.setItem(CHOCOLATE_COOKIES_O, CUPCAKE_O));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void remove_nullOrder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueOrderList.remove(null));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void remove_orderDoesNotExist_throwsOrderNotFoundException() {
         assertThrows(ItemNotFoundException.class, () -> uniqueOrderList.remove(CHOCOLATE_COOKIES_O));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void remove_existingOrder_removesOrder() {
         uniqueOrderList.add(CHOCOLATE_COOKIES_O);

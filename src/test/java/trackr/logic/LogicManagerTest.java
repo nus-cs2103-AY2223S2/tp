@@ -110,6 +110,7 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderList().remove(0));
@@ -127,6 +128,7 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getTaskList());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getOrderList() {
         ReadOnlyOrderList expected = model.getOrderList();
@@ -144,6 +146,7 @@ public class LogicManagerTest {
         assertEquals(expected, logic.getFilteredTaskList());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getFilteredOrderList() {
         ObservableList<Order> expected = model.getFilteredOrderList();

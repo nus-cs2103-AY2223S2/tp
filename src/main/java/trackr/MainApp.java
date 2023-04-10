@@ -134,6 +134,7 @@ public class MainApp extends Application {
             initialMenu = new Menu();
         }
 
+        //@@author chongweiguan-reused
         try {
             orderListOptional = storage.readOrderList();
             if (!orderListOptional.isPresent()) {

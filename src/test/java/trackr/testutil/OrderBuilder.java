@@ -14,6 +14,7 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
+//@@author chongweiguan-reused
 /**
  * A utility class to help with building Order objects.
  */
@@ -37,6 +38,7 @@ public class OrderBuilder {
     private PersonAddress customerAddress;
     private LocalDateTime timeAdded;
 
+    //@@author chongweiguan-reused
     /**
      * Creates a {@code OrderBuilder} with the default details.
      */
@@ -51,6 +53,7 @@ public class OrderBuilder {
         timeAdded = LocalDateTime.parse(DEFAULT_TIME_ADDED);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Initializes the OrderBuilder with the data of {@code orderToCopy}.
      */
@@ -65,6 +68,7 @@ public class OrderBuilder {
         timeAdded = orderToCopy.getTimeAdded();
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderName} of the {@code Order} that we are building.
      */
@@ -73,6 +77,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderQuantity} of the {@code Order} that we are building.
      */
@@ -81,6 +86,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderDeadline} of the {@code Order} that we are building.
      */
@@ -89,6 +95,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderStatus} of the {@code Order} that we are building (default case).
      */
@@ -97,6 +104,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code OrderStatus} of the {@code Order} that we are building.
      */
@@ -105,6 +113,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code CustomerName} of the {@code Order} that we are building.
      */
@@ -113,6 +122,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code CustomerPhone} of the {@code Order} that we are building.
      */
@@ -121,6 +131,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code CustomerAddress} of the {@code Order} that we are building.
      */
@@ -129,6 +140,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * Sets the {@code TimeAdded} of the {@code Order} that we are building.
      */
@@ -137,6 +149,7 @@ public class OrderBuilder {
         return this;
     }
 
+    //@@author chongweiguan-reused
     /**
      * builds the order
      */

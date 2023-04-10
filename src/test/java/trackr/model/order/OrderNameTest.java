@@ -9,11 +9,13 @@ import org.junit.jupiter.api.Test;
 
 public class OrderNameTest {
 
+    //@@author chongweiguan-reused
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new OrderName(null));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidOrderName = "";
@@ -39,13 +41,14 @@ public class OrderNameTest {
         assertTrue(OrderName.isValidName("Brownies with extra corn flakes and chcocolate")); // long names
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void toStringTest() {
         String expectedOrderName = "Chocolate Cookies";
         assertEquals(expectedOrderName, new OrderName("Chocolate Cookies").toString());
     }
 
-
+    //@@author chongweiguan-reused
     @Test
     public void equals() {
         OrderName orderName = new OrderName("Sort Inventory");

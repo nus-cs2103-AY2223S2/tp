@@ -13,11 +13,13 @@ import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
 
+//@@author chongweiguan-reused
 /**
  * utility calss for Order
  */
 public class OrderUtil {
 
+    //@@author chongweiguan-reused
     /**
      * Returns an AddOrderCommand string for adding the {@code order}.
      */
@@ -25,6 +27,7 @@ public class OrderUtil {
         return AddOrderCommand.COMMAND_WORD + " " + getOrderDetails(order);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Returns an AddOrderCommand string with COMMAND_WORD_SHORTCUT for adding the {@code task}.
      */
@@ -32,6 +35,7 @@ public class OrderUtil {
         return AddOrderCommand.COMMAND_WORD_SHORTCUT + " " + getOrderDetails(task);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Returns the part of command string for the given {@code order}'s details.
      */
@@ -47,7 +51,10 @@ public class OrderUtil {
         return sb.toString();
     }
 
-    // Returns the part of command string for the given {@code OrderDescriptor}'s details.
+    //@@author chongweiguan-reused
+    /**
+     * Returns the part of command string for the given {@code OrderDescriptor}'s details.
+     */
     public static String getOrderDescriptorDetails(OrderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderName()
@@ -69,7 +76,10 @@ public class OrderUtil {
         return sb.toString();
     }
 
-    // Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
+    //@@author chongweiguan-reused
+    /**
+     * Returns the part of command string for the given {@code TaskContainsKeywordsPredicate}'s details.
+     */
     public static String getOrderPredicateDetails(OrderContainsKeywordsPredicate descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderNameKeywords()

@@ -70,36 +70,43 @@ public class TestUtil {
         return model.getFilteredSupplierList().get(index.getZeroBased());
     }
 
+    //@@author chongweiguan-reused
     /**
      * A default model stub that have all of the methods failing.
      */
     public static class ModelStub implements Model {
 
+        //@@author chongweiguan-reused
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public Path getTrackrFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public void setTrackrFilePath(Path trackrFilePath) {
             throw new AssertionError("This method should not be called.");
@@ -145,21 +152,25 @@ public class TestUtil {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ReadOnlySupplierList getSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ObservableList<Supplier> getFilteredSupplierList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ReadOnlyTaskList getTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
@@ -180,11 +191,13 @@ public class TestUtil {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ReadOnlyOrderList getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        //@@author chongweiguan-reused
         @Override
         public ObservableList<Order> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");

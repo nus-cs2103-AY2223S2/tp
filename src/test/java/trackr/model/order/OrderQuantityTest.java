@@ -7,19 +7,23 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+//@@author chongweiguan-reused
 public class OrderQuantityTest {
 
+    //@@author chongweiguan-reused
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new OrderQuantity(null));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void constructor_invalidOrderQuantity_throwsIllegalArgumentException() {
         String invalidOrderQuantity = "";
         assertThrows(IllegalArgumentException.class, () -> new OrderQuantity(invalidOrderQuantity));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void isValidQuantity() {
         OrderQuantity orderQuantity = new OrderQuantity("123");
@@ -46,6 +50,7 @@ public class OrderQuantityTest {
 
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void getOrderQuantityTest() {
         OrderQuantity orderQuantity = new OrderQuantity("123");

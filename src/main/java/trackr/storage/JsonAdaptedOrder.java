@@ -38,6 +38,7 @@ public class JsonAdaptedOrder {
     private final String orderStatus;
     private final String timeAdded;
 
+    //@@author chongweiguan-reused
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
@@ -74,6 +75,7 @@ public class JsonAdaptedOrder {
         timeAdded = source.getTimeAdded().toString();
     }
 
+    //@@author chongweiguan-reused
     /**
      * Converts this Jackson-friendly adapted order object into the model's {@code Order} object.
      *

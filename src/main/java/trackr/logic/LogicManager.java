@@ -99,11 +99,13 @@ public class LogicManager implements Logic {
         return model.getFilteredMenu();
     }
 
+    //@@author chongweiguan-reused
     @Override
     public ReadOnlyOrderList getOrderList() {
         return model.getOrderList();
     }
 
+    //@@author chongweiguan-reused
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return model.getFilteredOrderList();

@@ -77,6 +77,7 @@ public class JsonSerializableTrackrTest {
                 dataFromFile::toTaskModelType);
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void toOrderModelType_typicalOrderFile_success() throws Exception {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_ORDERS_FILE,
@@ -85,18 +86,11 @@ public class JsonSerializableTrackrTest {
         assertEquals(orderListFromFile, orderListFromFile);
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void toOrderModelType_invalidOrderFile_throwsIllegalValueException() throws Exception {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(INVALID_ORDER_FILE,
                 JsonSerializableTrackr.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toOrderModelType);
     }
-
-    //    @Test
-    //    public void toOrderModelType_duplicateOrders_throwsIllegalValueException() throws Exception {
-    //        JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ORDER_FILE,
-    //                JsonSerializableTrackr.class).get();
-    //        assertThrows(IllegalValueException.class, JsonSerializableTrackr.MESSAGE_DUPLICATE_ORDER,
-    //                dataFromFile::toOrderModelType);
-    //    }
 }

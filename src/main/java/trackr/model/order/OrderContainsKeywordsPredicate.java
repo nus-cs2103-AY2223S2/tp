@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import trackr.commons.util.StringUtil;
 import trackr.model.item.Item;
 
+//@@author chongweiguan-reused
 /**
  * Tests that a {@code Order}'s {@code OrderName} matches any of the keywords given.
  */
@@ -19,6 +20,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         super();
     }
 
+    //@@author chongweiguan-reused
     /**
      * Constructs a new {@code OrderContainsKeywordsPredicate} object
      * with the same keywords of order details as the
@@ -36,13 +38,16 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         setCustomerPhone(toCopy.getCustomerPhone().isPresent() ? toCopy.getCustomerPhone().get() : null);
     }
 
+    //@@author chongweiguan-reused
     public void setOrderNameKeywords(List<String> orderNameKeywords) {
         this.orderNameKeywords = orderNameKeywords;
     }
 
+    //@@author chongweiguan-reused
     public Optional<List<String>> getOrderNameKeywords() {
         return Optional.ofNullable(orderNameKeywords);
     }
+
     public void setCustomerNameKeywords(List<String> customerNameKeywords) {
         this.customerNameKeywords = customerNameKeywords;
     }
@@ -50,6 +55,8 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
     public Optional<List<String>> getCustomerNameKeywords() {
         return Optional.ofNullable(customerNameKeywords);
     }
+
+    //@@author chongweiguan-reused
     /**
      * Returns true if any of the fields in the {@code Order} object are present or not.
      *
@@ -59,6 +66,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         return isAnyFieldNonNull() || orderNameKeywords != null || customerNameKeywords != null;
     }
 
+    //@@author chongweiguan-reused
     @Override
     public boolean test(Item item) {
         if (!(item instanceof Order)) {
@@ -67,6 +75,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
 
         Order order = (Order) item;
 
+        //@@author chongweiguan-reused
         boolean isOrderNameMatch;
         boolean isOrderDeadlineMatch;
         boolean isOrderQuantityMatch;
@@ -125,6 +134,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
 
     }
 
+    //@@author chongweiguan-reused
     @Override
     public boolean equals(Object other) {
         if (other == this) {

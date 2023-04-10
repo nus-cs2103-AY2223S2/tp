@@ -258,6 +258,7 @@ public class ParserUtil {
 
     //========================Parse those related to order==================================
 
+    //@@author chongweiguan-reused
     /**
      * Parses a {@code String orderName} into a {@code OrderName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -273,6 +274,7 @@ public class ParserUtil {
         return new OrderName(trimmedTaskName);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Parses a {@code String OrderDeadline} into a {@code OrderDeadline}.
      * Leading and trailing whitespaces will be trimmed.
@@ -288,6 +290,7 @@ public class ParserUtil {
         return new OrderDeadline(trimmedOrderDeadline);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Parses a {@code Optional<String> OrderStatus} into a {@code OrderStatus}.
      * Leading and trailing whitespaces will be trimmed.
@@ -307,6 +310,7 @@ public class ParserUtil {
         return new OrderStatus(trimmedOrderStatus);
     }
 
+    //@@author chongweiguan-reused
     /**
      * Parses a {@code String OrderQuantity} into a {@code OrderQuantity}.
      * Leading and trailing whitespaces will be trimmed.

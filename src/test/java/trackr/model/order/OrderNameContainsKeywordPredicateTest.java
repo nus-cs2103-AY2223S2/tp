@@ -15,7 +15,9 @@ import org.junit.jupiter.api.Test;
 import trackr.testutil.OrderBuilder;
 import trackr.testutil.OrderPredicateBuilder;
 
+//@@author chongweiguan-reused
 public class OrderNameContainsKeywordPredicateTest {
+    //@@author chongweiguan-reused
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
@@ -80,6 +82,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertNotEquals(firstPredicate, secondPredicate);
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_null_returnsFalse() {
         OrderContainsKeywordsPredicate predicate =
@@ -87,6 +90,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertFalse(predicate.test(null));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_oneVariableMatch_returnsTrue() {
         OrderContainsKeywordsPredicate predicate;
@@ -138,6 +142,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(predicate.test(new OrderBuilder().withCustomerPhone("12345678").build()));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_oneVariableDoesNotMatch_returnsFalse() {
         OrderContainsKeywordsPredicate predicate;
@@ -196,6 +201,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(predicate.test(testTask));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_twoVariableMatch_returnsTrue() {
         OrderContainsKeywordsPredicate predicate;
@@ -227,6 +233,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(predicate.test(testTask));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_twoVariableDoesNotMatch_returnsFalse() {
         OrderContainsKeywordsPredicate predicate;
@@ -272,6 +279,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertFalse(predicate.test(testTask));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_threeVariableMatch_returnsTrue() {
         OrderContainsKeywordsPredicate predicate;
@@ -290,6 +298,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(predicate.test(testTask));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_threeVariableDoesNotMatch_returnsFalse() {
         OrderContainsKeywordsPredicate predicate;
@@ -308,6 +317,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertFalse(predicate.test(testTask));
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_atLeastOneFieldPresent_returnsTrue() {
         OrderContainsKeywordsPredicate predicate;
@@ -331,6 +341,7 @@ public class OrderNameContainsKeywordPredicateTest {
         assertTrue(predicate.isAnyFieldPresent());
     }
 
+    //@@author chongweiguan-reused
     @Test
     public void test_noFieldPresent_returnsFalse() {
         OrderContainsKeywordsPredicate predicate;

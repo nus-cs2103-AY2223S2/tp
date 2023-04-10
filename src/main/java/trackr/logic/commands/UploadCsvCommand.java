@@ -8,6 +8,7 @@ import trackr.logic.parser.TrackrParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 
+//@@author chongweiguan-reused
 /**
  * Uploads information retrieved from a csv file onto Trackr.
  */
@@ -21,6 +22,7 @@ public class UploadCsvCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Csv file successfully uploaded";
     private List<String> commands;
 
+    //@@author chongweiguan-reused
     /**
      * Creates an UploadCSVCommand to upload data onto Trackr.
      *
@@ -31,6 +33,7 @@ public class UploadCsvCommand extends Command {
         this.commands = commands;
     }
 
+    //@@author chongweiguan
     /**
      * Parses and executes all the commands in the list {@code commands}
      * to add data retrieved from csv file into Trackr's data file.
@@ -51,6 +54,7 @@ public class UploadCsvCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
+    //@@author chongweiguan-reused
     @Override
     public boolean equals(Object other) {
         return other == this

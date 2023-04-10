@@ -20,11 +20,14 @@ import java.util.List;
 import trackr.logic.commands.UploadCsvCommand;
 import trackr.logic.parser.exceptions.ParseException;
 
+//@@author chongweiguan
 /**
  * Parses input arguments and creates a new UploadCsvCommand object.
  */
 public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
     private List<String> listOfCommands = new ArrayList<String>();
+
+    //@@author chongweiguan
     /**
      * Parses the given {@code String} of arguments in the context of the UploadCsvCommand
      * and returns an UploadCsvCommand object for execution.
@@ -46,6 +49,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
         return new UploadCsvCommand(listOfCommands);
     }
 
+    //@@author chongweiguan
     private List<String> parseOrders(String[] components) throws ParseException {
         List<String> orderCommands = new ArrayList<String>();
         List<String> pattern = new ArrayList<String>();
@@ -97,6 +101,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
         return orderCommands;
     }
 
+    //@@author chongweiguan
     private List<String> parseTasks(String[] components) throws ParseException {
         List<String> taskCommands = new ArrayList<String>();
         List<String> pattern = new ArrayList<String>();
@@ -136,6 +141,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
         return taskCommands;
     }
 
+    //@@author chongweiguan
     private List<String> parseSuppliers(String[] components) throws ParseException {
         List<String> supplierCommands = new ArrayList<String>();
         List<String> pattern = new ArrayList<String>();
@@ -181,6 +187,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
         return supplierCommands;
     }
 
+    //@@author chongweiguan
     private List<String> parseItems(String[] components) throws ParseException {
         List<String> menuItemsCommands = new ArrayList<String>();
         List<String> pattern = new ArrayList<String>();

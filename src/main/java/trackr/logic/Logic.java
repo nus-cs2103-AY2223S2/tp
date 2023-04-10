@@ -44,6 +44,7 @@ public interface Logic {
      */
     ObservableList<Supplier> getFilteredSupplierList();
 
+    //@@author chongweiguan-reused
     /**
      * Returns the OrderList
      *

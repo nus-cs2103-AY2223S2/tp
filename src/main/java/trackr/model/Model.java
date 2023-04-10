@@ -141,11 +141,13 @@ public interface Model {
 
     // ================================================= Order =================================================
 
+    //@@author chongweiguan-reused
     /**
      * Returns the OrderList
      */
     ReadOnlyOrderList getOrderList();
 
+    //@@author chongweiguan-reused
     /**
      * Returns an unmodifiable view of the filtered order list
      */
