@@ -23,8 +23,8 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
     public static final String COMMAND_WORD = "import_job";
     public static final String MESSAGE_EMPTY_FILE = "File is empty";
     public static final String MESSAGE_SUCCESS = "File is imported";
-    public static final String MESSAGE_WRONG_FILE = "File type is unsupported. Please upload a CSV file and check if " +
-            "file extension is named .csv";
+    public static final String MESSAGE_WRONG_FILE = "File type is unsupported. Please upload a CSV file and check if "
+            + "file extension is named .csv";
 
     private final File toAdd;
 
@@ -68,7 +68,8 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    /** Gets type of file extension.
+    /**
+     * Gets type of file extension.
      *
      * @param file File that extension is checked
      * @return String file extension name

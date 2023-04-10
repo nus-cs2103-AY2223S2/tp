@@ -31,15 +31,15 @@ public class ImportDeliveryJobCommandParser {
 
     public static final String MESSAGE_MISSING_ELEMENT_IN_IMPORT = "Missing element in import";
     public static final String MESSAGE_EMPTY_FILE = "File is empty";
-    public static final String MESSAGE_WRONG_FILE = "File type is unsupported. Please upload a CSV file and check if " +
-            "file extension is named .csv";
+    public static final String MESSAGE_WRONG_FILE = "File type is unsupported. Please upload a CSV file and check if "
+            + "file extension is named .csv";
 
     public static final String MESSAGE_WRONG_DELIMITER = "Wrong delimiter used, please use comma as delimiter.";
-    public static final String MESSAGE_MISSING_HEADER = "Missing header in import. " +
-            "Header needs to consist in this order of Recipient ID, Sender ID, Delivery date, Delivery slot, Price, " +
-            "Recipient ID, Recipient Name, Recipient Phone, Recipient Email, Recipient Address, " +
-            "Recipient Tag, Sender ID, Sender Name, Sender Phone, Sender Email, Sender Address," +
-            " Sender Tag." ;
+    public static final String MESSAGE_MISSING_HEADER = "Missing header in import. "
+            + "Header needs to consist in this order of Recipient ID, Sender ID, Delivery date, Delivery slot, Price, "
+            + "Recipient ID, Recipient Name, Recipient Phone, Recipient Email, Recipient Address, "
+            + "Recipient Tag, Sender ID, Sender Name, Sender Phone, Sender Email, Sender Address,"
+            + " Sender Tag.";
 
     /**
      * Parses the given CSV File in the context of the ImportCommand
@@ -107,7 +107,8 @@ public class ImportDeliveryJobCommandParser {
         return person;
     }
 
-    /** Ensures Header elements are all present and in right order.
+    /**
+     * Ensures Header elements are all present and in right order.
      *
      * @param arrOfHeader array of header elements
      * @return Boolean whether header elements are correct
@@ -128,7 +129,8 @@ public class ImportDeliveryJobCommandParser {
         return true;
     }
 
-    /** Gets type of file extension.
+    /**
+     * Gets type of file extension.
      *
      * @param file File that extension is checked
      * @return String file extension name
@@ -142,7 +144,8 @@ public class ImportDeliveryJobCommandParser {
     }
 
 
-    /** Adds new delivery job to list of jobs to be imported in.
+    /**
+     * Adds new delivery job to list of jobs to be imported in.
      *
      * @param arrOfStr array of job and its customers details
      * @param listOfCustomers list of job's customers to be checked if
