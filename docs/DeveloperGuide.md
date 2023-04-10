@@ -19,10 +19,10 @@ as its framework.
 ### 1.2 About the developer guide
 
 This developer guide describes the high-level software architecture and how user inputs are parsed into corresponding
-commands in coNtactUS. 
+commands in coNtactUS.
 
 If you are a beginner that simply wants to use coNtactUS in your daily university life, look no further and jump
-straight into our first-time user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html). 
+straight into our first-time user-friendly [user guide](https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html).
 
 If you are an advanced user, or developers who want to understand how the software works, or you want to further
 develop coNtactUS for yourself, you may feel free to proceed with the developer guide.
@@ -31,7 +31,7 @@ If at any point you want to understand what some terminologies mean, [glossary](
 that.
 
 To help you better navigate through our user guide, the [Return to ToC](#toc) at the end of each section
-allows you return to the Table of Contents. From there, you can quickly access another section by clicking the 
+allows you return to the Table of Contents. From there, you can quickly access another section by clicking the
 respective header.
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -328,7 +328,7 @@ improved user experience.
 
 ### 6.2 More checks to teacher, remarks
 
-Bla bla 
+Bla bla
 
 --------------------------------------------------------------------------------------------------------------------
 ## **7. Documentation, logging, testing, configuration, dev-ops**
@@ -496,14 +496,14 @@ specified otherwise)
     * 1b3. Repeat steps 1b1 and 1b2 until there are no more missing information. <br>
 
       Use case resumes at step 2.
-  
+
 
 **Use case 4: Finding a specific module**
 
 **MSS**
 
 1.  User requests to list all the modules.
-2.  coNtactUS shows a list of all the modules added into the module tracker. 
+2.  coNtactUS shows a list of all the modules added into the module tracker.
 3.  User requests to find a specific module in the list with a specified keyword.
 4.  coNtactUS shows a filtered list of the modules that contain the specified keyword.
 
@@ -516,7 +516,7 @@ specified otherwise)
     Use case ends.
 
 * 4a. None of the existing modules contain the keyword.
-   
+
     Use case ends.
 
 **Use case 5: Sorting the modules by `timeslot`**
@@ -756,19 +756,19 @@ Expected: Module(s) with the description `tutorial` Details of the found tutoria
 3. Test case: `find tutorial lab` <br>
 Expected: A tutorial or lab type is found on the list. Details of the found tutorials and labs are shown in
 the list. <br>
-   
+
 4. Test case: `find CS` <br>
 Expected: Module(s) with the name or description `CS` is (are) found. Details of the found module(s) are shown in the list.
 <br>
 
 5. Test case: `find` <br>
 Expected: No modules are found, because the keyword is not specified.
-   
+
 6. Test case: `find x`(where x is the keyword that none of the existing modules have) <br>
 Expected: No modules are found, because the keyword does not exist in the existing module list.
-   
+
 7. Note: Make sure to list the modules again when you want to find another module.
-   
+
 ### 10.6 Sorting a module by `timeslot` or `deadline`
 
 1. Test case: `sort timeslot` <br>
@@ -805,7 +805,7 @@ were completed and implemented perfectly by each specified milestones.
 
 1. Refactoring the models of `AB3` to fit the functional requirements of `coNtactUS` (Difficulty: 6 / 10, Effort
 required: 9 / 10)
-   * Function names such as `AddressBook`, `addressbook` and `ab` have to be refactored to fit `coNtactUS`. 
+   * Function names such as `AddressBook`, `addressbook` and `ab` have to be refactored to fit `coNtactUS`.
    * It is not difficult, but highly tedious to refactor, as there were different forms of `addressbook`, hence it is
    not possible to refactor everything in one go.
 
