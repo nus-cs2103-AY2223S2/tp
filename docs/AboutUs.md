@@ -38,7 +38,7 @@ You can reach us at these emails :
 
 <img src="images/szejiancheng.png" width="200px">
 
-[[github](http://github.com/szejiancheng)] [[portfolio](https://github.com/szejiancheng?tab=repositories)]
+[[github](http://github.com/szejiancheng)] [[portfolio](team/szejiancheng.md)]
 
 * Role: coder
 * Responsibilities: UML diagrams, implementation, and providing snacks
