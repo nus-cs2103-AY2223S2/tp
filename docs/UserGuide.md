@@ -44,6 +44,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -123,6 +124,8 @@ Format: `delete ic/NRIC`
 Examples:
 * `delete ic/S9876543K` deletes the person with the NRIC number S9876543K in MediConnect.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a person : `edit`
 
 Edits the details of an existing person stored in MediConnect.
@@ -139,6 +142,8 @@ Examples:
 * `edit 9 n/John Smith` will edit the name of the 9th person listed to "John Smith".
 
 <img src="images/Edit.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ### Display patient's information : `display`
 Displays personal particulars, appointments and prescription for patients.
@@ -159,6 +164,8 @@ Examples:
 
 <img src="images/Display.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 ### Finding a person (patient or doctor) by NRIC : `find`
 
 Finds and displays information about the specified person.
@@ -174,6 +181,8 @@ Examples:
 * `find ic/S1234567A` returns the details for the person with NRIC number S1234567A.
 
 <img src="images/Find.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ### Book appointment : `appointment`
 
@@ -201,6 +210,8 @@ Examples:
 
 <img src="images/Appointment.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 ### Delete appointment : `deleteAppointment`
 
 Deletes an appointment specified by the index of the patient’s appointment list.
@@ -221,6 +232,8 @@ Restrictions:
 Examples:
 * `deleteAppointment 1 ic/S1234567A` deletes the first appointment displayed on the appointment list of the patient with NRIC number `S1234567A`."
 
+<div style="page-break-after: always;"></div>
+
 ### Prescribing patient’s medication : `prescribe`
 
 * Prescribes medication to a patient, noting the medication's name and cost.
@@ -234,6 +247,8 @@ Examples:
 
 <img src="images/Prescribe.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 ### Removing patient’s medication : `unprescribe`
 
 Removes a chosen medication from a patient.
@@ -243,6 +258,8 @@ Format: `unprescribe ic/NRIC m/MEDICATION`
 Examples:
 *  `unprescribe ic/S1234567A m/paracetamol` removes paracetamol prescription from patient with NRIC number S1234567A.
 *  `unprescribe m/Cough Syrup ic/S1234567A` removes Cough Syrup prescription from patient with NRIC number S1234567A.
+
+<div style="page-break-after: always;"></div>
 
 ### Bill : `bill`
 
@@ -255,12 +272,13 @@ Examples:
 
 <img src="images/Bill.png" width="450" />
 
+<div style="page-break-after: always;"></div>
+
 ### Retrieve persons information : `list`
 
 Shows a list of all persons in MediConnect.
 
 Format: `list`
-
 
 ### Retrieve doctors information : `listDoctors`
 
@@ -290,6 +308,7 @@ Format: `clear`
 Example:
 * `clear` permanently deletes all data stored in the system.
 
+<div style="page-break-after: always;"></div>
 
 ### Requesting help : `help`
 
