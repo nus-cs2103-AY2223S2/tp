@@ -344,6 +344,9 @@ The `Summary` object
 * takes in 0 or more `AggregateFunction`s to show their description and results.
 
 <img src="images/developerGuide/StatsCommandClassDiagram.png" width="500" />
+
+The `StatsCommand` keeps a Summary object. When `StatsCommand`'s `execute` method is called, it creates all the `AggregateFunctions` with appropriate arguments and passes them to the summary to be described.
+<img src="images/developerGuide/StatsSequenceDiagram.png" width="500" />
  
 ### Storage
 This section specifies how entities such as `Elderly`, `Volunteer` and `Pair` are stored on disk.
