@@ -56,10 +56,11 @@ refrigerator!
 <div markdown="block" class="alert alert-info">
 If double-clicking the application does not work:
   * Copy the file to the folder you want to use as the _home folder_ for your WIFE.
-  * Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
+  * Open a command terminal, `cd` into the folder you put `wife.jar` in, and use the following command to run the application.<br>
+  `java -jar wife.jar` 
 </div>
 
-A GUI similar to the below should appear in a few seconds.
+A _GUI_ similar to the below should appear in a few seconds.
    ![Ui](images/UG/Ui_current.png)
 The main application consists of 3 components, namely:
 * Food List
@@ -69,14 +70,14 @@ The main application consists of 3 components, namely:
 --------------------------------------------------------------------------------------------------------------------
 ## Trying out your first command!
 Not sure how to start? Don't worry, let's start out with a simple command as an example using the sample data
-provided WIFE when you first start up. 
+provided in WIFE when you first start up. 
 
-* Type the following command in the user input box at the bottom of WIFE and press 'Enter' on your keyboard
-to execute it.
+* Type the following command in the user input box at the bottom of WIFE and press the "Enter" button beside it. (You can 
+also press "Enter" on your keyboard!)
   
   `add n/Coca Cola u/Cans q/5 e/01-01-2099`
 
-You should see the Food List be updated as such!
+You should see the Food List be updated as such.
 
   ![Ui_updated](images/UG/AddFood.png)
 
@@ -93,22 +94,22 @@ To see what the command format means, you can refer to the [Features](#features)
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Meiji Milk`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you, the user!<br>
+  e.g. In `add n/NAME`, `NAME` is a parameter which can be used as `add n/Meiji Milk`.
 
   * Items in square brackets are optional.<br>
     e.g. `inc INDEX [q/QUANTITY]` can be used as `inc 1 q/10` or as `inc 1`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG NAME]…​` can be used as ` ` (i.e. 0 times), `t/Vegetables`, `t/Fresh` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME u/UNIT`, `u/UNIT n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/item1 n/item2`, only `n/item2` will be taken.
+* If a parameter is expected only **once** in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. In `tag INDEX n/TAG NAME`, if you specify `tag 1 n/item 1 n/item 2`, only `n/item2` will be tagged to that food item.
 
-* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+* _Extraneous parameters_ for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 </div>
 
@@ -119,15 +120,15 @@ To see what the command format means, you can refer to the [Features](#features)
 Adds a new food item into WIFE. (This is the command when you tried out your first command!)
 
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
+
 Note:
-* All parameters must be present in the command. Date must be in the format of DD-MM-YYYY
-* `UNIT` of the food item must have at most 10 characters
-* `QUANTITY` of the food item **must be a positive integer** 1, 2, 3, …​
-* `QUANTITY` of the food item should be less than `1,000,000`.
+* All parameters must be present in the command.
+* `UNIT` of the food item must have at most **10 characters**
+* `QUANTITY` of the food item **must be a positive integer** 1, 2, 3, …​ and it should be less than `1,000,000`.
 * `EXPIRY DATE` of the food item should be in the format `DD-MM-YYYY`. Examples of valid date format:
   * 11-11-2025
   * 07-04-2024
-* `EXPIRY DATE` of the food item should not be before the date of insertion
+* `EXPIRY DATE` of the food item should not be before the date of insertions
 
 Example:
 
@@ -178,7 +179,7 @@ Edited food item: Chocolate milk (expires on: 06-06-2030)
 
 ### Find a food item: `find`
 
-Find food items in WIFE which names contain any of the specified keywords. Keywords are case-insensitive.
+Find food items in WIFE which names contain **any of the specified keywords**. Keywords are case-insensitive.
 
 Format: `find KEYWORD [KEYWORD]...`
 
@@ -240,7 +241,7 @@ Format: `delete INDEX`
 
 Note:
 * Deletes the food item at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed food item list.
+* The `INDEX` refers to the index number shown in the displayed Food List.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Result:
@@ -293,9 +294,8 @@ Format: `createtag n/TAG NAME [n/TAG NAME]...`
 Note:
 * `TAG NAME` has a maximum limit of **15 characters**.
 * `TAG NAME` is case-insensitive and two tags with the same name will be classified as duplicates.
-* If in the case where any of the tags (but not all) already exists in WIFE, the non-duplicate tags will be created. 
-  However, if all the tags being declared already exist in WIFE, WIFE will return an error response to prevent 
-  the creation of duplicate tags.
+* In the case where any of the tags (but not all) already exists in WIFE, only the non-duplicate tags will be created. 
+* If all the tags being declared already exist in WIFE, an error response will be returned.
 
 Example:
 `createtag n/Fizzy n/Soup` displays
@@ -309,7 +309,7 @@ Soup
 
 ### Tag a food item: `tag`
 
-Tag the specified food item in your fridge with an existing tag.
+Tag the specified food item in WIFE with an existing tag.
 
 Pre-Defined Tags (These tags already exist when you start up the application):
 * `New`
@@ -321,9 +321,10 @@ Format: `tag INDEX n/TAG NAME`
 Note:
 * Each food item can have a maximum of **4** tags.
 * Only one tag can be tagged to a food item per command.
-* `TAG NAME` must be a valid tag created in WIFE. List of tags available can easily be checked 
-* using the [`listtag`](#list-all-tags-listtag) command.
-* `INDEX` refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+* `TAG NAME` must be a valid tag in WIFE. List of tags available can be checked using the [`listtag`](#list-all-tags-listtag) command.
+* The `INDEX` refers to the index number shown in the displayed Food List.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
 
 Example: <br/>
 `tag 1 n/new` returns
@@ -339,13 +340,14 @@ Coca Cola successfully tagged with Fizzy
 
 ### Untag a food item: `untag`
 
-Remove a tag from a specified food item in your fridge.
+Removes a tag from a specified food item in WIFE.
 
 Format: `untag INDEX n/TAG NAME`
 * Remove `TAG NAME` from the food item with index `INDEX`.
 * `TAG NAME` must be an existing tag of the selected food item.
 * Only one tag can be removed from a food item per command.
-* `INDEX` refers to any number on the Food List and must be a positive number, i.e., 1, 2, 3, 4, …
+* The `INDEX` refers to the index number shown in the displayed Food List.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 `untag 1 n/new` returns
@@ -478,7 +480,7 @@ Clears the entire Food List (`Food` and tags included) in WIFE.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This is a destructive command! Using this command will empty all food items and tags. Be careful when using this command!
+This is a _destructive command_! Using this command will empty all food items and tags. Be careful when using this command!
 </div>
 
 ### Exit the program : `exit`

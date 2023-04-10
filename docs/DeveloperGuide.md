@@ -9,7 +9,7 @@ inventory management system, users can easily edit their fridge's inventory and 
 list. Users can also tag their food items according to their preferences.
 
 This developer guide aims to provide detailed documentation for WIFE's design and implementation. This includes its
-architecture, design choices as well outlines for all features of the software. This project is released under the MIT
+architecture, design choices as well as outlines for all of its features. This project is released under the MIT
 license, making it open source and available for anyone to use and modify.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,8 @@ license, making it open source and available for anyone to use and modify.
     - [List `Food` by tag(s).](#list-food-by-tags)
     - [Delete `Food` by tag(s).](#delete-food-by-tags)
     - [Delete tag(s)](#delete-tags)
-  - [Dynamic Help](#dynamic-help)
+  - [General Features](#general-features)
+    - [Dynamic Help](#dynamic-help)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Future enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
@@ -74,7 +75,7 @@ license, making it open source and available for anyone to use and modify.
     - [Increase quantity of a`Food`](#test-to-increase-quantity-of-a-food)
     - [Decrease quantity of a `Food`](#test-to-decrease-quantity-of-a-food)
     - [Delete a `Food`](#test-to-delete-a-food)
-  - [Sort `Food` by expiry date](#test-to-sort-food-by-expiry-date)
+    - [Sort `Food` by expiry date](#test-to-sort-food-by-expiry-date)
   - [Tag-related features](#tests-for-tag-related-features)
     - [Create a new tag](#test-to-create-a-new-tag)
     - [Tag a `Food`](#test-to-tag-a-food)
@@ -87,7 +88,7 @@ license, making it open source and available for anyone to use and modify.
     - [Help](#test-for-help)
     - [Clear](#test-to-clear-wife)
     - [Exit](#test-to-exit)
-  - [Glossary](#glossary)
+- [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -125,11 +126,11 @@ Below is a high-level view of how WIFE is structured, including its key componen
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of WIFE.
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+**Main components of WIFE's architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
@@ -140,10 +141,10 @@ Given below is a quick overview of main components and how they interact with ea
 
 The rest of the App consists of four components.
 
--   [**`UI`**](#ui-component): The UI of the App.
+-   [**`UI`**](#ui-component): The UI of WIFE.
 -   [**`Logic`**](#logic-component): The command executor.
--   [**`Model`**](#model-component): Holds the data of the App in memory.
--   [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+-   [**`Model`**](#model-component): Holds the data of WIFE in memory.
+-   [**`Storage`**](#storage-component): Reads data from, and writes data to, the data file.
 
 **How the architecture components interact with each other**
 
@@ -164,7 +165,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/wife/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -174,18 +175,18 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
--   executes user commands using the `Logic` component.
--   listens for changes to `Model` data so that the UI can be updated with the modified data.
--   keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
--   depends on some classes in the `Model` component, as it displays `Food` object residing in the `Model`.
+-   Executes user commands using the `Logic` component.
+-   Listens for changes to `Model` data so that the UI can be updated with the modified data.
+-   Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+-   Depends on some classes in the `Model` component, as it displays `Food` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/wife/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-![Structure of the UI Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 
@@ -212,16 +213,16 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/wife/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 The `Model` component,
 
--   stores WIFE data i.e., all `Food` and `Tag` objects (which are contained in a `UniqueFoodList` and `UniqueTagList` objects).
--   stores the currently 'selected' `Food` and `Tag` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Food>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
--   stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
--   does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+-   Stores WIFE data i.e. All `Food` and `Tag` objects (which are contained in a `UniqueFoodList` and `UniqueTagList` objects).
+-   Stores the currently 'selected' `Food` and `Tag` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Food>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+-   Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+-   Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `WIFE`, which `Food` references. This allows `Wife` to only require one `Tag` object per unique tag, instead of each `Food` needing their own `Tag` objects.<br>
 
@@ -231,15 +232,15 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/wife/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
--   can save both WIFE data and user preference data in json format, and read them back into corresponding objects.
--   inherits from both `WifeStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
--   depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+-   Save both WIFE data and user preference data in json format, and read them back into corresponding objects.
+-   Inherits from both `WifeStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+-   Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -306,7 +307,7 @@ The second step necessitates the execution of `AddCommand#execute()` to facilita
 5. Completion of step 4 without any exceptions will result in successful addition of a new `Food` in WIFE and stored in
    `UniqueFoodList`
 
-The following sequence diagram shows how the `add` command.
+The following sequence diagram demonstrates the process when `add n/Broccoli...` is executed. (Remaining attributes of the `Food` are omitted)
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
@@ -341,21 +342,21 @@ The second step necessitates the execution of `EditCommand#execute()` to facilit
 7. Completion of step 6 without any exceptions will result in successful addition of a new `Food` in WIFE and stored in
    `UniqueFoodList`
 
-The following sequence diagram shows how the `edit` command.
+The following sequence diagram demonstrates the process when `edit 1 n/Broccoli q/10` is executed.
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-#### Increase/Decrease quantity of a `Food`.
+#### Increase/Decrease quantity of a `Food`
 
 **Overview**
 
 The increase/decrease quantity feature is meant to be a shorthand for users to change the quantity of a particular `Food`.
 Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a `Food`.
-The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed `Food` respectively.
+The user can now specify `inc` or `dec` to easily increase or decrease the quantity of the indexed `Food` respectively.
 
 **Design considerations**
 
--   **Alternative 1:** The command parameter will be the new quantity of the `Food` to edit
+-   **Alternative 1:** The command parameter will be the new final quantity of the `Food`.
 
     -   Pros:
         -   Easily implemented. The command parameter will be set as the new quantity of the `Food`.
@@ -382,6 +383,7 @@ if no quantity was specified. We realised it was intuitive for users to make the
 <div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
 new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
 
+The following sequence diagram demonstrates the process when `inc 1 q/10` is executed.
 ![IncreaseQuantitySequenceDiagram](images/IncreaseQuantitySequenceDiagram.png)
 
 The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
@@ -400,7 +402,7 @@ The second step necessitates the execution of `IncreaseCommand#execute()`.
 5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
    key in the command with a valid quantity.
 
-The following activity diagram summarizes what happens when a user executes a new `inc` command:
+The following activity diagram summarises what happens when a user executes a new `inc` command:
 
 ![IncreaseQuantityActivityDiagram](images/IncreaseQuantityActivityDiagram.png)
 
@@ -413,7 +415,7 @@ The view feature is meant to be a shorthand for users to view the details of a `
 Traditionally, to view the details of a `Food`, the user would use the list command to view its details.
 The user can now specify `view` to view more details of the indexed `Food` such as its full name.
 
-The following UML diagram shows `view` and its associated class.
+The following sequence diagram demonstrates the process when `view 1` is executed.
 
 ![ViewCommandSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
@@ -434,9 +436,6 @@ created which will be used to switch the view from the list view to the details 
 5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
    key in the command with a valid index.
 
-The following activity diagram shows the usage of the `view` command.
-
-
 ### Tag-related Features
 
 #### Overview
@@ -447,7 +446,7 @@ Furthermore, each `Food` within WIFE has its own assortment of associated `Tag` 
 internal `Set<Tag>`.
 
 When a `Tag` is tagged or untagged from a `Food`, the corresponding `Tag` object is added to or removed from the 
-`Set<Tag>` that is stored within the `Food`. This approach allows for effective tagging and organization of items across 
+`Set<Tag>` that is stored within the `Food`. This approach allows for effective tagging and organisation of items across 
 multiple lists.
 
 The following UML diagram shows `Tag` and its associated class.
@@ -520,9 +519,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Overview**
 
-User may choose to tag a `Food` in `WIFE` with any of the pre-defined `Tag` created. This can simply
+User may choose to tag a `Food` in `WIFE` with any of the pre-defined `Tag` created. This can
 be done using the command `tag`. This tagging function allows user to easily classify their `Food` in
-the fridge.
+WIFE.
 
 **Implementation**
 
@@ -549,7 +548,7 @@ The following sequence diagram shows how the `tag` command works.
 5. Completion of step 4 without any exception will result in successful tagging of the `Food` with the
    specified tag.
 
-The following activity diagram summarizes what happens when a user executes a new `createtag` command:
+The following activity diagram summarizes what happens when a user executes a new `tag` command:
 
 ![TagFoodActivityDiagram](images/TagFoodActivityDiagram.png)
 
@@ -735,7 +734,7 @@ Here are links to other documentation that you might find useful when developing
 ## **Appendix: Planned Enhancements**
 
 #### User Interface
-1. The enter button text gets truncated on some devices. We suspect this to be an OS related issue and plan to fix this in the future.
+The enter button text gets truncated on some devices. We suspect this to be an OS related issue and plan to fix this in the future.
 
 #### Food's Unit Representation
 It has been recognized that some users prefer to utilize specific unit representations for certain types of food, 
@@ -749,7 +748,7 @@ incorporate alphanumeric representations of `Unit`, enabling users to include su
 
 **Target user profile**:
 
--   Fridge owner who cares about food waste and wish to track their fridge inventory.
+-   Fridge owners who cares about food waste and wish to track their fridge inventory.
 
 **Value proposition**:
 
@@ -1002,7 +1001,7 @@ The same as Use Case UC08: Increment the quantity of a `Food`, except that it is
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has `Java 11` or above installed.
 2.  Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Application’s dimension should be a minimum of 450 by 600 pixels.
@@ -1032,6 +1031,7 @@ testers are expected to do more *exploratory* testing.
 ### Tests for Food-related features
 
 #### Test to add a `Food`
+
 `add n/Broccoli u/STALK q/2 e/03-03-2033`
 
 Expected Output in Food List: New Food "Broccoli" added into the list.
