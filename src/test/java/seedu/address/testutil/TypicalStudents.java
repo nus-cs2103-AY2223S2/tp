@@ -61,13 +61,14 @@ public class TypicalStudents {
             .withEmail("anna@example.com").withIndexNumber("7")
             .withClass("1A").withAddress("4th street").build();
 
-    // Students not in the PowerConnectParentList
+    // Students not in the PowerConnectStudentList
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withClass("1A").withAddress("little india").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withClass("1A").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withClass("1C").withAddress("chicago ave")
+            .withIndexNumber("20").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withClass(VALID_CLASS_AMY).withIndexNumber(VALID_INDEX_AMY)
             .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIENDLY).build();
@@ -81,7 +82,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code Parents} with all the typical parents.
+     * Returns an {@code Students} with all the typical students.
      */
     public static PcClass getTypicalPowerConnectStudents() {
         PcClass classes = new PcClass();
