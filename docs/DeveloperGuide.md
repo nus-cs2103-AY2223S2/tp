@@ -744,6 +744,18 @@ It has been recognized that some users prefer to utilize specific unit represent
 such as using 1L or 2L to indicate the volume of milk. To accommodate this, future iterations of the system will 
 incorporate alphanumeric representations of `Unit`, enabling users to include such unit specifications.
 
+### Tag
+The current implementation of tags in WIFE provides basic functionality, including the ability to create a tag, tag or 
+untag a food item with the tag, and delete a tag that is no longer needed. However, to enhance the usability of tags, 
+an additional feature could be added to allow users to edit tags. This would enable users to modify their existing tags,
+rather than having to delete and recreate them if any changes are required.
+
+### Tag Name
+In some cases, users may want to create tags that contain numeric characters. For example, a user may want to tag the
+weight of a food item, such as broccoli, in their fridge with its weight in grams or ounces. To accommodate this use
+case, future iterations of the WIFE system will incorporate alphanumeric representations for tag names. This will allow
+users to create more general tags that can include both letters and numbers, expanding the possibilities for tag usage.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
