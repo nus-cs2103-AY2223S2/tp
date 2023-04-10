@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.parser.ClassificationTerms.CHAR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.entity.Character.CHAR_COMMAND_TERM;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_validValue_success() {
-        EditCommand expectedCommand = new EditCommand(CHAR.label, VALID_NAME_AMY);
-        assertParseSuccess(parser, CHAR.label + NAME_DESC_AMY, expectedCommand);
+        EditCommand expectedCommand = new EditCommand(CHAR_COMMAND_TERM, VALID_NAME_AMY);
+        assertParseSuccess(parser, CHAR_COMMAND_TERM + NAME_DESC_AMY, expectedCommand);
     }
 }

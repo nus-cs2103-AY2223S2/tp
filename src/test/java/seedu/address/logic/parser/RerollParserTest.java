@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.ClassificationTerms.CHAR;
+import static seedu.address.model.entity.Character.CHAR_COMMAND_TERM;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -43,27 +43,6 @@ public class RerollParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " selected") instanceof ClearCommand);
     }
 
-    /*
-    @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
-    }
-     */
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        /*
-        Entity entity = new EntityBuilder().build();
-        EditCommand.EditEntityDescriptor descriptor = new EditEntityDescriptorBuilder(entity).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + EntityUtil.getEditEntityDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-
-         */
-    }
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
@@ -86,7 +65,7 @@ public class RerollParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        String inputCommand = "list" + " " + CHAR.label;
+        String inputCommand = ListCommand.COMMAND_WORD + " " + CHAR_COMMAND_TERM;
         assertTrue(parser.parseCommand(inputCommand) instanceof ListCommand);
     }
 

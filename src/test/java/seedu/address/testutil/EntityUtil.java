@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.ClassificationTerms.CHAR;
-import static seedu.address.logic.parser.ClassificationTerms.ITEM;
-import static seedu.address.logic.parser.ClassificationTerms.MOB;
+import static seedu.address.model.entity.Character.CHAR_COMMAND_TERM;
+import static seedu.address.model.entity.Item.ITEM_COMMAND_TERM;
+import static seedu.address.model.entity.Mob.MOB_COMMAND_TERM;
 
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
@@ -28,18 +28,13 @@ public class EntityUtil {
     public static String getEntityDetails(Entity entity) {
         StringBuilder sb = new StringBuilder();
         if (entity instanceof Character) {
-            sb.append(CHAR.label).append(" ");
+            sb.append(CHAR_COMMAND_TERM).append(" ");
         } else if (entity instanceof Item) {
-            sb.append(ITEM.label).append(" ");
+            sb.append(ITEM_COMMAND_TERM).append(" ");
         } else if (entity instanceof Mob) {
-            sb.append(MOB.label).append(" ");
+            sb.append(MOB_COMMAND_TERM).append(" ");
         }
         sb.append(entity.getName().fullName).append(" ");
-        /*
-        entity.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
-        );
-         */
         return sb.toString();
     }
 

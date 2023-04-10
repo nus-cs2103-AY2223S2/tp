@@ -12,12 +12,12 @@ import seedu.address.model.tag.Tag;
  */
 public class Mob extends Entity {
 
+    public static final String MOB_COMMAND_TERM = "mob";
     private final Stats stats;
     // A higher challenge rating (CR) represents an increased difficulty to defeat a mob
     private final ChallengeRating challengeRating;
     private final Legend legend;
     private final Inventory inventory;
-
     /**
      * Create a mob using a builder pattern
      * @param builder given MobBuilder
