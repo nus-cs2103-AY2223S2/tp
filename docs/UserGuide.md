@@ -9,7 +9,7 @@ title: User Guide
 ---
 
 
-# 1. Introduction
+# **1. Introduction**
 
 ## 1.1 What is SudoHR?
 
@@ -54,7 +54,7 @@ and 10,000 tags!
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 2. Quick start
+# **2. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -79,7 +79,7 @@ and 10,000 tags!
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 3. Quick Reference Guide
+# **3. Quick Reference Guide**
 
 ## 3.1. Layout
 
@@ -222,7 +222,7 @@ It consists of:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 4. Commands
+# **4. Commands**
 
 ## 4.1. Employee Commands
 
@@ -653,7 +653,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and replace the default empty data file `sudohr.json` with the file that contains the data of your previous SudoHR home folder.
