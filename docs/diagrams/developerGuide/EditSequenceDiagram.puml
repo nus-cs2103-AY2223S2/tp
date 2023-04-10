@@ -50,18 +50,6 @@ destroy EditCommandParser
 [-> EditCommand : execute(model)
 activate EditCommand
 
-EditCommand -> Model : hasElderly(nric)
-activate Model
-Model --> EditCommand : false
-deactivate Model
-
-EditCommand -> Model : hasVolunteer(nric)
-activate Model
-Model --> EditCommand : true
-deactivate Model
-
-EditCommand -> EditCommand : editVolunteer(model)
-activate EditCommand
 
 EditCommand -> Model : getVolunteer(nric)
 activate Model
@@ -77,14 +65,6 @@ EditCommand -> Model : setVolunteer(volunteerToEdit, editedVolunteer)
 activate Model
 Model --> EditCommand
 deactivate Model
-
-EditCommand -> Model : updateFilteredVolunteerList(PREDICATE_SHOW_ALL)
-activate Model
-Model --> EditCommand
-deactivate Model
-
-EditCommand --> EditCommand : new CommandResult(...)
-deactivate EditCommand
 
 EditCommand -->[ : new CommandResult(...)
 deactivate EditCommand
