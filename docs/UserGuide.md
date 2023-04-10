@@ -50,9 +50,9 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
   - [2.14 View tasks](#214-viewing-persons-view)
   - [2.15 Review](#215-viewing-statistics-review)
   - [2.16 Help](#216-getting-help-help)
-  - [2.17 Lighting modes](#217-toggling-light-and-dark-mode)
+  - [2.17 Lighting modes](#217-toggling-between-light-and-dark-mode)
 - [3. FAQ](#3-faq)
-- [4. Checking Java Version](#4-how-do-i-check-my-java-versionbr)
+- [4. Checking my Java version](#4-how-do-i-check-my-java-version)
 - [5. Command summary](#5-command-summary)
 
 ---
@@ -64,7 +64,7 @@ have fun using Pied Piper and may all your future endeavors be elevated with our
 ## 1.1 Installation
 
 1. Ensure you have Java `11` or above installed in your Computer. If you aren't sure of the version, follow these 
-[instructions](#4-how-do-i-check-my-java-versionbr).
+[instructions](#4-how-do-i-check-my-java-version).
 If you don't have Java downloaded or have an outdated version, download it 
 [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
@@ -137,6 +137,8 @@ currently stored persons or tasks.
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 2. Features
 
 <div markdown="block" class="alert alert-info"></div>
@@ -157,7 +159,7 @@ currently stored persons or tasks.
 - [2.14 View tasks](#214-viewing-persons-view)
 - [2.15 Review](#215-viewing-statistics-review)
 - [2.16 Help](#216-getting-help-help)
-- [2.17 Lighting modes](#217-toggling-light-and-dark-mode)
+- [2.17 Lighting modes](#217-toggling-between-light-and-dark-mode)
 
 [↑ Back to table of contents](#table-of-contents)
 
@@ -393,6 +395,8 @@ Allows for toggling between light mode and dark mode based on user preference.
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -400,7 +404,7 @@ Allows for toggling between light mode and dark mode based on user preference.
 the data of your previous Pied Piper home folder.
 
 **Q**: How do I check my Java version?<br>
-**A**: Check [here](#4-how-do-i-check-my-java-versionbr).
+**A**: Check [here](#4-how-do-i-check-my-java-version).
 
 **Q**: Where do I download the correct Java version?
 **A**: Download from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
@@ -409,7 +413,8 @@ the data of your previous Pied Piper home folder.
 
 ---
 
-# 4. How do I check my Java version?<br>
+# 4. How do I check my Java version?
+
 For windows:
 1. Open your system's command line by searching `cmd` in the windows search bar.
 2. Enter the command `java -version`.
@@ -425,6 +430,8 @@ For mac:
 [↑ Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 5. Command summary
 
