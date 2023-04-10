@@ -4,19 +4,13 @@ start
 :User enters ldhc command;
 if () then ([else])
   :Error: Invalid command format;
-  stop
 ([Command format is valid])elseif () then ([else])
   :Error: Department does not exist in SudoHR;
-   stop
-
 ([Department exists in SudoHr]) elseif () then ([else]))
     : Error: Invalid date;
-    stop
 else ([Date is not given or given date is valid])
-
-
+    :ldhc command successfully executes.;
 endif
-  :ldhc command successfully executes.;
 stop
 
 @enduml
